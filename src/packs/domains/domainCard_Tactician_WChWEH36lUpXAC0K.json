@@ -8,19 +8,24 @@
     "domain": "bone",
     "recallCost": 1,
     "level": 3,
-    "type": "ability"
+    "type": "ability",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 122,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784526,
-    "modifiedTime": 1754249669078,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755428277274,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "WChWEH36lUpXAC0K",
   "sort": 3400000,

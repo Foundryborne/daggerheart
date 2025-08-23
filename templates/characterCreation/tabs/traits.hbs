@@ -19,7 +19,7 @@
                 <div class="traits-inner-container">
                     {{#each traits.values}}
                         <div class="trait-container">
-                            <div>{{this.name}}</div>
+                            <span>{{this.name}}</span>
                             <select name="{{concat "traits." this.key ".value"}}" data-dtype="Number">
                                 {{selectOptions this.options selected=this.value valueAttr="key" labelAttr="value" blank=""}}
                             </select>

@@ -1,0 +1,24 @@
+<div class="section-container">
+    <div class="tiers-container">
+        {{#each this.tiers as |tier key|}}
+            <fieldset class="tier-container">
+                <legend>{{tier.name}}</legend>
+                
+                {{#each tier.groups}}
+                    <div class="checkbox-group-container">
+                        <div class="checkboxes-container">
+                            {{#each this.checkboxGroups}}
+                                <div class="checkbox-grouping-coontainer {{#if this.multi}}multi{{/if}}">
+                                    {{#each this.checkboxes}}
+                                        <input type="checkbox" class="selection-checkbox{{#if (gt this.cost 1)}} multi{{/if}}" {{checked this.selected}} disabled />
+                                    {{/each}}
+                                </div>
+                            {{/each}}
+                        </div>
+                        <span class="checkbox-group-label">{{this.label}}</span>
+                    </div>
+                {{/each}}
+            </fieldset>
+        {{/each}}
+    </div>
+</div>

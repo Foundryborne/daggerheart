@@ -10,7 +10,7 @@
             <div class="traits-inner-container">
                 {{#each document._source.system.traits as | trait key |}}
                     <div class="trait-container">
-                        <div>{{localize (concat "DAGGERHEART.CONFIG.Traits." key ".name" )}}</div>
+                        <span>{{localize (concat "DAGGERHEART.CONFIG.Traits." key ".name" )}}</span>
                         <input type="text" data-dtype="Number" name="{{concat "system.traits." key ".value"}}" value="{{trait.value}}" />
                     </div>
                 {{/each}}

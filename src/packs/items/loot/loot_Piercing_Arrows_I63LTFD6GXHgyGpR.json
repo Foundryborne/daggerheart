@@ -29,6 +29,11 @@
         "img": "icons/weapons/ammunition/arrow-broadhead-glowing-orange.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 58,
+      "artist": ""
     }
   },
   "effects": [
@@ -101,12 +106,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753625947079,
-    "modifiedTime": 1753990194353,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755432020809,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!I63LTFD6GXHgyGpR"
 }

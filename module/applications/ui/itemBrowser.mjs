@@ -154,7 +154,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         Object.values(config).forEach(c => {
             const folder = {
                 id: c.id,
-                label: c.label,
+                label: game.i18n.localize(c.label),
                 selected: (!parent || parent.selected) && this.selectedMenu.path[depth] === c.id
             };
             folder.folders = c.folders
@@ -173,11 +173,16 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             folderPath = `${compendium}.folders.${folderId}`,
             folderData = foundry.utils.getProperty(config, folderPath);
 
+        const columns = ItemBrowser.getFolderConfig(folderData).map(col => ({
+            ...col,
+            label: game.i18n.localize(col.label)
+        }));
+
         this.selectedMenu = {
             path: folderPath.split('.'),
             data: {
                 ...folderData,
-                columns: ItemBrowser.getFolderConfig(folderData)
+                columns: columns
             }
         };
 
@@ -237,6 +242,12 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             else if (typeof f.choices === 'function') {
                 f.choices = f.choices();
             }
+            
+            // Clear field label so template uses our custom label parameter
+            if (f.field && f.label) {
+                f.field.label = undefined;
+            }
+            
             f.name ??= f.key;
             f.value = this.presets?.filter?.[f.name]?.value ?? null;
         });

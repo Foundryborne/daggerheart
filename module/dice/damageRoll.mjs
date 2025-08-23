@@ -37,7 +37,13 @@ export default class DamageRoll extends DHRoll {
                     Object.values(config.damage).flatMap(r => r.parts.map(p => p.roll))
                 ),
                 diceRoll = Roll.fromTerms([pool]);
-            await game.dice3d.showForRoll(diceRoll, game.user, true, chatMessage.whisper, chatMessage.blind);
+            await game.dice3d.showForRoll(
+                diceRoll,
+                game.user,
+                true,
+                chatMessage.whisper?.length > 0 ? chatMessage.whisper : null,
+                chatMessage.blind
+            );
         }
         await super.buildPost(roll, config, message);
         if (config.source?.message) {
@@ -137,7 +143,7 @@ export default class DamageRoll extends DHRoll {
         }
 
         if (config.isCritical && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-            const total = part.roll.dice.reduce((acc, term) => acc + term._faces*term._number, 0);
+            const total = part.roll.dice.reduce((acc, term) => acc + term._faces * term._number, 0);
             if (total > 0) {
                 part.roll.terms.push(...this.formatModifier(total));
             }
@@ -161,11 +167,11 @@ export default class DamageRoll extends DHRoll {
             if (config.data.parent.appliedEffects) {
                 // Bardic Rally
                 const rallyChoices = config.data?.parent?.appliedEffects.reduce((a, c) => {
-                        const change = c.changes.find(ch => ch.key === 'system.bonuses.rally');
-                        if (change) a.push({ value: c.id, label: change.value });
-                        return a;
-                    }, [])
-                if(rallyChoices.length) {
+                    const change = c.changes.find(ch => ch.key === 'system.bonuses.rally');
+                    if (change) a.push({ value: c.id, label: change.value });
+                    return a;
+                }, []);
+                if (rallyChoices.length) {
                     mods.rally = {
                         label: 'DAGGERHEART.CLASS.Feature.rallyDice',
                         values: rallyChoices,
@@ -318,15 +324,19 @@ export default class DamageRoll extends DHRoll {
         });
 
         const updateMessage = game.messages.get(message._id);
+        const damageParts = updateMessage.system.damage[damageType].parts.map((damagePart, index) => {
+            if (index !== Number(part)) return damagePart;
+            return {
+                ...rollPart,
+                total: parsedRoll.total,
+                dice: rerolledDice
+            };
+        });
         await updateMessage.update({
             [`system.damage.${damageType}`]: {
                 ...updateMessage,
                 total: parsedRoll.total,
-                [`parts.${part}`]: {
-                    ...rollPart,
-                    total: parsedRoll.total,
-                    dice: rerolledDice
-                }
+                parts: damageParts
             }
         });
     }

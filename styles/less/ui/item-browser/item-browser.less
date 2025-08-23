@@ -90,7 +90,6 @@
             gap: 10px;
 
             .item-path {
-                font-family: @font-body;
                 color: light-dark(@dark, @beige);
 
                 &.path-link {
@@ -136,7 +135,6 @@
 
                     input {
                         border-radius: 50px;
-                        font-family: @font-body;
                         background: light-dark(@dark-blue-10, @golden-10);
                         border: none;
                         outline: 2px solid transparent;
@@ -179,7 +177,6 @@
                 justify-content: space-between;
                 padding: 10px;
                 border: 1px solid transparent;
-                font-family: @font-body;
                 transition: all 0.1s ease;
 
                 &.expanded + .subfolder-list {
@@ -187,7 +184,7 @@
                 }
 
                 &:has(+ .subfolder-list):after {
-                    content: "+";
+                    content: '+';
                 }
             }
 
@@ -231,7 +228,6 @@
                 grid-template-columns: 40px 400px repeat(auto-fit, minmax(100px, 1fr));
                 align-items: center;
                 text-transform: capitalize;
-                font-family: @font-body;
             }
         }
 
@@ -268,7 +264,6 @@
             border: 1px solid light-dark(@dark-blue, @golden);
             border-radius: 3px;
             min-height: 30px;
-            font-family: @font-body;
             font-weight: bold;
 
             > * {
@@ -307,7 +302,6 @@
                 display: flex;
                 flex-direction: column;
                 gap: 5px;
-                font-family: @font-body;
 
                 h1 {
                     font-size: 32px;
@@ -332,7 +326,6 @@
                     padding: 0 0 0 1.25rem;
 
                     li {
-                        font-family: @font-body;
                         margin-bottom: 0.25rem;
                     }
                 }
@@ -365,7 +358,6 @@
                 .form-group {
                     label {
                         flex: 1;
-                        font-family: @font-body;
                     }
                     .form-fields {
                         width: 100%;
@@ -395,12 +387,8 @@
             margin: 0;
 
             .title {
-                font-family: @font-subtitle;
                 margin: 0;
                 text-align: center;
-            }
-            .hint {
-                font-family: @font-body;
             }
         }
 

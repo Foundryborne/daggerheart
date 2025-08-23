@@ -650,7 +650,9 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
         this.render();
     }
 
-    static async save() {
+    static async save(_, button) {
+        button.disabled = true;
+
         const levelupData = Object.keys(this.levelup.levels).reduce((acc, level) => {
             if (level >= this.levelup.startLevel) {
                 acc[level] = this.levelup.levels[level].toObject();

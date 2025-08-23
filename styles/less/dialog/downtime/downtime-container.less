@@ -15,8 +15,6 @@
 }
 
 .daggerheart.dh-style.views.downtime {
-    font-family: @font-body;
-
     .downtime-container {
         .activities-grouping {
             width: 280px;
@@ -39,7 +37,7 @@
                     .activity-marker {
                         font-size: 8px;
                         flex: none;
-                        color: light-dark(#18162e, #f3c267);
+                        color: light-dark(@dark-blue, @golden);
                         margin-right: 4px;
                     }
 
@@ -93,9 +91,6 @@
             .refreshable-title {
                 font-weight: bold;
             }
-
-            .refreshable-name {
-            }
         }
     }
 
@@ -107,7 +102,6 @@
         button {
             flex: 1;
             height: 40px;
-            font-family: @font-body;
             font-weight: 600;
         }
     }

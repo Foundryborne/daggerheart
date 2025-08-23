@@ -1,6 +1,66 @@
 @import '../../utils/colors.less';
 @import '../../utils/fonts.less';
 
+.theme-light {
+    .chat-message .message-content {
+        color: @dark;
+
+        blockquote {
+            border-left: 5px solid @dark-blue-40;
+        }
+
+        a[href] {
+            color: @dark-blue;
+        }
+
+        a[href]:hover,
+        a[href].active {
+            font-weight: bold;
+            text-shadow: 0 0 8px @dark-blue;
+        }
+
+        button {
+            background: transparent;
+            border: 1px solid @dark-blue;
+            color: @dark-blue;
+
+            &:hover {
+                background: @light-black;
+                color: @dark-blue;
+            }
+
+            &:disabled {
+                background: transparent;
+                color: @dark-blue;
+
+                &:hover {
+                    background: transparent;
+                    color: @dark-blue;
+                }
+            }
+
+            &.reverted {
+                background: @dark-blue-10;
+                color: @dark-blue;
+                border: 1px solid @dark;
+                &:hover {
+                    background: transparent;
+                    color: @dark-blue;
+                }
+                img {
+                    border-radius: 3px;
+                }
+            }
+        }
+
+        .roll-buttons button {
+            height: 40px;
+            font-family: @font-body;
+            font-weight: bold;
+        }
+    }
+}
+
 .chat-message.dh-chat-message {
     .message-content {
         padding: 0;
@@ -17,7 +77,7 @@
     .message-content {
         padding: 0 8px;
         font-family: @font-body;
-        color: light-dark(@dark, @beige);
+        color: @beige;
 
         blockquote {
             border-left: 5px solid light-dark(@dark-blue-40, @golden-40);
@@ -34,15 +94,15 @@
         }
 
         button {
-            background: light-dark(transparent, @golden);
-            border: 1px solid light-dark(@dark-blue, @dark-blue);
-            color: light-dark(@dark-blue, @dark-blue);
+            background: @golden;
+            border: 1px solid @dark-blue;
+            color: @dark-blue;
             outline: none;
             box-shadow: none;
 
             &:hover {
-                background: light-dark(@light-black, @dark-blue);
-                color: light-dark(@dark-blue, @golden);
+                background: @dark-blue;
+                color: @golden;
             }
 
             &.glow {
@@ -50,24 +110,24 @@
             }
 
             &:disabled {
-                background: light-dark(transparent, @golden);
-                color: light-dark(@dark-blue, @dark-blue);
+                background: @golden;
+                color: @dark-blue;
                 opacity: 0.6;
                 cursor: not-allowed;
 
                 &:hover {
-                    background: light-dark(transparent, @golden);
-                    color: light-dark(@dark-blue, @dark-blue);
+                    background: @golden;
+                    color: @dark-blue;
                 }
             }
 
             &.reverted {
-                background: light-dark(@dark-blue-10, @golden-10);
-                color: light-dark(@dark-blue, @golden);
-                border: 1px solid light-dark(@dark, transparent);
+                background: @golden-10;
+                color: @golden;
+                border: 1px solid transparent;
                 &:hover {
-                    background: light-dark(transparent, @golden);
-                    color: light-dark(@dark-blue, @dark-blue);
+                    background: @golden;
+                    color: @dark-blue;
                 }
                 img {
                     border-radius: 3px;

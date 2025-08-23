@@ -35,7 +35,12 @@
       "advantages": 2,
       "features": 2
     },
-    "examples": "Cat, Dog, Rabbit, etc."
+    "examples": "Cat, Dog, Rabbit, etc.",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 12,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -119,12 +124,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753573035973,
-    "modifiedTime": 1753575463479,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1755395259885,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "iDmOtiHJJ80AIAVT",
   "sort": 100000,

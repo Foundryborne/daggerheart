@@ -8,10 +8,17 @@ export default class DhpEnvironment extends DHBaseActorSheet {
         classes: ['environment'],
         position: {
             width: 500,
-            height: 725
+            height: 740
         },
         window: {
-            resizable: true
+            resizable: true,
+            controls: [
+                {
+                    icon: 'fa-solid fa-signature',
+                    label: 'DAGGERHEART.UI.Tooltip.configureAttribution',
+                    action: 'editAttribution'
+                }
+            ]
         },
         actions: {},
         dragDrop: [{ dragSelector: '.action-section .inventory-item', dropSelector: null }]
@@ -20,9 +27,13 @@ export default class DhpEnvironment extends DHBaseActorSheet {
     /**@override */
     static PARTS = {
         header: { template: 'systems/daggerheart/templates/sheets/actors/environment/header.hbs' },
-        features: { template: 'systems/daggerheart/templates/sheets/actors/environment/features.hbs' },
+        features: {
+            template: 'systems/daggerheart/templates/sheets/actors/environment/features.hbs',
+            scrollable: ['feature-section']
+        },
         potentialAdversaries: {
-            template: 'systems/daggerheart/templates/sheets/actors/environment/potentialAdversaries.hbs'
+            template: 'systems/daggerheart/templates/sheets/actors/environment/potentialAdversaries.hbs',
+            scrollable: ['items-sections']
         },
         notes: { template: 'systems/daggerheart/templates/sheets/actors/environment/notes.hbs' }
     };
@@ -42,6 +53,7 @@ export default class DhpEnvironment extends DHBaseActorSheet {
         switch (partId) {
             case 'header':
                 await this._prepareHeaderContext(context, options);
+
                 break;
             case 'notes':
                 await this._prepareNotesContext(context, options);

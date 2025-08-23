@@ -7,7 +7,7 @@
     "rollup": "^4.40.0"
   },
   "scripts": {
-    "start": "concurrently \"rollup -c --watch\" \"node ../../../../FoundryDev/main.js --dataPath=../../../  --noupnp\"  \"gulp\"",
+    "start": "node ./tools/run-start.mjs",
     "start-test": "node ./resources/app/main.js --dataPath=./ && rollup -c --watch && gulp",
     "build": "npm run rollup && npm run gulp",
     "rollup": "rollup -c",
@@ -16,7 +16,8 @@
     "pushLDBtoYML": "node ./tools/pushLDBtoYML.mjs",
     "pullYMLtoLDB": "node ./tools/pullYMLtoLDB.mjs",
     "pullYMLtoLDBBuild": "node ./tools/pullYMLtoLDBBuild.mjs",
-    "createSymlink": "node ./tools/create-symlink.mjs"
+    "createSymlink": "node ./tools/create-symlink.mjs",
+    "setup:dev": "node ./tools/dev-setup.mjs"
   },
   "devDependencies": {
     "@foundryvtt/foundryvtt-cli": "^1.0.2",

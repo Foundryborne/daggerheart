@@ -91,6 +91,12 @@ const registerMenus = () => {
 };
 
 const registerNonConfigSettings = () => {
+    game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion, {
+        scope: 'world',
+        config: false,
+        type: String
+    });
+
     game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers, {
         scope: 'world',
         config: false,

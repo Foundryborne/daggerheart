@@ -9,10 +9,7 @@
         text-align: center;
 
         .profile {
-            width: 235px;
             height: 235px;
-            object-fit: cover;
-            object-position: top center;
             mask-image: linear-gradient(0deg, transparent 0%, black 10%);
             cursor: pointer;
         }
@@ -57,6 +54,13 @@
                         align-items: center;
                         font-size: 12px;
                     }
+                }
+
+                .attribution-header-label {
+                    text-align: left;
+                    position: relative;
+                    top: 4px;
+                    margin-bottom: -6px;
                 }
             }
 
@@ -125,12 +129,6 @@
             flex-direction: column;
             gap: 12px;
             padding: 10px 20px;
-
-            .description,
-            .impulses {
-                text-align: start;
-                font-family: @font-body;
-            }
         }
 
         .environment-navigation {

@@ -6,7 +6,12 @@
   "system": {
     "description": "<p>You can attach this gem to a weapon, allowing you to use your Agility when making an attack with that weapon.</p>",
     "quantity": 1,
-    "actions": {}
+    "actions": {},
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 60,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": null,
@@ -20,12 +25,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753640285473,
-    "modifiedTime": 1753640317903,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1755432422196,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!zecFwBUSWtB3HW8X"
 }

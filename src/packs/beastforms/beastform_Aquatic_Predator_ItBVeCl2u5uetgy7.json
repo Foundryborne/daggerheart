@@ -35,7 +35,12 @@
       "advantages": 2,
       "features": 2
     },
-    "examples": "Dolphin, Orca, Shark, etc."
+    "examples": "Dolphin, Orca, Shark, etc.",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 14,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -125,12 +130,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753626985883,
-    "modifiedTime": 1753626995174,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1755395436609,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "ItBVeCl2u5uetgy7",
   "sort": 0,

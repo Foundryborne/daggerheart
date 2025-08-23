@@ -34,6 +34,8 @@
             {{/if}}
             <span>{{localize "DAGGERHEART.GENERAL.type"}}</span>
             {{formInput fields.type value=source.type name="system.attack.damage.parts.0.type" localize=true}}
+            <span>{{localize "DAGGERHEART.CONFIG.DamageType.direct.name"}}</span>
+            {{formInput @root.systemFields.attack.fields.damage.fields.direct value=@root.document.system.attack.damage.direct name="system.attack.damage.direct" localize=true}}
             <input type="hidden" name="system.attack.damage.parts.0.value.multiplier" value="{{source.value.multiplier}}">
         {{/with}}
         {{/with}}

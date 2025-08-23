@@ -79,6 +79,11 @@
     "baseThresholds": {
       "major": 13,
       "severe": 36
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 57,
+      "artist": ""
     }
   },
   "effects": [],
@@ -94,10 +99,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.0",
+    "systemVersion": "1.0.5",
     "createdTime": 1753809470138,
-    "modifiedTime": 1754853048367,
-    "lastModifiedBy": "7zAk0CoP90J7ebn0"
+    "modifiedTime": 1755431817865,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!bcQUh4QG3qFX0Vx6"
 }

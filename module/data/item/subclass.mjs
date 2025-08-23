@@ -88,24 +88,4 @@ export default class DHSubclass extends BaseDataItem {
         const allowed = await super._preCreate(data, options, user);
         if (allowed === false) return;
     }
-
-    _onCreate(data, options, userId) {
-        super._onCreate(data, options, userId);
-
-        if (userId !== game.user.id) return;
-
-        if (options.parent?.type === 'character') {
-            const path = `system.${data.system.isMulticlass ? 'multiclass.subclass' : 'class.subclass'}`;
-            options.parent.update({ [path]: `${options.parent.uuid}.Item.${data._id}` });
-        }
-    }
-
-    _onDelete(options, userId) {
-        super._onDelete(options, userId);
-
-        if (options.parent?.type === 'character') {
-            const path = `system.${this.isMulticlass ? 'multiclass.subclass' : 'class.subclass'}`;
-            options.parent.update({ [path]: null });
-        }
-    }
 }

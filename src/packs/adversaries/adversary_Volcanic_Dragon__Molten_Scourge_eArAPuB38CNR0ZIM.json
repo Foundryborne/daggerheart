@@ -3,7 +3,7 @@
   "name": "Volcanic Dragon: Molten Scourge",
   "type": "adversary",
   "_id": "eArAPuB38CNR0ZIM",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
   "system": {
     "description": "<p><em>Enraged by their wounds, the dragon bursts into molten lava.</em></p>",
     "resistance": {
@@ -145,7 +145,12 @@
         }
       }
     },
-    "motivesAndTactics": "Douse with lava, incinerate, repel Invaders, reposition"
+    "motivesAndTactics": "Douse with lava, incinerate, repel Invaders, reposition",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 100,
+      "artist": ""
+    }
   },
   "prototypeToken": {
     "name": "Volcanic Dragon: Molten Scourge",
@@ -154,7 +159,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,
@@ -899,12 +904,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753929160832,
-    "modifiedTime": 1754219468339,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755385761296,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!actors!eArAPuB38CNR0ZIM"
 }

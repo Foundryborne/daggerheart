@@ -26,7 +26,8 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             hasResource: false,
             isQuantifiable: false,
             isInventoryItem: false,
-            hasActions: false
+            hasActions: false,
+            hasAttribution: true
         };
     }
 
@@ -37,7 +38,13 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
     /** @inheritDoc */
     static defineSchema() {
-        const schema = {};
+        const schema = {
+            attribution: new fields.SchemaField({
+                source: new fields.StringField(),
+                page: new fields.NumberField(),
+                artist: new fields.StringField()
+            })
+        };
 
         if (this.metadata.hasDescription) schema.description = new fields.HTMLField({ required: true, nullable: true });
 
@@ -110,6 +117,13 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         return [];
     }
 
+    get attributionLabel() {
+        if (!this.attribution) return;
+
+        const { source, page } = this.attribution;
+        return [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
+    }
+
     /**
      * Obtain a data object used to evaluate any dice rolls associated with this Item Type
      * @param {object} [options] - Options which modify the getRollData method.
@@ -144,48 +158,28 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         }
 
         if (this.actor && this.actor.type === 'character' && this.features) {
-            const featureUpdates = {};
+            const features = [];
             for (let f of this.features) {
                 const fBase = f.item ?? f;
                 const feature = fBase.system ? fBase : await foundry.utils.fromUuid(fBase.uuid);
-                const createData = foundry.utils.mergeObject(
-                    feature.toObject(),
-                    {
-                        system: {
-                            originItemType: this.parent.type,
-                            originId: data._id,
-                            identifier: this.isMulticlass ? 'multiclass' : null
-                        }
-                    },
-                    { inplace: false }
+                const multiclass = this.isMulticlass ? 'multiclass' : null;
+                features.push(
+                    foundry.utils.mergeObject(
+                        feature.toObject(),
+                        {
+                            _stats: { compendiumSource: fBase.uuid },
+                            system: {
+                                originItemType: this.parent.type,
+                                identifier: multiclass ?? (f.item ? f.type : null)
+                            }
+                        },
+                        { inplace: false }
+                    )
                 );
-                const [doc] = await this.actor.createEmbeddedDocuments('Item', [createData]);
-
-                if (!featureUpdates.features)
-                    featureUpdates.features = this.features.map(x => (x.item ? { ...x, item: x.item.uuid } : x.uuid));
-
-                if (f.item) {
-                    const existingFeature = featureUpdates.features.find(x => x.item === f.item.uuid);
-                    existingFeature.item = doc.uuid;
-                } else {
-                    const replaceIndex = featureUpdates.features.findIndex(x => x === f.uuid);
-                    featureUpdates.features.splice(replaceIndex, 1, doc.uuid);
-                }
             }
 
-            await this.updateSource(featureUpdates);
+            await this.actor.createEmbeddedDocuments('Item', features);
         }
-    }
-
-    async _preDelete() {
-        if (!this.actor || this.actor.type !== 'character') return;
-
-        const items = this.actor.items.filter(item => item.system.originId === this.parent.id);
-        if (items.length > 0)
-            await this.actor.deleteEmbeddedDocuments(
-                'Item',
-                items.map(x => x.id)
-            );
     }
 
     async _preUpdate(changed, options, userId) {
@@ -207,6 +201,8 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         super._onUpdate(changed, options, userId);
 
         updateLinkedItemApps(options, this.parent.sheet);
-        createScrollText(this.parent?.parent, options.scrollingTextData);
+
+        if (this.parent?.parent && options.scrollingTextData)
+            this.parent.parent.queueScrollText(options.scrollingTextData);
     }
 }

@@ -2,6 +2,35 @@
 @import '../../utils/fonts.less';
 @import '../../utils/spacing.less';
 
+.theme-light {
+    .daggerheart.chat.downtime {
+        .downtime-moves-list .downtime-move {
+            &:hover {
+                background: @dark-blue-10;
+            }
+
+            .downtime-label {
+                border-bottom: 1px solid @dark-blue;
+
+                .header-label .title {
+                    color: @dark-blue;
+                }
+                .header-label .label {
+                    color: @dark;
+                }
+            }
+
+            .fa-chevron-down {
+                color: @dark-blue;
+            }
+        }
+
+        .description {
+            color: @dark;
+        }
+    }
+}
+
 .daggerheart.chat {
     &.downtime {
         display: flex;
@@ -55,13 +84,11 @@
                         .title {
                             font-size: 16px;
                             color: @golden;
-                            font-family: @font-subtitle;
-                            margin: 0;
+                            font-weight: 700;
                         }
                         .label {
                             font-size: 12px;
                             color: @beige;
-                            font-family: @font-body;
                             margin: 0;
                         }
                     }
@@ -69,16 +96,12 @@
 
                 .description {
                     padding: 8px;
-                    color: beige;
-                    font-family: @font-body;
-                    font-size: 14px;
                 }
             }
 
             .action-use-button {
                 width: -webkit-fill-available;
                 margin: 0 8px;
-                font-family: @font-body;
                 font-weight: 600;
                 height: 40px;
             }

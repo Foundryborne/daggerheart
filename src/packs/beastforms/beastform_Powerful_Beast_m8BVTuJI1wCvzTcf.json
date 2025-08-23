@@ -35,7 +35,12 @@
       "advantages": 2,
       "features": 2
     },
-    "examples": "Bear, Bull, Moose, etc."
+    "examples": "Bear, Bull, Moose, etc.",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 13,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -125,12 +130,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753582598510,
-    "modifiedTime": 1753617739186,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1755395305302,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "m8BVTuJI1wCvzTcf",
   "sort": 300000,

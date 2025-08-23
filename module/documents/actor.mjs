@@ -1,10 +1,13 @@
 import { emitAsGM, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
-import { damageKeyToNumber } from '../helpers/utils.mjs';
+import { createScrollText, damageKeyToNumber, versionCompare } from '../helpers/utils.mjs';
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
 
 export default class DhpActor extends Actor {
+    #scrollTextQueue = [];
+    #scrollTextInterval;
+
     /**
      * Return the first Actor active owner.
      */
@@ -21,6 +24,14 @@ export default class DhpActor extends Actor {
      */
     get isNPC() {
         return this.system.metadata.isNPC;
+    }
+
+    /* -------------------------------------------- */
+
+    /** @inheritDoc */
+    static migrateData(source) {
+        if (source.system?.attack && !source.system.attack.type) source.system.attack.type = 'attack';
+        return super.migrateData(source);
     }
 
     /* -------------------------------------------- */
@@ -564,10 +575,16 @@ export default class DhpActor extends Actor {
                 if (armorSlotResult) {
                     const { modifiedDamage, armorSpent, stressSpent } = armorSlotResult;
                     updates.find(u => u.key === 'hitPoints').value = modifiedDamage;
-                    updates.push(
-                        ...(armorSpent ? [{ value: armorSpent, key: 'armor' }] : []),
-                        ...(stressSpent ? [{ value: stressSpent, key: 'stress' }] : [])
-                    );
+                    if (armorSpent) {
+                        const armorUpdate = updates.find(u => u.key === 'armor');
+                        if (armorUpdate) armorUpdate.value += armorSpent;
+                        else updates.push({ value: armorSpent, key: 'armor' });
+                    }
+                    if (stressSpent) {
+                        const stressUpdate = updates.find(u => u.key === 'stress');
+                        if (stressUpdate) stressUpdate.value += stressSpent;
+                        else updates.push({ value: stressSpent, key: 'stress' });
+                    }
                 }
             }
         }
@@ -632,7 +649,7 @@ export default class DhpActor extends Actor {
     }
 
     async modifyResource(resources) {
-        if (!resources.length) return;
+        if (!resources?.length) return;
 
         if (resources.find(r => r.key === 'stress')) this.convertStressDamageToHP(resources);
         let updates = {
@@ -735,5 +752,46 @@ export default class DhpActor extends Actor {
                 await this.toggleStatusEffect(condition, { overlay: settings.overlay, active: defeatedState });
             }
         }
+    }
+
+    queueScrollText(scrollingTextData) {
+        this.#scrollTextQueue.push(...scrollingTextData.map(data => () => createScrollText(this, data)));
+        if (!this.#scrollTextInterval) {
+            const scrollFunc = this.#scrollTextQueue.pop();
+            scrollFunc?.();
+
+            const intervalFunc = () => {
+                const scrollFunc = this.#scrollTextQueue.pop();
+                scrollFunc?.();
+                if (this.#scrollTextQueue.length === 0) {
+                    clearInterval(this.#scrollTextInterval);
+                    this.#scrollTextInterval = null;
+                }
+            };
+
+            this.#scrollTextInterval = setInterval(intervalFunc.bind(this), 600);
+        }
+    }
+
+    /** @inheritdoc */
+    async importFromJSON(json) {
+        if (!this.type === 'character') return await super.importFromJSON(json);
+
+        if (!CONST.WORLD_DOCUMENT_TYPES.includes(this.documentName)) {
+            throw new Error('Only world Documents may be imported');
+        }
+
+        const parsedJSON = JSON.parse(json);
+        if (versionCompare(parsedJSON._stats.systemVersion, '1.1.0')) {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: game.i18n.localize('DAGGERHEART.ACTORS.Character.InvalidOldCharacterImportTitle')
+                },
+                content: game.i18n.localize('DAGGERHEART.ACTORS.Character.InvalidOldCharacterImportText')
+            });
+            if (!confirmed) return;
+        }
+
+        return await super.importFromJSON(json);
     }
 }

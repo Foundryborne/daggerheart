@@ -25,7 +25,7 @@ export default class UsesField extends fields.SchemaField {
         if (uses && !uses.value) uses.value = 0;
         config.uses = uses;
         const hasUses = UsesField.hasUses.call(this, config.uses);
-        if (config.isFastForward && !hasUses) return ui.notifications.warn("That action doesn't have remaining uses.");
+        if (config.isFastForward && !hasUses) return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.actionNoUsesRemaining'));
         return hasUses;
     }
 

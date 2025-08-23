@@ -1,8 +1,10 @@
+import { getDocFromElement } from '../../../helpers/utils.mjs';
 import DHBaseActorSheet from '../api/base-actor.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
 export default class AdversarySheet extends DHBaseActorSheet {
+    /** @inheritDoc */
     static DEFAULT_OPTIONS = {
         classes: ['adversary'],
         position: { width: 660, height: 766 },
@@ -11,16 +13,34 @@ export default class AdversarySheet extends DHBaseActorSheet {
             reactionRoll: AdversarySheet.#reactionRoll
         },
         window: {
-            resizable: true
+            resizable: true,
+            controls: [
+                {
+                    icon: 'fa-solid fa-signature',
+                    label: 'DAGGERHEART.UI.Tooltip.configureAttribution',
+                    action: 'editAttribution'
+                }
+            ]
         }
     };
 
     static PARTS = {
-        sidebar: { template: 'systems/daggerheart/templates/sheets/actors/adversary/sidebar.hbs' },
+        sidebar: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/sidebar.hbs',
+            scrollable: ['.shortcut-items-section']
+        },
         header: { template: 'systems/daggerheart/templates/sheets/actors/adversary/header.hbs' },
-        features: { template: 'systems/daggerheart/templates/sheets/actors/adversary/features.hbs' },
-        notes: { template: 'systems/daggerheart/templates/sheets/actors/adversary/notes.hbs' },
-        effects: { template: 'systems/daggerheart/templates/sheets/actors/adversary/effects.hbs' }
+        features: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/features.hbs',
+            scrollable: ['.feature-section']
+        },
+        notes: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/notes.hbs'
+        },
+        effects: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/effects.hbs',
+            scrollable: ['.effects-sections']
+        }
     };
 
     /** @inheritdoc */
@@ -36,6 +56,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
         context.systemFields.attack.fields = this.document.system.attack.schema.fields;
+
         return context;
     }
 
@@ -45,12 +66,25 @@ export default class AdversarySheet extends DHBaseActorSheet {
         switch (partId) {
             case 'header':
                 await this._prepareHeaderContext(context, options);
+
+                const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
+                context.adversaryType = game.i18n.localize(adversaryTypes[this.document.system.type].label);
                 break;
             case 'notes':
                 await this._prepareNotesContext(context, options);
                 break;
         }
         return context;
+    }
+
+    /**@inheritdoc */
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        htmlElement.querySelectorAll('.inventory-item-resource').forEach(element => {
+            element.addEventListener('change', this.updateItemResource.bind(this));
+            element.addEventListener('click', e => e.stopPropagation());
+        });
     }
 
     /**
@@ -120,5 +154,19 @@ export default class AdversarySheet extends DHBaseActorSheet {
         };
 
         this.actor.diceRoll(config);
+    }
+
+    /* -------------------------------------------- */
+    /*  Application Listener Actions                */
+    /* -------------------------------------------- */
+
+    async updateItemResource(event) {
+        const item = await getDocFromElement(event.currentTarget);
+        if (!item) return;
+
+        const max = event.currentTarget.max ? Number(event.currentTarget.max) : null;
+        const value = max ? Math.min(Number(event.currentTarget.value), max) : event.currentTarget.value;
+        await item.update({ 'system.resource.value': value });
+        this.render();
     }
 }
