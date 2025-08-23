@@ -102,15 +102,6 @@ export default class DHClass extends BaseDataItem {
         if (allowed === false) return;
     }
 
-    _onDelete(options, userId) {
-        super._onDelete(options, userId);
-
-        if (options.parent?.type === 'character') {
-            const path = `system.${this.isMulticlass ? 'multiclass' : 'class'}`;
-            foundry.utils.getProperty(options.parent, `${path}.subclass`)?.delete();
-        }
-    }
-
     async _preUpdate(changed, options, userId) {
         const allowed = await super._preUpdate(changed, options, userId);
         if (allowed === false) return false;
