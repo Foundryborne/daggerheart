@@ -1,7 +1,7 @@
 import { emitAsGM, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
-import { damageKeyToNumber, versionCompare } from '../helpers/utils.mjs';
+import { damageKeyToNumber } from '../helpers/utils.mjs';
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
 
 export default class DhpActor extends Actor {
@@ -759,7 +759,7 @@ export default class DhpActor extends Actor {
         }
 
         const parsedJSON = JSON.parse(json);
-        if (versionCompare(parsedJSON._stats.systemVersion, '1.1.0')) {
+        if (foundry.utils.isNewerVersion('1.1.0', parsedJSON._stats.systemVersion)) {
             const confirmed = await foundry.applications.api.DialogV2.confirm({
                 window: {
                     title: game.i18n.localize('DAGGERHEART.ACTORS.Character.InvalidOldCharacterImportTitle')

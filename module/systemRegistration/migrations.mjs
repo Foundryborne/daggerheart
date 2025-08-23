@@ -1,10 +1,8 @@
-import { versionCompare } from '../helpers/utils.mjs';
-
 export async function runMigrations() {
     let lastMigrationVersion = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion);
     if (!lastMigrationVersion) lastMigrationVersion = '1.0.6';
 
-    if (versionCompare(lastMigrationVersion, '1.1.0')) {
+    if (foundry.utils.isNewerVersion('1.1.0', lastMigrationVersion)) {
         const compendiumActors = [];
         for (let pack of game.packs) {
             const documents = await pack.getDocuments();
@@ -37,7 +35,7 @@ export async function runMigrations() {
         lastMigrationVersion = '1.1.0';
     }
 
-    if (versionCompare(lastMigrationVersion, '1.1.1')) {
+    if (foundry.utils.isNewerVersion('1.1.1', lastMigrationVersion)) {
         const compendiumClasses = [];
         for (let pack of game.packs) {
             const documents = await pack.getDocuments();
