@@ -440,8 +440,9 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
         if (type === 'subclasses')
             presets.filter = {
-                'system.linkedClass': { key: 'system.linkedClass', value: this.setup.class?.uuid }
+                'system.linkedClass.uuid': { key: 'system.linkedClass.uuid', value: this.setup.class?.uuid }
             };
+        
         if (equipment.includes(type))
             presets.filter = {
                 'system.tier': { key: 'system.tier', value: 1 },

@@ -265,12 +265,9 @@ export const typeConfig = {
     subclasses: {
         columns: [
             {
-                key: 'id',
+                key: 'system.linkedClass',
                 label: 'Class',
-                format: id => {
-                    console.log(id);
-                    return '';
-                }
+                format: linkedClass => linkedClass.name
             },
             {
                 key: 'system.spellcastingTrait',
@@ -279,9 +276,15 @@ export const typeConfig = {
         ],
         filters: [
             {
-                key: 'system.linkedClass',
+                key: 'system.linkedClass.uuid',
                 label: 'Class',
-                field: 'system.api.models.items.DHSubclass.schema.fields.linkedClass'
+                choices: (items) => {
+                    const list = items.map(item => ({ value: item.system.linkedClass.uuid, label: item.system.linkedClass.name }));
+                    return list.reduce((a,c) => {
+                        if(!(a.find(i => i.value === c.value))) a.push(c);
+                        return a;
+                    }, []);
+                }
             }
         ]
     },
