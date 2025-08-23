@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "ZBVqSlsDUKf8uGrI",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Record three sayings or values your upbringing instilled in you. Once per rest, when you describe how you’re embodying one of these principles through your current action, you can roll a d20 as your Hope Die</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -41,12 +41,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1754010247432,
-    "modifiedTime": 1754010247432,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1755938935013,
+    "lastModifiedBy": "tt3PwMBXcTLCtIQU"
   },
   "sort": 0,
   "ownership": {

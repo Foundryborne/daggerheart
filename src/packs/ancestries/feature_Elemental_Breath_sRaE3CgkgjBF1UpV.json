@@ -12,7 +12,7 @@
         "type": "attack",
         "_id": "a6WROv0OKx0lbYVa",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Choose an element for your breath (such as electricity, fire, or ice). You can use this breath against a target or group of targets within Very Close range, treating it as an Instinct weapon that deals <strong>d8</strong> magic damage using your Proficiency.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -95,12 +95,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1753994055921,
-    "modifiedTime": 1753994120065,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755938895948,
+    "lastModifiedBy": "tt3PwMBXcTLCtIQU"
   },
   "_key": "!items!sRaE3CgkgjBF1UpV"
 }
