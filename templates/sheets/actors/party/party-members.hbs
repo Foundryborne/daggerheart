@@ -3,17 +3,37 @@
     data-tab='{{tabs.partyMembers.id}}'
     data-group='{{tabs.partyMembers.group}}'
 >
-    <div class="action-section">
-        {{#each document.system.partyMembers as |category categoryId|}}
-            {{> 'daggerheart.inventory-items'
-            title=tabs.partyMembers.label
-            type='character'
-            isGlassy=true
-            isActor=true
-            hideControls=true
-            collection=category.adversaries
-            hideResources=true
-            }}
-        {{/each}}
+
+    <div class="actions-section">
+        <button>
+            <i class="fa-solid fa-user-group"></i>
+            <span>Tag Team Roll</span>
+        </button>
+        <button>
+            <i class="fa-solid fa-users"></i>
+            <span>Group Roll</span>
+        </button>
+        <button>
+            <i class="fa-solid fa-handshake-angle"></i>
+            <span>Help Action</span>
+        </button>
     </div>
+
+    <fieldset class="actors-section glassy">
+        <legend>{{localize tabs.partyMembers.label}}</legend>
+        <ul class="actors-list">
+            {{#each document.system.partyMembers as |actor id|}}
+                {{> 'daggerheart.inventory-item'
+                item=actor
+                type='character'
+                isActor=true
+                }}
+            {{/each}}
+        </ul>
+        {{#unless document.system.partyMembers.length}}
+            <div class="actors-dragger">
+                <span>{{localize "DAGGERHEART.GENERAL.dropActorsHere"}}</span>
+            </div>
+        {{/unless}}
+    </fieldset>
 </section>

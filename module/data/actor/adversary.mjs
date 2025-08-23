@@ -170,4 +170,13 @@ export default class DhpAdversary extends BaseDataActor {
             }
         }
     }
+
+    _getTags() {
+        const tags = [
+            game.i18n.localize(`DAGGERHEART.GENERAL.Tiers.${this.tier}`),
+            `${game.i18n.localize(`DAGGERHEART.CONFIG.AdversaryType.${this.type}.label`)}`,
+            `${game.i18n.localize('DAGGERHEART.GENERAL.difficulty')}: ${this.difficulty}`
+        ];
+        return tags;
+    }
 }

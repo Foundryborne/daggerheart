@@ -83,6 +83,11 @@ Parameters:
         <i class='fas fa-trash'></i>
       </a>
       {{/if}}
+      {{#if (eq type 'character')}}
+      <a data-action='deletePartyMember' data-tooltip="CONTROLS.CommonDelete">
+        <i class='fas fa-trash'></i>
+      </a>
+      {{/if}}
       {{else}}
       {{#if (eq type 'weapon')}}
       <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem"

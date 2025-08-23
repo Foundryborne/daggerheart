@@ -772,4 +772,14 @@ export default class DhpActor extends Actor {
             this.#scrollTextInterval = setInterval(intervalFunc.bind(this), 600);
         }
     }
+
+    /**
+     * Generate an array of localized tag.
+     * @returns {string[]} An array of localized tag strings.
+     */
+    _getTags() {
+        const tags = [];
+        if (this.system._getTags) tags.push(...this.system._getTags());
+        return tags;
+    }
 }

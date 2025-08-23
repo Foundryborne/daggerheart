@@ -2368,6 +2368,8 @@
                 "wrongDomain": "The card isn't from one of your class domains.",
                 "cardTooHighLevel": "The card is too high level!",
                 "duplicateCard": "You cannot select the same card more than once.",
+                "duplicateCharacter": "This actor is already registered in the party members list.",
+                "onlyCharactersInPartySheet": "You can drag only characters to a party sheet.",
                 "notPrimary": "The weapon is not a primary weapon!",
                 "notSecondary": "The weapon is not a secondary weapon!",
                 "itemTooHighTier": "The item must be from Tier1",

@@ -675,4 +675,9 @@ export default class DhCharacter extends BaseDataActor {
             this.companion.updateLevel(1);
         }
     }
+
+    _getTags() {
+        const tags = [this.class.value.name, this.class.subclass.name, this.community.name, this.ancestry.name];
+        return tags;
+    }
 }

@@ -1,4 +1,5 @@
 import DHBaseActorSheet from '../api/base-actor.mjs';
+import { getDocFromElement } from '../../../helpers/utils.mjs';
 
 export default class Party extends DHBaseActorSheet {
     /**@inheritdoc */
@@ -10,7 +11,9 @@ export default class Party extends DHBaseActorSheet {
         window: {
             resizable: true
         },
-        actions: {},
+        actions: {
+            deletePartyMember: this.#deletePartyMember
+        },
         dragDrop: [{ dragSelector: '.actors-section .inventory-item', dropSelector: null }]
     };
 
@@ -103,20 +106,39 @@ export default class Party extends DHBaseActorSheet {
 
     async _onDrop(event) {
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-        if (data.fromInternal) return;
+        const actor = await foundry.utils.fromUuid(data.uuid);
+        const currentMembers = this.document.system.partyMembers.map(x => x.uuid);
 
-        const item = await fromUuid(data.uuid);
-        if (item.type === 'adversary' && event.target.closest('.category-container')) {
-            const target = event.target.closest('.category-container');
-            const path = `system.potentialAdversaries.${target.dataset.potentialAdversary}.adversaries`;
-            const current = foundry.utils.getProperty(this.actor, path).map(x => x.uuid);
-            await this.actor.update({
-                [path]: [...current, item.uuid]
-            });
-            this.render();
-        } else if (item.type === 'feature' && event.target.closest('.tab.features')) {
-            await this.actor.createEmbeddedDocuments('Item', [item]);
-            this.render();
+        if (foundry.utils.parseUuid(data.uuid).collection instanceof CompendiumCollection) return;
+
+        if (actor.type !== 'character') {
+            return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.onlyCharactersInPartySheet'));
         }
+
+        if (currentMembers.includes(data.uuid)) {
+            return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.duplicateCharacter'));
+        }
+
+        await this.document.update({ 'system.partyMembers': [...currentMembers, actor.uuid] });
+    }
+
+    static async #deletePartyMember(_event, target) {
+        const doc = await getDocFromElement(target.closest('.inventory-item'));
+
+        const confirmed = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
+                    type: game.i18n.localize('TYPES.Actor.adversary'),
+                    name: doc.name
+                })
+            },
+            content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', { name: doc.name })
+        });
+
+        if (!confirmed) return;
+
+        const currentMembers = this.document.system.partyMembers.map(x => x.uuid);
+        const newMemberdList = currentMembers.filter(uuid => uuid !== doc.uuid);
+        await this.document.update({ 'system.partyMembers': newMemberdList });
     }
 }
