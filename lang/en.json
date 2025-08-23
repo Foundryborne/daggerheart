@@ -2371,7 +2371,8 @@
                 "insufficientResources": "You have insufficient resources",
                 "multiclassAlreadyPresent": "You already have a class and multiclass",
                 "subclassesAlreadyPresent": "You already have a class and multiclass subclass",
-                "noDiceSystem": "Your selected dice {system} does not have a {faces} dice"
+                "noDiceSystem": "Your selected dice {system} does not have a {faces} dice",
+                "subclassAlreadyLinked": "{name} is already a subclass in the class {class}. Remove it from there if you want it to be a subclass to this class."
             },
             "Tooltip": {
                 "disableEffect": "Disable Effect",
