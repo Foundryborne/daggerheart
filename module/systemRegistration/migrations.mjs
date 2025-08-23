@@ -37,14 +37,36 @@ export async function runMigrations() {
 
     if (foundry.utils.isNewerVersion('1.1.1', lastMigrationVersion)) {
         const compendiumClasses = [];
+        const compendiumActors = [];
         for (let pack of game.packs) {
             const documents = await pack.getDocuments();
             compendiumClasses.push(...documents.filter(x => x.type === 'class'));
+            compendiumActors.push(...documents.filter(x => x.type === 'character'));
         }
 
-        for (let classVal of [...compendiumClasses, ...game.items]) {
-            if (classVal.type !== 'class') continue;
+        [...compendiumActors, ...game.actors.filter(x => x.type === 'character')].forEach(char => {
+            const multiclass = char.items.find(x => x.type === 'class' && x.system.isMulticlass);
+            const multiclassSubclass = multiclass.system.subclasses.length > 0 ? multiclass.system.subclasses[0] : null;
+            char.items.forEach(item => {
+                if (item.type === 'feature' && item.system.identifier === 'multiclass') {
+                    const base = item.system.originItemType === 'class' ? multiclass : multiclassSubclass;
+                    if (base) {
+                        const baseFeature = base.system.features.find(x => x.item.name === item.name);
+                        if (baseFeature) {
+                            item.update({
+                                system: {
+                                    multiclassOrigin: true,
+                                    identifier: baseFeature.type
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        });
 
+        const worldClasses = game.items.filter(x => x.type === 'class');
+        for (let classVal of [...compendiumClasses, ...worldClasses]) {
             for (let subclass of classVal.system.subclasses) {
                 await subclass.update({ 'system.linkedClass': classVal.uuid });
             }

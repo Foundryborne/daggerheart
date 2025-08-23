@@ -444,7 +444,8 @@ export default class DhCharacter extends BaseDataActor {
             } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.subclass.id) {
                 if (this.class.subclass) {
                     const prop = item.system.multiclassOrigin ? 'multiclass' : 'class';
-                    const subclassState = this[prop].subclass.system.featureState;
+                    const subclassState = this[prop].subclass?.system?.featureState;
+                    if (!subclassState) continue;
 
                     if (
                         item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.foundation ||
