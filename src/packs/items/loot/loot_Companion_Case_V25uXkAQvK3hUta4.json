@@ -6,7 +6,12 @@
   "system": {
     "description": "<p>This case can fit a small animal companion. While the companion is inside, the animal and case are immune to all damage and harmful effects.</p>",
     "quantity": 1,
-    "actions": {}
+    "actions": {},
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 58,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": null,
@@ -20,12 +25,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753625898190,
-    "modifiedTime": 1753625935379,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1755432012809,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!V25uXkAQvK3hUta4"
 }

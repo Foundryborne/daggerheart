@@ -25,7 +25,7 @@ export default class CostField extends fields.ArrayField {
         config.costs = CostField.calcCosts.call(this, costs);
         const hasCost = CostField.hasCost.call(this, config.costs);
         if (config.isFastForward && !hasCost)
-            return ui.notifications.warn("You don't have the resources to use that action.");
+            return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.insufficientResources'));
         return hasCost;
     }
 

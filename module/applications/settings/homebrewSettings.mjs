@@ -1,5 +1,6 @@
 import { DhHomebrew } from '../../data/settings/_module.mjs';
 import { slugify } from '../../helpers/utils.mjs';
+
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 export default class DhHomebrewSettings extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -10,10 +11,13 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).toObject()
         );
 
-        this.selected = {
-            domain: null
-        };
+        this.selected = this.#getDefaultAdversaryType();
     }
+
+    #getDefaultAdversaryType = () => ({
+        domain: null,
+        adversaryType: null
+    });
 
     get title() {
         return game.i18n.localize('DAGGERHEART.SETTINGS.Menu.title');
@@ -35,6 +39,9 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             addDomain: this.addDomain,
             toggleSelectedDomain: this.toggleSelectedDomain,
             deleteDomain: this.deleteDomain,
+            addAdversaryType: this.addAdversaryType,
+            deleteAdversaryType: this.deleteAdversaryType,
+            selectAdversaryType: this.selectAdversaryType,
             save: this.save,
             reset: this.reset
         },
@@ -45,6 +52,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         settings: { template: 'systems/daggerheart/templates/settings/homebrew-settings/settings.hbs' },
         domains: { template: 'systems/daggerheart/templates/settings/homebrew-settings/domains.hbs' },
+        types: { template: 'systems/daggerheart/templates/settings/homebrew-settings/types.hbs' },
         downtime: { template: 'systems/daggerheart/templates/settings/homebrew-settings/downtime.hbs' },
         footer: { template: 'systems/daggerheart/templates/settings/homebrew-settings/footer.hbs' }
     };
@@ -52,11 +60,18 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
     /** @inheritdoc */
     static TABS = {
         main: {
-            tabs: [{ id: 'settings' }, { id: 'domains' }, { id: 'downtime' }],
+            tabs: [{ id: 'settings' }, { id: 'domains' }, { id: 'types' }, { id: 'downtime' }],
             initial: 'settings',
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
+
+    changeTab(tab, group, options) {
+        super.changeTab(tab, group, options);
+        this.selected = this.#getDefaultAdversaryType();
+
+        this.render();
+    }
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
@@ -78,6 +93,11 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
                 if (enrichedDescription !== null) context.selectedDomain = { ...selectedDomain, enrichedDescription };
                 context.configDomains = CONFIG.DH.DOMAIN.domains;
                 context.homebrewDomains = this.settings.domains;
+                break;
+            case 'types':
+                context.selectedAdversaryType = this.selected.adversaryType
+                    ? { id: this.selected.adversaryType, ...this.settings.adversaryTypes[this.selected.adversaryType] }
+                    : null;
                 break;
         }
 
@@ -298,6 +318,32 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         }
 
         this.selected.domain = null;
+        this.render();
+    }
+
+    static async addAdversaryType(_, target) {
+        const newId = foundry.utils.randomID();
+        await this.settings.updateSource({
+            [`adversaryTypes.${newId}`]: {
+                id: newId,
+                label: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.adversaryType.newType')
+            }
+        });
+
+        this.selected.adversaryType = newId;
+        this.render();
+    }
+
+    static async deleteAdversaryType(_, target) {
+        const { key } = target.dataset;
+        await this.settings.updateSource({ [`adversaryTypes.-=${key}`]: null });
+
+        this.selected.adversaryType = this.selected.adversaryType === key ? null : this.selected.adversaryType;
+        this.render();
+    }
+
+    static async selectAdversaryType(_, target) {
+        this.selected.adversaryType = this.selected.adversaryType === target.dataset.type ? null : target.dataset.type;
         this.render();
     }
 

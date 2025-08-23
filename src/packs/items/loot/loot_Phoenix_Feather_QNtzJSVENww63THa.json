@@ -6,7 +6,12 @@
   "system": {
     "description": "<p>If you have at least one Phoenix Feather on you when you fall unconscious, you gain a +1 bonus to the roll you make to determine whether you gain a scar.</p>",
     "quantity": 1,
-    "actions": {}
+    "actions": {},
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 59,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": null,
@@ -20,12 +25,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753638285123,
-    "modifiedTime": 1753638336982,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1755432194183,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!QNtzJSVENww63THa"
 }

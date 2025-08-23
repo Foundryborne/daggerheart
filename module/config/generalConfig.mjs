@@ -624,6 +624,13 @@ export const rollTypes = {
     }
 };
 
+export const attributionSources = {
+    daggerheart: {
+        label: 'Daggerheart',
+        values: [{ label: 'Daggerheart SRD' }]
+    }
+};
+
 export const fearDisplay = {
     token: { value: 'token', label: 'DAGGERHEART.SETTINGS.Appearance.fearDisplay.token' },
     bar: { value: 'bar', label: 'DAGGERHEART.SETTINGS.Appearance.fearDisplay.bar' },

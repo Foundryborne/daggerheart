@@ -1,6 +1,6 @@
 {
   "name": "Divine Usurpation",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
   "type": "environment",
   "folder": "IKumu5HTLqONLYqb",
   "system": {
@@ -21,19 +21,24 @@
     "tier": 4,
     "description": "<p>A massive ritual designed to breach the gates of the Hallows Above and unseat the New Gods themselves.</p>",
     "type": "event",
-    "impulses": "Collect power, overawe, silence dissent"
+    "impulses": "Collect power, overawe, silence dissent",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 110,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784558,
-    "modifiedTime": 1754220432059,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755389890271,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "4DLYez7VbMCFDAuZ",
   "sort": 3400000,
@@ -49,7 +54,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,

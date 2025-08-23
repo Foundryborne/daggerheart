@@ -24,24 +24,41 @@ You can find the documentation here: https://github.com/Foundryborne/daggerheart
 
 ## Development Setup
 
-- Open a terminal in the directory with the repo `cd <path>/<to>/<repo>`
-- NOTE: The repo should be placed in the system files are or somewhere else and a link (if on linux) is placed in the system directory
-- NOTE: Linux link can be made using `ln -snf <path to development folder> daggerheart` inside the system folder
-- Install npm `npm install`
-- Update package.json to match your profile
+1. **Navigate to the repo directory:**
 
-```
-"start": "concurrently \"rollup -c --watch\" \"node C:/FoundryDev/resources/app/main.js --dataPath=C:/FoundryDevFiles  --noupnp\"  \"gulp\"",
-"start-test": "node C:/FoundryDev/resources/app/main.js --dataPath=C:/FoundryDevFiles && rollup -c --watch && gulp",
+    ```bash
+    cd <path>/<to>/<repo>
+    ```
 
-```
+2. **Install dependencies:**
 
-- Replace `C:/FoundryDev/resources/app/main.js` with `<your>/<path>/<to>/<foundry>/<main.js>`
-- The main is likely in `<Foundry Install Location>/resouces/app/main.js`
-- Replace `--dataPath=C:/FoundryDevFiles` with `<your>/<path>/<to>/<foundry>/<data>`
+    ```bash
+    npm install
+    ```
 
-Now you should be able to build the app using `npm start`
-[Foundry VTT Website][1]
+3. **Configure your Foundry paths:**
+
+    ```bash
+    npm run setup:dev -- --foundry-path="/path/to/foundry/main.js" --data-path="/path/to/data"
+    ```
+
+4. **Start developing:**
+    ```bash
+    npm start
+    ```
+
+### Available Scripts
+
+- `npm start` - Start development with file watching and Foundry launching
+- `npm run build` - One-time build
+- `npm run setup:dev -- --foundry-path="<path>" --data-path="<path>"` - Configure development environment
+
+### Notes
+
+- The repo should be placed in your Foundry `Data/systems/` directory or symlinked there
+- Linux symlink can be made using `ln -snf <path to development folder> daggerheart` inside the systems folder
+- Your `.env` file is ignored by git, so each developer can have their own configuration
+  [Foundry VTT Website][1]
 
 [1]: https://foundryvtt.com/
 

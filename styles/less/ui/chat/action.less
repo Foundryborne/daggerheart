@@ -2,6 +2,35 @@
 @import '../../utils/fonts.less';
 @import '../../utils/spacing.less';
 
+.theme-light {
+    .daggerheart.chat.action {
+        .action-move .action-section {
+            border-bottom: 1px solid @dark-blue;
+
+            &:hover {
+                background: @dark-blue-10;
+            }
+
+            .action-header {
+                .title {
+                    color: @dark-blue;
+                }
+                .label {
+                    color: @dark;
+                }
+            }
+
+            .fa-chevron-down {
+                color: @dark-blue;
+            }
+        }
+
+        .description {
+            color: @dark;
+        }
+    }
+}
+
 .daggerheart.chat {
     &.action {
         display: flex;
@@ -34,7 +63,7 @@
                 border-bottom: 1px solid @golden;
 
                 &:hover {
-                    background: light-dark(@dark-blue-10, @golden-10);
+                    background: @golden-10;
                     cursor: pointer;
                     transition: all 0.3s ease;
                 }
@@ -52,13 +81,13 @@
                     gap: 5px;
 
                     .title {
-                        font-size: 20px;
+                        font-size: var(--font-size-20);
                         color: @golden;
                         font-weight: 700;
                     }
 
                     .label {
-                        font-size: 12px;
+                        font-size: var(--font-size-12);
                         color: @beige;
                         margin: 0;
                     }

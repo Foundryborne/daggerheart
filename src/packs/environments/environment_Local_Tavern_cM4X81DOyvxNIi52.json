@@ -1,6 +1,6 @@
 {
   "name": "Local Tavern",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
   "type": "environment",
   "folder": "GQ0VnOLrKBIHR6Us",
   "system": {
@@ -33,19 +33,24 @@
     "tier": 1,
     "description": "<p>A lively tavern that serves as the social hub for its town.</p>",
     "type": "social",
-    "impulses": "Provide opportunities for adventurers, nurture community"
+    "impulses": "Provide opportunities for adventurers, nurture community",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 105,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784561,
-    "modifiedTime": 1754213299544,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755389890240,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "cM4X81DOyvxNIi52",
   "sort": 3400000,
@@ -61,7 +66,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,

@@ -112,6 +112,11 @@
       "img": "icons/weapons/staves/staff-animal-skull-bull.webp",
       "type": "attack",
       "chatDisplay": false
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 97,
+      "artist": ""
     }
   },
   "flags": {},
@@ -121,9 +126,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784265,
-    "modifiedTime": 1755259462708,
+    "modifiedTime": 1755385635754,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "PELRry1vqjBzSAlr",

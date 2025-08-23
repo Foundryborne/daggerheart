@@ -1,6 +1,6 @@
 {
   "name": "Ambushers",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
   "type": "environment",
   "folder": "GQ0VnOLrKBIHR6Us",
   "system": {
@@ -10,19 +10,24 @@
     "tier": 1,
     "description": "<p>An ambush is set by the PCs to catch unsuspecting adversaries off-guard.</p>",
     "type": "event",
-    "impulses": "Escape, group up, protect the most vulnerable"
+    "impulses": "Escape, group up, protect the most vulnerable",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 103,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784554,
-    "modifiedTime": 1754211550898,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755389890234,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "uXZpebPR77YQ1oXI",
   "sort": 3400000,
@@ -38,7 +43,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,

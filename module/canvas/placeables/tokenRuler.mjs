@@ -8,9 +8,9 @@ export default class DhpTokenRuler extends foundry.canvas.placeables.tokens.Toke
         const range = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).rangeMeasurement;
 
         if (range.enabled) {
-            const distance = DhMeasuredTemplate.getDistanceLabel(waypoint.measurement.distance.toNearest(0.01), range);
-            context.cost = { total: distance, units: null };
-            context.distance = { total: distance, units: null };
+            const result = DhMeasuredTemplate.getRangeLabels(waypoint.measurement.distance.toNearest(0.01), range);
+            context.cost = { total: result.distance, units: result.units };
+            context.distance = { total: result.distance, units: result.units };
         }
 
         return context;

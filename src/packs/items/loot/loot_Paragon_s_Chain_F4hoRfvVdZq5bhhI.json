@@ -37,6 +37,11 @@
         "img": "icons/equipment/neck/choker-chain-thin-gold.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 59,
+      "artist": ""
     }
   },
   "effects": [],
@@ -51,12 +56,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753638721391,
-    "modifiedTime": 1753638917868,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1755432230353,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!F4hoRfvVdZq5bhhI"
 }

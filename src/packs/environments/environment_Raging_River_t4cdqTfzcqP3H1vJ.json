@@ -1,6 +1,6 @@
 {
   "name": "Raging River",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
   "type": "environment",
   "folder": "GQ0VnOLrKBIHR6Us",
   "system": {
@@ -29,19 +29,24 @@
     "tier": 1,
     "description": "<p>A swift-moving river without a bridge crossing, deep enough to sweep away most people.</p>",
     "type": "traversal",
-    "impulses": "Bar crossing, carry away the unready, divide the land"
+    "impulses": "Bar crossing, carry away the unready, divide the land",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 106,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784565,
-    "modifiedTime": 1754214189395,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755389890245,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "t4cdqTfzcqP3H1vJ",
   "sort": 3400000,
@@ -57,7 +62,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,

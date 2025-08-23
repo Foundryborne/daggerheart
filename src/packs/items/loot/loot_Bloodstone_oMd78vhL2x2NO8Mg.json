@@ -6,7 +6,12 @@
   "system": {
     "description": "<p>You can attach this stone to a weapon that doesn’t already have a feature. The weapon gains the following feature.</p><p><strong>Brutal</strong>: When you roll the maximum value on a damage die, roll an additional damage die.</p>",
     "quantity": 1,
-    "actions": {}
+    "actions": {},
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 59,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": null,
@@ -20,12 +25,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753637532005,
-    "modifiedTime": 1753637570344,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1755432124214,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!oMd78vhL2x2NO8Mg"
 }

@@ -30,10 +30,11 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/dialogs/downtime/activities.hbs',
         'systems/daggerheart/templates/dialogs/dice-roll/costSelection.hbs',
 
-        
         'systems/daggerheart/templates/ui/chat/parts/roll-part.hbs',
         'systems/daggerheart/templates/ui/chat/parts/damage-part.hbs',
         'systems/daggerheart/templates/ui/chat/parts/target-part.hbs',
         'systems/daggerheart/templates/ui/chat/parts/button-part.hbs',
+
+        'systems/daggerheart/templates/scene/dh-config.hbs'
     ]);
 };

@@ -7,19 +7,24 @@
     "description": "<p>Being part of a seaborne community means you lived on or near a large body of water.<br><br><p class=\"green Body-Styles_Body\" chunk_id=\"f74526d3-8864-4794-a556-b1922778a20b\">Seaborne communities are built, both physically and culturally, around the specific waters they call home. Some of these groups live along the shore, constructing ports for locals and travelers alike. These harbors function as centers of commerce, tourist attractions, or even just a safe place to lay down one’s head after weeks of travel. Other seaborne live on the water in small boats or large ships, with the idea of “home” comprising a ship and its crew, rather than any one landmass. No matter their exact location, seaborne communities are closely tied to the ocean tides and the creatures who inhabit them. Seaborne learn to fish at a young age, and train from birth to hold their breath and swim in even the most tumultuous waters. Individuals from these groups are highly sought after for their sailing skills, and many become captains of vessels, whether within their own community, working for another, or even at the helm of a powerful naval operation.</p>\n<p class=\"green Body-Styles_Body\" chunk_id=\"024de014-6fce-43b9-b88b-3489275c5ab3\"><em>Seaborne are often candid, cooperative, exuberant, fierce, resolute, and weathered.</em></p></p>",
     "features": [
       "Compendium.daggerheart.communities.Item.07x6Qe6qMzDw2xN4"
-    ]
+    ],
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 33,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784395,
-    "modifiedTime": 1754010861330,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1755394819693,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "o5AA5J05N7EvH1rN",
   "sort": 3400000,

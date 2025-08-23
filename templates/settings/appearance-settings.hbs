@@ -3,6 +3,8 @@
         <h1>{{localize 'DAGGERHEART.SETTINGS.Menu.appearance.name'}}</h1>
     </header>
 
+    {{formGroup settingFields.schema.fields.hideAttribution value=settingFields._source.hideAttribution localize=true}}
+
     <fieldset>
         <legend>{{localize 'DAGGERHEART.GENERAL.fear'}}</legend>
         {{formGroup settingFields.schema.fields.displayFear value=settingFields._source.displayFear localize=true}}

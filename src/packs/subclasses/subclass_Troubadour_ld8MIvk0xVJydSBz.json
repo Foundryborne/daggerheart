@@ -21,7 +21,12 @@
       }
     ],
     "featureState": 1,
-    "isMulticlass": false
+    "isMulticlass": false,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 9,
+      "artist": ""
+    }
   },
   "effects": [],
   "ownership": {
@@ -33,12 +38,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1754174653653,
-    "modifiedTime": 1754236659263,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
+    "modifiedTime": 1755391532634,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "ld8MIvk0xVJydSBz",
   "sort": 100000,

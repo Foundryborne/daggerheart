@@ -55,6 +55,9 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.isNPC = this.document.isNPC;
+        context.showAttribution = !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
+            .hideAttribution;
+
         return context;
     }
 
@@ -195,6 +198,8 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
             };
             event.dataTransfer.setData('text/plain', JSON.stringify(attackData));
             event.dataTransfer.setDragImage(attackItem.querySelector('img'), 60, 0);
+        } else if (this.document.type !== 'environment') {
+            super._onDragStart(event);
         }
     }
 }

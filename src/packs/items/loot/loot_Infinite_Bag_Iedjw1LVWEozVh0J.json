@@ -6,7 +6,12 @@
   "system": {
     "description": "<p>When you store items in this bag, they are kept in a pocket dimension that never runs out of space. You can retrieve an item at any time.</p>",
     "quantity": 1,
-    "actions": {}
+    "actions": {},
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 59,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": null,
@@ -20,12 +25,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753639339762,
-    "modifiedTime": 1753639361505,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1755432274021,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!Iedjw1LVWEozVh0J"
 }

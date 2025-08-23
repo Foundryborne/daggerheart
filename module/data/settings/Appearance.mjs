@@ -89,6 +89,11 @@ export default class DhAppearance extends foundry.abstract.DataModel {
                     initial: false,
                     label: 'DAGGERHEART.SETTINGS.Appearance.FIELDS.expandRollMessageTarget.label'
                 })
+            }),
+            hideAttribution: new fields.BooleanField({
+                required: true,
+                initial: false,
+                label: 'DAGGERHEART.SETTINGS.Appearance.FIELDS.hideAttribution.label'
             })
         };
     }

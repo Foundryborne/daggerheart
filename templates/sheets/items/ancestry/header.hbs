@@ -4,6 +4,7 @@
         <h1 class='item-name'><input type='text' name='name' value='{{source.name}}' /></h1>
         <div class='item-description'>
             <h3>{{localize 'TYPES.Item.ancestry'}}</h3>
+            {{#if (and showAttribution source.system.attributionLabel)}} <div class="attribution-header-label">{{source.system.attributionLabel}}</div>{{/if}}
         </div>
     </div>
 </header>

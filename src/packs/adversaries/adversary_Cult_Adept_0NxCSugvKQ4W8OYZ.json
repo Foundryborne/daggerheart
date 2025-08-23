@@ -117,6 +117,11 @@
       "img": "icons/weapons/staves/staff-ornate-purple.webp",
       "type": "attack",
       "chatDisplay": false
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 85,
+      "artist": ""
     }
   },
   "flags": {},
@@ -126,9 +131,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784239,
-    "modifiedTime": 1755259462512,
+    "modifiedTime": 1755385049086,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "0NxCSugvKQ4W8OYZ",

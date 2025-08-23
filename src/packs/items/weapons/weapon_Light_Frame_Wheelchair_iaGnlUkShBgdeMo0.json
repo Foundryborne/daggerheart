@@ -130,6 +130,11 @@
           "trait": null
         }
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 54,
+      "artist": ""
     }
   },
   "effects": [],
@@ -145,10 +150,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753836579296,
-    "modifiedTime": 1754846015528,
-    "lastModifiedBy": "H02dtt2xvVJvYESk"
+    "modifiedTime": 1755430218981,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!iaGnlUkShBgdeMo0"
 }

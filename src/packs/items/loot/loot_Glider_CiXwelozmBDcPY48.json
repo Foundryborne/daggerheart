@@ -37,6 +37,11 @@
         "img": "icons/commodities/leather/leather-patch-red.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 59,
+      "artist": ""
     }
   },
   "effects": [],
@@ -51,12 +56,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753637642501,
-    "modifiedTime": 1753989923053,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755432142381,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!CiXwelozmBDcPY48"
 }

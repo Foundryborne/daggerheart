@@ -371,17 +371,15 @@ export function getScrollTextData(resources, resource, key) {
     return { text, stroke, fill, direction };
 }
 
-export function createScrollText(actor, optionsData) {
-    if (actor && optionsData?.length) {
+export function createScrollText(actor, data) {
+    if (actor) {
         actor.getActiveTokens().forEach(token => {
-            optionsData.forEach(data => {
-                const { text, ...options } = data;
-                canvas.interface.createScrollingText(token.getCenterPoint(), data.text, {
-                    duration: 2000,
-                    distance: token.h,
-                    jitter: 0,
-                    ...options
-                });
+            const { text, ...options } = data;
+            canvas.interface.createScrollingText(token.getCenterPoint(), data.text, {
+                duration: 2000,
+                distance: token.h,
+                jitter: 0,
+                ...options
             });
         });
     }
@@ -419,4 +417,15 @@ export async function createEmbeddedItemsWithEffects(actor, baseData) {
 
 export const slugify = name => {
     return name.toLowerCase().replaceAll(' ', '-').replaceAll('.', '');
+};
+
+export const versionCompare = (current, target) => {
+    const currentSplit = current.split('.').map(x => Number.parseInt(x));
+    const targetSplit = target.split('.').map(x => Number.parseInt(x));
+    for (var i = 0; i < currentSplit.length; i++) {
+        if (currentSplit[i] < targetSplit[i]) return true;
+        if (currentSplit[i] > targetSplit[i]) return false;
+    }
+
+    return false;
 };
