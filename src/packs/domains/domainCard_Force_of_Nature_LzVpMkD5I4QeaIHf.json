@@ -38,12 +38,12 @@
           }
         ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Transform",
         "img": "icons/magic/nature/elemental-plant-humanoid.webp",
-        "range": ""
+        "range": "self"
       },
       "1rLoYS90AZizJujS": {
         "type": "effect",
@@ -89,10 +89,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1753922784456,
-    "modifiedTime": 1755429633230,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756038760003,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "LzVpMkD5I4QeaIHf",
   "sort": 3400000,

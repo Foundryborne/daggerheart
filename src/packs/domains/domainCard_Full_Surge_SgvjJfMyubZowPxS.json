@@ -43,7 +43,7 @@
         },
         "name": "Mark Stress",
         "img": "icons/magic/control/buff-flight-wings-runes-purple.webp",
-        "range": ""
+        "range": "self"
       }
     },
     "attribution": {
@@ -59,10 +59,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1753922784460,
-    "modifiedTime": 1755429931329,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756039042961,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "SgvjJfMyubZowPxS",
   "sort": 3400000,
@@ -71,7 +71,7 @@
       "name": "Full Surge",
       "img": "icons/magic/symbols/ring-circle-smoke-blue.webp",
       "origin": "Compendium.daggerheart.domains.Item.SgvjJfMyubZowPxS",
-      "transfer": true,
+      "transfer": false,
       "_id": "H5q5iYImr69TfZcp",
       "type": "base",
       "system": {
@@ -120,7 +120,7 @@
           "priority": null
         }
       ],
-      "disabled": true,
+      "disabled": false,
       "duration": {
         "startTime": null,
         "combat": null,
@@ -139,12 +139,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754242182511,
-        "modifiedTime": 1754242229676,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1756039048089,
+        "lastModifiedBy": "vUIbuan0U50nfKBE"
       },
       "_key": "!items.effects!SgvjJfMyubZowPxS.H5q5iYImr69TfZcp"
     }

@@ -40,12 +40,12 @@
           }
         ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Become Cloaked",
         "img": "icons/magic/perception/shadow-stealth-eyes-purple.webp",
-        "range": ""
+        "range": "self"
       }
     },
     "attribution": {
@@ -61,10 +61,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1753922784435,
-    "modifiedTime": 1755428020354,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756037373705,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "Zhw7PtK8nMPlsOqD",
   "sort": 3400000,
