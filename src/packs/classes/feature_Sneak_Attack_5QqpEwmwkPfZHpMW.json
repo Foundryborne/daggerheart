@@ -7,35 +7,7 @@
   "system": {
     "description": "<p>When you succeed on an attack while Cloaked or while an ally is within Melee range of your target, add a number of d6s equal to your tier to your damage roll. </p><ul><li><p>Level 1 -&gt; Tier 1</p></li><li><p>Levels 2–4 -&gt; Tier 2 </p></li><li><p>Levels 5–7 -&gt; Tier 3 </p></li><li><p>Levels 8–10 -&gt; Tier 4</p></li></ul>",
     "resource": null,
-    "actions": {
-      "SfctrIW5KjH4nq5G": {
-        "type": "effect",
-        "_id": "SfctrIW5KjH4nq5G",
-        "systemPath": "actions",
-        "description": "<p>When you succeed on an attack while Cloaked or while an ally is within Melee range of your target, add a number of d6s equal to your tier to your damage roll.</p><ul><li><p>Level 1 -&gt; Tier 1</p></li><li><p>Levels 2–4 -&gt; Tier 2</p></li><li><p>Levels 5–7 -&gt; Tier 3</p></li><li><p>Levels 8–10 -&gt; Tier 4</p></li></ul>",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": "",
-          "recovery": null
-        },
-        "effects": [
-          {
-            "_id": "380jFzw756qSy5ae",
-            "onSave": false
-          }
-        ],
-        "target": {
-          "type": "any",
-          "amount": null
-        },
-        "name": "Use Sneak Attack",
-        "img": "icons/skills/melee/strike-dagger-skull-white.webp",
-        "range": ""
-      }
-    },
+    "actions": {},
     "originItemType": null,
     "originId": null,
     "attribution": {
@@ -115,10 +87,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1754324216454,
-    "modifiedTime": 1755391313725,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756034698108,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_key": "!items!5QqpEwmwkPfZHpMW"
 }

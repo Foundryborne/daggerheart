@@ -5,14 +5,14 @@
   "_id": "2Cyb9ZeuAesf5Sb3",
   "img": "icons/magic/defensive/barrier-shield-dome-deflect-teal.webp",
   "system": {
-    "description": "<p>Spend 3 Hope when you succeed on an attack with a weapon to use that same roll against two additional adversaries within range of the attack.</p>",
+    "description": "<p><strong>Spend 3 Hope</strong> when you succeed on an attack with a weapon to use that same roll against two additional adversaries within range of the attack.</p>",
     "resource": null,
     "actions": {
       "yhVUna5biFAN0o2Y": {
         "type": "effect",
         "_id": "yhVUna5biFAN0o2Y",
         "systemPath": "actions",
-        "description": "<p>Spend 3 Hope when you succeed on an attack with a weapon to use that same roll against two additional adversaries within range of the attack.</p>",
+        "description": "<p><strong>Spend 3 Hope</strong> when you succeed on an attack with a weapon to use that same roll against two additional adversaries within range of the attack.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -60,10 +60,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1754268431889,
-    "modifiedTime": 1755391281371,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756034191317,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_key": "!items!2Cyb9ZeuAesf5Sb3"
 }

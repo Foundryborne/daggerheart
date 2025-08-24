@@ -29,7 +29,12 @@
           "max": "",
           "recovery": null
         },
-        "effects": [],
+        "effects": [
+          {
+            "_id": "SXi2dQWqpwY9fap4",
+            "onSave": false
+          }
+        ],
         "target": {
           "type": "any",
           "amount": null
@@ -47,7 +52,52 @@
       "artist": ""
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Ranger's Focus",
+      "img": "icons/magic/perception/eye-ringed-green.webp",
+      "origin": "Compendium.daggerheart.classes.Item.ncLx2P8BOUtrAD38",
+      "transfer": false,
+      "_id": "SXi2dQWqpwY9fap4",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>Until this feature ends or the ranger makes a different creature their Focus, they gain the following benefits against this adversary:</p><ul><li><p>They know precisely what direction they are in.</p></li><li><p>When they deal damage to them, the adverasry must mark a Stress.</p></li><li><p>When they fail an attack against them, they can end their Ranger’s Focus feature to reroll their Duality Dice.</p></li></ul>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.347",
+        "systemId": "daggerheart",
+        "systemVersion": "1.1.0",
+        "createdTime": 1756034238996,
+        "modifiedTime": 1756034332923,
+        "lastModifiedBy": "vUIbuan0U50nfKBE"
+      },
+      "_key": "!items.effects!ncLx2P8BOUtrAD38.SXi2dQWqpwY9fap4"
+    }
+  ],
   "sort": 0,
   "ownership": {
     "default": 0,
@@ -60,10 +110,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1754268505051,
-    "modifiedTime": 1755391289388,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756034239047,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_key": "!items!ncLx2P8BOUtrAD38"
 }

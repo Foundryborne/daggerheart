@@ -38,12 +38,12 @@
           }
         ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Spend Hope",
         "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
-        "range": ""
+        "range": "self"
       }
     },
     "originItemType": null,
@@ -119,10 +119,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1754257270096,
-    "modifiedTime": 1755391439746,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756034406042,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_key": "!items!njj2C3tMDeCHHOoh"
 }
