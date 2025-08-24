@@ -15,6 +15,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
         classes: ['character'],
         position: { width: 850, height: 800 },
+        /* Foundry adds disabled to all buttons and inputs if editPermission is missing. This is not desired. */
+        editPermission: CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER,
         actions: {
             toggleVault: CharacterSheet.#toggleVault,
             rollAttribute: CharacterSheet.#rollAttribute,
@@ -147,6 +149,13 @@ export default class CharacterSheet extends DHBaseActorSheet {
         this.element
             .querySelector('.level-value')
             ?.addEventListener('change', event => this.document.updateLevel(Number(event.currentTarget.value)));
+
+        const observer = this.document.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER, {
+            exact: true
+        });
+        if (observer) {
+            this.element.querySelector('.window-content').classList.add('viewMode');
+        }
 
         this._createFilterMenus();
         this._createSearchFilter();

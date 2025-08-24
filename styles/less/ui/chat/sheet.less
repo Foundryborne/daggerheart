@@ -1,8 +1,8 @@
 @import '../../utils/colors.less';
 @import '../../utils/fonts.less';
 
-.theme-light {
-    .chat-message .message-content {
+#interface.theme-light {
+    .chat-message:not(.duality) .message-content {
         color: @dark;
 
         blockquote {
@@ -57,6 +57,12 @@
             height: 40px;
             font-family: @font-body;
             font-weight: bold;
+        }
+
+        .dice-roll .dice-formula,
+        .dice-roll .dice-total {
+            background: @dark-blue-40;
+            color: @dark-blue;
         }
     }
 }
@@ -158,8 +164,8 @@
         .dice-roll .dice-total {
             box-shadow: none;
             border: none;
-            background: light-dark(@dark-blue-40, @golden-40);
-            color: light-dark(@dark-blue, @golden);
+            background: @golden-10;
+            color: @golden;
             font-weight: 600;
             align-content: center;
         }
