@@ -72,6 +72,14 @@
                     "exactHint": "The Character's Tier is used if empty",
                     "label": "Beastform"
                 },
+                "damage": {
+                    "multiplier": "Multiplier",
+                    "flatMultiplier": "Flat Multiplier"
+                },
+                "general": {
+                    "customFormula": "Custom Formula",
+                    "formula": "Formula"
+                },
                 "displayInChat": "Display in chat"
             },
             "RollField": {
@@ -1929,6 +1937,7 @@
             "continue": "Continue",
             "criticalSuccess": "Critical Success",
             "criticalShort": "Critical",
+            "custom": "Custom",
             "d20Roll": "D20 Roll",
             "damage": "Damage",
             "damageRoll": "Damage Roll",
@@ -2376,7 +2385,7 @@
                 "subtype": "Subtype",
                 "folders": {
                     "adversaries": "Adversaries",
-                    "ancestries": "Ancestries", 
+                    "ancestries": "Ancestries",
                     "equipment": "Equipment",
                     "classes": "Classes",
                     "subclasses": "Subclasses",
