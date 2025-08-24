@@ -1894,6 +1894,7 @@
             "amount": "Amount",
             "any": "Any",
             "armor": "Armor",
+            "armors": "Armors",
             "armorScore": "Armor Score",
             "activeEffects": "Active Effects",
             "armorSlots": "Armor Slots",
@@ -1944,6 +1945,7 @@
             "inactiveEffects": "Inactive Effects",
             "inventory": "Inventory",
             "itemResource": "Item Resource",
+            "items": "Items",
             "label": "Label",
             "level": "Level",
             "levelShort": "Lv",
@@ -1955,6 +1957,7 @@
                 "plural": "Miss"
             },
             "maxWithThing": "Max {thing}",
+            "missingDragDropThing": "Drop {thing} here",
             "multiclass": "Multiclass",
             "newCategory": "New Category",
             "none": "None",
@@ -1976,6 +1979,7 @@
             "scalable": "Scalable",
             "situationalBonus": "Situational Bonus",
             "stress": "Stress",
+            "subclasses": "Subclasses",
             "success": "Success",
             "take": "Take",
             "Target": {
@@ -1993,6 +1997,7 @@
             "used": "Used",
             "uses": "Uses",
             "value": "Value",
+            "weapons": "Weapons",
             "withThing": "With {thing}"
         },
         "ITEMS": {
