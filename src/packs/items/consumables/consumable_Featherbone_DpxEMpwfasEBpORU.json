@@ -20,14 +20,19 @@
           "max": "",
           "recovery": null
         },
-        "effects": [],
+        "effects": [
+          {
+            "_id": "VfJIJBW96e45xQHY",
+            "onSave": false
+          }
+        ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Use",
         "img": "icons/commodities/bones/bones-stack-worn-brown.webp",
-        "range": ""
+        "range": "self"
       }
     },
     "consumeOnUse": true,
@@ -37,7 +42,52 @@
       "artist": ""
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Featherbone",
+      "img": "icons/commodities/bones/bones-stack-worn-brown.webp",
+      "origin": "Compendium.daggerheart.consumables.Item.DpxEMpwfasEBpORU",
+      "transfer": false,
+      "_id": "VfJIJBW96e45xQHY",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>You can use this bone to control your falling speed for a number of minutes equal to your level.</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.347",
+        "systemId": "daggerheart",
+        "systemVersion": "1.1.0",
+        "createdTime": 1756041997551,
+        "modifiedTime": 1756042000517,
+        "lastModifiedBy": "vUIbuan0U50nfKBE"
+      },
+      "_key": "!items.effects!DpxEMpwfasEBpORU.VfJIJBW96e45xQHY"
+    }
+  ],
   "folder": null,
   "sort": 0,
   "ownership": {
@@ -51,10 +101,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1753590624634,
-    "modifiedTime": 1755432889504,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756042004101,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_key": "!items!DpxEMpwfasEBpORU"
 }
