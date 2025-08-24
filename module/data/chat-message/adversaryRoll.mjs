@@ -112,7 +112,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             this.currentTargets = this.getTargetList();
             // this.registerTargetHook();
 
-            if (this.targetMode === true && this.hasRoll) {
+            if (this.hasRoll) {
                 this.targetShort = this.targets.reduce(
                     (a, c) => {
                         if (c.hit) a.hit += 1;
@@ -126,7 +126,8 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         }
 
         this.canViewSecret = this.parent.speakerActor?.testUserPermission(game.user, 'OBSERVER');
-        this.canButtonApply = game.user.isGM;
+        this.canButtonApply = game.user.isGM;   //temp
+        this.isGM = game.user.isGM; //temp
     }
 
     getTargetList() {
