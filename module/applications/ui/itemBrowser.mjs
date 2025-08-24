@@ -235,7 +235,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         filters.forEach(f => {
             if (typeof f.field === 'string') f.field = foundry.utils.getProperty(game, f.field);
             else if (typeof f.choices === 'function') {
-                f.choices = f.choices();
+                f.choices = f.choices(this.items);
             }
             f.name ??= f.key;
             f.value = this.presets?.filter?.[f.name]?.value ?? null;
@@ -248,11 +248,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     /* -------------------------------------------- */
 
     /**
-     * Create and initialize search filter instances for the inventory and loadout sections.
+     * Create and initialize search filter instance.
      *
-     * Sets up two {@link foundry.applications.ux.SearchFilter} instances:
-     * - One for the inventory, which filters items in the inventory grid.
-     * - One for the loadout, which filters items in the loadout/card grid.
      * @private
      */
     _createSearchFilter() {
@@ -339,7 +336,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 item = this.items.find(i => i.uuid === itemUUID);
 
             if (!item) continue;
-
+            
             const matchesMenu =
                 this.fieldFilter.length === 0 ||
                 this.fieldFilter.every(

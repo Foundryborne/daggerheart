@@ -420,14 +420,3 @@ export async function createEmbeddedItemsWithEffects(actor, baseData) {
 export const slugify = name => {
     return name.toLowerCase().replaceAll(' ', '-').replaceAll('.', '');
 };
-
-export const versionCompare = (current, target) => {
-    const currentSplit = current.split('.').map(x => Number.parseInt(x));
-    const targetSplit = target.split('.').map(x => Number.parseInt(x));
-    for (var i = 0; i < currentSplit.length; i++) {
-        if (currentSplit[i] < targetSplit[i]) return true;
-        if (currentSplit[i] > targetSplit[i]) return false;
-    }
-
-    return false;
-};

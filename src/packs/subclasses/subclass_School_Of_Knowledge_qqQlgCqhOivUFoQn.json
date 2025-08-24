@@ -34,7 +34,8 @@
       }
     ],
     "featureState": 1,
-    "isMulticlass": false
+    "isMulticlass": false,
+    "linkedClass": "Compendium.daggerheart.classes.Item.5LwX4m8ziY3F1ZGC"
   },
   "effects": [],
   "sort": 0,
@@ -47,12 +48,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1754253538384,
-    "modifiedTime": 1754254543287,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755943553625,
+    "lastModifiedBy": "tt3PwMBXcTLCtIQU"
   },
   "_key": "!items!qqQlgCqhOivUFoQn"
 }

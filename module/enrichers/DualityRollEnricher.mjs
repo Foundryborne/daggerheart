@@ -36,7 +36,7 @@ function getDualityMessage(roll, flavor) {
 
     const dualityElement = document.createElement('span');
     dualityElement.innerHTML = `
-        <button class="duality-roll-button" 
+        <button class="duality-roll-button${roll.inline ? ' inline' : ''}" 
             data-title="${label}"
             data-label="${dataLabel}"
             data-reaction="${roll.reaction ? 'true' : 'false'}"

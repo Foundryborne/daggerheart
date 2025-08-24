@@ -265,7 +265,7 @@
             "cost": [
               {
                 "scalable": false,
-                "key": "stress",
+                "key": "fear",
                 "value": 1,
                 "keyIsID": false,
                 "step": null
@@ -281,7 +281,7 @@
               "type": "self",
               "amount": null
             },
-            "name": "Mark Stress",
+            "name": "Spend Fear",
             "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
             "range": ""
           }
