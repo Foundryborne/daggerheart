@@ -27,6 +27,9 @@
         <fieldset>
             <legend>{{localize "TYPES.Item.subclass"}}</legend>
             <div class="feature-list">
+                {{#unless source.system.subclasses}}
+                    <div class="hint">{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "TYPES.Item.subclass")}}</div>
+                {{/unless}}
                 {{#each source.system.subclasses as |subclass index|}}
                     <li class='feature-item'>
                         <div class='feature-line'>

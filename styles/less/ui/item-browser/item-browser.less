@@ -148,10 +148,6 @@
                             outline: 2px solid light-dark(@dark, @golden);
                         }
 
-                        &:placeholder {
-                            color: light-dark(@dark-blue-50, @beige-50);
-                        }
-
                         &::-webkit-search-cancel-button {
                             -webkit-appearance: none;
                             display: none;
@@ -187,7 +183,7 @@
                 }
 
                 &:has(+ .subfolder-list):after {
-                    content: "+";
+                    content: '+';
                 }
             }
 
@@ -357,7 +353,7 @@
             grid-template-rows: 0fr;
             transition: all 0.3s ease-in-out;
             width: 100%;
-            
+
             .wrapper {
                 overflow: hidden;
                 display: grid;
