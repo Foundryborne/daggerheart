@@ -597,7 +597,9 @@ export default class DhpActor extends Actor {
 
         await this.modifyResource(updates);
 
-        if (Hooks.call(`${CONFIG.DH.id}.postTakeDamage`, this, updates) === false) return null;
+        Hooks.call(`${CONFIG.DH.id}.postTakeDamage`, this, updates);
+
+        return updates;
     }
 
     calculateDamage(baseDamage, type) {
@@ -645,7 +647,8 @@ export default class DhpActor extends Actor {
 
         await this.modifyResource(updates);
 
-        if (Hooks.call(`${CONFIG.DH.id}.postTakeHealing`, this, updates) === false) return null;
+        Hooks.call(`${CONFIG.DH.id}.postTakeHealing`, this, updates);
+        return updates;
     }
 
     async modifyResource(resources) {

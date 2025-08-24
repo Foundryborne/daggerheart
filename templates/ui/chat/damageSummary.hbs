@@ -1,0 +1,18 @@
+<div class="daggerheart chat damage-summary">
+    {{#each targets}}
+        <div class="target-container">
+            <header>
+                <img src="{{this.token.texture.src}}" />
+                <label>{{this.token.name}}</label>
+            </header>
+            <div class="damage-container">
+                {{#each this.updates}}
+                    <div class="damage-row">
+                        <label>{{localize (concat "DAGGERHEART.CONFIG.HealingType." this.key ".name")}}:</label>
+                        <div>{{this.value}}</div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>    
+    {{/each}}
+</div>
