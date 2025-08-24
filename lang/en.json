@@ -2015,6 +2015,7 @@
             },
             "title": "Title",
             "total": "Total",
+            "traitModifier": "Trait Modifier",
             "true": "True",
             "type": "Type",
             "unarmed": "Unarmed",

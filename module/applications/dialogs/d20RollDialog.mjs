@@ -1,3 +1,5 @@
+import { abilities } from "../../config/actorConfig.mjs";
+
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class D20RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -113,15 +115,21 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             context.isLite = this.config.roll?.lite;
             context.extraFormula = this.config.extraFormula;
             context.formula = this.roll.constructFormula(this.config);
+            if(this.actor.system.traits) context.abilities = this.getTraitModifiers();
 
-            context.showReaction = !context.config.roll?.type && context.rollType === 'DualityRoll';
+            context.showReaction = !this.config.roll?.type && context.rollType === 'DualityRoll';
             context.reactionOverride = this.reactionOverride;
         }
         return context;
     }
 
+    getTraitModifiers() {
+        return Object.values(abilities).map(a => ({ id: a.id, label: `${game.i18n.localize(a.label)} (${this.actor.system.traits[a.id]?.value.signedString() ?? 0})` }))
+    }
+
     static updateRollConfiguration(event, _, formData) {
         const { ...rest } = foundry.utils.expandObject(formData.object);
+        
         this.config.selectedRollMode = rest.selectedRollMode;
 
         if (this.config.costs) {
@@ -133,6 +141,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
                 this.roll[key] = value;
             });
         }
+        if(rest.trait) this.config.roll.trait = rest.trait;
         this.config.extraFormula = rest.extraFormula;
         this.render();
     }

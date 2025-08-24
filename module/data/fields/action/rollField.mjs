@@ -72,27 +72,27 @@ export class DHActionRollData extends foundry.abstract.DataModel {
         if (!this.parent?.actor) return modifiers;
         switch (this.parent.actor.type) {
             case 'character':
-                const spellcastingTrait =
-                    this.type === 'spellcast'
-                        ? (this.parent.actor?.system?.spellcastModifierTrait?.key ?? 'agility')
-                        : null;
-                const trait =
-                    this.useDefault || !this.trait
-                        ? (spellcastingTrait ?? this.parent.item.system.attack?.roll?.trait ?? 'agility')
-                        : this.trait;
-                if (
-                    this.type === CONFIG.DH.GENERAL.rollTypes.attack.id ||
-                    this.type === CONFIG.DH.GENERAL.rollTypes.trait.id
-                )
-                    modifiers.push({
-                        label: `DAGGERHEART.CONFIG.Traits.${trait}.name`,
-                        value: this.parent.actor.system.traits[trait].value
-                    });
-                else if (this.type === CONFIG.DH.GENERAL.rollTypes.spellcast.id)
-                    modifiers.push({
-                        label: `DAGGERHEART.CONFIG.RollTypes.spellcast.name`,
-                        value: this.parent.actor.system.spellcastModifier
-                    });
+                // const spellcastingTrait =
+                //     this.type === 'spellcast'
+                //         ? (this.parent.actor?.system?.spellcastModifierTrait?.key ?? 'agility')
+                //         : null;
+                // const trait =
+                //     this.useDefault || !this.trait
+                //         ? (spellcastingTrait ?? this.parent.item.system.attack?.roll?.trait ?? 'agility')
+                //         : this.trait;
+                // if (
+                //     this.type === CONFIG.DH.GENERAL.rollTypes.attack.id ||
+                //     this.type === CONFIG.DH.GENERAL.rollTypes.trait.id
+                // )
+                //     modifiers.push({
+                //         label: `DAGGERHEART.CONFIG.Traits.${trait}.name`,
+                //         value: this.parent.actor.system.traits[trait].value
+                //     });
+                // else if (this.type === CONFIG.DH.GENERAL.rollTypes.spellcast.id)
+                //     modifiers.push({
+                //         label: `DAGGERHEART.CONFIG.RollTypes.spellcast.name`,
+                //         value: this.parent.actor.system.spellcastModifier
+                //     });
                 break;
             case 'companion':
             case 'adversary':
@@ -106,6 +106,21 @@ export class DHActionRollData extends foundry.abstract.DataModel {
                 break;
         }
         return modifiers;
+    }
+
+    get rollTrait() {
+        if(this.parent?.actor?.type !== "character") return null;
+        switch (this.type) {
+            case CONFIG.DH.GENERAL.rollTypes.spellcast.id:
+                return this.parent.actor?.system?.spellcastModifierTrait?.key ?? 'agility';
+            case CONFIG.DH.GENERAL.rollTypes.attack.id:
+            case CONFIG.DH.GENERAL.rollTypes.trait.id:
+                return this.useDefault || !this.trait
+                    ? this.parent.item.system.attack?.roll?.trait ?? 'agility'
+                    : this.trait;
+            default:
+                return null;
+        }
     }
 }
 
@@ -145,6 +160,7 @@ export default class RollField extends fields.EmbeddedDataField {
             baseModifiers: this.roll.getModifier(),
             label: 'Attack',
             type: this.roll?.type,
+            trait: this.roll?.rollTrait,
             difficulty: this.roll?.difficulty,
             formula: this.roll.getFormula(),
             advantage: CONFIG.DH.ACTIONS.advantageState[this.roll.advState].value
