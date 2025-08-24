@@ -23,12 +23,12 @@
         },
         "effects": [],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Mark Stress",
         "img": "icons/magic/defensive/shield-barrier-flaming-diamond-teal.webp",
-        "range": ""
+        "range": "self"
       }
     },
     "originItemType": null,
@@ -111,10 +111,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1753996513763,
-    "modifiedTime": 1755394440308,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756040910699,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_key": "!items!UFR67BUOhNGLFyg9"
 }

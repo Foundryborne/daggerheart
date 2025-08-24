@@ -31,12 +31,12 @@
         },
         "effects": [],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Mark Stress",
         "img": "icons/creatures/abilities/wing-batlike-white-blue.webp",
-        "range": ""
+        "range": "self"
       }
     },
     "originItemType": null,
@@ -113,10 +113,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1753994723305,
-    "modifiedTime": 1755394368487,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756040981649,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_key": "!items!WquAjoOcso8lwySW"
 }
