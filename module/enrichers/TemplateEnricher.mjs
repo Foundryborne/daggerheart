@@ -2,7 +2,8 @@ export default function DhTemplateEnricher(match, _options) {
     const parts = match[1].split('|').map(x => x.trim());
 
     let type = null,
-        range = null;
+        range = null,
+        inline = false;
 
     parts.forEach(part => {
         const split = part.split(':').map(x => x.toLowerCase().trim());
@@ -20,6 +21,9 @@ export default function DhTemplateEnricher(match, _options) {
                     );
                     range = matchedRange?.id;
                     break;
+                case 'inline':
+                    inline = true;
+                    break;
             }
         }
     });
@@ -30,7 +34,7 @@ export default function DhTemplateEnricher(match, _options) {
 
     const templateElement = document.createElement('span');
     templateElement.innerHTML = `
-        <button class="measured-template-button" data-type="${type}" data-range="${range}">
+        <button class="measured-template-button${inline ? ' inline' : ''}" data-type="${type}" data-range="${range}">
             ${label} - ${game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.name`)}
         </button>
     `;
