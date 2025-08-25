@@ -131,6 +131,41 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         html.querySelectorAll('.button-target-selection').forEach(element => {
             element.addEventListener('click', this.onTargetSelection.bind(this));
         });
+
+        html.querySelectorAll('.token-target-container').forEach(element => {
+            element.addEventListener('pointerover', this._onTokenTargetHoverIn.bind(this));
+            element.addEventListener('pointerout', this._onTokenTargetHoverOut.bind(this));
+            element.addEventListener('click', this._onTokenTargetClick.bind(this));
+        });
+    }
+
+    async _onTokenTargetHoverIn(event) {
+        const { tokenUuid } = event.target.dataset;
+        if (!canvas.ready || !tokenUuid) return;
+
+        const token = await foundry.utils.fromUuid(tokenUuid);
+        if (token?.object && token.object._canHover(game.user, event) && token.object.visible) {
+            token.object._onHoverIn(event, { hoverOutOthers: true });
+        }
+    }
+
+    async _onTokenTargetHoverOut(event) {
+        const { tokenUuid } = event.target.dataset;
+        if (!canvas.ready || !tokenUuid) return;
+
+        const token = await foundry.utils.fromUuid(tokenUuid);
+        if (token?.object) token.object._onHoverOut(event);
+    }
+
+    async _onTokenTargetClick(event) {
+        const { tokenUuid } = event.target.dataset;
+        if (!canvas.ready || !tokenUuid) return;
+
+        const token = await foundry.utils.fromUuid(tokenUuid);
+        if (token?.object) {
+            const { _x: x, _y: y } = token.object.position;
+            game.canvas.pan({ x, y });
+        }
     }
 
     getTargetList() {

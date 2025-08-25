@@ -3,18 +3,20 @@
     grid-template-columns: 1fr 1fr;
     gap: 4px;
 
-    .target-container {
+    .token-target-container {
         display: flex;
         flex-direction: column;
         gap: 2px;
         border: 1px solid light-dark(@dark-blue, @golden);
         border-radius: 6px;
+        cursor: pointer;
 
         header {
             display: flex;
             align-items: center;
             gap: 2px;
             border-bottom: 1px solid light-dark(@dark-blue, @golden);
+            pointer-events: none;
 
             img {
                 flex: 0;
@@ -35,6 +37,7 @@
             flex-direction: column;
             justify-content: center;
             gap: 2px;
+            pointer-events: none;
 
             .damage-row {
                 display: flex;
