@@ -1,9 +1,4 @@
-<fieldset class="action-category">
-    <legend class="action-category-label">
-        <div>{{localize "DAGGERHEART.ACTIONS.Config.beastform.label"}}</div>
-    </legend>
-
-    <div class="action-category-data open">
-        {{formGroup fields.tierAccess.fields.exact value=beastform.tierAccess.exact labelAttr="label" valueAttr="key" localize=true blank=""}}
-    </div>
+<fieldset>
+    <legend>{{localize "DAGGERHEART.ACTIONS.Config.beastform.label"}}</legend>
+    {{formGroup fields.tierAccess.fields.exact value=source.tierAccess.exact name="beastform.tierAccess.exact" labelAttr="label" valueAttr="key" localize=true blank=""}}
 </fieldset>
