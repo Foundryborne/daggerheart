@@ -1,6 +1,9 @@
 export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
     static DEFAULT_OPTIONS = {
-        classes: ['daggerheart']
+        classes: ['daggerheart'],
+        actions: {
+            combat: DHTokenHUD.#onToggleCombat
+        }
     };
 
     /** @override */
@@ -11,8 +14,14 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
         }
     };
 
+    static #nonCombatTypes = ['environment', 'companion'];
+
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
+
+        context.canToggleCombat = DHTokenHUD.#nonCombatTypes.includes(this.actor.type)
+            ? false
+            : context.canToggleCombat;
         context.systemStatusEffects = Object.keys(context.statusEffects).reduce((acc, key) => {
             const effect = context.statusEffects[key];
             if (effect.systemEffect) acc[key] = effect;
@@ -34,6 +43,20 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
             : null;
 
         return context;
+    }
+
+    static async #onToggleCombat() {
+        const tokens = canvas.tokens.controlled
+            .filter(t => !t.actor || !DHTokenHUD.#nonCombatTypes.includes(t.actor.type))
+            .map(t => t.document);
+        if (!this.object.controlled) tokens.push(this.document);
+
+        try {
+            if (this.document.inCombat) await TokenDocument.implementation.deleteCombatants(tokens);
+            else await TokenDocument.implementation.createCombatants(tokens);
+        } catch (err) {
+            ui.notifications.warn(err.message);
+        }
     }
 
     _getStatusEffectChoices() {

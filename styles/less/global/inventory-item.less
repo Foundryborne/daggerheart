@@ -105,7 +105,7 @@
                 align-self: center;
 
                 .item-name {
-                    font-size: 14px;
+                    font-size: var(--font-size-14);
 
                     .expanded-icon {
                         display: none;
@@ -121,9 +121,10 @@
                     .label {
                         display: flex;
                         flex-direction: row;
-                        justify-content: center;
                         align-items: center;
-                        font-size: 12px;
+                        font-size: var(--font-size-12);
+                        flex-wrap: wrap;
+                        justify-content: start;
                     }
 
                     .tag {
@@ -179,18 +180,18 @@
                     overflow: hidden;
 
                     h1 {
-                        font-size: 32px;
+                        font-size: var(--font-size-32);
                     }
                     h2 {
-                        font-size: 28px;
+                        font-size: var(--font-size-28);
                         font-weight: 600;
                     }
                     h3 {
-                        font-size: 20px;
+                        font-size: var(--font-size-20);
                         font-weight: 600;
                     }
                     h4 {
-                        font-size: 16px;
+                        font-size: var(--font-size-16);
                         color: @beige;
                         font-weight: 600;
                     }
@@ -231,7 +232,7 @@
                     label {
                         color: light-dark(white, black);
                         filter: drop-shadow(0 0 1px light-dark(@dark-blue, @golden));
-                        font-size: 18px;
+                        font-size: var(--font-size-18);
                     }
 
                     img {
@@ -243,7 +244,7 @@
                         text-shadow: 0 0 3px white;
                         filter: drop-shadow(0 1px white);
                         color: black;
-                        font-size: 26px;
+                        font-size: 1.625rem;
                     }
                 }
             }
@@ -310,7 +311,7 @@
             .card-name {
                 font-style: normal;
                 font-weight: 400;
-                font-size: 12px;
+                font-size: var(--font-size-12);
                 line-height: 15px;
 
                 color: @beige;
@@ -351,7 +352,7 @@
             gap: 4px;
 
             .resource-edit {
-                font-size: 14px;
+                font-size: var(--font-size-14);
             }
         }
 
@@ -363,7 +364,7 @@
 
             i {
                 flex: none;
-                font-size: 14px;
+                font-size: var(--font-size-14);
             }
 
             input {
@@ -383,7 +384,7 @@
                     color: light-dark(white, black);
                     filter: drop-shadow(0 0 1px light-dark(@dark-blue, @golden));
                     z-index: 2;
-                    font-size: 18px;
+                    font-size: var(--font-size-18);
                     cursor: pointer;
                 }
 
@@ -397,7 +398,7 @@
                     text-shadow: 0 0 3px white;
                     filter: drop-shadow(0 1px white);
                     color: black;
-                    font-size: 26px;
+                    font-size: 1.625rem;
                 }
             }
         }

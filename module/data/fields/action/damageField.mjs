@@ -23,14 +23,22 @@ export class DHActionDiceData extends foundry.abstract.DataModel {
             multiplier: new fields.StringField({
                 choices: CONFIG.DH.GENERAL.multiplierTypes,
                 initial: 'prof',
-                label: 'Multiplier'
+                label: 'DAGGERHEART.ACTIONS.Config.damage.multiplier'
             }),
-            flatMultiplier: new fields.NumberField({ nullable: true, initial: 1, label: 'Flat Multiplier' }),
-            dice: new fields.StringField({ choices: CONFIG.DH.GENERAL.diceTypes, initial: 'd6', label: 'Dice' }),
-            bonus: new fields.NumberField({ nullable: true, initial: null, label: 'Bonus' }),
+            flatMultiplier: new fields.NumberField({
+                nullable: true,
+                initial: 1,
+                label: 'DAGGERHEART.ACTIONS.Config.damage.flatMultiplier'
+            }),
+            dice: new fields.StringField({
+                choices: CONFIG.DH.GENERAL.diceTypes,
+                initial: 'd6',
+                label: 'DAGGERHEART.GENERAL.Dice.single'
+            }),
+            bonus: new fields.NumberField({ nullable: true, initial: null, label: 'DAGGERHEART.GENERAL.bonus' }),
             custom: new fields.SchemaField({
-                enabled: new fields.BooleanField({ label: 'Custom Formula' }),
-                formula: new FormulaField({ label: 'Formula', initial: '' })
+                enabled: new fields.BooleanField({ label: 'DAGGERHEART.ACTIONS.Config.general.customFormula' }),
+                formula: new FormulaField({ label: 'DAGGERHEART.ACTIONS.Config.general.formula', initial: '' })
             })
         };
     }

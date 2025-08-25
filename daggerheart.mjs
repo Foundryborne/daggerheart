@@ -13,6 +13,7 @@ import { enrichedDualityRoll } from './module/enrichers/DualityRollEnricher.mjs'
 import { registerCountdownHooks } from './module/data/countdowns.mjs';
 import {
     handlebarsRegistration,
+    runMigrations,
     settingsRegistration,
     socketRegistration
 } from './module/systemRegistration/_module.mjs';
@@ -173,6 +174,8 @@ Hooks.on('ready', async () => {
             game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.welcomeMessage, true);
         }
     }
+
+    runMigrations();
 });
 
 Hooks.once('dicesoniceready', () => {});

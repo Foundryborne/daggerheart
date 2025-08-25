@@ -26,10 +26,6 @@
                         outline: 2px solid light-dark(@dark, @golden);
                     }
 
-                    &:placeholder {
-                        color: light-dark(@dark-blue-50, @beige-50);
-                    }
-
                     &::-webkit-search-cancel-button {
                         -webkit-appearance: none;
                         display: none;
@@ -41,7 +37,7 @@
                     height: 32px;
                     position: absolute;
                     right: 20px;
-                    font-size: 16px;
+                    font-size: var(--font-size-16);
                     z-index: 1;
                     color: light-dark(@dark-blue-50, @beige-50);
                 }

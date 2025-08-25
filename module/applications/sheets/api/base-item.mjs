@@ -167,12 +167,12 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         const { type } = target.dataset;
         const cls = foundry.documents.Item.implementation;
 
+        const multiclass = this.document.system.isMulticlass ? 'multiclass' : null;
         let systemData = {};
         if (this.document.parent?.type === 'character') {
             systemData = {
                 originItemType: this.document.type,
-                originId: this.document.id,
-                identifier: this.document.system.isMulticlass ? 'multiclass' : null
+                identifier: multiclass ?? type
             };
         }
 
@@ -293,14 +293,15 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
 
             if (this.document.parent?.type === 'character') {
                 const itemData = item.toObject();
+                const multiclass = this.document.system.isMulticlass ? 'multiclass' : null;
                 item = await cls.create(
                     {
                         ...itemData,
+                        _stats: { compendiumSource: this.document.uuid },
                         system: {
                             ...itemData.system,
                             originItemType: this.document.type,
-                            originId: this.document.id,
-                            identifier: this.document.system.isMulticlass ? 'multiclass' : null
+                            identifier: multiclass ?? target.dataset.type
                         }
                     },
                     { parent: this.document.parent }
