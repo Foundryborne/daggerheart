@@ -163,7 +163,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         const hasRoll = this.getUseHasRoll(byPass);
         return {
             event,
-            title: game.i18n.localize(this.name),
+            title: `${this.item instanceof CONFIG.Actor.documentClass ? '' : `${this.item.name}: `}${game.i18n.localize(this.name)}`,
             source: {
                 item: this.item._id,
                 action: this._id,
