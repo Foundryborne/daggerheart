@@ -71,6 +71,11 @@ export const renderDamageButton = async event => {
         title: game.i18n.localize('Damage Roll'),
         data: { bonuses: [] },
         source: {},
+        hasDamage: true,
+        hasTarget: true,
+        targets: Array.from(game.user.targets).map(t =>
+            game.system.api.fields.ActionFields.TargetField.formatTarget(t)
+        ),
         roll: [
             {
                 formula: value,
