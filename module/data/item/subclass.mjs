@@ -1,3 +1,4 @@
+import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import ItemLinkFields from '../fields/itemLinkFields.mjs';
 import BaseDataItem from './base.mjs';
 
@@ -25,7 +26,8 @@ export default class DHSubclass extends BaseDataItem {
             }),
             features: new ItemLinkFields(),
             featureState: new fields.NumberField({ required: true, initial: 1, min: 1 }),
-            isMulticlass: new fields.BooleanField({ initial: false })
+            isMulticlass: new fields.BooleanField({ initial: false }),
+            linkedClass: new ForeignDocumentUUIDField({ type: 'Item', nullable: true, initial: null })
         };
     }
 

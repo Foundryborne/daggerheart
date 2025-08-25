@@ -124,11 +124,11 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
 
-        htmlElement
-            .querySelectorAll('[data-action="selectFolder"]')
-            .forEach(element => element.addEventListener("contextmenu", (event) => {
+        htmlElement.querySelectorAll('[data-action="selectFolder"]').forEach(element =>
+            element.addEventListener('contextmenu', event => {
                 event.target.classList.toggle('expanded');
-            }))
+            })
+        );
     }
 
     /* -------------------------------------------- */
@@ -195,8 +195,11 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
         this.items = ItemBrowser.sortBy(items, 'name');
 
-        if(target) {
-            target.closest('.compendium-sidebar').querySelectorAll('[data-action="selectFolder"]').forEach(element => element.classList.remove("is-selected"))
+        if (target) {
+            target
+                .closest('.compendium-sidebar')
+                .querySelectorAll('[data-action="selectFolder"]')
+                .forEach(element => element.classList.remove('is-selected'));
             target.classList.add('is-selected');
         }
 
@@ -204,7 +207,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     _replaceHTML(result, content, options) {
-        if(!options.isFirstRender) delete result.sidebar;
+        if (!options.isFirstRender) delete result.sidebar;
         super._replaceHTML(result, content, options);
     }
 
@@ -240,14 +243,14 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         filters.forEach(f => {
             if (typeof f.field === 'string') f.field = foundry.utils.getProperty(game, f.field);
             else if (typeof f.choices === 'function') {
-                f.choices = f.choices();
+                f.choices = f.choices(this.items);
             }
-            
+
             // Clear field label so template uses our custom label parameter
             if (f.field && f.label) {
                 f.field.label = undefined;
             }
-            
+
             f.name ??= f.key;
             f.value = this.presets?.filter?.[f.name]?.value ?? null;
         });
@@ -259,11 +262,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     /* -------------------------------------------- */
 
     /**
-     * Create and initialize search filter instances for the inventory and loadout sections.
+     * Create and initialize search filter instance.
      *
-     * Sets up two {@link foundry.applications.ux.SearchFilter} instances:
-     * - One for the inventory, which filters items in the inventory grid.
-     * - One for the loadout, which filters items in the loadout/card grid.
      * @private
      */
     _createSearchFilter() {

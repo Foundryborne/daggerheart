@@ -127,8 +127,8 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         }
 
         this.canViewSecret = this.parent.speakerActor?.testUserPermission(game.user, 'OBSERVER');
-        this.canButtonApply = game.user.isGM;
-        this.isGM = game.user.isGM;
+        this.canButtonApply = game.user.isGM; //temp
+        this.isGM = game.user.isGM; //temp
     }
 
     getTargetList() {
