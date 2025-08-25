@@ -25,6 +25,10 @@ export default class AdversarySheet extends DHBaseActorSheet {
     };
 
     static PARTS = {
+        limited: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/limited.hbs',
+            scrollable: ['.limited-container']
+        },
         sidebar: {
             template: 'systems/daggerheart/templates/sheets/actors/adversary/sidebar.hbs',
             scrollable: ['.shortcut-items-section']

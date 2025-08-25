@@ -17,4 +17,40 @@
         font-family: @font-body;
         color: light-dark(@chat-blue-bg, @beige-50);
     }
+
+    &.limited {
+        &.character,
+        &.adversary,
+        &.environment,
+        &.companion {
+            width: 360px !important;
+
+            .window-content {
+                display: unset;
+            }
+
+            .limited-container {
+                width: 100%;
+                padding-top: var(--header-height);
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                header {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    .profile {
+                        width: 275px;
+                    }
+
+                    .title-name {
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
 }

@@ -14,6 +14,10 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
     };
 
     static PARTS = {
+        limited: {
+            template: 'systems/daggerheart/templates/sheets/actors/companion/limited.hbs',
+            scrollable: ['.limited-container']
+        },
         header: { template: 'systems/daggerheart/templates/sheets/actors/companion/header.hbs' },
         details: { template: 'systems/daggerheart/templates/sheets/actors/companion/details.hbs' },
         effects: {

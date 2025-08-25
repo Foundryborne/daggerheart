@@ -26,6 +26,10 @@ export default class DhpEnvironment extends DHBaseActorSheet {
 
     /**@override */
     static PARTS = {
+        limited: {
+            template: 'systems/daggerheart/templates/sheets/actors/environment/limited.hbs',
+            scrollable: ['.limited-container']
+        },
         header: { template: 'systems/daggerheart/templates/sheets/actors/environment/header.hbs' },
         features: {
             template: 'systems/daggerheart/templates/sheets/actors/environment/features.hbs',

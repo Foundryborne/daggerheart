@@ -47,6 +47,12 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         return (this.#settingSheet ??= SheetClass ? new SheetClass({ document: this.document }) : null);
     }
 
+    get isVisible() {
+        const viewPermission = this.document.testUserPermission(game.user, this.options.viewPermission);
+        const limitedOnly = this.document.testUserPermission(game.user, this.options.viewPermission, { exact: true });
+        return limitedOnly ? this.document.system.metadata.hasLimitedView : viewPermission;
+    }
+
     /* -------------------------------------------- */
     /*  Prepare Context                             */
     /* -------------------------------------------- */
@@ -70,6 +76,31 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                 break;
         }
         return context;
+    }
+
+    _configureRenderParts(options) {
+        const parts = super._configureRenderParts(options);
+        if (!this.document.system.metadata.hasLimitedView) return parts;
+
+        if (this.document.testUserPermission(game.user, 'LIMITED', { exact: true })) return { limited: parts.limited };
+
+        return Object.keys(parts).reduce((acc, key) => {
+            if (key !== 'limited') acc[key] = parts[key];
+
+            return acc;
+        }, {});
+    }
+
+    /** @inheritDoc */
+    async _onRender(context, options) {
+        await super._onRender(context, options);
+
+        if (
+            this.document.system.metadata.hasLimitedView &&
+            this.document.testUserPermission(game.user, 'LIMITED', { exact: true })
+        ) {
+            this.element.classList = `${this.element.classList} limited`;
+        }
     }
 
     /**@inheritdoc */
