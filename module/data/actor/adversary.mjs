@@ -130,7 +130,7 @@ export default class DhpAdversary extends BaseDataActor {
                 CONFIG.DH.id,
                 CONFIG.DH.SETTINGS.gameSettings.Automation
             ).hordeDamage;
-            if (autoHordeDamage && changes.system?.resources?.hitPoints?.value) {
+            if (autoHordeDamage && changes.system?.resources?.hitPoints?.value !== undefined) {
                 const hordeActiveEffect = this.parent.effects.find(x => x.type === 'horde');
                 if (hordeActiveEffect) {
                     const halfHP = Math.ceil(this.resources.hitPoints.max / 2);

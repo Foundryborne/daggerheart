@@ -2,7 +2,8 @@ export default function DhDamageEnricher(match, _options) {
     const parts = match[1].split('|').map(x => x.trim());
 
     let value = null,
-        type = null;
+        type = null,
+        inline = false;
 
     parts.forEach(part => {
         const split = part.split(':').map(x => x.toLowerCase().trim());
@@ -14,16 +15,19 @@ export default function DhDamageEnricher(match, _options) {
                 case 'type':
                     type = split[1];
                     break;
+                case 'inline':
+                    inline = true;
+                    break;
             }
         }
     });
 
     if (!value || !value) return match[0];
 
-    return getDamageMessage(value, type, match[0]);
+    return getDamageMessage(value, type, inline, match[0]);
 }
 
-function getDamageMessage(damage, type, defaultElement) {
+function getDamageMessage(damage, type, inline, defaultElement) {
     const typeIcons = type
         .replace('[', '')
         .replace(']', '')
@@ -40,7 +44,7 @@ function getDamageMessage(damage, type, defaultElement) {
 
     const dualityElement = document.createElement('span');
     dualityElement.innerHTML = `
-        <button class="enriched-damage-button" 
+        <button class="enriched-damage-button${inline ? ' inline' : ''}" 
             data-value="${damage}"
             data-type="${type}"
             data-tooltip="${game.i18n.localize('DAGGERHEART.GENERAL.damage')}"
