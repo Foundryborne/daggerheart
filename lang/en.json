@@ -1926,6 +1926,7 @@
             "amount": "Amount",
             "any": "Any",
             "armor": "Armor",
+            "armors": "Armors",
             "armorScore": "Armor Score",
             "activeEffects": "Active Effects",
             "armorSlots": "Armor Slots",
@@ -1978,6 +1979,7 @@
             "inactiveEffects": "Inactive Effects",
             "inventory": "Inventory",
             "itemResource": "Item Resource",
+            "items": "Items",
             "label": "Label",
             "level": "Level",
             "levelShort": "Lv",
@@ -1989,6 +1991,7 @@
                 "plural": "Miss"
             },
             "maxWithThing": "Max {thing}",
+            "missingDragDropThing": "Drop {thing} here",
             "multiclass": "Multiclass",
             "newCategory": "New Category",
             "none": "None",
@@ -2010,6 +2013,7 @@
             "scalable": "Scalable",
             "situationalBonus": "Situational Bonus",
             "stress": "Stress",
+            "subclasses": "Subclasses",
             "success": "Success",
             "take": "Take",
             "Target": {
@@ -2027,6 +2031,7 @@
             "used": "Used",
             "uses": "Uses",
             "value": "Value",
+            "weapons": "Weapons",
             "withThing": "With {thing}"
         },
         "ITEMS": {
@@ -2460,7 +2465,8 @@
                 "actionNoUsesRemaining": "That action doesn't have remaining uses.",
                 "multiclassAlreadyPresent": "You already have a class and multiclass",
                 "subclassesAlreadyPresent": "You already have a class and multiclass subclass",
-                "noDiceSystem": "Your selected dice {system} does not have a {faces} dice"
+                "noDiceSystem": "Your selected dice {system} does not have a {faces} dice",
+                "subclassAlreadyLinked": "{name} is already a subclass in the class {class}. Remove it from there if you want it to be a subclass to this class."
             },
             "Tooltip": {
                 "disableEffect": "Disable Effect",

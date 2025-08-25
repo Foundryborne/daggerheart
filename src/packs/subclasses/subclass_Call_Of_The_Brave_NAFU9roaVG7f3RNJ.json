@@ -49,8 +49,13 @@
     "systemId": "daggerheart",
     "systemVersion": "1.1.0",
     "createdTime": 1754256077777,
+<<<<<<< HEAD
     "modifiedTime": 1756034054856,
     "lastModifiedBy": "vUIbuan0U50nfKBE"
+=======
+    "modifiedTime": 1755943544886,
+    "lastModifiedBy": "tt3PwMBXcTLCtIQU"
+>>>>>>> development
   },
   "_key": "!items!NAFU9roaVG7f3RNJ"
 }

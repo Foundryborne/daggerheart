@@ -1,6 +1,6 @@
 <div class="roll-part target-section dice-roll" data-action="expandRoll">
     <div class="roll-part-header"><div><span>{{pluralize currentTargets.length "DAGGERHEART.GENERAL.Target"}}</span></div></div>
-    {{#if (or (and targets.length (or (gt targetShort.hit 0) (gt targetShort.miss 0))) (and hasSave pendingSaves))}}
+    {{#if isGM}}
         <div class="roll-part-extra on-reduced">
             <div class="wrapper">
                 {{#if (or (gt targetShort.hit 0) (gt targetShort.miss 0))}}
@@ -30,8 +30,8 @@
                         <img class="target-img" src="{{img}}">
                         <div class="target-data">
                             <div class="target-name" data-perm-id="{{actorId}}"><span>{{name}}</span></div>
-                            {{#if (and ../targetMode ../hasRoll)}}
-                                <div class="target-hit-status {{#if hit}}is-hit{{else}}is-miss{{/if}}">
+                            {{#if (and ../hasRoll (hasProperty this "hit"))}}
+                                <div class="target-hit-status {{#if hit}}is-hit{{else}}is-miss{{/if}}" data-perm-id="{{actorId}}" data-perm-hidden="true">
                                     {{#if hit}}
                                         {{localize "DAGGERHEART.GENERAL.hit.single"}}
                                     {{else}}
