@@ -220,7 +220,9 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         const msg = {
             user: game.user.id,
             speaker: cls.getSpeaker(),
-            title: game.i18n.localize('DAGGERHEART.UI.Chat.deathMove.title'),
+            title: game.i18n.localize(
+                `DAGGERHEART.UI.Chat.damageSummary.${this.system.hasHealing ? 'healingTitle' : 'title'}`
+            ),
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/chat/damageSummary.hbs',
                 {
@@ -255,6 +257,25 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                 ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
             this.consumeOnSuccess();
             await action.applyEffects(event, this, targets);
+
+            const effects = this.system.action.item.effects.filter(effect =>
+                this.system.action.effects.some(x => x._id === effect.id)
+            );
+            const cls = getDocumentClass('ChatMessage');
+            const msg = {
+                user: game.user.id,
+                speaker: cls.getSpeaker(),
+                title: game.i18n.localize('DAGGERHEART.UI.Chat.effectSummary.title'),
+                content: await foundry.applications.handlebars.renderTemplate(
+                    'systems/daggerheart/templates/ui/chat/effectSummary.hbs',
+                    {
+                        effects,
+                        targets
+                    }
+                )
+            };
+
+            cls.create(msg);
         }
     }
 

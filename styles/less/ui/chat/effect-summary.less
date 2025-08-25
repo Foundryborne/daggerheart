@@ -1,0 +1,54 @@
+.daggerheart.chat.effect-summary {
+    display: flex;
+    flex-direction: column;
+
+    h5 {
+        color: light-dark(@dark, @beige);
+        margin: 0;
+        text-align: center;
+    }
+
+    .effects-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-bottom: 8px;
+    }
+
+    .targets-container {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .effect-target-container,
+    .token-target-container {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        border: 1px solid light-dark(@dark-blue, @golden);
+        border-radius: 6px;
+        padding: 0 2px;
+
+        img {
+            width: 24px;
+            height: 24px;
+            flex: 0;
+            pointer-events: none;
+        }
+
+        label {
+            flex: 1;
+            text-align: center;
+            pointer-events: none;
+        }
+    }
+
+    .token-target-container {
+        cursor: pointer;
+
+        &:hover {
+            filter: drop-shadow(0 0 3px @golden);
+        }
+    }
+}

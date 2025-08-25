@@ -2322,6 +2322,7 @@
                 "action": {
                     "title": "Action"
                 },
+                "appliedTo": "Applied To",
                 "applyEffect": {
                     "title": "Apply Effects - {name}"
                 },
@@ -2330,6 +2331,10 @@
                     "rollDamage": "Roll Damage",
                     "rollHealing": "Roll Healing",
                     "applyEffect": "Apply Effects"
+                },
+                "damageSummary": {
+                    "title": "Damage Applied",
+                    "healingTitle": "Healing Applied"
                 },
                 "damageRoll": {
                     "title": "Damage - {damage}",
@@ -2351,6 +2356,9 @@
                 },
                 "dualityRoll": {
                     "abilityCheckTitle": "{ability} Check"
+                },
+                "effectSummary": {
+                    "title": "Effects Applied"
                 },
                 "featureTitle": "Class Feature",
                 "healingRoll": {

@@ -1,0 +1,21 @@
+<div class="daggerheart chat effect-summary">
+    <h5>{{localize "DAGGERHEART.GENERAL.Effect.plural"}}</h5>
+    <div class="effects-container">
+        {{#each effects}}
+            <div class="effect-target-container" data-tooltip="{{concat "#item#" this.uuid}}">
+                <img src="{{this.img}}" />
+                <label>{{this.name}}</label>
+            </div>
+        {{/each}}
+    </div>
+
+    <h5>{{localize "DAGGERHEART.UI.Chat.appliedTo"}}</h5>
+    <div class="targets-container">
+        {{#each targets}}
+            <div class="token-target-container" data-token-uuid="{{this.uuid}}">
+                <img src="{{this.texture.src}}" />
+                <label>{{this.name}}</label>
+            </div>
+        {{/each}}
+    </div>
+</div>
