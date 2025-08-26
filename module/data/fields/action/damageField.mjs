@@ -30,6 +30,7 @@ export default class DamageField extends fields.SchemaField {
      * @param {boolean} [force=false]       If the method should be executed outside of Action workflow, for ChatMessage button for example.
      */
     static async execute(config, messageId = null, force = false) {
+        if(!this.hasDamage && !this.hasHealing) return;
         if((this.hasRoll && DamageField.getAutomation() === CONFIG.DH.SETTINGS.actionAutomationChoices.never.id) && !force) return;
 
         let formulas = this.damage.parts.map(p => ({
