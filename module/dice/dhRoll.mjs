@@ -86,11 +86,12 @@ export default class DHRoll extends Roll {
                 type: this.messageType,
                 user: game.user.id,
                 title: roll.title,
-                speaker: cls.getSpeaker(),
+                speaker: cls.getSpeaker({ actor: roll.data?.parent }),
                 sound: config.mute ? null : CONFIG.sounds.dice,
                 system: config,
                 rolls: [roll]
             };
+        
         config.selectedRollMode ??= game.settings.get('core', 'rollMode');
 
         if (roll._evaluated) {
