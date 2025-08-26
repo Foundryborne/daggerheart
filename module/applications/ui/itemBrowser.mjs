@@ -17,8 +17,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         this.config = CONFIG.DH.ITEMBROWSER.compendiumConfig;
         this.presets = options.presets;
 
-        if (this.presets?.compendium && this.presets?.folder)
-            ItemBrowser.selectFolder.call(this, null, null, this.presets.compendium, this.presets.folder);
+        if (this.presets?.folder)
+            ItemBrowser.selectFolder.call(this, null, null, this.presets.folder);
     }
 
     /** @inheritDoc */
@@ -115,7 +115,10 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
         if (this.presets?.filter) {
             Object.entries(this.presets.filter).forEach(
-                ([k, v]) => (this.fieldFilter.find(c => c.name === k).value = v.value)
+                ([k, v]) => {
+                    const filter = this.fieldFilter.find(c => c.name === k)
+                    if(filter) filter.value = v.value;
+                }
             );
             await this._onInputFilterBrowser();
         }
@@ -162,16 +165,34 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 : [];
             folders.push(folder);
         });
+        folders.sort((a, b) => a.label.localeCompare(b.label))
 
         return folders;
     }
 
-    static async selectFolder(_, target, compend, folder) {
-        const config = foundry.utils.deepClone(this.config),
-            compendium = compend ?? target.closest('[data-compendium-id]').dataset.compendiumId,
-            folderId = folder ?? target.dataset.folderId,
-            folderPath = `${compendium}.folders.${folderId}`,
-            folderData = foundry.utils.getProperty(config, folderPath);
+    static async selectFolder(_, target, folder) {
+
+        let loadTimeout = ItemBrowser.toggleLoader(target, true);
+
+        const folderId = folder ?? target.dataset.folderId,
+            folderData = foundry.utils.getProperty(this.config, folderId) ?? {},
+            promises = [];
+        
+        game.packs.forEach(pack => {
+            promises.push(
+                new Promise(async resolve => {
+                    const items = await pack.getDocuments({ type__in: folderData?.type });
+                    resolve(items);
+                })
+            )
+        });
+
+        Promise.all(promises).then(result => {
+            this.items = ItemBrowser.sortBy(result.flatMap(r => r), 'name');
+            clearTimeout(loadTimeout);
+            ItemBrowser.toggleLoader(target, false);
+            this.render({ force: true });
+        });
 
         const columns = ItemBrowser.getFolderConfig(folderData).map(col => ({
             ...col,
@@ -179,21 +200,12 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         }));
 
         this.selectedMenu = {
-            path: folderPath.split('.'),
+            path: folderId.split('.'),
             data: {
                 ...folderData,
                 columns: columns
             }
         };
-
-        let items = [];
-        for (const key of folderData.keys) {
-            const comp = game.packs.get(`${compendium}.${key}`);
-            if (!comp) return;
-            items = items.concat(await comp.getDocuments({ type__in: folderData.type }));
-        }
-
-        this.items = ItemBrowser.sortBy(items, 'name');
 
         if (target) {
             target
@@ -202,13 +214,19 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 .forEach(element => element.classList.remove('is-selected'));
             target.classList.add('is-selected');
         }
-
-        this.render({ force: true });
     }
 
     _replaceHTML(result, content, options) {
         if (!options.isFirstRender) delete result.sidebar;
         super._replaceHTML(result, content, options);
+    }
+
+    static toggleLoader(target, state) {
+        if(!target) return;
+        const container = target.closest(".window-content");
+        return setTimeout(() => {
+            container.classList.toggle("loader", state);
+        }, 100);
     }
 
     static expandContent(_, target) {

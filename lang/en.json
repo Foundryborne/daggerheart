@@ -2399,7 +2399,11 @@
                     "environments": "Environments",
                     "beastforms": "Beastforms",
                     "features": "Features",
-                    "items": "Items"
+                    "items": "Items",
+                    "weapons": "Weapons",
+                    "armors": "Armors",
+                    "consumables": "Consumables",
+                    "loots": "Loots"
                 }
             },
             "Notifications": {

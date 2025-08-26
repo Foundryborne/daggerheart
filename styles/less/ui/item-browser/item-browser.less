@@ -71,6 +71,7 @@
         }
 
         .compendium-results {
+            position: relative;
             padding: 16px;
         }
 
@@ -101,8 +102,12 @@
         .folder-list,
         .item-list-header,
         .item-header > div {
-            gap: 10px;
             cursor: pointer;
+        }
+
+        .item-list-header,
+        .item-header > div {
+            gap: 10px;
         }
 
         .item-filter {
@@ -228,7 +233,8 @@
         }
 
         .item-list-header,
-        .item-list {
+        .item-list,
+        .compendium-sidebar > .folder-list {
             overflow-y: auto;
             scrollbar-gutter: stable;
             scrollbar-width: thin;

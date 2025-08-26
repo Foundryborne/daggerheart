@@ -425,8 +425,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             equipment = ['armor', 'weapon'];
 
         const presets = {
-            compendium: 'daggerheart',
-            folder: equipment.includes(type) ? 'equipments' : type,
+            folder: equipment.includes(type) ? `equipments.folders.${type}s` : type,
             render: {
                 noFolder: true
             }

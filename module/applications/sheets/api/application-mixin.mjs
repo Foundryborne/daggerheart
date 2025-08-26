@@ -577,28 +577,27 @@ export default function DHApplicationMixin(Base) {
         static async #browseItem(event, target) {
             const type = target.dataset.compendium ?? target.dataset.type;
 
-            const presets = {};
+            const presets = {
+                render: {
+                    noFolder: true
+                }
+            };
 
             switch (type) {
                 case 'loot':
+                    presets.folder = 'equipments.folders.loots';
+                    break;
                 case 'consumable':
+                    presets.folder = 'equipments.folders.consumables';
+                    break;
                 case 'armor':
+                    presets.folder = 'equipments.folders.armors';
+                    break;
                 case 'weapon':
-                    presets.compendium = 'daggerheart';
-                    presets.folder = 'equipments';
-                    presets.render = {
-                        noFolder: true
-                    };
-                    presets.filter = {
-                        type: { key: 'type', value: type, forced: true }
-                    };
+                    presets.folder = 'equipments.folders.weapons';
                     break;
                 case 'domainCard':
-                    presets.compendium = 'daggerheart';
                     presets.folder = 'domains';
-                    presets.render = {
-                        noFolder: true
-                    };
                     presets.filter = {
                         'level.max': { key: 'level.max', value: this.document.system.levelData.level.current },
                         'system.domain': { key: 'system.domain', value: this.document.system.domains }

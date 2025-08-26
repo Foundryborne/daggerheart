@@ -149,6 +149,104 @@ export const typeConfig = {
             }
         ]
     },
+    weapons: {
+        columns: [
+            {
+                key: 'system.secondary',
+                label: 'DAGGERHEART.UI.ItemBrowser.subtype',
+                format: isSecondary => (isSecondary ? 'secondary' : isSecondary === false ? 'primary' : '-')
+            },
+            {
+                key: 'system.tier',
+                label: 'DAGGERHEART.GENERAL.Tiers.singular'
+            }
+        ],
+        filters: [
+            {
+                key: 'system.secondary',
+                label: 'DAGGERHEART.UI.ItemBrowser.subtype',
+                choices: [
+                    { value: false, label: 'DAGGERHEART.ITEMS.Weapon.primaryWeapon' },
+                    { value: true, label: 'DAGGERHEART.ITEMS.Weapon.secondaryWeapon' }
+                ]
+            },
+            {
+                key: 'system.tier',
+                label: 'DAGGERHEART.GENERAL.Tiers.singular',
+                choices: [
+                    { value: '1', label: '1' },
+                    { value: '2', label: '2' },
+                    { value: '3', label: '3' },
+                    { value: '4', label: '4' }
+                ]
+            },
+            {
+                key: 'system.burden',
+                label: 'DAGGERHEART.GENERAL.burden',
+                field: 'system.api.models.items.DHWeapon.schema.fields.burden'
+            },
+            {
+                key: 'system.attack.roll.trait',
+                label: 'DAGGERHEART.GENERAL.Trait.single',
+                field: 'system.api.models.actions.actionsTypes.attack.schema.fields.roll.fields.trait'
+            },
+            {
+                key: 'system.attack.range',
+                label: 'DAGGERHEART.GENERAL.range',
+                field: 'system.api.models.actions.actionsTypes.attack.schema.fields.range'
+            },
+            {
+                key: 'system.itemFeatures',
+                label: 'DAGGERHEART.GENERAL.features',
+                choices: () =>
+                    Object.entries(CONFIG.DH.ITEM.weaponFeatures)
+                    .map(([k, v]) => ({ value: k, label: v.label })),
+                operator: 'contains3'
+            }
+        ]
+    },
+    armors: {
+        columns: [
+            {
+                key: 'system.tier',
+                label: 'DAGGERHEART.GENERAL.Tiers.singular'
+            }
+        ],
+        filters: [
+            {
+                key: 'system.tier',
+                label: 'DAGGERHEART.GENERAL.Tiers.singular',
+                choices: [
+                    { value: '1', label: '1' },
+                    { value: '2', label: '2' },
+                    { value: '3', label: '3' },
+                    { value: '4', label: '4' }
+                ]
+            },
+            {
+                key: 'system.baseScore',
+                name: 'armor.min',
+                label: 'DAGGERHEART.UI.ItemBrowser.armorScoreMin',
+                field: 'system.api.models.items.DHArmor.schema.fields.baseScore',
+                operator: 'gte'
+            },
+            {
+                key: 'system.baseScore',
+                name: 'armor.max',
+                label: 'DAGGERHEART.UI.ItemBrowser.armorScoreMax',
+                field: 'system.api.models.items.DHArmor.schema.fields.baseScore',
+                operator: 'lte'
+            },
+            {
+                key: 'system.itemFeatures',
+                label: 'DAGGERHEART.GENERAL.features',
+                choices: () =>
+                    Object.entries(CONFIG.DH.ITEM.armorFeatures)
+                    .map(([k, v]) => ({ value: k, label: v.label })),
+                operator: 'contains3'
+            }
+        ]
+    },
     features: {
         columns: [],
         filters: []
@@ -305,10 +403,10 @@ export const typeConfig = {
 };
 
 export const compendiumConfig = {
-    daggerheart: {
-        id: 'daggerheart',
-        label: 'DAGGERHEART',
-        folders: {
+    // daggerheart: {
+    //     id: 'daggerheart',
+    //     label: 'DAGGERHEART',
+    //     folders: {
             adversaries: {
                 id: 'adversaries',
                 keys: ['adversaries'],
@@ -321,28 +419,56 @@ export const compendiumConfig = {
                 keys: ['ancestries'],
                 label: 'DAGGERHEART.UI.ItemBrowser.folders.ancestries',
                 type: ['ancestry'],
-                folders: {
+                /* folders: {
                     features: {
                         id: 'features',
                         keys: ['ancestries'],
                         label: 'DAGGERHEART.UI.ItemBrowser.folders.features',
                         type: ['feature']
                     }
-                }
+                } */
             },
             equipments: {
                 id: 'equipments',
                 keys: ['armors', 'weapons', 'consumables', 'loot'],
                 label: 'DAGGERHEART.UI.ItemBrowser.folders.equipment',
                 type: ['armor', 'weapon', 'consumable', 'loot'],
-                listType: 'items'
+                listType: 'items',
+                folders: {
+                    weapons: {
+                        id: 'weapons',
+                        keys: ['weapons'],
+                        label: 'DAGGERHEART.UI.ItemBrowser.folders.weapons',
+                        type: ['weapon'],
+                        listType: 'weapons'
+                    },
+                    armors: {
+                        id: 'armors',
+                        keys: ['armors'],
+                        label: 'DAGGERHEART.UI.ItemBrowser.folders.armors',
+                        type: ['armor'],
+                        listType: 'armors'
+                    },
+                    consumables: {
+                        id: 'consumables',
+                        keys: ['consumables'],
+                        label: 'DAGGERHEART.UI.ItemBrowser.folders.consumables',
+                        type: ['consumable']
+                    },
+                    loots: {
+                        id: 'loots',
+                        keys: ['loots'],
+                        label: 'DAGGERHEART.UI.ItemBrowser.folders.loots',
+                        type: ['loot']
+                    }
+                }
             },
             classes: {
                 id: 'classes',
                 keys: ['classes'],
                 label: 'DAGGERHEART.UI.ItemBrowser.folders.classes',
                 type: ['class'],
-                folders: {
+                /* folders: {
                     features: {
                         id: 'features',
                         keys: ['classes'],
@@ -356,7 +482,7 @@ export const compendiumConfig = {
                         type: ['armor', 'weapon', 'consumable', 'loot'],
                         listType: 'items'
                     }
-                },
+                }, */
                 listType: 'classes'
             },
             subclasses: {
@@ -378,14 +504,14 @@ export const compendiumConfig = {
                 keys: ['communities'],
                 label: 'DAGGERHEART.UI.ItemBrowser.folders.communities',
                 type: ['community'],
-                folders: {
+                /* folders: {
                     features: {
                         id: 'features',
                         keys: ['communities'],
                         label: 'DAGGERHEART.UI.ItemBrowser.folders.features',
                         type: ['feature']
                     }
-                }
+                } */
             },
             environments: {
                 id: 'environments',
@@ -399,15 +525,21 @@ export const compendiumConfig = {
                 label: 'DAGGERHEART.UI.ItemBrowser.folders.beastforms',
                 type: ['beastform'],
                 listType: 'beastforms',
-                folders: {
+                /* folders: {
                     features: {
                         id: 'features',
                         keys: ['beastforms'],
                         label: 'DAGGERHEART.UI.ItemBrowser.folders.features',
                         type: ['feature']
                     }
-                }
+                } */
+            },
+            features: {
+                id: 'features',
+                keys: ['features'],
+                label: 'DAGGERHEART.UI.ItemBrowser.folders.features',
+                type: ['feature']
             }
-        }
-    }
+    //     }
+    // }
 };

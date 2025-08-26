@@ -23,4 +23,27 @@
             color: var(--color-form-hint-hover);
         }
     }
+
+    .loader {
+        div {
+            opacity: .5;
+            // transition: opacity .3s ease-in-out;
+        }
+
+        &:before {
+            font-family: "Font Awesome 6 Pro";
+            content: '\f110';
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: spinner 1.5s linear infinite; 
+        }
+    }
+
+    @keyframes spinner {
+        to { transform: rotate(360deg); }
+    }
 }
