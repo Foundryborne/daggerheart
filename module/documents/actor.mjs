@@ -14,7 +14,7 @@ export default class DhpActor extends Actor {
     get owner() {
         const user =
             this.hasPlayerOwner && game.users.players.find(u => this.testUserPermission(u, 'OWNER') && u.active);
-        if (!user) return game.user.isGM ? game.user : null;
+        if (!user) return game.users.activeGM;
         return user;
     }
 

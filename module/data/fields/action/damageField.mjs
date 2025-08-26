@@ -62,6 +62,7 @@ export default class DamageField extends fields.SchemaField {
         const damageResult = await CONFIG.Dice.daggerheart.DamageRoll.build(damageConfig);
         if(!damageResult) return false;
         config.damage = damageResult.damage;
+        config.message ??= damageConfig.message;
     }
 
     /**
@@ -71,7 +72,7 @@ export default class DamageField extends fields.SchemaField {
      * @param {boolean} force   If the method should be executed outside of Action workflow, for ChatMessage button for example. 
      */
     static async applyDamage(config, targets = null, force = false) {
-        targets ??= config.targets;
+        targets ??= config.targets.filter(target => target.hit);
         if(!config.damage || !targets?.length || (!DamageField.getApplyAutomation() && !force)) return;
         for (let target of targets) {
             const actor = fromUuidSync(target.actorId);

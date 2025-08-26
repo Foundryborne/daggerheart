@@ -35,6 +35,7 @@ export default class SaveField extends fields.SchemaField {
     static async execute(config, targets = null, force = false) {
         if(!config.hasSave) return;
         let message = config.message ?? ui.chat.collection.get(config.parent?._id);
+        
         if(!message) {
             const roll = new CONFIG.Dice.daggerheart.DHRoll('');
             roll._evaluated = true;
@@ -42,8 +43,8 @@ export default class SaveField extends fields.SchemaField {
         }
         if(SaveField.getAutomation() !== CONFIG.DH.SETTINGS.actionAutomationChoices.never.id || force) {
             targets ??= config.targets.filter(t => !config.hasRoll || t.hit);
-            SaveField.rollAllSave.call(this, targets, config.event, message);
-        }
+            await SaveField.rollAllSave.call(this, targets, config.event, message);
+        } else return false;
     }
 
     /**
@@ -54,22 +55,32 @@ export default class SaveField extends fields.SchemaField {
      * @param {ChatMessage} message     The ChatMessage the triggered button comes from. 
      */
     static async rollAllSave(targets, event, message) {
-        if(!targets || !game.user.isGM) return;
-        targets.forEach(target => {
-            const actor = fromUuidSync(target.actorId);
-            if(actor) {
-                const rollSave = game.user === actor.owner ? 
-                    SaveField.rollSave.call(this, actor, event, message)
-                    : actor.owner
-                        .query('reactionRoll', {
-                            actionId: this.uuid,
-                            actorId: actor.uuid,
-                            event,
-                            message
-                        });
-                rollSave.then(result => SaveField.updateSaveMessage.call(this, result, message, target.id));
-            }
-        });
+        if(!targets) return;
+        return new Promise(resolve => {
+            const aPromise = [];
+            targets.forEach(target => {
+                aPromise.push(
+                    new Promise(async subResolve => {
+                        const actor = fromUuidSync(target.actorId);
+                        if(actor) {
+                            const rollSave = game.user === actor.owner ? 
+                                SaveField.rollSave.call(this, actor, event)
+                                : actor.owner
+                                    .query('reactionRoll', {
+                                        actionId: this.uuid,
+                                        actorId: actor.uuid,
+                                        event,
+                                        message
+                                    });
+                            const result = await rollSave;
+                            await SaveField.updateSaveMessage.call(this, result, message, target.id);
+                            subResolve();
+                        } else subResolve();
+                    })
+                )
+            });
+            Promise.all(aPromise).then(result => resolve());
+        })
     }
 
     /**
@@ -92,13 +103,13 @@ export default class SaveField extends fields.SchemaField {
                 roll: {
                     trait: this.save.trait,
                     difficulty: this.save.difficulty ?? this.actor?.baseSaveDifficulty,
-                    type: 'reaction'
+                    type: 'trait'
                 },
-                type: 'trait',
+                actionType: 'reaction',
                 hasRoll: true,
                 data: actor.getRollData()
             };
-        if(SaveField.getAutomation() == CONFIG.DH.SETTINGS.actionAutomationChoices.always.id) rollConfig.dialog = { configure: false };
+        if(SaveField.getAutomation() === CONFIG.DH.SETTINGS.actionAutomationChoices.always.id) rollConfig.dialog = { configure: false };
         return actor.diceRoll(rollConfig);
     }
 
@@ -108,10 +119,10 @@ export default class SaveField extends fields.SchemaField {
      * @param {object} message       ChatMessage to update
      * @param {string} targetId      Token ID 
      */
-    static updateSaveMessage(result, message, targetId) {
+    static async updateSaveMessage(result, message, targetId) {
         if (!result) return;
-        const updateMsg = function(message, targetId, result) {
-            setTimeout(async () => {
+        const updateMsg = async function(message, targetId, result) {
+            // setTimeout(async () => {
                 const chatMessage = ui.chat.collection.get(message._id),
                     changes = {
                         flags: {
@@ -127,11 +138,11 @@ export default class SaveField extends fields.SchemaField {
                         }
                     };
                 await chatMessage.update(changes);
-            }, 100);
+            // }, 100);
         };
         if (game.modules.get('dice-so-nice')?.active)
-            game.dice3d.waitFor3DAnimationByMessageID(result.message.id ?? result.message._id).then(() => updateMsg(message, targetId, result));
-        else updateMsg(message, targetId, result);
+            game.dice3d.waitFor3DAnimationByMessageID(result.message.id ?? result.message._id).then(async () => await updateMsg(message, targetId, result));
+        else await updateMsg(message, targetId, result);
     }
 
     /**

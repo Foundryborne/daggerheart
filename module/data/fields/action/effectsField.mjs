@@ -1,3 +1,5 @@
+import { emitAsGM, GMUpdateEvent } from "../../../systemRegistration/socket.mjs";
+
 const fields = foundry.data.fields;
 
 export default class EffectsField extends fields.ArrayField {
@@ -31,8 +33,14 @@ export default class EffectsField extends fields.ArrayField {
             message = config.message = await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
         }
         if(EffectsField.getAutomation() || force) {
-            targets ??= config.targets.filter(t => !config.hasRoll || t.hit);
-            EffectsField.applyEffects.call(this, config.targets.filter(t => !config.hasRoll || t.hit));
+            targets ??= (message.system?.targets ?? config.targets).filter(t => !config.hasRoll || t.hit);
+            await emitAsGM(
+                GMUpdateEvent.UpdateEffect,
+                EffectsField.applyEffects.bind(this),
+                targets,
+                this.uuid
+            );
+            // EffectsField.applyEffects.call(this, config.targets.filter(t => !config.hasRoll || t.hit));
         }
     }
 

@@ -147,12 +147,16 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
     async onRollDamage(event) {
         event.stopPropagation();
-        this.system.action?.workflow.get("damage")?.execute(this.system, this._id, true);
+        const config = foundry.utils.deepClone(this.system);
+        config.event = event;
+        this.system.action?.workflow.get("damage")?.execute(config, this._id, true);
     }
 
     async onApplyDamage(event) {
         event.stopPropagation();
-        const targets = this.filterPermTargets(this.system.hitTargets);
+        const targets = this.filterPermTargets(this.system.hitTargets),
+            config = foundry.utils.deepClone(this.system);
+        config.event = event;
 
         if (this.system.onSave) {
             const pendingingSaves = targets.filter(t => t.saved.success === null);
@@ -169,7 +173,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelectedOrPerm'));
         
         this.consumeOnSuccess();
-        this.system.action?.workflow.get("applyDamage")?.execute(this.system, targets, true);
+        this.system.action?.workflow.get("applyDamage")?.execute(config, targets, true);
     }
 
     async onRollSave(event) {
@@ -198,17 +202,21 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     async onRollAllSave(event) {
         event.stopPropagation();
         if (!game.user.isGM) return;
-        const targets = this.system.hitTargets;
-        this.system.action?.workflow.get("save")?.execute(this.system, targets, true);
+        const targets = this.system.hitTargets,
+            config = foundry.utils.deepClone(this.system);
+        config.event = event;
+        this.system.action?.workflow.get("save")?.execute(config, targets, true);
     }
 
     async onApplyEffect(event) {
         event.stopPropagation();
-        const targets = this.filterPermTargets(this.system.hitTargets);
+        const targets = this.filterPermTargets(this.system.hitTargets),
+            config = foundry.utils.deepClone(this.system);
+        config.event = event;
         if (targets.length === 0)
             ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelectedOrPerm'));
         this.consumeOnSuccess();
-        this.system.action?.workflow.get("effects")?.execute(this.system, targets, true);
+        this.system.action?.workflow.get("effects")?.execute(config, targets, true);
     }
 
     filterPermTargets(targets) {

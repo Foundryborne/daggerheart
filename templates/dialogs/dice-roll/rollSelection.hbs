@@ -126,10 +126,12 @@
                                 {{selectOptions diceOptions selected=@root.roll.dAdvantage.denomination}}
                             </select>
                         </div>
-                        <span>{{localize "DAGGERHEART.GENERAL.traitModifier"}}</span>
-                        <select name="trait">
-                            {{selectOptions abilities selected=@root.rollConfig.roll.trait valueAttr="id" labelAttr="label" localize=true}}
-                        </select>
+                        {{#if abilities}}
+                            <span>{{localize "DAGGERHEART.GENERAL.traitModifier"}}</span>
+                            <select name="trait">
+                                {{selectOptions abilities selected=@root.rollConfig.roll.trait valueAttr="id" labelAttr="label" localize=true}}
+                            </select>
+                        {{/if}}
                     {{/unless}}
                     {{#if @root.rallyDie.length}}
                         <span class="formula-label">{{localize "DAGGERHEART.CLASS.Feature.rallyDice"}}</span>
