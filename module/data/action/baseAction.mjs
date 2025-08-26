@@ -208,7 +208,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     prepareBaseConfig(event) {
         const config = {
             event,
-            title: `${this.item instanceof CONFIG.Actor.documentClass ? "" : `${this.item.name}: `}${game.i18n.localize(this.name)}`,
+            title: `${this.item instanceof CONFIG.Actor.documentClass ? '' : `${this.item.name}: `}${game.i18n.localize(this.name)}`,
             source: {
                 item: this.item._id,
                 action: this._id,
