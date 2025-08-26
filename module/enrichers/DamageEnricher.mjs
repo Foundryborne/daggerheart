@@ -44,7 +44,7 @@ function getDamageMessage(damage, type, inline, defaultElement) {
 
     const dualityElement = document.createElement('span');
     dualityElement.innerHTML = `
-        <button class="enriched-damage-button${inline ? ' inline' : ''}" 
+        <button type="button" class="enriched-damage-button${inline ? ' inline' : ''}" 
             data-value="${damage}"
             data-type="${type}"
             data-tooltip="${game.i18n.localize('DAGGERHEART.GENERAL.damage')}"
@@ -71,6 +71,11 @@ export const renderDamageButton = async event => {
         title: game.i18n.localize('Damage Roll'),
         data: { bonuses: [] },
         source: {},
+        hasDamage: true,
+        hasTarget: true,
+        targets: Array.from(game.user.targets).map(t =>
+            game.system.api.fields.ActionFields.TargetField.formatTarget(t)
+        ),
         roll: [
             {
                 formula: value,

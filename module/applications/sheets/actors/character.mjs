@@ -607,6 +607,15 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const presets = {
             compendium: 'daggerheart',
             folder: key,
+            filter:
+                key === 'subclasses'
+                    ? {
+                          'system.linkedClass.uuid': {
+                              key: 'system.linkedClass.uuid',
+                              value: this.document.system.class.value._stats.compendiumSource
+                          }
+                      }
+                    : undefined,
             render: {
                 noFolder: true
             }

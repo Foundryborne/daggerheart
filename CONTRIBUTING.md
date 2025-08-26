@@ -17,6 +17,10 @@ We welcome contributions of all kinds:
 
 Please be respectful and collaborative — we’re all here to build something great together.
 
+### Community Translations
+
+Please note that we are not accepting community translations in the main project. Instead, community translations should be published as a module.
+
 ---
 
 ## 🧭 General Guidelines
