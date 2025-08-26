@@ -141,7 +141,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
                 this.roll[key] = value;
             });
         }
-        if(rest.trait) this.config.roll.trait = rest.trait;
+        if(rest.hasOwnProperty("trait")) this.config.roll.trait = rest.trait;
         this.config.extraFormula = rest.extraFormula;
         this.render();
     }
@@ -160,20 +160,18 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             this.config.experiences.indexOf(button.dataset.key) > -1
                 ? this.config.experiences.filter(x => x !== button.dataset.key)
                 : [...this.config.experiences, button.dataset.key];
-        if (this.config?.data?.parent?.type === 'character' || this.config?.data?.parent?.type === 'companion') {
-            this.config.costs =
-                this.config.costs.indexOf(this.config.costs.find(c => c.extKey === button.dataset.key)) > -1
-                    ? this.config.costs.filter(x => x.extKey !== button.dataset.key)
-                    : [
-                          ...this.config.costs,
-                          {
-                              extKey: button.dataset.key,
-                              key: 'hope',
-                              value: 1,
-                              name: this.config.data?.experiences?.[button.dataset.key]?.name
-                          }
-                      ];
-        }
+        this.config.costs =
+            this.config.costs.indexOf(this.config.costs.find(c => c.extKey === button.dataset.key)) > -1
+                ? this.config.costs.filter(x => x.extKey !== button.dataset.key)
+                : [
+                        ...this.config.costs,
+                        {
+                            extKey: button.dataset.key,
+                            key: this.config?.data?.parent?.isNPC ? 'fear' : 'hope',
+                            value: 1,
+                            name: this.config.data?.experiences?.[button.dataset.key]?.name
+                        }
+                    ];
         this.render();
     }
 

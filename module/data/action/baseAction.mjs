@@ -43,6 +43,9 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     /**
      * Create a Map containing each Action step based on fields define in schema. Ordered by Fields order property.
+     * 
+     * Each step can be called individually as long as needed config is provided.
+     * Ex: <action>.workflow.get("damage").execute(config)
      * @returns {Map}
      */
     defineWorkflow() {
@@ -254,7 +257,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     /**
-     * 
+     * Consume Action configured resources & uses.
+     * That method is only used when we want those resources to be consumed outside of the use method workflow.
      * @param {object} config                Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
      * @param {boolean} successCost        
      */
