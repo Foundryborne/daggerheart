@@ -19,7 +19,7 @@ Please be respectful and collaborative — we’re all here to build something g
 
 ### Community Translations
 
-Please note that we are not accepting community translations in the main project at this time. Instead, community translations should be published as a module.
+Please note that we are not accepting community translations in the main project. Instead, community translations should be published as a module.
 
 ---
 
