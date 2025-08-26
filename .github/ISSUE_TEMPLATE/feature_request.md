@@ -1,6 +1,6 @@
 ---
-name: Feature report
-about: Create a feature report for suggestions on improving the system
+name: Feature request
+about: Create a feature request for suggestions on improving the system
 title: "[Feature] <Insert Title here> "
 labels: enhancement, discussion, maybe
 type: feature

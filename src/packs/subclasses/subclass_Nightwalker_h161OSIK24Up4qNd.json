@@ -35,7 +35,8 @@
       "source": "Daggerheart SRD",
       "page": 19,
       "artist": ""
-    }
+    },
+    "linkedClass": "Compendium.daggerheart.classes.Item.CvHlkHZfpMiCz5uT"
   },
   "effects": [],
   "sort": 0,
@@ -50,10 +51,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1754322815758,
-    "modifiedTime": 1755392009996,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1755943514465,
+    "lastModifiedBy": "tt3PwMBXcTLCtIQU"
   },
   "_key": "!items!h161OSIK24Up4qNd"
 }

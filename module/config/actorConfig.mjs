@@ -157,6 +157,11 @@ export const adversaryTypes = {
     }
 };
 
+export const allAdversaryTypes = () => ({
+    ...adversaryTypes,
+    ...game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).adversaryTypes
+});
+
 export const environmentTypes = {
     exploration: {
         label: 'DAGGERHEART.CONFIG.EnvironmentType.exploration.label',

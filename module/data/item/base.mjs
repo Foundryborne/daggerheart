@@ -162,7 +162,6 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             for (let f of this.features) {
                 const fBase = f.item ?? f;
                 const feature = fBase.system ? fBase : await foundry.utils.fromUuid(fBase.uuid);
-                const multiclass = this.isMulticlass ? 'multiclass' : null;
                 features.push(
                     foundry.utils.mergeObject(
                         feature.toObject(),
@@ -170,7 +169,8 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
                             _stats: { compendiumSource: fBase.uuid },
                             system: {
                                 originItemType: this.parent.type,
-                                identifier: multiclass ?? (f.item ? f.type : null)
+                                identifier: f.item ? f.type : null,
+                                multiclassOrigin: this.isMulticlass
                             }
                         },
                         { inplace: false }

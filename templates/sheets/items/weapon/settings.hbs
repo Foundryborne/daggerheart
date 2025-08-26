@@ -21,10 +21,17 @@
         {{#with systemFields.attack.fields.damage.fields.parts.element.fields as | fields | }}
         {{#with (lookup ../document.system.attack.damage.parts 0) as | source | }}
             <legend>{{localize "DAGGERHEART.GENERAL.damage"}}</legend>
-            <span>{{localize "DAGGERHEART.GENERAL.Dice.single"}}</span>
-            {{formInput fields.value.fields.dice value=source.value.dice name="system.attack.damage.parts.0.value.dice"}}
-            <span>{{localize "DAGGERHEART.GENERAL.bonus"}}</span>
-            {{formInput fields.value.fields.bonus value=source.value.bonus name="system.attack.damage.parts.0.value.bonus" localize=true}}
+            <span>{{localize "DAGGERHEART.ACTIONS.Config.general.customFormula"}}</span>
+            {{formInput fields.value.fields.custom.fields.enabled value=source.value.custom.enabled name="system.attack.damage.parts.0.value.custom.enabled"}}
+            {{#if source.value.custom.enabled}}
+                <span>{{localize "DAGGERHEART.ACTIONS.Config.general.formula"}}</span>
+                {{formInput fields.value.fields.custom.fields.formula value=source.value.custom.formula name="system.attack.damage.parts.0.value.custom.formula"}}
+            {{else}}
+                <span>{{localize "DAGGERHEART.GENERAL.Dice.single"}}</span>
+                {{formInput fields.value.fields.dice value=source.value.dice name="system.attack.damage.parts.0.value.dice"}}
+                <span>{{localize "DAGGERHEART.GENERAL.bonus"}}</span>
+                {{formInput fields.value.fields.bonus value=source.value.bonus name="system.attack.damage.parts.0.value.bonus" localize=true}}
+            {{/if}}
             <span>{{localize "DAGGERHEART.GENERAL.type"}}</span>
             {{formInput fields.type value=source.type name="system.attack.damage.parts.0.type" localize=true}}
             <span>{{localize "DAGGERHEART.CONFIG.DamageType.direct.name"}}</span>

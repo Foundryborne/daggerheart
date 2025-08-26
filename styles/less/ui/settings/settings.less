@@ -16,6 +16,12 @@
             }
         }
 
+        &.six-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+            gap: 2px;
+        }
+
         &.start-align {
             align-self: flex-start;
         }
@@ -54,7 +60,7 @@
                 }
 
                 i {
-                    font-size: 18px;
+                    font-size: var(--font-size-18);
                 }
             }
         }
@@ -81,7 +87,7 @@
             width: 80%;
 
             .item-name input[type='text'] {
-                font-size: 32px;
+                font-size: var(--font-size-32);
                 height: 42px;
                 text-align: center;
                 width: 90%;
@@ -104,28 +110,9 @@
         gap: 4px;
     }
 
-    .trait-array-container {
-        display: flex;
-        justify-content: space-evenly;
-        gap: 8px;
-        margin-bottom: 16px;
-
-        .trait-array-item {
-            position: relative;
-            display: flex;
-            justify-content: center;
-
-            label {
-                position: absolute;
-                top: -7px;
-                font-size: 12px;
-                font-variant: petite-caps;
-                z-index: 2;
-            }
-
-            input {
-                text-align: center;
-            }
+    .trait-item {
+        input {
+            text-align: center;
         }
     }
 

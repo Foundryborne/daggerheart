@@ -432,10 +432,15 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             }
         };
 
-        if (type == 'domains')
+        if (type === 'domains')
             presets.filter = {
                 'level.max': { key: 'level.max', value: 1 },
                 'system.domain': { key: 'system.domain', value: this.setup.class?.system.domains ?? null }
+            };
+
+        if (type === 'subclasses')
+            presets.filter = {
+                'system.linkedClass.uuid': { key: 'system.linkedClass.uuid', value: this.setup.class?.uuid }
             };
 
         if (equipment.includes(type))

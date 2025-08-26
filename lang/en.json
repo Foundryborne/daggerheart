@@ -72,6 +72,14 @@
                     "exactHint": "The Character's Tier is used if empty",
                     "label": "Beastform"
                 },
+                "damage": {
+                    "multiplier": "Multiplier",
+                    "flatMultiplier": "Flat Multiplier"
+                },
+                "general": {
+                    "customFormula": "Custom Formula",
+                    "formula": "Formula"
+                },
                 "displayInChat": "Display in chat"
             },
             "RollField": {
@@ -1900,7 +1908,8 @@
                 "tier4": "tier 4",
                 "domains": "Domains",
                 "downtime": "Downtime",
-                "rules": "Rules"
+                "rules": "Rules",
+                "types": "Types"
             },
             "Tiers": {
                 "singular": "Tier",
@@ -1917,6 +1926,7 @@
             "amount": "Amount",
             "any": "Any",
             "armor": "Armor",
+            "armors": "Armors",
             "armorScore": "Armor Score",
             "activeEffects": "Active Effects",
             "armorSlots": "Armor Slots",
@@ -1928,6 +1938,7 @@
             "continue": "Continue",
             "criticalSuccess": "Critical Success",
             "criticalShort": "Critical",
+            "custom": "Custom",
             "d20Roll": "D20 Roll",
             "damage": "Damage",
             "damageRoll": "Damage Roll",
@@ -1968,6 +1979,7 @@
             "inactiveEffects": "Inactive Effects",
             "inventory": "Inventory",
             "itemResource": "Item Resource",
+            "items": "Items",
             "label": "Label",
             "level": "Level",
             "levelShort": "Lv",
@@ -1979,6 +1991,7 @@
                 "plural": "Miss"
             },
             "maxWithThing": "Max {thing}",
+            "missingDragDropThing": "Drop {thing} here",
             "multiclass": "Multiclass",
             "newCategory": "New Category",
             "none": "None",
@@ -2000,6 +2013,7 @@
             "scalable": "Scalable",
             "situationalBonus": "Situational Bonus",
             "stress": "Stress",
+            "subclasses": "Subclasses",
             "success": "Success",
             "take": "Take",
             "Target": {
@@ -2017,6 +2031,7 @@
             "used": "Used",
             "uses": "Uses",
             "value": "Value",
+            "weapons": "Weapons",
             "withThing": "With {thing}"
         },
         "ITEMS": {
@@ -2230,6 +2245,10 @@
                     "deleteDomain": "Delete Domain",
                     "deleteDomainText": "Are you sure you want to delete the {name} domain? It will be immediately removed from all Actors in this world where it's currently used. Compendiums are not cleared.",
                     "duplicateDomain": "There is already a domain with this identification."
+                },
+                "adversaryType": {
+                    "title": "Custom Adversary Types",
+                    "newType": "Adversary Type"
                 }
             },
             "Menu": {
@@ -2371,7 +2390,7 @@
                 "subtype": "Subtype",
                 "folders": {
                     "adversaries": "Adversaries",
-                    "ancestries": "Ancestries", 
+                    "ancestries": "Ancestries",
                     "equipment": "Equipment",
                     "classes": "Classes",
                     "subclasses": "Subclasses",
@@ -2446,7 +2465,8 @@
                 "actionNoUsesRemaining": "That action doesn't have remaining uses.",
                 "multiclassAlreadyPresent": "You already have a class and multiclass",
                 "subclassesAlreadyPresent": "You already have a class and multiclass subclass",
-                "noDiceSystem": "Your selected dice {system} does not have a {faces} dice"
+                "noDiceSystem": "Your selected dice {system} does not have a {faces} dice",
+                "subclassAlreadyLinked": "{name} is already a subclass in the class {class}. Remove it from there if you want it to be a subclass to this class."
             },
             "Tooltip": {
                 "disableEffect": "Disable Effect",
