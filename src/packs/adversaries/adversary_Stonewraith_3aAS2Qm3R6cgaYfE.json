@@ -427,7 +427,7 @@
       "_key": "!actors.items!3aAS2Qm3R6cgaYfE.tQgxiSS48TJ3X1Dl"
     },
     {
-      "name": "Avalance Roar",
+      "name": "Avalanche Roar",
       "type": "feature",
       "system": {
         "description": "<p><strong>Spend a Fear</strong> to roar while within a cave and cause a cave-in. All targets within Close range must succeed on an Agility Reaction Roll (14) or take <strong>2d10</strong> physical damage. The rubble can be cleared with a Progress Countdown (8).</p><p>@Template[type:emanation|range:c]</p>",
@@ -532,12 +532,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754085059319,
-        "modifiedTime": 1754143365810,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1756256613353,
+        "lastModifiedBy": "CEZZA7TXd7uT8O2c"
       },
       "_key": "!actors.items!3aAS2Qm3R6cgaYfE.9Z0i0uURfBMVIapJ"
     },
