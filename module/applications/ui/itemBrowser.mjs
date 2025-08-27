@@ -472,4 +472,45 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     _canDragStart() {
         return true;
     }
+    
+    static injectSidebarButton(html) {
+        if(!game.user.isGM) return;
+        const sectionId = html.dataset.tab,
+            basePresets = {
+                compendium: 'daggerheart'
+            },
+            menus = { 
+                actors: {
+                    ...basePresets,
+                    folder: "adversaries",
+                    render: {
+                        folders: ["adversaries", "environments"]
+                    }
+                },
+                items: {
+                    ...basePresets,
+                    folder: "equipments",
+                    render: {
+                        noFolder: true
+                    }
+                },
+                compendium: {}
+            };
+
+        if(Object.keys(menus).includes(sectionId)) {
+            const headerActions = html.querySelector(".header-actions");
+
+            const button = document.createElement("button");
+            button.type = "button";
+            button.classList.add("open-compendium-browser");
+            button.innerHTML = `
+                <i class="fa-solid fa-book-atlas"></i>
+                ${game.i18n.localize("DAGGERHEART.UI.Tooltip.compendiumBrowser")}
+            `;
+            // button.addEventListener("click", event => (new ItemBrowser({ presets: menus[sectionId] })).render({ force: true }));
+            button.addEventListener("click", event => ui.compendiumBrowser?.render({ force: true, presets: menus[sectionId] }));
+            
+            headerActions.append(button);
+        }
+    }
 }

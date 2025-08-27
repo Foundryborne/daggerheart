@@ -305,3 +305,6 @@ Hooks.on('moveToken', async (movedToken, data) => {
         await effect.value.update({ disabled: effect.disabled });
     }
 });
+
+Hooks.on("renderCompendiumDirectory", (app, html) => applications.ui.ItemBrowser.injectSidebarButton(html));
+Hooks.on("renderDocumentDirectory", (app, html) => applications.ui.ItemBrowser.injectSidebarButton(html));
