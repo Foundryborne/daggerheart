@@ -28,6 +28,7 @@ export default class DHRoll extends Roll {
     static async buildConfigure(config = {}, message = {}) {
         config.hooks = [...this.getHooks(), ''];
         config.dialog ??= {};
+        
         for (const hook of config.hooks) {
             if (Hooks.call(`${CONFIG.DH.id}.preRoll${hook.capitalize()}`, config, message) === false) return null;
         }
@@ -45,10 +46,7 @@ export default class DHRoll extends Roll {
         }
 
         for (const hook of config.hooks) {
-            if (
-                Hooks.call(`${CONFIG.DH.id}.post${hook.capitalize()}RollConfiguration`, roll, config, message) === false
-            )
-                return [];
+            if (Hooks.call(`${CONFIG.DH.id}.post${hook.capitalize()}RollConfiguration`, roll, config, message) === false) return [];
         }
         return roll;
     }
@@ -88,11 +86,12 @@ export default class DHRoll extends Roll {
                 type: this.messageType,
                 user: game.user.id,
                 title: roll.title,
-                speaker: cls.getSpeaker(),
+                speaker: cls.getSpeaker({ actor: roll.data?.parent }),
                 sound: config.mute ? null : CONFIG.sounds.dice,
                 system: config,
                 rolls: [roll]
             };
+        
         config.selectedRollMode ??= game.settings.get('core', 'rollMode');
 
         if (roll._evaluated) {
@@ -226,7 +225,7 @@ export const registerRollDiceHooks = () => {
         if (
             !config.source?.actor ||
             (game.user.isGM ? !hopeFearAutomation.gm : !hopeFearAutomation.players) ||
-            config.roll.type === 'reaction'
+            config.actionType === 'reaction'
         )
             return;
 

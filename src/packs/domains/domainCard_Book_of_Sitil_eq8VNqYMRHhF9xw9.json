@@ -30,12 +30,12 @@
           }
         ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Adjust Appearance",
         "img": "icons/magic/defensive/shield-barrier-blades-teal.webp",
-        "range": ""
+        "range": "self"
       },
       "wBQkw3P4Esj6kOx2": {
         "type": "effect",
@@ -132,10 +132,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1753922784424,
-    "modifiedTime": 1755428993189,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756037990822,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "eq8VNqYMRHhF9xw9",
   "sort": 3400000,

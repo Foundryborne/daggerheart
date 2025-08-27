@@ -13,10 +13,10 @@
                 {{#each damage as | roll index | }}
                     <fieldset>
                         <legend>
-                            {{localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.inChatRoll')}} <div class="roll-formula">{{localize "DAGGERHEART.GENERAL.total"}}: {{roll.total}}</div>{{#if (and (eq index "hitPoints")../isDirect)}} <div class="roll-formula">{{localize "DAGGERHEART.CONFIG.DamageType.direct.short"}}</div>{{/if}}
+                            {{#if ../hasHealing}}{{localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.name')}}{{else}}{{localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.inChatRoll')}}{{/if}} <div class="roll-formula">{{localize "DAGGERHEART.GENERAL.total"}}: {{roll.total}}</div>{{#if (and (eq index "hitPoints") ../isDirect)}} <div class="roll-formula">{{localize "DAGGERHEART.CONFIG.DamageType.direct.short"}}</div>{{/if}}
                         </legend>
                         {{#each roll.parts}}
-                            {{#if damageTypes.length}}
+                            {{#if (and (not @root.hasHealing) damageTypes.length)}}
                                 <label class="roll-part-header"><span>
                                     {{#each damageTypes}}
                                         {{localize (concat 'DAGGERHEART.CONFIG.ArmorFeature.' this '.name')}}

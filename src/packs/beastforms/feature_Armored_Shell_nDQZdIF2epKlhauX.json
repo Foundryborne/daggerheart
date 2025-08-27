@@ -24,7 +24,7 @@
         ],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "effects": [
@@ -39,7 +39,7 @@
         },
         "name": "Retract",
         "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
-        "range": ""
+        "range": "self"
       }
     },
     "originItemType": null,
@@ -149,10 +149,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1753580983699,
-    "modifiedTime": 1755395623887,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756041050697,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "nDQZdIF2epKlhauX",
   "sort": 2200000,

@@ -1,6 +1,12 @@
 const fields = foundry.data.fields;
 
 export default class CostField extends fields.ArrayField {
+    /**
+     * Action Workflow order
+     */
+    static order = 150;
+    
+    /** @inheritDoc */
     constructor(options = {}, context = {}) {
         const element = new fields.SchemaField({
             key: new fields.StringField({
@@ -20,15 +26,80 @@ export default class CostField extends fields.ArrayField {
         super(element, options, context);
     }
 
-    static prepareConfig(config) {
+    /**
+     * Cost Consumption Action Workflow part.
+     * Consume configured action resources.
+     * Must be called within Action context or similar.
+     * @param {object} config                   Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
+     * @param {boolean} [successCost=false]     Consume only resources configured as "On Success only" if not already consumed.
+     */
+    static async execute(config, successCost = false) {
+        const actor= this.actor.system.partner ?? this.actor,
+            usefulResources = {
+            ...foundry.utils.deepClone(actor.system.resources),
+            fear: {
+                value: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
+                max: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear,
+                reversed: false
+            }
+        };
+
+        if(this.parent?.parent) {
+            for (var cost of config.costs) {
+                if (cost.keyIsID) {
+                    usefulResources[cost.key] = {
+                        value: cost.value,
+                        target: this.parent.parent,
+                        keyIsID: true
+                    };
+                }
+            }
+        }
+
+        const resources = CostField.getRealCosts(config.costs)
+            .filter(
+                c =>
+                    (!successCost && (!c.consumeOnSuccess || config.roll?.success)) ||
+                    (successCost && c.consumeOnSuccess)
+            )
+            .reduce((a, c) => {
+                const resource = usefulResources[c.key];
+                if (resource) {
+                    a.push({
+                        key: c.key,
+                        value: (c.total ?? c.value) * (resource.isReversed ? 1 : -1),
+                        target: resource.target,
+                        keyIsID: resource.keyIsID
+                    });
+                    return a;
+                }
+            }, []);
+            
+        await actor.modifyResource(resources);
+    }
+
+    /**
+     * Update Action Workflow config object.
+     * Must be called within Action context or similar.
+     * @param {object} config    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
+     * @returns {boolean}       Return false if fast-forwarded and no more uses.
+     */
+    prepareConfig(config) {
         const costs = this.cost?.length ? foundry.utils.deepClone(this.cost) : [];
         config.costs = CostField.calcCosts.call(this, costs);
         const hasCost = CostField.hasCost.call(this, config.costs);
-        if (config.isFastForward && !hasCost)
-            return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.insufficientResources'));
-        return hasCost;
+        if (config.dialog.configure === false && !hasCost) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.insufficientResources'));
+            return hasCost;
+        }
     }
 
+    /**
+     * 
+     * Must be called within Action context.
+     * @param {*} costs 
+     * @returns 
+     */
     static calcCosts(costs) {
         const resources = CostField.getResources.call(this, costs);
         return costs.map(c => {
@@ -40,13 +111,19 @@ export default class CostField extends fields.ArrayField {
                 c.key === 'fear'
                     ? game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear)
                     : resources[c.key].isReversed
-                      ? resources[c.key].max
+                      ? resources[c.key].max - resources[c.key].value
                       : resources[c.key].value;
             if (c.scalable) c.maxStep = Math.floor((c.max - c.value) / c.step);
             return c;
         });
     }
 
+    /**
+     * Check if the current Actor currently has all needed resources.
+     * Must be called within Action context.
+     * @param {*} costs 
+     * @returns {boolean}
+     */
     static hasCost(costs) {
         const realCosts = CostField.getRealCosts.call(this, costs),
             hasFearCost = realCosts.findIndex(c => c.key === 'fear');
@@ -73,6 +150,12 @@ export default class CostField extends fields.ArrayField {
         );
     }
 
+    /**
+     * Get all Actor resources + parent Item potential one.
+     * Must be called within Action context.
+     * @param {*} costs 
+     * @returns 
+     */
     static getResources(costs) {
         const actorResources = foundry.utils.deepClone(this.actor.system.resources);
         if (this.actor.system.partner)
@@ -93,6 +176,11 @@ export default class CostField extends fields.ArrayField {
         };
     }
 
+    /**
+     * 
+     * @param {*} costs 
+     * @returns 
+     */
     static getRealCosts(costs) {
         const realCosts = costs?.length ? costs.filter(c => c.enabled) : [];
         let mergedCosts = [];
@@ -104,6 +192,12 @@ export default class CostField extends fields.ArrayField {
         return mergedCosts;
     }
 
+    /**
+     * Format scalable max cost, inject Action datas if it's a formula.
+     * Must be called within Action context.
+     * @param {number|string} max   Configured maximum for that resource.
+     * @returns {number}            The max cost value.
+     */
     static formatMax(max) {
         max ??= 0;
         if (isNaN(max)) {

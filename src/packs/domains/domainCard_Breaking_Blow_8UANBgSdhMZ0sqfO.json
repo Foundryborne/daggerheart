@@ -41,7 +41,7 @@
         ],
         "target": {
           "type": "any",
-          "amount": null
+          "amount": 1
         },
         "name": "Mark Stress",
         "img": "icons/skills/wounds/bone-broken-knee-beam.webp",
@@ -61,10 +61,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1753922784431,
-    "modifiedTime": 1755428345979,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756037935304,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "8UANBgSdhMZ0sqfO",
   "sort": 3400000,

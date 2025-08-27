@@ -31,12 +31,12 @@
           }
         ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Frenzy",
         "img": "icons/magic/fire/projectile-wave-yellow.webp",
-        "range": ""
+        "range": "self"
       }
     },
     "attribution": {
@@ -52,10 +52,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1753922784459,
-    "modifiedTime": 1755428186983,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756037770198,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "MMl7abdGRLl7TJLO",
   "sort": 3400000,

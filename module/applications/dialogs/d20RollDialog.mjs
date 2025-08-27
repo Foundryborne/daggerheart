@@ -1,3 +1,5 @@
+import { abilities } from "../../config/actorConfig.mjs";
+
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class D20RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -7,7 +9,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         this.roll = roll;
         this.config = config;
         this.config.experiences = [];
-        this.reactionOverride = config.roll?.type === 'reaction';
+        this.reactionOverride = config.actionType === 'reaction';
 
         if (config.source?.action) {
             this.item = config.data.parent.items.get(config.source.item) ?? config.data.parent;
@@ -20,7 +22,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: 'roll-selection',
+        // id: 'roll-selection',
         classes: ['daggerheart', 'dialog', 'dh-style', 'views', 'roll-selection'],
         position: {
             width: 'auto'
@@ -42,7 +44,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
     };
 
     get title() {
-        return this.config.title;
+        return `${this.config.title}${this.actor ? `: ${this.actor.name}` : ''}`;
     }
 
     get actor() {
@@ -113,15 +115,21 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             context.isLite = this.config.roll?.lite;
             context.extraFormula = this.config.extraFormula;
             context.formula = this.roll.constructFormula(this.config);
+            if(this.actor.system.traits) context.abilities = this.getTraitModifiers();
 
-            context.showReaction = !context.rollConfig.type && context.rollType === 'DualityRoll';
+            context.showReaction = !this.config.roll?.type && context.rollType === 'DualityRoll';
             context.reactionOverride = this.reactionOverride;
         }
         return context;
     }
 
+    getTraitModifiers() {
+        return Object.values(abilities).map(a => ({ id: a.id, label: `${game.i18n.localize(a.label)} (${this.actor.system.traits[a.id]?.value.signedString() ?? 0})` }))
+    }
+
     static updateRollConfiguration(event, _, formData) {
         const { ...rest } = foundry.utils.expandObject(formData.object);
+        
         this.config.selectedRollMode = rest.selectedRollMode;
 
         if (this.config.costs) {
@@ -131,6 +139,12 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         if (rest.roll?.dice) {
             Object.entries(rest.roll.dice).forEach(([key, value]) => {
                 this.roll[key] = value;
+            });
+        }
+        if(rest.hasOwnProperty("trait")) {
+            this.config.roll.trait = rest.trait;
+            this.config.title = game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
+                ability: game.i18n.localize(abilities[this.config.roll.trait]?.label)
             });
         }
         this.config.extraFormula = rest.extraFormula;
@@ -151,31 +165,29 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             this.config.experiences.indexOf(button.dataset.key) > -1
                 ? this.config.experiences.filter(x => x !== button.dataset.key)
                 : [...this.config.experiences, button.dataset.key];
-        if (this.config?.data?.parent?.type === 'character' || this.config?.data?.parent?.type === 'companion') {
-            this.config.costs =
-                this.config.costs.indexOf(this.config.costs.find(c => c.extKey === button.dataset.key)) > -1
-                    ? this.config.costs.filter(x => x.extKey !== button.dataset.key)
-                    : [
-                          ...this.config.costs,
-                          {
-                              extKey: button.dataset.key,
-                              key: 'hope',
-                              value: 1,
-                              name: this.config.data?.experiences?.[button.dataset.key]?.name
-                          }
-                      ];
-        }
+        this.config.costs =
+            this.config.costs.indexOf(this.config.costs.find(c => c.extKey === button.dataset.key)) > -1
+                ? this.config.costs.filter(x => x.extKey !== button.dataset.key)
+                : [
+                        ...this.config.costs,
+                        {
+                            extKey: button.dataset.key,
+                            key: this.config?.data?.parent?.isNPC ? 'fear' : 'hope',
+                            value: 1,
+                            name: this.config.data?.experiences?.[button.dataset.key]?.name
+                        }
+                    ];
         this.render();
     }
 
     static toggleReaction() {
         if (this.config.roll) {
             this.reactionOverride = !this.reactionOverride;
-            this.config.roll.type = this.reactionOverride
+            this.config.actionType = this.reactionOverride
                 ? CONFIG.DH.ITEM.actionTypes.reaction.id
-                : this.config.roll.type === CONFIG.DH.ITEM.actionTypes.reaction.id
+                : this.config.actionType === CONFIG.DH.ITEM.actionTypes.reaction.id
                   ? null
-                  : this.config.roll.type;
+                  : this.config.actionType;
             this.render();
         }
     }

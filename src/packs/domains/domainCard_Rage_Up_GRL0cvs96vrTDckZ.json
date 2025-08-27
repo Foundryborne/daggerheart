@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "LmjwPg03xLnoGTHm",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You can <strong>mark a Stress</strong> to gain a bonus to your damage roll equal to twice your Strength.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -22,8 +22,8 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "step": 1,
             "keyIsID": false,
+            "step": null,
             "consumeOnSuccess": false
           }
         ],
@@ -40,18 +40,18 @@
           }
         ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Mark 1 Stress",
         "img": "icons/magic/control/silhouette-aura-energy.webp",
-        "range": ""
+        "range": "self"
       },
       "fKY9NcYBwCFwMsgV": {
         "type": "effect",
         "_id": "fKY9NcYBwCFwMsgV",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You can <strong>mark a Stress</strong> to gain a bonus to your damage roll equal to twice your Strength.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -77,12 +77,12 @@
           }
         ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Mark 2 Stress",
         "img": "icons/magic/control/silhouette-aura-energy.webp",
-        "range": ""
+        "range": "self"
       }
     },
     "attribution": {
@@ -98,10 +98,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1753922784496,
-    "modifiedTime": 1755428155116,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756037744719,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "GRL0cvs96vrTDckZ",
   "sort": 3400000,

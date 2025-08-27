@@ -19,7 +19,7 @@ export default class DualityRoll extends D20Roll {
 
     get title() {
         return game.i18n.localize(
-            `DAGGERHEART.GENERAL.${this.options?.roll?.type === CONFIG.DH.ITEM.actionTypes.reaction.id ? 'reactionRoll' : 'dualityRoll'}`
+            `DAGGERHEART.GENERAL.${this.options?.actionType === CONFIG.DH.ITEM.actionTypes.reaction.id ? 'reactionRoll' : 'dualityRoll'}`
         );
     }
 
@@ -153,10 +153,10 @@ export default class DualityRoll extends D20Roll {
 
     applyBaseBonus() {
         const modifiers = super.applyBaseBonus();
-
-        if (this.options.roll.trait && this.data.traits[this.options.roll.trait])
+        
+        if (this.options.roll.trait && this.data.traits?.[this.options.roll.trait])
             modifiers.unshift({
-                label: `DAGGERHEART.CONFIG.Traits.${this.options.roll.trait}.name`,
+                label: this.options.roll.type === CONFIG.DH.GENERAL.rollTypes.spellcast.id ? "DAGGERHEART.CONFIG.RollTypes.spellcast.name" : `DAGGERHEART.CONFIG.Traits.${this.options.roll.trait}.name`,
                 value: this.data.traits[this.options.roll.trait].value
             });
 

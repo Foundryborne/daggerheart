@@ -95,7 +95,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     }
 
     registerTargetHook() {
-        if (!this.parent.isAuthor) return;
+        if (!this.parent.isAuthor || !this.hasTarget) return;
         if (this.targetMode && this.parent.targetHook !== null) {
             Hooks.off('targetToken', this.parent.targetHook);
             return (this.parent.targetHook = null);

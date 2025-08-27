@@ -413,6 +413,16 @@ export default function DHApplicationMixin(Base) {
 
             if (usable) {
                 options.unshift({
+                    name: 'DAGGERHEART.APPLICATIONS.ContextMenu.cancelBeastform',
+                    icon: 'fa-solid fa-ban',
+                    condition: target => {
+                        const doc = getDocFromElementSync(target);
+                        return doc && doc.system?.actions?.some(a => a.type === "beastform");
+                    },
+                    callback: async target => game.system.api.fields.ActionFields.BeastformField.handleActiveTransformations.call(await getDocFromElement(target))
+                });
+                
+                options.unshift({
                     name: 'DAGGERHEART.GENERAL.damage',
                     icon: 'fa-solid fa-explosion',
                     condition: target => {
@@ -422,7 +432,9 @@ export default function DHApplicationMixin(Base) {
                     callback: async (target, event) => {
                         const doc = await getDocFromElement(target),
                             action = doc?.system?.attack ?? doc;
-                        return action && action.use(event, { byPassRoll: true });
+                        const config = action.prepareConfig(event);
+                        config.hasRoll = false;
+                        return action && action.workflow.get("damage").execute(config, null, true);
                     }
                 });
 

@@ -1,5 +1,3 @@
-import { emitAsGM, GMUpdateEvent } from '../../systemRegistration/socket.mjs';
-
 export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLog {
     constructor(options) {
         super(options);
@@ -55,20 +53,8 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     }
 
     addChatListeners = async (app, html, data) => {
-        html.querySelectorAll('.duality-action-damage').forEach(element =>
-            element.addEventListener('click', event => this.onRollDamage(event, data.message))
-        );
-        html.querySelectorAll('.target-save').forEach(element =>
-            element.addEventListener('click', event => this.onRollSave(event, data.message))
-        );
-        html.querySelectorAll('.roll-all-save-button').forEach(element =>
-            element.addEventListener('click', event => this.onRollAllSave(event, data.message))
-        );
         html.querySelectorAll('.simple-roll-button').forEach(element =>
             element.addEventListener('click', event => this.onRollSimple(event, data.message))
-        );
-        html.querySelectorAll('.healing-button').forEach(element =>
-            element.addEventListener('click', event => this.onHealing(event, data.message))
         );
         html.querySelectorAll('.ability-use-button').forEach(element =>
             element.addEventListener('click', event => this.abilityUseButton(event, data.message))
@@ -88,80 +74,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     close(options) {
         Hooks.off('renderChatMessageHTML', this.addChatListeners);
         super.close(options);
-    }
-
-    async getActor(uuid) {
-        return await foundry.utils.fromUuid(uuid);
-    }
-
-    getAction(actor, itemId, actionId) {
-        const item = actor.items.get(itemId),
-            action =
-                actor.system.attack?._id === actionId
-                    ? actor.system.attack
-                    : item.system.attack?._id === actionId
-                      ? item.system.attack
-                      : item?.system?.actions?.get(actionId);
-        return action;
-    }
-
-    async onRollDamage(event, message) {
-        event.stopPropagation();
-        const actor = await this.getActor(message.system.source.actor);
-        if(!actor.isOwner) return true;
-        if (message.system.source.item && message.system.source.action) {
-            const action = this.getAction(actor, message.system.source.item, message.system.source.action);
-            if (!action || !action?.rollDamage) return;
-            await action.rollDamage(event, message);
-        }
-    }
-
-    async onRollSave(event, message) {
-        event.stopPropagation();
-        const actor = await this.getActor(message.system.source.actor),
-            tokenId = event.target.closest('[data-token]')?.dataset.token,
-            token = game.canvas.tokens.get(tokenId);
-        if (!token?.actor || !token.isOwner) return true;
-        if (message.system.source.item && message.system.source.action) {
-            const action = this.getAction(actor, message.system.source.item, message.system.source.action);
-            if (!action || !action?.hasSave) return;
-            action.rollSave(token.actor, event, message).then(result =>
-                emitAsGM(
-                    GMUpdateEvent.UpdateSaveMessage,
-                    action.updateSaveMessage.bind(action, result, message, token.id),
-                    {
-                        action: action.uuid,
-                        message: message._id,
-                        token: token.id,
-                        result
-                    }
-                )
-            );
-        }
-    }
-
-    async onRollAllSave(event, message) {
-        event.stopPropagation();
-        if (!game.user.isGM) return;
-        const targets = event.target.parentElement.querySelectorAll('[data-token] .target-save');
-        const actor = await this.getActor(message.system.source.actor),
-            action = this.getAction(actor, message.system.source.item, message.system.source.action);
-        targets.forEach(async el => {
-            const tokenId = el.closest('[data-token]')?.dataset.token,
-                token = game.canvas.tokens.get(tokenId);
-            if (!token.actor) return;
-            if (game.user === token.actor.owner) el.dispatchEvent(new PointerEvent('click', { shiftKey: true }));
-            else {
-                token.actor.owner
-                    .query('reactionRoll', {
-                        actionId: action.uuid,
-                        actorId: token.actor.uuid,
-                        event,
-                        message
-                    })
-                    .then(result => action.updateSaveMessage(result, message, token.id));
-            }
-        });
     }
 
     async onRollSimple(event, message) {
@@ -197,8 +109,11 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             item.system.attack?.id === event.currentTarget.id
                 ? item.system.attack
                 : item.system.actions.get(event.currentTarget.id);
-        if (event.currentTarget.dataset.directDamage) action.use(event, { byPassRoll: true });
-        else action.use(event);
+        if (event.currentTarget.dataset.directDamage) {
+            const config = action.prepareConfig(event);
+            config.hasRoll = false;
+            action.workflow.get("damage").execute(config, null, true);
+        } else action.use(event);
     }
 
     async actionUseButton(event, message) {

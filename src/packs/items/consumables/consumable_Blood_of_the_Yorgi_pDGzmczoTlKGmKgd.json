@@ -22,12 +22,12 @@
         },
         "effects": [],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Drink",
         "img": "icons/consumables/potions/potion-tube-corked-bat-gold-red.webp",
-        "range": ""
+        "range": "veryFar"
       }
     },
     "consumeOnUse": true,
@@ -51,10 +51,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1753589954973,
-    "modifiedTime": 1755432804800,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756041739719,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_key": "!items!pDGzmczoTlKGmKgd"
 }

@@ -29,7 +29,7 @@
           }
         ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Mark Adversary",
@@ -98,10 +98,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1754243143650,
-    "modifiedTime": 1755391854504,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756035614382,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_key": "!items!k7vvMJtEcxMWUUrW"
 }

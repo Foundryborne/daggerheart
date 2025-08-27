@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "Y4mvuJ4tncrKhyjY",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p><strong>Spend a Hope</strong> to activate this ring. Your footsteps are silent until your next rest.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -28,14 +28,19 @@
           "max": 1,
           "recovery": "shortRest"
         },
-        "effects": [],
+        "effects": [
+          {
+            "_id": "9JSLRu7amQ4iuIO7",
+            "onSave": false
+          }
+        ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Activate",
         "img": "icons/equipment/finger/ring-ball-purple.webp",
-        "range": ""
+        "range": "self"
       }
     },
     "attribution": {
@@ -47,9 +52,11 @@
   "effects": [
     {
       "name": "Ring of Silence",
-      "type": "base",
-      "_id": "aCt3QjdeTREZAlEa",
       "img": "icons/equipment/finger/ring-ball-purple.webp",
+      "origin": "Compendium.daggerheart.loot.Item.K1ysGnTpNyxPu5Au",
+      "transfer": false,
+      "_id": "9JSLRu7amQ4iuIO7",
+      "type": "base",
       "system": {
         "rangeDependence": {
           "enabled": false,
@@ -59,7 +66,7 @@
         }
       },
       "changes": [],
-      "disabled": true,
+      "disabled": false,
       "duration": {
         "startTime": null,
         "combat": null,
@@ -69,10 +76,8 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Your footsteps are silent until your next rest.</span></p>",
-      "origin": null,
+      "description": "<p>Your footsteps are silent until your next rest.</p>",
       "tint": "#ffffff",
-      "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {},
@@ -80,14 +85,14 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1753990311274,
-        "modifiedTime": 1753990345889,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "systemVersion": "1.1.0",
+        "createdTime": 1756043091753,
+        "modifiedTime": 1756043101742,
+        "lastModifiedBy": "vUIbuan0U50nfKBE"
       },
-      "_key": "!items.effects!K1ysGnTpNyxPu5Au.aCt3QjdeTREZAlEa"
+      "_key": "!items.effects!K1ysGnTpNyxPu5Au.9JSLRu7amQ4iuIO7"
     }
   ],
   "folder": null,
@@ -103,10 +108,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1753637775628,
-    "modifiedTime": 1755432151648,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756043091776,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_key": "!items!K1ysGnTpNyxPu5Au"
 }

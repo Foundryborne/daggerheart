@@ -6,18 +6,18 @@
   "sorting": "m",
   "_id": "TL1TutmbeCVJ06nR",
   "description": "",
-  "sort": 800000,
+  "sort": 900000,
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1748717133557,
-    "modifiedTime": 1752681441081,
-    "lastModifiedBy": "YNJ4HgHtFrTI89mx"
+    "modifiedTime": 1756038952388,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_key": "!folders!TL1TutmbeCVJ06nR"
 }

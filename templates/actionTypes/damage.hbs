@@ -56,7 +56,7 @@
                         <div class="nest-inputs">
                             <input type="hidden" name="{{../path}}damage.parts.{{realIndex}}.valueAlt.multiplier" value="flat">
                             {{formField ../fields.valueAlt.fields.flatMultiplier value=dmg.valueAlt.flatMultiplier name=(concat ../path "damage.parts." realIndex ".valueAlt.flatMultiplier") label="DAGGERHEART.ACTIONS.Settings.multiplier"  classes="inline-child" localize=true }}
-                            {{formField ../fields.valueAlt.fields.dice value=dmg.valueAlt.dice name=(concat ../path "damage.parts." realIndex ".valueAlt.dice") classes="inline-child"}}
+                            {{formField ../fields.valueAlt.fields.dice value=dmg.valueAlt.dice name=(concat ../path "damage.parts." realIndex ".valueAlt.dice") classes="inline-child" localize=true}}
                             {{formField ../fields.valueAlt.fields.bonus value=dmg.valueAlt.bonus name=(concat ../path "damage.parts." realIndex ".valueAlt.bonus") localize=true classes="inline-child"}}
                         </div>
                     </fieldset>
@@ -70,7 +70,7 @@
 
 {{#*inline "formula"}}
         {{#unless dmg.base}}
-            {{formField fields.custom.fields.enabled value=source.custom.enabled name=(concat path "damage.parts." realIndex "." target ".custom.enabled") classes="checkbox"}}
+            {{formField fields.custom.fields.enabled value=source.custom.enabled name=(concat path "damage.parts." realIndex "." target ".custom.enabled") classes="checkbox" localize=true}}
         {{/unless}}
         {{#if source.custom.enabled}}
             {{formField fields.custom.fields.formula value=source.custom.formula name=(concat path "damage.parts." realIndex "." target ".custom.formula") localize=true}}
@@ -79,8 +79,8 @@
                 {{#unless @root.isNPC}}
                     {{formField fields.multiplier value=source.multiplier name=(concat path "damage.parts." realIndex "." target ".multiplier") localize=true}}
                 {{/unless}}
-                {{#if (eq source.multiplier 'flat')}}{{formField fields.flatMultiplier value=source.flatMultiplier name=(concat path "damage.parts." realIndex "." target ".flatMultiplier") }}{{/if}}
-                {{formField fields.dice value=source.dice name=(concat path "damage.parts." realIndex "." target ".dice")}}
+                {{#if (eq source.multiplier 'flat')}}{{formField fields.flatMultiplier value=source.flatMultiplier name=(concat path "damage.parts." realIndex "." target ".flatMultiplier") localize=true }}{{/if}}
+                {{formField fields.dice value=source.dice name=(concat path "damage.parts." realIndex "." target ".dice") localize=true}}
                 {{formField fields.bonus value=source.bonus name=(concat path "damage.parts." realIndex "." target ".bonus") localize=true}}
             </div>
         {{/if}}

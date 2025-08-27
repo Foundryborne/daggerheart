@@ -22,6 +22,7 @@ export const socketEvent = {
 
 export const GMUpdateEvent = {
     UpdateDocument: 'DhGMUpdateDocument',
+    UpdateEffect: 'DhGMUpdateEffect',
     UpdateSetting: 'DhGMUpdateSetting',
     UpdateFear: 'DhGMUpdateFear',
     UpdateSaveMessage: 'DhGMUpdateSaveMessage'
@@ -37,9 +38,12 @@ export const registerSocketHooks = () => {
             const document = data.uuid ? await fromUuid(data.uuid) : null;
             switch (data.action) {
                 case GMUpdateEvent.UpdateDocument:
-                    if (document && data.update) {
+                    if (document && data.update)
                         await document.update(data.update);
-                    }
+                    break;
+                case GMUpdateEvent.UpdateEffect:
+                    if (document && data.update)
+                        await game.system.api.fields.ActionFields.EffectsField.applyEffects.call(document, data.update);
                     break;
                 case GMUpdateEvent.UpdateSetting:
                     await game.settings.set(CONFIG.DH.id, data.uuid, data.update);
@@ -78,7 +82,7 @@ export const registerSocketHooks = () => {
 
 export const registerUserQueries = () => {
     CONFIG.queries.armorSlot = DamageReductionDialog.armorSlotQuery;
-    CONFIG.queries.reactionRoll = game.system.api.models.actions.actionsTypes.base.rollSaveQuery;
+    CONFIG.queries.reactionRoll = game.system.api.fields.ActionFields.SaveField.rollSaveQuery;
 };
 
 export const emitAsGM = async (eventName, callback, update, uuid = null) => {

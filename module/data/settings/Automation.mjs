@@ -80,6 +80,72 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                     initial: CONFIG.DH.GENERAL.defeatedConditions.defeated.id,
                     label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.defeated.companionDefault.label'
                 })
+            }),
+            roll: new fields.SchemaField({
+                roll: new fields.SchemaField({
+                    gm: new fields.BooleanField({
+                        required: true,
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.gm'
+                    }),
+                    players: new fields.BooleanField({
+                        required: true,
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.player.plurial'
+                    })
+                }),
+                damage: new fields.SchemaField({
+                    gm: new fields.StringField({
+                        required: true,
+                        initial: "never",
+                        choices: CONFIG.DH.SETTINGS.actionAutomationChoices,
+                        label: 'DAGGERHEART.GENERAL.gm'
+                    }),
+                    players: new fields.StringField({
+                        required: true,
+                        initial: "never",
+                        choices: CONFIG.DH.SETTINGS.actionAutomationChoices,
+                        label: 'DAGGERHEART.GENERAL.player.plurial'
+                    })
+                }),
+                save: new fields.SchemaField({
+                    gm: new fields.StringField({
+                        required: true,
+                        initial: "never",
+                        choices: CONFIG.DH.SETTINGS.actionAutomationChoices,
+                        label: 'DAGGERHEART.GENERAL.gm'
+                    }),
+                    players: new fields.StringField({
+                        required: true,
+                        initial: "never",
+                        choices: CONFIG.DH.SETTINGS.actionAutomationChoices,
+                        label: 'DAGGERHEART.GENERAL.player.plurial'
+                    })
+                }),
+                damageApply: new fields.SchemaField({
+                    gm: new fields.BooleanField({
+                        required: true,
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.gm'
+                    }),
+                    players: new fields.BooleanField({
+                        required: true,
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.player.plurial'
+                    })
+                }),
+                effect: new fields.SchemaField({
+                    gm: new fields.BooleanField({
+                        required: true,
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.gm'
+                    }),
+                    players: new fields.BooleanField({
+                        required: true,
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.player.plurial'
+                    })
+                })
             })
         };
     }

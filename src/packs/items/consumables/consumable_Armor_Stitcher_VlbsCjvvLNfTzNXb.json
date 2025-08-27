@@ -30,12 +30,12 @@
         },
         "effects": [],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Stitch",
         "img": "icons/skills/trades/textiles-stitching-leather-brown.webp",
-        "range": ""
+        "range": "self"
       }
     },
     "consumeOnUse": true,
@@ -59,10 +59,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1753588973384,
-    "modifiedTime": 1755432710896,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756041701211,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_key": "!items!VlbsCjvvLNfTzNXb"
 }

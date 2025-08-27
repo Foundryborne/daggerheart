@@ -29,3 +29,22 @@ export const gameSettings = {
     Countdowns: 'Countdowns',
     LastMigrationVersion: 'LastMigrationVersion'
 };
+
+export const actionAutomationChoices = {
+    never: { 
+        id: "never",
+        label: "Never"
+    },
+    showDialog: {
+        id: "showDialog",
+        label: "Show Dialog only"
+    },
+    // npcOnly: {
+        // id: "npcOnly",
+        // label: "Always for non-characters"
+    // },
+    always: {
+        id: "always",
+        label: "Always"
+    }
+}

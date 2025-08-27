@@ -34,7 +34,7 @@ export default function DhTemplateEnricher(match, _options) {
 
     const templateElement = document.createElement('span');
     templateElement.innerHTML = `
-        <button class="measured-template-button${inline ? ' inline' : ''}" data-type="${type}" data-range="${range}">
+        <button type="button" class="measured-template-button${inline ? ' inline' : ''}" data-type="${type}" data-range="${range}">
             ${label} - ${game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.name`)}
         </button>
     `;
