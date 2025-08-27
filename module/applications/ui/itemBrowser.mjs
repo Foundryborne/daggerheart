@@ -155,6 +155,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     getCompendiumFolders(config, parent = null, depth = 0) {
         let folders = [];
         Object.values(config).forEach(c => {
+            if(this.presets.render?.folders?.length && !this.presets.render.folders.includes(c.id)) return;
             const folder = {
                 id: c.id,
                 label: game.i18n.localize(c.label),
@@ -476,19 +477,14 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     static injectSidebarButton(html) {
         if(!game.user.isGM) return;
         const sectionId = html.dataset.tab,
-            basePresets = {
-                compendium: 'daggerheart'
-            },
             menus = { 
                 actors: {
-                    ...basePresets,
                     folder: "adversaries",
                     render: {
-                        folders: ["adversaries", "environments"]
+                        folders: ["adversaries", "characters", "environments"]
                     }
                 },
                 items: {
-                    ...basePresets,
                     folder: "equipments",
                     render: {
                         noFolder: true
@@ -507,8 +503,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 <i class="fa-solid fa-book-atlas"></i>
                 ${game.i18n.localize("DAGGERHEART.UI.Tooltip.compendiumBrowser")}
             `;
-            // button.addEventListener("click", event => (new ItemBrowser({ presets: menus[sectionId] })).render({ force: true }));
-            button.addEventListener("click", event => ui.compendiumBrowser?.render({ force: true, presets: menus[sectionId] }));
+            button.addEventListener("click", event => (new ItemBrowser({ presets: menus[sectionId] })).render({ force: true }));
+            // button.addEventListener("click", event => ui.compendiumBrowser?.render({ force: true, presets: menus[sectionId] }));
             
             headerActions.append(button);
         }

@@ -2423,6 +2423,7 @@
                 "evasionMax": "Evasion (Max)",
                 "subtype": "Subtype",
                 "folders": {
+                    "characters": "Characters",
                     "adversaries": "Adversaries",
                     "ancestries": "Ancestries",
                     "equipment": "Equipment",

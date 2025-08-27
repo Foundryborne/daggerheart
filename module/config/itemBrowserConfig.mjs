@@ -413,6 +413,13 @@ export const typeConfig = {
 };
 
 export const compendiumConfig = {
+    characters: {
+        id: 'characters',
+        keys: ['characters'],
+        label: 'DAGGERHEART.UI.ItemBrowser.folders.characters',
+        type: ['character'],
+        // listType: 'characters'
+    },
     adversaries: {
         id: 'adversaries',
         keys: ['adversaries'],
