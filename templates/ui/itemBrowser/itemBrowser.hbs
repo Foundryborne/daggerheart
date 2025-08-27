@@ -57,7 +57,7 @@
                     <div class="item-list-img"></div>
                     <div class="item-list-name" data-sort-key="name" data-sort-type="ASC" data-action="sortList">{{localize 'DAGGERHEART.UI.ItemBrowser.columnName'}}</div>
                         {{#each menu.data.columns}}
-                            <span data-sort-key="{{key}}" data-sort-type="" data-action="sortList">{{localize label}}</span>
+                            <div data-sort-key="{{key}}" data-sort-type="" data-action="sortList">{{localize label}}</div>
                         {{/each}}
                     </div>
             {{/if}}

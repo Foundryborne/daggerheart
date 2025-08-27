@@ -437,11 +437,13 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
         const newOrder = [...itemList].reverse().sort((a, b) => {
             const aProp = a.querySelector(`[data-item-key="${key}"]`),
-                bProp = b.querySelector(`[data-item-key="${key}"]`);
+                bProp = b.querySelector(`[data-item-key="${key}"]`),
+                aValue = isNaN(aProp.innerText) ? aProp.innerText : Number(aProp.innerText),
+                bValue = isNaN(bProp.innerText) ? bProp.innerText : Number(bProp.innerText);
             if (type === 'DESC') {
-                return aProp.innerText < bProp.innerText ? 1 : -1;
+                return aValue < bValue ? 1 : -1;
             } else {
-                return aProp.innerText > bProp.innerText ? 1 : -1;
+                return aValue > bValue ? 1 : -1;
             }
         });
 
