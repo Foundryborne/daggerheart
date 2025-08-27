@@ -162,6 +162,9 @@ Hooks.on('ready', async () => {
     if (game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).displayFear !== 'hide')
         ui.resources.render({ force: true });
 
+    if(!(ui.compendiumBrowser instanceof applications.ui.ItemBrowser))
+        ui.compendiumBrowser = new applications.ui.ItemBrowser();
+
     registerCountdownHooks();
     socketRegistration.registerSocketHooks();
     registerRollDiceHooks();

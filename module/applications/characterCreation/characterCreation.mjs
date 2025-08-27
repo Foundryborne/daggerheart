@@ -1,6 +1,5 @@
 import { abilities } from '../../config/actorConfig.mjs';
 import { burden } from '../../config/generalConfig.mjs';
-import { ItemBrowser } from '../ui/itemBrowser.mjs';
 import { createEmbeddedItemsWithEffects, createEmbeddedItemWithEffects } from '../../helpers/utils.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -46,8 +45,6 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         };
 
         this._dragDrop = this._createDragDropHandlers();
-
-        this.itemBrowser = null;
     }
 
     get title() {
@@ -448,7 +445,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 'type': { key: 'type', value: type }
             };
 
-        return (this.itemBrowser = await new ItemBrowser({ presets }).render({ force: true }));
+        ui.compendiumBrowser.open(presets);
     }
 
     static async viewItem(_, target) {
@@ -566,7 +563,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             { overwrite: true }
         );
 
-        if (this.itemBrowser) this.itemBrowser.close();
+        if (ui.compendiumBrowser) ui.compendiumBrowser.close();
         this.close();
     }
 

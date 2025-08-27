@@ -355,7 +355,7 @@ export const typeConfig = {
             {
                 key: 'system.domains',
                 label: 'DAGGERHEART.GENERAL.Domain.plural',
-                choices: () => Object.values(CONFIG.DH.DOMAIN.domains).map(d => ({ value: d.id, label: d.label })),
+                choices: () => Object.values(CONFIG.DH.DOMAIN.allDomains()).map(d => ({ value: d.id, label: d.label })),
                 operator: 'contains2'
             }
         ]

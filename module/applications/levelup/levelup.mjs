@@ -1,6 +1,5 @@
 import { abilities, subclassFeatureLabels } from '../../config/actorConfig.mjs';
 import { getDeleteKeys, tagifyElement } from '../../helpers/utils.mjs';
-import { ItemBrowser } from '../ui/itemBrowser.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -12,8 +11,6 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
         this._dragDrop = this._createDragDropHandlers();
         this.tabGroups.primary = 'advancements';
-
-        this.itemBrowser = null;
     }
 
     get title() {
@@ -558,7 +555,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
             };
         }
 
-        return (this.itemBrowser = await new ItemBrowser({ presets }).render({ force: true }));
+        ui.compendiumBrowser.open(presets);
     }
 
     static async selectPreview(_, button) {
@@ -661,7 +658,8 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
         }, {});
 
         await this.actor.levelUp(levelupData);
-        if (this.itemBrowser) this.itemBrowser.close();
+
+        if (ui.compendiumBrowser) ui.compendiumBrowser.close();
         this.close();
     }
 }

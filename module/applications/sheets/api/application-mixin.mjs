@@ -1,6 +1,5 @@
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 import { getDocFromElement, getDocFromElementSync, tagifyElement } from '../../../helpers/utils.mjs';
-import { ItemBrowser } from '../../ui/itemBrowser.mjs';
 
 const typeSettingsMap = {
     character: 'extendCharacterDescriptions',
@@ -619,7 +618,7 @@ export default function DHApplicationMixin(Base) {
                     return;
             }
 
-            return new ItemBrowser({ presets }).render({ force: true });
+            ui.compendiumBrowser.open(presets);
         }
 
         /**
