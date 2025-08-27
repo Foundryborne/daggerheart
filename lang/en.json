@@ -1983,6 +1983,7 @@
             "inactiveEffects": "Inactive Effects",
             "inventory": "Inventory",
             "itemResource": "Item Resource",
+            "itemQuantity": "Item Quantity",
             "items": "Items",
             "label": "Label",
             "level": "Level",

@@ -659,12 +659,10 @@ export default class DhpActor extends Actor {
         };
 
         resources.forEach(r => {
-            if (r.keyIsID) {
+            if (r.itemId) {
                 updates.items[r.key] = {
                     target: r.target,
-                    resources: {
-                        'system.resource.value': r.target.system.resource.value + r.value
-                    }
+                    resources: game.system.api.fields.ActionFields.CostField.getItemIdCostUpdate(r)
                 };
             } else {
                 switch (r.key) {

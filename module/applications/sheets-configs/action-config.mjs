@@ -132,8 +132,15 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         const options = foundry.utils.deepClone(CONFIG.DH.GENERAL.abilityCosts);
         const resource = this.action.parent.resource;
         if (resource) {
-            options[this.action.parent.parent.id] = {
+            options.resource = {
                 label: 'DAGGERHEART.GENERAL.itemResource',
+                group: 'Global'
+            };
+        }
+
+        if (this.action.parent.metadata.isQuantifiable) {
+            options.quantity = {
+                label: 'DAGGERHEART.GENERAL.itemQuantity',
                 group: 'Global'
             };
         }
@@ -164,13 +171,14 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
 
     _prepareSubmitData(_event, formData) {
         const submitData = foundry.utils.expandObject(formData.object);
+
+        const itemAbilityCostKeys = Object.keys(CONFIG.DH.GENERAL.itemAbilityCosts);
         for (const keyPath of this.constructor.CLEAN_ARRAYS) {
             const data = foundry.utils.getProperty(submitData, keyPath);
             const dataValues = data ? Object.values(data) : [];
             if (keyPath === 'cost') {
                 for (var value of dataValues) {
-                    const item = this.action.parent.parent.id === value.key;
-                    value.keyIsID = Boolean(item);
+                    value.itemId = itemAbilityCostKeys.includes(value.key) ? this.action.parent.parent.id : null;
                 }
             }
 
