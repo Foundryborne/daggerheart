@@ -22,7 +22,6 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "keyIsID": false,
             "step": null,
             "consumeOnSuccess": false
           }
@@ -59,7 +58,6 @@
             "scalable": false,
             "key": "stress",
             "value": 2,
-            "keyIsID": false,
             "step": null,
             "consumeOnSuccess": false
           }

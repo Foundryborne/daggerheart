@@ -106,11 +106,11 @@ export async function runMigrations() {
             }
             const documents = await pack.getDocuments();
 
-            compendiumItems.push(...documents.filter(x => x.system.metadata.hasActions));
+            compendiumItems.push(...documents.filter(x => x.system?.metadata?.hasActions));
             compendiumItems.push(
                 ...documents
                     .filter(x => x.items)
-                    .flatMap(actor => actor.items.filter(x => x.system.metadata.hasActions))
+                    .flatMap(actor => actor.items.filter(x => x.system?.metadata?.hasActions))
             );
         }
 
@@ -136,7 +136,7 @@ export async function runMigrations() {
                         return {
                             ...rest,
                             key: 'resource',
-                            itemId: key
+                            itemId: cost.key
                         };
                     })
                 });

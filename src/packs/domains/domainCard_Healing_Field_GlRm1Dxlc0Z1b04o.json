@@ -19,11 +19,12 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
-            "key": "GlRm1Dxlc0Z1b04o",
+            "key": "resource",
+            "itemId": "GlRm1Dxlc0Z1b04o",
             "value": 1,
-            "keyIsID": true,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -94,18 +95,20 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
             "key": "hope",
+            "itemId": null,
             "value": 2,
-            "keyIsID": false,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           },
           {
-            "scalable": false,
-            "key": "GlRm1Dxlc0Z1b04o",
+            "key": "resource",
+            "itemId": "GlRm1Dxlc0Z1b04o",
             "value": 1,
-            "keyIsID": true,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -189,10 +192,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753922784466,
-    "modifiedTime": 1755429518847,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756325575341,
+    "lastModifiedBy": "bjJtdJOhqWr47GhC"
   },
   "_id": "GlRm1Dxlc0Z1b04o",
   "sort": 3400000,

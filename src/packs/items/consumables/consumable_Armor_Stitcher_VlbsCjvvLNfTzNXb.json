@@ -19,8 +19,7 @@
             "scalable": true,
             "key": "hope",
             "value": 1,
-            "step": 1,
-            "keyIsID": false
+            "step": 1
           }
         ],
         "uses": {
