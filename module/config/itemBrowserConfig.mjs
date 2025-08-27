@@ -363,18 +363,28 @@ export const typeConfig = {
     subclasses: {
         columns: [
             {
-                key: 'id',
-                label: 'TYPES.Item.class',
-                format: id => {
-                    return '';
-                }
+                key: 'system.linkedClass',
+                label: 'Class',
+                format: linkedClass => linkedClass.name
             },
             {
                 key: 'system.spellcastingTrait',
                 label: 'DAGGERHEART.ITEMS.Subclass.spellcastingTrait'
             }
         ],
-        filters: []
+        filters: [
+            {
+                key: 'system.linkedClass.uuid',
+                label: 'Class',
+                choices: (items) => {
+                    const list = items.map(item => ({ value: item.system.linkedClass.uuid, label: item.system.linkedClass.name }));
+                    return list.reduce((a,c) => {
+                        if(!(a.find(i => i.value === c.value))) a.push(c);
+                        return a;
+                    }, []);
+                }
+            }
+        ]
     },
     beastforms: {
         columns: [
@@ -403,143 +413,137 @@ export const typeConfig = {
 };
 
 export const compendiumConfig = {
-    // daggerheart: {
-    //     id: 'daggerheart',
-    //     label: 'DAGGERHEART',
-    //     folders: {
-            adversaries: {
-                id: 'adversaries',
-                keys: ['adversaries'],
-                label: 'DAGGERHEART.UI.ItemBrowser.folders.adversaries',
-                type: ['adversary'],
-                listType: 'adversaries'
-            },
-            ancestries: {
-                id: 'ancestries',
-                keys: ['ancestries'],
-                label: 'DAGGERHEART.UI.ItemBrowser.folders.ancestries',
-                type: ['ancestry'],
-                /* folders: {
-                    features: {
-                        id: 'features',
-                        keys: ['ancestries'],
-                        label: 'DAGGERHEART.UI.ItemBrowser.folders.features',
-                        type: ['feature']
-                    }
-                } */
-            },
-            equipments: {
-                id: 'equipments',
-                keys: ['armors', 'weapons', 'consumables', 'loot'],
-                label: 'DAGGERHEART.UI.ItemBrowser.folders.equipment',
-                type: ['armor', 'weapon', 'consumable', 'loot'],
-                listType: 'items',
-                folders: {
-                    weapons: {
-                        id: 'weapons',
-                        keys: ['weapons'],
-                        label: 'DAGGERHEART.UI.ItemBrowser.folders.weapons',
-                        type: ['weapon'],
-                        listType: 'weapons'
-                    },
-                    armors: {
-                        id: 'armors',
-                        keys: ['armors'],
-                        label: 'DAGGERHEART.UI.ItemBrowser.folders.armors',
-                        type: ['armor'],
-                        listType: 'armors'
-                    },
-                    consumables: {
-                        id: 'consumables',
-                        keys: ['consumables'],
-                        label: 'DAGGERHEART.UI.ItemBrowser.folders.consumables',
-                        type: ['consumable']
-                    },
-                    loots: {
-                        id: 'loots',
-                        keys: ['loots'],
-                        label: 'DAGGERHEART.UI.ItemBrowser.folders.loots',
-                        type: ['loot']
-                    }
-                }
-            },
-            classes: {
-                id: 'classes',
-                keys: ['classes'],
-                label: 'DAGGERHEART.UI.ItemBrowser.folders.classes',
-                type: ['class'],
-                /* folders: {
-                    features: {
-                        id: 'features',
-                        keys: ['classes'],
-                        label: 'DAGGERHEART.UI.ItemBrowser.folders.features',
-                        type: ['feature']
-                    },
-                    items: {
-                        id: 'items',
-                        keys: ['classes'],
-                        label: 'DAGGERHEART.UI.ItemBrowser.folders.items',
-                        type: ['armor', 'weapon', 'consumable', 'loot'],
-                        listType: 'items'
-                    }
-                }, */
-                listType: 'classes'
-            },
-            subclasses: {
-                id: 'subclasses',
-                keys: ['subclasses'],
-                label: 'DAGGERHEART.UI.ItemBrowser.folders.subclasses',
-                type: ['subclass'],
-                listType: 'subclasses'
-            },
-            domains: {
-                id: 'domains',
-                keys: ['domains'],
-                label: 'DAGGERHEART.UI.ItemBrowser.folders.domainCards',
-                type: ['domainCard'],
-                listType: 'cards'
-            },
-            communities: {
-                id: 'communities',
-                keys: ['communities'],
-                label: 'DAGGERHEART.UI.ItemBrowser.folders.communities',
-                type: ['community'],
-                /* folders: {
-                    features: {
-                        id: 'features',
-                        keys: ['communities'],
-                        label: 'DAGGERHEART.UI.ItemBrowser.folders.features',
-                        type: ['feature']
-                    }
-                } */
-            },
-            environments: {
-                id: 'environments',
-                keys: ['environments'],
-                label: 'DAGGERHEART.UI.ItemBrowser.folders.environments',
-                type: ['environment']
-            },
-            beastforms: {
-                id: 'beastforms',
-                keys: ['beastforms'],
-                label: 'DAGGERHEART.UI.ItemBrowser.folders.beastforms',
-                type: ['beastform'],
-                listType: 'beastforms',
-                /* folders: {
-                    features: {
-                        id: 'features',
-                        keys: ['beastforms'],
-                        label: 'DAGGERHEART.UI.ItemBrowser.folders.features',
-                        type: ['feature']
-                    }
-                } */
-            },
+    adversaries: {
+        id: 'adversaries',
+        keys: ['adversaries'],
+        label: 'DAGGERHEART.UI.ItemBrowser.folders.adversaries',
+        type: ['adversary'],
+        listType: 'adversaries'
+    },
+    ancestries: {
+        id: 'ancestries',
+        keys: ['ancestries'],
+        label: 'DAGGERHEART.UI.ItemBrowser.folders.ancestries',
+        type: ['ancestry'],
+        /* folders: {
             features: {
                 id: 'features',
-                keys: ['features'],
+                keys: ['ancestries'],
                 label: 'DAGGERHEART.UI.ItemBrowser.folders.features',
                 type: ['feature']
             }
-    //     }
-    // }
+        } */
+    },
+    equipments: {
+        id: 'equipments',
+        keys: ['armors', 'weapons', 'consumables', 'loot'],
+        label: 'DAGGERHEART.UI.ItemBrowser.folders.equipment',
+        type: ['armor', 'weapon', 'consumable', 'loot'],
+        listType: 'items',
+        folders: {
+            weapons: {
+                id: 'weapons',
+                keys: ['weapons'],
+                label: 'DAGGERHEART.UI.ItemBrowser.folders.weapons',
+                type: ['weapon'],
+                listType: 'weapons'
+            },
+            armors: {
+                id: 'armors',
+                keys: ['armors'],
+                label: 'DAGGERHEART.UI.ItemBrowser.folders.armors',
+                type: ['armor'],
+                listType: 'armors'
+            },
+            consumables: {
+                id: 'consumables',
+                keys: ['consumables'],
+                label: 'DAGGERHEART.UI.ItemBrowser.folders.consumables',
+                type: ['consumable']
+            },
+            loots: {
+                id: 'loots',
+                keys: ['loots'],
+                label: 'DAGGERHEART.UI.ItemBrowser.folders.loots',
+                type: ['loot']
+            }
+        }
+    },
+    classes: {
+        id: 'classes',
+        keys: ['classes'],
+        label: 'DAGGERHEART.UI.ItemBrowser.folders.classes',
+        type: ['class'],
+        /* folders: {
+            features: {
+                id: 'features',
+                keys: ['classes'],
+                label: 'DAGGERHEART.UI.ItemBrowser.folders.features',
+                type: ['feature']
+            },
+            items: {
+                id: 'items',
+                keys: ['classes'],
+                label: 'DAGGERHEART.UI.ItemBrowser.folders.items',
+                type: ['armor', 'weapon', 'consumable', 'loot'],
+                listType: 'items'
+            }
+        }, */
+        listType: 'classes'
+    },
+    subclasses: {
+        id: 'subclasses',
+        keys: ['subclasses'],
+        label: 'DAGGERHEART.UI.ItemBrowser.folders.subclasses',
+        type: ['subclass'],
+        listType: 'subclasses'
+    },
+    domains: {
+        id: 'domains',
+        keys: ['domains'],
+        label: 'DAGGERHEART.UI.ItemBrowser.folders.domainCards',
+        type: ['domainCard'],
+        listType: 'cards'
+    },
+    communities: {
+        id: 'communities',
+        keys: ['communities'],
+        label: 'DAGGERHEART.UI.ItemBrowser.folders.communities',
+        type: ['community'],
+        /* folders: {
+            features: {
+                id: 'features',
+                keys: ['communities'],
+                label: 'DAGGERHEART.UI.ItemBrowser.folders.features',
+                type: ['feature']
+            }
+        } */
+    },
+    environments: {
+        id: 'environments',
+        keys: ['environments'],
+        label: 'DAGGERHEART.UI.ItemBrowser.folders.environments',
+        type: ['environment']
+    },
+    beastforms: {
+        id: 'beastforms',
+        keys: ['beastforms'],
+        label: 'DAGGERHEART.UI.ItemBrowser.folders.beastforms',
+        type: ['beastform'],
+        listType: 'beastforms',
+        /* folders: {
+            features: {
+                id: 'features',
+                keys: ['beastforms'],
+                label: 'DAGGERHEART.UI.ItemBrowser.folders.features',
+                type: ['feature']
+            }
+        } */
+    },
+    features: {
+        id: 'features',
+        keys: ['features'],
+        label: 'DAGGERHEART.UI.ItemBrowser.folders.features',
+        type: ['feature']
+    }
 };
