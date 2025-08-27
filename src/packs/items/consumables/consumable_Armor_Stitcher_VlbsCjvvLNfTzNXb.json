@@ -19,7 +19,17 @@
             "scalable": true,
             "key": "hope",
             "value": 1,
-            "step": 1
+            "step": 1,
+            "itemId": null,
+            "consumeOnSuccess": false
+          },
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "VlbsCjvvLNfTzNXb",
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -58,10 +68,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.0",
+    "systemVersion": "1.2.0",
     "createdTime": 1753588973384,
-    "modifiedTime": 1756041701211,
-    "lastModifiedBy": "vUIbuan0U50nfKBE"
+    "modifiedTime": 1756336337676,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!VlbsCjvvLNfTzNXb"
 }
