@@ -5,7 +5,7 @@ export default class CostField extends fields.ArrayField {
      * Action Workflow order
      */
     static order = 150;
-    
+
     /** @inheritDoc */
     constructor(options = {}, context = {}) {
         const element = new fields.SchemaField({
@@ -14,7 +14,7 @@ export default class CostField extends fields.ArrayField {
                 required: true,
                 initial: 'hope'
             }),
-            keyIsID: new fields.BooleanField(),
+            itemId: new fields.StringField({ nullable: true, initial: null }),
             value: new fields.NumberField({ nullable: true, initial: 1, min: 0 }),
             scalable: new fields.BooleanField({ initial: false }),
             step: new fields.NumberField({ nullable: true, initial: null }),
@@ -34,23 +34,28 @@ export default class CostField extends fields.ArrayField {
      * @param {boolean} [successCost=false]     Consume only resources configured as "On Success only" if not already consumed.
      */
     static async execute(config, successCost = false) {
-        const actor= this.actor.system.partner ?? this.actor,
+        const actor = this.actor.system.partner ?? this.actor,
             usefulResources = {
-            ...foundry.utils.deepClone(actor.system.resources),
-            fear: {
-                value: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
-                max: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear,
-                reversed: false
-            }
-        };
+                ...foundry.utils.deepClone(actor.system.resources),
+                fear: {
+                    value: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
+                    max: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear,
+                    reversed: false
+                }
+            };
 
-        if(this.parent?.parent) {
+        if (this.parent?.parent) {
             for (var cost of config.costs) {
                 if (cost.keyIsID) {
                     usefulResources[cost.key] = {
                         value: cost.value,
                         target: this.parent.parent,
                         keyIsID: true
+                    };
+                } else if (cost.key === 'quantity') {
+                    usefulResources[cost.key] = {
+                        value: cost.value,
+                        target: this.parent.parent
                     };
                 }
             }
@@ -74,7 +79,7 @@ export default class CostField extends fields.ArrayField {
                     return a;
                 }
             }, []);
-            
+
         await actor.modifyResource(resources);
     }
 
@@ -95,10 +100,10 @@ export default class CostField extends fields.ArrayField {
     }
 
     /**
-     * 
+     *
      * Must be called within Action context.
-     * @param {*} costs 
-     * @returns 
+     * @param {*} costs
+     * @returns
      */
     static calcCosts(costs) {
         const resources = CostField.getResources.call(this, costs);
@@ -121,7 +126,7 @@ export default class CostField extends fields.ArrayField {
     /**
      * Check if the current Actor currently has all needed resources.
      * Must be called within Action context.
-     * @param {*} costs 
+     * @param {*} costs
      * @returns {boolean}
      */
     static hasCost(costs) {
@@ -153,8 +158,8 @@ export default class CostField extends fields.ArrayField {
     /**
      * Get all Actor resources + parent Item potential one.
      * Must be called within Action context.
-     * @param {*} costs 
-     * @returns 
+     * @param {*} costs
+     * @returns
      */
     static getResources(costs) {
         const actorResources = foundry.utils.deepClone(this.actor.system.resources);
@@ -168,6 +173,12 @@ export default class CostField extends fields.ArrayField {
                     max: CostField.formatMax.call(this, this.parent?.resource?.max)
                 };
             }
+            if (itemResource.key === 'quantity') {
+                itemResources[itemResource.key] = {
+                    value: this.parent.quantity ?? 0,
+                    max: null
+                };
+            }
         }
 
         return {
@@ -177,9 +188,9 @@ export default class CostField extends fields.ArrayField {
     }
 
     /**
-     * 
-     * @param {*} costs 
-     * @returns 
+     *
+     * @param {*} costs
+     * @returns
      */
     static getRealCosts(costs) {
         const realCosts = costs?.length ? costs.filter(c => c.enabled) : [];
