@@ -134,6 +134,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         });
         htmlElement.querySelectorAll('.inventory-item-quantity').forEach(element => {
             element.addEventListener('change', this.updateItemQuantity.bind(this));
+            element.addEventListener('click', e => e.stopPropagation());
         });
 
         // Add listener for armor marks input
@@ -679,7 +680,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             })
         });
 
-        if(result) game.system.api.fields.ActionFields.CostField.execute.call(this, result);
+        if (result) game.system.api.fields.ActionFields.CostField.execute.call(this, result);
     }
 
     //TODO: redo toggleEquipItem method

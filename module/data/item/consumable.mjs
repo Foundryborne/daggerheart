@@ -28,4 +28,13 @@ export default class DHConsumable extends BaseDataItem {
     /**@override */
     static DEFAULT_ICON = 'systems/daggerheart/assets/icons/documents/items/round-potion.svg';
 
+    async _preUpdate(changes, options, userId) {
+        const allowed = await super._preUpdate(changes, options, userId);
+        if (allowed === false) return;
+
+        if (changes.system?.quantity !== undefined && Number(changes.system.quantity) === 0) {
+            this.parent.delete();
+            return;
+        }
+    }
 }
