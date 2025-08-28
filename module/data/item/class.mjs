@@ -49,6 +49,8 @@ export default class DHClass extends BaseDataItem {
                 suggestedSecondaryWeapon: new ForeignDocumentUUIDField({ type: 'Item' }),
                 suggestedArmor: new ForeignDocumentUUIDField({ type: 'Item' })
             }),
+            backgroundQuestions: new fields.ArrayField(new fields.StringField(), { initial: ['', '', ''] }),
+            connections: new fields.ArrayField(new fields.StringField(), { initial: ['', '', ''] }),
             isMulticlass: new fields.BooleanField({ initial: false })
         };
     }
@@ -95,6 +97,20 @@ export default class DHClass extends BaseDataItem {
                         await this.updateSource({ isMulticlass: true, domains: [selectedDomain] });
                     }
                 }
+            }
+
+            if (!data.system.isMulticlass) {
+                const addQuestions = (base, questions) => {
+                    return `${base}${questions.map(q => `<p><strong>${q}</strong></p>`).join('<br/>')}`;
+                };
+                const backgroundQuestions = data.system.backgroundQuestions.filter(x => x);
+                const connections = data.system.connections.filter(x => x);
+                await this.actor.update({
+                    'system.biography': {
+                        background: addQuestions(this.actor.system.biography.background, backgroundQuestions),
+                        connections: addQuestions(this.actor.system.biography.connections, connections)
+                    }
+                });
             }
         }
 
