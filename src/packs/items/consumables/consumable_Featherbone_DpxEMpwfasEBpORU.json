@@ -14,7 +14,16 @@
         "description": "<p>You can use this bone to control your falling speed for a number of minutes equal to your level.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "DpxEMpwfasEBpORU",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -36,6 +45,7 @@
       }
     },
     "consumeOnUse": true,
+    "destroyOnEmpty": true,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 61,
@@ -101,10 +111,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.0",
+    "systemVersion": "1.2.0",
     "createdTime": 1753590624634,
-    "modifiedTime": 1756042004101,
-    "lastModifiedBy": "vUIbuan0U50nfKBE"
+    "modifiedTime": 1756336487822,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!DpxEMpwfasEBpORU"
 }

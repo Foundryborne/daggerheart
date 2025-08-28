@@ -14,7 +14,16 @@
         "description": "<p>You can eat these paired leaves to immediately gain 2 Hope.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "hvy5BkG3F6iOIXTx",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -76,6 +85,7 @@
       }
     },
     "consumeOnUse": true,
+    "destroyOnEmpty": true,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 60,
@@ -96,10 +106,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753587484164,
-    "modifiedTime": 1755432594538,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756336817973,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!hvy5BkG3F6iOIXTx"
 }

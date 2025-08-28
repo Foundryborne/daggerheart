@@ -19,8 +19,7 @@
             "key": "stress",
             "value": 1,
             "scalable": true,
-            "step": 1,
-            "keyIsID": false
+            "step": 1
           }
         ],
         "_id": "x9cz8u1utQ6DtoKA",

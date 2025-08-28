@@ -19,18 +19,20 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
             "key": "stress",
+            "itemId": null,
             "value": 1,
-            "keyIsID": false,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           },
           {
-            "scalable": false,
-            "key": "n0P3VS1WfxvmXbB6",
+            "key": "resource",
+            "itemId": "n0P3VS1WfxvmXbB6",
             "value": 1,
-            "keyIsID": true,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -110,7 +112,6 @@
             "scalable": false,
             "key": "hitPoints",
             "value": 1,
-            "keyIsID": false,
             "step": null,
             "consumeOnSuccess": false
           }
@@ -144,10 +145,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753922784534,
-    "modifiedTime": 1755429505289,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756325575741,
+    "lastModifiedBy": "bjJtdJOhqWr47GhC"
   },
   "_id": "n0P3VS1WfxvmXbB6",
   "sort": 3400000,

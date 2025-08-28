@@ -14,7 +14,16 @@
         "description": "<p>You can apply this venom to a weapon that deals physical damage to add a d8 to your next damage roll with that weapon.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "BqBWXXe9T07AMV4u",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -36,6 +45,7 @@
       }
     },
     "consumeOnUse": true,
+    "destroyOnEmpty": true,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 60,
@@ -108,10 +118,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753588170670,
-    "modifiedTime": 1755432643893,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756336563205,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!BqBWXXe9T07AMV4u"
 }

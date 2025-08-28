@@ -84,8 +84,7 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
             return {
                 key: c.key,
                 value: (c.total ?? c.value) * (resource.isReversed ? 1 : -1),
-                target: resource.target,
-                keyIsID: resource.keyIsID
+                target: resource.target
             };
         });
 

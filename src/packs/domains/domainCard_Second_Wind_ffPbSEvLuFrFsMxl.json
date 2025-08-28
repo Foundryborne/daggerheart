@@ -19,10 +19,10 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
-            "key": "ffPbSEvLuFrFsMxl",
+            "key": "resource",
+            "itemId": "ffPbSEvLuFrFsMxl",
             "value": 1,
-            "keyIsID": true,
+            "scalable": false,
             "step": null,
             "consumeOnSuccess": false
           }
@@ -96,10 +96,10 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
-            "key": "ffPbSEvLuFrFsMxl",
+            "key": "resource",
+            "itemId": "ffPbSEvLuFrFsMxl",
             "value": 1,
-            "keyIsID": true,
+            "scalable": false,
             "step": null,
             "consumeOnSuccess": false
           }
@@ -185,10 +185,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753922784509,
-    "modifiedTime": 1755429692907,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756325575706,
+    "lastModifiedBy": "bjJtdJOhqWr47GhC"
   },
   "_id": "ffPbSEvLuFrFsMxl",
   "sort": 3400000,

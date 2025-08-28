@@ -19,7 +19,6 @@
         "actionType": "action",
         "cost": [
           {
-            "keyIsID": false,
             "key": "hope",
             "value": 1,
             "scalable": false,
@@ -49,11 +48,12 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": true,
-            "key": "oUipGK84E2KjoKqh",
+            "key": "resource",
+            "itemId": "oUipGK84E2KjoKqh",
             "value": 1,
+            "scalable": true,
             "step": 1,
-            "keyIsID": true
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -92,10 +92,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.0",
+    "systemVersion": "1.2.0",
     "createdTime": 1753922784531,
-    "modifiedTime": 1756038664007,
-    "lastModifiedBy": "vUIbuan0U50nfKBE"
+    "modifiedTime": 1756325575772,
+    "lastModifiedBy": "bjJtdJOhqWr47GhC"
   },
   "_id": "oUipGK84E2KjoKqh",
   "sort": 3400000,

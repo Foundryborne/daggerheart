@@ -22,7 +22,6 @@
             "scalable": true,
             "key": "hope",
             "value": 1,
-            "keyIsID": false,
             "step": null,
             "consumeOnSuccess": false
           }

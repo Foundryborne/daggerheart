@@ -14,7 +14,16 @@
         "description": "<p>You can drink this blood to disappear from where you are and immediately reappear at a point you can see within Very Far range.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "pDGzmczoTlKGmKgd",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -31,6 +40,7 @@
       }
     },
     "consumeOnUse": true,
+    "destroyOnEmpty": true,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 61,
@@ -51,10 +61,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.0",
+    "systemVersion": "1.2.0",
     "createdTime": 1753589954973,
-    "modifiedTime": 1756041739719,
-    "lastModifiedBy": "vUIbuan0U50nfKBE"
+    "modifiedTime": 1756336370750,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!pDGzmczoTlKGmKgd"
 }
