@@ -2125,7 +2125,8 @@
                 }
             },
             "Consumable": {
-                "consumeOnUse": "Consume On Use"
+                "consumeOnUse": "Consume On Use",
+                "destroyOnEmpty": "Destroy On Empty"
             },
             "DomainCard": {
                 "type": "Type",

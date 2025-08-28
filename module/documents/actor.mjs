@@ -660,10 +660,21 @@ export default class DhpActor extends Actor {
 
         resources.forEach(r => {
             if (r.itemId) {
-                updates.items[r.key] = {
-                    target: r.target,
-                    resources: game.system.api.fields.ActionFields.CostField.getItemIdCostUpdate(r)
-                };
+                const { path, value } = game.system.api.fields.ActionFields.CostField.getItemIdCostUpdate(r);
+
+                if (
+                    r.key === 'quantity' &&
+                    r.target.type === 'consumable' &&
+                    value === 0 &&
+                    r.target.system.destroyOnEmpty
+                ) {
+                    r.target.delete();
+                } else {
+                    updates.items[r.key] = {
+                        target: r.target,
+                        resources: { [path]: value }
+                    };
+                }
             } else {
                 switch (r.key) {
                     case 'fear':

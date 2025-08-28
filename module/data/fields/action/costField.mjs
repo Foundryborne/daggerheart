@@ -199,14 +199,16 @@ export default class CostField extends fields.ArrayField {
         switch (r.key) {
             case CONFIG.DH.GENERAL.itemAbilityCosts.resource.id:
                 return {
-                    'system.resource.value': r.target.system.resource.value + r.value
+                    path: 'system.resource.value',
+                    value: r.target.system.resource.value + r.value
                 };
             case CONFIG.DH.GENERAL.itemAbilityCosts.quantity.id:
                 return {
-                    'system.quantity': r.target.system.quantity + r.value
+                    path: 'system.quantity',
+                    value: r.target.system.quantity + r.value
                 };
             default:
-                return {};
+                return { path: '', value: undefined };
         }
     }
 
