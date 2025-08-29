@@ -22,10 +22,18 @@ export class DHActionDiceData extends foundry.abstract.DataModel {
             multiplier: new fields.StringField({
                 choices: CONFIG.DH.GENERAL.multiplierTypes,
                 initial: 'prof',
-                label: 'Multiplier'
+                label: 'Multiplier',
+                nullable: false,
+                required: true
             }),
             flatMultiplier: new fields.NumberField({ nullable: true, initial: 1, label: 'Flat Multiplier' }),
-            dice: new fields.StringField({ choices: CONFIG.DH.GENERAL.diceTypes, initial: 'd6', label: 'Dice' }),
+            dice: new fields.StringField({
+                choices: CONFIG.DH.GENERAL.diceTypes,
+                initial: 'd6',
+                label: 'Dice',
+                nullable: false,
+                required: true
+            }),
             bonus: new fields.NumberField({ nullable: true, initial: null, label: 'Bonus' }),
             custom: new fields.SchemaField({
                 enabled: new fields.BooleanField({ label: 'Custom Formula' }),
