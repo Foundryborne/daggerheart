@@ -14,7 +14,8 @@ export default class RegisterHandlebarsHelpers {
             getProperty: foundry.utils.getProperty,
             setVar: this.setVar,
             empty: this.empty,
-            pluralize: this.pluralize
+            pluralize: this.pluralize,
+            positive: this.positive
         });
     }
     static add(a, b) {
@@ -76,10 +77,10 @@ export default class RegisterHandlebarsHelpers {
 
     /**
      * Pluralize helper that returns the appropriate localized string based on count
-     * @param {number} count - The number to check for plurality 
+     * @param {number} count - The number to check for plurality
      * @param {string} baseKey - The base localization key (e.g., "DAGGERHEART.GENERAL.Target")
      * @returns {string} The localized singular or plural string
-     * 
+     *
      * Usage: {{pluralize currentTargets.length "DAGGERHEART.GENERAL.Target"}}
      * Returns: "Target" if count is exactly 1, "Targets" if count is 0, 2+, or invalid
      */
@@ -88,5 +89,9 @@ export default class RegisterHandlebarsHelpers {
         const isSingular = !isNaN(numericCount) && numericCount === 1;
         const key = isSingular ? `${baseKey}.single` : `${baseKey}.plural`;
         return game.i18n.localize(key);
+    }
+
+    static positive(a) {
+        return Math.abs(Number(a));
     }
 }

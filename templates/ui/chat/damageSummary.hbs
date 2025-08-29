@@ -1,18 +1,33 @@
-<div class="daggerheart chat damage-summary">
+<ul class="daggerheart chat damage-summary">
     {{#each targets}}
-        <div class="token-target-container" data-token-uuid="{{this.token.uuid}}">
+        <li class="token-target-container" data-token-uuid="{{this.token.uuid}}">
             <header>
                 <img src="{{this.token.texture.src}}" />
-                <label>{{this.token.name}}</label>
+                <h2 class="actor-name">{{this.token.name}}</h2>
             </header>
-            <div class="damage-container">
+            <ul class="damage-container">
                 {{#each this.updates}}
-                    <div class="damage-row">
-                        <label>{{localize (concat "DAGGERHEART.CONFIG.HealingType." this.key ".name")}}:</label>
-                        <div>{{this.value}}</div>
-                    </div>
+                    <li class="damage-row">
+                        {{#if (gte this.value)}}
+                            <span>
+                                {{
+                                localize "DAGGERHEART.UI.Chat.markResource"
+                                quantity=this.value
+                                resource=(localize (concat "DAGGERHEART.CONFIG.HealingType." this.key ".name"))
+                                }}
+                            </span>
+                        {{else}}
+                            <span>
+                                {{
+                                localize "DAGGERHEART.UI.Chat.clearResource"
+                                quantity=(positive this.value)
+                                resource=(localize (concat "DAGGERHEART.CONFIG.HealingType." this.key ".name"))
+                                }}
+                            </span>
+                        {{/if}}
+                    </li>
                 {{/each}}
-            </div>
-        </div>    
+            </ul>
+        </li>    
     {{/each}}
-</div>
+</ul>

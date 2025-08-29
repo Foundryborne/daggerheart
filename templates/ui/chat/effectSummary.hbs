@@ -1,21 +1,33 @@
 <div class="daggerheart chat effect-summary">
-    <h5>{{localize "DAGGERHEART.GENERAL.Effect.plural"}}</h5>
+    <div class="effect-header">
+        <span>{{localize "DAGGERHEART.GENERAL.Effect.plural"}}</span>
+    </div>
     <div class="effects-container">
         {{#each effects}}
-            <div class="effect-target-container" data-tooltip="{{concat "#item#" this.uuid}}">
-                <img src="{{this.img}}" />
-                <label>{{this.name}}</label>
-            </div>
+            <details class="effect-target-container">
+                <summary class="effect-label">
+                    <img class="effect-img" src="{{this.img}}" />
+                    <h2 class="title">{{this.name}}</h2>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </summary>
+                <div class="description">
+                    {{{this.description}}}
+                </div>
+            </details>
         {{/each}}
     </div>
 
-    <h5>{{localize "DAGGERHEART.UI.Chat.appliedTo"}}</h5>
-    <div class="targets-container">
-        {{#each targets}}
-            <div class="token-target-container" data-token-uuid="{{this.uuid}}">
-                <img src="{{this.texture.src}}" />
-                <label>{{this.name}}</label>
-            </div>
-        {{/each}}
-    </div>
+    {{#if targets}}
+        <div class="actor-header">
+            <span>{{localize "DAGGERHEART.UI.Chat.appliedTo"}}</span>
+        </div>
+        <div class="targets-container">
+            {{#each targets}}
+                <div class="token-target-container" data-token-uuid="{{this.uuid}}">
+                    <img src="{{this.texture.src}}" />
+                    <h2 class="title">{{this.name}}</h2>
+                </div>
+            {{/each}}
+        </div>
+    {{/if}}
 </div>

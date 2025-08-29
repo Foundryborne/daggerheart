@@ -2332,6 +2332,7 @@
                     "rollHealing": "Roll Healing",
                     "applyEffect": "Apply Effects"
                 },
+                "clearResource": "Clear {quantity} {resource}",
                 "damageSummary": {
                     "title": "Damage Applied",
                     "healingTitle": "Healing Applied"
@@ -2366,6 +2367,7 @@
                     "heal": "Heal",
                     "applyHealing": "Apply Healing"
                 },
+                "markResource": "Mark {quantity} {resource}",
                 "reroll": {
                     "confirmTitle": "Reroll Dice",
                     "confirmText": "Are you sure you want to reroll?"
