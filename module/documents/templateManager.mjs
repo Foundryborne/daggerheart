@@ -57,7 +57,7 @@ export default class DhTemplateManager {
      * @param {wheel Event} event
      */
     #onMouseWheel(event) {
-        if (!event.shiftKey) return;
+        if (!event.shiftKey && !event.ctrlKey) return;
         event.stopPropagation();
         event.preventDefault();
         const { moveTime, object } = this.#activePreview;
@@ -77,11 +77,12 @@ export default class DhTemplateManager {
      * @param {contextmenu Event} event
      */
     #cancelTemplate(event) {
-        const { mousemove, mousedown, contextmenu } = this.#activePreview.events;
+        const { mousemove, mousedown, contextmenu, wheel } = this.#activePreview.events;
         canvas.templates._onDragLeftCancel(event);
 
         canvas.stage.off('mousemove', mousemove);
         canvas.stage.off('mousedown', mousedown);
+        canvas.app.view.removeEventListener('wheel', wheel);
         canvas.app.view.removeEventListener('contextmenu', contextmenu);
     }
 
