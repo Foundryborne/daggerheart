@@ -170,7 +170,9 @@
                     "hint": "Add single words or short text as reminders and hints of what a character has advantage on."
                 },
                 "age": "Age",
+                "backgroundQuestions": "Backgrounds",
                 "companionFeatures": "Companion Features",
+                "connections": "Connections",
                 "contextMenu": {
                     "consume": "Consume Item",
                     "equip": "Equip",
@@ -267,7 +269,8 @@
                     "experience": "Experience",
                     "traits": "Traits",
                     "domainCards": "Domain Cards",
-                    "equipment": "Equipment"
+                    "equipment": "Equipment",
+                    "story": "Story"
                 },
                 "ancestryNamePlaceholder": "Your ancestry's name",
                 "buttonTitle": "Character Setup",
@@ -288,6 +291,7 @@
                 "selectSubclass": "Select Subclass",
                 "startingItems": "Starting Items",
                 "story": "Story",
+                "storyExplanation": "Select which background and connection prompts you want to copy into your character's background.",
                 "suggestedArmor": "Suggested Armor",
                 "suggestedPrimaryWeapon": "Suggested Primary Weapon",
                 "suggestedSecondaryWeapon": "Suggested Secondary Weapon",
@@ -1912,7 +1916,8 @@
                 "downtime": "Downtime",
                 "roll": "Roll",
                 "rules": "Rules",
-                "types": "Types"
+                "types": "Types",
+                "questions": "Questions"
             },
             "Tiers": {
                 "singular": "Tier",

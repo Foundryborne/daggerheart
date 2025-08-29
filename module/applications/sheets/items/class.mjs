@@ -46,6 +46,10 @@ export default class ClassSheet extends DHBaseItemSheet {
             template: 'systems/daggerheart/templates/sheets/items/class/settings.hbs',
             scrollable: ['.settings']
         },
+        questions: {
+            template: 'systems/daggerheart/templates/sheets/items/class/questions.hbs',
+            scrollable: ['.questions']
+        },
         effects: {
             template: 'systems/daggerheart/templates/sheets/global/tabs/tab-effects.hbs',
             scrollable: ['.effects']
@@ -55,7 +59,13 @@ export default class ClassSheet extends DHBaseItemSheet {
     /** @inheritdoc */
     static TABS = {
         primary: {
-            tabs: [{ id: 'description' }, { id: 'features' }, { id: 'settings' }, { id: 'effects' }],
+            tabs: [
+                { id: 'description' },
+                { id: 'features' },
+                { id: 'settings' },
+                { id: 'questions' },
+                { id: 'effects' }
+            ],
             initial: 'description',
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }

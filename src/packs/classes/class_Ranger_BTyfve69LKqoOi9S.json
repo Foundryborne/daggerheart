@@ -59,7 +59,17 @@
       "source": "Daggerheart SRD",
       "page": 16,
       "artist": ""
-    }
+    },
+    "backgroundQuestions": [
+      "A terrible creature hurt your community, and you’ve vowed to hunt them down. What are they, and what unique trail or sign do they leave behind?",
+      "Your first kill almost killed you, too. What was it, and what part of you was never the same after that event?",
+      "You’ve traveled many dangerous lands, but what is the one place you refuse to go?"
+    ],
+    "connections": [
+      "What friendly competition do we have?",
+      "Why do you act differently when we’re alone than when others are around?",
+      "What threat have you asked me to watch for, and why are you worried about it?"
+    ]
   },
   "effects": [],
   "folder": null,
@@ -75,10 +85,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.0",
+    "systemVersion": "1.1.2",
     "createdTime": 1754268869310,
-    "modifiedTime": 1755943505024,
-    "lastModifiedBy": "tt3PwMBXcTLCtIQU"
+    "modifiedTime": 1756398897309,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!BTyfve69LKqoOi9S"
 }

@@ -63,7 +63,17 @@
       "source": "Daggerheart SRD",
       "page": 10,
       "artist": ""
-    }
+    },
+    "backgroundQuestions": [
+      "Why was the community you grew up in so reliant on nature and its creatures?",
+      "Who was the first wild animal you bonded with? Why did your bond end?",
+      "Who has been trying to hunt you down? What do they want from you?"
+    ],
+    "connections": [
+      "What did you confide in me that makes me leap into danger for you every time?",
+      "What animal do I say you remind me of?",
+      "What affectionate nickname have you given me?"
+    ]
   },
   "effects": [],
   "folder": null,
@@ -79,10 +89,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.0",
+    "systemVersion": "1.1.2",
     "createdTime": 1754222247012,
-    "modifiedTime": 1755943479440,
-    "lastModifiedBy": "tt3PwMBXcTLCtIQU"
+    "modifiedTime": 1756399003725,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!ZNwUTCyGCEcidZFv"
 }
