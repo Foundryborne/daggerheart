@@ -1,0 +1,38 @@
+<section
+    class='tab {{tabs.resources.cssClass}} {{tabs.resources.id}}'
+    data-tab='{{tabs.resources.id}}'
+    data-group='{{tabs.resources.group}}'
+>
+    <div class="actions-section">
+        <button>
+            <i class="fa-solid fa-bed"></i>
+            <span>{{localize "DAGGERHEART.APPLICATIONS.Downtime.longRest.title"}}</span>
+        </button>
+        <button>
+            <i class="fa-solid fa-utensils"></i>
+            <span>{{localize "DAGGERHEART.APPLICATIONS.Downtime.shortRest.title"}}</span>
+        </button>
+        <button>
+            <i class="fa-solid fa-campground"></i>
+            <span>New Section</span>
+        </button>
+    </div>
+
+    <fieldset class="resource-section glassy">
+        <legend>{{localize tabs.resources.label}}</legend>
+        <ul class="actors-list">
+            {{#each document.system.partyMembers as |actor id|}}
+                {{> 'daggerheart.inventory-item'
+                item=actor
+                type='character'
+                isActor=true
+                }}
+            {{/each}}
+        </ul>
+        {{#unless document.system.partyMembers.length}}
+            <div class="actors-dragger">
+                <span>{{localize "DAGGERHEART.GENERAL.dropActorsHere"}}</span>
+            </div>
+        {{/unless}}
+    </fieldset>
+</section>

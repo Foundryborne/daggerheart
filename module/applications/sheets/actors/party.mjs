@@ -22,13 +22,14 @@ export default class Party extends DHBaseActorSheet {
         header: { template: 'systems/daggerheart/templates/sheets/actors/party/header.hbs' },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         partyMembers: { template: 'systems/daggerheart/templates/sheets/actors/party/party-members.hbs' },
+        resources: { template: 'systems/daggerheart/templates/sheets/actors/party/resources.hbs' },
         notes: { template: 'systems/daggerheart/templates/sheets/actors/party/notes.hbs' }
     };
 
     /** @inheritdoc */
     static TABS = {
         primary: {
-            tabs: [{ id: 'partyMembers' }, { id: 'notes' }],
+            tabs: [{ id: 'partyMembers' }, { id: 'resources' }, { id: 'notes' }],
             initial: 'partyMembers',
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
