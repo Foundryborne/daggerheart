@@ -270,14 +270,14 @@
       "name": "Acidic Form",
       "type": "feature",
       "system": {
-        "description": "<p>When the Ooze makes a successful attack, the target must mark an Armor Slot without receiving its benefi ts (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
+        "description": "<p>When the Ooze makes a successful attack, the target must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
         "resource": null,
         "actions": {
           "gtT2oHSyZg9OHHJD": {
             "type": "damage",
             "_id": "gtT2oHSyZg9OHHJD",
             "systemPath": "actions",
-            "description": "<p>When the Ooze makes a successful attack, the target must mark an Armor Slot without receiving its benefi ts (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
+            "description": "<p>When the Ooze makes a successful attack, the target must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -343,12 +343,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.348",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754129153649,
-        "modifiedTime": 1754129204931,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1756510982337,
+        "lastModifiedBy": "mdk78Q6pOyHh6aBg"
       },
       "_key": "!actors.items!6hbqmxDXFOzZJDk4.BQsVuuwFYByKwesR"
     },
