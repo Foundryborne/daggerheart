@@ -66,8 +66,10 @@ export default class DhTemplateManager {
         if (now - (moveTime || 0) <= 16) return;
         this.#activePreview.moveTime = now;
 
+        const multiplier = event.shiftKey ? 0.2 : 0.1;
+
         object.document.updateSource({
-            direction: object.document.direction + event.deltaY * 0.2
+            direction: object.document.direction + event.deltaY * multiplier
         });
         object.renderFlags.set({ refresh: true });
     }
