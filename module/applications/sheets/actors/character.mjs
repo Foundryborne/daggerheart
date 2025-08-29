@@ -210,7 +210,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * @protected
      */
     async _prepareLoadoutContext(context, _options) {
-        context.cardView = !game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.displayDomainCardsAsList);
+        context.cardView = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.displayDomainCardsAsCard);
     }
 
     /**
@@ -607,6 +607,15 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const presets = {
             compendium: 'daggerheart',
             folder: key,
+            filter:
+                key === 'subclasses'
+                    ? {
+                          'system.linkedClass.uuid': {
+                              key: 'system.linkedClass.uuid',
+                              value: this.document.system.class.value._stats.compendiumSource
+                          }
+                      }
+                    : undefined,
             render: {
                 noFolder: true
             }
@@ -709,8 +718,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * @type {ApplicationClickAction}
      */
     static async #toggleLoadoutView(_, button) {
-        const newAbilityView = button.dataset.value !== 'true';
-        await game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.displayDomainCardsAsList, newAbilityView);
+        const newAbilityView = button.dataset.value === 'true';
+        await game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.displayDomainCardsAsCard, newAbilityView);
         this.render();
     }
 
