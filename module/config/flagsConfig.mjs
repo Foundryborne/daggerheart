@@ -8,6 +8,10 @@ export const encounterCountdown = {
     position: 'countdown-encounter-position'
 };
 
+export const compendiumBrowser = {
+    position: 'compendium-browser-position'
+};
+
 export const itemAttachmentSource = 'attachmentSource';
 
 export const userFlags = {

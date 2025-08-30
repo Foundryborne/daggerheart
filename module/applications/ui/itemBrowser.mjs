@@ -84,12 +84,16 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     /** @inheritDoc */
     async _preRender(context, options) {
         this.presets = options.presets ?? {};
+        const userPresetPosition = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS[`compendiumBrowser`].position);
+        options.position = userPresetPosition ?? ItemBrowser.DEFAULT_OPTIONS.position;
         
-        const width = this.presets?.render?.noFolder === true || this.presets?.render?.lite === true ? 600 : 850;
-        if(this.rendered)
-            this.setPosition({ width });
-        else
-            options.position.width = width;
+        if (!userPresetPosition) {
+            const width = this.presets?.render?.noFolder === true || this.presets?.render?.lite === true ? 600 : 850;
+            if(this.rendered)
+                this.setPosition({ width });
+            else
+                options.position.width = width;
+        }
 
         await super._preRender(context, options);
     }
@@ -111,6 +115,11 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             element.hidden = this.presets.render?.folders?.length && !this.presets.render.folders.includes(element.dataset.folderId);
         });
     }
+
+    _onPosition(position) {
+        game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS[`compendiumBrowser`].position, position);
+    }
+
 
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
