@@ -49,14 +49,14 @@ You can find the documentation here: https://github.com/Foundryborne/daggerheart
 
 ### Available Scripts
 
-- `npm start` - Start development with file watching and Foundry launching
-- `npm run build` - One-time build
 - `npm run setup:dev -- --foundry-path="<path>" --data-path="<path>"` - Configure development environment
+- `npm run build` - One-time build
+- `npm start` - Start development with file watching, Foundry launching, and a dev proxy overlay (no symlink, no copy)
 
-### Notes
+### Dev Notes
 
-- The repo should be placed in your Foundry `Data/systems/` directory or symlinked there
-- Linux symlink can be made using `ln -snf <path to development folder> daggerheart` inside the systems folder
+- No symlink or copying required: a dev proxy overlays `systems/daggerheart` assets from your repo at `http://localhost:30001` while the official install remains intact on the base Foundry port.
+- Usage: start Foundry (served at `http://localhost:30000`) and the dev proxy (served at `http://localhost:30001`). Open `http://localhost:30001` to see your dev version; close it to return to the installed version at `http://localhost:30000`.
 - Your `.env` file is ignored by git, so each developer can have their own configuration
   [Foundry VTT Website][1]
 

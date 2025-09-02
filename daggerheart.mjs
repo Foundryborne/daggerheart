@@ -171,6 +171,26 @@ Hooks.on('ready', async () => {
     }
 
     runMigrations();
+
+    // Development live-reload: connect to local WS server if available
+    try {
+        const defaultPort = 30123;
+        const storedPort = Number(localStorage.getItem('DH_DEV_RELOAD_PORT'));
+        const port = Number.isFinite(storedPort) ? storedPort : defaultPort;
+        const ws = new WebSocket(`ws://localhost:${port}`);
+        let reloadTimer;
+        ws.onmessage = () => {
+            // Debounce rapid changes
+            clearTimeout(reloadTimer);
+            reloadTimer = setTimeout(() => {
+                window.location.reload();
+            }, 100);
+        };
+        ws.onerror = () => {};
+        ws.onclose = () => {};
+    } catch (err) {
+        // Ignore if WebSocket is not available or blocked
+    }
 });
 
 Hooks.once('dicesoniceready', () => {});

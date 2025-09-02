@@ -28,7 +28,11 @@
     "lint-staged": "^15.2.10",
     "postcss": "^8.4.32",
     "prettier": "^3.5.3",
-    "rollup-plugin-postcss": "^4.0.2"
+    "rollup-plugin-postcss": "^4.0.2",
+    "chokidar": "^4.0.3",
+    "fs-extra": "^11.2.0",
+    "http-proxy": "^1.18.1",
+    "mime-types": "^2.1.35"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
