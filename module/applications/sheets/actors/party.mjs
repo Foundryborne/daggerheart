@@ -6,13 +6,17 @@ export default class Party extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
         classes: ['party'],
         position: {
-            width: 500
+            width: 550
         },
         window: {
             resizable: true
         },
         actions: {
-            deletePartyMember: this.#deletePartyMember
+            deletePartyMember: Party.#deletePartyMember,
+            toggleHope: Party.#toggleHope,
+            toggleHitPoints: Party.#toggleHitPoints,
+            toggleStress: Party.#toggleStress,
+            toggleArmorSlot: Party.#toggleArmorSlot
         },
         dragDrop: [{ dragSelector: '.actors-section .inventory-item', dropSelector: null }]
     };
@@ -22,7 +26,10 @@ export default class Party extends DHBaseActorSheet {
         header: { template: 'systems/daggerheart/templates/sheets/actors/party/header.hbs' },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         partyMembers: { template: 'systems/daggerheart/templates/sheets/actors/party/party-members.hbs' },
-        resources: { template: 'systems/daggerheart/templates/sheets/actors/party/resources.hbs' },
+        resources: {
+            template: 'systems/daggerheart/templates/sheets/actors/party/resources.hbs',
+            scrollable: ['.resources']
+        },
         notes: { template: 'systems/daggerheart/templates/sheets/actors/party/notes.hbs' }
     };
 
@@ -91,6 +98,54 @@ export default class Party extends DHBaseActorSheet {
                 })
             };
         }
+    }
+
+    /**
+     * Toggles a hope resource value.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleHope(_, target) {
+        const hopeValue = Number.parseInt(target.dataset.value);
+        const actor = await foundry.utils.fromUuid(target.dataset.actorId);
+        const newValue = actor.system.resources.hope.value >= hopeValue ? hopeValue - 1 : hopeValue;
+        await actor.update({ 'system.resources.hope.value': newValue });
+        this.render();
+    }
+
+    /**
+     * Toggles a hp resource value.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleHitPoints(_, target) {
+        const hitPointsValue = Number.parseInt(target.dataset.value);
+        const actor = await foundry.utils.fromUuid(target.dataset.actorId);
+        const newValue = actor.system.resources.hitPoints.value >= hitPointsValue ? hitPointsValue - 1 : hitPointsValue;
+        await actor.update({ 'system.resources.hitPoints.value': newValue });
+        this.render();
+    }
+
+    /**
+     * Toggles a stress resource value.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleStress(_, target) {
+        const stressValue = Number.parseInt(target.dataset.value);
+        const actor = await foundry.utils.fromUuid(target.dataset.actorId);
+        const newValue = actor.system.resources.stress.value >= stressValue ? stressValue - 1 : stressValue;
+        await actor.update({ 'system.resources.stress.value': newValue });
+        this.render();
+    }
+
+    /**
+     * Toggles a armor slot resource value.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleArmorSlot(_, target, element) {
+        const armorItem = await foundry.utils.fromUuid(target.dataset.itemUuid);
+        const armorValue = Number.parseInt(target.dataset.value);
+        const newValue = armorItem.system.marks.value >= armorValue ? armorValue - 1 : armorValue;
+        await armorItem.update({ 'system.marks.value': newValue });
+        this.render();
     }
 
     /* -------------------------------------------- */

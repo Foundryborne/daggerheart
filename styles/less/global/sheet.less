@@ -14,8 +14,12 @@ body.game:is(.performance-low, .noblur) {
     .themed.theme-dark .application.daggerheart.sheet.dh-style,
     .themed.theme-dark.application.daggerheart.sheet.dh-style,
     &.theme-dark .application.daggerheart {
-        background: @dark-blue;
-    };
+        &.adversary,
+        &.character,
+        &.item {
+            background: @dark-blue;
+        }
+    }
 }
 
 .application.sheet.dh-style {
