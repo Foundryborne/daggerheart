@@ -57,8 +57,8 @@ export default class DamageField extends fields.SchemaField {
         damageConfig.source.message = config.message?._id ?? messageId;
         damageConfig.directDamage = !!damageConfig.source?.message;
 
-        if(damageConfig.source?.message && game.modules.get('dice-so-nice')?.active)
-            await game.dice3d.waitFor3DAnimationByMessageID(damageConfig.source.message);
+        // if(damageConfig.source?.message && game.modules.get('dice-so-nice')?.active)
+        //     await game.dice3d.waitFor3DAnimationByMessageID(damageConfig.source.message);
 
         const damageResult = await CONFIG.Dice.daggerheart.DamageRoll.build(damageConfig);
         if(!damageResult) return false;
