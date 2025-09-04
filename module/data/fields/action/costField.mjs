@@ -95,6 +95,14 @@ export default class CostField extends fields.ArrayField {
 
     static getRealCosts(costs) {
         const realCosts = costs?.length ? costs.filter(c => c.enabled) : [];
+
+        // Reset totals in case of repeat calls.
+        realCosts.forEach(c => {
+            c.scale = c.scale ?? 0;
+            c.step = c.step ?? 1;
+            c.total = c.value + c.scale * c.step;
+        });
+
         let mergedCosts = [];
         realCosts.forEach(c => {
             const getCost = Object.values(mergedCosts).find(gc => gc.key === c.key);
