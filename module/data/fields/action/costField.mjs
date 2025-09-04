@@ -94,7 +94,8 @@ export default class CostField extends fields.ArrayField {
     }
 
     static getRealCosts(costs) {
-        const realCosts = costs?.length ? costs.filter(c => c.enabled) : [];
+        const cloneCosts = foundry.utils.deepClone(costs),
+            realCosts = cloneCosts?.length ? cloneCosts.filter(c => c.enabled) : [];
         let mergedCosts = [];
         realCosts.forEach(c => {
             const getCost = Object.values(mergedCosts).find(gc => gc.key === c.key);
