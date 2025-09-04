@@ -169,7 +169,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         if (this.system.source.item && this.system.source.action) {
             const action = this.getAction(actor, this.system.source.item, this.system.source.action);
             if (!action || !action?.applyEffects) return;
-            const targets = this.getTargetList();
+            const targets = this.system.hitTargets;
             if (targets.length === 0)
                 ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
             this.consumeOnSuccess();
