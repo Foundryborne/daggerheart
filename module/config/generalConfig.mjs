@@ -574,17 +574,17 @@ export const abilityCosts = {
     },
     hope: {
         id: 'hope',
-        label: 'Hope',
+        label: 'DAGGERHEART.CONFIG.HealingType.hope.name',
         group: 'TYPES.Actor.character'
     },
     armor: {
         id: 'armor',
-        label: 'Armor Slot',
+        label: 'DAGGERHEART.CONFIG.HealingType.armor.name',
         group: 'TYPES.Actor.character'
     },
     fear: {
         id: 'fear',
-        label: 'Fear',
+        label: 'DAGGERHEART.CONFIG.HealingType.fear.name',
         group: 'TYPES.Actor.adversary'
     }
 };
