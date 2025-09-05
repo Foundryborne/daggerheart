@@ -1,0 +1,46 @@
+<section class="tab {{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    {{formGroup
+    fields.displayFear
+    value=setting.displayFear
+    localize=true}}
+    {{formGroup
+    fields.showGenericStatusEffects
+    value=setting.showGenericStatusEffects
+    localize=true}}
+    {{formGroup
+    fields.hideAttribution
+    value=setting.hideAttribution
+    localize=true}}
+
+    <fieldset>
+        <legend>{{localize 'DAGGERHEART.SETTINGS.Appearance.FIELDS.expandedTitle'}}</legend>
+        {{formGroup
+        fields.extendCharacterDescriptions
+        value=setting.extendCharacterDescriptions
+        localize=true}}
+        {{formGroup
+        fields.extendAdversaryDescriptions
+        value=setting.extendAdversaryDescriptions
+        localize=true}}
+        {{formGroup
+        fields.extendEnvironmentDescriptions
+        value=setting.extendEnvironmentDescriptions
+        localize=true}}
+        {{formGroup
+        fields.extendItemDescriptions
+        value=setting.extendItemDescriptions
+        localize=true}}
+    </fieldset>
+
+    <fieldset>
+        <legend>{{localize 'DAGGERHEART.SETTINGS.Appearance.FIELDS.expandRollMessage.title'}}</legend>
+        {{formGroup fields.expandRollMessage.fields.desc value=setting.expandRollMessage.desc
+        localize=true}}
+        {{formGroup fields.expandRollMessage.fields.roll value=setting.expandRollMessage.roll
+        localize=true}}
+        {{formGroup fields.expandRollMessage.fields.damage
+        value=setting.expandRollMessage.damage localize=true}}
+        {{formGroup fields.expandRollMessage.fields.target
+        value=setting.expandRollMessage.target localize=true}}
+    </fieldset>
+</section>

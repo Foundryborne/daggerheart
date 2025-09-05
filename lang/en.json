@@ -2152,20 +2152,43 @@
         "SETTINGS": {
             "Appearance": {
                 "FIELDS": {
-                    "displayFear": { "label": "Fear Display" },
-                    "dualityColorScheme": { "label": "Chat Style" },
-                    "hideAttribution": { "label": "Hide Attribution" },
+                    "displayFear": {
+                        "label": "Display Fear"
+                    },
+                    "showGenericStatusEffects": {
+                        "label": "Show Foundry Status Effects"
+                    },
+                    "hideAttribution": {
+                        "label": "Hide Attribution"
+                    },
                     "expandedTitle": "Auto-expand Descriptions",
-                    "extendCharacterDescriptions": { "label": "Characters" },
-                    "extendAdversaryDescriptions": { "label": "Adversaries" },
-                    "extendEnvironmentDescriptions": { "label": "Environments" },
-                    "extendItemDescriptions": { "label": "Items" },
-                    "expandRollMessage": "Auto-expand Message Sections",
-                    "expandRollMessageDesc": { "label": "Description" },
-                    "expandRollMessageRoll": { "label": "Formula" },
-                    "expandRollMessageDamage": { "label": "Damage/Healing" },
-                    "expandRollMessageTarget": { "label": "Target" },
-                    "showGenericStatusEffects": { "label": "Show Foundry Status Effects" }
+                    "extendCharacterDescriptions": {
+                        "label": "Characters"
+                    },
+                    "extendAdversaryDescriptions": {
+                        "label": "Adversaries"
+                    },
+                    "extendEnvironmentDescriptions": {
+                        "label": "Environments"
+                    },
+                    "extendItemDescriptions": {
+                        "label": "Items"
+                    },
+                    "expandRollMessage": {
+                        "title": "Auto-expand Message Sections",
+                        "desc": {
+                            "label": "Description"
+                        },
+                        "roll": {
+                            "label": "Formula"
+                        },
+                        "damage": {
+                            "label": "Damage/Healing"
+                        },
+                        "target": {
+                            "label": "Target"
+                        }
+                    }
                 },
                 "fearDisplay": {
                     "token": "Tokens",
@@ -2310,10 +2333,8 @@
                     "hint": "System ruler setup for displaying ranges in Daggerheart"
                 },
                 "appearance": {
-                    "title": "Appearance Settings",
                     "label": "Appearance Settings",
                     "hint": "Modify the look of various parts of the system",
-                    "name": "Appearance Settings",
                     "duality": "Duality Rolls",
                     "diceSoNice": {
                         "title": "Dice So Nice",
