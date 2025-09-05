@@ -148,7 +148,7 @@
                 <select class="roll-mode-select" name="selectedRollMode">
                     {{selectOptions rollModes selected=selectedRollMode valueAttr="action" labelAttr="label" localize=true}}
                 </select>
-                <button class="sunmit-btn" data-action="submitRoll"{{#unless canRoll}} disabled{{/unless}}>
+                <button class="submit-btn" data-action="submitRoll"{{#unless canRoll}} disabled{{/unless}}>
                     <i class="fa-solid fa-dice"></i>
                     <span class="label">
                         {{#if @root.rollConfig.roll.difficulty}}
@@ -164,7 +164,7 @@
             {{> 'systems/daggerheart/templates/dialogs/dice-roll/costSelection.hbs'}}
         {{/if}}
         <div class="roll-dialog-controls">
-            <button class="sunmit-btn" data-action="submitRoll"{{#unless canRoll}} disabled{{/unless}}>
+            <button class="submit-btn" data-action="submitRoll"{{#unless canRoll}} disabled{{/unless}}>
                 <span class="label">{{localize "DAGGERHEART.GENERAL.continue"}}</span>
             </button>
         </div>
