@@ -90,22 +90,22 @@ export const rangeInclusion = {
 export const otherTargetTypes = {
     friendly: {
         id: 'friendly',
-        label: 'Friendly'
+        label: 'DAGGERHEART.CONFIG.TargetTypes.friendly'
     },
     hostile: {
         id: 'hostile',
-        label: 'Hostile'
+        label: 'DAGGERHEART.CONFIG.TargetTypes.hostile'
     },
     any: {
         id: 'any',
-        label: 'Any'
+        label: 'DAGGERHEART.CONFIG.TargetTypes.any'
     }
 };
 
 export const targetTypes = {
     self: {
         id: 'self',
-        label: 'Self'
+        label: 'DAGGERHEART.CONFIG.TargetTypes.self'
     },
     ...otherTargetTypes
 };

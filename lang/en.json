@@ -989,6 +989,12 @@
                 "selectType": "Select Action Type",
                 "selectAction": "Action Selection"
             },
+            "TargetTypes": {
+                "any": "Any",
+                "friendly": "Friendly",
+                "hostile": "Hostile",
+                "self": "Self"
+            },
             "TemplateTypes": {
                 "circle": "Circle",
                 "cone": "Cone",
@@ -1877,7 +1883,9 @@
                 "tier4": "tier 4",
                 "domains": "Domains",
                 "downtime": "Downtime",
-                "rules": "Rules"
+                "rules": "Rules",
+                "configuration": "Configuration",
+                "base": "Base"
             },
             "Tiers": {
                 "singular": "Tier",
@@ -1978,6 +1986,8 @@
             "save": "Save",
             "scalable": "Scalable",
             "situationalBonus": "Situational Bonus",
+            "spent": "Spent",
+            "step": "Step",
             "stress": "Stress",
             "subclasses": "Subclasses",
             "success": "Success",
