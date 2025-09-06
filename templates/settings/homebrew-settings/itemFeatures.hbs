@@ -1,0 +1,35 @@
+<section
+    class="tab {{tabs.itemFeatures.cssClass}} {{tabs.itemFeatures.id}}"
+    data-tab="{{tabs.itemFeatures.id}}"
+    data-group="{{tabs.itemFeatures.group}}"
+>
+    <div class="two-columns even">
+        <fieldset class="start-align">
+            <legend>
+                {{localize "DAGGERHEART.GENERAL.weaponFeatures"}} 
+                <a data-action="addItem" data-type="weaponFeatures"><i class="fa-solid fa-plus"></i></a>
+                <a data-action="resetMoves" data-type="weaponFeatures"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+            </legend>
+            
+            <div class="settings-items">
+                {{#each settingFields._source.itemFeatures.weaponFeatures as |feature id|}}
+                    {{> "systems/daggerheart/templates/settings/components/settings-item-line.hbs" this type="weaponFeatures" id=id }}
+                {{/each}}
+            </div>
+        </fieldset>
+
+        <fieldset class="start-align">
+            <legend>
+                {{localize "DAGGERHEART.GENERAL.armorFeatures"}} 
+                <a data-action="addItem" data-type="armorFeatures"><i class="fa-solid fa-plus"></i></a>
+                <a data-action="resetMoves" data-type="armorFeatures"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+            </legend>
+            
+            <div class="settings-items">
+                {{#each settingFields._source.itemFeatures.armorFeatures as |feature id|}}
+                    {{> "systems/daggerheart/templates/settings/components/settings-item-line.hbs" this type="armorFeatures" id=id }}
+                {{/each}}
+            </div>
+        </fieldset>
+    </div>
+</section>

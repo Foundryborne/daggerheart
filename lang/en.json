@@ -1912,7 +1912,8 @@
                 "downtime": "Downtime",
                 "roll": "Roll",
                 "rules": "Rules",
-                "types": "Types"
+                "types": "Types",
+                "itemFeatures": "Item Features"
             },
             "Tiers": {
                 "singular": "Tier",
@@ -1929,6 +1930,7 @@
             "amount": "Amount",
             "any": "Any",
             "armor": "Armor",
+            "armorFeatures": "Armor Features",
             "armors": "Armors",
             "armorScore": "Armor Score",
             "activeEffects": "Active Effects",
@@ -2041,6 +2043,7 @@
             "used": "Used",
             "uses": "Uses",
             "value": "Value",
+            "weaponFeatures": "Weapon Features",
             "weapons": "Weapons",
             "withThing": "With {thing}"
         },
@@ -2248,7 +2251,9 @@
             },
             "Homebrew": {
                 "newDowntimeMove": "Downtime Move",
+                "newFeature": "New ItemFeature",
                 "downtimeMoves": "Downtime Moves",
+                "itemFeatures": "Item Features",
                 "nrChoices": "# Moves Per Rest",
                 "resetMovesTitle": "Reset {type} Downtime Moves",
                 "resetMovesText": "Are you sure you want to reset?",

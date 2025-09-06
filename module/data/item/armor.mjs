@@ -1,5 +1,4 @@
 import AttachableItem from './attachableItem.mjs';
-import { armorFeatures } from '../../config/itemConfig.mjs';
 
 export default class DHArmor extends AttachableItem {
     /** @inheritDoc */
@@ -25,7 +24,7 @@ export default class DHArmor extends AttachableItem {
                 new fields.SchemaField({
                     value: new fields.StringField({
                         required: true,
-                        choices: CONFIG.DH.ITEM.armorFeatures,
+                        choices: CONFIG.DH.ITEM.allArmorFeatures,
                         blank: true
                     }),
                     effectIds: new fields.ArrayField(new fields.StringField({ required: true })),
@@ -60,13 +59,14 @@ export default class DHArmor extends AttachableItem {
         const allowed = await super._preUpdate(changes, options, user);
         if (allowed === false) return false;
 
+        const changedArmorFeatures = changes.system?.armorFeatures ?? [];
+        const removedFeatures = this.armorFeatures.filter(x => changedArmorFeatures.every(y => y.value !== x.value));
         if (changes.system?.armorFeatures) {
-            const removed = this.armorFeatures.filter(x => !changes.system.armorFeatures.includes(x));
-            const added = changes.system.armorFeatures.filter(x => !this.armorFeatures.includes(x));
+            const added = changedArmorFeatures.filter(x => this.armorFeatures.every(y => y.value !== x.value));
 
             const effectIds = [];
             const actionIds = [];
-            for (var feature of removed) {
+            for (var feature of removedFeatures) {
                 effectIds.push(...feature.effectIds);
                 actionIds.push(...feature.actionIds);
             }
@@ -76,8 +76,9 @@ export default class DHArmor extends AttachableItem {
                 return acc;
             }, {});
 
+            const allFeatures = CONFIG.DH.ITEM.allArmorFeatures();
             for (const feature of added) {
-                const featureData = armorFeatures[feature.value];
+                const featureData = allFeatures[feature.value];
                 if (featureData.effects?.length > 0) {
                     const embeddedItems = await this.parent.createEmbeddedDocuments(
                         'ActiveEffect',
@@ -91,7 +92,7 @@ export default class DHArmor extends AttachableItem {
                 }
 
                 const newActions = {};
-                if (featureData.actions?.length > 0) {
+                if (featureData.actions?.length > 0 || featureData.actions?.size > 0) {
                     for (let action of featureData.actions) {
                         const embeddedEffects = await this.parent.createEmbeddedDocuments(
                             'ActiveEffect',
@@ -110,10 +111,12 @@ export default class DHArmor extends AttachableItem {
                             {
                                 ...cls.getSourceConfig(this),
                                 ...action,
+                                type: action.type,
                                 _id: actionId,
                                 name: game.i18n.localize(action.name),
                                 description: game.i18n.localize(action.description),
-                                effects: embeddedEffects.map(x => ({ _id: x.id }))
+                                effects: embeddedEffects.map(x => ({ _id: x.id })),
+                                systemPath: 'actions'
                             },
                             { parent: this }
                         );
@@ -124,6 +127,10 @@ export default class DHArmor extends AttachableItem {
                 feature.actionIds = Object.keys(newActions);
             }
         }
+    }
+
+    _onUpdate(a, b, c) {
+        super._onUpdate(a, b, c);
     }
 
     /**
@@ -145,7 +152,8 @@ export default class DHArmor extends AttachableItem {
      */
     _getLabels() {
         const labels = [];
-        if(this.baseScore) labels.push(`${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.baseScore}`)
+        if (this.baseScore)
+            labels.push(`${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.baseScore}`);
         return labels;
     }
 
