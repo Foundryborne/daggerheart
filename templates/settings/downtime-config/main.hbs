@@ -3,11 +3,13 @@
     data-tab='{{tabs.main.id}}'
     data-group='{{tabs.main.group}}'
 >
-    <fieldset class="one-column">
-        <legend>{{localize "Icon"}}</legend>
+    {{#if hasIcon}}
+        <fieldset class="one-column">
+            <legend>{{localize "Icon"}}</legend>
 
-        <input type="text" name="icon" value="{{move.icon}}" />
-    </fieldset>
+            <input type="text" name="icon" value="{{move.icon}}" />
+        </fieldset>
+    {{/if}}
 
     <fieldset class="one-column">
         <legend>{{localize "Description"}}</legend>

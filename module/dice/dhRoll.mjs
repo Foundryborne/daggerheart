@@ -28,7 +28,7 @@ export default class DHRoll extends Roll {
     static async buildConfigure(config = {}, message = {}) {
         config.hooks = [...this.getHooks(), ''];
         config.dialog ??= {};
-        
+
         for (const hook of config.hooks) {
             if (Hooks.call(`${CONFIG.DH.id}.preRoll${hook.capitalize()}`, config, message) === false) return null;
         }
@@ -46,7 +46,10 @@ export default class DHRoll extends Roll {
         }
 
         for (const hook of config.hooks) {
-            if (Hooks.call(`${CONFIG.DH.id}.post${hook.capitalize()}RollConfiguration`, roll, config, message) === false) return [];
+            if (
+                Hooks.call(`${CONFIG.DH.id}.post${hook.capitalize()}RollConfiguration`, roll, config, message) === false
+            )
+                return [];
         }
         return roll;
     }
@@ -91,7 +94,7 @@ export default class DHRoll extends Roll {
                 system: config,
                 rolls: [roll]
             };
-        
+
         config.selectedRollMode ??= game.settings.get('core', 'rollMode');
 
         if (roll._evaluated) {

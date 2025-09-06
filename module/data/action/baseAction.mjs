@@ -34,8 +34,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         this.extraSchemas.forEach(s => {
             let clsField = this.getActionField(s);
-            if (clsField)
-                schemaFields[s] = new clsField();
+            if (clsField) schemaFields[s] = new clsField();
         });
 
         return schemaFields;
@@ -43,7 +42,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     /**
      * Create a Map containing each Action step based on fields define in schema. Ordered by Fields order property.
-     * 
+     *
      * Each step can be called individually as long as needed config is provided.
      * Ex: <action>.workflow.get("damage").execute(config)
      * @returns {Map}
@@ -53,8 +52,9 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         this.constructor.extraSchemas.forEach(s => {
             let clsField = this.constructor.getActionField(s);
             if (clsField?.execute) {
-                workflow.set(s, { order: clsField.order, execute: clsField.execute.bind(this) } );
-                if( s === "damage" ) workflow.set("applyDamage", { order: 75, execute: clsField.applyDamage.bind(this) } );
+                workflow.set(s, { order: clsField.order, execute: clsField.execute.bind(this) });
+                if (s === 'damage')
+                    workflow.set('applyDamage', { order: 75, execute: clsField.applyDamage.bind(this) });
             }
         });
         return new Map([...workflow.entries()].sort(([aKey, aValue], [bKey, bValue]) => aValue.order - bValue.order));
@@ -64,9 +64,9 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * Getter returning the workflow property or creating it the first time the property is called
      */
     get workflow() {
-        if ( this.hasOwnProperty("_workflow") ) return this._workflow;
+        if (this.hasOwnProperty('_workflow')) return this._workflow;
         const workflow = Object.freeze(this.defineWorkflow());
-        Object.defineProperty(this, "_workflow", {value: workflow, writable: false});
+        Object.defineProperty(this, '_workflow', { value: workflow, writable: false });
         return workflow;
     }
 
@@ -117,7 +117,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     /**
      * Prepare base data based on Action Type & Parent Type
-     * @param {object} parent 
+     * @param {object} parent
      * @returns {object}
      */
     static getSourceConfig(parent) {
@@ -167,9 +167,9 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @param {object} config Config object usually created from prepareConfig method
      */
     async executeWorkflow(config) {
-        for(const [key, part] of this.workflow) {
+        for (const [key, part] of this.workflow) {
             if (Hooks.call(`${CONFIG.DH.id}.pre${key.capitalize()}Action`, this, config) === false) return;
-            if(await part.execute(config) === false) return;
+            if ((await part.execute(config)) === false) return;
             if (Hooks.call(`${CONFIG.DH.id}.post${key.capitalize()}Action`, this, config) === false) return;
         }
     }
@@ -185,7 +185,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         if (this.chatDisplay) await this.toChat();
 
         let config = this.prepareConfig(event);
-        if(!config) return;
+        if (!config) return;
 
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
@@ -194,7 +194,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             config = await D20RollDialog.configure(null, config);
             if (!config) return;
         }
-        
+
         // Execute the Action Worflow in order based of schema fields
         await this.executeWorkflow(config);
 
@@ -206,7 +206,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /**
      * Create the basic config common to every action type
      * @param {Event} event Event from the button used to trigger the Action
-     * @returns {object}    
+     * @returns {object}
      */
     prepareBaseConfig(event) {
         const config = {
@@ -236,13 +236,12 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /**
      * Create the config for that action used for its workflow
      * @param {Event} event Event from the button used to trigger the Action
-     * @returns {object}    
+     * @returns {object}
      */
     prepareConfig(event) {
         const config = this.prepareBaseConfig(event);
-        for(const clsField of Object.values(this.schema.fields)) {
-            if (clsField?.prepareConfig)
-                if(clsField.prepareConfig.call(this, config) === false) return false;
+        for (const clsField of Object.values(this.schema.fields)) {
+            if (clsField?.prepareConfig) if (clsField.prepareConfig.call(this, config) === false) return false;
         }
         return config;
     }
@@ -260,11 +259,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * Consume Action configured resources & uses.
      * That method is only used when we want those resources to be consumed outside of the use method workflow.
      * @param {object} config                Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
-     * @param {boolean} successCost        
+     * @param {boolean} successCost
      */
     async consume(config, successCost = false) {
-        await this.workflow.get("cost")?.execute(config, successCost);
-        await this.workflow.get("uses")?.execute(config, successCost);
+        await this.workflow.get('cost')?.execute(config, successCost);
+        await this.workflow.get('uses')?.execute(config, successCost);
 
         if (config.roll && !config.roll.success && successCost) {
             setTimeout(() => {
@@ -291,13 +290,13 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     get hasDamage() {
-        return this.damage?.parts?.length && this.type !== 'healing'
+        return this.damage?.parts?.length && this.type !== 'healing';
     }
 
     get hasHealing() {
-        return this.damage?.parts?.length && this.type === 'healing'
+        return this.damage?.parts?.length && this.type === 'healing';
     }
-    
+
     get hasSave() {
         return !!this.save?.trait;
     }

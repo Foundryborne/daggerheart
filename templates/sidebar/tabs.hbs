@@ -1,0 +1,18 @@
+<nav class="tabs faded-ui" role="tablist" data-tooltip-direction="LEFT">
+    <menu class="flexcol">
+        {{#each tabs}}
+            <li>
+                <button type="button" class="ui-control plain icon {{#if icon}}{{icon}}{{/if}}" data-action="tab" data-tab="{{ @key }}"
+                        role="tab" aria-pressed="{{ active }}" data-group="primary" aria-label="{{ localize tooltip }}"
+                        aria-controls="{{ @key }}" data-tooltip>
+                    {{#if img}}<img src="{{img}}" />{{/if}}
+                </button>
+                <div class="notification-pip"></div>
+            </li>
+        {{/each}}
+        <li>
+            <button type="button" class="collapse ui-control plain icon fas fa-caret-left" data-tooltip
+                    aria-label="{{ localize "Expand" }}" data-action="toggleState"></button>
+        </li>
+    </menu>
+</nav>

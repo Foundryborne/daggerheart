@@ -84,12 +84,10 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     /** @inheritDoc */
     async _preRender(context, options) {
         this.presets = options.presets ?? {};
-        
+
         const width = this.presets?.render?.noFolder === true || this.presets?.render?.lite === true ? 600 : 850;
-        if(this.rendered)
-            this.setPosition({ width });
-        else
-            options.position.width = width;
+        if (this.rendered) this.setPosition({ width });
+        else options.position.width = width;
 
         await super._preRender(context, options);
     }
@@ -100,15 +98,18 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
         this.element
             .querySelectorAll('[data-action="selectFolder"]')
-            .forEach(element => element.classList.toggle('is-selected', element.dataset.folderId === this.selectedMenu.path.join('.')));
+            .forEach(element =>
+                element.classList.toggle('is-selected', element.dataset.folderId === this.selectedMenu.path.join('.'))
+            );
 
         this._createSearchFilter();
-        
+
         this.element.classList.toggle('lite', this.presets?.render?.lite === true);
         this.element.classList.toggle('no-folder', this.presets?.render?.noFolder === true);
         this.element.classList.toggle('no-filter', this.presets?.render?.noFilter === true);
         this.element.querySelectorAll('.folder-list > [data-action="selectFolder"]').forEach(element => {
-            element.hidden = this.presets.render?.folders?.length && !this.presets.render.folders.includes(element.dataset.folderId);
+            element.hidden =
+                this.presets.render?.folders?.length && !this.presets.render.folders.includes(element.dataset.folderId);
         });
     }
 
@@ -157,7 +158,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 : [];
             folders.push(folder);
         });
-        folders.sort((a, b) => a.label.localeCompare(b.label))
+        folders.sort((a, b) => a.label.localeCompare(b.label));
 
         return folders;
     }
@@ -181,8 +182,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
         await this.render({ force: true, presets: this.presets });
 
-        if(this.selectedMenu?.data?.type?.length)
-            this.loadItems();
+        if (this.selectedMenu?.data?.type?.length) this.loadItems();
     }
 
     _replaceHTML(result, content, options) {
@@ -194,53 +194,54 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         let loadTimeout = this.toggleLoader(true);
 
         const promises = [];
-        
+
         game.packs.forEach(pack => {
             promises.push(
                 new Promise(async resolve => {
                     const items = await pack.getDocuments({ type__in: this.selectedMenu?.data?.type });
                     resolve(items);
                 })
-            )
+            );
         });
-        
+
         Promise.all(promises).then(async result => {
-            this.items = ItemBrowser.sortBy(result.flatMap(r => r), 'name');
+            this.items = ItemBrowser.sortBy(
+                result.flatMap(r => r),
+                'name'
+            );
             this.fieldFilter = this._createFieldFilter();
 
             if (this.presets?.filter) {
-                Object.entries(this.presets.filter).forEach(
-                    ([k, v]) => {
-                        const filter = this.fieldFilter.find(c => c.name === k)
-                        if(filter) filter.value = v.value;
-                    }
-                );
+                Object.entries(this.presets.filter).forEach(([k, v]) => {
+                    const filter = this.fieldFilter.find(c => c.name === k);
+                    if (filter) filter.value = v.value;
+                });
                 // await this._onInputFilterBrowser();
             }
-            
-            const filterList = await foundry.applications.handlebars.renderTemplate('systems/daggerheart/templates/ui/itemBrowser/filterContainer.hbs', 
+
+            const filterList = await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/ui/itemBrowser/filterContainer.hbs',
                 {
                     fieldFilter: this.fieldFilter,
                     presets: this.presets,
                     formatChoices: this.formatChoices
                 }
             );
-            
+
             this.element.querySelector('.filter-content .wrapper').innerHTML = filterList;
             const filterContainer = this.element.querySelector('.filter-header > [data-action="expandContent"]');
-            if(this.fieldFilter.length === 0)
-                filterContainer.setAttribute('disabled', '');
-            else
-                filterContainer.removeAttribute('disabled');
-            
-            const itemList = await foundry.applications.handlebars.renderTemplate('systems/daggerheart/templates/ui/itemBrowser/itemContainer.hbs', 
+            if (this.fieldFilter.length === 0) filterContainer.setAttribute('disabled', '');
+            else filterContainer.removeAttribute('disabled');
+
+            const itemList = await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/ui/itemBrowser/itemContainer.hbs',
                 {
                     items: this.items,
                     menu: this.selectedMenu,
                     formatLabel: this.formatLabel
                 }
             );
-            
+
             this.element.querySelector('.item-list').innerHTML = itemList;
 
             this._createFilterInputs();
@@ -255,7 +256,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     toggleLoader(state) {
         const container = this.element.querySelector('.item-list');
         return setTimeout(() => {
-            container.classList.toggle("loader", state);
+            container.classList.toggle('loader', state);
         }, 100);
     }
 
@@ -376,7 +377,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         for (const li of html.querySelectorAll('.item-container')) {
             const itemUUID = li.dataset.itemUuid,
                 item = this.items.find(i => i.uuid === itemUUID);
-            if(!item) continue;
+            if (!item) continue;
             const matchesSearch = !query || foundry.applications.ux.SearchFilter.testQuery(rgx, item.name);
             if (matchesSearch) this.#filteredItems.browser.search.add(item.id);
             const { input } = this.#filteredItems.browser;
@@ -399,7 +400,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 item = this.items.find(i => i.uuid === itemUUID);
 
             if (!item) continue;
-            
+
             const matchesMenu =
                 this.fieldFilter.length === 0 ||
                 this.fieldFilter.every(
@@ -503,19 +504,19 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     _canDragStart() {
         return true;
     }
-    
+
     static injectSidebarButton(html) {
-        if(!game.user.isGM) return;
+        if (!game.user.isGM) return;
         const sectionId = html.dataset.tab,
-            menus = { 
+            menus = {
                 actors: {
-                    folder: "adversaries",
+                    folder: 'adversaries',
                     render: {
-                        folders: ["adversaries", "characters", "environments"]
+                        folders: ['adversaries', 'characters', 'environments']
                     }
                 },
                 items: {
-                    folder: "equipments",
+                    folder: 'equipments',
                     render: {
                         noFolder: true
                     }
@@ -523,20 +524,20 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 compendium: {}
             };
 
-        if(Object.keys(menus).includes(sectionId)) {
-            const headerActions = html.querySelector(".header-actions");
+        if (Object.keys(menus).includes(sectionId)) {
+            const headerActions = html.querySelector('.header-actions');
 
-            const button = document.createElement("button");
-            button.type = "button";
-            button.classList.add("open-compendium-browser");
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.classList.add('open-compendium-browser');
             button.innerHTML = `
                 <i class="fa-solid fa-book-atlas"></i>
-                ${game.i18n.localize("DAGGERHEART.UI.Tooltip.compendiumBrowser")}
+                ${game.i18n.localize('DAGGERHEART.UI.Tooltip.compendiumBrowser')}
             `;
-            button.addEventListener("click", event => {
+            button.addEventListener('click', event => {
                 ui.compendiumBrowser.open(menus[sectionId]);
             });
-            
+
             headerActions.append(button);
         }
     }

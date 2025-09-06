@@ -1,4 +1,4 @@
-import { emitAsGM, GMUpdateEvent } from "../systemRegistration/socket.mjs";
+import { emitAsGM, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 
 export default class DhpChatMessage extends foundry.documents.ChatMessage {
     targetHook = null;
@@ -104,11 +104,11 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             });
             if (itemDesc && autoExpandRoll.desc) itemDesc.setAttribute('open', '');
         }
-        
-        if(!this.isAuthor && !this.speakerActor?.isOwner) {
-            const applyButtons = html.querySelector(".apply-buttons");
+
+        if (!this.isAuthor && !this.speakerActor?.isOwner) {
+            const applyButtons = html.querySelector('.apply-buttons');
             applyButtons?.remove();
-            const buttons = html.querySelectorAll(".ability-card-footer > .ability-use-button");
+            const buttons = html.querySelectorAll('.ability-card-footer > .ability-use-button');
             buttons.forEach(b => b.remove());
         }
     }
@@ -125,7 +125,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         html.querySelectorAll('.target-save').forEach(element =>
             element.addEventListener('click', this.onRollSave.bind(this))
         );
-        
+
         html.querySelectorAll('.roll-all-save-button').forEach(element =>
             element.addEventListener('click', this.onRollAllSave.bind(this))
         );
@@ -149,7 +149,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         event.stopPropagation();
         const config = foundry.utils.deepClone(this.system);
         config.event = event;
-        this.system.action?.workflow.get("damage")?.execute(config, this._id, true);
+        this.system.action?.workflow.get('damage')?.execute(config, this._id, true);
     }
 
     async onApplyDamage(event) {
@@ -171,9 +171,9 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
         if (targets.length === 0)
             return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelectedOrPerm'));
-        
+
         this.consumeOnSuccess();
-        this.system.action?.workflow.get("applyDamage")?.execute(config, targets, true);
+        this.system.action?.workflow.get('applyDamage')?.execute(config, targets, true);
     }
 
     async onRollSave(event) {
@@ -187,7 +187,12 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             game.system.api.fields.ActionFields.SaveField.rollSave.call(action, token.actor, event).then(result =>
                 emitAsGM(
                     GMUpdateEvent.UpdateSaveMessage,
-                    game.system.api.fields.ActionFields.SaveField.updateSaveMessage.bind(action, result, this, token.id),
+                    game.system.api.fields.ActionFields.SaveField.updateSaveMessage.bind(
+                        action,
+                        result,
+                        this,
+                        token.id
+                    ),
                     {
                         action: action.uuid,
                         message: this._id,
@@ -205,7 +210,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         const targets = this.system.hitTargets,
             config = foundry.utils.deepClone(this.system);
         config.event = event;
-        this.system.action?.workflow.get("save")?.execute(config, targets, true);
+        this.system.action?.workflow.get('save')?.execute(config, targets, true);
     }
 
     async onApplyEffect(event) {
@@ -216,16 +221,15 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         if (targets.length === 0)
             ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelectedOrPerm'));
         this.consumeOnSuccess();
-        this.system.action?.workflow.get("effects")?.execute(config, targets, true);
+        this.system.action?.workflow.get('effects')?.execute(config, targets, true);
     }
 
     filterPermTargets(targets) {
-        return targets.filter(t => fromUuidSync(t.actorId)?.canUserModify(game.user, "update"))
+        return targets.filter(t => fromUuidSync(t.actorId)?.canUserModify(game.user, 'update'));
     }
 
     consumeOnSuccess() {
-        if (!this.system.successConsumed && !this.targetSelection)
-            this.system.action?.consume(this.system, true);
+        if (!this.system.successConsumed && !this.targetSelection) this.system.action?.consume(this.system, true);
     }
 
     hoverTarget(event) {

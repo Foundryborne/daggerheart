@@ -3,8 +3,8 @@ import DHActionConfig from './action-config.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
-export default class DowntimeConfig extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(move, movePath, settings, options) {
+export default class SettingFeatureConfig extends HandlebarsApplicationMixin(ApplicationV2) {
+    constructor(move, movePath, settings, optionalParts, options) {
         super(options);
 
         this.move = move;
@@ -12,6 +12,10 @@ export default class DowntimeConfig extends HandlebarsApplicationMixin(Applicati
         this.movePath = movePath;
         this.actionsPath = `${movePath}.actions`;
         this.settings = settings;
+
+        const { hasIcon, hasEffects } = optionalParts;
+        this.hasIcon = hasIcon;
+        this.hasEffects = hasEffects;
     }
 
     get title() {
@@ -30,6 +34,7 @@ export default class DowntimeConfig extends HandlebarsApplicationMixin(Applicati
             addItem: this.addItem,
             editItem: this.editItem,
             removeItem: this.removeItem,
+            addEffect: this.addEffect,
             resetMoves: this.resetMoves,
             saveForm: this.saveForm
         },
@@ -41,13 +46,14 @@ export default class DowntimeConfig extends HandlebarsApplicationMixin(Applicati
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         main: { template: 'systems/daggerheart/templates/settings/downtime-config/main.hbs' },
         actions: { template: 'systems/daggerheart/templates/settings/downtime-config/actions.hbs' },
+        effects: { template: 'systems/daggerheart/templates/settings/downtime-config/effects.hbs' },
         footer: { template: 'systems/daggerheart/templates/settings/downtime-config/footer.hbs' }
     };
 
     /** @inheritdoc */
     static TABS = {
         primary: {
-            tabs: [{ id: 'main' }, { id: 'actions' }],
+            tabs: [{ id: 'main' }, { id: 'actions' }, { id: 'effects' }],
             initial: 'main',
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
@@ -55,6 +61,9 @@ export default class DowntimeConfig extends HandlebarsApplicationMixin(Applicati
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
+        context.tabs = this._filterTabs(context.tabs);
+        context.hasIcon = this.hasIcon;
+        context.hasEffects = this.hasEffects;
         context.move = this.move;
         context.move.enrichedDescription = await foundry.applications.ux.TextEditor.enrichHTML(
             context.move.description
@@ -130,13 +139,30 @@ export default class DowntimeConfig extends HandlebarsApplicationMixin(Applicati
     }
 
     static async editItem(_, target) {
-        const actionId = target.dataset.id;
-        const action = this.move.actions.get(actionId);
-        await new DHActionConfig(action, async updatedMove => {
-            await this.settings.updateSource({ [`${this.actionsPath}.${actionId}`]: updatedMove });
+        const { type, id } = target.dataset;
+        if (type === 'effect') {
+            const effectIndex = this.move.effects.findIndex(x => x.id === id);
+            const effect = this.move.effects[effectIndex];
+            const updatedEffect =
+                await game.system.api.applications.sheetConfigs.SettingActiveEffectConfig.configure(effect);
+            if (!updatedEffect) return;
+
+            await this.settings.updateSource({
+                [`${this.movePath}.effects`]: this.move.effects.reduce((acc, effect, index) => {
+                    acc.push(index === effectIndex ? { ...updatedEffect, id: effect.id } : effect);
+                    return acc;
+                }, [])
+            });
             this.move = foundry.utils.getProperty(this.settings, this.movePath);
             this.render();
-        }).render(true);
+        } else {
+            const action = this.move.actions.get(id);
+            await new DHActionConfig(action, async updatedMove => {
+                await this.settings.updateSource({ [`${this.actionsPath}.${id}`]: updatedMove });
+                this.move = foundry.utils.getProperty(this.settings, this.movePath);
+                this.render();
+            }).render(true);
+        }
     }
 
     static async removeItem(_, target) {
@@ -145,16 +171,38 @@ export default class DowntimeConfig extends HandlebarsApplicationMixin(Applicati
         this.render();
     }
 
+    static async addEffect(_, target) {
+        const currentEffects = foundry.utils.getProperty(this.settings, `${this.movePath}.effects`);
+        await this.settings.updateSource({
+            [`${this.movePath}.effects`]: [
+                ...currentEffects,
+                game.system.api.data.activeEffects.BaseEffect.getDefaultObject()
+            ]
+        });
+
+        this.move = foundry.utils.getProperty(this.settings, this.movePath);
+        this.render();
+    }
+
     static resetMoves() {}
+
+    _filterTabs(tabs) {
+        return this.hasEffects
+            ? tabs
+            : Object.keys(tabs).reduce((acc, key) => {
+                  if (key !== 'effects') acc[key] = tabs[key];
+                  return acc;
+              }, {});
+    }
 
     /** @override */
     _onClose(options = {}) {
         if (!options.submitted) this.move = null;
     }
 
-    static async configure(move, movePath, settings, options = {}) {
+    static async configure(move, movePath, settings, optionalParts, options = {}) {
         return new Promise(resolve => {
-            const app = new this(move, movePath, settings, options);
+            const app = new this(move, movePath, settings, optionalParts, options);
             app.addEventListener('close', () => resolve(app.move), { once: true });
             app.render({ force: true });
         });

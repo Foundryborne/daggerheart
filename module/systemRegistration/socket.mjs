@@ -38,8 +38,7 @@ export const registerSocketHooks = () => {
             const document = data.uuid ? await fromUuid(data.uuid) : null;
             switch (data.action) {
                 case GMUpdateEvent.UpdateDocument:
-                    if (document && data.update)
-                        await document.update(data.update);
+                    if (document && data.update) await document.update(data.update);
                     break;
                 case GMUpdateEvent.UpdateEffect:
                     if (document && data.update)

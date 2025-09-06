@@ -1917,6 +1917,7 @@
                 "roll": "Roll",
                 "rules": "Rules",
                 "types": "Types",
+                "itemFeatures": "Item Features",
                 "questions": "Questions"
             },
             "Tiers": {
@@ -1934,6 +1935,7 @@
             "amount": "Amount",
             "any": "Any",
             "armor": "Armor",
+            "armorFeatures": "Armor Features",
             "armors": "Armors",
             "armorScore": "Armor Score",
             "activeEffects": "Active Effects",
@@ -2046,6 +2048,7 @@
             "used": "Used",
             "uses": "Uses",
             "value": "Value",
+            "weaponFeatures": "Weapon Features",
             "weapons": "Weapons",
             "withThing": "With {thing}"
         },
@@ -2276,7 +2279,9 @@
             },
             "Homebrew": {
                 "newDowntimeMove": "Downtime Move",
+                "newFeature": "New ItemFeature",
                 "downtimeMoves": "Downtime Moves",
+                "itemFeatures": "Item Features",
                 "nrChoices": "# Moves Per Rest",
                 "resetMovesTitle": "Reset {type} Downtime Moves",
                 "resetMovesText": "Are you sure you want to reset?",
@@ -2420,6 +2425,10 @@
                     "heal": "Heal",
                     "applyHealing": "Apply Healing"
                 },
+                "refreshMessage": {
+                    "title": "Feature Refresh",
+                    "header": "Refreshed"
+                },
                 "reroll": {
                     "confirmTitle": "Reroll Dice",
                     "confirmText": "Are you sure you want to reroll?"
@@ -2534,7 +2543,15 @@
                 "multiclassAlreadyPresent": "You already have a class and multiclass",
                 "subclassesAlreadyPresent": "You already have a class and multiclass subclass",
                 "noDiceSystem": "Your selected dice {system} does not have a {faces} dice",
+                "gmMenuRefresh": "You refreshed all actions and resources {types}",
                 "subclassAlreadyLinked": "{name} is already a subclass in the class {class}. Remove it from there if you want it to be a subclass to this class."
+            },
+            "Sidebar": {
+                "daggerheartMenu": {
+                    "title": "Daggerheart Menu",
+                    "startSession": "Start Session",
+                    "startScene": "Start Scene"
+                }
             },
             "Tooltip": {
                 "disableEffect": "Disable Effect",
