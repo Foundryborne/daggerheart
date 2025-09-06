@@ -552,7 +552,7 @@
       "_key": "!actors.items!UGPiPLJsPvMTSKEF.QV2ytK4b1VWF71OS"
     },
     {
-      "name": "Avalance",
+      "name": "Avalanche",
       "type": "feature",
       "system": {
         "description": "<p><strong>Spend a Fear</strong> to have the Dragon unleash a huge downfall of snow and ice, covering all other creatures within Far range. All targets within this area must succeed on an Instinct Reaction Roll or be buried in snow and rocks, becoming <em>Vulnerable</em> until they dig themselves out from the debris. For each PC that fails the reaction roll, you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
@@ -681,12 +681,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754131703390,
-        "modifiedTime": 1754131790034,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1756256581072,
+        "lastModifiedBy": "CEZZA7TXd7uT8O2c"
       },
       "_key": "!actors.items!UGPiPLJsPvMTSKEF.CcRTxCDCJskiu3fI"
     },

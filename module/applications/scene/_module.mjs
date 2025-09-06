@@ -1,1 +1,1 @@
-export { default as  DhSceneConfigSettings } from './sceneConfigSettings.mjs';
+export { default as DhSceneConfigSettings } from './sceneConfigSettings.mjs';

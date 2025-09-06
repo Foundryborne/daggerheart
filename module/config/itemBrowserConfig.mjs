@@ -199,8 +199,7 @@ export const typeConfig = {
                 key: 'system.itemFeatures',
                 label: 'DAGGERHEART.GENERAL.features',
                 choices: () =>
-                    Object.entries(CONFIG.DH.ITEM.weaponFeatures)
-                    .map(([k, v]) => ({ value: k, label: v.label })),
+                    Object.entries(CONFIG.DH.ITEM.weaponFeatures).map(([k, v]) => ({ value: k, label: v.label })),
                 operator: 'contains3'
             }
         ]
@@ -241,8 +240,7 @@ export const typeConfig = {
                 key: 'system.itemFeatures',
                 label: 'DAGGERHEART.GENERAL.features',
                 choices: () =>
-                    Object.entries(CONFIG.DH.ITEM.armorFeatures)
-                    .map(([k, v]) => ({ value: k, label: v.label })),
+                    Object.entries(CONFIG.DH.ITEM.armorFeatures).map(([k, v]) => ({ value: k, label: v.label })),
                 operator: 'contains3'
             }
         ]
@@ -372,14 +370,30 @@ export const typeConfig = {
                 label: 'DAGGERHEART.ITEMS.Subclass.spellcastingTrait'
             }
         ],
+        filters: []
+    },
+    beastforms: {
+        columns: [
+            {
+                key: 'system.tier',
+                label: 'DAGGERHEART.GENERAL.Tiers.singular'
+            },
+            {
+                key: 'system.mainTrait',
+                label: 'DAGGERHEART.GENERAL.Trait.single'
+            }
+        ],
         filters: [
             {
                 key: 'system.linkedClass.uuid',
                 label: 'Class',
-                choices: (items) => {
-                    const list = items.map(item => ({ value: item.system.linkedClass.uuid, label: item.system.linkedClass.name }));
-                    return list.reduce((a,c) => {
-                        if(!(a.find(i => i.value === c.value))) a.push(c);
+                choices: items => {
+                    const list = items.map(item => ({
+                        value: item.system.linkedClass.uuid,
+                        label: item.system.linkedClass.name
+                    }));
+                    return list.reduce((a, c) => {
+                        if (!a.find(i => i.value === c.value)) a.push(c);
                         return a;
                     }, []);
                 }
@@ -417,7 +431,7 @@ export const compendiumConfig = {
         id: 'characters',
         keys: ['characters'],
         label: 'DAGGERHEART.UI.ItemBrowser.folders.characters',
-        type: ['character'],
+        type: ['character']
         // listType: 'characters'
     },
     adversaries: {
@@ -431,7 +445,7 @@ export const compendiumConfig = {
         id: 'ancestries',
         keys: ['ancestries'],
         label: 'DAGGERHEART.UI.ItemBrowser.folders.ancestries',
-        type: ['ancestry'],
+        type: ['ancestry']
         /* folders: {
             features: {
                 id: 'features',
@@ -516,7 +530,7 @@ export const compendiumConfig = {
         id: 'communities',
         keys: ['communities'],
         label: 'DAGGERHEART.UI.ItemBrowser.folders.communities',
-        type: ['community'],
+        type: ['community']
         /* folders: {
             features: {
                 id: 'features',
@@ -537,7 +551,7 @@ export const compendiumConfig = {
         keys: ['beastforms'],
         label: 'DAGGERHEART.UI.ItemBrowser.folders.beastforms',
         type: ['beastform'],
-        listType: 'beastforms',
+        listType: 'beastforms'
         /* folders: {
             features: {
                 id: 'features',

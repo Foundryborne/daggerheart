@@ -97,13 +97,13 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                 damage: new fields.SchemaField({
                     gm: new fields.StringField({
                         required: true,
-                        initial: "never",
+                        initial: 'never',
                         choices: CONFIG.DH.SETTINGS.actionAutomationChoices,
                         label: 'DAGGERHEART.GENERAL.gm'
                     }),
                     players: new fields.StringField({
                         required: true,
-                        initial: "never",
+                        initial: 'never',
                         choices: CONFIG.DH.SETTINGS.actionAutomationChoices,
                         label: 'DAGGERHEART.GENERAL.player.plurial'
                     })
@@ -111,13 +111,13 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                 save: new fields.SchemaField({
                     gm: new fields.StringField({
                         required: true,
-                        initial: "never",
+                        initial: 'never',
                         choices: CONFIG.DH.SETTINGS.actionAutomationChoices,
                         label: 'DAGGERHEART.GENERAL.gm'
                     }),
                     players: new fields.StringField({
                         required: true,
-                        initial: "never",
+                        initial: 'never',
                         choices: CONFIG.DH.SETTINGS.actionAutomationChoices,
                         label: 'DAGGERHEART.GENERAL.player.plurial'
                     })

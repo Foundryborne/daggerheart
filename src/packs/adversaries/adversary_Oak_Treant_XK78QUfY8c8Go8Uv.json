@@ -110,19 +110,20 @@
       "source": "Daggerheart SRD",
       "page": 95,
       "artist": ""
-    }
+    },
+    "motivesAndTactics": "Hide in plain sight, preserve the forest, root down, swing branches"
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.348",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.2",
     "createdTime": 1753922784314,
-    "modifiedTime": 1755385515496,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1757057641714,
+    "lastModifiedBy": "mdk78Q6pOyHh6aBg"
   },
   "_id": "XK78QUfY8c8Go8Uv",
   "sort": 3400000,

@@ -30,4 +30,24 @@ export default class BaseEffect extends foundry.abstract.TypeDataModel {
             })
         };
     }
+
+    static getDefaultObject() {
+        return {
+            name: 'New Effect',
+            id: foundry.utils.randomID(),
+            disabled: false,
+            img: 'icons/magic/life/heart-cross-blue.webp',
+            description: '',
+            statuses: [],
+            changes: [],
+            system: {
+                rangeDependence: {
+                    enabled: false,
+                    type: CONFIG.DH.GENERAL.rangeInclusion.withinRange.id,
+                    target: CONFIG.DH.GENERAL.otherTargetTypes.hostile.id,
+                    range: CONFIG.DH.GENERAL.range.melee.id
+                }
+            }
+        };
+    }
 }

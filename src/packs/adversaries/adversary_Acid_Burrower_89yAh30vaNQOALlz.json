@@ -438,14 +438,14 @@
       "_id": "UpFsnlbZkyvM2Ftv",
       "img": "icons/magic/acid/projectile-smoke-glowing.webp",
       "system": {
-        "description": "<p>Make an attack against all targets in front of the Burrower within Close range. Targets the Burrower succeeds against take <strong>2d6</strong> physical damage and must mark an Armor Slot without receiving its benefi ts (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP and you gain a Fear.</p><p>@Template[type:inFront|range:c]</p>",
+        "description": "<p>Make an attack against all targets in front of the Burrower within Close range. Targets the Burrower succeeds against take <strong>2d6</strong> physical damage and must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP and you gain a Fear.</p><p>@Template[type:inFront|range:c]</p>",
         "resource": null,
         "actions": {
           "yd10HwK6Wa3OEvv2": {
             "type": "attack",
             "_id": "yd10HwK6Wa3OEvv2",
             "systemPath": "actions",
-            "description": "<p>Make an attack against all targets in front of the Burrower within Close range. Targets the Burrower succeeds against take <strong>2d6</strong> physical damage and must mark an Armor Slot without receiving its benefi ts (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP and you gain a Fear.</p><p>@Template[type:inFront|range:c]</p>",
+            "description": "<p>Make an attack against all targets in front of the Burrower within Close range. Targets the Burrower succeeds against take <strong>2d6</strong> physical damage and must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP and you gain a Fear.</p><p>@Template[type:inFront|range:c]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -557,11 +557,11 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.348",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "lastModifiedBy": "MQSznptE5yLT7kj8",
-        "modifiedTime": 1754143653876
+        "systemVersion": "1.1.2",
+        "lastModifiedBy": "mdk78Q6pOyHh6aBg",
+        "modifiedTime": 1756510879809
       },
       "_key": "!actors.items!89yAh30vaNQOALlz.UpFsnlbZkyvM2Ftv"
     },

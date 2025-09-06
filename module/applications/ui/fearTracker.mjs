@@ -1,4 +1,4 @@
-import { emitAsGM, GMUpdateEvent, socketEvent } from "../../systemRegistration/socket.mjs";
+import { emitAsGM, GMUpdateEvent, socketEvent } from '../../systemRegistration/socket.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -106,6 +106,10 @@ export default class FearTracker extends HandlebarsApplicationMixin(ApplicationV
     }
 
     async updateFear(value) {
-        return emitAsGM(GMUpdateEvent.UpdateFear, game.settings.set.bind(game.settings, CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear), value);
+        return emitAsGM(
+            GMUpdateEvent.UpdateFear,
+            game.settings.set.bind(game.settings, CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
+            value
+        );
     }
 }

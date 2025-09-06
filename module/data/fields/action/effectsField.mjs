@@ -1,4 +1,4 @@
-import { emitAsGM, GMUpdateEvent } from "../../../systemRegistration/socket.mjs";
+import { emitAsGM, GMUpdateEvent } from '../../../systemRegistration/socket.mjs';
 
 const fields = foundry.data.fields;
 
@@ -25,21 +25,16 @@ export default class EffectsField extends fields.ArrayField {
      * @param {boolean} [force=false]       If the method should be executed outside of Action workflow, for ChatMessage button for example.
      */
     static async execute(config, targets = null, force = false) {
-        if(!config.hasEffect) return;
+        if (!config.hasEffect) return;
         let message = config.message ?? ui.chat.collection.get(config.parent?._id);
-        if(!message) {
+        if (!message) {
             const roll = new CONFIG.Dice.daggerheart.DHRoll('');
             roll._evaluated = true;
             message = config.message = await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
         }
-        if(EffectsField.getAutomation() || force) {
+        if (EffectsField.getAutomation() || force) {
             targets ??= (message.system?.targets ?? config.targets).filter(t => !config.hasRoll || t.hit);
-            await emitAsGM(
-                GMUpdateEvent.UpdateEffect,
-                EffectsField.applyEffects.bind(this),
-                targets,
-                this.uuid
-            );
+            await emitAsGM(GMUpdateEvent.UpdateEffect, EffectsField.applyEffects.bind(this), targets, this.uuid);
             // EffectsField.applyEffects.call(this, config.targets.filter(t => !config.hasRoll || t.hit));
         }
     }
@@ -53,8 +48,7 @@ export default class EffectsField extends fields.ArrayField {
         if (!this.effects?.length || !targets?.length) return;
         let effects = this.effects;
         targets.forEach(async token => {
-            if (this.hasSave && token.saved.success === true)
-                effects = this.effects.filter(e => e.onSave === true);
+            if (this.hasSave && token.saved.success === true) effects = this.effects.filter(e => e.onSave === true);
             if (!effects.length) return;
             effects.forEach(async e => {
                 const actor = canvas.tokens.get(token.id)?.actor,
@@ -96,6 +90,11 @@ export default class EffectsField extends fields.ArrayField {
      * @returns {boolean} If execute should be triggered automatically
      */
     static getAutomation() {
-        return (game.user.isGM && game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.effect.gm) || (!game.user.isGM && game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.effect.players)
+        return (
+            (game.user.isGM &&
+                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.effect.gm) ||
+            (!game.user.isGM &&
+                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.effect.players)
+        );
     }
 }

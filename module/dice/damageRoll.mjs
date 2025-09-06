@@ -47,8 +47,7 @@ export default class DamageRoll extends DHRoll {
             );
         }
         await super.buildPost(roll, config, message);
-        if (config.source?.message)
-            chatMessage.update({ 'system.damage': config.damage });
+        if (config.source?.message) chatMessage.update({ 'system.damage': config.damage });
     }
 
     static unifyDamageRoll(rolls) {

@@ -58,10 +58,8 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         const actionActor = this.actionActor,
             actionItem = this.actionItem;
         if (!this.source.action) return null;
-        if(actionItem)
-            return actionItem.system.actionsList?.find(a => a.id === this.source.action);
-        else if(actionActor?.system.attack?._id === this.source.action)
-            return actionActor.system.attack
+        if (actionItem) return actionItem.system.actionsList?.find(a => a.id === this.source.action);
+        else if (actionActor?.system.attack?._id === this.source.action) return actionActor.system.attack;
         return null;
     }
 

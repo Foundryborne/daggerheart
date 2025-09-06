@@ -1,4 +1,4 @@
-import BeastformDialog from "../../../applications/dialogs/beastformDialog.mjs";
+import BeastformDialog from '../../../applications/dialogs/beastformDialog.mjs';
 
 const fields = foundry.data.fields;
 
@@ -49,14 +49,14 @@ export default class BeastformField extends fields.SchemaField {
 
         return await BeastformField.transform.call(this, selected, evolved, hybrid);
     }
-    
+
     /**
      * Update Action Workflow config object.
      * Must be called within Action context.
      * @param {object} config    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
      */
     prepareConfig(config) {
-        if(this.actor.effects.find(x => x.type === 'beastform')) {
+        if (this.actor.effects.find(x => x.type === 'beastform')) {
             ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.beastformAlreadyApplied'));
             return false;
         }
@@ -73,10 +73,10 @@ export default class BeastformField extends fields.SchemaField {
 
     /**
      * TODO by Harry
-     * @param {*} selectedForm 
-     * @param {*} evolvedData 
-     * @param {*} hybridData 
-     * @returns 
+     * @param {*} selectedForm
+     * @param {*} evolvedData
+     * @param {*} hybridData
+     * @returns
      */
     static async transform(selectedForm, evolvedData, hybridData) {
         const formData = evolvedData?.form ? evolvedData.form.toObject() : selectedForm.toObject();

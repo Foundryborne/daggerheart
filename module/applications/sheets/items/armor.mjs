@@ -8,7 +8,7 @@ export default class ArmorSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
         tagifyConfigs: [
             {
                 selector: '.features-input',
-                options: () => CONFIG.DH.ITEM.armorFeatures,
+                options: () => CONFIG.DH.ITEM.orderedArmorFeatures(),
                 callback: ArmorSheet.#onFeatureSelect
             }
         ]
