@@ -182,7 +182,7 @@
       "_key": "!actors.items!acMu9wJrMZZzLSTJ.cIAMenvMXHPTpOFn"
     },
     {
-      "name": "Avalance",
+      "name": "Avalanche",
       "type": "feature",
       "system": {
         "description": "<p>Spend a Fear to carve the mountain with an icy torrent, causing an avalanche. All PCs in its path must succeed on an Agility or Strength Reaction Roll or be bowled over and carried down the mountain. A PC using rope, pitons, or other climbing gear gains advantage on this roll. Targets who fail are knocked down the mountain to Far range, take <strong>2d20</strong> physical damage, and must mark a Stress. Targets who succeed must mark a Stress. </p><section id=\"secret-3gM8fEJj1vD9W88k\" class=\"secret\"><p><em>How do the PCs try to weather the avalanche? What approach do the characters take to fi nd one another when their companions go hurtling down the mountainside?</em></p></section>",
@@ -257,12 +257,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754217019442,
-        "modifiedTime": 1754217102897,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1756256534443,
+        "lastModifiedBy": "CEZZA7TXd7uT8O2c"
       },
       "_key": "!actors.items!acMu9wJrMZZzLSTJ.jkm03DXYYajsRk2j"
     },

@@ -9,12 +9,12 @@ export default function DhDualityRollEnricher(match, _options) {
 }
 
 function getDualityMessage(roll, flavor) {
-    const trait = roll.trait && abilities[roll.trait] ? game.i18n.localize(abilities[roll.trait].label) : null;
+    const trait = roll?.trait && abilities[roll.trait] ? game.i18n.localize(abilities[roll.trait].label) : null;
     const label =
         flavor ??
-        (roll.trait
+        (roll?.trait
             ? game.i18n.format('DAGGERHEART.GENERAL.rollWith', { roll: trait })
-            : roll.reaction
+            : roll?.reaction
               ? game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll')
               : game.i18n.localize('DAGGERHEART.GENERAL.duality'));
 
@@ -22,9 +22,9 @@ function getDualityMessage(roll, flavor) {
         ? game.i18n.localize(abilities[roll.trait].label)
         : game.i18n.localize('DAGGERHEART.GENERAL.duality');
 
-    const advantage = roll.advantage
+    const advantage = roll?.advantage
         ? CONFIG.DH.ACTIONS.advantageState.advantage.value
-        : roll.disadvantage
+        : roll?.disadvantage
           ? CONFIG.DH.ACTIONS.advantageState.disadvantage.value
           : undefined;
     const advantageLabel =
@@ -36,21 +36,21 @@ function getDualityMessage(roll, flavor) {
 
     const dualityElement = document.createElement('span');
     dualityElement.innerHTML = `
-        <button type="button" class="duality-roll-button${roll.inline ? ' inline' : ''}" 
+        <button type="button" class="duality-roll-button${roll?.inline ? ' inline' : ''}" 
             data-title="${label}"
             data-label="${dataLabel}"
-            data-reaction="${roll.reaction ? 'true' : 'false'}"
-            data-hope="${roll.hope ?? 'd12'}" 
-            data-fear="${roll.fear ?? 'd12'}"
+            data-reaction="${roll?.reaction ? 'true' : 'false'}"
+            data-hope="${roll?.hope ?? 'd12'}" 
+            data-fear="${roll?.fear ?? 'd12'}"
             ${advantage ? `data-advantage="${advantage}"` : ''}
-            ${roll.difficulty !== undefined ? `data-difficulty="${roll.difficulty}"` : ''}
-            ${roll.trait && abilities[roll.trait] ? `data-trait="${roll.trait}"` : ''}
-            ${roll.advantage ? 'data-advantage="true"' : ''}
-            ${roll.disadvantage ? 'data-disadvantage="true"' : ''}
+            ${roll?.difficulty !== undefined ? `data-difficulty="${roll.difficulty}"` : ''}
+            ${roll?.trait && abilities[roll.trait] ? `data-trait="${roll.trait}"` : ''}
+            ${roll?.advantage ? 'data-advantage="true"' : ''}
+            ${roll?.disadvantage ? 'data-disadvantage="true"' : ''}
         >
-            ${roll.reaction ? '<i class="fa-solid fa-reply"></i>' : '<i class="fa-solid fa-circle-half-stroke"></i>'}
+            ${roll?.reaction ? '<i class="fa-solid fa-reply"></i>' : '<i class="fa-solid fa-circle-half-stroke"></i>'}
             ${label}
-            ${!flavor && (roll.difficulty || advantageLabel) ? `(${[roll.difficulty, advantageLabel ? game.i18n.localize(`DAGGERHEART.GENERAL.${advantageLabel}.short`) : null].filter(x => x).join(' ')})` : ''}
+            ${!flavor && (roll?.difficulty || advantageLabel) ? `(${[roll.difficulty, advantageLabel ? game.i18n.localize(`DAGGERHEART.GENERAL.${advantageLabel}.short`) : null].filter(x => x).join(' ')})` : ''}
         </button>
     `;
 
