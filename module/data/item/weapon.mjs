@@ -39,7 +39,7 @@ export default class DHWeapon extends AttachableItem {
                 new fields.SchemaField({
                     value: new fields.StringField({
                         required: true,
-                        choices: CONFIG.DH.ITEM.weaponFeatures,
+                        choices: CONFIG.DH.ITEM.allWeaponFeatures,
                         blank: true
                     }),
                     effectIds: new fields.ArrayField(new fields.StringField({ required: true })),
@@ -116,13 +116,14 @@ export default class DHWeapon extends AttachableItem {
         const allowed = await super._preUpdate(changes, options, user);
         if (allowed === false) return false;
 
+        const changedWeaponFeatures = changes.system?.weaponFeatures ?? [];
+        const removedFeatures = this.weaponFeatures.filter(x => changedWeaponFeatures.every(y => y.value !== x.value));
         if (changes.system?.weaponFeatures) {
-            const removed = this.weaponFeatures.filter(x => !changes.system.weaponFeatures.includes(x));
-            const added = changes.system.weaponFeatures.filter(x => !this.weaponFeatures.includes(x));
+            const added = changedWeaponFeatures.filter(x => this.weaponFeatures.every(y => y.value !== x.value));
 
             const removedEffectsUpdate = [];
             const removedActionsUpdate = [];
-            for (let weaponFeature of removed) {
+            for (let weaponFeature of removedFeatures) {
                 removedEffectsUpdate.push(...weaponFeature.effectIds);
                 removedActionsUpdate.push(...weaponFeature.actionIds);
             }
@@ -133,8 +134,9 @@ export default class DHWeapon extends AttachableItem {
                 return acc;
             }, {});
 
+            const allFeatures = CONFIG.DH.ITEM.allWeaponFeatures();
             for (let weaponFeature of added) {
-                const featureData = CONFIG.DH.ITEM.weaponFeatures[weaponFeature.value];
+                const featureData = allFeatures[weaponFeature.value];
                 if (featureData.effects?.length > 0) {
                     const embeddedItems = await this.parent.createEmbeddedDocuments(
                         'ActiveEffect',
@@ -148,7 +150,7 @@ export default class DHWeapon extends AttachableItem {
                 }
 
                 const newActions = {};
-                if (featureData.actions?.length > 0) {
+                if (featureData.actions?.length > 0 || featureData.actions?.size > 0) {
                     for (let action of featureData.actions) {
                         const embeddedEffects = await this.parent.createEmbeddedDocuments(
                             'ActiveEffect',
@@ -170,10 +172,12 @@ export default class DHWeapon extends AttachableItem {
                             {
                                 ...cls.getSourceConfig(this),
                                 ...action,
+                                type: action.type,
                                 _id: actionId,
                                 name: game.i18n.localize(action.name),
                                 description: game.i18n.localize(action.description),
-                                effects: embeddedEffects.map(x => ({ _id: x.id }))
+                                effects: embeddedEffects.map(x => ({ _id: x.id })),
+                                systemPath: 'actions'
                             },
                             { parent: this }
                         );

@@ -1917,6 +1917,7 @@
                 "roll": "Roll",
                 "rules": "Rules",
                 "types": "Types",
+                "itemFeatures": "Item Features",
                 "questions": "Questions"
             },
             "Tiers": {
@@ -1934,6 +1935,7 @@
             "amount": "Amount",
             "any": "Any",
             "armor": "Armor",
+            "armorFeatures": "Armor Features",
             "armors": "Armors",
             "armorScore": "Armor Score",
             "activeEffects": "Active Effects",
@@ -2046,6 +2048,7 @@
             "used": "Used",
             "uses": "Uses",
             "value": "Value",
+            "weaponFeatures": "Weapon Features",
             "weapons": "Weapons",
             "withThing": "With {thing}"
         },
@@ -2152,20 +2155,43 @@
         "SETTINGS": {
             "Appearance": {
                 "FIELDS": {
-                    "displayFear": { "label": "Fear Display" },
-                    "dualityColorScheme": { "label": "Chat Style" },
-                    "hideAttribution": { "label": "Hide Attribution" },
+                    "displayFear": {
+                        "label": "Display Fear"
+                    },
+                    "showGenericStatusEffects": {
+                        "label": "Show Foundry Status Effects"
+                    },
+                    "hideAttribution": {
+                        "label": "Hide Attribution"
+                    },
                     "expandedTitle": "Auto-expand Descriptions",
-                    "extendCharacterDescriptions": { "label": "Characters" },
-                    "extendAdversaryDescriptions": { "label": "Adversaries" },
-                    "extendEnvironmentDescriptions": { "label": "Environments" },
-                    "extendItemDescriptions": { "label": "Items" },
-                    "expandRollMessage": "Auto-expand Message Sections",
-                    "expandRollMessageDesc": { "label": "Description" },
-                    "expandRollMessageRoll": { "label": "Formula" },
-                    "expandRollMessageDamage": { "label": "Damage/Healing" },
-                    "expandRollMessageTarget": { "label": "Target" },
-                    "showGenericStatusEffects": { "label": "Show Foundry Status Effects" }
+                    "extendCharacterDescriptions": {
+                        "label": "Characters"
+                    },
+                    "extendAdversaryDescriptions": {
+                        "label": "Adversaries"
+                    },
+                    "extendEnvironmentDescriptions": {
+                        "label": "Environments"
+                    },
+                    "extendItemDescriptions": {
+                        "label": "Items"
+                    },
+                    "expandRollMessage": {
+                        "title": "Auto-expand Message Sections",
+                        "desc": {
+                            "label": "Description"
+                        },
+                        "roll": {
+                            "label": "Formula"
+                        },
+                        "damage": {
+                            "label": "Damage/Healing"
+                        },
+                        "target": {
+                            "label": "Target"
+                        }
+                    }
                 },
                 "fearDisplay": {
                     "token": "Tokens",
@@ -2253,7 +2279,9 @@
             },
             "Homebrew": {
                 "newDowntimeMove": "Downtime Move",
+                "newFeature": "New ItemFeature",
                 "downtimeMoves": "Downtime Moves",
+                "itemFeatures": "Item Features",
                 "nrChoices": "# Moves Per Rest",
                 "resetMovesTitle": "Reset {type} Downtime Moves",
                 "resetMovesText": "Are you sure you want to reset?",
@@ -2310,10 +2338,8 @@
                     "hint": "System ruler setup for displaying ranges in Daggerheart"
                 },
                 "appearance": {
-                    "title": "Appearance Settings",
                     "label": "Appearance Settings",
                     "hint": "Modify the look of various parts of the system",
-                    "name": "Appearance Settings",
                     "duality": "Duality Rolls",
                     "diceSoNice": {
                         "title": "Dice So Nice",
@@ -2398,6 +2424,10 @@
                     "title": "Heal - {damage}",
                     "heal": "Heal",
                     "applyHealing": "Apply Healing"
+                },
+                "refreshMessage": {
+                    "title": "Feature Refresh",
+                    "header": "Refreshed"
                 },
                 "reroll": {
                     "confirmTitle": "Reroll Dice",
@@ -2513,7 +2543,15 @@
                 "multiclassAlreadyPresent": "You already have a class and multiclass",
                 "subclassesAlreadyPresent": "You already have a class and multiclass subclass",
                 "noDiceSystem": "Your selected dice {system} does not have a {faces} dice",
+                "gmMenuRefresh": "You refreshed all actions and resources {types}",
                 "subclassAlreadyLinked": "{name} is already a subclass in the class {class}. Remove it from there if you want it to be a subclass to this class."
+            },
+            "Sidebar": {
+                "daggerheartMenu": {
+                    "title": "Daggerheart Menu",
+                    "startSession": "Start Session",
+                    "startScene": "Start Scene"
+                }
             },
             "Tooltip": {
                 "disableEffect": "Disable Effect",

@@ -1,25 +1,24 @@
 export default class DhSceneConfigSettings extends foundry.applications.sheets.SceneConfig {
-  constructor(options, ...args) {
-    super(options, ...args);
-  }
-
-  static buildParts() {
-    const { footer, ...parts } = super.PARTS;
-    const tmpParts = {
-      ...parts,
-      dh: { template: "systems/daggerheart/templates/scene/dh-config.hbs" },
-      footer
+    constructor(options, ...args) {
+        super(options, ...args);
     }
-    return tmpParts;
-  }
 
-  static PARTS = DhSceneConfigSettings.buildParts();
+    static buildParts() {
+        const { footer, ...parts } = super.PARTS;
+        const tmpParts = {
+            ...parts,
+            dh: { template: 'systems/daggerheart/templates/scene/dh-config.hbs' },
+            footer
+        };
+        return tmpParts;
+    }
 
-  static buildTabs() {
-    super.TABS.sheet.tabs.push({ id: "dh", icon: "fa-solid" });
-    return super.TABS;
-  }
+    static PARTS = DhSceneConfigSettings.buildParts();
 
-  static TABS = DhSceneConfigSettings.buildTabs();
+    static buildTabs() {
+        super.TABS.sheet.tabs.push({ id: 'dh', icon: 'fa-solid' });
+        return super.TABS;
+    }
 
+    static TABS = DhSceneConfigSettings.buildTabs();
 }

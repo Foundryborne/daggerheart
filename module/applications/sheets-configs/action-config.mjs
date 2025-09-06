@@ -138,7 +138,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
             };
         }
 
-        if (this.action.parent.metadata.isQuantifiable) {
+        if (this.action.parent.metadata?.isQuantifiable) {
             options.quantity = {
                 label: 'DAGGERHEART.GENERAL.itemQuantity',
                 group: 'Global'

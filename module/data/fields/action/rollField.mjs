@@ -5,7 +5,12 @@ export class DHActionRollData extends foundry.abstract.DataModel {
     static defineSchema() {
         return {
             type: new fields.StringField({ nullable: true, initial: null, choices: CONFIG.DH.GENERAL.rollTypes }),
-            trait: new fields.StringField({ nullable: true, initial: null, choices: CONFIG.DH.ACTOR.abilities, label: "DAGGERHEART.GENERAL.Trait.single" }),
+            trait: new fields.StringField({
+                nullable: true,
+                initial: null,
+                choices: CONFIG.DH.ACTOR.abilities,
+                label: 'DAGGERHEART.GENERAL.Trait.single'
+            }),
             difficulty: new fields.NumberField({ nullable: true, initial: null, integer: true, min: 0 }),
             bonus: new fields.NumberField({ nullable: true, initial: null, integer: true }),
             advState: new fields.StringField({
@@ -86,14 +91,14 @@ export class DHActionRollData extends foundry.abstract.DataModel {
     }
 
     get rollTrait() {
-        if(this.parent?.actor?.type !== "character") return null;
+        if (this.parent?.actor?.type !== 'character') return null;
         switch (this.type) {
             case CONFIG.DH.GENERAL.rollTypes.spellcast.id:
                 return this.parent.actor?.system?.spellcastModifierTrait?.key ?? 'agility';
             case CONFIG.DH.GENERAL.rollTypes.attack.id:
             case CONFIG.DH.GENERAL.rollTypes.trait.id:
                 return this.useDefault || !this.trait
-                    ? this.parent.item.system.attack?.roll?.trait ?? 'agility'
+                    ? (this.parent.item.system.attack?.roll?.trait ?? 'agility')
                     : this.trait;
             default:
                 return null;
@@ -118,21 +123,21 @@ export default class RollField extends fields.EmbeddedDataField {
      * @param {object} config    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
      */
     static async execute(config) {
-        if(!config.hasRoll) return;
+        if (!config.hasRoll) return;
         config = await this.actor.diceRoll(config);
-        if(!config) return false;
+        if (!config) return false;
     }
-    
+
     /**
      * Update Action Workflow config object.
      * Must be called within Action context.
      * @param {object} config    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
      */
     prepareConfig(config) {
-        if(!config.hasRoll) return;
+        if (!config.hasRoll) return;
 
         config.dialog.configure = RollField.getAutomation() ? !config.dialog.configure : config.dialog.configure;
-        
+
         const roll = {
             baseModifiers: this.roll.getModifier(),
             label: 'Attack',
@@ -152,6 +157,11 @@ export default class RollField extends fields.EmbeddedDataField {
      * @returns {boolean} If execute should be triggered automatically
      */
     static getAutomation() {
-        return (game.user.isGM && game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.roll.gm) || (!game.user.isGM && game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.roll.players)
+        return (
+            (game.user.isGM &&
+                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.roll.gm) ||
+            (!game.user.isGM &&
+                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.roll.players)
+        );
     }
 }
