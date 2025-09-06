@@ -455,7 +455,7 @@ export default function DHApplicationMixin(Base) {
                 options.push({
                     name: 'DAGGERHEART.APPLICATIONS.ContextMenu.sendToChat',
                     icon: 'fa-solid fa-message',
-                    callback: async target => (await getDocFromElement(target)).toChat(this.document.id)
+                    callback: async target => (await getDocFromElement(target)).toChat(this.document.uuid)
                 });
 
             if (deletable)

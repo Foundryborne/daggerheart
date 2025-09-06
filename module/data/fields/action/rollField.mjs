@@ -15,13 +15,17 @@ export class DHActionRollData extends foundry.abstract.DataModel {
             bonus: new fields.NumberField({ nullable: true, initial: null, integer: true }),
             advState: new fields.StringField({
                 choices: CONFIG.DH.ACTIONS.advantageState,
-                initial: 'neutral'
+                initial: 'neutral',
+                nullable: false,
+                required: true
             }),
             diceRolling: new fields.SchemaField({
                 multiplier: new fields.StringField({
                     choices: CONFIG.DH.GENERAL.diceSetNumbers,
                     initial: 'prof',
-                    label: 'DAGGERHEART.ACTIONS.RollField.diceRolling.multiplier'
+                    label: 'DAGGERHEART.ACTIONS.RollField.diceRolling.multiplier',
+                    nullable: false,
+                    required: true
                 }),
                 flatMultiplier: new fields.NumberField({
                     nullable: true,
@@ -31,7 +35,9 @@ export class DHActionRollData extends foundry.abstract.DataModel {
                 dice: new fields.StringField({
                     choices: CONFIG.DH.GENERAL.diceTypes,
                     initial: CONFIG.DH.GENERAL.diceTypes.d6,
-                    label: 'DAGGERHEART.ACTIONS.RollField.diceRolling.dice'
+                    label: 'DAGGERHEART.ACTIONS.RollField.diceRolling.dice',
+                    nullable: false,
+                    required: true
                 }),
                 compare: new fields.StringField({
                     choices: CONFIG.DH.ACTIONS.diceCompare,

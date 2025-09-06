@@ -234,7 +234,7 @@ export class DhLevelup extends foundry.abstract.DataModel {
             const subclassInTier = subclasses.some(x => x.tier === Number(tierKey));
 
             return {
-                name: tier.name,
+                name: game.i18n.localize(tier.name),
                 active: this.currentLevel >= Math.min(...tier.belongingLevels),
                 groups: Object.keys(tier.options).map(optionKey => {
                     const option = tier.options[optionKey];
