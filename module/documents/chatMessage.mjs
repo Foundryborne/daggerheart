@@ -163,6 +163,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
 
         const targetDamage = [];
+        const damagePromises = [];
         for (let target of targets) {
             let damages = foundry.utils.deepClone(this.system.damage);
             if (
@@ -181,28 +182,36 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             }
 
             this.consumeOnSuccess();
-            const updates = this.system.hasHealing
-                ? await target.actor.takeHealing(damages)
-                : await target.actor.takeDamage(damages, this.system.isDirect);
-            targetDamage.push({ token: target, updates: updates });
+            if (this.system.hasHealing)
+                damagePromises.push(
+                    target.actor.takeHealing(damages).then(updates => targetDamage.push({ token: target, updates }))
+                );
+            else
+                damagePromises.push(
+                    target.actor
+                        .takeDamage(damages, this.system.isDirect)
+                        .then(updates => targetDamage.push({ token: target, updates }))
+                );
         }
 
-        const cls = getDocumentClass('ChatMessage');
-        const msg = {
-            user: game.user.id,
-            speaker: cls.getSpeaker(),
-            title: game.i18n.localize(
-                `DAGGERHEART.UI.Chat.damageSummary.${this.system.hasHealing ? 'healingTitle' : 'title'}`
-            ),
-            content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/ui/chat/damageSummary.hbs',
-                {
-                    targets: targetDamage
-                }
-            )
-        };
+        Promise.all(damagePromises).then(async _ => {
+            const cls = getDocumentClass('ChatMessage');
+            const msg = {
+                user: game.user.id,
+                speaker: cls.getSpeaker(),
+                title: game.i18n.localize(
+                    `DAGGERHEART.UI.Chat.damageSummary.${this.system.hasHealing ? 'healingTitle' : 'title'}`
+                ),
+                content: await foundry.applications.handlebars.renderTemplate(
+                    'systems/daggerheart/templates/ui/chat/damageSummary.hbs',
+                    {
+                        targets: targetDamage
+                    }
+                )
+            };
 
-        cls.create(msg);
+            cls.create(msg);
+        });
     }
 
     getAction(actor, itemId, actionId) {
