@@ -20,7 +20,6 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "keyIsID": false,
             "step": null
           }
         ],
@@ -36,12 +35,12 @@
           }
         ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Mark Stress",
         "img": "icons/magic/unholy/projectile-smoke-trail-pink.webp",
-        "range": ""
+        "range": "far"
       }
     },
     "originItemType": null,
@@ -110,10 +109,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1754318976447,
-    "modifiedTime": 1755392035163,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756035450401,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_key": "!items!hAwTXjhyphiE3aeW"
 }

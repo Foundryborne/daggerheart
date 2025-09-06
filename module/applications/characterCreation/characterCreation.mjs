@@ -1,6 +1,5 @@
 import { abilities } from '../../config/actorConfig.mjs';
 import { burden } from '../../config/generalConfig.mjs';
-import { ItemBrowser } from '../ui/itemBrowser.mjs';
 import { createEmbeddedItemsWithEffects, createEmbeddedItemWithEffects } from '../../helpers/utils.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -46,8 +45,6 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         };
 
         this._dragDrop = this._createDragDropHandlers();
-
-        this.itemBrowser = null;
     }
 
     get title() {
@@ -425,17 +422,21 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             equipment = ['armor', 'weapon'];
 
         const presets = {
-            compendium: 'daggerheart',
-            folder: equipment.includes(type) ? 'equipments' : type,
+            folder: equipment.includes(type) ? `equipments.folders.${type}s` : type,
             render: {
                 noFolder: true
             }
         };
 
-        if (type == 'domains')
+        if (type === 'domains')
             presets.filter = {
                 'level.max': { key: 'level.max', value: 1 },
                 'system.domain': { key: 'system.domain', value: this.setup.class?.system.domains ?? null }
+            };
+
+        if (type === 'subclasses')
+            presets.filter = {
+                'system.linkedClass.uuid': { key: 'system.linkedClass.uuid', value: this.setup.class?.uuid }
             };
 
         if (equipment.includes(type))
@@ -444,7 +445,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 'type': { key: 'type', value: type }
             };
 
-        return (this.itemBrowser = await new ItemBrowser({ presets }).render({ force: true }));
+        ui.compendiumBrowser.open(presets);
     }
 
     static async viewItem(_, target) {
@@ -562,7 +563,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             { overwrite: true }
         );
 
-        if (this.itemBrowser) this.itemBrowser.close();
+        if (ui.compendiumBrowser) ui.compendiumBrowser.close();
         this.close();
     }
 

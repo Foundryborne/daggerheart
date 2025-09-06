@@ -408,18 +408,18 @@
             "actionType": "action",
             "cost": [
               {
-                "scalable": false,
                 "key": "fear",
+                "itemId": null,
                 "value": 1,
-                "keyIsID": false,
+                "scalable": false,
                 "step": null,
                 "consumeOnSuccess": false
               },
               {
-                "scalable": false,
-                "key": "UsC0vtOBbf9Kut4v",
+                "key": "resource",
+                "itemId": "UsC0vtOBbf9Kut4v",
                 "value": 1,
-                "keyIsID": true,
+                "scalable": false,
                 "step": null,
                 "consumeOnSuccess": false
               }
@@ -527,10 +527,10 @@
         "exportSource": null,
         "coreVersion": "13.347",
         "systemId": "daggerheart",
-        "systemVersion": "1.0.4",
+        "systemVersion": "1.2.0",
         "createdTime": 1754055703816,
-        "modifiedTime": 1755264604190,
-        "lastModifiedBy": "VZIeX2YDvX338Zvr"
+        "modifiedTime": 1756325576007,
+        "lastModifiedBy": "bjJtdJOhqWr47GhC"
       },
       "_key": "!actors.items!ZNbQ2jg35LG4t9eH.UsC0vtOBbf9Kut4v"
     },

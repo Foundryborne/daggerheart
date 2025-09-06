@@ -1,6 +1,6 @@
 {
   "folder": "1gQpPaxdgvCxYlLs",
-  "name": "Strange Dirty Penant",
+  "name": "Strange Dirty Pendant",
   "type": "loot",
   "_id": "LriTeh9hkwzEaCr1",
   "img": "icons/equipment/neck/necklace-carved-stone-spiral.webp",
@@ -20,12 +20,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754222150005,
-    "modifiedTime": 1754246254311,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
+    "modifiedTime": 1756136989085,
+    "lastModifiedBy": "HKcDBUU22bYKtQmH"
   },
   "_key": "!items!LriTeh9hkwzEaCr1"
 }

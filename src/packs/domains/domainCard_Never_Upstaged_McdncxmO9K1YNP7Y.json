@@ -25,18 +25,20 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
-            "key": "McdncxmO9K1YNP7Y",
+            "key": "resource",
+            "itemId": "McdncxmO9K1YNP7Y",
             "value": 1,
-            "keyIsID": true,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           },
           {
-            "scalable": false,
             "key": "stress",
+            "itemId": null,
             "value": 1,
-            "keyIsID": false,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -67,18 +69,20 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
             "key": "stress",
+            "itemId": null,
             "value": 1,
-            "keyIsID": false,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           },
           {
-            "scalable": false,
-            "key": "McdncxmO9K1YNP7Y",
+            "key": "resource",
+            "itemId": "McdncxmO9K1YNP7Y",
             "value": 2,
-            "keyIsID": true,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -109,18 +113,20 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
             "key": "stress",
+            "itemId": null,
             "value": 1,
-            "keyIsID": false,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           },
           {
-            "scalable": false,
-            "key": "McdncxmO9K1YNP7Y",
+            "key": "resource",
+            "itemId": "McdncxmO9K1YNP7Y",
             "value": 3,
-            "keyIsID": true,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -151,18 +157,20 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
-            "key": "McdncxmO9K1YNP7Y",
+            "key": "resource",
+            "itemId": "McdncxmO9K1YNP7Y",
             "value": 4,
-            "keyIsID": true,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           },
           {
-            "scalable": false,
             "key": "stress",
+            "itemId": null,
             "value": 1,
-            "keyIsID": false,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -198,10 +206,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753922784486,
-    "modifiedTime": 1755429215057,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756325575431,
+    "lastModifiedBy": "bjJtdJOhqWr47GhC"
   },
   "_id": "McdncxmO9K1YNP7Y",
   "sort": 3400000,

@@ -1,0 +1,27 @@
+<section
+    class='tab {{tabs.questions.cssClass}} {{tabs.questions.id}}'
+    data-tab='{{tabs.questions.id}}'
+    data-group='{{tabs.questions.group}}'
+>
+    <div class="questions-container">
+        <fieldset>
+            <legend>{{localize "DAGGERHEART.ACTORS.Character.backgroundQuestions"}}</legend>
+
+            <div class="questions-section">
+                {{#each source.system.backgroundQuestions as | question index |}}
+                    <textarea name="{{concat "system.backgroundQuestions." index}}">{{question}}</textarea>
+                {{/each}}
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>{{localize "DAGGERHEART.ACTORS.Character.connections"}}</legend>
+
+            <div class="questions-section">
+                {{#each source.system.connections as | connection index |}}
+                    <textarea name="{{concat "system.connections." index}}">{{connection}}</textarea>
+                {{/each}}
+            </div>
+        </fieldset>
+    </div>
+</section>

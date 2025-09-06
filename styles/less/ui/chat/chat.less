@@ -2,45 +2,129 @@
 @import '../../utils/fonts.less';
 @import '../../utils/spacing.less';
 
-.theme-light {
-    .daggerheart,
-    #chat-notifications {
+#interface.theme-light {
+    .daggerheart.chat-sidebar .chat-log,
+    #chat-notifications .chat-log {
         --text-color: @dark-blue;
         --bg-color: @dark-blue-40;
 
-        .message-content .chat-roll {
-            .roll-part-header {
-                span,
-                span:before,
-                span:after {
-                    color: @dark-blue;
-                }
-                &:before {
-                    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, @dark-blue 100%);
-                    color: @dark-blue;
+        .chat-message {
+            .roll-formula {
+                background: @dark-15;
+                color: @dark;
+            }
+
+            &.duality {
+                background-image: url(../assets/parchments/dh-parchment-dark.png);
+
+                .message-content {
+                    color: @beige;
                 }
 
-                &:after {
-                    background: linear-gradient(90deg, @dark-blue 0%, rgba(0, 0, 0, 0) 100%);
-                    color: @dark-blue;
+                .roll-formula {
+                    background: @dark-15;
+                    color: @dark;
+                }
+
+                .message-header {
+                    .message-sub-header-container {
+                        color: @beige;
+                        h4 {
+                            color: @golden;
+                        }
+                    }
+                    .message-header-metadata {
+                        .message-metadata {
+                            color: @beige;
+                        }
+                    }
+                }
+
+                &.hope {
+                    --text-color: @golden;
+                    --bg-color: @golden-40;
+                    .message-header,
+                    .message-content {
+                        background-color: @golden-bg;
+                    }
+                    .roll-formula {
+                        background: var(--bg-color);
+                        color: var(--text-color);
+                    }
+                }
+
+                &.fear {
+                    --text-color: @chat-blue;
+                    --bg-color: @chat-blue-40;
+                    .message-header,
+                    .message-content {
+                        background-color: @chat-blue-bg;
+                    }
+                    .roll-formula {
+                        background: var(--bg-color);
+                        color: var(--text-color);
+                    }
+                }
+
+                &.critical {
+                    --text-color: @chat-purple;
+                    --bg-color: @chat-purple-40;
+                    .message-header,
+                    .message-content {
+                        background-color: @chat-purple-bg;
+                    }
+                    .roll-formula {
+                        background: var(--bg-color);
+                        color: var(--text-color);
+                    }
                 }
             }
-            .roll-section {
-                .roll-part-content {
-                    .roll-result-value {
+
+            &:not(.duality) {
+                .font-20 {
+                    color: @dark;
+                }
+
+                .roll-die {
+                    color: @beige;
+                }
+
+                fieldset {
+                    color: @dark-blue;
+                    border-color: @dark-blue;
+
+                    legend {
                         color: @dark-blue;
                     }
+                }
+                .chat-roll {
+                    .roll-part-header {
+                        color: @dark-blue;
 
-                    .dice-tooltip .wrapper .roll-die {
-                        color: @beige;
+                        span::before,
+                        span::after {
+                            color: @dark-blue;
+                        }
+
+                        &:before {
+                            background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, @dark-blue 100%);
+                        }
+
+                        &:after {
+                            background: linear-gradient(90deg, @dark-blue 0%, rgba(0, 0, 0, 0) 100%);
+                        }
+                    }
+
+                    .roll-part-content {
+                        &.dice-result {
+                            color: @dark;
+                        }
+                        .roll-result-container {
+                            color: @dark-blue;
+                        }
                     }
                 }
             }
-        }
-
-        .chat-message .roll-formula {
-            background: @dark-15;
-            color: @dark;
         }
     }
 }
@@ -48,6 +132,7 @@
 .daggerheart.chat {
     &.resource-roll {
         .reroll-message {
+            color: @beige;
             text-align: center;
             font-size: var(--font-size-18);
             margin-bottom: 0;

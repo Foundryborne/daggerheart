@@ -603,15 +603,33 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 0.25rem 0.5rem;
+        flex-wrap: wrap;
 
         label {
-            font-size: var(--font-size-16);
+            font-size: var(--font-size-14);
+            font-weight: normal;
         }
 
         .form-fields {
             display: flex;
             gap: 4px;
             align-items: center;
+        }
+
+        &.setting-two-values {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.25rem 0.5rem;
+
+            .form-group {
+                justify-content: end;
+                flex-wrap: nowrap;
+            }
+
+            .hint {
+                grid-column: 1 / -1;
+            }
         }
     }
 }

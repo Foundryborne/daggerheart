@@ -11,6 +11,21 @@
         padding-bottom: 0;
         overflow-x: auto;
 
+        &.viewMode {
+            button:not(.btn-toggle-view),
+            input:not(.search),
+            .controls,
+            .character-sidebar-sheet,
+            .img-portait,
+            .name-row,
+            .hope-section,
+            .downtime-section,
+            .character-traits,
+            .card-list {
+                pointer-events: none;
+            }
+        }
+
         .character-sidebar-sheet {
             grid-row: 1 / span 2;
             grid-column: 1;

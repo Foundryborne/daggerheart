@@ -1,6 +1,9 @@
-<fieldset class="flex">
-    <legend>{{localize "DAGGERHEART.GENERAL.save"}}</legend>
-    {{formField fields.trait label="Trait" name="save.trait" value=source.trait localize=true}}
-    {{formField fields.difficulty label="Difficulty" name="save.difficulty" value=source.difficulty disabled=(not source.trait) placeholder=@root.baseSaveDifficulty}}
-    {{formField fields.damageMod label="Damage on Save" name="save.damageMod" value=source.damageMod localize=true disabled=(not source.trait)}}
+<fieldset class="one-column">
+    <legend>{{localize "DAGGERHEART.GENERAL.Roll.reaction"}}</legend>
+    <p class="hint">{{localize "DAGGERHEART.ACTIONS.Settings.saveHint"}}</p>
+    <div class="nest-inputs">
+        {{formField fields.trait label="Trait" name="save.trait" value=source.trait localize=true}}
+        {{formField fields.difficulty label="Difficulty" name="save.difficulty" value=source.difficulty disabled=(not source.trait) placeholder=@root.baseSaveDifficulty}}
+        {{formField fields.damageMod label="Damage on Save" name="save.damageMod" value=source.damageMod localize=true disabled=(not source.trait)}}
+    </div>
 </fieldset>

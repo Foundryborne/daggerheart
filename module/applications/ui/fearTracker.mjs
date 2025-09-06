@@ -1,4 +1,4 @@
-import { emitAsGM, GMUpdateEvent, socketEvent } from "../../systemRegistration/socket.mjs";
+import { emitAsGM, GMUpdateEvent, socketEvent } from '../../systemRegistration/socket.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -78,7 +78,7 @@ export default class FearTracker extends HandlebarsApplicationMixin(ApplicationV
 
     /** @override */
     async _preRender(context, options) {
-        if (this.currentFear > this.maxFear)
+        if (this.currentFear > this.maxFear && game.user.isGM)
             await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear, this.maxFear);
     }
 
@@ -106,19 +106,10 @@ export default class FearTracker extends HandlebarsApplicationMixin(ApplicationV
     }
 
     async updateFear(value) {
-        return emitAsGM(GMUpdateEvent.UpdateFear, game.settings.set.bind(game.settings, CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear), value);
-        /* if(!game.user.isGM)
-            await game.socket.emit(`system.${CONFIG.DH.id}`, {
-                action: socketEvent.GMUpdate,
-                data: {
-                    action: GMUpdateEvent.UpdateFear,
-                    update: value
-                }
-            });
-        else 
-            game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear, value); */
-        /* if (!game.user.isGM) return;
-        value = Math.max(0, Math.min(this.maxFear, value));
-        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear, value); */
+        return emitAsGM(
+            GMUpdateEvent.UpdateFear,
+            game.settings.set.bind(game.settings, CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
+            value
+        );
     }
 }

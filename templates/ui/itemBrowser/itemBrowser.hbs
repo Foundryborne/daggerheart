@@ -1,5 +1,5 @@
 <div class="compendium-results">
-    {{#if menu.data }}
+    {{#if menu.path.length }}
         <div class="menu-path">
             {{#each menu.path}}
                 {{#if (eq this "folders")}}
@@ -19,67 +19,23 @@
                     </div>
                     <input type="search" name="search" class="search-input" placeholder="{{localize 'DAGGERHEART.UI.ItemBrowser.searchPlaceholder'}}">
                 </div>
-                {{#if fieldFilter.length}}
-                    <a data-tooltip="{{localize 'DAGGERHEART.UI.ItemBrowser.tooltipFilters'}}" data-action="expandContent"><i class="fa-solid fa-filter"></i></a>
-                {{/if}}
+                <a data-tooltip="{{localize 'DAGGERHEART.UI.ItemBrowser.tooltipFilters'}}" data-action="expandContent" disabled><i class="fa-solid fa-filter"></i></a>
                 <a data-tooltip="{{localize 'DAGGERHEART.UI.ItemBrowser.tooltipErase'}}" data-action="resetFilters"><i class="fa-solid fa-eraser"></i></a>
             </div>
             <div class="filter-content extensible">
-                <div class="wrapper">
-                    {{#each fieldFilter}}
-                        {{#if choices }}
-                            <div class="form-group"{{#with (lookup @root.presets.filter key)}}{{#if forced}} disabled{{/if}}{{/with}}>
-                                <label>{{localize label}}</label>
-                                <div class="form-fields">
-                                    <select data-key="{{key}}" name={{name}}>
-                                        {{selectOptions choices valueAttr="value" blank="" localize=true selected=value}}
-                                    </select>
-                                </div>
-                            </div>
-                        {{else}}
-                            {{#if filtered }}
-                                {{formField field localize=true blank="" name=name choices=(@root.formatChoices this) valueAttr="value" dataset=(object key=key) value=value}}
-                            {{else}}
-                                {{#if field.label}}
-                                    {{formField field localize=true blank="" name=name dataset=(object key=key) value=value}}
-                                {{else}}
-                                    {{formField field localize=true blank="" name=name dataset=(object key=key) label=label value=value}}
-                                {{/if}}
-                            {{/if}}
-                        {{/if}}
-                    {{/each}}
-                </div>
+                <div class="wrapper"></div>
             </div>
         </div>
-        {{!-- <div class="item-list-container"> --}}
-            {{#if menu.data.columns.length}}
-                <div class="item-list-header">
-                    <div class="item-list-img"></div>
-                    <div class="item-list-name" data-sort-key="name" data-sort-type="ASC" data-action="sortList">{{localize 'DAGGERHEART.UI.ItemBrowser.columnName'}}</div>
-                        {{#each menu.data.columns}}
-                            <span data-sort-key="{{key}}" data-sort-type="" data-action="sortList">{{localize label}}</span>
-                        {{/each}}
-                    </div>
-            {{/if}}
-            <div class="item-list">
-                {{#each items}}
-                    <div class="item-container" data-item-uuid="{{uuid}}" draggable="true">
-                        <div class="item-header">
-                            <div class="item-info" data-action="expandContent">
-                                <img src="{{img}}" data-item-key="img" class="item-list-img">
-                                <span data-item-key="name" class="item-list-name">{{name}}</span>
-                                {{#each ../menu.data.columns}}
-                                    <span data-item-key="{{key}}">{{#with (@root.formatLabel ../this this) as | label |}}{{{label}}}{{/with}}</span>
-                                {{/each}}
-                            </div>
-                        </div>
-                        <div class="item-desc extensible">
-                            <span class="wrapper">{{{system.description}}}</span>
-                        </div>
-                    </div>
-                {{/each}}
-            </div>
-        {{!-- </div> --}}
+        {{#if menu.data.columns.length}}
+            <div class="item-list-header">
+                <div class="item-list-img"></div>
+                <div class="item-list-name" data-sort-key="name" data-sort-type="ASC" data-action="sortList">{{localize 'DAGGERHEART.UI.ItemBrowser.columnName'}}</div>
+                    {{#each menu.data.columns}}
+                        <div data-sort-key="{{key}}" data-sort-type="" data-action="sortList">{{localize label}}</div>
+                    {{/each}}
+                </div>
+        {{/if}}
+        <div class="item-list"></div>
     {{else}}
         <div class="welcome-message">
             <h2 class="title">{{localize "DAGGERHEART.UI.ItemBrowser.title"}}</h2>

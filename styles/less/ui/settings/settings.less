@@ -4,7 +4,7 @@
     fieldset {
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 0.5rem;
 
         &.two-columns {
             display: grid;
@@ -14,6 +14,12 @@
             &.even {
                 grid-template-columns: 1fr 1fr;
             }
+        }
+
+        &.six-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+            gap: 2px;
         }
 
         &.start-align {
@@ -26,6 +32,7 @@
         display: flex;
         align-items: center;
         gap: 8px;
+        flex-wrap: nowrap;
     }
 
     .settings-items {
@@ -103,28 +110,9 @@
         gap: 4px;
     }
 
-    .trait-array-container {
-        display: flex;
-        justify-content: space-evenly;
-        gap: 8px;
-        margin-bottom: 16px;
-
-        .trait-array-item {
-            position: relative;
-            display: flex;
-            justify-content: center;
-
-            label {
-                position: absolute;
-                top: -7px;
-                font-size: var(--font-size-12);
-                font-variant: petite-caps;
-                z-index: 2;
-            }
-
-            input {
-                text-align: center;
-            }
+    .trait-item {
+        input {
+            text-align: center;
         }
     }
 

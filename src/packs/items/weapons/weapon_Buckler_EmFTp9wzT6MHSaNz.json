@@ -20,11 +20,12 @@
         },
         "cost": [
           {
-            "key": "armorSlot",
+            "key": "resource",
+            "itemId": "armorSlot",
             "value": 1,
-            "keyIsID": false,
             "scalable": false,
-            "step": null
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "effects": [
@@ -196,10 +197,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753795181779,
-    "modifiedTime": 1755430450631,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756325575921,
+    "lastModifiedBy": "bjJtdJOhqWr47GhC"
   },
   "_key": "!items!EmFTp9wzT6MHSaNz"
 }
