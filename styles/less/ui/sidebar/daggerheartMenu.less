@@ -1,0 +1,38 @@
+.tab.sidebar-tab.daggerheartMenu-sidebar {
+    padding: 0 4px;
+
+    .menu-refresh-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .menu-refresh-inner-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+
+            .experience-chip {
+                display: flex;
+                align-items: center;
+                border-radius: 5px;
+                width: fit-content;
+                gap: 5px;
+                cursor: pointer;
+                padding: 5px;
+                background: light-dark(@dark-blue-10, @golden-10);
+                color: light-dark(@dark-blue, @golden);
+
+                .label {
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 17px;
+                }
+
+                &.selected {
+                    background: light-dark(@dark-blue-40, @golden-40);
+                }
+            }
+        }
+    }
+}

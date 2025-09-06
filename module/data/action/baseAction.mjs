@@ -28,7 +28,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             actionType: new fields.StringField({
                 choices: CONFIG.DH.ITEM.actionTypes,
                 initial: 'action',
-                nullable: true
+                nullable: false,
+                required: true
             })
         };
 

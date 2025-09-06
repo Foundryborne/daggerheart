@@ -206,7 +206,9 @@ export class DHActionDiceData extends foundry.abstract.DataModel {
             multiplier: new fields.StringField({
                 choices: CONFIG.DH.GENERAL.multiplierTypes,
                 initial: 'prof',
-                label: 'DAGGERHEART.ACTIONS.Config.damage.multiplier'
+                label: 'DAGGERHEART.ACTIONS.Config.damage.multiplier',
+                nullable: false,
+                required: true
             }),
             flatMultiplier: new fields.NumberField({
                 nullable: true,
@@ -216,7 +218,9 @@ export class DHActionDiceData extends foundry.abstract.DataModel {
             dice: new fields.StringField({
                 choices: CONFIG.DH.GENERAL.diceTypes,
                 initial: 'd6',
-                label: 'DAGGERHEART.GENERAL.Dice.single'
+                label: 'DAGGERHEART.GENERAL.Dice.single',
+                nullable: false,
+                required: true
             }),
             bonus: new fields.NumberField({ nullable: true, initial: null, label: 'DAGGERHEART.GENERAL.bonus' }),
             custom: new fields.SchemaField({

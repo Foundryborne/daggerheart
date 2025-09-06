@@ -110,13 +110,14 @@
   "effects": [
     {
       "name": "Protective",
-      "description": "Add your character's Tier to your Armor Score",
+      "description": "<p>Add the item's Tier to your Armor Score</p>",
       "img": "icons/skills/melee/shield-block-gray-orange.webp",
       "changes": [
         {
           "key": "system.armorScore",
           "mode": 2,
-          "value": "ITEM.@system.tier"
+          "value": "ITEM.@system.tier",
+          "priority": null
         }
       ],
       "_id": "Z2p00q5h6x6seXys",
@@ -125,7 +126,12 @@
       "disabled": false,
       "duration": {
         "startTime": null,
-        "combat": null
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
       },
       "origin": null,
       "tint": "#ffffff",
@@ -137,12 +143,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.348",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1753796983285,
-        "modifiedTime": 1753796983285,
-        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+        "modifiedTime": 1756682777682,
+        "lastModifiedBy": "mdk78Q6pOyHh6aBg"
       },
       "_key": "!items.effects!A28WL9E2lJ3iLZHW.Z2p00q5h6x6seXys"
     }

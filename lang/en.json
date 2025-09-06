@@ -501,18 +501,21 @@
                 },
                 "takeLevelUp": "Finish Level Up",
                 "tier2": {
+                    "name": "Tier 2",
                     "label": "Levels 2-4",
                     "infoLabel": "At Level 2, gain an additional Experience at +2 and gain a +1 bonus to your Proficiency.",
                     "pretext": "Choose two options from the list below",
                     "posttext": "Take an additional domain card of your level or lower from a domain you have access to."
                 },
                 "tier3": {
+                    "name": "Tier 3",
                     "label": "Levels 5-7",
                     "infoLabel": "At Level 5, take an additional Experience and clear all marks on Character Traits.",
                     "pretext": "When you level up, record it on your character sheet, then choose two from the list below or any unmarked from the previous tier.",
                     "posttext": "Take an additional domain card of your level or lower from a domain you have access to."
                 },
                 "tier4": {
+                    "name": "Tier 4",
                     "label": "Levels 8-10",
                     "infoLabel": "At Level 8, take an additional Experience and clear all marks on Character Traits.",
                     "pretext": "When you level up, record it on your character sheet, then choose two from the list below or any unmarked from the previous tier.",
@@ -1025,6 +1028,12 @@
             "SelectAction": {
                 "selectType": "Select Action Type",
                 "selectAction": "Action Selection"
+            },
+            "TargetTypes": {
+                "any": "Any",
+                "friendly": "Friendly",
+                "hostile": "Hostile",
+                "self": "Self"
             },
             "TemplateTypes": {
                 "circle": "Circle",
@@ -1917,7 +1926,10 @@
                 "roll": "Roll",
                 "rules": "Rules",
                 "types": "Types",
-                "questions": "Questions"
+                "itemFeatures": "Item Features",
+                "questions": "Questions",
+                "configuration": "Configuration",
+                "base": "Base"
             },
             "Tiers": {
                 "singular": "Tier",
@@ -1934,6 +1946,7 @@
             "amount": "Amount",
             "any": "Any",
             "armor": "Armor",
+            "armorFeatures": "Armor Features",
             "armors": "Armors",
             "armorScore": "Armor Score",
             "activeEffects": "Active Effects",
@@ -2026,6 +2039,8 @@
             "save": "Save",
             "scalable": "Scalable",
             "situationalBonus": "Situational Bonus",
+            "spent": "Spent",
+            "step": "Step",
             "stress": "Stress",
             "subclasses": "Subclasses",
             "success": "Success",
@@ -2046,6 +2061,7 @@
             "used": "Used",
             "uses": "Uses",
             "value": "Value",
+            "weaponFeatures": "Weapon Features",
             "weapons": "Weapons",
             "withThing": "With {thing}"
         },
@@ -2276,7 +2292,9 @@
             },
             "Homebrew": {
                 "newDowntimeMove": "Downtime Move",
+                "newFeature": "New ItemFeature",
                 "downtimeMoves": "Downtime Moves",
+                "itemFeatures": "Item Features",
                 "nrChoices": "# Moves Per Rest",
                 "resetMovesTitle": "Reset {type} Downtime Moves",
                 "resetMovesText": "Are you sure you want to reset?",
@@ -2430,6 +2448,10 @@
                     "applyHealing": "Apply Healing"
                 },
                 "markResource": "Mark {quantity} {resource}",
+                "refreshMessage": {
+                    "title": "Feature Refresh",
+                    "header": "Refreshed"
+                },
                 "reroll": {
                     "confirmTitle": "Reroll Dice",
                     "confirmText": "Are you sure you want to reroll?"
@@ -2544,7 +2566,15 @@
                 "multiclassAlreadyPresent": "You already have a class and multiclass",
                 "subclassesAlreadyPresent": "You already have a class and multiclass subclass",
                 "noDiceSystem": "Your selected dice {system} does not have a {faces} dice",
+                "gmMenuRefresh": "You refreshed all actions and resources {types}",
                 "subclassAlreadyLinked": "{name} is already a subclass in the class {class}. Remove it from there if you want it to be a subclass to this class."
+            },
+            "Sidebar": {
+                "daggerheartMenu": {
+                    "title": "Daggerheart Menu",
+                    "startSession": "Start Session",
+                    "startScene": "Start Scene"
+                }
             },
             "Tooltip": {
                 "disableEffect": "Disable Effect",

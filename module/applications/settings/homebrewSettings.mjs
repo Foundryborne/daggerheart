@@ -53,6 +53,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         settings: { template: 'systems/daggerheart/templates/settings/homebrew-settings/settings.hbs' },
         domains: { template: 'systems/daggerheart/templates/settings/homebrew-settings/domains.hbs' },
         types: { template: 'systems/daggerheart/templates/settings/homebrew-settings/types.hbs' },
+        itemTypes: { template: 'systems/daggerheart/templates/settings/homebrew-settings/itemFeatures.hbs' },
         downtime: { template: 'systems/daggerheart/templates/settings/homebrew-settings/downtime.hbs' },
         footer: { template: 'systems/daggerheart/templates/settings/homebrew-settings/footer.hbs' }
     };
@@ -60,7 +61,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
     /** @inheritdoc */
     static TABS = {
         main: {
-            tabs: [{ id: 'settings' }, { id: 'domains' }, { id: 'types' }, { id: 'downtime' }],
+            tabs: [{ id: 'settings' }, { id: 'domains' }, { id: 'types' }, { id: 'itemFeatures' }, { id: 'downtime' }],
             initial: 'settings',
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
@@ -115,33 +116,53 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
     }
 
     static async addItem(_, target) {
-        await this.settings.updateSource({
-            [`restMoves.${target.dataset.type}.moves.${foundry.utils.randomID()}`]: {
-                name: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.newDowntimeMove'),
-                img: 'icons/magic/life/cross-worn-green.webp',
-                description: '',
-                actions: []
-            }
-        });
+        const { type } = target.dataset;
+        if (['shortRest', 'longRest'].includes(type)) {
+            await this.settings.updateSource({
+                [`restMoves.${type}.moves.${foundry.utils.randomID()}`]: {
+                    name: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.newDowntimeMove'),
+                    img: 'icons/magic/life/cross-worn-green.webp',
+                    description: '',
+                    actions: []
+                }
+            });
+        } else if (['armorFeatures', 'weaponFeatures'].includes(type)) {
+            await this.settings.updateSource({
+                [`itemFeatures.${type}.${foundry.utils.randomID()}`]: {
+                    name: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.newFeature'),
+                    img: 'icons/magic/life/cross-worn-green.webp',
+                    description: '',
+                    actions: [],
+                    effects: []
+                }
+            });
+        }
+
         this.render();
     }
 
     static async editItem(_, target) {
-        const move = this.settings.restMoves[target.dataset.type].moves[target.dataset.id];
-        const path = `restMoves.${target.dataset.type}.moves.${target.dataset.id}`;
-        const editedMove = await game.system.api.applications.sheetConfigs.DowntimeConfig.configure(
-            move,
-            path,
-            this.settings
-        );
-        if (!editedMove) return;
+        const { type, id } = target.dataset;
+        const isDowntime = ['shortRest', 'longRest'].includes(type);
+        const path = isDowntime ? `restMoves.${type}.moves.${id}` : `itemFeatures.${type}.${id}`;
+        const featureBase = isDowntime ? this.settings.restMoves[type].moves[id] : this.settings.itemFeatures[type][id];
 
-        await this.updateAction.bind(this)(editedMove, target.dataset.type, target.dataset.id);
+        const editedBase = await game.system.api.applications.sheetConfigs.SettingFeatureConfig.configure(
+            featureBase,
+            path,
+            this.settings,
+            { hasIcon: isDowntime, hasEffects: !isDowntime }
+        );
+        if (!editedBase) return;
+
+        await this.updateAction.bind(this)(editedBase, target.dataset.type, target.dataset.id);
     }
 
     async updateAction(data, type, id) {
+        const isDowntime = ['shortRest', 'longRest'].includes(type);
+        const path = isDowntime ? `restMoves.${type}.moves` : `itemFeatures.${type}`;
         await this.settings.updateSource({
-            [`restMoves.${type}.moves.${id}`]: {
+            [`${path}.${id}`]: {
                 actions: data.actions,
                 name: data.name,
                 icon: data.icon,
@@ -149,12 +170,16 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
                 description: data.description
             }
         });
+
         this.render();
     }
 
     static async removeItem(_, target) {
+        const { type, id } = target.dataset;
+        const isDowntime = ['shortRest', 'longRest'].includes(type);
+        const path = isDowntime ? `restMoves.${type}.moves` : `itemFeatures.${type}`;
         await this.settings.updateSource({
-            [`restMoves.${target.dataset.type}.moves.-=${target.dataset.id}`]: null
+            [`${path}.-=${id}`]: null
         });
         this.render();
     }

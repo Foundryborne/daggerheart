@@ -1,10 +1,11 @@
 ---
 name: Pull Request
 about: Create a new pull request
-title: "[PR] <Insert Title here>"
+title: '[PR] <Insert Title here>'
 labels: pr
 assignees: ''
 ---
+
 Is this a community PR? Please go to preview tab and click [here](?expand=1&template=community_pull_request_template.md). If not, delete this line.
 
 ## Description

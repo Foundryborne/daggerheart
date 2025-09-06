@@ -66,7 +66,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
             group: 'primary',
             id: 'base',
             icon: null,
-            label: 'Base'
+            label: 'DAGGERHEART.GENERAL.Tabs.base'
         },
         config: {
             active: false,
@@ -74,7 +74,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
             group: 'primary',
             id: 'config',
             icon: null,
-            label: 'Configuration'
+            label: 'DAGGERHEART.GENERAL.Tabs.configuration'
         },
         effect: {
             active: false,
@@ -82,7 +82,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
             group: 'primary',
             id: 'effect',
             icon: null,
-            label: 'Effect'
+            label: 'DAGGERHEART.GENERAL.Tabs.effects'
         }
     };
 
@@ -138,7 +138,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
             };
         }
 
-        if (this.action.parent.metadata.isQuantifiable) {
+        if (this.action.parent.metadata?.isQuantifiable) {
             options.quantity = {
                 label: 'DAGGERHEART.GENERAL.itemQuantity',
                 group: 'Global'

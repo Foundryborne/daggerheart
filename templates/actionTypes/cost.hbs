@@ -1,6 +1,6 @@
 <fieldset class="one-column" data-key="cost">
     <legend>
-        Cost
+        {{localize "DAGGERHEART.GENERAL.Cost.single"}}
         <a><i class="fa-solid fa-plus icon-button" data-action="addElement"></i></a>
     </legend>
     {{#each source as |cost index|}}
@@ -8,10 +8,10 @@
             {{formField ../fields.consumeOnSuccess value=cost.consumeOnSuccess name=(concat "cost." index ".consumeOnSuccess") classes="checkbox" rootId=partId localize=true}}
         {{/if}}
         <div class="nest-inputs">
-            {{formField ../fields.scalable label="Scalable" value=cost.scalable name=(concat "cost." index ".scalable") classes="checkbox"}}
-            {{formField ../fields.key choices=(@root.disableOption index @root.costOptions ../source) label="Resource" value=cost.key name=(concat "cost." index ".key") localize=true blank=false}}
-            {{formField ../fields.value label="Amount" value=cost.value name=(concat "cost." index ".value")}}
-            {{formField ../fields.step label="Step" value=cost.step name=(concat "cost." index ".step") disabled=(not cost.scalable)}}
+            {{formField ../fields.scalable label="DAGGERHEART.GENERAL.scalable" value=cost.scalable name=(concat "cost." index ".scalable") classes="checkbox" localize=true}}
+            {{formField ../fields.key choices=(@root.disableOption index @root.costOptions ../source) label="DAGGERHEART.GENERAL.resource" value=cost.key name=(concat "cost." index ".key") localize=true blank=false}}
+            {{formField ../fields.value label="DAGGERHEART.GENERAL.amount" value=cost.value name=(concat "cost." index ".value") localize=true}}
+            {{formField ../fields.step label="DAGGERHEART.GENERAL.step" value=cost.step name=(concat "cost." index ".step") disabled=(not cost.scalable) localize=true}}
             <a class="btn" data-tooltip="{{localize "CONTROLS.CommonDelete"}}" data-action="removeElement" data-index="{{index}}"><i class="fas fa-trash"></i></a>
         </div>
     {{/each}}
