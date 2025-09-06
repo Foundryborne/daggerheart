@@ -1,14 +1,13 @@
 const fields = foundry.data.fields;
 
 export default class RangeField extends fields.StringField {
-    
     /** @inheritDoc */
     constructor(context = {}) {
         const options = {
             choices: CONFIG.DH.GENERAL.range,
             required: false,
             blank: true,
-            label: "DAGGERHEART.GENERAL.range"
+            label: 'DAGGERHEART.GENERAL.range'
         };
         super(options, context);
     }

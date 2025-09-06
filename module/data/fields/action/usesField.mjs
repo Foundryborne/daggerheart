@@ -7,7 +7,7 @@ export default class UsesField extends fields.SchemaField {
      * Action Workflow order
      */
     static order = 160;
-    
+
     /** @inheritDoc */
     constructor(options = {}, context = {}) {
         const usesFields = {
@@ -62,7 +62,7 @@ export default class UsesField extends fields.SchemaField {
     /**
      * Prepare Uses object for Action Workflow
      * Must be called within Action context.
-     * @param {object} uses 
+     * @param {object} uses
      * @returns {object}
      */
     static calcUses(uses) {
@@ -77,7 +77,7 @@ export default class UsesField extends fields.SchemaField {
     /**
      * Check if the Action still get atleast one unspent uses.
      * Must be called within Action context.
-     * @param {*} uses 
+     * @param {*} uses
      * @returns {boolean}
      */
     static hasUses(uses) {

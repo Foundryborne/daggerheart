@@ -536,7 +536,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
     static async viewCompendium(event, target) {
         const type = target.dataset.compendium ?? target.dataset.type;
 
-        const presets = {   
+        const presets = {
             folder: type,
             render: {
                 noFolder: true

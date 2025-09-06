@@ -1,7 +1,6 @@
 const fields = foundry.data.fields;
 
 export default class TargetField extends fields.SchemaField {
-    
     /** @inheritDoc */
     constructor(options = {}, context = {}) {
         const targetFields = {
@@ -21,7 +20,7 @@ export default class TargetField extends fields.SchemaField {
      * @param {object} config    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
      */
     prepareConfig(config) {
-        if (!this.target?.type) return config.targets = [];
+        if (!this.target?.type) return (config.targets = []);
         config.hasTarget = true;
         let targets;
         // If the Action is configured as self-targeted, set targets as the owner.
@@ -62,15 +61,11 @@ export default class TargetField extends fields.SchemaField {
      * @returns {boolean}       If both actors respect the provided type.
      */
     static isTargetFriendly(actor, target, type) {
-        const actorDisposition = actor.token
-                ? actor.token.disposition
-                : actor.prototypeToken.disposition,
+        const actorDisposition = actor.token ? actor.token.disposition : actor.prototypeToken.disposition,
             targetDisposition = target.document.disposition;
         return (
-            (type === CONFIG.DH.GENERAL.targetTypes.friendly.id &&
-                actorDisposition === targetDisposition) ||
-            (type === CONFIG.DH.GENERAL.targetTypes.hostile.id &&
-                actorDisposition + targetDisposition === 0)
+            (type === CONFIG.DH.GENERAL.targetTypes.friendly.id && actorDisposition === targetDisposition) ||
+            (type === CONFIG.DH.GENERAL.targetTypes.hostile.id && actorDisposition + targetDisposition === 0)
         );
     }
 

@@ -31,20 +31,20 @@ export const gameSettings = {
 };
 
 export const actionAutomationChoices = {
-    never: { 
-        id: "never",
-        label: "Never"
+    never: {
+        id: 'never',
+        label: 'Never'
     },
     showDialog: {
-        id: "showDialog",
-        label: "Show Dialog only"
+        id: 'showDialog',
+        label: 'Show Dialog only'
     },
     // npcOnly: {
-        // id: "npcOnly",
-        // label: "Always for non-characters"
+    // id: "npcOnly",
+    // label: "Always for non-characters"
     // },
     always: {
-        id: "always",
-        label: "Always"
+        id: 'always',
+        label: 'Always'
     }
-}
+};

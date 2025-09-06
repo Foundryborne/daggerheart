@@ -8,7 +8,7 @@ export default class MacroField extends fields.DocumentUUIDField {
 
     /** @inheritDoc */
     constructor(context = {}) {
-        super({ type: "Macro" }, context);
+        super({ type: 'Macro' }, context);
     }
 
     /**
