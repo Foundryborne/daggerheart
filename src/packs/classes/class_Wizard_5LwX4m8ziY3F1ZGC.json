@@ -63,7 +63,17 @@
       "source": "Daggerheart SRD",
       "page": 25,
       "artist": ""
-    }
+    },
+    "backgroundQuestions": [
+      "What responsibilities did your community once count on you for?\nHow did you let them down?",
+      "You’ve spent your life searching for a book or object of great\nsignificance. What is it, and why is it so important to you?",
+      "You have a powerful rival. Who are they, and why are you so determined to defeat them?"
+    ],
+    "connections": [
+      "What favor have I asked of you that you’re not sure you can fulfill?",
+      "What weird hobby or strange fascination do we both share?",
+      "What secret about yourself have you entrusted only to me?"
+    ]
   },
   "effects": [],
   "folder": null,
@@ -79,10 +89,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.0",
+    "systemVersion": "1.1.2",
     "createdTime": 1754253505323,
-    "modifiedTime": 1755943555087,
-    "lastModifiedBy": "tt3PwMBXcTLCtIQU"
+    "modifiedTime": 1756391897762,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!5LwX4m8ziY3F1ZGC"
 }

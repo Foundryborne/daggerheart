@@ -170,7 +170,9 @@
                     "hint": "Add single words or short text as reminders and hints of what a character has advantage on."
                 },
                 "age": "Age",
+                "backgroundQuestions": "Backgrounds",
                 "companionFeatures": "Companion Features",
+                "connections": "Connections",
                 "contextMenu": {
                     "consume": "Consume Item",
                     "equip": "Equip",
@@ -267,7 +269,8 @@
                     "experience": "Experience",
                     "traits": "Traits",
                     "domainCards": "Domain Cards",
-                    "equipment": "Equipment"
+                    "equipment": "Equipment",
+                    "story": "Story"
                 },
                 "ancestryNamePlaceholder": "Your ancestry's name",
                 "buttonTitle": "Character Setup",
@@ -288,6 +291,7 @@
                 "selectSubclass": "Select Subclass",
                 "startingItems": "Starting Items",
                 "story": "Story",
+                "storyExplanation": "Select which background and connection prompts you want to copy into your character's background.",
                 "suggestedArmor": "Suggested Armor",
                 "suggestedPrimaryWeapon": "Suggested Primary Weapon",
                 "suggestedSecondaryWeapon": "Suggested Secondary Weapon",
@@ -1913,7 +1917,8 @@
                 "roll": "Roll",
                 "rules": "Rules",
                 "types": "Types",
-                "itemFeatures": "Item Features"
+                "itemFeatures": "Item Features",
+                "questions": "Questions"
             },
             "Tiers": {
                 "singular": "Tier",
@@ -2150,20 +2155,43 @@
         "SETTINGS": {
             "Appearance": {
                 "FIELDS": {
-                    "displayFear": { "label": "Fear Display" },
-                    "dualityColorScheme": { "label": "Chat Style" },
-                    "hideAttribution": { "label": "Hide Attribution" },
+                    "displayFear": {
+                        "label": "Display Fear"
+                    },
+                    "showGenericStatusEffects": {
+                        "label": "Show Foundry Status Effects"
+                    },
+                    "hideAttribution": {
+                        "label": "Hide Attribution"
+                    },
                     "expandedTitle": "Auto-expand Descriptions",
-                    "extendCharacterDescriptions": { "label": "Characters" },
-                    "extendAdversaryDescriptions": { "label": "Adversaries" },
-                    "extendEnvironmentDescriptions": { "label": "Environments" },
-                    "extendItemDescriptions": { "label": "Items" },
-                    "expandRollMessage": "Auto-expand Message Sections",
-                    "expandRollMessageDesc": { "label": "Description" },
-                    "expandRollMessageRoll": { "label": "Formula" },
-                    "expandRollMessageDamage": { "label": "Damage/Healing" },
-                    "expandRollMessageTarget": { "label": "Target" },
-                    "showGenericStatusEffects": { "label": "Show Foundry Status Effects" }
+                    "extendCharacterDescriptions": {
+                        "label": "Characters"
+                    },
+                    "extendAdversaryDescriptions": {
+                        "label": "Adversaries"
+                    },
+                    "extendEnvironmentDescriptions": {
+                        "label": "Environments"
+                    },
+                    "extendItemDescriptions": {
+                        "label": "Items"
+                    },
+                    "expandRollMessage": {
+                        "title": "Auto-expand Message Sections",
+                        "desc": {
+                            "label": "Description"
+                        },
+                        "roll": {
+                            "label": "Formula"
+                        },
+                        "damage": {
+                            "label": "Damage/Healing"
+                        },
+                        "target": {
+                            "label": "Target"
+                        }
+                    }
                 },
                 "fearDisplay": {
                     "token": "Tokens",
@@ -2310,10 +2338,8 @@
                     "hint": "System ruler setup for displaying ranges in Daggerheart"
                 },
                 "appearance": {
-                    "title": "Appearance Settings",
                     "label": "Appearance Settings",
                     "hint": "Modify the look of various parts of the system",
-                    "name": "Appearance Settings",
                     "duality": "Duality Rolls",
                     "diceSoNice": {
                         "title": "Dice So Nice",

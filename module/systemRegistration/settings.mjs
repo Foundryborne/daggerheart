@@ -72,7 +72,7 @@ const registerMenus = () => {
     });
 
     game.settings.registerMenu(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance, {
-        name: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.appearance.title'),
+        name: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.appearance.label'),
         label: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.appearance.label'),
         hint: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.appearance.hint'),
         icon: 'fa-solid fa-palette',
