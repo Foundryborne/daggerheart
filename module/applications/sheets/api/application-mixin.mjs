@@ -1,6 +1,5 @@
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 import { getDocFromElement, getDocFromElementSync, tagifyElement } from '../../../helpers/utils.mjs';
-import { ItemBrowser } from '../../ui/itemBrowser.mjs';
 
 const typeSettingsMap = {
     character: 'extendCharacterDescriptions',
@@ -413,6 +412,19 @@ export default function DHApplicationMixin(Base) {
 
             if (usable) {
                 options.unshift({
+                    name: 'DAGGERHEART.APPLICATIONS.ContextMenu.cancelBeastform',
+                    icon: 'fa-solid fa-ban',
+                    condition: target => {
+                        const doc = getDocFromElementSync(target);
+                        return doc && doc.system?.actions?.some(a => a.type === 'beastform');
+                    },
+                    callback: async target =>
+                        game.system.api.fields.ActionFields.BeastformField.handleActiveTransformations.call(
+                            await getDocFromElement(target)
+                        )
+                });
+
+                options.unshift({
                     name: 'DAGGERHEART.GENERAL.damage',
                     icon: 'fa-solid fa-explosion',
                     condition: target => {
@@ -422,7 +434,9 @@ export default function DHApplicationMixin(Base) {
                     callback: async (target, event) => {
                         const doc = await getDocFromElement(target),
                             action = doc?.system?.attack ?? doc;
-                        return action && action.use(event, { byPassRoll: true });
+                        const config = action.prepareConfig(event);
+                        config.hasRoll = false;
+                        return action && action.workflow.get('damage').execute(config, null, true);
                     }
                 });
 
@@ -577,28 +591,27 @@ export default function DHApplicationMixin(Base) {
         static async #browseItem(event, target) {
             const type = target.dataset.compendium ?? target.dataset.type;
 
-            const presets = {};
+            const presets = {
+                render: {
+                    noFolder: true
+                }
+            };
 
             switch (type) {
                 case 'loot':
+                    presets.folder = 'equipments.folders.loots';
+                    break;
                 case 'consumable':
+                    presets.folder = 'equipments.folders.consumables';
+                    break;
                 case 'armor':
+                    presets.folder = 'equipments.folders.armors';
+                    break;
                 case 'weapon':
-                    presets.compendium = 'daggerheart';
-                    presets.folder = 'equipments';
-                    presets.render = {
-                        noFolder: true
-                    };
-                    presets.filter = {
-                        type: { key: 'type', value: type, forced: true }
-                    };
+                    presets.folder = 'equipments.folders.weapons';
                     break;
                 case 'domainCard':
-                    presets.compendium = 'daggerheart';
                     presets.folder = 'domains';
-                    presets.render = {
-                        noFolder: true
-                    };
                     presets.filter = {
                         'level.max': { key: 'level.max', value: this.document.system.levelData.level.current },
                         'system.domain': { key: 'system.domain', value: this.document.system.domains }
@@ -608,7 +621,7 @@ export default function DHApplicationMixin(Base) {
                     return;
             }
 
-            return new ItemBrowser({ presets }).render({ force: true });
+            ui.compendiumBrowser.open(presets);
         }
 
         /**

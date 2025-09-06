@@ -1,0 +1,67 @@
+<section class="tab {{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+  <fieldset>
+    <div class="title-hint">{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.hint"}}</div>
+
+    <section class='tab-navigation'>
+      <div class='navigation-container'>
+        <div class="navigation-inner-container">
+          <line-div></line-div>
+          <nav class='feature-tab sheet-tabs tabs' data-group='diceSoNice'>
+            {{#each dsnTabs as |tab|}}
+            <a class='{{tab.id}} {{tab.cssClass}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}'>
+              {{localize tab.label}}
+            </a>
+            {{/each}}
+          </nav>
+          <line-div></line-div>
+        </div>
+      </div>
+    </section>
+    {{#each dsnTabs as |dsnTab|}}
+    <section class="tab {{#if dsnTab.active}} active{{/if}}" data-group="{{dsnTab.group}}" data-tab="{{dsnTab.id}}">
+      <div class="field-section">
+        <div class="label-container full-width">
+          <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.system"}}</label>
+          {{formInput fields.system value=values.system localize=true choices=@root.diceSoNiceSystems}}
+        </div>
+        <div class="split-section">
+          <div class="label-container">
+            <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.foreground"}}</label>
+            {{formInput fields.foreground value=values.foreground localize=true}}
+          </div>
+          <div class="label-container">
+            <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.background"}}</label>
+            {{formInput fields.background value=values.background localize=true}}
+          </div>
+          <div class="label-container">
+            <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.outline"}}</label>
+            {{formInput fields.outline value=values.outline localize=true}}
+          </div>
+          <div class="label-container">
+            <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.edge"}}</label>
+            {{formInput fields.edge value=values.edge localize=true}}
+          </div>
+          <div class="label-container">
+            <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.colorset"}}</label>
+            {{formInput fields.colorset value=values.colorset choices=@root.diceSoNiceColorsets localize=true}}
+          </div>
+          <div class="label-container">
+            <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.texture"}}</label>
+            {{formInput fields.texture value=values.texture choices=@root.diceSoNiceTextures localize=true}}
+          </div>
+          <div class="label-container">
+            <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.material"}}</label>
+            {{formInput fields.material value=values.material choices=@root.diceSoNiceMaterials localize=true}}
+          </div>
+          <div class="button-container">
+            <button type="button" data-action="preview" data-key="{{dsnTab.id}}">
+              <i class="fa-solid fa-dice"></i>
+              <span>{{localize "Preview"}}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    {{/each}}
+  </fieldset>
+</section>

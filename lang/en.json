@@ -96,6 +96,7 @@
                 "attackName": "Attack Name",
                 "includeBase": { "label": "Include Item Damage" },
                 "multiplier": "Multiplier",
+                "saveHint": "Set a default Trait to enable Reaction Roll. It can be changed later in Reaction Roll Dialog.",
                 "resultBased": {
                     "label": "Formula based on Hope/Fear result."
                 },
@@ -169,7 +170,9 @@
                     "hint": "Add single words or short text as reminders and hints of what a character has advantage on."
                 },
                 "age": "Age",
+                "backgroundQuestions": "Backgrounds",
                 "companionFeatures": "Companion Features",
+                "connections": "Connections",
                 "contextMenu": {
                     "consume": "Consume Item",
                     "equip": "Equip",
@@ -266,7 +269,8 @@
                     "experience": "Experience",
                     "traits": "Traits",
                     "domainCards": "Domain Cards",
-                    "equipment": "Equipment"
+                    "equipment": "Equipment",
+                    "story": "Story"
                 },
                 "ancestryNamePlaceholder": "Your ancestry's name",
                 "buttonTitle": "Character Setup",
@@ -287,6 +291,7 @@
                 "selectSubclass": "Select Subclass",
                 "startingItems": "Starting Items",
                 "story": "Story",
+                "storyExplanation": "Select which background and connection prompts you want to copy into your character's background.",
                 "suggestedArmor": "Suggested Armor",
                 "suggestedPrimaryWeapon": "Suggested Primary Weapon",
                 "suggestedSecondaryWeapon": "Suggested Secondary Weapon",
@@ -310,7 +315,8 @@
                 "toLoadout": "Send to Loadout",
                 "toVault": "Send to Vault",
                 "unequip": "Unequip",
-                "useItem": "Use Item"
+                "useItem": "Use Item",
+                "cancelBeastform": "Cancel Beastform"
             },
             "Countdown": {
                 "addCountdown": "Add Countdown",
@@ -1908,8 +1914,10 @@
                 "tier4": "tier 4",
                 "domains": "Domains",
                 "downtime": "Downtime",
+                "roll": "Roll",
                 "rules": "Rules",
-                "types": "Types"
+                "types": "Types",
+                "questions": "Questions"
             },
             "Tiers": {
                 "singular": "Tier",
@@ -1961,6 +1969,7 @@
             "fear": "Fear",
             "features": "Features",
             "formula": "Formula",
+            "gm": "GM",
             "healing": "Healing",
             "healingRoll": "Healing Roll",
             "hit": {
@@ -1979,6 +1988,7 @@
             "inactiveEffects": "Inactive Effects",
             "inventory": "Inventory",
             "itemResource": "Item Resource",
+            "itemQuantity": "Item Quantity",
             "items": "Items",
             "label": "Label",
             "level": "Level",
@@ -1997,6 +2007,10 @@
             "none": "None",
             "noTarget": "No current target",
             "partner": "Partner",
+            "player": {
+                "single": "Player",
+                "plurial": "Players"
+            },
             "proficiency": "Proficiency",
             "quantity": "Quantity",
             "range": "Range",
@@ -2022,6 +2036,7 @@
             },
             "title": "Title",
             "total": "Total",
+            "traitModifier": "Trait Modifier",
             "true": "True",
             "type": "Type",
             "unarmed": "Unarmed",
@@ -2115,7 +2130,8 @@
                 }
             },
             "Consumable": {
-                "consumeOnUse": "Consume On Use"
+                "consumeOnUse": "Consume On Use",
+                "destroyOnEmpty": "Destroy On Empty"
             },
             "DomainCard": {
                 "type": "Type",
@@ -2136,20 +2152,43 @@
         "SETTINGS": {
             "Appearance": {
                 "FIELDS": {
-                    "displayFear": { "label": "Fear Display" },
-                    "dualityColorScheme": { "label": "Chat Style" },
-                    "hideAttribution": { "label": "Hide Attribution" },
+                    "displayFear": {
+                        "label": "Display Fear"
+                    },
+                    "showGenericStatusEffects": {
+                        "label": "Show Foundry Status Effects"
+                    },
+                    "hideAttribution": {
+                        "label": "Hide Attribution"
+                    },
                     "expandedTitle": "Auto-expand Descriptions",
-                    "extendCharacterDescriptions": { "label": "Characters" },
-                    "extendAdversaryDescriptions": { "label": "Adversaries" },
-                    "extendEnvironmentDescriptions": { "label": "Environments" },
-                    "extendItemDescriptions": { "label": "Items" },
-                    "expandRollMessage": "Auto-expand Message Sections",
-                    "expandRollMessageDesc": { "label": "Description" },
-                    "expandRollMessageRoll": { "label": "Formula" },
-                    "expandRollMessageDamage": { "label": "Damage/Healing" },
-                    "expandRollMessageTarget": { "label": "Target" },
-                    "showGenericStatusEffects": { "label": "Show Foundry Status Effects" }
+                    "extendCharacterDescriptions": {
+                        "label": "Characters"
+                    },
+                    "extendAdversaryDescriptions": {
+                        "label": "Adversaries"
+                    },
+                    "extendEnvironmentDescriptions": {
+                        "label": "Environments"
+                    },
+                    "extendItemDescriptions": {
+                        "label": "Items"
+                    },
+                    "expandRollMessage": {
+                        "title": "Auto-expand Message Sections",
+                        "desc": {
+                            "label": "Description"
+                        },
+                        "roll": {
+                            "label": "Formula"
+                        },
+                        "damage": {
+                            "label": "Damage/Healing"
+                        },
+                        "target": {
+                            "label": "Target"
+                        }
+                    }
                 },
                 "fearDisplay": {
                     "token": "Tokens",
@@ -2204,10 +2243,35 @@
                     "playerCanEditSheet": {
                         "label": "Players Can Manually Edit Character Settings",
                         "hint": "Players are allowed to access the manual Character Settings and change their statistics beyond the rules."
+                    },
+                    "roll": {
+                        "roll": {
+                            "label": "Roll",
+                            "hint": "Auto behavior for rolls like Attack, Spellcast, etc."
+                        },
+                        "damage": {
+                            "label": "Damage/Healing Roll",
+                            "hint": "Auto behavior for Damage & Healing rolls after the Attack/Spellcast."
+                        },
+                        "save": {
+                            "label": "Reaction Roll",
+                            "hint": "Auto behavior if a Reaction Roll is needed. Targets must be selected before the action is made"
+                        },
+                        "damageApply": {
+                            "label": "Apply Damage/Healing",
+                            "hint": "Automatically apply damages & healings. Targets must be selected before the action is made and Reaction Roll Automation must be different than Never. Bypass users permissions."
+                        },
+                        "effect": {
+                            "label": "Apply Effects",
+                            "hint": "Automatically apply effects. Targets must be selected before the action is made and Reaction Roll Automation must be different than Never. Bypass users permissions."
+                        }
                     }
                 },
                 "defeated": {
                     "title": "Defeated Handling"
+                },
+                "roll": {
+                    "title": "Actions"
                 }
             },
             "Homebrew": {
@@ -2269,10 +2333,8 @@
                     "hint": "System ruler setup for displaying ranges in Daggerheart"
                 },
                 "appearance": {
-                    "title": "Appearance Settings",
                     "label": "Appearance Settings",
                     "hint": "Modify the look of various parts of the system",
-                    "name": "Appearance Settings",
                     "duality": "Duality Rolls",
                     "diceSoNice": {
                         "title": "Dice So Nice",
@@ -2399,6 +2461,7 @@
                 "evasionMax": "Evasion (Max)",
                 "subtype": "Subtype",
                 "folders": {
+                    "characters": "Characters",
                     "adversaries": "Adversaries",
                     "ancestries": "Ancestries",
                     "equipment": "Equipment",
@@ -2409,7 +2472,11 @@
                     "environments": "Environments",
                     "beastforms": "Beastforms",
                     "features": "Features",
-                    "items": "Items"
+                    "items": "Items",
+                    "weapons": "Weapons",
+                    "armors": "Armors",
+                    "consumables": "Consumables",
+                    "loots": "Loots"
                 }
             },
             "Notifications": {
@@ -2417,6 +2484,7 @@
                 "beastformInapplicable": "A beastform can only be applied to a Character.",
                 "beastformAlreadyApplied": "The character already has a beastform applied!",
                 "noTargetsSelected": "No targets are selected.",
+                "noTargetsSelectedOrPerm": "No targets are selected or with the update permission.",
                 "attackTargetDoesNotExist": "The target token no longer exists",
                 "insufficentAdvancements": "You don't have enough advancements left.",
                 "noAssignedPlayerCharacter": "You have no assigned character.",

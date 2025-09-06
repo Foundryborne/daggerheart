@@ -14,7 +14,16 @@
         "description": "<p>You can apply this saliva to a weapon that deals physical damage to add a d12 to your next damage roll with that weapon.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "s2Exl2XFuoOhtIov",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -36,6 +45,7 @@
       }
     },
     "consumeOnUse": true,
+    "destroyOnEmpty": true,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 61,
@@ -108,10 +118,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753590061810,
-    "modifiedTime": 1755432828838,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756336727954,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!s2Exl2XFuoOhtIov"
 }

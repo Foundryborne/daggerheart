@@ -561,6 +561,19 @@ export const refreshTypes = {
     }
 };
 
+export const itemAbilityCosts = {
+    resource: {
+        id: 'resource',
+        label: 'DAGGERHEART.GENERAL.resource',
+        group: 'Global'
+    },
+    quantity: {
+        id: 'quantity',
+        label: 'DAGGERHEART.GENERAL.quantity',
+        group: 'Global'
+    }
+};
+
 export const abilityCosts = {
     hitPoints: {
         id: 'hitPoints',
@@ -586,7 +599,8 @@ export const abilityCosts = {
         id: 'fear',
         label: 'Fear',
         group: 'TYPES.Actor.adversary'
-    }
+    },
+    resource: itemAbilityCosts.resource
 };
 
 export const countdownTypes = {

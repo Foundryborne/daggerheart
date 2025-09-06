@@ -5,7 +5,6 @@ import { CharacterLevelup, LevelupViewMode } from '../../levelup/_module.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
 import { getDocFromElement, getDocFromElementSync } from '../../../helpers/utils.mjs';
-import { ItemBrowser } from '../../ui/itemBrowser.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
@@ -29,8 +28,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             toggleEquipItem: CharacterSheet.#toggleEquipItem,
             toggleResourceDice: CharacterSheet.#toggleResourceDice,
             handleResourceDice: CharacterSheet.#handleResourceDice,
-            useDowntime: this.useDowntime,
-            tempBrowser: CharacterSheet.#tempBrowser
+            useDowntime: this.useDowntime
         },
         window: {
             resizable: true,
@@ -134,6 +132,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         });
         htmlElement.querySelectorAll('.inventory-item-quantity').forEach(element => {
             element.addEventListener('change', this.updateItemQuantity.bind(this));
+            element.addEventListener('click', e => e.stopPropagation());
         });
 
         // Add listener for armor marks input
@@ -635,14 +634,22 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const { key } = button.dataset;
 
         const presets = {
-            compendium: 'daggerheart',
             folder: key,
+            filter:
+                key === 'subclasses'
+                    ? {
+                          'system.linkedClass.uuid': {
+                              key: 'system.linkedClass.uuid',
+                              value: this.document.system.class.value._stats.compendiumSource
+                          }
+                      }
+                    : undefined,
             render: {
                 noFolder: true
             }
         };
 
-        return new ItemBrowser({ presets }).render({ force: true });
+        ui.compendiumBrowser.open(presets);
     }
 
     /**
@@ -670,31 +677,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             })
         });
 
-        this.consumeResource(result?.costs);
-    }
-
-    // Remove when Action Refactor part #2 done
-    async consumeResource(costs) {
-        if (!costs?.length) return;
-        const usefulResources = {
-            ...foundry.utils.deepClone(this.actor.system.resources),
-            fear: {
-                value: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
-                max: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear,
-                reversed: false
-            }
-        };
-        const resources = game.system.api.fields.ActionFields.CostField.getRealCosts(costs).map(c => {
-            const resource = usefulResources[c.key];
-            return {
-                key: c.key,
-                value: (c.total ?? c.value) * (resource.isReversed ? 1 : -1),
-                target: resource.target,
-                keyIsID: resource.keyIsID
-            };
-        });
-
-        await this.actor.modifyResource(resources);
+        if (result) game.system.api.fields.ActionFields.CostField.execute.call(this, result);
     }
 
     //TODO: redo toggleEquipItem method
@@ -781,13 +764,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
         await item.update({
             [`system.resource.diceStates.${dice}.used`]: diceState ? !diceState.used : true
         });
-    }
-
-    /**
-     * Temp
-     */
-    static async #tempBrowser(_, target) {
-        new ItemBrowser().render({ force: true });
     }
 
     /**

@@ -35,13 +35,14 @@ export default class DhAutomationSettings extends HandlebarsApplicationMixin(App
         header: { template: 'systems/daggerheart/templates/settings/automation-settings/header.hbs' },
         general: { template: 'systems/daggerheart/templates/settings/automation-settings/general.hbs' },
         rules: { template: 'systems/daggerheart/templates/settings/automation-settings/rules.hbs' },
+        roll: { template: 'systems/daggerheart/templates/settings/automation-settings/roll.hbs' },
         footer: { template: 'systems/daggerheart/templates/settings/automation-settings/footer.hbs' }
     };
 
     /** @inheritdoc */
     static TABS = {
         main: {
-            tabs: [{ id: 'general' }, { id: 'rules' }],
+            tabs: [{ id: 'general' }, { id: 'rules' }, { id: 'roll' }],
             initial: 'general',
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }

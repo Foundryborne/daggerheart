@@ -63,7 +63,17 @@
       "source": "Daggerheart SRD",
       "page": 9,
       "artist": ""
-    }
+    },
+    "backgroundQuestions": [
+      "Who from your community taught you to have such confidence in yourself?",
+      "You were in love once. Who did you adore, and how did they hurt you?",
+      "You’ve always looked up to another bard. Who are they, and why do you idolize them?"
+    ],
+    "connections": [
+      "What made you realize we were going to be such good friends?",
+      "What do I do that annoys you?",
+      "Why do you grab my hand at night?"
+    ]
   },
   "effects": [],
   "ownership": {
@@ -77,10 +87,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.0",
+    "systemVersion": "1.1.2",
     "createdTime": 1754174600538,
-    "modifiedTime": 1755943467705,
-    "lastModifiedBy": "tt3PwMBXcTLCtIQU"
+    "modifiedTime": 1756399046200,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_id": "vegl3bFOq3pcFTWT",
   "sort": 300000,

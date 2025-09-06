@@ -1,0 +1,22 @@
+{{#each fieldFilter}}
+    {{#if choices }}
+        <div class="form-group"{{#with (lookup @root.presets.filter key)}}{{#if forced}} disabled{{/if}}{{/with}}>
+            <label>{{localize label}}</label>
+            <div class="form-fields">
+                <select data-key="{{key}}" name={{name}}>
+                    {{selectOptions choices valueAttr="value" blank="" localize=true selected=value}}
+                </select>
+            </div>
+        </div>
+    {{else}}
+        {{#if filtered }}
+            {{formField field localize=true blank="" name=name choices=(@root.formatChoices this) valueAttr="value" dataset=(object key=key) value=value}}
+        {{else}}
+            {{#if field.label}}
+                {{formField field localize=true blank="" name=name dataset=(object key=key) value=value}}
+            {{else}}
+                {{formField field localize=true blank="" name=name dataset=(object key=key) label=label value=value}}
+            {{/if}}
+        {{/if}}
+    {{/if}}
+{{/each}}

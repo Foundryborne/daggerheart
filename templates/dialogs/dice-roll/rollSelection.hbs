@@ -75,16 +75,8 @@
                     {{#each experiences}}
                         {{#if name}}
                             <div class="experience-chip {{#if (includes ../selectedExperiences id)}}selected{{/if}}" data-action="selectExperience" data-key="{{id}}" data-tooltip="{{this.description}}">
-                                {{#if (includes ../selectedExperiences id)}}
-                                    <span><i class="fa-solid fa-circle"></i></span>
-                                {{else}}
-                                    <span><i class="fa-regular fa-circle"></i></span>
-                                {{/if}}
-                                {{#if (eq @root.rollType 'D20Roll')}}
-                                    <span class="label">{{name}} +{{modifier}}</span>
-                                {{else}}
-                                    <span class="label">{{name}} +{{value}}</span>
-                                {{/if}}
+                                <span><i class="{{ifThen (includes ../selectedExperiences id) "fa-solid" "fa-regular"}} fa-circle"></i></span>
+                                <span class="label">{{name}} +{{value}}</span>
                             </div>
                         {{/if}}
                     {{/each}}
@@ -126,6 +118,12 @@
                                 {{selectOptions diceOptions selected=@root.roll.dAdvantage.denomination}}
                             </select>
                         </div>
+                        {{#if abilities}}
+                            <span>{{localize "DAGGERHEART.GENERAL.traitModifier"}}</span>
+                            <select name="trait">
+                                {{selectOptions abilities selected=@root.rollConfig.roll.trait valueAttr="id" labelAttr="label" blank="" localize=true}}
+                            </select>
+                        {{/if}}
                     {{/unless}}
                     {{#if @root.rallyDie.length}}
                         <span class="formula-label">{{localize "DAGGERHEART.CLASS.Feature.rallyDice"}}</span>

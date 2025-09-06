@@ -26,17 +26,17 @@
         },
         "effects": [
           {
-            "_id": "6sR46Hd554DiLHy4",
+            "_id": "TFWiAUDCfGaax5MU",
             "onSave": false
           }
         ],
         "target": {
-          "type": "any",
-          "amount": null
+          "type": "self",
+          "amount": 1
         },
         "name": "Focus",
         "img": "icons/skills/targeting/crosshair-pointed-orange.webp",
-        "range": ""
+        "range": "self"
       }
     },
     "attribution": {
@@ -52,20 +52,20 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1753922784443,
-    "modifiedTime": 1755428127375,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756037604544,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "xxZOXC4tiZQ6kg1e",
   "sort": 3400000,
   "effects": [
     {
       "name": "Deadly Focus",
-      "img": "systems/daggerheart/assets/icons/domains/domain-card/blade.png",
+      "img": "icons/skills/targeting/crosshair-pointed-orange.webp",
       "origin": "Compendium.daggerheart.domains.Item.xxZOXC4tiZQ6kg1e",
-      "transfer": true,
-      "_id": "6sR46Hd554DiLHy4",
+      "transfer": false,
+      "_id": "TFWiAUDCfGaax5MU",
       "type": "base",
       "system": {
         "rangeDependence": {
@@ -83,7 +83,7 @@
           "priority": null
         }
       ],
-      "disabled": true,
+      "disabled": false,
       "duration": {
         "startTime": null,
         "combat": null,
@@ -93,7 +93,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
+      "description": "<p class=\"Body-Foundation\">Until you attack another creature, you defeat the target, or the battle ends, gain a +1 bonus to your Proficiency.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -102,14 +102,14 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754244951545,
-        "modifiedTime": 1754304242570,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "systemVersion": "1.1.0",
+        "createdTime": 1756037548255,
+        "modifiedTime": 1756037588317,
+        "lastModifiedBy": "vUIbuan0U50nfKBE"
       },
-      "_key": "!items.effects!xxZOXC4tiZQ6kg1e.6sR46Hd554DiLHy4"
+      "_key": "!items.effects!xxZOXC4tiZQ6kg1e.TFWiAUDCfGaax5MU"
     }
   ],
   "ownership": {

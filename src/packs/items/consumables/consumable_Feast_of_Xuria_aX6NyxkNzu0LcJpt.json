@@ -14,7 +14,16 @@
         "description": "<p>You can eat this meal to clear all HP and Stress and gain 1d4 Hope.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "aX6NyxkNzu0LcJpt",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -125,6 +134,7 @@
       }
     },
     "consumeOnUse": true,
+    "destroyOnEmpty": true,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 62,
@@ -145,10 +155,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753591925502,
-    "modifiedTime": 1755433009779,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756336480162,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!aX6NyxkNzu0LcJpt"
 }

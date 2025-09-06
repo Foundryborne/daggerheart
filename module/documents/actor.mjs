@@ -14,7 +14,7 @@ export default class DhpActor extends Actor {
     get owner() {
         const user =
             this.hasPlayerOwner && game.users.players.find(u => this.testUserPermission(u, 'OWNER') && u.active);
-        if (!user) return game.user.isGM ? game.user : null;
+        if (!user) return game.users.activeGM;
         return user;
     }
 
@@ -663,13 +663,22 @@ export default class DhpActor extends Actor {
         };
 
         resources.forEach(r => {
-            if (r.keyIsID) {
-                updates.items[r.key] = {
-                    target: r.target,
-                    resources: {
-                        'system.resource.value': r.target.system.resource.value + r.value
-                    }
-                };
+            if (r.itemId) {
+                const { path, value } = game.system.api.fields.ActionFields.CostField.getItemIdCostUpdate(r);
+
+                if (
+                    r.key === 'quantity' &&
+                    r.target.type === 'consumable' &&
+                    value === 0 &&
+                    r.target.system.destroyOnEmpty
+                ) {
+                    r.target.delete();
+                } else {
+                    updates.items[r.key] = {
+                        target: r.target,
+                        resources: { [path]: value }
+                    };
+                }
             } else {
                 switch (r.key) {
                     case 'fear':

@@ -301,7 +301,6 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "keyIsID": false,
                 "step": null
               }
             ],

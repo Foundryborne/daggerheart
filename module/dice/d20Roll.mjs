@@ -128,7 +128,9 @@ export default class D20Roll extends DHRoll {
     applyBaseBonus() {
         const modifiers = foundry.utils.deepClone(this.options.roll.baseModifiers) ?? [];
 
-        modifiers.push(...this.getBonus(`roll.${this.options.type}`, `${this.options.type?.capitalize()} Bonus`));
+        modifiers.push(
+            ...this.getBonus(`roll.${this.options.actionType}`, `${this.options.actionType?.capitalize()} Bonus`)
+        );
         modifiers.push(
             ...this.getBonus(`roll.${this.options.roll.type}`, `${this.options.roll.type?.capitalize()} Bonus`)
         );
@@ -138,7 +140,7 @@ export default class D20Roll extends DHRoll {
 
     static postEvaluate(roll, config = {}) {
         const data = super.postEvaluate(roll, config);
-        data.type = config.roll?.type;
+        data.type = config.actionType;
         data.difficulty = config.roll.difficulty;
         if (config.targets?.length) {
             config.targets.forEach(target => {
@@ -147,6 +149,7 @@ export default class D20Roll extends DHRoll {
             });
             data.success = config.targets.some(target => target.hit);
         } else if (config.roll.difficulty) data.success = roll.isCritical || roll.total >= config.roll.difficulty;
+        config.successConsumed = data.success;
 
         data.advantage = {
             type: config.roll.advantage,

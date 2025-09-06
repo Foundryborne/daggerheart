@@ -59,7 +59,17 @@
       "source": "Daggerheart SRD",
       "page": 20,
       "artist": ""
-    }
+    },
+    "backgroundQuestions": [
+      "Which god did you devote yourself to? What incredible feat did they perform for you in a moment of desperation?",
+      "How did your appearance change after taking your oath?",
+      "In what strange or unique way do you communicate with your god?"
+    ],
+    "connections": [
+      "What promise did you make me agree to, should you die on the battlefield?",
+      "Why do you ask me so many questions about my god?",
+      "You’ve told me to protect one member of our party above all others, even yourself. Who are they and why?"
+    ]
   },
   "effects": [],
   "folder": null,
@@ -75,10 +85,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.0",
+    "systemVersion": "1.1.2",
     "createdTime": 1754351482530,
-    "modifiedTime": 1755943523935,
-    "lastModifiedBy": "tt3PwMBXcTLCtIQU"
+    "modifiedTime": 1756398795596,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!5ZnlJ5bEoyOTkUJv"
 }

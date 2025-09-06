@@ -93,8 +93,7 @@
             "scalable": true,
             "key": "stress",
             "value": 0,
-            "step": 2,
-            "keyIsID": false
+            "step": 2
           }
         ],
         "uses": {

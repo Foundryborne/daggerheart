@@ -162,6 +162,9 @@ Hooks.on('ready', async () => {
     if (game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).displayFear !== 'hide')
         ui.resources.render({ force: true });
 
+    if (!(ui.compendiumBrowser instanceof applications.ui.ItemBrowser))
+        ui.compendiumBrowser = new applications.ui.ItemBrowser();
+
     registerCountdownHooks();
     socketRegistration.registerSocketHooks();
     registerRollDiceHooks();
@@ -305,3 +308,6 @@ Hooks.on('moveToken', async (movedToken, data) => {
         await effect.value.update({ disabled: effect.disabled });
     }
 });
+
+Hooks.on('renderCompendiumDirectory', (app, html) => applications.ui.ItemBrowser.injectSidebarButton(html));
+Hooks.on('renderDocumentDirectory', (app, html) => applications.ui.ItemBrowser.injectSidebarButton(html));

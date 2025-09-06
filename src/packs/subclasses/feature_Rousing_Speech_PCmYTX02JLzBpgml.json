@@ -19,7 +19,6 @@
             "scalable": false,
             "key": "hitPoints",
             "value": 1,
-            "keyIsID": false,
             "step": null,
             "consumeOnSuccess": false
           }

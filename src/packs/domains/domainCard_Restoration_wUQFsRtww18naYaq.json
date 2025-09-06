@@ -27,11 +27,11 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": true,
-            "key": "wUQFsRtww18naYaq",
+            "key": "resource",
+            "itemId": "wUQFsRtww18naYaq",
             "value": 1,
+            "scalable": true,
             "step": null,
-            "keyIsID": true,
             "consumeOnSuccess": false
           }
         ],
@@ -104,11 +104,11 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": true,
-            "key": "wUQFsRtww18naYaq",
+            "key": "resource",
+            "itemId": "wUQFsRtww18naYaq",
             "value": 1,
+            "scalable": true,
             "step": 1,
-            "keyIsID": true,
             "consumeOnSuccess": false
           }
         ],
@@ -181,11 +181,11 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": true,
-            "key": "wUQFsRtww18naYaq",
+            "key": "resource",
+            "itemId": "wUQFsRtww18naYaq",
             "value": 1,
+            "scalable": true,
             "step": null,
-            "keyIsID": true,
             "consumeOnSuccess": false
           }
         ],
@@ -218,10 +218,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753922784502,
-    "modifiedTime": 1755429742185,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756325575854,
+    "lastModifiedBy": "bjJtdJOhqWr47GhC"
   },
   "_id": "wUQFsRtww18naYaq",
   "sort": 3400000,

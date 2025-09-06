@@ -14,7 +14,16 @@
         "description": "<p>You gain a +1 bonus to your next Knowledge Roll.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "aWHSO2AqDufi7nL4",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -36,6 +45,7 @@
       }
     },
     "consumeOnUse": true,
+    "destroyOnEmpty": true,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 60,
@@ -101,10 +111,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753587185754,
-    "modifiedTime": 1755432555520,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756336472979,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!aWHSO2AqDufi7nL4"
 }

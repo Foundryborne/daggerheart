@@ -22,7 +22,6 @@
           {
             "key": "hope",
             "value": 1,
-            "keyIsID": false,
             "scalable": false,
             "step": null
           }

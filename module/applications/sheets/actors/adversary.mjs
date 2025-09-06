@@ -146,9 +146,9 @@ export default class AdversarySheet extends DHBaseActorSheet {
             title: `Reaction Roll: ${this.actor.name}`,
             headerTitle: 'Adversary Reaction Roll',
             roll: {
-                type: 'reaction'
+                type: 'trait'
             },
-            type: 'trait',
+            actionType: 'reaction',
             hasRoll: true,
             data: this.actor.getRollData()
         };
