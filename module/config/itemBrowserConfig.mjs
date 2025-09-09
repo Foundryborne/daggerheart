@@ -370,19 +370,6 @@ export const typeConfig = {
                 label: 'DAGGERHEART.ITEMS.Subclass.spellcastingTrait'
             }
         ],
-        filters: []
-    },
-    beastforms: {
-        columns: [
-            {
-                key: 'system.tier',
-                label: 'DAGGERHEART.GENERAL.Tiers.singular'
-            },
-            {
-                key: 'system.mainTrait',
-                label: 'DAGGERHEART.GENERAL.Trait.single'
-            }
-        ],
         filters: [
             {
                 key: 'system.linkedClass.uuid',
