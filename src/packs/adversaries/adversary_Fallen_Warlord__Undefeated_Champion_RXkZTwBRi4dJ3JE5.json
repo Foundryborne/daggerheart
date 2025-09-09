@@ -156,7 +156,7 @@
       },
       "chatDisplay": false
     },
-    "motivesAndTactics": "Dispatch merciless death, punish the defi ant, secure victory at any cost"
+    "motivesAndTactics": "Dispatch merciless death, punish the defiant, secure victory at any cost"
   },
   "prototypeToken": {
     "name": "Fallen Warlord: Undefeated Champion",
@@ -798,12 +798,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.348",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.2",
     "createdTime": 1753929476879,
-    "modifiedTime": 1755259462720,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1757391211587,
+    "lastModifiedBy": "mdk78Q6pOyHh6aBg"
   },
   "_key": "!actors!RXkZTwBRi4dJ3JE5"
 }
