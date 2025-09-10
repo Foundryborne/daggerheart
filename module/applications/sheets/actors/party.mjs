@@ -1,5 +1,7 @@
 import DHBaseActorSheet from '../api/base-actor.mjs';
 import { getDocFromElement } from '../../../helpers/utils.mjs';
+import { ItemBrowser } from '../../ui/itemBrowser.mjs';
+import FilterMenu from '../../ux/filter-menu.mjs';
 
 export default class Party extends DHBaseActorSheet {
     /**@inheritdoc */
@@ -16,7 +18,8 @@ export default class Party extends DHBaseActorSheet {
             toggleHope: Party.#toggleHope,
             toggleHitPoints: Party.#toggleHitPoints,
             toggleStress: Party.#toggleStress,
-            toggleArmorSlot: Party.#toggleArmorSlot
+            toggleArmorSlot: Party.#toggleArmorSlot,
+            tempBrowser: Party.#tempBrowser
         },
         dragDrop: [{ dragSelector: '.actors-section .inventory-item', dropSelector: null }]
     };
@@ -30,17 +33,66 @@ export default class Party extends DHBaseActorSheet {
             template: 'systems/daggerheart/templates/sheets/actors/party/resources.hbs',
             scrollable: ['.resources']
         },
+        projects: {
+            template: 'systems/daggerheart/templates/sheets/actors/party/projects.hbs',
+            scrollable: ['.projects']
+        },
+        inventory: {
+            template: 'systems/daggerheart/templates/sheets/actors/party/inventory.hbs',
+            scrollable: ['.inventory']
+        },
         notes: { template: 'systems/daggerheart/templates/sheets/actors/party/notes.hbs' }
     };
 
     /** @inheritdoc */
     static TABS = {
         primary: {
-            tabs: [{ id: 'partyMembers' }, { id: 'resources' }, { id: 'notes' }],
+            tabs: [
+                { id: 'partyMembers' },
+                { id: 'resources' },
+                { id: 'projects' },
+                { id: 'inventory' },
+                { id: 'notes' }
+            ],
             initial: 'partyMembers',
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
+
+    async _onRender(context, options) {
+        await super._onRender(context, options);
+        this._createFilterMenus();
+        this._createSearchFilter();
+    }
+
+    /* -------------------------------------------- */
+    /*  Prepare Context                             */
+    /* -------------------------------------------- */
+
+    async _prepareContext(_options) {
+        const context = await super._prepareContext(_options);
+
+        context.inventory = {
+            currency: {
+                title: game.i18n.localize('DAGGERHEART.CONFIG.Gold.title'),
+                coins: game.i18n.localize('DAGGERHEART.CONFIG.Gold.coins'),
+                handfuls: game.i18n.localize('DAGGERHEART.CONFIG.Gold.handfuls'),
+                bags: game.i18n.localize('DAGGERHEART.CONFIG.Gold.bags'),
+                chests: game.i18n.localize('DAGGERHEART.CONFIG.Gold.chests')
+            }
+        };
+
+        const homebrewCurrency = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).currency;
+        if (homebrewCurrency.enabled) {
+            context.inventory.currency = homebrewCurrency;
+        }
+
+        if (context.inventory.length === 0) {
+            context.inventory = Array(1).fill(Array(5).fill([]));
+        }
+
+        return context;
+    }
 
     async _preparePartContext(partId, context, options) {
         context = await super._preparePartContext(partId, context, options);
@@ -146,6 +198,162 @@ export default class Party extends DHBaseActorSheet {
         const newValue = armorItem.system.marks.value >= armorValue ? armorValue - 1 : armorValue;
         await armorItem.update({ 'system.marks.value': newValue });
         this.render();
+    }
+
+    /**
+     * Opens Compedium Browser
+     */
+    static async #tempBrowser(_, target) {
+        new ItemBrowser().render({ force: true });
+    }
+
+    /**
+     * Get the set of ContextMenu options for Consumable and Loot.
+     * @returns {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} - The Array of context options passed to the ContextMenu instance
+     * @this {CharacterSheet}
+     * @protected
+     */
+    static #getItemContextOptions() {
+        return this._getContextMenuCommonOptions.call(this, { usable: true, toChat: true });
+    }
+    /* -------------------------------------------- */
+    /*  Filter Tracking                             */
+    /* -------------------------------------------- */
+
+    /**
+     * The currently active search filter.
+     * @type {foundry.applications.ux.SearchFilter}
+     */
+    #search = {};
+
+    /**
+     * The currently active search filter.
+     * @type {FilterMenu}
+     */
+    #menu = {};
+
+    /**
+     * Tracks which item IDs are currently displayed, organized by filter type and section.
+     * @type {{
+     *   inventory: {
+     *     search: Set<string>,
+     *     menu: Set<string>
+     *   },
+     *   loadout: {
+     *     search: Set<string>,
+     *     menu: Set<string>
+     *   },
+     * }}
+     */
+    #filteredItems = {
+        inventory: {
+            search: new Set(),
+            menu: new Set()
+        },
+        loadout: {
+            search: new Set(),
+            menu: new Set()
+        }
+    };
+
+    /* -------------------------------------------- */
+    /*  Search Inputs                               */
+    /* -------------------------------------------- */
+
+    /**
+     * Create and initialize search filter instances for the inventory and loadout sections.
+     *
+     * Sets up two {@link foundry.applications.ux.SearchFilter} instances:
+     * - One for the inventory, which filters items in the inventory grid.
+     * - One for the loadout, which filters items in the loadout/card grid.
+     * @private
+     */
+    _createSearchFilter() {
+        //Filters could be a application option if needed
+        const filters = [
+            {
+                key: 'inventory',
+                input: 'input[type="search"].search-inventory',
+                content: '[data-application-part="inventory"] .items-section',
+                callback: this._onSearchFilterInventory.bind(this)
+            }
+        ];
+
+        for (const { key, input, content, callback } of filters) {
+            const filter = new foundry.applications.ux.SearchFilter({
+                inputSelector: input,
+                contentSelector: content,
+                callback
+            });
+            filter.bind(this.element);
+            this.#search[key] = filter;
+        }
+    }
+
+    /**
+     * Handle invetory items search and filtering.
+     * @param {KeyboardEvent} event  The keyboard input event.
+     * @param {string} query         The input search string.
+     * @param {RegExp} rgx           The regular expression query that should be matched against.
+     * @param {HTMLElement} html     The container to filter items from.
+     * @protected
+     */
+    async _onSearchFilterInventory(_event, query, rgx, html) {
+        this.#filteredItems.inventory.search.clear();
+
+        for (const li of html.querySelectorAll('.inventory-item')) {
+            const item = await getDocFromElement(li);
+            const matchesSearch = !query || foundry.applications.ux.SearchFilter.testQuery(rgx, item.name);
+            if (matchesSearch) this.#filteredItems.inventory.search.add(item.id);
+            const { menu } = this.#filteredItems.inventory;
+            li.hidden = !(menu.has(item.id) && matchesSearch);
+        }
+    }
+
+    /* -------------------------------------------- */
+    /*  Filter Menus                                */
+    /* -------------------------------------------- */
+
+    _createFilterMenus() {
+        //Menus could be a application option if needed
+        const menus = [
+            {
+                key: 'inventory',
+                container: '[data-application-part="inventory"]',
+                content: '.items-section',
+                callback: this._onMenuFilterInventory.bind(this),
+                target: '.filter-button',
+                filters: FilterMenu.invetoryFilters
+            }
+        ];
+
+        menus.forEach(m => {
+            const container = this.element.querySelector(m.container);
+            this.#menu[m.key] = new FilterMenu(container, m.target, m.filters, m.callback, {
+                contentSelector: m.content
+            });
+        });
+    }
+
+    /**
+     * Callback when filters change
+     * @param {PointerEvent} event
+     * @param {HTMLElement} html
+     * @param {import('../ux/filter-menu.mjs').FilterItem[]} filters
+     */
+    async _onMenuFilterInventory(_event, html, filters) {
+        this.#filteredItems.inventory.menu.clear();
+
+        for (const li of html.querySelectorAll('.inventory-item')) {
+            const item = await getDocFromElement(li);
+
+            const matchesMenu =
+                filters.length === 0 || filters.some(f => foundry.applications.ux.SearchFilter.evaluateFilter(item, f));
+            if (matchesMenu) this.#filteredItems.inventory.menu.add(item.id);
+
+            const { search } = this.#filteredItems.inventory;
+            li.hidden = !(search.has(item.id) && matchesMenu);
+        }
     }
 
     /* -------------------------------------------- */

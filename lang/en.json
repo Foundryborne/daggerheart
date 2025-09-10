@@ -1893,7 +1893,8 @@
                 "domains": "Domains",
                 "downtime": "Downtime",
                 "rules": "Rules",
-                "partyMembers": "Party Members"
+                "partyMembers": "Party Members",
+                "projects": "Projects"
             },
             "Tiers": {
                 "singular": "Tier",

@@ -8,7 +8,13 @@ export default class DhParty extends BaseDataActor {
         return {
             ...super.defineSchema(),
             partyMembers: new ForeignDocumentUUIDArrayField({ type: 'Actor' }),
-            notes: new fields.HTMLField()
+            notes: new fields.HTMLField(),
+            gold: new fields.SchemaField({
+                coins: new fields.NumberField({ initial: 0, integer: true }),
+                handfuls: new fields.NumberField({ initial: 1, integer: true }),
+                bags: new fields.NumberField({ initial: 0, integer: true }),
+                chests: new fields.NumberField({ initial: 0, integer: true })
+            })
         };
     }
 
