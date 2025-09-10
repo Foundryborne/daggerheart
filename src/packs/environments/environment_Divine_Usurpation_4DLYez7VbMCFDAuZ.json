@@ -272,7 +272,6 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 2,
-                "keyIsID": false,
                 "step": null
               }
             ],
@@ -336,7 +335,6 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 3,
-                "keyIsID": false,
                 "step": null
               }
             ],

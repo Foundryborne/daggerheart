@@ -99,46 +99,7 @@
       "artist": ""
     }
   },
-  "effects": [
-    {
-      "name": "Cumbersome",
-      "description": "-1 to Finesse",
-      "img": "icons/commodities/metal/mail-plate-steel.webp",
-      "changes": [
-        {
-          "key": "system.traits.finesse.value",
-          "mode": 2,
-          "value": "-1"
-        }
-      ],
-      "_id": "8twXPJELZpvFWA5K",
-      "type": "base",
-      "system": {},
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "combat": null
-      },
-      "origin": null,
-      "tint": "#ffffff",
-      "transfer": true,
-      "statuses": [],
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1753829466016,
-        "modifiedTime": 1753829466016,
-        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
-      },
-      "_key": "!items.effects!j5Pt1thLfcvopBij.8twXPJELZpvFWA5K"
-    }
-  ],
+  "effects": [],
   "sort": 0,
   "ownership": {
     "default": 0,

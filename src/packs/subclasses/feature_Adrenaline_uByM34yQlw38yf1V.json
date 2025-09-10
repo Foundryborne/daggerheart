@@ -7,36 +7,7 @@
   "system": {
     "description": "<p>While you're Vulnerable, add your level to your damage rolls.</p>",
     "resource": null,
-    "actions": {
-      "UgffABhuobRDP7MQ": {
-        "type": "effect",
-        "_id": "UgffABhuobRDP7MQ",
-        "systemPath": "actions",
-        "description": "<p>While you're Vulnerable, add your level to your damage rolls.</p>",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": "",
-          "recovery": null,
-          "consumeOnSuccess": false
-        },
-        "effects": [
-          {
-            "_id": "HMx9uZ54mvMiH95x",
-            "onSave": false
-          }
-        ],
-        "target": {
-          "type": "self",
-          "amount": null
-        },
-        "name": "Apply",
-        "img": "icons/magic/unholy/hand-marked-pink.webp",
-        "range": ""
-      }
-    },
+    "actions": {},
     "originItemType": null,
     "originId": null,
     "attribution": {
@@ -116,10 +87,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1754319984350,
-    "modifiedTime": 1755392070263,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756035779655,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_key": "!items!uByM34yQlw38yf1V"
 }

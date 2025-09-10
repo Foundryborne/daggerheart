@@ -65,7 +65,7 @@ Parameters:
     {{#if (and (not hideResources) (eq item.system.resource.type 'simple'))}}
     {{> "systems/daggerheart/templates/sheets/global/partials/item-resource.hbs"}}
     {{/if}}
-    {{#if (and (not hideResources) item.system.quantity)}}
+    {{#if (and (not hideResources) (gte item.system.quantity 0))}}
     <div class="item-resource">
       <input type="number" class="inventory-item-quantity" value="{{item.system.quantity}}" min="0" />
     </div>

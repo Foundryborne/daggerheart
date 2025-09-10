@@ -452,6 +452,34 @@ export const armorFeatures = {
     }
 };
 
+export const allArmorFeatures = () => {
+    const homebrewFeatures = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).itemFeatures
+        .armorFeatures;
+    return {
+        ...armorFeatures,
+        ...Object.keys(homebrewFeatures).reduce((acc, key) => {
+            const feature = homebrewFeatures[key];
+            acc[key] = { ...feature, label: feature.name };
+            return acc;
+        }, {})
+    };
+};
+
+export const orderedArmorFeatures = () => {
+    const homebrewFeatures = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).itemFeatures
+        .armorFeatures;
+    const allFeatures = { ...armorFeatures, ...homebrewFeatures };
+    const all = Object.keys(allFeatures).map(key => {
+        const feature = allFeatures[key];
+        return {
+            ...feature,
+            id: key,
+            label: feature.label ?? feature.name
+        };
+    });
+    return Object.values(all).sort((a, b) => game.i18n.localize(a.label).localeCompare(game.i18n.localize(b.label)));
+};
+
 export const weaponFeatures = {
     barrier: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.barrier.name',
@@ -865,6 +893,9 @@ export const weaponFeatures = {
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.greedy.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.greedy.description',
                 img: 'icons/commodities/currency/coins-crown-stack-gold.webp',
+                target: {
+                    type: 'self'
+                },
                 // Should cost handful of gold,
                 effects: [
                     {
@@ -1378,6 +1409,34 @@ export const weaponFeatures = {
             }
         ]
     }
+};
+
+export const allWeaponFeatures = () => {
+    const homebrewFeatures = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).itemFeatures
+        .weaponFeatures;
+    return {
+        ...weaponFeatures,
+        ...Object.keys(homebrewFeatures).reduce((acc, key) => {
+            const feature = homebrewFeatures[key];
+            acc[key] = { ...feature, label: feature.name };
+            return acc;
+        }, {})
+    };
+};
+
+export const orderedWeaponFeatures = () => {
+    const homebrewFeatures = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).itemFeatures
+        .weaponFeatures;
+    const allFeatures = { ...weaponFeatures, ...homebrewFeatures };
+    const all = Object.keys(allFeatures).map(key => {
+        const feature = allFeatures[key];
+        return {
+            ...feature,
+            id: key,
+            label: feature.label ?? feature.name
+        };
+    });
+    return Object.values(all).sort((a, b) => game.i18n.localize(a.label).localeCompare(game.i18n.localize(b.label)));
 };
 
 export const featureTypes = {

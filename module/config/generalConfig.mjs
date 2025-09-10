@@ -90,22 +90,22 @@ export const rangeInclusion = {
 export const otherTargetTypes = {
     friendly: {
         id: 'friendly',
-        label: 'Friendly'
+        label: 'DAGGERHEART.CONFIG.TargetTypes.friendly'
     },
     hostile: {
         id: 'hostile',
-        label: 'Hostile'
+        label: 'DAGGERHEART.CONFIG.TargetTypes.hostile'
     },
     any: {
         id: 'any',
-        label: 'Any'
+        label: 'DAGGERHEART.CONFIG.TargetTypes.any'
     }
 };
 
 export const targetTypes = {
     self: {
         id: 'self',
-        label: 'Self'
+        label: 'DAGGERHEART.CONFIG.TargetTypes.self'
     },
     ...otherTargetTypes
 };
@@ -561,6 +561,19 @@ export const refreshTypes = {
     }
 };
 
+export const itemAbilityCosts = {
+    resource: {
+        id: 'resource',
+        label: 'DAGGERHEART.GENERAL.resource',
+        group: 'Global'
+    },
+    quantity: {
+        id: 'quantity',
+        label: 'DAGGERHEART.GENERAL.quantity',
+        group: 'Global'
+    }
+};
+
 export const abilityCosts = {
     hitPoints: {
         id: 'hitPoints',
@@ -574,19 +587,20 @@ export const abilityCosts = {
     },
     hope: {
         id: 'hope',
-        label: 'Hope',
+        label: 'DAGGERHEART.CONFIG.HealingType.hope.name',
         group: 'TYPES.Actor.character'
     },
     armor: {
         id: 'armor',
-        label: 'Armor Slot',
+        label: 'DAGGERHEART.CONFIG.HealingType.armor.name',
         group: 'TYPES.Actor.character'
     },
     fear: {
         id: 'fear',
-        label: 'Fear',
+        label: 'DAGGERHEART.CONFIG.HealingType.fear.name',
         group: 'TYPES.Actor.adversary'
-    }
+    },
+    resource: itemAbilityCosts.resource
 };
 
 export const countdownTypes = {

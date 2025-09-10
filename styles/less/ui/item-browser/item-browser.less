@@ -71,6 +71,7 @@
         }
 
         .compendium-results {
+            position: relative;
             padding: 16px;
         }
 
@@ -101,8 +102,12 @@
         .folder-list,
         .item-list-header,
         .item-header > div {
-            gap: 10px;
             cursor: pointer;
+        }
+
+        .item-list-header,
+        .item-header > div {
+            gap: 10px;
         }
 
         .item-filter {
@@ -146,10 +151,6 @@
                             outline: 2px solid light-dark(@dark, @golden);
                         }
 
-                        &:placeholder {
-                            color: light-dark(@dark-blue-50, @beige-50);
-                        }
-
                         &::-webkit-search-cancel-button {
                             -webkit-appearance: none;
                             display: none;
@@ -161,7 +162,7 @@
                         height: 32px;
                         position: absolute;
                         right: 20px;
-                        font-size: 16px;
+                        font-size: var(--font-size-16);
                         z-index: 1;
                         color: light-dark(@dark-blue-50, @beige-50);
                     }
@@ -232,7 +233,8 @@
         }
 
         .item-list-header,
-        .item-list {
+        .item-list,
+        .compendium-sidebar > .folder-list {
             overflow-y: auto;
             scrollbar-gutter: stable;
             scrollbar-width: thin;
@@ -277,11 +279,11 @@
                 }
 
                 &[data-sort-type='ASC']:after {
-                    content: '\f0d7';
+                    content: '\f884';
                 }
 
                 &[data-sort-type='DESC']:after {
-                    content: '\f0d8';
+                    content: '\f885';
                 }
             }
         }
@@ -290,6 +292,7 @@
             display: flex;
             flex-direction: column;
             gap: 5px;
+            flex: 1;
 
             .item-container {
                 &:hover {
@@ -304,18 +307,18 @@
                 gap: 5px;
 
                 h1 {
-                    font-size: 32px;
+                    font-size: var(--font-size-32);
                 }
                 h2 {
-                    font-size: 28px;
+                    font-size: var(--font-size-28);
                     font-weight: 600;
                 }
                 h3 {
-                    font-size: 20px;
+                    font-size: var(--font-size-20);
                     font-weight: 600;
                 }
                 h4 {
-                    font-size: 16px;
+                    font-size: var(--font-size-16);
                     color: @beige;
                     font-weight: 600;
                 }
@@ -349,6 +352,8 @@
             display: grid;
             grid-template-rows: 0fr;
             transition: all 0.3s ease-in-out;
+            width: 100%;
+
             .wrapper {
                 overflow: hidden;
                 display: grid;
@@ -387,8 +392,12 @@
             margin: 0;
 
             .title {
-                margin: 0;
                 text-align: center;
+                font-weight: bold;
+            }
+
+            .hint {
+                flex: unset;
             }
         }
 
@@ -400,6 +409,7 @@
 
     &.lite,
     &.no-folder {
+        .compendium-sidebar,
         .menu-path {
             display: none;
         }

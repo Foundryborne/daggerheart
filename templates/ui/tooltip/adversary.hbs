@@ -12,7 +12,7 @@
         </div>
         <div class="tooltip-information">
             <label>{{localize "Type"}}</label>
-            {{#with (lookup config.ACTOR.adversaryTypes item.system.type) as | type |}}
+            {{#with (lookup adversaryTypes item.system.type) as | type |}}
                 <div>{{localize type.label}}</div>
             {{/with}}
         </div>

@@ -14,7 +14,16 @@
         "description": "<p>This paste eats away walls and other surfaces in bright flashes.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "cfVFmS8vT9dbq9s1",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -31,6 +40,7 @@
       }
     },
     "consumeOnUse": true,
+    "destroyOnEmpty": true,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 61,
@@ -51,10 +61,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753590344700,
-    "modifiedTime": 1755432861888,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756336051101,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!cfVFmS8vT9dbq9s1"
 }

@@ -22,7 +22,6 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "keyIsID": false,
             "step": null
           }
         ],
@@ -36,7 +35,7 @@
           "includeBase": false
         },
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "effects": [
@@ -67,7 +66,7 @@
         },
         "name": "Tekaira's Armored Beetles: Stress",
         "img": "icons/creatures/invertebrates/wasp-swarm-attack.webp",
-        "range": ""
+        "range": "self"
       },
       "533qzPIjcccpiMey": {
         "type": "effect",
@@ -78,7 +77,6 @@
         "actionType": "action",
         "cost": [
           {
-            "keyIsID": false,
             "key": "hope",
             "value": 1,
             "scalable": false,
@@ -112,7 +110,6 @@
             "scalable": false,
             "key": "hope",
             "value": 1,
-            "keyIsID": false,
             "step": null
           }
         ],
@@ -195,10 +192,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1753922784438,
-    "modifiedTime": 1755429481288,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756038512929,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "rZPH0BY8Sznc9sFG",
   "sort": 3400000,

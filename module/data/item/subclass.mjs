@@ -1,3 +1,4 @@
+import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import ItemLinkFields from '../fields/itemLinkFields.mjs';
 import BaseDataItem from './base.mjs';
 
@@ -25,7 +26,8 @@ export default class DHSubclass extends BaseDataItem {
             }),
             features: new ItemLinkFields(),
             featureState: new fields.NumberField({ required: true, initial: 1, min: 1 }),
-            isMulticlass: new fields.BooleanField({ initial: false })
+            isMulticlass: new fields.BooleanField({ initial: false }),
+            linkedClass: new ForeignDocumentUUIDField({ type: 'Item', nullable: true, initial: null })
         };
     }
 
@@ -50,8 +52,7 @@ export default class DHSubclass extends BaseDataItem {
 
     async _preCreate(data, options, user) {
         if (this.actor?.type === 'character') {
-            const dataUuid =
-                data.uuid ?? (data.folder ? `Compendium.daggerheart.subclasses.Item.${data._id}` : `Item.${data._id}`);
+            const dataUuid = data.uuid ?? data._stats.compendiumSource ?? `Item.${data._id}`;
             if (this.actor.system.class.subclass) {
                 if (this.actor.system.multiclass.subclass) {
                     ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.subclassesAlreadyPresent'));

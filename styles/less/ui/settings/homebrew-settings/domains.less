@@ -44,7 +44,7 @@
                     border-radius: 50%;
                     width: 24px;
                     height: 24px;
-                    font-size: 12px;
+                    font-size: var(--font-size-12);
                 }
             }
         }
@@ -53,6 +53,10 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
             gap: 8px;
+            max-height: 184px;
+            overflow: auto;
+            scrollbar-width: thin;
+            scrollbar-color: light-dark(#18162e, #f3c267) transparent;
 
             .domain-container {
                 position: relative;
@@ -118,7 +122,7 @@
 
                     button {
                         border-radius: 50%;
-                        font-size: 12px;
+                        font-size: var(--font-size-12);
                         height: 24px;
                         width: 24px;
                         margin-right: 4px;

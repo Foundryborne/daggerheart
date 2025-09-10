@@ -1,5 +1,6 @@
 import { SYSTEM } from './module/config/system.mjs';
 import * as applications from './module/applications/_module.mjs';
+import * as data from './module/data/_module.mjs';
 import * as models from './module/data/_module.mjs';
 import * as documents from './module/documents/_module.mjs';
 import * as dice from './module/dice/_module.mjs';
@@ -13,6 +14,7 @@ import { enrichedDualityRoll } from './module/enrichers/DualityRollEnricher.mjs'
 import { registerCountdownHooks } from './module/data/countdowns.mjs';
 import {
     handlebarsRegistration,
+    runMigrations,
     settingsRegistration,
     socketRegistration
 } from './module/systemRegistration/_module.mjs';
@@ -25,6 +27,7 @@ Hooks.once('init', () => {
     CONFIG.DH = SYSTEM;
     game.system.api = {
         applications,
+        data,
         models,
         documents,
         dice,
@@ -136,6 +139,8 @@ Hooks.once('init', () => {
     CONFIG.ui.combat = applications.ui.DhCombatTracker;
     CONFIG.ui.chat = applications.ui.DhChatLog;
     CONFIG.ui.hotbar = applications.ui.DhHotbar;
+    CONFIG.ui.sidebar = applications.sidebar.DhSidebar;
+    CONFIG.ui.daggerheartMenu = applications.sidebar.DaggerheartMenu;
     CONFIG.Token.rulerClass = placeables.DhTokenRuler;
 
     CONFIG.ui.resources = applications.ui.DhFearTracker;
@@ -149,6 +154,11 @@ Hooks.once('init', () => {
     // Make Compendium Dialog resizable
     foundry.applications.sidebar.apps.Compendium.DEFAULT_OPTIONS.window.resizable = true;
 
+    DocumentSheetConfig.registerSheet(foundry.documents.Scene, SYSTEM.id, applications.scene.DhSceneConfigSettings, {
+        makeDefault: true,
+        label: 'Daggerheart'
+    });
+
     settingsRegistration.registerDHSettings();
     RegisterHandlebarsHelpers.registerHelpers();
 
@@ -159,6 +169,9 @@ Hooks.on('ready', async () => {
     ui.resources = new CONFIG.ui.resources();
     if (game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).displayFear !== 'hide')
         ui.resources.render({ force: true });
+
+    if (!(ui.compendiumBrowser instanceof applications.ui.ItemBrowser))
+        ui.compendiumBrowser = new applications.ui.ItemBrowser();
 
     registerCountdownHooks();
     socketRegistration.registerSocketHooks();
@@ -172,6 +185,8 @@ Hooks.on('ready', async () => {
             game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.welcomeMessage, true);
         }
     }
+
+    runMigrations();
 });
 
 Hooks.once('dicesoniceready', () => {});
@@ -301,3 +316,6 @@ Hooks.on('moveToken', async (movedToken, data) => {
         await effect.value.update({ disabled: effect.disabled });
     }
 });
+
+Hooks.on('renderCompendiumDirectory', (app, html) => applications.ui.ItemBrowser.injectSidebarButton(html));
+Hooks.on('renderDocumentDirectory', (app, html) => applications.ui.ItemBrowser.injectSidebarButton(html));

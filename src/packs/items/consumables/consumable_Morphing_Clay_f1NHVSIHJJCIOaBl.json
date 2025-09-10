@@ -16,11 +16,12 @@
         "actionType": "action",
         "cost": [
           {
-            "keyIsID": false,
-            "key": "hope",
-            "value": 1,
             "scalable": false,
-            "step": null
+            "key": "quantity",
+            "value": 1,
+            "itemId": "f1NHVSIHJJCIOaBl",
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -44,6 +45,7 @@
       }
     },
     "consumeOnUse": true,
+    "destroyOnEmpty": true,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 61,
@@ -109,10 +111,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753588254032,
-    "modifiedTime": 1755432657276,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756336699132,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!f1NHVSIHJJCIOaBl"
 }

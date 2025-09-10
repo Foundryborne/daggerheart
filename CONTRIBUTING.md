@@ -17,6 +17,10 @@ We welcome contributions of all kinds:
 
 Please be respectful and collaborative — we’re all here to build something great together.
 
+### Community Translations
+
+Please note that we are not accepting community translations in the main project. Instead, community translations should be published as a module.
+
 ---
 
 ## 🧭 General Guidelines
@@ -40,12 +44,14 @@ We encourage contributors to leave comments or open Discussions when proposing s
 ## 🧾 Issue & PR Best Practices
 
 **For Issues:**
+
 - Use clear, descriptive titles
 - Provide a concise explanation of the problem or idea
 - Include reproduction steps or example scenarios if it's a bug
 - Add screenshots or logs if helpful
 
 **For Pull Requests:**
+
 - Use a clear title summarizing the change
 - Provide a brief description of what your code does and why
 - Link to any related Issues
@@ -67,6 +73,6 @@ Discussions are currently happening on GitHub — in Issues, PRs, and [GitHub Di
 
 ## 🤗 Thank You!
 
-Whether you're fixing a typo or designing entire mechanics — every contribution matters. Thank you for helping bring *Daggerheart* to life in FoundryVTT through **Foundryborne**!
+Whether you're fixing a typo or designing entire mechanics — every contribution matters. Thank you for helping bring _Daggerheart_ to life in FoundryVTT through **Foundryborne**!
 
 🐸🛠️

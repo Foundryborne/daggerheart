@@ -45,6 +45,8 @@
                                 {{#unless (eq document.parent.type 'character')}}<a data-action="removeSuggestedItem" data-target="suggestedPrimaryWeapon"><i class="fa-solid fa-trash icon-button"></i></a>{{/unless}}
                             </div>
                         </div>
+                    {{else}}
+                        <div class="drag-area">{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "DAGGERHEART.GENERAL.weapons")}}</div>
                     {{/if}}
                 </div>
             </fieldset>
@@ -60,6 +62,8 @@
                                 {{#unless (eq document.parent.type 'character')}}<a data-action="removeSuggestedItem" data-target="suggestedSecondaryWeapon"><i class="fa-solid fa-trash icon-button"></i></a>{{/unless}}
                             </div>
                         </div>
+                    {{else}}
+                        <div class="drag-area">{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "DAGGERHEART.GENERAL.weapons")}}</div>
                     {{/if}}
                 </div>
             </fieldset>
@@ -75,6 +79,8 @@
                                 {{#unless (eq document.parent.type 'character')}}<a data-action="removeSuggestedItem" data-target="suggestedArmor"><i class="fa-solid fa-trash icon-button"></i></a>{{/unless}}
                             </div>
                         </div>
+                    {{else}}
+                        <div class="drag-area">{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "DAGGERHEART.GENERAL.armors")}}</div>
                     {{/if}}
                 </div>
             </fieldset>
@@ -85,6 +91,9 @@
             <fieldset class="one-column drop-section take-section {{#if (eq document.parent.type 'character')}}inactive{{/if}}">
                 <legend>{{localize "DAGGERHEART.GENERAL.take"}}</legend>
                 <div class="drop-section-body list-items">
+                    {{#unless source.system.inventory.take}}
+                        <div class="drag-area">{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "DAGGERHEART.GENERAL.items")}}</div>
+                    {{/unless}}
                     {{#each source.system.inventory.take}}
                         {{#if this}}
                             <div class="suggested-item item-line" data-action="editDoc" data-item-uuid="{{this.uuid}}">
@@ -102,6 +111,9 @@
             <fieldset class="one-column drop-section choice-a-section {{#if (eq document.parent.type 'character')}}inactive{{/if}}">
                 <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.inventory.thenChoose"}}</legend>
                 <div class="drop-section-body list-items">
+                    {{#unless source.system.inventory.choiceA}}
+                        <div class="drag-area">{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "DAGGERHEART.GENERAL.items")}}</div>
+                    {{/unless}}
                     {{#each source.system.inventory.choiceA}}
                         {{#if this}}
                             <div class="suggested-item item-line" data-action="editDoc" data-item-uuid="{{this.uuid}}">
@@ -119,6 +131,9 @@
             <fieldset class="one-column drop-section choice-b-section {{#if (eq document.parent.type 'character')}}inactive{{/if}}">
                 <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.inventory.andEither"}}</legend>
                 <div class="drop-section-body list-items">
+                    {{#unless source.system.inventory.choiceB}}
+                        <div class="drag-area">{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "DAGGERHEART.GENERAL.items")}}</div>
+                    {{/unless}}
                     {{#each source.system.inventory.choiceB}}
                         {{#if this}}
                             <div class="suggested-item item-line" data-action="editDoc" data-item-uuid="{{this.uuid}}">

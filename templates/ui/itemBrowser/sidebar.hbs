@@ -1,32 +1,22 @@
 <div class="compendium-sidebar">
-    {{#each compendiums}}
-        <details class="compendium-container" data-compendium-id="{{id}}" open>
-            <summary>
-                {{label}}
-                <line-div></line-div>
-            </summary>
-            <div class="folder-list">
-                {{#each folders}}
-                    <div class="{{#if selected}} is-selected{{/if}}" data-action="selectFolder" data-folder-id="{{id}}" {{#if folders.length}}data-tooltip="DAGGERHEART.UI.Tooltip.rightClickExtand" data-tooltip-direction="RIGHT"{{/if}}>{{label}}</div>
-                    {{!-- <div data-action="selectFolder" data-folder-id="{{id}}">{{label}}</div> --}}
-                    {{#if folders.length}}
-                        <div class="subfolder-list">
-                            <div class="wrapper">
-                                {{#each folders}}
-                                    <div
-                                        class="subfolder-item {{#if selected}} is-selected{{/if}}"
-                                        data-action="selectFolder"
-                                        data-folder-id="{{../id}}.folders.{{id}}"
-                                    >
-                                        <span>• {{label}}</span>
-                                    </div>
-                                {{/each}}
-                            </div>
+    <div class="folder-list">
+        {{#each compendiums}}
+                <div class="{{#if selected}} is-selected{{/if}}" data-action="selectFolder" data-folder-id="{{id}}" {{#if folders.length}}data-tooltip="DAGGERHEART.UI.Tooltip.rightClickExtand" data-tooltip-direction="RIGHT"{{/if}}>{{label}}</div>
+                {{#if folders.length}}
+                    <div class="subfolder-list">
+                        <div class="wrapper">
+                            {{#each folders}}
+                                <div
+                                    class="subfolder-item {{#if selected}} is-selected{{/if}}"
+                                    data-action="selectFolder"
+                                    data-folder-id="{{../id}}.folders.{{id}}"
+                                >
+                                    <span>• {{label}}</span>
+                                </div>
+                            {{/each}}
                         </div>
-                    {{/if}}
-                {{/each}}
-            </div>
-        <line-div></line-div>
-        </details>
-    {{/each}}
+                    </div>
+                {{/if}}
+        {{/each}}
+    </div>
 </div>

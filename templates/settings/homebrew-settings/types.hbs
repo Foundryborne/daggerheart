@@ -1,0 +1,28 @@
+<section
+    class="tab {{tabs.types.cssClass}} {{tabs.types.id}}"
+    data-tab="{{tabs.types.id}}"
+    data-group="{{tabs.types.group}}"
+>
+    <fieldset>
+        <legend>
+            <span>{{localize "DAGGERHEART.SETTINGS.Homebrew.adversaryType.title"}}</span>
+             <a data-action="addAdversaryType"><i class="fa-solid fa-plus"></i></a>
+        </legend>
+
+        <div class="adversary-types-container">
+            {{#each settingFields.adversaryTypes as |type key|}}
+                <div class="adversary-type-container {{#if (eq ../selectedAdversaryType.id key)}}active{{/if}}" data-action="selectAdversaryType" data-type="{{key}}">
+                    <span>{{type.label}}</span>
+                    <div data-action="deleteAdversaryType" data-key="{{key}}"><i class="fa-solid fa-trash"></i></div>
+                </div>
+            {{/each}}
+        </div>
+
+        {{#if selectedAdversaryType}}
+            <div class="type-edit-container">
+                {{formGroup settingFields.schema.fields.adversaryTypes.element.fields.label name=(concat "adversaryTypes." selectedAdversaryType.id ".label") value=selectedAdversaryType.label localize=true }}
+                <textarea name="{{concat "adversaryTypes." selectedAdversaryType.id ".description"}}">{{selectedAdversaryType.description}}</textarea>
+            </div>
+        {{/if}}
+    </fieldset>
+</section>

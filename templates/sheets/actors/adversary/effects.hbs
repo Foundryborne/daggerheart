@@ -1,20 +1,22 @@
 <section class='tab {{tabs.effects.cssClass}} {{tabs.effects.id}}' data-tab='{{tabs.effects.id}}'
     data-group='{{tabs.effects.group}}'>
-    {{> 'daggerheart.inventory-items'
-    title='DAGGERHEART.GENERAL.activeEffects'
-    type='effect'
-    isGlassy=true
-    collection=effects.actives
-    canCreate=true
-    hideResources=true
-    }}
+    <div class="effects-sections">
+        {{> 'daggerheart.inventory-items'
+        title='DAGGERHEART.GENERAL.activeEffects'
+        type='effect'
+        isGlassy=true
+        collection=effects.actives
+        canCreate=true
+        hideResources=true
+        }}
 
-    {{> 'daggerheart.inventory-items'
-    title='DAGGERHEART.GENERAL.inactiveEffects'
-    type='effect'
-    isGlassy=true
-    collection=effects.inactives
-    canCreate=true
-    hideResources=true
-    }}
+        {{> 'daggerheart.inventory-items'
+        title='DAGGERHEART.GENERAL.inactiveEffects'
+        type='effect'
+        isGlassy=true
+        collection=effects.inactives
+        canCreate=true
+        hideResources=true
+        }}
+    </div>
 </section>

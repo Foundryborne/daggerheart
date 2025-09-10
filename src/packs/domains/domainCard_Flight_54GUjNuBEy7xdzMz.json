@@ -71,10 +71,10 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
-            "key": "54GUjNuBEy7xdzMz",
+            "key": "resource",
+            "itemId": "54GUjNuBEy7xdzMz",
             "value": 1,
-            "keyIsID": true,
+            "scalable": false,
             "step": null,
             "consumeOnSuccess": false
           }
@@ -114,10 +114,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753922784454,
-    "modifiedTime": 1755427958620,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756325575249,
+    "lastModifiedBy": "bjJtdJOhqWr47GhC"
   },
   "_id": "54GUjNuBEy7xdzMz",
   "sort": 3400000,

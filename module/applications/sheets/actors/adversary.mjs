@@ -25,11 +25,22 @@ export default class AdversarySheet extends DHBaseActorSheet {
     };
 
     static PARTS = {
-        sidebar: { template: 'systems/daggerheart/templates/sheets/actors/adversary/sidebar.hbs' },
+        sidebar: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/sidebar.hbs',
+            scrollable: ['.shortcut-items-section']
+        },
         header: { template: 'systems/daggerheart/templates/sheets/actors/adversary/header.hbs' },
-        features: { template: 'systems/daggerheart/templates/sheets/actors/adversary/features.hbs' },
-        notes: { template: 'systems/daggerheart/templates/sheets/actors/adversary/notes.hbs' },
-        effects: { template: 'systems/daggerheart/templates/sheets/actors/adversary/effects.hbs' }
+        features: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/features.hbs',
+            scrollable: ['.feature-section']
+        },
+        notes: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/notes.hbs'
+        },
+        effects: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/effects.hbs',
+            scrollable: ['.effects-sections']
+        }
     };
 
     /** @inheritdoc */
@@ -45,6 +56,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
         context.systemFields.attack.fields = this.document.system.attack.schema.fields;
+
         return context;
     }
 
@@ -54,6 +66,9 @@ export default class AdversarySheet extends DHBaseActorSheet {
         switch (partId) {
             case 'header':
                 await this._prepareHeaderContext(context, options);
+
+                const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
+                context.adversaryType = game.i18n.localize(adversaryTypes[this.document.system.type].label);
                 break;
             case 'notes':
                 await this._prepareNotesContext(context, options);
@@ -131,9 +146,9 @@ export default class AdversarySheet extends DHBaseActorSheet {
             title: `Reaction Roll: ${this.actor.name}`,
             headerTitle: 'Adversary Reaction Roll',
             roll: {
-                type: 'reaction'
+                type: 'trait'
             },
-            type: 'trait',
+            actionType: 'reaction',
             hasRoll: true,
             data: this.actor.getRollData()
         };

@@ -51,11 +51,13 @@ export default class DHAttackAction extends DHDamageAction {
         const labels = [];
         const { roll, range, damage } = this;
 
-        if (roll.trait) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${roll.trait}.short`))
+        if (roll.trait) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${roll.trait}.short`));
         if (range) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.short`));
 
-        for (const { value, type } of damage.parts) {
-            const str = Roll.replaceFormulaData(value.getFormula(), this.actor?.getRollData() ?? {});
+        const useAltDamage = this.actor?.effects?.find(x => x.type === 'horde')?.active;
+        for (const { value, valueAlt, type } of damage.parts) {
+            const usedValue = useAltDamage ? valueAlt : value;
+            const str = Roll.replaceFormulaData(usedValue.getFormula(), this.actor?.getRollData() ?? {});
 
             const icons = Array.from(type)
                 .map(t => CONFIG.DH.GENERAL.damageTypes[t]?.icon)

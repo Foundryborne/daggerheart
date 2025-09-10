@@ -1,0 +1,16 @@
+{{#each items}}
+    <div class="item-container" data-item-uuid="{{uuid}}" draggable="true">
+        <div class="item-header">
+            <div class="item-info" data-action="expandContent">
+                <img src="{{img}}" data-item-key="img" class="item-list-img">
+                <span data-item-key="name" class="item-list-name">{{name}}</span>
+                {{#each ../menu.data.columns}}
+                    <span data-item-key="{{key}}">{{#with (@root.formatLabel ../this this) as | label |}}{{{label}}}{{/with}}</span>
+                {{/each}}
+            </div>
+        </div>
+        <div class="item-desc extensible">
+            <span class="wrapper">{{{system.description}}}</span>
+        </div>
+    </div>
+{{/each}}

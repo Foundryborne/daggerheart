@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "kLMAuyZktmohOSXa",
         "systemPath": "actions",
-        "description": "<p>Make a <strong>Spellcast Roll</strong> against all adversaries in front of you within Close range. Once per rest on a success, create an illusion of flashing colors and lights that temporarily <em>Stuns</em> targets you succeed against and forces them to mark a Stress. While <em>Stunned</em>, they can’t use reactions and can’t take any other actions until they clear this condition.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against all adversaries in front of you within Close range. Once per rest on a success, create an illusion of flashing colors and lights that temporarily <em>Stuns</em> targets you succeed against and forces them to mark a Stress. While <em>Stunned</em>, they can’t use reactions and can’t take any other actions until they clear this condition.</p><p>@Template[type:infront|range:c]</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -102,10 +102,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.0",
     "createdTime": 1753922784471,
-    "modifiedTime": 1755429167606,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756038232979,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "2ZeuCGVatQdPOVC6",
   "sort": 3400000,

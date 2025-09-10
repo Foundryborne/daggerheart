@@ -28,6 +28,7 @@ export default class DHRoll extends Roll {
     static async buildConfigure(config = {}, message = {}) {
         config.hooks = [...this.getHooks(), ''];
         config.dialog ??= {};
+
         for (const hook of config.hooks) {
             if (Hooks.call(`${CONFIG.DH.id}.preRoll${hook.capitalize()}`, config, message) === false) return null;
         }
@@ -84,18 +85,27 @@ export default class DHRoll extends Roll {
 
     static async toMessage(roll, config) {
         const cls = getDocumentClass('ChatMessage'),
-            msg = {
+            msgData = {
                 type: this.messageType,
                 user: game.user.id,
                 title: roll.title,
-                speaker: cls.getSpeaker(),
+                speaker: cls.getSpeaker({ actor: roll.data?.parent }),
                 sound: config.mute ? null : CONFIG.sounds.dice,
                 system: config,
                 rolls: [roll]
             };
+
         config.selectedRollMode ??= game.settings.get('core', 'rollMode');
-        if (roll._evaluated) return await cls.create(msg, { rollMode: config.selectedRollMode });
-        return msg;
+
+        if (roll._evaluated) {
+            const message = await cls.create(msgData, { rollMode: config.selectedRollMode });
+
+            if (game.modules.get('dice-so-nice')?.active) {
+                await game.dice3d.waitFor3DAnimationByMessageID(message.id);
+            }
+
+            return message;
+        } else return msgData;
     }
 
     /** @inheritDoc */
@@ -218,7 +228,7 @@ export const registerRollDiceHooks = () => {
         if (
             !config.source?.actor ||
             (game.user.isGM ? !hopeFearAutomation.gm : !hopeFearAutomation.players) ||
-            config.roll.type === 'reaction'
+            config.actionType === 'reaction'
         )
             return;
 

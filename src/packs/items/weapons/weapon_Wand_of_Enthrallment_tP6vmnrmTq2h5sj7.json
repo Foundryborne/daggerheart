@@ -22,7 +22,6 @@
           {
             "key": "stress",
             "value": 1,
-            "keyIsID": false,
             "scalable": false,
             "step": null
           }

@@ -317,7 +317,7 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     get multiclass() {
-        const value = this.parent.items.find(x => x.type === 'Class' && x.system.isMulticlass);
+        const value = this.parent.items.find(x => x.type === 'class' && x.system.isMulticlass);
         const subclass = this.parent.items.find(x => x.type === 'subclass' && x.system.isMulticlass);
 
         return {
@@ -443,17 +443,15 @@ export default class DhCharacter extends BaseDataActor {
                 classFeatures.push(item);
             } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.subclass.id) {
                 if (this.class.subclass) {
-                    const subclassState = this.class.subclass.system.featureState;
-                    const subclass =
-                        item.system.identifier === 'multiclass' ? this.multiclass.subclass : this.class.subclass;
-                    const featureType = subclass
-                        ? (subclass.system.features.find(x => x.item?.uuid === item.uuid)?.type ?? null)
-                        : null;
+                    const prop = item.system.multiclassOrigin ? 'multiclass' : 'class';
+                    const subclassState = this[prop].subclass?.system?.featureState;
+                    if (!subclassState) continue;
 
                     if (
-                        featureType === CONFIG.DH.ITEM.featureSubTypes.foundation ||
-                        (featureType === CONFIG.DH.ITEM.featureSubTypes.specialization && subclassState >= 2) ||
-                        (featureType === CONFIG.DH.ITEM.featureSubTypes.mastery && subclassState >= 3)
+                        item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.foundation ||
+                        (item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.specialization &&
+                            subclassState >= 2) ||
+                        (item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.mastery && subclassState >= 3)
                     ) {
                         subclassFeatures.push(item);
                     }

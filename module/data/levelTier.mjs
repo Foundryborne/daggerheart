@@ -169,7 +169,7 @@ export const defaultLevelTiers = {
     tiers: {
         2: {
             tier: 2,
-            name: 'Tier 2',
+            name: 'DAGGERHEART.APPLICATIONS.Levelup.tier2.name',
             levels: {
                 start: 2,
                 end: 4
@@ -232,7 +232,7 @@ export const defaultLevelTiers = {
         },
         3: {
             tier: 3,
-            name: 'Tier 3',
+            name: 'DAGGERHEART.APPLICATIONS.Levelup.tier3.name',
             levels: {
                 start: 5,
                 end: 7
@@ -313,7 +313,7 @@ export const defaultLevelTiers = {
         },
         4: {
             tier: 4,
-            name: 'Tier 4',
+            name: 'DAGGERHEART.APPLICATIONS.Levelup.tier4.name',
             levels: {
                 start: 8,
                 end: 10

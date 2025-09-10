@@ -14,7 +14,16 @@
         "description": "<p>Consume this sap to roll a [[/r d6]]. On a result of 5–6, clear 2 HP. On a result of 2–4, clear 3 Stress. On a result of 1, see through the veil of death and return changed, gaining one scar.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "consumeOnSuccess": false,
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "kwexUzdM9wm1Qums",
+            "step": null
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -55,6 +64,7 @@
       }
     },
     "consumeOnUse": true,
+    "destroyOnEmpty": true,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 61,
@@ -75,10 +85,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753590791260,
-    "modifiedTime": 1755432908523,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756336791229,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!kwexUzdM9wm1Qums"
 }

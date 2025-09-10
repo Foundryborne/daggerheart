@@ -1,4 +1,4 @@
-export const displayDomainCardsAsList = 'displayDomainCardsAsList';
+export const displayDomainCardsAsCard = 'displayDomainCardsAsCard';
 export const narrativeCountdown = {
     simple: 'countdown-narrative-simple',
     position: 'countdown-narrative-position'

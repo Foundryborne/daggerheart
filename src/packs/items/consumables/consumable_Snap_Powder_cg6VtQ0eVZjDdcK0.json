@@ -17,10 +17,11 @@
         "cost": [
           {
             "scalable": false,
-            "key": "stress",
+            "key": "quantity",
             "value": 1,
-            "keyIsID": false,
-            "step": null
+            "itemId": "cg6VtQ0eVZjDdcK0",
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -84,6 +85,7 @@
       }
     },
     "consumeOnUse": true,
+    "destroyOnEmpty": true,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 61,
@@ -104,10 +106,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753588752841,
-    "modifiedTime": 1755432682259,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1756336754402,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!cg6VtQ0eVZjDdcK0"
 }

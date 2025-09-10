@@ -8,7 +8,7 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
         tagifyConfigs: [
             {
                 selector: '.features-input',
-                options: () => CONFIG.DH.ITEM.weaponFeatures,
+                options: () => CONFIG.DH.ITEM.orderedWeaponFeatures(),
                 callback: WeaponSheet.#onFeatureSelect
             }
         ]
