@@ -1,0 +1,129 @@
+import { DhCountdown } from '../../data/countdowns.mjs';
+
+const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
+
+export default class CountdownEdit extends HandlebarsApplicationMixin(ApplicationV2) {
+    constructor() {
+        super();
+
+        this.data = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
+        this.editingCountdowns = new Set();
+    }
+
+    get title() {
+        return game.i18n.localize('DAGGERHEART.APPLICATIONS.CountdownEdit.title');
+    }
+
+    static DEFAULT_OPTIONS = {
+        classes: ['daggerheart', 'dh-style', 'countdown-edit'],
+        tag: 'form',
+        position: { width: 600 },
+        window: { icon: 'fa-solid fa-clock-rotate-left' },
+        actions: {
+            addCountdown: CountdownEdit.#addCountdown,
+            toggleCountdownEdit: CountdownEdit.#toggleCountdownEdit,
+            editCountdownImage: CountdownEdit.#editCountdownImage,
+            editCountdownOwnership: CountdownEdit.#editCountdownOwnership,
+            removeCountdown: CountdownEdit.#removeCountdown
+        },
+        form: { handler: this.updateData, submitOnChange: true }
+    };
+
+    static PARTS = {
+        countdowns: {
+            template: 'systems/daggerheart/templates/ui/countdown-edit.hbs',
+            scrollable: ['.expanded-view']
+        }
+    };
+
+    async _prepareContext(_options) {
+        const context = await super._prepareContext(_options);
+        context.ownershipDefaultOptions = CONFIG.DH.GENERAL.basicOwnershiplevels;
+        context.defaultOwnership = this.data.defaultOwnership;
+        context.countdownBaseTypes = CONFIG.DH.GENERAL.countdownBaseTypes;
+        context.countdownTypes = CONFIG.DH.GENERAL.countdownTypes;
+        context.countdowns = Object.keys(this.data.countdowns).reduce((acc, key) => {
+            const countdown = this.data.countdowns[key];
+            acc[key] = {
+                ...countdown,
+                typeName: game.i18n.localize(CONFIG.DH.GENERAL.countdownBaseTypes[countdown.type].name),
+                progress: {
+                    ...countdown.progress,
+                    typeName: game.i18n.localize(CONFIG.DH.GENERAL.countdownTypes[countdown.progress.type].label)
+                },
+                editing: this.editingCountdowns.has(key)
+            };
+
+            return acc;
+        }, {});
+
+        return context;
+    }
+
+    async updateSetting(update) {
+        await this.data.updateSource(update);
+        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, this.data);
+        this.render();
+    }
+
+    static async updateData(_event, _, formData) {
+        this.updateSetting(foundry.utils.expandObject(formData.object));
+    }
+
+    static #addCountdown() {
+        this.updateSetting({
+            [`countdowns.${foundry.utils.randomID()}`]: DhCountdown.defaultCountdown()
+        });
+    }
+
+    static #editCountdownImage(_, target) {
+        const countdown = this.data.countdowns[target.id];
+        const fp = new foundry.applications.apps.FilePicker.implementation({
+            current: countdown.img,
+            type: 'image',
+            callback: async path => this.updateSetting({ [`countdowns.${target.id}.img`]: path }),
+            top: this.position.top + 40,
+            left: this.position.left + 10
+        });
+        return fp.browse();
+    }
+
+    static #toggleCountdownEdit(_, button) {
+        const { countdownId } = button.dataset;
+
+        const isEditing = this.editingCountdowns.has(countdownId);
+        if (isEditing) this.editingCountdowns.delete(countdownId);
+        else this.editingCountdowns.add(countdownId);
+
+        this.render();
+    }
+
+    static async #editCountdownOwnership(_, button) {
+        const countdown = this.data.countdowns[button.dataset.countdownId];
+        const data = await game.system.api.applications.dialogs.OwnershipSelection.configure(
+            countdown.name,
+            countdown.ownership,
+            this.data.defaultOwnership
+        );
+        if (!data) return;
+
+        this.updateSetting({ [`countdowns.${button.dataset.countdownId}`]: data });
+    }
+
+    static async #removeCountdown(_, button) {
+        const { countdownId } = button.dataset;
+
+        const confirmed = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: game.i18n.localize('DAGGERHEART.APPLICATIONS.CountdownEdit.removeCountdownTitle')
+            },
+            content: game.i18n.format('DAGGERHEART.APPLICATIONS.CountdownEdit.removeCountdownText', {
+                name: this.data.countdowns[countdownId].name
+            })
+        });
+        if (!confirmed) return;
+
+        if (this.editingCountdowns.has(countdownId)) this.editingCountdowns.delete(countdownId);
+        this.updateSetting({ [`countdowns.-=${countdownId}`]: null });
+    }
+}

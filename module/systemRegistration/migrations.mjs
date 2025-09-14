@@ -97,6 +97,7 @@ export async function runMigrations() {
     }
 
     if (foundry.utils.isNewerVersion('1.2.0', lastMigrationVersion)) {
+        /* Migrate old action costs */
         const lockedPacks = [];
         const compendiumItems = [];
         for (let pack of game.packs) {
@@ -146,6 +147,14 @@ export async function runMigrations() {
         for (let packId of lockedPacks) {
             const pack = game.packs.get(packId);
             await pack.configure({ locked: true });
+        }
+
+        /* Migrate old countdown structure */
+        const { narrative, encounter } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
+        if (narrative) {
+            narrative.countdowns;
+        }
+        if (encounter) {
         }
 
         lastMigrationVersion = '1.2.0';

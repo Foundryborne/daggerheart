@@ -331,7 +331,8 @@
                                     "label": { "label": "Label", "hint": "Used for custom" },
                                     "value": { "label": "Value" }
                                 }
-                            }
+                            },
+                            "type": { "label": "Countdown Type" }
                         }
                     }
                 },
@@ -345,6 +346,25 @@
                     "narrative": "Narrative",
                     "encounter": "Encounter"
                 }
+            },
+            "CountdownEdit": {
+                "title": "Countdown Edit",
+                "viewTitle": "Countdowns",
+                "editTitle": "Edit Countdowns",
+                "newCountdown": "New Countdown",
+                "removeCountdownTitle": "Remove Countdown",
+                "removeCountdownText": "Are you sure you want to remove the countdown: {name}?",
+                "current": "Current",
+                "max": "Max",
+                "currentCountdownValue": "Current: {value}",
+                "currentCountdownMax": "Max: {value}",
+                "category": "Category",
+                "type": "Type",
+                "defaultOwnershipTooltip": "The default player ownership of countdowns"
+            },
+            "DaggerheartMenu": {
+                "title": "GM Tools",
+                "countdowns": "Edit Countdowns"
             },
             "DeleteConfirmation": {
                 "title": "Delete {type} - {name}",

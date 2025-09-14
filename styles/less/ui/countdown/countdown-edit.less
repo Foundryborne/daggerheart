@@ -1,0 +1,117 @@
+.theme-light .daggerheart.application.dh-style.countdown-edit {
+    background-image: url('../assets/parchments/dh-parchment-light.png');
+}
+
+.daggerheart.application.dh-style.countdown-edit {
+    color: light-dark(@dark, @beige);
+    background-image: url('../assets/parchments/dh-parchment-dark.png');
+
+    .edit-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        h2 {
+            text-align: center;
+            color: light-dark(@dark, @golden);
+        }
+
+        .header-tools {
+            display: grid;
+            grid-template-columns: 1fr 144px;
+            gap: 8px;
+
+            .header-main-button {
+                flex: 1;
+            }
+
+            .default-ownership-tools {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+
+                select {
+                    flex: 1;
+                    background: light-dark(@beige, @dark-blue);
+                }
+            }
+        }
+
+        .edit-content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            .countdown-edit-container {
+                display: grid;
+                grid-template-columns: 48px 1fr 64px;
+                align-items: center;
+                gap: 8px;
+
+                &.viewing {
+                    padding: 0 16px;
+                }
+
+                img {
+                    width: 52px;
+                    height: 52px;
+                }
+
+                .countdown-edit-text {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    gap: 8px;
+
+                    .countdown-edit-subtext {
+                        display: flex;
+                        gap: 8px;
+
+                        .countdown-edit-sub-tag {
+                            border: 1px solid;
+                            border-radius: 4px;
+                            padding: 2px 4px;
+                            background: light-dark(@beige, @dark-blue);
+                        }
+                    }
+                }
+
+                .countdown-edit-tools {
+                    display: flex;
+                    gap: 8px;
+
+                    &.same-row {
+                        margin-top: 17.5px;
+                    }
+
+                    a {
+                        font-size: 16px;
+                    }
+                }
+            }
+
+            .countdown-edit-subrow {
+                display: flex;
+                gap: 16px;
+                margin: 0 72px 0 56px;
+            }
+
+            .countdown-edit-input {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2px;
+
+                &.tiny {
+                    flex: 0;
+                }
+
+                input,
+                select {
+                    background: light-dark(@beige, @dark-blue);
+                }
+            }
+        }
+    }
+}

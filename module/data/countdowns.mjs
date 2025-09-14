@@ -5,17 +5,22 @@ export default class DhCountdowns extends foundry.abstract.DataModel {
         const fields = foundry.data.fields;
 
         return {
+            /* Outdated and unused. Needed for migration. Remove in next minor version. (1.3) */
             narrative: new fields.EmbeddedDataField(DhCountdownData),
-            encounter: new fields.EmbeddedDataField(DhCountdownData)
+            encounter: new fields.EmbeddedDataField(DhCountdownData),
+            /**/
+            countdowns: new fields.TypedObjectField(new fields.EmbeddedDataField(DhCountdown)),
+            defaultOwnership: new fields.NumberField({
+                required: true,
+                choices: CONFIG.DH.GENERAL.basicOwnershiplevels,
+                initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER
+            })
         };
     }
-
-    static CountdownCategories = { narrative: 'narrative', combat: 'combat' };
 }
 
+/* Outdated and unused. Needed for migration. Remove in next minor version. (1.3) */
 class DhCountdownData extends foundry.abstract.DataModel {
-    static LOCALIZATION_PREFIXES = ['DAGGERHEART.APPLICATIONS.Countdown']; // Nots ure why this won't work. Setting labels manually for now
-
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
@@ -56,10 +61,15 @@ class DhCountdownData extends foundry.abstract.DataModel {
     }
 }
 
-class DhCountdown extends foundry.abstract.DataModel {
+export class DhCountdown extends foundry.abstract.DataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
+            type: new fields.StringField({
+                required: true,
+                choices: CONFIG.DH.GENERAL.countdownBaseTypes,
+                label: 'DAGGERHEART.GENERAL.type'
+            }),
             name: new fields.StringField({
                 required: true,
                 label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.name.label'
@@ -69,22 +79,13 @@ class DhCountdown extends foundry.abstract.DataModel {
                 base64: false,
                 initial: 'icons/magic/time/hourglass-yellow-green.webp'
             }),
-            ownership: new fields.SchemaField({
-                default: new fields.NumberField({
+            ownership: new fields.TypedObjectField(
+                new fields.NumberField({
                     required: true,
-                    choices: Object.values(CONST.DOCUMENT_OWNERSHIP_LEVELS),
-                    initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE
-                }),
-                players: new fields.TypedObjectField(
-                    new fields.SchemaField({
-                        type: new fields.NumberField({
-                            required: true,
-                            choices: Object.values(CONST.DOCUMENT_OWNERSHIP_LEVELS),
-                            initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT
-                        })
-                    })
-                )
-            }),
+                    choices: CONFIG.DH.GENERAL.simpleOwnershiplevels,
+                    initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT
+                })
+            ),
             progress: new fields.SchemaField({
                 current: new fields.NumberField({
                     required: true,
@@ -98,18 +99,25 @@ class DhCountdown extends foundry.abstract.DataModel {
                     initial: 1,
                     label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.progress.max.label'
                 }),
-                type: new fields.SchemaField({
-                    value: new fields.StringField({
-                        required: true,
-                        choices: CONFIG.DH.GENERAL.countdownTypes,
-                        initial: CONFIG.DH.GENERAL.countdownTypes.custom.id,
-                        label: 'DAGGERHEART.GENERAL.type'
-                    }),
-                    label: new fields.StringField({
-                        label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.progress.type.label.label'
-                    })
+                type: new fields.StringField({
+                    required: true,
+                    choices: CONFIG.DH.GENERAL.countdownTypes,
+                    initial: CONFIG.DH.GENERAL.countdownTypes.custom.id,
+                    label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.type.label'
                 })
             })
+        };
+    }
+
+    static defaultCountdown(type) {
+        return {
+            type: type ?? CONFIG.DH.GENERAL.countdownBaseTypes.narrative.id,
+            name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Countdown.newCountdown'),
+            img: 'icons/magic/time/hourglass-yellow-green.webp',
+            progress: {
+                current: 1,
+                max: 1
+            }
         };
     }
 
