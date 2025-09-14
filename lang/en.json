@@ -2472,7 +2472,7 @@
             },
             "Countdowns": {
                 "title": "Countdowns",
-                "minimize": "Minimize"
+                "toggleIconMode": "Toggle Icon Only"
             },
             "ItemBrowser": {
                 "title": "Daggerheart Compendium Browser",
@@ -2581,7 +2581,8 @@
                 "subclassesAlreadyPresent": "You already have a class and multiclass subclass",
                 "noDiceSystem": "Your selected dice {system} does not have a {faces} dice",
                 "gmMenuRefresh": "You refreshed all actions and resources {types}",
-                "subclassAlreadyLinked": "{name} is already a subclass in the class {class}. Remove it from there if you want it to be a subclass to this class."
+                "subclassAlreadyLinked": "{name} is already a subclass in the class {class}. Remove it from there if you want it to be a subclass to this class.",
+                "gmRequired": "This action requires an online GM"
             },
             "Sidebar": {
                 "daggerheartMenu": {

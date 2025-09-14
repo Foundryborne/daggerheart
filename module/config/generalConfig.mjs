@@ -672,3 +672,8 @@ export const countdownBaseTypes = {
         name: 'DAGGERHEART.APPLICATIONS.Countdown.types.encounter'
     }
 };
+
+export const countdownAppMode = {
+    textIcon: 'text-icon',
+    iconOnly: 'icon-only'
+};

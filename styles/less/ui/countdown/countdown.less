@@ -22,6 +22,11 @@
         right: 364px;
     }
 
+    &.icon-only {
+        width: 180px;
+        min-width: 180px;
+    }
+
     .window-header {
         cursor: default;
         border-bottom: 0;
@@ -39,6 +44,18 @@
             .countdown-container {
                 display: flex;
                 gap: 16px;
+
+                &.icon-only {
+                    gap: 8px;
+
+                    .countdown-content {
+                        justify-content: center;
+
+                        .countdown-tools {
+                            gap: 8px;
+                        }
+                    }
+                }
 
                 img {
                     width: 44px;

@@ -4,12 +4,14 @@
 
         <div class="header-tools">
             <button class="header-main-button" data-action="addCountdown">{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.newCountdown"}}</button>
-            <div class="default-ownership-tools">
-                <i class="fa-solid fa-eye" data-tooltip={{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.defaultOwnershipTooltip"}}></i>
-                <select name="defaultOwnership">
-                    {{selectOptions ownershipDefaultOptions selected=defaultOwnership labelAttr="label" valueAttr="value" localize=true}}
-                </select>
-            </div>
+            {{#if isGM}}
+                <div class="default-ownership-tools">
+                    <i class="fa-solid fa-eye" data-tooltip="{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.defaultOwnershipTooltip"}}"></i>
+                    <select name="defaultOwnership">
+                        {{selectOptions ownershipDefaultOptions selected=defaultOwnership labelAttr="label" valueAttr="value" localize=true}}
+                    </select>
+                </div>
+            {{/if}}
         </div>
 
         <div class="edit-content">

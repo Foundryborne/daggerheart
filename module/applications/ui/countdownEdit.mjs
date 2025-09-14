@@ -39,6 +39,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
+        context.isGM = game.user.isGM;
         context.ownershipDefaultOptions = CONFIG.DH.GENERAL.basicOwnershiplevels;
         context.defaultOwnership = this.data.defaultOwnership;
         context.countdownBaseTypes = CONFIG.DH.GENERAL.countdownBaseTypes;
@@ -61,7 +62,25 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         return context;
     }
 
+    canPerformEdit() {
+        if (game.user.isGM) return true;
+
+        const noGM = !game.users.find(x => x.isGM && x.active);
+        if (noGM) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.gmRequired'));
+            return false;
+        }
+
+        return true;
+    }
+
     async updateSetting(update) {
+        const noGM = !game.users.find(x => x.isGM && x.active);
+        if (noGM) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.gmRequired'));
+            return;
+        }
+
         await this.data.updateSource(update);
         await emitAsGM(GMUpdateEvent.UpdateCountdowns, this.gmSetSetting.bind(this.data), this.data, null, {
             refreshType: RefreshType.Countdown

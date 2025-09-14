@@ -31,6 +31,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             minimizable: false
         },
         actions: {
+            toggleViewMode: DhCountdowns.#toggleViewMode,
             decreaseCountdown: (_, target) => this.editCountdown(false, target),
             increaseCountdown: (_, target) => this.editCountdown(true, target)
         },
@@ -60,11 +61,18 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     /**@inheritdoc */
     async _renderFrame(options) {
         const frame = await super._renderFrame(options);
+
+        const iconOnly =
+            game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode) ===
+            CONFIG.DH.GENERAL.countdownAppMode.iconOnly;
+        if (iconOnly) frame.classList.add('icon-only');
+        else frame.classList.remove('icon-only');
+
         const header = frame.querySelector('.window-header');
         header.querySelector('button[data-action="close"]').remove();
 
-        const minimizeTooltip = game.i18n.localize('DAGGERHEART.UI.Countdowns.minimize');
-        const minimizeButton = `<a class="header-control" data-tooltip="${minimizeTooltip}" aria-label="${minimizeTooltip}" data-action="minimize"><i class="fa-solid fa-down-left-and-up-right-to-center"></i></a>`;
+        const minimizeTooltip = game.i18n.localize('DAGGERHEART.UI.Countdowns.toggleIconMode');
+        const minimizeButton = `<a class="header-control" data-tooltip="${minimizeTooltip}" aria-label="${minimizeTooltip}" data-action="toggleViewMode"><i class="fa-solid fa-down-left-and-up-right-to-center"></i></a>`;
         header.insertAdjacentHTML('beforeEnd', minimizeButton);
 
         return frame;
@@ -74,6 +82,9 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
         context.sidebarCollapsed = this.sidebarCollapsed;
+        context.iconOnly =
+            game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode) ===
+            CONFIG.DH.GENERAL.countdownAppMode.iconOnly;
 
         const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
         context.countdowns = Object.keys(setting.countdowns).reduce((acc, key) => {
@@ -105,7 +116,32 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         if (refreshType === RefreshType.Countdown) this.render();
     };
 
+    canPerformEdit() {
+        if (game.user.isGM) return true;
+
+        const noGM = !game.users.find(x => x.isGM && x.active);
+        if (noGM) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.gmRequired'));
+            return false;
+        }
+
+        return true;
+    }
+
+    static async #toggleViewMode() {
+        const currentMode = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode);
+        const appMode = CONFIG.DH.GENERAL.countdownAppMode;
+        const newMode = currentMode === appMode.textIcon ? appMode.iconOnly : appMode.textIcon;
+        await game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode, newMode);
+
+        if (newMode === appMode.iconOnly) this.element.classList.add('icon-only');
+        else this.element.classList.remove('icon-only');
+        this.render();
+    }
+
     static async editCountdown(increase, target) {
+        if (!this.canPerformEdit()) return;
+
         const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
         const countdown = settings.countdowns[target.id];
         const newCurrent = increase

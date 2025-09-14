@@ -1,10 +1,10 @@
 <div>
     <div class="countdowns-container">
         {{#each countdowns as | countdown id |}}
-            <div class="countdown-container">
-                <img src="{{countdown.img}}" />
+            <div class="countdown-container {{#if ../iconOnly}}icon-only{{/if}}">
+                <img src="{{countdown.img}}" {{#if ../iconOnly}}data-tooltip="{{countdown.name}}"{{/if}}/>
                 <div class="countdown-content">
-                    <label>{{countdown.name}}</label>
+                    {{#unless ../iconOnly}}<label>{{countdown.name}}</label>{{/unless}}
                     <div class="countdown-tools">
                         {{#if countdown.editable}}<a data-action="decreaseCountdown" id="{{id}}"><i class="fa-solid fa-minus"></i></a>{{/if}}
                         <div class="progress-tag">
