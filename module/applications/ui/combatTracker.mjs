@@ -1,5 +1,3 @@
-import { EncounterCountdowns } from '../ui/countdowns.mjs';
-
 export default class DhCombatTracker extends foundry.applications.sidebar.tabs.CombatTracker {
     static DEFAULT_OPTIONS = {
         actions: {
@@ -167,9 +165,5 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
 
         await combatant.update({ 'system.actionTokens': newIndex });
         this.render();
-    }
-
-    static openCountdowns() {
-        new EncounterCountdowns().open();
     }
 }

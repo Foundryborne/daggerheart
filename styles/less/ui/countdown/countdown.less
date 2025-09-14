@@ -1,60 +1,70 @@
-@import '../../utils/colors.less';
-@import '../../utils/fonts.less';
+.theme-dark {
+    .daggerheart.dh-style.countdowns {
+        background-image: url(../assets/parchments/dh-parchment-dark.png);
 
-.daggerheart.dh-style.countdown {
-    fieldset {
-        align-items: center;
-        margin-top: 5px;
-        border-radius: 6px;
-        border-color: light-dark(@dark-blue, @golden);
-
-        legend {
-            font-weight: bold;
-            color: light-dark(@dark-blue, @golden);
-
-            a {
-                text-shadow: none;
-            }
+        .window-header {
+            background-image: url(../assets/parchments/dh-parchment-dark.png);
         }
     }
+}
 
-    .minimized-view {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
+.daggerheart.dh-style.countdowns {
+    z-index: var(--z-index-ui) !important;
+    border: 0;
+    border-radius: 4px;
+    box-shadow: none;
+    width: 300px;
+    top: 16px;
+    right: 64px;
+    transition: right ease 250ms;
 
-        .mini-countdown-container {
-            width: fit-content;
+    &.expanded {
+        right: 364px;
+    }
+
+    .window-header {
+        cursor: default;
+        border-bottom: 0;
+    }
+
+    .window-content {
+        padding-top: 4px;
+        padding-bottom: 16px;
+
+        .countdowns-container {
             display: flex;
-            align-items: center;
+            flex-direction: column;
             gap: 8px;
-            border: 2px solid light-dark(@dark-blue, @golden);
-            border-radius: 6px;
-            padding: 0 4px 0 0;
-            background-image: url('../assets/parchments/dh-parchment-light.png');
-            color: light-dark(@beige, @dark);
-            cursor: pointer;
 
-            &.disabled {
-                cursor: initial;
-            }
+            .countdown-container {
+                display: flex;
+                gap: 16px;
 
-            img {
-                width: 30px;
-                height: 30px;
-                border-radius: 6px 0 0 6px;
-            }
+                img {
+                    width: 44px;
+                    height: 44px;
+                }
 
-            .mini-countdown-name {
-                white-space: nowrap;
-            }
+                .countdown-content {
+                    height: 44px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
 
-            .mini-countdown-value {
+                    .countdown-tools {
+                        display: flex;
+                        align-items: center;
+                        gap: 16px;
+
+                        .progress-tag {
+                            border: 1px solid;
+                            border-radius: 4px;
+                            padding: 2px 4px;
+                            background-color: light-dark(@beige, @dark-blue);
+                        }
+                    }
+                }
             }
         }
-    }
-
-    .hidden {
-        display: none;
     }
 }

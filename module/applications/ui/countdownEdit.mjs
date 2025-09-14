@@ -1,4 +1,5 @@
 import { DhCountdown } from '../../data/countdowns.mjs';
+import { emitAsGM, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -62,12 +63,24 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
 
     async updateSetting(update) {
         await this.data.updateSource(update);
-        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, this.data);
+        await emitAsGM(GMUpdateEvent.UpdateCountdowns, this.gmSetSetting.bind(this.data), this.data, null, {
+            refreshType: RefreshType.Countdown
+        });
+
         this.render();
     }
 
     static async updateData(_event, _, formData) {
         this.updateSetting(foundry.utils.expandObject(formData.object));
+    }
+
+    async gmSetSetting(data) {
+        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, data),
+            game.socket.emit(`system.${CONFIG.DH.id}`, {
+                action: socketEvent.Refresh,
+                data: { refreshType: RefreshType.Countdown }
+            });
+        Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
     }
 
     static #addCountdown() {

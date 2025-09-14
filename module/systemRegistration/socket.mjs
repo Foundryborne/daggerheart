@@ -25,6 +25,7 @@ export const GMUpdateEvent = {
     UpdateEffect: 'DhGMUpdateEffect',
     UpdateSetting: 'DhGMUpdateSetting',
     UpdateFear: 'DhGMUpdateFear',
+    UpdateCountdowns: 'DhGMUpdateCountdowns',
     UpdateSaveMessage: 'DhGMUpdateSaveMessage'
 };
 
@@ -60,6 +61,10 @@ export const registerSocketHooks = () => {
                         )
                     );
                     break;
+                case GMUpdateEvent.UpdateCountdowns:
+                    await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, data.update);
+                    Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
+                    break;
                 case GMUpdateEvent.UpdateSaveMessage:
                     const action = await fromUuid(data.update.action),
                         message = game.messages.get(data.update.message);
@@ -84,14 +89,15 @@ export const registerUserQueries = () => {
     CONFIG.queries.reactionRoll = game.system.api.fields.ActionFields.SaveField.rollSaveQuery;
 };
 
-export const emitAsGM = async (eventName, callback, update, uuid = null) => {
+export const emitAsGM = async (eventName, callback, update, uuid = null, refresh = null) => {
     if (!game.user.isGM) {
         return await game.socket.emit(`system.${CONFIG.DH.id}`, {
             action: socketEvent.GMUpdate,
             data: {
                 action: eventName,
                 uuid,
-                update
+                update,
+                refresh
             }
         });
     } else return callback(update);

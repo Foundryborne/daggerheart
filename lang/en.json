@@ -2470,6 +2470,10 @@
                     "playerMessage": "{user} rerolled their {name}"
                 }
             },
+            "Countdowns": {
+                "title": "Countdowns",
+                "minimize": "Minimize"
+            },
             "ItemBrowser": {
                 "title": "Daggerheart Compendium Browser",
                 "hint": "Select a Folder in sidebar to start browsing through the compendium",

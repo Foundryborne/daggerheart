@@ -1,5 +1,3 @@
-import { RefreshType, socketEvent } from '../systemRegistration/socket.mjs';
-
 export default class DhCountdowns extends foundry.abstract.DataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
@@ -136,18 +134,3 @@ export class DhCountdown extends foundry.abstract.DataModel {
         }, {});
     }
 }
-
-export const registerCountdownHooks = () => {
-    Hooks.on(socketEvent.Refresh, ({ refreshType, application }) => {
-        if (refreshType === RefreshType.Countdown) {
-            if (application) {
-                foundry.applications.instances.get(application)?.render();
-            } else {
-                foundry.applications.instances.get('narrative-countdowns')?.render();
-                foundry.applications.instances.get('encounter-countdowns')?.render();
-            }
-
-            return false;
-        }
-    });
-};

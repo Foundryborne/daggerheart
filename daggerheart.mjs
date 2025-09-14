@@ -8,10 +8,8 @@ import * as fields from './module/data/fields/_module.mjs';
 import RegisterHandlebarsHelpers from './module/helpers/handlebarsHelper.mjs';
 import { enricherConfig, enricherRenderSetup } from './module/enrichers/_module.mjs';
 import { getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs';
-import { NarrativeCountdowns } from './module/applications/ui/countdowns.mjs';
 import { BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll } from './module/dice/_module.mjs';
 import { enrichedDualityRoll } from './module/enrichers/DualityRollEnricher.mjs';
-import { registerCountdownHooks } from './module/data/countdowns.mjs';
 import {
     handlebarsRegistration,
     runMigrations,
@@ -140,6 +138,7 @@ Hooks.once('init', () => {
     CONFIG.Token.rulerClass = placeables.DhTokenRuler;
 
     CONFIG.ui.resources = applications.ui.DhFearTracker;
+    CONFIG.ui.countdowns = applications.ui.DhCountdowns;
     CONFIG.ux.ContextMenu = applications.ux.DHContextMenu;
     CONFIG.ux.TooltipManager = documents.DhTooltipManager;
 
@@ -166,10 +165,12 @@ Hooks.on('ready', async () => {
     if (game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).displayFear !== 'hide')
         ui.resources.render({ force: true });
 
+    ui.countdowns = new CONFIG.ui.countdowns();
+    ui.countdowns.render({ force: true });
+
     if (!(ui.compendiumBrowser instanceof applications.ui.ItemBrowser))
         ui.compendiumBrowser = new applications.ui.ItemBrowser();
 
-    registerCountdownHooks();
     socketRegistration.registerSocketHooks();
     registerRollDiceHooks();
     socketRegistration.registerUserQueries();
@@ -239,29 +240,6 @@ Hooks.on('chatMessage', (_, message) => {
             advantage
         });
         return false;
-    }
-});
-
-Hooks.on('renderJournalDirectory', async (tab, html, _, options) => {
-    if (tab.id === 'journal') {
-        if (options.parts && !options.parts.includes('footer')) return;
-
-        const buttons = tab.element.querySelector('.directory-footer.action-buttons');
-        const title = game.i18n.format('DAGGERHEART.APPLICATIONS.Countdown.title', {
-            type: game.i18n.localize('DAGGERHEART.APPLICATIONS.Countdown.types.narrative')
-        });
-        buttons.insertAdjacentHTML(
-            'afterbegin',
-            `
-            <button id="narrative-countdown-button">
-                <i class="fa-solid fa-stopwatch"></i>
-                <span style="font-weight: 400; font-family: var(--font-sans);">${title}</span>
-            </button>`
-        );
-
-        buttons.querySelector('#narrative-countdown-button').onclick = async () => {
-            new NarrativeCountdowns().open();
-        };
     }
 });
 
