@@ -1,3 +1,4 @@
+import { getDocFromElement } from '../../../helpers/utils.mjs';
 import DHBaseActorSheet from '../api/base-actor.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
@@ -13,7 +14,10 @@ export default class DhpEnvironment extends DHBaseActorSheet {
         window: {
             resizable: true
         },
-        actions: {},
+        actions: {
+            toggleResourceDice: DhpEnvironment.#toggleResourceDice,
+            handleResourceDice: DhpEnvironment.#handleResourceDice
+        },
         dragDrop: [{ dragSelector: '.action-section .inventory-item', dropSelector: null }]
     };
 
@@ -106,4 +110,44 @@ export default class DhpEnvironment extends DHBaseActorSheet {
             event.dataTransfer.setDragImage(item, 60, 0);
         }
     }
+
+    /* -------------------------------------------- */
+    /*  Application Clicks Actions                  */
+    /* -------------------------------------------- */
+
+
+    /**
+     * Toggle the used state of a resource dice.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleResourceDice(event, target) {
+        const item = await getDocFromElement(target);
+
+        const { dice } = event.target.closest('.item-resource').dataset;
+        const diceState = item.system.resource.diceStates[dice];
+
+        await item.update({
+            [`system.resource.diceStates.${dice}.used`]: diceState ? !diceState.used : true
+        });
+    }
+
+    /**
+     * Handle the roll values of resource dice.
+     * @type {ApplicationClickAction}
+     */
+    static async #handleResourceDice(_, target) {
+        const item = await getDocFromElement(target);
+        if (!item) return;
+
+        const rollValues = await game.system.api.applications.dialogs.ResourceDiceDialog.create(item, this.document);
+        if (!rollValues) return;
+
+        await item.update({
+            'system.resource.diceStates': rollValues.reduce((acc, state, index) => {
+                acc[index] = { value: state.value, used: state.used };
+                return acc;
+            }, {})
+        });
+    }
+
 }

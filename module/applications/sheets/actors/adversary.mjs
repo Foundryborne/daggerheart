@@ -9,7 +9,9 @@ export default class AdversarySheet extends DHBaseActorSheet {
         position: { width: 660, height: 766 },
         window: { resizable: true },
         actions: {
-            reactionRoll: AdversarySheet.#reactionRoll
+            reactionRoll: AdversarySheet.#reactionRoll,
+            toggleResourceDice: AdversarySheet.#toggleResourceDice,
+            handleResourceDice: AdversarySheet.#handleResourceDice
         },
         window: {
             resizable: true
@@ -131,6 +133,40 @@ export default class AdversarySheet extends DHBaseActorSheet {
         };
 
         this.actor.diceRoll(config);
+    }
+
+    /**
+     * Toggle the used state of a resource dice.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleResourceDice(event, target) {
+        const item = await getDocFromElement(target);
+
+        const { dice } = event.target.closest('.item-resource').dataset;
+        const diceState = item.system.resource.diceStates[dice];
+
+        await item.update({
+            [`system.resource.diceStates.${dice}.used`]: diceState ? !diceState.used : true
+        });
+    }
+
+    /**
+     * Handle the roll values of resource dice.
+     * @type {ApplicationClickAction}
+     */
+    static async #handleResourceDice(_, target) {
+        const item = await getDocFromElement(target);
+        if (!item) return;
+
+        const rollValues = await game.system.api.applications.dialogs.ResourceDiceDialog.create(item, this.document);
+        if (!rollValues) return;
+
+        await item.update({
+            'system.resource.diceStates': rollValues.reduce((acc, state, index) => {
+                acc[index] = { value: state.value, used: state.used };
+                return acc;
+            }, {})
+        });
     }
 
     /* -------------------------------------------- */
