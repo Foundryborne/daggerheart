@@ -150,12 +150,34 @@ export async function runMigrations() {
         }
 
         /* Migrate old countdown structure */
-        const { narrative, encounter } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-        if (narrative) {
-            narrative.countdowns;
-        }
-        if (encounter) {
-        }
+        const countdownSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
+        const getCountdowns = (data, type) => {
+            return Object.keys(data.countdowns).reduce((acc, key) => {
+                const countdown = data.countdowns[key];
+                acc[key] = {
+                    ...countdown,
+                    type: type,
+                    ownership: Object.keys(countdown.ownership.players).reduce((acc, key) => {
+                        acc[key] = countdown.ownership.players[key].type;
+                        return acc;
+                    }, {}),
+                    progress: {
+                        ...countdown.progress,
+                        type: countdown.progress.value
+                    }
+                };
+
+                return acc;
+            });
+        };
+
+        await countdownSettings.updateSource({
+            countdowns: {
+                ...getCountdowns(countdownSettings.narrative, CONFIG.DH.GENERAL.countdownBaseTypes.narrative.id),
+                ...getCountdowns(countdownSettings.encounter, CONFIG.DH.GENERAL.countdownBaseTypes.encounter.id)
+            }
+        });
+        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, countdownSettings);
 
         lastMigrationVersion = '1.2.0';
     }
