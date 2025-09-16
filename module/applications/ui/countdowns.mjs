@@ -116,7 +116,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         if (refreshType === RefreshType.Countdown) this.render();
     };
 
-    canPerformEdit() {
+    static canPerformEdit() {
         if (game.user.isGM) return true;
 
         const noGM = !game.users.find(x => x.isGM && x.active);
@@ -140,7 +140,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     }
 
     static async editCountdown(increase, target) {
-        if (!this.canPerformEdit()) return;
+        if (!DhCountdowns.canPerformEdit()) return;
 
         const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
         const countdown = settings.countdowns[target.id];
@@ -171,5 +171,38 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         Hooks.off('collapseSidebar', this.toggleCollapsedPosition);
         Hooks.off(socketEvent.Refresh, this.cooldownRefresh);
         super.close(options);
+    }
+
+    static async updateCountdowns(progressType) {
+        const countdownSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
+        const updatedCountdowns = Object.keys(countdownSetting.countdowns).reduce((acc, key) => {
+            const countdown = countdownSetting.countdowns[key];
+            if (countdown.progress.type === progressType && countdown.progress.current > 0) {
+                acc.push(key);
+            }
+
+            return acc;
+        }, []);
+
+        const countdownData = countdownSetting.toObject();
+        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, {
+            ...countdownData,
+            countdowns: Object.keys(countdownData.countdowns).reduce((acc, key) => {
+                const countdown = foundry.utils.deepClone(countdownData.countdowns[key]);
+                if (updatedCountdowns.includes(key)) {
+                    countdown.progress.current -= 1;
+                }
+
+                acc[key] = countdown;
+                return acc;
+            }, {})
+        });
+
+        const data = { refreshType: RefreshType.Countdown };
+        await game.socket.emit(`system.${CONFIG.DH.id}`, {
+            action: socketEvent.Refresh,
+            data
+        });
+        Hooks.callAll(socketEvent.Refresh, data);
     }
 }
