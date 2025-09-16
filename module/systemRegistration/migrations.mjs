@@ -163,12 +163,12 @@ export async function runMigrations() {
                     }, {}),
                     progress: {
                         ...countdown.progress,
-                        type: countdown.progress.value
+                        type: countdown.progress.type.value
                     }
                 };
 
                 return acc;
-            });
+            }, {});
         };
 
         await countdownSettings.updateSource({
