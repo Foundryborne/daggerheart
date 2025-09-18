@@ -3,16 +3,16 @@
     data-tab='{{tabs.resources.id}}'
     data-group='{{tabs.resources.group}}'
 >
-    <div class="actions-section">
-        <button>
+    <div data-action="triggerRest" data-type="longRest" class="actions-section">
+        <button data-type="longRest">
             <i class="fa-solid fa-bed"></i>
             <span>{{localize "DAGGERHEART.APPLICATIONS.Downtime.longRest.title"}}</span>
         </button>
-        <button>
+        <button data-action="triggerRest" data-type="shortRest">
             <i class="fa-solid fa-utensils"></i>
             <span>{{localize "DAGGERHEART.APPLICATIONS.Downtime.shortRest.title"}}</span>
         </button>
-        <button>
+        <button data-action="refeshActions">
             <i class="fa-solid fa-campground"></i>
             <span>New Section</span>
         </button>

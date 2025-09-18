@@ -9,10 +9,10 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
     constructor(options) {
         super(options);
 
-        this.refreshSelections = DaggerheartMenu.#defaultRefreshSelections();
+        this.refreshSelections = DaggerheartMenu.defaultRefreshSelections();
     }
 
-    static #defaultRefreshSelections() {
+    static defaultRefreshSelections() {
         return {
             session: { selected: false, label: game.i18n.localize('DAGGERHEART.GENERAL.RefreshType.session') },
             scene: { selected: false, label: game.i18n.localize('DAGGERHEART.GENERAL.RefreshType.scene') },
@@ -28,8 +28,8 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
             title: 'SIDEBAR.TabSettings'
         },
         actions: {
-            selectRefreshable: DaggerheartMenu.#selectRefreshable,
-            refreshActors: DaggerheartMenu.#refreshActors
+            selectRefreshable: DaggerheartMenu.selectRefreshable,
+            refreshActors: DaggerheartMenu.refreshActors
         }
     };
 
@@ -123,13 +123,13 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
     /*  Application Clicks Actions                  */
     /* -------------------------------------------- */
 
-    static async #selectRefreshable(_event, button) {
+    static async selectRefreshable(_event, button) {
         const { type } = button.dataset;
         this.refreshSelections[type].selected = !this.refreshSelections[type].selected;
         this.render();
     }
 
-    static async #refreshActors() {
+    static async refreshActors() {
         const refreshKeys = Object.keys(this.refreshSelections).filter(key => this.refreshSelections[key].selected);
         await this.getRefreshables(refreshKeys);
         const types = refreshKeys.map(x => this.refreshSelections[x].label).join(', ');
@@ -138,7 +138,7 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
                 types: `[${types}]`
             })
         );
-        this.refreshSelections = DaggerheartMenu.#defaultRefreshSelections();
+        this.refreshSelections = DaggerheartMenu.defaultRefreshSelections();
 
         const cls = getDocumentClass('ChatMessage');
         const msg = {

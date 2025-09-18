@@ -1,4 +1,5 @@
 import DamageReductionDialog from '../applications/dialogs/damageReductionDialog.mjs';
+import Party from '../applications/sheets/actors/party.mjs';
 
 export function handleSocketEvent({ action = null, data = {} } = {}) {
     switch (action) {
@@ -11,13 +12,17 @@ export function handleSocketEvent({ action = null, data = {} } = {}) {
         case socketEvent.Refresh:
             Hooks.call(socketEvent.Refresh, data);
             break;
+        case socketEvent.DowntimeTrigger:
+            Party.downtimeMoveQuery(data);
+            break;
     }
 }
 
 export const socketEvent = {
     GMUpdate: 'DhGMUpdate',
     Refresh: 'DhRefresh',
-    DhpFearUpdate: 'DhFearUpdate'
+    DhpFearUpdate: 'DhFearUpdate',
+    DowntimeTrigger: 'DowntimeTrigger'
 };
 
 export const GMUpdateEvent = {

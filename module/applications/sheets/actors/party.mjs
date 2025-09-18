@@ -2,8 +2,16 @@ import DHBaseActorSheet from '../api/base-actor.mjs';
 import { getDocFromElement } from '../../../helpers/utils.mjs';
 import { ItemBrowser } from '../../ui/itemBrowser.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
+import DaggerheartMenu from '../../sidebar/tabs/daggerheartMenu.mjs';
+import { socketEvent } from '../../../systemRegistration/socket.mjs';
 
 export default class Party extends DHBaseActorSheet {
+    constructor(options) {
+        super(options);
+
+        this.refreshSelections = DaggerheartMenu.defaultRefreshSelections();
+    }
+
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
         classes: ['party'],
@@ -19,7 +27,11 @@ export default class Party extends DHBaseActorSheet {
             toggleHitPoints: Party.#toggleHitPoints,
             toggleStress: Party.#toggleStress,
             toggleArmorSlot: Party.#toggleArmorSlot,
-            tempBrowser: Party.#tempBrowser
+            tempBrowser: Party.#tempBrowser,
+            refeshActions: Party.#refeshActions,
+            triggerRest: Party.#triggerRest,
+            selectRefreshable: DaggerheartMenu.selectRefreshable,
+            refreshActors: DaggerheartMenu.refreshActors
         },
         dragDrop: [{ dragSelector: '.actors-section .inventory-item', dropSelector: null }]
     };
@@ -205,6 +217,55 @@ export default class Party extends DHBaseActorSheet {
      */
     static async #tempBrowser(_, target) {
         new ItemBrowser().render({ force: true });
+    }
+
+    static async #refeshActions() {
+        const confirmed = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: 'New Section',
+                icon: 'fa-solid fa-campground'
+            },
+            content: await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/sidebar/daggerheart-menu/main.hbs',
+                {
+                    refreshables: DaggerheartMenu.defaultRefreshSelections()
+                }
+            ),
+            classes: ['daggerheart', 'dialog', 'dh-style', 'tab', 'sidebar-tab', 'daggerheartMenu-sidebar']
+        });
+
+        if (!confirmed) return;
+    }
+
+    static async #triggerRest(_, button) {
+        const confirmed = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: game.i18n.localize(`DAGGERHEART.APPLICATIONS.Downtime.${button.dataset.type}.title`),
+                icon: button.dataset.type === 'shortRest' ? 'fa-solid fa-utensils' : 'fa-solid fa-bed'
+            },
+            content: 'This will trigger a dialog to players make their downtime moves, are you sure?',
+            classes: ['daggerheart', 'dialog', 'dh-style']
+        });
+
+        if (!confirmed) return;
+
+        this.document.system.partyMembers.forEach(actor => {
+            game.socket.emit(`system.${CONFIG.DH.id}`, {
+                action: socketEvent.DowntimeTrigger,
+                data: {
+                    actorId: actor.uuid,
+                    downtimeType: button.dataset.type
+                }
+            });
+        });
+    }
+
+    static async downtimeMoveQuery({ actorId, downtimeType }) {
+        const actor = await foundry.utils.fromUuid(actorId);
+        if (!actor || !actor?.isOwner) reject();
+        new game.system.api.applications.dialogs.Downtime(actor, downtimeType === 'shortRest').render({
+            force: true
+        });
     }
 
     /**
