@@ -1,4 +1,4 @@
-export default class DhSidebar extends Sidebar {
+export default class DhSidebar extends foundry.applications.sidebar.Sidebar {
     /** @override */
     static TABS = {
         chat: {
