@@ -103,7 +103,7 @@ export default class CostField extends fields.ArrayField {
     static calcCosts(costs) {
         const resources = CostField.getResources.call(this, costs);
         let filteredCosts = costs;
-        if (this.parent.metadata.isQuantifiable && this.parent.consumeOnUse === false) {
+        if (this.parent?.metadata.isQuantifiable && this.parent.consumeOnUse === false) {
             filteredCosts = filteredCosts.filter(c => c.key !== 'quantity');
         }
 

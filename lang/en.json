@@ -2029,6 +2029,7 @@
             "range": "Range",
             "reactionRoll": "Reaction Roll",
             "recovery": "Recovery",
+            "refresh": "Refresh",
             "reroll": "Reroll",
             "rerollThing": "Reroll {thing}",
             "resource": "Resource",

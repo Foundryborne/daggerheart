@@ -57,7 +57,10 @@ export default class DhTemplateManager {
      * @param {wheel Event} event
      */
     #onMouseWheel(event) {
-        if (!event.shiftKey) return;
+        if (!this.#activePreview) {
+            return;
+        }
+        if (!event.shiftKey && !event.ctrlKey) return;
         event.stopPropagation();
         event.preventDefault();
         const { moveTime, object } = this.#activePreview;
@@ -66,8 +69,10 @@ export default class DhTemplateManager {
         if (now - (moveTime || 0) <= 16) return;
         this.#activePreview.moveTime = now;
 
+        const multiplier = event.shiftKey ? 0.2 : 0.1;
+
         object.document.updateSource({
-            direction: object.document.direction + event.deltaY * 0.2
+            direction: object.document.direction + event.deltaY * multiplier
         });
         object.renderFlags.set({ refresh: true });
     }
@@ -77,12 +82,13 @@ export default class DhTemplateManager {
      * @param {contextmenu Event} event
      */
     #cancelTemplate(event) {
-        const { mousemove, mousedown, contextmenu } = this.#activePreview.events;
+        const { mousemove, mousedown, contextmenu, wheel } = this.#activePreview.events;
         canvas.templates._onDragLeftCancel(event);
 
         canvas.stage.off('mousemove', mousemove);
         canvas.stage.off('mousedown', mousedown);
         canvas.app.view.removeEventListener('contextmenu', contextmenu);
+        canvas.app.view.removeEventListener('wheel', wheel);
     }
 
     /**
@@ -91,9 +97,9 @@ export default class DhTemplateManager {
      */
     #confirmTemplate(event) {
         event.stopPropagation();
+        this.#cancelTemplate(event);
 
         canvas.scene.createEmbeddedDocuments('MeasuredTemplate', [this.#activePreview.document.toObject()]);
-
-        this.#cancelTemplate(event);
+        this.#activePreview = undefined;
     }
 }
