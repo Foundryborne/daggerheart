@@ -16,7 +16,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
     }
 
     static DEFAULT_OPTIONS = {
-        classes: ['daggerheart', 'dh-style', 'countdown-edit'],
+        classes: ['daggerheart', 'dialog', 'dh-style', 'countdown-edit'],
         tag: 'form',
         position: { width: 600 },
         window: { icon: 'fa-solid fa-clock-rotate-left' },
@@ -142,18 +142,20 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         this.updateSetting({ [`countdowns.${button.dataset.countdownId}`]: data });
     }
 
-    static async #removeCountdown(_, button) {
+    static async #removeCountdown(event, button) {
         const { countdownId } = button.dataset;
 
-        const confirmed = await foundry.applications.api.DialogV2.confirm({
-            window: {
-                title: game.i18n.localize('DAGGERHEART.APPLICATIONS.CountdownEdit.removeCountdownTitle')
-            },
-            content: game.i18n.format('DAGGERHEART.APPLICATIONS.CountdownEdit.removeCountdownText', {
-                name: this.data.countdowns[countdownId].name
-            })
-        });
-        if (!confirmed) return;
+        if (!event.shiftKey) {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: game.i18n.localize('DAGGERHEART.APPLICATIONS.CountdownEdit.removeCountdownTitle')
+                },
+                content: game.i18n.format('DAGGERHEART.APPLICATIONS.CountdownEdit.removeCountdownText', {
+                    name: this.data.countdowns[countdownId].name
+                })
+            });
+            if (!confirmed) return;
+        }
 
         if (this.editingCountdowns.has(countdownId)) this.editingCountdowns.delete(countdownId);
         this.updateSetting({ [`countdowns.-=${countdownId}`]: null });

@@ -11,7 +11,10 @@ export default class OwnershipSelection extends HandlebarsApplicationMixin(Appli
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        classes: ['daggerheart', 'views', 'ownership-selection'],
+        classes: ['daggerheart', 'views', 'dialog', 'dh-style', 'ownership-selection'],
+        window: {
+            icon: 'fa-solid fa-users'
+        },
         position: {
             width: 600,
             height: 'auto'

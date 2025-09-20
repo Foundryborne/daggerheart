@@ -21,7 +21,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     static DEFAULT_OPTIONS = {
         id: 'countdowns',
         tag: 'div',
-        classes: ['daggerheart', 'dh-style', 'countdowns'],
+        classes: ['daggerheart', 'dh-style', 'countdowns', 'faded-ui'],
         window: {
             icon: 'fa-solid fa-clock-rotate-left',
             frame: true,

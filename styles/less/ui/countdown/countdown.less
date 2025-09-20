@@ -1,3 +1,6 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+
 .theme-dark {
     .daggerheart.dh-style.countdowns {
         background-image: url(../assets/parchments/dh-parchment-dark.png);
@@ -16,7 +19,14 @@
     width: 300px;
     top: 16px;
     right: 64px;
-    transition: right ease 250ms;
+    transition:
+        right ease 250ms,
+        all var(--ui-fade-duration) ease,
+        opacity var(--ui-fade-duration);
+
+    .window-title {
+        font-family: @font-body;
+    }
 
     &.expanded {
         right: 364px;
@@ -60,6 +70,7 @@
                 img {
                     width: 44px;
                     height: 44px;
+                    border-radius: 6px;
                 }
 
                 .countdown-content {
