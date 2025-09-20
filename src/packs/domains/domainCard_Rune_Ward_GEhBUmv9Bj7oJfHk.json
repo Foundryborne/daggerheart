@@ -47,7 +47,7 @@
           "bonus": null,
           "advState": "neutral",
           "diceRolling": {
-            "multiplier": "prof",
+            "multiplier": "flat",
             "flatMultiplier": 1,
             "dice": "d8",
             "compare": null,
@@ -71,12 +71,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.2",
     "createdTime": 1753922784506,
-    "modifiedTime": 1754253212120,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1758364595206,
+    "lastModifiedBy": "mdk78Q6pOyHh6aBg"
   },
   "_id": "GEhBUmv9Bj7oJfHk",
   "sort": 3400000,
