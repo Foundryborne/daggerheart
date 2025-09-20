@@ -1,0 +1,78 @@
+<div class="group-roll">
+    <header class="dialog-header">
+        <h1>Group Roll</h1>
+    </header>
+
+    <fieldset class="one-column">
+        <legend>Leader</legend>
+        {{#unless leader.actor}}
+            <input type="text" class="leader-change-input" name="leader"/>
+            <div class="drag-area">
+                <span>Select a Leader</span>
+            </div>
+        {{else}}
+            <div class="actor-item">
+                <img src="{{leader.actor.img}}" alt="{{leader.actor.name}}">
+                <div class="actor-info">
+                    <span class="actor-name">{{leader.actor.name}}</span>
+                    <div class="actor-check-info">
+                        <div class="form-fields">
+                            <label>{{localize "DAGGERHEART.GENERAL.Trait.single"}}</label>
+                            <select name="leader.trait" data-dtype="Number">
+                                {{selectOptions traitList selected=leader.trait  labelAttr="label" valueAttr="value" }}
+                            </select>
+                        </div>
+                        <div class="form-fields">
+                            <label>{{localize "DAGGERHEART.GENERAL.difficulty"}}</label>
+                            <input type="number" name="leader.difficulty" value="{{leader.difficulty}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="controls">
+                    <a data-action="removeLeader" data-leader-uuid="{{leader.actor.uuid}}">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                </div>
+            </div>
+        {{/unless}}
+    </fieldset>
+
+    <fieldset class="one-column">
+        <legend>Party Team</legend>
+        <input type="text" class="team-push-input" name="member"/>
+        {{#if (gt this.members.length 0)}}
+            {{#each members as |member|}}
+                <div class="actor-item">
+                    <img src="{{member.actor.img}}" alt="{{member.actor.name}}">
+                    <div class="actor-info">
+                        <span class="actor-name">{{member.actor.name}}</span>
+                        <div class="actor-check-info">
+                            <div class="form-fields">
+                                <label>{{localize "DAGGERHEART.GENERAL.Trait.single"}}</label>
+                                <select name="member.trait" data-dtype="Number">
+                                    {{selectOptions traitList selected=member.trait  labelAttr="label" valueAttr="value" }}
+                                </select>
+                            </div>
+                            <div class="form-fields">
+                                <label>{{localize "DAGGERHEART.GENERAL.difficulty"}}</label>
+                                <input type="number" name="member.difficulty" value="{{member.difficulty}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <a data-action="removemember" data-member-uuid="{{member.actor.uuid}}">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+            {{/each}}
+        {{/if}}
+        <div class="drag-area">
+            <span>Select a Member</span>
+        </div>
+    </fieldset>
+    <button class="submit-btn" data-action="roll">
+        <i class="fa-solid fa-dice"></i>
+        <span>Roll</span>
+    </button>
+</div>

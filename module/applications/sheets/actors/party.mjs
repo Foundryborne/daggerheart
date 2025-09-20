@@ -4,6 +4,7 @@ import { ItemBrowser } from '../../ui/itemBrowser.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
 import DaggerheartMenu from '../../sidebar/tabs/daggerheartMenu.mjs';
 import { socketEvent } from '../../../systemRegistration/socket.mjs';
+import GroupRollDialog from '../../dialogs/group-roll-dialog.mjs';
 
 export default class Party extends DHBaseActorSheet {
     constructor(options) {
@@ -30,6 +31,7 @@ export default class Party extends DHBaseActorSheet {
             tempBrowser: Party.#tempBrowser,
             refeshActions: Party.#refeshActions,
             triggerRest: Party.#triggerRest,
+            groupRoll: Party.#groupRoll,
             selectRefreshable: DaggerheartMenu.selectRefreshable,
             refreshActors: DaggerheartMenu.refreshActors
         },
@@ -266,6 +268,10 @@ export default class Party extends DHBaseActorSheet {
         new game.system.api.applications.dialogs.Downtime(actor, downtimeType === 'shortRest').render({
             force: true
         });
+    }
+
+    static async #groupRoll(params) {
+        new GroupRollDialog(this.document.system.partyMembers).render({ force: true });
     }
 
     /**

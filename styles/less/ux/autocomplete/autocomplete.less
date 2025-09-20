@@ -1,3 +1,6 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+
 .theme-light .autocomplete {
     background-image: url('../assets/parchments/dh-parchment-light.png');
     color: black;
@@ -27,17 +30,32 @@
     }
 
     li[role='option'] {
+        display: flex;
+        align-items: center;
+        gap: 10px;
         font-size: var(--font-size-14);
-        padding-left: 10px;
+        padding: 0 10px;
         cursor: pointer;
 
-        &:hover {
+        &:hover,
+        &.selected {
             background-color: light-dark(@dark, @beige);
             color: light-dark(@beige, var(--color-dark-3));
         }
 
         > div {
             white-space: nowrap;
+        }
+
+        img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+
+            &:first-child {
+                margin-top: 10px;
+            }
         }
     }
 }
