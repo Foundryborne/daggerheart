@@ -15,12 +15,17 @@
                         </div>
                     </div>
                 </div>
-                {{#if (and @root.isGM (and (not ../iconOnly) (gt countdown.playerAccess.length 0)))}}
-                    <div class="countdown-access-container">
-                        {{#each countdown.playerAccess as |player|}}
-                            <div class="countdown-access" style="{{concat "background: " player.color.css ";"}}" data-tooltip="{{player.name}}"></div>
-                        {{/each}}
-                    </div>
+                {{#if (and @root.isGM (not ../iconOnly))}}
+                    {{#if (gt countdown.playerAccess.length 0)}}
+                        <div class="countdown-access-container">
+                            {{#each countdown.playerAccess as |player|}}
+                                <div class="countdown-access" style="{{concat "background: " player.color.css ";"}}" data-tooltip="{{player.name}}"></div>
+                            {{/each}}
+                        </div>
+                    {{/if}}
+                    {{#if countdown.noPlayerAccess}}
+                        <div class="countdown-no-access-container"><i class="fa-solid fa-eye-slash" data-tooltip="{{localize "DAGGERHEART.UI.Countdowns.noPlayerAccess"}}"></i></div>
+                    {{/if}}
                 {{/if}}
             </div>
         {{/each}}

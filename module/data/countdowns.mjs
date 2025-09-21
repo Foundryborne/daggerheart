@@ -181,11 +181,21 @@ export class DhCountdown extends foundry.abstract.DataModel {
         };
     }
 
-    static defaultCountdown(type) {
+    static defaultCountdown(type, playerHidden) {
+        const ownership = playerHidden
+            ? game.users.reduce((acc, user) => {
+                  if (!user.isGM) {
+                      acc[user.id] = CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE;
+                  }
+                  return acc;
+              }, {})
+            : undefined;
+
         return {
             type: type ?? CONFIG.DH.GENERAL.countdownBaseTypes.narrative.id,
             name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Countdown.newCountdown'),
             img: 'icons/magic/time/hourglass-yellow-green.webp',
+            ownership: ownership,
             progress: {
                 current: 1,
                 max: 1

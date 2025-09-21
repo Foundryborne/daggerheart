@@ -360,7 +360,8 @@
                 "currentCountdownMax": "Max: {value}",
                 "category": "Category",
                 "type": "Type",
-                "defaultOwnershipTooltip": "The default player ownership of countdowns"
+                "defaultOwnershipTooltip": "The default player ownership of countdowns",
+                "hideNewCountdowns": "Hide New Countdowns"
             },
             "DaggerheartMenu": {
                 "title": "GM Tools",
@@ -2473,7 +2474,8 @@
             },
             "Countdowns": {
                 "title": "Countdowns",
-                "toggleIconMode": "Toggle Icon Only"
+                "toggleIconMode": "Toggle Icon Only",
+                "noPlayerAccess": "This countdown isn't visible to any players"
             },
             "ItemBrowser": {
                 "title": "Daggerheart Compendium Browser",

@@ -100,11 +100,12 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                 }
                 return acc;
             }, []);
+            const nonGmPlayers = game.users.filter(x => !x.isGM);
             acc[key] = {
                 ...countdown,
                 editable: game.user.isGM || ownership === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER,
-                playerAccess:
-                    playersWithAccess.length !== game.users.filter(x => !x.isGM).length ? playersWithAccess : []
+                playerAccess: playersWithAccess.length !== nonGmPlayers.length ? playersWithAccess : [],
+                noPlayerAccess: nonGmPlayers.length && playersWithAccess.length === 0
             };
             return acc;
         }, {});
@@ -114,7 +115,9 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
 
     static #getPlayerOwnership(user, setting, countdown) {
         const playerOwnership = countdown.ownership[user.id];
-        return playerOwnership === CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT ? setting.defaultOwnership : playerOwnership;
+        return playerOwnership === undefined || playerOwnership === CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT
+            ? setting.defaultOwnership
+            : playerOwnership;
     }
 
     toggleCollapsedPosition = async (_, collapsed) => {

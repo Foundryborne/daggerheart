@@ -10,6 +10,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         this.data = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
         this.editingCountdowns = new Set();
         this.currentEditCountdown = null;
+        this.hideNewCountdowns = false;
     }
 
     get title() {
@@ -45,6 +46,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         context.defaultOwnership = this.data.defaultOwnership;
         context.countdownBaseTypes = CONFIG.DH.GENERAL.countdownBaseTypes;
         context.countdownTypes = CONFIG.DH.GENERAL.countdownTypes;
+        context.hideNewCountdowns = this.hideNewCountdowns;
         context.countdowns = Object.keys(this.data.countdowns).reduce((acc, key) => {
             const countdown = this.data.countdowns[key];
             acc[key] = {
@@ -107,7 +109,9 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
     }
 
     static async updateData(_event, _, formData) {
-        this.updateSetting(foundry.utils.expandObject(formData.object));
+        const { hideNewCountdowns, ...settingsData } = foundry.utils.expandObject(formData.object);
+        this.hideNewCountdowns = hideNewCountdowns;
+        this.updateSetting(settingsData);
     }
 
     async gmSetSetting(data) {
@@ -124,7 +128,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         this.editingCountdowns.add(id);
         this.currentEditCountdown = id;
         this.updateSetting({
-            [`countdowns.${id}`]: DhCountdown.defaultCountdown()
+            [`countdowns.${id}`]: DhCountdown.defaultCountdown(null, this.hideNewCountdowns)
         });
     }
 

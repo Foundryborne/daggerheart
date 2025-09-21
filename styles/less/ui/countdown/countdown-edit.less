@@ -21,8 +21,20 @@
 
         .header-tools {
             display: grid;
-            grid-template-columns: 1fr 144px;
+            grid-template-columns: 2fr 1fr 144px;
             gap: 8px;
+
+            .hide-tools {
+                white-space: nowrap;
+                flex-wrap: nowrap;
+                display: flex;
+                align-items: center;
+
+                input {
+                    position: relative;
+                    top: 2px;
+                }
+            }
 
             .header-main-button {
                 height: 32px;
