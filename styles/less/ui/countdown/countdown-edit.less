@@ -57,6 +57,11 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            max-height: 500px;
+            scrollbar-width: thin;
+            scrollbar-color: light-dark(@dark-blue, @golden) transparent;
 
             .countdown-edit-container {
                 display: grid;

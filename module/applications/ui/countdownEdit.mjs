@@ -35,7 +35,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
     static PARTS = {
         countdowns: {
             template: 'systems/daggerheart/templates/ui/countdown-edit.hbs',
-            scrollable: ['.expanded-view']
+            scrollable: ['.expanded-view', '.edit-content']
         }
     };
 
