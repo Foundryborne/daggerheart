@@ -81,6 +81,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     /** @override */
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
+        context.isGM = game.user.isGM;
         context.sidebarCollapsed = this.sidebarCollapsed;
         context.iconOnly =
             game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode) ===
@@ -89,21 +90,31 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
         context.countdowns = Object.keys(setting.countdowns).reduce((acc, key) => {
             const countdown = setting.countdowns[key];
-            const playerOwnership = countdown.ownership[game.user.id];
-            const ownership =
-                playerOwnership === CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT
-                    ? setting.defaultOwnership
-                    : playerOwnership;
+            const ownership = DhCountdowns.#getPlayerOwnership(game.user, setting, countdown);
             if (ownership === CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE) return acc;
 
+            const playersWithAccess = game.users.reduce((acc, user) => {
+                const ownership = DhCountdowns.#getPlayerOwnership(user, setting, countdown);
+                if (!user.isGM && ownership && ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE) {
+                    acc.push(user);
+                }
+                return acc;
+            }, []);
             acc[key] = {
                 ...countdown,
-                editable: game.user.isGM || ownership === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER
+                editable: game.user.isGM || ownership === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER,
+                playerAccess:
+                    playersWithAccess.length !== game.users.filter(x => !x.isGM).length ? playersWithAccess : []
             };
             return acc;
         }, {});
 
         return context;
+    }
+
+    static #getPlayerOwnership(user, setting, countdown) {
+        const playerOwnership = countdown.ownership[user.id];
+        return playerOwnership === CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT ? setting.defaultOwnership : playerOwnership;
     }
 
     toggleCollapsedPosition = async (_, collapsed) => {
