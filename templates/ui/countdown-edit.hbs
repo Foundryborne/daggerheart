@@ -18,7 +18,7 @@
 
         <div class="edit-content">
             {{#each countdowns as | countdown id | }}
-                <div class="countdown-edit-container {{#unless countdown.editing}}viewing{{/unless}}">
+                <div class="countdown-edit-container {{#unless countdown.editing}}viewing{{/unless}}" data-id="{{id}}">
                     <a data-action="editCountdownImage" id="{{id}}"><img src="{{countdown.img}}" /></a>
                     {{#unless countdown.editing}} 
                         <div class="countdown-edit-text">

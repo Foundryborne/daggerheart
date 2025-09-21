@@ -9,6 +9,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
 
         this.data = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
         this.editingCountdowns = new Set();
+        this.currentEditCountdown = null;
     }
 
     get title() {
@@ -62,6 +63,22 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         return context;
     }
 
+    /** @override */
+    async _postRender(_context, _options) {
+        if (this.currentEditCountdown) {
+            setTimeout(() => {
+                const input = this.element.querySelector(
+                    `.countdown-edit-container[data-id="${this.currentEditCountdown}"] input`
+                );
+                if (input) {
+                    input.focus();
+                    input.selectionStart = input.value.length + 1;
+                    this.currentEditCountdown = null;
+                }
+            }, 100);
+        }
+    }
+
     canPerformEdit() {
         if (game.user.isGM) return true;
 
@@ -103,8 +120,11 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
     }
 
     static #addCountdown() {
+        const id = foundry.utils.randomID();
+        this.editingCountdowns.add(id);
+        this.currentEditCountdown = id;
         this.updateSetting({
-            [`countdowns.${foundry.utils.randomID()}`]: DhCountdown.defaultCountdown()
+            [`countdowns.${id}`]: DhCountdown.defaultCountdown()
         });
     }
 
@@ -125,7 +145,10 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
 
         const isEditing = this.editingCountdowns.has(countdownId);
         if (isEditing) this.editingCountdowns.delete(countdownId);
-        else this.editingCountdowns.add(countdownId);
+        else {
+            this.editingCountdowns.add(countdownId);
+            this.currentEditCountdown = countdownId;
+        }
 
         this.render();
     }
