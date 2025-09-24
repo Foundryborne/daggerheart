@@ -1,49 +1,18 @@
+import { parseInlineParams } from './parser.mjs';
+
 export default function DhTemplateEnricher(match, _options) {
-    const parts = match[1].split('|').map(x => x.trim());
-
-    let type = null,
-        range = null,
-        angle = CONFIG.MeasuredTemplate.defaults.angle,
-        direction = 0,
-        inline = false;
-
-    parts.forEach(part => {
-        const split = part.split(':').map(x => x.toLowerCase().trim());
-        if (split.length === 2) {
-            switch (split[0]) {
-                case 'type':
-                    const matchedType = Object.values(CONFIG.DH.GENERAL.templateTypes).find(
-                        x => x.toLowerCase() === split[1]
-                    );
-                    type = matchedType;
-                    break;
-                case 'range':
-                    if (Number.isNaN(Number(split[1]))) {
-                        const matchedRange = Object.values(CONFIG.DH.GENERAL.templateRanges).find(
-                            x => x.id.toLowerCase() === split[1] || x.short === split[1]
-                        );
-                        range = matchedRange?.id;
-                    } else {
-                        range = split[1];
-                    }
-                    break;
-                case 'inline':
-                    inline = true;
-                    break;
-                case 'angle':
-                    angle = split[1];
-                    break;
-                case 'direction':
-                    direction = split[1];
-                    break;
-            }
-        }
-    });
-
-    if (!type || !range) return match[0];
+    const params = parseInlineParams(match[1]);
+    const { type, angle = CONFIG.MeasuredTemplate.defaults.angle, inline = false } = params;
+    const direction = Number(params.direction) || 0;
+    const range =
+        params.range && Number.isNaN(params.range)
+            ? Object.values(CONFIG.DH.GENERAL.templateRanges).find(
+                  x => x.id.toLowerCase() === split[1] || x.short === split[1]
+              )?.id
+            : params.range;
+    if (!(type in CONFIG.MeasuredTemplate.types) || !range) return match[0];
 
     const label = game.i18n.localize(`DAGGERHEART.CONFIG.TemplateTypes.${type}`);
-
     const rangeDisplay = Number.isNaN(Number(range)) ? game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.name`) : range;
 
     let angleDisplay = '';

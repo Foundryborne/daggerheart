@@ -2,6 +2,7 @@ import { default as DhDamageEnricher, renderDamageButton } from './DamageEnriche
 import { default as DhDualityRollEnricher, renderDualityButton } from './DualityRollEnricher.mjs';
 import { default as DhEffectEnricher } from './EffectEnricher.mjs';
 import { default as DhTemplateEnricher, renderMeasuredTemplate } from './TemplateEnricher.mjs';
+import { default as DhLookupEnricher } from './LookupEnricher.mjs';
 
 export { DhDamageEnricher, DhDualityRollEnricher, DhEffectEnricher, DhTemplateEnricher };
 
@@ -21,6 +22,10 @@ export const enricherConfig = [
     {
         pattern: /@Template\[(.*)\]({.*})?/g,
         enricher: DhTemplateEnricher
+    },
+    {
+        pattern: /@Lookup\[(.*)\]({.*})?/g,
+        enricher: DhLookupEnricher
     }
 ];
 
