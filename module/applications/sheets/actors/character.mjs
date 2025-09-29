@@ -236,6 +236,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const { TextEditor } = foundry.applications.ux;
 
         const paths = {
+            personality: 'biography.personality',
             background: 'biography.background',
             connections: 'biography.connections'
         };
