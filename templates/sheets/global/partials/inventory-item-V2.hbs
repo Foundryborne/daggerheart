@@ -23,7 +23,11 @@ Parameters:
       (hasProperty item "toChat" ) "toChat" "editDoc" ) }}' {{#unless hideTooltip}} {{#if (eq type 'attack' )}}
       data-tooltip="#attack#{{item.actor.uuid}}" {{else}} data-tooltip="#item#{{item.uuid}}" {{/if}} {{/unless}}>
       <img src="{{item.img}}" class="item-img {{#if isActor}}actor-img{{/if}}" />
-      <img class="roll-img" src="systems/daggerheart/assets/icons/dice/default/d20.svg" alt="d20">
+      {{#if @root.isNPC}}
+        <img class="roll-img" src="systems/daggerheart/assets/icons/dice/default/d20.svg" alt="d20">
+      {{else}}
+        <img class="roll-img" src="systems/daggerheart/assets/icons/dice/duality/Daggerheart Foundry_g506.png" alt="2d12">
+      {{/if}}
     </div>
 
     {{!-- Name & Tags --}}
