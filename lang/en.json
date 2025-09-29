@@ -172,7 +172,13 @@
                 "maxEvasionBonus": "Max Evasion Increase",
                 "maxHPBonus": "Max HP Increase",
                 "pronouns": "Pronouns",
+                "weight": "Weight",
+                "height": "Height",
+                "skin": "Skin",
+                "hair": "Hair",
+                "eyes": "Eyes",
                 "story": {
+                    "personalityTitle": "Personality",
                     "backgroundTitle": "Background",
                     "characteristics": "Characteristics",
                     "connectionsTitle": "Connections"

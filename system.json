@@ -213,6 +213,7 @@
         "Actor": {
             "character": {
                 "htmlFields": [
+                    "biography.personality",
                     "biography.background",
                     "biography.connections",
                     "journal.notes",

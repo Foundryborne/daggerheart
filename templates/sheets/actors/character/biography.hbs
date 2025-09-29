@@ -4,33 +4,58 @@
     data-group='{{tabs.biography.group}}'
 >
 
-    <div class="items-section">
-        <fieldset class="flex">
-            <legend>{{localize 'DAGGERHEART.ACTORS.Character.story.characteristics'}}</legend>
-            
-            <div class="input">
+
+<div class="items-section">
+    <div class="top">
+        <ul class="unlist characteristics">
+            <li>
                 <span>{{localize 'DAGGERHEART.ACTORS.Character.pronouns'}}</span>
                 {{formInput systemFields.biography.fields.characteristics.fields.pronouns value=source.system.biography.characteristics.pronouns enriched=source.system.biography.characteristics.pronouns localize=true toggled=true}}
-            </div>
-
-            <div class="input">
+            </li>
+             <li>
                 <span>{{localize 'DAGGERHEART.ACTORS.Character.age'}}</span>
                 {{formInput systemFields.biography.fields.characteristics.fields.age value=source.system.biography.characteristics.age enriched=source.system.biography.characteristics.age localize=true toggled=true}}
-            </div>
-
-            <div class="input">
+            </li>
+             <li>
+                <span>{{localize 'DAGGERHEART.ACTORS.Character.eyes'}}</span>
+                {{formInput systemFields.biography.fields.characteristics.fields.eyes value=source.system.biography.characteristics.eyes enriched=source.system.biography.characteristics.eyes localize=true toggled=true}}
+            </li>
+             <li>
+                <span>{{localize 'DAGGERHEART.ACTORS.Character.height'}}</span>
+                {{formInput systemFields.biography.fields.characteristics.fields.height value=source.system.biography.characteristics.height enriched=source.system.biography.characteristics.height localize=true toggled=true}}
+            </li>
+             <li>
+                <span>{{localize 'DAGGERHEART.ACTORS.Character.weight'}}</span>
+                {{formInput systemFields.biography.fields.characteristics.fields.weight value=source.system.biography.characteristics.weight enriched=source.system.biography.characteristics.weight localize=true toggled=true}}
+            </li>
+             <li>
+                <span>{{localize 'DAGGERHEART.ACTORS.Character.hair'}}</span>
+                {{formInput systemFields.biography.fields.characteristics.fields.hair value=source.system.biography.characteristics.hair enriched=source.system.biography.characteristics.hair localize=true toggled=true}}
+            </li>
+             <li>
+                <span>{{localize 'DAGGERHEART.ACTORS.Character.skin'}}</span>
+                {{formInput systemFields.biography.fields.characteristics.fields.skin value=source.system.biography.characteristics.skin enriched=source.system.biography.characteristics.skin localize=true toggled=true}}
+            </li>
+             <li>
                 <span>{{localize 'DAGGERHEART.ACTORS.Character.faith'}}</span>
                 {{formInput systemFields.biography.fields.characteristics.fields.faith value=source.system.biography.characteristics.faith enriched=source.system.biography.characteristics.faith localize=true toggled=true}}
-            </div>
+            </li>
+        </ul>
+</div>
 
-        </fieldset>
-        <fieldset>
-            <legend>{{localize 'DAGGERHEART.ACTORS.Character.story.backgroundTitle'}}</legend>
-            {{formInput background.field value=background.value enriched=background.enriched toggled=true}}
-        </fieldset>
-        <fieldset>
-            <legend>{{localize 'DAGGERHEART.ACTORS.Character.story.connectionsTitle'}}</legend>
-            {{formInput connections.field value=connections.value enriched=connections.enriched toggled=true}}
-        </fieldset>
-    </div>
+<fieldset>
+        <legend>{{localize 'DAGGERHEART.ACTORS.Character.story.personalityTitle'}}</legend>
+        {{formInput personality.field value=personality.value enriched=personality.enriched toggled=true}}
+    </fieldset>
+    <fieldset>
+        <legend>{{localize 'DAGGERHEART.ACTORS.Character.story.backgroundTitle'}}</legend>
+        {{formInput background.field value=background.value enriched=background.enriched toggled=true}}
+    </fieldset>
+    <fieldset>
+        <legend>{{localize 'DAGGERHEART.ACTORS.Character.story.connectionsTitle'}}</legend>
+        {{formInput connections.field value=connections.value enriched=connections.enriched toggled=true}}
+    </fieldset>
+</div>
+
+    
 </section>

@@ -85,11 +85,17 @@ export default class DhCharacter extends BaseDataActor {
                 })
             ),
             biography: new fields.SchemaField({
+                personality: new fields.HTMLField(),
                 background: new fields.HTMLField(),
                 connections: new fields.HTMLField(),
                 characteristics: new fields.SchemaField({
                     pronouns: new fields.StringField({}),
                     age: new fields.StringField({}),
+                    eyes: new fields.StringField({}),
+                    height: new fields.StringField({}),
+                    weight: new fields.StringField({}),
+                    hair: new fields.StringField({}),
+                    skin: new fields.StringField({}),
                     faith: new fields.StringField({})
                 })
             }),
