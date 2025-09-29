@@ -212,7 +212,14 @@
     "documentTypes": {
         "Actor": {
             "character": {
-                "htmlFields": ["biography.background", "biography.connections"]
+                "htmlFields": [
+                    "biography.background",
+                    "biography.connections",
+                    "journal.notes",
+                    "journal.allies",
+                    "journal.enemies",
+                    "journal.organizations"
+                ]
             },
             "companion": {},
             "adversary": {

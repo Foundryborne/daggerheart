@@ -1,0 +1,28 @@
+<section
+    class='tab {{tabs.journal.cssClass}} {{tabs.journal.id}}'
+    data-tab='{{tabs.journal.id}}'
+    data-group='{{tabs.journal.group}}'
+>
+
+
+<div class="items-section">
+    <fieldset>
+        <legend>{{localize 'DAGGERHEART.ACTORS.Character.journal.notesTitle'}}</legend>
+        {{formInput notes.field value=notes.value enriched=notes.enriched toggled=true}}
+    </fieldset>
+    <fieldset>
+        <legend>{{localize 'DAGGERHEART.ACTORS.Character.journal.alliesTitle'}}</legend>
+        {{formInput allies.field value=allies.value enriched=allies.enriched toggled=true}}
+    </fieldset>
+    <fieldset>
+        <legend>{{localize 'DAGGERHEART.ACTORS.Character.journal.enemiesTitle'}}</legend>
+        {{formInput enemies.field value=enemies.value enriched=enemies.enriched toggled=true}}
+    </fieldset>
+    <fieldset>
+        <legend>{{localize 'DAGGERHEART.ACTORS.Character.journal.organizationsTitle'}}</legend>
+        {{formInput organizations.field value=organizations.value enriched=organizations.enriched toggled=true}}
+    </fieldset>
+</div>
+
+    
+</section>

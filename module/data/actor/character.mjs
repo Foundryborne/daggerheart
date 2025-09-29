@@ -93,6 +93,12 @@ export default class DhCharacter extends BaseDataActor {
                     faith: new fields.StringField({})
                 })
             }),
+            journal: new fields.SchemaField({
+                notes: new fields.HTMLField(),
+                allies: new fields.HTMLField(),
+                enemies: new fields.HTMLField(),
+                organizations: new fields.HTMLField()
+            }),
             attack: new ActionField({
                 initial: {
                     name: 'DAGGERHEART.GENERAL.unarmedAttack',

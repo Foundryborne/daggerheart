@@ -92,6 +92,10 @@ export default class CharacterSheet extends DHBaseActorSheet {
             id: 'biography',
             template: 'systems/daggerheart/templates/sheets/actors/character/biography.hbs'
         },
+        journal: {
+            id: 'journal',
+            template: 'systems/daggerheart/templates/sheets/actors/character/journal.hbs'
+        },
         effects: {
             id: 'effects',
             template: 'systems/daggerheart/templates/sheets/actors/character/effects.hbs'
@@ -103,7 +107,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
     /** @inheritdoc */
     static TABS = {
         primary: {
-            tabs: [{ id: 'features' }, { id: 'loadout' }, { id: 'inventory' }, { id: 'biography' }, { id: 'effects' }],
+            tabs: [{ id: 'features' }, { id: 'loadout' }, { id: 'inventory' }, { id: 'biography' }, { id: 'journal' }, { id: 'effects' }],
             initial: 'features',
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
@@ -197,6 +201,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
             case 'biography':
                 await this._prepareBiographyContext(context, options);
                 break;
+            case 'journal':
+                await this._prepareJournalContext(context, options);
+                break;
         }
 
         return context;
@@ -238,6 +245,37 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const paths = {
             background: 'biography.background',
             connections: 'biography.connections'
+        };
+
+        for (const [key, path] of Object.entries(paths)) {
+            const value = foundry.utils.getProperty(system, path);
+            context[key] = {
+                field: system.schema.getField(path),
+                value,
+                enriched: await TextEditor.implementation.enrichHTML(value, {
+                    secrets: this.document.isOwner,
+                    relativeTo: this.document
+                })
+            };
+        }
+    }
+    
+    /**
+     * Prepare render context for the Journal part.
+     * @param {ApplicationRenderContext} context
+     * @param {ApplicationRenderOptions} options
+     * @returns {Promise<void>}
+     * @protected
+     */
+    async _prepareJournalContext(context, _options) {
+        const { system } = this.document;
+        const { TextEditor } = foundry.applications.ux;
+
+        const paths = {
+            notes: 'journal.notes',
+            allies: 'journal.allies',
+            enemies: 'journal.enemies',
+            organizations: 'journal.organizations'
         };
 
         for (const [key, path] of Object.entries(paths)) {
