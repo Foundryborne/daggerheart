@@ -6,7 +6,7 @@
      width="42.0746mm" height="50.8071mm"
      viewBox="0 0 159 192">
   <path id="Fear"
-        fill="none" stroke="black" stroke-width="1"
+        fill="#808080" stroke="black" stroke-width="1"
         d="M 107.14,62.84
            C 107.14,62.84 52.70,137.55 52.70,137.55
              52.70,137.55 110.33,137.55 110.33,137.55
@@ -32,7 +32,7 @@
              131.77,75.21 157.51,67.23 157.51,67.23
              157.25,67.32 130.42,30.45 130.43,30.45 Z" />
   <path id="Hope"
-        fill="none" stroke="black" stroke-width="1"
+        fill="white" stroke="black" stroke-width="1"
         d="M 143.84,1.80
            C 143.84,1.80 105.59,54.92 105.59,54.92
              105.59,54.92 83.04,39.72 83.04,39.72
