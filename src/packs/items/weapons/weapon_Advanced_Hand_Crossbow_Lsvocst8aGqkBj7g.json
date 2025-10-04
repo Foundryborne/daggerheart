@@ -43,12 +43,13 @@
         "parts": [
           {
             "value": {
-              "dice": "d4",
+              "dice": "d6",
               "bonus": 5,
               "multiplier": "prof",
               "flatMultiplier": 1,
               "custom": {
-                "enabled": false
+                "enabled": false,
+                "formula": ""
               }
             },
             "type": [
@@ -62,7 +63,8 @@
               "dice": "d6",
               "bonus": null,
               "custom": {
-                "enabled": false
+                "enabled": false,
+                "formula": ""
               }
             },
             "base": false
@@ -105,12 +107,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.2",
     "createdTime": 1753795089792,
-    "modifiedTime": 1753795117775,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1759575214347,
+    "lastModifiedBy": "mdk78Q6pOyHh6aBg"
   },
   "_key": "!items!Lsvocst8aGqkBj7g"
 }
