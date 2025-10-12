@@ -99,6 +99,7 @@ export default function DHApplicationMixin(Base) {
                 deleteDoc: DHSheetV2.#deleteDoc,
                 toChat: DHSheetV2.#toChat,
                 useItem: DHSheetV2.#useItem,
+                viewItem: DHSheetV2.#viewItem,
                 toggleEffect: DHSheetV2.#toggleEffect,
                 toggleExtended: DHSheetV2.#toggleExtended,
                 addNewItem: DHSheetV2.#addNewItem,
@@ -710,7 +711,7 @@ export default function DHApplicationMixin(Base) {
          * @type {ApplicationClickAction}
          */
         static async #toChat(_event, target) {
-            let doc = await getDocFromElement(target);
+            const doc = await getDocFromElement(target);
             return doc.toChat(doc.uuid);
         }
 
@@ -719,8 +720,17 @@ export default function DHApplicationMixin(Base) {
          * @type {ApplicationClickAction}
          */
         static async #useItem(event, target) {
-            let doc = await getDocFromElement(target);
+            const doc = await getDocFromElement(target);
             await doc.use(event);
+        }
+
+        /**
+         * View an item by opening its sheet
+         * @type {ApplicationClickAction}
+         */
+        static async #viewItem(_, target) {
+            const doc = await getDocFromElement(target);
+            await doc.sheet.render({ force: true });
         }
 
         /**
