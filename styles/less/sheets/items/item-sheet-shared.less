@@ -10,19 +10,4 @@
         font-family: @font-body;
         color: light-dark(@chat-blue-bg, @beige-50);
     }
-
-    .tab.description.active {
-        display: flex;
-        flex-direction: column;
-        padding: 0 20px;
-        .prosemirror {
-            flex: 1;
-            &.inactive .editor-content {
-                padding-top: 10px;
-            }
-            &.active + .artist-attribution {
-                display: none;
-            }
-        }
-    }
 }
