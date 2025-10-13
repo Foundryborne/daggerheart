@@ -13,14 +13,14 @@
     },
     "mainTrait": "strength",
     "advantageOn": {
-      "ePKq6o90hDkt6KZa": {
-        "value": "Dig"
+      "mX0DbTDuWAIpAGYq": {
+        "value": "Armadillo"
       },
-      "SOesy6zClSPFKtar": {
-        "value": "Locate"
+      "0VGGQOhVOoNpZfdJ": {
+        "value": "Pangolin"
       },
-      "y5lYgsGkG4bu4O1g": {
-        "value": "Protect"
+      "6v6bkfKevJrn3YHf": {
+        "value": "Turtle"
       }
     },
     "features": [
@@ -35,7 +35,12 @@
       "advantages": 2,
       "features": 2
     },
-    "examples": "Armadillo, Pangolin, Turtle, etc."
+    "examples": "Armadillo, Pangolin, Turtle, etc.",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 13,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -125,12 +130,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.348",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.2",
+    "systemVersion": "1.0.5",
     "createdTime": 1753580987168,
-    "modifiedTime": 1759665623244,
-    "lastModifiedBy": "9HOfUKAXuCu7hUPY"
+    "modifiedTime": 1755395295538,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "8pUHJv3BYdjA4Qdf",
   "sort": 100000,

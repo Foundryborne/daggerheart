@@ -30,12 +30,12 @@
           }
         ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Adjust Appearance",
         "img": "icons/magic/defensive/shield-barrier-blades-teal.webp",
-        "range": ""
+        "range": "self"
       },
       "wBQkw3P4Esj6kOx2": {
         "type": "effect",
@@ -49,7 +49,6 @@
             "scalable": false,
             "key": "hope",
             "value": 2,
-            "keyIsID": false,
             "step": null
           }
         ],
@@ -118,6 +117,11 @@
         "img": "icons/magic/control/silhouette-hold-change-green.webp",
         "range": "close"
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 124,
+      "artist": ""
     }
   },
   "flags": {},
@@ -125,12 +129,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1753922784424,
-    "modifiedTime": 1754229292338,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1756037990822,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "eq8VNqYMRHhF9xw9",
   "sort": 3400000,

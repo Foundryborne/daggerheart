@@ -7,19 +7,24 @@
     "description": "<p>Being part of a slyborne community means you come from a group that operates outside the law, including all manner of criminals, grifters, and con artists.<br><br><p class=\"green Body-Styles_Body\" chunk_id=\"f26534eb-503b-43ea-a768-8af00d09824e\">Being part of a slyborne community means you come from a group that operates outside the law, including all manner of criminals, grifters, and con artists. Members of slyborne communities are brought together by their disreputable goals and their clever means of achieving them. Many people in these communities have an array of unscrupulous skills: forging, thievery, smuggling, and violence. People of any social class can be slyborne, from those who have garnered vast wealth and influence to those without a coin to their name. To the outside eye, slyborne might appear to be ruffians with no loyalty, but these communities possess some of the strictest codes of honor which, when broken, can result in a terrifying end for the transgressor.</p>\n<p class=\"green Body-Styles_Body\" chunk_id=\"9d607cb9-95df-4956-9794-d1e637683705\"><em>Slyborne are often calculating, clever, formidable, perceptive, shrewd, and tenacious.</em></p></p>",
     "features": [
       "Compendium.daggerheart.communities.Item.ZmEuBdL0JrvuA8le"
-    ]
+    ],
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 33,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784396,
-    "modifiedTime": 1754011031727,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1755394825710,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "rGwCPMqZtky7SE6d",
   "sort": 3400000,

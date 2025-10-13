@@ -14,7 +14,16 @@
         "description": "<p>You can drink this potion to double your size until you choose to drop this form or your next rest. While in this form, you have a +2 bonus to Strength and a +1 bonus to your Proficiency.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "fl2f3ees8RFMze9t",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -35,7 +44,13 @@
         "range": ""
       }
     },
-    "consumeOnUse": true
+    "consumeOnUse": true,
+    "destroyOnEmpty": true,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 62,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -100,12 +115,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753592174440,
-    "modifiedTime": 1754394557196,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1756336513568,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!fl2f3ees8RFMze9t"
 }

@@ -6,7 +6,12 @@
   "system": {
     "description": "<p>This flask can hold two different liquids. You can swap between them by flipping a small switch on the flask’s side.</p>",
     "quantity": 1,
-    "actions": {}
+    "actions": {},
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 59,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": null,
@@ -20,12 +25,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753637893309,
-    "modifiedTime": 1753637932763,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1755432168119,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!HCvcAu3sdHCspGMP"
 }

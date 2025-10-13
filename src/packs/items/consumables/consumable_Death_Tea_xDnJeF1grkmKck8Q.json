@@ -14,7 +14,16 @@
         "description": "<p>After you drink this tea, you instantly kill your target when you critically succeed on an attack. If you don’t critically succeed on an attack before your next long rest, you die.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "xDnJeF1grkmKck8Q",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -27,15 +36,21 @@
           }
         ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Drink",
         "img": "icons/consumables/drinks/wine-amphora-clay-gray.webp",
-        "range": ""
+        "range": "self"
       }
     },
-    "consumeOnUse": true
+    "consumeOnUse": true,
+    "destroyOnEmpty": true,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 62,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -94,12 +109,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753592717630,
-    "modifiedTime": 1754394494474,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1756336445925,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!xDnJeF1grkmKck8Q"
 }

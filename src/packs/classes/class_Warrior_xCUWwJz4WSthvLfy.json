@@ -58,7 +58,12 @@
       "suggestedSecondaryWeapon": null,
       "suggestedArmor": "Compendium.daggerheart.armors.Item.haULhuEg37zUUvhb"
     },
-    "isMulticlass": false
+    "isMulticlass": false,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 23,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": null,

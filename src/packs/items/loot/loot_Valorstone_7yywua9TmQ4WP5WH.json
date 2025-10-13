@@ -6,7 +6,12 @@
   "system": {
     "description": "<p>You can attach this stone to armor that doesn’t already have a feature. The armor gains the following feature.</p><p><strong>Resilient</strong>: Before you mark your last Armor Slot, roll a d6. On a result of 6, reduce the severity by one threshold without marking an Armor Slot.</p>",
     "quantity": 1,
-    "actions": {}
+    "actions": {},
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 58,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": null,
@@ -20,12 +25,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753626167593,
-    "modifiedTime": 1753626237350,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1755432029408,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!7yywua9TmQ4WP5WH"
 }

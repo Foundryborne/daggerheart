@@ -17,7 +17,6 @@
         "actionType": "action",
         "cost": [
           {
-            "keyIsID": false,
             "key": "hope",
             "value": 1,
             "scalable": false,
@@ -38,12 +37,12 @@
           }
         ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Bonus to Roll",
         "img": "icons/sundries/gaming/dice-runed-tan.webp",
-        "range": ""
+        "range": "self"
       },
       "S7HvFD3qIR3ifJRL": {
         "type": "effect",
@@ -54,7 +53,6 @@
         "actionType": "action",
         "cost": [
           {
-            "keyIsID": false,
             "key": "hope",
             "value": 1,
             "scalable": false,
@@ -75,16 +73,21 @@
           }
         ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Bonus to Damage",
         "img": "icons/sundries/gaming/dice-runed-tan.webp",
-        "range": ""
+        "range": "self"
       }
     },
     "originItemType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 22,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -110,7 +113,7 @@
           "priority": null
         }
       ],
-      "disabled": true,
+      "disabled": false,
       "duration": {
         "startTime": null,
         "combat": null,
@@ -129,10 +132,11 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "lastModifiedBy": "vUIbuan0U50nfKBE",
+        "modifiedTime": 1756035533156
       },
       "_key": "!items.effects!dPcqKN5NeDkjB1HW.EY87mY6ULfIt3XC8"
     },
@@ -165,7 +169,7 @@
           "priority": null
         }
       ],
-      "disabled": true,
+      "disabled": false,
       "duration": {
         "startTime": null,
         "combat": null,
@@ -184,10 +188,11 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "lastModifiedBy": "vUIbuan0U50nfKBE",
+        "modifiedTime": 1756035536128
       },
       "_key": "!items.effects!dPcqKN5NeDkjB1HW.WwibpgaO6Kkks7aZ"
     }
@@ -202,12 +207,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1754349507020,
-    "modifiedTime": 1754349507020,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1756035526712,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_key": "!items!dPcqKN5NeDkjB1HW"
 }

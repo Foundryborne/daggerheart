@@ -27,11 +27,11 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": true,
-            "key": "o62i0QdbUDIiAhSq",
+            "key": "resource",
+            "itemId": "o62i0QdbUDIiAhSq",
             "value": 1,
+            "scalable": true,
             "step": 1,
-            "keyIsID": true,
             "consumeOnSuccess": false
           }
         ],
@@ -113,7 +113,6 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "keyIsID": false,
             "step": null,
             "consumeOnSuccess": false
           }
@@ -126,13 +125,18 @@
         },
         "effects": [],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Replenish Tokens",
         "img": "icons/commodities/gems/gem-faceted-diamond-blue.webp",
-        "range": ""
+        "range": "self"
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 119,
+      "artist": ""
     }
   },
   "flags": {},
@@ -140,12 +144,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753922784537,
-    "modifiedTime": 1754501257508,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1756325575757,
+    "lastModifiedBy": "bjJtdJOhqWr47GhC"
   },
   "_id": "o62i0QdbUDIiAhSq",
   "sort": 3400000,

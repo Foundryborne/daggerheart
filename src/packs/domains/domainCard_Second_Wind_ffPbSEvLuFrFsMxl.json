@@ -19,10 +19,10 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
-            "key": "ffPbSEvLuFrFsMxl",
+            "key": "resource",
+            "itemId": "ffPbSEvLuFrFsMxl",
             "value": 1,
-            "keyIsID": true,
+            "scalable": false,
             "step": null,
             "consumeOnSuccess": false
           }
@@ -96,10 +96,10 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
-            "key": "ffPbSEvLuFrFsMxl",
+            "key": "resource",
+            "itemId": "ffPbSEvLuFrFsMxl",
             "value": 1,
-            "keyIsID": true,
+            "scalable": false,
             "step": null,
             "consumeOnSuccess": false
           }
@@ -171,6 +171,11 @@
       "recovery": "shortRest",
       "max": "1",
       "icon": ""
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 132,
+      "artist": ""
     }
   },
   "flags": {},
@@ -178,12 +183,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753922784509,
-    "modifiedTime": 1754269533170,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1756325575706,
+    "lastModifiedBy": "bjJtdJOhqWr47GhC"
   },
   "_id": "ffPbSEvLuFrFsMxl",
   "sort": 3400000,

@@ -117,6 +117,11 @@
       "type": "attack",
       "range": "melee",
       "chatDisplay": false
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 77,
+      "artist": ""
     }
   },
   "flags": {},
@@ -126,9 +131,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.4",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784282,
-    "modifiedTime": 1755259874457,
+    "modifiedTime": 1755384472544,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "mK3A5FTx6k8iPU3F",
@@ -254,7 +259,6 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 2,
-                "keyIsID": false,
                 "step": null
               }
             ],
@@ -328,7 +332,7 @@
       "_id": "YeJ7eJVCKsRxG8mk",
       "img": "icons/skills/ranged/target-bullseye-arrow-blue.webp",
       "system": {
-        "description": "<p>Countdown (5). When the Head Guard is in the spotlight for the fi rst time, activate the countdown. It ticks down when a PC makes an attack roll. When it triggers, all Archer Guards within Far range make a standard attack with advantage against the nearest target within their range. If any attacks succeed on the same target, combine their damage.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p>Countdown (5). When the Head Guard is in the spotlight for the first time, activate the countdown. It ticks down when a PC makes an attack roll. When it triggers, all Archer Guards within Far range make a standard attack with advantage against the nearest target within their range. If any attacks succeed on the same target, combine their damage.</p><p>@Template[type:emanation|range:f]</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -347,12 +351,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754048119625,
-        "modifiedTime": 1754048254827,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760209562267,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!mK3A5FTx6k8iPU3F.YeJ7eJVCKsRxG8mk"
     },
@@ -364,7 +368,77 @@
       "system": {
         "description": "<p>When the Head Guard makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "tD1hAwP6scxXrouw": {
+            "type": "healing",
+            "_id": "tD1hAwP6scxXrouw",
+            "systemPath": "actions",
+            "description": "<p>When the Head Guard makes a successful attack against a PC, you gain a Fear.</p>",
+            "chatDisplay": true,
+            "actionType": "reaction",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "fear",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "name": "Gain Fear",
+            "img": "icons/skills/melee/strike-weapons-orange.webp",
+            "range": ""
+          }
+        },
         "originItemType": null,
         "subType": null,
         "originId": null
@@ -381,12 +455,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754048263819,
-        "modifiedTime": 1754048279307,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760209526360,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!mK3A5FTx6k8iPU3F.sd2OlhLchyoqeKke"
     }

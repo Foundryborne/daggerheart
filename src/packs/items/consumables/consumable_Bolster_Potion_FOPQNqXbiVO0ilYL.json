@@ -14,7 +14,16 @@
         "description": "<p>You gain a +1 bonus to your next Strength Roll.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "FOPQNqXbiVO0ilYL",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -32,10 +41,16 @@
         },
         "name": "Drink",
         "img": "icons/consumables/potions/potion-vial-tube-yellow.webp",
-        "range": ""
+        "range": "self"
       }
     },
-    "consumeOnUse": true
+    "consumeOnUse": true,
+    "destroyOnEmpty": true,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 60,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -94,12 +109,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753586850134,
-    "modifiedTime": 1754394431654,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1756336378610,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!FOPQNqXbiVO0ilYL"
 }

@@ -27,11 +27,11 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": true,
-            "key": "wUQFsRtww18naYaq",
+            "key": "resource",
+            "itemId": "wUQFsRtww18naYaq",
             "value": 1,
+            "scalable": true,
             "step": null,
-            "keyIsID": true,
             "consumeOnSuccess": false
           }
         ],
@@ -104,11 +104,11 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": true,
-            "key": "wUQFsRtww18naYaq",
+            "key": "resource",
+            "itemId": "wUQFsRtww18naYaq",
             "value": 1,
+            "scalable": true,
             "step": 1,
-            "keyIsID": true,
             "consumeOnSuccess": false
           }
         ],
@@ -181,11 +181,11 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": true,
-            "key": "wUQFsRtww18naYaq",
+            "key": "resource",
+            "itemId": "wUQFsRtww18naYaq",
             "value": 1,
+            "scalable": true,
             "step": null,
-            "keyIsID": true,
             "consumeOnSuccess": false
           }
         ],
@@ -204,6 +204,11 @@
         "img": "icons/magic/light/beam-rays-yellow.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 133,
+      "artist": ""
     }
   },
   "flags": {},
@@ -211,12 +216,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753922784502,
-    "modifiedTime": 1754498742091,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1756325575854,
+    "lastModifiedBy": "bjJtdJOhqWr47GhC"
   },
   "_id": "wUQFsRtww18naYaq",
   "sort": 3400000,

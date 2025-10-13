@@ -23,8 +23,7 @@
             "scalable": true,
             "key": "hope",
             "value": 1,
-            "step": 1,
-            "keyIsID": false
+            "step": 1
           }
         ],
         "uses": {
@@ -70,6 +69,11 @@
         "img": "icons/creatures/magical/humanoid-silhouette-dashing-blue.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 131,
+      "artist": ""
     }
   },
   "flags": {},
@@ -77,12 +81,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784457,
-    "modifiedTime": 1754339713793,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1755429599034,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "JrkUMTzaFmQNBHVm",
   "sort": 3400000,

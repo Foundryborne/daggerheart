@@ -9,9 +9,66 @@
     "resource": null,
     "actions": {},
     "originItemType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 17,
+      "artist": ""
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Battle Bonded",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "IZhakv6EuG8DO4a3",
+      "img": "icons/creatures/mammals/humanoid-wolf-dog-blue.webp",
+      "changes": [
+        {
+          "key": "system.evasion",
+          "mode": 2,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "disabled": true,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>When an adversary attacks you while they’re within your companion’s Melee range, you gain a +2 bonus to your Evasion against the attack.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.347",
+        "systemId": "daggerheart",
+        "systemVersion": "1.1.0",
+        "createdTime": 1756035661033,
+        "modifiedTime": 1756035696385,
+        "lastModifiedBy": "vUIbuan0U50nfKBE"
+      },
+      "_key": "!items.effects!hWsKyed1vfILg0I8.IZhakv6EuG8DO4a3"
+    }
+  ],
   "sort": 0,
   "ownership": {
     "default": 0,
@@ -22,12 +79,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1754267290791,
-    "modifiedTime": 1754267339284,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
+    "modifiedTime": 1755391947493,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!hWsKyed1vfILg0I8"
 }

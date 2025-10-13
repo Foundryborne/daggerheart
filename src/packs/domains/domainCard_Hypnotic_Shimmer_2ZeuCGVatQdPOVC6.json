@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "kLMAuyZktmohOSXa",
         "systemPath": "actions",
-        "description": "<p>Make a <strong>Spellcast Roll</strong> against all adversaries in front of you within Close range. Once per rest on a success, create an illusion of flashing colors and lights that temporarily <em>Stuns</em> targets you succeed against and forces them to mark a Stress. While <em>Stunned</em>, they can’t use reactions and can’t take any other actions until they clear this condition.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against all adversaries in front of you within Close range. Once per rest on a success, create an illusion of flashing colors and lights that temporarily <em>Stuns</em> targets you succeed against and forces them to mark a Stress. While <em>Stunned</em>, they can’t use reactions and can’t take any other actions until they clear this condition.</p><p>@Template[type:infront|range:c]</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -88,6 +88,11 @@
         "img": "icons/magic/control/hypnosis-mesmerism-swirl.webp",
         "range": "close"
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 126,
+      "artist": ""
     }
   },
   "flags": {},
@@ -95,12 +100,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1753922784471,
-    "modifiedTime": 1754341315075,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1756038232979,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "2ZeuCGVatQdPOVC6",
   "sort": 3400000,

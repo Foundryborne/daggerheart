@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "4swwe8SZeh2KyPtl",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Once per long rest, you can activate this ring after a successful attack against you to halve the damage.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -20,18 +20,86 @@
           "max": 1,
           "recovery": "longRest"
         },
-        "effects": [],
+        "effects": [
+          {
+            "_id": "Sj7uGf560T7u4rlX",
+            "onSave": false
+          }
+        ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Activate",
         "img": "icons/equipment/finger/ring-shield-silver.webp",
-        "range": ""
+        "range": "self"
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 59,
+      "artist": ""
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Ring of Resistance",
+      "img": "icons/equipment/finger/ring-shield-silver.webp",
+      "origin": "Compendium.daggerheart.loot.Item.aUqRifqR5JXXa1dN",
+      "transfer": false,
+      "_id": "Sj7uGf560T7u4rlX",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.resistance.magical.resistance",
+          "mode": 5,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "system.resistance.physical.resistance",
+          "mode": 5,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>Once per long rest, you can activate this ring after a successful attack against you to halve the damage.</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.347",
+        "systemId": "daggerheart",
+        "systemVersion": "1.1.0",
+        "createdTime": 1756043003002,
+        "modifiedTime": 1756043032046,
+        "lastModifiedBy": "vUIbuan0U50nfKBE"
+      },
+      "_key": "!items.effects!aUqRifqR5JXXa1dN.Sj7uGf560T7u4rlX"
+    }
+  ],
   "folder": null,
   "sort": 0,
   "ownership": {
@@ -43,12 +111,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1753638222884,
-    "modifiedTime": 1753638266245,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1756043010729,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_key": "!items!aUqRifqR5JXXa1dN"
 }

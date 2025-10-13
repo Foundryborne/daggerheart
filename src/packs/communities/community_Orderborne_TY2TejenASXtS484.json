@@ -7,19 +7,24 @@
     "description": "<p>Being part of an orderborne community means you’re from a collective that focuses on discipline or faith, and you uphold a set of principles that reflect your experience there.<br><br><p class=\"green Body-Styles_Body\" chunk_id=\"4da738f4-45e3-4bc6-b1f8-aef939b162ca\">Orderborne are frequently some of the most powerful among the surrounding communities. By aligning the members of their society around a common value or goal, such as a god, doctrine, ethos, or even a shared business or trade, the ruling bodies of these enclaves are able to mobilize larger populations with less effort. While orderborne communities take a variety of forms—some even profoundly pacifistic—perhaps the most feared are those that structure themselves around military prowess. In such a case, it’s not uncommon for orderborne to provide soldiers for hire to other cities or countries.</p>\n<p class=\"green Body-Styles_Body\" chunk_id=\"6b261db5-6250-44a9-aebd-000cc9c9bcc5\"><em>Orderborne are often ambitious, benevolent, pensive, prudent, sardonic, and stoic.</em></p></p>",
     "features": [
       "Compendium.daggerheart.communities.Item.7aXWdH3gzaYREK0X"
-    ]
+    ],
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 32,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784393,
-    "modifiedTime": 1754010626874,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1755394802410,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "TY2TejenASXtS484",
   "sort": 3400000,

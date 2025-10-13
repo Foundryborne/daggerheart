@@ -14,7 +14,16 @@
         "description": "<p>You can use this musk to prevent anyone from tracking you by mundane or magical means until your next rest.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "qr1bosjFcUfuwq4B",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -35,7 +44,13 @@
         "range": ""
       }
     },
-    "consumeOnUse": true
+    "consumeOnUse": true,
+    "destroyOnEmpty": true,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 61,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -94,12 +109,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753591168468,
-    "modifiedTime": 1754394777490,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1756336713230,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!qr1bosjFcUfuwq4B"
 }

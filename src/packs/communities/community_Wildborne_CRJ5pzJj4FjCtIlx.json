@@ -7,19 +7,24 @@
     "description": "<p>Being part of a wildborne community means you lived deep within the forest.<br><br><p class=\"green Body-Styles_Body\" chunk_id=\"464fc297-99b7-420d-b160-66174eba215d\">Wildborne communities are defined by their dedication to the conservation of their homelands, and many have strong religious or cultural ties to the fauna they live among. This results in unique architectural and technological advancements that favor sustainability over short-term, high-yield results. It is a hallmark of wildborne societies to integrate their villages and cities with the natural environment and avoid disturbing the lives of the plants and animals. While some construct their lodgings high in the branches of trees, others establish their homes on the ground beneath the forest canopy. It’s not uncommon for wildborne to remain reclusive and hidden within their woodland homes.</p>\n<p class=\"green Body-Styles_Body\" chunk_id=\"f30c9dcd-5b61-4997-b7a8-2b1684fb60b2\"><em>Wildborne are often hardy, loyal, nurturing, reclusive, sagacious, and vibrant.</em></p></p>",
     "features": [
       "Compendium.daggerheart.communities.Item.TQ1AIQjndC4mYmmU"
-    ]
+    ],
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 34,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784398,
-    "modifiedTime": 1754011159389,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1755394854412,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "CRJ5pzJj4FjCtIlx",
   "sort": 3400000,

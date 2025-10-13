@@ -53,6 +53,11 @@
         "img": "icons/sundries/misc/key-ornate-iron-black.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 58,
+      "artist": ""
     }
   },
   "effects": [],
@@ -67,12 +72,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753626370278,
-    "modifiedTime": 1753626508104,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1755432037375,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!edkNgwy4xghZreBa"
 }

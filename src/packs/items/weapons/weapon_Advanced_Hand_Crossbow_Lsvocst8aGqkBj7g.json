@@ -43,13 +43,12 @@
         "parts": [
           {
             "value": {
-              "dice": "d6",
+              "dice": "d4",
               "bonus": 5,
               "multiplier": "prof",
               "flatMultiplier": 1,
               "custom": {
-                "enabled": false,
-                "formula": ""
+                "enabled": false
               }
             },
             "type": [
@@ -63,8 +62,7 @@
               "dice": "d6",
               "bonus": null,
               "custom": {
-                "enabled": false,
-                "formula": ""
+                "enabled": false
               }
             },
             "base": false
@@ -94,6 +92,11 @@
           "trait": null
         }
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 53,
+      "artist": ""
     }
   },
   "effects": [],
@@ -107,12 +110,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.348",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.2",
+    "systemVersion": "1.0.5",
     "createdTime": 1753795089792,
-    "modifiedTime": 1759575214347,
-    "lastModifiedBy": "mdk78Q6pOyHh6aBg"
+    "modifiedTime": 1755430416538,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!Lsvocst8aGqkBj7g"
 }

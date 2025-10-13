@@ -14,25 +14,90 @@
         "description": "<p>You can apply this salve to your neck to breathe underwater for a number of minutes equal to your level.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "Nvbb9mze6o5D0AEg",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
           "recovery": null
         },
-        "effects": [],
+        "effects": [
+          {
+            "_id": "5rL9CY5GO9SJcEZq",
+            "onSave": false
+          }
+        ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Apply",
         "img": "icons/commodities/materials/bowl-powder-blue.webp",
-        "range": ""
+        "range": "self"
       }
     },
-    "consumeOnUse": true
+    "consumeOnUse": true,
+    "destroyOnEmpty": true,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 61,
+      "artist": ""
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Gill Salve",
+      "img": "icons/commodities/materials/bowl-powder-blue.webp",
+      "origin": "Compendium.daggerheart.consumables.Item.Nvbb9mze6o5D0AEg",
+      "transfer": false,
+      "_id": "5rL9CY5GO9SJcEZq",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>You can apply this salve to your neck to breathe underwater for a number of minutes equal to your level.</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.347",
+        "systemId": "daggerheart",
+        "systemVersion": "1.1.0",
+        "createdTime": 1756041968799,
+        "modifiedTime": 1756041978849,
+        "lastModifiedBy": "vUIbuan0U50nfKBE"
+      },
+      "_key": "!items.effects!Nvbb9mze6o5D0AEg.5rL9CY5GO9SJcEZq"
+    }
+  ],
   "folder": null,
   "sort": 0,
   "ownership": {
@@ -44,12 +109,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753589241094,
-    "modifiedTime": 1754394537845,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1756336496390,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!Nvbb9mze6o5D0AEg"
 }

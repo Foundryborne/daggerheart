@@ -23,7 +23,12 @@
       "features": 3,
       "maximumTier": 3
     },
-    "examples": ""
+    "examples": "",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 15,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -113,12 +118,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753628965658,
-    "modifiedTime": 1753628965658,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1755395511998,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "WAbxCf2An8qmxyJ1",
   "sort": 0,

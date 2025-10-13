@@ -14,19 +14,24 @@
         "type": "secondary",
         "item": "Compendium.daggerheart.ancestries.Item.0RN0baBxh95GT1cm"
       }
-    ]
+    ],
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 27,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784382,
-    "modifiedTime": 1753994478754,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755394117175,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "pDt6fI6otv2E2odf",
   "sort": 3400000,

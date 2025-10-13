@@ -20,7 +20,6 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "keyIsID": false,
             "step": null
           }
         ],
@@ -36,23 +35,28 @@
           }
         ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Mark Stress",
         "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
-        "range": ""
+        "range": "self"
       }
     },
     "originItemType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 19,
+      "artist": ""
+    }
   },
   "effects": [
     {
       "name": "Vanishing Act: Cloaked",
       "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
       "origin": "Compendium.daggerheart.subclasses.Item.iyIg1VLwO8C6jvFZ",
-      "transfer": true,
+      "transfer": false,
       "_id": "czrwqq44sEr0uJ8O",
       "type": "base",
       "system": {
@@ -83,12 +87,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754322584884,
-        "modifiedTime": 1754352062188,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1756035920880,
+        "lastModifiedBy": "vUIbuan0U50nfKBE"
       },
       "_key": "!items.effects!iyIg1VLwO8C6jvFZ.czrwqq44sEr0uJ8O"
     }
@@ -103,12 +107,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1754321406972,
-    "modifiedTime": 1754322584899,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
+    "modifiedTime": 1756035929726,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_key": "!items!iyIg1VLwO8C6jvFZ"
 }

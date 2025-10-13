@@ -20,11 +20,12 @@
         },
         "cost": [
           {
-            "key": "armorSlot",
+            "key": "resource",
+            "itemId": "armorSlot",
             "value": 1,
-            "keyIsID": false,
             "scalable": false,
-            "step": null
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "effects": [
@@ -137,6 +138,11 @@
           "trait": null
         }
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 53,
+      "artist": ""
     }
   },
   "effects": [
@@ -189,12 +195,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753795181779,
-    "modifiedTime": 1753808413753,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1756325575921,
+    "lastModifiedBy": "bjJtdJOhqWr47GhC"
   },
   "_key": "!items!EmFTp9wzT6MHSaNz"
 }

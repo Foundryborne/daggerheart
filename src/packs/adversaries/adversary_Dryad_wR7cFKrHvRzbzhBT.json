@@ -112,6 +112,11 @@
       },
       "type": "attack",
       "chatDisplay": false
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 93,
+      "artist": ""
     }
   },
   "flags": {},
@@ -121,9 +126,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784258,
-    "modifiedTime": 1755259462937,
+    "modifiedTime": 1755385415645,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "wR7cFKrHvRzbzhBT",
@@ -247,7 +252,6 @@
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "keyIsID": false,
                 "step": null
               }
             ],
@@ -388,7 +392,6 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "keyIsID": false,
                 "step": null
               }
             ],
@@ -452,7 +455,6 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "keyIsID": false,
                 "step": null
               }
             ],

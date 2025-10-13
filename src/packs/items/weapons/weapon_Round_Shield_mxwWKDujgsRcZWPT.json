@@ -100,19 +100,23 @@
           "trait": null
         }
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 52,
+      "artist": ""
     }
   },
   "effects": [
     {
       "name": "Protective",
-      "description": "<p>Add the item's Tier to your Armor Score.</p>",
+      "description": "Add your character's Tier to your Armor Score",
       "img": "icons/skills/melee/shield-block-gray-orange.webp",
       "changes": [
         {
           "key": "system.armorScore",
           "mode": 2,
-          "value": "ITEM.@system.tier",
-          "priority": null
+          "value": "ITEM.@system.tier"
         }
       ],
       "_id": "M70a81e0Mg66jHRL",
@@ -121,12 +125,7 @@
       "disabled": false,
       "duration": {
         "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "combat": null
       },
       "origin": null,
       "tint": "#ffffff",
@@ -138,12 +137,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1753794114980,
-        "modifiedTime": 1756682994216,
-        "lastModifiedBy": "mdk78Q6pOyHh6aBg"
+        "modifiedTime": 1753794114980,
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
       },
       "_key": "!items.effects!mxwWKDujgsRcZWPT.M70a81e0Mg66jHRL"
     }
@@ -158,12 +157,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753742068200,
-    "modifiedTime": 1753794114990,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1755430279232,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!mxwWKDujgsRcZWPT"
 }

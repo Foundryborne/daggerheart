@@ -5,14 +5,14 @@
   "_id": "UFR67BUOhNGLFyg9",
   "img": "icons/magic/defensive/shield-barrier-flaming-diamond-teal.webp",
   "system": {
-    "description": "<p><strong>Mark a Stress</strong> to retract into your shell. While in your shell, you have resistance to physical damage, you have disadvantage on action rolls, and you can’t move.</p><p></p><pre><code>Note: You will need to manually apply disadvantage on your actions rolls</code></pre>",
+    "description": "<p><strong>Mark a Stress</strong> to retract into your shell. While in your shell, you have resistance to physical damage, you have disadvantage on action rolls, and you can’t move.<br /><br />(When marked, manually enable the retract effect in effects tab and mark disadvantage when doing any action rolls)</p>",
     "resource": null,
     "actions": {
       "HfiAg14hrYt7Yvnj": {
         "type": "effect",
         "_id": "HfiAg14hrYt7Yvnj",
         "systemPath": "actions",
-        "description": "<p><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 15.75px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\"><strong>Mark a Stress</strong></span><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 15.75px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\"> to retract into your shell. While in your shell, you have resistance to physical damage, you have disadvantage on action rolls, and you can’t move.</span></p><pre><code>Note: You will need to manually apply disadvantage on your actions rolls</code></pre>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -32,22 +32,27 @@
         },
         "effects": [
           {
-            "_id": "tTTyNKnbYvtWtulG",
+            "_id": "3V4FPoyjJUnFP9WS",
             "onSave": false
           }
         ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Mark Stress",
         "img": "icons/magic/defensive/shield-barrier-flaming-diamond-teal.webp",
-        "range": ""
+        "range": "self"
       }
     },
     "originItemType": null,
     "subType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 29,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -55,7 +60,7 @@
       "img": "icons/magic/defensive/shield-barrier-flaming-diamond-teal.webp",
       "origin": "Compendium.daggerheart.ancestries.Item.UFR67BUOhNGLFyg9",
       "transfer": false,
-      "_id": "tTTyNKnbYvtWtulG",
+      "_id": "3V4FPoyjJUnFP9WS",
       "type": "base",
       "system": {
         "rangeDependence": {
@@ -68,12 +73,18 @@
       "changes": [
         {
           "key": "system.resistance.physical.resistance",
-          "mode": 2,
+          "mode": 5,
           "value": "1",
+          "priority": null
+        },
+        {
+          "key": "system.disadvantageSources",
+          "mode": 2,
+          "value": "Retract",
           "priority": null
         }
       ],
-      "disabled": true,
+      "disabled": false,
       "duration": {
         "startTime": null,
         "combat": null,
@@ -83,7 +94,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:15.75px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\"><strong>Mark a Stress</strong></span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:15.75px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> to retract into your shell. While in your shell, you have resistance to physical damage, you have disadvantage on action rolls, and you can’t move.</span></p><pre><code>Note: You will need to manually apply disadvantage on your actions rolls</code></pre>",
+      "description": "<p>While in your shell, you have resistance to physical damage, you have disadvantage on action rolls, and you can’t move.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -92,14 +103,14 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
         "systemVersion": "1.1.2",
-        "createdTime": 1759913858975,
-        "modifiedTime": 1760008271559,
-        "lastModifiedBy": "9HOfUKAXuCu7hUPY"
+        "createdTime": 1759960447341,
+        "modifiedTime": 1759961484642,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
-      "_key": "!items.effects!UFR67BUOhNGLFyg9.tTTyNKnbYvtWtulG"
+      "_key": "!items.effects!UFR67BUOhNGLFyg9.3V4FPoyjJUnFP9WS"
     }
   ],
   "sort": 0,
@@ -112,12 +123,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.348",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
     "systemVersion": "1.1.2",
     "createdTime": 1753996513763,
-    "modifiedTime": 1760008230128,
-    "lastModifiedBy": "9HOfUKAXuCu7hUPY"
+    "modifiedTime": 1759961925987,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!items!UFR67BUOhNGLFyg9"
 }

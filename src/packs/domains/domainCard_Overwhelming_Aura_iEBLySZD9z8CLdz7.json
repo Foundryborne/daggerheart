@@ -23,7 +23,6 @@
             "scalable": false,
             "key": "hope",
             "value": 2,
-            "keyIsID": false,
             "step": null
           }
         ],
@@ -38,7 +37,7 @@
           "includeBase": false
         },
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "effects": [
@@ -69,8 +68,13 @@
         },
         "name": "Cast",
         "img": "icons/magic/holy/angel-winged-humanoid-blue.webp",
-        "range": ""
+        "range": "self"
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 133,
+      "artist": ""
     }
   },
   "flags": {},
@@ -78,12 +82,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1753922784491,
-    "modifiedTime": 1754270006714,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1756038903709,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "iEBLySZD9z8CLdz7",
   "sort": 3400000,
