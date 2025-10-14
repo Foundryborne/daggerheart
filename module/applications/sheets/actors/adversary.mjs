@@ -69,6 +69,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
         context = await super._preparePartContext(partId, context, options);
         switch (partId) {
             case 'header':
+            case 'limited':
                 await this._prepareHeaderContext(context, options);
 
                 const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
