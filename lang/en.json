@@ -1884,6 +1884,10 @@
                     }
                 }
             },
+            "SpotlightRequests": {
+                "singular": "Spotlight Request",
+                "plural": "Spotlight Requests"
+            },
             "Tabs": {
                 "details": "Details",
                 "attack": "Attack",

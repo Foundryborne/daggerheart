@@ -36,7 +36,7 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
         const adversaries = context.turns?.filter(x => x.isNPC) ?? [];
         const characters = context.turns?.filter(x => !x.isNPC) ?? [];
 
-        const sortedCharacters = characters
+        const spotlightRequests = characters
             ?.filter(x => !x.isNPC)
             .filter(x => x.system.spotlight.requestOrderIndex > 0)
             .sort((a, b) => {
@@ -44,13 +44,13 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
                 const valueB = b.system.spotlight.requestOrderIndex;
 
                 return valueA - valueB;
-            })
-            .concat(characters?.filter(x => !x.isNPC).filter(x => x.system.spotlight.requestOrderIndex == 0));
+            });
 
         Object.assign(context, {
             actionTokens: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).actionTokens,
             adversaries,
-            characters: sortedCharacters
+            characters: characters?.filter(x => !x.isNPC).filter(x => x.system.spotlight.requestOrderIndex == 0),
+            spotlightRequests
         });
     }
 
