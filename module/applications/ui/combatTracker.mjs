@@ -36,10 +36,21 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
         const adversaries = context.turns?.filter(x => x.isNPC) ?? [];
         const characters = context.turns?.filter(x => !x.isNPC) ?? [];
 
+        const sortedCharacters = characters
+            ?.filter(x => !x.isNPC)
+            .filter(x => x.system.spotlight.requestOrderIndex > 0)
+            .sort((a, b) => {
+                const valueA = a.system.spotlight.requestOrderIndex;
+                const valueB = b.system.spotlight.requestOrderIndex;
+
+                return valueA - valueB;
+            })
+            .concat(characters?.filter(x => !x.isNPC).filter(x => x.system.spotlight.requestOrderIndex == 0));
+
         Object.assign(context, {
             actionTokens: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).actionTokens,
             adversaries,
-            characters
+            characters: sortedCharacters
         });
     }
 
@@ -114,7 +125,8 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
     async setCombatantSpotlight(combatantId) {
         const update = {
             system: {
-                'spotlight.requesting': false
+                'spotlight.requesting': false,
+                'spotlight.requestOrderIndex': 0
             }
         };
         const combatant = this.viewed.combatants.get(combatantId);
@@ -142,11 +154,15 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
     }
 
     static async requestSpotlight(_, target) {
+        const characters = this.viewed.turns?.filter(x => !x.isNPC) ?? [];
+        const orderValues = characters.map(character => character.system.spotlight.requestOrderIndex);
+        const maxRequestIndex = Math.max(...orderValues);
         const { combatantId } = target.closest('[data-combatant-id]')?.dataset ?? {};
         const combatant = this.viewed.combatants.get(combatantId);
         await combatant.update({
             'system.spotlight': {
-                requesting: !combatant.system.spotlight.requesting
+                requesting: !combatant.system.spotlight.requesting,
+                requestOrderIndex: !combatant.system.spotlight.requesting ? maxRequestIndex + 1 : 0
             }
         });
 
