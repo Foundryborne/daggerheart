@@ -110,6 +110,18 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
 
     static async updateData(_event, _, formData) {
         const { hideNewCountdowns, ...settingsData } = foundry.utils.expandObject(formData.object);
+        
+        // Sync current and max if max is changing and they were equal before
+        for (const [id, countdown] of Object.entries(settingsData.countdowns ?? {})) {
+            const existing = this.data.countdowns[id];
+            const wasEqual = existing && existing.progress.current === existing.progress.max;
+            if (wasEqual && countdown.progress.max !== existing.progress.max) {
+                countdown.progress.current = countdown.progress.max;
+            } else {
+                countdown.progress.current = Math.min(countdown.progress.current, countdown.progress.max);
+            }
+        }       
+
         this.hideNewCountdowns = hideNewCountdowns;
         this.updateSetting(settingsData);
     }
