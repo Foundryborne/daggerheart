@@ -34,7 +34,8 @@ export const GMUpdateEvent = {
 };
 
 export const RefreshType = {
-    Countdown: 'DhCoundownRefresh'
+    Countdown: 'DhCoundownRefresh',
+    TagTeamRoll: 'DhTagTeamRollRefresh'
 };
 
 export const registerSocketHooks = () => {

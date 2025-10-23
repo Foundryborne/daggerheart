@@ -14,7 +14,8 @@ export default class RegisterHandlebarsHelpers {
             getProperty: foundry.utils.getProperty,
             setVar: this.setVar,
             empty: this.empty,
-            pluralize: this.pluralize
+            pluralize: this.pluralize,
+            log: this.log
         });
     }
     static add(a, b) {
@@ -88,5 +89,9 @@ export default class RegisterHandlebarsHelpers {
         const isSingular = !isNaN(numericCount) && numericCount === 1;
         const key = isSingular ? `${baseKey}.single` : `${baseKey}.plural`;
         return game.i18n.localize(key);
+    }
+
+    static log(test) {
+        return test;
     }
 }

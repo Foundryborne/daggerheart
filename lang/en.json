@@ -545,6 +545,17 @@
             "ResourceDice": {
                 "title": "{name} Resource",
                 "rerollDice": "Reroll Dice"
+            },
+            "TagTeamSelect": {
+                "title": "Tag Team Roll",
+                "leaderTitle": "Initiating Character",
+                "membersTitle": "Participants",
+                "hopeCost": "Hope Cost",
+                "linkMessageHint": "Make a roll from your character sheet to link it to the Tag Team Roll",
+                "damageNotRolled": "Damage not rolled in chat message yet",
+                "insufficientHope": "The initiating character doesn't have enough hope",
+                "createTagTeam": "Create TagTeam Roll",
+                "chatMessageRollTitle": "Roll"
             }
         },
         "CLASS": {
@@ -2452,7 +2463,15 @@
                 },
                 "resourceRoll": {
                     "playerMessage": "{user} rerolled their {name}"
+                },
+                "tagTeam": {
+                    "title": "Tag Team",
+                    "membersTitle": "Members"
                 }
+            },
+            "ChatLog": {
+                "rerollDamage": "Reroll Damage",
+                "assignTagRoll": "Assign as Tag Roll"
             },
             "ItemBrowser": {
                 "title": "Daggerheart Compendium Browser",

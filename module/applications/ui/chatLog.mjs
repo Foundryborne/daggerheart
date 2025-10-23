@@ -1,3 +1,5 @@
+import { RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+
 export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLog {
     constructor(options) {
         super(options);
@@ -35,7 +37,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             //     }
             // },
             {
-                name: 'Reroll Damage',
+                name: game.i18n.localize('DAGGERHEART.UI.ChatLog.rerollDamage'),
                 icon: '<i class="fa-solid fa-dice"></i>',
                 condition: li => {
                     const message = game.messages.get(li.dataset.messageId);
@@ -163,6 +165,14 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             await game.messages.get(message._id).update({
                 'system.roll': newRoll,
                 'rolls': [parsedRoll]
+            });
+
+            Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.TagTeamRoll });
+            await game.socket.emit(`system.${CONFIG.DH.id}`, {
+                action: socketEvent.Refresh,
+                data: {
+                    refreshType: RefreshType.TagTeamRoll
+                }
             });
         }
     }

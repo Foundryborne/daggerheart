@@ -29,6 +29,10 @@ export default class DHRoll extends Roll {
         config.hooks = [...this.getHooks(), ''];
         config.dialog ??= {};
 
+        const actorIdSplit = config.source.actor.split('.');
+        const tagTeamSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
+        config.tagTeamSelected = tagTeamSettings.members[actorIdSplit[actorIdSplit.length - 1]];
+
         for (const hook of config.hooks) {
             if (Hooks.call(`${CONFIG.DH.id}.preRoll${hook.capitalize()}`, config, message) === false) return null;
         }
@@ -99,6 +103,10 @@ export default class DHRoll extends Roll {
 
         if (roll._evaluated) {
             const message = await cls.create(msgData, { rollMode: config.selectedRollMode });
+
+            if (config.tagTeamSelected) {
+                game.system.api.applications.dialogs.TagTeamDialog.assignRoll(message.speakerActor, message);
+            }
 
             if (game.modules.get('dice-so-nice')?.active) {
                 await game.dice3d.waitFor3DAnimationByMessageID(message.id);
@@ -228,7 +236,8 @@ export const registerRollDiceHooks = () => {
         if (
             !config.source?.actor ||
             (game.user.isGM ? !hopeFearAutomation.gm : !hopeFearAutomation.players) ||
-            config.actionType === 'reaction'
+            config.actionType === 'reaction' ||
+            config.tagTeamSelected
         )
             return;
 

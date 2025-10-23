@@ -31,6 +31,7 @@ export default class Party extends DHBaseActorSheet {
             tempBrowser: Party.#tempBrowser,
             refeshActions: Party.#refeshActions,
             triggerRest: Party.#triggerRest,
+            tagTeamRoll: Party.#tagTeamRoll,
             groupRoll: Party.#groupRoll,
             selectRefreshable: DaggerheartMenu.selectRefreshable,
             refreshActors: DaggerheartMenu.refreshActors
@@ -266,6 +267,12 @@ export default class Party extends DHBaseActorSheet {
         const actor = await foundry.utils.fromUuid(actorId);
         if (!actor || !actor?.isOwner) reject();
         new game.system.api.applications.dialogs.Downtime(actor, downtimeType === 'shortRest').render({
+            force: true
+        });
+    }
+
+    static async #tagTeamRoll() {
+        new game.system.api.applications.dialogs.TagTeamDialog(this.document.system.partyMembers).render({
             force: true
         });
     }

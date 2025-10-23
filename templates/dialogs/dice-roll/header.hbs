@@ -1,14 +1,22 @@
 <header class="dialog-header">
-    <h1>
-        {{#if reactionOverride}}
-            {{localize "DAGGERHEART.CONFIG.ActionType.reaction"}}
-        {{else}}
-            {{ifThen rollConfig.headerTitle rollConfig.headerTitle rollConfig.title}}
-        {{/if}}
-        {{#if showReaction}}
-            <button class="reaction-roll-controller {{#if reactionOverride}}active{{/if}}" data-action="toggleReaction" data-tooltip-text="{{localize "DAGGERHEART.GENERAL.reactionRoll"}}">
-                <i class="fa-solid fa-reply"></i>
-            </button>
-        {{/if}}
-    </h1>
+    <div class="dialog-header-inner">
+        <h1>
+            {{#if reactionOverride}}
+                {{localize "DAGGERHEART.CONFIG.ActionType.reaction"}}
+            {{else}}
+                {{ifThen rollConfig.headerTitle rollConfig.headerTitle rollConfig.title}}
+            {{/if}}
+            {{#if showReaction}}
+                <button class="reaction-roll-controller {{#if reactionOverride}}active{{/if}}" data-action="toggleReaction" data-tooltip-text="{{localize "DAGGERHEART.GENERAL.reactionRoll"}}">
+                    <i class="fa-solid fa-reply"></i>
+                </button>
+            {{/if}}
+        </h1>
+    </div>
+    {{#if (and @root.hasRoll @root.activeTagTeamRoll)}}
+        <div class="tag-team-controller {{#if @root.tagTeamSelected}}selected{{/if}}" data-action="toggleTagTeamRoll">
+            <span><i class="{{ifThen @root.tagTeamSelected "fa-solid" "fa-regular"}} fa-circle"></i></span>
+            <span class="label">{{localize "Tag Team Roll"}}</span>
+        </div>
+    {{/if}}
 </header>

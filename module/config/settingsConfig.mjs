@@ -27,7 +27,8 @@ export const gameSettings = {
     },
     LevelTiers: 'LevelTiers',
     Countdowns: 'Countdowns',
-    LastMigrationVersion: 'LastMigrationVersion'
+    LastMigrationVersion: 'LastMigrationVersion',
+    TagTeamRoll: 'TagTeamRoll'
 };
 
 export const actionAutomationChoices = {

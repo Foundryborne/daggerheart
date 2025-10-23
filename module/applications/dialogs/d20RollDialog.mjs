@@ -34,6 +34,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             updateIsAdvantage: this.updateIsAdvantage,
             selectExperience: this.selectExperience,
             toggleReaction: this.toggleReaction,
+            toggleTagTeamRoll: this.toggleTagTeamRoll,
             submitRoll: this.submitRoll
         },
         form: {
@@ -120,6 +121,13 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             context.showReaction = !this.config.roll?.type && context.rollType === 'DualityRoll';
             context.reactionOverride = this.reactionOverride;
         }
+
+        const tagTeamSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
+        if (tagTeamSetting.members[this.actor.id]) {
+            context.activeTagTeamRoll = true;
+            context.tagTeamSelected = this.config.tagTeamSelected;
+        }
+
         return context;
     }
 
@@ -193,6 +201,11 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
                   : this.config.actionType;
             this.render();
         }
+    }
+
+    static toggleTagTeamRoll() {
+        this.config.tagTeamSelected = !this.config.tagTeamSelected;
+        this.render();
     }
 
     static async submitRoll() {

@@ -11,7 +11,14 @@
 .application.daggerheart.dialog.dh-style.views.roll-selection {
     .dialog-header {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+
+        .dialog-header-inner {
+            display: flex;
+            justify-content: center;
+        }
 
         h1 {
             width: auto;
@@ -35,6 +42,29 @@
                 &.active {
                     opacity: 1;
                 }
+            }
+        }
+
+        .tag-team-controller {
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            width: fit-content;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+            background: light-dark(@dark-blue-10, @golden-10);
+            color: light-dark(@dark-blue, @golden);
+
+            .label {
+                font-style: normal;
+                font-weight: 400;
+                font-size: var(--font-size-14);
+                line-height: 17px;
+            }
+
+            &.selected {
+                background: light-dark(@dark-blue-40, @golden-40);
             }
         }
     }

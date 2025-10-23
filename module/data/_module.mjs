@@ -1,5 +1,6 @@
 export { default as DhCombat } from './combat.mjs';
 export { default as DhCombatant } from './combatant.mjs';
+export { default as DhTagTeamRoll } from './tagTeamRoll.mjs';
 
 export * as actions from './action/_module.mjs';
 export * as activeEffects from './activeEffect/_module.mjs';

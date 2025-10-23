@@ -11,3 +11,4 @@ export { default as RerollDamageDialog } from './rerollDamageDialog.mjs';
 export { default as ResourceDiceDialog } from './resourceDiceDialog.mjs';
 export { default as ActionSelectionDialog } from './actionSelectionDialog.mjs';
 export { default as GroupRollDialog } from './group-roll-dialog.mjs';
+export { default as TagTeamDialog } from './tagTeamDialog.mjs';
