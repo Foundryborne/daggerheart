@@ -73,8 +73,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
                     `.countdown-edit-container[data-id="${this.currentEditCountdown}"] input`
                 );
                 if (input) {
-                    input.focus();
-                    input.selectionStart = input.value.length + 1;
+                    input.select();
                     this.currentEditCountdown = null;
                 }
             }, 100);
