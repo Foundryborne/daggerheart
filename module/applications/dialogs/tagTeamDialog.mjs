@@ -1,4 +1,4 @@
-import { RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+import { GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -122,15 +122,27 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
     async updateSource(update) {
         await this.data.updateSource(update);
-        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll, this.data.toObject());
 
-        Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.TagTeamRoll });
-        await game.socket.emit(`system.${CONFIG.DH.id}`, {
-            action: socketEvent.Refresh,
-            data: {
-                refreshType: RefreshType.TagTeamRoll
-            }
-        });
+        if (game.user.isGM) {
+            await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll, this.data.toObject());
+            Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.TagTeamRoll });
+            await game.socket.emit(`system.${CONFIG.DH.id}`, {
+                action: socketEvent.Refresh,
+                data: {
+                    refreshType: RefreshType.TagTeamRoll
+                }
+            });
+        } else {
+            await game.socket.emit(`system.${CONFIG.DH.id}`, {
+                action: socketEvent.GMUpdate,
+                data: {
+                    action: GMUpdateEvent.UpdateSetting,
+                    uuid: CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll,
+                    update: this.data.toObject(),
+                    refresh: { refreshType: RefreshType.TagTeamRoll }
+                }
+            });
+        }
     }
 
     static async updateData(_event, _element, formData) {
@@ -228,7 +240,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                           : 1;
                 resourceUpdates.push({ key: 'hope', value: value, total: -value, enabled: true });
             }
-            if (systemData.roll.isCritical) resourceUpdates.push({ key: 'stress', value: 1, total: -1, enabled: true });
+            if (systemData.roll.isCritical) resourceUpdates.push({ key: 'stress', value: -1, total: 1, enabled: true });
             if (systemData.roll.result.duality === -1) {
                 fearUpdate.value = fearUpdate.value === null ? 1 : fearUpdate.value + 1;
                 fearUpdate.total = fearUpdate.total === null ? -1 : fearUpdate.total - 1;
@@ -242,17 +254,27 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         }
 
         /* Improve by fetching default from schema */
-        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll, {
-            members: [],
-            initiator: { id: null, cost: 3 }
-        });
-        Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.TagTeamRoll });
-        await game.socket.emit(`system.${CONFIG.DH.id}`, {
-            action: socketEvent.Refresh,
-            data: {
-                refreshType: RefreshType.TagTeamRoll
-            }
-        });
+        const update = { members: [], initiator: { id: null, cost: 3 } };
+        if (game.user.isGM) {
+            await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll, update);
+            Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.TagTeamRoll });
+            await game.socket.emit(`system.${CONFIG.DH.id}`, {
+                action: socketEvent.Refresh,
+                data: {
+                    refreshType: RefreshType.TagTeamRoll
+                }
+            });
+        } else {
+            await game.socket.emit(`system.${CONFIG.DH.id}`, {
+                action: socketEvent.GMUpdate,
+                data: {
+                    action: GMUpdateEvent.UpdateSetting,
+                    uuid: CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll,
+                    update: update,
+                    refresh: { refreshType: RefreshType.TagTeamRoll }
+                }
+            });
+        }
     }
 
     static async assignRoll(char, message) {
@@ -261,15 +283,27 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         if (!character) return;
 
         await settings.updateSource({ [`members.${char.id}.messageId`]: message.id });
-        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll, settings);
 
-        Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.TagTeamRoll });
-        await game.socket.emit(`system.${CONFIG.DH.id}`, {
-            action: socketEvent.Refresh,
-            data: {
-                refreshType: RefreshType.TagTeamRoll
-            }
-        });
+        if (game.user.isGM) {
+            await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll, settings);
+            Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.TagTeamRoll });
+            await game.socket.emit(`system.${CONFIG.DH.id}`, {
+                action: socketEvent.Refresh,
+                data: {
+                    refreshType: RefreshType.TagTeamRoll
+                }
+            });
+        } else {
+            await game.socket.emit(`system.${CONFIG.DH.id}`, {
+                action: socketEvent.GMUpdate,
+                data: {
+                    action: GMUpdateEvent.UpdateSetting,
+                    uuid: CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll,
+                    update: settings,
+                    refresh: { refreshType: RefreshType.TagTeamRoll }
+                }
+            });
+        }
     }
 
     async close(options = {}) {

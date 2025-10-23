@@ -240,7 +240,6 @@ export const registerRollDiceHooks = () => {
             config.tagTeamSelected
         )
             return;
-
         const actor = await fromUuid(config.source.actor);
         let updates = [];
         if (!actor) return;

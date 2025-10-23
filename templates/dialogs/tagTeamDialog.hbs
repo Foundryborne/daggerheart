@@ -1,7 +1,7 @@
 <div>
     <div class="tag-team-container">
         <fieldset>
-            <legend>{{localize "Party Team"}}</legend>
+            <legend>{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.partyTeam"}}</legend>
 
             <div class="form-group flex-group">
                 <label>{{localize "TYPES.Actor.character"}}</label>
@@ -76,20 +76,20 @@
 
         <div class="roll-leader-container">
             <h4>
-                <strong>{{localize "Initiating Character"}}</strong>
+                <strong>{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.initiatingCharacter"}}</strong>
                 <select name="initiator.id">
                     {{selectOptions selectedCharacterOptions selected=initiator.character.id labelAttr="name" valueAttr="id" blank=""}}
                 </select>
             </h4>
             <h4>
-                <strong>{{localize "Cost"}}</strong>
+                <strong>{{localize "DAGGERHEART.GENERAL.Cost.single"}}</strong>
                 <input type="text" data-dtype="Number" min="0" name="initiator.cost" value="{{initiator.cost}}" />
             </h4>
         </div>
         {{#if showResult}}
             {{#if selectedData.result}}
                 <div class="result-container">
-                    <h4><strong>Tag Team Roll:</strong> {{selectedData.result}}</h4>
+                    <h4><strong>{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.title"}}:</strong> {{selectedData.result}}</h4>
                     {{#if usesDamage}}
                         <div class="result-damages-container">
                             <label><strong>{{localize "DAGGERHEART.GENERAL.damage"}}:</strong></label>
