@@ -7,7 +7,11 @@
         <label>{{localize "DAGGERHEART.SETTINGS.Automation.FIELDS.hopeFear.label"}}</label>
         {{formGroup settingFields.schema.fields.hopeFear.fields.gm value=settingFields._source.hopeFear.gm localize=true}}
         {{formGroup settingFields.schema.fields.hopeFear.fields.players value=settingFields._source.hopeFear.players localize=true}}
-
+    </div>
+    <div class="form-group setting-two-values">
+        <label>{{localize "DAGGERHEART.SETTINGS.Automation.FIELDS.summaryMessages.label"}}</label>
+        {{formGroup settingFields.schema.fields.summaryMessages.fields.damage value=settingFields._source.summaryMessages.damage localize=true}}
+        {{formGroup settingFields.schema.fields.summaryMessages.fields.effects value=settingFields._source.summaryMessages.effects localize=true}}
     </div>
     {{formGroup settingFields.schema.fields.actionPoints value=settingFields._source.actionPoints localize=true}}
     {{formGroup settingFields.schema.fields.hordeDamage value=settingFields._source.hordeDamage localize=true}}

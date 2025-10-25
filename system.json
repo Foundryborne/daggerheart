@@ -266,7 +266,8 @@
             "dualityRoll": {},
             "adversaryRoll": {},
             "damageRoll": {},
-            "abilityUse": {}
+            "abilityUse": {},
+            "systemMessage": {}
         }
     },
     "background": "systems/daggerheart/assets/logos/FoundrybornBackgroundLogo.png",

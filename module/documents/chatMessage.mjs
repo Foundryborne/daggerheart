@@ -210,8 +210,15 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         }
 
         Promise.all(damagePromises).then(async _ => {
+            const summaryMessageSettings = game.settings.get(
+                CONFIG.DH.id,
+                CONFIG.DH.SETTINGS.gameSettings.Automation
+            ).summaryMessages;
+            if (!summaryMessageSettings.damage) return;
+
             const cls = getDocumentClass('ChatMessage');
             const msg = {
+                type: 'systemMessage',
                 user: game.user.id,
                 speaker: cls.getSpeaker(),
                 title: game.i18n.localize(

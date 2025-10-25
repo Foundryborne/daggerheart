@@ -8,7 +8,7 @@
             <ul class="damage-container">
                 {{#each this.updates}}
                     <li class="damage-row">
-                        {{#if (gte this.value)}}
+                        {{#if (gte this.value 0)}}
                             <span>
                                 {{
                                 localize "DAGGERHEART.UI.Chat.markResource"

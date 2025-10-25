@@ -2281,6 +2281,9 @@
                             "label": "Apply Effects",
                             "hint": "Automatically apply effects. Targets must be selected before the action is made and Reaction Roll Automation must be different than Never. Bypass users permissions."
                         }
+                    },
+                    "summaryMessages": {
+                        "label": "Summary Messages"
                     }
                 },
                 "defeated": {

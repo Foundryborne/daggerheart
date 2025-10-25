@@ -65,8 +65,16 @@ export default class EffectsField extends fields.ArrayField {
         });
 
         if (messageTargets.length === 0) return;
+
+        const summaryMessageSettings = game.settings.get(
+            CONFIG.DH.id,
+            CONFIG.DH.SETTINGS.gameSettings.Automation
+        ).summaryMessages;
+        if (!summaryMessageSettings.effects) return;
+
         const cls = getDocumentClass('ChatMessage');
         const msg = {
+            type: 'systemMessage',
             user: game.user.id,
             speaker: cls.getSpeaker(),
             title: game.i18n.localize('DAGGERHEART.UI.Chat.effectSummary.title'),
