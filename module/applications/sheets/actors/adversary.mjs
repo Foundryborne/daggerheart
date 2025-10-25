@@ -56,6 +56,17 @@ export default class AdversarySheet extends DHBaseActorSheet {
         }
     };
 
+    /**  @inheritdoc */
+    _initializeApplicationOptions(options) {
+        const applicationOptions = super._initializeApplicationOptions(options);
+
+        if (applicationOptions.document.testUserPermission(game.user, 'LIMITED', { exact: true })) {
+            applicationOptions.window.resizable = false;
+        }
+
+        return applicationOptions;
+    }
+
     /**@inheritdoc */
     async _prepareContext(options) {
         const context = await super._prepareContext(options);

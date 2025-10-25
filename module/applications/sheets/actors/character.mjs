@@ -147,6 +147,17 @@ export default class CharacterSheet extends DHBaseActorSheet {
         });
     }
 
+    /**  @inheritdoc */
+    _initializeApplicationOptions(options) {
+        const applicationOptions = super._initializeApplicationOptions(options);
+
+        if (applicationOptions.document.testUserPermission(game.user, 'LIMITED', { exact: true })) {
+            applicationOptions.window.resizable = false;
+        }
+
+        return applicationOptions;
+    }
+
     /** @inheritDoc */
     async _onRender(context, options) {
         await super._onRender(context, options);
