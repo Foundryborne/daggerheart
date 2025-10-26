@@ -100,13 +100,15 @@ export default class DamageField extends fields.SchemaField {
 
             if (config.hasHealing)
                 damagePromises.push(
-                    actor.takeHealing(config.damage).then(updates => targetDamage.push({ token: actor.token, updates }))
+                    actor
+                        .takeHealing(config.damage)
+                        .then(updates => targetDamage.push({ token: actor.token ?? actor.prototypeToken, updates }))
                 );
             else
                 damagePromises.push(
                     actor
                         .takeDamage(config.damage, config.isDirect)
-                        .then(updates => targetDamage.push({ token: actor.token, updates }))
+                        .then(updates => targetDamage.push({ token: actor.token ?? actor.prototypeToken, updates }))
                 );
         }
 
