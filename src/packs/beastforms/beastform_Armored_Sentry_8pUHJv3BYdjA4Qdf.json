@@ -13,13 +13,13 @@
     },
     "mainTrait": "strength",
     "advantageOn": {
-      "ePKq6o90hDkt6KZa": {
+      "4AbCgOZvyUFH9Pug": {
         "value": "Dig"
       },
-      "SOesy6zClSPFKtar": {
+      "8GsRyXaQnfsGNGW6": {
         "value": "Locate"
       },
-      "y5lYgsGkG4bu4O1g": {
+      "0ut15QizNIG254Vw": {
         "value": "Protect"
       }
     },
@@ -35,7 +35,12 @@
       "advantages": 2,
       "features": 2
     },
-    "examples": "Armadillo, Pangolin, Turtle, etc."
+    "examples": "Armadillo, Pangolin, Turtle, etc.",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 13,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -125,12 +130,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.348",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
     "systemVersion": "1.1.2",
     "createdTime": 1753580987168,
-    "modifiedTime": 1759665623244,
-    "lastModifiedBy": "9HOfUKAXuCu7hUPY"
+    "modifiedTime": 1761502671010,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_id": "8pUHJv3BYdjA4Qdf",
   "sort": 100000,

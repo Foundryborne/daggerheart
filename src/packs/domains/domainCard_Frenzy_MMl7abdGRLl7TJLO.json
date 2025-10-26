@@ -31,13 +31,18 @@
           }
         ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Frenzy",
         "img": "icons/magic/fire/projectile-wave-yellow.webp",
-        "range": ""
+        "range": "self"
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 122,
+      "artist": ""
     }
   },
   "flags": {},
@@ -45,12 +50,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1753922784459,
-    "modifiedTime": 1754304635322,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1756037770198,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "MMl7abdGRLl7TJLO",
   "sort": 3400000,

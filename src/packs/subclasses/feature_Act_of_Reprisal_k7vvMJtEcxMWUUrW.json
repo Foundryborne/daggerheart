@@ -29,7 +29,7 @@
           }
         ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Mark Adversary",
@@ -38,7 +38,12 @@
       }
     },
     "originItemType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 16,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -91,12 +96,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1754243143650,
-    "modifiedTime": 1754351612905,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1756035614382,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_key": "!items!k7vvMJtEcxMWUUrW"
 }

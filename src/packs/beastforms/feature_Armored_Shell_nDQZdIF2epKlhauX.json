@@ -18,13 +18,12 @@
             "scalable": false,
             "key": "armor",
             "value": 1,
-            "keyIsID": false,
             "step": null
           }
         ],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "effects": [
@@ -39,12 +38,17 @@
         },
         "name": "Retract",
         "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
-        "range": ""
+        "range": "self"
       }
     },
     "originItemType": null,
     "subType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 13,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -142,12 +146,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1753580983699,
-    "modifiedTime": 1753628206133,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1756041050697,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "nDQZdIF2epKlhauX",
   "sort": 2200000,

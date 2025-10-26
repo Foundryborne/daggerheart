@@ -117,6 +117,11 @@
       "type": "attack",
       "range": "melee",
       "chatDisplay": false
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 75,
+      "artist": ""
     }
   },
   "flags": {},
@@ -126,9 +131,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.4",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784226,
-    "modifiedTime": 1755259462479,
+    "modifiedTime": 1755384265295,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "71qKDLKO3CsrNkdy",
@@ -288,7 +293,6 @@
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "keyIsID": false,
                 "step": null
               }
             ],
@@ -443,7 +447,77 @@
       "system": {
         "description": "<p>When the Bear makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "ZQHGR0IweeWBLokB": {
+            "type": "healing",
+            "_id": "ZQHGR0IweeWBLokB",
+            "systemPath": "actions",
+            "description": "<p>When the Bear makes a successful attack against a PC, you gain a Fear.</p>",
+            "chatDisplay": true,
+            "actionType": "reaction",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "fear",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "name": "Gain Fear",
+            "img": "icons/skills/melee/strike-weapons-orange.webp",
+            "range": ""
+          }
+        },
         "originItemType": null,
         "subType": null,
         "originId": null
@@ -460,12 +534,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754012330113,
-        "modifiedTime": 1754143729868,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760209165515,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!71qKDLKO3CsrNkdy.4hJbq9WCwJn78frt"
     }

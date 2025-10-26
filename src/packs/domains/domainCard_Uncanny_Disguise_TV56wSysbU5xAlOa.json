@@ -28,7 +28,7 @@
           "includeBase": false
         },
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "effects": [
@@ -39,7 +39,7 @@
         ],
         "name": "Don Facade",
         "img": "icons/magic/control/debuff-energy-hold-pink.webp",
-        "range": ""
+        "range": "self"
       },
       "OoNND7VcWoBQdtFK": {
         "type": "effect",
@@ -50,11 +50,12 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
-            "key": "TV56wSysbU5xAlOa",
+            "key": "resource",
+            "itemId": "TV56wSysbU5xAlOa",
             "value": 1,
-            "keyIsID": true,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -77,6 +78,11 @@
       "value": 0,
       "max": "@cast",
       "icon": ""
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 128,
+      "artist": ""
     }
   },
   "flags": {},
@@ -84,12 +90,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753922784537,
-    "modifiedTime": 1754330615594,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1756325575516,
+    "lastModifiedBy": "bjJtdJOhqWr47GhC"
   },
   "_id": "TV56wSysbU5xAlOa",
   "sort": 3400000,

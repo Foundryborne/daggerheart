@@ -111,6 +111,11 @@
       "img": "icons/magic/nature/root-vines-grow-brown.webp",
       "type": "attack",
       "chatDisplay": false
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 76,
+      "artist": ""
     }
   },
   "flags": {},
@@ -120,9 +125,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784246,
-    "modifiedTime": 1755259462506,
+    "modifiedTime": 1755384371297,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "9x2xY9zwc3xzbXo5",

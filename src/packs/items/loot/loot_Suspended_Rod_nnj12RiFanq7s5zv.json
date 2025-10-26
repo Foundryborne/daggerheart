@@ -6,7 +6,12 @@
   "system": {
     "description": "<p>This flat rod is inscribed with runes. When you activate the rod, it is immediately suspended in place. Until the rod is deactivated, it can’t move, doesn’t abide by the rules of gravity, and remains in place.</p>",
     "quantity": 1,
-    "actions": {}
+    "actions": {},
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 58,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": null,
@@ -20,12 +25,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753625627433,
-    "modifiedTime": 1753625765676,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1755431985810,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!nnj12RiFanq7s5zv"
 }

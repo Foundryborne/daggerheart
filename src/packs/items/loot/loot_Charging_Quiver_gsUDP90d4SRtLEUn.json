@@ -6,7 +6,12 @@
   "system": {
     "description": "<p>When you succeed on an attack with an arrow stored in this quiver, gain a bonus to the damage roll equal to your current tier.</p>",
     "quantity": 1,
-    "actions": {}
+    "actions": {},
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 58,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -78,12 +83,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753625025089,
-    "modifiedTime": 1753989432098,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755431911218,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!gsUDP90d4SRtLEUn"
 }

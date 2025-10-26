@@ -57,6 +57,11 @@
         "img": "icons/magic/nature/tree-elm-roots-brown.webp",
         "range": "far"
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 131,
+      "artist": ""
     }
   },
   "flags": {},
@@ -64,12 +69,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784493,
-    "modifiedTime": 1754499238543,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755429623471,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "9a6xP5pxhVvdugk9",
   "sort": 3400000,

@@ -27,6 +27,11 @@
     ],
     "featureState": 1,
     "isMulticlass": false,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 24,
+      "artist": ""
+    },
     "linkedClass": "Compendium.daggerheart.classes.Item.xCUWwJz4WSthvLfy"
   },
   "effects": [],

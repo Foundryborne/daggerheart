@@ -14,7 +14,16 @@
         "description": "<p>Clear 1d4+1 HP.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "Aruc2NLutWuVIjP1",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -74,7 +83,13 @@
         "range": ""
       }
     },
-    "consumeOnUse": true
+    "consumeOnUse": true,
+    "destroyOnEmpty": true,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 61,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": null,
@@ -88,12 +103,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753588839527,
-    "modifiedTime": 1754394566378,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1756336520901,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!Aruc2NLutWuVIjP1"
 }

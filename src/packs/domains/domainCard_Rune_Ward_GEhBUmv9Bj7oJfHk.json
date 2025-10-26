@@ -19,7 +19,6 @@
         "actionType": "action",
         "cost": [
           {
-            "keyIsID": false,
             "key": "hope",
             "value": 1,
             "scalable": false,
@@ -64,6 +63,11 @@
         "img": "icons/commodities/gems/gem-faceted-diamond-pink-gold.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 119,
+      "artist": ""
     }
   },
   "flags": {},
@@ -71,12 +75,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.348",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
     "systemVersion": "1.1.2",
     "createdTime": 1753922784506,
-    "modifiedTime": 1758364595206,
-    "lastModifiedBy": "mdk78Q6pOyHh6aBg"
+    "modifiedTime": 1761502476899,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_id": "GEhBUmv9Bj7oJfHk",
   "sort": 3400000,

@@ -5,12 +5,17 @@
   "_id": "g6I4tRUQNgL4vZ6H",
   "img": "icons/tools/scribal/lens-blue.webp",
   "system": {
-    "description": "<p>Decide who made you and for what purpose. At character creation, choose one of your Experiences that best aligns with this purpose and gain a permanent +1 bonus to it.</p>",
+    "description": "<p><strong>Note: Automation not implemented for permanent bonus. Manually increase the experience in the respective editing field.</strong> </p><p><br />Decide who made you and for what purpose. At character creation, choose one of your Experiences that best aligns with this purpose and gain a permanent +1 bonus to it.</p>",
     "resource": null,
     "actions": {},
     "originItemType": null,
     "subType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 27,
+      "artist": ""
+    }
   },
   "effects": [],
   "sort": 0,
@@ -23,12 +28,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.2",
     "createdTime": 1753993755899,
-    "modifiedTime": 1753993791943,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1761137758590,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!items!g6I4tRUQNgL4vZ6H"
 }

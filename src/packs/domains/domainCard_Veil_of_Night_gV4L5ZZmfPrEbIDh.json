@@ -28,7 +28,7 @@
           "includeBase": false
         },
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "effects": [
@@ -59,8 +59,13 @@
         },
         "name": "Cast",
         "img": "icons/magic/unholy/barrier-shield-glowing-pink.webp",
-        "range": ""
+        "range": "self"
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 128,
+      "artist": ""
     }
   },
   "flags": {},
@@ -68,12 +73,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1753922784541,
-    "modifiedTime": 1754173368653,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1756038378309,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "gV4L5ZZmfPrEbIDh",
   "sort": 3400000,

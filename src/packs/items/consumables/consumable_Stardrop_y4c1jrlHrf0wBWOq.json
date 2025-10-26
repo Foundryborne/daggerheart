@@ -14,7 +14,16 @@
         "description": "<p>You can use this stardrop to summon a hailstorm of comets that deals 8d20 physical damage to all targets within Very Far range.</p><p>@Template[type:emanation|range:vf]</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "y4c1jrlHrf0wBWOq",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -61,7 +70,13 @@
         "range": "veryFar"
       }
     },
-    "consumeOnUse": true
+    "consumeOnUse": true,
+    "destroyOnEmpty": true,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 62,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": null,
@@ -75,12 +90,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753592933782,
-    "modifiedTime": 1754394853714,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1756336777144,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!y4c1jrlHrf0wBWOq"
 }

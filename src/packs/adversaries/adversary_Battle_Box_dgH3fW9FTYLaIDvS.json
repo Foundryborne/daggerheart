@@ -112,6 +112,11 @@
       "range": "melee",
       "type": "attack",
       "chatDisplay": false
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 85,
+      "artist": ""
     }
   },
   "flags": {},
@@ -121,9 +126,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.4",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784224,
-    "modifiedTime": 1755264708230,
+    "modifiedTime": 1755385012352,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "dgH3fW9FTYLaIDvS",
@@ -234,7 +239,40 @@
       "system": {
         "description": "<p>The Box can be spotlighted up to two times times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "2JfPSV3pw6pv0BXd": {
+            "type": "effect",
+            "_id": "2JfPSV3pw6pv0BXd",
+            "systemPath": "actions",
+            "description": "<p>The Box can be spotlighted up to two times times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "chatDisplay": true,
+            "actionType": "passive",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": 0,
+              "max": "1",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spotlight: Relentless",
+            "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
+            "range": ""
+          }
+        },
         "originItemType": null,
         "originId": null
       },
@@ -252,12 +290,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754073816379,
-        "modifiedTime": 1754073843197,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760211145763,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!dgH3fW9FTYLaIDvS.RSovCwuGrZ1mk5py"
     },
@@ -280,7 +318,6 @@
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "keyIsID": false,
                 "step": null
               }
             ],
@@ -1086,7 +1123,6 @@
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "keyIsID": false,
                 "step": null
               }
             ],

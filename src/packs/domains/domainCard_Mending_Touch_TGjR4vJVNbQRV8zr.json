@@ -22,7 +22,6 @@
             "scalable": false,
             "key": "hope",
             "value": 2,
-            "keyIsID": false,
             "step": null,
             "consumeOnSuccess": false
           }
@@ -99,7 +98,6 @@
             "scalable": false,
             "key": "hope",
             "value": 2,
-            "keyIsID": false,
             "step": null,
             "consumeOnSuccess": false
           }
@@ -173,18 +171,18 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
             "key": "hope",
+            "itemId": null,
             "value": 2,
-            "keyIsID": false,
+            "scalable": false,
             "step": null,
             "consumeOnSuccess": false
           },
           {
-            "scalable": false,
-            "key": "TGjR4vJVNbQRV8zr",
+            "key": "resource",
+            "itemId": "TGjR4vJVNbQRV8zr",
             "value": 1,
-            "keyIsID": true,
+            "scalable": false,
             "step": null,
             "consumeOnSuccess": false
           }
@@ -258,18 +256,18 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
             "key": "hope",
+            "itemId": null,
             "value": 2,
-            "keyIsID": false,
+            "scalable": false,
             "step": null,
             "consumeOnSuccess": false
           },
           {
-            "scalable": false,
-            "key": "TGjR4vJVNbQRV8zr",
+            "key": "resource",
+            "itemId": "TGjR4vJVNbQRV8zr",
             "value": 1,
-            "keyIsID": true,
+            "scalable": false,
             "step": null,
             "consumeOnSuccess": false
           }
@@ -342,6 +340,11 @@
       "max": "1",
       "icon": "fa-solid fa-hands-praying",
       "recovery": "longRest"
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 132,
+      "artist": ""
     }
   },
   "flags": {},
@@ -349,12 +352,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753922784482,
-    "modifiedTime": 1754498631054,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1756325575507,
+    "lastModifiedBy": "bjJtdJOhqWr47GhC"
   },
   "_id": "TGjR4vJVNbQRV8zr",
   "sort": 3400000,

@@ -8,11 +8,11 @@
     "description": "<p>When you succeed on an attack against a target within Melee range, you can <strong>spend a Hope</strong> to gore the target with your tusks, dealing an extra <strong>1d6</strong> damage.</p>",
     "resource": null,
     "actions": {
-      "1n4ZsA6s2iBAL1tG": {
-        "type": "effect",
-        "_id": "1n4ZsA6s2iBAL1tG",
+      "ytSFDCONRi5L4THz": {
+        "type": "damage",
+        "_id": "ytSFDCONRi5L4THz",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>When you succeed on an attack against a target within Melee range, you can <strong>spend a Hope</strong> to gore the target with your tusks, dealing an extra <strong>1d6</strong> damage.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -21,27 +21,65 @@
             "key": "hope",
             "value": 1,
             "scalable": false,
-            "step": null
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                },
+                "multiplier": "flat",
+                "dice": "d6",
+                "bonus": null,
+                "flatMultiplier": 1
+              },
+              "applyTo": "hitPoints",
+              "type": [],
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": 1
         },
         "effects": [],
-        "target": {
-          "type": "self",
-          "amount": null
-        },
         "name": "Spend Hope",
         "img": "icons/creatures/abilities/fang-tooth-blood-red.webp",
-        "range": ""
+        "range": "melee"
       }
     },
     "originItemType": null,
     "subType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 30,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -112,12 +150,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.2",
     "createdTime": 1754000611682,
-    "modifiedTime": 1754000658375,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1761138569638,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!items!YhxD1ujZpftPu19w"
 }

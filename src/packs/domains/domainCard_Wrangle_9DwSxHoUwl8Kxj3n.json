@@ -57,6 +57,11 @@
         "img": "icons/skills/melee/sword-engraved-glow-purple.webp",
         "range": "close"
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 123,
+      "artist": ""
     }
   },
   "flags": {},
@@ -64,12 +69,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784549,
-    "modifiedTime": 1754252503293,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755428352791,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "9DwSxHoUwl8Kxj3n",
   "sort": 3400000,

@@ -17,11 +17,11 @@
         "cost": [],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "effects": [],
@@ -68,6 +68,11 @@
         "img": "icons/sundries/survival/bedroll-blue-red.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 58,
+      "artist": ""
     }
   },
   "effects": [],
@@ -82,12 +87,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1753624827945,
-    "modifiedTime": 1753624908866,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1756042976231,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_key": "!items!QGYPNBIufpBguwjC"
 }

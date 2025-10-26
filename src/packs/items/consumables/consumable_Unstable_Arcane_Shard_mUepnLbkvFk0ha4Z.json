@@ -14,7 +14,16 @@
         "description": "<p>You can make a Finesse Roll to throw this shard at a group of adversaries within Far range. Targets you succeed against take 1d20 magic damage.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "consumeOnSuccess": false,
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "mUepnLbkvFk0ha4Z",
+            "step": null
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -81,7 +90,13 @@
         "range": "far"
       }
     },
-    "consumeOnUse": true
+    "consumeOnUse": true,
+    "destroyOnEmpty": true,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 60,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": null,
@@ -95,12 +110,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753587732694,
-    "modifiedTime": 1754394908763,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1756336811267,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!mUepnLbkvFk0ha4Z"
 }

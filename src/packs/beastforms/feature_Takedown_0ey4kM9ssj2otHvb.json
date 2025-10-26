@@ -18,13 +18,12 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "keyIsID": false,
             "step": null
           }
         ],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "damage": {
@@ -58,7 +57,7 @@
           "includeBase": false
         },
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "effects": [],
@@ -84,19 +83,24 @@
         },
         "name": "Attack",
         "img": "icons/creatures/abilities/paw-print-orange.webp",
-        "range": ""
+        "range": "self"
       }
     },
     "originItemType": null,
     "subType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 13,
+      "artist": ""
+    }
   },
   "effects": [
     {
       "name": "Takedown",
       "img": "icons/creatures/abilities/paw-print-orange.webp",
       "origin": "Item.okjlLUwEdNOKeUk3",
-      "transfer": false,
+      "transfer": true,
       "_id": "hE6ciIusvKEtUQ8U",
       "type": "base",
       "system": {},
@@ -108,7 +112,7 @@
           "priority": null
         }
       ],
-      "disabled": false,
+      "disabled": true,
       "duration": {
         "startTime": null,
         "combat": null,
@@ -118,7 +122,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
+      "description": "<p>You gain a +2 bonus to your Proficiency for this attack and the target must mark a Stress.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -127,10 +131,11 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "lastModifiedBy": "vUIbuan0U50nfKBE",
+        "modifiedTime": 1756041368153
       },
       "_key": "!items.effects!0ey4kM9ssj2otHvb.hE6ciIusvKEtUQ8U"
     }
@@ -145,12 +150,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1753621786000,
-    "modifiedTime": 1753643111609,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1756041242273,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "0ey4kM9ssj2otHvb",
   "sort": 600000,

@@ -18,35 +18,91 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "keyIsID": false,
             "step": null
           }
         ],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "effects": [
           {
-            "_id": "5TX0hHFKZHvBeWne",
+            "_id": "A7l4JEBC1FFQajsN",
             "onSave": false
           }
         ],
         "target": {
-          "type": null,
+          "type": "self",
           "amount": null
         },
-        "name": "Gain Proficiency",
+        "name": "Mark Stress",
         "img": "icons/creatures/abilities/bear-roar-bite-brown.webp",
-        "range": ""
+        "range": "self"
       }
     },
     "originItemType": null,
     "subType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 13,
+      "artist": ""
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Rampage",
+      "img": "icons/creatures/claws/claw-bear-paw-swipe-red.webp",
+      "origin": "Compendium.daggerheart.beastforms.Item.8upqfcZvi7b5hRLE",
+      "transfer": false,
+      "_id": "A7l4JEBC1FFQajsN",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.proficiency",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>Before you make an attack roll, you can mark a Stress to gain a +1 bonus to your Proficiency for that attack.</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.347",
+        "systemId": "daggerheart",
+        "systemVersion": "1.1.0",
+        "createdTime": 1756041194412,
+        "modifiedTime": 1756041218646,
+        "lastModifiedBy": "vUIbuan0U50nfKBE"
+      },
+      "_key": "!items.effects!8upqfcZvi7b5hRLE.A7l4JEBC1FFQajsN"
+    }
+  ],
   "folder": "uU8bIoZvXge0rLaU",
   "ownership": {
     "default": 0,
@@ -57,12 +113,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1753582591417,
-    "modifiedTime": 1753628206133,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1756041228102,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "8upqfcZvi7b5hRLE",
   "sort": 2000000,

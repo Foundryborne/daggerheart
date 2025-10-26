@@ -7,19 +7,24 @@
     "description": "<p>Being part of a loreborne community means you’re from a society that favors strong academic or political prowess.<br><br><p class=\"green Body-Styles_Body\" chunk_id=\"f75f439e-df5b-4c3a-b8b4-b59c8c05ebb8\">Loreborne communities highly value knowledge, frequently in the form of historical preservation, political advancement, scientific study, skill development, or lore and mythology compilation. Most members of these communities research in institutions built in bastions of civilization, while some eclectic few thrive in gathering information from the natural world. Some may be isolationists, operating in smaller enclaves, schools, or guilds and following their own unique ethos. Others still wield their knowledge on a larger scale, making deft political maneuvers across governmental landscapes.</p>\n<p class=\"green Body-Styles_Body\" chunk_id=\"b2a2e82d-a5de-43c7-b9b8-16b5bd8e5b8b\"><em>Loreborne are often direct, eloquent, inquisitive, patient, rhapsodic, and witty.</em></p></p>",
     "features": [
       "Compendium.daggerheart.communities.Item.JBZJmywisJg5X3tH"
-    ]
+    ],
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 32,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784392,
-    "modifiedTime": 1754010491764,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1755394793025,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "YsvlyqYoi8QQ8kwm",
   "sort": 3400000,

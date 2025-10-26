@@ -100,6 +100,11 @@
           "trait": null
         }
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 53,
+      "artist": ""
     }
   },
   "effects": [
@@ -138,12 +143,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1753796983285,
-        "modifiedTime": 1756682777682,
-        "lastModifiedBy": "mdk78Q6pOyHh6aBg"
+        "modifiedTime": 1761503825366,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!items.effects!A28WL9E2lJ3iLZHW.Z2p00q5h6x6seXys"
     }
@@ -158,12 +163,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753796968563,
-    "modifiedTime": 1753797012196,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1755430492843,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!A28WL9E2lJ3iLZHW"
 }

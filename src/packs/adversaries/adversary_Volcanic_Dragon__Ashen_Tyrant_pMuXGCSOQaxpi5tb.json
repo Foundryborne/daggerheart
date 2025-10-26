@@ -145,7 +145,12 @@
         }
       }
     },
-    "motivesAndTactics": "Choke, fly, intimidate, kill or be killed"
+    "motivesAndTactics": "Choke, fly, intimidate, kill or be killed",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 101,
+      "artist": ""
+    }
   },
   "prototypeToken": {
     "name": "Volcanic Dragon: Ashen Tyrant",
@@ -248,7 +253,40 @@
       "system": {
         "description": "<p>The Ashen Tyrant can be spotlighted up to four times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "cvhKUhLycuEeloKH": {
+            "type": "effect",
+            "_id": "cvhKUhLycuEeloKH",
+            "systemPath": "actions",
+            "description": "<p>The Ashen Tyrant can be spotlighted up to four times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "chatDisplay": true,
+            "actionType": "passive",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": 0,
+              "max": "3",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spotlight: Relentless",
+            "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
+            "range": ""
+          }
+        },
         "originItemType": null,
         "originId": null
       },
@@ -266,12 +304,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754139608923,
-        "modifiedTime": 1754139627030,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760383226391,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!pMuXGCSOQaxpi5tb.saz3Vr0xgfAl10tU"
     },
@@ -294,7 +332,6 @@
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "keyIsID": false,
                 "step": null
               }
             ],
@@ -661,7 +698,6 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "keyIsID": false,
                 "step": null
               }
             ],
@@ -901,9 +937,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.4",
+    "systemVersion": "1.0.5",
     "createdTime": 1753929252617,
-    "modifiedTime": 1755267105169,
+    "modifiedTime": 1755385779475,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!actors!pMuXGCSOQaxpi5tb"

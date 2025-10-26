@@ -58,7 +58,12 @@
       "suggestedSecondaryWeapon": "Compendium.daggerheart.weapons.Item.wKklDxs5nkzILNp4",
       "suggestedArmor": "Compendium.daggerheart.armors.Item.yJFp1bfpecDcStVK"
     },
-    "isMulticlass": false
+    "isMulticlass": false,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 9,
+      "artist": ""
+    }
   },
   "effects": [],
   "ownership": {

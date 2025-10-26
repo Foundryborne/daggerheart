@@ -106,6 +106,11 @@
       },
       "type": "attack",
       "chatDisplay": false
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 91,
+      "artist": ""
     }
   },
   "flags": {},
@@ -115,9 +120,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784219,
-    "modifiedTime": 1755259462665,
+    "modifiedTime": 1755385356620,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "G7jiltRjgvVhZewm",
@@ -228,7 +233,40 @@
       "system": {
         "description": "<p>The Flickerfly can be spotlighted up to four times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "poUhJdSkhjiVL2Vp": {
+            "type": "effect",
+            "_id": "poUhJdSkhjiVL2Vp",
+            "systemPath": "actions",
+            "description": "<p>The Flickerfly can be spotlighted up to four times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "chatDisplay": true,
+            "actionType": "passive",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": 0,
+              "max": "3",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spotlight: Relentless",
+            "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
+            "range": ""
+          }
+        },
         "originItemType": null,
         "originId": null
       },
@@ -246,12 +284,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754121940551,
-        "modifiedTime": 1754121965558,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760381115291,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!G7jiltRjgvVhZewm.fFOhhMl4SDUnYNNO"
     },
@@ -268,7 +306,7 @@
             "systemPath": "actions",
             "description": "<p>When the Flickerfly makes an attack, the target’s Evasion is halved against the attack.</p>",
             "chatDisplay": true,
-            "actionType": "action",
+            "actionType": "passive",
             "cost": [],
             "uses": {
               "value": null,
@@ -359,12 +397,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754121968284,
-        "modifiedTime": 1754122883213,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760381147421,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!G7jiltRjgvVhZewm.PrwC6RpsP12fPUwy"
     },
@@ -387,7 +425,6 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "keyIsID": false,
                 "step": null
               }
             ],
@@ -502,7 +539,6 @@
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "keyIsID": false,
                 "step": null
               }
             ],
@@ -716,13 +752,12 @@
             "systemPath": "actions",
             "description": "<p>When the Flickerfly takes damage from an attack within Close range, you can mark a Stress to take half damage.</p>",
             "chatDisplay": true,
-            "actionType": "action",
+            "actionType": "reaction",
             "cost": [
               {
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "keyIsID": false,
                 "step": null
               }
             ],
@@ -758,14 +793,47 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754122789186,
-        "modifiedTime": 1754122857220,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760381159787,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!G7jiltRjgvVhZewm.KLdLRKoJHBJlHwYe"
+    },
+    {
+      "name": "Deadly Flight",
+      "type": "feature",
+      "system": {
+        "description": "<p>While flying the Flickerfly can move up to Far range instead of Close range before taking an action.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "multiclassOrigin": false
+      },
+      "_id": "WFRpSDZvqF0Upjoy",
+      "img": "icons/skills/movement/feet-winged-boots-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "fBcTgyTzoARBvohY": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "daggerheart",
+        "systemVersion": "1.1.2",
+        "createdTime": 1760381172325,
+        "modifiedTime": 1760381302938,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
+      },
+      "_key": "!actors.items!G7jiltRjgvVhZewm.WFRpSDZvqF0Upjoy"
     }
   ],
   "effects": [],

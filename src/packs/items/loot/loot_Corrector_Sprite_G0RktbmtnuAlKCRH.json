@@ -29,6 +29,11 @@
         "img": "icons/magic/light/orbs-smoke-pink.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 58,
+      "artist": ""
     }
   },
   "effects": [],
@@ -43,12 +48,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753637155361,
-    "modifiedTime": 1753637366036,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1755432083881,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!G0RktbmtnuAlKCRH"
 }

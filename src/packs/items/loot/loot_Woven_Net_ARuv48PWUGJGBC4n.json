@@ -58,6 +58,11 @@
         "img": "icons/tools/fishing/net-tan.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 58,
+      "artist": ""
     }
   },
   "effects": [
@@ -144,12 +149,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753625403538,
-    "modifiedTime": 1753625550934,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1755431968372,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!ARuv48PWUGJGBC4n"
 }

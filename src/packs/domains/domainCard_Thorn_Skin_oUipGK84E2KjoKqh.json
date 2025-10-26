@@ -19,7 +19,6 @@
         "actionType": "action",
         "cost": [
           {
-            "keyIsID": false,
             "key": "hope",
             "value": 1,
             "scalable": false,
@@ -33,12 +32,12 @@
         },
         "effects": [],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Spend Hope",
         "img": "icons/magic/nature/thorns-hand-glow-green.webp",
-        "range": ""
+        "range": "self"
       },
       "IVAyyVf8gqFWB7bP": {
         "type": "effect",
@@ -49,11 +48,12 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": true,
-            "key": "oUipGK84E2KjoKqh",
+            "key": "resource",
+            "itemId": "oUipGK84E2KjoKqh",
             "value": 1,
+            "scalable": true,
             "step": 1,
-            "keyIsID": true
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -78,6 +78,11 @@
       "max": "@cast",
       "icon": "",
       "dieFaces": "d6"
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 130,
+      "artist": ""
     }
   },
   "flags": {},
@@ -85,12 +90,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753922784531,
-    "modifiedTime": 1754338832102,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1756325575772,
+    "lastModifiedBy": "bjJtdJOhqWr47GhC"
   },
   "_id": "oUipGK84E2KjoKqh",
   "sort": 3400000,

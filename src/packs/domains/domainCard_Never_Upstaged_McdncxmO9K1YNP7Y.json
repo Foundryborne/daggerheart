@@ -25,18 +25,20 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
-            "key": "McdncxmO9K1YNP7Y",
+            "key": "resource",
+            "itemId": "McdncxmO9K1YNP7Y",
             "value": 1,
-            "keyIsID": true,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           },
           {
-            "scalable": false,
             "key": "stress",
+            "itemId": null,
             "value": 1,
-            "keyIsID": false,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -67,18 +69,20 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
             "key": "stress",
+            "itemId": null,
             "value": 1,
-            "keyIsID": false,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           },
           {
-            "scalable": false,
-            "key": "McdncxmO9K1YNP7Y",
+            "key": "resource",
+            "itemId": "McdncxmO9K1YNP7Y",
             "value": 2,
-            "keyIsID": true,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -109,18 +113,20 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
             "key": "stress",
+            "itemId": null,
             "value": 1,
-            "keyIsID": false,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           },
           {
-            "scalable": false,
-            "key": "McdncxmO9K1YNP7Y",
+            "key": "resource",
+            "itemId": "McdncxmO9K1YNP7Y",
             "value": 3,
-            "keyIsID": true,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -151,18 +157,20 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
-            "key": "McdncxmO9K1YNP7Y",
+            "key": "resource",
+            "itemId": "McdncxmO9K1YNP7Y",
             "value": 4,
-            "keyIsID": true,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           },
           {
-            "scalable": false,
             "key": "stress",
+            "itemId": null,
             "value": 1,
-            "keyIsID": false,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -184,6 +192,11 @@
         "img": "icons/commodities/gems/gem-faceted-navette-red.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 127,
+      "artist": ""
     }
   },
   "flags": {},
@@ -191,12 +204,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753922784486,
-    "modifiedTime": 1754341729669,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1756325575431,
+    "lastModifiedBy": "bjJtdJOhqWr47GhC"
   },
   "_id": "McdncxmO9K1YNP7Y",
   "sort": 3400000,

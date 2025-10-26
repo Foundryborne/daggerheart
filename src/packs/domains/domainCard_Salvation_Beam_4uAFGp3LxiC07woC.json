@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "dmnB4ZMSk8lsB8Lg",
         "systemPath": "actions",
-        "description": "<p>Make a <strong>Spellcast Roll (16)</strong>. On a success, <strong>mark any number of Stress</strong> to target a line of allies within Far range. You can clear Hit Points on the targets equal to the number of Stress marked, divided among them however you’d like.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll (16)</strong>. On a success, <strong>mark any number of Stress</strong> to target a line of allies within Far range. You can clear Hit Points on the targets equal to the number of Stress marked, divided among them however you’d like.</p><p>@Template[type:ray|range:f]</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -23,8 +23,7 @@
             "scalable": true,
             "key": "stress",
             "value": 1,
-            "step": null,
-            "keyIsID": false
+            "step": null
           }
         ],
         "uses": {
@@ -87,6 +86,11 @@
         "img": "icons/magic/light/beams-rays-orange-purple-large.webp",
         "range": "far"
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 133,
+      "artist": ""
     }
   },
   "flags": {},
@@ -94,12 +98,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1753922784508,
-    "modifiedTime": 1754270031835,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1756038941872,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "4uAFGp3LxiC07woC",
   "sort": 3400000,

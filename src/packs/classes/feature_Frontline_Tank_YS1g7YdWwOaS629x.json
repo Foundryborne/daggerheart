@@ -20,7 +20,6 @@
             "scalable": false,
             "key": "hope",
             "value": 3,
-            "keyIsID": false,
             "step": null
           }
         ],
@@ -60,7 +59,7 @@
           "includeBase": false
         },
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "effects": [],
@@ -81,11 +80,16 @@
         },
         "name": "Spend Hope",
         "img": "icons/magic/defensive/shield-barrier-flaming-pentagon-orange.webp",
-        "range": ""
+        "range": "self"
       }
     },
     "originItemType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 15,
+      "artist": ""
+    }
   },
   "effects": [],
   "sort": 0,
@@ -98,12 +102,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1754246687097,
-    "modifiedTime": 1754246740977,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
+    "modifiedTime": 1756034159296,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_key": "!items!YS1g7YdWwOaS629x"
 }

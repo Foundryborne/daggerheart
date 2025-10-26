@@ -6,7 +6,12 @@
   "system": {
     "description": "<p>This handcrafted whistle has a distinctive sound. When you blow this whistle, its piercing tone can be heard within a 1-mile radius.</p>",
     "quantity": 1,
-    "actions": {}
+    "actions": {},
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 58,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": null,
@@ -20,12 +25,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753624968366,
-    "modifiedTime": 1753625011843,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1755431902952,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!v4PIoCCEjeE3acys"
 }

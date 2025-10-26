@@ -92,48 +92,14 @@
           "trait": null
         }
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 46,
+      "artist": ""
     }
   },
-  "effects": [
-    {
-      "name": "Cumbersome",
-      "description": "-1 to Finesse",
-      "img": "icons/commodities/metal/mail-plate-steel.webp",
-      "changes": [
-        {
-          "key": "system.traits.finesse.value",
-          "mode": 2,
-          "value": "-1"
-        }
-      ],
-      "_id": "8twXPJELZpvFWA5K",
-      "type": "base",
-      "system": {},
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "combat": null
-      },
-      "origin": null,
-      "tint": "#ffffff",
-      "transfer": true,
-      "statuses": [],
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1753829466016,
-        "modifiedTime": 1753829466016,
-        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
-      },
-      "_key": "!items.effects!j5Pt1thLfcvopBij.8twXPJELZpvFWA5K"
-    }
-  ],
+  "effects": [],
   "sort": 0,
   "ownership": {
     "default": 0,
@@ -144,12 +110,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753829443743,
-    "modifiedTime": 1753829474262,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1755430807883,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!j5Pt1thLfcvopBij"
 }

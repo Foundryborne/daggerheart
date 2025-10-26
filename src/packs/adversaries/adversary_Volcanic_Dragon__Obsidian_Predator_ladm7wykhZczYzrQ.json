@@ -145,7 +145,12 @@
         }
       }
     },
-    "motivesAndTactics": "Defend lair, dive-bomb, fly, hunt, intimidate"
+    "motivesAndTactics": "Defend lair, dive-bomb, fly, hunt, intimidate",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 100,
+      "artist": ""
+    }
   },
   "prototypeToken": {
     "name": "Volcanic Dragon: Obsidian Predator",
@@ -246,9 +251,42 @@
       "name": "Relentless (2)",
       "type": "feature",
       "system": {
-        "description": "<p>When the Molten Scourge marks their last HP, replace them with the Ashen Tyrant and immediately spotlight them.</p>",
+        "description": "<p>The Obsidian Predator can be spotlighted up to two times per GM turn Spend Fear as usual to spotlight them</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "XuhmupOVJj8ae6q0": {
+            "type": "effect",
+            "_id": "XuhmupOVJj8ae6q0",
+            "systemPath": "actions",
+            "description": "<p>The Obsidian Predator can be spotlighted up to two times per GM turn Spend Fear as usual to spotlight them.</p>",
+            "chatDisplay": true,
+            "actionType": "passive",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": 0,
+              "max": "1",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spotlight: Relentless",
+            "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
+            "range": ""
+          }
+        },
         "originItemType": null,
         "originId": null
       },
@@ -266,12 +304,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754140957019,
-        "modifiedTime": 1754140976241,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760383384636,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!ladm7wykhZczYzrQ.hnr2drwGFJAXRJLo"
     },
@@ -806,9 +844,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753929001531,
-    "modifiedTime": 1755259462866,
+    "modifiedTime": 1755385751958,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!actors!ladm7wykhZczYzrQ"

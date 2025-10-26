@@ -11,13 +11,22 @@
         "type": "attack",
         "_id": "rcHEz3ImUDwo6lPC",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You can drink this tea to unleash a fiery breath attack. Make an Instinct Roll against all adversaries in front of you within Close range. Targets you succeed against take d20 physical damage using your Proficiency.</p><p>@Template[type:emanation|range:c]</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "consumeOnSuccess": false,
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "wM18PWWW2Ami4fBG",
+            "step": null
+          }
+        ],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "damage": {
@@ -79,7 +88,13 @@
         "range": "close"
       }
     },
-    "consumeOnUse": true
+    "consumeOnUse": true,
+    "destroyOnEmpty": true,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 61,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": null,
@@ -93,12 +108,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753591525829,
-    "modifiedTime": 1753591674720,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1756336455635,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!wM18PWWW2Ami4fBG"
 }

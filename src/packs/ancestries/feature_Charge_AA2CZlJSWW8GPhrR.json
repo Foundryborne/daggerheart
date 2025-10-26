@@ -12,7 +12,7 @@
         "type": "damage",
         "_id": "KLg0T6I1w24sfIbH",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>When you succeed on an Agility Roll to move from Far or Very Far range into Melee range with one or more targets, you can <strong>mark a Stress</strong> to deal <strong>1d12</strong> physical damage to all targets within Melee range.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -20,7 +20,6 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "keyIsID": false,
             "step": null
           }
         ],
@@ -65,14 +64,19 @@
           "amount": null
         },
         "effects": [],
-        "name": "Damage",
+        "name": "Deal Damage",
         "img": "icons/magic/movement/trail-streak-impact-blue.webp",
         "range": ""
       }
     },
     "originItemType": null,
     "subType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 28,
+      "artist": ""
+    }
   },
   "effects": [],
   "sort": 0,
@@ -85,12 +89,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.2",
     "createdTime": 1753995559143,
-    "modifiedTime": 1753995629206,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1761138130084,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!items!AA2CZlJSWW8GPhrR"
 }

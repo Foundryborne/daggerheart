@@ -70,11 +70,12 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": true,
-            "key": "zcldCuqOg3dphUVI",
+            "key": "resource",
+            "itemId": "zcldCuqOg3dphUVI",
             "value": 1,
+            "scalable": true,
             "step": 1,
-            "keyIsID": true
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -121,19 +122,24 @@
         "range": ""
       }
     },
-    "resource": null
+    "resource": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 129,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753922784487,
-    "modifiedTime": 1754499654051,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1756325575872,
+    "lastModifiedBy": "bjJtdJOhqWr47GhC"
   },
   "_id": "zcldCuqOg3dphUVI",
   "sort": 3400000,
