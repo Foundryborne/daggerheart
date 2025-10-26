@@ -7,40 +7,7 @@
   "system": {
     "description": "<p>When you take Minor damage, you can <strong>mark 2 Stress</strong> instead of marking a Hit Point.</p>",
     "resource": null,
-    "actions": {
-      "bNpCs9UXlAD8gjYh": {
-        "type": "effect",
-        "_id": "bNpCs9UXlAD8gjYh",
-        "systemPath": "actions",
-        "description": "<p>When you take Minor damage, you can <strong>mark 2 Stress</strong> instead of marking a Hit Point.</p>",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [
-          {
-            "scalable": false,
-            "key": "stress",
-            "value": 2,
-            "keyIsID": false,
-            "step": null,
-            "consumeOnSuccess": false
-          }
-        ],
-        "uses": {
-          "value": null,
-          "max": "",
-          "recovery": null,
-          "consumeOnSuccess": false
-        },
-        "effects": [],
-        "target": {
-          "type": "self",
-          "amount": null
-        },
-        "name": "Mark Stress",
-        "img": "icons/magic/defensive/shield-barrier-glowing-triangle-orange.webp",
-        "range": "self"
-      }
-    },
+    "actions": {},
     "originItemType": null,
     "subType": null,
     "originId": null,
@@ -117,7 +84,7 @@
     "systemId": "daggerheart",
     "systemVersion": "1.1.2",
     "createdTime": 1753994247261,
-    "modifiedTime": 1761502967809,
+    "modifiedTime": 1761506267107,
     "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!items!S0Ww7pYOSREt8qKg"
