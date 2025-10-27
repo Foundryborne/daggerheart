@@ -25,7 +25,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         window: {
             icon: 'fa-solid fa-clock-rotate-left',
             frame: true,
-            title: 'Fear',
+            title: 'DAGGERHEART.UI.Countdowns.title',
             positioned: false,
             resizable: false,
             minimizable: false
@@ -49,10 +49,6 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             template: 'systems/daggerheart/templates/ui/countdowns.hbs'
         }
     };
-
-    get title() {
-        return game.i18n.localize('DAGGERHEART.UI.Countdowns.title');
-    }
 
     get element() {
         return document.body.querySelector('.daggerheart.dh-style.countdowns');

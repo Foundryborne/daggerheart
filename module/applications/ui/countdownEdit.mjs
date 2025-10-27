@@ -13,15 +13,14 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         this.hideNewCountdowns = false;
     }
 
-    get title() {
-        return game.i18n.localize('DAGGERHEART.APPLICATIONS.CountdownEdit.title');
-    }
-
     static DEFAULT_OPTIONS = {
         classes: ['daggerheart', 'dialog', 'dh-style', 'countdown-edit'],
         tag: 'form',
         position: { width: 600 },
-        window: { icon: 'fa-solid fa-clock-rotate-left' },
+        window: {
+            title: 'DAGGERHEART.APPLICATIONS.CountdownEdit.title',
+            icon: 'fa-solid fa-clock-rotate-left'
+        },
         actions: {
             addCountdown: CountdownEdit.#addCountdown,
             toggleCountdownEdit: CountdownEdit.#toggleCountdownEdit,
@@ -83,8 +82,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
     canPerformEdit() {
         if (game.user.isGM) return true;
 
-        const noGM = !game.users.find(x => x.isGM && x.active);
-        if (noGM) {
+        if (!game.users.activeGM) {
             ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.gmRequired'));
             return false;
         }
@@ -109,7 +107,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
 
     static async updateData(_event, _, formData) {
         const { hideNewCountdowns, ...settingsData } = foundry.utils.expandObject(formData.object);
-        
+
         // Sync current and max if max is changing and they were equal before
         for (const [id, countdown] of Object.entries(settingsData.countdowns ?? {})) {
             const existing = this.data.countdowns[id];
@@ -119,7 +117,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
             } else {
                 countdown.progress.current = Math.min(countdown.progress.current, countdown.progress.max);
             }
-        }       
+        }
 
         this.hideNewCountdowns = hideNewCountdowns;
         this.updateSetting(settingsData);
