@@ -61,7 +61,8 @@ export default class AdversarySheet extends DHBaseActorSheet {
         const applicationOptions = super._initializeApplicationOptions(options);
 
         if (applicationOptions.document.testUserPermission(game.user, 'LIMITED', { exact: true })) {
-            applicationOptions.window.resizable = false;
+            applicationOptions.position.width = 360;
+            applicationOptions.position.height = 'auto';
         }
 
         return applicationOptions;
