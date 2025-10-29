@@ -3,10 +3,7 @@
     data-tab='{{tabs.description.id}}'
     data-group='{{tabs.description.group}}'
 >
-    <fieldset>
-        <legend>{{localize "DAGGERHEART.GENERAL.description"}}</legend>
-        {{formInput systemFields.description value=document.system.description enriched=enrichedDescription toggled=true}}
-    </fieldset>
+    {{formInput systemFields.description value=document.system.description enriched=enrichedDescription toggled=true}}
     
     {{#if (and showAttribution document.system.attribution.artist)}}
         <label class="artist-attribution">{{localize "DAGGERHEART.GENERAL.artistAttribution" artist=document.system.attribution.artist}}</label>

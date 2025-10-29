@@ -66,7 +66,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
 
     /**@inheritdoc */
     async _prepareContext(options) {
-        const context = super._prepareContext(options);
+        const context = await super._prepareContext(options);
         context.showAttribution = !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
             .hideAttribution;
 

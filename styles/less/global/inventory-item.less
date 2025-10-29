@@ -26,7 +26,7 @@
 
         &:not(.single-img) {
             .inventory-item-header:hover {
-                .img-portait {
+                .img-portait:has(.roll-img) {
                     .roll-img {
                         opacity: 1;
                     }
@@ -96,7 +96,9 @@
                 }
 
                 .roll-img {
+                    object-fit: contain;
                     opacity: 0;
+                    padding: 2px;
                 }
             }
 
@@ -307,12 +309,14 @@
             background-color: @dark-blue;
             bottom: 0;
             mask-image: linear-gradient(180deg, transparent 0%, black 20%);
+            border-radius: 0 0 6px 6px;
 
             .card-name {
                 font-style: normal;
                 font-weight: 400;
                 font-size: var(--font-size-12);
                 line-height: 15px;
+                text-align: center;
 
                 color: @beige;
             }

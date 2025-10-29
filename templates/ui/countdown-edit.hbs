@@ -1,0 +1,76 @@
+<div>
+    <div class="edit-container">
+        <header class="dialog-header">
+            <h1>{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.editTitle"}}</h1>
+        </header>
+
+        <div class="header-tools">
+            <button class="header-main-button" data-action="addCountdown"><i class="fa-solid fa-plus"></i> {{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.newCountdown"}}</button>
+            <div class="hide-tools">
+                <label>{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.hideNewCountdowns"}}</label>
+                <input type="checkbox" name="hideNewCountdowns" {{checked hideNewCountdowns}} />
+            </div>
+            {{#if isGM}}
+                <div class="default-ownership-tools">
+                    <i class="fa-solid fa-eye" data-tooltip="{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.defaultOwnershipTooltip"}}"></i>
+                    <select name="defaultOwnership">
+                        {{selectOptions ownershipDefaultOptions selected=defaultOwnership labelAttr="label" valueAttr="value" localize=true}}
+                    </select>
+                </div>
+            {{/if}}
+        </div>
+
+        <div class="edit-content">
+            {{#each countdowns as | countdown id | }}
+                <div class="countdown-edit-container {{#unless countdown.editing}}viewing{{/unless}}" data-id="{{id}}">
+                    <a data-action="editCountdownImage" id="{{id}}"><img src="{{countdown.img}}" /></a>
+                    {{#unless countdown.editing}} 
+                        <div class="countdown-edit-text">
+                            <h4>{{countdown.name}}</h4>
+                            <div class="countdown-edit-subtext">
+                                <div class="countdown-edit-sub-tag">{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.currentCountdownValue" value=countdown.progress.current}}</div>
+                                <div class="countdown-edit-sub-tag">{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.currentCountdownMax" value=countdown.progress.max}}</div>
+                                <div class="countdown-edit-sub-tag">{{countdown.typeName}}</div>
+                                <div class="countdown-edit-sub-tag">{{countdown.progress.typeName}}</div>
+                            </div>
+                        </div>
+                    {{else}}
+                        <div class="countdown-edit-input">
+                            <label>{{localize "Name"}}</label>
+                            <input type="text" name="{{concat "countdowns." id ".name"}}" value="{{countdown.name}}" />
+                        </div>
+                    {{/unless}}
+                    <div class="countdown-edit-tools {{#if countdown.editing}}same-row{{/if}}">
+                        <a data-action="toggleCountdownEdit" data-countdown-id="{{id}}"><i class="fa-solid {{#unless countdown.editing}}fa-pen-to-square{{else}}fa-check{{/unless}}"></i></a>
+                        <a data-action="editCountdownOwnership" data-countdown-id="{{id}}"><i class="fa-solid fa-users"></i></a>
+                        <a data-action="removeCountdown" data-countdown-id="{{id}}"><i class="fa-solid fa-trash"></i></a>
+                    </div>
+                </div>
+                {{#if countdown.editing}}
+                    <div class="countdown-edit-subrow">
+                        <div class="countdown-edit-input tiny">
+                            <label>{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.current"}}</label>
+                            <input type="number" name="{{concat "countdowns." id ".progress.current"}}" value="{{countdown.progress.current}}" />
+                        </div>
+                        <div class="countdown-edit-input tiny">
+                            <label>{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.max"}}</label>
+                            <input type="number" name="{{concat "countdowns." id ".progress.max"}}" value="{{countdown.progress.max}}" />
+                        </div>
+                        <div class="countdown-edit-input">
+                            <label>{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.category"}}</label>
+                            <select name="{{concat "countdowns." id ".type"}}">
+                                {{selectOptions ../countdownBaseTypes selected=countdown.type valueAttr="id" labelAttr="name" localize=true}}
+                            </select>
+                        </div>
+                        <div class="countdown-edit-input">
+                            <label>{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.type"}}</label>
+                            <select name="{{concat "countdowns." id ".progress.type"}}">
+                                {{selectOptions ../countdownTypes selected=countdown.progress.type valueAttr="id" labelAttr="label" localize=true}}
+                            </select>
+                        </div>
+                    </div>
+                {{/if}}
+            {{/each}}
+        </div>
+    </div>
+</div>

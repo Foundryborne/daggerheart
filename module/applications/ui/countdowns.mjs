@@ -1,355 +1,218 @@
-import { GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
-import constructHTMLButton from '../../helpers/utils.mjs';
-import OwnershipSelection from '../dialogs/ownershipSelection.mjs';
+import { emitAsGM, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
-class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(basePath) {
-        super({});
+/**
+ * A UI element which displays the countdowns in this world.
+ *
+ * @extends ApplicationV2
+ * @mixes HandlebarsApplication
+ */
 
-        this.basePath = basePath;
+export default class DhCountdowns extends HandlebarsApplicationMixin(ApplicationV2) {
+    constructor(options = {}) {
+        super(options);
+
+        this.sidebarCollapsed = true;
+        this.setupHooks();
     }
 
-    get title() {
-        return game.i18n.format('DAGGERHEART.APPLICATIONS.Countdown.title', {
-            type: game.i18n.localize(`DAGGERHEART.APPLICATIONS.Countdown.types.${this.basePath}`)
-        });
-    }
-
+    /** @inheritDoc */
     static DEFAULT_OPTIONS = {
-        classes: ['daggerheart', 'dh-style', 'countdown'],
-        tag: 'form',
-        position: { width: 740, height: 700 },
+        id: 'countdowns',
+        tag: 'div',
+        classes: ['daggerheart', 'dh-style', 'countdowns', 'faded-ui'],
         window: {
+            icon: 'fa-solid fa-clock-rotate-left',
             frame: true,
-            title: 'Countdowns',
-            resizable: true,
+            title: 'DAGGERHEART.UI.Countdowns.title',
+            positioned: false,
+            resizable: false,
             minimizable: false
         },
         actions: {
-            addCountdown: this.addCountdown,
-            removeCountdown: this.removeCountdown,
-            editImage: this.onEditImage,
-            openOwnership: this.openOwnership,
-            openCountdownOwnership: this.openCountdownOwnership,
-            toggleSimpleView: this.toggleSimpleView
+            toggleViewMode: DhCountdowns.#toggleViewMode,
+            decreaseCountdown: (_, target) => this.editCountdown(false, target),
+            increaseCountdown: (_, target) => this.editCountdown(true, target)
         },
-        form: { handler: this.updateData, submitOnChange: true }
-    };
-
-    static PARTS = {
-        countdowns: {
-            template: 'systems/daggerheart/templates/ui/countdowns.hbs',
-            scrollable: ['.expanded-view']
+        position: {
+            width: 400,
+            height: 222,
+            top: 50
         }
     };
 
-    _attachPartListeners(partId, htmlElement, options) {
-        super._attachPartListeners(partId, htmlElement, options);
+    /** @override */
+    static PARTS = {
+        resources: {
+            root: true,
+            template: 'systems/daggerheart/templates/ui/countdowns.hbs'
+        }
+    };
 
-        htmlElement.querySelectorAll('.mini-countdown-container').forEach(element => {
-            element.addEventListener('click', event => this.updateCountdownValue.bind(this)(event, false));
-            element.addEventListener('contextmenu', event => this.updateCountdownValue.bind(this)(event, true));
-        });
+    get element() {
+        return document.body.querySelector('.daggerheart.dh-style.countdowns');
     }
 
-    async _preFirstRender(context, options) {
-        options.position =
-            game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS[`${this.basePath}Countdown`].position) ??
-            Countdowns.DEFAULT_OPTIONS.position;
-
-        const viewSetting =
-            game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS[`${this.basePath}Countdown`].simple) ?? !game.user.isGM;
-        this.simpleView =
-            game.user.isGM || !this.testUserPermission(CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER) ? viewSetting : true;
-        context.simple = this.simpleView;
-    }
-
-    _onPosition(position) {
-        game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS[`${this.basePath}Countdown`].position, position);
-    }
-
+    /**@inheritdoc */
     async _renderFrame(options) {
         const frame = await super._renderFrame(options);
 
-        if (this.testUserPermission(CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER)) {
-            const button = constructHTMLButton({
-                label: '',
-                classes: ['header-control', 'icon', 'fa-solid', 'fa-wrench'],
-                dataset: { action: 'toggleSimpleView', tooltip: 'DAGGERHEART.APPLICATIONS.Countdown.toggleSimple' }
-            });
-            this.window.controls.after(button);
-        }
+        const iconOnly =
+            game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode) ===
+            CONFIG.DH.GENERAL.countdownAppMode.iconOnly;
+        if (iconOnly) frame.classList.add('icon-only');
+        else frame.classList.remove('icon-only');
+
+        const header = frame.querySelector('.window-header');
+        header.querySelector('button[data-action="close"]').remove();
+
+        const minimizeTooltip = game.i18n.localize('DAGGERHEART.UI.Countdowns.toggleIconMode');
+        const minimizeButton = `<a class="header-control" data-tooltip="${minimizeTooltip}" aria-label="${minimizeTooltip}" data-action="toggleViewMode"><i class="fa-solid fa-down-left-and-up-right-to-center"></i></a>`;
+        header.insertAdjacentHTML('beforeEnd', minimizeButton);
 
         return frame;
     }
 
-    testUserPermission(level, exact, altSettings) {
-        if (game.user.isGM) return true;
-
-        const settings =
-            altSettings ?? game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns)[this.basePath];
-        const defaultAllowed = exact ? settings.ownership.default === level : settings.ownership.default >= level;
-        const userAllowed = exact
-            ? settings.playerOwnership[game.user.id]?.value === level
-            : settings.playerOwnership[game.user.id]?.value >= level;
-        return defaultAllowed || userAllowed;
-    }
-
-    async _prepareContext(_options) {
-        const context = await super._prepareContext(_options);
-        const countdownData = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns)[
-            this.basePath
-        ];
-
+    /** @override */
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
         context.isGM = game.user.isGM;
-        context.base = this.basePath;
+        context.sidebarCollapsed = this.sidebarCollapsed;
+        context.iconOnly =
+            game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode) ===
+            CONFIG.DH.GENERAL.countdownAppMode.iconOnly;
 
-        context.canCreate = this.testUserPermission(CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER, true);
-        context.source = {
-            ...countdownData,
-            countdowns: Object.keys(countdownData.countdowns).reduce((acc, key) => {
-                const countdown = countdownData.countdowns[key];
+        const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
+        context.countdowns = Object.keys(setting.countdowns).reduce((acc, key) => {
+            const countdown = setting.countdowns[key];
+            const ownership = DhCountdowns.#getPlayerOwnership(game.user, setting, countdown);
+            if (ownership === CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE) return acc;
 
-                if (this.testUserPermission(CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED, false, countdown)) {
-                    acc[key] = {
-                        ...countdown,
-                        canEdit: this.testUserPermission(CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER, true, countdown)
-                    };
+            const playersWithAccess = game.users.reduce((acc, user) => {
+                const ownership = DhCountdowns.#getPlayerOwnership(user, setting, countdown);
+                if (!user.isGM && ownership && ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE) {
+                    acc.push(user);
                 }
-
                 return acc;
-            }, {})
-        };
-        context.systemFields = countdownData.schema.fields;
-        context.countdownFields = context.systemFields.countdowns.element.fields;
-        context.simple = this.simpleView;
+            }, []);
+            const nonGmPlayers = game.users.filter(x => !x.isGM);
+            acc[key] = {
+                ...countdown,
+                editable: game.user.isGM || ownership === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER,
+                playerAccess: playersWithAccess.length !== nonGmPlayers.length ? playersWithAccess : [],
+                noPlayerAccess: nonGmPlayers.length && playersWithAccess.length === 0
+            };
+            return acc;
+        }, {});
 
         return context;
     }
 
-    static async updateData(event, _, formData) {
-        const data = foundry.utils.expandObject(formData.object);
-        const newSetting = foundry.utils.mergeObject(
-            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns).toObject(),
-            data
-        );
+    static #getPlayerOwnership(user, setting, countdown) {
+        const playerOwnership = countdown.ownership[user.id];
+        return playerOwnership === undefined || playerOwnership === CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT
+            ? setting.defaultOwnership
+            : playerOwnership;
+    }
 
-        if (game.user.isGM) {
-            await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, newSetting);
-            this.render();
-        } else {
-            await game.socket.emit(`system.${CONFIG.DH.id}`, {
-                action: socketEvent.GMUpdate,
-                data: {
-                    action: GMUpdateEvent.UpdateSetting,
-                    uuid: CONFIG.DH.SETTINGS.gameSettings.Countdowns,
-                    update: newSetting
-                }
-            });
+    toggleCollapsedPosition = async (_, collapsed) => {
+        this.sidebarCollapsed = collapsed;
+        if (!collapsed) this.element.classList.add('expanded');
+        else this.element.classList.remove('expanded');
+    };
+
+    cooldownRefresh = ({ refreshType }) => {
+        if (refreshType === RefreshType.Countdown) this.render();
+    };
+
+    static canPerformEdit() {
+        if (game.user.isGM) return true;
+
+        const noGM = !game.users.find(x => x.isGM && x.active);
+        if (noGM) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.gmRequired'));
+            return false;
         }
+
+        return true;
     }
 
-    async updateSetting(update) {
-        if (game.user.isGM) {
-            await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, update);
-            await game.socket.emit(`system.${CONFIG.DH.id}`, {
-                action: socketEvent.Refresh,
-                data: {
-                    refreshType: RefreshType.Countdown,
-                    application: `${this.basePath}-countdowns`
-                }
-            });
+    static async #toggleViewMode() {
+        const currentMode = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode);
+        const appMode = CONFIG.DH.GENERAL.countdownAppMode;
+        const newMode = currentMode === appMode.textIcon ? appMode.iconOnly : appMode.textIcon;
+        await game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode, newMode);
 
-            this.render();
-        } else {
-            await game.socket.emit(`system.${CONFIG.DH.id}`, {
-                action: socketEvent.GMUpdate,
-                data: {
-                    action: GMUpdateEvent.UpdateSetting,
-                    uuid: CONFIG.DH.SETTINGS.gameSettings.Countdowns,
-                    update: update,
-                    refresh: { refreshType: RefreshType.Countdown, application: `${this.basePath}-countdowns` }
-                }
-            });
-        }
-    }
-
-    static onEditImage(_, target) {
-        const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns)[this.basePath];
-        const current = setting.countdowns[target.dataset.countdown].img;
-        const fp = new foundry.applications.apps.FilePicker.implementation({
-            current,
-            type: 'image',
-            callback: async path => this.updateImage.bind(this)(path, target.dataset.countdown),
-            top: this.position.top + 40,
-            left: this.position.left + 10
-        });
-        return fp.browse();
-    }
-
-    async updateImage(path, countdown) {
-        const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-        await setting.updateSource({
-            [`${this.basePath}.countdowns.${countdown}.img`]: path
-        });
-
-        await this.updateSetting(setting);
-    }
-
-    static openOwnership(_, target) {
-        new Promise((resolve, reject) => {
-            const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns)[this.basePath];
-            const ownership = { default: setting.ownership.default, players: setting.playerOwnership };
-            new OwnershipSelection(resolve, reject, this.title, ownership).render(true);
-        }).then(async ownership => {
-            const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-            await setting.updateSource({
-                [`${this.basePath}.ownership`]: ownership
-            });
-
-            await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, setting.toObject());
-            this.render();
-        });
-    }
-
-    static openCountdownOwnership(_, target) {
-        const countdownId = target.dataset.countdown;
-        new Promise((resolve, reject) => {
-            const countdown = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns)[this.basePath]
-                .countdowns[countdownId];
-            const ownership = { default: countdown.ownership.default, players: countdown.playerOwnership };
-            new OwnershipSelection(resolve, reject, countdown.name, ownership).render(true);
-        }).then(async ownership => {
-            const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-            await setting.updateSource({
-                [`${this.basePath}.countdowns.${countdownId}.ownership`]: ownership
-            });
-
-            await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, setting);
-            this.render();
-        });
-    }
-
-    static async toggleSimpleView() {
-        this.simpleView = !this.simpleView;
-        await game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS[`${this.basePath}Countdown`].simple, this.simpleView);
+        if (newMode === appMode.iconOnly) this.element.classList.add('icon-only');
+        else this.element.classList.remove('icon-only');
         this.render();
     }
 
-    async updateCountdownValue(event, increase) {
-        const countdownSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-        const countdown = countdownSetting[this.basePath].countdowns[event.currentTarget.dataset.countdown];
+    static async editCountdown(increase, target) {
+        if (!DhCountdowns.canPerformEdit()) return;
 
-        if (!this.testUserPermission(CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER)) {
-            return;
-        }
-
-        const currentValue = countdown.progress.current;
-
-        if (increase && currentValue === countdown.progress.max) return;
-        if (!increase && currentValue === 0) return;
-
-        await countdownSetting.updateSource({
-            [`${this.basePath}.countdowns.${event.currentTarget.dataset.countdown}.progress.current`]: increase
-                ? currentValue + 1
-                : currentValue - 1
+        const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
+        const countdown = settings.countdowns[target.id];
+        const newCurrent = increase
+            ? Math.min(countdown.progress.current + 1, countdown.progress.max)
+            : Math.max(countdown.progress.current - 1, 0);
+        await settings.updateSource({ [`countdowns.${target.id}.progress.current`]: newCurrent });
+        await emitAsGM(GMUpdateEvent.UpdateCountdowns, DhCountdowns.gmSetSetting.bind(settings), settings, null, {
+            refreshType: RefreshType.Countdown
         });
-
-        await this.updateSetting(countdownSetting.toObject());
     }
 
-    static async addCountdown() {
+    static async gmSetSetting(data) {
+        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, data),
+            game.socket.emit(`system.${CONFIG.DH.id}`, {
+                action: socketEvent.Refresh,
+                data: { refreshType: RefreshType.Countdown }
+            });
+        Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
+    }
+
+    setupHooks() {
+        Hooks.on('collapseSidebar', this.toggleCollapsedPosition.bind());
+        Hooks.on(socketEvent.Refresh, this.cooldownRefresh.bind());
+    }
+
+    close(options) {
+        Hooks.off('collapseSidebar', this.toggleCollapsedPosition);
+        Hooks.off(socketEvent.Refresh, this.cooldownRefresh);
+        super.close(options);
+    }
+
+    static async updateCountdowns(progressType) {
         const countdownSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-        await countdownSetting.updateSource({
-            [`${this.basePath}.countdowns.${foundry.utils.randomID()}`]: {
-                name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Countdown.newCountdown'),
-                ownership: game.user.isGM
-                    ? {}
-                    : {
-                          players: {
-                              [game.user.id]: { type: CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER }
-                          }
-                      }
+        const updatedCountdowns = Object.keys(countdownSetting.countdowns).reduce((acc, key) => {
+            const countdown = countdownSetting.countdowns[key];
+            if (countdown.progress.type === progressType && countdown.progress.current > 0) {
+                acc.push(key);
             }
-        });
 
-        await this.updateSetting(countdownSetting.toObject());
-    }
+            return acc;
+        }, []);
 
-    static async removeCountdown(_, target) {
-        const countdownSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-        const countdownName = countdownSetting[this.basePath].countdowns[target.dataset.countdown].name;
-
-        const confirmed = await foundry.applications.api.DialogV2.confirm({
-            window: {
-                title: game.i18n.localize('DAGGERHEART.APPLICATIONS.Countdown.removeCountdownTitle')
-            },
-            content: game.i18n.format('DAGGERHEART.APPLICATIONS.Countdown.removeCountdownText', { name: countdownName })
-        });
-        if (!confirmed) return;
-
-        await countdownSetting.updateSource({ [`${this.basePath}.countdowns.-=${target.dataset.countdown}`]: null });
-
-        await this.updateSetting(countdownSetting.toObject());
-    }
-
-    async open() {
-        await this.render(true);
-        if (
-            Object.keys(
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns)[this.basePath].countdowns
-            ).length > 0
-        ) {
-            this.minimize();
-        }
-    }
-}
-
-export class NarrativeCountdowns extends Countdowns {
-    constructor() {
-        super('narrative');
-    }
-
-    static DEFAULT_OPTIONS = {
-        id: 'narrative-countdowns'
-    };
-}
-
-export class EncounterCountdowns extends Countdowns {
-    constructor() {
-        super('encounter');
-    }
-
-    static DEFAULT_OPTIONS = {
-        id: 'encounter-countdowns'
-    };
-}
-
-export async function updateCountdowns(progressType) {
-    const countdownSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-    const update = Object.keys(countdownSetting).reduce((update, typeKey) => {
-        return foundry.utils.mergeObject(
-            update,
-            Object.keys(countdownSetting[typeKey].countdowns).reduce((acc, countdownKey) => {
-                const countdown = countdownSetting[typeKey].countdowns[countdownKey];
-                if (countdown.progress.current > 0 && countdown.progress.type.value === progressType) {
-                    acc[`${typeKey}.countdowns.${countdownKey}.progress.current`] = countdown.progress.current - 1;
+        const countdownData = countdownSetting.toObject();
+        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, {
+            ...countdownData,
+            countdowns: Object.keys(countdownData.countdowns).reduce((acc, key) => {
+                const countdown = foundry.utils.deepClone(countdownData.countdowns[key]);
+                if (updatedCountdowns.includes(key)) {
+                    countdown.progress.current -= 1;
                 }
 
+                acc[key] = countdown;
                 return acc;
             }, {})
-        );
-    }, {});
+        });
 
-    await countdownSetting.updateSource(update);
-    await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, countdownSetting);
-
-    const data = { refreshType: RefreshType.Countdown };
-    await game.socket.emit(`system.${CONFIG.DH.id}`, {
-        action: socketEvent.Refresh,
-        data
-    });
-    Hooks.callAll(socketEvent.Refresh, data);
+        const data = { refreshType: RefreshType.Countdown };
+        await game.socket.emit(`system.${CONFIG.DH.id}`, {
+            action: socketEvent.Refresh,
+            data
+        });
+        Hooks.callAll(socketEvent.Refresh, data);
+    }
 }

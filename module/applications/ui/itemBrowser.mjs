@@ -16,6 +16,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         this.selectedMenu = { path: [], data: null };
         this.config = CONFIG.DH.ITEMBROWSER.compendiumConfig;
         this.presets = {};
+        this.compendiumBrowserTypeKey = 'compendiumBrowserDefault';
     }
 
     /** @inheritDoc */
@@ -84,10 +85,26 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     /** @inheritDoc */
     async _preRender(context, options) {
         this.presets = options.presets ?? {};
+        const noFolder = this.presets?.render?.noFolder;
+        if (noFolder === true) {
+            this.compendiumBrowserTypeKey = 'compendiumBrowserNoFolder';
+        }
+        const lite = this.presets?.render?.lite;
+        if (lite === true) {
+            this.compendiumBrowserTypeKey = 'compendiumBrowserLite';
+        }
+        const userPresetPosition = game.user.getFlag(
+            CONFIG.DH.id,
+            CONFIG.DH.FLAGS[`${this.compendiumBrowserTypeKey}`].position
+        );
 
-        const width = this.presets?.render?.noFolder === true || this.presets?.render?.lite === true ? 600 : 850;
-        if (this.rendered) this.setPosition({ width });
-        else options.position.width = width;
+        options.position = userPresetPosition ?? ItemBrowser.DEFAULT_OPTIONS.position;
+
+        if (!userPresetPosition) {
+            const width = noFolder === true || lite === true ? 600 : 850;
+            if (this.rendered) this.setPosition({ width });
+            else options.position.width = width;
+        }
 
         await super._preRender(context, options);
     }
@@ -111,6 +128,10 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             element.hidden =
                 this.presets.render?.folders?.length && !this.presets.render.folders.includes(element.dataset.folderId);
         });
+    }
+
+    _onPosition(position) {
+        game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS[`${this.compendiumBrowserTypeKey}`].position, position);
     }
 
     _attachPartListeners(partId, htmlElement, options) {

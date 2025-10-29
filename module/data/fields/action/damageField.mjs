@@ -81,6 +81,9 @@ export default class DamageField extends fields.SchemaField {
     static async applyDamage(config, targets = null, force = false) {
         targets ??= config.targets.filter(target => target.hit);
         if (!config.damage || !targets?.length || (!DamageField.getApplyAutomation() && !force)) return;
+
+        const targetDamage = [];
+        const damagePromises = [];
         for (let target of targets) {
             const actor = fromUuidSync(target.actorId);
             if (!actor) continue;
@@ -95,9 +98,45 @@ export default class DamageField extends fields.SchemaField {
                 });
             }
 
-            if (config.hasHealing) actor.takeHealing(config.damage);
-            else actor.takeDamage(config.damage, config.isDirect);
+            if (config.hasHealing)
+                damagePromises.push(
+                    actor
+                        .takeHealing(config.damage)
+                        .then(updates => targetDamage.push({ token: actor.token ?? actor.prototypeToken, updates }))
+                );
+            else
+                damagePromises.push(
+                    actor
+                        .takeDamage(config.damage, config.isDirect)
+                        .then(updates => targetDamage.push({ token: actor.token ?? actor.prototypeToken, updates }))
+                );
         }
+
+        Promise.all(damagePromises).then(async _ => {
+            const summaryMessageSettings = game.settings.get(
+                CONFIG.DH.id,
+                CONFIG.DH.SETTINGS.gameSettings.Automation
+            ).summaryMessages;
+            if (!summaryMessageSettings.damage) return;
+
+            const cls = getDocumentClass('ChatMessage');
+            const msg = {
+                type: 'systemMessage',
+                user: game.user.id,
+                speaker: cls.getSpeaker(),
+                title: game.i18n.localize(
+                    `DAGGERHEART.UI.Chat.damageSummary.${config.hasHealing ? 'healingTitle' : 'title'}`
+                ),
+                content: await foundry.applications.handlebars.renderTemplate(
+                    'systems/daggerheart/templates/ui/chat/damageSummary.hbs',
+                    {
+                        targets: targetDamage
+                    }
+                )
+            };
+
+            cls.create(msg);
+        });
     }
 
     /**

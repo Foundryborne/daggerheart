@@ -650,3 +650,30 @@ export const fearDisplay = {
     bar: { value: 'bar', label: 'DAGGERHEART.SETTINGS.Appearance.fearDisplay.bar' },
     hide: { value: 'hide', label: 'DAGGERHEART.SETTINGS.Appearance.fearDisplay.hide' }
 };
+
+export const basicOwnershiplevels = {
+    0: { value: 0, label: 'OWNERSHIP.NONE' },
+    2: { value: 2, label: 'OWNERSHIP.OBSERVER' },
+    3: { value: 3, label: 'OWNERSHIP.OWNER' }
+};
+
+export const simpleOwnershiplevels = {
+    [-1]: { value: -1, label: 'OWNERSHIP.INHERIT' },
+    ...basicOwnershiplevels
+};
+
+export const countdownBaseTypes = {
+    narrative: {
+        id: 'narrative',
+        name: 'DAGGERHEART.APPLICATIONS.Countdown.types.narrative'
+    },
+    encounter: {
+        id: 'encounter',
+        name: 'DAGGERHEART.APPLICATIONS.Countdown.types.encounter'
+    }
+};
+
+export const countdownAppMode = {
+    textIcon: 'text-icon',
+    iconOnly: 'icon-only'
+};

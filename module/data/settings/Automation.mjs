@@ -2,6 +2,10 @@ export default class DhAutomation extends foundry.abstract.DataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
+            summaryMessages: new fields.SchemaField({
+                damage: new fields.BooleanField({ initial: true, label: 'DAGGERHEART.GENERAL.damage' }),
+                effects: new fields.BooleanField({ initial: true, label: 'DAGGERHEART.GENERAL.Effect.plural' })
+            }),
             hopeFear: new fields.SchemaField({
                 gm: new fields.BooleanField({
                     required: true,

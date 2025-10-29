@@ -28,8 +28,9 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
             title: 'SIDEBAR.TabSettings'
         },
         actions: {
-            selectRefreshable: DaggerheartMenu.selectRefreshable,
-            refreshActors: DaggerheartMenu.refreshActors
+            selectRefreshable: DaggerheartMenu.#selectRefreshable,
+            refreshActors: DaggerheartMenu.#refreshActors,
+            editCountdowns: DaggerheartMenu.#editCountdowns
         }
     };
 
@@ -123,13 +124,13 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
     /*  Application Clicks Actions                  */
     /* -------------------------------------------- */
 
-    static async selectRefreshable(_event, button) {
+    static async #selectRefreshable(_event, button) {
         const { type } = button.dataset;
         this.refreshSelections[type].selected = !this.refreshSelections[type].selected;
         this.render();
     }
 
-    static async refreshActors() {
+    static async #refreshActors() {
         const refreshKeys = Object.keys(this.refreshSelections).filter(key => this.refreshSelections[key].selected);
         await this.getRefreshables(refreshKeys);
         const types = refreshKeys.map(x => this.refreshSelections[x].label).join(', ');
@@ -156,5 +157,9 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
         cls.create(msg);
 
         this.render();
+    }
+
+    static async #editCountdowns() {
+        new game.system.api.applications.ui.CountdownEdit().render(true);
     }
 }

@@ -270,7 +270,8 @@
             "adversaryRoll": {},
             "damageRoll": {},
             "abilityUse": {},
-            "tagTeam": {}
+            "tagTeam": {},
+            "systemMessage": {}
         }
     },
     "background": "systems/daggerheart/assets/logos/FoundrybornBackgroundLogo.png",

@@ -143,6 +143,12 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         html.querySelectorAll('.button-target-selection').forEach(element => {
             element.addEventListener('click', this.onTargetSelection.bind(this));
         });
+
+        html.querySelectorAll('.token-target-container').forEach(element => {
+            element.addEventListener('pointerover', this.hoverTarget);
+            element.addEventListener('pointerout', this.unhoverTarget);
+            element.addEventListener('click', this.clickTarget);
+        });
     }
 
     async onRollDamage(event) {

@@ -15,7 +15,7 @@ export default class RegisterHandlebarsHelpers {
             setVar: this.setVar,
             empty: this.empty,
             pluralize: this.pluralize,
-            log: this.log
+            positive: this.positive
         });
     }
     static add(a, b) {
@@ -91,7 +91,7 @@ export default class RegisterHandlebarsHelpers {
         return game.i18n.localize(key);
     }
 
-    static log(test) {
-        return test;
+    static positive(a) {
+        return Math.abs(Number(a));
     }
 }

@@ -16,7 +16,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             this.action =
                 config.data.attack?._id == config.source.action
                     ? config.data.attack
-                    : this.item.system.actions.get(config.source.action);
+                    : this.item.system.actionsList?.find(a => a.id === config.source.action);
         }
     }
 

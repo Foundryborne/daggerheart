@@ -501,6 +501,7 @@ export default class DhpActor extends Actor {
     /**@inheritdoc */
     getRollData() {
         const rollData = super.getRollData();
+        rollData.name = this.name;
         rollData.system = this.system.getRollData();
         rollData.prof = this.system.proficiency ?? 1;
         rollData.cast = this.system.spellcastModifier ?? 1;
@@ -598,6 +599,8 @@ export default class DhpActor extends Actor {
         await this.modifyResource(updates);
 
         if (Hooks.call(`${CONFIG.DH.id}.postTakeDamage`, this, updates) === false) return null;
+
+        return updates;
     }
 
     calculateDamage(baseDamage, type) {
@@ -646,6 +649,8 @@ export default class DhpActor extends Actor {
         await this.modifyResource(updates);
 
         if (Hooks.call(`${CONFIG.DH.id}.postTakeHealing`, this, updates) === false) return null;
+
+        return updates;
     }
 
     async modifyResource(resources) {

@@ -46,17 +46,48 @@ export default class EffectsField extends fields.ArrayField {
      */
     static async applyEffects(targets) {
         if (!this.effects?.length || !targets?.length) return;
+
         let effects = this.effects;
-        targets.forEach(async token => {
+        const messageTargets = [];
+        targets.forEach(async baseToken => {
             if (this.hasSave && token.saved.success === true) effects = this.effects.filter(e => e.onSave === true);
             if (!effects.length) return;
+
+            const token = canvas.tokens.get(baseToken.id);
+            if (!token) return;
+            messageTargets.push(token.document);
+
             effects.forEach(async e => {
-                const actor = canvas.tokens.get(token.id)?.actor,
-                    effect = this.item.effects.get(e._id);
-                if (!actor || !effect) return;
-                await EffectsField.applyEffect(effect, actor);
+                const effect = this.item.effects.get(e._id);
+                if (!token.actor || !effect) return;
+                await EffectsField.applyEffect(effect, token.actor);
             });
         });
+
+        if (messageTargets.length === 0) return;
+
+        const summaryMessageSettings = game.settings.get(
+            CONFIG.DH.id,
+            CONFIG.DH.SETTINGS.gameSettings.Automation
+        ).summaryMessages;
+        if (!summaryMessageSettings.effects) return;
+
+        const cls = getDocumentClass('ChatMessage');
+        const msg = {
+            type: 'systemMessage',
+            user: game.user.id,
+            speaker: cls.getSpeaker(),
+            title: game.i18n.localize('DAGGERHEART.UI.Chat.effectSummary.title'),
+            content: await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/ui/chat/effectSummary.hbs',
+                {
+                    effects: this.effects.map(e => this.item.effects.get(e._id)),
+                    targets: messageTargets
+                }
+            )
+        };
+
+        cls.create(msg);
     }
 
     /**

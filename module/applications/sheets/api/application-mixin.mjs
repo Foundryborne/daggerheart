@@ -99,6 +99,7 @@ export default function DHApplicationMixin(Base) {
                 deleteDoc: DHSheetV2.#deleteDoc,
                 toChat: DHSheetV2.#toChat,
                 useItem: DHSheetV2.#useItem,
+                viewItem: DHSheetV2.#viewItem,
                 toggleEffect: DHSheetV2.#toggleEffect,
                 toggleExtended: DHSheetV2.#toggleExtended,
                 addNewItem: DHSheetV2.#addNewItem,
@@ -203,11 +204,19 @@ export default function DHApplicationMixin(Base) {
             this.relatedDocs.filter(doc => doc).map(doc => delete doc.apps[this.id]);
         }
 
+        /** @inheritdoc */
+        async _renderHTML(context, options) {
+            const rendered = await super._renderHTML(context, options);
+            for (const result of Object.values(rendered)) {
+                await this.#prepareInventoryDescription(result);
+            }
+            return rendered;
+        }
+
         /**@inheritdoc */
         async _onRender(context, options) {
             await super._onRender(context, options);
             this._createTagifyElements(this.options.tagifyConfigs);
-            await this.#prepareInventoryDescription(context);
         }
 
         /* -------------------------------------------- */
@@ -215,8 +224,8 @@ export default function DHApplicationMixin(Base) {
         /* -------------------------------------------- */
 
         /**@inheritdoc */
-        _syncPartState(partId, newElement, priorElement, state) {
-            super._syncPartState(partId, newElement, priorElement, state);
+        _preSyncPartState(partId, newElement, priorElement, state) {
+            super._preSyncPartState(partId, newElement, priorElement, state);
             for (const el of priorElement.querySelectorAll('.extensible.extended')) {
                 const { actionId, itemUuid } = el.parentElement.dataset;
                 const selector = `${actionId ? `[data-action-id="${actionId}"]` : `[data-item-uuid="${itemUuid}"]`} .extensible`;
@@ -496,11 +505,12 @@ export default function DHApplicationMixin(Base) {
 
         /**
          * Prepares and enriches an inventory item or action description for display.
+         * @param {HTMLElement} element the element to enrich the inventory items of
          * @returns {Promise<void>}
          */
-        async #prepareInventoryDescription(context) {
+        async #prepareInventoryDescription(element) {
             // Get all inventory item elements with a data-item-uuid attribute
-            const inventoryItems = this.element.querySelectorAll('.inventory-item[data-item-uuid]');
+            const inventoryItems = element.querySelectorAll('.inventory-item[data-item-uuid]');
             for (const el of inventoryItems) {
                 // Get the doc uuid from the element
                 const { itemUuid } = el?.dataset || {};
@@ -701,7 +711,7 @@ export default function DHApplicationMixin(Base) {
          * @type {ApplicationClickAction}
          */
         static async #toChat(_event, target) {
-            let doc = await getDocFromElement(target);
+            const doc = await getDocFromElement(target);
             return doc.toChat(doc.uuid);
         }
 
@@ -710,8 +720,17 @@ export default function DHApplicationMixin(Base) {
          * @type {ApplicationClickAction}
          */
         static async #useItem(event, target) {
-            let doc = await getDocFromElement(target);
+            const doc = await getDocFromElement(target);
             await doc.use(event);
+        }
+
+        /**
+         * View an item by opening its sheet
+         * @type {ApplicationClickAction}
+         */
+        static async #viewItem(_, target) {
+            const doc = await getDocFromElement(target);
+            await doc.sheet.render({ force: true });
         }
 
         /**

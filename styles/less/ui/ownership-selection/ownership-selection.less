@@ -6,9 +6,15 @@
         flex-direction: column;
         gap: 8px;
 
+        .ownership-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
         .ownership-container {
             display: flex;
-            border: 2px solid light-dark(@dark-blue, @golden);
             border-radius: 6px;
             padding: 0 4px 0 0;
             align-items: center;
@@ -17,11 +23,23 @@
             img {
                 height: 40px;
                 width: 40px;
-                border-radius: 6px 0 0 6px;
+                border-radius: 50%;
+            }
+
+            span {
+                flex: 3;
             }
 
             select {
+                flex: 1;
                 margin: 4px 0;
+            }
+        }
+
+        footer {
+            margin-top: 10px;
+            button {
+                height: 32px;
             }
         }
     }
