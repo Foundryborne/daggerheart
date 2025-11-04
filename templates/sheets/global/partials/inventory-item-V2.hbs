@@ -48,20 +48,6 @@ Parameters:
         </div>
         {{/each}}
       </div>
-      {{else if (not ../hideLabels)}}
-      <div class="item-labels">
-        <div class="label">
-          {{#each this._getLabels as |label|}}
-          {{ifThen label.value label.value label}}
-          {{#each label.icons as |icon|}}
-          <i class="fa-solid {{icon}}"></i>
-          {{/each}}
-          {{#if (not @last)}}
-          <span>-</span>
-          {{/if}}
-          {{/each}}
-        </div>
-      </div>
       {{/if}}
       {{/with}}
       {{!--Tags End --}}

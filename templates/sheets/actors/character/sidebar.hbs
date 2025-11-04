@@ -116,24 +116,16 @@
             </div>
             <ul class="items-sidebar-list">
                 {{#if document.system.usedUnarmed}}
-                    {{> 'daggerheart.inventory-item'
+                    {{> 'daggerheart.inventory-item-compact'
                     item=document.system.usedUnarmed
                     type='action'
-                    hideTags=true
-                    hideDescription=true
-                    hideResources=true
-                    noExtensible=true
                     }}
                 {{/if}}
                 {{#each document.items as |item|}}
                 {{#if item.system.equipped}}
-                {{> 'daggerheart.inventory-item'
+                {{> 'daggerheart.inventory-item-compact'
                 item=item
                 type=item.type
-                hideTags=true
-                hideDescription=true
-                hideResources=true
-                noExtensible=true
                 }}
                 {{/if}}
                 {{/each}}
@@ -147,13 +139,9 @@
             </div>
             <ul class="items-sidebar-list">
                 {{#each document.system.domainCards.loadout as |card|}}
-                {{> 'daggerheart.inventory-item'
+                {{> 'daggerheart.inventory-item-compact'
                     item=card
                     type='domainCard'
-                    hideTags=true
-                    hideDescription=true
-                    hideResources=true
-                    noExtensible=true
                 }}
 
                 {{/each}}

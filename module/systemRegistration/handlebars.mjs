@@ -1,5 +1,6 @@
 export const preloadHandlebarsTemplates = async function () {
     foundry.applications.handlebars.loadTemplates({
+        'daggerheart.inventory-item-compact': 'systems/daggerheart/templates/sheets/global/partials/inventory-item-compact.hbs',
         'daggerheart.inventory-items':
             'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items-V2.hbs',
         'daggerheart.inventory-item': 'systems/daggerheart/templates/sheets/global/partials/inventory-item-V2.hbs'

@@ -1,0 +1,85 @@
+<li class="inventory-item inventory-item-compact" data-item-id="{{item.id}}" {{#if (or (eq type 'action' ) (eq type 'attack' ))}}
+  data-action-id="{{item.id}}" {{/if}} data-item-uuid="{{item.uuid}}" data-type="{{type}}" data-no-compendium-edit="{{noCompendiumEdit}}" draggable="true">
+    {{!-- Image --}}
+    <div class="img-portait" data-action='{{ifThen (or (hasProperty item "use") (eq type "attack")) "useItem" (ifThen
+    (hasProperty item "toChat" ) "toChat" "editDoc" ) }}' {{#unless hideTooltip}} {{#if (eq type 'attack' )}}
+    data-tooltip="#attack#{{item.actor.uuid}}" {{else}} data-tooltip="#item#{{item.uuid}}" {{/if}} {{/unless}}>
+        <img src="{{item.img}}" class="item-img {{#if isActor}}actor-img{{/if}}" />
+        {{#if (or item.system.actionsList.size item.system.actionsList.length item.actionType)}}
+            {{#if @root.isNPC}}
+                <img class="roll-img d20" src="systems/daggerheart/assets/icons/dice/default/d20.svg" alt="d20">
+            {{else}}
+                <img class="roll-img duality" src="systems/daggerheart/assets/icons/dice/duality/DualityBW.svg" alt="2d12">
+            {{/if}}
+        {{/if}}
+    </div>
+
+    {{!-- Item Name --}}
+    <span class="item-name">{{localize item.name}}</span>
+
+    {{!-- Tags Start --}}
+    {{#with item}}
+        <div class="item-labels">
+            <div class="label">
+                {{#each this._getLabels as |label|}}
+                    {{ifThen label.value label.value label}}
+                    {{#each label.icons as |icon|}}
+                        <i class="fa-solid {{icon}}"></i>
+                    {{/each}}
+                    {{#if (not @last)}}
+                        <span>-</span>
+                    {{/if}}
+                {{/each}}
+            </div>
+        </div>
+    {{/with}}
+    {{!--Tags End --}}
+
+    {{!-- Controls --}}
+    {{#unless hideControls}}
+    <div class="controls">
+        {{#if isActor}}
+            <a data-action="editDoc" data-tooltip="DAGGERHEART.UI.Tooltip.openActorWorld">
+                <i class="fa-solid fa-fw fa-globe"></i>
+            </a>
+            {{#if (eq type 'adversary')}}
+                <a data-action='deleteAdversary' data-category="{{categoryAdversary}}" data-tooltip="CONTROLS.CommonDelete">
+                    <i class='fas fa-fw fa-trash'></i>
+                </a>
+            {{/if}}
+        {{else}}
+            {{#if (eq type 'weapon')}}
+            <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem"
+                data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.equipped 'unequip' 'equip' }}">
+                <i class="fa-solid fa-fw fa-hands"></i>
+            </a>
+            {{else if (eq type 'armor')}}
+            <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem"
+                data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.equipped 'unequip' 'equip' }}">
+                <i class="fa-solid fa-fw fa-shield"></i>
+            </a>
+            {{else if (eq type 'domainCard')}}
+            <a data-action="toggleVault"
+                data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.inVault 'sendToLoadout' 'sendToVault' }}">
+                <i class="fa-solid fa-fw {{ifThen item.system.inVault 'fa-arrow-up' 'fa-arrow-down'}}"></i>
+            </a>
+            {{else if (eq type 'effect')}}
+            <a data-action="toggleEffect"
+                data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.disabled 'enableEffect' 'disableEffect' }}">
+                <i class="fa-solid fa-fw {{ifThen item.disabled 'fa-toggle-off' 'fa-toggle-on'}}"></i>
+            </a>
+            {{/if}}
+            {{#if (hasProperty item "toChat")}}
+            <a data-action="toChat" data-tooltip="DAGGERHEART.UI.Tooltip.sendToChat">
+                <i class="fa-regular fa-fw fa-message"></i>
+            </a>
+            {{/if}}
+            {{#unless hideContextMenu}}
+            <a data-action="triggerContextMenu" data-tooltip="DAGGERHEART.UI.Tooltip.moreOptions">
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+            </a>
+            {{/unless}}
+        {{/if}}
+    </div>
+    {{/unless}}
+</li>
