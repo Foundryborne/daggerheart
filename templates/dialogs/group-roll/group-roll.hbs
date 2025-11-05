@@ -22,10 +22,11 @@
                                 {{selectOptions traitList selected=leader.trait  labelAttr="label" valueAttr="id" localize=true }}
                             </select>
                         </div>
-                        <div class="form-fields">
+                        {{!-- Not used yet --}}
+                        {{!-- <div class="form-fields">
                             <label>{{localize "DAGGERHEART.GENERAL.difficulty"}}</label>
                             <input type="number" name="actorLeader.difficulty" value="{{leader.difficulty}}" data-dtype="Number">
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="controls">
@@ -55,10 +56,11 @@
                                     {{selectOptions @root.traitList selected=member.trait  labelAttr="label" valueAttr="id" localize=true }}
                                 </select>
                             </div>
-                            <div class="form-fields">
+                            {{!-- Not used yet --}}
+                            {{!-- <div class="form-fields">
                                 <label>{{localize "DAGGERHEART.GENERAL.difficulty"}}</label>
                                 <input type="number" name="{{concat "actorsMembers." index ".difficulty"}}" value="{{member.difficulty}}" data-dtype="Number">
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="controls">
@@ -77,6 +79,6 @@
     </fieldset>
     <button class="submit-btn" data-action="roll" {{disabled @root.rollDisabled}}>
         <i class="fa-solid fa-dice"></i>
-        <span>{{localize "DAGGERHEART.General.roll"}}</span>
+        <span>{{localize "DAGGERHEART.GENERAL.roll"}}</span>
     </button>
 </div>
