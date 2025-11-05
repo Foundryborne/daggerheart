@@ -34,15 +34,6 @@ Hooks.once('init', () => {
 
     CONFIG.TextEditor.enrichers.push(...enricherConfig);
 
-    CONFIG.statusEffects = [
-        ...CONFIG.statusEffects.filter(x => !['dead', 'unconscious'].includes(x.id)),
-        ...Object.values(SYSTEM.GENERAL.conditions).map(x => ({
-            ...x,
-            name: game.i18n.localize(x.name),
-            systemEffect: true
-        }))
-    ];
-
     CONFIG.Dice.daggerheart = {
         DHRoll: DHRoll,
         DualityRoll: DualityRoll,
@@ -158,6 +149,17 @@ Hooks.once('init', () => {
     RegisterHandlebarsHelpers.registerHelpers();
 
     return handlebarsRegistration();
+});
+
+Hooks.on('setup', () => {
+    CONFIG.statusEffects = [
+        ...CONFIG.statusEffects.filter(x => !['dead', 'unconscious'].includes(x.id)),
+        ...Object.values(SYSTEM.GENERAL.conditions()).map(x => ({
+            ...x,
+            name: game.i18n.localize(x.name),
+            systemEffect: true
+        }))
+    ];
 });
 
 Hooks.on('ready', async () => {

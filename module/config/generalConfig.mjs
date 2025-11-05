@@ -164,28 +164,31 @@ export const healingTypes = {
     }
 };
 
-export const defeatedConditions = {
-    defeated: {
-        id: 'defeated',
-        name: 'DAGGERHEART.CONFIG.Condition.defeated.name',
-        img: 'icons/magic/control/fear-fright-mask-orange.webp',
-        description: 'DAGGERHEART.CONFIG.Condition.defeated.description'
-    },
-    unconscious: {
-        id: 'unconscious',
-        name: 'DAGGERHEART.CONFIG.Condition.unconscious.name',
-        img: 'icons/magic/control/sleep-bubble-purple.webp',
-        description: 'DAGGERHEART.CONFIG.Condition.unconscious.description'
-    },
-    dead: {
-        id: 'dead',
-        name: 'DAGGERHEART.CONFIG.Condition.dead.name',
-        img: 'icons/magic/death/grave-tombstone-glow-teal.webp',
-        description: 'DAGGERHEART.CONFIG.Condition.dead.description'
-    }
+export const defeatedConditions = () => {
+    const defeated = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
+    return {
+        defeated: {
+            id: 'defeated',
+            name: 'DAGGERHEART.CONFIG.Condition.defeated.name',
+            img: defeated.defeatedIcon,
+            description: 'DAGGERHEART.CONFIG.Condition.defeated.description'
+        },
+        unconscious: {
+            id: 'unconscious',
+            name: 'DAGGERHEART.CONFIG.Condition.unconscious.name',
+            img: defeated.unconsciousIcon,
+            description: 'DAGGERHEART.CONFIG.Condition.unconscious.description'
+        },
+        dead: {
+            id: 'dead',
+            name: 'DAGGERHEART.CONFIG.Condition.dead.name',
+            img: defeated.deadIcon,
+            description: 'DAGGERHEART.CONFIG.Condition.dead.description'
+        }
+    };
 };
 
-export const conditions = {
+export const conditions = () => ({
     vulnerable: {
         id: 'vulnerable',
         name: 'DAGGERHEART.CONFIG.Condition.vulnerable.name',
@@ -204,8 +207,8 @@ export const conditions = {
         img: 'icons/magic/control/debuff-chains-shackle-movement-red.webp',
         description: 'DAGGERHEART.CONFIG.Condition.restrained.description'
     },
-    ...defeatedConditions
-};
+    ...defeatedConditions()
+});
 
 export const defaultRestOptions = {
     shortRest: () => ({

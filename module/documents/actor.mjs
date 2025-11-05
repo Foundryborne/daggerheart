@@ -753,7 +753,7 @@ export default class DhpActor extends Actor {
 
     async toggleDefeated(defeatedState) {
         const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
-        const { unconscious, defeated, dead } = CONFIG.DH.GENERAL.conditions;
+        const { unconscious, defeated, dead } = CONFIG.DH.GENERAL.conditions();
         const defeatedConditions = new Set([unconscious.id, defeated.id, dead.id]);
         if (!defeatedState) {
             for (let defeatedId of defeatedConditions) {

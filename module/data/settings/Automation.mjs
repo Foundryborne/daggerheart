@@ -68,21 +68,39 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                 }),
                 characterDefault: new fields.StringField({
                     required: true,
-                    choices: CONFIG.DH.GENERAL.defeatedConditions,
-                    initial: CONFIG.DH.GENERAL.defeatedConditions.unconscious.id,
+                    choices: () => CONFIG.DH.GENERAL.defeatedConditions(),
+                    initial: 'unconscious',
                     label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.defeated.characterDefault.label'
                 }),
                 adversaryDefault: new fields.StringField({
                     required: true,
-                    choices: CONFIG.DH.GENERAL.defeatedConditions,
-                    initial: CONFIG.DH.GENERAL.defeatedConditions.defeated.id,
+                    choices: () => CONFIG.DH.GENERAL.defeatedConditions(),
+                    initial: 'defeated',
                     label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.defeated.adversaryDefault.label'
                 }),
                 companionDefault: new fields.StringField({
                     required: true,
-                    choices: CONFIG.DH.GENERAL.defeatedConditions,
-                    initial: CONFIG.DH.GENERAL.defeatedConditions.defeated.id,
+                    choices: () => CONFIG.DH.GENERAL.defeatedConditions(),
+                    initial: 'defeated',
                     label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.defeated.companionDefault.label'
+                }),
+                deadIcon: new fields.FilePathField({
+                    initial: 'icons/magic/death/grave-tombstone-glow-teal.webp',
+                    categories: ['IMAGE'],
+                    base64: false,
+                    label: 'Dead'
+                }),
+                defeatedIcon: new fields.FilePathField({
+                    initial: 'icons/magic/control/fear-fright-mask-orange.webp',
+                    categories: ['IMAGE'],
+                    base64: false,
+                    label: 'Defeated'
+                }),
+                unconsciousIcon: new fields.FilePathField({
+                    initial: 'icons/magic/control/sleep-bubble-purple.webp',
+                    categories: ['IMAGE'],
+                    base64: false,
+                    label: 'Unconcious'
                 })
             }),
             roll: new fields.SchemaField({
