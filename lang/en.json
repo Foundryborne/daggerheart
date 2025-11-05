@@ -2488,6 +2488,17 @@
                     "title": "Effects Applied"
                 },
                 "featureTitle": "Class Feature",
+                "groupRoll": {
+                    "title": "Group Roll",
+                    "leader": "Leader",
+                    "partyTeam": "Party Team",
+                    "team": "Team",
+                    "selectLeader": "Select a Leader",
+                    "selectMember": "Select a Member",
+                    "rerollTitle": "Reroll Group Roll",
+                    "rerollContent": "Are you sure you want to reroll your {trait} check?",
+                    "rerollTooltip": "Reroll"
+                },
                 "healingRoll": {
                     "title": "Heal - {damage}",
                     "heal": "Heal",
@@ -2629,7 +2640,9 @@
                 "noDiceSystem": "Your selected dice {system} does not have a {faces} dice",
                 "gmMenuRefresh": "You refreshed all actions and resources {types}",
                 "subclassAlreadyLinked": "{name} is already a subclass in the class {class}. Remove it from there if you want it to be a subclass to this class.",
-                "gmRequired": "This action requires an online GM"
+                "gmRequired": "This action requires an online GM",
+                "gmOnly": "This can only be accessed by the GM",
+                "noActorOwnership": "You do not have permissions for this character"
             },
             "Sidebar": {
                 "daggerheartMenu": {

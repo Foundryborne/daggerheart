@@ -1,4 +1,4 @@
-import { emitAsGM, GMUpdateEvent, socketEvent } from '../../systemRegistration/socket.mjs';
+import { emitAsGM, GMUpdateEvent } from '../../systemRegistration/socket.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 

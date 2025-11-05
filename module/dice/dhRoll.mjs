@@ -70,8 +70,11 @@ export default class DHRoll extends Roll {
             if (Hooks.call(`${CONFIG.DH.id}.postRoll${hook.capitalize()}`, config, message) === false) return null;
         }
 
-        // Create Chat Message
-        if (!config.source?.message) config.message = await this.toMessage(roll, config);
+        if (config.skips?.createMessage && game.modules.get('dice-so-nice')?.active) {
+            await game.dice3d.showForRoll(roll, game.user, true);
+        } else if (!config.source?.message) {
+            config.message = await this.toMessage(roll, config);
+        }
     }
 
     static postEvaluate(roll, config = {}) {
@@ -237,7 +240,8 @@ export const registerRollDiceHooks = () => {
             !config.source?.actor ||
             (game.user.isGM ? !hopeFearAutomation.gm : !hopeFearAutomation.players) ||
             config.actionType === 'reaction' ||
-            config.tagTeamSelected
+            config.tagTeamSelected ||
+            config.skips?.resources
         )
             return;
         const actor = await fromUuid(config.source.actor);

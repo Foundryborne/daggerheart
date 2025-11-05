@@ -1,5 +1,6 @@
 import DHAbilityUse from './abilityUse.mjs';
 import DHActorRoll from './actorRoll.mjs';
+import DHGroupRoll from './groupRoll.mjs';
 import DHSystemMessage from './systemMessage.mjs';
 
 export const config = {
@@ -7,5 +8,6 @@ export const config = {
     adversaryRoll: DHActorRoll,
     damageRoll: DHActorRoll,
     dualityRoll: DHActorRoll,
+    groupRoll: DHGroupRoll,
     systemMessage: DHSystemMessage
 };

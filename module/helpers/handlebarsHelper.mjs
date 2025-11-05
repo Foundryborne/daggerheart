@@ -15,7 +15,8 @@ export default class RegisterHandlebarsHelpers {
             setVar: this.setVar,
             empty: this.empty,
             pluralize: this.pluralize,
-            positive: this.positive
+            positive: this.positive,
+            isNullish: this.isNullish
         });
     }
     static add(a, b) {
@@ -93,5 +94,9 @@ export default class RegisterHandlebarsHelpers {
 
     static positive(a) {
         return Math.abs(Number(a));
+    }
+
+    static isNullish(a) {
+        return a === null || a === undefined;
     }
 }

@@ -19,6 +19,9 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         tag: 'form',
         classes: ['daggerheart', 'views', 'dh-style', 'dialog', 'group-roll'],
         position: { width: 'auto', height: 'auto' },
+        window: {
+            title: 'DAGGERHEART.UI.Chat.groupRoll.title'
+        },
         actions: {
             roll: GroupRollDialog.#roll,
             removeLeader: GroupRollDialog.#removeLeader,
@@ -36,17 +39,20 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
 
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
-        const changeChoices = this.actors;
+        const leaderChoices = this.actors.filter(x => this.actorsMembers.every(member => member.actor?.id !== x.id));
+        const memberChoices = this.actors.filter(
+            x => this.actorLeader?.actor?.id !== x.id && this.actorsMembers.every(member => member.actor?.id !== x.id)
+        );
 
         htmlElement.querySelectorAll('.leader-change-input').forEach(element => {
             autocomplete({
                 input: element,
                 fetch: function (text, update) {
                     if (!text) {
-                        update(changeChoices);
+                        update(leaderChoices);
                     } else {
                         text = text.toLowerCase();
-                        var suggestions = changeChoices.filter(n => n.name.toLowerCase().includes(text));
+                        var suggestions = leaderChoices.filter(n => n.name.toLowerCase().includes(text));
                         update(suggestions);
                     }
                 },
@@ -76,7 +82,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
                 },
                 onSelect: actor => {
                     element.value = actor.uuid;
-                    this.actorLeader = { actor: actor, trait: '', difficulty: 0 };
+                    this.actorLeader = { actor: actor, trait: 'agility', difficulty: 0 };
                     this.render();
                 },
                 click: e => e.fetch(),
@@ -92,10 +98,10 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
                 input: element,
                 fetch: function (text, update) {
                     if (!text) {
-                        update(changeChoices);
+                        update(memberChoices);
                     } else {
                         text = text.toLowerCase();
-                        var suggestions = changeChoices.filter(n => n.name.toLowerCase().includes(text));
+                        var suggestions = memberChoices.filter(n => n.name.toLowerCase().includes(text));
                         update(suggestions);
                     }
                 },
@@ -125,7 +131,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
                 },
                 onSelect: actor => {
                     element.value = actor.uuid;
-                    this.actorsMembers.push({ actor: actor, trait: '', difficulty: 0 });
+                    this.actorsMembers.push({ actor: actor, trait: 'agility', difficulty: 0 });
                     this.render({ force: true });
                 },
                 click: e => e.fetch(),
@@ -140,12 +146,20 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.leader = this.actorLeader;
-        context.members = [...this.actorsMembers];
-        context.traitList = Object.values(abilities).map(trait => ({
-            label: game.i18n.localize(trait.label),
-            value: trait.id
-        }));
+        context.members = this.actorsMembers;
+        context.traitList = abilities;
+
+        context.allSelected = this.actorsMembers.length + (this.actorLeader?.actor ? 1 : 0) === this.actors.length;
+        context.rollDisabled = context.members.length === 0 || !this.actorLeader?.actor;
+
         return context;
+    }
+
+    static updateData(event, _, formData) {
+        const { actorLeader, actorsMembers } = foundry.utils.expandObject(formData.object);
+        this.actorLeader = foundry.utils.mergeObject(this.actorLeader, actorLeader);
+        this.actorsMembers = foundry.utils.mergeObject(this.actorsMembers, actorsMembers);
+        this.render(true);
     }
 
     static async #removeLeader(_, button) {
@@ -158,8 +172,25 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         this.render();
     }
 
-    static async #roll(_, button) {
-        console.log(this.leader, this.members);
-        console.log(this);
+    static async #roll() {
+        const cls = getDocumentClass('ChatMessage');
+        const systemData = {
+            leader: this.actorLeader,
+            members: this.actorsMembers
+        };
+        const msg = {
+            type: 'groupRoll',
+            user: game.user.id,
+            speaker: cls.getSpeaker(),
+            title: game.i18n.localize('DAGGERHEART.UI.Chat.groupRoll.title'),
+            system: systemData,
+            content: await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/ui/chat/groupRoll.hbs',
+                { system: systemData }
+            )
+        };
+
+        cls.create(msg);
+        this.close();
     }
 }

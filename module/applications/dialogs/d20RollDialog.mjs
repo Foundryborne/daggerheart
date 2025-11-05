@@ -123,7 +123,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         }
 
         const tagTeamSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
-        if (tagTeamSetting.members[this.actor.id]) {
+        if (tagTeamSetting.members[this.actor.id] && !this.config.skips?.createMessage) {
             context.activeTagTeamRoll = true;
             context.tagTeamSelected = this.config.tagTeamSelected;
         }
