@@ -48,10 +48,11 @@ export default class Party extends DHBaseActorSheet {
             template: 'systems/daggerheart/templates/sheets/actors/party/resources.hbs',
             scrollable: ['']
         },
-        projects: {
-            template: 'systems/daggerheart/templates/sheets/actors/party/projects.hbs',
-            scrollable: ['']
-        },
+        /* NOT YET IMPLEMENTED */
+        // projects: {
+        //     template: 'systems/daggerheart/templates/sheets/actors/party/projects.hbs',
+        //     scrollable: ['']
+        // },
         inventory: {
             template: 'systems/daggerheart/templates/sheets/actors/party/inventory.hbs',
             scrollable: ['']
@@ -65,7 +66,8 @@ export default class Party extends DHBaseActorSheet {
             tabs: [
                 { id: 'partyMembers' },
                 { id: 'resources' },
-                { id: 'projects' },
+                /* NOT YET IMPLEMENTED */
+                // { id: 'projects' },
                 { id: 'inventory' },
                 { id: 'notes' }
             ],
