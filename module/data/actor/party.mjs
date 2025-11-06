@@ -24,4 +24,25 @@ export default class DhParty extends BaseDataActor {
     static DEFAULT_ICON = 'systems/daggerheart/assets/icons/documents/actors/dark-squad.svg';
 
     /* -------------------------------------------- */
+
+    prepareBaseData() {
+        super.prepareBaseData();
+        this.partyMembers = this.partyMembers.filter((p) => !!p);
+
+        // Register this party to all members
+        if (fromUuidSync(this.parent.uuid) === this.parent) {
+            for (const member of this.partyMembers) {
+                member.parties?.add(this.parent);
+            }
+        }
+    }
+
+    _onDelete(options, userId) {
+        super._onDelete(options, userId);
+                
+        // Clear this party from all members that aren't deleted
+        for (const member of this.partyMembers) {
+            member.parties?.delete(this.parent);
+        }
+    }
 }

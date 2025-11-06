@@ -5,6 +5,8 @@ import { createScrollText, damageKeyToNumber } from '../helpers/utils.mjs';
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
 
 export default class DhpActor extends Actor {
+    parties = new Set();
+
     #scrollTextQueue = [];
     #scrollTextInterval;
 
@@ -81,6 +83,20 @@ export default class DhpActor extends Actor {
                 disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
             });
         this.updateSource({ prototypeToken });
+    }
+
+    _onUpdate(changes, options, userId) {
+        super._onUpdate(changes, options, userId);
+        for (const party of this.parties) {
+            party.render();
+        }
+    }
+
+    _onDelete(options, userId) {
+        super._onDelete(options, userId);
+        for (const party of this.parties) {
+            party.render();
+        }
     }
 
     async updateLevel(newLevel) {
