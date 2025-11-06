@@ -5,6 +5,8 @@ import FilterMenu from '../../ux/filter-menu.mjs';
 import DaggerheartMenu from '../../sidebar/tabs/daggerheartMenu.mjs';
 import { socketEvent } from '../../../systemRegistration/socket.mjs';
 import GroupRollDialog from '../../dialogs/group-roll-dialog.mjs';
+import DhpActor from '../../../documents/actor.mjs';
+import DHItem from '../../../documents/item.mjs';
 
 export default class Party extends DHBaseActorSheet {
     constructor(options) {
@@ -55,7 +57,7 @@ export default class Party extends DHBaseActorSheet {
         // },
         inventory: {
             template: 'systems/daggerheart/templates/sheets/actors/party/inventory.hbs',
-            scrollable: ['']
+            scrollable: ['.tab.inventory .items-section']
         },
         notes: { template: 'systems/daggerheart/templates/sheets/actors/party/notes.hbs' }
     };
@@ -445,21 +447,25 @@ export default class Party extends DHBaseActorSheet {
     }
 
     async _onDrop(event) {
+        // Prevent event bubbling to avoid duplicate handling
+        event.preventDefault();
+        event.stopPropagation();
+
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-        const actor = await foundry.utils.fromUuid(data.uuid);
-        const currentMembers = this.document.system.partyMembers.map(x => x.uuid);
+        const item = await foundry.utils.fromUuid(data.uuid);
 
-        if (foundry.utils.parseUuid(data.uuid).collection instanceof CompendiumCollection) return;
+        if (item instanceof DhpActor) {
+            const currentMembers = this.document.system.partyMembers.map(x => x.uuid);
+            if (currentMembers.includes(data.uuid)) {
+                return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.duplicateCharacter'));
+            }
 
-        if (actor.type !== 'character') {
-            return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.onlyCharactersInPartySheet'));
+            await this.document.update({ 'system.partyMembers': [...currentMembers, item.uuid] });
+        } else if (item instanceof DHItem) {
+            this.document.createEmbeddedDocuments('Item', [item.toObject()]);
+        } else {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.onlyCharactersInPartySheet'));
         }
-
-        if (currentMembers.includes(data.uuid)) {
-            return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.duplicateCharacter'));
-        }
-
-        await this.document.update({ 'system.partyMembers': [...currentMembers, actor.uuid] });
     }
 
     static async #deletePartyMember(_event, target) {
