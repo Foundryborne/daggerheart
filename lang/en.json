@@ -439,7 +439,9 @@
             },
             "HUD": {
                 "tokenHUD": {
-                    "genericEffects": "Foundry Effects"
+                    "genericEffects": "Foundry Effects",
+                    "depositPartyTokens": "Deposit Party Tokens",
+                    "retrievePartyTokens": "Retrieve Party Tokens"
                 }
             },
             "Levelup": {
