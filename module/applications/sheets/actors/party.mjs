@@ -26,6 +26,7 @@ export default class Party extends DHBaseActorSheet {
         },
         actions: {
             deletePartyMember: Party.#deletePartyMember,
+            deleteItem: Party.#deleteItem,
             toggleHope: Party.#toggleHope,
             toggleHitPoints: Party.#toggleHitPoints,
             toggleStress: Party.#toggleStress,
@@ -468,23 +469,44 @@ export default class Party extends DHBaseActorSheet {
         }
     }
 
-    static async #deletePartyMember(_event, target) {
+    static async #deletePartyMember(event, target) {
         const doc = await getDocFromElement(target.closest('.inventory-item'));
 
-        const confirmed = await foundry.applications.api.DialogV2.confirm({
-            window: {
-                title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
-                    type: game.i18n.localize('TYPES.Actor.adversary'),
-                    name: doc.name
-                })
-            },
-            content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', { name: doc.name })
-        });
+        if (!event.shiftKey) {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
+                        type: game.i18n.localize('TYPES.Actor.adversary'),
+                        name: doc.name
+                    })
+                },
+                content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', { name: doc.name })
+            });
 
-        if (!confirmed) return;
+            if (!confirmed) return;
+        }
 
         const currentMembers = this.document.system.partyMembers.map(x => x.uuid);
         const newMemberdList = currentMembers.filter(uuid => uuid !== doc.uuid);
         await this.document.update({ 'system.partyMembers': newMemberdList });
+    }
+
+    static async #deleteItem(event, target) {
+        const doc = await getDocFromElement(target.closest('.inventory-item'));
+        if (!event.shiftKey) {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
+                        type: game.i18n.localize('TYPES.Actor.party'),
+                        name: doc.name
+                    })
+                },
+                content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', { name: doc.name })
+            });
+
+            if (!confirmed) return;
+        }
+
+        this.document.deleteEmbeddedDocuments('Item', [doc.id]);
     }
 }

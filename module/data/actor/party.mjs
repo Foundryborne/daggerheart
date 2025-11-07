@@ -27,10 +27,10 @@ export default class DhParty extends BaseDataActor {
 
     prepareBaseData() {
         super.prepareBaseData();
-        this.partyMembers = this.partyMembers.filter((p) => !!p);
+        this.partyMembers = this.partyMembers.filter(p => !!p);
 
         // Register this party to all members
-        if (fromUuidSync(this.parent.uuid) === this.parent) {
+        if (game.actors.get(this.parent.id) === this.parent) {
             for (const member of this.partyMembers) {
                 member.parties?.add(this.parent);
             }
@@ -39,7 +39,7 @@ export default class DhParty extends BaseDataActor {
 
     _onDelete(options, userId) {
         super._onDelete(options, userId);
-                
+
         // Clear this party from all members that aren't deleted
         for (const member of this.partyMembers) {
             member.parties?.delete(this.parent);

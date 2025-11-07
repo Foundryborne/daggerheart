@@ -2679,7 +2679,8 @@
                 "remainingUses": "Uses refresh on {type}",
                 "rightClickExtand": "Right-Click to extand",
                 "companionPartnerLevelBlock": "The companion needs an assigned partner to level up.",
-                "configureAttribution": "Configure Attribution"
+                "configureAttribution": "Configure Attribution",
+                "deleteItem": "Delete Item"
             }
         }
     }

@@ -4,6 +4,7 @@
 Parameters:
 - type {string} : The type of items in the list
 - isActor {boolean} : Passed through to inventory-item partials.
+- actorType {boolean} : The actor type of the parent actor
 - categoryAdversary {string} : Category adversary id.
 - noExtensible {boolean} : If true, the inventory-item-content would be collapsable/extendible else it always be showed
 - hideLabels {boolean} : If true, hide label-tags else show label-tags.
@@ -95,17 +96,24 @@ Parameters:
       </a>
       {{/if}}
       {{else}}
-      {{#if (eq type 'weapon')}}
-      <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem"
-        data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.equipped 'unequip' 'equip' }}">
-        <i class="fa-solid fa-hands"></i>
-      </a>
-      {{else if (eq type 'armor')}}
-      <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem"
-        data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.equipped 'unequip' 'equip' }}">
-        <i class="fa-solid fa-shield"></i>
-      </a>
-      {{else if (eq type 'domainCard')}}
+      {{#unless (eq actorType 'party')}}
+        {{#if (eq type 'weapon')}}
+        <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem"
+          data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.equipped 'unequip' 'equip' }}">
+          <i class="fa-solid fa-hands"></i>
+        </a>
+        {{else if (eq type 'armor')}}
+        <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem"
+          data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.equipped 'unequip' 'equip' }}">
+          <i class="fa-solid fa-shield"></i>
+        </a>
+        {{/if}}
+      {{else}}
+        <a data-action="deleteItem" data-tooltip="DAGGERHEART.UI.Tooltip.deleteItem">
+          <i class="fa-solid fa-trash"></i>
+        </a>
+      {{/unless}}
+      {{#if (eq type 'domainCard')}}
       <a data-action="toggleVault"
         data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.inVault 'sendToLoadout' 'sendToVault' }}">
         <i class="fa-solid {{ifThen item.system.inVault 'fa-arrow-up' 'fa-arrow-down'}}"></i>
@@ -116,7 +124,7 @@ Parameters:
         <i class="{{ifThen item.disabled 'fa-solid fa-toggle-off' 'fa-solid fa-toggle-on'}}"></i>
       </a>
       {{/if}}
-      {{#if (hasProperty item "toChat")}}
+      {{#if (and (hasProperty item "toChat") (not (eq actorType 'party')))}}
       <a data-action="toChat" data-tooltip="DAGGERHEART.UI.Tooltip.sendToChat">
         <i class="fa-regular fa-message"></i>
       </a>
