@@ -53,7 +53,7 @@
                         {{localize "DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle" ability=(localize (concat "DAGGERHEART.CONFIG.Traits." system.leader.trait ".name"))}}
                     </h4>
                     <span class="main-roll-content">
-                        <span class="main-value">{{system.leader.result.total}}</span>
+                        <span class="main-value">{{system.leader.result.total}}{{#unless (isNullish system.totalModifier)}} {{#if (gte system.totalModifier 0)}}+{{else}}-{{/if}} {{positive system.totalModifier}}{{/unless}}</span>
                         <span class="main-text">{{localize "DAGGERHEART.GENERAL.withThing" thing=system.leader.result.result.label}}</span>
                     </span>
                 </div>

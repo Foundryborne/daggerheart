@@ -225,8 +225,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             })
         });
 
-        const renderData = { system: foundry.utils.deepClone(message.system) };
-        foundry.utils.setProperty(renderData.system, `${path}.result`, result.roll);
+        const newMessageData = foundry.utils.deepClone(message.system);
+        foundry.utils.setProperty(newMessageData, `${path}.result`, result.roll);
+        const renderData = { system: new game.system.api.models.chatMessages.config.groupRoll(newMessageData) };
 
         const updatedContent = await foundry.applications.handlebars.renderTemplate(
             'systems/daggerheart/templates/ui/chat/groupRoll.hbs',
@@ -280,8 +281,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             })
         });
 
-        const renderData = { system: foundry.utils.deepClone(message.system) };
-        foundry.utils.setProperty(renderData.system, `${path}.result`, { ...result.roll, rerolled: true });
+        const newMessageData = foundry.utils.deepClone(message.system);
+        foundry.utils.setProperty(newMessageData, `${path}.result`, { ...result.roll, rerolled: true });
+        const renderData = { system: new game.system.api.models.chatMessages.config.groupRoll(newMessageData) };
 
         const updatedContent = await foundry.applications.handlebars.renderTemplate(
             'systems/daggerheart/templates/ui/chat/groupRoll.hbs',
@@ -312,8 +314,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.noActorOwnership'));
         }
 
-        const renderData = { system: foundry.utils.deepClone(message.system) };
-        foundry.utils.setProperty(renderData.system, `${path}.manualSuccess`, Boolean(success));
+        const newMessageData = foundry.utils.deepClone(message.system);
+        foundry.utils.setProperty(newMessageData, `${path}.manualSuccess`, Boolean(success));
+        const renderData = { system: new game.system.api.models.chatMessages.config.groupRoll(newMessageData) };
 
         const updatedContent = await foundry.applications.handlebars.renderTemplate(
             'systems/daggerheart/templates/ui/chat/groupRoll.hbs',
