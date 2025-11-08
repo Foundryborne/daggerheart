@@ -110,7 +110,7 @@
   "effects": [
     {
       "name": "Protective",
-      "description": "<p>Add the item's Tier to your Armor Score.</p>",
+      "description": "<p>Add the item's Tier to your Armor Score</p>",
       "img": "icons/skills/melee/shield-block-gray-orange.webp",
       "changes": [
         {
@@ -143,12 +143,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1753794114980,
-        "modifiedTime": 1756682994216,
-        "lastModifiedBy": "mdk78Q6pOyHh6aBg"
+        "modifiedTime": 1761503774632,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!items.effects!mxwWKDujgsRcZWPT.M70a81e0Mg66jHRL"
     }

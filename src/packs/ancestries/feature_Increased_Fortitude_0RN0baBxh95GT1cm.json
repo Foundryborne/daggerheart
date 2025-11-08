@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "pFPbjyexOPx5gog6",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p><strong>Spend 3 Hope</strong> to halve incoming physical damage.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -58,12 +58,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.2",
     "createdTime": 1753994395837,
-    "modifiedTime": 1755394316666,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1761137852259,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!items!0RN0baBxh95GT1cm"
 }

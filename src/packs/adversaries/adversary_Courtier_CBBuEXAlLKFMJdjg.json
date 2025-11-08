@@ -322,7 +322,7 @@
               "difficulty": 14,
               "damageMod": "none"
             },
-            "name": "Use",
+            "name": "Mark Stress",
             "img": "icons/magic/control/mouth-smile-deception-purple.webp",
             "range": "close"
           }
@@ -390,12 +390,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754014295058,
-        "modifiedTime": 1754143921727,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760209255313,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!CBBuEXAlLKFMJdjg.LYNaKEYcYMgvF4Rf"
     },

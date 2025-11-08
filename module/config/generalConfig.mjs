@@ -166,26 +166,26 @@ export const healingTypes = {
 
 export const defeatedConditions = () => {
     const defeated = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
-    return {
-        defeated: {
-            id: 'defeated',
-            name: 'DAGGERHEART.CONFIG.Condition.defeated.name',
-            img: defeated.defeatedIcon,
-            description: 'DAGGERHEART.CONFIG.Condition.defeated.description'
-        },
-        unconscious: {
-            id: 'unconscious',
-            name: 'DAGGERHEART.CONFIG.Condition.unconscious.name',
-            img: defeated.unconsciousIcon,
-            description: 'DAGGERHEART.CONFIG.Condition.unconscious.description'
-        },
-        dead: {
-            id: 'dead',
-            name: 'DAGGERHEART.CONFIG.Condition.dead.name',
-            img: defeated.deadIcon,
-            description: 'DAGGERHEART.CONFIG.Condition.dead.description'
-        }
-    };
+    return Object.values(defeatedConditionChoices).map(x => ({
+        ...x,
+        img: defeated[`${x.id}Icon`],
+        description: `DAGGERHEART.CONFIG.Condition.${x.id}.description`
+    }));
+};
+
+const defeatedConditionChoices = {
+    defeated: {
+        id: 'defeated',
+        name: 'DAGGERHEART.CONFIG.Condition.defeated.name'
+    },
+    unconscious: {
+        id: 'unconscious',
+        name: 'DAGGERHEART.CONFIG.Condition.unconscious.name'
+    },
+    dead: {
+        id: 'dead',
+        name: 'DAGGERHEART.CONFIG.Condition.dead.name'
+    }
 };
 
 export const conditions = () => ({

@@ -270,9 +270,11 @@
             "cost": [
               {
                 "scalable": false,
-                "key": "stress",
+                "key": "fear",
                 "value": 1,
-                "step": null
+                "keyIsID": false,
+                "step": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
@@ -285,7 +287,7 @@
               "type": "self",
               "amount": null
             },
-            "name": "Mark Stress",
+            "name": "Spend Fear",
             "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
             "range": ""
           }
@@ -307,12 +309,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754079291678,
-        "modifiedTime": 1754142639306,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760380537296,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!5s8wSvpyC5rxY5aD.FMgB28X1LammRInU"
     }

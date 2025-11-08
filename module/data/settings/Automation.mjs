@@ -68,19 +68,19 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                 }),
                 characterDefault: new fields.StringField({
                     required: true,
-                    choices: () => CONFIG.DH.GENERAL.defeatedConditions(),
+                    choices: CONFIG.DH.GENERAL.defeatedConditionChoices,
                     initial: 'unconscious',
                     label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.defeated.characterDefault.label'
                 }),
                 adversaryDefault: new fields.StringField({
                     required: true,
-                    choices: () => CONFIG.DH.GENERAL.defeatedConditions(),
+                    choices: CONFIG.DH.GENERAL.defeatedConditionChoices,
                     initial: 'defeated',
                     label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.defeated.adversaryDefault.label'
                 }),
                 companionDefault: new fields.StringField({
                     required: true,
-                    choices: () => CONFIG.DH.GENERAL.defeatedConditions(),
+                    choices: CONFIG.DH.GENERAL.defeatedConditionChoices,
                     initial: 'defeated',
                     label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.defeated.companionDefault.label'
                 }),

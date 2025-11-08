@@ -124,11 +124,12 @@
               "resultBased": false,
               "value": {
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 },
                 "multiplier": "flat",
                 "flatMultiplier": 2,
-                "dice": "d6",
+                "dice": "d8",
                 "bonus": 3
               },
               "applyTo": "hitPoints",
@@ -142,7 +143,8 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               }
             }
@@ -190,12 +192,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.0",
+    "systemVersion": "1.1.2",
     "createdTime": 1753922784438,
-    "modifiedTime": 1756038512929,
-    "lastModifiedBy": "vUIbuan0U50nfKBE"
+    "modifiedTime": 1761502767190,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_id": "rZPH0BY8Sznc9sFG",
   "sort": 3400000,

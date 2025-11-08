@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "6Av1Y8JXWDkteLhc",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p><strong>Mark a Stress</strong> to gain advantage on a reaction roll.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -58,12 +58,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.2",
     "createdTime": 1753994522468,
-    "modifiedTime": 1755394348185,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1761137904802,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!items!0NSPSuB8KSEYTJIP"
 }

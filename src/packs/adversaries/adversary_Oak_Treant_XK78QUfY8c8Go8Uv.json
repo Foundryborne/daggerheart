@@ -118,12 +118,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.348",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
     "systemVersion": "1.1.2",
     "createdTime": 1753922784314,
-    "modifiedTime": 1757057641714,
-    "lastModifiedBy": "mdk78Q6pOyHh6aBg"
+    "modifiedTime": 1760382572320,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_id": "XK78QUfY8c8Go8Uv",
   "sort": 3400000,
@@ -226,7 +226,263 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Just a Tree",
+      "type": "feature",
+      "system": {
+        "description": "<p>Before they make their first attack in a fight or after they become Hidden the Treant is indistinguishable from other trees until they next act or a PC succeeds on an Instinct Roll to identify them.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "multiclassOrigin": false
+      },
+      "_id": "ERco8urSuHgrtnzL",
+      "img": "icons/environment/wilderness/tree-spruce-green.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "fBcTgyTzoARBvohY": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "daggerheart",
+        "systemVersion": "1.1.2",
+        "createdTime": 1760381988359,
+        "modifiedTime": 1760382038663,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
+      },
+      "_key": "!actors.items!XK78QUfY8c8Go8Uv.ERco8urSuHgrtnzL"
+    },
+    {
+      "name": "Seed Barrage",
+      "type": "feature",
+      "system": {
+        "description": "<p>Mark a Stress and make an attack against up to three targets within Close range pummeling them with giant acorns Targets the Treant succeeds against take <strong>2d10+5</strong> physical damage.</p>",
+        "resource": null,
+        "actions": {
+          "cM5BBUSFxOHBsV2G": {
+            "type": "damage",
+            "_id": "cM5BBUSFxOHBsV2G",
+            "systemPath": "actions",
+            "description": "<p>Mark a Stress and make an attack against up to three targets within Close range pummeling them with giant acorns Targets the Treant succeeds against take <strong>2d10+5</strong> physical damage.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d10",
+                    "bonus": 5,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 3
+            },
+            "effects": [],
+            "name": "Mark Stress",
+            "img": "icons/consumables/nuts/nut-spiked-shell.webp",
+            "range": "close"
+          }
+        },
+        "originItemType": null,
+        "multiclassOrigin": false
+      },
+      "_id": "Q2slH9qkBO5SPw43",
+      "img": "icons/consumables/nuts/nut-spiked-shell.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "fBcTgyTzoARBvohY": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "daggerheart",
+        "systemVersion": "1.1.2",
+        "createdTime": 1760382060546,
+        "modifiedTime": 1760382297884,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
+      },
+      "_key": "!actors.items!XK78QUfY8c8Go8Uv.Q2slH9qkBO5SPw43"
+    },
+    {
+      "name": "Take Root",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to Root the Treant in place. The Treant is Restrained while Rooted and can end this effect instead of moving while they are spotlighted. While Rooted the Treant has resistance to physical damage.</p>",
+        "resource": null,
+        "actions": {
+          "008EelRlcs6CKGvM": {
+            "type": "effect",
+            "_id": "008EelRlcs6CKGvM",
+            "systemPath": "actions",
+            "description": "<p><strong>Mark a Stress</strong> to Root the Treant in place. The Treant is Restrained while Rooted and can end this effect instead of moving while they are spotlighted. While Rooted the Treant has resistance to physical damage.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "3PY5KIG6d3dr3dty",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "img": "icons/consumables/plants/thorned-stem-brown.webp",
+            "range": "self"
+          }
+        },
+        "originItemType": null,
+        "multiclassOrigin": false
+      },
+      "_id": "sqkgw26P2KiQVtXT",
+      "img": "icons/consumables/plants/thorned-stem-brown.webp",
+      "effects": [
+        {
+          "name": "Take Root",
+          "img": "icons/consumables/plants/thorned-stem-brown.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.XK78QUfY8c8Go8Uv.Item.sqkgw26P2KiQVtXT",
+          "transfer": false,
+          "_id": "3PY5KIG6d3dr3dty",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "any",
+              "range": "self"
+            }
+          },
+          "changes": [
+            {
+              "key": "system.resistance.physical.resistance",
+              "mode": 2,
+              "value": "1",
+              "priority": null
+            }
+          ],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p><strong>Mark a Stress</strong> to Root the Treant in place. The Treant is Restrained while Rooted and can end this effect instead of moving while they are spotlighted. While Rooted the Treant has resistance to physical damage.</p>",
+          "tint": "#ffffff",
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.350",
+            "systemId": "daggerheart",
+            "systemVersion": "1.1.2",
+            "createdTime": 1760382462603,
+            "modifiedTime": 1760382500728,
+            "lastModifiedBy": "fBcTgyTzoARBvohY"
+          },
+          "_key": "!actors.items.effects!XK78QUfY8c8Go8Uv.sqkgw26P2KiQVtXT.3PY5KIG6d3dr3dty"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "fBcTgyTzoARBvohY": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "daggerheart",
+        "systemVersion": "1.1.2",
+        "createdTime": 1760382346850,
+        "modifiedTime": 1760382517980,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
+      },
+      "_key": "!actors.items!XK78QUfY8c8Go8Uv.sqkgw26P2KiQVtXT"
+    }
+  ],
   "effects": [],
   "_key": "!actors!XK78QUfY8c8Go8Uv"
 }

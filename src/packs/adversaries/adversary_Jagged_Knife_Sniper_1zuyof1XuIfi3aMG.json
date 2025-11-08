@@ -39,7 +39,8 @@
     "experiences": {
       "GLqSqPJcyKHQYMtO": {
         "name": "Stealth",
-        "value": 2
+        "value": 2,
+        "description": ""
       }
     },
     "bonuses": {
@@ -70,7 +71,7 @@
     },
     "tier": 1,
     "description": "<p>A lanky bandit striking from cover with a shortbow.</p>",
-    "motivesAndTactics": "Ambush, hide, profi t, reposition",
+    "motivesAndTactics": "Ambush, hide, profit, reposition",
     "attack": {
       "name": "Shortbow",
       "img": "icons/weapons/bows/shortbow-leather.webp",
@@ -123,12 +124,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.2",
     "createdTime": 1753922784296,
-    "modifiedTime": 1755384539312,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1760032469625,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_id": "1zuyof1XuIfi3aMG",
   "sort": 300000,
