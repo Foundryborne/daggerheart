@@ -19,18 +19,23 @@
         <div class="resources-section">
             <div class="status-bar">
                 <div class='status-value'>
+                    <div class="slot-bar">
+                        {{#times document.system.resources.hitPoints.max}}
+                            <span class='slot {{#if (gte ../document.system.resources.hitPoints.value (add this 1))}}filled{{/if}}' data-action='toggleHitPoints' data-value="{{add this 1}}">
+                            </span>
+                        {{/times}}
+                    </div> {{!--
                     <p><input class="bar-input" name="system.resources.hitPoints.value" min="0" max='{{document.system.resources.hitPoints.max}}'
                             value="{{document.system.resources.hitPoints.value}}" type="number"></p>
                     <p>/</p>
-                    <p class="bar-label">{{document.system.resources.hitPoints.max}}</p>
+                    <p class="bar-label">{{document.system.resources.hitPoints.max}}</p> --}}
                 </div>
-                <progress
+                <div
                     class='progress-bar'
-                    max='{{document.system.resources.hitPoints.max}}'
-                    value='{{document.system.resources.hitPoints.value}}'
-                ></progress>
+                ></div>
                 <div class="status-label">
-                    <h4>{{localize "DAGGERHEART.GENERAL.HitPoints.short"}}</h4>
+                    <h4><span>{{localize "DAGGERHEART.GENERAL.HitPoints.short"}}</span><span>|</span>
+                    <span>{{document.system.resources.hitPoints.value}} / {{document.system.resources.hitPoints.max}}</span></h4>
                 </div>
 
             </div>

@@ -19,6 +19,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         actions: {
             toggleVault: CharacterSheet.#toggleVault,
             rollAttribute: CharacterSheet.#rollAttribute,
+            toggleHitpoints: CharacterSheet.#toggleHitPoints,
             toggleHope: CharacterSheet.#toggleHope,
             toggleLoadoutView: CharacterSheet.#toggleLoadoutView,
             openPack: CharacterSheet.#openPack,
@@ -724,6 +725,17 @@ export default class CharacterSheet extends DHBaseActorSheet {
     static async #toggleLoadoutView(_, button) {
         const newAbilityView = button.dataset.value === 'true';
         await game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.displayDomainCardsAsCard, newAbilityView);
+        this.render();
+    }
+
+    /**
+     * Toggles a hitpoint resource value.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleHitPoints(_, button) {
+        const hitPointsValue = Number.parseInt(button.dataset.value);
+        const newValue = this.document.system.resources.hitPoints.value >= hitPointsValue ? hitPointsValue - 1 : hitPointsValue;
+        await this.document.update({ 'system.resources.hitPoints.value': newValue });
         this.render();
     }
 

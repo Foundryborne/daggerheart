@@ -136,7 +136,7 @@
                 display: flex;
                 justify-content: center;
                 position: relative;
-                width: 100px;
+                width: 120px;
                 height: 40px;
 
                 .status-label {
@@ -157,15 +157,49 @@
                 .status-value {
                     position: absolute;
                     display: flex;
-                    padding: 0 6px;
+                    padding: 0 5px;
                     font-size: 1.5rem;
                     align-items: center;
-                    width: 100px;
+                    width: 140px;
                     height: 40px;
                     justify-content: center;
                     text-align: center;
                     z-index: 2;
                     color: @beige;
+
+                    .slot-bar {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 5px;
+                            padding: 7px;
+
+                            color: light-dark(@dark-blue, @golden);
+                            width: fit-content;
+
+                                .armor-slot {
+                                    cursor: pointer;
+                                    transition: all 0.3s ease;
+                                    font-size: var(--font-size-12);
+
+                                    .fa-shield-halved {
+                                        color: light-dark(@dark-blue-40, @golden-40);
+                                    }
+                                }
+
+                                .slot {
+                                    width: 15px;
+                                    height: 10px;
+                                    border: 1px solid light-dark(@dark-blue, @golden);
+                                    background: light-dark(@dark-blue-10, @golden-10);
+                                    border-radius: 3px;
+                                    transition: all 0.3s ease;
+                                    cursor: pointer;
+                                
+                                    &.filled {
+                                        background: light-dark(@dark-blue, @golden);
+                                    }
+                                }   
+                    }
 
                     input[type='number'] {
                         background: transparent;
@@ -199,7 +233,7 @@
                 .progress-bar {
                     position: absolute;
                     appearance: none;
-                    width: 100px;
+                    width: 125px;
                     height: 40px;
                     border: 1px solid light-dark(@dark-blue, @golden);
                     border-radius: 6px;
