@@ -5,6 +5,7 @@ export { default as DamageDialog } from './damageDialog.mjs';
 export { default as DamageReductionDialog } from './damageReductionDialog.mjs';
 export { default as DeathMove } from './deathMove.mjs';
 export { default as Downtime } from './downtime.mjs';
+export { default as ImageSelectDialog } from './imageSelectDialog.mjs';
 export { default as MulticlassChoiceDialog } from './multiclassChoiceDialog.mjs';
 export { default as OwnershipSelection } from './ownershipSelection.mjs';
 export { default as RerollDamageDialog } from './rerollDamageDialog.mjs';

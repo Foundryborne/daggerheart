@@ -441,6 +441,10 @@
                     "genericEffects": "Foundry Effects"
                 }
             },
+            "ImageSelect": {
+                "title": "Select Image",
+                "selectImage": "Select Image"
+            },
             "Levelup": {
                 "actions": {
                     "creatureComfort": {

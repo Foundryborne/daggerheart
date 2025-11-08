@@ -844,6 +844,23 @@ export default class CharacterSheet extends DHBaseActorSheet {
             itemData.system.inVault = true;
         }
 
+        if (item.type === 'beastform') {
+            if (this.document.effects.find(x => x.type === 'beastform')) {
+                return ui.notifications.warn(
+                    game.i18n.localize('DAGGERHEART.UI.Notifications.beastformAlreadyApplied')
+                );
+            }
+
+            const data = await game.system.api.data.items.DHBeastform.getWildcardImage(this.document, itemData);
+            if (data) {
+                if (!data.selectedImage) return;
+                else {
+                    if (data.usesDynamicToken) itemData.system.tokenRingImg = data.selectedImage;
+                    else itemData.system.tokenImg = data.selectedImage;
+                }
+            }
+        }
+
         if (this.document.uuid === item.parent?.uuid) return this._onSortItem(event, itemData);
         const createdItem = await this._onDropItemCreate(itemData);
 

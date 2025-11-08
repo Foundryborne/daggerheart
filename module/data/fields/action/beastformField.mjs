@@ -79,7 +79,7 @@ export default class BeastformField extends fields.SchemaField {
      * @returns
      */
     static async transform(selectedForm, evolvedData, hybridData) {
-        const formData = evolvedData?.form ? evolvedData.form.toObject() : selectedForm.toObject();
+        const formData = evolvedData?.form ? evolvedData.form.toObject() : selectedForm;
         const beastformEffect = formData.effects.find(x => x.type === 'beastform');
         if (!beastformEffect) {
             ui.notifications.error('DAGGERHEART.UI.Notifications.beastformMissingEffect');
