@@ -5,21 +5,22 @@ export default function DhTemplateEnricher(match, _options) {
     const { type, angle = CONFIG.MeasuredTemplate.defaults.angle, inline = false } = params;
     const direction = Number(params.direction) || 0;
     const range =
-        params.range && Number.isNaN(params.range)
+        params.range && Number.isNaN(Number(params.range))
             ? Object.values(CONFIG.DH.GENERAL.templateRanges).find(
-                  x => x.id.toLowerCase() === split[1] || x.short === split[1]
+                  x => x.id.toLowerCase() === params.range || x.short === params.range
               )?.id
             : params.range;
 
-    if (!(Object.values(CONFIG.DH.GENERAL.templateTypes).find(x => x === type)) || !range) return match[0];
+    if (!Object.values(CONFIG.DH.GENERAL.templateTypes).find(x => x === type) || !range) return match[0];
 
     const label = game.i18n.localize(`DAGGERHEART.CONFIG.TemplateTypes.${type}`);
-    const rangeDisplay = Number.isNaN(Number(range)) ? game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.name`) : range;
+    const rangeDisplay = Number.isNaN(Number(range))
+        ? game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.name`)
+        : range;
 
     let angleDisplay = '';
     if (angle != CONFIG.MeasuredTemplate.defaults.angle) {
         angleDisplay = 'angle:' + angle;
-
     }
     let directionDisplay = '';
     if (direction != 0) {
@@ -65,8 +66,9 @@ export const renderMeasuredTemplate = async event => {
 
     let baseDistance = range;
     if (Number.isNaN(Number(range))) {
-        baseDistance = 
-            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).rangeMeasurement[range];
+        baseDistance = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).rangeMeasurement[
+            range
+        ];
     }
     const distance = type === CONFIG.DH.GENERAL.templateTypes.EMANATION ? baseDistance + 2.5 : baseDistance;
 
