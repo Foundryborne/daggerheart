@@ -10,7 +10,8 @@ export default function DhTemplateEnricher(match, _options) {
                   x => x.id.toLowerCase() === split[1] || x.short === split[1]
               )?.id
             : params.range;
-    if (!(type in CONFIG.MeasuredTemplate.types) || !range) return match[0];
+
+    if (!(Object.values(CONFIG.DH.GENERAL.templateTypes).find(x => x === type)) || !range) return match[0];
 
     const label = game.i18n.localize(`DAGGERHEART.CONFIG.TemplateTypes.${type}`);
     const rangeDisplay = Number.isNaN(Number(range)) ? game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.name`) : range;
