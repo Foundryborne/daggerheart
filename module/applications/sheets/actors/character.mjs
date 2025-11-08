@@ -20,6 +20,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             toggleVault: CharacterSheet.#toggleVault,
             rollAttribute: CharacterSheet.#rollAttribute,
             toggleHitPoints: CharacterSheet.#toggleHitPoints,
+            toggleStress: CharacterSheet.#toggleStress,
             toggleHope: CharacterSheet.#toggleHope,
             toggleLoadoutView: CharacterSheet.#toggleLoadoutView,
             openPack: CharacterSheet.#openPack,
@@ -729,13 +730,23 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     /**
-     * Toggles a hitpoint resource value.
+     * Toggles hitpoint resource value.
      * @type {ApplicationClickAction}
      */
     static async #toggleHitPoints(_, button) {
         const hitPointsValue = Number.parseInt(button.dataset.value);
         const newValue = this.document.system.resources.hitPoints.value >= hitPointsValue ? hitPointsValue - 1 : hitPointsValue;
         await this.document.update({ 'system.resources.hitPoints.value': newValue });
+    }
+
+    /**
+     * Toggles stress resource value.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleStress(_, button) {
+        const StressValue = Number.parseInt(button.dataset.value);
+        const newValue = this.document.system.resources.stress.value >= StressValue ? StressValue - 1 : StressValue;
+        await this.document.update({ 'system.resources.stress.value': newValue });
     }
 
     /**
