@@ -32,6 +32,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         },
         actions: {
             toggleViewMode: DhCountdowns.#toggleViewMode,
+            editCountdowns: DhCountdowns.#editCountdowns,
             decreaseCountdown: (_, target) => this.editCountdown(false, target),
             increaseCountdown: (_, target) => this.editCountdown(true, target)
         },
@@ -66,6 +67,12 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
 
         const header = frame.querySelector('.window-header');
         header.querySelector('button[data-action="close"]').remove();
+
+        if (game.user.isGM) {
+            const editTooltip = game.i18n.localize('DAGGERHEART.APPLICATIONS.CountdownEdit.editTitle');
+            const editButton = `<a style="margin-right: 8px;" class="header-control" data-tooltip="${editTooltip}" aria-label="${editTooltip}" data-action="editCountdowns"><i class="fa-solid fa-wrench"></i></a>`;
+            header.insertAdjacentHTML('beforeEnd', editButton);
+        }
 
         const minimizeTooltip = game.i18n.localize('DAGGERHEART.UI.Countdowns.toggleIconMode');
         const minimizeButton = `<a class="header-control" data-tooltip="${minimizeTooltip}" aria-label="${minimizeTooltip}" data-action="toggleViewMode"><i class="fa-solid fa-down-left-and-up-right-to-center"></i></a>`;
@@ -147,6 +154,10 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         if (newMode === appMode.iconOnly) this.element.classList.add('icon-only');
         else this.element.classList.remove('icon-only');
         this.render();
+    }
+
+    static async #editCountdowns() {
+        new game.system.api.applications.ui.CountdownEdit().render(true);
     }
 
     static async editCountdown(increase, target) {

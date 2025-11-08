@@ -29,8 +29,7 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
         },
         actions: {
             selectRefreshable: DaggerheartMenu.#selectRefreshable,
-            refreshActors: DaggerheartMenu.#refreshActors,
-            editCountdowns: DaggerheartMenu.#editCountdowns
+            refreshActors: DaggerheartMenu.#refreshActors
         }
     };
 
@@ -157,9 +156,5 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
         cls.create(msg);
 
         this.render();
-    }
-
-    static async #editCountdowns() {
-        new game.system.api.applications.ui.CountdownEdit().render(true);
     }
 }

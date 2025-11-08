@@ -364,8 +364,7 @@
                 "hideNewCountdowns": "Hide New Countdowns"
             },
             "DaggerheartMenu": {
-                "title": "GM Tools",
-                "countdowns": "Edit Countdowns"
+                "title": "GM Tools"
             },
             "DeleteConfirmation": {
                 "title": "Delete {type} - {name}",

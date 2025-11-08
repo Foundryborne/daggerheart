@@ -39,7 +39,8 @@ export default class DhSidebar extends foundry.applications.sidebar.Sidebar {
         },
         daggerheartMenu: {
             tooltip: 'DAGGERHEART.UI.Sidebar.daggerheartMenu.title',
-            img: 'systems/daggerheart/assets/logos/FoundryBorneLogoWhite.svg'
+            img: 'systems/daggerheart/assets/logos/FoundryBorneLogoWhite.svg',
+            gmOnly: true
         },
         settings: {
             tooltip: 'SIDEBAR.TabSettings',

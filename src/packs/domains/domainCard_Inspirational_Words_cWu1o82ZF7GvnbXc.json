@@ -98,7 +98,7 @@
         "type": "healing",
         "_id": "QKS3vo3Nf5CK8rkF",
         "systemPath": "actions",
-        "description": "<p>Spend a token from this card to give them the following:</p><ul class=\"\"><li class=\"vertical-card-list-found\"><p><span style=\"box-sizing: border-box; margin: 0px; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif\">Your ally clears a Hit Point.</span></p></li></ul>",
+        "description": "<p>Spend a token from this card to give them the following:</p><ul class=\"\"><li class=\"vertical-card-list-found\"><p><span style=\"box-sizing: border-box; margin: 0px; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif\">Your ally clears a Hit Point.</p></li></ul>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -174,7 +174,7 @@
         "type": "healing",
         "_id": "5xn70wYZW7k9aiVl",
         "systemPath": "actions",
-        "description": "<p>Spend a token from this card to give them the following:</p><ul class=\"\"><li class=\"vertical-card-list-found\"><p><span style=\"box-sizing: border-box; margin: 0px; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif\">Your ally gains a Hope.</span></p></li></ul>",
+        "description": "<p>Spend a token from this card to give them the following:</p><ul class=\"\"><li class=\"vertical-card-list-found\"><p><span style=\"box-sizing: border-box; margin: 0px; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif\">Your ally gains a Hope.</p></li></ul>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
