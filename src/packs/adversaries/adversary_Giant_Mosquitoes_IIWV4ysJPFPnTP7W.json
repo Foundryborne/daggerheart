@@ -234,7 +234,7 @@
   },
   "items": [
     {
-      "name": "Horde (1d4+1)",
+      "name": "Horde",
       "type": "feature",
       "_id": "9RduwBLYcBaiouYk",
       "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
@@ -258,12 +258,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754044549944,
-        "modifiedTime": 1754044591579,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760032064905,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!IIWV4ysJPFPnTP7W.9RduwBLYcBaiouYk"
     },

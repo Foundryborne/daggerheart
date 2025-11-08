@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "dpKxkDSjXsP8kHMI",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You can fly. While flying, you can <strong>mark a Stress</strong> after an adversary makes an attack against you to gain a +2 bonus to your Evasion against that attack.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -110,12 +110,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.0",
+    "systemVersion": "1.1.2",
     "createdTime": 1753994723305,
-    "modifiedTime": 1756040981649,
-    "lastModifiedBy": "vUIbuan0U50nfKBE"
+    "modifiedTime": 1761138022348,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!items!WquAjoOcso8lwySW"
 }

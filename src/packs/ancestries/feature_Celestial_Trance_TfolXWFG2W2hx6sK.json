@@ -55,7 +55,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
+      "description": "<p>During a rest, you can drop into a trance to choose an additional downtime move.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -66,12 +66,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1753994586602,
-        "modifiedTime": 1753994613702,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1761137891643,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!items.effects!TfolXWFG2W2hx6sK.LqQvZJJLNMnFkt1D"
     }

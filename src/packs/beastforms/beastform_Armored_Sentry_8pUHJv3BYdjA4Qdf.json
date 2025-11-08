@@ -13,14 +13,14 @@
     },
     "mainTrait": "strength",
     "advantageOn": {
-      "mX0DbTDuWAIpAGYq": {
-        "value": "Armadillo"
+      "4AbCgOZvyUFH9Pug": {
+        "value": "Dig"
       },
-      "0VGGQOhVOoNpZfdJ": {
-        "value": "Pangolin"
+      "8GsRyXaQnfsGNGW6": {
+        "value": "Locate"
       },
-      "6v6bkfKevJrn3YHf": {
-        "value": "Turtle"
+      "0ut15QizNIG254Vw": {
+        "value": "Protect"
       }
     },
     "features": [
@@ -130,12 +130,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.2",
     "createdTime": 1753580987168,
-    "modifiedTime": 1755395295538,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1761502671010,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_id": "8pUHJv3BYdjA4Qdf",
   "sort": 100000,
