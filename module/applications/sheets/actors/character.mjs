@@ -19,7 +19,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         actions: {
             toggleVault: CharacterSheet.#toggleVault,
             rollAttribute: CharacterSheet.#rollAttribute,
-            toggleHitpoints: CharacterSheet.#toggleHitPoints,
+            toggleHitPoints: CharacterSheet.#toggleHitPoints,
             toggleHope: CharacterSheet.#toggleHope,
             toggleLoadoutView: CharacterSheet.#toggleLoadoutView,
             openPack: CharacterSheet.#openPack,
@@ -736,7 +736,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const hitPointsValue = Number.parseInt(button.dataset.value);
         const newValue = this.document.system.resources.hitPoints.value >= hitPointsValue ? hitPointsValue - 1 : hitPointsValue;
         await this.document.update({ 'system.resources.hitPoints.value': newValue });
-        this.render();
     }
 
     /**
