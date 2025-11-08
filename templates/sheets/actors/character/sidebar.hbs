@@ -62,19 +62,23 @@
             </div>
 
             {{#if document.system.armor.system.marks}}
-                <div class="status-bar armor-slots">
+                <div class="status-bar">
                     <div class='status-value'>
-                        <p><input class="bar-input armor-marks-input" value="{{document.system.armor.system.marks.value}}" type="number"></p>
-                        <p>/</p>
-                        <p class="bar-label">{{document.system.armorScore}}</p>
+                        <div class="slot-bar">
+                        {{#times document.system.armorScore}}
+                            <a class='armor-slot' data-action='toggleArmor'  data-value="{{add this 1}}">
+                                {{#if (gte ../document.system.armor.system.marks.value (add this 1))}}
+                                    <i class="fa-solid fa-shield"></i>
+                                {{else}}
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                {{/if}}
+                            </a>
+                        {{/times}}
+                        </div>
                     </div>
-                    <progress
-                        class='progress-bar stress-color'
-                        value='{{document.system.armor.system.marks.value}}'
-                        max='{{document.system.armorScore}}'
-                    ></progress>
+                    <div class="progress-bar"></div>
                     <div class="status-label">
-                        <h4>{{localize "DAGGERHEART.GENERAL.armorSlots"}}</h4>
+                        <h4>{{localize "DAGGERHEART.GENERAL.armorSlots"}}|<span>{{document.system.armor.system.marks.value}} / {{document.system.armorScore}}</span></h4>
                     </div>
                 </div>
             {{else}}

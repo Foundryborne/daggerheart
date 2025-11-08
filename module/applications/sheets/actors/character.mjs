@@ -21,6 +21,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             rollAttribute: CharacterSheet.#rollAttribute,
             toggleHitPoints: CharacterSheet.#toggleHitPoints,
             toggleStress: CharacterSheet.#toggleStress,
+            toggleArmor: CharacterSheet.#toggleArmor,
             toggleHope: CharacterSheet.#toggleHope,
             toggleLoadoutView: CharacterSheet.#toggleLoadoutView,
             openPack: CharacterSheet.#openPack,
@@ -747,6 +748,16 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const StressValue = Number.parseInt(button.dataset.value);
         const newValue = this.document.system.resources.stress.value >= StressValue ? StressValue - 1 : StressValue;
         await this.document.update({ 'system.resources.stress.value': newValue });
+    }
+
+    /**
+     * Toggles ArmorScore resource value.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleArmor(_, button,element) {
+        const ArmorValue = Number.parseInt(button.dataset.value);
+        const newValue = this.document.system.armor.system.marks.value >= ArmorValue ? ArmorValue - 1 : ArmorValue;
+        await this.document.system.armor.update({ 'system.marks.value': newValue });
     }
 
     /**
