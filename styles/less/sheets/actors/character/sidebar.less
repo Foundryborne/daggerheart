@@ -246,6 +246,38 @@
                         width: 40px;
                     }
                 }
+                .progress-bar {
+                    position: absolute;
+                    appearance: none;
+                    width: 100px;
+                    height: 40px;
+                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border-radius: 6px;
+                    z-index: 1;
+                    background: @dark-blue;
+
+                    &::-webkit-progress-bar {
+                        border: none;
+                        background: @dark-blue;
+                        border-radius: 6px;
+                    }
+                    &::-webkit-progress-value {
+                        background: @gradient-hp;
+                        border-radius: 6px;
+                    }
+                    &.stress-color::-webkit-progress-value {
+                        background: @gradient-stress;
+                        border-radius: 6px;
+                    }
+                    &::-moz-progress-bar {
+                        background: @gradient-hp;
+                        border-radius: 6px;
+                    }
+                    &.stress-color::-moz-progress-bar {
+                        background: @gradient-stress;
+                        border-radius: 6px;
+                    }
+                }
             }
         }
 
@@ -340,8 +372,59 @@
                         }
                     }
 
+                    input[type='number'] {
+                        background: transparent;
+                        font-size: 1.2rem;
+                        width: 30px;
+                        height: 20px;
+                        text-align: center;
+                        border: none;
+                        outline: 2px solid transparent;
+                        color: light-dark(@dark-blue, @beige);
+
+                        &.bar-input {
+                            padding: 0;
+                            color: light-dark(@dark-blue, @beige);
+                            backdrop-filter: none;
+                            background: transparent;
+                            &:hover,
+                            &:focus {
+                                background: @semi-transparent-dark-blue;
+                                backdrop-filter: blur(9.5px);
+                            }
+                        }
+                    }
+
                     .bar-label {
                         width: 30px;
+                    }
+                }
+                .progress-bar {
+                    position: absolute;
+                    appearance: none;
+                    width: 80px;
+                    height: 30px;
+                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border-radius: 6px;
+                    z-index: 1;
+                    background: light-dark(transparent, @dark-blue);
+                    border-bottom: none;
+                    border-radius: 6px 6px 0 0;
+                    &::-webkit-progress-bar {
+                        border: none;
+                        background: light-dark(transparent, @dark-blue);
+                    }
+                    &::-webkit-progress-value {
+                        background: @gradient-stress;
+                    }
+                    &.stress-color::-webkit-progress-value {
+                        background: @gradient-stress;
+                    }
+                    &::-moz-progress-bar {
+                        background: @gradient-stress;
+                    }
+                    &.stress-color::-moz-progress-bar {
+                        background: @gradient-stress;
                     }
                 }
             }
