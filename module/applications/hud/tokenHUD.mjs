@@ -22,7 +22,9 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
 
-        context.partyOnCanvas = this.actor.system.partyMembers.some(member => member.getActiveTokens().length > 0);
+        context.partyOnCanvas =
+            this.actor.type === 'party' &&
+            this.actor.system.partyMembers.some(member => member.getActiveTokens().length > 0);
         context.icons.toggleParty = 'systems/daggerheart/assets/icons/arrow-dunk.png';
         context.actorType = this.actor.type;
         context.usesEffects = this.actor.type !== 'party';
