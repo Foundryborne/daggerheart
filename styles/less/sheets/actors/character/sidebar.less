@@ -154,7 +154,7 @@
                         color: light-dark(@beige, @dark-blue);
                     }
                 }
-                .status-value {
+                .slot-value {
                     position: absolute;
                     display: flex;
                     flex-direction: column;
@@ -216,6 +216,20 @@
                             border-left: 1px solid @dark-golden;
                         }
                     }
+                }
+
+                .status-value {
+                    position: absolute;
+                    display: flex;
+                    padding: 0 5px;
+                    font-size: 1.5rem;
+                    align-items: center;
+                    width: 140px;
+                    height: 40px;
+                    justify-content: center;
+                    text-align: center;
+                    z-index: 2;
+                    color: @beige;
 
                     input[type='number'] {
                         background: transparent;
@@ -312,7 +326,7 @@
                         font-size: var(--font-size-12);
                     }
                 }
-                .status-value {
+                .slot-value {
                     position: absolute;
                     display: flex;
                     padding: 0 5px;
@@ -371,6 +385,21 @@
                             padding-left: 6px;
                         }
                     }
+
+                    
+                }
+                .status-value {
+                    position: absolute;
+                    display: flex;
+                    padding: 0 5px;
+                    font-size: 1.2rem;
+                    align-items: center;
+                    width: 80px;
+                    height: 30px;
+                    justify-content: center;
+                    text-align: center;
+                    z-index: 2;
+                    color: light-dark(@dark-blue, @beige);
 
                     input[type='number'] {
                         background: transparent;
