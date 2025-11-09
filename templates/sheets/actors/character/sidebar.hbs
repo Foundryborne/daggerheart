@@ -25,15 +25,11 @@
                             </span>
                         {{/times}}
                     </div>
+                    <div class="slot-label">
+                        <span class="label">{{localize "DAGGERHEART.GENERAL.HitPoints.short"}}</span>
+                        <span class="value">{{document.system.resources.hitPoints.value}} / {{document.system.resources.hitPoints.max}}</span>
+                    </div>
                 </div>
-                <div class='progress-bar'>
-
-                </div>
-                <div class="status-label">
-                    <h4><span>{{localize "DAGGERHEART.GENERAL.HitPoints.short"}}</span><span>|</span>
-                    <span>{{document.system.resources.hitPoints.value}} / {{document.system.resources.hitPoints.max}}</span></h4>
-                </div>
-
             </div>
             <div class="status-bar">
                 <div class='status-value'>
@@ -43,11 +39,12 @@
                             </span>
                         {{/times}}
                     </div>
-                </div>
-                <div class="progress-bar"></div>
-                <div class="status-label">
-                    <h4>{{localize "DAGGERHEART.GENERAL.stress"}}</span><span>|</span>
-                    <span>{{document.system.resources.stress.value}} / {{document.system.resources.stress.max}}</span></h4>
+                    <div class="slot-label">
+                        <div class="slot-label">
+                            <span class="label">{{localize "DAGGERHEART.GENERAL.stress"}}</span>
+                            <span class="value">{{document.system.resources.stress.value}} / {{document.system.resources.stress.max}}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -62,7 +59,7 @@
             </div>
 
             {{#if document.system.armor.system.marks}}
-                <div class="status-bar">
+                <div class="status-bar armor-slots">
                     <div class='status-value'>
                         <div class="slot-bar">
                         {{#times document.system.armorScore}}
@@ -75,10 +72,10 @@
                             </a>
                         {{/times}}
                         </div>
-                    </div>
-                    <div class="progress-bar"></div>
-                    <div class="status-label">
-                        <h4>{{localize "DAGGERHEART.GENERAL.armorSlots"}}|<span>{{document.system.armor.system.marks.value}} / {{document.system.armorScore}}</span></h4>
+                        <div class="slot-label">
+                            <span class="label">{{localize "DAGGERHEART.GENERAL.armorSlots"}}</span>
+                            <span class="value">{{document.system.armor.system.marks.value}} / {{document.system.armorScore}}</span>
+                        </div> 
                     </div>
                 </div>
             {{else}}

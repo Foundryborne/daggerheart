@@ -124,7 +124,7 @@
         display: flex;
         flex-direction: column;
         top: -20px;
-        gap: 10px;
+        gap: 15px;
         margin-bottom: -16px;
 
         .resources-section {
@@ -157,6 +157,7 @@
                 .status-value {
                     position: absolute;
                     display: flex;
+                    flex-direction: column;
                     padding: 0 5px;
                     font-size: 1.5rem;
                     align-items: center;
@@ -171,34 +172,49 @@
                             display: flex;
                             flex-wrap: wrap;
                             gap: 5px;
-                            padding: 7px;
+                            padding: 5px;
+                            border: 1px solid light-dark(@dark-blue, @golden);
+                            border-radius: 6px;
+                            z-index: 1;
+                            background: @dark-blue;
 
                             color: light-dark(@dark-blue, @golden);
                             width: fit-content;
 
-                                .armor-slot {
-                                    cursor: pointer;
-                                    transition: all 0.3s ease;
-                                    font-size: var(--font-size-12);
 
-                                    .fa-shield-halved {
-                                        color: light-dark(@dark-blue-40, @golden-40);
-                                    }
-                                }
-
-                                .slot {
-                                    width: 15px;
-                                    height: 10px;
-                                    border: 1px solid light-dark(@dark-blue, @golden);
-                                    background: light-dark(@dark-blue-10, @golden-10);
-                                    border-radius: 3px;
-                                    transition: all 0.3s ease;
-                                    cursor: pointer;
+                            .slot {
+                                width: 15px;
+                                height: 10px;
+                                border: 1px solid light-dark(@dark-blue, @golden);
+                                background: light-dark(@dark-blue-10, @golden-10);
+                                border-radius: 3px;
+                                transition: all 0.3s ease;
+                                cursor: pointer;
                                 
-                                    &.filled {
-                                        background: light-dark(@dark-blue, @golden);
-                                    }
-                                }   
+                                &.filled {
+                                    background: light-dark(@dark-blue, @golden);
+                                }
+                            }   
+                    }
+                    .slot-label {
+                        display: flex;
+                        align-items: center;
+                        color: light-dark(@beige, @dark-blue);
+                        background: light-dark(@dark-blue, @golden);
+                        padding: 0 5px;
+                        width: fit-content;
+                        font-weight: bold;
+                        border-radius: 0px 0px 5px 5px;
+                        font-size: var(--font-size-12);
+
+                        .label {
+                            padding-right: 5px;
+                        }
+
+                        .value {
+                            padding-left: 6px;
+                            border-left: 1px solid @dark-golden;
+                        }
                     }
 
                     input[type='number'] {
@@ -230,38 +246,6 @@
                         width: 40px;
                     }
                 }
-                .progress-bar {
-                    position: absolute;
-                    appearance: none;
-                    width: 125px;
-                    height: 40px;
-                    border: 1px solid light-dark(@dark-blue, @golden);
-                    border-radius: 6px;
-                    z-index: 1;
-                    background: @dark-blue;
-
-                    &::-webkit-progress-bar {
-                        border: none;
-                        background: @dark-blue;
-                        border-radius: 6px;
-                    }
-                    &::-webkit-progress-value {
-                        background: @gradient-hp;
-                        border-radius: 6px;
-                    }
-                    &.stress-color::-webkit-progress-value {
-                        background: @gradient-stress;
-                        border-radius: 6px;
-                    }
-                    &::-moz-progress-bar {
-                        background: @gradient-hp;
-                        border-radius: 6px;
-                    }
-                    &.stress-color::-moz-progress-bar {
-                        background: @gradient-stress;
-                        border-radius: 6px;
-                    }
-                }
             }
         }
 
@@ -270,12 +254,13 @@
             flex-wrap: wrap;
             gap: 5px;
             justify-content: center;
+            align-items: center;
 
             .status-bar.armor-slots {
                 display: flex;
                 justify-content: center;
                 position: relative;
-                width: 95px;
+                width: 100px;
                 height: 30px;
 
                 .status-label {
@@ -298,7 +283,7 @@
                 .status-value {
                     position: absolute;
                     display: flex;
-                    padding: 0 6px;
+                    padding: 0 5px;
                     font-size: 1.2rem;
                     align-items: center;
                     width: 80px;
@@ -307,67 +292,56 @@
                     text-align: center;
                     z-index: 2;
                     color: light-dark(@dark-blue, @beige);
-                    border: 1px solid light-dark(@dark-blue, @golden);
-                    border-bottom: none;
-                    border-radius: 6px 6px 0 0;
+                    flex-direction: column;
 
-                    input[type='number'] {
-                        background: transparent;
-                        font-size: 1.2rem;
-                        width: 30px;
-                        height: 20px;
-                        text-align: center;
-                        border: none;
-                        outline: 2px solid transparent;
-                        color: light-dark(@dark-blue, @beige);
+                    .slot-bar {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 4px;
+                        padding: 5px;
+                        border: 1px solid light-dark(@dark-blue, @golden);
+                        border-radius: 6px;
+                        z-index: 1;
+                        background: @dark-blue;
+                        justify-content: center;
+                        color: light-dark(@dark-blue, @golden);
 
-                        &.bar-input {
-                            padding: 0;
-                            color: light-dark(@dark-blue, @beige);
-                            backdrop-filter: none;
-                            background: transparent;
+                        .armor-slot {
+                            cursor: pointer;
                             transition: all 0.3s ease;
+                            font-size: var(--font-size-12);
 
-                            &:hover,
-                            &:focus {
-                                background: @semi-transparent-dark-blue;
-                                backdrop-filter: blur(9.5px);
+                            .fa-shield-halved {
+                                color: light-dark(@dark-blue-40, @golden-40);
                             }
+                        }
+  
+                    }
+                    .slot-label {
+                        display: flex;
+                        align-items: center;
+                        color: light-dark(@beige, @dark-blue);
+                        background: light-dark(@dark-blue, @golden);
+                        padding: 0 5px;
+                        width: 120%;
+                        font-weight: bold;
+                        border-radius: 5px;
+                        font-size: var(--font-size-12);
+                        flex-wrap: wrap;
+                        justify-content: center;
+
+                        .label {
+                            padding-right: 1px;
+                            border-bottom: 1px solid @dark-golden;
+                        }
+
+                        .value {
+                            padding-left: 6px;
                         }
                     }
 
                     .bar-label {
                         width: 30px;
-                    }
-                }
-
-                .progress-bar {
-                    position: absolute;
-                    appearance: none;
-                    width: 80px;
-                    height: 30px;
-                    border: 1px solid light-dark(@dark-blue, @golden);
-                    border-radius: 6px;
-                    z-index: 1;
-                    background: light-dark(transparent, @dark-blue);
-                    border-bottom: none;
-                    border-radius: 6px 6px 0 0;
-
-                    &::-webkit-progress-bar {
-                        border: none;
-                        background: light-dark(transparent, @dark-blue);
-                    }
-                    &::-webkit-progress-value {
-                        background: @gradient-stress;
-                    }
-                    &.stress-color::-webkit-progress-value {
-                        background: @gradient-stress;
-                    }
-                    &::-moz-progress-bar {
-                        background: @gradient-stress;
-                    }
-                    &.stress-color::-moz-progress-bar {
-                        background: @gradient-stress;
                     }
                 }
             }
