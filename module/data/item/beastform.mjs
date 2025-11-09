@@ -115,10 +115,15 @@ export default class DHBeastform extends BaseDataItem {
         const tokenPath = usesDynamicToken ? beastform.system.tokenRingImg : beastform.system.tokenImg;
         const usesWildcard = tokenPath.includes('*');
         if (usesWildcard) {
-            const { files } = await foundry.applications.apps.FilePicker.implementation.browse('data', tokenPath, {
-                wildcard: true,
-                type: 'image'
-            });
+            const filePicker = new foundry.applications.apps.FilePicker.implementation(tokenPath);
+            const { files } = await foundry.applications.apps.FilePicker.implementation.browse(
+                filePicker.activeSource,
+                tokenPath,
+                {
+                    wildcard: true,
+                    type: 'image'
+                }
+            );
             const selectedImage = await game.system.api.applications.dialogs.ImageSelectDialog.configure(
                 game.i18n.localize('DAGGERHEART.APPLICATIONS.ImageSelect.title'),
                 files
