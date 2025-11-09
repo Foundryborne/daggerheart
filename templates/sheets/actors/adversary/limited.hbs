@@ -1,0 +1,23 @@
+<div class="limited-container">
+    <header>
+        <img class="profile" src="{{document.img}}" alt="{{document.name}}" data-action='editImage' data-edit="img">
+        <h1 class="title-name">{{document.name}}</h1>
+    </header>
+    <div class="tags">
+        <div class="tag">
+            <span>
+                {{localize (concat 'DAGGERHEART.GENERAL.Tiers.' source.system.tier)}}
+            </span>
+        </div>
+        <div class="tag">
+            <span>{{adversaryType}}</span>
+        </div>
+        {{#if (eq source.system.type 'horde')}}
+            <div class="tag">
+                <span>{{source.system.hordeHp}}</span>
+                <span>/{{localize "DAGGERHEART.GENERAL.HitPoints.short"}}</span>
+            </div>
+        {{/if}}
+    </div>
+    <div class="description">{{{document.system.description}}}</div>
+</div>

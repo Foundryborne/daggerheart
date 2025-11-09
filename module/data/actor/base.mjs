@@ -40,7 +40,8 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
             isNPC: true,
             settingSheet: null,
             hasResistances: true,
-            hasAttribution: false
+            hasAttribution: false,
+            hasLimitedView: true
         };
     }
 

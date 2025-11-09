@@ -269,7 +269,7 @@
       "name": "Relentless (X)",
       "type": "feature",
       "system": {
-        "description": "<p>The Hydra can be spotlighted X times per GM turn, where X is the Hydra’s number of heads. Spend Fear as usual to spotlight them.</p>",
+        "description": "<p>The Hydra can be spotlighted X times per GM turn, where X is the Hydra’s number of heads. Spend Fear as usual to spotlight them. <br /><br />Note: Automation is not added so manually spend fear as per text.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -289,12 +289,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754129556390,
-        "modifiedTime": 1754129579457,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760381891609,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!MI126iMOOobQ1Obn.nwIjDjpLGfuXNYvA"
     },

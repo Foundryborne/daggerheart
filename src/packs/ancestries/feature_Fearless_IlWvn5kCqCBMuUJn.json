@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "G1H7k5RdvS1EJgFu",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>When you roll with Fear, you can <strong>mark 2 Stress</strong> to change it into a roll with Hope instead.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -58,12 +58,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.2",
     "createdTime": 1753999842518,
-    "modifiedTime": 1755394522944,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1761138348732,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!items!IlWvn5kCqCBMuUJn"
 }

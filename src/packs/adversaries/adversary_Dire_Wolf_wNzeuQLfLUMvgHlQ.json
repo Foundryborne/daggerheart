@@ -248,12 +248,13 @@
             "systemPath": "actions",
             "description": "<p>If the Wolf makes a successful standard attack and another Dire Wolf is within Melee range of the target, deal <strong>1d6+5</strong> physical damage instead of their standard damage and you gain a Fear.</p>",
             "chatDisplay": true,
-            "actionType": "action",
+            "actionType": "passive",
             "cost": [],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
               "parts": [
@@ -330,12 +331,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754044226022,
-        "modifiedTime": 1754143967972,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760209346410,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!wNzeuQLfLUMvgHlQ.wQXEnMqrl2jo91oy"
     },

@@ -76,6 +76,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
     /**@override */
     static PARTS = {
+        limited: {
+            id: 'limited',
+            scrollable: ['.limited-container'],
+            template: 'systems/daggerheart/templates/sheets/actors/character/limited.hbs'
+        },
         sidebar: {
             id: 'sidebar',
             scrollable: ['.shortcut-items-section'],
@@ -141,23 +146,37 @@ export default class CharacterSheet extends DHBaseActorSheet {
         });
     }
 
+    /**  @inheritdoc */
+    _initializeApplicationOptions(options) {
+        const applicationOptions = super._initializeApplicationOptions(options);
+
+        if (applicationOptions.document.testUserPermission(game.user, 'LIMITED', { exact: true })) {
+            applicationOptions.position.width = 360;
+            applicationOptions.position.height = 'auto';
+        }
+
+        return applicationOptions;
+    }
+
     /** @inheritDoc */
     async _onRender(context, options) {
         await super._onRender(context, options);
 
-        this.element
-            .querySelector('.level-value')
-            ?.addEventListener('change', event => this.document.updateLevel(Number(event.currentTarget.value)));
+        if (!this.document.testUserPermission(game.user, 'LIMITED', { exact: true })) {
+            this.element
+                .querySelector('.level-value')
+                ?.addEventListener('change', event => this.document.updateLevel(Number(event.currentTarget.value)));
 
-        const observer = this.document.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER, {
-            exact: true
-        });
-        if (observer) {
-            this.element.querySelector('.window-content').classList.add('viewMode');
+            const observer = this.document.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER, {
+                exact: true
+            });
+            if (observer) {
+                this.element.querySelector('.window-content').classList.add('viewMode');
+            }
+
+            this._createFilterMenus();
+            this._createSearchFilter();
         }
-
-        this._createFilterMenus();
-        this._createSearchFilter();
     }
 
     /* -------------------------------------------- */

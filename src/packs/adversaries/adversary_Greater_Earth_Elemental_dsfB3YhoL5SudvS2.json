@@ -269,14 +269,14 @@
       "name": "Crushing Blows",
       "type": "feature",
       "system": {
-        "description": "<p>When the Elemental makes a successful attack, the target must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
+        "description": "<p>When the Elemental makes a successful attack, the target must mark an Armor Slot without receiving its benefi ts (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
         "resource": null,
         "actions": {
           "0sXciTiPc30v8czv": {
             "type": "damage",
             "_id": "0sXciTiPc30v8czv",
             "systemPath": "actions",
-            "description": "<p>When the Elemental makes a successful attack, the target must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
+            "description": "<p>When the Elemental makes a successful attack, the target must mark an Armor Slot without receiving its benefi ts (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -342,12 +342,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.346",
         "systemId": "daggerheart",
-        "systemVersion": "1.1.2",
+        "systemVersion": "0.0.1",
         "createdTime": 1754127683751,
-        "modifiedTime": 1756511006257,
-        "lastModifiedBy": "mdk78Q6pOyHh6aBg"
+        "modifiedTime": 1754127795809,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!dsfB3YhoL5SudvS2.NnCkXIuATO0s3tSR"
     },
@@ -608,7 +608,77 @@
       "system": {
         "description": "<p>When the Elemental makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "FPIpslusIeVQGdnb": {
+            "type": "healing",
+            "_id": "FPIpslusIeVQGdnb",
+            "systemPath": "actions",
+            "description": "<p>When the Elemental makes a successful attack against a PC, you gain a Fear.</p>",
+            "chatDisplay": true,
+            "actionType": "reaction",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "fear",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "name": "Gain Fear",
+            "img": "icons/skills/melee/strike-weapons-orange.webp",
+            "range": ""
+          }
+        },
         "originItemType": null,
         "originId": null
       },
@@ -626,12 +696,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754127921154,
-        "modifiedTime": 1754127937379,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760381537218,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!dsfB3YhoL5SudvS2.ag7t5EW358M0qiSL"
     }

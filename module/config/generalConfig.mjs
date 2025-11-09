@@ -164,28 +164,31 @@ export const healingTypes = {
     }
 };
 
-export const defeatedConditions = {
+export const defeatedConditions = () => {
+    const defeated = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
+    return Object.values(defeatedConditionChoices).map(x => ({
+        ...x,
+        img: defeated[`${x.id}Icon`],
+        description: `DAGGERHEART.CONFIG.Condition.${x.id}.description`
+    }));
+};
+
+const defeatedConditionChoices = {
     defeated: {
         id: 'defeated',
-        name: 'DAGGERHEART.CONFIG.Condition.defeated.name',
-        img: 'icons/magic/control/fear-fright-mask-orange.webp',
-        description: 'DAGGERHEART.CONFIG.Condition.defeated.description'
+        name: 'DAGGERHEART.CONFIG.Condition.defeated.name'
     },
     unconscious: {
         id: 'unconscious',
-        name: 'DAGGERHEART.CONFIG.Condition.unconscious.name',
-        img: 'icons/magic/control/sleep-bubble-purple.webp',
-        description: 'DAGGERHEART.CONFIG.Condition.unconscious.description'
+        name: 'DAGGERHEART.CONFIG.Condition.unconscious.name'
     },
     dead: {
         id: 'dead',
-        name: 'DAGGERHEART.CONFIG.Condition.dead.name',
-        img: 'icons/magic/death/grave-tombstone-glow-teal.webp',
-        description: 'DAGGERHEART.CONFIG.Condition.dead.description'
+        name: 'DAGGERHEART.CONFIG.Condition.dead.name'
     }
 };
 
-export const conditions = {
+export const conditions = () => ({
     vulnerable: {
         id: 'vulnerable',
         name: 'DAGGERHEART.CONFIG.Condition.vulnerable.name',
@@ -204,8 +207,8 @@ export const conditions = {
         img: 'icons/magic/control/debuff-chains-shackle-movement-red.webp',
         description: 'DAGGERHEART.CONFIG.Condition.restrained.description'
     },
-    ...defeatedConditions
-};
+    ...defeatedConditions()
+});
 
 export const defaultRestOptions = {
     shortRest: () => ({

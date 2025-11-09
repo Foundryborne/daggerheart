@@ -239,7 +239,40 @@
       "system": {
         "description": "<p>The Gorgon can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "GSYD7y0ywAqyKUfm": {
+            "type": "effect",
+            "_id": "GSYD7y0ywAqyKUfm",
+            "systemPath": "actions",
+            "description": "<p>The Gorgon can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "chatDisplay": true,
+            "actionType": "passive",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": 0,
+              "max": "1",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spotlight: Relentless",
+            "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
+            "range": ""
+          }
+        },
         "originItemType": null,
         "originId": null
       },
@@ -257,12 +290,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754079428160,
-        "modifiedTime": 1754079447238,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760380620538,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!8mJYMpbLTb8qIOrr.OqE6hBijxAkn5gIm"
     },
@@ -597,7 +630,77 @@
       "system": {
         "description": "<p>When the Gorgon makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "V6tkBYSjOt1LZCkp": {
+            "type": "healing",
+            "_id": "V6tkBYSjOt1LZCkp",
+            "systemPath": "actions",
+            "description": "<p>When the Gorgon makes a successful attack against a PC, you gain a Fear.</p>",
+            "chatDisplay": true,
+            "actionType": "reaction",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "fear",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "name": "Gain Fear",
+            "img": "icons/skills/melee/strike-weapons-orange.webp",
+            "range": ""
+          }
+        },
         "originItemType": null,
         "originId": null
       },
@@ -615,12 +718,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754079744174,
-        "modifiedTime": 1754079759538,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760380666298,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!8mJYMpbLTb8qIOrr.IRIaFxFughjXVu0Y"
     }

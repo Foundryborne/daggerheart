@@ -12,7 +12,7 @@
         "type": "attack",
         "_id": "MhAWv7tuvkfOf7wQ",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You can use your long tongue to grab onto things within Close range. <strong>Mark a Stress</strong> to use your tongue as a Finesse Close weapon that deals <strong>d12</strong> physical damage using your Proficiency.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -82,7 +82,7 @@
           "difficulty": null,
           "damageMod": "none"
         },
-        "name": "Attack",
+        "name": "Mark Stress",
         "img": "icons/commodities/biological/tongue-violet.webp",
         "range": "close"
       }
@@ -107,12 +107,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.2",
     "createdTime": 1754000791839,
-    "modifiedTime": 1755394583397,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1761138622800,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!items!oWbdlh51ajn1Q5kL"
 }

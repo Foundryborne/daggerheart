@@ -142,7 +142,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">While you’re in a natural environment, you gain a +2 bonus to your Spellcast Rolls.</span></p>",
+      "description": "<p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">While you’re in a natural environment, you gain a +2 bonus to your Spellcast Rolls.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -246,7 +246,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">Once per rest, you can double your Agility or Instinct when making a roll that uses that trait. You must choose to do this before you roll.</span></p>",
+      "description": "<p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">Once per rest, you can double your Agility or Instinct when making a roll that uses that trait. You must choose to do this before you roll.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

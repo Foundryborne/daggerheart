@@ -10,7 +10,9 @@ export default class AdversarySheet extends DHBaseActorSheet {
         position: { width: 660, height: 766 },
         window: { resizable: true },
         actions: {
-            reactionRoll: AdversarySheet.#reactionRoll
+            reactionRoll: AdversarySheet.#reactionRoll,
+            toggleResourceDice: AdversarySheet.#toggleResourceDice,
+            handleResourceDice: AdversarySheet.#handleResourceDice
         },
         window: {
             resizable: true,
@@ -25,6 +27,10 @@ export default class AdversarySheet extends DHBaseActorSheet {
     };
 
     static PARTS = {
+        limited: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/limited.hbs',
+            scrollable: ['.limited-container']
+        },
         sidebar: {
             template: 'systems/daggerheart/templates/sheets/actors/adversary/sidebar.hbs',
             scrollable: ['.shortcut-items-section']
@@ -52,6 +58,18 @@ export default class AdversarySheet extends DHBaseActorSheet {
         }
     };
 
+    /**  @inheritdoc */
+    _initializeApplicationOptions(options) {
+        const applicationOptions = super._initializeApplicationOptions(options);
+
+        if (applicationOptions.document.testUserPermission(game.user, 'LIMITED', { exact: true })) {
+            applicationOptions.position.width = 360;
+            applicationOptions.position.height = 'auto';
+        }
+
+        return applicationOptions;
+    }
+
     /**@inheritdoc */
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
@@ -65,6 +83,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
         context = await super._preparePartContext(partId, context, options);
         switch (partId) {
             case 'header':
+            case 'limited':
                 await this._prepareHeaderContext(context, options);
 
                 const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
@@ -154,6 +173,40 @@ export default class AdversarySheet extends DHBaseActorSheet {
         };
 
         this.actor.diceRoll(config);
+    }
+
+    /**
+     * Toggle the used state of a resource dice.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleResourceDice(event, target) {
+        const item = await getDocFromElement(target);
+
+        const { dice } = event.target.closest('.item-resource').dataset;
+        const diceState = item.system.resource.diceStates[dice];
+
+        await item.update({
+            [`system.resource.diceStates.${dice}.used`]: diceState ? !diceState.used : true
+        });
+    }
+
+    /**
+     * Handle the roll values of resource dice.
+     * @type {ApplicationClickAction}
+     */
+    static async #handleResourceDice(_, target) {
+        const item = await getDocFromElement(target);
+        if (!item) return;
+
+        const rollValues = await game.system.api.applications.dialogs.ResourceDiceDialog.create(item, this.document);
+        if (!rollValues) return;
+
+        await item.update({
+            'system.resource.diceStates': rollValues.reduce((acc, state, index) => {
+                acc[index] = { value: state.value, used: state.used };
+                return acc;
+            }, {})
+        });
     }
 
     /* -------------------------------------------- */

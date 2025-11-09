@@ -5,12 +5,13 @@ export default function DhTemplateEnricher(match, _options) {
     const { type, angle = CONFIG.MeasuredTemplate.defaults.angle, inline = false } = params;
     const direction = Number(params.direction) || 0;
     const range =
-        params.range && Number.isNaN(params.range)
+        params.range && Number.isNaN(Number(params.range))
             ? Object.values(CONFIG.DH.GENERAL.templateRanges).find(
-                  x => x.id.toLowerCase() === split[1] || x.short === split[1]
+                  x => x.id.toLowerCase() === params.range || x.short === params.range
               )?.id
             : params.range;
-    if (!(type in CONFIG.MeasuredTemplate.types) || !range) return match[0];
+
+    if (!Object.values(CONFIG.DH.GENERAL.templateTypes).find(x => x === type) || !range) return match[0];
 
     const label = game.i18n.localize(`DAGGERHEART.CONFIG.TemplateTypes.${type}`);
     const rangeDisplay = Number.isNaN(Number(range))

@@ -62,13 +62,13 @@
         {
           "key": "system.traits.strength.value",
           "mode": 2,
-          "value": "1",
+          "value": "3",
           "priority": null
         },
         {
           "key": "system.evasion",
           "mode": 2,
-          "value": "3",
+          "value": "1",
           "priority": null
         },
         {
@@ -111,11 +111,11 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "lastModifiedBy": "FecEtPuoQh6MpjQ0",
-        "modifiedTime": 1753636973034
+        "lastModifiedBy": "fBcTgyTzoARBvohY",
+        "modifiedTime": 1761503222813
       },
       "_key": "!items.effects!m8BVTuJI1wCvzTcf.AZGTvqzFVHa4wS1a"
     }

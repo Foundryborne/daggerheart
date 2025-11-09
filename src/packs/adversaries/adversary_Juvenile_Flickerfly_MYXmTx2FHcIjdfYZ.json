@@ -233,7 +233,40 @@
       "system": {
         "description": "<p>The Flickerfly can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "FgoP6tlMUxnv5k4Z": {
+            "type": "effect",
+            "_id": "FgoP6tlMUxnv5k4Z",
+            "systemPath": "actions",
+            "description": "<p>The Flickerfly can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "chatDisplay": true,
+            "actionType": "passive",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": 0,
+              "max": "2",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spotlight: Relentless",
+            "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
+            "range": ""
+          }
+        },
         "originItemType": null,
         "originId": null
       },
@@ -251,12 +284,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754080169421,
-        "modifiedTime": 1754080186529,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760380729020,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!MYXmTx2FHcIjdfYZ.6SnqNCeSEY7Q2tSI"
     },

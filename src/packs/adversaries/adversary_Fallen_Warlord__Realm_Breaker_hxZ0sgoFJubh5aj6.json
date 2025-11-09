@@ -1,6 +1,6 @@
 {
   "folder": "7XHlANCPz18yvl5L",
-  "name": "Fallen Warlord: Realm Breaker",
+  "name": "Fallen Warlord: Realm-Breaker",
   "type": "adversary",
   "_id": "hxZ0sgoFJubh5aj6",
   "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
@@ -263,7 +263,40 @@
       "system": {
         "description": "<p>The Realm-Breaker can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "9IHzeKjP35M5jj3b": {
+            "type": "effect",
+            "_id": "9IHzeKjP35M5jj3b",
+            "systemPath": "actions",
+            "description": "<p>The Realm-Breaker can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "chatDisplay": true,
+            "actionType": "passive",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": 0,
+              "max": "1",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spotlight: Relentless",
+            "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
+            "range": ""
+          }
+        },
         "originItemType": null,
         "originId": null
       },
@@ -281,12 +314,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754134022685,
-        "modifiedTime": 1754134047203,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760382854734,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!hxZ0sgoFJubh5aj6.feb6vTfDsi1yQLpn"
     },
@@ -744,12 +777,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
     "systemVersion": "1.0.5",
     "createdTime": 1753929378070,
-    "modifiedTime": 1755385644142,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1760382818455,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!actors!hxZ0sgoFJubh5aj6"
 }

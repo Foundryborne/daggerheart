@@ -1,0 +1,97 @@
+<div class="limited-container">
+    <header>
+        <img class="profile" src="{{document.img}}" alt="{{document.name}}" data-action='editImage' data-edit="img">
+        <h1 class="title-name">{{document.name}}</h1>
+    </header>
+    <div class="character-details">
+        <div class="basic-info">
+            {{#if document.system.class.value}}
+                <span data-action="editDoc" data-item-uuid="{{document.system.class.value.uuid}}">{{document.system.class.value.name}}</span>
+            {{else}}
+                <span class="missing-header-feature" data-action="openPack" data-key="classes">{{localize 'TYPES.Item.class'}}</span>
+            {{/if}}
+            <span class="dot">•</span>
+            {{#if document.system.class.subclass}}
+                <span data-action="editDoc" data-item-uuid="{{document.system.class.subclass.uuid}}">{{document.system.class.subclass.name}}</span>
+            {{else}}
+                <span class="missing-header-feature" data-action="openPack" data-key="subclasses">{{localize 'TYPES.Item.subclass'}}</span>
+            {{/if}}
+            <span class="dot">•</span>
+            {{#if document.system.community}}
+                <span data-action="editDoc" data-item-uuid="{{document.system.community.uuid}}">{{document.system.community.name}}</span>
+            {{else}}
+                <span class="missing-header-feature" data-action="openPack" data-key="communities">{{localize 'TYPES.Item.community'}}</span>
+            {{/if}}
+            <span class="dot">•</span>
+            {{#if document.system.ancestry}}
+                <span data-action="editDoc" data-item-uuid="{{document.system.ancestry.uuid}}">{{document.system.ancestry.name}}</span>
+            {{else}}
+                <span class="missing-header-feature" data-action="openPack" data-key="ancestries">{{localize 'TYPES.Item.ancestry'}}</span>
+            {{/if}}
+        </div>
+
+        {{#if document.system.multiclass.value}}
+            <div class="multiclass">
+                {{#if document.system.multiclass.value}}
+                    <span data-action="editDoc"data-item-uuid="{{document.system.multiclass.value.uuid}}">{{document.system.multiclass.value.name}}</span>
+                {{else}}
+                    <span data-action="openPack" data-key="classes">{{localize 'DAGGERHEART.GENERAL.multiclass'}}</span>
+                {{/if}}
+                <span class="dot">•</span>
+                {{#if document.system.multiclass.subclass}}
+                    <span data-action="editDoc" data-item-uuid="{{document.system.multiclass.subclass.uuid}}">{{document.system.multiclass.subclass.name}}</span>
+                {{else}}
+                    <span class="missing-header-feature" data-action="openPack" data-key="subclasses">{{localize 'TYPES.Item.subclass'}}</span>
+                {{/if}}
+            </div>
+        {{/if}}
+    </div>
+    <h3 class="level-details">
+        {{localize 'DAGGERHEART.GENERAL.level'}} 
+        {{document.system.levelData.level.changed}}
+    </h3>
+    <div class="domain-details">
+        <div class="domain-header">
+            <side-line-div class="invert"></side-line-div>
+                <h3>{{localize "DAGGERHEART.GENERAL.Domain.plural"}}</h3>
+            <side-line-div></side-line-div>
+        </div>
+        {{#if document.system.class.value}}
+            <div class="domains-section">
+                {{#each document.system.domainData as |data|}}
+                    <div class="domain">
+                        <img src="{{data.src}}" alt="" data-tooltip="{{data.description}}" />
+                        <span>{{data.label}}</span>
+                    </div>
+                {{/each}}
+            </div>
+        {{/if}}
+    </div>
+    <div class="bio-details">
+        <div class="bio-header">
+            <side-line-div class="invert"></side-line-div>
+                <h3>{{localize "DAGGERHEART.GENERAL.Tabs.biography"}}</h3>
+            <side-line-div></side-line-div>
+        </div>
+        <div class="bio-list">
+            {{#if source.system.biography.characteristics.pronouns}}
+                <div class="bio-info">
+                    <span>{{localize 'DAGGERHEART.ACTORS.Character.pronouns'}}</span>
+                    <span>{{source.system.biography.characteristics.pronouns}}</span>
+                </div>
+            {{/if}}
+            {{#if source.system.biography.characteristics.age}}
+                <div class="bio-info">
+                    <span>{{localize 'DAGGERHEART.ACTORS.Character.age'}}</span>
+                    <span>{{source.system.biography.characteristics.age}}</span>
+                </div>
+            {{/if}}
+            {{#if source.system.biography.characteristics.faith}}
+                <div class="bio-info">
+                    <span>{{localize 'DAGGERHEART.ACTORS.Character.faith'}}</span>
+                    <span>{{source.system.biography.characteristics.faith}}</span>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</div>

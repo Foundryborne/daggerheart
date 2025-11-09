@@ -8,11 +8,9 @@
         </div>
         {{#if document.system.partner}}
         <ul class="items-list">
-            {{> 'daggerheart.inventory-item'
+            {{> 'daggerheart.inventory-item-compact'
             item=document.system.partner
             type='companion'
-            hideTags=true
-            hideDescription=true
             isActor=true
             hideTooltip=true
             }}
@@ -28,11 +26,9 @@
             <side-line-div></side-line-div>
         </div>
         <ul class="items-list">
-            {{> 'daggerheart.inventory-item'
+            {{> 'daggerheart.inventory-item-compact'
             item=document.system.attack
             type='action'
-            hideTags=true
-            hideDescription=true
             hideTooltip=true
             }}
         </ul>
