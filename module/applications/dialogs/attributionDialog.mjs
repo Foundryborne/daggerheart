@@ -2,7 +2,7 @@ import autocomplete from 'autocompleter';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
-export default class AttriubtionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
+export default class AttributionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     constructor(item) {
         super({});
 

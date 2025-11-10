@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "0RdKeWfbPRTHcAMf",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>While touching a corpse that died recently, you can <strong>mark a Stress</strong> to extract one memory from the corpse related to a specific emotion or sensation of your choice.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -58,12 +58,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.1.2",
     "createdTime": 1753996213198,
-    "modifiedTime": 1755394413905,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1761138171389,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!items!WuwXH2r2uM9sDJtj"
 }

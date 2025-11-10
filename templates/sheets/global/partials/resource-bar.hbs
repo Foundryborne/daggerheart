@@ -18,10 +18,10 @@
         </div>
     {{else}}
         <div class='status-value'>
-            <p><input class="bar-input" name="system.resources.hitPoints.value" min="0" max='{{resource.max}}'
-                    value="{{resource.value}}" type="number"></p>
-            <p>/</p>
-            <p class="bar-label">{{resource.max}}</p>
+            <input class="bar-input" name="system.resources.hitPoints.value" min="0" max='{{resource.max}}'
+                    value="{{resource.value}}" type="number">
+            <span>/</span>
+            <span class="bar-label">{{resource.max}}</span>
         </div>
         <progress
             class='progress-bar'

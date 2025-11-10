@@ -1,3 +1,22 @@
+@import '../../utils/fonts.less';
+@import '../../utils/colors.less';
+@import '../../utils/mixin.less';
+
+.appTheme({
+    .limited-container {
+        .domains-section img {
+            filter: @golden-filter;
+        }
+    }
+}, {
+    .limited-container {
+
+        .domains-section img {
+            filter: brightness(0) saturate(100%);
+        }
+    }
+});
+
 .application.sheet.daggerheart.actor.dh-style {
     .portrait img,
     .profile {
@@ -16,5 +35,193 @@
         font-style: italic;
         font-family: @font-body;
         color: light-dark(@chat-blue-bg, @beige-50);
+    }
+
+    &.limited {
+        &.character,
+        &.adversary,
+        &.environment,
+        &.companion {
+            .window-content {
+                display: unset;
+                padding-bottom: 20px;
+                background-image: url('../assets/parchments/dh-parchment-dark.png');
+            }
+
+            .limited-container {
+                width: 100%;
+                padding-top: var(--header-height);
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                header {
+                    position: relative;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    top: -36px;
+                    margin-bottom: -30px;
+
+                    .profile {
+                        width: 100%;
+                        max-height: 275px;
+                        max-width: fit-content;
+                        mask-image: linear-gradient(0deg, transparent 0%, black 10%);
+                    }
+
+                    .title-name {
+                        text-align: start;
+                        font-size: var(--font-size-28);
+                        color: light-dark(@dark-blue, @golden);
+                        text-align: center;
+                    }
+                }
+
+                .character-details {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+
+                    .basic-info,
+                    .multiclass {
+                        text-align: center;
+                        padding: 0 10px;
+                    }
+                }
+
+                .domain-details,
+                .bio-details,
+                .partner-details {
+                    margin-top: 10px;
+
+                    .domain-header,
+                    .bio-header,
+                    .partner-header {
+                        display: flex;
+                        align-items: center;
+                        padding: 0 10px;
+                        gap: 10px;
+
+                        h3 {
+                            font-size: var(--font-size-20);
+                        }
+                    }
+
+                    .items-list {
+                        padding: 0 20px;
+                    }
+
+                    .partner-placeholder {
+                        display: flex;
+                        opacity: 0.6;
+                        text-align: center;
+                        font-style: italic;
+                        justify-content: center;
+                        padding: 10px 0;
+                    }
+
+                    .domains-section {
+                        position: relative;
+                        display: flex;
+                        gap: 10px;
+                        background-color: light-dark(transparent, @dark-blue);
+                        color: light-dark(@dark-blue, @golden);
+                        padding: 5px 10px;
+                        border: 1px solid light-dark(@dark-blue, @golden);
+                        border-radius: 6px;
+                        align-items: center;
+                        width: fit-content;
+                        height: 30px;
+                        place-self: center;
+                        margin-top: 10px;
+
+                        h4 {
+                            font-size: var(--font-size-14);
+                            font-weight: bold;
+                            text-transform: uppercase;
+                            color: light-dark(@dark-blue, @golden);
+                        }
+
+                        .domain {
+                            display: flex;
+                            align-items: center;
+                            gap: 5px;
+
+                            .label {
+                                font-size: var(--font-size-14);
+                                font-weight: bold;
+                                text-transform: uppercase;
+                                color: light-dark(@dark-blue, @golden);
+                            }
+
+                            img {
+                                height: 20px;
+                                width: 20px;
+                            }
+                        }
+                    }
+
+                    .bio-list {
+                        display: flex;
+                        gap: 20px;
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        margin-top: 10px;
+
+                        .bio-info {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            padding: 10px;
+                            border-radius: 5px;
+                            min-width: 90px;
+                            color: light-dark(@dark-blue, @golden);
+                            background-color: light-dark(@dark-blue-10, @golden-40);
+                        }
+                    }
+                }
+
+                .level-details {
+                    align-self: center;
+                }
+
+                .description {
+                    font-style: italic;
+                    text-align: center;
+                    padding: 0 20px;
+                }
+
+                .tags {
+                    display: flex;
+                    gap: 10px;
+                    padding-bottom: 10px;
+                    justify-content: center;
+
+                    .tag {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 3px 5px;
+                        font-size: var(--font-size-12);
+                        font: @font-body;
+
+                        background: light-dark(@dark-15, @beige-15);
+                        border: 1px solid light-dark(@dark, @beige);
+                        border-radius: 3px;
+                    }
+
+                    .label {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: var(--font-size-12);
+                    }
+                }
+            }
+        }
     }
 }

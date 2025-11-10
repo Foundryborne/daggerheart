@@ -239,7 +239,7 @@
       "_id": "qEn4baWgkjKtmILp",
       "img": "icons/equipment/shield/shield-round-boss-wood-brown.webp",
       "system": {
-        "description": "<p>A creature who tries to move within Very Close range of the Guard must succeed on an Agility Roll. If additional Bladed Guards are standing in a line alongside the f i rst, and each is within Melee range of another guard in the line, the Diffi  culty increases by the total number of guards in that line.</p>",
+        "description": "<p>A creature who tries to move within Very Close range of the Guard must succeed on an Agility Roll. If additional Bladed Guards are standing in a line alongside the first, and each is within Melee range of another guard in the line, the Difficulty increases by the total number of guards in that line.</p>",
         "resource": null,
         "actions": {
           "3lbeEeJdjzPn0MoG": {
@@ -305,12 +305,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754012824140,
-        "modifiedTime": 1754143793947,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760021165250,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!B4LZcGuBAHzyVdzy.qEn4baWgkjKtmILp"
     },

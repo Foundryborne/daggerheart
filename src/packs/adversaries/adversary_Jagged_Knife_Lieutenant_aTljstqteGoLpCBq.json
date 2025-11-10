@@ -302,7 +302,7 @@
       "_id": "Mo91w4ccffcmBPt5",
       "img": "icons/magic/control/silhouette-hold-beam-blue.webp",
       "system": {
-        "description": "<p>Summon three Jagged Knife Lackeys, who appear at Far range.</p>",
+        "description": "<p>Summon three @Compendium[daggerheart.adversaries.Actor.C0OMQqV7pN6t7ouR], who appear at Far range.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -321,12 +321,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754049041008,
-        "modifiedTime": 1754049075688,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760209967742,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!aTljstqteGoLpCBq.Mo91w4ccffcmBPt5"
     },
@@ -478,7 +478,77 @@
       "system": {
         "description": "<p>When the Lieutenant makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "GSjfSgBzyhbVcpbt": {
+            "type": "healing",
+            "_id": "GSjfSgBzyhbVcpbt",
+            "systemPath": "actions",
+            "description": "<p>When the Lieutenant makes a successful attack against a PC, you gain a Fear.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "fear",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "name": "Gain Fear",
+            "img": "icons/skills/melee/strike-weapons-orange.webp",
+            "range": ""
+          }
+        },
         "originItemType": null,
         "subType": null,
         "originId": null
@@ -495,12 +565,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754049157702,
-        "modifiedTime": 1754049175516,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760032394994,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!aTljstqteGoLpCBq.uelnRgGStjJ27VtO"
     }

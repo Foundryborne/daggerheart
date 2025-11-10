@@ -500,7 +500,7 @@
             "type": "effect",
             "_id": "11mqihmiBK41aoDm",
             "systemPath": "actions",
-            "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\">Countdown (Loop 2d6). When the Sorcerer is in the spotlight for the first time, activate the countdown.</span></p>",
+            "description": "<p>Countdown (Loop 2d6). When the Sorcerer is in the spotlight for the first time, activate the countdown.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

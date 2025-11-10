@@ -1,0 +1,31 @@
+<div class="limited-container">
+    <header>
+        <img class="profile" src="{{document.img}}" alt="{{document.name}}" data-action='editImage' data-edit="img">
+        <h1 class="title-name">{{document.name}}</h1>
+    </header>
+    <h3 class="level-details">
+        {{localize 'DAGGERHEART.GENERAL.level'}} 
+        {{document.system.levelData.level.changed}}
+    </h3>
+    <div class="partner-details">
+        <div class="partner-header">
+            <side-line-div class="invert"></side-line-div>
+                <h3>{{localize "DAGGERHEART.GENERAL.partner"}}</h3>
+            <side-line-div></side-line-div>
+        </div>
+        {{#if document.system.partner}}
+        <ul class="items-list">
+            {{> 'daggerheart.inventory-item'
+            item=document.system.partner
+            type='companion'
+            hideTags=true
+            hideDescription=true
+            isActor=true
+            hideTooltip=true
+            }}
+        </ul>
+        {{else}}
+        <span class="partner-placeholder">{{localize "DAGGERHEART.ACTORS.Companion.noPartner"}}</span>
+        {{/if}}
+    </div>
+</div>

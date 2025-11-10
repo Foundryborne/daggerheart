@@ -81,7 +81,7 @@
   },
   "effects": [],
   "folder": null,
-  "sort": 0,
+  "sort": 743750,
   "ownership": {
     "default": 0,
     "Q9NoTaEarn3VMS6Z": 3
@@ -91,12 +91,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
     "systemVersion": "1.1.2",
     "createdTime": 1754349743129,
-    "modifiedTime": 1756398741027,
-    "lastModifiedBy": "gbAAZWyczKwejDNh"
+    "modifiedTime": 1760018753854,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!items!DchOzHcWIJE9FKcR"
 }

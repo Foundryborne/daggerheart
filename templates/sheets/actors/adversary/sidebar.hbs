@@ -8,10 +8,10 @@
         <div class="resources-section">
             <div class="status-bar">
                 <div class='status-value'>
-                    <p><input class="bar-input" name="system.resources.hitPoints.value" min="0" max='{{source.system.resources.hitPoints.max}}'
-                            value="{{source.system.resources.hitPoints.value}}" type="number"></p>
-                    <p>/</p>
-                    <p class="bar-label">{{source.system.resources.hitPoints.max}}</p>
+                    <input class="bar-input" name="system.resources.hitPoints.value" min="0" max='{{source.system.resources.hitPoints.max}}'
+                            value="{{source.system.resources.hitPoints.value}}" type="number">
+                    <span>/</span>
+                    <span class="bar-label">{{source.system.resources.hitPoints.max}}</span>
                 </div>
                 <progress class='progress-bar' value='{{source.system.resources.hitPoints.value}}'
                     max='{{source.system.resources.hitPoints.max}}'></progress>
@@ -22,10 +22,10 @@
             </div>
             <div class="status-bar">
                 <div class='status-value'>
-                    <p><input class="bar-input" name="system.resources.stress.value" min="0" max='{{source.system.resources.stress.max}}'
-                            value="{{source.system.resources.stress.value}}" type="number"></p>
-                    <p>/</p>
-                    <p class="bar-label">{{source.system.resources.stress.max}}</p>
+                    <input class="bar-input" name="system.resources.stress.value" min="0" max='{{source.system.resources.stress.max}}'
+                            value="{{source.system.resources.stress.value}}" type="number">
+                    <span>/</span>
+                    <span class="bar-label">{{source.system.resources.stress.max}}</span>
                 </div>
                 <progress class='progress-bar stress-color' value='{{source.system.resources.stress.value}}'
                     max='{{source.system.resources.stress.max}}'></progress>
@@ -78,13 +78,9 @@
                 <side-line-div></side-line-div>
             </div>
             <ul class="items-sidebar-list">
-                {{> 'daggerheart.inventory-item'
+                {{> 'daggerheart.inventory-item-compact'
                 item=document.system.attack
                 type='action'
-                hideTags=true
-                hideDescription=true
-                hideResources=true
-                noExtensible=true
                 noCompendiumEdit=true
                 }}
             </ul>

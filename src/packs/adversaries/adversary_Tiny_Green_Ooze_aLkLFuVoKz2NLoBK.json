@@ -229,14 +229,14 @@
       "_id": "WpOh5kHHx7lcTvEY",
       "img": "icons/magic/acid/dissolve-drip-droplet-smoke.webp",
       "system": {
-        "description": "<p>When the Ooze makes a successful attack, the target must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
+        "description": "<p>When the Ooze makes a successful attack, the target must mark an Armor Slot without receiving its benefi ts (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
         "resource": null,
         "actions": {
           "HfK0u0c7NRppuF1Q": {
             "type": "damage",
             "_id": "HfK0u0c7NRppuF1Q",
             "systemPath": "actions",
-            "description": "<p>When the Ooze makes a successful attack, the target must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
+            "description": "<p>When the Ooze makes a successful attack, the target must mark an Armor Slot without receiving its benefi ts (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -301,12 +301,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.346",
         "systemId": "daggerheart",
-        "systemVersion": "1.1.2",
+        "systemVersion": "0.0.1",
         "createdTime": 1754055148507,
-        "modifiedTime": 1756510967769,
-        "lastModifiedBy": "mdk78Q6pOyHh6aBg"
+        "modifiedTime": 1754145130460,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!aLkLFuVoKz2NLoBK.WpOh5kHHx7lcTvEY"
     }

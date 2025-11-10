@@ -21,7 +21,7 @@
         "type": "effect",
         "_id": "hBh4Lt0Bdd9CtJY7",
         "systemPath": "actions",
-        "description": "<p><span class=\"vertical-card-list-found\" style=\"box-sizing: border-box; margin: 0px 0px 0.25rem; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif\">Once per rest, you can switch the results of your Hope and Fear Dice.</span></p>",
+        "description": "<p><span class=\"vertical-card-list-found\" style=\"box-sizing: border-box; margin: 0px 0px 0.25rem; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif\">Once per rest, you can switch the results of your Hope and Fear Dice.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

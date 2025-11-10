@@ -1,6 +1,6 @@
 export async function runMigrations() {
     let lastMigrationVersion = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion);
-    if (!lastMigrationVersion) lastMigrationVersion = '1.0.6';
+    if (!lastMigrationVersion) lastMigrationVersion = game.system.version;
 
     if (foundry.utils.isNewerVersion('1.1.0', lastMigrationVersion)) {
         const lockedPacks = [];
