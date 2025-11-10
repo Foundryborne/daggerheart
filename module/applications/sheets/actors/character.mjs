@@ -180,6 +180,16 @@ export default class CharacterSheet extends DHBaseActorSheet {
             return acc;
         }, {});
 
+        context.resources = Object.keys(this.document.system.resources).reduce((acc, key) => {
+            acc[key] = this.document.system.resources[key];
+            return acc;
+        }, {});
+        const maxResource = Math.max(context.resources.hitPoints.max, context.resources.stress.max);
+        context.resources.hitPoints.emptyPips =
+            context.resources.hitPoints.max < maxResource ? maxResource - context.resources.hitPoints.max : 0;
+        context.resources.stress.emptyPips =
+            context.resources.stress.max < maxResource ? maxResource - context.resources.stress.max : 0;
+
         context.inventory = {
             currency: {
                 title: game.i18n.localize('DAGGERHEART.CONFIG.Gold.title'),
@@ -736,7 +746,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
      */
     static async #toggleHitPoints(_, button) {
         const hitPointsValue = Number.parseInt(button.dataset.value);
-        const newValue = this.document.system.resources.hitPoints.value >= hitPointsValue ? hitPointsValue - 1 : hitPointsValue;
+        const newValue =
+            this.document.system.resources.hitPoints.value >= hitPointsValue ? hitPointsValue - 1 : hitPointsValue;
         await this.document.update({ 'system.resources.hitPoints.value': newValue });
     }
 
@@ -754,7 +765,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * Toggles ArmorScore resource value.
      * @type {ApplicationClickAction}
      */
-    static async #toggleArmor(_, button,element) {
+    static async #toggleArmor(_, button, element) {
         const ArmorValue = Number.parseInt(button.dataset.value);
         const newValue = this.document.system.armor.system.marks.value >= ArmorValue ? ArmorValue - 1 : ArmorValue;
         await this.document.system.armor.update({ 'system.marks.value': newValue });
