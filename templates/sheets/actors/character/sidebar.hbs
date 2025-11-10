@@ -15,12 +15,12 @@
         <a class="death-roll-btn" data-tooltip="DAGGERHEART.UI.Tooltip.makeDeathMove" {{#if
             isDeath}}data-action="makeDeathMove" {{/if}}><i class="fa-solid fa-skull death-save"></i></a>
     </div>
-    <div class="info-section">
+    <div class="info-section {{#if useResourcePips}}pip-display{{/if}}">
         <div class="resources-section">
-            {{> "systems/daggerheart/templates/sheets/global/partials/resource-bar.hbs" resource=resources.hitPoints }}
-            {{> "systems/daggerheart/templates/sheets/global/partials/resource-bar.hbs" resource=resources.stress }}
+            {{> "systems/daggerheart/templates/sheets/global/partials/resource-bar.hbs" resource=resources.hitPoints label="DAGGERHEART.GENERAL.HitPoints.short" key="system.resources.hitPoints.value" action="toggleHitPoints" }}
+            {{> "systems/daggerheart/templates/sheets/global/partials/resource-bar.hbs" resource=resources.stress label="DAGGERHEART.GENERAL.stress" key="system.resources.stress.value" action="toggleStress" }}
         </div>
-        <div class="status-section">
+        <div class="status-section {{#if useResourcePips}}pip-display{{/if}}">
             <div class="status-number">
                 <div class='status-value'>
                     <p>{{document.system.evasion}}</p>
@@ -52,9 +52,9 @@
                     </div>
                     {{else}}
                     <div class='status-value'>
-                        <p><input class="bar-input armor-marks-input" value="{{document.system.armor.system.marks.value}}" type="number"></p>
-                        <p>/</p>
-                        <p class="bar-label">{{document.system.armorScore}}</p>
+                        <input class="bar-input armor-marks-input" value="{{document.system.armor.system.marks.value}}" type="number">
+                        <span>/</span>
+                        <span class="bar-label">{{document.system.armorScore}}</span>
                     </div>
                     <progress
                         class='progress-bar stress-color'

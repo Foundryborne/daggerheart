@@ -8,6 +8,7 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
         classes: ['actor', 'companion'],
         position: { width: 340 },
         actions: {
+            toggleStress: DhCompanionSheet.#toggleStress,
             actionRoll: DhCompanionSheet.#actionRoll,
             levelManagement: DhCompanionSheet.#levelManagement
         }
@@ -49,6 +50,16 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
     /* -------------------------------------------- */
     /*  Application Clicks Actions                  */
     /* -------------------------------------------- */
+
+    /**
+     * Toggles stress resource value.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleStress(_, button) {
+        const StressValue = Number.parseInt(button.dataset.value);
+        const newValue = this.document.system.resources.stress.value >= StressValue ? StressValue - 1 : StressValue;
+        await this.document.update({ 'system.resources.stress.value': newValue });
+    }
 
     /**
      *

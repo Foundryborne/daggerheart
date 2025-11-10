@@ -11,12 +11,10 @@
             background: url(../assets/svg/experience-shield.svg) no-repeat;
         }
 
-        .info-section { 
-            .resources-section .status-bar, .status-section .status-bar.armor-slots  {
-                .slot-value .slot-bar {
-                    background: @dark-blue;
-                }   
-            }
+        .info-section .status-section .status-bar.armor-slots {  
+            .slot-value .slot-bar {
+                background: @dark-blue;
+            }     
         }
     }
 }, {
@@ -31,12 +29,10 @@
             filter: brightness(0) drop-shadow(0 0 3px @dark-blue);
         }
 
-        .info-section { 
-            .resources-section .status-bar, .status-section .status-bar.armor-slots  {
-                .slot-value .slot-bar {
-                    background-image: url('../assets/parchments/dh-parchment-light.png');
-                }   
-            }
+        .info-section .status-section .status-bar.armor-slots { 
+            .slot-value .slot-bar {
+                background-image: url('../assets/parchments/dh-parchment-light.png');
+            }   
         }
     }
 });
@@ -141,13 +137,22 @@
         display: flex;
         flex-direction: column;
         top: -20px;
-        gap: 15px;
+        gap: 10px;
         margin-bottom: -16px;
+
+        &.pip-display {
+            gap: 15px;
+
+            .resources-section {
+                justify-content: space-around;
+                margin: 8px 2px 8px 2px;
+            }
+        }
 
         .resources-section {
             display: flex;
-            justify-content: space-around;
-            margin: 8px 2px 8px 2px;
+            justify-content: space-evenly;
+            margin-bottom: 20px;
 
             .status-bar {
                 display: flex;
@@ -169,71 +174,6 @@
                         text-align: center;
                         line-height: 18px;
                         color: light-dark(@beige, @dark-blue);
-                    }
-                }
-                .slot-value {
-                    position: absolute;
-                    display: flex;
-                    flex-direction: column;
-                    padding: 0 5px;
-                    font-size: 1.5rem;
-                    align-items: center;
-                    width: 140px;
-                    height: 40px;
-                    justify-content: center;
-                    text-align: center;
-                    z-index: 2;
-                    color: @beige;
-
-                    .slot-bar {
-                        display: flex;
-                        flex-wrap: wrap;
-                        gap: 5px;
-                        padding: 5px;
-                        border: 1px solid light-dark(@dark-blue, @golden);
-                        border-radius: 6px;
-                        z-index: 1;
-                        color: light-dark(@dark-blue, @golden);
-                        width: fit-content;
-
-                        .slot {
-                            width: 15px;
-                            height: 10px;
-                            border: 1px solid light-dark(@dark-blue, @golden);
-                            background: light-dark(@dark-blue-10, @golden-10);
-                            border-radius: 3px;
-                            transition: all 0.3s ease;
-                            cursor: pointer;
-
-                            &.filled {
-                                background: light-dark(@dark-blue, @golden);
-                            }
-                        }
-
-                        .empty-slot {
-                            width: 15px;
-                            height: 10px;
-                        }
-                    }
-                    .slot-label {
-                        display: flex;
-                        align-items: center;
-                        color: light-dark(@beige, @dark-blue);
-                        background: light-dark(@dark-blue, @golden);
-                        padding: 0 5px;
-                        width: fit-content;
-                        font-weight: bold;
-                        border-radius: 0px 0px 5px 5px;
-                        font-size: var(--font-size-12);
-
-                        .label {
-                            padding-right: 5px;
-                        }
-
-                        .value {
-                            padding-left: 6px;
-                            border-left: 1px solid light-dark(@beige, @dark-golden);
-                        }
                     }
                 }
 
@@ -319,13 +259,34 @@
             flex-wrap: wrap;
             gap: 5px;
             justify-content: center;
-            align-items: center;
+
+            &.pip-display {
+                align-items: end;
+
+                .status-bar.armor-slots {
+                    width: 100px;
+                    height: auto;
+
+                    .slot-value {
+                        position: relative;
+                        height: auto;
+
+                        .slot-bar {
+                            border-radius: 6px 6px 0 0;
+                        }
+                    }
+
+                    .status-value {
+                        padding: 0 5px;
+                    }
+                }
+            }
 
             .status-bar.armor-slots {
                 display: flex;
                 justify-content: center;
                 position: relative;
-                width: 100px;
+                width: 95px;
                 height: 30px;
 
                 .status-label {
@@ -336,6 +297,7 @@
                     width: 95px;
                     border-radius: 3px;
                     background: light-dark(@dark-blue, @golden);
+                    clip-path: none;
 
                     h4 {
                         font-weight: bold;
@@ -401,13 +363,14 @@
 
                         .value {
                             padding-left: 6px;
+                            border-left: 0;
                         }
                     }
                 }
                 .status-value {
                     position: absolute;
                     display: flex;
-                    padding: 0 5px;
+                    padding: 0 6px;
                     font-size: 1.2rem;
                     align-items: center;
                     width: 80px;
@@ -416,6 +379,9 @@
                     text-align: center;
                     z-index: 2;
                     color: light-dark(@dark-blue, @beige);
+                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border-bottom: none;
+                    border-radius: 6px 6px 0 0;
 
                     input[type='number'] {
                         background: transparent;

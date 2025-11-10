@@ -10,6 +10,8 @@ export default class AdversarySheet extends DHBaseActorSheet {
         position: { width: 660, height: 766 },
         window: { resizable: true },
         actions: {
+            toggleHitPoints: AdversarySheet.#toggleHitPoints,
+            toggleStress: AdversarySheet.#toggleStress,
             reactionRoll: AdversarySheet.#reactionRoll,
             toggleResourceDice: AdversarySheet.#toggleResourceDice,
             handleResourceDice: AdversarySheet.#handleResourceDice
@@ -74,6 +76,16 @@ export default class AdversarySheet extends DHBaseActorSheet {
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
         context.systemFields.attack.fields = this.document.system.attack.schema.fields;
+
+        context.resources = Object.keys(this.document.system.resources).reduce((acc, key) => {
+            acc[key] = this.document.system.resources[key];
+            return acc;
+        }, {});
+        const maxResource = Math.max(context.resources.hitPoints.max, context.resources.stress.max);
+        context.resources.hitPoints.emptyPips =
+            context.resources.hitPoints.max < maxResource ? maxResource - context.resources.hitPoints.max : 0;
+        context.resources.stress.emptyPips =
+            context.resources.stress.max < maxResource ? maxResource - context.resources.stress.max : 0;
 
         return context;
     }
@@ -154,6 +166,27 @@ export default class AdversarySheet extends DHBaseActorSheet {
     /* -------------------------------------------- */
     /*  Application Clicks Actions                  */
     /* -------------------------------------------- */
+
+    /**
+     * Toggles hitpoint resource value.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleHitPoints(_, button) {
+        const hitPointsValue = Number.parseInt(button.dataset.value);
+        const newValue =
+            this.document.system.resources.hitPoints.value >= hitPointsValue ? hitPointsValue - 1 : hitPointsValue;
+        await this.document.update({ 'system.resources.hitPoints.value': newValue });
+    }
+
+    /**
+     * Toggles stress resource value.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleStress(_, button) {
+        const StressValue = Number.parseInt(button.dataset.value);
+        const newValue = this.document.system.resources.stress.value >= StressValue ? StressValue - 1 : StressValue;
+        await this.document.update({ 'system.resources.stress.value': newValue });
+    }
 
     /**
      * Performs a reaction roll for an Adversary.
