@@ -10,7 +10,7 @@
         "type": "effect",
         "_id": "p8DESOMGA6dLwEMz",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>When you succeed on an attack against a target within Melee range, you can <strong>mark a Stress</strong> to make the target temporarily <em>Vulnerable</em>.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -23,7 +23,7 @@
         ],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "effects": [
@@ -33,7 +33,7 @@
           }
         ],
         "target": {
-          "type": null,
+          "type": "",
           "amount": null
         },
         "name": "Mark Stress",
@@ -101,12 +101,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753575250590,
-    "modifiedTime": 1755395576634,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1762786502471,
+    "lastModifiedBy": "gtrqalNxfl7iRwL8"
   },
   "_id": "8u0HkK3WgtU9lWYs",
   "sort": 2400000,

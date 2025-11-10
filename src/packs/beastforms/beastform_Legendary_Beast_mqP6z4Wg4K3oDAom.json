@@ -5,8 +5,8 @@
   "system": {
     "beastformType": "evolved",
     "tier": 3,
-    "tokenImg": "icons/svg/mystery-man.svg",
-    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenImg": "icons/creatures/magical/humanoid-giant-forest-blue.webp",
+    "tokenRingImg": "icons/creatures/magical/humanoid-giant-forest-blue.webp",
     "tokenSize": {
       "height": null,
       "width": null
@@ -100,12 +100,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753627165434,
-    "modifiedTime": 1755395443346,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1762787146758,
+    "lastModifiedBy": "gtrqalNxfl7iRwL8"
   },
   "_id": "mqP6z4Wg4K3oDAom",
   "sort": 0,

@@ -10,7 +10,7 @@
         "type": "attack",
         "_id": "9lvrqQKTEB3NRwvM",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>When an attack roll against you would succeed, you can <strong>mark a Stress</strong> and roll a <strong>d4</strong>. Add the result to your Evasion against this attack.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -23,7 +23,7 @@
         ],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "damage": {
@@ -31,7 +31,7 @@
           "includeBase": false
         },
         "target": {
-          "type": null,
+          "type": "",
           "amount": null
         },
         "effects": [],
@@ -80,12 +80,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753574925665,
-    "modifiedTime": 1755395566717,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1762786470855,
+    "lastModifiedBy": "gtrqalNxfl7iRwL8"
   },
   "_id": "a7Qvmm14nx9BCysA",
   "sort": 2300000,

@@ -5,8 +5,8 @@
   "system": {
     "beastformType": "normal",
     "tier": 2,
-    "tokenImg": "icons/svg/mystery-man.svg",
-    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenImg": "icons/creatures/reptiles/serpent-horned-green.webp",
+    "tokenRingImg": "icons/creatures/reptiles/serpent-horned-green.webp",
     "tokenSize": {
       "height": null,
       "width": null
@@ -130,12 +130,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753621251793,
-    "modifiedTime": 1755395321271,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1762787068105,
+    "lastModifiedBy": "gtrqalNxfl7iRwL8"
   },
   "_id": "1XrZWGDttBAAUxR1",
   "sort": 0,

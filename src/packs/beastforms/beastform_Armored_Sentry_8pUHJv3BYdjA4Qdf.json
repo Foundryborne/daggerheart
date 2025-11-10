@@ -5,8 +5,8 @@
   "system": {
     "beastformType": "normal",
     "tier": 2,
-    "tokenImg": "icons/svg/mystery-man.svg",
-    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenImg": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
+    "tokenRingImg": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
     "tokenSize": {
       "height": null,
       "width": null
@@ -132,10 +132,10 @@
     "exportSource": null,
     "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.2",
+    "systemVersion": "1.2.0",
     "createdTime": 1753580987168,
-    "modifiedTime": 1761502671010,
-    "lastModifiedBy": "fBcTgyTzoARBvohY"
+    "modifiedTime": 1762786983275,
+    "lastModifiedBy": "gtrqalNxfl7iRwL8"
   },
   "_id": "8pUHJv3BYdjA4Qdf",
   "sort": 100000,

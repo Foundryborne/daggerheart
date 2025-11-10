@@ -5,8 +5,8 @@
   "system": {
     "beastformType": "hybrid",
     "tier": 3,
-    "tokenImg": "icons/svg/mystery-man.svg",
-    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenImg": "icons/creatures/magical/humanoid-silhouette-glowing-pink.webp",
+    "tokenRingImg": "icons/creatures/magical/humanoid-silhouette-glowing-pink.webp",
     "tokenSize": {
       "height": null,
       "width": null
@@ -118,12 +118,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753627303526,
-    "modifiedTime": 1755395450377,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1762787159027,
+    "lastModifiedBy": "gtrqalNxfl7iRwL8"
   },
   "_id": "rRUtgcUjimlpPhnn",
   "sort": 0,
