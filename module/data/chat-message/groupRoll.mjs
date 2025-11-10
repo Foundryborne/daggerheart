@@ -9,6 +9,14 @@ export default class DHGroupRoll extends foundry.abstract.TypeDataModel {
             members: new fields.ArrayField(new fields.EmbeddedDataField(GroupRollMemberField))
         };
     }
+
+    get totalModifier() {
+        return this.members.reduce((acc, m) => {
+            if (m.manualSuccess === null) return acc;
+
+            return acc + (m.manualSuccess ? 1 : -1);
+        }, 0);
+    }
 }
 
 class GroupRollMemberField extends foundry.abstract.DataModel {

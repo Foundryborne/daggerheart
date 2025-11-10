@@ -22,7 +22,9 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
 
-        context.partyOnCanvas = this.actor.system.partyMembers.some(member => member.getActiveTokens().length > 0);
+        context.partyOnCanvas =
+            this.actor.type === 'party' &&
+            this.actor.system.partyMembers.some(member => member.getActiveTokens().length > 0);
         context.icons.toggleParty = 'systems/daggerheart/assets/icons/arrow-dunk.png';
         context.actorType = this.actor.type;
         context.usesEffects = this.actor.type !== 'party';
@@ -77,7 +79,7 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
 
         const animationDuration = 500;
         const activeTokens = this.actor.system.partyMembers.flatMap(member => member.getActiveTokens());
-        const { x: actorX, y: actorY } = this.actor.token;
+        const { x: actorX, y: actorY } = this.document;
         if (activeTokens.length > 0) {
             for (let token of activeTokens) {
                 await token.document.update(
@@ -88,12 +90,15 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
             }
         } else {
             const activeScene = game.scenes.find(x => x.active);
+            const partyTokenData = [];
+            for (let member of this.actor.system.partyMembers) {
+                const data = await member.getTokenDocument();
+                partyTokenData.push(data.toObject());
+            }
             const newTokens = await activeScene.createEmbeddedDocuments(
                 'Token',
-                this.actor.system.partyMembers.map(member => ({
-                    ...member.getTokenDocument(),
-                    actorId: member.id,
-                    actorLink: true,
+                partyTokenData.map(tokenData => ({
+                    ...tokenData,
                     alpha: 0,
                     x: actorX,
                     y: actorY

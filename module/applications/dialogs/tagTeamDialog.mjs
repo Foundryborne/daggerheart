@@ -223,7 +223,9 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 title: game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.title'),
                 speaker: cls.getSpeaker({ actor: this.party.find(x => x.id === mainRollId) }),
                 system: systemData,
-                rolls: mainRoll.rolls
+                rolls: mainRoll.rolls,
+                sound: null,
+                flags: { core: { RollTable: true } }
             };
 
         await cls.create(msgData);

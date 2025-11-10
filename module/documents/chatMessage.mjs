@@ -16,7 +16,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         const html = await super.renderHTML({ actor: actorData, author: this.author });
 
         if (this.flags.core?.RollTable) {
-            html.querySelector('.roll-buttons.apply-buttons').remove();
+            html.querySelector('.roll-buttons.apply-buttons')?.remove();
         }
 
         this.enrichChatMessage(html);
