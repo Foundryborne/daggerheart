@@ -6,8 +6,17 @@
 .appTheme({
     .character-sidebar-sheet {
         background-image: url('../assets/parchments/dh-parchment-dark.png');
+
         .experience-value {
             background: url(../assets/svg/experience-shield.svg) no-repeat;
+        }
+
+        .info-section { 
+            .resources-section .status-bar, .status-section .status-bar.armor-slots  {
+                .slot-value .slot-bar {
+                    background: @dark-blue;
+                }   
+            }
         }
     }
 }, {
@@ -20,6 +29,14 @@
 
         .portrait.death-roll .death-roll-btn {
             filter: brightness(0) drop-shadow(0 0 3px @dark-blue);
+        }
+
+        .info-section { 
+            .resources-section .status-bar, .status-section .status-bar.armor-slots  {
+                .slot-value .slot-bar {
+                    background-image: url('../assets/parchments/dh-parchment-light.png');
+                }   
+            }
         }
     }
 });
@@ -169,32 +186,29 @@
                     color: @beige;
 
                     .slot-bar {
-                            display: flex;
-                            flex-wrap: wrap;
-                            gap: 5px;
-                            padding: 5px;
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 5px;
+                        padding: 5px;
+                        border: 1px solid light-dark(@dark-blue, @golden);
+                        border-radius: 6px;
+                        z-index: 1;
+                        color: light-dark(@dark-blue, @golden);
+                        width: fit-content;
+
+                        .slot {
+                            width: 15px;
+                            height: 10px;
                             border: 1px solid light-dark(@dark-blue, @golden);
-                            border-radius: 6px;
-                            z-index: 1;
-                            background: @dark-blue;
+                            background: light-dark(@dark-blue-10, @golden-10);
+                            border-radius: 3px;
+                            transition: all 0.3s ease;
+                            cursor: pointer;
 
-                            color: light-dark(@dark-blue, @golden);
-                            width: fit-content;
-
-
-                            .slot {
-                                width: 15px;
-                                height: 10px;
-                                border: 1px solid light-dark(@dark-blue, @golden);
-                                background: light-dark(@dark-blue-10, @golden-10);
-                                border-radius: 3px;
-                                transition: all 0.3s ease;
-                                cursor: pointer;
-                                
-                                &.filled {
-                                    background: light-dark(@dark-blue, @golden);
-                                }
-                            }   
+                            &.filled {
+                                background: light-dark(@dark-blue, @golden);
+                            }
+                        }
                     }
                     .slot-label {
                         display: flex;
@@ -361,7 +375,6 @@
                                 color: light-dark(@dark-blue-40, @golden-40);
                             }
                         }
-  
                     }
                     .slot-label {
                         display: flex;
@@ -385,8 +398,6 @@
                             padding-left: 6px;
                         }
                     }
-
-                    
                 }
                 .status-value {
                     position: absolute;
