@@ -131,6 +131,12 @@ export default class DHArmor extends AttachableItem {
 
     _onUpdate(a, b, c) {
         super._onUpdate(a, b, c);
+
+        if (this.actor?.type === 'character') {
+            for (const party of this.actor.parties) {
+                party.render();
+            }
+        }
     }
 
     /**
