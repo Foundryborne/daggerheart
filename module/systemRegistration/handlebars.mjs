@@ -1,6 +1,7 @@
 export const preloadHandlebarsTemplates = async function () {
     foundry.applications.handlebars.loadTemplates({
-        'daggerheart.inventory-item-compact': 'systems/daggerheart/templates/sheets/global/partials/inventory-item-compact.hbs',
+        'daggerheart.inventory-item-compact':
+            'systems/daggerheart/templates/sheets/global/partials/inventory-item-compact.hbs',
         'daggerheart.inventory-items':
             'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items-V2.hbs',
         'daggerheart.inventory-item': 'systems/daggerheart/templates/sheets/global/partials/inventory-item-V2.hbs'
@@ -11,6 +12,7 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/sheets/global/partials/domain-card-item.hbs',
         'systems/daggerheart/templates/sheets/global/partials/item-resource.hbs',
         'systems/daggerheart/templates/sheets/global/partials/resource-section.hbs',
+        'systems/daggerheart/templates/sheets/global/partials/resource-bar.hbs',
         'systems/daggerheart/templates/components/card-preview.hbs',
         'systems/daggerheart/templates/levelup/parts/selectable-card-preview.hbs',
         'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs',

@@ -19,6 +19,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
         actions: {
             toggleVault: CharacterSheet.#toggleVault,
             rollAttribute: CharacterSheet.#rollAttribute,
+            toggleHitPoints: CharacterSheet.#toggleHitPoints,
+            toggleStress: CharacterSheet.#toggleStress,
+            toggleArmor: CharacterSheet.#toggleArmor,
             toggleHope: CharacterSheet.#toggleHope,
             toggleLoadoutView: CharacterSheet.#toggleLoadoutView,
             openPack: CharacterSheet.#openPack,
@@ -195,6 +198,16 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
             return acc;
         }, {});
+
+        context.resources = Object.keys(this.document.system.resources).reduce((acc, key) => {
+            acc[key] = this.document.system.resources[key];
+            return acc;
+        }, {});
+        const maxResource = Math.max(context.resources.hitPoints.max, context.resources.stress.max);
+        context.resources.hitPoints.emptyPips =
+            context.resources.hitPoints.max < maxResource ? maxResource - context.resources.hitPoints.max : 0;
+        context.resources.stress.emptyPips =
+            context.resources.stress.max < maxResource ? maxResource - context.resources.stress.max : 0;
 
         context.inventory = {
             currency: {
@@ -744,6 +757,37 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const newAbilityView = button.dataset.value === 'true';
         await game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.displayDomainCardsAsCard, newAbilityView);
         this.render();
+    }
+
+    /**
+     * Toggles hitpoint resource value.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleHitPoints(_, button) {
+        const hitPointsValue = Number.parseInt(button.dataset.value);
+        const newValue =
+            this.document.system.resources.hitPoints.value >= hitPointsValue ? hitPointsValue - 1 : hitPointsValue;
+        await this.document.update({ 'system.resources.hitPoints.value': newValue });
+    }
+
+    /**
+     * Toggles stress resource value.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleStress(_, button) {
+        const StressValue = Number.parseInt(button.dataset.value);
+        const newValue = this.document.system.resources.stress.value >= StressValue ? StressValue - 1 : StressValue;
+        await this.document.update({ 'system.resources.stress.value': newValue });
+    }
+
+    /**
+     * Toggles ArmorScore resource value.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleArmor(_, button, element) {
+        const ArmorValue = Number.parseInt(button.dataset.value);
+        const newValue = this.document.system.armor.system.marks.value >= ArmorValue ? ArmorValue - 1 : ArmorValue;
+        await this.document.system.armor.update({ 'system.marks.value': newValue });
     }
 
     /**

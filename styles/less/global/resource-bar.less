@@ -1,0 +1,178 @@
+// Theme sidebar backgrounds
+.appTheme({
+    .slot-value .slot-bar {
+        background: @dark-blue;
+    }     
+}, {
+    .slot-value .slot-bar {
+        background-image: url('../assets/parchments/dh-parchment-light.png');
+    }   
+});
+
+.status-bar {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 120px;
+    height: 40px;
+
+    .status-label {
+        position: relative;
+        top: 40px;
+        height: 22px;
+        width: 79px;
+        clip-path: path('M0 0H79L74 16.5L39 22L4 16.5L0 0Z');
+        background: light-dark(@dark-blue, @golden);
+
+        h4 {
+            font-weight: bold;
+            text-align: center;
+            line-height: 18px;
+            color: light-dark(@beige, @dark-blue);
+        }
+    }
+    .slot-value {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        padding: 0 5px;
+        font-size: 1.5rem;
+        align-items: center;
+        width: 140px;
+        height: 40px;
+        justify-content: center;
+        text-align: center;
+        z-index: 2;
+        color: @beige;
+
+        .slot-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            padding: 5px;
+            border: 1px solid light-dark(@dark-blue, @golden);
+            border-radius: 6px;
+            z-index: 1;
+            color: light-dark(@dark-blue, @golden);
+            width: fit-content;
+
+            .slot {
+                width: 15px;
+                height: 10px;
+                border: 1px solid light-dark(@dark-blue, @golden);
+                background: light-dark(@dark-blue-10, @golden-10);
+                border-radius: 3px;
+                transition: all 0.3s ease;
+                cursor: pointer;
+
+                &.large {
+                    width: 20px;
+                }
+
+                &.filled {
+                    background: light-dark(@dark-blue, @golden);
+                }
+            }
+
+            .empty-slot {
+                width: 15px;
+                height: 10px;
+            }
+        }
+        .slot-label {
+            display: flex;
+            align-items: center;
+            color: light-dark(@beige, @dark-blue);
+            background: light-dark(@dark-blue, @golden);
+            padding: 0 5px;
+            width: fit-content;
+            font-weight: bold;
+            border-radius: 0px 0px 5px 5px;
+            font-size: var(--font-size-12);
+
+            .label {
+                padding-right: 5px;
+            }
+
+            .value {
+                padding-left: 6px;
+                border-left: 1px solid light-dark(@beige, @dark-golden);
+            }
+        }
+    }
+
+    .status-value {
+        position: absolute;
+        display: flex;
+        padding: 0 5px;
+        font-size: 1.5rem;
+        align-items: center;
+        width: 140px;
+        height: 40px;
+        justify-content: center;
+        text-align: center;
+        z-index: 2;
+        color: @beige;
+
+        input[type='number'] {
+            background: transparent;
+            font-size: 1.5rem;
+            width: 40px;
+            height: 30px;
+            text-align: center;
+            border: none;
+            outline: 2px solid transparent;
+            color: @beige;
+
+            &.bar-input {
+                padding: 0;
+                color: @beige;
+                backdrop-filter: none;
+                background: transparent;
+                transition: all 0.3s ease;
+
+                &:hover,
+                &:focus {
+                    background: @semi-transparent-dark-blue;
+                    backdrop-filter: blur(9.5px);
+                }
+            }
+        }
+
+        .bar-label {
+            width: 40px;
+        }
+    }
+    .progress-bar {
+        position: absolute;
+        appearance: none;
+        width: 100px;
+        height: 40px;
+        border: 1px solid light-dark(@dark-blue, @golden);
+        border-radius: 6px;
+        z-index: 1;
+        background: @dark-blue;
+
+        &::-webkit-progress-bar {
+            border: none;
+            background: @dark-blue;
+            border-radius: 6px;
+        }
+        &::-webkit-progress-value {
+            background: @gradient-hp;
+            border-radius: 6px;
+        }
+        &.stress-color::-webkit-progress-value {
+            background: @gradient-stress;
+            border-radius: 6px;
+        }
+        &::-moz-progress-bar {
+            background: @gradient-hp;
+            border-radius: 6px;
+        }
+        &.stress-color::-moz-progress-bar {
+            background: @gradient-stress;
+            border-radius: 6px;
+        }
+    }
+}

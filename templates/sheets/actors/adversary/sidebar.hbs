@@ -4,35 +4,10 @@
         <a class="death-roll-btn"><i class="fa-solid fa-skull death-save"></i></a>
     </div>
 
-    <div class="info-section">
+    <div class="info-section {{#if useResourcePips}}pip-display{{/if}}">
         <div class="resources-section">
-            <div class="status-bar">
-                <div class='status-value'>
-                    <input class="bar-input" name="system.resources.hitPoints.value" min="0" max='{{source.system.resources.hitPoints.max}}'
-                            value="{{source.system.resources.hitPoints.value}}" type="number">
-                    <span>/</span>
-                    <span class="bar-label">{{source.system.resources.hitPoints.max}}</span>
-                </div>
-                <progress class='progress-bar' value='{{source.system.resources.hitPoints.value}}'
-                    max='{{source.system.resources.hitPoints.max}}'></progress>
-                <div class="status-label">
-                    <h4>{{localize 'DAGGERHEART.GENERAL.HitPoints.short'}}</h4>
-                </div>
-
-            </div>
-            <div class="status-bar">
-                <div class='status-value'>
-                    <input class="bar-input" name="system.resources.stress.value" min="0" max='{{source.system.resources.stress.max}}'
-                            value="{{source.system.resources.stress.value}}" type="number">
-                    <span>/</span>
-                    <span class="bar-label">{{source.system.resources.stress.max}}</span>
-                </div>
-                <progress class='progress-bar stress-color' value='{{source.system.resources.stress.value}}'
-                    max='{{source.system.resources.stress.max}}'></progress>
-                <div class="status-label">
-                    <h4>{{localize 'DAGGERHEART.GENERAL.stress'}}</h4>
-                </div>
-            </div>
+            {{> "systems/daggerheart/templates/sheets/global/partials/resource-bar.hbs" resource=resources.hitPoints label="DAGGERHEART.GENERAL.HitPoints.short" key="system.resources.hitPoints.value" action="toggleHitPoints" }}
+            {{> "systems/daggerheart/templates/sheets/global/partials/resource-bar.hbs" resource=resources.stress label="DAGGERHEART.GENERAL.stress" key="system.resources.stress.value" action="toggleStress" }}
         </div>
         <div class="status-section">
             <div class="status-number">

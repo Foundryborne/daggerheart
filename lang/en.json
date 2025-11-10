@@ -2248,7 +2248,8 @@
                         "target": {
                             "label": "Target"
                         }
-                    }
+                    },
+                    "useResourcePips": { "label": "Pip Display For Resources" }
                 },
                 "fearDisplay": {
                     "token": "Tokens",

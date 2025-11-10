@@ -1,5 +1,9 @@
 <section class="tab {{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
     {{formGroup
+    fields.useResourcePips
+    value=setting.useResourcePips
+    localize=true}}
+    {{formGroup
     fields.displayFear
     value=setting.displayFear
     localize=true}}

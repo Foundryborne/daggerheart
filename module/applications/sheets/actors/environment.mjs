@@ -143,7 +143,6 @@ export default class DhpEnvironment extends DHBaseActorSheet {
     /*  Application Clicks Actions                  */
     /* -------------------------------------------- */
 
-
     /**
      * Toggle the used state of a resource dice.
      * @type {ApplicationClickAction}
@@ -177,5 +176,4 @@ export default class DhpEnvironment extends DHBaseActorSheet {
             }, {})
         });
     }
-
 }

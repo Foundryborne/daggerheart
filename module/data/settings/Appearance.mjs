@@ -18,6 +18,7 @@ export default class DhAppearance extends foundry.abstract.DataModel {
             });
 
         return {
+            useResourcePips: new BooleanField({ initial: false }),
             displayFear: new StringField({
                 required: true,
                 choices: CONFIG.DH.GENERAL.fearDisplay,

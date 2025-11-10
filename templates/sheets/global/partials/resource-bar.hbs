@@ -1,0 +1,35 @@
+<div class="status-bar">
+    {{#if useResourcePips}}
+        <div class='slot-value'>
+            <div class="slot-bar">
+                {{#times resource.max}}
+                    <span class='slot {{#if (gte ../resource.value (add this 1))}}filled{{/if}} {{#if ../largePips}}large{{/if}}' data-action="{{../action}}" data-value="{{add this 1}}">
+                    </span>
+                {{/times}}
+            
+                {{#times resource.emptyPips}}
+                    <span class="empty-slot"></span>
+                {{/times}}
+            </div>
+            <div class="slot-label">
+                <span class="label">{{localize label}}</span>
+                <span class="value">{{resource.value}} / {{resource.max}}</span>
+            </div> 
+        </div>
+    {{else}}
+        <div class='status-value'>
+            <input class="bar-input" name="{{key}}" min="0" max='{{resource.max}}'
+                    value="{{resource.value}}" type="number">
+            <span>/</span>
+            <span class="bar-label">{{resource.max}}</span>
+        </div>
+        <progress
+            class='progress-bar'
+            max='{{resource.max}}'
+            value='{{resource.value}}'
+        ></progress>
+        <div class="status-label">
+            <h4>{{localize label}}</h4>
+        </div>
+    {{/if}}
+</div>
