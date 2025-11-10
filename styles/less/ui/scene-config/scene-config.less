@@ -1,0 +1,26 @@
+.application.sheet.scene-config {
+    .sheet-tabs.tabs {
+        a[data-tab='dh'] {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+
+            &.active {
+                img {
+                    filter: @grey-filter drop-shadow(0 0 4px var(--color-shadow-primary));
+                }
+            }
+
+            img {
+                width: 18px;
+                position: relative;
+                top: -3px;
+                filter: @grey-filter;
+            }
+        }
+    }
+
+    .helper-text {
+        font-style: italic;
+    }
+}

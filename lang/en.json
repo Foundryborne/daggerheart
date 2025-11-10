@@ -2426,7 +2426,13 @@
                 "resetConfirmationText": "Are you sure you want to reset the {settings}?"
             },
             "Scene": {
-                "rangeMeasurementOverride": "Override Global Range Measurement Settings"
+                "FIELDS": {
+                    "rangeMeasurement": {
+                        "setting": { "label": "Setting" }
+                    }
+                },
+                "disabledText": "Daggerheart Measurements are disabled in System Settings - Variant Rules",
+                "rangeMeasurement": "Range Measurement"
             }
         },
         "UI": {
