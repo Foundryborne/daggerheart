@@ -90,12 +90,17 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
             }
         } else {
             const activeScene = game.scenes.find(x => x.active);
+            const partyTokenData = [];
+            for (let member of this.actor.system.partyMembers) {
+                const data = await member.getTokenDocument();
+                partyTokenData.push(data.toObject());
+            }
             const newTokens = await activeScene.createEmbeddedDocuments(
                 'Token',
-                this.actor.system.partyMembers.map(member => ({
-                    ...member.getTokenDocument(),
-                    actorId: member.id,
-                    actorLink: true,
+                partyTokenData.map(tokenData => ({
+                    ...tokenData,
+                    // actorId: member.id,
+                    // actorLink: true,
                     alpha: 0,
                     x: actorX,
                     y: actorY
