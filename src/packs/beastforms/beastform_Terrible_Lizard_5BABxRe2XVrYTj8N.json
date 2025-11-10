@@ -5,8 +5,8 @@
   "system": {
     "beastformType": "normal",
     "tier": 4,
-    "tokenImg": "icons/svg/mystery-man.svg",
-    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenImg": "icons/creatures/abilities/dragon-breath-purple.webp",
+    "tokenRingImg": "icons/creatures/abilities/dragon-breath-purple.webp",
     "tokenSize": {
       "height": null,
       "width": null
@@ -133,12 +133,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753628213224,
-    "modifiedTime": 1755395476212,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1762787283468,
+    "lastModifiedBy": "gtrqalNxfl7iRwL8"
   },
   "_id": "5BABxRe2XVrYTj8N",
   "sort": 300000,

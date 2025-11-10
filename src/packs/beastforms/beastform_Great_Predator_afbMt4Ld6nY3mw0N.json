@@ -5,8 +5,8 @@
   "system": {
     "beastformType": "normal",
     "tier": 3,
-    "tokenImg": "icons/svg/mystery-man.svg",
-    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenImg": "icons/creatures/mammals/wolf-shadow-black.webp",
+    "tokenRingImg": "icons/creatures/mammals/wolf-shadow-black.webp",
     "tokenSize": {
       "height": null,
       "width": null
@@ -130,12 +130,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753625648103,
-    "modifiedTime": 1755395413225,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1762787119852,
+    "lastModifiedBy": "gtrqalNxfl7iRwL8"
   },
   "_id": "afbMt4Ld6nY3mw0N",
   "sort": 100000,

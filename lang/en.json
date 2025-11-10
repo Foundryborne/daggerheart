@@ -443,6 +443,10 @@
                     "retrievePartyTokens": "Retrieve Party Tokens"
                 }
             },
+            "ImageSelect": {
+                "title": "Select Image",
+                "selectImage": "Select Image"
+            },
             "Levelup": {
                 "actions": {
                     "creatureComfort": {

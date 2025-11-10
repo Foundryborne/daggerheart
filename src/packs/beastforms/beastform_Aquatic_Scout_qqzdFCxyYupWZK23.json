@@ -5,8 +5,8 @@
   "system": {
     "beastformType": "normal",
     "tier": 1,
-    "tokenImg": "icons/svg/mystery-man.svg",
-    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenImg": "icons/creatures/tentacles/tentacles-octopus-black-pink.webp",
+    "tokenRingImg": "icons/creatures/tentacles/tentacles-octopus-black-pink.webp",
     "tokenSize": {
       "height": null,
       "width": null
@@ -124,12 +124,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753575463467,
-    "modifiedTime": 1755395249086,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1762786937661,
+    "lastModifiedBy": "gtrqalNxfl7iRwL8"
   },
   "_id": "qqzdFCxyYupWZK23",
   "sort": 200000,

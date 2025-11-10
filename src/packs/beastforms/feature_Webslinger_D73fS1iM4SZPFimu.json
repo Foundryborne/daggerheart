@@ -10,13 +10,13 @@
         "type": "attack",
         "_id": "vRU6xutkp3VYxZ0i",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You can temporarily <em>Restrain</em> a target within Close range by succeeding on a Finesse Roll against them.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "damage": {
@@ -117,12 +117,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753576005315,
-    "modifiedTime": 1755395606969,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1762786690091,
+    "lastModifiedBy": "gtrqalNxfl7iRwL8"
   },
   "_id": "D73fS1iM4SZPFimu",
   "sort": 1700000,

@@ -5,8 +5,8 @@
   "system": {
     "beastformType": "normal",
     "tier": 4,
-    "tokenImg": "icons/svg/mystery-man.svg",
-    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenImg": "icons/creatures/mammals/beast-horned-scaled-glowing-orange.webp",
+    "tokenRingImg": "icons/creatures/mammals/beast-horned-scaled-glowing-orange.webp",
     "tokenSize": {
       "height": null,
       "width": null
@@ -134,12 +134,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753627711166,
-    "modifiedTime": 1755395470445,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1762787235514,
+    "lastModifiedBy": "gtrqalNxfl7iRwL8"
   },
   "_id": "qjwMzPn33aKZACkv",
   "sort": 100000,

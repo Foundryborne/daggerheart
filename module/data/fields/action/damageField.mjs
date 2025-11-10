@@ -85,7 +85,7 @@ export default class DamageField extends fields.SchemaField {
         const targetDamage = [];
         const damagePromises = [];
         for (let target of targets) {
-            const actor = fromUuidSync(target.actorId);
+            const actor = foundry.utils.fromUuidSync(target.actorId);
             if (!actor) continue;
             if (!config.hasHealing && config.onSave && target.saved?.success === true) {
                 const mod = CONFIG.DH.ACTIONS.damageOnSave[config.onSave]?.mod ?? 1;
@@ -98,17 +98,16 @@ export default class DamageField extends fields.SchemaField {
                 });
             }
 
+            const token = game.scenes.find(x => x.active).tokens.find(x => x.id === target.id);
             if (config.hasHealing)
                 damagePromises.push(
-                    actor
-                        .takeHealing(config.damage)
-                        .then(updates => targetDamage.push({ token: actor.token ?? actor.prototypeToken, updates }))
+                    actor.takeHealing(config.damage).then(updates => targetDamage.push({ token, updates }))
                 );
             else
                 damagePromises.push(
                     actor
                         .takeDamage(config.damage, config.isDirect)
-                        .then(updates => targetDamage.push({ token: actor.token ?? actor.prototypeToken, updates }))
+                        .then(updates => targetDamage.push({ token, updates }))
                 );
         }
 

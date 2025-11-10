@@ -5,8 +5,8 @@
   "system": {
     "beastformType": "normal",
     "tier": 3,
-    "tokenImg": "icons/svg/mystery-man.svg",
-    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenImg": "icons/creatures/fish/fish-marlin-swordfight-blue.webp",
+    "tokenRingImg": "icons/creatures/fish/fish-marlin-swordfight-blue.webp",
     "tokenSize": {
       "height": null,
       "width": null
@@ -130,12 +130,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753626985883,
-    "modifiedTime": 1755395436609,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1762787103412,
+    "lastModifiedBy": "gtrqalNxfl7iRwL8"
   },
   "_id": "ItBVeCl2u5uetgy7",
   "sort": 0,

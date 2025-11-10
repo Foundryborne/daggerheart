@@ -166,11 +166,16 @@ export const healingTypes = {
 
 export const defeatedConditions = () => {
     const defeated = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
-    return Object.values(defeatedConditionChoices).map(x => ({
-        ...x,
-        img: defeated[`${x.id}Icon`],
-        description: `DAGGERHEART.CONFIG.Condition.${x.id}.description`
-    }));
+    return Object.keys(defeatedConditionChoices).reduce((acc, key) => {
+        const choice = defeatedConditionChoices[key];
+        acc[key] = {
+            ...choice,
+            img: defeated[`${choice.id}Icon`],
+            description: `DAGGERHEART.CONFIG.Condition.${choice.id}.description`
+        };
+
+        return acc;
+    }, {});
 };
 
 const defeatedConditionChoices = {

@@ -32,71 +32,16 @@
               "resultBased": false,
               "value": {
                 "custom": {
-                  "enabled": false,
-                  "formula": ""
-                },
-                "multiplier": "prof",
-                "dice": "d8",
-                "bonus": 6,
-                "flatMultiplier": 1
-              },
-              "applyTo": "hitPoints",
-              "type": [
-                "physical"
-              ],
-              "base": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              }
-            },
-            {
-              "resultBased": false,
-              "value": {
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                },
-                "multiplier": "flat",
-                "flatMultiplier": 2,
-                "dice": "d8",
-                "bonus": null
-              },
-              "applyTo": "hitPoints",
-              "type": [
-                "physical"
-              ],
-              "base": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              }
-            },
-            {
-              "resultBased": false,
-              "value": {
-                "custom": {
                   "enabled": true,
-                  "formula": "1"
+                  "formula": "(@prof+2)@basicAttackDamageDice"
                 },
                 "multiplier": "prof",
                 "flatMultiplier": 1,
                 "dice": "d6",
                 "bonus": null
               },
-              "applyTo": "stress",
+              "applyTo": "hitPoints",
+              "type": [],
               "base": false,
               "valueAlt": {
                 "multiplier": "prof",
@@ -104,11 +49,9 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false,
-                  "formula": ""
+                  "enabled": false
                 }
-              },
-              "type": []
+              }
             }
           ],
           "includeBase": false
@@ -207,12 +150,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.350",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.2",
+    "systemVersion": "1.1.0",
     "createdTime": 1753621786000,
-    "modifiedTime": 1762341337917,
-    "lastModifiedBy": "9HOfUKAXuCu7hUPY"
+    "modifiedTime": 1756041242273,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "0ey4kM9ssj2otHvb",
   "sort": 600000,

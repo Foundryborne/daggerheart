@@ -5,8 +5,8 @@
   "system": {
     "beastformType": "normal",
     "tier": 2,
-    "tokenImg": "icons/svg/mystery-man.svg",
-    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenImg": "icons/environment/creatures/horse-tan.webp",
+    "tokenRingImg": "icons/environment/creatures/horse-tan.webp",
     "tokenSize": {
       "height": null,
       "width": null
@@ -130,12 +130,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.0",
     "createdTime": 1753617739175,
-    "modifiedTime": 1755395313904,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1762787003407,
+    "lastModifiedBy": "gtrqalNxfl7iRwL8"
   },
   "_id": "zRLjqKx4Rn2TjivL",
   "sort": 200000,
