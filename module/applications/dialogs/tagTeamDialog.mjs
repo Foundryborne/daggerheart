@@ -223,10 +223,14 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 title: game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.title'),
                 speaker: cls.getSpeaker({ actor: this.party.find(x => x.id === mainRollId) }),
                 system: systemData,
-                rolls: mainRoll.rolls
+                rolls: mainRoll.rolls,
+                sound: null
             };
 
+        const prevHookStatus = game.dice3d.messageHookDisabled;
+        game.dice3d.messageHookDisabled = true;
         await cls.create(msgData);
+        game.dice3d.messageHookDisabled = prevHookStatus;
 
         const fearUpdate = { key: 'fear', value: null, total: null, enabled: true };
         for (let memberId of Object.keys(this.data.members)) {

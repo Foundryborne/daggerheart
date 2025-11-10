@@ -99,8 +99,6 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
                 'Token',
                 partyTokenData.map(tokenData => ({
                     ...tokenData,
-                    // actorId: member.id,
-                    // actorLink: true,
                     alpha: 0,
                     x: actorX,
                     y: actorY
