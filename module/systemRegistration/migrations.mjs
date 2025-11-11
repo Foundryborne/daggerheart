@@ -1,3 +1,5 @@
+import { RefreshType, socketEvent } from './socket.mjs';
+
 export async function runMigrations() {
     let lastMigrationVersion = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion);
     if (!lastMigrationVersion) lastMigrationVersion = game.system.version;
@@ -158,7 +160,8 @@ export async function runMigrations() {
                     ...countdown,
                     type: type,
                     ownership: Object.keys(countdown.ownership.players).reduce((acc, key) => {
-                        acc[key] = countdown.ownership.players[key].type;
+                        acc[key] =
+                            countdown.ownership.players[key].type === 1 ? 2 : countdown.ownership.players[key].type;
                         return acc;
                     }, {}),
                     progress: {
@@ -178,6 +181,12 @@ export async function runMigrations() {
             }
         });
         await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, countdownSettings);
+
+        game.socket.emit(`system.${CONFIG.DH.id}`, {
+            action: socketEvent.Refresh,
+            data: { refreshType: RefreshType.Countdown }
+        });
+        Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
 
         lastMigrationVersion = '1.2.0';
     }
