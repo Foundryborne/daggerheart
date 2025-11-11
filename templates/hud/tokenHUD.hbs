@@ -40,6 +40,7 @@
     </button>
     {{/if}}
 
+    {{#if usesEffects}}
     <button type="button" class="control-icon" data-action="togglePalette" data-palette="effects" data-tooltip="HUD.AssignStatusEffects">
         <img src="{{icons.effects}}">
     </button>
@@ -54,6 +55,13 @@
             {{/each}}
         {{/if}}
     </div>
+    {{/if}}
+    
+    {{#if (eq actorType 'party')}}
+        <button type="button" class="control-icon clown-car" data-action="togglePartyTokens" data-tooltip="{{#if partyOnCanvas}}{{localize "DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrievePartyTokens"}}{{else}}{{localize "DAGGERHEART.APPLICATIONS.HUD.tokenHUD.depositPartyTokens"}}{{/if}}">
+            <img {{#if partyOnCanvas}}class="flipped"{{/if}} src="{{icons.toggleParty}}">
+        </button>
+    {{/if}}
 
     <button type="button" class="control-icon" data-action="togglePalette" data-palette="movementActions"
             aria-label="{{ localize "HUD.SelectMovementAction" }}" data-tooltip>

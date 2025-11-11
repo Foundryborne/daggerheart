@@ -10,7 +10,12 @@
     "actions": {},
     "originItemType": null,
     "subType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 30,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -30,7 +35,7 @@
         {
           "key": "system.advantageSources",
           "mode": 2,
-          "value": "Rolls to intimidate hostile creatures",
+          "value": "Dread Visage: Rolls to intimidate hostile creatures",
           "priority": null
         }
       ],
@@ -55,12 +60,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754000031619,
-        "modifiedTime": 1754000179466,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1761138386730,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!items.effects!i92lYjDhVB0LyPid.2Gd6iHQX521aAZqC"
     }
@@ -75,12 +80,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753999985847,
-    "modifiedTime": 1754000026405,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755394529510,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!i92lYjDhVB0LyPid"
 }

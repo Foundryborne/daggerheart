@@ -10,12 +10,11 @@
         "type": "effect",
         "_id": "4yQ56hSL5LBkzrV6",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p><strong>Spend a Hope</strong> to move up to Far range without rolling.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
           {
-            "keyIsID": false,
             "key": "hope",
             "value": 1,
             "scalable": false,
@@ -24,12 +23,12 @@
         ],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "effects": [],
         "target": {
-          "type": null,
+          "type": "",
           "amount": null
         },
         "name": "Spend Hope",
@@ -39,7 +38,12 @@
     },
     "originItemType": null,
     "subType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 12,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": "uU8bIoZvXge0rLaU",
@@ -52,12 +56,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753569752255,
-    "modifiedTime": 1753628206133,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1762786188592,
+    "lastModifiedBy": "gtrqalNxfl7iRwL8"
   },
   "_id": "xLS5YT1B6yeCiNTg",
   "sort": 2700000,

@@ -10,3 +10,44 @@
     color: light-dark(@dark-blue-50, @beige-50);
     font-family: @font-body;
 }
+
+.daggerheart.dh-style {
+    .hint {
+        flex: 0 0 100%;
+        margin: 0;
+        color: var(--color-form-hint);
+    }
+
+    .form-group:hover {
+        .hint {
+            color: var(--color-form-hint-hover);
+        }
+    }
+
+    .loader {
+        position: relative;
+        overflow: hidden !important;
+
+        div {
+            opacity: 0.5;
+        }
+
+        &:before {
+            font-family: 'Font Awesome 6 Pro';
+            content: '\f110';
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: spinner 1.5s linear infinite;
+        }
+    }
+
+    @keyframes spinner {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+}

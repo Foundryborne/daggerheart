@@ -1,0 +1,10 @@
+<section
+    class='tab {{tabs.notes.cssClass}} {{tabs.notes.id}}'
+    data-tab='{{tabs.notes.id}}'
+    data-group='{{tabs.notes.group}}'
+>
+    <fieldset class="fit-height">
+        <legend>{{localize tabs.notes.label}}</legend>
+        {{formInput notes.field value=notes.value enriched=notes.value toggled=true}}
+    </fieldset>
+</section>

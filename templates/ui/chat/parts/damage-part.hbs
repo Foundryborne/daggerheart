@@ -1,9 +1,9 @@
-<div class="roll-part damage-section dice-roll" data-action="expandRoll">
+<div class="roll-part damage-section dice-roll" data-action="expandRoll"{{#if (empty damage)}} hidden{{/if}}>
     <div class="roll-part-header"><div><span>{{localize (ifThen hasHealing "DAGGERHEART.ACTIONS.TYPES.healing.name" "DAGGERHEART.ACTIONS.TYPES.damage.name")}}</span></div></div>
     <div class="roll-part-extra on-reduced">
         <div class="wrapper">
             {{#each damage as | roll index | }}
-                <div class="roll-formula">{{localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.name')}}: {{total}}</div>
+                <div class="roll-formula">{{localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.inChatRoll')}}: {{total}}</div>
             {{/each}}
         </div>
     </div>
@@ -13,10 +13,10 @@
                 {{#each damage as | roll index | }}
                     <fieldset>
                         <legend>
-                            {{localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.name')}} <div class="roll-formula">{{localize "DAGGERHEART.GENERAL.total"}}: {{roll.total}}</div>
+                            {{#if ../hasHealing}}{{localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.name')}}{{else}}{{localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.inChatRoll')}}{{/if}} <div class="roll-formula">{{localize "DAGGERHEART.GENERAL.total"}}: {{roll.total}}</div>{{#if (and (eq index "hitPoints") ../isDirect)}} <div class="roll-formula">{{localize "DAGGERHEART.CONFIG.DamageType.direct.short"}}</div>{{/if}}
                         </legend>
                         {{#each roll.parts}}
-                            {{#if damageTypes.length}}
+                            {{#if (and (not @root.hasHealing) damageTypes.length)}}
                                 <label class="roll-part-header"><span>
                                     {{#each damageTypes}}
                                         {{localize (concat 'DAGGERHEART.CONFIG.ArmorFeature.' this '.name')}}

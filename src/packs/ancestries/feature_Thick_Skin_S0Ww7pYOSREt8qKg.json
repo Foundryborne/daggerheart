@@ -10,7 +10,12 @@
     "actions": {},
     "originItemType": null,
     "subType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 27,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -44,7 +49,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">When you take Minor damage, you can </span><span style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">mark 2 Stress</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> instead of marking a Hit Point.</span></p>",
+      "description": "<p>When you take Minor damage, you can mark 2 Stress instead of marking a Hit Point.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -55,12 +60,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1753994342724,
-        "modifiedTime": 1753994373197,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1761137921157,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!items.effects!S0Ww7pYOSREt8qKg.4Lc40mNnRInTKMC5"
     }
@@ -75,12 +80,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.2",
     "createdTime": 1753994247261,
-    "modifiedTime": 1753994338239,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1761506267107,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!items!S0Ww7pYOSREt8qKg"
 }

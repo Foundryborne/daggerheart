@@ -20,7 +20,6 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "keyIsID": false,
             "step": null
           }
         ],
@@ -36,16 +35,21 @@
           }
         ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Mark Stress",
         "img": "icons/creatures/mammals/wolf-shadow-black.webp",
-        "range": ""
+        "range": "self"
       }
     },
     "originItemType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 17,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -110,12 +114,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1754266926055,
-    "modifiedTime": 1754267089385,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
+    "modifiedTime": 1756035422344,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_key": "!items!Qny2J3R35bvC0Cey"
 }

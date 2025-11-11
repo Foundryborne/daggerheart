@@ -62,11 +62,26 @@
       "suggestedSecondaryWeapon": null,
       "suggestedArmor": "Compendium.daggerheart.armors.Item.yJFp1bfpecDcStVK"
     },
-    "isMulticlass": false
+    "isMulticlass": false,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 22,
+      "artist": ""
+    },
+    "backgroundQuestions": [
+      "What did you do that made the people in your community wary of you?",
+      "What mentor taught you to control your untamed magic, and why are they no longer able to guide you?",
+      "You have a deep fear you hide from everyone. What is it, and why does it scare you?"
+    ],
+    "connections": [
+      "Why do you trust me so deeply?",
+      "What did I do that makes you cautious around me?",
+      "Why do we keep our shared past a secret?"
+    ]
   },
   "effects": [],
   "folder": null,
-  "sort": 0,
+  "sort": 743750,
   "ownership": {
     "default": 0,
     "Q9NoTaEarn3VMS6Z": 3
@@ -76,12 +91,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.0",
+    "systemVersion": "1.1.2",
     "createdTime": 1754349743129,
-    "modifiedTime": 1755943536635,
-    "lastModifiedBy": "tt3PwMBXcTLCtIQU"
+    "modifiedTime": 1760018753854,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!items!DchOzHcWIJE9FKcR"
 }

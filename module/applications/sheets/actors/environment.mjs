@@ -1,3 +1,4 @@
+import { getDocFromElement } from '../../../helpers/utils.mjs';
 import DHBaseActorSheet from '../api/base-actor.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
@@ -8,21 +9,39 @@ export default class DhpEnvironment extends DHBaseActorSheet {
         classes: ['environment'],
         position: {
             width: 500,
-            height: 725
+            height: 740
         },
         window: {
-            resizable: true
+            resizable: true,
+            controls: [
+                {
+                    icon: 'fa-solid fa-signature',
+                    label: 'DAGGERHEART.UI.Tooltip.configureAttribution',
+                    action: 'editAttribution'
+                }
+            ]
         },
-        actions: {},
+        actions: {
+            toggleResourceDice: DhpEnvironment.#toggleResourceDice,
+            handleResourceDice: DhpEnvironment.#handleResourceDice
+        },
         dragDrop: [{ dragSelector: '.action-section .inventory-item', dropSelector: null }]
     };
 
     /**@override */
     static PARTS = {
+        limited: {
+            template: 'systems/daggerheart/templates/sheets/actors/environment/limited.hbs',
+            scrollable: ['.limited-container']
+        },
         header: { template: 'systems/daggerheart/templates/sheets/actors/environment/header.hbs' },
-        features: { template: 'systems/daggerheart/templates/sheets/actors/environment/features.hbs' },
+        features: {
+            template: 'systems/daggerheart/templates/sheets/actors/environment/features.hbs',
+            scrollable: ['feature-section']
+        },
         potentialAdversaries: {
-            template: 'systems/daggerheart/templates/sheets/actors/environment/potentialAdversaries.hbs'
+            template: 'systems/daggerheart/templates/sheets/actors/environment/potentialAdversaries.hbs',
+            scrollable: ['items-sections']
         },
         notes: { template: 'systems/daggerheart/templates/sheets/actors/environment/notes.hbs' }
     };
@@ -36,12 +55,25 @@ export default class DhpEnvironment extends DHBaseActorSheet {
         }
     };
 
+    /**  @inheritdoc */
+    _initializeApplicationOptions(options) {
+        const applicationOptions = super._initializeApplicationOptions(options);
+
+        if (applicationOptions.document.testUserPermission(game.user, 'LIMITED', { exact: true })) {
+            applicationOptions.position.width = 360;
+            applicationOptions.position.height = 'auto';
+        }
+
+        return applicationOptions;
+    }
+
     /**@inheritdoc */
     async _preparePartContext(partId, context, options) {
         context = await super._preparePartContext(partId, context, options);
         switch (partId) {
             case 'header':
                 await this._prepareHeaderContext(context, options);
+
                 break;
             case 'notes':
                 await this._prepareNotesContext(context, options);
@@ -105,5 +137,43 @@ export default class DhpEnvironment extends DHBaseActorSheet {
             event.dataTransfer.setData('text/plain', JSON.stringify(adversaryData));
             event.dataTransfer.setDragImage(item, 60, 0);
         }
+    }
+
+    /* -------------------------------------------- */
+    /*  Application Clicks Actions                  */
+    /* -------------------------------------------- */
+
+    /**
+     * Toggle the used state of a resource dice.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleResourceDice(event, target) {
+        const item = await getDocFromElement(target);
+
+        const { dice } = event.target.closest('.item-resource').dataset;
+        const diceState = item.system.resource.diceStates[dice];
+
+        await item.update({
+            [`system.resource.diceStates.${dice}.used`]: diceState ? !diceState.used : true
+        });
+    }
+
+    /**
+     * Handle the roll values of resource dice.
+     * @type {ApplicationClickAction}
+     */
+    static async #handleResourceDice(_, target) {
+        const item = await getDocFromElement(target);
+        if (!item) return;
+
+        const rollValues = await game.system.api.applications.dialogs.ResourceDiceDialog.create(item, this.document);
+        if (!rollValues) return;
+
+        await item.update({
+            'system.resource.diceStates': rollValues.reduce((acc, state, index) => {
+                acc[index] = { value: state.value, used: state.used };
+                return acc;
+            }, {})
+        });
     }
 }

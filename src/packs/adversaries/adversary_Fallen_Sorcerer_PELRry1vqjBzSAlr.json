@@ -112,6 +112,11 @@
       "img": "icons/weapons/staves/staff-animal-skull-bull.webp",
       "type": "attack",
       "chatDisplay": false
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 97,
+      "artist": ""
     }
   },
   "flags": {},
@@ -121,9 +126,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784265,
-    "modifiedTime": 1755259462708,
+    "modifiedTime": 1755385635754,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "PELRry1vqjBzSAlr",
@@ -247,7 +252,6 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "keyIsID": false,
                 "step": null
               }
             ],
@@ -496,7 +500,7 @@
             "type": "effect",
             "_id": "11mqihmiBK41aoDm",
             "systemPath": "actions",
-            "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\">Countdown (Loop 2d6). When the Sorcerer is in the spotlight for the first time, activate the countdown.</span></p>",
+            "description": "<p>Countdown (Loop 2d6). When the Sorcerer is in the spotlight for the first time, activate the countdown.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

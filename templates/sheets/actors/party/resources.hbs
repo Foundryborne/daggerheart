@@ -1,0 +1,99 @@
+<section
+    class='tab {{tabs.resources.cssClass}} {{tabs.resources.id}}'
+    data-tab='{{tabs.resources.id}}'
+    data-group='{{tabs.resources.group}}'
+>
+    <div data-action="triggerRest" data-type="longRest" class="actions-section">
+        <button data-type="longRest">
+            <i class="fa-solid fa-bed"></i>
+            <span>{{localize "DAGGERHEART.APPLICATIONS.Downtime.longRest.title"}}</span>
+        </button>
+        <button data-action="triggerRest" data-type="shortRest">
+            <i class="fa-solid fa-utensils"></i>
+            <span>{{localize "DAGGERHEART.APPLICATIONS.Downtime.shortRest.title"}}</span>
+        </button>
+    </div>
+
+    <fieldset class="resource-section glassy">
+        <legend>{{localize tabs.resources.label}}</legend>
+        <ul class="actors-list">
+            {{#each document.system.partyMembers as |actor id|}}
+                <li class="actor-resources">
+                    <h2 class="actor-name">{{actor.name}}</h2>
+                    <img class="actor-img" src="{{actor.img}}">
+                    <div class="resources">
+                        <div class="slot-section">
+                            <div class="slot-bar">
+                                {{#times actor.system.resources.hitPoints.max}}
+                                    <span class='slot {{#if (gte actor.system.resources.hitPoints.value (add this 1))}}filled{{/if}}'
+                                    data-action='toggleHitPoints' data-actor-id="{{actor.uuid}}" data-value="{{add this 1}}">
+                                    </span>
+                                {{/times}}
+                            </div>
+                            <div class="slot-label">
+                                <span class="label">{{localize "DAGGERHEART.GENERAL.HitPoints.short"}}</span>
+                                <span class="value">{{actor.system.resources.hitPoints.value}} / {{actor.system.resources.hitPoints.max}}</span>
+                            </div>
+                        </div>
+
+                        <div class="slot-section">
+                            <div class="slot-bar">
+                                {{#times actor.system.resources.stress.max}}
+                                    <span class='slot {{#if (gte actor.system.resources.stress.value (add this 1))}}filled{{/if}}'
+                                    data-action='toggleStress' data-actor-id="{{actor.uuid}}" data-value="{{add this 1}}">
+                                    </span>
+                                {{/times}}
+                            </div>
+                            <div class="slot-label">
+                                <span class="label">{{localize "DAGGERHEART.GENERAL.stress"}}</span>
+                                <span class="value">{{actor.system.resources.stress.value}} / {{actor.system.resources.stress.max}}</span>
+                            </div>
+                        </div>
+
+                        {{#if actor.system.armor.system.marks}}
+                            <div class="slot-section">
+                                <div class="slot-bar">
+                                    {{#times actor.system.armorScore}}
+                                        <a class='armor-slot'
+                                        data-action='toggleArmorSlot' data-actor-id="{{actor.uuid}}" data-item-uuid="{{actor.system.armor.uuid}}" data-value="{{add this 1}}">
+                                        {{#if (gte actor.system.armor.system.marks.value (add this 1))}}
+                                            <i class="fa-solid fa-shield"></i>
+                                        {{else}}
+                                            <i class="fa-solid fa-shield-halved"></i>
+                                        {{/if}}
+                                        </a>
+                                    {{/times}}
+                                </div>
+                                <div class="slot-label">
+                                    <span class="label">{{localize "DAGGERHEART.GENERAL.armorSlots"}}</span>
+                                    <span class="value">{{actor.system.armor.system.marks.value}} / {{actor.system.armorScore}}</span>
+                                </div>
+                            </div>
+                        {{/if}}
+
+
+                        <div class="hope-section">
+                            <h4>{{localize "DAGGERHEART.GENERAL.hope"}}</h4>
+                            {{#times actor.system.resources.hope.max}}
+                                <span class='hope-value' data-action='toggleHope' data-actor-id="{{actor.uuid}}" data-value="{{add this 1}}">
+                                    {{#if (gte actor.system.resources.hope.value (add this 1))}}
+                                        <i class='fa-solid fa-diamond'></i>
+                                    {{else}}
+                                        <i class='fa-regular fa-circle'></i>
+                                    {{/if}}
+                                </span>
+                            {{/times}}
+                        </div>
+                        <div class="threshold-section">
+                            <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.minor"}}</h4>
+                            <h4 class="threshold-value">{{actor.system.damageThresholds.major}}</h4>
+                            <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.major"}}</h4>
+                            <h4 class="threshold-value">{{actor.system.damageThresholds.severe}}</h4>
+                            <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.severe"}}</h4>
+                        </div>
+                    </div>
+                </li>
+            {{/each}}
+        </ul>
+    </fieldset>
+</section>

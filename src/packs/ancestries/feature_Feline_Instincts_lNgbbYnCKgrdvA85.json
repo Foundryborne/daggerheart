@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "ALsGHOy0q5THGxz5",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>When you make an Agility Roll, you can <strong>spend 2 Hope</strong> to reroll your Hope Die.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -20,7 +20,6 @@
             "scalable": false,
             "key": "hope",
             "value": 2,
-            "keyIsID": false,
             "step": null
           }
         ],
@@ -41,7 +40,12 @@
     },
     "originItemType": null,
     "subType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 30,
+      "artist": ""
+    }
   },
   "effects": [],
   "sort": 0,
@@ -54,12 +58,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.2",
     "createdTime": 1754000245487,
-    "modifiedTime": 1754000291789,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1761138403613,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!items!lNgbbYnCKgrdvA85"
 }

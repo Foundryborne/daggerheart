@@ -8,11 +8,9 @@
         </div>
         {{#if document.system.partner}}
         <ul class="items-list">
-            {{> 'daggerheart.inventory-item'
+            {{> 'daggerheart.inventory-item-compact'
             item=document.system.partner
             type='companion'
-            hideTags=true
-            hideDescription=true
             isActor=true
             hideTooltip=true
             }}
@@ -28,11 +26,9 @@
             <side-line-div></side-line-div>
         </div>
         <ul class="items-list">
-            {{> 'daggerheart.inventory-item'
+            {{> 'daggerheart.inventory-item-compact'
             item=document.system.attack
             type='action'
-            hideTags=true
-            hideDescription=true
             hideTooltip=true
             }}
         </ul>
@@ -45,9 +41,9 @@
         </div>
         {{#each source.system.experiences as |experience id|}}
         <div class="experience-row" data-tooltip-text="{{experience.description}}">
-            <div class="experience-value">
+            <span class="experience-value">
                 +{{experience.value}}
-            </div>
+            </span>
             <span class="experience-name">{{experience.name}}</span>
             <div class="controls">
                 <a data-action="sendExpToChat" data-type="experience" data-id="{{id}}">
@@ -55,5 +51,8 @@
             </div>
         </div>
         {{/each}}
+    </div>
+    <div class="action-section">
+        <button type="button" data-action="actionRoll">{{localize "DAGGERHEART.GENERAL.Roll.action"}}</button>
     </div>
 </section>

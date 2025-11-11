@@ -1,9 +1,23 @@
+.theme-light .daggerheart.placeable-hud {
+    .status-effects .effect-control {
+        filter: none;
+    }
+}
+
 .daggerheart.placeable-hud {
     .col.right {
         .palette {
             .palette-category-title {
                 grid-column: span var(--effect-columns);
                 font-weight: bold;
+            }
+        }
+
+        .clown-car img {
+            transition: 0.5s;
+
+            &.flipped {
+                transform: scaleX(-1);
             }
         }
     }

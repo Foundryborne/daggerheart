@@ -11,12 +11,11 @@
         "type": "effect",
         "_id": "ATQgH12mufTOQLKs",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Activate this pebble-sized stone to memorize the appearance of someone you can see. Spend a Hope to magically recreate this guise on yourself as an illusion.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
           {
-            "keyIsID": false,
             "key": "hope",
             "value": 1,
             "scalable": false,
@@ -25,21 +24,76 @@
         ],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
-        "effects": [],
+        "effects": [
+          {
+            "_id": "K5SB6tfuDkdVaQYe",
+            "onSave": false
+          }
+        ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Create Illusion",
         "img": "icons/commodities/treasure/token-engraved-purple-glowing.webp",
-        "range": ""
+        "range": "self"
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 58,
+      "artist": ""
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Glamour Stone",
+      "img": "icons/commodities/treasure/token-engraved-purple-glowing.webp",
+      "origin": "Compendium.daggerheart.loot.Item.Pj17cvdJ1XG1jv6I",
+      "transfer": false,
+      "_id": "K5SB6tfuDkdVaQYe",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>Activate this pebble-sized stone to memorize the appearance of someone you can see. Spend a Hope to magically recreate this guise on yourself as an illusion.</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.347",
+        "systemId": "daggerheart",
+        "systemVersion": "1.1.0",
+        "createdTime": 1756042876194,
+        "modifiedTime": 1756042884422,
+        "lastModifiedBy": "vUIbuan0U50nfKBE"
+      },
+      "_key": "!items.effects!Pj17cvdJ1XG1jv6I.K5SB6tfuDkdVaQYe"
+    }
+  ],
   "folder": null,
   "sort": 0,
   "ownership": {
@@ -51,12 +105,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1753625773657,
-    "modifiedTime": 1753625847459,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1756042876216,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_key": "!items!Pj17cvdJ1XG1jv6I"
 }

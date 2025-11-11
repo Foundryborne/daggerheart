@@ -1,0 +1,84 @@
+<div class="group-roll">
+    <header class="dialog-header">
+        <h1>{{localize "DAGGERHEART.UI.Chat.groupRoll.title"}}</h1>
+    </header>
+
+    <fieldset class="one-column">
+        <legend>{{localize "DAGGERHEART.UI.Chat.groupRoll.leader"}}</legend>
+        {{#unless leader.actor}}
+            <input type="text" class="leader-change-input" />
+            <div class="drag-area">
+                <span>{{localize "DAGGERHEART.UI.Chat.groupRoll.selectLeader"}}</span>
+            </div>
+        {{else}}
+            <div class="actor-item">
+                <img src="{{leader.actor.img}}" alt="{{leader.actor.name}}">
+                <div class="actor-info">
+                    <span class="actor-name">{{leader.actor.name}}</span>
+                    <div class="actor-check-info">
+                        <div class="form-fields">
+                            <label>{{localize "DAGGERHEART.GENERAL.Trait.single"}}</label>
+                            <select name="actorLeader.trait">
+                                {{selectOptions traitList selected=leader.trait  labelAttr="label" valueAttr="id" localize=true }}
+                            </select>
+                        </div>
+                        {{!-- Not used yet --}}
+                        {{!-- <div class="form-fields">
+                            <label>{{localize "DAGGERHEART.GENERAL.difficulty"}}</label>
+                            <input type="number" name="actorLeader.difficulty" value="{{leader.difficulty}}" data-dtype="Number">
+                        </div> --}}
+                    </div>
+                </div>
+                <div class="controls">
+                    <a data-action="removeLeader" data-leader-uuid="{{leader.actor.uuid}}">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                </div>
+            </div>
+        {{/unless}}
+    </fieldset>
+
+    <fieldset class="one-column">
+        <legend>{{localize "DAGGERHEART.UI.Chat.groupRoll.partyTeam"}}</legend>
+        <span class="tooltip-container" {{#if allSelected}}data-tooltip="{{localize "The whole party is selected"}}"{{/if}}>
+            <input type="text" class="team-push-input" {{disabled @root.allSelected}}/>
+        </span>
+        {{#if (gt this.members.length 0)}}
+            {{#each members as |member index|}}
+                <div class="actor-item">
+                    <img src="{{member.actor.img}}" alt="{{member.actor.name}}">
+                    <div class="actor-info">
+                        <span class="actor-name">{{member.actor.name}}</span>
+                        <div class="actor-check-info">
+                            <div class="form-fields">
+                                <label>{{localize "DAGGERHEART.GENERAL.Trait.single"}}</label>
+                                <select name="{{concat "actorsMembers." index ".trait"}}">
+                                    {{selectOptions @root.traitList selected=member.trait  labelAttr="label" valueAttr="id" localize=true }}
+                                </select>
+                            </div>
+                            {{!-- Not used yet --}}
+                            {{!-- <div class="form-fields">
+                                <label>{{localize "DAGGERHEART.GENERAL.difficulty"}}</label>
+                                <input type="number" name="{{concat "actorsMembers." index ".difficulty"}}" value="{{member.difficulty}}" data-dtype="Number">
+                            </div> --}}
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <a data-action="removeMember" data-member-uuid="{{member.actor.uuid}}">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+            {{/each}}
+        {{/if}}
+        {{#unless allSelected}}
+            <div class="drag-area">
+                <span>{{localize "DAGGERHEART.UI.Chat.groupRoll.selectMember"}}</span>
+            </div>
+        {{/unless}}
+    </fieldset>
+    <button class="submit-btn" data-action="roll" {{disabled @root.rollDisabled}}>
+        <i class="fa-solid fa-dice"></i>
+        <span>{{localize "DAGGERHEART.GENERAL.roll"}}</span>
+    </button>
+</div>

@@ -16,11 +16,12 @@
         "img": "icons/magic/time/hourglass-brown-orange.webp",
         "cost": [
           {
-            "key": "armorSlot",
+            "key": "resource",
+            "itemId": "armorSlot",
             "value": 1,
-            "keyIsID": false,
             "scalable": false,
-            "step": null
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "roll": {
@@ -80,6 +81,11 @@
     "baseThresholds": {
       "major": 13,
       "severe": 36
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 57,
+      "artist": ""
     }
   },
   "effects": [],
@@ -93,12 +99,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753809264956,
-    "modifiedTime": 1753809422818,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1756325575974,
+    "lastModifiedBy": "bjJtdJOhqWr47GhC"
   },
   "_key": "!items!hAY6UgdGT7dj22Pr"
 }

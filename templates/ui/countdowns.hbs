@@ -1,45 +1,33 @@
 <div>
-    {{#if simple}}
-        <div class="minimized-view">
-            {{#each source.countdowns}}
-                <a class="mini-countdown-container {{#if (not this.canEdit)}}disabled{{/if}}" data-countdown="{{@key}}">
-                    <img src="{{this.img}}" />
-                    <div class="mini-countdown-name">{{this.name}}</div>
-                    <div class="mini-countdown-value">{{this.progress.current}}/{{this.progress.max}}</div>
-                </a>
-            {{/each}}
-        </div>
-    {{else}}
-        <div class="expanded-view">
-            <div class="countdowns-menu">
-                {{#if canCreate}}<button class="flex" data-action="addCountdown">{{localize "DAGGERHEART.APPLICATIONS.Countdown.addCountdown"}}</button>{{/if}}
-                {{#if isGM}}<button data-action="openOwnership" data-tooltip="{{localize "DAGGERHEART.APPLICATIONS.Countdown.openOwnership"}}"><i class="fa-solid fa-users"></i></button>{{/if}}
-            </div>
-
-            <div class="countdowns-container">
-                {{#each source.countdowns}}
-                    <fieldset class="countdown-fieldset">
-                        <legend>
-                            {{this.name}} 
-                            {{#if this.canEdit}}<a><i class="fa-solid fa-trash icon-button" data-action="removeCountdown" data-countdown="{{@key}}"></i></a>{{/if}}
-                            {{#if @root.isGM}}<a><i class="fa-solid fa-users icon-button" data-action="openCountdownOwnership" data-countdown="{{@key}}" data-tooltip="{{localize "DAGGERHEART.APPLICATIONS.Countdown.openOwnership"}}"></i></a>{{/if}}
-                        </legend>
-
-                        
-                        <div class="countdown-container">
-                            <img src="{{this.img}}" {{#if this.canEdit}}data-action='editImage'{{else}}class="disabled"{{/if}} data-countdown="{{@key}}" />
-                            <div class="countdown-inner-container">
-                                {{formGroup @root.countdownFields.name name=(concat @root.base ".countdowns." @key ".name") value=this.name localize=true disabled=(not this.canEdit)}}
-                                <div class="countdown-value-container">
-                                    {{formGroup @root.countdownFields.progress.fields.current name=(concat @root.base ".countdowns." @key ".progress.current") value=this.progress.current localize=true disabled=(not this.canEdit)}}
-                                    {{formGroup @root.countdownFields.progress.fields.max name=(concat @root.base ".countdowns." @key ".progress.max") value=this.progress.max localize=true disabled=(not this.canEdit)}}
-                                </div>
-                                {{formGroup @root.countdownFields.progress.fields.type.fields.value name=(concat @root.base ".countdowns." @key ".progress.type.value") value=this.progress.type.value localize=true localize=true disabled=(not this.canEdit)}}
+    <div class="countdowns-container">
+        {{#each countdowns as | countdown id |}}
+            <div class="countdown-container {{#if ../iconOnly}}icon-only{{/if}}">
+                <div class="countdown-main-container">
+                    <img src="{{countdown.img}}" {{#if ../iconOnly}}data-tooltip="{{countdown.name}}"{{/if}}/>
+                    <div class="countdown-content">
+                        {{#unless ../iconOnly}}<label>{{countdown.name}}</label>{{/unless}}
+                        <div class="countdown-tools">
+                            {{#if countdown.editable}}<a data-action="decreaseCountdown" id="{{id}}"><i class="fa-solid fa-minus"></i></a>{{/if}}
+                            <div class="progress-tag">
+                                {{countdown.progress.current}}/{{countdown.progress.max}}
                             </div>
+                            {{#if countdown.editable}}<a data-action="increaseCountdown" id="{{id}}"><i class="fa-solid fa-plus"></i></a>{{/if}}
                         </div>
-                    </fieldset>
-                {{/each}}
+                    </div>
+                </div>
+                {{#if (and @root.isGM (not ../iconOnly))}}
+                    {{#if (gt countdown.playerAccess.length 0)}}
+                        <div class="countdown-access-container">
+                            {{#each countdown.playerAccess as |player|}}
+                                <div class="countdown-access" style="{{concat "background: " player.color.css ";"}}" data-tooltip="{{player.name}}"></div>
+                            {{/each}}
+                        </div>
+                    {{/if}}
+                    {{#if countdown.noPlayerAccess}}
+                        <div class="countdown-no-access-container"><i class="fa-solid fa-eye-slash" data-tooltip="{{localize "DAGGERHEART.UI.Countdowns.noPlayerAccess"}}"></i></div>
+                    {{/if}}
+                {{/if}}
             </div>
-        </div>
-    {{/if}}
+        {{/each}}
+    </div>
 </div>

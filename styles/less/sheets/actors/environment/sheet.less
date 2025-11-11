@@ -5,6 +5,10 @@
 .appTheme({
     &.environment {
         background-image: url('../assets/parchments/dh-parchment-dark.png');
+
+        .attribution-header-label {
+            background-image: url('../assets/parchments/dh-parchment-dark.png');
+        }
     }
 }, {
     &.environment {
@@ -18,5 +22,11 @@
         overflow-y: auto;
         scrollbar-width: thin;
         scrollbar-color: light-dark(@dark-blue, @golden) transparent;
+
+        &.active {
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
     }
 }

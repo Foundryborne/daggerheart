@@ -10,29 +10,48 @@ export default class DhMeasuredTemplate extends foundry.canvas.placeables.Measur
             const splitRulerText = this.ruler.text.split(' ');
             if (splitRulerText.length > 0) {
                 const rulerValue = Number(splitRulerText[0]);
-                const vagueLabel = this.constructor.getDistanceLabel(rulerValue, rangeMeasurementSettings);
-                this.ruler.text = vagueLabel;
+                const result = DhMeasuredTemplate.getRangeLabels(rulerValue, rangeMeasurementSettings);
+                this.ruler.text = result.distance + (result.units ? ' ' + result.units : '');
             }
         }
     }
 
-    static getDistanceLabel(distance, settings) {
-        if (distance <= settings.melee) {
-            return game.i18n.localize('DAGGERHEART.CONFIG.Range.melee.name');
-        }
-        if (distance <= settings.veryClose) {
-            return game.i18n.localize('DAGGERHEART.CONFIG.Range.veryClose.name');
-        }
-        if (distance <= settings.close) {
-            return game.i18n.localize('DAGGERHEART.CONFIG.Range.close.name');
-        }
-        if (distance <= settings.far) {
-            return game.i18n.localize('DAGGERHEART.CONFIG.Range.far.name');
-        }
-        if (distance > settings.far) {
-            return game.i18n.localize('DAGGERHEART.CONFIG.Range.veryFar.name');
+    static getRangeLabels(distanceValue, settings) {
+        let result = { distance: distanceValue, units: '' };
+        const sceneRangeMeasurement = canvas.scene.flags.daggerheart?.rangeMeasurement;
+
+        const { disable, custom } = CONFIG.DH.GENERAL.sceneRangeMeasurementSetting;
+        if (sceneRangeMeasurement.setting === disable.id) {
+            result.distance = distanceValue;
+            result.units = canvas.scene?.grid?.units;
+            return result;
         }
 
-        return '';
+        const melee = sceneRangeMeasurement.setting === custom.id ? sceneRangeMeasurement.melee : settings.melee;
+        const veryClose =
+            sceneRangeMeasurement.setting === custom.id ? sceneRangeMeasurement.veryClose : settings.veryClose;
+        const close = sceneRangeMeasurement.setting === custom.id ? sceneRangeMeasurement.close : settings.close;
+        const far = sceneRangeMeasurement.setting === custom.id ? sceneRangeMeasurement.far : settings.far;
+        if (distanceValue <= melee) {
+            result.distance = game.i18n.localize('DAGGERHEART.CONFIG.Range.melee.name');
+            return result;
+        }
+        if (distanceValue <= veryClose) {
+            result.distance = game.i18n.localize('DAGGERHEART.CONFIG.Range.veryClose.name');
+            return result;
+        }
+        if (distanceValue <= close) {
+            result.distance = game.i18n.localize('DAGGERHEART.CONFIG.Range.close.name');
+            return result;
+        }
+        if (distanceValue <= far) {
+            result.distance = game.i18n.localize('DAGGERHEART.CONFIG.Range.far.name');
+            return result;
+        }
+        if (distanceValue > far) {
+            result.distance = game.i18n.localize('DAGGERHEART.CONFIG.Range.veryFar.name');
+        }
+
+        return result;
     }
 }

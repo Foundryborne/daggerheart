@@ -5,7 +5,7 @@
   "_id": "UFR67BUOhNGLFyg9",
   "img": "icons/magic/defensive/shield-barrier-flaming-diamond-teal.webp",
   "system": {
-    "description": "<p><strong>Mark a Stress</strong> to retract into your shell. While in your shell, you have resistance to physical damage, you have disadvantage on action rolls, and you can’t move.</p>",
+    "description": "<p><strong>Mark a Stress</strong> to retract into your shell. While in your shell, you have resistance to physical damage, you have disadvantage on action rolls, and you can’t move.<br /><br />(When marked, manually enable the retract effect in effects tab and mark disadvantage when doing any action rolls)</p>",
     "resource": null,
     "actions": {
       "HfiAg14hrYt7Yvnj": {
@@ -15,32 +15,53 @@
         "description": "",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
           "recovery": null
         },
-        "effects": [],
+        "effects": [
+          {
+            "_id": "3V4FPoyjJUnFP9WS",
+            "onSave": false
+          }
+        ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Mark Stress",
         "img": "icons/magic/defensive/shield-barrier-flaming-diamond-teal.webp",
-        "range": ""
+        "range": "self"
       }
     },
     "originItemType": null,
     "subType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 29,
+      "artist": ""
+    }
   },
   "effects": [
     {
-      "name": "Base",
-      "type": "base",
-      "_id": "KoHQg8KurugHlga0",
+      "name": "Retract",
       "img": "icons/magic/defensive/shield-barrier-flaming-diamond-teal.webp",
+      "origin": "Compendium.daggerheart.ancestries.Item.UFR67BUOhNGLFyg9",
+      "transfer": false,
+      "_id": "3V4FPoyjJUnFP9WS",
+      "type": "base",
       "system": {
         "rangeDependence": {
           "enabled": false,
@@ -59,11 +80,11 @@
         {
           "key": "system.disadvantageSources",
           "mode": 2,
-          "value": "Action Rolls",
+          "value": "Retract",
           "priority": null
         }
       ],
-      "disabled": true,
+      "disabled": false,
       "duration": {
         "startTime": null,
         "combat": null,
@@ -73,10 +94,8 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">While in your shell, you have resistance to physical damage, you have disadvantage on action rolls, and you can’t move.</span></p>",
-      "origin": null,
+      "description": "<p>While in your shell, you have resistance to physical damage, you have disadvantage on action rolls, and you can’t move.</p>",
       "tint": "#ffffff",
-      "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {},
@@ -84,14 +103,14 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1753996568678,
-        "modifiedTime": 1753996633306,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "systemVersion": "1.1.2",
+        "createdTime": 1759960447341,
+        "modifiedTime": 1759961484642,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
-      "_key": "!items.effects!UFR67BUOhNGLFyg9.KoHQg8KurugHlga0"
+      "_key": "!items.effects!UFR67BUOhNGLFyg9.3V4FPoyjJUnFP9WS"
     }
   ],
   "sort": 0,
@@ -104,12 +123,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.2",
     "createdTime": 1753996513763,
-    "modifiedTime": 1753996553192,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1759961925987,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!items!UFR67BUOhNGLFyg9"
 }

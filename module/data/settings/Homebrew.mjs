@@ -108,7 +108,42 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                     }),
                     description: new fields.HTMLField()
                 })
-            )
+            ),
+            adversaryTypes: new fields.TypedObjectField(
+                new fields.SchemaField({
+                    id: new fields.StringField({ required: true }),
+                    label: new fields.StringField({ required: true, label: 'DAGGERHEART.GENERAL.label' }),
+                    description: new fields.StringField()
+                })
+            ),
+            itemFeatures: new fields.SchemaField({
+                weaponFeatures: new fields.TypedObjectField(
+                    new fields.SchemaField({
+                        name: new fields.StringField({ required: true }),
+                        img: new fields.FilePathField({
+                            initial: 'icons/magic/life/cross-worn-green.webp',
+                            categories: ['IMAGE'],
+                            base64: false
+                        }),
+                        description: new fields.HTMLField(),
+                        actions: new ActionsField(),
+                        effects: new fields.ArrayField(new fields.ObjectField())
+                    })
+                ),
+                armorFeatures: new fields.TypedObjectField(
+                    new fields.SchemaField({
+                        name: new fields.StringField({ required: true }),
+                        img: new fields.FilePathField({
+                            initial: 'icons/magic/life/cross-worn-green.webp',
+                            categories: ['IMAGE'],
+                            base64: false
+                        }),
+                        description: new fields.HTMLField(),
+                        actions: new ActionsField(),
+                        effects: new fields.ArrayField(new fields.ObjectField())
+                    })
+                )
+            })
         };
     }
 }

@@ -5,8 +5,8 @@
   "system": {
     "beastformType": "evolved",
     "tier": 4,
-    "tokenImg": "icons/svg/mystery-man.svg",
-    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenImg": "icons/creatures/eyes/lizard-single-slit-pink.webp",
+    "tokenRingImg": "icons/creatures/eyes/lizard-single-slit-pink.webp",
     "tokenSize": {
       "height": null,
       "width": null
@@ -23,7 +23,12 @@
       "advantages": 2,
       "features": 2
     },
-    "examples": ""
+    "examples": "",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 15,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -101,12 +106,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753628844905,
-    "modifiedTime": 1753628844905,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1762787259530,
+    "lastModifiedBy": "gtrqalNxfl7iRwL8"
   },
   "_id": "kObobka52JdpWBSu",
   "sort": 0,

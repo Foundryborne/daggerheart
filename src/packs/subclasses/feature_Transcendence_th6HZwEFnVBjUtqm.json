@@ -20,7 +20,6 @@
             "scalable": false,
             "key": "hitPoints",
             "value": 1,
-            "keyIsID": false,
             "step": null,
             "consumeOnSuccess": false
           }
@@ -42,7 +41,12 @@
       }
     },
     "originItemType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 22,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -76,7 +80,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">+4 bonus to your Severe threshold</span></p>",
+      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">+4 bonus to your Severe threshold</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -118,7 +122,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">+1 bonus to a character trait of your choice</span></p>",
+      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">+1 bonus to a character trait of your choice</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -167,7 +171,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">+1 bonus to your Proficiency</span></p>",
+      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">+1 bonus to your Proficiency</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -209,7 +213,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">+2 bonus to your Evasion</span></p>",
+      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">+2 bonus to your Evasion</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -238,12 +242,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1754349515898,
-    "modifiedTime": 1754497438787,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755392338476,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!th6HZwEFnVBjUtqm"
 }

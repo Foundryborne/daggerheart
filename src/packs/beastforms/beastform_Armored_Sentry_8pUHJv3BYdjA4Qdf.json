@@ -5,22 +5,22 @@
   "system": {
     "beastformType": "normal",
     "tier": 2,
-    "tokenImg": "icons/svg/mystery-man.svg",
-    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenImg": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
+    "tokenRingImg": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
     "tokenSize": {
       "height": null,
       "width": null
     },
     "mainTrait": "strength",
     "advantageOn": {
-      "mX0DbTDuWAIpAGYq": {
-        "value": "Armadillo"
+      "4AbCgOZvyUFH9Pug": {
+        "value": "Dig"
       },
-      "0VGGQOhVOoNpZfdJ": {
-        "value": "Pangolin"
+      "8GsRyXaQnfsGNGW6": {
+        "value": "Locate"
       },
-      "6v6bkfKevJrn3YHf": {
-        "value": "Turtle"
+      "0ut15QizNIG254Vw": {
+        "value": "Protect"
       }
     },
     "features": [
@@ -35,7 +35,12 @@
       "advantages": 2,
       "features": 2
     },
-    "examples": "Armadillo, Pangolin, Turtle, etc."
+    "examples": "Armadillo, Pangolin, Turtle, etc.",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 13,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -125,12 +130,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753580987168,
-    "modifiedTime": 1753617739186,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1762786983275,
+    "lastModifiedBy": "gtrqalNxfl7iRwL8"
   },
   "_id": "8pUHJv3BYdjA4Qdf",
   "sort": 100000,

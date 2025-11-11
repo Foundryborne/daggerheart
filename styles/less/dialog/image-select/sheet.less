@@ -1,0 +1,33 @@
+.daggerheart.dh-style.dialog.image-select {
+    display: flex;
+    flex-direction: column;
+
+    .images-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+
+        img {
+            width: 136px;
+            height: 136px;
+            border: 1px solid light-dark(@dark-blue, @golden);
+            border-radius: 6px;
+            opacity: 0.4;
+
+            &.selected {
+                opacity: 1;
+            }
+        }
+    }
+
+    .footer {
+        margin-top: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        button {
+            flex: 1;
+        }
+    }
+}

@@ -1,0 +1,40 @@
+<section
+    class='tab {{tabs.partyMembers.cssClass}} {{tabs.partyMembers.id}}'
+    data-tab='{{tabs.partyMembers.id}}'
+    data-group='{{tabs.partyMembers.group}}'
+>
+
+    <div class="actions-section">
+        <button data-action="tagTeamRoll">
+            <i class="fa-solid fa-user-group"></i>
+            <span>Tag Team Roll</span>
+        </button>
+        <button data-action="groupRoll">
+            <i class="fa-solid fa-users"></i>
+            <span>Group Roll</span>
+        </button>
+        {{!-- NOT YET IMPLEMENTED --}}
+        {{!-- <button>
+            <i class="fa-solid fa-handshake-angle"></i>
+            <span>Help Action</span>
+        </button> --}}
+    </div>
+
+    <fieldset class="actors-section glassy">
+        <legend>{{localize tabs.partyMembers.label}}</legend>
+        <ul class="actors-list">
+            {{#each document.system.partyMembers as |actor id|}}
+                {{> 'daggerheart.inventory-item'
+                item=actor
+                type='character'
+                isActor=true
+                }}
+            {{/each}}
+        </ul>
+        {{#unless document.system.partyMembers.length}}
+            <div class="actors-dragger">
+                <span>{{localize "DAGGERHEART.GENERAL.dropActorsHere"}}</span>
+            </div>
+        {{/unless}}
+    </fieldset>
+</section>

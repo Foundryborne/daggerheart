@@ -10,7 +10,8 @@ export default class DhpAdversary extends BaseDataActor {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Actor.adversary',
             type: 'adversary',
-            settingSheet: DHAdversarySettings
+            settingSheet: DHAdversarySettings,
+            hasAttribution: true
         });
     }
 
@@ -26,7 +27,7 @@ export default class DhpAdversary extends BaseDataActor {
             }),
             type: new fields.StringField({
                 required: true,
-                choices: CONFIG.DH.ACTOR.adversaryTypes,
+                choices: CONFIG.DH.ACTOR.allAdversaryTypes,
                 initial: CONFIG.DH.ACTOR.adversaryTypes.standard.id
             }),
             motivesAndTactics: new fields.StringField(),
@@ -168,5 +169,14 @@ export default class DhpAdversary extends BaseDataActor {
                 }
             }
         }
+    }
+
+    _getTags() {
+        const tags = [
+            game.i18n.localize(`DAGGERHEART.GENERAL.Tiers.${this.tier}`),
+            `${game.i18n.localize(`DAGGERHEART.CONFIG.AdversaryType.${this.type}.label`)}`,
+            `${game.i18n.localize('DAGGERHEART.GENERAL.difficulty')}: ${this.difficulty}`
+        ];
+        return tags;
     }
 }

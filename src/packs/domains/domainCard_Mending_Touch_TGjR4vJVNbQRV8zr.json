@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "sDoL9p1cpIx8Vdbb",
         "systemPath": "actions",
-        "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\">When you can take a few minutes to focus on the target you’re helping, you can </span><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\">spend 2 Hope</span><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\"> to clear a Hit Point or a Stress on them.</span></p>",
+        "description": "<p>When you can take a few minutes to focus on the target you’re helping, you can </span><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\">spend 2 Hope</span> to clear a Hit Point or a Stress on them.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -22,7 +22,6 @@
             "scalable": false,
             "key": "hope",
             "value": 2,
-            "keyIsID": false,
             "step": null,
             "consumeOnSuccess": false
           }
@@ -99,7 +98,6 @@
             "scalable": false,
             "key": "hope",
             "value": 2,
-            "keyIsID": false,
             "step": null,
             "consumeOnSuccess": false
           }
@@ -173,18 +171,18 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
             "key": "hope",
+            "itemId": null,
             "value": 2,
-            "keyIsID": false,
+            "scalable": false,
             "step": null,
             "consumeOnSuccess": false
           },
           {
-            "scalable": false,
-            "key": "TGjR4vJVNbQRV8zr",
+            "key": "resource",
+            "itemId": "TGjR4vJVNbQRV8zr",
             "value": 1,
-            "keyIsID": true,
+            "scalable": false,
             "step": null,
             "consumeOnSuccess": false
           }
@@ -258,18 +256,18 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
             "key": "hope",
+            "itemId": null,
             "value": 2,
-            "keyIsID": false,
+            "scalable": false,
             "step": null,
             "consumeOnSuccess": false
           },
           {
-            "scalable": false,
-            "key": "TGjR4vJVNbQRV8zr",
+            "key": "resource",
+            "itemId": "TGjR4vJVNbQRV8zr",
             "value": 1,
-            "keyIsID": true,
+            "scalable": false,
             "step": null,
             "consumeOnSuccess": false
           }
@@ -342,6 +340,11 @@
       "max": "1",
       "icon": "fa-solid fa-hands-praying",
       "recovery": "longRest"
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 132,
+      "artist": ""
     }
   },
   "flags": {},
@@ -349,12 +352,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753922784482,
-    "modifiedTime": 1754498631054,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1756325575507,
+    "lastModifiedBy": "bjJtdJOhqWr47GhC"
   },
   "_id": "TGjR4vJVNbQRV8zr",
   "sort": 3400000,

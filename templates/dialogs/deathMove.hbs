@@ -6,17 +6,23 @@
         <ul class="moves-list">
             {{#each this.options as |option key|}}
                 <li class="move-item" data-tooltip="{{concat "#" "deathMove" "#"}}" data-action="selectMove" data-move="{{key}}"data-death-img="{{option.img}}" data-death-name="{{this.name}}" data-death-description="{{this.description}}">
-                    <label class="label" for="{{id}}" data-tooltip="{{localize tooltip}}" data-tooltip-direction="LEFT">
+                    <div class="label" for="{{id}}" data-tooltip="{{localize tooltip}}" data-tooltip-direction="LEFT">
                         <i class="fa-solid {{icon}} fa-xl"></i>
                         <span class="label">{{localize this.name}}</span>
-                    </label>
+                    </div>
                     <input type="radio" {{#if (eq ../this.selectedMove.id option.id)}}checked{{/if}}>
                 </li>
             {{/each}}
         </ul>
     </div>
     <footer class="flexrow">
-        <button data-action="close">{{localize "Cancel"}}</button>
-        <button data-action="takeMove" {{#if (not this.selectedMove)}}disabled{{/if}}>{{localize "DAGGERHEART.APPLICATIONS.DeathMove.selectMove"}}</button>
+        <button data-action="close">
+            <span>{{localize "Cancel"}}</span>
+        </button>
+        <button data-action="takeMove" {{#if (not this.selectedMove)}}disabled{{/if}}>
+            <span>
+                {{localize "DAGGERHEART.APPLICATIONS.DeathMove.selectMove"}}
+            </span>
+        </button>
     </footer>
 </div>

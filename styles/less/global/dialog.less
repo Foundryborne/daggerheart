@@ -48,10 +48,9 @@
     }
 
     .formula-label {
-        font-family: @font-body;
         font-style: normal;
         font-weight: 500;
-        font-size: 14px;
+        font-size: var(--font-size-14);
         line-height: 17px;
         white-space: nowrap;
         color: light-dark(@dark, @beige);
@@ -68,6 +67,10 @@
         }
     }
 
+    .standard-form {
+        font-family: @font-body;
+    }
+
     &.two-big-buttons {
         .window-content {
             padding-top: 0;
@@ -81,7 +84,6 @@
             button[type='submit'] {
                 gap: 5px;
                 flex-direction: row;
-                font-family: @font-body;
                 font-weight: bold;
                 font-size: var(--font-size-14);
                 height: 40px;

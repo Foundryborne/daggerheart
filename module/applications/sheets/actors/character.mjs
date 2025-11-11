@@ -1,11 +1,10 @@
 import DHBaseActorSheet from '../api/base-actor.mjs';
 import DhpDeathMove from '../../dialogs/deathMove.mjs';
 import { abilities } from '../../../config/actorConfig.mjs';
-import DhCharacterlevelUp from '../../levelup/characterLevelup.mjs';
+import { CharacterLevelup, LevelupViewMode } from '../../levelup/_module.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
 import { getDocFromElement, getDocFromElementSync } from '../../../helpers/utils.mjs';
-import { ItemBrowser } from '../../ui/itemBrowser.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
@@ -15,22 +14,34 @@ export default class CharacterSheet extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
         classes: ['character'],
         position: { width: 850, height: 800 },
+        /* Foundry adds disabled to all buttons and inputs if editPermission is missing. This is not desired. */
+        editPermission: CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER,
         actions: {
             toggleVault: CharacterSheet.#toggleVault,
             rollAttribute: CharacterSheet.#rollAttribute,
+            toggleHitPoints: CharacterSheet.#toggleHitPoints,
+            toggleStress: CharacterSheet.#toggleStress,
+            toggleArmor: CharacterSheet.#toggleArmor,
             toggleHope: CharacterSheet.#toggleHope,
             toggleLoadoutView: CharacterSheet.#toggleLoadoutView,
             openPack: CharacterSheet.#openPack,
             makeDeathMove: CharacterSheet.#makeDeathMove,
             levelManagement: CharacterSheet.#levelManagement,
+            viewLevelups: CharacterSheet.#viewLevelups,
             toggleEquipItem: CharacterSheet.#toggleEquipItem,
             toggleResourceDice: CharacterSheet.#toggleResourceDice,
             handleResourceDice: CharacterSheet.#handleResourceDice,
-            useDowntime: this.useDowntime,
-            tempBrowser: CharacterSheet.#tempBrowser
+            useDowntime: this.useDowntime
         },
         window: {
-            resizable: true
+            resizable: true,
+            controls: [
+                {
+                    icon: 'fa-solid fa-angles-up',
+                    label: 'DAGGERHEART.ACTORS.Character.viewLevelups',
+                    action: 'viewLevelups'
+                }
+            ]
         },
         dragDrop: [
             {
@@ -68,8 +79,14 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
     /**@override */
     static PARTS = {
+        limited: {
+            id: 'limited',
+            scrollable: ['.limited-container'],
+            template: 'systems/daggerheart/templates/sheets/actors/character/limited.hbs'
+        },
         sidebar: {
             id: 'sidebar',
+            scrollable: ['.shortcut-items-section'],
             template: 'systems/daggerheart/templates/sheets/actors/character/sidebar.hbs'
         },
         header: {
@@ -78,22 +95,27 @@ export default class CharacterSheet extends DHBaseActorSheet {
         },
         features: {
             id: 'features',
+            scrollable: ['.features-sections'],
             template: 'systems/daggerheart/templates/sheets/actors/character/features.hbs'
         },
         loadout: {
             id: 'loadout',
+            scrollable: ['.items-section'],
             template: 'systems/daggerheart/templates/sheets/actors/character/loadout.hbs'
         },
         inventory: {
             id: 'inventory',
+            scrollable: ['.items-section'],
             template: 'systems/daggerheart/templates/sheets/actors/character/inventory.hbs'
         },
         biography: {
             id: 'biography',
+            scrollable: ['.items-section'],
             template: 'systems/daggerheart/templates/sheets/actors/character/biography.hbs'
         },
         effects: {
             id: 'effects',
+            scrollable: ['.effects-sections'],
             template: 'systems/daggerheart/templates/sheets/actors/character/effects.hbs'
         }
     };
@@ -118,6 +140,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         });
         htmlElement.querySelectorAll('.inventory-item-quantity').forEach(element => {
             element.addEventListener('change', this.updateItemQuantity.bind(this));
+            element.addEventListener('click', e => e.stopPropagation());
         });
 
         // Add listener for armor marks input
@@ -126,16 +149,37 @@ export default class CharacterSheet extends DHBaseActorSheet {
         });
     }
 
+    /**  @inheritdoc */
+    _initializeApplicationOptions(options) {
+        const applicationOptions = super._initializeApplicationOptions(options);
+
+        if (applicationOptions.document.testUserPermission(game.user, 'LIMITED', { exact: true })) {
+            applicationOptions.position.width = 360;
+            applicationOptions.position.height = 'auto';
+        }
+
+        return applicationOptions;
+    }
+
     /** @inheritDoc */
     async _onRender(context, options) {
         await super._onRender(context, options);
 
-        this.element
-            .querySelector('.level-value')
-            ?.addEventListener('change', event => this.document.updateLevel(Number(event.currentTarget.value)));
+        if (!this.document.testUserPermission(game.user, 'LIMITED', { exact: true })) {
+            this.element
+                .querySelector('.level-value')
+                ?.addEventListener('change', event => this.document.updateLevel(Number(event.currentTarget.value)));
 
-        this._createFilterMenus();
-        this._createSearchFilter();
+            const observer = this.document.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER, {
+                exact: true
+            });
+            if (observer) {
+                this.element.querySelector('.window-content').classList.add('viewMode');
+            }
+
+            this._createFilterMenus();
+            this._createSearchFilter();
+        }
     }
 
     /* -------------------------------------------- */
@@ -154,6 +198,16 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
             return acc;
         }, {});
+
+        context.resources = Object.keys(this.document.system.resources).reduce((acc, key) => {
+            acc[key] = this.document.system.resources[key];
+            return acc;
+        }, {});
+        const maxResource = Math.max(context.resources.hitPoints.max, context.resources.stress.max);
+        context.resources.hitPoints.emptyPips =
+            context.resources.hitPoints.max < maxResource ? maxResource - context.resources.hitPoints.max : 0;
+        context.resources.stress.emptyPips =
+            context.resources.stress.max < maxResource ? maxResource - context.resources.stress.max : 0;
 
         context.inventory = {
             currency: {
@@ -210,7 +264,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * @protected
      */
     async _prepareLoadoutContext(context, _options) {
-        context.cardView = !game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.displayDomainCardsAsList);
+        context.cardView = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.displayDomainCardsAsCard);
     }
 
     /**
@@ -586,7 +640,14 @@ export default class CharacterSheet extends DHBaseActorSheet {
         if (!value || !subclass)
             return ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.missingClassOrSubclass'));
 
-        new DhCharacterlevelUp(this.document).render({ force: true });
+        new CharacterLevelup(this.document).render({ force: true });
+    }
+
+    /**
+     * Opens the charater level management window in viewMode.
+     */
+    static #viewLevelups() {
+        new LevelupViewMode(this.document).render({ force: true });
     }
 
     /**
@@ -605,7 +666,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const { key } = button.dataset;
 
         const presets = {
-            compendium: 'daggerheart',
             folder: key,
             filter:
                 key === 'subclasses'
@@ -621,7 +681,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             }
         };
 
-        return new ItemBrowser({ presets }).render({ force: true });
+        ui.compendiumBrowser.open(presets);
     }
 
     /**
@@ -649,31 +709,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             })
         });
 
-        this.consumeResource(result?.costs);
-    }
-
-    // Remove when Action Refactor part #2 done
-    async consumeResource(costs) {
-        if (!costs?.length) return;
-        const usefulResources = {
-            ...foundry.utils.deepClone(this.actor.system.resources),
-            fear: {
-                value: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
-                max: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear,
-                reversed: false
-            }
-        };
-        const resources = game.system.api.fields.ActionFields.CostField.getRealCosts(costs).map(c => {
-            const resource = usefulResources[c.key];
-            return {
-                key: c.key,
-                value: (c.total ?? c.value) * (resource.isReversed ? 1 : -1),
-                target: resource.target,
-                keyIsID: resource.keyIsID
-            };
-        });
-
-        await this.actor.modifyResource(resources);
+        if (result) game.system.api.fields.ActionFields.CostField.execute.call(this, result);
     }
 
     //TODO: redo toggleEquipItem method
@@ -718,9 +754,40 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * @type {ApplicationClickAction}
      */
     static async #toggleLoadoutView(_, button) {
-        const newAbilityView = button.dataset.value !== 'true';
-        await game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.displayDomainCardsAsList, newAbilityView);
+        const newAbilityView = button.dataset.value === 'true';
+        await game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.displayDomainCardsAsCard, newAbilityView);
         this.render();
+    }
+
+    /**
+     * Toggles hitpoint resource value.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleHitPoints(_, button) {
+        const hitPointsValue = Number.parseInt(button.dataset.value);
+        const newValue =
+            this.document.system.resources.hitPoints.value >= hitPointsValue ? hitPointsValue - 1 : hitPointsValue;
+        await this.document.update({ 'system.resources.hitPoints.value': newValue });
+    }
+
+    /**
+     * Toggles stress resource value.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleStress(_, button) {
+        const StressValue = Number.parseInt(button.dataset.value);
+        const newValue = this.document.system.resources.stress.value >= StressValue ? StressValue - 1 : StressValue;
+        await this.document.update({ 'system.resources.stress.value': newValue });
+    }
+
+    /**
+     * Toggles ArmorScore resource value.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleArmor(_, button, element) {
+        const ArmorValue = Number.parseInt(button.dataset.value);
+        const newValue = this.document.system.armor.system.marks.value >= ArmorValue ? ArmorValue - 1 : ArmorValue;
+        await this.document.system.armor.update({ 'system.marks.value': newValue });
     }
 
     /**
@@ -760,13 +827,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
         await item.update({
             [`system.resource.diceStates.${dice}.used`]: diceState ? !diceState.used : true
         });
-    }
-
-    /**
-     * Temp
-     */
-    static async #tempBrowser(_, target) {
-        new ItemBrowser().render({ force: true });
     }
 
     /**
@@ -826,6 +886,23 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
         if (item.type === 'domainCard' && !this.document.system.loadoutSlot.available) {
             itemData.system.inVault = true;
+        }
+
+        if (item.type === 'beastform') {
+            if (this.document.effects.find(x => x.type === 'beastform')) {
+                return ui.notifications.warn(
+                    game.i18n.localize('DAGGERHEART.UI.Notifications.beastformAlreadyApplied')
+                );
+            }
+
+            const data = await game.system.api.data.items.DHBeastform.getWildcardImage(this.document, itemData);
+            if (data) {
+                if (!data.selectedImage) return;
+                else {
+                    if (data.usesDynamicToken) itemData.system.tokenRingImg = data.selectedImage;
+                    else itemData.system.tokenImg = data.selectedImage;
+                }
+            }
         }
 
         if (this.document.uuid === item.parent?.uuid) return this._onSortItem(event, itemData);

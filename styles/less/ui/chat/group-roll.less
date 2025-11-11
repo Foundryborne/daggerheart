@@ -1,0 +1,210 @@
+.chat-message .message-content .group-roll {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 8px;
+
+    .group-roll-section {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        .group-roll-header {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            margin-bottom: 0;
+            font-weight: normal;
+
+            &.first {
+                margin-top: 5px;
+            }
+
+            .group-roll-header-expand-section {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                cursor: pointer;
+
+                label {
+                    cursor: pointer;
+                }
+
+                i {
+                    color: light-dark(@dark-blue, @golden);
+                }
+            }
+        }
+
+        .group-roll-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            border-radius: 5px;
+            padding: 5px;
+            overflow: hidden;
+            height: auto;
+            transition: all 0.3s ease;
+
+            &.closed {
+                height: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+
+            &.finished {
+                background: light-dark(@dark-blue-10, @golden-10);
+            }
+
+            .group-roll-main-roll {
+                display: flex;
+                flex-direction: column;
+
+                .divider {
+                    font-size: 14px;
+                    margin-bottom: 0;
+                    font-weight: normal;
+                }
+
+                .main-roll-content {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
+                    color: light-dark(@dark-blue, @golden);
+
+                    .main-value {
+                        font-size: var(--font-size-24);
+                        font-weight: bold;
+                    }
+
+                    .main-text {
+                        font-size: var(--font-size-16);
+                        margin-top: 2px;
+                    }
+                }
+            }
+
+            .group-roll-member {
+                display: flex;
+                justify-content: space-between;
+
+                .group-roll-data {
+                    display: flex;
+                    gap: 4px;
+
+                    img {
+                        width: 42px;
+                        height: 42px;
+                        border-radius: 50%;
+                    }
+
+                    .group-roll-label-container {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+
+                        .group-roll-label-inner-container {
+                            display: flex;
+                            gap: 8px;
+                        }
+
+                        .group-roll-modifier {
+                            padding: 2px 8px;
+                            border: 1px solid light-dark(@green, @green);
+                            border-radius: 6px;
+                            color: light-dark(@green, @green);
+                            background: light-dark(@green-40, @green-40);
+
+                            &.failure {
+                                border-color: light-dark(@red, @red);
+                                color: light-dark(@red, @red);
+                                background: light-dark(@red-40, @red-40);
+                            }
+                        }
+
+                        .group-roll-trait {
+                            padding: 2px 8px;
+                            border: 1px solid light-dark(white, white);
+                            border-radius: 6px;
+                            color: light-dark(white, white);
+                            background: light-dark(@beige-80, @beige-80);
+                        }
+                    }
+                }
+
+                .group-roll-rolling {
+                    img {
+                        width: 42px;
+                        height: 42px;
+
+                        &:hover {
+                            filter: drop-shadow(0 0 8px light-dark(@dark-blue, @golden));
+                        }
+                    }
+                }
+
+                .roll-results {
+                    display: flex;
+                    align-items: center;
+                    border-radius: 5px;
+                    width: fit-content;
+                    gap: 16px;
+                    cursor: pointer;
+                    padding: 5px;
+                    background: light-dark(@dark-blue-10, @golden-10);
+                    color: light-dark(@dark-blue, @golden);
+
+                    &.finished {
+                        background-color: initial;
+                    }
+
+                    .reroll-result-container {
+                        display: flex;
+                        align-items: center;
+                        gap: 16px;
+
+                        .label {
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: var(--font-size-18);
+                            line-height: 17px;
+                        }
+
+                        i {
+                            font-size: 16px;
+                        }
+
+                        .success,
+                        .success i {
+                            color: @green;
+                        }
+
+                        .failure,
+                        .failure i {
+                            color: @red;
+                        }
+                    }
+
+                    .group-roll-reroll {
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        .dice-icon {
+                            width: 24px;
+                        }
+
+                        .reroll-icon {
+                            position: absolute;
+                            font-size: 14px;
+                            color: black;
+                            filter: drop-shadow(0 0 3px black);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

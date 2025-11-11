@@ -7,19 +7,24 @@
     "description": "<p>Being part of a wanderborne community means you’ve lived as a nomad, forgoing a permanent home and experiencing a wide variety of cultures.<br><br><p class=\"green Body-Styles_Body\" chunk_id=\"38ab3560-b379-4862-a54b-f68ee23ed464\">Unlike many communities that are defined by their locale, wanderborne are defined by their traveling lifestyle. Because of their frequent migration, wanderborne put less value on the accumulation of material possessions in favor of acquiring information, skills, and connections. While some wanderborne are allied by a common ethos, such as a religion or a set of political or economic values, others come together after shared tragedy, such as the loss of their home or land. No matter the reason, the dangers posed by life on the road and the choice to continue down that road together mean that wanderborne are known for their unwavering loyalty.</p>\n<p class=\"green Body-Styles_Body\" chunk_id=\"f8af6c80-2115-4d96-a1fc-3f425abafdd0\"><em>Wanderborne are often inscrutable, magnanimous, mirthful, reliable, savvy, and unorthodox.</em></p></p>",
     "features": [
       "Compendium.daggerheart.communities.Item.2RSrQouA2zEJ5Xee"
-    ]
+    ],
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 34,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784398,
-    "modifiedTime": 1754011123332,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1755394858795,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "82mDY2EIBfLkNwQj",
   "sort": 3400000,

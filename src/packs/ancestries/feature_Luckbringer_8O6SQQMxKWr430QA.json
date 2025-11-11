@@ -12,7 +12,7 @@
         "type": "healing",
         "_id": "8sK3t73bFkpb999C",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>At the start of each session, everyone in your party gains a Hope.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -78,7 +78,12 @@
     },
     "originItemType": null,
     "subType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 29,
+      "artist": ""
+    }
   },
   "effects": [],
   "sort": 0,
@@ -91,12 +96,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.2",
     "createdTime": 1753997164653,
-    "modifiedTime": 1753997217376,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1761138289388,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!items!8O6SQQMxKWr430QA"
 }

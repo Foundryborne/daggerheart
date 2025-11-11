@@ -12,7 +12,7 @@
         "type": "attack",
         "_id": "LcFhDb3sJk8sraAc",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Make an <strong>Agility Roll</strong> to scratch a target within Melee range. On a success, they become temporarily Vulnerable.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -62,7 +62,12 @@
     },
     "originItemType": null,
     "subType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 30,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -122,12 +127,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.2",
     "createdTime": 1754000306620,
-    "modifiedTime": 1754000434953,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1761138426560,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!items!Zj69cAeb3NjIa8Hn"
 }

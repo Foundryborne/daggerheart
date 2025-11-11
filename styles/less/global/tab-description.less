@@ -3,11 +3,14 @@
 
 .daggerheart.dh-style {
     .tab.active.description {
-        overflow-y: hidden !important;
+        display: flex;
+        flex-direction: column;
         height: -webkit-fill-available !important;
+        overflow-y: hidden !important;
+        padding-top: 10px;
 
-        fieldset {
-            height: -webkit-fill-available;
+        prose-mirror.active + .artist-attribution {
+            display: none;
         }
     }
 }

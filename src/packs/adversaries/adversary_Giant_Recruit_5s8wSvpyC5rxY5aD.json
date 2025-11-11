@@ -99,6 +99,11 @@
       },
       "type": "attack",
       "chatDisplay": false
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 87,
+      "artist": ""
     }
   },
   "flags": {},
@@ -108,9 +113,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784271,
-    "modifiedTime": 1755259462570,
+    "modifiedTime": 1755385156358,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "5s8wSvpyC5rxY5aD",
@@ -265,10 +270,11 @@
             "cost": [
               {
                 "scalable": false,
-                "key": "stress",
+                "key": "fear",
                 "value": 1,
                 "keyIsID": false,
-                "step": null
+                "step": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
@@ -281,7 +287,7 @@
               "type": "self",
               "amount": null
             },
-            "name": "Mark Stress",
+            "name": "Spend Fear",
             "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
             "range": ""
           }
@@ -303,12 +309,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754079291678,
-        "modifiedTime": 1754142639306,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760380537296,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!5s8wSvpyC5rxY5aD.FMgB28X1LammRInU"
     }

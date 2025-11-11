@@ -12,10 +12,19 @@
         "type": "damage",
         "_id": "bXbQ57CB1Hfj5XrS",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>When you succeed on an attack against a target within Melee range, you can <strong>mark a Stress</strong> to kick yourself off them, dealing an extra <strong>2d6</strong> damage and knocking back either yourself or the target to Very Close range.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -26,11 +35,11 @@
             {
               "value": {
                 "custom": {
-                  "enabled": true,
-                  "formula": "2d6"
+                  "enabled": false,
+                  "formula": ""
                 },
-                "multiplier": "prof",
-                "flatMultiplier": 1,
+                "multiplier": "flat",
+                "flatMultiplier": 2,
                 "dice": "d6",
                 "bonus": null
               },
@@ -44,7 +53,8 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               }
             }
@@ -56,14 +66,19 @@
           "amount": null
         },
         "effects": [],
-        "name": "Damage",
+        "name": "Deal Damage",
         "img": "icons/skills/melee/shield-damaged-broken-gold.webp",
         "range": "melee"
       }
     },
     "originItemType": null,
     "subType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 28,
+      "artist": ""
+    }
   },
   "effects": [],
   "sort": 0,
@@ -76,12 +91,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.2",
     "createdTime": 1753995249173,
-    "modifiedTime": 1753995396728,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1761139310352,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!items!gpW19TfJk0WWFh1S"
 }

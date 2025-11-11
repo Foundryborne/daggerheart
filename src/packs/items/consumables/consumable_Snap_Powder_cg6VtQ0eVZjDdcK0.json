@@ -17,10 +17,11 @@
         "cost": [
           {
             "scalable": false,
-            "key": "stress",
+            "key": "quantity",
             "value": 1,
-            "keyIsID": false,
-            "step": null
+            "itemId": "cg6VtQ0eVZjDdcK0",
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -83,7 +84,13 @@
         "range": ""
       }
     },
-    "consumeOnUse": true
+    "consumeOnUse": true,
+    "destroyOnEmpty": true,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 61,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": null,
@@ -97,12 +104,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753588752841,
-    "modifiedTime": 1754394825942,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1756336754402,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!cg6VtQ0eVZjDdcK0"
 }

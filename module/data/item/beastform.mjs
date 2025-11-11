@@ -33,11 +33,13 @@ export default class DHBeastform extends BaseDataItem {
             tokenImg: new fields.FilePathField({
                 initial: 'icons/svg/mystery-man.svg',
                 categories: ['IMAGE'],
+                wildcard: true,
                 base64: false
             }),
             tokenRingImg: new fields.FilePathField({
                 initial: 'icons/svg/mystery-man.svg',
                 categories: ['IMAGE'],
+                wildcard: true,
                 base64: false
             }),
             tokenSize: new fields.SchemaField({
@@ -106,6 +108,30 @@ export default class DHBeastform extends BaseDataItem {
             damageDice: damageDice,
             damageBonus: damageBonus ? `${Number(damageBonus).signedString()}` : ''
         };
+    }
+
+    static async getWildcardImage(actor, beastform) {
+        const usesDynamicToken = actor.prototypeToken.ring.enabled && beastform.system.tokenRingImg;
+        const tokenPath = usesDynamicToken ? beastform.system.tokenRingImg : beastform.system.tokenImg;
+        const usesWildcard = tokenPath.includes('*');
+        if (usesWildcard) {
+            const filePicker = new foundry.applications.apps.FilePicker.implementation(tokenPath);
+            const { files } = await foundry.applications.apps.FilePicker.implementation.browse(
+                filePicker.activeSource,
+                tokenPath,
+                {
+                    wildcard: true,
+                    type: 'image'
+                }
+            );
+            const selectedImage = await game.system.api.applications.dialogs.ImageSelectDialog.configure(
+                game.i18n.localize('DAGGERHEART.APPLICATIONS.ImageSelect.title'),
+                files
+            );
+            return { usesDynamicToken, selectedImage };
+        }
+
+        return null;
     }
 
     async _preCreate() {

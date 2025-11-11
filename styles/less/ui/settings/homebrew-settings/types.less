@@ -1,0 +1,52 @@
+.theme-light .daggerheart.dh-style.setting.homebrew-settings .types.tab {
+    .adversary-types-container .adversary-type-container {
+        background-image: url('../assets/parchments/dh-parchment-light.png');
+    }
+}
+
+.daggerheart.dh-style.setting.homebrew-settings {
+    .types.tab {
+        .adversary-types-container {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 4px;
+
+            .adversary-type-container {
+                height: 2em;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 8px;
+                border: 1px solid;
+                border-radius: 6px;
+                padding: 0 8px;
+                border: 1px solid light-dark(@dark-blue, @golden);
+                color: light-dark(@dark, @beige);
+                background-image: url('../assets/parchments/dh-parchment-dark.png');
+                cursor: pointer;
+                opacity: 0.6;
+
+                &:hover {
+                    opacity: 1;
+                }
+
+                &.active {
+                    opacity: 1;
+                    background: var(--color-warm-2);
+                }
+            }
+        }
+
+        .type-edit-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            textarea {
+                width: 100%;
+            }
+        }
+    }
+}

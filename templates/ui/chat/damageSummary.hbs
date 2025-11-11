@@ -1,0 +1,33 @@
+<ul class="daggerheart chat damage-summary">
+    {{#each targets}}
+        <li class="token-target-container" data-token="{{this.token.id}}">
+            <header>
+                <img src="{{this.token.texture.src}}" />
+                <h2 class="actor-name">{{this.token.name}}</h2>
+            </header>
+            <ul class="damage-container">
+                {{#each this.updates}}
+                    <li class="damage-row">
+                        {{#if (gte this.value 0)}}
+                            <span>
+                                {{
+                                localize "DAGGERHEART.UI.Chat.markResource"
+                                quantity=this.value
+                                resource=(localize (concat "DAGGERHEART.CONFIG.HealingType." this.key ".name"))
+                                }}
+                            </span>
+                        {{else}}
+                            <span>
+                                {{
+                                localize "DAGGERHEART.UI.Chat.clearResource"
+                                quantity=(positive this.value)
+                                resource=(localize (concat "DAGGERHEART.CONFIG.HealingType." this.key ".name"))
+                                }}
+                            </span>
+                        {{/if}}
+                    </li>
+                {{/each}}
+            </ul>
+        </li>    
+    {{/each}}
+</ul>

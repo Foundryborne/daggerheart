@@ -1,6 +1,6 @@
 {
   "name": "Mountain Pass",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
   "type": "environment",
   "folder": "XMeecO3IRvu5ck6F",
   "system": {
@@ -27,19 +27,24 @@
     "tier": 2,
     "description": "<p>Stony peaks that pierce the clouds, with a twisting path winding its way up and over through many switchbacks.</p>",
     "type": "traversal",
-    "impulses": "Exact a chilling toll in supplies and stamina, reveal magical tampering, slow down travel"
+    "impulses": "Exact a chilling toll in supplies and stamina, reveal magical tampering, slow down travel",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 108,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784562,
-    "modifiedTime": 1754217303533,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755389890256,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "acMu9wJrMZZzLSTJ",
   "sort": 3400000,
@@ -55,7 +60,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,
@@ -177,7 +182,7 @@
       "_key": "!actors.items!acMu9wJrMZZzLSTJ.cIAMenvMXHPTpOFn"
     },
     {
-      "name": "Avalance",
+      "name": "Avalanche",
       "type": "feature",
       "system": {
         "description": "<p>Spend a Fear to carve the mountain with an icy torrent, causing an avalanche. All PCs in its path must succeed on an Agility or Strength Reaction Roll or be bowled over and carried down the mountain. A PC using rope, pitons, or other climbing gear gains advantage on this roll. Targets who fail are knocked down the mountain to Far range, take <strong>2d20</strong> physical damage, and must mark a Stress. Targets who succeed must mark a Stress. </p><section id=\"secret-3gM8fEJj1vD9W88k\" class=\"secret\"><p><em>How do the PCs try to weather the avalanche? What approach do the characters take to fi nd one another when their companions go hurtling down the mountainside?</em></p></section>",
@@ -252,12 +257,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754217019442,
-        "modifiedTime": 1754217102897,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1761503937038,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!acMu9wJrMZZzLSTJ.jkm03DXYYajsRk2j"
     },

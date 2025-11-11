@@ -39,7 +39,7 @@
                         justify-content: center;
                         align-items: center;
                         padding: 3px 5px;
-                        font-size: 12px;
+                        font-size: var(--font-size-12);
                         font: @font-body;
 
                         background: light-dark(@dark-15, @beige-15);
@@ -52,8 +52,15 @@
                         flex-direction: row;
                         justify-content: center;
                         align-items: center;
-                        font-size: 12px;
+                        font-size: var(--font-size-12);
                     }
+                }
+
+                .attribution-header-label {
+                    text-align: left;
+                    position: relative;
+                    top: 4px;
+                    margin-bottom: -6px;
                 }
             }
 
@@ -93,7 +100,7 @@
                         font-weight: bold;
                         text-align: center;
                         line-height: 18px;
-                        font-size: 12px;
+                        font-size: var(--font-size-12);
                         color: light-dark(@beige, @dark-blue);
                     }
                 }
@@ -101,7 +108,7 @@
 
             .item-name {
                 input[type='text'] {
-                    font-size: 32px;
+                    font-size: var(--font-size-32);
                     height: 42px;
                     text-align: start;
                     transition: all 0.3s ease;
@@ -122,12 +129,6 @@
             flex-direction: column;
             gap: 12px;
             padding: 10px 20px;
-
-            .description,
-            .impulses {
-                text-align: start;
-                font-family: @font-body;
-            }
         }
 
         .environment-navigation {

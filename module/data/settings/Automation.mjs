@@ -2,6 +2,10 @@ export default class DhAutomation extends foundry.abstract.DataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
+            summaryMessages: new fields.SchemaField({
+                damage: new fields.BooleanField({ initial: true, label: 'DAGGERHEART.GENERAL.damage' }),
+                effects: new fields.BooleanField({ initial: true, label: 'DAGGERHEART.GENERAL.Effect.plural' })
+            }),
             hopeFear: new fields.SchemaField({
                 gm: new fields.BooleanField({
                     required: true,
@@ -64,21 +68,105 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                 }),
                 characterDefault: new fields.StringField({
                     required: true,
-                    choices: CONFIG.DH.GENERAL.defeatedConditions,
-                    initial: CONFIG.DH.GENERAL.defeatedConditions.unconscious.id,
+                    choices: CONFIG.DH.GENERAL.defeatedConditionChoices,
+                    initial: CONFIG.DH.GENERAL.defeatedConditionChoices.unconscious.id,
                     label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.defeated.characterDefault.label'
                 }),
                 adversaryDefault: new fields.StringField({
                     required: true,
-                    choices: CONFIG.DH.GENERAL.defeatedConditions,
-                    initial: CONFIG.DH.GENERAL.defeatedConditions.defeated.id,
+                    choices: CONFIG.DH.GENERAL.defeatedConditionChoices,
+                    initial: CONFIG.DH.GENERAL.defeatedConditionChoices.dead.id,
                     label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.defeated.adversaryDefault.label'
                 }),
                 companionDefault: new fields.StringField({
                     required: true,
-                    choices: CONFIG.DH.GENERAL.defeatedConditions,
-                    initial: CONFIG.DH.GENERAL.defeatedConditions.defeated.id,
+                    choices: CONFIG.DH.GENERAL.defeatedConditionChoices,
+                    initial: CONFIG.DH.GENERAL.defeatedConditionChoices.defeated.id,
                     label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.defeated.companionDefault.label'
+                }),
+                deadIcon: new fields.FilePathField({
+                    initial: 'icons/magic/death/grave-tombstone-glow-teal.webp',
+                    categories: ['IMAGE'],
+                    base64: false,
+                    label: 'Dead'
+                }),
+                defeatedIcon: new fields.FilePathField({
+                    initial: 'icons/magic/control/fear-fright-mask-orange.webp',
+                    categories: ['IMAGE'],
+                    base64: false,
+                    label: 'Defeated'
+                }),
+                unconsciousIcon: new fields.FilePathField({
+                    initial: 'icons/magic/control/sleep-bubble-purple.webp',
+                    categories: ['IMAGE'],
+                    base64: false,
+                    label: 'Unconcious'
+                })
+            }),
+            roll: new fields.SchemaField({
+                roll: new fields.SchemaField({
+                    gm: new fields.BooleanField({
+                        required: true,
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.gm'
+                    }),
+                    players: new fields.BooleanField({
+                        required: true,
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.player.plurial'
+                    })
+                }),
+                damage: new fields.SchemaField({
+                    gm: new fields.StringField({
+                        required: true,
+                        initial: 'never',
+                        choices: CONFIG.DH.SETTINGS.actionAutomationChoices,
+                        label: 'DAGGERHEART.GENERAL.gm'
+                    }),
+                    players: new fields.StringField({
+                        required: true,
+                        initial: 'never',
+                        choices: CONFIG.DH.SETTINGS.actionAutomationChoices,
+                        label: 'DAGGERHEART.GENERAL.player.plurial'
+                    })
+                }),
+                save: new fields.SchemaField({
+                    gm: new fields.StringField({
+                        required: true,
+                        initial: 'never',
+                        choices: CONFIG.DH.SETTINGS.actionAutomationChoices,
+                        label: 'DAGGERHEART.GENERAL.gm'
+                    }),
+                    players: new fields.StringField({
+                        required: true,
+                        initial: 'never',
+                        choices: CONFIG.DH.SETTINGS.actionAutomationChoices,
+                        label: 'DAGGERHEART.GENERAL.player.plurial'
+                    })
+                }),
+                damageApply: new fields.SchemaField({
+                    gm: new fields.BooleanField({
+                        required: true,
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.gm'
+                    }),
+                    players: new fields.BooleanField({
+                        required: true,
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.player.plurial'
+                    })
+                }),
+                effect: new fields.SchemaField({
+                    gm: new fields.BooleanField({
+                        required: true,
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.gm'
+                    }),
+                    players: new fields.BooleanField({
+                        required: true,
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.player.plurial'
+                    })
                 })
             })
         };

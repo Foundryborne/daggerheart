@@ -25,18 +25,20 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
-            "key": "McdncxmO9K1YNP7Y",
+            "key": "resource",
+            "itemId": "McdncxmO9K1YNP7Y",
             "value": 1,
-            "keyIsID": true,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           },
           {
-            "scalable": false,
             "key": "stress",
+            "itemId": null,
             "value": 1,
-            "keyIsID": false,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -67,18 +69,20 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
             "key": "stress",
+            "itemId": null,
             "value": 1,
-            "keyIsID": false,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           },
           {
-            "scalable": false,
-            "key": "McdncxmO9K1YNP7Y",
+            "key": "resource",
+            "itemId": "McdncxmO9K1YNP7Y",
             "value": 2,
-            "keyIsID": true,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -109,18 +113,20 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
             "key": "stress",
+            "itemId": null,
             "value": 1,
-            "keyIsID": false,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           },
           {
-            "scalable": false,
-            "key": "McdncxmO9K1YNP7Y",
+            "key": "resource",
+            "itemId": "McdncxmO9K1YNP7Y",
             "value": 3,
-            "keyIsID": true,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -151,18 +157,20 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
-            "key": "McdncxmO9K1YNP7Y",
+            "key": "resource",
+            "itemId": "McdncxmO9K1YNP7Y",
             "value": 4,
-            "keyIsID": true,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           },
           {
-            "scalable": false,
             "key": "stress",
+            "itemId": null,
             "value": 1,
-            "keyIsID": false,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -184,6 +192,11 @@
         "img": "icons/commodities/gems/gem-faceted-navette-red.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 127,
+      "artist": ""
     }
   },
   "flags": {},
@@ -191,12 +204,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753922784486,
-    "modifiedTime": 1754341729669,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1756325575431,
+    "lastModifiedBy": "bjJtdJOhqWr47GhC"
   },
   "_id": "McdncxmO9K1YNP7Y",
   "sort": 3400000,
@@ -240,7 +253,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Gain a +5 bonus to your damage roll</span></p>",
+      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Gain a +5 bonus to your damage roll</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -297,7 +310,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Gain a +10 bonus to your damage roll</span></p>",
+      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Gain a +10 bonus to your damage roll</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -354,7 +367,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Gain a +15 bonus to your damage roll</span></p>",
+      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Gain a +15 bonus to your damage roll</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -411,7 +424,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Gain a +20 bonus to your damage roll</span></p>",
+      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Gain a +20 bonus to your damage roll</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

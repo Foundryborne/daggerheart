@@ -10,6 +10,7 @@ Parameters:
 - isGlassy {boolean} : If true, applies the 'glassy' class to the fieldset.
 - cardView {boolean} : If true and type is 'domainCard', renders using domain card layout.
 - isActor {boolean} : Passed through to inventory-item partials.
+- actorType {boolean} : The actor type of the parent actor
 - canCreate {boolean} : If true, show createDoc anchor on legend
 - inVault {boolean} : If true, the domainCard is created with inVault=true
 - disabled {boolean}:  If true, the ActiveEffect is created with disabled=true;
@@ -54,6 +55,7 @@ Parameters:
     {{> 'daggerheart.inventory-item'
     item=item
     type=../type
+    actorType=../actorType
     hideControls=../hideControls
     hideContextMenu=../hideContextMenu
     isActor=../isActor

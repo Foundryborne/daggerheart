@@ -6,7 +6,12 @@
   "system": {
     "description": "<p>As a downtime move, you can use the bone of a creature to craft a Minor Stamina Potion.</p>",
     "quantity": 1,
-    "actions": {}
+    "actions": {},
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 58,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": null,
@@ -20,12 +25,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753626639554,
-    "modifiedTime": 1753626666369,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1755432058259,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!1TLpFsp3PLDsqoTw"
 }

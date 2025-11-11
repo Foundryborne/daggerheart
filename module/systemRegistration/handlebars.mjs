@@ -1,15 +1,19 @@
 export const preloadHandlebarsTemplates = async function () {
     foundry.applications.handlebars.loadTemplates({
+        'daggerheart.inventory-item-compact':
+            'systems/daggerheart/templates/sheets/global/partials/inventory-item-compact.hbs',
         'daggerheart.inventory-items':
             'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items-V2.hbs',
         'daggerheart.inventory-item': 'systems/daggerheart/templates/sheets/global/partials/inventory-item-V2.hbs'
     });
     return foundry.applications.handlebars.loadTemplates([
+        'templates/generic/tab-navigation.hbs',
         'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs',
         'systems/daggerheart/templates/sheets/global/partials/action-item.hbs',
         'systems/daggerheart/templates/sheets/global/partials/domain-card-item.hbs',
         'systems/daggerheart/templates/sheets/global/partials/item-resource.hbs',
         'systems/daggerheart/templates/sheets/global/partials/resource-section.hbs',
+        'systems/daggerheart/templates/sheets/global/partials/resource-bar.hbs',
         'systems/daggerheart/templates/components/card-preview.hbs',
         'systems/daggerheart/templates/levelup/parts/selectable-card-preview.hbs',
         'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs',
@@ -29,11 +33,11 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/ui/tooltip/parts/tooltipTags.hbs',
         'systems/daggerheart/templates/dialogs/downtime/activities.hbs',
         'systems/daggerheart/templates/dialogs/dice-roll/costSelection.hbs',
-
-        
         'systems/daggerheart/templates/ui/chat/parts/roll-part.hbs',
         'systems/daggerheart/templates/ui/chat/parts/damage-part.hbs',
         'systems/daggerheart/templates/ui/chat/parts/target-part.hbs',
         'systems/daggerheart/templates/ui/chat/parts/button-part.hbs',
+        'systems/daggerheart/templates/ui/itemBrowser/itemContainer.hbs',
+        'systems/daggerheart/templates/scene/dh-config.hbs'
     ]);
 };

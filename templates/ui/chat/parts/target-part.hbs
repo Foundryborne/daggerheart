@@ -1,11 +1,11 @@
 <div class="roll-part target-section dice-roll" data-action="expandRoll">
-    <div class="roll-part-header"><div><span>Target</span></div></div>
+    <div class="roll-part-header"><div><span>{{pluralize currentTargets.length "DAGGERHEART.GENERAL.Target"}}</span></div></div>
     {{#if isGM}}
         <div class="roll-part-extra on-reduced">
             <div class="wrapper">
                 {{#if (or (gt targetShort.hit 0) (gt targetShort.miss 0))}}
-                    <div class="target-hit-status">{{targetShort.hit}} {{#if (gt targetShort.hit 1)}}{{localize "DAGGERHEART.GENERAL.hit.single"}}{{else}}{{localize "DAGGERHEART.GENERAL.hit.plural"}}{{/if}}</div>
-                    <div class="target-hit-status is-miss">{{targetShort.miss}} {{#if (gt targetShort.miss 1)}}{{localize "DAGGERHEART.GENERAL.miss.single"}}{{else}}{{localize "DAGGERHEART.GENERAL.miss.plural"}}{{/if}}</div>
+                    <div class="target-hit-status">{{targetShort.hit}} {{pluralize targetShort.hit "DAGGERHEART.GENERAL.hit"}}</div>
+                    <div class="target-hit-status is-miss">{{targetShort.miss}} {{pluralize targetShort.miss "DAGGERHEART.GENERAL.miss"}}</div>
                 {{/if}}
                 {{#if (and hasSave pendingSaves)}}<div class="target-pending-saves" data-tooltip="{{localize "DAGGERHEART.UI.Tooltip.pendingSaves"}}" data-tooltip-direction="UP"><i class="fa-solid fa-shield fa-lg fa-beat"></i></div>{{/if}}
             </div>
@@ -40,7 +40,7 @@
                                 </div>
                             {{/if}}
                         </div>
-                        {{#if (and ../hasSave (or hit (not @root.hasRoll)))}}
+                        {{#if (and ../hasSave (or hit (not @root.hasRoll) (not @root.targetMode)))}}
                             <div class="target-save{{#if saved.result includeZero=true}} is-rolled{{/if}}" data-perm-id="{{actorId}}">
                                 <i class="fa-solid {{#if saved.result includeZero=true}}{{#if saved.success}}fa-check{{else}}fa-xmark{{/if}}{{else}}fa-shield{{/if}} fa-lg"></i>
                             </div>

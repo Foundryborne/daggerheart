@@ -1,3 +1,5 @@
+import { RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class RerollDamageDialog extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -122,6 +124,15 @@ export default class RerollDamageDialog extends HandlebarsApplicationMixin(Appli
             }, {})
         };
         await this.message.update(update);
+
+        Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.TagTeamRoll });
+        await game.socket.emit(`system.${CONFIG.DH.id}`, {
+            action: socketEvent.Refresh,
+            data: {
+                refreshType: RefreshType.TagTeamRoll
+            }
+        });
+
         await this.close();
     }
 

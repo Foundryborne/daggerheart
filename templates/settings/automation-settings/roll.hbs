@@ -1,0 +1,22 @@
+<section
+    class="tab {{tabs.roll.cssClass}} {{tabs.roll.id}}"
+    data-tab="{{tabs.roll.id}}"
+    data-group="{{tabs.roll.group}}"
+>
+    <fieldset>
+        <legend>
+            {{localize "DAGGERHEART.SETTINGS.Automation.roll.title"}} 
+        </legend>
+        {{#each settingFields.schema.fields.roll.fields as | field |}}
+            {{!-- {{formGroup field value=(lookup @root.settingFields.roll field.name) localize=true rootId="automation-roll"}} --}}
+            <div class="form-group setting-two-values">
+                <label>{{localize (concat "DAGGERHEART.SETTINGS.Automation.FIELDS.roll." field.name ".label")}}</label>
+                {{#with (lookup @root.settingFields.roll field.name) as | values |}}
+                    {{formGroup field.fields.gm value=values.gm rootId=(concat "automation-roll-" field.name "-gm") localize=true}}
+                    {{formGroup field.fields.players value=values.players rootId=(concat "automation-roll-" field.name "-players") localize=true}}
+                {{/with}}
+                <p class="hint">{{localize (concat "DAGGERHEART.SETTINGS.Automation.FIELDS.roll." field.name ".hint")}}</p>
+            </div>
+        {{/each}}
+    </fieldset>
+</section>

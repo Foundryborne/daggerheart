@@ -1,6 +1,5 @@
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 import { getDocFromElement, getDocFromElementSync, tagifyElement } from '../../../helpers/utils.mjs';
-import { ItemBrowser } from '../../ui/itemBrowser.mjs';
 
 const typeSettingsMap = {
     character: 'extendCharacterDescriptions',
@@ -85,6 +84,8 @@ export default function DHApplicationMixin(Base) {
             this._dragDrop = this._createDragDropHandlers();
         }
 
+        #nonHeaderAttribution = ['environment', 'ancestry', 'community', 'domainCard'];
+
         /**
          * The default options for the sheet.
          * @type {DHSheetV2Configuration}
@@ -98,10 +99,12 @@ export default function DHApplicationMixin(Base) {
                 deleteDoc: DHSheetV2.#deleteDoc,
                 toChat: DHSheetV2.#toChat,
                 useItem: DHSheetV2.#useItem,
+                viewItem: DHSheetV2.#viewItem,
                 toggleEffect: DHSheetV2.#toggleEffect,
                 toggleExtended: DHSheetV2.#toggleExtended,
                 addNewItem: DHSheetV2.#addNewItem,
-                browseItem: DHSheetV2.#browseItem
+                browseItem: DHSheetV2.#browseItem,
+                editAttribution: DHSheetV2.#editAttribution
             },
             contextMenus: [
                 {
@@ -124,6 +127,43 @@ export default function DHApplicationMixin(Base) {
             dragDrop: [{ dragSelector: '.inventory-item[data-type="effect"]', dropSelector: null }],
             tagifyConfigs: []
         };
+
+        /**@inheritdoc */
+        async _renderFrame(options) {
+            const frame = await super._renderFrame(options);
+
+            const hideAttribution = game.settings.get(
+                CONFIG.DH.id,
+                CONFIG.DH.SETTINGS.gameSettings.appearance
+            ).hideAttribution;
+            const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
+            if (!hideAttribution && this.document.system.metadata.hasAttribution && headerAttribution) {
+                const { source, page } = this.document.system.attribution;
+                const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
+                const element = `<label class="attribution-header-label">${attribution}</label>`;
+                this.window.controls.insertAdjacentHTML('beforebegin', element);
+            }
+
+            return frame;
+        }
+
+        /**
+         *  Refresh the custom parts of the application frame
+         */
+        refreshFrame() {
+            const hideAttribution = game.settings.get(
+                CONFIG.DH.id,
+                CONFIG.DH.SETTINGS.gameSettings.appearance
+            ).hideAttribution;
+            const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
+            if (!hideAttribution && this.document.system.metadata.hasAttribution && headerAttribution) {
+                const { source, page } = this.document.system.attribution;
+                const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
+
+                const label = this.window.header.querySelector('.attribution-header-label');
+                label.innerHTML = attribution;
+            }
+        }
 
         /**
          * Related documents that should cause a rerender of this application when updated.
@@ -164,11 +204,19 @@ export default function DHApplicationMixin(Base) {
             this.relatedDocs.filter(doc => doc).map(doc => delete doc.apps[this.id]);
         }
 
+        /** @inheritdoc */
+        async _renderHTML(context, options) {
+            const rendered = await super._renderHTML(context, options);
+            for (const result of Object.values(rendered)) {
+                await this.#prepareInventoryDescription(result);
+            }
+            return rendered;
+        }
+
         /**@inheritdoc */
         async _onRender(context, options) {
             await super._onRender(context, options);
             this._createTagifyElements(this.options.tagifyConfigs);
-            await this.#prepareInventoryDescription(context);
         }
 
         /* -------------------------------------------- */
@@ -176,8 +224,8 @@ export default function DHApplicationMixin(Base) {
         /* -------------------------------------------- */
 
         /**@inheritdoc */
-        _syncPartState(partId, newElement, priorElement, state) {
-            super._syncPartState(partId, newElement, priorElement, state);
+        _preSyncPartState(partId, newElement, priorElement, state) {
+            super._preSyncPartState(partId, newElement, priorElement, state);
             for (const el of priorElement.querySelectorAll('.extensible.extended')) {
                 const { actionId, itemUuid } = el.parentElement.dataset;
                 const selector = `${actionId ? `[data-action-id="${actionId}"]` : `[data-item-uuid="${itemUuid}"]`} .extensible`;
@@ -373,6 +421,19 @@ export default function DHApplicationMixin(Base) {
 
             if (usable) {
                 options.unshift({
+                    name: 'DAGGERHEART.APPLICATIONS.ContextMenu.cancelBeastform',
+                    icon: 'fa-solid fa-ban',
+                    condition: target => {
+                        const doc = getDocFromElementSync(target);
+                        return doc && doc.system?.actions?.some(a => a.type === 'beastform');
+                    },
+                    callback: async target =>
+                        game.system.api.fields.ActionFields.BeastformField.handleActiveTransformations.call(
+                            await getDocFromElement(target)
+                        )
+                });
+
+                options.unshift({
                     name: 'DAGGERHEART.GENERAL.damage',
                     icon: 'fa-solid fa-explosion',
                     condition: target => {
@@ -382,7 +443,9 @@ export default function DHApplicationMixin(Base) {
                     callback: async (target, event) => {
                         const doc = await getDocFromElement(target),
                             action = doc?.system?.attack ?? doc;
-                        return action && action.use(event, { byPassRoll: true });
+                        const config = action.prepareConfig(event);
+                        config.hasRoll = false;
+                        return action && action.workflow.get('damage').execute(config, null, true);
                     }
                 });
 
@@ -401,7 +464,7 @@ export default function DHApplicationMixin(Base) {
                 options.push({
                     name: 'DAGGERHEART.APPLICATIONS.ContextMenu.sendToChat',
                     icon: 'fa-solid fa-message',
-                    callback: async target => (await getDocFromElement(target)).toChat(this.document.id)
+                    callback: async target => (await getDocFromElement(target)).toChat(this.document.uuid)
                 });
 
             if (deletable)
@@ -442,11 +505,12 @@ export default function DHApplicationMixin(Base) {
 
         /**
          * Prepares and enriches an inventory item or action description for display.
+         * @param {HTMLElement} element the element to enrich the inventory items of
          * @returns {Promise<void>}
          */
-        async #prepareInventoryDescription(context) {
+        async #prepareInventoryDescription(element) {
             // Get all inventory item elements with a data-item-uuid attribute
-            const inventoryItems = this.element.querySelectorAll('.inventory-item[data-item-uuid]');
+            const inventoryItems = element.querySelectorAll('.inventory-item[data-item-uuid]');
             for (const el of inventoryItems) {
                 // Get the doc uuid from the element
                 const { itemUuid } = el?.dataset || {};
@@ -537,28 +601,27 @@ export default function DHApplicationMixin(Base) {
         static async #browseItem(event, target) {
             const type = target.dataset.compendium ?? target.dataset.type;
 
-            const presets = {};
+            const presets = {
+                render: {
+                    noFolder: true
+                }
+            };
 
             switch (type) {
                 case 'loot':
+                    presets.folder = 'equipments.folders.loots';
+                    break;
                 case 'consumable':
+                    presets.folder = 'equipments.folders.consumables';
+                    break;
                 case 'armor':
+                    presets.folder = 'equipments.folders.armors';
+                    break;
                 case 'weapon':
-                    presets.compendium = 'daggerheart';
-                    presets.folder = 'equipments';
-                    presets.render = {
-                        noFolder: true
-                    };
-                    presets.filter = {
-                        type: { key: 'type', value: type, forced: true }
-                    };
+                    presets.folder = 'equipments.folders.weapons';
                     break;
                 case 'domainCard':
-                    presets.compendium = 'daggerheart';
                     presets.folder = 'domains';
-                    presets.render = {
-                        noFolder: true
-                    };
                     presets.filter = {
                         'level.max': { key: 'level.max', value: this.document.system.levelData.level.current },
                         'system.domain': { key: 'system.domain', value: this.document.system.domains }
@@ -568,7 +631,15 @@ export default function DHApplicationMixin(Base) {
                     return;
             }
 
-            return new ItemBrowser({ presets }).render({ force: true });
+            ui.compendiumBrowser.open(presets);
+        }
+
+        /**
+         * Open the attribution dialog
+         * @type {ApplicationClickAction}
+         */
+        static async #editAttribution() {
+            new game.system.api.applications.dialogs.AttributionDialog(this.document).render({ force: true });
         }
 
         /**
@@ -640,7 +711,7 @@ export default function DHApplicationMixin(Base) {
          * @type {ApplicationClickAction}
          */
         static async #toChat(_event, target) {
-            let doc = await getDocFromElement(target);
+            const doc = await getDocFromElement(target);
             return doc.toChat(doc.uuid);
         }
 
@@ -649,8 +720,17 @@ export default function DHApplicationMixin(Base) {
          * @type {ApplicationClickAction}
          */
         static async #useItem(event, target) {
-            let doc = await getDocFromElement(target);
+            const doc = await getDocFromElement(target);
             await doc.use(event);
+        }
+
+        /**
+         * View an item by opening its sheet
+         * @type {ApplicationClickAction}
+         */
+        static async #viewItem(_, target) {
+            const doc = await getDocFromElement(target);
+            await doc.sheet.render({ force: true });
         }
 
         /**

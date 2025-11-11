@@ -19,7 +19,6 @@
         "actionType": "action",
         "cost": [
           {
-            "keyIsID": false,
             "key": "hope",
             "value": 1,
             "scalable": false,
@@ -43,7 +42,7 @@
         },
         "name": "Spend Hope",
         "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
-        "range": ""
+        "range": "self"
       },
       "SKG6Gu0uJZxtYTnz": {
         "type": "effect",
@@ -73,6 +72,11 @@
         "img": "icons/magic/defensive/shield-barrier-blue.webp",
         "range": "veryClose"
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 135,
+      "artist": ""
     }
   },
   "flags": {},
@@ -80,12 +84,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1753922784468,
-    "modifiedTime": 1754242400496,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1756039072992,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "kdFoLo3KXwn4LqTG",
   "sort": 3400000,
@@ -94,7 +98,7 @@
       "name": "Hold the Line",
       "img": "icons/magic/defensive/shield-barrier-blue.webp",
       "origin": "Compendium.daggerheart.domains.Item.kdFoLo3KXwn4LqTG",
-      "transfer": true,
+      "transfer": false,
       "_id": "y82y3nUStyL8DIJL",
       "type": "base",
       "system": {
@@ -106,7 +110,7 @@
         }
       },
       "changes": [],
-      "disabled": true,
+      "disabled": false,
       "duration": {
         "startTime": null,
         "combat": null,
@@ -125,18 +129,18 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754242295342,
-        "modifiedTime": 1754242434181,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1756039077113,
+        "lastModifiedBy": "vUIbuan0U50nfKBE"
       },
       "_key": "!items.effects!kdFoLo3KXwn4LqTG.y82y3nUStyL8DIJL"
     },
     {
       "name": "Hold the Line",
-      "img": "systems/daggerheart/assets/icons/domains/domain-card/valor.png",
+      "img": "icons/skills/melee/shield-block-bash-blue.webp",
       "origin": "Compendium.daggerheart.domains.Item.kdFoLo3KXwn4LqTG",
       "transfer": false,
       "_id": "WTYg0b8nE1XbnMiA",
@@ -171,12 +175,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754242400483,
-        "modifiedTime": 1754242409060,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1756039151398,
+        "lastModifiedBy": "vUIbuan0U50nfKBE"
       },
       "_key": "!items.effects!kdFoLo3KXwn4LqTG.WTYg0b8nE1XbnMiA"
     }

@@ -65,7 +65,6 @@
         "actionType": "action",
         "cost": [
           {
-            "keyIsID": false,
             "key": "hope",
             "value": 1,
             "scalable": false,
@@ -91,6 +90,11 @@
         "img": "icons/magic/control/energy-stream-link-large-teal.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 125,
+      "artist": ""
     }
   },
   "flags": {},
@@ -98,12 +102,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784427,
-    "modifiedTime": 1754233138291,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755429085107,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "VOIgm2j2Ijszwc5m",
   "sort": 3400000,

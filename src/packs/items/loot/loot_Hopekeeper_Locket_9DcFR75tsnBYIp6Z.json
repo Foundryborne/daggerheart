@@ -16,7 +16,6 @@
         "actionType": "action",
         "cost": [
           {
-            "keyIsID": false,
             "key": "hope",
             "value": 1,
             "scalable": false,
@@ -99,6 +98,11 @@
         "img": "icons/equipment/neck/amulet-round-engraved-spiral-gold.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 59,
+      "artist": ""
     }
   },
   "effects": [],
@@ -113,12 +117,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753639224510,
-    "modifiedTime": 1753639329411,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1755432255622,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!9DcFR75tsnBYIp6Z"
 }

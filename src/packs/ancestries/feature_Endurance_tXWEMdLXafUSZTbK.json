@@ -10,11 +10,16 @@
     "actions": {},
     "originItemType": null,
     "subType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 29,
+      "artist": ""
+    }
   },
   "effects": [
     {
-      "name": "Base",
+      "name": "Endurance",
       "type": "base",
       "_id": "db8W2Q0Qty84XV0x",
       "img": "icons/magic/control/buff-strength-muscle-damage.webp",
@@ -55,12 +60,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1753996768847,
-        "modifiedTime": 1754310930764,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1761138203999,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!items.effects!tXWEMdLXafUSZTbK.db8W2Q0Qty84XV0x"
     }
@@ -75,12 +80,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753996738047,
-    "modifiedTime": 1753996763700,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755394456808,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!tXWEMdLXafUSZTbK"
 }

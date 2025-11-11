@@ -1,0 +1,40 @@
+.theme-light .application.sheet.scene-config {
+    .sheet-tabs.tabs a[data-tab='dh'] {
+        &.active img,
+        &:hover img {
+            filter: @grey-filter drop-shadow(0 0 4px var(--color-shadow-primary));
+        }
+
+        img {
+            filter: @grey-filter;
+        }
+    }
+}
+
+.application.sheet.scene-config {
+    .sheet-tabs.tabs {
+        a[data-tab='dh'] {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+
+            &.active,
+            &:hover {
+                img {
+                    filter: @beige-filter drop-shadow(0 0 4px var(--color-shadow-primary));
+                }
+            }
+
+            img {
+                width: 18px;
+                position: relative;
+                top: -3px;
+                filter: @beige-filter;
+            }
+        }
+    }
+
+    .helper-text {
+        font-style: italic;
+    }
+}

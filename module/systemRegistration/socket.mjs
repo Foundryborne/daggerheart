@@ -1,4 +1,5 @@
 import DamageReductionDialog from '../applications/dialogs/damageReductionDialog.mjs';
+import Party from '../applications/sheets/actors/party.mjs';
 
 export function handleSocketEvent({ action = null, data = {} } = {}) {
     switch (action) {
@@ -11,24 +12,31 @@ export function handleSocketEvent({ action = null, data = {} } = {}) {
         case socketEvent.Refresh:
             Hooks.call(socketEvent.Refresh, data);
             break;
+        case socketEvent.DowntimeTrigger:
+            Party.downtimeMoveQuery(data);
+            break;
     }
 }
 
 export const socketEvent = {
     GMUpdate: 'DhGMUpdate',
     Refresh: 'DhRefresh',
-    DhpFearUpdate: 'DhFearUpdate'
+    DhpFearUpdate: 'DhFearUpdate',
+    DowntimeTrigger: 'DowntimeTrigger'
 };
 
 export const GMUpdateEvent = {
     UpdateDocument: 'DhGMUpdateDocument',
+    UpdateEffect: 'DhGMUpdateEffect',
     UpdateSetting: 'DhGMUpdateSetting',
     UpdateFear: 'DhGMUpdateFear',
+    UpdateCountdowns: 'DhGMUpdateCountdowns',
     UpdateSaveMessage: 'DhGMUpdateSaveMessage'
 };
 
 export const RefreshType = {
-    Countdown: 'DhCoundownRefresh'
+    Countdown: 'DhCoundownRefresh',
+    TagTeamRoll: 'DhTagTeamRollRefresh'
 };
 
 export const registerSocketHooks = () => {
@@ -37,9 +45,11 @@ export const registerSocketHooks = () => {
             const document = data.uuid ? await fromUuid(data.uuid) : null;
             switch (data.action) {
                 case GMUpdateEvent.UpdateDocument:
-                    if (document && data.update) {
-                        await document.update(data.update);
-                    }
+                    if (document && data.update) await document.update(data.update);
+                    break;
+                case GMUpdateEvent.UpdateEffect:
+                    if (document && data.update)
+                        await game.system.api.fields.ActionFields.EffectsField.applyEffects.call(document, data.update);
                     break;
                 case GMUpdateEvent.UpdateSetting:
                     await game.settings.set(CONFIG.DH.id, data.uuid, data.update);
@@ -56,6 +66,10 @@ export const registerSocketHooks = () => {
                             )
                         )
                     );
+                    break;
+                case GMUpdateEvent.UpdateCountdowns:
+                    await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, data.update);
+                    Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
                     break;
                 case GMUpdateEvent.UpdateSaveMessage:
                     const action = await fromUuid(data.update.action),
@@ -78,17 +92,18 @@ export const registerSocketHooks = () => {
 
 export const registerUserQueries = () => {
     CONFIG.queries.armorSlot = DamageReductionDialog.armorSlotQuery;
-    CONFIG.queries.reactionRoll = game.system.api.models.actions.actionsTypes.base.rollSaveQuery;
+    CONFIG.queries.reactionRoll = game.system.api.fields.ActionFields.SaveField.rollSaveQuery;
 };
 
-export const emitAsGM = async (eventName, callback, update, uuid = null) => {
+export const emitAsGM = async (eventName, callback, update, uuid = null, refresh = null) => {
     if (!game.user.isGM) {
         return await game.socket.emit(`system.${CONFIG.DH.id}`, {
             action: socketEvent.GMUpdate,
             data: {
                 action: eventName,
                 uuid,
-                update
+                update,
+                refresh
             }
         });
     } else return callback(update);

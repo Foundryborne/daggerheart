@@ -19,11 +19,12 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
-            "key": "VOSFaQHZbmhMyXwi",
+            "key": "resource",
+            "itemId": "VOSFaQHZbmhMyXwi",
             "value": 1,
-            "keyIsID": true,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -54,11 +55,12 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": false,
-            "key": "VOSFaQHZbmhMyXwi",
+            "key": "resource",
+            "itemId": "VOSFaQHZbmhMyXwi",
             "value": 1,
-            "keyIsID": true,
-            "step": null
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -87,6 +89,11 @@
       "max": "1",
       "icon": "",
       "recovery": "shortRest"
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 131,
+      "artist": ""
     }
   },
   "flags": {},
@@ -94,12 +101,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753922784507,
-    "modifiedTime": 1754339963905,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1756325575562,
+    "lastModifiedBy": "bjJtdJOhqWr47GhC"
   },
   "_id": "VOSFaQHZbmhMyXwi",
   "sort": 3400000,
@@ -135,7 +142,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">While you’re in a natural environment, you gain a +2 bonus to your Spellcast Rolls.</span></p>",
+      "description": "<p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">While you’re in a natural environment, you gain a +2 bonus to your Spellcast Rolls.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -239,7 +246,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">Once per rest, you can double your Agility or Instinct when making a roll that uses that trait. You must choose to do this before you roll.</span></p>",
+      "description": "<p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">Once per rest, you can double your Agility or Instinct when making a roll that uses that trait. You must choose to do this before you roll.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

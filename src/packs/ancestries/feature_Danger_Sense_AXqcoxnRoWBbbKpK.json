@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "V2K3pMWOCVwBUnjq",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Once per rest, <strong>mark a Stress</strong> to force an adversary to reroll an attack against you or an ally within Very Close range.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -20,7 +20,6 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "keyIsID": false,
             "step": null
           }
         ],
@@ -41,7 +40,12 @@
     },
     "originItemType": null,
     "subType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 29,
+      "artist": ""
+    }
   },
   "effects": [],
   "sort": 0,
@@ -54,12 +58,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.2",
     "createdTime": 1753997061290,
-    "modifiedTime": 1754498245294,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1761138260496,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!items!AXqcoxnRoWBbbKpK"
 }

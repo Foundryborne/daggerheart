@@ -1,0 +1,82 @@
+<section class='tab {{tabs.inventory.cssClass}} {{tabs.inventory.id}}' data-tab='{{tabs.inventory.id}}'
+    data-group='{{tabs.inventory.group}}'>
+    <div class="search-section">
+        <div class="search-bar">
+            <div class="icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <input type="search" name="search" class="search-inventory" placeholder="Search...">
+        </div>
+        <a class="filter-button">
+            <i class="fa-solid fa-filter"></i>
+        </a>
+        <a data-tooltip="{{localize 'DAGGERHEART.UI.Tooltip.compendiumBrowser'}}" data-action="tempBrowser">
+            <i class="fa-solid fa-book-atlas"></i>
+        </a>
+    </div>
+
+    <div class="currency-section">
+        <div class="input">
+            <span>{{localize this.inventory.currency.coins}}</span>
+            {{formInput systemFields.gold.fields.coins value=source.system.gold.coins enriched=source.system.gold.coins
+            localize=true toggled=true}}
+        </div>
+        <div class="input">
+            <span>{{localize this.inventory.currency.handfuls}}</span>
+            {{formInput systemFields.gold.fields.handfuls value=source.system.gold.handfuls
+            enriched=source.system.gold.handfuls localize=true toggled=true}}
+        </div>
+        <div class="input">
+            <span>{{localize this.inventory.currency.bags}}</span>
+            {{formInput systemFields.gold.fields.bags value=source.system.gold.bags enriched=source.system.gold.bags
+            localize=true toggled=true}}
+        </div>
+        <div class="input">
+            <span>{{localize this.inventory.currency.chests}}</span>
+            {{formInput systemFields.gold.fields.chests value=source.system.gold.chests
+            enriched=source.system.gold.chests localize=true toggled=true}}
+        </div>
+
+    </div>
+
+    <div class="items-section">
+        {{> 'daggerheart.inventory-items'
+        title='TYPES.Item.weapon'
+        type='weapon'
+        actorType='party'
+        collection=document.itemTypes.weapon
+        isGlassy=true
+        canCreate=true
+        hideResources=true
+        hideContextMenu=true
+        }}
+        {{> 'daggerheart.inventory-items'
+        title='TYPES.Item.armor'
+        type='armor'
+        actorType='party'
+        collection=document.itemTypes.armor
+        isGlassy=true
+        canCreate=true
+        hideResources=true
+        hideContextMenu=true
+        }}
+        {{> 'daggerheart.inventory-items'
+        title='TYPES.Item.consumable'
+        type='consumable'
+        actorType='party'
+        collection=document.itemTypes.consumable
+        isGlassy=true
+        canCreate=true
+        hideContextMenu=true
+        }}
+        {{> 'daggerheart.inventory-items'
+        title='TYPES.Item.loot'
+        type='loot'
+        actorType='party'
+        collection=document.itemTypes.loot
+        isGlassy=true
+        canCreate=true
+        hideContextMenu=true
+        }}
+    </div>
+</section>

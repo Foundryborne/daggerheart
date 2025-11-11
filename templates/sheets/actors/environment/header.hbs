@@ -3,20 +3,25 @@
     <div class='item-container'>
         <div class="item-info">
             <h1 class='item-name'><input type='text' name='name' value='{{source.name}}' /></h1>
-            <div class="tags">
-                <div class="tag">
-                    <span>
-                        {{localize (concat 'DAGGERHEART.GENERAL.Tiers.' source.system.tier)}}
-                    </span>
-                </div>
-                {{#if source.system.type}}
+            <div class="flexcol">
+                <div class="tags">
                     <div class="tag">
                         <span>
-                            {{localize (concat 'DAGGERHEART.CONFIG.EnvironmentType.' source.system.type '.label')}}
+                            {{localize (concat 'DAGGERHEART.GENERAL.Tiers.' source.system.tier)}}
                         </span>
                     </div>
+                    {{#if source.system.type}}
+                        <div class="tag">
+                            <span>
+                                {{localize (concat 'DAGGERHEART.CONFIG.EnvironmentType.' source.system.type '.label')}}
+                            </span>
+                        </div>
+                    {{/if}}
+                </div>
+                {{#if (and showAttribution document.system.attributionLabel)}}
+                    <label class="attribution-header-label">{{document.system.attributionLabel}}</label>
                 {{/if}}
-            </div>
+            </div> 
         </div>
         <div class="status-number">
             <div class='status-value armor-slots'>
@@ -33,12 +38,12 @@
     </div>
     <line-div></line-div>
     <div class="environment-info">
-        <div class="description">
+        <span class="description">
             <i>{{{description}}}</i>
-        </div>
-        <div class="impulses">
+        </span>
+        <span class="impulses">
             <b>{{localize 'DAGGERHEART.ACTORS.Environment.FIELDS.impulses.label'}}: </b>{{{source.system.impulses}}}
-        </div>
+        </span>
     </div>
     <div class="environment-navigation">
         {{> 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}

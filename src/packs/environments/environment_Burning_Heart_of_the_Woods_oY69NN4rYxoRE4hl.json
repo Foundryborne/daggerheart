@@ -1,6 +1,6 @@
 {
   "name": "Burning Heart of the Woods",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
   "type": "environment",
   "folder": "MfrIkJK12PAEfbPL",
   "system": {
@@ -32,19 +32,24 @@
     "tier": 3,
     "description": "<p>Thick indigo ash fills the air around a towering moss-covered tree that burns eternally with flames a sickly shade of blue.</p>",
     "type": "exploration",
-    "impulses": "Beat out an uncanny rhythm for all to follow, corrupt the woods"
+    "impulses": "Beat out an uncanny rhythm for all to follow, corrupt the woods",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 108,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784554,
-    "modifiedTime": 1754218065764,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755389890258,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "oY69NN4rYxoRE4hl",
   "sort": 3400000,
@@ -60,7 +65,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,

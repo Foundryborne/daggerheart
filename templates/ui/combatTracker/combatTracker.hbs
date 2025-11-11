@@ -1,4 +1,7 @@
 <div class="combat-tracker">
+    {{#if (gt this.spotlightRequests.length 0)}}
+        {{> 'systems/daggerheart/templates/ui/combatTracker/combatTrackerSection.hbs' this title=(localize "DAGGERHEART.GENERAL.SpotlightRequests.plural") turns=this.spotlightRequests}}
+    {{/if}}
     {{#if (gt this.characters.length 0)}}
         {{> 'systems/daggerheart/templates/ui/combatTracker/combatTrackerSection.hbs' this title=(localize "DAGGERHEART.GENERAL.Character.plural") turns=this.characters}}
     {{/if}}

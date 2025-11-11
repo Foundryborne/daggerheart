@@ -5,8 +5,8 @@
   "system": {
     "beastformType": "normal",
     "tier": 1,
-    "tokenImg": "icons/svg/mystery-man.svg",
-    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenImg": "icons/creatures/mammals/rodent-rat-diseaed-gray.webp",
+    "tokenRingImg": "icons/creatures/mammals/rodent-rat-diseaed-gray.webp",
     "tokenSize": {
       "height": null,
       "width": null
@@ -36,7 +36,12 @@
       "advantages": 2,
       "features": 2
     },
-    "examples": "Fox, Mouse, Weasel, etc."
+    "examples": "Fox, Mouse, Weasel, etc.",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 12,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -120,12 +125,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753570913893,
-    "modifiedTime": 1753575463479,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1762786932553,
+    "lastModifiedBy": "gtrqalNxfl7iRwL8"
   },
   "_id": "a9UoCwtrbgKk02mK",
   "sort": 500000,

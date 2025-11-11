@@ -1,9 +1,13 @@
-import DHAbilityUse from "./abilityUse.mjs";
-import DHActorRoll from "./adversaryRoll.mjs";
+import DHAbilityUse from './abilityUse.mjs';
+import DHActorRoll from './actorRoll.mjs';
+import DHGroupRoll from './groupRoll.mjs';
+import DHSystemMessage from './systemMessage.mjs';
 
 export const config = {
-  abilityUse: DHAbilityUse,
-  adversaryRoll: DHActorRoll,
-  damageRoll: DHActorRoll,
-  dualityRoll: DHActorRoll
+    abilityUse: DHAbilityUse,
+    adversaryRoll: DHActorRoll,
+    damageRoll: DHActorRoll,
+    dualityRoll: DHActorRoll,
+    groupRoll: DHGroupRoll,
+    systemMessage: DHSystemMessage
 };

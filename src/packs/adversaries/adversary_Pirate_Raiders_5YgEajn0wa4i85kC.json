@@ -112,6 +112,11 @@
       "type": "attack",
       "range": "melee",
       "chatDisplay": false
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 81,
+      "artist": ""
     }
   },
   "flags": {},
@@ -121,9 +126,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.4",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784326,
-    "modifiedTime": 1755263339105,
+    "modifiedTime": 1755384706485,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "5YgEajn0wa4i85kC",
@@ -229,7 +234,7 @@
   },
   "items": [
     {
-      "name": "Horde (1d4+1)",
+      "name": "Horde",
       "type": "feature",
       "_id": "Q7DRbWjHl64CNwag",
       "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
@@ -253,12 +258,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754052315770,
-        "modifiedTime": 1754052347985,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760033213944,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!5YgEajn0wa4i85kC.Q7DRbWjHl64CNwag"
     },

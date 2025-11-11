@@ -1,0 +1,50 @@
+@import '../../utils/colors.less';
+
+.application.daggerheart.group-roll {
+    fieldset.one-column {
+        min-width: 500px;
+        margin-bottom: 10px;
+    }
+    .actor-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+
+        img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .actor-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .actor-check-info {
+                display: flex;
+                gap: 10px;
+
+                .form-fields {
+                    display: flex;
+                    gap: 5px;
+                    align-items: center;
+
+                    input {
+                        max-width: 40px;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+
+        .controls {
+            margin-left: auto;
+        }
+    }
+    .tooltip-container {
+        width: 100%;
+    }
+}

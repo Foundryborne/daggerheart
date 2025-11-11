@@ -1,0 +1,28 @@
+@import '../../../utils/colors.less';
+@import '../../../utils/fonts.less';
+
+.application.sheet.daggerheart.actor.dh-style.party {
+    .tab.partyMembers {
+        max-height: 400px;
+        overflow: auto;
+
+        .actors-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            width: 100%;
+        }
+        .actors-dragger {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            width: 100%;
+            height: 40px;
+            border: 1px dashed light-dark(@dark-blue-50, @beige-50);
+            border-radius: 3px;
+            color: light-dark(@dark-blue-50, @beige-50);
+        }
+    }
+}

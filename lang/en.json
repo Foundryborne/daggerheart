@@ -20,12 +20,21 @@
             "character": "Character",
             "companion": "Companion",
             "adversary": "Adversary",
-            "environment": "Environment"
+            "environment": "Environment",
+            "party": "Party"
         }
     },
     "CONTROLS": {
         "inFront": "In Front"
     },
+    "SCENE": {
+        "TABS": {
+            "SHEET": {
+                "dh": "Daggerheart"
+            }
+        }
+    },
+
     "DAGGERHEART": {
         "ACTIONS": {
             "TYPES": {
@@ -64,6 +73,14 @@
                     "exactHint": "The Character's Tier is used if empty",
                     "label": "Beastform"
                 },
+                "damage": {
+                    "multiplier": "Multiplier",
+                    "flatMultiplier": "Flat Multiplier"
+                },
+                "general": {
+                    "customFormula": "Custom Formula",
+                    "formula": "Formula"
+                },
                 "displayInChat": "Display in chat"
             },
             "RollField": {
@@ -80,6 +97,7 @@
                 "attackName": "Attack Name",
                 "includeBase": { "label": "Include Item Damage" },
                 "multiplier": "Multiplier",
+                "saveHint": "Set a default Trait to enable Reaction Roll. It can be changed later in Reaction Roll Dialog.",
                 "resultBased": {
                     "label": "Formula based on Hope/Fear result."
                 },
@@ -153,7 +171,9 @@
                     "hint": "Add single words or short text as reminders and hints of what a character has advantage on."
                 },
                 "age": "Age",
+                "backgroundQuestions": "Backgrounds",
                 "companionFeatures": "Companion Features",
+                "connections": "Connections",
                 "contextMenu": {
                     "consume": "Consume Item",
                     "equip": "Equip",
@@ -194,6 +214,7 @@
                     "confirmTitle": "Companion Levelup",
                     "confirmText": "Would you like to level up your companion {name} by {levelChange} levels at this time? (You can do it manually later)"
                 },
+                "viewLevelups": "View Levelups",
                 "InvalidOldCharacterImportTitle": "Old Character Import",
                 "InvalidOldCharacterImportText": "Character data exported prior to system version 1.1 will not generate a complete character. Do you wish to continue?"
             },
@@ -238,6 +259,9 @@
             }
         },
         "APPLICATIONS": {
+            "Attribution": {
+                "title": "Attribution"
+            },
             "CharacterCreation": {
                 "tabs": {
                     "ancestry": "Ancestry",
@@ -246,7 +270,8 @@
                     "experience": "Experience",
                     "traits": "Traits",
                     "domainCards": "Domain Cards",
-                    "equipment": "Equipment"
+                    "equipment": "Equipment",
+                    "story": "Story"
                 },
                 "ancestryNamePlaceholder": "Your ancestry's name",
                 "buttonTitle": "Character Setup",
@@ -267,6 +292,7 @@
                 "selectSubclass": "Select Subclass",
                 "startingItems": "Starting Items",
                 "story": "Story",
+                "storyExplanation": "Select which background and connection prompts you want to copy into your character's background.",
                 "suggestedArmor": "Suggested Armor",
                 "suggestedPrimaryWeapon": "Suggested Primary Weapon",
                 "suggestedSecondaryWeapon": "Suggested Secondary Weapon",
@@ -290,7 +316,8 @@
                 "toLoadout": "Send to Loadout",
                 "toVault": "Send to Vault",
                 "unequip": "Unequip",
-                "useItem": "Use Item"
+                "useItem": "Use Item",
+                "cancelBeastform": "Cancel Beastform"
             },
             "Countdown": {
                 "addCountdown": "Add Countdown",
@@ -305,7 +332,8 @@
                                     "label": { "label": "Label", "hint": "Used for custom" },
                                     "value": { "label": "Value" }
                                 }
-                            }
+                            },
+                            "type": { "label": "Countdown Type" }
                         }
                     }
                 },
@@ -319,6 +347,25 @@
                     "narrative": "Narrative",
                     "encounter": "Encounter"
                 }
+            },
+            "CountdownEdit": {
+                "title": "Countdown Edit",
+                "viewTitle": "Countdowns",
+                "editTitle": "Edit Countdowns",
+                "newCountdown": "New Countdown",
+                "removeCountdownTitle": "Remove Countdown",
+                "removeCountdownText": "Are you sure you want to remove the countdown: {name}?",
+                "current": "Current",
+                "max": "Max",
+                "currentCountdownValue": "Current: {value}",
+                "currentCountdownMax": "Max: {value}",
+                "category": "Category",
+                "type": "Type",
+                "defaultOwnershipTooltip": "The default player ownership of countdowns",
+                "hideNewCountdowns": "Hide New Countdowns"
+            },
+            "DaggerheartMenu": {
+                "title": "GM Tools"
             },
             "DeleteConfirmation": {
                 "title": "Delete {type} - {name}",
@@ -391,8 +438,14 @@
             },
             "HUD": {
                 "tokenHUD": {
-                    "genericEffects": "Foundry Effects"
+                    "genericEffects": "Foundry Effects",
+                    "depositPartyTokens": "Deposit Party Tokens",
+                    "retrievePartyTokens": "Retrieve Party Tokens"
                 }
+            },
+            "ImageSelect": {
+                "title": "Select Image",
+                "selectImage": "Select Image"
             },
             "Levelup": {
                 "actions": {
@@ -475,24 +528,28 @@
                 },
                 "takeLevelUp": "Finish Level Up",
                 "tier2": {
+                    "name": "Tier 2",
                     "label": "Levels 2-4",
                     "infoLabel": "At Level 2, gain an additional Experience at +2 and gain a +1 bonus to your Proficiency.",
                     "pretext": "Choose two options from the list below",
                     "posttext": "Take an additional domain card of your level or lower from a domain you have access to."
                 },
                 "tier3": {
+                    "name": "Tier 3",
                     "label": "Levels 5-7",
                     "infoLabel": "At Level 5, take an additional Experience and clear all marks on Character Traits.",
                     "pretext": "When you level up, record it on your character sheet, then choose two from the list below or any unmarked from the previous tier.",
                     "posttext": "Take an additional domain card of your level or lower from a domain you have access to."
                 },
                 "tier4": {
+                    "name": "Tier 4",
                     "label": "Levels 8-10",
                     "infoLabel": "At Level 8, take an additional Experience and clear all marks on Character Traits.",
                     "pretext": "When you level up, record it on your character sheet, then choose two from the list below or any unmarked from the previous tier.",
                     "posttext": "Take an additional domain card of your level or lower from a domain you have access to."
                 },
-                "title": "{actor} Level Up"
+                "title": "{actor} Level Up",
+                "viewModeTitle": "{actor} Level Up (View Mode)"
             },
             "MulticlassChoice": {
                 "title": "Multiclassing - {actor}",
@@ -514,6 +571,19 @@
             "ResourceDice": {
                 "title": "{name} Resource",
                 "rerollDice": "Reroll Dice"
+            },
+            "TagTeamSelect": {
+                "title": "Tag Team Roll",
+                "leaderTitle": "Initiating Character",
+                "membersTitle": "Participants",
+                "partyTeam": "Party Team",
+                "hopeCost": "Hope Cost",
+                "initiatingCharacter": "Initiating Character",
+                "linkMessageHint": "Make a roll from your character sheet to link it to the Tag Team Roll",
+                "damageNotRolled": "Damage not rolled in chat message yet",
+                "insufficientHope": "The initiating character doesn't have enough hope",
+                "createTagTeam": "Create TagTeam Roll",
+                "chatMessageRollTitle": "Roll"
             }
         },
         "CLASS": {
@@ -857,6 +927,11 @@
                 "magical": {
                     "name": "Magical",
                     "abbreviation": "Mag"
+                },
+                "direct": {
+                    "name": "Direct Damage",
+                    "short": "Direct",
+                    "abbreviation": "Dir"
                 }
             },
             "DeathMoves": {
@@ -906,23 +981,28 @@
             "HealingType": {
                 "hitPoints": {
                     "name": "Hit Points",
-                    "abbreviation": "HP"
+                    "abbreviation": "HP",
+                    "inChatRoll": "Damage"
                 },
                 "stress": {
                     "name": "Stress",
-                    "abbreviation": "STR"
+                    "abbreviation": "STR",
+                    "inChatRoll": "Stress"
                 },
                 "hope": {
                     "name": "Hope",
-                    "abbreviation": "HO"
+                    "abbreviation": "HO",
+                    "inChatRoll": "Hope"
                 },
                 "armor": {
                     "name": "Armor Slot",
-                    "abbreviation": "AS"
+                    "abbreviation": "AS",
+                    "inChatRoll": "Armor Slot"
                 },
                 "fear": {
                     "name": "Fear",
-                    "abbreviation": "FR"
+                    "abbreviation": "FR",
+                    "inChatRoll": "Fear"
                 }
             },
             "ItemResourceProgression": {
@@ -988,6 +1068,12 @@
             "SelectAction": {
                 "selectType": "Select Action Type",
                 "selectAction": "Action Selection"
+            },
+            "TargetTypes": {
+                "any": "Any",
+                "friendly": "Friendly",
+                "hostile": "Hostile",
+                "self": "Self"
             },
             "TemplateTypes": {
                 "circle": "Circle",
@@ -1838,6 +1924,10 @@
                     }
                 }
             },
+            "SpotlightRequests": {
+                "singular": "Spotlight Request",
+                "plural": "Spotlight Requests"
+            },
             "Tabs": {
                 "details": "Details",
                 "attack": "Attack",
@@ -1862,6 +1952,7 @@
                 "story": "Story",
                 "biography": "Biography",
                 "general": "General",
+                "resources": "Resources",
                 "foundation": "Foundation",
                 "specialization": "Specialization",
                 "mastery": "Mastery",
@@ -1877,7 +1968,15 @@
                 "tier4": "tier 4",
                 "domains": "Domains",
                 "downtime": "Downtime",
-                "rules": "Rules"
+                "roll": "Roll",
+                "rules": "Rules",
+                "partyMembers": "Party Members",
+                "projects": "Projects",
+                "types": "Types",
+                "itemFeatures": "Item Features",
+                "questions": "Questions",
+                "configuration": "Configuration",
+                "base": "Base"
             },
             "Tiers": {
                 "singular": "Tier",
@@ -1894,10 +1993,12 @@
             "amount": "Amount",
             "any": "Any",
             "armor": "Armor",
+            "armorFeatures": "Armor Features",
             "armors": "Armors",
             "armorScore": "Armor Score",
             "activeEffects": "Active Effects",
             "armorSlots": "Armor Slots",
+            "artistAttribution": "Artwork By: {artist}",
             "attack": "Attack",
             "basics": "Basics",
             "bonus": "Bonus",
@@ -1905,6 +2006,7 @@
             "continue": "Continue",
             "criticalSuccess": "Critical Success",
             "criticalShort": "Critical",
+            "custom": "Custom",
             "d20Roll": "D20 Roll",
             "damage": "Damage",
             "damageRoll": "Damage Roll",
@@ -1927,6 +2029,7 @@
             "fear": "Fear",
             "features": "Features",
             "formula": "Formula",
+            "gm": "GM",
             "healing": "Healing",
             "healingRoll": "Healing Roll",
             "hit": {
@@ -1945,6 +2048,7 @@
             "inactiveEffects": "Inactive Effects",
             "inventory": "Inventory",
             "itemResource": "Item Resource",
+            "itemQuantity": "Item Quantity",
             "items": "Items",
             "label": "Label",
             "level": "Level",
@@ -1963,11 +2067,16 @@
             "none": "None",
             "noTarget": "No current target",
             "partner": "Partner",
+            "player": {
+                "single": "Player",
+                "plurial": "Players"
+            },
             "proficiency": "Proficiency",
             "quantity": "Quantity",
             "range": "Range",
             "reactionRoll": "Reaction Roll",
             "recovery": "Recovery",
+            "refresh": "Refresh",
             "reroll": "Reroll",
             "rerollThing": "Reroll {thing}",
             "resource": "Resource",
@@ -1978,6 +2087,8 @@
             "save": "Save",
             "scalable": "Scalable",
             "situationalBonus": "Situational Bonus",
+            "spent": "Spent",
+            "step": "Step",
             "stress": "Stress",
             "subclasses": "Subclasses",
             "success": "Success",
@@ -1988,6 +2099,7 @@
             },
             "title": "Title",
             "total": "Total",
+            "traitModifier": "Trait Modifier",
             "true": "True",
             "type": "Type",
             "unarmed": "Unarmed",
@@ -1997,11 +2109,17 @@
             "used": "Used",
             "uses": "Uses",
             "value": "Value",
+            "weaponFeatures": "Weapon Features",
             "weapons": "Weapons",
             "withThing": "With {thing}"
         },
         "ITEMS": {
             "FIELDS": {
+                "attribution": {
+                    "source": { "label": "Source" },
+                    "page": { "label": "Page" },
+                    "artist": { "label": "Artist" }
+                },
                 "resource": {
                     "amount": { "label": "Amount" },
                     "dieFaces": { "label": "Die Faces" },
@@ -2076,7 +2194,8 @@
                 }
             },
             "Consumable": {
-                "consumeOnUse": "Consume On Use"
+                "consumeOnUse": "Consume On Use",
+                "destroyOnEmpty": "Destroy On Empty"
             },
             "DomainCard": {
                 "type": "Type",
@@ -2097,14 +2216,44 @@
         "SETTINGS": {
             "Appearance": {
                 "FIELDS": {
-                    "displayFear": { "label": "Fear Display" },
-                    "dualityColorScheme": { "label": "Chat Style" },
-                    "showGenericStatusEffects": { "label": "Show Foundry Status Effects" },
+                    "displayFear": {
+                        "label": "Display Fear"
+                    },
+                    "showGenericStatusEffects": {
+                        "label": "Show Foundry Status Effects"
+                    },
+                    "hideAttribution": {
+                        "label": "Hide Attribution"
+                    },
                     "expandedTitle": "Auto-expand Descriptions",
-                    "extendCharacterDescriptions": { "label": "Characters" },
-                    "extendAdversaryDescriptions": { "label": "Adversaries" },
-                    "extendEnvironmentDescriptions": { "label": "Environments" },
-                    "extendItemDescriptions": { "label": "Items" }
+                    "extendCharacterDescriptions": {
+                        "label": "Characters"
+                    },
+                    "extendAdversaryDescriptions": {
+                        "label": "Adversaries"
+                    },
+                    "extendEnvironmentDescriptions": {
+                        "label": "Environments"
+                    },
+                    "extendItemDescriptions": {
+                        "label": "Items"
+                    },
+                    "expandRollMessage": {
+                        "title": "Auto-expand Message Sections",
+                        "desc": {
+                            "label": "Description"
+                        },
+                        "roll": {
+                            "label": "Formula"
+                        },
+                        "damage": {
+                            "label": "Damage/Healing"
+                        },
+                        "target": {
+                            "label": "Target"
+                        }
+                    },
+                    "useResourcePips": { "label": "Pip Display For Resources" }
                 },
                 "fearDisplay": {
                     "token": "Tokens",
@@ -2159,15 +2308,45 @@
                     "playerCanEditSheet": {
                         "label": "Players Can Manually Edit Character Settings",
                         "hint": "Players are allowed to access the manual Character Settings and change their statistics beyond the rules."
+                    },
+                    "roll": {
+                        "roll": {
+                            "label": "Roll",
+                            "hint": "Auto behavior for rolls like Attack, Spellcast, etc."
+                        },
+                        "damage": {
+                            "label": "Damage/Healing Roll",
+                            "hint": "Auto behavior for Damage & Healing rolls after the Attack/Spellcast."
+                        },
+                        "save": {
+                            "label": "Reaction Roll",
+                            "hint": "Auto behavior if a Reaction Roll is needed. Targets must be selected before the action is made"
+                        },
+                        "damageApply": {
+                            "label": "Apply Damage/Healing",
+                            "hint": "Automatically apply damages & healings. Targets must be selected before the action is made and Reaction Roll Automation must be different than Never. Bypass users permissions."
+                        },
+                        "effect": {
+                            "label": "Apply Effects",
+                            "hint": "Automatically apply effects. Targets must be selected before the action is made and Reaction Roll Automation must be different than Never. Bypass users permissions."
+                        }
+                    },
+                    "summaryMessages": {
+                        "label": "Summary Messages"
                     }
                 },
                 "defeated": {
                     "title": "Defeated Handling"
+                },
+                "roll": {
+                    "title": "Actions"
                 }
             },
             "Homebrew": {
                 "newDowntimeMove": "Downtime Move",
+                "newFeature": "New ItemFeature",
                 "downtimeMoves": "Downtime Moves",
+                "itemFeatures": "Item Features",
                 "nrChoices": "# Moves Per Rest",
                 "resetMovesTitle": "Reset {type} Downtime Moves",
                 "resetMovesText": "Are you sure you want to reset?",
@@ -2200,6 +2379,10 @@
                     "deleteDomain": "Delete Domain",
                     "deleteDomainText": "Are you sure you want to delete the {name} domain? It will be immediately removed from all Actors in this world where it's currently used. Compendiums are not cleared.",
                     "duplicateDomain": "There is already a domain with this identification."
+                },
+                "adversaryType": {
+                    "title": "Custom Adversary Types",
+                    "newType": "Adversary Type"
                 }
             },
             "Menu": {
@@ -2220,10 +2403,8 @@
                     "hint": "System ruler setup for displaying ranges in Daggerheart"
                 },
                 "appearance": {
-                    "title": "Appearance Settings",
                     "label": "Appearance Settings",
                     "hint": "Modify the look of various parts of the system",
-                    "name": "Appearance Settings",
                     "duality": "Duality Rolls",
                     "diceSoNice": {
                         "title": "Dice So Nice",
@@ -2263,6 +2444,15 @@
             "ResetSettings": {
                 "resetConfirmationTitle": "Reset Settings",
                 "resetConfirmationText": "Are you sure you want to reset the {settings}?"
+            },
+            "Scene": {
+                "FIELDS": {
+                    "rangeMeasurement": {
+                        "setting": { "label": "Setting" }
+                    }
+                },
+                "disabledText": "Daggerheart Measurements are disabled in System Settings - Variant Rules",
+                "rangeMeasurement": "Range Measurement"
             }
         },
         "UI": {
@@ -2270,6 +2460,7 @@
                 "action": {
                     "title": "Action"
                 },
+                "appliedTo": "Applied To",
                 "applyEffect": {
                     "title": "Apply Effects - {name}"
                 },
@@ -2278,6 +2469,11 @@
                     "rollDamage": "Roll Damage",
                     "rollHealing": "Roll Healing",
                     "applyEffect": "Apply Effects"
+                },
+                "clearResource": "Clear {quantity} {resource}",
+                "damageSummary": {
+                    "title": "Damage Applied",
+                    "healingTitle": "Healing Applied"
                 },
                 "damageRoll": {
                     "title": "Damage - {damage}",
@@ -2300,11 +2496,30 @@
                 "dualityRoll": {
                     "abilityCheckTitle": "{ability} Check"
                 },
+                "effectSummary": {
+                    "title": "Effects Applied"
+                },
                 "featureTitle": "Class Feature",
+                "groupRoll": {
+                    "title": "Group Roll",
+                    "leader": "Leader",
+                    "partyTeam": "Party Team",
+                    "team": "Team",
+                    "selectLeader": "Select a Leader",
+                    "selectMember": "Select a Member",
+                    "rerollTitle": "Reroll Group Roll",
+                    "rerollContent": "Are you sure you want to reroll your {trait} check?",
+                    "rerollTooltip": "Reroll"
+                },
                 "healingRoll": {
                     "title": "Heal - {damage}",
                     "heal": "Heal",
                     "applyHealing": "Apply Healing"
+                },
+                "markResource": "Mark {quantity} {resource}",
+                "refreshMessage": {
+                    "title": "Feature Refresh",
+                    "header": "Refreshed"
                 },
                 "reroll": {
                     "confirmTitle": "Reroll Dice",
@@ -2312,6 +2527,60 @@
                 },
                 "resourceRoll": {
                     "playerMessage": "{user} rerolled their {name}"
+                },
+                "tagTeam": {
+                    "title": "Tag Team",
+                    "membersTitle": "Members"
+                }
+            },
+            "ChatLog": {
+                "rerollDamage": "Reroll Damage",
+                "assignTagRoll": "Assign as Tag Roll"
+            },
+            "Countdowns": {
+                "title": "Countdowns",
+                "toggleIconMode": "Toggle Icon Only",
+                "noPlayerAccess": "This countdown isn't visible to any players"
+            },
+            "ItemBrowser": {
+                "title": "Daggerheart Compendium Browser",
+                "hint": "Select a Folder in sidebar to start browsing through the compendium",
+                "searchPlaceholder": "Search...",
+                "columnName": "Name",
+                "tooltipFilters": "Filters",
+                "tooltipErase": "Erase",
+                "difficultyMin": "Difficulty (Min)",
+                "difficultyMax": "Difficulty (Max)",
+                "hitPointsMin": "Hit Points (Min)",
+                "hitPointsMax": "Hit Points (Max)",
+                "stressMin": "Stress (Min)",
+                "stressMax": "Stress (Max)",
+                "armorScoreMin": "Armor Score (Min)",
+                "armorScoreMax": "Armor Score (Max)",
+                "levelMin": "Level (Min)",
+                "levelMax": "Level (Max)",
+                "recallCostMin": "Recall Cost (Min)",
+                "recallCostMax": "Recall Cost (Max)",
+                "evasionMin": "Evasion (Min)",
+                "evasionMax": "Evasion (Max)",
+                "subtype": "Subtype",
+                "folders": {
+                    "characters": "Characters",
+                    "adversaries": "Adversaries",
+                    "ancestries": "Ancestries",
+                    "equipment": "Equipment",
+                    "classes": "Classes",
+                    "subclasses": "Subclasses",
+                    "domainCards": "Domain Cards",
+                    "communities": "Communities",
+                    "environments": "Environments",
+                    "beastforms": "Beastforms",
+                    "features": "Features",
+                    "items": "Items",
+                    "weapons": "Weapons",
+                    "armors": "Armors",
+                    "consumables": "Consumables",
+                    "loots": "Loots"
                 }
             },
             "Notifications": {
@@ -2319,6 +2588,7 @@
                 "beastformInapplicable": "A beastform can only be applied to a Character.",
                 "beastformAlreadyApplied": "The character already has a beastform applied!",
                 "noTargetsSelected": "No targets are selected.",
+                "noTargetsSelectedOrPerm": "No targets are selected or with the update permission.",
                 "attackTargetDoesNotExist": "The target token no longer exists",
                 "insufficentAdvancements": "You don't have enough advancements left.",
                 "noAssignedPlayerCharacter": "You have no assigned character.",
@@ -2346,6 +2616,8 @@
                 "wrongDomain": "The card isn't from one of your class domains.",
                 "cardTooHighLevel": "The card is too high level!",
                 "duplicateCard": "You cannot select the same card more than once.",
+                "duplicateCharacter": "This actor is already registered in the party members list.",
+                "onlyCharactersInPartySheet": "You can drag only characters to a party sheet.",
                 "notPrimary": "The weapon is not a primary weapon!",
                 "notSecondary": "The weapon is not a secondary weapon!",
                 "itemTooHighTier": "The item must be from Tier1",
@@ -2373,11 +2645,23 @@
                 "beastformEquipWeapon": "You cannot use weapons while in a Beastform.",
                 "loadoutMaxReached": "You've reached maximum loadout. Move atleast one domain card to the vault, or increase the limit in homebrew settings if desired.",
                 "domainMaxReached": "You've reached the maximum domains for the class. Increase the limit in homebrew settings if desired.",
-                "insufficientResources": "You have insufficient resources",
+                "insufficientResources": "You don't have enough resources to use that action.",
+                "actionNoUsesRemaining": "That action doesn't have remaining uses.",
                 "multiclassAlreadyPresent": "You already have a class and multiclass",
                 "subclassesAlreadyPresent": "You already have a class and multiclass subclass",
                 "noDiceSystem": "Your selected dice {system} does not have a {faces} dice",
-                "subclassAlreadyLinked": "{name} is already a subclass in the class {class}. Remove it from there if you want it to be a subclass to this class."
+                "gmMenuRefresh": "You refreshed all actions and resources {types}",
+                "subclassAlreadyLinked": "{name} is already a subclass in the class {class}. Remove it from there if you want it to be a subclass to this class.",
+                "gmRequired": "This action requires an online GM",
+                "gmOnly": "This can only be accessed by the GM",
+                "noActorOwnership": "You do not have permissions for this character"
+            },
+            "Sidebar": {
+                "daggerheartMenu": {
+                    "title": "Daggerheart Menu",
+                    "startSession": "Start Session",
+                    "startScene": "Start Scene"
+                }
             },
             "Tooltip": {
                 "disableEffect": "Disable Effect",
@@ -2404,7 +2688,9 @@
                 "rulesOff": "Rules Off",
                 "remainingUses": "Uses refresh on {type}",
                 "rightClickExtand": "Right-Click to extand",
-                "companionPartnerLevelBlock": "The companion needs an assigned partner to level up."
+                "companionPartnerLevelBlock": "The companion needs an assigned partner to level up.",
+                "configureAttribution": "Configure Attribution",
+                "deleteItem": "Delete Item"
             }
         }
     }

@@ -90,22 +90,22 @@ export const rangeInclusion = {
 export const otherTargetTypes = {
     friendly: {
         id: 'friendly',
-        label: 'Friendly'
+        label: 'DAGGERHEART.CONFIG.TargetTypes.friendly'
     },
     hostile: {
         id: 'hostile',
-        label: 'Hostile'
+        label: 'DAGGERHEART.CONFIG.TargetTypes.hostile'
     },
     any: {
         id: 'any',
-        label: 'Any'
+        label: 'DAGGERHEART.CONFIG.TargetTypes.any'
     }
 };
 
 export const targetTypes = {
     self: {
         id: 'self',
-        label: 'Self'
+        label: 'DAGGERHEART.CONFIG.TargetTypes.self'
     },
     ...otherTargetTypes
 };
@@ -164,28 +164,36 @@ export const healingTypes = {
     }
 };
 
-export const defeatedConditions = {
+export const defeatedConditions = () => {
+    const defeated = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
+    return Object.keys(defeatedConditionChoices).reduce((acc, key) => {
+        const choice = defeatedConditionChoices[key];
+        acc[key] = {
+            ...choice,
+            img: defeated[`${choice.id}Icon`],
+            description: `DAGGERHEART.CONFIG.Condition.${choice.id}.description`
+        };
+
+        return acc;
+    }, {});
+};
+
+export const defeatedConditionChoices = {
     defeated: {
         id: 'defeated',
-        name: 'DAGGERHEART.CONFIG.Condition.defeated.name',
-        img: 'icons/magic/control/fear-fright-mask-orange.webp',
-        description: 'DAGGERHEART.CONFIG.Condition.defeated.description'
+        name: 'DAGGERHEART.CONFIG.Condition.defeated.name'
     },
     unconscious: {
         id: 'unconscious',
-        name: 'DAGGERHEART.CONFIG.Condition.unconscious.name',
-        img: 'icons/magic/control/sleep-bubble-purple.webp',
-        description: 'DAGGERHEART.CONFIG.Condition.unconscious.description'
+        name: 'DAGGERHEART.CONFIG.Condition.unconscious.name'
     },
     dead: {
         id: 'dead',
-        name: 'DAGGERHEART.CONFIG.Condition.dead.name',
-        img: 'icons/magic/death/grave-tombstone-glow-teal.webp',
-        description: 'DAGGERHEART.CONFIG.Condition.dead.description'
+        name: 'DAGGERHEART.CONFIG.Condition.dead.name'
     }
 };
 
-export const conditions = {
+export const conditions = () => ({
     vulnerable: {
         id: 'vulnerable',
         name: 'DAGGERHEART.CONFIG.Condition.vulnerable.name',
@@ -204,8 +212,8 @@ export const conditions = {
         img: 'icons/magic/control/debuff-chains-shackle-movement-red.webp',
         description: 'DAGGERHEART.CONFIG.Condition.restrained.description'
     },
-    ...defeatedConditions
-};
+    ...defeatedConditions()
+});
 
 export const defaultRestOptions = {
     shortRest: () => ({
@@ -561,6 +569,19 @@ export const refreshTypes = {
     }
 };
 
+export const itemAbilityCosts = {
+    resource: {
+        id: 'resource',
+        label: 'DAGGERHEART.GENERAL.resource',
+        group: 'Global'
+    },
+    quantity: {
+        id: 'quantity',
+        label: 'DAGGERHEART.GENERAL.quantity',
+        group: 'Global'
+    }
+};
+
 export const abilityCosts = {
     hitPoints: {
         id: 'hitPoints',
@@ -574,19 +595,20 @@ export const abilityCosts = {
     },
     hope: {
         id: 'hope',
-        label: 'Hope',
+        label: 'DAGGERHEART.CONFIG.HealingType.hope.name',
         group: 'TYPES.Actor.character'
     },
     armor: {
         id: 'armor',
-        label: 'Armor Slot',
+        label: 'DAGGERHEART.CONFIG.HealingType.armor.name',
         group: 'TYPES.Actor.character'
     },
     fear: {
         id: 'fear',
-        label: 'Fear',
+        label: 'DAGGERHEART.CONFIG.HealingType.fear.name',
         group: 'TYPES.Actor.adversary'
-    }
+    },
+    resource: itemAbilityCosts.resource
 };
 
 export const countdownTypes = {
@@ -624,8 +646,57 @@ export const rollTypes = {
     }
 };
 
+export const attributionSources = {
+    daggerheart: {
+        label: 'Daggerheart',
+        values: [{ label: 'Daggerheart SRD' }]
+    }
+};
+
 export const fearDisplay = {
     token: { value: 'token', label: 'DAGGERHEART.SETTINGS.Appearance.fearDisplay.token' },
     bar: { value: 'bar', label: 'DAGGERHEART.SETTINGS.Appearance.fearDisplay.bar' },
     hide: { value: 'hide', label: 'DAGGERHEART.SETTINGS.Appearance.fearDisplay.hide' }
+};
+
+export const basicOwnershiplevels = {
+    0: { value: 0, label: 'OWNERSHIP.NONE' },
+    2: { value: 2, label: 'OWNERSHIP.OBSERVER' },
+    3: { value: 3, label: 'OWNERSHIP.OWNER' }
+};
+
+export const simpleOwnershiplevels = {
+    [-1]: { value: -1, label: 'OWNERSHIP.INHERIT' },
+    ...basicOwnershiplevels
+};
+
+export const countdownBaseTypes = {
+    narrative: {
+        id: 'narrative',
+        name: 'DAGGERHEART.APPLICATIONS.Countdown.types.narrative'
+    },
+    encounter: {
+        id: 'encounter',
+        name: 'DAGGERHEART.APPLICATIONS.Countdown.types.encounter'
+    }
+};
+
+export const countdownAppMode = {
+    textIcon: 'text-icon',
+    iconOnly: 'icon-only'
+};
+
+export const sceneRangeMeasurementSetting = {
+    disable: {
+        id: 'disable',
+        label: 'Disable Daggerheart Range Measurement'
+    },
+    default: {
+        id: 'default',
+        label: 'Default'
+    },
+    custom: {
+        id: 'custom',
+        label: 'Custom'
+    }
 };

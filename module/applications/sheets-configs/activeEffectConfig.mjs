@@ -96,6 +96,13 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         });
     }
 
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
+        context.systemFields = context.document.system.schema.fields;
+
+        return context;
+    }
+
     async _preparePartContext(partId, context) {
         const partContext = await super._preparePartContext(partId, context);
         switch (partId) {

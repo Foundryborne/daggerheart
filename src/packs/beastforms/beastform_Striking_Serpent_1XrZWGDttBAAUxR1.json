@@ -5,8 +5,8 @@
   "system": {
     "beastformType": "normal",
     "tier": 2,
-    "tokenImg": "icons/svg/mystery-man.svg",
-    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenImg": "icons/creatures/reptiles/serpent-horned-green.webp",
+    "tokenRingImg": "icons/creatures/reptiles/serpent-horned-green.webp",
     "tokenSize": {
       "height": null,
       "width": null
@@ -35,7 +35,12 @@
       "advantages": 2,
       "features": 2
     },
-    "examples": "Cobra, Rattlesnake, Viper, etc."
+    "examples": "Cobra, Rattlesnake, Viper, etc.",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 13,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -125,12 +130,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753621251793,
-    "modifiedTime": 1753621266619,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1762787068105,
+    "lastModifiedBy": "gtrqalNxfl7iRwL8"
   },
   "_id": "1XrZWGDttBAAUxR1",
   "sort": 0,

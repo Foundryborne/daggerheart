@@ -25,7 +25,6 @@
                 gap: 10px;
                 grid-template-columns: 1fr 3fr 1fr;
                 h4 {
-                    font-family: @font-body;
                     font-weight: lighter;
                     color: light-dark(@dark, @beige);
                 }
@@ -41,6 +40,20 @@
                     justify-content: center;
                     gap: 10px;
                 }
+            }
+        }
+    }
+
+    .tab.questions {
+        .questions-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+
+            .questions-section {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
             }
         }
     }

@@ -1,0 +1,15 @@
+<section
+    class='tab {{tabs.effects.cssClass}} {{tabs.effects.id}}'
+    data-tab='{{tabs.effects.id}}'
+    data-group='{{tabs.effects.group}}'
+>
+    <fieldset class="one-column">
+        <legend>{{localize "DAGGERHEART.GENERAL.Effect.plural"}} <a><i class="fa-solid fa-plus icon-button" data-action="addEffect"></i></a></legend>
+
+        <div class="settings-items">
+            {{#each move.effects}}
+                {{> "systems/daggerheart/templates/settings/components/settings-item-line.hbs" id=this.id type="effect" }}
+            {{/each}}
+        </div>
+    </fieldset>
+</section>

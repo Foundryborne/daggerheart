@@ -76,7 +76,6 @@
 
     textarea {
         color: light-dark(@dark, @beige);
-        font-family: @font-body;
         scrollbar-width: thin;
         scrollbar-color: light-dark(@dark-blue, @golden) transparent;
     }
@@ -126,7 +125,6 @@
     select {
         background: light-dark(transparent, transparent);
         color: light-dark(@dark, @beige);
-        font-family: @font-body;
         outline: 2px solid transparent;
         border: 1px solid light-dark(@dark, @beige);
 
@@ -161,14 +159,13 @@
                 padding: 0.3rem 0.5rem;
                 color: light-dark(@dark-blue, @golden);
                 background-color: light-dark(@dark-blue-10, @golden-40);
-                font-family: @font-body;
                 border-radius: 3px;
                 transition: 0.13s ease-out;
                 gap: 0.5rem;
                 z-index: 1;
 
                 .remove {
-                    font-size: 10px;
+                    font-size: var(--font-size-10);
                 }
             }
         }
@@ -180,7 +177,6 @@
     }
 
     table {
-        font-family: @font-body;
         border-radius: 3px;
 
         thead {
@@ -214,7 +210,13 @@
     }
 
     p {
-        margin: 0;
+        &:first-child {
+            margin-top: 0;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 
     ul {
@@ -309,7 +311,6 @@
         }
 
         legend {
-            font-family: @font-body;
             font-weight: bold;
             color: light-dark(@dark-blue, @golden);
         }
@@ -317,7 +318,6 @@
         input[type='text'],
         input[type='number'] {
             color: light-dark(@dark, @beige);
-            font-family: @font-body;
             transition: all 0.3s ease;
             outline: 2px solid transparent;
 
@@ -344,6 +344,10 @@
             width: 100%;
             gap: 5px;
 
+            &.space-between {
+                justify-content: space-between;
+            }
+
             .btn {
                 padding-top: 15px;
             }
@@ -364,7 +368,6 @@
         .form-group {
             width: 100%;
             label {
-                font-family: @font-body;
                 font-weight: bold;
                 font-size: smaller;
             }
@@ -403,8 +406,7 @@
                 display: flex;
                 flex-direction: column;
                 white-space: nowrap;
-                font-family: @font-body;
-                font-size: 14px;
+                font-size: var(--font-size-14);
                 font-weight: 400;
 
                 &.modifier-label {
@@ -499,7 +501,6 @@
                 color: light-dark(@dark-blue, @dark-blue);
                 white-space: nowrap;
                 border: 0;
-                font-family: @font-body;
 
                 &:hover {
                     color: light-dark(@dark-blue, @golden);
@@ -524,6 +525,17 @@
             }
         }
     }
+    .artist-attribution {
+        width: 100%;
+        display: flex;
+        justify-content: left;
+        font-style: italic;
+        font-family: @font-body;
+        margin-top: 4px;
+        color: light-dark(#14142599, #efe6d850);
+        font-size: var(--font-size-12);
+        padding-left: 3px;
+    }
 }
 
 .application.setting.dh-style {
@@ -535,7 +547,7 @@
             text-align: center;
         }
         .title-hint {
-            font-size: 12px;
+            font-size: var(--font-size-12);
             font-variant: small-caps;
             text-align: center;
         }
@@ -597,16 +609,33 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 0.25rem 0.5rem;
+        flex-wrap: wrap;
 
         label {
-            font-size: 16px;
-            font-family: @font-body;
+            font-size: var(--font-size-14);
+            font-weight: normal;
         }
 
         .form-fields {
             display: flex;
             gap: 4px;
             align-items: center;
+        }
+
+        &.setting-two-values {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.25rem 0.5rem;
+
+            .form-group {
+                justify-content: end;
+                flex-wrap: nowrap;
+            }
+
+            .hint {
+                grid-column: 1 / -1;
+            }
         }
     }
 }
@@ -675,7 +704,6 @@
 
     .tagify__dropdown {
         border: 1px solid light-dark(@dark, @beige) !important;
-        font-family: @font-body;
         color: light-dark(@dark, @beige);
 
         .tagify__dropdown__wrapper {
@@ -770,11 +798,10 @@
         }
 
         .preview-text-container {
-            font-family: @font-body;
             padding: 10px 0;
             text-align: center;
-            font-size: 16px;
-            color: light-dark(@beige, @dark);
+            font-size: var(--font-size-16);
+            color: @dark;
             background-image: url(../assets/parchments/dh-parchment-light.png);
             border-radius: 0 0 4px 4px;
         }
@@ -796,19 +823,18 @@
             justify-content: center;
 
             .preview-add-icon {
-                font-size: 40px;
+                font-size: var(--font-size-40);
                 color: light-dark(@dark-blue-50, @beige-50);
             }
 
             .preview-empty-subtext {
                 position: absolute;
                 bottom: 5%;
-                font-size: 10px;
+                font-size: var(--font-size-10);
                 font-variant: small-caps;
                 text-align: center;
-                font-family: @font-body;
                 font-style: italic;
-                color: light-dark(@dark-blue-60, @beige-80);
+                color: light-dark(@dark-blue, @beige-80);
             }
         }
     }
@@ -819,7 +845,7 @@
         width: 54px;
         border-radius: 50%;
         border: 2px solid;
-        font-size: 48px;
+        font-size: var(--font-size-48);
         display: flex;
         align-items: center;
         justify-content: center;

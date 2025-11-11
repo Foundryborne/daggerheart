@@ -1,0 +1,178 @@
+.daggerheart.dialog.dh-style.views.tag-team-dialog {
+    .tag-team-container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .tag-team-data-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            .form-group {
+                flex: 0;
+
+                label {
+                    white-space: nowrap;
+                }
+
+                &.flex-group {
+                    flex: 1;
+                }
+            }
+        }
+
+        .title-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            h2 {
+                text-align: start;
+            }
+
+            select {
+                flex: 1;
+            }
+        }
+
+        .participants-container {
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            .participant-outer-container {
+                padding: 8px;
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                cursor: pointer;
+                border-radius: 6px;
+
+                &.selected,
+                &:hover {
+                    background-color: light-dark(@golden-40, @golden-40);
+                }
+
+                .participant-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 8px;
+
+                    .participant-inner-container {
+                        flex: 1;
+                        display: flex;
+                        align-items: center;
+                        gap: 4px;
+
+                        img {
+                            height: 48px;
+                            width: 48px;
+                            border-radius: 50%;
+                        }
+
+                        .participant-labels {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 2px;
+
+                            .participant-label-title {
+                                font-size: 18px;
+                            }
+
+                            .participant-label-info {
+                                display: flex;
+                                gap: 4px;
+
+                                .participant-label-info-part {
+                                    border: 1px solid light-dark(white, white);
+                                    border-radius: 4px;
+                                    padding: 2px 4px;
+                                    background-color: light-dark(@beige-80, @soft-white-shadow);
+                                    color: white;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .participant-empty-roll-container {
+                    border: 1px dashed white;
+                    padding: 8px 2px;
+                    text-align: center;
+                    font-style: italic;
+                }
+
+                .participant-roll-outer-container {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 2px;
+                    color: light-dark(@dark-blue, @golden);
+
+                    h4 {
+                        text-align: center;
+                        color: light-dark(@dark-blue, @golden);
+                    }
+
+                    .participant-roll-container {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        white-space: nowrap;
+
+                        .participant-roll-text-container {
+                            padding: 0 8px;
+                            white-space: nowrap;
+                            display: flex;
+                        }
+                    }
+
+                    .damage-values-container {
+                        display: flex;
+                        justify-content: space-around;
+                        gap: 8px;
+
+                        .damage-container {
+                            border: 1px solid light-dark(white, white);
+                            border-radius: 6px;
+                            padding: 0 4px;
+                            display: flex;
+                            gap: 4px;
+                        }
+                    }
+                }
+            }
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .result-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 8px;
+
+            .result-damages-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px;
+
+                .result-damage-container {
+                    border: 1px solid light-dark(white, white);
+                    border-radius: 6px;
+                    padding: 0 4px;
+                }
+            }
+        }
+
+        .roll-leader-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+    }
+}

@@ -16,11 +16,12 @@
         "actionType": "action",
         "cost": [
           {
-            "keyIsID": false,
-            "key": "hope",
-            "value": 1,
             "scalable": false,
-            "step": null
+            "key": "quantity",
+            "value": 1,
+            "itemId": "UFQVwgYOUZ88UxcH",
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -38,7 +39,13 @@
         "range": ""
       }
     },
-    "consumeOnUse": true
+    "consumeOnUse": true,
+    "destroyOnEmpty": true,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 62,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": null,
@@ -52,12 +59,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753592792213,
-    "modifiedTime": 1754394753189,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1756336692719,
+    "lastModifiedBy": "gbAAZWyczKwejDNh"
   },
   "_key": "!items!UFQVwgYOUZ88UxcH"
 }

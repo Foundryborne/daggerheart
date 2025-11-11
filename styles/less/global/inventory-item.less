@@ -14,7 +14,7 @@
 }
 
 .appTheme({}, {
-    .inventory-item-header .img-portait .roll-img {
+    .inventory-item .img-portait .roll-img {
         filter: invert(1);
     }
 });
@@ -25,14 +25,12 @@
         list-style-type: none;
 
         &:not(.single-img) {
-            .inventory-item-header:hover {
-                .img-portait {
-                    .roll-img {
-                        opacity: 1;
-                    }
-                    .item-img {
-                        opacity: 0;
-                    }
+            .img-portait:has(.roll-img):hover {
+                .roll-img {
+                    opacity: 1;
+                }
+                .item-img {
+                    opacity: 0;
                 }
             }
 
@@ -68,18 +66,15 @@
             }
         }
 
-        .inventory-item-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            border-radius: 3px;
-
+        .inventory-item-header,
+        &.inventory-item-compact {
             .img-portait {
                 flex: 0 0 40px;
                 height: 40px;
-                cursor: pointer;
                 position: relative;
+                &:has(.roll-img) {
+                    cursor: pointer;
+                }
 
                 .item-img,
                 .roll-img {
@@ -92,61 +87,17 @@
 
                     &.actor-img {
                         border-radius: 50%;
+                        object-position: top center;
                     }
                 }
 
                 .roll-img {
+                    object-fit: contain;
                     opacity: 0;
+                    padding: 2px;
                 }
             }
 
-            .item-label {
-                flex: 1;
-                font-family: @font-body;
-                align-self: center;
-
-                .item-name {
-                    font-size: 14px;
-
-                    .expanded-icon {
-                        display: none;
-                    }
-                }
-
-                .item-tags,
-                .item-labels {
-                    display: flex;
-                    gap: 10px;
-
-                    .tag,
-                    .label {
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: center;
-                        align-items: center;
-                        font-size: 12px;
-                    }
-
-                    .tag {
-                        padding: 3px 5px;
-                        background: light-dark(@dark-15, @beige-15);
-                        border: 1px solid light-dark(@dark, @beige);
-                        border-radius: 3px;
-                    }
-
-                    .label {
-                        gap: 4px;
-                        color: @beige-80;
-                    }
-                }
-            }
-
-            .item-resource {
-                flex: 0 0 60px;
-                display: flex;
-                align-items: center;
-                gap: 4px;
-            }
             .controls {
                 flex: 0 0 auto;
                 display: flex;
@@ -165,6 +116,56 @@
             }
         }
 
+        .inventory-item-header {
+            align-items: center;
+            border-radius: 3px;
+            cursor: pointer;
+            display: flex;
+            gap: 10px;
+
+            &.padded {
+                padding-right: 8px;
+            }
+
+            .item-label {
+                flex: 1;
+                align-self: center;
+
+                .item-name {
+                    font-size: var(--font-size-14);
+
+                    .expanded-icon {
+                        display: none;
+                    }
+                }
+
+                .item-tags {
+                    display: flex;
+                    gap: 10px;
+
+                    .tag {
+                        align-items: center;
+                        background: light-dark(@dark-15, @beige-15);
+                        border-radius: 3px;
+                        border: 1px solid light-dark(@dark, @beige);
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        font-size: var(--font-size-12);
+                        justify-content: start;
+                        padding: 3px 5px;
+                    }
+                }
+            }
+
+            .item-resource {
+                flex: 0 0 60px;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+            }
+        }
+
         .inventory-item-content {
             > *:not(:last-child) {
                 margin-bottom: 5px;
@@ -180,18 +181,18 @@
                     overflow: hidden;
 
                     h1 {
-                        font-size: 32px;
+                        font-size: var(--font-size-32);
                     }
                     h2 {
-                        font-size: 28px;
+                        font-size: var(--font-size-28);
                         font-weight: 600;
                     }
                     h3 {
-                        font-size: 20px;
+                        font-size: var(--font-size-20);
                         font-weight: 600;
                     }
                     h4 {
-                        font-size: 16px;
+                        font-size: var(--font-size-16);
                         color: @beige;
                         font-weight: 600;
                     }
@@ -202,7 +203,6 @@
                         padding: 0 0 0 1.25rem;
 
                         li {
-                            font-family: @font-body;
                             margin-bottom: 0.25rem;
                         }
                     }
@@ -233,7 +233,7 @@
                     label {
                         color: light-dark(white, black);
                         filter: drop-shadow(0 0 1px light-dark(@dark-blue, @golden));
-                        font-size: 18px;
+                        font-size: var(--font-size-18);
                     }
 
                     img {
@@ -245,9 +245,44 @@
                         text-shadow: 0 0 3px white;
                         filter: drop-shadow(0 1px white);
                         color: black;
-                        font-size: 26px;
+                        font-size: 1.625rem;
                     }
                 }
+            }
+        }
+
+        &.inventory-item-compact {
+            display: grid;
+            grid-template:
+                'img name controls' auto
+                'img labels labels' 1fr
+                / 40px 1fr min-content;
+            column-gap: 8px;
+
+            > .img-portait {
+                grid-area: img;
+            }
+            > .item-name {
+                align-self: end;
+                line-height: 1;
+                padding-bottom: 1px;
+            }
+            > .controls {
+                grid-area: controls;
+                align-self: start;
+                padding-top: 0.3125rem;
+                gap: 4px;
+                margin-bottom: -1px;
+            }
+            > .item-labels {
+                align-self: start;
+                color: light-dark(@dark-80, @beige-80);
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                font-size: var(--font-size-12);
+                gap: 4px;
+                grid-area: labels;
             }
         }
     }
@@ -308,13 +343,14 @@
             background-color: @dark-blue;
             bottom: 0;
             mask-image: linear-gradient(180deg, transparent 0%, black 20%);
+            border-radius: 0 0 6px 6px;
 
             .card-name {
-                font-family: @font-body;
                 font-style: normal;
                 font-weight: 400;
-                font-size: 12px;
+                font-size: var(--font-size-12);
                 line-height: 15px;
+                text-align: center;
 
                 color: @beige;
             }
@@ -354,7 +390,7 @@
             gap: 4px;
 
             .resource-edit {
-                font-size: 14px;
+                font-size: var(--font-size-14);
             }
         }
 
@@ -366,7 +402,7 @@
 
             i {
                 flex: none;
-                font-size: 14px;
+                font-size: var(--font-size-14);
             }
 
             input {
@@ -386,7 +422,7 @@
                     color: light-dark(white, black);
                     filter: drop-shadow(0 0 1px light-dark(@dark-blue, @golden));
                     z-index: 2;
-                    font-size: 18px;
+                    font-size: var(--font-size-18);
                     cursor: pointer;
                 }
 
@@ -400,7 +436,7 @@
                     text-shadow: 0 0 3px white;
                     filter: drop-shadow(0 1px white);
                     color: black;
-                    font-size: 26px;
+                    font-size: 1.625rem;
                 }
             }
         }

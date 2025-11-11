@@ -46,6 +46,11 @@
         "img": "systems/daggerheart/assets/icons/domains/domain-card/blade.png",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 121,
+      "artist": ""
     }
   },
   "flags": {},
@@ -53,12 +58,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784542,
-    "modifiedTime": 1754304501280,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755428142811,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "sWUlSPOJEaXyQLCj",
   "sort": 3400000,
@@ -80,7 +85,7 @@
       },
       "changes": [
         {
-          "key": "system.resources.hitPoints",
+          "key": "system.resources.hitPoints.max",
           "mode": 2,
           "value": "1",
           "priority": null
@@ -105,12 +110,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754245866724,
-        "modifiedTime": 1754246004543,
-        "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+        "modifiedTime": 1761502808129,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!items.effects!sWUlSPOJEaXyQLCj.1jtgIyFvDpTb0asZ"
     },
@@ -131,7 +136,7 @@
       },
       "changes": [
         {
-          "key": "system.resources.stress",
+          "key": "system.resources.stress.max",
           "mode": 2,
           "value": "1",
           "priority": null
@@ -156,12 +161,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754245912530,
-        "modifiedTime": 1754245972468,
-        "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+        "modifiedTime": 1761502816888,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!items.effects!sWUlSPOJEaXyQLCj.vj9rm1tLqqsSFOXF"
     },

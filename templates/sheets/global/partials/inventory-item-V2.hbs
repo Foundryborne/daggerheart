@@ -4,6 +4,7 @@
 Parameters:
 - type {string} : The type of items in the list
 - isActor {boolean} : Passed through to inventory-item partials.
+- actorType {boolean} : The actor type of the parent actor
 - categoryAdversary {string} : Category adversary id.
 - noExtensible {boolean} : If true, the inventory-item-content would be collapsable/extendible else it always be showed
 - hideLabels {boolean} : If true, hide label-tags else show label-tags.
@@ -17,20 +18,26 @@ Parameters:
 
 <li class="inventory-item" data-item-id="{{item.id}}" {{#if (or (eq type 'action' ) (eq type 'attack' ))}}
   data-action-id="{{item.id}}" {{/if}} data-item-uuid="{{item.uuid}}" data-type="{{type}}" data-no-compendium-edit="{{noCompendiumEdit}}" draggable="true">
-  <div class="inventory-item-header" {{#unless noExtensible}}data-action="toggleExtended" {{/unless}}>
+  <div class="inventory-item-header {{#if (eq actorType 'party')}}padded{{/if}}" {{#unless noExtensible}}data-action="toggleExtended" {{/unless}}>
     {{!-- Image --}}
     <div class="img-portait" data-action='{{ifThen (or (hasProperty item "use") (eq type "attack")) "useItem" (ifThen
       (hasProperty item "toChat" ) "toChat" "editDoc" ) }}' {{#unless hideTooltip}} {{#if (eq type 'attack' )}}
       data-tooltip="#attack#{{item.actor.uuid}}" {{else}} data-tooltip="#item#{{item.uuid}}" {{/if}} {{/unless}}>
       <img src="{{item.img}}" class="item-img {{#if isActor}}actor-img{{/if}}" />
-      <img class="roll-img" src="systems/daggerheart/assets/icons/dice/default/d20.svg" alt="d20">
+      {{#if (or item.system.actionsList.size item.system.actionsList.length item.actionType)}}
+        {{#if @root.isNPC}}
+          <img class="roll-img d20" src="systems/daggerheart/assets/icons/dice/default/d20.svg" alt="d20">
+        {{else}}
+          <img class="roll-img duality" src="systems/daggerheart/assets/icons/dice/duality/DualityBW.svg" alt="2d12">
+        {{/if}}
+      {{/if}}
     </div>
 
     {{!-- Name & Tags --}}
     <div class="item-label">
 
       {{!-- Item Name --}}
-      <div class="item-name">{{localize item.name}} {{#unless noExtensible}}<span class="expanded-icon"><i class="fa-solid fa-expand"></i></span>{{/unless}}</div>
+      <span class="item-name">{{localize item.name}} {{#unless (or noExtensible (not item.system.description))}}<span class="expanded-icon"><i class="fa-solid fa-expand"></i></span>{{/unless}}</span>
 
       {{!-- Tags Start --}}
       {{#with item}}
@@ -42,20 +49,6 @@ Parameters:
         </div>
         {{/each}}
       </div>
-      {{else if (not ../hideLabels)}}
-      <div class="item-labels">
-        <div class="label">
-          {{#each this._getLabels as |label|}}
-          {{ifThen label.value label.value label}}
-          {{#each label.icons as |icon|}}
-          <i class="fa-solid {{icon}}"></i>
-          {{/each}}
-          {{#if (not @last)}}
-          <span>-</span>
-          {{/if}}
-          {{/each}}
-        </div>
-      </div>
       {{/if}}
       {{/with}}
       {{!--Tags End --}}
@@ -65,7 +58,7 @@ Parameters:
     {{#if (and (not hideResources) (eq item.system.resource.type 'simple'))}}
     {{> "systems/daggerheart/templates/sheets/global/partials/item-resource.hbs"}}
     {{/if}}
-    {{#if (and (not hideResources) item.system.quantity)}}
+    {{#if (and (not hideResources) (gte item.system.quantity 0))}}
     <div class="item-resource">
       <input type="number" class="inventory-item-quantity" value="{{item.system.quantity}}" min="0" />
     </div>
@@ -83,18 +76,30 @@ Parameters:
         <i class='fas fa-trash'></i>
       </a>
       {{/if}}
+      {{#if (eq type 'character')}}
+      <a data-action='deletePartyMember' data-tooltip="CONTROLS.CommonDelete">
+        <i class='fas fa-trash'></i>
+      </a>
+      {{/if}}
       {{else}}
-      {{#if (eq type 'weapon')}}
-      <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem"
-        data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.equipped 'unequip' 'equip' }}">
-        <i class="fa-solid fa-hands"></i>
-      </a>
-      {{else if (eq type 'armor')}}
-      <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem"
-        data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.equipped 'unequip' 'equip' }}">
-        <i class="fa-solid fa-shield"></i>
-      </a>
-      {{else if (eq type 'domainCard')}}
+      {{#unless (eq actorType 'party')}}
+        {{#if (eq type 'weapon')}}
+        <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem"
+          data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.equipped 'unequip' 'equip' }}">
+          <i class="fa-solid fa-hands"></i>
+        </a>
+        {{else if (eq type 'armor')}}
+        <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem"
+          data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.equipped 'unequip' 'equip' }}">
+          <i class="fa-solid fa-shield"></i>
+        </a>
+        {{/if}}
+      {{else}}
+        <a data-action="deleteItem" data-tooltip="DAGGERHEART.UI.Tooltip.deleteItem">
+          <i class="fa-solid fa-trash"></i>
+        </a>
+      {{/unless}}
+      {{#if (eq type 'domainCard')}}
       <a data-action="toggleVault"
         data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.inVault 'sendToLoadout' 'sendToVault' }}">
         <i class="fa-solid {{ifThen item.system.inVault 'fa-arrow-up' 'fa-arrow-down'}}"></i>
@@ -105,7 +110,7 @@ Parameters:
         <i class="{{ifThen item.disabled 'fa-solid fa-toggle-off' 'fa-solid fa-toggle-on'}}"></i>
       </a>
       {{/if}}
-      {{#if (hasProperty item "toChat")}}
+      {{#if (and (hasProperty item "toChat") (not (eq actorType 'party')))}}
       <a data-action="toChat" data-tooltip="DAGGERHEART.UI.Tooltip.sendToChat">
         <i class="fa-regular fa-message"></i>
       </a>

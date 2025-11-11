@@ -1,29 +1,8 @@
+import { parseInlineParams } from './parser.mjs';
+
 export default function DhDamageEnricher(match, _options) {
-    const parts = match[1].split('|').map(x => x.trim());
-
-    let value = null,
-        type = null,
-        inline = false;
-
-    parts.forEach(part => {
-        const split = part.split(':').map(x => x.toLowerCase().trim());
-        if (split.length === 2) {
-            switch (split[0]) {
-                case 'value':
-                    value = split[1];
-                    break;
-                case 'type':
-                    type = split[1];
-                    break;
-                case 'inline':
-                    inline = true;
-                    break;
-            }
-        }
-    });
-
-    if (!value || !value) return match[0];
-
+    const { value, type, inline } = parseInlineParams(match[1]);
+    if (!value || !type) return match[0];
     return getDamageMessage(value, type, inline, match[0]);
 }
 

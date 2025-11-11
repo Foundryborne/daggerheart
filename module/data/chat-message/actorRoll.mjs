@@ -29,6 +29,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             hasEffect: new fields.BooleanField({ initial: false }),
             hasSave: new fields.BooleanField({ initial: false }),
             hasTarget: new fields.BooleanField({ initial: false }),
+            isDirect: new fields.BooleanField({ initial: false }),
             isCritical: new fields.BooleanField({ initial: false }),
             onSave: new fields.StringField(),
             source: new fields.SchemaField({
@@ -54,9 +55,12 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     }
 
     get action() {
-        const actionItem = this.actionItem;
-        if (!actionItem || !this.source.action) return null;
-        return actionItem.system.actionsList?.find(a => a.id === this.source.action);
+        const actionActor = this.actionActor,
+            actionItem = this.actionItem;
+        if (!this.source.action) return null;
+        if (actionItem) return actionItem.system.actionsList?.find(a => a.id === this.source.action);
+        else if (actionActor?.system.attack?._id === this.source.action) return actionActor.system.attack;
+        return null;
     }
 
     get targetMode() {
@@ -94,7 +98,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     }
 
     registerTargetHook() {
-        if (!this.parent.isAuthor) return;
+        if (!this.parent.isAuthor || !this.hasTarget) return;
         if (this.targetMode && this.parent.targetHook !== null) {
             Hooks.off('targetToken', this.parent.targetHook);
             return (this.parent.targetHook = null);
@@ -126,7 +130,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         }
 
         this.canViewSecret = this.parent.speakerActor?.testUserPermission(game.user, 'OBSERVER');
-        this.canButtonApply = game.user.isGM;   //temp
+        this.canButtonApply = game.user.isGM; //temp
         this.isGM = game.user.isGM; //temp
     }
 

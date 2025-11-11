@@ -22,7 +22,6 @@
             "scalable": false,
             "key": "hope",
             "value": 1,
-            "keyIsID": false,
             "step": null
           }
         ],
@@ -43,7 +42,7 @@
         },
         "name": "Spend Hope",
         "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
-        "range": ""
+        "range": "self"
       },
       "OdRTXMOXhZFiZHES": {
         "type": "effect",
@@ -67,6 +66,11 @@
         "img": "icons/skills/wounds/blood-cells-disease-green.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 134,
+      "artist": ""
     }
   },
   "flags": {},
@@ -74,12 +78,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1753922784418,
-    "modifiedTime": 1754241531537,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1756038980509,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "tdsL00yTSLNgZWs6",
   "sort": 3400000,
@@ -88,7 +92,7 @@
       "name": "Bold Presence",
       "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
       "origin": "Compendium.daggerheart.domains.Item.tdsL00yTSLNgZWs6",
-      "transfer": true,
+      "transfer": false,
       "_id": "2XEYhuAcRGTtqvED",
       "type": "base",
       "system": {
@@ -107,7 +111,7 @@
           "priority": null
         }
       ],
-      "disabled": true,
+      "disabled": false,
       "duration": {
         "startTime": null,
         "combat": null,
@@ -126,12 +130,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754241531511,
-        "modifiedTime": 1754241605959,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1756038989398,
+        "lastModifiedBy": "vUIbuan0U50nfKBE"
       },
       "_key": "!items.effects!tdsL00yTSLNgZWs6.2XEYhuAcRGTtqvED"
     }

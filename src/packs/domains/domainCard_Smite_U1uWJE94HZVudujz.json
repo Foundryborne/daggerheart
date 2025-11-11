@@ -22,7 +22,6 @@
             "scalable": false,
             "key": "hope",
             "value": 3,
-            "keyIsID": false,
             "step": null,
             "consumeOnSuccess": false
           }
@@ -40,13 +39,18 @@
           }
         ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Charge Smite",
         "img": "icons/skills/melee/sword-winged-holy-orange.webp",
-        "range": ""
+        "range": "self"
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 133,
+      "artist": ""
     }
   },
   "flags": {},
@@ -54,12 +58,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.0",
     "createdTime": 1753922784519,
-    "modifiedTime": 1754498725946,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1756038851464,
+    "lastModifiedBy": "vUIbuan0U50nfKBE"
   },
   "_id": "U1uWJE94HZVudujz",
   "sort": 3400000,

@@ -1,4 +1,5 @@
 import DamageDialog from '../applications/dialogs/damageDialog.mjs';
+import { RefreshType, socketEvent } from '../systemRegistration/socket.mjs';
 import DHRoll from './dhRoll.mjs';
 
 export default class DamageRoll extends DHRoll {
@@ -9,6 +10,7 @@ export default class DamageRoll extends DHRoll {
     static DefaultDialog = DamageDialog;
 
     static async buildEvaluate(roll, config = {}, message = {}) {
+        if (config.dialog.configure === false) roll.constructFormula(config);
         if (config.evaluate !== false) for (const roll of config.roll) await roll.roll.evaluate();
 
         roll._evaluated = true;
@@ -46,9 +48,7 @@ export default class DamageRoll extends DHRoll {
             );
         }
         await super.buildPost(roll, config, message);
-        if (config.source?.message) {
-            chatMessage.update({ 'system.damage': config.damage });
-        }
+        if (config.source?.message) chatMessage.update({ 'system.damage': config.damage });
     }
 
     static unifyDamageRoll(rolls) {
@@ -337,6 +337,14 @@ export default class DamageRoll extends DHRoll {
                 ...updateMessage,
                 total: parsedRoll.total,
                 parts: damageParts
+            }
+        });
+
+        Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.TagTeamRoll });
+        await game.socket.emit(`system.${CONFIG.DH.id}`, {
+            action: socketEvent.Refresh,
+            data: {
+                refreshType: RefreshType.TagTeamRoll
             }
         });
     }

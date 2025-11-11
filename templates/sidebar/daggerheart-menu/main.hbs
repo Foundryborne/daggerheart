@@ -1,0 +1,24 @@
+<div>
+    <h2>{{localize "DAGGERHEART.APPLICATIONS.DaggerheartMenu.title"}}</h2>
+    
+    <fieldset>
+        <legend>{{localize "Refresh Features"}}</legend>
+
+        <div class="menu-refresh-container">
+            <div class="menu-refresh-inner-container">
+                {{#each refreshables as |type key|}}
+                    <div class="experience-chip {{#if type.selected}}selected{{/if}}" data-action="selectRefreshable" data-type="{{key}}">
+                        {{#if type.selected}}
+                            <span><i class="fa-solid fa-circle"></i></span>
+                        {{else}}
+                            <span><i class="fa-regular fa-circle"></i></span>
+                        {{/if}}
+                        <span>{{type.label}}</span>
+                    </div>
+
+                {{/each}}
+            </div>
+            <button data-action="refreshActors" {{disabled disableRefresh}}>{{localize "DAGGERHEART.GENERAL.refresh"}}</button>
+        </div>
+    </fieldset>
+</div>

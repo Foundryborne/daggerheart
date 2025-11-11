@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "l1wUmqMzG8YF9sqb",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Once per session, after you or a willing ally within Close range makes an action roll, you can <strong>spend 3 Hope</strong> to reroll the Duality Dice.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -20,7 +20,6 @@
             "scalable": false,
             "key": "hope",
             "value": 3,
-            "keyIsID": false,
             "step": null
           }
         ],
@@ -34,14 +33,19 @@
           "type": "friendly",
           "amount": null
         },
-        "name": "Use",
+        "name": "Spend Hope",
         "img": "icons/magic/control/buff-luck-fortune-green-gold.webp",
         "range": "close"
       }
     },
     "originItemType": null,
     "subType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 28,
+      "artist": ""
+    }
   },
   "effects": [],
   "sort": 0,
@@ -54,12 +58,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.1.2",
     "createdTime": 1753994658436,
-    "modifiedTime": 1754498186961,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1761138006341,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!items!U6iFjZgLYawlOlQZ"
 }

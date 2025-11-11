@@ -1,0 +1,110 @@
+<div>
+    <div class="tag-team-container">
+        <fieldset>
+            <legend>{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.partyTeam"}}</legend>
+
+            <div class="form-group flex-group">
+                <label>{{localize "TYPES.Actor.character"}}</label>
+
+                <div class="form-fields">
+                <select name="selectedAddMember">
+                    {{selectOptions memberOptions labelAttr="name" valueAttr="uuid" blank=""}}
+                </select>
+            </div>
+
+            <div class="participants-container">
+                {{#each members as |member|}}
+                    <div class="participant-outer-container {{#if member.selected}}selected{{/if}}" data-action="selectMessage" id="{{member.character.id}}">
+                        <div class="participant-container">
+                            <div class="participant-inner-container">
+                                <img src="{{member.character.img}}" />
+                                <div class="participant-labels">
+                                    <div class="participant-label-title">{{member.character.name}}</div>
+                                    <div class="participant-label-info">
+                                        {{#if member.character.system.class.value}}
+                                            <div class="participant-label-info-part">{{member.character.system.class.value.name}}</div>
+                                        {{/if}}
+                                        {{#if member.system.multiclass.value}}
+                                            <div class="participant-label-info-part">{{member.character.system.multiclass.value.name}}</div>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+                            <a data-action="removeMember" data-character-id="{{member.character.id}}"><i class="fa-solid fa-trash"></i></a>
+                        </div>
+                        {{#if member.roll}}
+                            <div class="participant-roll-outer-container">
+                                <div class="participant-roll-container">
+                                    <h4>
+                                        <a data-action="unlinkMessage" id="{{member.character.id}}"><i class="fa-solid fa-link"></i></a>
+                                        {{member.roll.system.title}}
+                                    </h4>
+                                </div>
+                                <div class="participant-roll-container">
+                                    <side-line-div class="invert"></side-line-div>
+                                    <div class="participant-roll-text-container">
+                                        {{member.roll.system.roll.total}}
+                                        {{localize "DAGGERHEART.GENERAL.withThing" thing=member.roll.system.roll.result.label}}
+                                    </div>
+                                    <side-line-div></side-line-div>
+                                </div>
+                                {{#if member.roll.system.hasDamage}}
+                                    <h4>{{localize "DAGGERHEART.GENERAL.damage"}}</h4>
+                                    <div class="damage-values-container">
+                                        {{#if member.damageValues}}
+                                            {{#each member.damageValues as |damage|}}
+                                                <div class="damage-container">
+                                                    <div>{{damage.name}}</div>
+                                                    <div>{{damage.total}}</div>
+                                                </div>
+                                            {{/each}}
+                                        {{else}}
+                                            {{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.damageNotRolled"}}
+                                        {{/if}}
+                                    </div>
+                                {{/if}}
+                            </div>
+                        {{else}}
+                            <div class="participant-empty-roll-container">
+                                {{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.linkMessageHint"}}
+                            </div>
+                        {{/if}}
+                    </div>
+                {{/each}}
+            </div>
+        </fieldset>
+
+        <div class="roll-leader-container">
+            <h4>
+                <strong>{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.initiatingCharacter"}}</strong>
+                <select name="initiator.id">
+                    {{selectOptions selectedCharacterOptions selected=initiator.character.id labelAttr="name" valueAttr="id" blank=""}}
+                </select>
+            </h4>
+            <h4>
+                <strong>{{localize "DAGGERHEART.GENERAL.Cost.single"}}</strong>
+                <input type="text" data-dtype="Number" min="0" name="initiator.cost" value="{{initiator.cost}}" />
+            </h4>
+        </div>
+        {{#if showResult}}
+            {{#if selectedData.result}}
+                <div class="result-container">
+                    <h4><strong>{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.title"}}:</strong> {{selectedData.result}}</h4>
+                    {{#if usesDamage}}
+                        <div class="result-damages-container">
+                            <label><strong>{{localize "DAGGERHEART.GENERAL.damage"}}:</strong></label>
+                            {{#each selectedData.damageValues as |damage|}}
+                                <div class="result-damage-container">
+                                    {{damage.name}}
+                                    {{damage.total}}
+                                </div>
+                            {{/each}}
+                        </div>
+                    {{/if}}
+                </div>
+            {{/if}}
+        {{/if}}
+
+        <button data-action="createTagTeam" {{disabled createDisabled}}>{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.createTagTeam"}}</button>
+    </div>
+</div>

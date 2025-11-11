@@ -176,6 +176,11 @@
         "img": "icons/magic/air/fog-gas-smoke-dense-gray.webp",
         "range": "veryClose"
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 124,
+      "artist": ""
     }
   },
   "flags": {},
@@ -183,12 +188,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784426,
-    "modifiedTime": 1754241041570,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755428986804,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "1VXzwRbvbBj5bd5V",
   "sort": 3400000,

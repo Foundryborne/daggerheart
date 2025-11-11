@@ -1,6 +1,5 @@
 import { abilities } from '../../config/actorConfig.mjs';
 import { burden } from '../../config/generalConfig.mjs';
-import { ItemBrowser } from '../ui/itemBrowser.mjs';
 import { createEmbeddedItemsWithEffects, createEmbeddedItemWithEffects } from '../../helpers/utils.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -46,8 +45,6 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         };
 
         this._dragDrop = this._createDragDropHandlers();
-
-        this.itemBrowser = null;
     }
 
     get title() {
@@ -86,9 +83,9 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
     static PARTS = {
         tabs: { template: 'systems/daggerheart/templates/characterCreation/tabs.hbs' },
+        class: { template: 'systems/daggerheart/templates/characterCreation/tabs/class.hbs' },
         ancestry: { template: 'systems/daggerheart/templates/characterCreation/tabs/ancestry.hbs' },
         community: { template: 'systems/daggerheart/templates/characterCreation/tabs/community.hbs' },
-        class: { template: 'systems/daggerheart/templates/characterCreation/tabs/class.hbs' },
         traits: { template: 'systems/daggerheart/templates/characterCreation/tabs/traits.hbs' },
         experience: { template: 'systems/daggerheart/templates/characterCreation/tabs/experience.hbs' },
         domainCards: { template: 'systems/daggerheart/templates/characterCreation/tabs/domainCards.hbs' },
@@ -98,6 +95,13 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
     };
 
     static TABS = {
+        class: {
+            active: false,
+            cssClass: '',
+            group: 'setup',
+            id: 'class',
+            label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.tabs.class'
+        },
         ancestry: {
             active: true,
             cssClass: '',
@@ -111,13 +115,6 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             group: 'setup',
             id: 'community',
             label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.tabs.community'
-        },
-        class: {
-            active: false,
-            cssClass: '',
-            group: 'setup',
-            id: 'class',
-            label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.tabs.class'
         },
         traits: {
             active: false,
@@ -159,10 +156,10 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             v.cssClass = v.active ? 'active' : '';
 
             switch (v.id) {
-                case 'community':
+                case 'ancestry':
                     v.disabled = this.setup.visibility < 2;
                     break;
-                case 'class':
+                case 'community':
                     v.disabled = this.setup.visibility < 3;
                     break;
                 case 'traits':
@@ -195,7 +192,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
     }
 
     async _prepareContext(_options) {
-        this.tabGroups.setup = this.tabGroups.setup ?? 'ancestry';
+        this.tabGroups.setup = this.tabGroups.setup ?? 'class';
         const context = await super._prepareContext(_options);
 
         context.tabs = this._getTabs(this.constructor.TABS);
@@ -269,13 +266,13 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 context.isLastTab = this.tabGroups.setup === 'equipment';
                 switch (this.tabGroups.setup) {
                     case null:
-                    case 'ancestry':
+                    case 'class':
                         context.nextDisabled = this.setup.visibility === 1;
                         break;
-                    case 'community':
+                    case 'ancestry':
                         context.nextDisabled = this.setup.visibility === 2;
                         break;
-                    case 'class':
+                    case 'community':
                         context.nextDisabled = this.setup.visibility === 3;
                         break;
                     case 'traits':
@@ -366,11 +363,11 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             case 4:
                 return this.getNrSelectedTrait() === 6 ? 5 : 4;
             case 3:
-                return this.setup.class.uuid && this.setup.subclass.uuid ? 4 : 3;
+                return this.setup.community.uuid ? 4 : 3;
             case 2:
-                return this.setup.community.uuid ? 3 : 2;
+                return this.setup.primaryAncestry.uuid ? 3 : 2;
             case 1:
-                return this.setup.primaryAncestry.uuid ? 2 : 1;
+                return this.setup.class.uuid && this.setup.subclass.uuid ? 2 : 1;
         }
     }
 
@@ -425,8 +422,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             equipment = ['armor', 'weapon'];
 
         const presets = {
-            compendium: 'daggerheart',
-            folder: equipment.includes(type) ? 'equipments' : type,
+            folder: equipment.includes(type) ? `equipments.folders.${type}s` : type,
             render: {
                 noFolder: true
             }
@@ -442,14 +438,14 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             presets.filter = {
                 'system.linkedClass.uuid': { key: 'system.linkedClass.uuid', value: this.setup.class?.uuid }
             };
-        
+
         if (equipment.includes(type))
             presets.filter = {
                 'system.tier': { key: 'system.tier', value: 1 },
                 'type': { key: 'type', value: type }
             };
 
-        return (this.itemBrowser = await new ItemBrowser({ presets }).render({ force: true }));
+        ui.compendiumBrowser.open(presets);
     }
 
     static async viewItem(_, target) {
@@ -477,10 +473,10 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
     static setupGoNext() {
         switch (this.setup.visibility) {
             case 2:
-                this.tabGroups.setup = 'community';
+                this.tabGroups.setup = 'ancestry';
                 break;
             case 3:
-                this.tabGroups.setup = 'class';
+                this.tabGroups.setup = 'community';
                 break;
             case 4:
                 this.tabGroups.setup = 'traits';
@@ -567,7 +563,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             { overwrite: true }
         );
 
-        if (this.itemBrowser) this.itemBrowser.close();
+        if (ui.compendiumBrowser) ui.compendiumBrowser.close();
         this.close();
     }
 

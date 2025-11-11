@@ -16,7 +16,7 @@
             width: 100%;
 
             h3 {
-                font-size: 20px;
+                font-size: var(--font-size-20);
             }
         }
         .items-list {
@@ -58,8 +58,7 @@
             .experience-name {
                 width: 180px;
                 text-align: start;
-                font-size: 14px;
-                font-family: @font-body;
+                font-size: var(--font-size-14);
                 color: light-dark(@dark, @beige);
             }
         }
@@ -67,8 +66,7 @@
         .experience-value {
             height: 25px;
             width: 35px;
-            font-size: 14px;
-            font-family: @font-body;
+            font-size: var(--font-size-14);
             color: light-dark(@dark, @beige);
             align-content: center;
             text-align: center;
@@ -77,6 +75,19 @@
             .theme-light & {
                 background: url('../assets/svg/experience-shield-light.svg') no-repeat;
             }
+        }
+    }
+
+    .action-section {
+        display: flex;
+        padding: 0 10px;
+        margin-top: 20px;
+        width: 100%;
+
+        button {
+            height: 40px;
+            width: 100%;
+            font-weight: 600;
         }
     }
 }

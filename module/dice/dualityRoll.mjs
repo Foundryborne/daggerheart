@@ -19,7 +19,7 @@ export default class DualityRoll extends D20Roll {
 
     get title() {
         return game.i18n.localize(
-            `DAGGERHEART.GENERAL.${this.options?.roll?.type === CONFIG.DH.ITEM.actionTypes.reaction.id ? 'reactionRoll' : 'dualityRoll'}`
+            `DAGGERHEART.GENERAL.${this.options?.actionType === CONFIG.DH.ITEM.actionTypes.reaction.id ? 'reactionRoll' : 'dualityRoll'}`
         );
     }
 
@@ -154,9 +154,12 @@ export default class DualityRoll extends D20Roll {
     applyBaseBonus() {
         const modifiers = super.applyBaseBonus();
 
-        if (this.options.roll.trait && this.data.traits[this.options.roll.trait])
+        if (this.options.roll.trait && this.data.traits?.[this.options.roll.trait])
             modifiers.unshift({
-                label: `DAGGERHEART.CONFIG.Traits.${this.options.roll.trait}.name`,
+                label:
+                    this.options.roll.type === CONFIG.DH.GENERAL.rollTypes.spellcast.id
+                        ? 'DAGGERHEART.CONFIG.RollTypes.spellcast.name'
+                        : `DAGGERHEART.CONFIG.Traits.${this.options.roll.trait}.name`,
                 value: this.data.traits[this.options.roll.trait].value
             });
 
@@ -253,9 +256,11 @@ export default class DualityRoll extends D20Roll {
         });
         newRoll.extra = newRoll.extra.slice(2);
 
+        const tagTeamSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
         Hooks.call(`${CONFIG.DH.id}.postRollDuality`, {
             source: { actor: message.system.source.actor ?? '' },
             targets: message.system.targets,
+            tagTeamSelected: Object.values(tagTeamSettings.members).some(x => x.messageId === message._id),
             roll: newRoll,
             rerolledRoll:
                 newRoll.result.duality !== message.system.roll.result.duality ? message.system.roll : undefined

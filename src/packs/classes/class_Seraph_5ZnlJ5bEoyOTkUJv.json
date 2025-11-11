@@ -54,11 +54,26 @@
       "suggestedSecondaryWeapon": "Compendium.daggerheart.weapons.Item.mxwWKDujgsRcZWPT",
       "suggestedArmor": "Compendium.daggerheart.armors.Item.haULhuEg37zUUvhb"
     },
-    "isMulticlass": false
+    "isMulticlass": false,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 20,
+      "artist": ""
+    },
+    "backgroundQuestions": [
+      "Which god did you devote yourself to? What incredible feat did they perform for you in a moment of desperation?",
+      "How did your appearance change after taking your oath?",
+      "In what strange or unique way do you communicate with your god?"
+    ],
+    "connections": [
+      "What promise did you make me agree to, should you die on the battlefield?",
+      "Why do you ask me so many questions about my god?",
+      "You’ve told me to protect one member of our party above all others, even yourself. Who are they and why?"
+    ]
   },
   "effects": [],
   "folder": null,
-  "sort": 0,
+  "sort": 737500,
   "ownership": {
     "default": 0,
     "Q9NoTaEarn3VMS6Z": 3
@@ -68,12 +83,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.0",
+    "systemVersion": "1.1.2",
     "createdTime": 1754351482530,
-    "modifiedTime": 1755943523935,
-    "lastModifiedBy": "tt3PwMBXcTLCtIQU"
+    "modifiedTime": 1760018751908,
+    "lastModifiedBy": "fBcTgyTzoARBvohY"
   },
   "_key": "!items!5ZnlJ5bEoyOTkUJv"
 }

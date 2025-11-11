@@ -5,8 +5,8 @@
   "system": {
     "beastformType": "normal",
     "tier": 2,
-    "tokenImg": "icons/svg/mystery-man.svg",
-    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenImg": "icons/creatures/abilities/bear-roar-bite-brown-green.webp",
+    "tokenRingImg": "icons/creatures/abilities/bear-roar-bite-brown-green.webp",
     "tokenSize": {
       "height": null,
       "width": null
@@ -35,7 +35,12 @@
       "advantages": 2,
       "features": 2
     },
-    "examples": "Bear, Bull, Moose, etc."
+    "examples": "Bear, Bull, Moose, etc.",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 13,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -57,13 +62,13 @@
         {
           "key": "system.traits.strength.value",
           "mode": 2,
-          "value": "1",
+          "value": "3",
           "priority": null
         },
         {
           "key": "system.evasion",
           "mode": 2,
-          "value": "3",
+          "value": "1",
           "priority": null
         },
         {
@@ -106,11 +111,11 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "lastModifiedBy": "FecEtPuoQh6MpjQ0",
-        "modifiedTime": 1753636973034
+        "lastModifiedBy": "fBcTgyTzoARBvohY",
+        "modifiedTime": 1761503222813
       },
       "_key": "!items.effects!m8BVTuJI1wCvzTcf.AZGTvqzFVHa4wS1a"
     }
@@ -125,12 +130,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.2.0",
     "createdTime": 1753582598510,
-    "modifiedTime": 1753617739186,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1762787029819,
+    "lastModifiedBy": "gtrqalNxfl7iRwL8"
   },
   "_id": "m8BVTuJI1wCvzTcf",
   "sort": 300000,

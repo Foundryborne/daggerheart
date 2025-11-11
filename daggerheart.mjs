@@ -1,5 +1,6 @@
 import { SYSTEM } from './module/config/system.mjs';
 import * as applications from './module/applications/_module.mjs';
+import * as data from './module/data/_module.mjs';
 import * as models from './module/data/_module.mjs';
 import * as documents from './module/documents/_module.mjs';
 import * as dice from './module/dice/_module.mjs';
@@ -7,10 +8,8 @@ import * as fields from './module/data/fields/_module.mjs';
 import RegisterHandlebarsHelpers from './module/helpers/handlebarsHelper.mjs';
 import { enricherConfig, enricherRenderSetup } from './module/enrichers/_module.mjs';
 import { getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs';
-import { NarrativeCountdowns } from './module/applications/ui/countdowns.mjs';
 import { BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll } from './module/dice/_module.mjs';
 import { enrichedDualityRoll } from './module/enrichers/DualityRollEnricher.mjs';
-import { registerCountdownHooks } from './module/data/countdowns.mjs';
 import {
     handlebarsRegistration,
     runMigrations,
@@ -26,6 +25,7 @@ Hooks.once('init', () => {
     CONFIG.DH = SYSTEM;
     game.system.api = {
         applications,
+        data,
         models,
         documents,
         dice,
@@ -33,15 +33,6 @@ Hooks.once('init', () => {
     };
 
     CONFIG.TextEditor.enrichers.push(...enricherConfig);
-
-    CONFIG.statusEffects = [
-        ...CONFIG.statusEffects.filter(x => !['dead', 'unconscious'].includes(x.id)),
-        ...Object.values(SYSTEM.GENERAL.conditions).map(x => ({
-            ...x,
-            name: game.i18n.localize(x.name),
-            systemEffect: true
-        }))
-    ];
 
     CONFIG.Dice.daggerheart = {
         DHRoll: DHRoll,
@@ -94,6 +85,10 @@ Hooks.once('init', () => {
         types: ['environment'],
         makeDefault: true
     });
+    Actors.registerSheet(SYSTEM.id, applications.sheets.actors.Party, {
+        types: ['party'],
+        makeDefault: true
+    });
 
     CONFIG.ActiveEffect.documentClass = documents.DhActiveEffect;
     CONFIG.ActiveEffect.dataModels = models.activeEffects.config;
@@ -133,9 +128,12 @@ Hooks.once('init', () => {
     CONFIG.ui.combat = applications.ui.DhCombatTracker;
     CONFIG.ui.chat = applications.ui.DhChatLog;
     CONFIG.ui.hotbar = applications.ui.DhHotbar;
+    CONFIG.ui.sidebar = applications.sidebar.DhSidebar;
+    CONFIG.ui.daggerheartMenu = applications.sidebar.DaggerheartMenu;
     CONFIG.Token.rulerClass = placeables.DhTokenRuler;
 
     CONFIG.ui.resources = applications.ui.DhFearTracker;
+    CONFIG.ui.countdowns = applications.ui.DhCountdowns;
     CONFIG.ux.ContextMenu = applications.ux.DHContextMenu;
     CONFIG.ux.TooltipManager = documents.DhTooltipManager;
 
@@ -146,10 +144,26 @@ Hooks.once('init', () => {
     // Make Compendium Dialog resizable
     foundry.applications.sidebar.apps.Compendium.DEFAULT_OPTIONS.window.resizable = true;
 
+    DocumentSheetConfig.registerSheet(foundry.documents.Scene, SYSTEM.id, applications.scene.DhSceneConfigSettings, {
+        makeDefault: true,
+        label: 'Daggerheart'
+    });
+
     settingsRegistration.registerDHSettings();
     RegisterHandlebarsHelpers.registerHelpers();
 
     return handlebarsRegistration();
+});
+
+Hooks.on('setup', () => {
+    CONFIG.statusEffects = [
+        ...CONFIG.statusEffects.filter(x => !['dead', 'unconscious'].includes(x.id)),
+        ...Object.values(SYSTEM.GENERAL.conditions()).map(x => ({
+            ...x,
+            name: game.i18n.localize(x.name),
+            systemEffect: true
+        }))
+    ];
 });
 
 Hooks.on('ready', async () => {
@@ -157,7 +171,12 @@ Hooks.on('ready', async () => {
     if (game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).displayFear !== 'hide')
         ui.resources.render({ force: true });
 
-    registerCountdownHooks();
+    ui.countdowns = new CONFIG.ui.countdowns();
+    ui.countdowns.render({ force: true });
+
+    if (!(ui.compendiumBrowser instanceof applications.ui.ItemBrowser))
+        ui.compendiumBrowser = new applications.ui.ItemBrowser();
+
     socketRegistration.registerSocketHooks();
     registerRollDiceHooks();
     socketRegistration.registerUserQueries();
@@ -230,29 +249,6 @@ Hooks.on('chatMessage', (_, message) => {
     }
 });
 
-Hooks.on('renderJournalDirectory', async (tab, html, _, options) => {
-    if (tab.id === 'journal') {
-        if (options.parts && !options.parts.includes('footer')) return;
-
-        const buttons = tab.element.querySelector('.directory-footer.action-buttons');
-        const title = game.i18n.format('DAGGERHEART.APPLICATIONS.Countdown.title', {
-            type: game.i18n.localize('DAGGERHEART.APPLICATIONS.Countdown.types.narrative')
-        });
-        buttons.insertAdjacentHTML(
-            'afterbegin',
-            `
-            <button id="narrative-countdown-button">
-                <i class="fa-solid fa-stopwatch"></i>
-                <span style="font-weight: 400; font-family: var(--font-sans);">${title}</span>
-            </button>`
-        );
-
-        buttons.querySelector('#narrative-countdown-button').onclick = async () => {
-            new NarrativeCountdowns().open();
-        };
-    }
-});
-
 Hooks.on('moveToken', async (movedToken, data) => {
     const effectsAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).effects;
     if (!effectsAutomation.rangeDependent) return;
@@ -300,3 +296,6 @@ Hooks.on('moveToken', async (movedToken, data) => {
         await effect.value.update({ disabled: effect.disabled });
     }
 });
+
+Hooks.on('renderCompendiumDirectory', (app, html) => applications.ui.ItemBrowser.injectSidebarButton(html));
+Hooks.on('renderDocumentDirectory', (app, html) => applications.ui.ItemBrowser.injectSidebarButton(html));

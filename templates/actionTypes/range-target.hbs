@@ -1,12 +1,12 @@
 <fieldset class="one-column">
     <legend>{{localize "DAGGERHEART.GENERAL.range"}}{{#if fields.target}} & {{localize "DAGGERHEART.GENERAL.Target.single"}}{{/if}}</legend>
-    {{formField fields.range value=source.range label="Range" name=(concat path "range") localize=true}}
+    {{formField fields.range value=source.range label="DAGGERHEART.GENERAL.range" name=(concat path "range") localize=true}}
     {{#if fields.target}}
     <div class="nest-inputs">
         {{#if (and source.target.type (not (eq source.target.type 'self')))}}
-            {{ formField fields.target.amount value=source.target.amount label="Amount" name=(concat path "target.amount") }}
+            {{ formField fields.target.amount value=source.target.amount label="DAGGERHEART.GENERAL.amount" name=(concat path "target.amount")  localize=true}}
         {{/if}}
-        {{ formField fields.target.type value=source.target.type label="Target" name=(concat path "target.type") localize=true }}
+        {{ formField fields.target.type value=source.target.type label="DAGGERHEART.GENERAL.Target.single" name=(concat path "target.type") localize=true }}
     </div>
     {{/if}}
 </fieldset>

@@ -9,7 +9,12 @@
     "resource": null,
     "actions": {},
     "originItemType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 11,
+      "artist": ""
+    }
   },
   "effects": [],
   "sort": 200000,
@@ -22,12 +27,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1754182966287,
-    "modifiedTime": 1754236486774,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
+    "modifiedTime": 1755391738116,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!oLO3VjGkMcK1uvB9"
 }

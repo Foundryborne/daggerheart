@@ -33,7 +33,12 @@
     },
     "originItemType": null,
     "subType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 32,
+      "artist": ""
+    }
   },
   "effects": [],
   "flags": {},

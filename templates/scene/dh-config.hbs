@@ -1,0 +1,24 @@
+<div class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    <fieldset>
+        <legend>{{localize "DAGGERHEART.SETTINGS.Scene.rangeMeasurement"}}</legend>
+
+        {{#if variantRules.rangeMeasurement.enabled}}
+            {{formGroup data.schema.fields.rangeMeasurement.fields.setting value=data._source.rangeMeasurement.setting name="flags.daggerheart.rangeMeasurement.setting" id="rangeMeasurementSetting" localize=true blank=false}}
+            
+            {{#if (eq data.rangeMeasurement.setting "custom")}}
+                {{formGroup data.schema.fields.rangeMeasurement.fields.melee value=data._source.rangeMeasurement.melee name="flags.daggerheart.rangeMeasurement.melee" localize=true}}
+                {{formGroup data.schema.fields.rangeMeasurement.fields.veryClose value=data._source.rangeMeasurement.veryClose name="flags.daggerheart.rangeMeasurement.veryClose" localize=true}}
+                {{formGroup data.schema.fields.rangeMeasurement.fields.close value=data._source.rangeMeasurement.close name="flags.daggerheart.rangeMeasurement.close" localize=true}}
+                {{formGroup data.schema.fields.rangeMeasurement.fields.far value=data._source.rangeMeasurement.far name="flags.daggerheart.rangeMeasurement.far" localize=true}}
+            {{/if}}
+            {{#if (eq data.rangeMeasurement.setting "default")}}
+                {{formGroup variantRules.schema.fields.rangeMeasurement.fields.melee value=variantRules._source.rangeMeasurement.melee localize=true disabled=true}}
+                {{formGroup variantRules.schema.fields.rangeMeasurement.fields.veryClose value=variantRules._source.rangeMeasurement.veryClose localize=true disabled=true}}
+                {{formGroup variantRules.schema.fields.rangeMeasurement.fields.close value=variantRules._source.rangeMeasurement.close localize=true disabled=true}}
+                {{formGroup variantRules.schema.fields.rangeMeasurement.fields.far value=variantRules._source.rangeMeasurement.far localize=true disabled=true}}
+            {{/if}}
+        {{else}}
+            <span class="helper-text">{{localize "DAGGERHEART.SETTINGS.Scene.disabledText"}}</span>
+        {{/if}}
+    </fieldset>
+</div>

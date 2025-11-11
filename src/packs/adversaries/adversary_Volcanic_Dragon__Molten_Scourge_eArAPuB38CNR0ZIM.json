@@ -145,7 +145,12 @@
         }
       }
     },
-    "motivesAndTactics": "Douse with lava, incinerate, repel Invaders, reposition"
+    "motivesAndTactics": "Douse with lava, incinerate, repel Invaders, reposition",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 100,
+      "artist": ""
+    }
   },
   "prototypeToken": {
     "name": "Volcanic Dragon: Molten Scourge",
@@ -248,7 +253,40 @@
       "system": {
         "description": "<p>The Molten Scourge can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "ngzXlah4Lv3eK6i5": {
+            "type": "effect",
+            "_id": "ngzXlah4Lv3eK6i5",
+            "systemPath": "actions",
+            "description": "<p>The Molten Scourge can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "chatDisplay": true,
+            "actionType": "passive",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": 0,
+              "max": "2",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spotlight: Relentless",
+            "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
+            "range": ""
+          }
+        },
         "originItemType": null,
         "originId": null
       },
@@ -266,12 +304,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.1.2",
         "createdTime": 1754140232475,
-        "modifiedTime": 1754140255711,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1760383290639,
+        "lastModifiedBy": "fBcTgyTzoARBvohY"
       },
       "_key": "!actors.items!eArAPuB38CNR0ZIM.DVtxHnbvNDz2POSD"
     },
@@ -327,7 +365,6 @@
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "keyIsID": false,
                 "step": null
               }
             ],
@@ -549,7 +586,6 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "keyIsID": false,
                 "step": null
               }
             ],
@@ -901,9 +937,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753929160832,
-    "modifiedTime": 1755259462833,
+    "modifiedTime": 1755385761296,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!actors!eArAPuB38CNR0ZIM"

@@ -1,0 +1,33 @@
+<div class="daggerheart chat effect-summary">
+    <div class="effect-header">
+        <span>{{localize "DAGGERHEART.GENERAL.Effect.plural"}}</span>
+    </div>
+    <div class="effects-container">
+        {{#each effects}}
+            <details class="effect-target-container">
+                <summary class="effect-label">
+                    <img class="effect-img" src="{{this.img}}" />
+                    <h2 class="title">{{this.name}}</h2>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </summary>
+                <div class="description">
+                    {{{this.description}}}
+                </div>
+            </details>
+        {{/each}}
+    </div>
+
+    {{#if targets}}
+        <div class="actor-header">
+            <span>{{localize "DAGGERHEART.UI.Chat.appliedTo"}}</span>
+        </div>
+        <div class="targets-container">
+            {{#each targets}}
+                <div class="token-target-container" data-token="{{this.id}}">
+                    <img src="{{this.texture.src}}" />
+                    <h2 class="title">{{this.name}}</h2>
+                </div>
+            {{/each}}
+        </div>
+    {{/if}}
+</div>

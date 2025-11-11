@@ -1,17 +1,22 @@
 import { emitAsGM, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
-import { damageKeyToNumber } from '../helpers/utils.mjs';
+import { createScrollText, damageKeyToNumber } from '../helpers/utils.mjs';
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
 
 export default class DhpActor extends Actor {
+    parties = new Set();
+
+    #scrollTextQueue = [];
+    #scrollTextInterval;
+
     /**
      * Return the first Actor active owner.
      */
     get owner() {
         const user =
             this.hasPlayerOwner && game.users.players.find(u => this.testUserPermission(u, 'OWNER') && u.active);
-        if (!user) return game.user.isGM ? game.user : null;
+        if (!user) return game.users.activeGM;
         return user;
     }
 
@@ -71,13 +76,27 @@ export default class DhpActor extends Actor {
 
         // Configure prototype token settings
         const prototypeToken = {};
-        if (['character', 'companion'].includes(this.type))
+        if (['character', 'companion', 'party'].includes(this.type))
             Object.assign(prototypeToken, {
                 sight: { enabled: true },
                 actorLink: true,
                 disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
             });
         this.updateSource({ prototypeToken });
+    }
+
+    _onUpdate(changes, options, userId) {
+        super._onUpdate(changes, options, userId);
+        for (const party of this.parties) {
+            party.render();
+        }
+    }
+
+    _onDelete(options, userId) {
+        super._onDelete(options, userId);
+        for (const party of this.parties) {
+            party.render();
+        }
     }
 
     async updateLevel(newLevel) {
@@ -498,6 +517,7 @@ export default class DhpActor extends Actor {
     /**@inheritdoc */
     getRollData() {
         const rollData = super.getRollData();
+        rollData.name = this.name;
         rollData.system = this.system.getRollData();
         rollData.prof = this.system.proficiency ?? 1;
         rollData.cast = this.system.spellcastModifier ?? 1;
@@ -523,7 +543,7 @@ export default class DhpActor extends Actor {
         return canUseArmor || canUseStress;
     }
 
-    async takeDamage(damages) {
+    async takeDamage(damages, isDirect = false) {
         if (Hooks.call(`${CONFIG.DH.id}.preTakeDamage`, this, damages) === false) return null;
 
         if (this.type === 'companion') {
@@ -554,6 +574,7 @@ export default class DhpActor extends Actor {
             hpDamage.value = this.convertDamageToThreshold(hpDamage.value);
             if (
                 this.type === 'character' &&
+                !isDirect &&
                 this.system.armor &&
                 this.#canReduceDamage(hpDamage.value, hpDamage.damageTypes)
             ) {
@@ -594,6 +615,8 @@ export default class DhpActor extends Actor {
         await this.modifyResource(updates);
 
         if (Hooks.call(`${CONFIG.DH.id}.postTakeDamage`, this, updates) === false) return null;
+
+        return updates;
     }
 
     calculateDamage(baseDamage, type) {
@@ -642,6 +665,8 @@ export default class DhpActor extends Actor {
         await this.modifyResource(updates);
 
         if (Hooks.call(`${CONFIG.DH.id}.postTakeHealing`, this, updates) === false) return null;
+
+        return updates;
     }
 
     async modifyResource(resources) {
@@ -655,13 +680,22 @@ export default class DhpActor extends Actor {
         };
 
         resources.forEach(r => {
-            if (r.keyIsID) {
-                updates.items[r.key] = {
-                    target: r.target,
-                    resources: {
-                        'system.resource.value': r.target.system.resource.value + r.value
-                    }
-                };
+            if (r.itemId) {
+                const { path, value } = game.system.api.fields.ActionFields.CostField.getItemIdCostUpdate(r);
+
+                if (
+                    r.key === 'quantity' &&
+                    r.target.type === 'consumable' &&
+                    value === 0 &&
+                    r.target.system.destroyOnEmpty
+                ) {
+                    r.target.delete();
+                } else {
+                    updates.items[r.key] = {
+                        target: r.target,
+                        resources: { [path]: value }
+                    };
+                }
             } else {
                 switch (r.key) {
                     case 'fear':
@@ -735,7 +769,7 @@ export default class DhpActor extends Actor {
 
     async toggleDefeated(defeatedState) {
         const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
-        const { unconscious, defeated, dead } = CONFIG.DH.GENERAL.conditions;
+        const { unconscious, defeated, dead } = CONFIG.DH.GENERAL.conditions();
         const defeatedConditions = new Set([unconscious.id, defeated.id, dead.id]);
         if (!defeatedState) {
             for (let defeatedId of defeatedConditions) {
@@ -747,6 +781,25 @@ export default class DhpActor extends Actor {
                 const condition = settings[`${this.type}Default`];
                 await this.toggleStatusEffect(condition, { overlay: settings.overlay, active: defeatedState });
             }
+        }
+    }
+
+    queueScrollText(scrollingTextData) {
+        this.#scrollTextQueue.push(...scrollingTextData.map(data => () => createScrollText(this, data)));
+        if (!this.#scrollTextInterval) {
+            const scrollFunc = this.#scrollTextQueue.pop();
+            scrollFunc?.();
+
+            const intervalFunc = () => {
+                const scrollFunc = this.#scrollTextQueue.pop();
+                scrollFunc?.();
+                if (this.#scrollTextQueue.length === 0) {
+                    clearInterval(this.#scrollTextInterval);
+                    this.#scrollTextInterval = null;
+                }
+            };
+
+            this.#scrollTextInterval = setInterval(intervalFunc.bind(this), 600);
         }
     }
 
@@ -770,5 +823,15 @@ export default class DhpActor extends Actor {
         }
 
         return await super.importFromJSON(json);
+    }
+
+    /**
+     * Generate an array of localized tag.
+     * @returns {string[]} An array of localized tag strings.
+     */
+    _getTags() {
+        const tags = [];
+        if (this.system._getTags) tags.push(...this.system._getTags());
+        return tags;
     }
 }

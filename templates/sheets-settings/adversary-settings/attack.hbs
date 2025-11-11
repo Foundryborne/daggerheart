@@ -19,5 +19,5 @@
                 {{/if}}
             {{/if}}
     </fieldset>
-    {{> 'systems/daggerheart/templates/actionTypes/damage.hbs' fields=systemFields.attack.fields.damage.fields.parts.element.fields source=document.system.attack.damage path="system.attack." horde=(eq document._source.system.type 'horde')}}
+    {{> 'systems/daggerheart/templates/actionTypes/damage.hbs' fields=systemFields.attack.fields.damage.fields.parts.element.fields source=document.system.attack.damage path="system.attack." directField=systemFields.attack.fields.damage.fields.direct horde=(eq document._source.system.type 'horde')}}
 </section>

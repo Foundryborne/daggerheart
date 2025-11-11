@@ -1,0 +1,124 @@
+<div class="group-roll">
+    <div class="group-roll-section">
+        <h4 class="divider group-roll-header first">
+            <label>{{localize "DAGGERHEART.UI.Chat.groupRoll.leader"}}</label>
+        </h4>
+        <div class="group-roll-content {{#if system.leader.result}}finished{{/if}}">
+            <div class="group-roll-member">
+                <div class="group-roll-data">
+                    <img src="{{system.leader.actor.img}}" />
+                    <div class="group-roll-label-container">
+                        <div>{{system.leader.actor.name}}</div>
+                        <div class="group-roll-label-inner-container">
+                            {{#unless (isNullish system.leader.manualSuccess)}}
+                                <label class="group-roll-modifier {{#unless system.leader.manualSuccess}}failure{{/unless}}">{{#if system.leader.manualSuccess}}{{localize "DAGGERHEART.GENERAL.hit.single"}}{{else}}{{localize "DAGGERHEART.GENERAL.miss.single"}}{{/if}}</label>
+                            {{/unless}}
+                            <div class="group-roll-trait">{{localize (concat "DAGGERHEART.CONFIG.Traits." system.leader.trait ".name")}}</div>
+                        </div>
+                    </div>
+                </div>
+                {{#unless system.leader.result}}   
+                    <div class="group-roll-rolling">
+                        <a class="group-roll-button" data-path="leader"><img class="dice-icon normal" src="{{concat 'systems/daggerheart/assets/icons/dice/default/d20.svg'}}" alt=""></a>
+                    </div>
+                {{else}}
+                    <div class="roll-results {{#if system.leader.result}}finished{{/if}}">
+                        {{#if (isNullish system.leader.manualSuccess)}}
+                            <div class="reroll-result-container">
+                                <a class="group-roll-success success" data-success="true" data-path="leader"><i class="fa-solid fa-check"></i></a>
+                                <a class="group-roll-success failure" data-path="leader"><i class="fa-solid fa-xmark"></i></a>
+                            </div>
+                            
+                            <a class="group-roll-reroll" data-path="leader" data-tooltip="{{localize "DAGGERHEART.UI.Chat.groupRoll.rerollTooltip"}}">
+                                <img class="dice-icon normal" src="{{concat 'systems/daggerheart/assets/icons/dice/default/d20.svg'}}" alt=""></img>
+                                <i class="fa-solid fa-arrow-rotate-left reroll-icon"></i>
+                            </a>
+                        {{else}}
+                            <div class="reroll-result-container">
+                                {{#if system.leader.manualSuccess}}
+                                    <i class="fa-solid fa-check success"></i>
+                                {{else}}
+                                    <i class="fa-solid fa-xmark failure"></i>
+                                {{/if}}
+                            </div> 
+                        {{/if}}
+                    </div>
+                {{/unless}}
+            </div>
+            {{#if system.leader.result}}
+                <div class="group-roll-main-roll">
+                    <h4 class="divider">
+                        {{localize "DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle" ability=(localize (concat "DAGGERHEART.CONFIG.Traits." system.leader.trait ".name"))}}
+                    </h4>
+                    <span class="main-roll-content">
+                        <span class="main-value">
+                            {{system.leader.result.total}}
+                            {{#unless (isNullish system.totalModifier)}} 
+                             {{#if (gte system.totalModifier 0)}}+{{else}}-{{/if}} 
+                             {{positive system.totalModifier}} = {{add system.leader.result.total system.totalModifier}}
+                            {{/unless}}
+                        </span>
+                        <span class="main-text">{{localize "DAGGERHEART.GENERAL.withThing" thing=system.leader.result.result.label}}</span>
+                    </span>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+    <div class="group-roll-section">
+        <h4 class="divider group-roll-header">
+            <a class="group-roll-header-expand-section">
+                <i class="fa-solid fa-angle-down"></i>
+                <label>{{localize "DAGGERHEART.UI.Chat.groupRoll.team"}}</label>
+                <i class="fa-solid fa-angle-down"></i>
+            </a>
+        </h4>
+        <div class="group-roll-content">
+            {{#each system.members as |member index|}}
+                <div class="group-roll-member">
+                    <div class="group-roll-data">
+                        <img src="{{member.actor.img}}" />
+                        <div class="group-roll-label-container">
+                            <div>{{member.actor.name}}</div>
+                            <div class="group-roll-label-inner-container">
+                                {{#unless (isNullish member.manualSuccess)}}
+                                    <label class="group-roll-modifier {{#unless member.manualSuccess}}failure{{/unless}}">{{#if member.manualSuccess}}+1{{else}}-1{{/if}}</label>
+                                {{/unless}}
+                                <div class="group-roll-trait">{{localize (concat "DAGGERHEART.CONFIG.Traits." member.trait ".name")}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    {{#unless member.result}}
+                        <div class="group-roll-rolling">
+                            <a class="group-roll-button" data-path="{{concat "members." index}}"><img class="dice-icon normal" src="{{concat 'systems/daggerheart/assets/icons/dice/default/d20.svg'}}" alt=""></a>
+                        </div>
+                    {{else}}
+                        <div class="roll-results">
+                            {{#if (isNullish member.manualSuccess)}}
+                                <div class="reroll-result-container">
+                                    <span class="label">{{member.result.total}}</span>
+    
+                                    <a class="group-roll-success success" data-success="true" data-path="{{concat "members." index}}"><i class="fa-solid fa-check"></i></a>
+                                    <a class="group-roll-success failure" data-path="{{concat "members." index}}"><i class="fa-solid fa-xmark"></i></a>
+                                </div>
+                                
+                                <a class="group-roll-reroll" data-path="{{concat "members." index}}" data-tooltip="{{localize "DAGGERHEART.UI.Chat.groupRoll.rerollTooltip"}}">
+                                    <img class="dice-icon normal" src="{{concat 'systems/daggerheart/assets/icons/dice/default/d20.svg'}}" alt=""></img>
+                                    <i class="fa-solid fa-arrow-rotate-left reroll-icon"></i>
+                                </a>
+                            {{else}}
+                                <div class="reroll-result-container">
+                                    <span class="label">{{member.result.total}}</span>
+                                    {{#if member.manualSuccess}}
+                                        <i class="fa-solid fa-check success"></i>
+                                    {{else}}
+                                        <i class="fa-solid fa-xmark failure"></i>
+                                    {{/if}}
+                                </div> 
+                            {{/if}}
+                        </div>
+                    {{/unless}}
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
