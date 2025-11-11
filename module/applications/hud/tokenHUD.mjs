@@ -17,7 +17,7 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
         }
     };
 
-    static #nonCombatTypes = ['environment', 'companion'];
+    static #nonCombatTypes = ['environment', 'companion', 'party'];
 
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
