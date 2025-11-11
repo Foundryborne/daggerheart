@@ -4,9 +4,10 @@ import DHActionConfig from './action-config.mjs';
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 export default class SettingFeatureConfig extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(move, movePath, settings, optionalParts, options) {
+    constructor(configTitle, move, movePath, settings, optionalParts, options) {
         super(options);
 
+        this.configTitle = configTitle;
         this.move = move;
 
         this.movePath = movePath;
@@ -19,7 +20,7 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
     }
 
     get title() {
-        return game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.downtimeMoves');
+        return this.configTitle;
     }
 
     static DEFAULT_OPTIONS = {
@@ -200,9 +201,9 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
         if (!options.submitted) this.move = null;
     }
 
-    static async configure(move, movePath, settings, optionalParts, options = {}) {
+    static async configure(configTitle, move, movePath, settings, optionalParts, options = {}) {
         return new Promise(resolve => {
-            const app = new this(move, movePath, settings, optionalParts, options);
+            const app = new this(configTitle, move, movePath, settings, optionalParts, options);
             app.addEventListener('close', () => resolve(app.move), { once: true });
             app.render({ force: true });
         });

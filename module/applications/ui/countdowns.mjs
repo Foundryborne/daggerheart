@@ -81,6 +81,13 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         return frame;
     }
 
+    /**@inheritdoc */
+    async _onFirstRender(context, options) {
+        await super._onFirstRender(context, options);
+
+        this.toggleCollapsedPosition(undefined, !ui.sidebar.expanded);
+    }
+
     /** @override */
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
@@ -124,6 +131,8 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     }
 
     toggleCollapsedPosition = async (_, collapsed) => {
+        if (!this.element) return;
+
         this.sidebarCollapsed = collapsed;
         if (!collapsed) this.element.classList.add('expanded');
         else this.element.classList.remove('expanded');
@@ -188,10 +197,13 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         Hooks.on(socketEvent.Refresh, this.cooldownRefresh.bind());
     }
 
-    close(options) {
+    async close(options) {
+        /* Opt out of Foundry's standard behavior of closing all application windows marked as UI when Escape is pressed */
+        if (options.closeKey) return;
+
         Hooks.off('collapseSidebar', this.toggleCollapsedPosition);
         Hooks.off(socketEvent.Refresh, this.cooldownRefresh);
-        super.close(options);
+        return super.close(options);
     }
 
     static async updateCountdowns(progressType) {

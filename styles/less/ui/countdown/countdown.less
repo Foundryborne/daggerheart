@@ -18,7 +18,7 @@
     box-shadow: none;
     width: 300px;
     top: 16px;
-    right: 64px;
+    right: calc(64px * var(--ui-scale));
     transition:
         right ease 250ms,
         opacity var(--ui-fade-duration) ease,
@@ -29,7 +29,7 @@
     }
 
     &.expanded {
-        right: 364px;
+        right: calc(364px * var(--ui-scale));
     }
 
     &.icon-only {
