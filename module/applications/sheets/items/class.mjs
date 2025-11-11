@@ -203,10 +203,10 @@ export default class ClassSheet extends DHBaseItemSheet {
 
         if (target === 'subclasses') {
             const subclass = await foundry.utils.fromUuid(uuid);
-            await subclass.update({ 'system.linkedClass': null });
+            await subclass?.update({ 'system.linkedClass': null });
         }
 
-        await this.document.update({ [`system.${target}`]: prop.filter(i => i.uuid !== uuid).map(x => x.uuid) });
+        await this.document.update({ [`system.${target}`]: prop.filter(i => i && i.uuid !== uuid).map(x => x.uuid) });
     }
 
     /**
