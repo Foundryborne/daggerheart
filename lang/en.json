@@ -2219,6 +2219,9 @@
                     "displayFear": {
                         "label": "Display Fear"
                     },
+                    "displayCountdownUI": {
+                        "label": "Display Countdown UI"
+                    },
                     "showGenericStatusEffects": {
                         "label": "Show Foundry Status Effects"
                     },

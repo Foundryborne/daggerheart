@@ -167,12 +167,14 @@ Hooks.on('setup', () => {
 });
 
 Hooks.on('ready', async () => {
+    const appearanceSettings = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance);
     ui.resources = new CONFIG.ui.resources();
-    if (game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).displayFear !== 'hide')
-        ui.resources.render({ force: true });
+    if (appearanceSettings.displayFear !== 'hide') ui.resources.render({ force: true });
 
-    ui.countdowns = new CONFIG.ui.countdowns();
-    ui.countdowns.render({ force: true });
+    if (appearanceSettings.displayCountdownUI) {
+        ui.countdowns = new CONFIG.ui.countdowns();
+        ui.countdowns.render({ force: true });
+    }
 
     if (!(ui.compendiumBrowser instanceof applications.ui.ItemBrowser))
         ui.compendiumBrowser = new applications.ui.ItemBrowser();

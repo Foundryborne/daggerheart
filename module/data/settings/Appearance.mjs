@@ -24,6 +24,7 @@ export default class DhAppearance extends foundry.abstract.DataModel {
                 choices: CONFIG.DH.GENERAL.fearDisplay,
                 initial: CONFIG.DH.GENERAL.fearDisplay.token.value
             }),
+            displayCountdownUI: new BooleanField({ initial: true }),
             diceSoNice: new SchemaField({
                 hope: diceStyle({ fg: '#ffffff', bg: '#ffe760', outline: '#000000', edge: '#ffffff' }),
                 fear: diceStyle({ fg: '#000000', bg: '#0032b1', outline: '#ffffff', edge: '#000000' }),
