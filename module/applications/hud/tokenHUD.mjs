@@ -89,7 +89,7 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
                 setTimeout(() => token.document.delete(), animationDuration);
             }
         } else {
-            const activeScene = game.scenes.find(x => x.active);
+            const activeScene = game.scenes.find(x => x.id === game.user.viewedScene);
             const partyTokenData = [];
             for (let member of this.actor.system.partyMembers) {
                 const data = await member.getTokenDocument();
