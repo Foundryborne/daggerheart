@@ -178,7 +178,7 @@ export const defeatedConditions = () => {
     }, {});
 };
 
-const defeatedConditionChoices = {
+export const defeatedConditionChoices = {
     defeated: {
         id: 'defeated',
         name: 'DAGGERHEART.CONFIG.Condition.defeated.name'
