@@ -685,3 +685,18 @@ export const countdownAppMode = {
     textIcon: 'text-icon',
     iconOnly: 'icon-only'
 };
+
+export const sceneRangeMeasurementSetting = {
+    disable: {
+        id: 'disable',
+        label: 'Disable Daggerheart Range Measurement'
+    },
+    default: {
+        id: 'default',
+        label: 'Default'
+    },
+    custom: {
+        id: 'custom',
+        label: 'Custom'
+    }
+};

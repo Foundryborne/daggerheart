@@ -7,6 +7,7 @@ export const preloadHandlebarsTemplates = async function () {
         'daggerheart.inventory-item': 'systems/daggerheart/templates/sheets/global/partials/inventory-item-V2.hbs'
     });
     return foundry.applications.handlebars.loadTemplates([
+        'templates/generic/tab-navigation.hbs',
         'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs',
         'systems/daggerheart/templates/sheets/global/partials/action-item.hbs',
         'systems/daggerheart/templates/sheets/global/partials/domain-card-item.hbs',

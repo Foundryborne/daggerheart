@@ -18,30 +18,37 @@ export default class DhMeasuredTemplate extends foundry.canvas.placeables.Measur
 
     static getRangeLabels(distanceValue, settings) {
         let result = { distance: distanceValue, units: '' };
-        const rangeMeasurementOverride = canvas.scene.flags.daggerheart?.rangeMeasurementOverride;
+        const sceneRangeMeasurement = canvas.scene.flags.daggerheart?.rangeMeasurement;
 
-        if (rangeMeasurementOverride === true) {
+        const { disable, custom } = CONFIG.DH.GENERAL.sceneRangeMeasurementSetting;
+        if (sceneRangeMeasurement.setting === disable.id) {
             result.distance = distanceValue;
             result.units = canvas.scene?.grid?.units;
             return result;
         }
-        if (distanceValue <= settings.melee) {
+
+        const melee = sceneRangeMeasurement.setting === custom.id ? sceneRangeMeasurement.melee : settings.melee;
+        const veryClose =
+            sceneRangeMeasurement.setting === custom.id ? sceneRangeMeasurement.veryClose : settings.veryClose;
+        const close = sceneRangeMeasurement.setting === custom.id ? sceneRangeMeasurement.close : settings.close;
+        const far = sceneRangeMeasurement.setting === custom.id ? sceneRangeMeasurement.far : settings.far;
+        if (distanceValue <= melee) {
             result.distance = game.i18n.localize('DAGGERHEART.CONFIG.Range.melee.name');
             return result;
         }
-        if (distanceValue <= settings.veryClose) {
+        if (distanceValue <= veryClose) {
             result.distance = game.i18n.localize('DAGGERHEART.CONFIG.Range.veryClose.name');
             return result;
         }
-        if (distanceValue <= settings.close) {
+        if (distanceValue <= close) {
             result.distance = game.i18n.localize('DAGGERHEART.CONFIG.Range.close.name');
             return result;
         }
-        if (distanceValue <= settings.far) {
+        if (distanceValue <= far) {
             result.distance = game.i18n.localize('DAGGERHEART.CONFIG.Range.far.name');
             return result;
         }
-        if (distanceValue > settings.far) {
+        if (distanceValue > far) {
             result.distance = game.i18n.localize('DAGGERHEART.CONFIG.Range.veryFar.name');
         }
 
