@@ -2344,6 +2344,9 @@
             },
             "Homebrew": {
                 "newDowntimeMove": "Downtime Move",
+                "downtimeMove": "Downtime Move",
+                "armorFeature": "Armor Feature",
+                "weaponFeature": "Weapon Feaure",
                 "newFeature": "New ItemFeature",
                 "downtimeMoves": "Downtime Moves",
                 "itemFeatures": "Item Features",
