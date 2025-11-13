@@ -4,6 +4,7 @@ export async function runMigrations() {
     let lastMigrationVersion = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion);
     if (!lastMigrationVersion) lastMigrationVersion = game.system.version;
 
+    //#region old migrations
     if (foundry.utils.isNewerVersion('1.1.0', lastMigrationVersion)) {
         const lockedPacks = [];
         const compendiumActors = [];
@@ -189,6 +190,16 @@ export async function runMigrations() {
         Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
 
         lastMigrationVersion = '1.2.0';
+    }
+    //#endregion
+
+    if (foundry.utils.isNewerVersion('1.2.2', lastMigrationVersion)) {
+        /* Delete any null party members caused by characters being deleted in the world prior to it being handled */
+        for (let party of game.actors.filter(x => x.type === 'party')) {
+            await party.update({ 'system.partyMembers': party.system.partyMembers.filter(x => x) });
+        }
+
+        lastMigrationVersion = '1.2.2';
     }
 
     await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion, lastMigrationVersion);

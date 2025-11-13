@@ -195,6 +195,14 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         const { actor: actorData, trait } = foundry.utils.getProperty(message.system, path);
         const actor = game.actors.get(actorData._id);
 
+        if (!actor) {
+            return ui.notifications.error(
+                game.i18n.format('DAGGERHEART.UI.Notifications.documentIsMissing', {
+                    documentType: game.i18n.localize('TYPES.Actor.character')
+                })
+            );
+        }
+
         if (!actor.testUserPermission(game.user, 'OWNER')) {
             return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.noActorOwnership'));
         }
@@ -224,6 +232,8 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 ability: traitLabel
             })
         });
+
+        if (!result) return;
 
         const newMessageData = foundry.utils.deepClone(message.system);
         foundry.utils.setProperty(newMessageData, `${path}.result`, result.roll);

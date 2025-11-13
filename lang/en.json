@@ -2660,7 +2660,8 @@
                 "subclassAlreadyLinked": "{name} is already a subclass in the class {class}. Remove it from there if you want it to be a subclass to this class.",
                 "gmRequired": "This action requires an online GM",
                 "gmOnly": "This can only be accessed by the GM",
-                "noActorOwnership": "You do not have permissions for this character"
+                "noActorOwnership": "You do not have permissions for this character",
+                "documentIsMissing": "The {documentType} is missing from the world."
             },
             "Sidebar": {
                 "daggerheartMenu": {

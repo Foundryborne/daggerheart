@@ -32,7 +32,7 @@ export default class DhParty extends BaseDataActor {
         // Register this party to all members
         if (game.actors.get(this.parent.id) === this.parent) {
             for (const member of this.partyMembers) {
-                member.parties?.add(this.parent);
+                member?.parties?.add(this.parent);
             }
         }
     }
@@ -42,7 +42,7 @@ export default class DhParty extends BaseDataActor {
 
         // Clear this party from all members that aren't deleted
         for (const member of this.partyMembers) {
-            member.parties?.delete(this.parent);
+            member?.parties?.delete(this.parent);
         }
     }
 }
