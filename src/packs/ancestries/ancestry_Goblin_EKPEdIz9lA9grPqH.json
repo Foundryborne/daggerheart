@@ -4,7 +4,7 @@
   "type": "ancestry",
   "folder": null,
   "system": {
-    "description": "<p>Goblins are small humanoids easily recognizable by their large eyes and massive membranous ears.<br><br><p>With keen hearing and sharp eyesight, they perceive details both at great distances and in darkness, allowing them to move through less-optimal environments with ease. Their skin and eye colors are incredibly varied, with no one hue, either vibrant or subdued, more dominant than another. A typical goblin stands between 3 feet and 4 feet tall, and each of their ears is about the size of their head. Goblins are known to use ear positions to very specific effect when communicating nonverbally. A goblin’s lifespan is roughly 100 years, and many maintain their keen hearing and sight well into advanced age.</p></p>",
+    "description": "<p>Goblins are small humanoids easily recognizable by their large eyes and massive membranous ears. With keen hearing and sharp eyesight, they perceive details both at great distances and in darkness, allowing them to move through less-optimal environments with ease. Their skin and eye colors are incredibly varied, with no one hue, either vibrant or subdued, more dominant than another. A typical goblin stands between 3 feet and 4 feet tall, and each of their ears is about the size of their head. Goblins are known to use ear positions to very specific effect when communicating nonverbally. A goblin’s lifespan is roughly 100 years, and many maintain their keen hearing and sight well into advanced age.</p><p></p><h4>ANCESTRY FEATURES</h4><p><em><strong>Surefooted:</strong></em> You ignore disadvantage on Agility Rolls.</p><p><em><strong>Danger Sense:</strong></em> Once per rest, <strong>mark a Stress</strong> to force an adversary to reroll an attack against you or an ally within Very Close range.</p>",
     "features": [
       {
         "type": "primary",
@@ -26,12 +26,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.1",
     "createdTime": 1753922784386,
-    "modifiedTime": 1755394180109,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1762996520218,
+    "lastModifiedBy": "9HOfUKAXuCu7hUPY"
   },
   "_id": "EKPEdIz9lA9grPqH",
   "sort": 3400000,

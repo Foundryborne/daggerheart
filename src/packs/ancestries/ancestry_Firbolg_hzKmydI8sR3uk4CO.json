@@ -4,7 +4,7 @@
   "type": "ancestry",
   "folder": null,
   "system": {
-    "description": "<p>Firbolgs are bovine humanoids typically recognized by their broad noses and long, drooping ears.<br><br><p>Some have faces that are a blend of humanoid and bison, ox, cow, or other bovine creatures. Others, often referred to as minotaurs, have heads that entirely resemble cattle. They are tall and muscular creatures, with heights ranging from around 5 feet to 7 feet, and possess remarkable strength no matter their age. Some firbolgs are known to use this strength to charge their adversaries, an action that is particuarly effective for those who have one of the many varieties of horn styles commonly found in this ancestry. Though their unique characteristics can vary, all firbolgs are covered in fur, which can be muted and earth-toned in color, or come in a variety of pastels, such as soft pinks and blues. On average, firbolgs live for about 150 years.</p></p>",
+    "description": "<p>Firbolgs are bovine humanoids typically recognized by their broad noses and long, drooping ears. Some have faces that are a blend of humanoid and bison, ox, cow, or other bovine creatures. Others, often referred to as minotaurs, have heads that entirely resemble cattle. They are tall and muscular creatures, with heights ranging from around 5 feet to 7 feet, and possess remarkable strength no matter their age. Some firbolgs are known to use this strength to charge their adversaries, an action that is particuarly effective for those who have one of the many varieties of horn styles commonly found in this ancestry. Though their unique characteristics can vary, all firbolgs are covered in fur, which can be muted and earth-toned in color, or come in a variety of pastels, such as soft pinks and blues. On average, firbolgs live for about 150 years.</p><p></p><h4>ANCESTRY FEATURES</h4><p><em><strong>Charge:</strong></em> When you succeed on an Agility Roll to move from Far or Very Far range into Melee range with one or more targets, you can <strong>mark a Stress</strong> to deal <strong>1d12</strong> physical damage to all targets within Melee range.</p><p><em><strong>Unshakable:</strong></em> When you would mark a Stress, roll a <strong>d6</strong>. On a result of 6, don’t mark it.</p>",
     "features": [
       {
         "type": "primary",
@@ -26,12 +26,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.1",
     "createdTime": 1753922784384,
-    "modifiedTime": 1755394148626,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1762995854689,
+    "lastModifiedBy": "9HOfUKAXuCu7hUPY"
   },
   "_id": "hzKmydI8sR3uk4CO",
   "sort": 3400000,

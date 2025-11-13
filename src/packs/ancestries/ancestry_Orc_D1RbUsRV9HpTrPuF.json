@@ -4,7 +4,7 @@
   "type": "ancestry",
   "folder": null,
   "system": {
-    "description": "<p>Orcs are humanoids most easily recognized by their square features and boar-like tusks that protrude from their lower jaw.<br><br><p>Tusks come in various sizes, and though they extend from the mouth, they aren’t used for consuming food. Instead, many orcs choose to decorate their tusks with significant ornamentation. Orcs typically live for 125 years, and unless altered, their tusks continue to grow throughout the course of their lives. Their ears are pointed, and their hair and skin typically have green, blue, pink, or gray tones. Orcs tend toward a muscular build, and their average height ranges from 5 feet to 6 ½ feet.</p></p>",
+    "description": "<p>Orcs are humanoids most easily recognized by their square features and boar-like tusks that protrude from their lower jaw. Tusks come in various sizes, and though they extend from the mouth, they aren’t used for consuming food. Instead, many orcs choose to decorate their tusks with significant ornamentation. Orcs typically live for 125 years, and unless altered, their tusks continue to grow throughout the course of their lives. Their ears are pointed, and their hair and skin typically have green, blue, pink, or gray tones. Orcs tend toward a muscular build, and their average height ranges from 5 feet to 6 ½ feet.</p><p></p><h4>ANCESTRY FEATURES</h4><p><em><strong>Sturdy:</strong></em> When you have 1 Hit Point remaining, attacks against you have disadvantage.</p><p><em><strong>Tusks:</strong></em> When you succeed on an attack against a target within Melee range, you can <strong>spend a Hope</strong> to gore the target with your tusks, dealing an extra <strong>1d6</strong> damage.</p>",
     "features": [
       {
         "type": "primary",
@@ -26,12 +26,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.1",
     "createdTime": 1753922784389,
-    "modifiedTime": 1755394218178,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1762997234733,
+    "lastModifiedBy": "9HOfUKAXuCu7hUPY"
   },
   "_id": "D1RbUsRV9HpTrPuF",
   "sort": 3400000,

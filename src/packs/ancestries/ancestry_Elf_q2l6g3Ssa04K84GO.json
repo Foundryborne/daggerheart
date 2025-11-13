@@ -4,7 +4,7 @@
   "type": "ancestry",
   "folder": null,
   "system": {
-    "description": "<p>Elves are typically tall humanoids with pointed ears and acutely attuned senses.<br><br><p class=\"green Body-Styles_Body\" chunk_id=\"977fe91c-fa57-4a66-83e1-1f62a922f018\">Their ears vary in size and pointed shape, and as they age, the tips begin to droop. While elves come in a wide range of body types, they are all fairly tall, with heights ranging from about 6 to 6 ½ feet. All elves have the ability to drop into a celestial trance, rather than sleep. This allows them to rest effectively in a short amount of time.</p>\n<p class=\"green Body-Styles_Body\" chunk_id=\"95498747-ff6e-4842-8706-a912c907bab6\">Some elves possess what is known as a “mystic form,” which occurs when an elf has dedicated themself to the study or protection of the natural world so deeply that their physical form changes. These characteristics can include celestial freckles, the presence of leaves, vines, or flowers in their hair, eyes that flicker like fire, and more. Sometimes these traits are inherited from parents, but if an elf changes their environment or magical focus, their appearance changes over time. Because elves live for about 350 years, these traits can shift more than once throughout their lifespan.</p><</p>",
+    "description": "<p>Elves are typically tall humanoids with pointed ears and acutely attuned senses. Their ears vary in size and pointed shape, and as they age, the tips begin to droop. While elves come in a wide range of body types, they are all fairly tall, with heights ranging from about 6 to 6 ½ feet. All elves have the ability to drop into a celestial trance, rather than sleep. This allows them to rest effectively in a short amount of time.</p><p class=\"green Body-Styles_Body\">Some elves possess what is known as a “mystic form,” which occurs when an elf has dedicated themself to the study or protection of the natural world so deeply that their physical form changes. These characteristics can include celestial freckles, the presence of leaves, vines, or flowers in their hair, eyes that flicker like fire, and more. Sometimes these traits are inherited from parents, but if an elf changes their environment or magical focus, their appearance changes over time. Because elves live for about 350 years, these traits can shift more than once throughout their lifespan.</p><p></p><h4>ANCESTRY FEATURES</h4><p><em><strong>Quick Reactions:</strong></em> <strong>Mark a Stress</strong> to gain advantage on a reaction roll.</p><p><em><strong>Celestial Trance:</strong></em> During a rest, you can drop into a trance to choose an additional downtime move.</p><p></p>",
     "features": [
       {
         "type": "primary",
@@ -26,12 +26,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.1",
     "createdTime": 1753922784382,
-    "modifiedTime": 1755394127340,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1762995467472,
+    "lastModifiedBy": "9HOfUKAXuCu7hUPY"
   },
   "_id": "q2l6g3Ssa04K84GO",
   "sort": 3400000,

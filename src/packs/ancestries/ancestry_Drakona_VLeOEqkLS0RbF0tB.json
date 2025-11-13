@@ -4,7 +4,7 @@
   "type": "ancestry",
   "folder": null,
   "system": {
-    "description": "<p>Drakona resemble wingless dragons in humanoid form and possess a powerful elemental breath.<br><br><p>All drakona have thick scales that provide excellent natural armor against both attacks and the forces of nature. They are large in size, ranging from 5 feet to 7 feet on average, with long sharp teeth. New teeth grow throughout a Drakona’s approximately 350-year lifespan, so they are never in danger of permanently losing an incisor. Unlike their dragon ancestors, drakona don’t have wings and can’t fly without magical aid. Members of this ancestry pass down the element of their breath through generations, though in rare cases, a drakona’s elemental power will differ from the rest of their family’s.</p></p>",
+    "description": "<p>Drakona resemble wingless dragons in humanoid form and possess a powerful elemental breath. All drakona have thick scales that provide excellent natural armor against both attacks and the forces of nature. They are large in size, ranging from 5 feet to 7 feet on average, with long sharp teeth. New teeth grow throughout a Drakona’s approximately 350-year lifespan, so they are never in danger of permanently losing an incisor. Unlike their dragon ancestors, drakona don’t have wings and can’t fly without magical aid. Members of this ancestry pass down the element of their breath through generations, though in rare cases, a drakona’s elemental power will differ from the rest of their family’s.</p><p></p><h4>ANCESTRY FEATURES</h4><p><em><strong>Scales:</strong></em> Your scales act as natural protection. When you would take Severe damage, you can <strong>mark a Stress</strong> to mark 1 fewer Hit Points.</p><p><em><strong>Elemental Breath:</strong></em> Choose an element for your breath (such as electricity, fire, or ice). You can use this breath against a target or group of targets within Very Close range, treating it as an Instinct weapon that deals <strong>d8</strong> magic damage using your Proficiency.</p><p></p>",
     "features": [
       {
         "type": "primary",
@@ -26,12 +26,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.1",
     "createdTime": 1753922784382,
-    "modifiedTime": 1755394105939,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1762995216730,
+    "lastModifiedBy": "9HOfUKAXuCu7hUPY"
   },
   "_id": "VLeOEqkLS0RbF0tB",
   "sort": 3400000,
