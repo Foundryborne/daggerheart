@@ -5,7 +5,7 @@
   "_id": "UFR67BUOhNGLFyg9",
   "img": "icons/magic/defensive/shield-barrier-flaming-diamond-teal.webp",
   "system": {
-    "description": "<p><strong>Mark a Stress</strong> to retract into your shell. While in your shell, you have resistance to physical damage, you have disadvantage on action rolls, and you can’t move.<br /><br />(When marked, manually enable the retract effect in effects tab and mark disadvantage when doing any action rolls)</p>",
+    "description": "<p><strong>Mark a Stress</strong> to retract into your shell. While in your shell, you have resistance to physical damage, you have disadvantage on action rolls, and you can’t move.<br /><br />(When marked, manually enable the Retract effect to Active in effects tab and mark disadvantage when doing any action rolls. Manually disable the Retract effect to Inactive in the effects tab when no longer retracted into your shell.)</p>",
     "resource": null,
     "actions": {
       "HfiAg14hrYt7Yvnj": {
@@ -59,7 +59,7 @@
       "name": "Retract",
       "img": "icons/magic/defensive/shield-barrier-flaming-diamond-teal.webp",
       "origin": "Compendium.daggerheart.ancestries.Item.UFR67BUOhNGLFyg9",
-      "transfer": false,
+      "transfer": true,
       "_id": "3V4FPoyjJUnFP9WS",
       "type": "base",
       "system": {
@@ -84,7 +84,7 @@
           "priority": null
         }
       ],
-      "disabled": false,
+      "disabled": true,
       "duration": {
         "startTime": null,
         "combat": null,
@@ -103,12 +103,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.347",
+        "coreVersion": "13.351",
         "systemId": "daggerheart",
         "systemVersion": "1.1.2",
         "createdTime": 1759960447341,
-        "modifiedTime": 1759961484642,
-        "lastModifiedBy": "fBcTgyTzoARBvohY"
+        "modifiedTime": 1763118039327,
+        "lastModifiedBy": "9HOfUKAXuCu7hUPY"
       },
       "_key": "!items.effects!UFR67BUOhNGLFyg9.3V4FPoyjJUnFP9WS"
     }
@@ -123,12 +123,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.351",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.2",
+    "systemVersion": "1.2.1",
     "createdTime": 1753996513763,
-    "modifiedTime": 1759961925987,
-    "lastModifiedBy": "fBcTgyTzoARBvohY"
+    "modifiedTime": 1763118269345,
+    "lastModifiedBy": "9HOfUKAXuCu7hUPY"
   },
   "_key": "!items!UFR67BUOhNGLFyg9"
 }
