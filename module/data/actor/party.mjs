@@ -7,7 +7,7 @@ export default class DhParty extends BaseDataActor {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            partyMembers: new ForeignDocumentUUIDArrayField({ type: 'Actor' }),
+            partyMembers: new ForeignDocumentUUIDArrayField({ type: 'Actor' }, { prune: true }),
             notes: new fields.HTMLField(),
             gold: new fields.SchemaField({
                 coins: new fields.NumberField({ initial: 0, integer: true }),
@@ -27,7 +27,6 @@ export default class DhParty extends BaseDataActor {
 
     prepareBaseData() {
         super.prepareBaseData();
-        this.partyMembers = this.partyMembers.filter(p => !!p);
 
         // Register this party to all members
         if (game.actors.get(this.parent.id) === this.parent) {
