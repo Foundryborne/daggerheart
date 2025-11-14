@@ -4,7 +4,7 @@
   "type": "community",
   "folder": null,
   "system": {
-    "description": "<p>Being part of a ridgeborne community means you’ve called the rocky peaks and sharp cliffs of the mountainside home.<br><br><p class=\"green Body-Styles_Body\" chunk_id=\"55b3205f-c5c5-4e9d-a207-d0fbb550cd8f\">Those who’ve lived in the mountains often consider themselves hardier than most because they’ve thrived among the most dangerous terrain many continents have to offer. These groups are adept at adaptation, developing unique technologies and equipment to move both people and products across difficult terrain. As such, ridgeborne grow up scrambling and climbing, making them sturdy and strong-willed. Ridgeborne localities appear in a variety of forms—some cities carve out entire cliff faces, others construct castles of stone, and still more live in small homes on windblown peaks. Outside forces often struggle to attack ridgeborne groups, as the small militias and large military forces of the mountains are adept at utilizing their high-ground advantage.</p>\n<p class=\"green Body-Styles_Body\" chunk_id=\"4c5ba38a-812d-4231-930c-23c9fc5a24cf\"><em>Ridgeborne are often bold, hardy, indomitable, loyal, reserved, and stubborn.</em></p></p>",
+    "description": "<p>Being part of a ridgeborne community means you’ve called the rocky peaks and sharp cliffs of the mountainside home. Those who’ve lived in the mountains often consider themselves hardier than most because they’ve thrived among the most dangerous terrain many continents have to offer. These groups are adept at adaptation, developing unique technologies and equipment to move both people and products across difficult terrain. As such, ridgeborne grow up scrambling and climbing, making them sturdy and strong-willed. Ridgeborne localities appear in a variety of forms—some cities carve out entire cliff faces, others construct castles of stone, and still more live in small homes on windblown peaks. Outside forces often struggle to attack ridgeborne groups, as the small militias and large military forces of the mountains are adept at utilizing their high-ground advantage.</p><p class=\"green Body-Styles_Body\"><em>Ridgeborne are often bold, hardy, indomitable, loyal, reserved, and stubborn.</em></p><p></p><h4>COMMUNITY FEATURE</h4><p><em><strong>Steady:</strong></em> You have advantage on rolls to traverse dangerous cliffs and ledges, navigate harsh environments, and use your survival knowledge.</p>",
     "features": [
       "Compendium.daggerheart.communities.Item.DYmmr5CknLtHnwuj"
     ],
@@ -19,12 +19,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.1",
     "createdTime": 1753922784394,
-    "modifiedTime": 1755394814094,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1763116407915,
+    "lastModifiedBy": "9HOfUKAXuCu7hUPY"
   },
   "_id": "WHLA4qrdszXQHOuo",
   "sort": 3400000,
