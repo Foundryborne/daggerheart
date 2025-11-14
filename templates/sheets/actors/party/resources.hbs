@@ -22,19 +22,21 @@
                     <h2 class="actor-name">{{actor.name}}</h2>
                     <img class="actor-img" src="{{actor.img}}">
                     <div class="resources">
-                        <div class="slot-section">
-                            <div class="slot-bar">
-                                {{#times actor.system.resources.hitPoints.max}}
-                                    <span class='slot {{#if (gte actor.system.resources.hitPoints.value (add this 1))}}filled{{/if}}'
-                                    data-action='toggleHitPoints' data-actor-id="{{actor.uuid}}" data-value="{{add this 1}}">
-                                    </span>
-                                {{/times}}
+                        {{#unless (eq actor.type 'companion') }}
+                            <div class="slot-section">
+                                <div class="slot-bar">
+                                    {{#times actor.system.resources.hitPoints.max}}
+                                        <span class='slot {{#if (gte actor.system.resources.hitPoints.value (add this 1))}}filled{{/if}}'
+                                        data-action='toggleHitPoints' data-actor-id="{{actor.uuid}}" data-value="{{add this 1}}">
+                                        </span>
+                                    {{/times}}
+                                </div>
+                                <div class="slot-label">
+                                    <span class="label">{{localize "DAGGERHEART.GENERAL.HitPoints.short"}}</span>
+                                    <span class="value">{{actor.system.resources.hitPoints.value}} / {{actor.system.resources.hitPoints.max}}</span>
+                                </div>
                             </div>
-                            <div class="slot-label">
-                                <span class="label">{{localize "DAGGERHEART.GENERAL.HitPoints.short"}}</span>
-                                <span class="value">{{actor.system.resources.hitPoints.value}} / {{actor.system.resources.hitPoints.max}}</span>
-                            </div>
-                        </div>
+                        {{/unless}}
 
                         <div class="slot-section">
                             <div class="slot-bar">
@@ -71,26 +73,30 @@
                             </div>
                         {{/if}}
 
+                        {{#unless (or (eq actor.type 'companion') (eq actor.type 'adversary')) }}
+                            <div class="hope-section">
+                                <h4>{{localize "DAGGERHEART.GENERAL.hope"}}</h4>
+                                {{#times actor.system.resources.hope.max}}
+                                    <span class='hope-value' data-action='toggleHope' data-actor-id="{{actor.uuid}}" data-value="{{add this 1}}">
+                                        {{#if (gte actor.system.resources.hope.value (add this 1))}}
+                                            <i class='fa-solid fa-diamond'></i>
+                                        {{else}}
+                                            <i class='fa-regular fa-circle'></i>
+                                        {{/if}}
+                                    </span>
+                                {{/times}}
+                            </div>
+                        {{/unless}}
 
-                        <div class="hope-section">
-                            <h4>{{localize "DAGGERHEART.GENERAL.hope"}}</h4>
-                            {{#times actor.system.resources.hope.max}}
-                                <span class='hope-value' data-action='toggleHope' data-actor-id="{{actor.uuid}}" data-value="{{add this 1}}">
-                                    {{#if (gte actor.system.resources.hope.value (add this 1))}}
-                                        <i class='fa-solid fa-diamond'></i>
-                                    {{else}}
-                                        <i class='fa-regular fa-circle'></i>
-                                    {{/if}}
-                                </span>
-                            {{/times}}
-                        </div>
-                        <div class="threshold-section">
-                            <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.minor"}}</h4>
-                            <h4 class="threshold-value">{{actor.system.damageThresholds.major}}</h4>
-                            <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.major"}}</h4>
-                            <h4 class="threshold-value">{{actor.system.damageThresholds.severe}}</h4>
-                            <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.severe"}}</h4>
-                        </div>
+                        {{#unless (eq actor.type 'companion')}}
+                            <div class="threshold-section">
+                                <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.minor"}}</h4>
+                                <h4 class="threshold-value">{{actor.system.damageThresholds.major}}</h4>
+                                <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.major"}}</h4>
+                                <h4 class="threshold-value">{{actor.system.damageThresholds.severe}}</h4>
+                                <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.severe"}}</h4>
+                            </div>
+                        {{/unless}}
                     </div>
                 </li>
             {{/each}}

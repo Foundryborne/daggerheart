@@ -672,14 +672,6 @@ export default class DhCharacter extends BaseDataActor {
         if (this.companion) {
             this.companion.updateLevel(1);
         }
-
-        if (this.parent.parties) {
-            for (const party of this.parent.parties) {
-                await party.update({
-                    'system.partyMembers': party.system.partyMembers.filter(x => x.uuid !== this.parent.uuid)
-                });
-            }
-        }
     }
 
     _getTags() {

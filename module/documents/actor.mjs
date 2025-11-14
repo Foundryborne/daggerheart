@@ -85,6 +85,17 @@ export default class DhpActor extends Actor {
         this.updateSource({ prototypeToken });
     }
 
+    /**@inheritdoc */
+    async _preDelete() {
+        if (this.parent.parties) {
+            for (const party of this.parent.parties) {
+                await party.update({
+                    'system.partyMembers': party.system.partyMembers.filter(x => x.uuid !== this.parent.uuid)
+                });
+            }
+        }
+    }
+
     _onUpdate(changes, options, userId) {
         super._onUpdate(changes, options, userId);
         for (const party of this.parties) {

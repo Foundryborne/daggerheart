@@ -7,6 +7,7 @@ import { socketEvent } from '../../../systemRegistration/socket.mjs';
 import GroupRollDialog from '../../dialogs/group-roll-dialog.mjs';
 import DhpActor from '../../../documents/actor.mjs';
 import DHItem from '../../../documents/item.mjs';
+import DhParty from '../../../data/actor/party.mjs';
 
 export default class Party extends DHBaseActorSheet {
     constructor(options) {
@@ -78,6 +79,9 @@ export default class Party extends DHBaseActorSheet {
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
+
+    static ALLOWED_ACTOR_TYPES = ['character', 'companion', 'adversary'];
+    static DICE_ROLL_ACTOR_TYPES = ['character'];
 
     async _onRender(context, options) {
         await super._onRender(context, options);
@@ -276,14 +280,18 @@ export default class Party extends DHBaseActorSheet {
         });
     }
 
+    get partyMembersForRoll() {
+        return this.document.system.partyMembers.filter(x => Party.DICE_ROLL_ACTOR_TYPES.includes(x.type));
+    }
+
     static async #tagTeamRoll() {
-        new game.system.api.applications.dialogs.TagTeamDialog(this.document.system.partyMembers).render({
+        new game.system.api.applications.dialogs.TagTeamDialog(this.partyMembersForRoll).render({
             force: true
         });
     }
 
     static async #groupRoll(params) {
-        new GroupRollDialog(this.document.system.partyMembers).render({ force: true });
+        new GroupRollDialog(this.partyMembersForRoll).render({ force: true });
     }
 
     /**
@@ -455,7 +463,7 @@ export default class Party extends DHBaseActorSheet {
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
         const item = await foundry.utils.fromUuid(data.uuid);
 
-        if (item instanceof DhpActor) {
+        if (item instanceof DhpActor && Party.ALLOWED_ACTOR_TYPES.includes(item.type)) {
             const currentMembers = this.document.system.partyMembers.map(x => x.uuid);
             if (currentMembers.includes(data.uuid)) {
                 return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.duplicateCharacter'));
