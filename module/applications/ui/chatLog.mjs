@@ -192,6 +192,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
 
     async groupRollButton(event, message) {
         const path = event.currentTarget.dataset.path;
+        const isLeader = path === 'leader';
         const { actor: actorData, trait } = foundry.utils.getProperty(message.system, path);
         const actor = game.actors.get(actorData._id);
 
@@ -222,7 +223,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             hasRoll: true,
             skips: {
                 createMessage: true,
-                resources: true
+                resources: !isLeader
             }
         };
         const result = await actor.diceRoll({
@@ -234,6 +235,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         });
 
         if (!result) return;
+        await game.system.api.fields.ActionFields.CostField.execute.call({ actor }, result);
 
         const newMessageData = foundry.utils.deepClone(message.system);
         foundry.utils.setProperty(newMessageData, `${path}.result`, result.roll);
