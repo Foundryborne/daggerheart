@@ -469,6 +469,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
     static resetFilters() {
         this.render({ force: true });
+        this.loadItems();
     }
 
     static getFolderConfig(folder, property = 'columns') {
