@@ -139,9 +139,15 @@ Parameters:
   <div class="item-buttons">
     {{#each item.system.actions as | action |}}
     <div class="item-button">
-      <button type="button" data-action="useItem" data-item-uuid="{{action.uuid}}">
-        {{action.name}}
-      </button>
+        {{#if (and (eq action.type 'beastform') @root.beastformActive)}}
+          <button type="button" data-action="cancelBeastform" data-item-uuid="{{action.uuid}}">
+            {{localize "DAGGERHEART.ACTORS.Character.cancelBeastform"}}
+          </button>
+        {{else}}
+          <button type="button" data-action="useItem" data-item-uuid="{{action.uuid}}">
+            {{action.name}}
+          </button>
+        {{/if}}
       {{#if action.uses.max}}
         <div class="spacer"></div>
         <button type="button" class="action-uses-button" data-action="increaseActionUses" data-item-uuid="{{action.uuid}}">

@@ -31,6 +31,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             toggleEquipItem: CharacterSheet.#toggleEquipItem,
             toggleResourceDice: CharacterSheet.#toggleResourceDice,
             handleResourceDice: CharacterSheet.#handleResourceDice,
+            cancelBeastform: CharacterSheet.#cancelBeastform,
             useDowntime: this.useDowntime
         },
         window: {
@@ -218,6 +219,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 chests: game.i18n.localize('DAGGERHEART.CONFIG.Gold.chests')
             }
         };
+
+        context.beastformActive = this.document.effects.find(x => x.type === 'beastform');
 
         const homebrewCurrency = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).currency;
         if (homebrewCurrency.enabled) {
@@ -846,6 +849,15 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 return acc;
             }, {})
         });
+    }
+
+    /**
+     *
+     */
+    static async #cancelBeastform(_, target) {
+        const item = await getDocFromElement(target);
+        if (!item) return;
+        game.system.api.fields.ActionFields.BeastformField.handleActiveTransformations.call(item);
     }
 
     /**
