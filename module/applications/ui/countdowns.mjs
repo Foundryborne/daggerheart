@@ -88,6 +88,17 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         this.toggleCollapsedPosition(undefined, !ui.sidebar.expanded);
     }
 
+    /** Returns countdown data filtered by ownership */
+    #getCountdowns() {
+        const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
+        const values = Object.entries(setting.countdowns).map(([key, countdown]) => ({ 
+            key, 
+            countdown, 
+            ownership: DhCountdowns.#getPlayerOwnership(game.user, setting, countdown) 
+        }));
+        return values.filter((v) => v.ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE);
+    }
+
     /** @override */
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
@@ -98,11 +109,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             CONFIG.DH.GENERAL.countdownAppMode.iconOnly;
 
         const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-        context.countdowns = Object.keys(setting.countdowns).reduce((acc, key) => {
-            const countdown = setting.countdowns[key];
-            const ownership = DhCountdowns.#getPlayerOwnership(game.user, setting, countdown);
-            if (ownership === CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE) return acc;
-
+        context.countdowns = this.#getCountdowns().reduce((acc, { key, countdown, ownership }) => {
             const playersWithAccess = game.users.reduce((acc, user) => {
                 const ownership = DhCountdowns.#getPlayerOwnership(user, setting, countdown);
                 if (!user.isGM && ownership && ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE) {
@@ -237,5 +244,10 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             data
         });
         Hooks.callAll(socketEvent.Refresh, data);
+    }
+
+    async _onRender(context, options) {
+        await super._onRender(context, options);
+        this.element.hidden = !game.user.isGM && this.#getCountdowns().length === 0;
     }
 }
