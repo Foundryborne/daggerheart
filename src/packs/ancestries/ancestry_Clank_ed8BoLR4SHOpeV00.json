@@ -4,7 +4,7 @@
   "type": "ancestry",
   "folder": null,
   "system": {
-    "description": "<p>Clanks are sentient mechanical beings built from a variety of materials, including metal, wood, and stone.<br><br><p class=\"green Body-Styles_Body\" chunk_id=\"cf73a44a-bad6-493d-9d72-4007c4b803e7\">They can resemble humanoids, animals, or even inanimate objects. Like organic beings, their bodies come in a wide array of sizes. Because of their bespoke construction, many clanks have highly specialized physical configurations. Examples include clawed hands for grasping, wheels for movement, or built-in weaponry.</p>\n<p class=\"green Body-Styles_Body\" chunk_id=\"89241f41-6ba6-40db-a272-c23b400e26e8\">Many clanks embrace body modifications for style as well as function, and members of other ancestries often turn to clank artisans to construct customized mobility aids and physical adornments. Other ancestries can create clanks, even using their own physical characteristics as inspiration, but it’s also common for clanks to build one another. A clank’s lifespan extends as long as they’re able to acquire or craft new parts, making their physical form effectively immortal. That said, their minds are subject to the effects of time, and deteriorate as the magic that powers them loses potency.</p></p>",
+    "description": "<p>Clanks are sentient mechanical beings built from a variety of materials, including metal, wood, and stone. They can resemble humanoids, animals, or even inanimate objects. Like organic beings, their bodies come in a wide array of sizes. Because of their bespoke construction, many clanks have highly specialized physical configurations. Examples include clawed hands for grasping, wheels for movement, or built-in weaponry.</p><p class=\"green Body-Styles_Body\">Many clanks embrace body modifications for style as well as function, and members of other ancestries often turn to clank artisans to construct customized mobility aids and physical adornments. Other ancestries can create clanks, even using their own physical characteristics as inspiration, but it’s also common for clanks to build one another. A clank’s lifespan extends as long as they’re able to acquire or craft new parts, making their physical form effectively immortal. That said, their minds are subject to the effects of time, and deteriorate as the magic that powers them loses potency.</p><p></p><h4>ANCESTRY FEATURES</h4><p><em><strong>Purposeful Design:</strong></em> Decide who made you and for what purpose. At character creation, choose one of your Experiences that best aligns with this purpose and gain a permanent +1 bonus to it.</p><p><em><strong>Efficient:</strong></em> When you take a short rest, you can choose a long rest move instead of a short rest move.</p><p></p>",
     "features": [
       {
         "type": "primary",
@@ -26,12 +26,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.1",
     "createdTime": 1753922784381,
-    "modifiedTime": 1755394032819,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1762995047410,
+    "lastModifiedBy": "9HOfUKAXuCu7hUPY"
   },
   "_id": "ed8BoLR4SHOpeV00",
   "sort": 3400000,

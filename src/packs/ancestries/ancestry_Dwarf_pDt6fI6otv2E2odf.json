@@ -4,7 +4,7 @@
   "type": "ancestry",
   "folder": null,
   "system": {
-    "description": "<p>Dwarves are most easily recognized as short humanoids with square frames, dense musculature, and thick hair.<br><br><p>Their average height ranges from 4 to 5 ½ feet, and they are often broad in proportion to their stature. Their skin and nails contain a high amount of keratin, making them naturally resilient. This allows dwarves to embed gemstones into their bodies and decorate themselves with tattoos or piercings. Their hair grows thickly—usually on their heads, but some dwarves have thick hair across their bodies as well. Dwarves of all genders can grow facial hair, which they often style in elaborate arrangements. Typically, dwarves live up to 250 years of age, maintaining their muscle mass well into later life.</p></p>",
+    "description": "<p>Dwarves are most easily recognized as short humanoids with square frames, dense musculature, and thick hair. Their average height ranges from 4 to 5 ½ feet, and they are often broad in proportion to their stature. Their skin and nails contain a high amount of keratin, making them naturally resilient. This allows dwarves to embed gemstones into their bodies and decorate themselves with tattoos or piercings. Their hair grows thickly—usually on their heads, but some dwarves have thick hair across their bodies as well. Dwarves of all genders can grow facial hair, which they often style in elaborate arrangements. Typically, dwarves live up to 250 years of age, maintaining their muscle mass well into later life.</p><p></p><h4>ANCESTRY FEATURES</h4><p><em><strong>Thick Skin:</strong></em> When you take Minor damage, you can <strong>mark 2 Stress</strong> instead of marking a Hit Point.</p><p><em><strong>Increased Fortitude:</strong></em> <strong>Spend 3 Hope</strong> to halve incoming physical damage.</p>",
     "features": [
       {
         "type": "primary",
@@ -26,12 +26,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.1",
     "createdTime": 1753922784382,
-    "modifiedTime": 1755394117175,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1762995338819,
+    "lastModifiedBy": "9HOfUKAXuCu7hUPY"
   },
   "_id": "pDt6fI6otv2E2odf",
   "sort": 3400000,
