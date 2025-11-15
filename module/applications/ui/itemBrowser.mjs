@@ -430,7 +430,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             if (matchesMenu) this.#filteredItems.browser.input.add(item.id);
 
             const { search } = this.#filteredItems.browser;
-            li.hidden = !(search.has(item.id) && matchesMenu);
+            li.hidden = !((this.#search.browser.query.length === 0 || search.has(item.id)) && matchesMenu);
         }
     }
 
