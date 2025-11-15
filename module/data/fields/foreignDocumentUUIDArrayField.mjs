@@ -17,7 +17,7 @@ export default class ForeignDocumentUUIDArrayField extends foundry.data.fields.A
         const v = super.initialize(value, model, options);
         return () => {
             const data = v.map(entry => (typeof entry === 'function' ? entry() : entry));
-            return this.options.prune ? data.filter((d) => !!d) : d;
+            return this.options.prune ? data.filter(d => !!d) : data;
         };
     }
 }
