@@ -294,7 +294,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         const property = foundry.utils.getProperty(item, field.key);
         if (Array.isArray(property)) property.join(', ');
         if (typeof field.format !== 'function') return property ?? '-';
-        return field.format(property);
+        return game.i18n.localize(field.format(property));
     }
 
     formatChoices(data) {

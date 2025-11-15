@@ -363,7 +363,7 @@ export const typeConfig = {
             {
                 key: 'system.linkedClass',
                 label: 'Class',
-                format: linkedClass => linkedClass?.name ?? game.i18n.localize('DAGGERHEART.UI.ItemBrowser.missing')
+                format: linkedClass => linkedClass?.name ?? 'DAGGERHEART.UI.ItemBrowser.missing'
             },
             {
                 key: 'system.spellcastingTrait',
