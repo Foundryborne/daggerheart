@@ -1,5 +1,7 @@
-<div class="images-container">
-    {{#each images as |image|}}
-        <a data-action="selectImage"><img {{#if (eq image @root.selectedImage)}}class="selected"{{/if}} src="{{image}}" data-image="{{image}}" /></a>
-    {{/each}}
+<div>
+    <div class="images-container">
+        {{#each images as |image|}}
+            <a data-action="selectImage"><img {{#if (eq image @root.selectedImage)}}class="selected"{{/if}} src="{{image}}" data-image="{{image}}" /></a>
+        {{/each}}
+    </div>
 </div>
