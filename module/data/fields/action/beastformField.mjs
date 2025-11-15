@@ -41,9 +41,6 @@ export default class BeastformField extends fields.SchemaField {
      * @param {object} config    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
      */
     static async execute(config) {
-        // Should not be useful anymore here
-        await BeastformField.handleActiveTransformations.call(this);
-
         const { selected, evolved, hybrid } = await BeastformDialog.configure(config, this.item);
         if (!selected) return false;
 
