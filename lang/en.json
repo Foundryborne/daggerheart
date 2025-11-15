@@ -2570,6 +2570,7 @@
                 "evasionMin": "Evasion (Min)",
                 "evasionMax": "Evasion (Max)",
                 "subtype": "Subtype",
+                "missing": "<Missing>",
                 "folders": {
                     "characters": "Characters",
                     "adversaries": "Adversaries",
