@@ -1,0 +1,115 @@
+<div class="daggerheart chat levelupSummary">
+    {{!--Achievements--}}
+    {{#if this.achievements}}
+    <div class="achievements">
+        <div class="header">
+            <span>{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.levelAchievementsChat"}}</span>
+        </div>
+        <ul class="achievements-container">
+            {{!--Achievements Profieciency--}}
+            {{#if this.achievements.proficiency.shown}}
+                <span><li class="item-list">
+                    {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.proficiencyIncreaseChat"}}
+                </li></span>
+            {{/if}}
+            {{!--Achievements Damage Thresholds--}}
+            {{#if this.achievements.damageThresholds}}
+                <span><li class="item-list">
+                    {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.damageThresholdsChat"}}
+                </li></span>
+            {{/if}}
+            {{!--Achievements Domain Cards--}}
+            {{#if this.achievements.domainCards.shown}}
+                <span><li class="item-list">
+                    {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.domainCardsChat"}}
+                </li></span>
+            {{/if}}
+            {{!--Achievements Experiences--}}
+            {{#if this.achievements.experiences.shown}}
+                <span><li class="item-list">
+                    {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.newExperiences"}}
+                </li></span>
+            {{/if}}
+        </ul>
+    </div>
+    {{/if}}
+    {{!--Advancements--}}
+    <div class="advancements">
+        <div class="header">
+            <span>{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.levelAdvancementsChat"}}</span>
+        </div>
+        <ul class="advancements-container">
+            {{!--Advancements Statistics--}}
+            {{#if this.advancements.statistics.shown}}
+                {{!--Advancements Statistics Proficiency--}}
+                {{#if this.advancements.statistics.proficiency.shown}}
+                    <span><li class="item-list">
+                        {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.proficiencyIncreaseChat"}}
+                    </li></span>
+                {{/if}}
+                {{!--Advancements Statistics Hitpoints--}}
+                {{#if this.advancements.statistics.hitPoints.shown}}
+                    <span><li class="item-list">
+                        {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.hpIncreaseChat"}}
+                    </li></span>
+                {{/if}}
+                {{!--Advancements Statistics Stress--}}
+                {{#if this.advancements.statistics.stress.shown}}
+                    <span><li class="item-list">
+                        {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.stressIncreaseChat"}}
+                    </li></span>
+                {{/if}}
+                {{!--Advancements Statistics Evasion--}}
+                {{#if this.advancements.statistics.evasion.shown}}
+                    <span><li class="item-list">
+                        {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.evasionIncreaseChat"}}
+                    </li></span>
+                {{/if}}
+            {{/if}}
+            {{!--Advancements Traits--}}
+            {{#if this.advancements.traits}}
+                <span><li class="item-list">
+                    {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.traits"}}
+                </li></span>
+            {{/if}}
+            {{!--Advancements Domain Cards--}}
+            {{#if this.advancements.domainCards}}
+                <span><li class="item-list">
+                    {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.domainCardsChat"}}
+                </li></span>
+            {{/if}}
+            {{!--Advancements Experiences--}}
+            {{#if this.advancements.experiences}}
+                <span><li class="item-list">
+                    {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.newExperiences"}}
+                </li></span>
+            {{/if}}
+            {{!--Advancements Subclass--}}
+            {{#if this.advancements.subclass}}
+                <span><li class="item-list">
+                    {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.subclassChat"}}
+                </li></span>
+            {{/if}}
+            {{!--Advancements Multiclass (Added or Advanced tag to be figured out later)--}}
+            {{#if this.advancements.multiclass}}
+                <span><li class="item-list">
+                    {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.multiclass"}}
+                </li></span>
+            {{/if}}
+            {{!--Advancements Vicious--}}
+            {{#if this.advancements.vicious.damage}}
+                {{#if this.advancements.vicious.range}}
+                    <span><li class="item-list">
+                        {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.vicious"}}
+                    </li></span>
+                {{/if}}
+            {{/if}}
+            {{!--Advancements Features--}}
+            {{#if this.advancements.simple}}
+                <span><li class="item-list">
+                    {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.simpleFeatureChat"}}
+                </li></span>
+            {{/if}}
+        </ul>
+    </div>
+</div>
