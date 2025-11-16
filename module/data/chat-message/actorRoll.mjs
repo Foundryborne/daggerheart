@@ -17,6 +17,16 @@ const targetsField = () =>
         })
     );
 
+export const itemSourceField = () =>
+    new fields.SchemaField({
+        type: new fields.StringField({
+            choices: CONFIG.DH.ITEM.itemSourceType,
+            initial: CONFIG.DH.ITEM.itemSourceType.itemCollection
+        }),
+        itemPath: new fields.StringField(),
+        actionIndex: new fields.StringField()
+    });
+
 export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     static defineSchema() {
         return {
@@ -35,6 +45,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             source: new fields.SchemaField({
                 actor: new fields.StringField(),
                 item: new fields.StringField(),
+                itemSource: itemSourceField(),
                 action: new fields.StringField()
             }),
             damage: new fields.ObjectField(),
@@ -48,17 +59,27 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         return fromUuidSync(this.source.actor);
     }
 
-    get actionItem() {
+    get itemAction() {
         const actionActor = this.actionActor;
         if (!actionActor || !this.source.item) return null;
-        return actionActor.items.get(this.source.item);
+
+        switch (this.source.itemSource.type) {
+            case CONFIG.DH.ITEM.itemSourceType.restMove:
+                const restMoves = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).restMoves;
+                return Array.from(foundry.utils.getProperty(restMoves, `${this.source.itemSource.itemPath}`).actions)[
+                    this.source.itemSource.actionIndex
+                ];
+            default:
+                const item = actionActor.items.get(this.source.item);
+                return item ? item.system.actionsList?.find(a => a.id === this.source.action) : null;
+        }
     }
 
     get action() {
         const actionActor = this.actionActor,
-            actionItem = this.actionItem;
+            itemAction = this.itemAction;
         if (!this.source.action) return null;
-        if (actionItem) return actionItem.system.actionsList?.find(a => a.id === this.source.action);
+        if (itemAction) return itemAction;
         else if (actionActor?.system.attack?._id === this.source.action) return actionActor.system.attack;
         return null;
     }

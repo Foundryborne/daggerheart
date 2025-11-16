@@ -178,10 +178,17 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
     }
 
     static async takeDowntime() {
-        const moves = Object.values(this.moveData).flatMap(category => {
-            return Object.values(category.moves)
-                .filter(x => x.selected)
-                .flatMap(move => [...Array(move.selected).keys()].map(_ => move));
+        const moves = Object.keys(this.moveData).flatMap(categoryKey => {
+            const category = this.moveData[categoryKey];
+            return Object.keys(category.moves)
+                .filter(x => category.moves[x].selected)
+                .flatMap(key => {
+                    const move = category.moves[key];
+                    return [...Array(move.selected).keys()].map(_ => ({
+                        ...move,
+                        movePath: `${categoryKey}.moves.${key}`
+                    }));
+                });
         });
 
         const cls = getDocumentClass('ChatMessage');

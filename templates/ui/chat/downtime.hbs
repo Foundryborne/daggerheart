@@ -15,7 +15,7 @@
                 </div>
             </details>
             {{#each move.actions as | action index |}}
-                <button class="action-use-button" data-move-index="{{@../key}}" data-action-index="{{index}}">
+                <button class="action-use-button" data-move-index="{{@../key}}" data-action-index="{{index}}" data-move-path="{{../movePath}}" >
                     <span>{{localize action.name}}</span>
                 </button>
             {{/each}}
