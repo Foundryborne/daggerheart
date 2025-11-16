@@ -251,7 +251,7 @@ export const adjustRange = (rangeVal, decrease) => {
     return range[rangeKeys[newIndex]];
 };
 
-export const updateActorTokens = async (actor, update) => {
+export const updateActorTokens = async (actor, update, updateToken) => {
     await actor.prototypeToken.update({ ...update });
 
     /* Update the tokens in all scenes belonging to Actor */
@@ -259,7 +259,7 @@ export const updateActorTokens = async (actor, update) => {
         const tokenActor = token.baseActor ?? token.actor;
         if (token.id && tokenActor?.id === actor.id) {
             await token.update({
-                ...update,
+                ...(updateToken ? updateToken(token) : update),
                 _id: token.id
             });
         }
