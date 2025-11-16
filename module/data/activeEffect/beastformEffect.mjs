@@ -6,6 +6,7 @@ export default class BeastformEffect extends BaseEffect {
         const fields = foundry.data.fields;
         return {
             characterTokenData: new fields.SchemaField({
+                usesDynamicToken: new fields.BooleanField({ initial: false }),
                 tokenImg: new fields.FilePathField({
                     categories: ['IMAGE'],
                     base64: false,
@@ -49,6 +50,7 @@ export default class BeastformEffect extends BaseEffect {
                     src: this.characterTokenData.tokenImg
                 },
                 ring: {
+                    enabled: this.characterTokenData.usesDynamicToken,
                     subject: {
                         texture: this.characterTokenData.tokenRingImg
                     }
@@ -58,6 +60,7 @@ export default class BeastformEffect extends BaseEffect {
             const updateToken = token => ({
                 ...baseUpdate,
                 'texture': {
+                    enabled: this.characterTokenData.usesDynamicToken,
                     src: token.flags.daggerheart.beastformTokenImg
                 },
                 'ring': {

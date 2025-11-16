@@ -174,6 +174,7 @@ export default class DHBeastform extends BaseDataItem {
             ],
             system: {
                 characterTokenData: {
+                    usesDynamicToken: this.parent.parent.prototypeToken.ring.enabled,
                     tokenImg: this.parent.parent.prototypeToken.texture.src,
                     tokenRingImg: this.parent.parent.prototypeToken.ring.subject.texture,
                     tokenSize: {
