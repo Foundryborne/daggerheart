@@ -72,7 +72,7 @@ export default class TargetField extends fields.SchemaField {
 
     /**
      * Format actor to useful datas for Action roll workflow.
-     * @param {*} token     Actor object to format.
+     * @param {*} token     Token object to format.
      * @returns {*}         Formatted Actor.
      */
     static formatTarget(token) {
