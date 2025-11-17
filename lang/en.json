@@ -2293,6 +2293,10 @@
                         "gm": { "label": "GM" },
                         "players": { "label": "Players" }
                     },
+                    "countdownAutomation": {
+                        "label": "Countdown Automation",
+                        "hint": "Automatically progress countdowns based on their progression settings"
+                    },
                     "levelupAuto": {
                         "label": "Levelup Automation",
                         "hint": "When you've made your choices and finish levelup, the numerical changes are automatically applied to your character."

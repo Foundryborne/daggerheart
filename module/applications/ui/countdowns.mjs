@@ -91,12 +91,12 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     /** Returns countdown data filtered by ownership */
     #getCountdowns() {
         const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-        const values = Object.entries(setting.countdowns).map(([key, countdown]) => ({ 
-            key, 
-            countdown, 
-            ownership: DhCountdowns.#getPlayerOwnership(game.user, setting, countdown) 
+        const values = Object.entries(setting.countdowns).map(([key, countdown]) => ({
+            key,
+            countdown,
+            ownership: DhCountdowns.#getPlayerOwnership(game.user, setting, countdown)
         }));
-        return values.filter((v) => v.ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE);
+        return values.filter(v => v.ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE);
     }
 
     /** @override */
@@ -214,6 +214,9 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     }
 
     static async updateCountdowns(progressType) {
+        const { countdownAutomation } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+        if (!countdownAutomation) return;
+
         const countdownSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
         const updatedCountdowns = Object.keys(countdownSetting.countdowns).reduce((acc, key) => {
             const countdown = countdownSetting.countdowns[key];
