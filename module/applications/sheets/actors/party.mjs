@@ -20,7 +20,8 @@ export default class Party extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
         classes: ['party'],
         position: {
-            width: 550
+            width: 550,
+            height: 900,
         },
         window: {
             resizable: true
