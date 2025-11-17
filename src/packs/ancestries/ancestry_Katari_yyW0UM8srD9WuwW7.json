@@ -4,7 +4,7 @@
   "type": "ancestry",
   "folder": null,
   "system": {
-    "description": "<p>Katari are feline humanoids with retractable claws, vertically slit pupils, and high, triangular ears.<br><br><p>They can also have small, pointed canine teeth, soft fur, and long whiskers that assist their perception and navigation. Their ears can swivel nearly 180 degrees to detect sound, adding to their heightened senses. Katari may look more or less feline or humanoid, with catlike attributes in the form of hair, whiskers, and a muzzle. About half of the katari population have tails. Their skin and fur come in a wide range of hues and patterns, including solid colors, calico tones, tabby stripes, and an array of spots, patches, marbling, or bands. Their height ranges from about 3 feet to 6 ½ feet, and they live to around 150 years.</p></p>",
+    "description": "<p>Katari are feline humanoids with retractable claws, vertically slit pupils, and high, triangular ears. They can also have small, pointed canine teeth, soft fur, and long whiskers that assist their perception and navigation. Their ears can swivel nearly 180 degrees to detect sound, adding to their heightened senses. Katari may look more or less feline or humanoid, with catlike attributes in the form of hair, whiskers, and a muzzle. About half of the katari population have tails. Their skin and fur come in a wide range of hues and patterns, including solid colors, calico tones, tabby stripes, and an array of spots, patches, marbling, or bands. Their height ranges from about 3 feet to 6 ½ feet, and they live to around 150 years.</p><p></p><h4>ANCESTRY FEATURES</h4><p><em><strong>Feline Instincts:</strong></em> When you make an Agility Roll, you can <strong>spend 2 Hope</strong> to reroll your Hope Die.</p><p><em><strong>Retracting Claws:</strong></em> Make an <strong>Agility Roll</strong> to scratch a target within Melee range. On a success, they become temporarily <em>Vulnerable</em>.</p>",
     "features": [
       {
         "type": "primary",
@@ -26,12 +26,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.1",
     "createdTime": 1753922784388,
-    "modifiedTime": 1755394210762,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1762997128106,
+    "lastModifiedBy": "9HOfUKAXuCu7hUPY"
   },
   "_id": "yyW0UM8srD9WuwW7",
   "sort": 3400000,

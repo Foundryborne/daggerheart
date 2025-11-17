@@ -160,7 +160,6 @@ export default class DHBeastform extends BaseDataItem {
             this.parent.effects.filter(x => x.type !== 'beastform').map(x => x.toObject())
         );
 
-        const tokenImages = await this.parent.parent.getTokenImages();
         const beastformEffect = this.parent.effects.find(x => x.type === 'beastform');
         await beastformEffect.updateSource({
             changes: [
@@ -175,7 +174,8 @@ export default class DHBeastform extends BaseDataItem {
             ],
             system: {
                 characterTokenData: {
-                    tokenImg: tokenImages[0],
+                    usesDynamicToken: this.parent.parent.prototypeToken.ring.enabled,
+                    tokenImg: this.parent.parent.prototypeToken.texture.src,
                     tokenRingImg: this.parent.parent.prototypeToken.ring.subject.texture,
                     tokenSize: {
                         height: this.parent.parent.prototypeToken.height,
@@ -190,7 +190,7 @@ export default class DHBeastform extends BaseDataItem {
 
         await this.parent.parent.createEmbeddedDocuments('ActiveEffect', [beastformEffect.toObject()]);
 
-        await updateActorTokens(this.parent.parent, {
+        const prototypeTokenUpdate = {
             height: this.tokenSize.height,
             width: this.tokenSize.width,
             texture: {
@@ -201,22 +201,20 @@ export default class DHBeastform extends BaseDataItem {
                     texture: this.tokenRingImg
                 }
             }
+        };
+
+        const tokenUpdate = token => ({
+            ...prototypeTokenUpdate,
+            flags: {
+                daggerheart: {
+                    beastformTokenImg: token.texture.src,
+                    beastformSubjectTexture: token.ring.subject.texture
+                }
+            }
         });
 
+        await updateActorTokens(this.parent.parent, prototypeTokenUpdate, tokenUpdate);
+
         return false;
-    }
-
-    _onCreate(_data, _options, userId) {
-        if (userId !== game.user.id) return;
-
-        if (!this.parent.effects.find(x => x.type === 'beastform')) {
-            this.parent.createEmbeddedDocuments('ActiveEffect', [
-                {
-                    type: 'beastform',
-                    name: game.i18n.localize('DAGGERHEART.ITEMS.Beastform.beastformEffect'),
-                    img: 'icons/creatures/abilities/paw-print-pair-purple.webp'
-                }
-            ]);
-        }
     }
 }

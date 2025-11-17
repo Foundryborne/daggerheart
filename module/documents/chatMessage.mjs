@@ -145,9 +145,11 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         });
 
         html.querySelectorAll('.token-target-container').forEach(element => {
-            element.addEventListener('pointerover', this.hoverTarget);
-            element.addEventListener('pointerout', this.unhoverTarget);
-            element.addEventListener('click', this.clickTarget);
+            if (element.dataset.token) {
+                element.addEventListener('pointerover', this.hoverTarget);
+                element.addEventListener('pointerout', this.unhoverTarget);
+                element.addEventListener('click', this.clickTarget);
+            }
         });
     }
 

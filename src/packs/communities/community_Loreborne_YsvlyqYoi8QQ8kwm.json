@@ -4,7 +4,7 @@
   "type": "community",
   "folder": null,
   "system": {
-    "description": "<p>Being part of a loreborne community means you’re from a society that favors strong academic or political prowess.<br><br><p class=\"green Body-Styles_Body\" chunk_id=\"f75f439e-df5b-4c3a-b8b4-b59c8c05ebb8\">Loreborne communities highly value knowledge, frequently in the form of historical preservation, political advancement, scientific study, skill development, or lore and mythology compilation. Most members of these communities research in institutions built in bastions of civilization, while some eclectic few thrive in gathering information from the natural world. Some may be isolationists, operating in smaller enclaves, schools, or guilds and following their own unique ethos. Others still wield their knowledge on a larger scale, making deft political maneuvers across governmental landscapes.</p>\n<p class=\"green Body-Styles_Body\" chunk_id=\"b2a2e82d-a5de-43c7-b9b8-16b5bd8e5b8b\"><em>Loreborne are often direct, eloquent, inquisitive, patient, rhapsodic, and witty.</em></p></p>",
+    "description": "<p>Being part of a loreborne community means you’re from a society that favors strong academic or political prowess. Loreborne communities highly value knowledge, frequently in the form of historical preservation, political advancement, scientific study, skill development, or lore and mythology compilation. Most members of these communities research in institutions built in bastions of civilization, while some eclectic few thrive in gathering information from the natural world. Some may be isolationists, operating in smaller enclaves, schools, or guilds and following their own unique ethos. Others still wield their knowledge on a larger scale, making deft political maneuvers across governmental landscapes.</p><p class=\"green Body-Styles_Body\"><em>Loreborne are often direct, eloquent, inquisitive, patient, rhapsodic, and witty.</em></p><p></p><h4>COMMUNITY FEATURE</h4><p><em><strong>Well-Read:</strong></em> You have advantage on rolls that involve the history, culture, or politics of a prominent person or place.</p>",
     "features": [
       "Compendium.daggerheart.communities.Item.JBZJmywisJg5X3tH"
     ],
@@ -19,12 +19,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.350",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.1",
     "createdTime": 1753922784392,
-    "modifiedTime": 1755394793025,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1763116284438,
+    "lastModifiedBy": "9HOfUKAXuCu7hUPY"
   },
   "_id": "YsvlyqYoi8QQ8kwm",
   "sort": 3400000,

@@ -112,7 +112,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                     CONFIG.DH.SETTINGS.gameSettings.appearance
                 ).showGenericStatusEffects;
                 if (!useGeneric) {
-                    partContext.statuses = Object.values(CONFIG.DH.GENERAL.conditions).map(status => ({
+                    partContext.statuses = Object.values(CONFIG.DH.GENERAL.conditions()).map(status => ({
                         value: status.id,
                         label: game.i18n.localize(status.name)
                     }));

@@ -132,12 +132,21 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     }
 
     async actionUseButton(event, message) {
-        const { moveIndex, actionIndex } = event.currentTarget.dataset;
+        const { moveIndex, actionIndex, movePath } = event.currentTarget.dataset;
         const parent = await foundry.utils.fromUuid(message.system.actor);
         const actionType = message.system.moves[moveIndex].actions[actionIndex];
         const cls = game.system.api.models.actions.actionsTypes[actionType.type];
         const action = new cls(
-            { ...actionType, _id: foundry.utils.randomID(), name: game.i18n.localize(actionType.name) },
+            {
+                ...actionType,
+                _id: foundry.utils.randomID(),
+                name: game.i18n.localize(actionType.name),
+                originItem: {
+                    type: CONFIG.DH.ITEM.originItemType.restMove,
+                    itemPath: movePath,
+                    actionIndex: actionIndex
+                }
+            },
             { parent: parent.system }
         );
 
@@ -192,8 +201,17 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
 
     async groupRollButton(event, message) {
         const path = event.currentTarget.dataset.path;
+        const isLeader = path === 'leader';
         const { actor: actorData, trait } = foundry.utils.getProperty(message.system, path);
         const actor = game.actors.get(actorData._id);
+
+        if (!actor) {
+            return ui.notifications.error(
+                game.i18n.format('DAGGERHEART.UI.Notifications.documentIsMissing', {
+                    documentType: game.i18n.localize('TYPES.Actor.character')
+                })
+            );
+        }
 
         if (!actor.testUserPermission(game.user, 'OWNER')) {
             return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.noActorOwnership'));
@@ -214,7 +232,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             hasRoll: true,
             skips: {
                 createMessage: true,
-                resources: true
+                resources: !isLeader
             }
         };
         const result = await actor.diceRoll({
@@ -224,6 +242,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 ability: traitLabel
             })
         });
+
+        if (!result) return;
+        await game.system.api.fields.ActionFields.CostField.execute.call({ actor }, result);
 
         const newMessageData = foundry.utils.deepClone(message.system);
         foundry.utils.setProperty(newMessageData, `${path}.result`, result.roll);

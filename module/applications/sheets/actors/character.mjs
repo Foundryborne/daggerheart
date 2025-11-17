@@ -31,6 +31,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             toggleEquipItem: CharacterSheet.#toggleEquipItem,
             toggleResourceDice: CharacterSheet.#toggleResourceDice,
             handleResourceDice: CharacterSheet.#handleResourceDice,
+            cancelBeastform: CharacterSheet.#cancelBeastform,
             useDowntime: this.useDowntime
         },
         window: {
@@ -209,24 +210,33 @@ export default class CharacterSheet extends DHBaseActorSheet {
         context.resources.stress.emptyPips =
             context.resources.stress.max < maxResource ? maxResource - context.resources.stress.max : 0;
 
-        context.inventory = {
-            currency: {
-                title: game.i18n.localize('DAGGERHEART.CONFIG.Gold.title'),
-                coins: game.i18n.localize('DAGGERHEART.CONFIG.Gold.coins'),
-                handfuls: game.i18n.localize('DAGGERHEART.CONFIG.Gold.handfuls'),
-                bags: game.i18n.localize('DAGGERHEART.CONFIG.Gold.bags'),
-                chests: game.i18n.localize('DAGGERHEART.CONFIG.Gold.chests')
-            }
-        };
-
-        const homebrewCurrency = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).currency;
-        if (homebrewCurrency.enabled) {
-            context.inventory.currency = homebrewCurrency;
+        context.inventory = { currencies: {} };
+        const { title, ...currencies } = game.settings.get(
+            CONFIG.DH.id,
+            CONFIG.DH.SETTINGS.gameSettings.Homebrew
+        ).currency;
+        for (let key in currencies) {
+            context.inventory.currencies[key] = {
+                ...currencies[key],
+                field: context.systemFields.gold.fields[key],
+                value: context.source.system.gold[key]
+            };
         }
+        // context.inventory = {
+        //     currency: {
+        //         title: game.i18n.localize('DAGGERHEART.CONFIG.Gold.title'),
+        //         coins: game.i18n.localize('DAGGERHEART.CONFIG.Gold.coins'),
+        //         handfuls: game.i18n.localize('DAGGERHEART.CONFIG.Gold.handfuls'),
+        //         bags: game.i18n.localize('DAGGERHEART.CONFIG.Gold.bags'),
+        //         chests: game.i18n.localize('DAGGERHEART.CONFIG.Gold.chests')
+        //     }
+        // };
 
-        if (context.inventory.length === 0) {
-            context.inventory = Array(1).fill(Array(5).fill([]));
-        }
+        context.beastformActive = this.document.effects.find(x => x.type === 'beastform');
+
+        // if (context.inventory.length === 0) {
+        //     context.inventory = Array(1).fill(Array(5).fill([]));
+        // }
 
         return context;
     }
@@ -846,6 +856,15 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 return acc;
             }, {})
         });
+    }
+
+    /**
+     *
+     */
+    static async #cancelBeastform(_, target) {
+        const item = await getDocFromElement(target);
+        if (!item) return;
+        game.system.api.fields.ActionFields.BeastformField.handleActiveTransformations.call(item);
     }
 
     /**

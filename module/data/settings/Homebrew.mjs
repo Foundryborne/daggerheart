@@ -1,6 +1,16 @@
 import { defaultRestOptions } from '../../config/generalConfig.mjs';
 import { ActionsField } from '../fields/actionField.mjs';
 
+const currencyField = (initial, label) =>
+    new foundry.data.fields.SchemaField({
+        enabled: new foundry.data.fields.BooleanField({ required: true, initial: true }),
+        label: new foundry.data.fields.StringField({
+            required: true,
+            initial,
+            label
+        })
+    });
+
 export default class DhHomebrew extends foundry.abstract.DataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
@@ -30,36 +40,15 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                 initial: () => [2, 1, 1, 0, 0, -1]
             }),
             currency: new fields.SchemaField({
-                enabled: new fields.BooleanField({
-                    required: true,
-                    initial: false,
-                    label: 'DAGGERHEART.SETTINGS.Homebrew.currency.enabled'
-                }),
                 title: new fields.StringField({
                     required: true,
                     initial: 'Gold',
                     label: 'DAGGERHEART.SETTINGS.Homebrew.currency.currencyName'
                 }),
-                coins: new fields.StringField({
-                    required: true,
-                    initial: 'Coins',
-                    label: 'DAGGERHEART.SETTINGS.Homebrew.currency.coinName'
-                }),
-                handfuls: new fields.StringField({
-                    required: true,
-                    initial: 'Handfuls',
-                    label: 'DAGGERHEART.SETTINGS.Homebrew.currency.handfulName'
-                }),
-                bags: new fields.StringField({
-                    required: true,
-                    initial: 'Bags',
-                    label: 'DAGGERHEART.SETTINGS.Homebrew.currency.bagName'
-                }),
-                chests: new fields.StringField({
-                    required: true,
-                    initial: 'Chests',
-                    label: 'DAGGERHEART.SETTINGS.Homebrew.currency.chestName'
-                })
+                coins: currencyField('Coins', 'DAGGERHEART.SETTINGS.Homebrew.currency.coinName'),
+                handfuls: currencyField('Handfuls', 'DAGGERHEART.SETTINGS.Homebrew.currency.handfulName'),
+                bags: currencyField('Bags', 'DAGGERHEART.SETTINGS.Homebrew.currency.bagName'),
+                chests: currencyField('Chests', 'DAGGERHEART.SETTINGS.Homebrew.currency.chestName')
             }),
             restMoves: new fields.SchemaField({
                 longRest: new fields.SchemaField({
@@ -145,5 +134,27 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                 )
             })
         };
+    }
+
+    /** @inheritDoc */
+    _initializeSource(source, options = {}) {
+        source = super._initializeSource(source, options);
+        source.currency.coins = {
+            enabled: source.currency.coins.enabled ?? true,
+            label: source.currency.coins.label || source.currency.coins
+        };
+        source.currency.handfuls = {
+            enabled: source.currency.handfuls.enabled ?? true,
+            label: source.currency.handfuls.label || source.currency.handfuls
+        };
+        source.currency.bags = {
+            enabled: source.currency.bags.enabled ?? true,
+            label: source.currency.bags.label || source.currency.bags
+        };
+        source.currency.chests = {
+            enabled: source.currency.chests.enabled ?? true,
+            label: source.currency.chests.label || source.currency.chests
+        };
+        return source;
     }
 }

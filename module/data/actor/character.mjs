@@ -675,6 +675,8 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     _getTags() {
-        return [this.class.value?.name, this.class.subclass?.name, this.community?.name, this.ancestry?.name].filter((t) => !!t);
+        return [this.class.value?.name, this.class.subclass?.name, this.community?.name, this.ancestry?.name].filter(
+            t => !!t
+        );
     }
 }

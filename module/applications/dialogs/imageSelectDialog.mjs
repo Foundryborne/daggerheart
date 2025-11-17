@@ -12,7 +12,7 @@ export default class ImageSelectDialog extends HandlebarsApplicationMixin(Applic
         tag: 'form',
         classes: ['daggerheart', 'dialog', 'dh-style', 'image-select'],
         position: {
-            width: 600,
+            width: 612,
             height: 'auto'
         },
         window: {
@@ -30,7 +30,10 @@ export default class ImageSelectDialog extends HandlebarsApplicationMixin(Applic
 
     /** @override */
     static PARTS = {
-        main: { template: 'systems/daggerheart/templates/dialogs/image-select/main.hbs' },
+        main: {
+            template: 'systems/daggerheart/templates/dialogs/image-select/main.hbs',
+            scrollable: ['.images-container']
+        },
         footer: { template: 'systems/daggerheart/templates/dialogs/image-select/footer.hbs' }
     };
 

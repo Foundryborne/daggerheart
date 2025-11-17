@@ -98,7 +98,9 @@ export default class DamageField extends fields.SchemaField {
                 });
             }
 
-            const token = game.scenes.find(x => x.active).tokens.find(x => x.id === target.id);
+            const token = target.id
+                ? game.scenes.find(x => x.active).tokens.find(x => x.id === target.id)
+                : actor.prototypeToken;
             if (config.hasHealing)
                 damagePromises.push(
                     actor.takeHealing(config.damage).then(updates => targetDamage.push({ token, updates }))

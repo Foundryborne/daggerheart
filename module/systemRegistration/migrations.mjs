@@ -4,6 +4,7 @@ export async function runMigrations() {
     let lastMigrationVersion = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion);
     if (!lastMigrationVersion) lastMigrationVersion = game.system.version;
 
+    //#region old migrations
     if (foundry.utils.isNewerVersion('1.1.0', lastMigrationVersion)) {
         const lockedPacks = [];
         const compendiumActors = [];
@@ -190,6 +191,7 @@ export async function runMigrations() {
 
         lastMigrationVersion = '1.2.0';
     }
+    //#endregion
 
     await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion, lastMigrationVersion);
 }

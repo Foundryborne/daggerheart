@@ -29,13 +29,25 @@
             <legend>
                 {{localize "DAGGERHEART.SETTINGS.Homebrew.currency.title"}} 
             </legend>
-            {{formGroup settingFields.schema.fields.currency.fields.enabled value=settingFields._source.currency.enabled localize=true}}
-            {{formGroup settingFields.schema.fields.currency.fields.title value=settingFields._source.currency.title localize=true}}
-            {{formGroup settingFields.schema.fields.currency.fields.coins value=settingFields._source.currency.coins localize=true}}
-            {{formGroup settingFields.schema.fields.currency.fields.handfuls value=settingFields._source.currency.handfuls localize=true}}
-            {{formGroup settingFields.schema.fields.currency.fields.bags value=settingFields._source.currency.bags localize=true}}
-            {{formGroup settingFields.schema.fields.currency.fields.chests value=settingFields._source.currency.chests localize=true}}
-            
+            <div class="toggleable-row spaced">
+                {{formGroup settingFields.schema.fields.currency.fields.title value=settingFields._source.currency.title localize=true}}
+            </div>
+            <div class="toggleable-row">
+                {{formGroup settingFields.schema.fields.currency.fields.coins.fields.label value=settingFields._source.currency.coins.label localize=true}}
+                <input type="checkbox" {{checked settingFields._source.currency.coins.enabled}} disabled />
+            </div>
+            <div class="toggleable-row">
+                {{formGroup settingFields.schema.fields.currency.fields.handfuls.fields.label value=settingFields._source.currency.handfuls.label localize=true}}
+                <input type="checkbox" name="currency.handfuls.enabled" {{checked settingFields._source.currency.handfuls.enabled}} />
+            </div>
+            <div class="toggleable-row">
+                {{formGroup settingFields.schema.fields.currency.fields.bags.fields.label value=settingFields._source.currency.bags.label localize=true}}
+                <input type="checkbox" name="currency.bags.enabled" {{checked settingFields._source.currency.bags.enabled}} />
+            </div>
+            <div class="toggleable-row">
+                {{formGroup settingFields.schema.fields.currency.fields.chests.fields.label value=settingFields._source.currency.chests.label localize=true}}
+                <input type="checkbox" name="currency.chests.enabled" {{checked settingFields._source.currency.chests.enabled}} />
+            </div>
         </fieldset>
     </div>
 </section>
