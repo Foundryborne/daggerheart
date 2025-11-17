@@ -6,10 +6,12 @@ export default class BeastformEffect extends BaseEffect {
         const fields = foundry.data.fields;
         return {
             characterTokenData: new fields.SchemaField({
+                usesDynamicToken: new fields.BooleanField({ initial: false }),
                 tokenImg: new fields.FilePathField({
                     categories: ['IMAGE'],
                     base64: false,
-                    nullable: true
+                    nullable: true,
+                    wildcard: true
                 }),
                 tokenRingImg: new fields.FilePathField({
                     initial: 'icons/svg/mystery-man.svg',
@@ -38,20 +40,38 @@ export default class BeastformEffect extends BaseEffect {
 
     async _preDelete() {
         if (this.parent.parent.type === 'character') {
-            const update = {
+            const baseUpdate = {
                 height: this.characterTokenData.tokenSize.height,
-                width: this.characterTokenData.tokenSize.width,
+                width: this.characterTokenData.tokenSize.width
+            };
+            const update = {
+                ...baseUpdate,
                 texture: {
                     src: this.characterTokenData.tokenImg
                 },
                 ring: {
+                    enabled: this.characterTokenData.usesDynamicToken,
                     subject: {
                         texture: this.characterTokenData.tokenRingImg
                     }
                 }
             };
 
-            await updateActorTokens(this.parent.parent, update);
+            const updateToken = token => ({
+                ...baseUpdate,
+                'texture': {
+                    enabled: this.characterTokenData.usesDynamicToken,
+                    src: token.flags.daggerheart.beastformTokenImg
+                },
+                'ring': {
+                    subject: {
+                        texture: token.flags.daggerheart.beastformSubjectTexture
+                    }
+                },
+                'flags.daggerheart': { '-=beastformTokenImg': null, '-=beastformSubjectTexture': null }
+            });
+
+            await updateActorTokens(this.parent.parent, update, updateToken);
 
             await this.parent.parent.deleteEmbeddedDocuments('Item', this.featureIds);
             await this.parent.parent.deleteEmbeddedDocuments('ActiveEffect', this.effectIds);

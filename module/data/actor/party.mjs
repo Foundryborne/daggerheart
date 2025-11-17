@@ -41,7 +41,7 @@ export default class DhParty extends BaseDataActor {
 
         // Clear this party from all members that aren't deleted
         for (const member of this.partyMembers) {
-            member.parties?.delete(this.parent);
+            member?.parties?.delete(this.parent);
         }
     }
 }

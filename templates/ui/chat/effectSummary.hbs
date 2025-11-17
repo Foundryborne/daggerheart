@@ -23,7 +23,7 @@
         </div>
         <div class="targets-container">
             {{#each targets}}
-                <div class="token-target-container" data-token="{{this.id}}">
+                <div class="token-target-container  {{#if this.id}}clickable{{/if}}" data-token="{{this.id}}">
                     <img src="{{this.texture.src}}" />
                     <h2 class="title">{{this.name}}</h2>
                 </div>

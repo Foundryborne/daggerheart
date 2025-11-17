@@ -251,7 +251,13 @@ export const adjustRange = (rangeVal, decrease) => {
     return range[rangeKeys[newIndex]];
 };
 
-export const updateActorTokens = async (actor, update) => {
+/**
+ *
+ * @param {DhActor} actor - The actor for which all tokens will run a data update.
+ * @param {string} update - The data update to be applied to all tokens.
+ * @param {func} updateToken - Optional, specific data update for the non-prototype tokens as a function using the token data. Useful to handle wildcard images where each token has a different image but the prototype has a wildcard path.
+ */
+export const updateActorTokens = async (actor, update, updateToken) => {
     await actor.prototypeToken.update({ ...update });
 
     /* Update the tokens in all scenes belonging to Actor */
@@ -259,7 +265,7 @@ export const updateActorTokens = async (actor, update) => {
         const tokenActor = token.baseActor ?? token.actor;
         if (token.id && tokenActor?.id === actor.id) {
             await token.update({
-                ...update,
+                ...(updateToken ? updateToken(token) : update),
                 _id: token.id
             });
         }

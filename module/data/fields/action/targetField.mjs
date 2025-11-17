@@ -24,7 +24,7 @@ export default class TargetField extends fields.SchemaField {
         if (!this.target?.type) return (config.targets = []);
         config.hasTarget = true;
         let targets;
-        // If the Action is configured as self-targeted, set targets as the owner.
+        // If the Action is configured as self-targeted, set targets as the owner. Probably better way than to fallback to getDependentTokens
         if (this.target?.type === CONFIG.DH.GENERAL.targetTypes.self.id)
             targets = [this.actor.token ?? this.actor.prototypeToken];
         else {
@@ -72,17 +72,17 @@ export default class TargetField extends fields.SchemaField {
 
     /**
      * Format actor to useful datas for Action roll workflow.
-     * @param {*} actor     Actor object to format.
+     * @param {*} token     Token object to format.
      * @returns {*}         Formatted Actor.
      */
-    static formatTarget(actor) {
+    static formatTarget(token) {
         return {
-            id: actor.id,
-            actorId: actor.actor.uuid,
-            name: actor.actor.name,
-            img: actor.actor.img,
-            difficulty: actor.actor.system.difficulty,
-            evasion: actor.actor.system.evasion,
+            id: token.id,
+            actorId: token.actor.uuid,
+            name: token.actor.name,
+            img: token.actor.img,
+            difficulty: token.actor.system.difficulty,
+            evasion: token.actor.system.evasion,
             saved: {
                 value: null,
                 success: null

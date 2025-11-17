@@ -294,7 +294,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         const property = foundry.utils.getProperty(item, field.key);
         if (Array.isArray(property)) property.join(', ');
         if (typeof field.format !== 'function') return property ?? '-';
-        return field.format(property);
+        return game.i18n.localize(field.format(property));
     }
 
     formatChoices(data) {
@@ -430,7 +430,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             if (matchesMenu) this.#filteredItems.browser.input.add(item.id);
 
             const { search } = this.#filteredItems.browser;
-            li.hidden = !(search.has(item.id) && matchesMenu);
+            li.hidden = !((this.#search.browser.query.length === 0 || search.has(item.id)) && matchesMenu);
         }
     }
 
@@ -469,6 +469,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
     static resetFilters() {
         this.render({ force: true });
+        this.loadItems();
     }
 
     static getFolderConfig(folder, property = 'columns') {

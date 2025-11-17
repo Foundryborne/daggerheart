@@ -7,6 +7,7 @@ import { socketEvent } from '../../../systemRegistration/socket.mjs';
 import GroupRollDialog from '../../dialogs/group-roll-dialog.mjs';
 import DhpActor from '../../../documents/actor.mjs';
 import DHItem from '../../../documents/item.mjs';
+import DhParty from '../../../data/actor/party.mjs';
 
 export default class Party extends DHBaseActorSheet {
     constructor(options) {
@@ -19,7 +20,8 @@ export default class Party extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
         classes: ['party'],
         position: {
-            width: 550
+            width: 550,
+            height: 900,
         },
         window: {
             resizable: true
@@ -79,6 +81,9 @@ export default class Party extends DHBaseActorSheet {
         }
     };
 
+    static ALLOWED_ACTOR_TYPES = ['character', 'companion', 'adversary'];
+    static DICE_ROLL_ACTOR_TYPES = ['character'];
+
     async _onRender(context, options) {
         await super._onRender(context, options);
         this._createFilterMenus();
@@ -92,23 +97,17 @@ export default class Party extends DHBaseActorSheet {
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
 
-        context.inventory = {
-            currency: {
-                title: game.i18n.localize('DAGGERHEART.CONFIG.Gold.title'),
-                coins: game.i18n.localize('DAGGERHEART.CONFIG.Gold.coins'),
-                handfuls: game.i18n.localize('DAGGERHEART.CONFIG.Gold.handfuls'),
-                bags: game.i18n.localize('DAGGERHEART.CONFIG.Gold.bags'),
-                chests: game.i18n.localize('DAGGERHEART.CONFIG.Gold.chests')
-            }
-        };
-
-        const homebrewCurrency = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).currency;
-        if (homebrewCurrency.enabled) {
-            context.inventory.currency = homebrewCurrency;
-        }
-
-        if (context.inventory.length === 0) {
-            context.inventory = Array(1).fill(Array(5).fill([]));
+        context.inventory = { currencies: {} };
+        const { title, ...currencies } = game.settings.get(
+            CONFIG.DH.id,
+            CONFIG.DH.SETTINGS.gameSettings.Homebrew
+        ).currency;
+        for (let key in currencies) {
+            context.inventory.currencies[key] = {
+                ...currencies[key],
+                field: context.systemFields.gold.fields[key],
+                value: context.source.system.gold[key]
+            };
         }
 
         return context;
@@ -277,13 +276,17 @@ export default class Party extends DHBaseActorSheet {
     }
 
     static async #tagTeamRoll() {
-        new game.system.api.applications.dialogs.TagTeamDialog(this.document.system.partyMembers).render({
+        new game.system.api.applications.dialogs.TagTeamDialog(
+            this.document.system.partyMembers.filter(x => Party.DICE_ROLL_ACTOR_TYPES.includes(x.type))
+        ).render({
             force: true
         });
     }
 
-    static async #groupRoll(params) {
-        new GroupRollDialog(this.document.system.partyMembers).render({ force: true });
+    static async #groupRoll(_params) {
+        new GroupRollDialog(
+            this.document.system.partyMembers.filter(x => Party.DICE_ROLL_ACTOR_TYPES.includes(x.type))
+        ).render({ force: true });
     }
 
     /**
@@ -453,17 +456,17 @@ export default class Party extends DHBaseActorSheet {
         event.stopPropagation();
 
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-        const item = await foundry.utils.fromUuid(data.uuid);
+        const document = await foundry.utils.fromUuid(data.uuid);
 
-        if (item instanceof DhpActor) {
+        if (document instanceof DhpActor && Party.ALLOWED_ACTOR_TYPES.includes(document.type)) {
             const currentMembers = this.document.system.partyMembers.map(x => x.uuid);
             if (currentMembers.includes(data.uuid)) {
                 return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.duplicateCharacter'));
             }
 
-            await this.document.update({ 'system.partyMembers': [...currentMembers, item.uuid] });
-        } else if (item instanceof DHItem) {
-            this.document.createEmbeddedDocuments('Item', [item.toObject()]);
+            await this.document.update({ 'system.partyMembers': [...currentMembers, document.uuid] });
+        } else if (document instanceof DHItem) {
+            this.document.createEmbeddedDocuments('Item', [document.toObject()]);
         } else {
             ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.onlyCharactersInPartySheet'));
         }

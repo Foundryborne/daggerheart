@@ -1547,3 +1547,8 @@ export const beastformTypes = {
         label: 'DAGGERHEART.CONFIG.BeastformType.hybrid'
     }
 };
+
+export const originItemType = {
+    itemCollection: 'itemCollection',
+    restMove: 'restMove'
+};
