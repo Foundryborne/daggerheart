@@ -61,11 +61,12 @@ export default class BeastformEffect extends BaseEffect {
                 ...baseUpdate,
                 'texture': {
                     enabled: this.characterTokenData.usesDynamicToken,
-                    src: token.flags.daggerheart.beastformTokenImg
+                    src: token.flags.daggerheart?.beastformTokenImg ?? this.characterTokenData.tokenImg
                 },
                 'ring': {
                     subject: {
-                        texture: token.flags.daggerheart.beastformSubjectTexture
+                        texture:
+                            token.flags.daggerheart?.beastformSubjectTexture ?? this.characterTokenData.tokenRingImg
                     }
                 },
                 'flags.daggerheart': { '-=beastformTokenImg': null, '-=beastformSubjectTexture': null }
