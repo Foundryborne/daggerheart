@@ -141,8 +141,8 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 ...actionType,
                 _id: foundry.utils.randomID(),
                 name: game.i18n.localize(actionType.name),
-                itemSource: {
-                    type: CONFIG.DH.ITEM.itemSourceType.restMove,
+                originItem: {
+                    type: CONFIG.DH.ITEM.originItemType.restMove,
                     itemPath: movePath,
                     actionIndex: actionIndex
                 }

@@ -1,7 +1,7 @@
 import DhpActor from '../../documents/actor.mjs';
 import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
 import { ActionMixin } from '../fields/actionField.mjs';
-import { itemSourceField } from '../chat-message/actorRoll.mjs';
+import { originItemField } from '../chat-message/actorRoll.mjs';
 
 const fields = foundry.data.fields;
 
@@ -26,7 +26,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             description: new fields.HTMLField(),
             img: new fields.FilePathField({ initial: undefined, categories: ['IMAGE'], base64: false }),
             chatDisplay: new fields.BooleanField({ initial: true, label: 'DAGGERHEART.ACTIONS.Config.displayInChat' }),
-            itemSource: itemSourceField(),
+            originItem: originItemField(),
             actionType: new fields.StringField({
                 choices: CONFIG.DH.ITEM.actionTypes,
                 initial: 'action',
@@ -217,7 +217,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             title: `${this.item instanceof CONFIG.Actor.documentClass ? '' : `${this.item.name}: `}${game.i18n.localize(this.name)}`,
             source: {
                 item: this.item._id,
-                itemSource: this.itemSource,
+                originItem: this.originItem,
                 action: this._id,
                 actor: this.actor.uuid
             },

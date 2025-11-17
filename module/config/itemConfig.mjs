@@ -1548,7 +1548,7 @@ export const beastformTypes = {
     }
 };
 
-export const itemSourceType = {
+export const originItemType = {
     itemCollection: 'itemCollection',
     restMove: 'restMove'
 };

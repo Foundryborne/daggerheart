@@ -17,11 +17,11 @@ const targetsField = () =>
         })
     );
 
-export const itemSourceField = () =>
+export const originItemField = () =>
     new fields.SchemaField({
         type: new fields.StringField({
-            choices: CONFIG.DH.ITEM.itemSourceType,
-            initial: CONFIG.DH.ITEM.itemSourceType.itemCollection
+            choices: CONFIG.DH.ITEM.originItemType,
+            initial: CONFIG.DH.ITEM.originItemType.itemCollection
         }),
         itemPath: new fields.StringField(),
         actionIndex: new fields.StringField()
@@ -45,7 +45,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             source: new fields.SchemaField({
                 actor: new fields.StringField(),
                 item: new fields.StringField(),
-                itemSource: itemSourceField(),
+                originItem: originItemField(),
                 action: new fields.StringField()
             }),
             damage: new fields.ObjectField(),
@@ -59,15 +59,15 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         return fromUuidSync(this.source.actor);
     }
 
-    get itemAction() {
+    get actionItem() {
         const actionActor = this.actionActor;
         if (!actionActor || !this.source.item) return null;
 
-        switch (this.source.itemSource.type) {
-            case CONFIG.DH.ITEM.itemSourceType.restMove:
+        switch (this.source.originItem.type) {
+            case CONFIG.DH.ITEM.originItemType.restMove:
                 const restMoves = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).restMoves;
-                return Array.from(foundry.utils.getProperty(restMoves, `${this.source.itemSource.itemPath}`).actions)[
-                    this.source.itemSource.actionIndex
+                return Array.from(foundry.utils.getProperty(restMoves, `${this.source.originItem.itemPath}`).actions)[
+                    this.source.originItem.actionIndex
                 ];
             default:
                 const item = actionActor.items.get(this.source.item);
@@ -76,8 +76,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     }
 
     get action() {
-        const actionActor = this.actionActor,
-            itemAction = this.itemAction;
+        const { actionActor, actionItem: itemAction } = this;
         if (!this.source.action) return null;
         if (itemAction) return itemAction;
         else if (actionActor?.system.attack?._id === this.source.action) return actionActor.system.attack;

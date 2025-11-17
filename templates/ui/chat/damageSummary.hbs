@@ -1,6 +1,6 @@
 <ul class="daggerheart chat damage-summary">
     {{#each targets}}
-        <li class="token-target-container" data-token="{{this.token.id}}">
+        <li class="token-target-container {{#if this.token.id}}clickable{{/if}}" data-token="{{this.token.id}}">
             <header>
                 <img src="{{this.token.texture.src}}" />
                 <h2 class="actor-name">{{this.token.name}}</h2>

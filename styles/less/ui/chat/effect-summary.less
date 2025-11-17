@@ -90,11 +90,14 @@
         background: transparent;
         transition: all 0.3s ease;
         padding: 5px;
-        cursor: pointer;
         transition: all 0.3s ease;
 
-        &:hover {
-            background: @golden-10;
+        &.clickable {
+            cursor: pointer;
+
+            &:hover {
+                background: @golden-10;
+            }
         }
 
         img {
