@@ -673,11 +673,11 @@ export const simpleOwnershiplevels = {
 export const countdownBaseTypes = {
     narrative: {
         id: 'narrative',
-        name: 'DAGGERHEART.APPLICATIONS.Countdown.types.narrative'
+        label: 'DAGGERHEART.APPLICATIONS.Countdown.types.narrative'
     },
     encounter: {
         id: 'encounter',
-        name: 'DAGGERHEART.APPLICATIONS.Countdown.types.encounter'
+        label: 'DAGGERHEART.APPLICATIONS.Countdown.types.encounter'
     }
 };
 

@@ -5,6 +5,12 @@ export const actionTypes = {
         icon: 'fa-khanda',
         tooltip: 'DAGGERHEART.ACTIONS.TYPES.attack.tooltip'
     },
+    countdown: {
+        id: 'countdown',
+        name: 'DAGGERHEART.ACTIONS.TYPES.countdown.name',
+        icon: 'fa-hourglass-half',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.countdown.tooltip'
+    },
     healing: {
         id: 'healing',
         name: 'DAGGERHEART.ACTIONS.TYPES.healing.name',

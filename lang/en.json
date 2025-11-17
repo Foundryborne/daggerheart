@@ -46,6 +46,10 @@
                     "name": "Beastform",
                     "tooltip": "Shapeshift the user into another form."
                 },
+                "countdown": {
+                    "name": "Countdown",
+                    "tooltip": "Start a countdown"
+                },
                 "damage": {
                     "name": "Damage",
                     "tooltip": "Direct damage without a roll."
@@ -72,6 +76,9 @@
                     "exact": "Beastform Max Tier",
                     "exactHint": "The Character's Tier is used if empty",
                     "label": "Beastform"
+                },
+                "countdown": {
+                    "defaultOwnership": "Default Ownership"
                 },
                 "damage": {
                     "multiplier": "Multiplier",

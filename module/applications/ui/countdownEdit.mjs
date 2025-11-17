@@ -50,7 +50,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
             const countdown = this.data.countdowns[key];
             acc[key] = {
                 ...countdown,
-                typeName: game.i18n.localize(CONFIG.DH.GENERAL.countdownBaseTypes[countdown.type].name),
+                typeName: game.i18n.localize(CONFIG.DH.GENERAL.countdownBaseTypes[countdown.type].label),
                 progress: {
                     ...countdown.progress,
                     typeName: game.i18n.localize(CONFIG.DH.GENERAL.countdownTypes[countdown.progress.type].label)
