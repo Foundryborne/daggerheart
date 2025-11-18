@@ -187,36 +187,14 @@
       "name": "Siege Weapons (Environment Change)",
       "type": "feature",
       "system": {
-        "description": "<p>Consequence Countdown (6). The attacking force deploys siege weapons to try to raze the defenders’ fortifi cations. Activate the countdown when the siege begins (for a protracted siege, make this a long-term countdown instead). When it triggers, the defenders’ fortifi cations have been breached and the attackers fl ood inside. You gain 2 Fear, then shift to the Pitched Battle environment and spotlight it. </p><section id=\"secret-P5oJplxVBVJGtggb\" class=\"secret\"><p><em>What siege weapons are being deployed? Are they magical mundane or a mixture of both? What defenses must the characters overcome to storm the castle?</em></p></section>",
+        "description": "<p><em>Consequence Countdown (6)</em>. The attacking force deploys siege weapons to try to raze the defenders’ fortifi cations. Activate the countdown when the siege begins (for a protracted siege, make this a long-term countdown instead). When it triggers, the defenders’ fortifications have been breached and the attackers fl ood inside. You gain 2 Fear, then shift to the Pitched Battle environment and spotlight it.</p><section class=\"secret\" id=\"secret-P5oJplxVBVJGtggb\"><p><em>What siege weapons are being deployed? Are they magical mundane or a mixture of both? What defenses must the characters overcome to storm the castle?</em></p></section>",
         "resource": null,
         "actions": {
-          "F89TDp557TJ1vvgm": {
-            "type": "effect",
-            "_id": "F89TDp557TJ1vvgm",
-            "systemPath": "actions",
-            "description": "<p>Consequence Countdown (6). The attacking force deploys siege weapons to try to raze the defenders’ fortifi cations. Activate the countdown when the siege begins (for a protracted siege, make this a long-term countdown instead).</p><section class=\"secret\" id=\"secret-rgITC5rHTbEfm5Q2\"><p><em>What siege weapons are being deployed? Are they magical mundane or a mixture of both? What defenses must the characters overcome to storm the castle?</em></p></section>",
-            "chatDisplay": true,
-            "actionType": "action",
-            "cost": [],
-            "uses": {
-              "value": null,
-              "max": "",
-              "recovery": null
-            },
-            "effects": [],
-            "target": {
-              "type": "any",
-              "amount": null
-            },
-            "name": "Countdown",
-            "img": "icons/weapons/artillery/catapult-simple.webp",
-            "range": ""
-          },
           "TGWI1Kvw4ZEP3QEo": {
             "type": "healing",
             "_id": "TGWI1Kvw4ZEP3QEo",
             "systemPath": "actions",
-            "description": "<p>When the cooldown triggers, the defenders’ fortifications have been breached and the attackers flood inside. You gain 2 Fear, then shift to the Pitched Battle environment and spotlight it.</p>",
+            "description": "<p>The defenders’ fortifications have been breached and the attackers flood inside. You gain 2 Fear, then shift to the Pitched Battle environment and spotlight it.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -278,6 +256,42 @@
             "name": "Gain Fear",
             "img": "icons/weapons/artillery/catapult-simple.webp",
             "range": ""
+          },
+          "udKS3ME8VKuayEyO": {
+            "type": "countdown",
+            "_id": "udKS3ME8VKuayEyO",
+            "systemPath": "actions",
+            "description": "<p><em>Consequence Countdown (6)</em>. The attacking force deploys siege weapons to try to raze the defenders’ fortifications. Activate the countdown when the siege begins (for a protracted siege, make this a long-term countdown instead). </p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "reaction",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "countdown": [
+              {
+                "name": "Siege Weapons (Environment Change)",
+                "type": "encounter",
+                "defaultOwnership": -1,
+                "img": "icons/weapons/artillery/catapult-simple.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "max": "6",
+                  "current": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "name": "Start Countdown",
+            "img": "icons/weapons/artillery/catapult-simple.webp",
+            "range": ""
           }
         },
         "originItemType": null,
@@ -297,12 +311,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.2.3",
         "createdTime": 1754218202018,
-        "modifiedTime": 1754218357097,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1763493953316,
+        "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!1eZ32Esq7rfZOjlu.eSTq8Y0v4Dwd13XU"
     },

@@ -338,35 +338,124 @@
       "name": "Casus Belli",
       "type": "feature",
       "system": {
-        "description": "<p>Long-Term Countdown (8). <strong>Spend a Fear</strong> to activate after the Monarch’s desire for war is first revealed. When it triggers, the Monarch has a reason to rally the nation to war and the support to act on that reason. You gain [[/r 1d4]]<strong> </strong>Fear.</p>",
+        "description": "<p><em>Long-Term Countdown (8)</em>. <strong>Spend a Fear</strong> to activate after the Monarch’s desire for war is first revealed. When it triggers, the Monarch has a reason to rally the nation to war and the support to act on that reason. You gain [[/r 1d4]]<strong> </strong>Fear.</p>",
         "resource": null,
         "actions": {
-          "X01RPfbvh3DUWcQY": {
-            "type": "effect",
-            "_id": "X01RPfbvh3DUWcQY",
+          "CNEOOdPI4xVJ2JeP": {
+            "type": "countdown",
+            "_id": "CNEOOdPI4xVJ2JeP",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><em>Long-Term Countdown (8)</em>. <strong>Spend a Fear</strong> to activate after the Monarch’s desire for war is first revealed.</p>",
             "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
             "actionType": "action",
             "cost": [
               {
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "step": null
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
-            "effects": [],
+            "countdown": [
+              {
+                "name": "Casus Belli",
+                "type": "narrative",
+                "defaultOwnership": -1,
+                "img": "icons/sundries/scrolls/scroll-bound-sealed-red-tan.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "max": "8",
+                  "current": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "name": "Start Countdown",
+            "img": "icons/sundries/scrolls/scroll-bound-sealed-red-tan.webp",
+            "range": ""
+          },
+          "QnZoH9LjJvKl5YcF": {
+            "type": "healing",
+            "_id": "QnZoH9LjJvKl5YcF",
+            "systemPath": "actions",
+            "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\">The Monarch has a reason to rally the nation to war and the support to act on that reason. You gain </span><span class=\"inline-roll roll\" data-mode=\"roll\" data-flavor=\"\" data-formula=\"1d4\" data-tooltip-text=\"1d4\" style=\"box-sizing: border-box; cursor: pointer; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(11, 10, 19, 0.9); border-color: rgb(129, 107, 102); border-style: solid; border-width: 0.8px; border-image: none 100% / 1 / 0 stretch; border-radius: 2px; color: rgb(239, 230, 216); margin: -1px 0px; padding: 1px 4px 0px; white-space: nowrap; word-break: break-all; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\">1d4</span><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\"> </span><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\">Fear.</span></p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d4",
+                    "bonus": null,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "fear",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false,
+              "direct": false
+            },
             "target": {
               "type": "any",
               "amount": null
             },
-            "name": "Spend Fear",
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "name": "Gain Fear",
             "img": "icons/sundries/scrolls/scroll-bound-sealed-red-tan.webp",
             "range": ""
           }
@@ -388,12 +477,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.2.3",
         "createdTime": 1754130006163,
-        "modifiedTime": 1754130085276,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1763489308958,
+        "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!yx0vK2yfNVZKWUUi.kA5NZTdiknsh7wxp"
     }

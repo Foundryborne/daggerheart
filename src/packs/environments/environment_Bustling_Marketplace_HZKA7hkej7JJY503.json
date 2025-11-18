@@ -216,7 +216,7 @@
       "name": "Sticky Fingers",
       "type": "feature",
       "system": {
-        "description": "<p>A thief tries to steal something from a PC. The PC must succeed on an Instinct Roll to notice the thief or lose an item of the GM’s choice as the thief escapes to a Close distance. To retrieve the stolen item, the PCs must complete a Progress Countdown (6) to chase down the thief before the thief completes a Consequence Countdown (4) and escapes to their hideout.</p><section id=\"secret-UHBqg2AqmIAxgB15\" class=\"secret\"><p><em>What drove this person to pickpocketing? Where is the thief’s hideout and how has it avoided notice?</em></p></section>",
+        "description": "<p>A thief tries to steal something from a PC. The PC must succeed on an Instinct Roll to notice the thief or lose an item of the GM’s choice as the thief escapes to a Close distance. To retrieve the stolen item, the PCs must complete a <em>Progress Countdown (6)</em> to chase down the thief before the thief completes a <em>Consequence Countdown (4)</em> and escapes to their hideout.</p><section class=\"secret\" id=\"secret-UHBqg2AqmIAxgB15\"><p><em>What drove this person to pickpocketing? Where is the thief’s hideout and how has it avoided notice?</em></p></section>",
         "resource": null,
         "actions": {
           "GMy6OcMQnNJDDmtV": {
@@ -265,26 +265,53 @@
             "img": "icons/skills/social/theft-pickpocket-bribery-brown.webp",
             "range": ""
           },
-          "0V36HDEb9gpLubGL": {
-            "type": "effect",
-            "_id": "0V36HDEb9gpLubGL",
+          "L2TFexCvxvuCOCXe": {
+            "type": "countdown",
+            "_id": "L2TFexCvxvuCOCXe",
             "systemPath": "actions",
-            "description": "<p>To retrieve the stolen item, the PCs must complete a Progress Countdown (6) to chase down the thief before the thief completes a Consequence Countdown (4) and escapes to their hideout.</p>",
-            "chatDisplay": true,
+            "description": "",
+            "chatDisplay": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
             "actionType": "action",
             "cost": [],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
-            "effects": [],
-            "target": {
-              "type": "any",
-              "amount": null
-            },
-            "name": "Countdowns",
-            "img": "icons/magic/time/hourglass-tilted-glowing-gold.webp",
+            "countdown": [
+              {
+                "name": "Chase Thief",
+                "type": "encounter",
+                "defaultOwnership": -1,
+                "img": "icons/skills/movement/feet-winged-boots-brown.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "max": "6",
+                  "current": 1
+                },
+                "ownership": {}
+              },
+              {
+                "name": "Escape To Hideout",
+                "type": "encounter",
+                "defaultOwnership": -1,
+                "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "max": "4",
+                  "current": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "name": "Start Countdowns",
+            "img": "icons/skills/social/theft-pickpocket-bribery-brown.webp",
             "range": ""
           }
         },
@@ -305,12 +332,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.2.3",
         "createdTime": 1754211683813,
-        "modifiedTime": 1754211879643,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1763493014349,
+        "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!HZKA7hkej7JJY503.56qjiKMoN6S9riI6"
     },

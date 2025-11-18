@@ -323,28 +323,51 @@
       "name": "Apocalypse Then",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to manifest the echo of a past disaster that ravaged the city. Activate a Progress Countdown (5) as the disaster replays around the PCs. To complete the countdown and escape the catastrophe, the PCs must overcome threats such as rampaging fires, stampeding civilians, collapsing buildings, or crumbling streets, while recalling history and finding clues to escape the inevitable. </p><section id=\"secret-3MamLVZP4l2SxHzO\" class=\"secret\"><p><em>Is this the disaster that led the city to be abandoned? What is known about this disaster and how could that help the PCs escape?</em></p></section>",
+        "description": "<p><strong>Spend a Fear</strong> to manifest the echo of a past disaster that ravaged the city. Activate a <em>Progress Countdown (5)</em> as the disaster replays around the PCs. To complete the countdown and escape the catastrophe, the PCs must overcome threats such as rampaging fires, stampeding civilians, collapsing buildings, or crumbling streets, while recalling history and finding clues to escape the inevitable.</p><section class=\"secret\" id=\"secret-3MamLVZP4l2SxHzO\"><p><em>Is this the disaster that led the city to be abandoned? What is known about this disaster and how could that help the PCs escape?</em></p></section>",
         "resource": null,
         "actions": {
-          "7H16PYHHgK0Z34NU": {
-            "type": "effect",
-            "_id": "7H16PYHHgK0Z34NU",
+          "VhqZKDA4032i8zY3": {
+            "type": "countdown",
+            "_id": "VhqZKDA4032i8zY3",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to manifest the echo of a past disaster that ravaged the city. Activate a Progress Countdown (5) as the disaster replays around the PCs. </p>",
+            "description": "<p><strong>Spend a Fear</strong> to manifest the echo of a past disaster that ravaged the city. Activate a <em>Progress Countdown (5)</em> as the disaster replays around the PCs. To complete the countdown and escape the catastrophe, the PCs must overcome threats such as rampaging fires, stampeding civilians, collapsing buildings, or crumbling streets, while recalling history and finding clues to escape the inevitable.</p><section class=\"secret\" id=\"secret-2Ou4kbqfCwCgsG5X\"><p><em>Is this the disaster that led the city to be abandoned? What is known about this disaster and how could that help the PCs escape?</em></p></section>",
             "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
             "actionType": "action",
-            "cost": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
-            "effects": [],
-            "target": {
-              "type": "any",
-              "amount": null
-            },
-            "name": "Countdown",
+            "countdown": [
+              {
+                "name": "Apocalypse Then",
+                "type": "encounter",
+                "defaultOwnership": -1,
+                "img": "icons/magic/death/skull-weapon-staff-glow-pink.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "max": "5",
+                  "current": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "name": "Start Countdown",
             "img": "icons/magic/death/skull-weapon-staff-glow-pink.webp",
             "range": ""
           }
@@ -366,12 +389,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.2.3",
         "createdTime": 1754216782337,
-        "modifiedTime": 1754216854366,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1763493696142,
+        "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!OzYbizKraK92FDiI.i0FV2Djaq0vB57cq"
     }

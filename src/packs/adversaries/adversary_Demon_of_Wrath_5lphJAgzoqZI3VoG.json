@@ -447,9 +447,72 @@
       "name": "Blood and Souls",
       "type": "feature",
       "system": {
-        "description": "<p>Countdown (Loop 6). Activate the first time an attack is made within sight of the Demon. It ticks down when a PC takes a violent action. When it triggers, summon [[/r 1d4]]@UUID[Compendium.daggerheart.adversaries.Actor.3tqCjDwJAQ7JKqMb]{Minor Demons}, who appear at Close range.</p>",
+        "description": "<p><em>Countdown (Loop 6)</em>. Activate the first time an attack is made within sight of the Demon. It ticks down when a PC takes a violent action. When it triggers, summon [[/r 1d4]]@UUID[Compendium.daggerheart.adversaries.Actor.3tqCjDwJAQ7JKqMb]{Minor Demons}, who appear at Close range.</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "szg3qA09aJUt9WKS": {
+            "type": "countdown",
+            "_id": "szg3qA09aJUt9WKS",
+            "systemPath": "actions",
+            "description": "<p><em>Countdown (Loop 6)</em>. Activate the first time an attack is made within sight of the Demon. It ticks down when a PC takes a violent action.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "reaction",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "countdown": [
+              {
+                "name": "Blood and Souls",
+                "type": "encounter",
+                "defaultOwnership": -1,
+                "img": "icons/creatures/unholy/demon-fire-horned-clawed.webp",
+                "progress": {
+                  "looping": "looping",
+                  "type": "custom",
+                  "max": "6",
+                  "current": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "name": "Countdown",
+            "img": "icons/creatures/unholy/demon-fire-horned-clawed.webp",
+            "range": ""
+          },
+          "7G6uWlFEeOLsJIWY": {
+            "type": "effect",
+            "_id": "7G6uWlFEeOLsJIWY",
+            "systemPath": "actions",
+            "description": "<p>Summon [[/r 1d4]]@UUID[Compendium.daggerheart.adversaries.Actor.3tqCjDwJAQ7JKqMb]{Minor Demons}, who appear at Close range.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Summon",
+            "img": "icons/creatures/unholy/demon-fire-horned-clawed.webp",
+            "range": ""
+          }
+        },
         "originItemType": null,
         "originId": null
       },
@@ -467,12 +530,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.2.3",
         "createdTime": 1754126056313,
-        "modifiedTime": 1754126142902,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1763488897395,
+        "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!5lphJAgzoqZI3VoG.2F75BO0xEU8Zlj7T"
     }

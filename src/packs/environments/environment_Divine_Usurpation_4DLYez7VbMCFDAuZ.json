@@ -146,36 +146,14 @@
       "name": "Final Preparations",
       "type": "feature",
       "system": {
-        "description": "<p>When the environment first takes the spotlight, designate one adversary as the Usurper seeking to overthrow the gods. Activate a Long-Term Countdown (8) as the Usurper assembles what they need to conduct the ritual. When it triggers, spotlight this environment to use the “Beginning of the End” feature. While this environment remains in play, you can hold up to 15 Fear. </p><section id=\"secret-5ezbFLP3BnyqQPov\" class=\"secret\"><p><em>What does the Usurper still require: The heart of a High Seraph? The lodestone of an ancient waygate? The loyalty of two archenemies? The heartbroken tears of a pure soul?</em></p></section>",
+        "description": "<p>When the environment first takes the spotlight, designate one adversary as the Usurper seeking to overthrow the gods. Activate a Long-Term <em>Countdown (8)</em> as the Usurper assembles what they need to conduct the ritual. When it triggers, spotlight this environment to use the “Beginning of the End” feature. While this environment remains in play, you can hold up to 15 Fear.</p><section class=\"secret\" id=\"secret-5ezbFLP3BnyqQPov\"><p><em>What does the Usurper still require: The heart of a High Seraph? The lodestone of an ancient waygate? The loyalty of two archenemies? The heartbroken tears of a pure soul?</em></p></section>",
         "resource": null,
         "actions": {
-          "pnAJNmZApL1Acsj1": {
-            "type": "effect",
-            "_id": "pnAJNmZApL1Acsj1",
-            "systemPath": "actions",
-            "description": "<p>When the environment first takes the spotlight, designate one adversary as the Usurper seeking to overthrow the gods. Activate a Long-Term Countdown (8) as the Usurper assembles what they need to conduct the ritual. While this environment remains in play, you can hold up to 15 Fear.</p><section class=\"secret\" id=\"secret-Ilu20TRkfslT2a3K\"><p><em>What does the Usurper still require: The heart of a High Seraph? The lodestone of an ancient waygate? The loyalty of two archenemies? The heartbroken tears of a pure soul?</em></p></section>",
-            "chatDisplay": true,
-            "actionType": "action",
-            "cost": [],
-            "uses": {
-              "value": null,
-              "max": "",
-              "recovery": null
-            },
-            "effects": [],
-            "target": {
-              "type": "any",
-              "amount": null
-            },
-            "name": "Countdown",
-            "img": "icons/magic/unholy/hands-circle-light-green.webp",
-            "range": ""
-          },
           "UMGyEHdQhYXyGEss": {
             "type": "effect",
             "_id": "UMGyEHdQhYXyGEss",
             "systemPath": "actions",
-            "description": "<p>When the countdown triggers, spotlight this environment to use the “Beginning of the End” feature.</p><section class=\"secret\" id=\"secret-InHMXWLy76neQv3c\"><p><em>What does the Usurper still require: The heart of a High Seraph? The lodestone of an ancient waygate? The loyalty of two archenemies? The heartbroken tears of a pure soul?</em></p></section>",
+            "description": "<p>Spotlight this environment to use the “Beginning of the End” feature.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -190,6 +168,42 @@
               "amount": null
             },
             "name": "Trigger Countdown",
+            "img": "icons/magic/unholy/hands-circle-light-green.webp",
+            "range": ""
+          },
+          "uJSaDLFcrtvIPFaD": {
+            "type": "countdown",
+            "_id": "uJSaDLFcrtvIPFaD",
+            "systemPath": "actions",
+            "description": "<p>When the environment first takes the spotlight, designate one adversary as the Usurper seeking to overthrow the gods. Activate a Long-Term <em>Countdown (8)</em> as the Usurper assembles what they need to conduct the ritual.</p><section class=\"secret\" id=\"secret-FyeeA41DYc7DdjY7\"><p><em>What does the Usurper still require: The heart of a High Seraph? The lodestone of an ancient waygate? The loyalty of two archenemies? The heartbroken tears of a pure soul?</em></p></section>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "reaction",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "countdown": [
+              {
+                "name": "Final Preparations",
+                "type": "encounter",
+                "defaultOwnership": -1,
+                "img": "icons/magic/unholy/hands-circle-light-green.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "max": "8",
+                  "current": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "name": "Start Countdown",
             "img": "icons/magic/unholy/hands-circle-light-green.webp",
             "range": ""
           }
@@ -211,12 +225,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.2.3",
         "createdTime": 1754219653852,
-        "modifiedTime": 1754219787730,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1763494304225,
+        "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!4DLYez7VbMCFDAuZ.IHLJjpOQyWjmCLAL"
     },
@@ -542,36 +556,14 @@
       "name": "Beginning of the End",
       "type": "feature",
       "system": {
-        "description": "<p>When the “Final Preparations” long-term countdown triggers, the Usurper begins hammering on the gates of the Hallows themselves. Activate a Divine Siege Countdown (10). Spotlight the Usurper to describe the Usurper’s assault and tick down this countdown by 1. If the Usurper takes Major or greater damage, tick up the countdown by 1. When it triggers, the Usurper shatters the barrier between the Mortal Realm and the Hallows Above to slay the gods and take their place. You gain a Fear for each unmarked HP the Usurper has. You can immediately use the “Godslayer” feature without spending Fear to make an additional GM move. </p><section id=\"secret-eVeMBBA7aAZgn9FO\" class=\"secret\"><p><em>How does the Mortal Realm writhe as the natural order is violated? What mortals witness this blasphemy from afar?</em></p></section>",
+        "description": "<p>When the “Final Preparations” long-term countdown triggers, the Usurper begins hammering on the gates of the Hallows themselves. Activate a Divine Siege <em>Countdown (10)</em>. Spotlight the Usurper to describe the Usurper’s assault and tick down this countdown by 1. If the Usurper takes Major or greater damage, tick up the countdown by 1. When it triggers, the Usurper shatters the barrier between the Mortal Realm and the Hallows Above to slay the gods and take their place. You gain a Fear for each unmarked HP the Usurper has. You can immediately use the “Godslayer” feature without spending Fear to make an additional GM move.</p><section class=\"secret\" id=\"secret-eVeMBBA7aAZgn9FO\"><p><em>How does the Mortal Realm writhe as the natural order is violated? What mortals witness this blasphemy from afar?</em></p></section>",
         "resource": null,
         "actions": {
-          "lUTJqI8Z9AR7t4B2": {
-            "type": "effect",
-            "_id": "lUTJqI8Z9AR7t4B2",
-            "systemPath": "actions",
-            "description": "<p>When the “Final Preparations” long-term countdown triggers, the Usurper begins hammering on the gates of the Hallows themselves. Activate a Divine Siege Countdown (10).</p><section class=\"secret\" id=\"secret-OqCr3uNWn5xOHis0\"><p><em>How does the Mortal Realm writhe as the natural order is violated? What mortals witness this blasphemy from afar?</em></p></section>",
-            "chatDisplay": true,
-            "actionType": "action",
-            "cost": [],
-            "uses": {
-              "value": null,
-              "max": "",
-              "recovery": null
-            },
-            "effects": [],
-            "target": {
-              "type": "any",
-              "amount": null
-            },
-            "name": "Countdown",
-            "img": "icons/magic/unholy/silhouette-robe-evil-glow.webp",
-            "range": ""
-          },
           "N83u4SKOlCfLvdYI": {
             "type": "effect",
             "_id": "N83u4SKOlCfLvdYI",
             "systemPath": "actions",
-            "description": "<p>Spotlight the Usurper to describe the Usurper’s assault and tick down the countdown by 1. </p><section class=\"secret\" id=\"secret-5Nggk3PogQYR7pTg\"><p><em>How does the Mortal Realm writhe as the natural order is violated? What mortals witness this blasphemy from afar?</em></p></section>",
+            "description": "<p>The Usurper shatters the barrier between the Mortal Realm and the Hallows Above to slay the gods and take their place. You gain a Fear for each unmarked HP the Usurper has. You can immediately use the “Godslayer” feature without spending Fear to make an additional GM move.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -585,7 +577,43 @@
               "type": "any",
               "amount": null
             },
-            "name": "Spotlight Usurper",
+            "name": "Trigger Countdown",
+            "img": "icons/magic/unholy/silhouette-robe-evil-glow.webp",
+            "range": ""
+          },
+          "KNWpWnJboRIaZ3Yu": {
+            "type": "countdown",
+            "_id": "KNWpWnJboRIaZ3Yu",
+            "systemPath": "actions",
+            "description": "<p>When the “Final Preparations” long-term countdown triggers, the Usurper begins hammering on the gates of the Hallows themselves. Activate a Divine Siege <em>Countdown (10)</em>. Spotlight the Usurper to describe the Usurper’s assault and tick down this countdown by 1. If the Usurper takes Major or greater damage, tick up the countdown by 1.</p><section class=\"secret\" id=\"secret-u7mt9OivMXWU5s3S\"><p><em>How does the Mortal Realm writhe as the natural order is violated? What mortals witness this blasphemy from afar?</em></p></section>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "countdown": [
+              {
+                "name": "Beginning of the End",
+                "type": "encounter",
+                "defaultOwnership": -1,
+                "img": "icons/magic/unholy/silhouette-robe-evil-glow.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "max": "10",
+                  "current": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "name": "Countdown",
             "img": "icons/magic/unholy/silhouette-robe-evil-glow.webp",
             "range": ""
           }
@@ -607,12 +635,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.2.3",
         "createdTime": 1754220141696,
-        "modifiedTime": 1754220317609,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1763494458041,
+        "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!4DLYez7VbMCFDAuZ.AJdG1krRvixBFCZG"
     },

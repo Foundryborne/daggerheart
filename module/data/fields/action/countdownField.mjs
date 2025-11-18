@@ -39,21 +39,18 @@ export default class CountdownField extends fields.ArrayField {
             return;
         }
 
-        const data = await config.countdowns.reduce(
-            async (acc, curr) => {
-                const { total: max } = await new Roll(curr.progress.max).evaluate();
-                acc.countdowns[foundry.utils.randomID()] = {
-                    ...curr,
-                    progress: {
-                        ...curr.progress,
-                        current: max,
-                        max: max
-                    }
-                };
-                return acc;
-            },
-            { countdowns: {} }
-        );
+        const data = { countdowns: {} };
+        for (let countdown of config.countdowns) {
+            const { total: max } = await new Roll(countdown.progress.max).evaluate();
+            data.countdowns[foundry.utils.randomID()] = {
+                ...countdown,
+                progress: {
+                    ...countdown.progress,
+                    current: max,
+                    max: max
+                }
+            };
+        }
 
         await emitAsGM(
             GMUpdateEvent.UpdateCountdowns,
