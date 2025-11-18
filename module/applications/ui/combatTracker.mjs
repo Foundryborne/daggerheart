@@ -136,7 +136,7 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
 
         if (this.viewed.turn !== toggleTurn) {
             const { updateCountdowns } = game.system.api.applications.ui.DhCountdowns;
-            await updateCountdowns(CONFIG.DH.GENERAL.countdownTypes.spotlight.id);
+            await updateCountdowns(CONFIG.DH.GENERAL.countdownProgressionTypes.spotlight.id);
 
             const autoPoints = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).actionPoints;
             if (autoPoints) {

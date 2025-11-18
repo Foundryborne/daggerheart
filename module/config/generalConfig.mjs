@@ -611,7 +611,7 @@ export const abilityCosts = {
     resource: itemAbilityCosts.resource
 };
 
-export const countdownTypes = {
+export const countdownProgressionTypes = {
     spotlight: {
         id: 'spotlight',
         label: 'DAGGERHEART.CONFIG.CountdownType.spotlight'
@@ -678,6 +678,25 @@ export const countdownBaseTypes = {
     encounter: {
         id: 'encounter',
         label: 'DAGGERHEART.APPLICATIONS.Countdown.types.encounter'
+    }
+};
+
+export const countdownLoopingTypes = {
+    noLooping: {
+        id: 'noLooping',
+        label: 'DAGGERHEART.APPLICATIONS.Countdown.loopingTypes.noLooping'
+    },
+    looping: {
+        id: 'looping',
+        label: 'DAGGERHEART.APPLICATIONS.Countdown.loopingTypes.looping'
+    },
+    increasing: {
+        id: 'increasing',
+        label: 'DAGGERHEART.APPLICATIONS.Countdown.loopingTypes.increasing'
+    },
+    decreasing: {
+        id: 'decreasing',
+        label: 'DAGGERHEART.APPLICATIONS.Countdown.loopingTypes.decreasing'
     }
 };
 

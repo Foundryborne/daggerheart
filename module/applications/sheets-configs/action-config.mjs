@@ -267,4 +267,9 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         const id = event.target.closest('[data-effect-id]')?.dataset?.effectId;
         this.action.item.effects.get(id).sheet.render(true);
     }
+
+    async close(options) {
+        this.tabGroups.primary = 'base';
+        await super.close(options);
+    }
 }

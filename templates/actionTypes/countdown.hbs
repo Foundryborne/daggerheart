@@ -14,6 +14,7 @@
         </div>
         {{formField ../fields.img value=countdown.img name=(concat "countdown." index ".img") label="DAGGERHEART.GENERAL.imagePath" localize=true}}
         <div class="nest-inputs">
+            {{formField ../fields.progress.fields.looping value=countdown.progress.looping name=(concat "countdown." index ".progress.looping") localize=true}}
             {{formField ../fields.progress.fields.type value=countdown.progress.type name=(concat "countdown." index ".progress.type") localize=true}}
             {{formField ../fields.progress.fields.max value=countdown.progress.max name=(concat "countdown." index ".progress.max") localize=true}}
         </div>

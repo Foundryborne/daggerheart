@@ -105,8 +105,8 @@ class DhOldCountdown extends foundry.abstract.DataModel {
                 type: new fields.SchemaField({
                     value: new fields.StringField({
                         required: true,
-                        choices: CONFIG.DH.GENERAL.countdownTypes,
-                        initial: CONFIG.DH.GENERAL.countdownTypes.custom.id,
+                        choices: CONFIG.DH.GENERAL.countdownProgressionTypes,
+                        initial: CONFIG.DH.GENERAL.countdownProgressionTypes.custom.id,
                         label: 'DAGGERHEART.GENERAL.type'
                     }),
                     label: new fields.StringField({
@@ -171,10 +171,16 @@ export class DhCountdown extends foundry.abstract.DataModel {
                     initial: 1,
                     label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.progress.max.label'
                 }),
+                looping: new fields.StringField({
+                    required: true,
+                    choices: CONFIG.DH.GENERAL.countdownLoopingTypes,
+                    initial: CONFIG.DH.GENERAL.countdownLoopingTypes.noLooping.id,
+                    label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.progress.looping.label'
+                }),
                 type: new fields.StringField({
                     required: true,
-                    choices: CONFIG.DH.GENERAL.countdownTypes,
-                    initial: CONFIG.DH.GENERAL.countdownTypes.custom.id,
+                    choices: CONFIG.DH.GENERAL.countdownProgressionTypes,
+                    initial: CONFIG.DH.GENERAL.countdownProgressionTypes.custom.id,
                     label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.type.label'
                 })
             })

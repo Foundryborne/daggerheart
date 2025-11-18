@@ -328,19 +328,26 @@
             },
             "Countdown": {
                 "addCountdown": "Add Countdown",
+                "loopingTypes": {
+                    "noLooping": "No Looping",
+                    "looping": "Looping",
+                    "increasing": "Increasing",
+                    "decreasing": "Decreasing"
+                },
                 "FIELDS": {
                     "countdowns": {
                         "element": {
                             "name": { "label": "Name" },
                             "progress": {
                                 "current": { "label": "Current" },
+                                "looping": { "label": "Looping" },
                                 "max": { "label": "Max" },
                                 "type": {
                                     "label": { "label": "Label", "hint": "Used for custom" },
                                     "value": { "label": "Value" }
                                 }
                             },
-                            "type": { "label": "Countdown Type" }
+                            "type": { "label": "Progression Type" }
                         }
                     }
                 },
@@ -367,7 +374,9 @@
                 "currentCountdownValue": "Current: {value}",
                 "currentCountdownMax": "Max: {value}",
                 "category": "Category",
-                "type": "Type",
+                "progressionType": "Progression Type",
+                "decreasing": "Decreasing",
+                "looping": "Looping",
                 "defaultOwnershipTooltip": "The default player ownership of countdowns",
                 "hideNewCountdowns": "Hide New Countdowns"
             },
