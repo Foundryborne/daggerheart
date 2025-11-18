@@ -931,6 +931,7 @@
                 }
             },
             "CountdownType": {
+                "characterSpotlight": "Character Spotlight",
                 "spotlight": "Spotlight",
                 "custom": "Custom",
                 "characterAttack": "Character Attack"

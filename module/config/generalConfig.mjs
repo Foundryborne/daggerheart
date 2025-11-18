@@ -616,6 +616,10 @@ export const countdownProgressionTypes = {
         id: 'spotlight',
         label: 'DAGGERHEART.CONFIG.CountdownType.spotlight'
     },
+    characterSpotlight: {
+        id: 'characterSpotlight',
+        label: 'DAGGERHEART.CONFIG.CountdownType.characterSpotlight'
+    },
     characterAttack: {
         id: 'characterAttack',
         label: 'DAGGERHEART.CONFIG.CountdownType.characterAttack'
