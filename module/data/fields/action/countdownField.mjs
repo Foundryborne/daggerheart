@@ -39,13 +39,15 @@ export default class CountdownField extends fields.ArrayField {
             return;
         }
 
-        const data = config.countdowns.reduce(
-            (acc, curr) => {
+        const data = await config.countdowns.reduce(
+            async (acc, curr) => {
+                const { total: max } = await new Roll(curr.progress.max).evaluate();
                 acc.countdowns[foundry.utils.randomID()] = {
                     ...curr,
                     progress: {
                         ...curr.progress,
-                        current: curr.progress.max
+                        current: max,
+                        max: max
                     }
                 };
                 return acc;

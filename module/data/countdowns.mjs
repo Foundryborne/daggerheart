@@ -1,3 +1,5 @@
+import FormulaField from './fields/formulaField.mjs';
+
 export default class DhCountdowns extends foundry.abstract.DataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
@@ -165,11 +167,11 @@ export class DhCountdown extends foundry.abstract.DataModel {
                     initial: 1,
                     label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.progress.current.label'
                 }),
-                max: new fields.NumberField({
+                max: new FormulaField({
                     required: true,
-                    integer: true,
                     initial: 1,
-                    label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.progress.max.label'
+                    label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.progress.max.label',
+                    deterministic: false
                 }),
                 looping: new fields.StringField({
                     required: true,
