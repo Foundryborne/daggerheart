@@ -2566,7 +2566,10 @@
             "Countdowns": {
                 "title": "Countdowns",
                 "toggleIconMode": "Toggle Icon Only",
-                "noPlayerAccess": "This countdown isn't visible to any players"
+                "noPlayerAccess": "This countdown isn't visible to any players",
+                "loop": "Looping",
+                "decreasingLoop": "Decreasing Looping",
+                "increasingLoop": "Increasing Looping"
             },
             "ItemBrowser": {
                 "title": "Daggerheart Compendium Browser",

@@ -119,10 +119,26 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                 return acc;
             }, []);
             const nonGmPlayers = game.users.filter(x => !x.isGM);
+
+            const countdownEditable = game.user.isGM || ownership === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
+            const isLooping = countdown.progress.looping !== CONFIG.DH.GENERAL.countdownLoopingTypes.noLooping;
+            const loopTooltip = isLooping
+                ? countdown.progress.looping === CONFIG.DH.GENERAL.countdownLoopingTypes.increasing.id
+                    ? 'DAGGERHEART.UI.Countdowns.increasingLoop'
+                    : countdown.progress.looping === CONFIG.DH.GENERAL.countdownLoopingTypes.decreasing.id
+                      ? 'DAGGERHEART.UI.Countdowns.decreasingLoop'
+                      : 'DAGGERHEART.UI.Countdowns.loop'
+                : null;
+            const loopDisabled =
+                !countdownEditable || (isLooping && (countdown.progress.current > 0 || countdown.progress.max === '0'));
+
             acc[key] = {
                 ...countdown,
-                editable: game.user.isGM || ownership === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER,
-                noPlayerAccess: nonGmPlayers.length && playersWithAccess.length === 0
+                editable: countdownEditable,
+                noPlayerAccess: nonGmPlayers.length && playersWithAccess.length === 0,
+                shouldLoop: isLooping && countdown.progress.current === 0 && countdown.progress.max > 0,
+                loopDisabled: isLooping ? loopDisabled : null,
+                loopTooltip: isLooping && game.i18n.localize(loopTooltip)
             };
             return acc;
         }, {});

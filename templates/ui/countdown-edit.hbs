@@ -35,12 +35,14 @@
                                 <div class="countdown-edit-sub-tag">{{countdown.progress.typeName}}</div>
 
                                 {{#unless (eq countdown.progress.looping "noLooping")}}
-                                    <i class="fa-solid fa-repeat"></i>
-                                    {{#if (eq countdown.progress.looping "increasing")}}
-                                        <i class="fa-solid fa-angles-up"></i>
-                                    {{else if (eq countdown.progress.looping "decreasing")}}
-                                        <i class="fa-solid fa-angles-down"></i>
-                                    {{/if}}
+                                    <div class="countdown-edit-loop" data-tooltip="{{countdown.loopTooltip}}">
+                                        <i class="fa-solid fa-repeat"></i>
+                                        {{#if (eq countdown.progress.looping "increasing")}}
+                                            <i class="loop-marker fa-solid fa-angles-up"></i>
+                                        {{else if (eq countdown.progress.looping "decreasing")}}
+                                            <i class="loop-marker fa-solid fa-angles-down"></i>
+                                        {{/if}}
+                                    </div>
                                 {{/unless}}
                             </div>
                         </div>
