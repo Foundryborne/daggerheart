@@ -115,7 +115,7 @@ export default class DHRoll extends Roll {
                 game.system.api.applications.dialogs.TagTeamDialog.assignRoll(message.speakerActor, message);
             }
 
-            if (game.modules.get('dice-so-nice')?.active) {
+            if (roll.formula !== '' && game.modules.get('dice-so-nice')?.active) {
                 await game.dice3d.waitFor3DAnimationByMessageID(message.id);
             }
 
