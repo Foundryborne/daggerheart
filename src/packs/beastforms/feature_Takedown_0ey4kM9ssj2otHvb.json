@@ -33,7 +33,7 @@
               "value": {
                 "custom": {
                   "enabled": true,
-                  "formula": "(@prof+2)@basicAttackDamageDice + @rules.attack.damage.bonus"
+                  "formula": "(@prof+2)@basicAttackDamageDice + 6"
                 },
                 "multiplier": "prof",
                 "flatMultiplier": 1,
