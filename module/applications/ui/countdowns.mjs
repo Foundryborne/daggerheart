@@ -85,18 +85,19 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     async _onFirstRender(context, options) {
         await super._onFirstRender(context, options);
 
+        if (ui.webrtc.rendered) this.toggleRctPosition();
         this.toggleCollapsedPosition(undefined, !ui.sidebar.expanded);
     }
 
     /** Returns countdown data filtered by ownership */
     #getCountdowns() {
         const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-        const values = Object.entries(setting.countdowns).map(([key, countdown]) => ({ 
-            key, 
-            countdown, 
-            ownership: DhCountdowns.#getPlayerOwnership(game.user, setting, countdown) 
+        const values = Object.entries(setting.countdowns).map(([key, countdown]) => ({
+            key,
+            countdown,
+            ownership: DhCountdowns.#getPlayerOwnership(game.user, setting, countdown)
         }));
-        return values.filter((v) => v.ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE);
+        return values.filter(v => v.ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE);
     }
 
     /** @override */
@@ -140,9 +141,26 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     toggleCollapsedPosition = async (_, collapsed) => {
         if (!this.element) return;
 
+        const webrtcPresent = ui.webrtc.rendered && ui.webrtc.classList.contains('right');
+        if (webrtcPresent) this.element.classList.add('rctRight');
+
         this.sidebarCollapsed = collapsed;
         if (!collapsed) this.element.classList.add('expanded');
         else this.element.classList.remove('expanded');
+    };
+
+    toggleRctPosition = async data => {
+        if (!this.element) return;
+
+        const webrtcData = data ?? ui.webrtc;
+        const onTop = webrtcData.classList.contains('horizontal') && webrtcData.classList.contains('top');
+        const onRight = webrtcData.classList.contains('vertical') && webrtcData.classList.contains('right');
+        if (!onTop && !onRight) return;
+
+        if (onTop) this.element.classList.add('rctTop');
+        else this.element.classList.remove('rctTop');
+        if (onRight) this.element.classList.add('rctRight');
+        else this.element.classList.remove('rctRight');
     };
 
     cooldownRefresh = ({ refreshType }) => {
@@ -201,6 +219,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
 
     setupHooks() {
         Hooks.on('collapseSidebar', this.toggleCollapsedPosition.bind());
+        Hooks.on('renderCameraViews', this.toggleRctPosition.bind());
         Hooks.on(socketEvent.Refresh, this.cooldownRefresh.bind());
     }
 
@@ -209,6 +228,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         if (options.closeKey) return;
 
         Hooks.off('collapseSidebar', this.toggleCollapsedPosition);
+        Hooks.off('renderCameraViews', this.toggleRctPosition);
         Hooks.off(socketEvent.Refresh, this.cooldownRefresh);
         return super.close(options);
     }
