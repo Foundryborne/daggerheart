@@ -139,7 +139,7 @@ Parameters:
   {{> "systems/daggerheart/templates/sheets/global/partials/item-resource.hbs"}}
   {{/if}}
   {{!-- Actions Buttons --}}
-  {{#if (and showActions (eq item.type 'feature'))}}
+  {{#if (and showActions item.system.actions.size)}}
   <div class="item-buttons">
     {{#each item.system.actions as | action |}}
     <div class="item-button">
