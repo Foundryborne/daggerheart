@@ -78,7 +78,8 @@
                     "label": "Beastform"
                 },
                 "countdown": {
-                    "defaultOwnership": "Default Ownership"
+                    "defaultOwnership": "Default Ownership",
+                    "startCountdown": "Start Countdown"
                 },
                 "damage": {
                     "multiplier": "Multiplier",

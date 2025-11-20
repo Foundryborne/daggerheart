@@ -16,6 +16,7 @@ export default class DhCountdownAction extends DHBaseAction {
     /** @inheritdoc */
     static getSourceConfig(parent) {
         const updateSource = game.system.api.data.actions.actionsTypes.base.getSourceConfig(parent);
+        updateSource.name = game.i18n.localize('DAGGERHEART.ACTIONS.Config.countdown.startCountdown');
         updateSource['countdown'] = [
             {
                 ...game.system.api.data.countdowns.DhCountdown.defaultCountdown(),
