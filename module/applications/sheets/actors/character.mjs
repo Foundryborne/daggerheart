@@ -907,6 +907,14 @@ export default class CharacterSheet extends DHBaseActorSheet {
             itemData.system.inVault = true;
         }
 
+        const typesThatReplace = ['ancestry', 'community'];
+        if (typesThatReplace.includes(item.type)) {
+            await this.document.deleteEmbeddedDocuments(
+                'Item',
+                this.document.items.filter(x => x.type === item.type).map(x => x.id)
+            );
+        }
+
         if (item.type === 'beastform') {
             if (this.document.effects.find(x => x.type === 'beastform')) {
                 return ui.notifications.warn(
