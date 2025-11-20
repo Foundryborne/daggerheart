@@ -22,7 +22,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     /** @inheritDoc */
     static DEFAULT_OPTIONS = {
         id: 'itemBrowser',
-        classes: ['daggerheart', 'dh-style', 'dialog', 'compendium-browser', 'loader'],
+        classes: ['daggerheart', 'dh-style', 'dialog', 'compendium-browser', 'daggerheart-loader'],
         tag: 'div',
         window: {
             frame: true,
@@ -277,7 +277,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     toggleLoader(state) {
         const container = this.element.querySelector('.item-list');
         return setTimeout(() => {
-            container.classList.toggle('loader', state);
+            container.classList.toggle('daggerheart-loader', state);
         }, 100);
     }
 

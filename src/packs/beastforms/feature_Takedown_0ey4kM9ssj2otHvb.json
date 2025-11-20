@@ -33,7 +33,7 @@
               "value": {
                 "custom": {
                   "enabled": true,
-                  "formula": "(@prof+2)@basicAttackDamageDice"
+                  "formula": "(@prof+2)@basicAttackDamageDice + 6"
                 },
                 "multiplier": "prof",
                 "flatMultiplier": 1,
@@ -49,7 +49,8 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               }
             }
@@ -57,8 +58,8 @@
           "includeBase": false
         },
         "target": {
-          "type": "self",
-          "amount": null
+          "type": "hostile",
+          "amount": 1
         },
         "effects": [],
         "roll": {
@@ -83,7 +84,7 @@
         },
         "name": "Attack",
         "img": "icons/creatures/abilities/paw-print-orange.webp",
-        "range": "self"
+        "range": "melee"
       }
     },
     "originItemType": null,
@@ -150,12 +151,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.351",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.0",
+    "systemVersion": "1.2.3",
     "createdTime": 1753621786000,
-    "modifiedTime": 1756041242273,
-    "lastModifiedBy": "vUIbuan0U50nfKBE"
+    "modifiedTime": 1763549111169,
+    "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
   },
   "_id": "0ey4kM9ssj2otHvb",
   "sort": 600000,

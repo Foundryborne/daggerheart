@@ -12,24 +12,16 @@
 }
 
 .daggerheart.dh-style.countdowns {
-    z-index: var(--z-index-ui) !important;
+    position: initial;
     border: 0;
     border-radius: 4px;
     box-shadow: none;
     width: 300px;
-    top: 16px;
-    right: calc(64px * var(--ui-scale));
-    transition:
-        right ease 250ms,
-        opacity var(--ui-fade-duration) ease,
-        opacity var(--ui-fade-duration);
+    pointer-events: all;
+    align-self: flex-end;
 
     .window-title {
         font-family: @font-body;
-    }
-
-    &.expanded {
-        right: calc(364px * var(--ui-scale));
     }
 
     &.icon-only {
