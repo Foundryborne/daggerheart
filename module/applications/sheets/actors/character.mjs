@@ -8,7 +8,6 @@ import { getDocFromElement, getDocFromElementSync } from '../../../helpers/utils
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
-const { TextEditor } = foundry.applications.ux;
 export default class CharacterSheet extends DHBaseActorSheet {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
@@ -881,6 +880,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const item = await getDocFromElement(event.target);
 
         const dragData = {
+            originActor: this.document.uuid,
+            originId: item.id,
             type: item.documentName,
             uuid: item.uuid
         };
@@ -894,9 +895,12 @@ export default class CharacterSheet extends DHBaseActorSheet {
         // Prevent event bubbling to avoid duplicate handling
         event.preventDefault();
         event.stopPropagation();
+        const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
 
-        super._onDrop(event);
-        this._onDropItem(event, TextEditor.getDragEventData(event));
+        const { cancel } = await super._onDrop(event);
+        if (cancel) return;
+
+        this._onDropItem(event, data);
     }
 
     async _onDropItem(event, data) {

@@ -217,6 +217,72 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
     /*  Application Drag/Drop                       */
     /* -------------------------------------------- */
 
+    async _onDrop(event) {
+        const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
+        if (data.originActor === this.document.uuid) return { cancel: true };
+
+        /* Handling transfer of inventoryItems */
+        let cancel = false;
+        const physicalActorTypes = ['character', 'party'];
+        if (physicalActorTypes.includes(this.document.type)) {
+            const originActor = data.originActor ? await foundry.utils.fromUuid(data.originActor) : null;
+            if (data.originId && originActor && physicalActorTypes.includes(originActor.type)) {
+                const dropDocument = await foundry.utils.fromUuid(data.uuid);
+
+                if (dropDocument.system.metadata.isInventoryItem) {
+                    cancel = true;
+                    if (dropDocument.system.metadata.isQuantifiable) {
+                        const actorItem = originActor.items.get(data.originId);
+                        const quantityTransfered =
+                            actorItem.system.quantity === 1
+                                ? 1
+                                : await game.system.api.applications.dialogs.ItemTransferDialog.configure(dropDocument);
+
+                        if (quantityTransfered) {
+                            if (quantityTransfered === actorItem.system.quantity) {
+                                await originActor.deleteEmbeddedDocuments('Item', [data.originId]);
+                            } else {
+                                cancel = true;
+                                await actorItem.update({
+                                    'system.quantity': actorItem.system.quantity - quantityTransfered
+                                });
+                            }
+
+                            const existingItem = this.document.items.find(
+                                x => x._stats.compendiumSource === actorItem._stats.compendiumSource
+                            );
+                            if (existingItem) {
+                                cancel = true;
+                                await existingItem.update({
+                                    'system.quantity': existingItem.system.quantity + quantityTransfered
+                                });
+                            } else {
+                                const createData = dropDocument.toObject();
+                                await this.document.createEmbeddedDocuments('Item', [
+                                    {
+                                        ...createData,
+                                        system: {
+                                            ...createData.system,
+                                            quantity: quantityTransfered
+                                        }
+                                    }
+                                ]);
+                            }
+                        } else {
+                            cancel = true;
+                        }
+                    } else {
+                        await originActor.deleteEmbeddedDocuments('Item', [data.originId]);
+                        const createData = dropDocument.toObject();
+                        await this.document.createEmbeddedDocuments('Item', [createData]);
+                    }
+                }
+            }
+        }
+
+        return { cancel };
+    }
+
     /**
      * On dragStart on the item.
      * @param {DragEvent} event - The drag event

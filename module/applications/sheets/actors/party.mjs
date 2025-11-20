@@ -441,6 +441,8 @@ export default class Party extends DHBaseActorSheet {
     async _onDragStart(event) {
         const item = await getDocFromElement(event.target);
         const dragData = {
+            originActor: this.document.uuid,
+            originId: item.id,
             type: item.documentName,
             uuid: item.uuid
         };
@@ -453,8 +455,11 @@ export default class Party extends DHBaseActorSheet {
         // Prevent event bubbling to avoid duplicate handling
         event.preventDefault();
         event.stopPropagation();
-
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
+
+        const { cancel } = await super._onDrop(event);
+        if (cancel) return;
+
         const document = await foundry.utils.fromUuid(data.uuid);
 
         if (document instanceof DhpActor && Party.ALLOWED_ACTOR_TYPES.includes(document.type)) {
