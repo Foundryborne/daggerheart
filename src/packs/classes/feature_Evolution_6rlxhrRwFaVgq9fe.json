@@ -5,7 +5,7 @@
   "_id": "6rlxhrRwFaVgq9fe",
   "img": "icons/magic/nature/wolf-paw-glow-large-orange.webp",
   "system": {
-    "description": "<p><strong>Spend 3 Hope</strong> to transform into a Beastform without marking a Stress. When you do, choose one trait to raise by +1 until you drop out of that Beastform.<br /><br /><strong>Note: Manually increase your trait on character sheet if this is in effect.</strong></p>",
+    "description": "<p><strong>Spend 3 Hope</strong> to transform into a Beastform without marking a Stress. When you do, choose one trait to raise by +1 until you drop out of that Beastform.<br /><br /><strong>Note: Toggle one of the Evolution Traits in the effects tab to raise a trait by 1, e.g. Evolution: Agility</strong></p>",
     "resource": null,
     "actions": {
       "bj4m9E8ObFT0xDQ4": {
@@ -46,7 +46,314 @@
       "artist": ""
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Evolution: Agility",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "vQOqLZAxOltAzsVv",
+      "img": "icons/magic/nature/wolf-paw-glow-large-orange.webp",
+      "changes": [
+        {
+          "key": "system.traits.agility.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": true,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>Toggle this for +1 to Agility when using Evolution. Turn it off when you leave Beastform.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.2.3",
+        "createdTime": 1763444412215,
+        "modifiedTime": 1763444454384,
+        "lastModifiedBy": "9HOfUKAXuCu7hUPY"
+      },
+      "_key": "!items.effects!6rlxhrRwFaVgq9fe.vQOqLZAxOltAzsVv"
+    },
+    {
+      "name": "Evolution: Strength",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "cwEsO1NZpkQHuoTT",
+      "img": "icons/magic/nature/wolf-paw-glow-large-orange.webp",
+      "changes": [
+        {
+          "key": "system.traits.strength.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": true,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>Toggle this for +1 to Strength when using Evolution. Turn it off when you leave Beastform.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.2.3",
+        "createdTime": 1763444570591,
+        "modifiedTime": 1763444616465,
+        "lastModifiedBy": "9HOfUKAXuCu7hUPY"
+      },
+      "_key": "!items.effects!6rlxhrRwFaVgq9fe.cwEsO1NZpkQHuoTT"
+    },
+    {
+      "name": "Evolution: Finesse",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "8P0nwRHNsVnHVPjq",
+      "img": "icons/magic/nature/wolf-paw-glow-large-orange.webp",
+      "changes": [
+        {
+          "key": "system.traits.finesse.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": true,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>Toggle this for +1 to Finesse when using Evolution. Turn it off when you leave Beastform.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.2.3",
+        "createdTime": 1763444626581,
+        "modifiedTime": 1763444677228,
+        "lastModifiedBy": "9HOfUKAXuCu7hUPY"
+      },
+      "_key": "!items.effects!6rlxhrRwFaVgq9fe.8P0nwRHNsVnHVPjq"
+    },
+    {
+      "name": "Evolution: Instinct",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "i2GhNGo5TnGtLuA0",
+      "img": "icons/magic/nature/wolf-paw-glow-large-orange.webp",
+      "changes": [
+        {
+          "key": "system.traits.instinct.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": true,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>Toggle this for +1 to Instinct when using Evolution. Turn it off when you leave Beastform.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.2.3",
+        "createdTime": 1763444688167,
+        "modifiedTime": 1763444730192,
+        "lastModifiedBy": "9HOfUKAXuCu7hUPY"
+      },
+      "_key": "!items.effects!6rlxhrRwFaVgq9fe.i2GhNGo5TnGtLuA0"
+    },
+    {
+      "name": "Evolution: Presence",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "APQF1in1LXjBZh9n",
+      "img": "icons/magic/nature/wolf-paw-glow-large-orange.webp",
+      "changes": [
+        {
+          "key": "system.traits.presence.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": true,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>Toggle this for +1 to Presence when using Evolution. Turn it off when you leave Beastform.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.2.3",
+        "createdTime": 1763444736373,
+        "modifiedTime": 1763444776081,
+        "lastModifiedBy": "9HOfUKAXuCu7hUPY"
+      },
+      "_key": "!items.effects!6rlxhrRwFaVgq9fe.APQF1in1LXjBZh9n"
+    },
+    {
+      "name": "Evolution: Knowledge",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "WwOvGJYJb4d37cOy",
+      "img": "icons/magic/nature/wolf-paw-glow-large-orange.webp",
+      "changes": [
+        {
+          "key": "system.traits.knowledge.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": true,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>Toggle this for +1 to Knowledge when using Evolution. Turn it off when you leave Beastform.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.2.3",
+        "createdTime": 1763444779829,
+        "modifiedTime": 1763444825976,
+        "lastModifiedBy": "9HOfUKAXuCu7hUPY"
+      },
+      "_key": "!items.effects!6rlxhrRwFaVgq9fe.WwOvGJYJb4d37cOy"
+    }
+  ],
   "sort": 100000,
   "ownership": {
     "default": 0,
@@ -57,12 +364,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.351",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
+    "systemVersion": "1.2.3",
     "createdTime": 1754221506611,
-    "modifiedTime": 1755391214500,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
+    "modifiedTime": 1763444563650,
+    "lastModifiedBy": "9HOfUKAXuCu7hUPY"
   },
   "_key": "!items!6rlxhrRwFaVgq9fe"
 }

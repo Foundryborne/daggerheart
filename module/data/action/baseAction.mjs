@@ -44,6 +44,13 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     /**
+     * The default values to supply to schema fields when they are created in the actionConfig. Defined by implementing classes.
+     */
+    get defaultValues() {
+        return {};
+    }
+
+    /**
      * Create a Map containing each Action step based on fields define in schema. Ordered by Fields order property.
      *
      * Each step can be called individually as long as needed config is provided.

@@ -32,7 +32,7 @@ export default class DHRoll extends Roll {
         const actorIdSplit = config.source?.actor?.split('.');
         if (actorIdSplit) {
             const tagTeamSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
-            config.tagTeamSelected = tagTeamSettings.members[actorIdSplit[actorIdSplit.length - 1]];
+            config.tagTeamSelected = Boolean(tagTeamSettings.members[actorIdSplit[actorIdSplit.length - 1]]);
         }
 
         for (const hook of config.hooks) {
@@ -115,7 +115,7 @@ export default class DHRoll extends Roll {
                 game.system.api.applications.dialogs.TagTeamDialog.assignRoll(message.speakerActor, message);
             }
 
-            if (game.modules.get('dice-so-nice')?.active) {
+            if (roll.formula !== '' && game.modules.get('dice-so-nice')?.active) {
                 await game.dice3d.waitFor3DAnimationByMessageID(message.id);
             }
 
@@ -239,7 +239,22 @@ export default class DHRoll extends Roll {
 
 export const registerRollDiceHooks = () => {
     Hooks.on(`${CONFIG.DH.id}.postRollDuality`, async (config, message) => {
-        const hopeFearAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).hopeFear;
+        const automationSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+        if (
+            automationSettings.countdownAutomation &&
+            config.actionType !== CONFIG.DH.ITEM.actionTypes.reaction.id &&
+            !config.tagTeamSelected &&
+            !config.skips?.updateCountdowns
+        ) {
+            const { updateCountdowns } = game.system.api.applications.ui.DhCountdowns;
+            await updateCountdowns(CONFIG.DH.GENERAL.countdownProgressionTypes.actionRoll.id);
+
+            if (config.roll.result.duality === -1) {
+                await updateCountdowns(CONFIG.DH.GENERAL.countdownProgressionTypes.fear.id);
+            }
+        }
+
+        const hopeFearAutomation = automationSettings.hopeFear;
         if (
             !config.source?.actor ||
             (game.user.isGM ? !hopeFearAutomation.gm : !hopeFearAutomation.players) ||

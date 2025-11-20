@@ -521,31 +521,9 @@
       "name": "All-Consuming Rage",
       "type": "feature",
       "system": {
-        "description": "<p>Countdown (Decreasing 8). When the Realm-Breaker is in the spotlight for the first time, activate the countdown.</p><p>When it triggers, create a torrent of incarnate rage that rends flesh from bone. All targets within Far range must make a Presence Reaction Roll. Targets who fail take <strong>2d6+10</strong> direct magic damage. Targets who succeed take half damage. For each HP marked from this damage, summon a @UUID[Compendium.daggerheart.adversaries.Actor.OsLG2BjaEdTZUJU9]{Fallen Shock Troop} within Very Close range of the target who marked that HP. If the countdown ever decreases its maximum value to 0, the Realm-Breaker marks their remaining HP and all targets within Far range must mark all remaining HP and make a death move.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p><em>Countdown (Decreasing 8)</em>. When the Realm-Breaker is in the spotlight for the first time, activate the countdown. When it triggers, create a torrent of incarnate rage that rends flesh from bone. All targets within Far range must make a Presence Reaction Roll. Targets who fail take <strong>2d6+10</strong> direct magic damage. Targets who succeed take half damage. For each HP marked from this damage, summon a @UUID[Compendium.daggerheart.adversaries.Actor.OsLG2BjaEdTZUJU9]{Fallen Shock Troop} within Very Close range of the target who marked that HP. If the countdown ever decreases its maximum value to 0, the Realm-Breaker marks their remaining HP and all targets within Far range must mark all remaining HP and make a death move.</p><p>@Template[type:emanation|range:f]</p>",
         "resource": null,
         "actions": {
-          "58JxEuvnjaAlgs3E": {
-            "type": "effect",
-            "_id": "58JxEuvnjaAlgs3E",
-            "systemPath": "actions",
-            "description": "<p>Countdown (Decreasing 8). When the Realm-Breaker is in the spotlight for the first time, activate the countdown.</p>",
-            "chatDisplay": true,
-            "actionType": "action",
-            "cost": [],
-            "uses": {
-              "value": null,
-              "max": "",
-              "recovery": null
-            },
-            "effects": [],
-            "target": {
-              "type": "any",
-              "amount": null
-            },
-            "name": "Countdown",
-            "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
-            "range": ""
-          },
           "rgy5wXyXJWh6uWxC": {
             "type": "attack",
             "_id": "rgy5wXyXJWh6uWxC",
@@ -618,6 +596,42 @@
             "name": "Roll Save",
             "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
             "range": "far"
+          },
+          "8e3BHmOFLvRwPbTW": {
+            "type": "countdown",
+            "_id": "8e3BHmOFLvRwPbTW",
+            "systemPath": "actions",
+            "description": "<p><em>Countdown (Decreasing 8)</em>. When the Realm-Breaker is in the spotlight for the first time, activate the countdown.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "reaction",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "countdown": [
+              {
+                "name": "All-Consuming Rage",
+                "type": "encounter",
+                "defaultOwnership": -1,
+                "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
+                "progress": {
+                  "looping": "decreasing",
+                  "type": "actionRoll",
+                  "max": "8",
+                  "current": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "name": "Start Countdown",
+            "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
+            "range": ""
           }
         },
         "originItemType": null,
@@ -637,12 +651,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.2.4",
         "createdTime": 1754134694918,
-        "modifiedTime": 1754134968076,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1763599267846,
+        "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!hxZ0sgoFJubh5aj6.48tIwFQr64IQ5LaY"
     },

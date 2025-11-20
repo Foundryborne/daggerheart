@@ -144,7 +144,7 @@
       "name": "Impossible Architecture",
       "type": "feature",
       "system": {
-        "description": "<p>Up is down, down is right, right is starward. Gravity and directionality themselves are in fl ux, and any attempt to move through this realm is an odyssey unto itself, requiring a Progress Countdown (8). On a failure, a PC must mark a Stress in addition to the roll’s other consequences. </p><section id=\"secret-j76pJfYX7Cbt61Pq\" class=\"secret\"><p><em>What does it feel like to move in a space so alien to the Mortal Realm? What landmark or point do you fi xate on to maintain your balance? What bizarre landmarks do you traverse on your journey?</em></p></section>",
+        "description": "<p>Up is down, down is right, right is starward. Gravity and directionality themselves are in flux, and any attempt to move through this realm is an odyssey unto itself, requiring a <em>Progress Countdown (8)</em>. On a failure, a PC must mark a Stress in addition to the roll’s other consequences.</p><section class=\"secret\" id=\"secret-j76pJfYX7Cbt61Pq\"><p><em>What does it feel like to move in a space so alien to the Mortal Realm? What landmark or point do you fixate on to maintain your balance? What bizarre landmarks do you traverse on your journey?</em></p></section>",
         "resource": null,
         "actions": {
           "hli84bleKqYoU7YL": {
@@ -198,6 +198,42 @@
             "name": "Mark Stress",
             "img": "icons/magic/symbols/squares-3d-green.webp",
             "range": ""
+          },
+          "uZgtjZJVCedm93aJ": {
+            "type": "countdown",
+            "_id": "uZgtjZJVCedm93aJ",
+            "systemPath": "actions",
+            "description": "<p>Up is down, down is right, right is starward. Gravity and directionality themselves are in flux, and any attempt to move through this realm is an odyssey unto itself, requiring a <em>Progress Countdown (8)</em>.</p><section class=\"secret\" id=\"secret-rsf1tT4N3HBDgKna\"><p><em>What does it feel like to move in a space so alien to the Mortal Realm? What landmark or point do you fixate on to maintain your balance? What bizarre landmarks do you traverse on your journey?</em></p></section>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "passive",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "countdown": [
+              {
+                "name": "Impossible Architecture",
+                "type": "encounter",
+                "defaultOwnership": -1,
+                "img": "icons/magic/symbols/squares-3d-green.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "max": "8",
+                  "current": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "name": "Start Countdown",
+            "img": "icons/magic/symbols/squares-3d-green.webp",
+            "range": ""
           }
         },
         "originItemType": null,
@@ -217,12 +253,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.2.3",
         "createdTime": 1754219060775,
-        "modifiedTime": 1754219140788,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1763494069315,
+        "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!2Z1mKc65LxNk2PqR.yXCBy1MQuh5GwH5Q"
     },
@@ -230,60 +266,14 @@
       "name": "Everything You Are This Place Will Take from You",
       "type": "feature",
       "system": {
-        "description": "<p>Countdown (Loop 1d4). Activate the countdown. When it triggers, all PCs must succeed on a Presence Reaction Roll or their highest trait is temporarily reduced by [[/r 1d4]] unless they mark a number of Stress equal to its value. Any lost trait points are regained if the PC critically succeeds or escapes the Chaos Realm. </p><section id=\"secret-uG9quQrfVqBYix6p\" class=\"secret\"><p><em>How does this place try to steal from you that which makes you legendary? What does it feel like to have this power taken from you?</em></p></section>",
+        "description": "<p><em>Countdown (Loop 1d4)</em>. Activate the countdown. When it triggers, all PCs must succeed on a Presence Reaction Roll or their highest trait is temporarily reduced by [[/r 1d4]] unless they mark a number of Stress equal to its value. Any lost trait points are regained if the PC critically succeeds or escapes the Chaos Realm.</p><section class=\"secret\" id=\"secret-uG9quQrfVqBYix6p\"><p><em>How does this place try to steal from you that which makes you legendary? What does it feel like to have this power taken from you?</em></p></section>",
         "resource": null,
         "actions": {
-          "IexEUqnefrcD0VCz": {
-            "type": "attack",
-            "_id": "IexEUqnefrcD0VCz",
-            "systemPath": "actions",
-            "description": "<p>Countdown (Loop 1d4). Activate the countdown.</p><section class=\"secret\" id=\"secret-dFnoVgNh7bMpAQF1\"><p><em>How does this place try to steal from you that which makes you legendary? What does it feel like to have this power taken from you?</em></p></section>",
-            "chatDisplay": true,
-            "actionType": "action",
-            "cost": [],
-            "uses": {
-              "value": null,
-              "max": "",
-              "recovery": null
-            },
-            "damage": {
-              "parts": [],
-              "includeBase": false
-            },
-            "target": {
-              "type": "any",
-              "amount": null
-            },
-            "effects": [],
-            "roll": {
-              "type": null,
-              "trait": null,
-              "difficulty": null,
-              "bonus": null,
-              "advState": "neutral",
-              "diceRolling": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "compare": null,
-                "treshold": null
-              },
-              "useDefault": false
-            },
-            "save": {
-              "trait": null,
-              "difficulty": null,
-              "damageMod": "none"
-            },
-            "name": "Countdown",
-            "img": "icons/magic/control/sihouette-hold-beam-green.webp",
-            "range": ""
-          },
           "zOQMo13vSiX3QReJ": {
             "type": "attack",
             "_id": "zOQMo13vSiX3QReJ",
             "systemPath": "actions",
-            "description": "<p>When the countdown triggers, all PCs must succeed on a Presence Reaction Roll or their highest trait is temporarily reduced by [[/r 1d4]] unless they mark a number of Stress equal to its value. Any lost trait points are regained if the PC critically succeeds or escapes the Chaos Realm. </p><section class=\"secret\" id=\"secret-nXjHVXTDY3UzkRVb\"><p><em>How does this place try to steal from you that which makes you legendary? What does it feel like to have this power taken from you?</em></p></section>",
+            "description": "<p>All PCs must succeed on a Presence Reaction Roll or their highest trait is temporarily reduced by [[/r 1d4]] unless they mark a number of Stress equal to its value. Any lost trait points are regained if the PC critically succeeds or escapes the Chaos Realm.</p><section class=\"secret\" id=\"secret-nXjHVXTDY3UzkRVb\"><p><em>How does this place try to steal from you that which makes you legendary? What does it feel like to have this power taken from you?</em></p></section>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -324,6 +314,42 @@
             "name": "Roll Save",
             "img": "icons/magic/control/sihouette-hold-beam-green.webp",
             "range": ""
+          },
+          "FxAFpgPbGcmi3nlh": {
+            "type": "countdown",
+            "_id": "FxAFpgPbGcmi3nlh",
+            "systemPath": "actions",
+            "description": "<p><em>Countdown (Loop 1d4)</em>. Activate the countdown.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "countdown": [
+              {
+                "name": "Everything You Are This Place Will Take from You",
+                "type": "encounter",
+                "defaultOwnership": -1,
+                "img": "icons/magic/control/sihouette-hold-beam-green.webp",
+                "progress": {
+                  "looping": "looping",
+                  "type": "actionRoll",
+                  "max": "4",
+                  "current": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "name": "Start Countdown",
+            "img": "icons/magic/control/sihouette-hold-beam-green.webp",
+            "range": ""
           }
         },
         "originItemType": null,
@@ -343,12 +369,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.2.4",
         "createdTime": 1754219142956,
-        "modifiedTime": 1754219278386,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1763599839181,
+        "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!2Z1mKc65LxNk2PqR.0OYHJZqT0DlVz5be"
     },

@@ -746,31 +746,9 @@
       "name": "Apocalyptic Thrasing",
       "type": "feature",
       "system": {
-        "description": "<p>Countdown (1d12). <strong>Spend a Fear</strong> to activate. It ticks down when a PC rolls with Fear.</p><p>When it triggers, the Ashen Tyrant thrashes about, causing environmental damage (such as an earthquake, avalanche, or collapsing walls). All targets within Far range must make a Strength Reaction Roll. Targets who fail take 2d10+10 physical damage and are Restrained by the rubble until they break free with a successful Strength Roll. Targets who succeed take half damage. If the Ashen Tyrant is defeated while this countdown is active, trigger the countdown immediately as the destruction caused by their death throes.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p><em>Countdown (1d12)</em>. <strong>Spend a Fear</strong> to activate. It ticks down when a PC rolls with Fear. When it triggers, the Ashen Tyrant thrashes about, causing environmental damage (such as an earthquake, avalanche, or collapsing walls). All targets within Far range must make a Strength Reaction Roll. Targets who fail take 2d10+10 physical damage and are Restrained by the rubble until they break free with a successful Strength Roll. Targets who succeed take half damage. If the Ashen Tyrant is defeated while this countdown is active, trigger the countdown immediately as the destruction caused by their death throes.</p><p>@Template[type:emanation|range:f]</p>",
         "resource": null,
         "actions": {
-          "V6gTCvCcUXf3oKwF": {
-            "type": "effect",
-            "_id": "V6gTCvCcUXf3oKwF",
-            "systemPath": "actions",
-            "description": "<p>Countdown (1d12). <strong>Spend a Fear</strong> to activate. It ticks down when a PC rolls with Fear. </p>",
-            "chatDisplay": true,
-            "actionType": "action",
-            "cost": [],
-            "uses": {
-              "value": null,
-              "max": "",
-              "recovery": null
-            },
-            "effects": [],
-            "target": {
-              "type": "any",
-              "amount": null
-            },
-            "name": "Countdown",
-            "img": "icons/creatures/abilities/mouth-teeth-fire-orange.webp",
-            "range": ""
-          },
           "OznXxmwiPwzuFPQZ": {
             "type": "attack",
             "_id": "OznXxmwiPwzuFPQZ",
@@ -848,6 +826,51 @@
             "name": "Roll Save",
             "img": "icons/creatures/abilities/mouth-teeth-fire-orange.webp",
             "range": ""
+          },
+          "rZ7IwBnDzw7VmBT6": {
+            "type": "countdown",
+            "_id": "rZ7IwBnDzw7VmBT6",
+            "systemPath": "actions",
+            "description": "<p><em>Countdown (1d12)</em>. <strong>Spend a Fear</strong> to activate. It ticks down when a PC rolls with Fear.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "countdown": [
+              {
+                "name": "Apocalyptic Thrasing",
+                "type": "encounter",
+                "defaultOwnership": -1,
+                "img": "icons/creatures/abilities/mouth-teeth-fire-orange.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "fear",
+                  "max": "1d12",
+                  "current": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "name": "Start Countdown",
+            "img": "icons/creatures/abilities/mouth-teeth-fire-orange.webp",
+            "range": ""
           }
         },
         "originItemType": null,
@@ -914,12 +937,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.2.4",
         "createdTime": 1754140011482,
-        "modifiedTime": 1754140152923,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1763601068928,
+        "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!pMuXGCSOQaxpi5tb.uWiyaJPXcoW06pOM"
     }

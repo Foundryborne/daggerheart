@@ -514,14 +514,14 @@
       "name": "Hallucinatory Breath",
       "type": "feature",
       "system": {
-        "description": "<p>Countdown (Loop 1d6). When the Flickerfl y takes damage for the fi rst time, activate the countdown. When it triggers, the Flickerfly breathes hallucinatory gas on all targets in front of them up to Far range. Targets must succeed on an Instinct Reaction Roll or be tormented by fearful hallucinations. Targets whose fears are known to the Flickerfl y have disadvantage on this roll. Targets who fail must mark a Stress and lose a Hope.</p><p>@Template[type:inFront|range:f]</p>",
+        "description": "<p>Countdown (Loop 1d6). When the Flickerfly takes damage for the first time, activate the countdown. When it triggers, the Flickerfly breathes hallucinatory gas on all targets in front of them up to Far range. Targets must succeed on an Instinct Reaction Roll or be tormented by fearful hallucinations. Targets whose fears are known to the Flickerfly have disadvantage on this roll. Targets who fail must mark a Stress and lose a Hope.</p><p>@Template[type:inFront|range:f]</p>",
         "resource": null,
         "actions": {
           "USEkCakSzYcZbBwY": {
             "type": "attack",
             "_id": "USEkCakSzYcZbBwY",
             "systemPath": "actions",
-            "description": "<p>Countdown (Loop 1d6). When the Flickerfl y takes damage for the fi rst time, activate the countdown. When it triggers, the Flickerfly breathes hallucinatory gas on all targets in front of them up to Far range. Targets must succeed on an Instinct Reaction Roll or be tormented by fearful hallucinations. Targets whose fears are known to the Flickerfl y have disadvantage on this roll. Targets who fail must mark a Stress and lose a Hope.</p><p>@Template[type:inFront|range:f]</p>",
+            "description": "<p>The Flickerfly breathes hallucinatory gas on all targets in front of them up to Far range. Targets must succeed on an Instinct Reaction Roll or be tormented by fearful hallucinations. Targets whose fears are known to the Flickerfl y have disadvantage on this roll. Targets who fail must mark a Stress and lose a Hope.</p><p>@Template[type:inFront|range:f]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -613,6 +613,42 @@
             "name": "Roll Save",
             "img": "icons/magic/air/fog-gas-smoke-purple.webp",
             "range": "far"
+          },
+          "n8ZuLjwTf2FJ7V6n": {
+            "type": "countdown",
+            "_id": "n8ZuLjwTf2FJ7V6n",
+            "systemPath": "actions",
+            "description": "<p>Countdown (Loop 1d6). When the Flickerfly takes damage for the first time, activate the countdown.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "countdown": [
+              {
+                "name": "Hallucinatory Breath",
+                "type": "encounter",
+                "defaultOwnership": -1,
+                "img": "icons/magic/air/fog-gas-smoke-purple.webp",
+                "progress": {
+                  "looping": "looping",
+                  "type": "actionRoll",
+                  "max": "1d6",
+                  "current": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "name": "Start Countdown",
+            "img": "icons/magic/air/fog-gas-smoke-purple.webp",
+            "range": ""
           }
         },
         "originItemType": null,
@@ -632,12 +668,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.2.4",
         "createdTime": 1754080402680,
-        "modifiedTime": 1754142717997,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1763599059605,
+        "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!MYXmTx2FHcIjdfYZ.EjfM83eVCdcVGC3c"
     }

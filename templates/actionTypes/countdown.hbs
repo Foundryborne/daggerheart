@@ -1,0 +1,22 @@
+<fieldset class="one-column" data-key="countdown">
+    <legend>
+        {{localize "DAGGERHEART.ACTIONS.TYPES.countdown.name"}}
+        <a><i class="fa-solid fa-plus icon-button" data-action="addElement"></i></a>
+    </legend>
+    {{#each source as |countdown index|}}
+        <div class="nest-inputs">
+            {{formField ../fields.name value=countdown.name name=(concat "countdown." index ".name") localize=true}}
+            <a class="btn" data-tooltip="{{localize "CONTROLS.CommonDelete"}}" data-action="removeElement" data-index="{{index}}"><i class="fas fa-trash"></i></a>
+        </div>
+        <div class="nest-inputs">
+            {{formField ../fields.type value=countdown.type name=(concat "countdown." index ".type") localize=true}}
+            {{formField ../fields.defaultOwnership value=countdown.defaultOwnership name=(concat "countdown." index ".defaultOwnership") localize=true}}
+        </div>
+        {{formField ../fields.img value=countdown.img name=(concat "countdown." index ".img") label="DAGGERHEART.GENERAL.imagePath" localize=true}}
+        <div class="nest-inputs">
+            {{formField ../fields.progress.fields.looping value=countdown.progress.looping name=(concat "countdown." index ".progress.looping") localize=true}}
+            {{formField ../fields.progress.fields.type value=countdown.progress.type name=(concat "countdown." index ".progress.type") localize=true}}
+            {{formField ../fields.progress.fields.max value=countdown.progress.max name=(concat "countdown." index ".progress.max") localize=true}}
+        </div>
+    {{/each}}
+</fieldset>

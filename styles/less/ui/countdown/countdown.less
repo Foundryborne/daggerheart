@@ -12,24 +12,16 @@
 }
 
 .daggerheart.dh-style.countdowns {
-    z-index: var(--z-index-ui) !important;
+    position: initial;
     border: 0;
     border-radius: 4px;
     box-shadow: none;
     width: 300px;
-    top: 16px;
-    right: calc(64px * var(--ui-scale));
-    transition:
-        right ease 250ms,
-        opacity var(--ui-fade-duration) ease,
-        opacity var(--ui-fade-duration);
+    pointer-events: all;
+    align-self: flex-end;
 
     .window-title {
         font-family: @font-body;
-    }
-
-    &.expanded {
-        right: calc(364px * var(--ui-scale));
     }
 
     &.icon-only {
@@ -55,7 +47,7 @@
 
             .countdown-container {
                 display: flex;
-                justify-content: space-between;
+                width: 100%;
 
                 &.icon-only {
                     gap: 8px;
@@ -72,6 +64,7 @@
                 }
 
                 .countdown-main-container {
+                    width: 100%;
                     display: flex;
                     align-items: center;
                     gap: 16px;
@@ -83,6 +76,7 @@
                     }
 
                     .countdown-content {
+                        flex: 1;
                         display: flex;
                         flex-direction: column;
                         justify-content: space-between;
@@ -90,7 +84,13 @@
                         .countdown-tools {
                             display: flex;
                             align-items: center;
-                            gap: 16px;
+                            justify-content: space-between;
+
+                            .countdown-tool-controls {
+                                display: flex;
+                                align-items: center;
+                                gap: 16px;
+                            }
 
                             .progress-tag {
                                 border: 1px solid;
@@ -98,32 +98,53 @@
                                 padding: 2px 4px;
                                 background-color: light-dark(@beige, @dark-blue);
                             }
+
+                            .countdown-tool-icons {
+                                display: flex;
+                                align-items: center;
+                                gap: 8px;
+
+                                .looping-container {
+                                    position: relative;
+                                    border: 1px solid light-dark(@dark-blue, white);
+                                    border-radius: 6px;
+                                    padding: 2px 4px;
+
+                                    &.should-loop {
+                                        background: light-dark(@golden, @golden);
+
+                                        .loop-marker {
+                                            color: light-dark(@dark-blue, @dark-blue);
+                                        }
+                                    }
+
+                                    .direction-marker {
+                                        position: absolute;
+                                        font-size: 10px;
+                                        filter: drop-shadow(0 0 3px black);
+                                        top: -3px;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
+                /* Keep incase we want to reintroduce the player pips */
+                // .countdown-access-container {
+                //     display: grid;
+                //     grid-template-columns: 1fr 1fr 1fr;
+                //     grid-auto-rows: min-content;
+                //     width: 38px;
+                //     gap: 4px;
 
-                .countdown-access-container {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr 1fr;
-                    grid-auto-rows: min-content;
-                    width: 38px;
-                    gap: 4px;
-
-                    .countdown-access {
-                        height: 10px;
-                        width: 10px;
-                        border-radius: 50%;
-                        border: 1px solid light-dark(@dark-blue, @beige-80);
-                        content: '';
-                    }
-                }
-
-                .countdown-no-access-container {
-                    width: 38px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
+                //     .countdown-access {
+                //         height: 10px;
+                //         width: 10px;
+                //         border-radius: 50%;
+                //         border: 1px solid light-dark(@dark-blue, @beige-80);
+                //         content: '';
+                //     }
+                // }
             }
         }
     }

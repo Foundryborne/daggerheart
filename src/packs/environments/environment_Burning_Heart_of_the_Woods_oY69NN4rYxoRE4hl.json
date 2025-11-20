@@ -463,36 +463,14 @@
       "name": "Choking Ash",
       "type": "feature",
       "system": {
-        "description": "<p>Countdown (Loop 6). When the PCs enter the Burning Heart of the Woods, activate the countdown. When it triggers, all characters must make a Strength or Instinct Reaction Roll. Targets who fail take <strong>4d6+5</strong> direct physical damage. Targets who succeed take half damage. Protective masks or clothes give advantage on the reaction roll. </p><section id=\"secret-qQq9TrwyjdayheMk\" class=\"secret\"><p><em>What hallucinations does the ash induce? What incongruous taste does it possess?</em></p></section>",
+        "description": "<p><em>Countdown (Loop 6)</em>. When the PCs enter the Burning Heart of the Woods, activate the countdown. When it triggers, all characters must make a Strength or Instinct Reaction Roll. Targets who fail take <strong>4d6+5</strong> direct physical damage. Targets who succeed take half damage. Protective masks or clothes give advantage on the reaction roll.</p><section class=\"secret\" id=\"secret-qQq9TrwyjdayheMk\"><p><em>What hallucinations does the ash induce? What incongruous taste does it possess?</em></p></section>",
         "resource": null,
         "actions": {
-          "U9O0nh0LkdKzjIXS": {
-            "type": "effect",
-            "_id": "U9O0nh0LkdKzjIXS",
-            "systemPath": "actions",
-            "description": "<p>Countdown (Loop 6). When the PCs enter the Burning Heart of the Woods, activate the countdown.</p><section class=\"secret\" id=\"secret-szFYk9lUNPPVUeUU\"><p><em>What hallucinations does the ash induce? What incongruous taste does it possess?</em></p></section>",
-            "chatDisplay": true,
-            "actionType": "action",
-            "cost": [],
-            "uses": {
-              "value": null,
-              "max": "",
-              "recovery": null
-            },
-            "effects": [],
-            "target": {
-              "type": "any",
-              "amount": null
-            },
-            "name": "Countdown",
-            "img": "icons/magic/air/fog-gas-smoke-brown.webp",
-            "range": ""
-          },
           "4XVdHOzycOXM5bh9": {
             "type": "damage",
             "_id": "4XVdHOzycOXM5bh9",
             "systemPath": "actions",
-            "description": "<p>When the countdown triggers, all characters must make a Strength or Instinct Reaction Roll. Targets who fail take <strong>4d6+5</strong> direct physical damage. Targets who succeed take half damage. Protective masks or clothes give advantage on the reaction roll. </p><section class=\"secret\" id=\"secret-pf0x4kYIYL4CathW\"><p><em>What hallucinations does the ash induce? What incongruous taste does it possess?</em></p></section>",
+            "description": "<p>All characters must make a Strength or Instinct Reaction Roll. Targets who fail take <strong>4d6+5</strong> direct physical damage. Targets who succeed take half damage. Protective masks or clothes give advantage on the reaction roll.</p><section class=\"secret\" id=\"secret-pf0x4kYIYL4CathW\"><p><em>What hallucinations does the ash induce? What incongruous taste does it possess?</em></p></section>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -540,6 +518,42 @@
             "name": "Damage",
             "img": "icons/magic/air/fog-gas-smoke-brown.webp",
             "range": ""
+          },
+          "3L0T97ZzTqZU6BE6": {
+            "type": "countdown",
+            "_id": "3L0T97ZzTqZU6BE6",
+            "systemPath": "actions",
+            "description": "<p><em>Countdown (Loop 6)</em>. When the PCs enter the Burning Heart of the Woods, activate the countdown.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "reaction",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "countdown": [
+              {
+                "name": "Choking Ash",
+                "type": "encounter",
+                "defaultOwnership": -1,
+                "img": "icons/magic/air/fog-gas-smoke-brown.webp",
+                "progress": {
+                  "looping": "looping",
+                  "type": "actionRoll",
+                  "max": "6",
+                  "current": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "name": "Start Countdown",
+            "img": "icons/magic/air/fog-gas-smoke-brown.webp",
+            "range": ""
           }
         },
         "originItemType": null,
@@ -559,12 +573,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.2.4",
         "createdTime": 1754217910442,
-        "modifiedTime": 1754217995895,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1763599784561,
+        "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!oY69NN4rYxoRE4hl.kYxuTZjH7HDUGeWh"
     }

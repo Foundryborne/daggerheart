@@ -200,7 +200,8 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         const data = this.action.toObject(),
             key = event.target.closest('[data-key]').dataset.key;
         if (!this.action[key]) return;
-        data[key].push({});
+
+        data[key].push(this.action.defaultValues[key] ?? {});
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
@@ -265,5 +266,10 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
     static editEffect(event) {
         const id = event.target.closest('[data-effect-id]')?.dataset?.effectId;
         this.action.item.effects.get(id).sheet.render(true);
+    }
+
+    async close(options) {
+        this.tabGroups.primary = 'base';
+        await super.close(options);
     }
 }

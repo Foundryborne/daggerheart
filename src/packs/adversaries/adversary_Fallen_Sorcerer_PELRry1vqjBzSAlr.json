@@ -493,31 +493,9 @@
       "name": "Shackles of Guilt",
       "type": "feature",
       "system": {
-        "description": "<p>Countdown (Loop 2d6). When the Sorcerer is in the spotlight for the first time, activate the countdown. When it triggers, all targets within Far range become Vulnerable and must mark a Stress as they relive their greatest regrets. A target can break free from their regret with a successful Presence or Strength Roll. When a PC fails to break free, they lose a Hope.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p><em>Countdown (Loop 2d6)</em>. When the Sorcerer is in the spotlight for the first time, activate the countdown. When it triggers, all targets within Far range become Vulnerable and must mark a Stress as they relive their greatest regrets. A target can break free from their regret with a successful Presence or Strength Roll. When a PC fails to break free, they lose a Hope.</p><p>@Template[type:emanation|range:f]</p>",
         "resource": null,
         "actions": {
-          "11mqihmiBK41aoDm": {
-            "type": "effect",
-            "_id": "11mqihmiBK41aoDm",
-            "systemPath": "actions",
-            "description": "<p>Countdown (Loop 2d6). When the Sorcerer is in the spotlight for the first time, activate the countdown.</p>",
-            "chatDisplay": true,
-            "actionType": "action",
-            "cost": [],
-            "uses": {
-              "value": null,
-              "max": "",
-              "recovery": null
-            },
-            "effects": [],
-            "target": {
-              "type": "any",
-              "amount": null
-            },
-            "name": "Countdown",
-            "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
-            "range": ""
-          },
           "7b0FkpAnWz9a5EWx": {
             "type": "damage",
             "_id": "7b0FkpAnWz9a5EWx",
@@ -572,6 +550,42 @@
               }
             ],
             "name": "Mark Stress",
+            "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
+            "range": ""
+          },
+          "11PtfoxbgOXxNlkG": {
+            "type": "countdown",
+            "_id": "11PtfoxbgOXxNlkG",
+            "systemPath": "actions",
+            "description": "<p><em>Countdown (Loop 2d6)</em>. When the Sorcerer is in the spotlight for the first time, activate the countdown.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "reaction",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "countdown": [
+              {
+                "name": "Shackles of Guilt",
+                "type": "encounter",
+                "defaultOwnership": -1,
+                "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
+                "progress": {
+                  "looping": "looping",
+                  "type": "actionRoll",
+                  "max": "2d6",
+                  "current": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "name": "Start Countdown",
             "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
             "range": ""
           }
@@ -640,12 +654,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.2.4",
         "createdTime": 1754133847132,
-        "modifiedTime": 1754135342391,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1763599235251,
+        "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!PELRry1vqjBzSAlr.gwSgBhkcekCGvXxz"
     }

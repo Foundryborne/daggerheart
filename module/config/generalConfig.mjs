@@ -611,18 +611,30 @@ export const abilityCosts = {
     resource: itemAbilityCosts.resource
 };
 
-export const countdownTypes = {
-    spotlight: {
-        id: 'spotlight',
-        label: 'DAGGERHEART.CONFIG.CountdownType.spotlight'
+export const countdownProgressionTypes = {
+    actionRoll: {
+        id: 'actionRoll',
+        label: 'DAGGERHEART.CONFIG.CountdownType.actionRoll'
     },
     characterAttack: {
         id: 'characterAttack',
         label: 'DAGGERHEART.CONFIG.CountdownType.characterAttack'
     },
+    characterSpotlight: {
+        id: 'characterSpotlight',
+        label: 'DAGGERHEART.CONFIG.CountdownType.characterSpotlight'
+    },
     custom: {
         id: 'custom',
         label: 'DAGGERHEART.CONFIG.CountdownType.custom'
+    },
+    fear: {
+        id: 'fear',
+        label: 'DAGGERHEART.CONFIG.CountdownType.fear'
+    },
+    spotlight: {
+        id: 'spotlight',
+        label: 'DAGGERHEART.CONFIG.CountdownType.spotlight'
     }
 };
 export const rollTypes = {
@@ -673,11 +685,30 @@ export const simpleOwnershiplevels = {
 export const countdownBaseTypes = {
     narrative: {
         id: 'narrative',
-        name: 'DAGGERHEART.APPLICATIONS.Countdown.types.narrative'
+        label: 'DAGGERHEART.APPLICATIONS.Countdown.types.narrative'
     },
     encounter: {
         id: 'encounter',
-        name: 'DAGGERHEART.APPLICATIONS.Countdown.types.encounter'
+        label: 'DAGGERHEART.APPLICATIONS.Countdown.types.encounter'
+    }
+};
+
+export const countdownLoopingTypes = {
+    noLooping: {
+        id: 'noLooping',
+        label: 'DAGGERHEART.APPLICATIONS.Countdown.loopingTypes.noLooping'
+    },
+    looping: {
+        id: 'looping',
+        label: 'DAGGERHEART.APPLICATIONS.Countdown.loopingTypes.looping'
+    },
+    increasing: {
+        id: 'increasing',
+        label: 'DAGGERHEART.APPLICATIONS.Countdown.loopingTypes.increasing'
+    },
+    decreasing: {
+        id: 'decreasing',
+        label: 'DAGGERHEART.APPLICATIONS.Countdown.loopingTypes.decreasing'
     }
 };
 

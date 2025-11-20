@@ -145,28 +145,42 @@
       "name": "The Climb",
       "type": "feature",
       "system": {
-        "description": "<p>Climbing up the cliff side uses a Progress Countdown (12). It ticks down according to the following criteria when the PCs make an action roll to climb: </p><ul><li><p><strong>Critical Success</strong>: Tick down 3</p></li><li><p><strong>Success with Hope</strong>: Tick down 2</p></li><li><p><strong>Success with Fear</strong>: Tick down 1</p></li><li><p><strong>Failure with Hope</strong>: No Advancement</p></li><li><p><strong>Failure with Fear</strong>: Tick up 1</p></li></ul><p>When the countdown triggers, the party has made it to the top of the cliff .</p><section id=\"secret-TUIXsJs6D65YsP9f\" class=\"secret\"><p><em>What strange formations are the stones arranged in? What ominous warnings did previous adventurers leave?</em></p></section>",
+        "description": "<p>Climbing up the cliff side uses a Progress <em>Countdown (12)</em>. It ticks down according to the following criteria when the PCs make an action roll to climb:</p><ul><li><p><strong>Critical Success</strong>: Tick down 3</p></li><li><p><strong>Success with Hope</strong>: Tick down 2</p></li><li><p><strong>Success with Fear</strong>: Tick down 1</p></li><li><p><strong>Failure with Hope</strong>: No Advancement</p></li><li><p><strong>Failure with Fear</strong>: Tick up 1</p></li></ul><p>When the countdown triggers, the party has made it to the top of the cliff .</p><section class=\"secret\" id=\"secret-TUIXsJs6D65YsP9f\"><p><em>What strange formations are the stones arranged in? What ominous warnings did previous adventurers leave?</em></p></section>",
         "resource": null,
         "actions": {
-          "6GVdM7pIOpieLRA8": {
-            "type": "effect",
-            "_id": "6GVdM7pIOpieLRA8",
+          "TMEBwqlfvL3mb3hQ": {
+            "type": "countdown",
+            "_id": "TMEBwqlfvL3mb3hQ",
             "systemPath": "actions",
-            "description": "<p>Climbing up the cliff side uses a Progress Countdown (12). It ticks down according to the following criteria when the PCs make an action roll to climb: </p><ul><li><p><strong>Critical Success</strong>: Tick down 3</p></li><li><p><strong>Success with Hope</strong>: Tick down 2</p></li><li><p><strong>Success with Fear</strong>: Tick down 1</p></li><li><p><strong>Failure with Hope</strong>: No Advancement</p></li><li><p><strong>Failure with Fear</strong>: Tick up 1</p></li></ul><p>When the countdown triggers, the party has made it to the top of the cliff .</p><section class=\"secret\" id=\"secret-U5QekZcpE7tSEBy2\"><p><em>What strange formations are the stones arranged in? What ominous warnings did previous adventurers leave?</em></p></section>",
+            "description": "<p>Climbing up the cliff side uses a <em>Progress Countdown (12)</em>. It ticks down according to the following criteria when the PCs make an action roll to climb:</p><ul><li><p><strong>Critical Success</strong>: Tick down 3</p></li><li><p><strong>Success with Hope</strong>: Tick down 2</p></li><li><p><strong>Success with Fear</strong>: Tick down 1</p></li><li><p><strong>Failure with Hope</strong>: No Advancement</p></li><li><p><strong>Failure with Fear</strong>: Tick up 1</p></li></ul><p>When the countdown triggers, the party has made it to the top of the cliff .</p><section class=\"secret\" id=\"secret-5teov2eI5kV1P3LD\"><p><em>What strange formations are the stones arranged in? What ominous warnings did previous adventurers leave?</em></p></section>",
             "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
             "actionType": "action",
             "cost": [],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
-            "effects": [],
-            "target": {
-              "type": "any",
-              "amount": null
-            },
-            "name": "Countdown",
+            "countdown": [
+              {
+                "name": "The Climb",
+                "type": "encounter",
+                "defaultOwnership": -1,
+                "img": "icons/environment/wilderness/terrain-rocks-brown.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "max": "12",
+                  "current": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "name": "Start Countdown",
             "img": "icons/environment/wilderness/terrain-rocks-brown.webp",
             "range": ""
           }
@@ -188,12 +202,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.2.3",
         "createdTime": 1754212143089,
-        "modifiedTime": 1754212255805,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1763493379219,
+        "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!LPpfdlNKqiZIl04w.bKBwM72OwVnlsHG6"
     },

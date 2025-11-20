@@ -46,6 +46,10 @@
                     "name": "Beastform",
                     "tooltip": "Shapeshift the user into another form."
                 },
+                "countdown": {
+                    "name": "Countdown",
+                    "tooltip": "Start a countdown"
+                },
                 "damage": {
                     "name": "Damage",
                     "tooltip": "Direct damage without a roll."
@@ -72,6 +76,10 @@
                     "exact": "Beastform Max Tier",
                     "exactHint": "The Character's Tier is used if empty",
                     "label": "Beastform"
+                },
+                "countdown": {
+                    "defaultOwnership": "Default Ownership",
+                    "startCountdown": "Start Countdown"
                 },
                 "damage": {
                     "multiplier": "Multiplier",
@@ -321,19 +329,26 @@
             },
             "Countdown": {
                 "addCountdown": "Add Countdown",
+                "loopingTypes": {
+                    "noLooping": "No Looping",
+                    "looping": "Looping",
+                    "increasing": "Increasing",
+                    "decreasing": "Decreasing"
+                },
                 "FIELDS": {
                     "countdowns": {
                         "element": {
                             "name": { "label": "Name" },
                             "progress": {
                                 "current": { "label": "Current" },
+                                "looping": { "label": "Looping" },
                                 "max": { "label": "Max" },
                                 "type": {
                                     "label": { "label": "Label", "hint": "Used for custom" },
                                     "value": { "label": "Value" }
                                 }
                             },
-                            "type": { "label": "Countdown Type" }
+                            "type": { "label": "Progression Type" }
                         }
                     }
                 },
@@ -360,7 +375,9 @@
                 "currentCountdownValue": "Current: {value}",
                 "currentCountdownMax": "Max: {value}",
                 "category": "Category",
-                "type": "Type",
+                "progressionType": "Progression Type",
+                "decreasing": "Decreasing",
+                "looping": "Looping",
                 "defaultOwnershipTooltip": "The default player ownership of countdowns",
                 "hideNewCountdowns": "Hide New Countdowns"
             },
@@ -915,9 +932,12 @@
                 }
             },
             "CountdownType": {
-                "spotlight": "Spotlight",
+                "actionRoll": "Action Roll",
+                "characterAttack": "Character Attack",
+                "characterSpotlight": "Character Spotlight",
                 "custom": "Custom",
-                "characterAttack": "Character Attack"
+                "fear": "Fear",
+                "spotlight": "Spotlight"
             },
             "DamageType": {
                 "physical": {
@@ -2286,6 +2306,10 @@
                         "gm": { "label": "GM" },
                         "players": { "label": "Players" }
                     },
+                    "countdownAutomation": {
+                        "label": "Countdown Automation",
+                        "hint": "Automatically progress countdowns based on their progression settings"
+                    },
                     "levelupAuto": {
                         "label": "Levelup Automation",
                         "hint": "When you've made your choices and finish levelup, the numerical changes are automatically applied to your character."
@@ -2545,7 +2569,10 @@
             "Countdowns": {
                 "title": "Countdowns",
                 "toggleIconMode": "Toggle Icon Only",
-                "noPlayerAccess": "This countdown isn't visible to any players"
+                "noPlayerAccess": "This countdown isn't visible to any players",
+                "loop": "Looping",
+                "decreasingLoop": "Decreasing Looping",
+                "increasingLoop": "Increasing Looping"
             },
             "ItemBrowser": {
                 "title": "Daggerheart Compendium Browser",

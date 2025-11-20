@@ -1,4 +1,4 @@
-<section 
+    <section 
     class="tab {{this.tabs.effect.cssClass}}"
     data-group="primary"
     data-tab="effect"
@@ -9,4 +9,5 @@
     {{#if fields.macro}}{{> 'systems/daggerheart/templates/actionTypes/macro.hbs' fields=fields.macro source=source.macro}}{{/if}}
     {{#if fields.effects}}{{> 'systems/daggerheart/templates/actionTypes/effect.hbs' fields=fields.effects.element.fields source=source.effects}}{{/if}}
     {{#if fields.beastform}}{{> 'systems/daggerheart/templates/actionTypes/beastform.hbs' fields=fields.beastform.fields source=source.beastform}}{{/if}}
+    {{#if fields.countdown}}{{> 'systems/daggerheart/templates/actionTypes/countdown.hbs' fields=fields.countdown.element.fields source=source.countdown}}{{/if}}
 </section>

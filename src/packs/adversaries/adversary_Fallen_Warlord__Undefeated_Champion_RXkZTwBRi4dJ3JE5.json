@@ -578,36 +578,14 @@
       "name": "Circle of Defilement",
       "type": "feature",
       "system": {
-        "description": "<p>Countdown (1d8). When the Undefeated Champion is in the spotlight for the fi rst time, activate the countdown. When it triggers, activate a magical circle covering an area within Far range of the Champion. A target within that area is Vulnerable until they leave the circle. The circle can be removed by dealing Severe damage to the Undefeated Champion.</p>",
+        "description": "<p><em>Countdown (1d8)</em>. When the Undefeated Champion is in the spotlight for the first time, activate the countdown. When it triggers, activate a magical circle covering an area within Far range of the Champion. A target within that area is Vulnerable until they leave the circle. The circle can be removed by dealing Severe damage to the Undefeated Champion.</p>",
         "resource": null,
         "actions": {
-          "oRenRHpOIjRqYNUG": {
-            "type": "effect",
-            "_id": "oRenRHpOIjRqYNUG",
-            "systemPath": "actions",
-            "description": "<p>Countdown (1d8). When the Undefeated Champion is in the spotlight for the fi rst time, activate the countdown.</p>",
-            "chatDisplay": true,
-            "actionType": "action",
-            "cost": [],
-            "uses": {
-              "value": null,
-              "max": "",
-              "recovery": null
-            },
-            "effects": [],
-            "target": {
-              "type": "any",
-              "amount": null
-            },
-            "name": "Countdown",
-            "img": "icons/magic/unholy/barrier-fire-pink.webp",
-            "range": ""
-          },
           "mHeYZ8e8MbkGz22d": {
             "type": "effect",
             "_id": "mHeYZ8e8MbkGz22d",
             "systemPath": "actions",
-            "description": "<p>When the countdown triggers, activate a magical circle covering an area within Far range of the Champion. A target within that area is Vulnerable until they leave the circle. The circle can be removed by dealing Severe damage to the Undefeated Champion.</p>",
+            "description": "<p>Activate a magical circle covering an area within Far range of the Champion. A target within that area is Vulnerable until they leave the circle. The circle can be removed by dealing Severe damage to the Undefeated Champion.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -627,6 +605,42 @@
               "amount": null
             },
             "name": "Circle",
+            "img": "icons/magic/unholy/barrier-fire-pink.webp",
+            "range": ""
+          },
+          "4x13WyksHU0u0j20": {
+            "type": "countdown",
+            "_id": "4x13WyksHU0u0j20",
+            "systemPath": "actions",
+            "description": "<p><em>Countdown (1d8)</em>. When the Undefeated Champion is in the spotlight for the first time, activate the countdown.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "reaction",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "countdown": [
+              {
+                "name": "Circle of Defilement",
+                "type": "encounter",
+                "defaultOwnership": -1,
+                "img": "icons/magic/unholy/barrier-fire-pink.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "actionRoll",
+                  "max": "1d8",
+                  "current": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "name": "Start Countdown",
             "img": "icons/magic/unholy/barrier-fire-pink.webp",
             "range": ""
           }
@@ -695,12 +709,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.2.4",
         "createdTime": 1754135646248,
-        "modifiedTime": 1754135780879,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1763599314892,
+        "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!RXkZTwBRi4dJ3JE5.55P7ZijSbQeVHCw4"
     },

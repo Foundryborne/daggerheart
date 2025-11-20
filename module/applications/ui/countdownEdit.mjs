@@ -44,18 +44,30 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         context.ownershipDefaultOptions = CONFIG.DH.GENERAL.basicOwnershiplevels;
         context.defaultOwnership = this.data.defaultOwnership;
         context.countdownBaseTypes = CONFIG.DH.GENERAL.countdownBaseTypes;
-        context.countdownTypes = CONFIG.DH.GENERAL.countdownTypes;
+        context.countdownProgressionTypes = CONFIG.DH.GENERAL.countdownProgressionTypes;
+        context.countdownLoopingTypes = CONFIG.DH.GENERAL.countdownLoopingTypes;
         context.hideNewCountdowns = this.hideNewCountdowns;
         context.countdowns = Object.keys(this.data.countdowns).reduce((acc, key) => {
             const countdown = this.data.countdowns[key];
+            const isLooping = countdown.progress.looping !== CONFIG.DH.GENERAL.countdownLoopingTypes.noLooping;
+            const loopTooltip = isLooping
+                ? countdown.progress.looping === CONFIG.DH.GENERAL.countdownLoopingTypes.increasing.id
+                    ? 'DAGGERHEART.UI.Countdowns.increasingLoop'
+                    : countdown.progress.looping === CONFIG.DH.GENERAL.countdownLoopingTypes.decreasing.id
+                      ? 'DAGGERHEART.UI.Countdowns.decreasingLoop'
+                      : 'DAGGERHEART.UI.Countdowns.loop'
+                : null;
             acc[key] = {
                 ...countdown,
-                typeName: game.i18n.localize(CONFIG.DH.GENERAL.countdownBaseTypes[countdown.type].name),
+                typeName: game.i18n.localize(CONFIG.DH.GENERAL.countdownBaseTypes[countdown.type].label),
                 progress: {
                     ...countdown.progress,
-                    typeName: game.i18n.localize(CONFIG.DH.GENERAL.countdownTypes[countdown.progress.type].label)
+                    typeName: game.i18n.localize(
+                        CONFIG.DH.GENERAL.countdownProgressionTypes[countdown.progress.type].label
+                    )
                 },
-                editing: this.editingCountdowns.has(key)
+                editing: this.editingCountdowns.has(key),
+                loopTooltip
             };
 
             return acc;

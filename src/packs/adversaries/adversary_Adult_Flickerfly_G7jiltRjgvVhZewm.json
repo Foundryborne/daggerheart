@@ -611,14 +611,14 @@
       "name": "Hallucinatory Breath",
       "type": "feature",
       "system": {
-        "description": "<p>Countdown (Loop 1d6). When the Flickerfly takes damage for the first time, activate the countdown. When it triggers, the Flickerfly breathes hallucinatory gas on all targets in front of them up to Far range. Targets must make an Instinct Reaction Roll or be tormented by fearful hallucinations. Targets whose fears are known to the Flickerfl y have disadvantage on this roll. Targets who fail lose 2 Hope and take <strong>3d8+3</strong> direct magic damage.</p><p>@Template[type:inFront|range:f]</p>",
+        "description": "<p><em>Countdown (Loop 1d6)</em>. When the Flickerfly takes damage for the first time, activate the countdown. When it triggers, the Flickerfly breathes hallucinatory gas on all targets in front of them up to Far range. Targets must make an Instinct Reaction Roll or be tormented by fearful hallucinations. Targets whose fears are known to the Flickerfl y have disadvantage on this roll. Targets who fail lose 2 Hope and take <strong>3d8+3</strong> direct magic damage.</p><p>@Template[type:inFront|range:f]</p>",
         "resource": null,
         "actions": {
           "YOyKyKGTUEWkMmJe": {
             "type": "attack",
             "_id": "YOyKyKGTUEWkMmJe",
             "systemPath": "actions",
-            "description": "<p>Countdown (Loop 1d6). When the Flickerfly takes damage for the first time, activate the countdown. When it triggers, the Flickerfly breathes hallucinatory gas on all targets in front of them up to Far range. Targets must make an Instinct Reaction Roll or be tormented by fearful hallucinations. Targets whose fears are known to the Flickerfl y have disadvantage on this roll. Targets who fail lose 2 Hope and take <strong>3d8+3</strong> direct magic damage.</p><p>@Template[type:inFront|range:f]</p>",
+            "description": "<p>The Flickerfly breathes hallucinatory gas on all targets in front of them up to Far range. Targets must make an Instinct Reaction Roll or be tormented by fearful hallucinations. Targets whose fears are known to the Flickerfly have disadvantage on this roll. Targets who fail lose 2 Hope and take <strong>3d8+3</strong> direct magic damage.</p><p>@Template[type:inFront|range:f]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -711,6 +711,42 @@
             "name": "Roll Save",
             "img": "icons/magic/air/fog-gas-smoke-purple.webp",
             "range": "far"
+          },
+          "lBhmLc33pcXzJHT3": {
+            "type": "countdown",
+            "_id": "lBhmLc33pcXzJHT3",
+            "systemPath": "actions",
+            "description": "<p><em>Countdown (Loop 1d6)</em>. When the Flickerfly takes damage for the first time, activate the countdown.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "countdown": [
+              {
+                "name": "Hallucinatory Breath",
+                "type": "encounter",
+                "defaultOwnership": -1,
+                "img": "icons/magic/air/fog-gas-smoke-purple.webp",
+                "progress": {
+                  "looping": "looping",
+                  "type": "actionRoll",
+                  "max": "1d6",
+                  "current": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "name": "Start Countdown",
+            "img": "icons/magic/air/fog-gas-smoke-purple.webp",
+            "range": ""
           }
         },
         "originItemType": null,
@@ -730,12 +766,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.2.4",
         "createdTime": 1754122030308,
-        "modifiedTime": 1754122681022,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1763599149242,
+        "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!G7jiltRjgvVhZewm.49cIxZRFiAM6jDva"
     },
