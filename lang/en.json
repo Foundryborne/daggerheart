@@ -2650,7 +2650,7 @@
                 "cardTooHighLevel": "The card is too high level!",
                 "duplicateCard": "You cannot select the same card more than once.",
                 "duplicateCharacter": "This actor is already registered in the party members list.",
-                "onlyCharactersInPartySheet": "You can only drag characters, companions and adverasries to the party sheet.",
+                "onlyCharactersInPartySheet": "You can only drag characters, companions and adversaries to the party sheet.",
                 "notPrimary": "The weapon is not a primary weapon!",
                 "notSecondary": "The weapon is not a secondary weapon!",
                 "itemTooHighTier": "The item must be from Tier1",
