@@ -861,7 +861,7 @@
                 "img": "icons/creatures/abilities/mouth-teeth-fire-orange.webp",
                 "progress": {
                   "looping": "noLooping",
-                  "type": "custom",
+                  "type": "fear",
                   "max": "1d12",
                   "current": 1
                 },
@@ -939,9 +939,9 @@
         "exportSource": null,
         "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "1.2.3",
+        "systemVersion": "1.2.4",
         "createdTime": 1754140011482,
-        "modifiedTime": 1763489806693,
+        "modifiedTime": 1763601068928,
         "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!pMuXGCSOQaxpi5tb.uWiyaJPXcoW06pOM"

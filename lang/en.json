@@ -932,10 +932,11 @@
             },
             "CountdownType": {
                 "actionRoll": "Action Roll",
+                "characterAttack": "Character Attack",
                 "characterSpotlight": "Character Spotlight",
-                "spotlight": "Spotlight",
                 "custom": "Custom",
-                "characterAttack": "Character Attack"
+                "fear": "Fear",
+                "spotlight": "Spotlight"
             },
             "DamageType": {
                 "physical": {

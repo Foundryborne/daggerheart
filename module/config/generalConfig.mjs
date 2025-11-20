@@ -616,21 +616,25 @@ export const countdownProgressionTypes = {
         id: 'actionRoll',
         label: 'DAGGERHEART.CONFIG.CountdownType.actionRoll'
     },
-    spotlight: {
-        id: 'spotlight',
-        label: 'DAGGERHEART.CONFIG.CountdownType.spotlight'
+    characterAttack: {
+        id: 'characterAttack',
+        label: 'DAGGERHEART.CONFIG.CountdownType.characterAttack'
     },
     characterSpotlight: {
         id: 'characterSpotlight',
         label: 'DAGGERHEART.CONFIG.CountdownType.characterSpotlight'
     },
-    characterAttack: {
-        id: 'characterAttack',
-        label: 'DAGGERHEART.CONFIG.CountdownType.characterAttack'
-    },
     custom: {
         id: 'custom',
         label: 'DAGGERHEART.CONFIG.CountdownType.custom'
+    },
+    fear: {
+        id: 'fear',
+        label: 'DAGGERHEART.CONFIG.CountdownType.fear'
+    },
+    spotlight: {
+        id: 'spotlight',
+        label: 'DAGGERHEART.CONFIG.CountdownType.spotlight'
     }
 };
 export const rollTypes = {
