@@ -260,7 +260,7 @@ export function ActionMixin(Base) {
                 origin: origin,
                 action: { name: this.name, img: this.img, tags: this.tags ? this.tags : ['Spell', 'Arcana', 'Lv 10'] },
                 itemOrigin: this.item,
-                description: this.description
+                description: this.description || (this.item instanceof Item ? this.item.system.description : "")
             };
             const msg = {
                 type: 'abilityUse',
