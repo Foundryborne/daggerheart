@@ -81,14 +81,6 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         return frame;
     }
 
-    /**@inheritdoc */
-    async _onFirstRender(context, options) {
-        await super._onFirstRender(context, options);
-
-        if (ui.webrtc.rendered) this.toggleRctPosition();
-        this.toggleCollapsedPosition(undefined, !ui.sidebar.expanded);
-    }
-
     /** Returns countdown data filtered by ownership */
     #getCountdowns() {
         const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
@@ -137,31 +129,6 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             ? setting.defaultOwnership
             : playerOwnership;
     }
-
-    toggleCollapsedPosition = async (_, collapsed) => {
-        if (!this.element) return;
-
-        const webrtcPresent = ui.webrtc.rendered && ui.webrtc.classList.contains('right');
-        if (webrtcPresent) this.element.classList.add('rctRight');
-
-        this.sidebarCollapsed = collapsed;
-        if (!collapsed) this.element.classList.add('expanded');
-        else this.element.classList.remove('expanded');
-    };
-
-    toggleRctPosition = async data => {
-        if (!this.element) return;
-
-        const webrtcData = data ?? ui.webrtc;
-        const onTop = webrtcData.classList.contains('horizontal') && webrtcData.classList.contains('top');
-        const onRight = webrtcData.classList.contains('vertical') && webrtcData.classList.contains('right');
-        if (!onTop && !onRight) return;
-
-        if (onTop) this.element.classList.add('rctTop');
-        else this.element.classList.remove('rctTop');
-        if (onRight) this.element.classList.add('rctRight');
-        else this.element.classList.remove('rctRight');
-    };
 
     cooldownRefresh = ({ refreshType }) => {
         if (refreshType === RefreshType.Countdown) this.render();
@@ -218,8 +185,6 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     }
 
     setupHooks() {
-        Hooks.on('collapseSidebar', this.toggleCollapsedPosition.bind());
-        Hooks.on('renderCameraViews', this.toggleRctPosition.bind());
         Hooks.on(socketEvent.Refresh, this.cooldownRefresh.bind());
     }
 
@@ -227,8 +192,6 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         /* Opt out of Foundry's standard behavior of closing all application windows marked as UI when Escape is pressed */
         if (options.closeKey) return;
 
-        Hooks.off('collapseSidebar', this.toggleCollapsedPosition);
-        Hooks.off('renderCameraViews', this.toggleRctPosition);
         Hooks.off(socketEvent.Refresh, this.cooldownRefresh);
         return super.close(options);
     }
@@ -269,5 +232,8 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     async _onRender(context, options) {
         await super._onRender(context, options);
         this.element.hidden = !game.user.isGM && this.#getCountdowns().length === 0;
+        if (options?.force) {
+            document.getElementById('ui-right-column-1')?.appendChild(this.element);
+        }
     }
 }
