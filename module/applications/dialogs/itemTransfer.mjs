@@ -12,7 +12,7 @@ export default class ItemTransferDialog extends HandlebarsApplicationMixin(Appli
         tag: 'form',
         classes: ['daggerheart', 'dh-style', 'dialog', 'item-transfer'],
         position: { width: 300, height: 'auto' },
-        window: { title: 'Transfer Quantity' },
+        window: { title: 'DAGGERHEART.APPLICATIONS.ItemTransfer.title' },
         actions: {
             finish: ItemTransferDialog.#finish
         },

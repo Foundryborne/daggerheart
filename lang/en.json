@@ -464,6 +464,10 @@
                 "title": "Select Image",
                 "selectImage": "Select Image"
             },
+            "ItemTransfer": {
+                "title": "Transfer Item Quantity",
+                "transfer": "Transfer"
+            },
             "Levelup": {
                 "actions": {
                     "creatureComfort": {
