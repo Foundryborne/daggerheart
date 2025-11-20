@@ -544,7 +544,7 @@
                 "img": "icons/magic/air/fog-gas-smoke-brown.webp",
                 "progress": {
                   "looping": "looping",
-                  "type": "custom",
+                  "type": "actionRoll",
                   "max": "6",
                   "current": 1
                 },
@@ -575,9 +575,9 @@
         "exportSource": null,
         "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "1.2.3",
+        "systemVersion": "1.2.4",
         "createdTime": 1754217910442,
-        "modifiedTime": 1763493849742,
+        "modifiedTime": 1763599784561,
         "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!oY69NN4rYxoRE4hl.kYxuTZjH7HDUGeWh"

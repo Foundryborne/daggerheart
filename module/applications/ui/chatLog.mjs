@@ -232,7 +232,8 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             hasRoll: true,
             skips: {
                 createMessage: true,
-                resources: !isLeader
+                resources: !isLeader,
+                updateCountdowns: !isLeader
             }
         };
         const result = await actor.diceRoll({
@@ -291,7 +292,8 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             },
             hasRoll: true,
             skips: {
-                createMessage: true
+                createMessage: true,
+                updateCountdowns: true
             }
         };
         const result = await actor.diceRoll({

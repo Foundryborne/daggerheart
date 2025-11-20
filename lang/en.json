@@ -931,6 +931,7 @@
                 }
             },
             "CountdownType": {
+                "actionRoll": "Action Roll",
                 "characterSpotlight": "Character Spotlight",
                 "spotlight": "Spotlight",
                 "custom": "Custom",

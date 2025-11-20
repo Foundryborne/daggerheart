@@ -403,7 +403,7 @@
                 "img": "icons/magic/water/snowflake-ice-blue-white.webp",
                 "progress": {
                   "looping": "looping",
-                  "type": "custom",
+                  "type": "actionRoll",
                   "max": "4",
                   "current": 1
                 },
@@ -434,9 +434,9 @@
         "exportSource": null,
         "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "1.2.3",
+        "systemVersion": "1.2.4",
         "createdTime": 1754217155443,
-        "modifiedTime": 1763493758044,
+        "modifiedTime": 1763599993797,
         "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!acMu9wJrMZZzLSTJ.K8ld4m5yTA6WZwUs"

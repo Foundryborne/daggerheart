@@ -340,7 +340,7 @@
                 "img": "icons/magic/control/sihouette-hold-beam-green.webp",
                 "progress": {
                   "looping": "looping",
-                  "type": "custom",
+                  "type": "actionRoll",
                   "max": "4",
                   "current": 1
                 },
@@ -371,9 +371,9 @@
         "exportSource": null,
         "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "1.2.3",
+        "systemVersion": "1.2.4",
         "createdTime": 1754219142956,
-        "modifiedTime": 1763494178457,
+        "modifiedTime": 1763599839181,
         "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!2Z1mKc65LxNk2PqR.0OYHJZqT0DlVz5be"

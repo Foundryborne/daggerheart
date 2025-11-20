@@ -612,6 +612,10 @@ export const abilityCosts = {
 };
 
 export const countdownProgressionTypes = {
+    actionRoll: {
+        id: 'actionRoll',
+        label: 'DAGGERHEART.CONFIG.CountdownType.actionRoll'
+    },
     spotlight: {
         id: 'spotlight',
         label: 'DAGGERHEART.CONFIG.CountdownType.spotlight'

@@ -622,7 +622,7 @@
                 "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
                 "progress": {
                   "looping": "decreasing",
-                  "type": "custom",
+                  "type": "actionRoll",
                   "max": "8",
                   "current": 1
                 },
@@ -653,9 +653,9 @@
         "exportSource": null,
         "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "1.2.3",
+        "systemVersion": "1.2.4",
         "createdTime": 1754134694918,
-        "modifiedTime": 1763489601633,
+        "modifiedTime": 1763599267846,
         "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!hxZ0sgoFJubh5aj6.48tIwFQr64IQ5LaY"

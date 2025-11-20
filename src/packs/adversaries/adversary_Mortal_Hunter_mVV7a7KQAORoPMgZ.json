@@ -624,7 +624,7 @@
                 "img": "icons/magic/movement/trail-streak-zigzag-yellow.webp",
                 "progress": {
                   "looping": "looping",
-                  "type": "custom",
+                  "type": "actionRoll",
                   "max": "1d6",
                   "current": 1
                 },
@@ -655,9 +655,9 @@
         "exportSource": null,
         "coreVersion": "13.351",
         "systemId": "daggerheart",
-        "systemVersion": "1.2.3",
+        "systemVersion": "1.2.4",
         "createdTime": 1754082669471,
-        "modifiedTime": 1763488527913,
+        "modifiedTime": 1763599508803,
         "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
       },
       "_key": "!actors.items!mVV7a7KQAORoPMgZ.IOCG3J20wUHvyvvh"
