@@ -9,7 +9,7 @@ export default class ItemTransferDialog extends HandlebarsApplicationMixin(Appli
     }
 
     get title() {
-        return game.i18n.format('DAGGERHEART.APPLICATIONS.ItemTransfer.title', { item: this.item.name });
+        return this.item.name;
     }
 
     static DEFAULT_OPTIONS = {
