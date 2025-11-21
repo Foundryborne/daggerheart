@@ -8,11 +8,14 @@ export default class ItemTransferDialog extends HandlebarsApplicationMixin(Appli
         this.quantity = item.system.quantity;
     }
 
+    get title() {
+        return game.i18n.format('DAGGERHEART.APPLICATIONS.ItemTransfer.title', { item: this.item.name });
+    }
+
     static DEFAULT_OPTIONS = {
         tag: 'form',
         classes: ['daggerheart', 'dh-style', 'dialog', 'item-transfer'],
         position: { width: 300, height: 'auto' },
-        window: { title: 'DAGGERHEART.APPLICATIONS.ItemTransfer.title' },
         actions: {
             finish: ItemTransferDialog.#finish
         },

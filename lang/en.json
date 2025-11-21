@@ -465,7 +465,7 @@
                 "selectImage": "Select Image"
             },
             "ItemTransfer": {
-                "title": "Transfer Item Quantity",
+                "title": "{item}: Transfer Item Quantity",
                 "transfer": "Transfer"
             },
             "Levelup": {
