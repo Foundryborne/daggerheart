@@ -16,6 +16,7 @@ export default class ItemTransferDialog extends HandlebarsApplicationMixin(Appli
         tag: 'form',
         classes: ['daggerheart', 'dh-style', 'dialog', 'item-transfer'],
         position: { width: 300, height: 'auto' },
+        window: { icon: 'fa-solid fa-hand-holding-hand' },
         actions: {
             finish: ItemTransferDialog.#finish
         },
