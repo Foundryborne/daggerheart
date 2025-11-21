@@ -14,7 +14,8 @@ export default class DhAppearance extends foundry.abstract.DataModel {
                 texture: new StringField({ initial: 'astralsea', required: true, blank: false }),
                 colorset: new StringField({ initial: 'inspired', required: true, blank: false }),
                 material: new StringField({ initial: 'metal', required: true, blank: false }),
-                system: new StringField({ initial: 'standard', required: true, blank: false })
+                system: new StringField({ initial: 'standard', required: true, blank: false }),
+                font: new StringField({ initial: 'auto', required: true, blank: false })
             });
 
         return {

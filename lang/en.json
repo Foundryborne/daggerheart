@@ -2445,7 +2445,8 @@
                         "texture": "Texture",
                         "colorset": "Theme",
                         "material": "Material",
-                        "system": "Dice Preset"
+                        "system": "Dice Preset",
+                        "font": "Font"
                     }
                 },
                 "variantRules": {

@@ -144,6 +144,7 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
         context.diceSoNiceSystems = Object.fromEntries(
             [...game.dice3d.DiceFactory.systems].map(([k, v]) => [k, v.name])
         );
+        context.diceSoNiceFonts = game.dice3d.exports.Utils.prepareFontList();
 
         foundry.utils.mergeObject(
             context.dsnTabs,
