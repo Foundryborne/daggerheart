@@ -53,9 +53,10 @@ export default class EffectsField extends fields.ArrayField {
             if (this.hasSave && token.saved.success === true) effects = this.effects.filter(e => e.onSave === true);
             if (!effects.length) return;
 
-            const token = canvas.tokens.get(baseToken.id);
+            const token =
+                canvas.tokens.get(baseToken.id) ?? foundry.utils.fromUuidSync(baseToken.actorId).prototypeToken;
             if (!token) return;
-            messageTargets.push(token.document);
+            messageTargets.push(token.document ?? token);
 
             effects.forEach(async e => {
                 const effect = this.item.effects.get(e._id);
