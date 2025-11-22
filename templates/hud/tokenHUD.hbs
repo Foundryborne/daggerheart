@@ -46,7 +46,12 @@
     </button>
     <div class="palette status-effects" data-palette="effects">
         {{#each systemStatusEffects as |status|}}
-            <img class="effect-control {{status.cssClass}}" src="{{status.src}}" data-action="effect" data-status-id="{{status.id}}" {{#if status.title}}data-tooltip-text="{{status.title}}"{{/if}}>
+            <div class="effect-control-container" {{#if status.disabled}}data-tooltip="{{localize "DAGGERHEART.UI.Tooltip.immune"}}"{{/if}}>
+                <img class="effect-control {{status.cssClass}} {{#if status.disabled}}disabled{{/if}}" src="{{status.src}}" data-action="effect" data-status-id="{{status.id}}" {{#if status.title}}data-tooltip-text="{{status.title}}"{{/if}}>
+                {{#if status.disabled}}
+                    <span class="effect-control-disabled-marker">/</span>
+                {{/if}}
+            </div>
         {{/each}}
         {{#if genericStatusEffects}}
             <label class="palette-category-title">{{localize "DAGGERHEART.APPLICATIONS.HUD.tokenHUD.genericEffects"}}</label>

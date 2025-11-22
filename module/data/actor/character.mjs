@@ -284,8 +284,9 @@ export default class DhCharacter extends BaseDataActor {
                     })
                 }),
                 conditionImmunities: new fields.SchemaField({
-                    vulnerable: new fields.BooleanField({ initial: false }),
-                    restrained: new fields.BooleanField({ initial: false })
+                    hidden: new fields.BooleanField({ initial: false }),
+                    restrained: new fields.BooleanField({ initial: false }),
+                    vulnerable: new fields.BooleanField({ initial: false })
                 }),
                 runeWard: new fields.BooleanField({ initial: false }),
                 burden: new fields.SchemaField({

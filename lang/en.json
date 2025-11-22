@@ -2728,7 +2728,8 @@
                 "rightClickExtand": "Right-Click to extand",
                 "companionPartnerLevelBlock": "The companion needs an assigned partner to level up.",
                 "configureAttribution": "Configure Attribution",
-                "deleteItem": "Delete Item"
+                "deleteItem": "Delete Item",
+                "immune": "Immune"
             }
         }
     }
