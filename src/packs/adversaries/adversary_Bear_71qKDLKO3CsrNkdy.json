@@ -401,7 +401,7 @@
           "description": "<p>You are <em>Restrained</em> until you break free with a successful Strength Roll.</p>",
           "tint": "#ffffff",
           "statuses": [
-            "restrain"
+            "restrained"
           ],
           "sort": 0,
           "flags": {},

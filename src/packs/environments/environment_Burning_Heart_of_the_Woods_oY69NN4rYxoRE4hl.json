@@ -313,7 +313,7 @@
           "description": "<p><em>Restrained</em> and <em>Vulnerable</em> until you break free, clearing both conditions, with a successful Finesse or Strength Roll or by dealing 10 damage to the vines. When the target makes a roll to escape, they take <strong>1d8+4</strong> physical damage and lose a Hope.</p><section class=\"secret\" id=\"secret-Eui1zx8GKoUhEXq6\"><p><em>What painful memories do the vines bring to the surface as they pierce flesh?</em></p></section>",
           "tint": "#ffffff",
           "statuses": [
-            "restrain",
+            "restrained",
             "vulnerable"
           ],
           "sort": 0,

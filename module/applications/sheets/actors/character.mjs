@@ -31,6 +31,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             toggleEquipItem: CharacterSheet.#toggleEquipItem,
             toggleResourceDice: CharacterSheet.#toggleResourceDice,
             handleResourceDice: CharacterSheet.#handleResourceDice,
+            advanceResourceDie: CharacterSheet.#advanceResourceDie,
             cancelBeastform: CharacterSheet.#cancelBeastform,
             useDowntime: this.useDowntime
         },
@@ -147,6 +148,10 @@ export default class CharacterSheet extends DHBaseActorSheet {
         // Add listener for armor marks input
         htmlElement.querySelectorAll('.armor-marks-input').forEach(element => {
             element.addEventListener('change', this.updateArmorMarks.bind(this));
+        });
+
+        htmlElement.querySelectorAll('.item-resource.die').forEach(element => {
+            element.addEventListener('contextmenu', this.lowerResourceDie.bind(this));
         });
     }
 
@@ -855,6 +860,27 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 acc[index] = { value: state.value, used: state.used };
                 return acc;
             }, {})
+        });
+    }
+
+    /** */
+    static #advanceResourceDie(_, target) {
+        this.updateResourceDie(target, true);
+    }
+
+    lowerResourceDie(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.updateResourceDie(event.target, false);
+    }
+
+    async updateResourceDie(target, advance) {
+        const item = await getDocFromElement(target);
+        if (!item) return;
+
+        const advancedValue = item.system.resource.value + (advance ? 1 : -1);
+        await item.update({
+            'system.resource.value': Math.min(advancedValue, Number(item.system.resource.dieFaces.split('d')[1]))
         });
     }
 

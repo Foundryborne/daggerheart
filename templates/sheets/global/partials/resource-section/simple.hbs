@@ -1,0 +1,14 @@
+ <span>
+    <div class="nest-inputs even">
+        {{formGroup systemFields.resource.fields.type value=source.system.resource.type localize=true blank=false}}
+        {{formGroup systemFields.resource.fields.recovery value=source.system.resource.recovery localize=true}}
+        {{formGroup systemFields.resource.fields.progression value=source.system.resource.progression localize=true}}
+    </div>
+
+    <div class="two-columns even">
+        {{formGroup systemFields.resource.fields.value value=source.system.resource.value localize=true}}
+        {{formGroup systemFields.resource.fields.max value=source.system.resource.max localize=true}}
+    </div>
+
+    {{formGroup systemFields.resource.fields.icon value=source.system.resource.icon localize=true placeholder="fa-solid fa-hashtag"}}
+</span>

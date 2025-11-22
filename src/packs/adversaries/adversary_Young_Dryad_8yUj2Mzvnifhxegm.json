@@ -399,7 +399,7 @@
           "description": "<p>You are <em>Restrained</em> until you're freed with a successful Strength Roll. When a creature makes an action roll against the cage, they must mark a Stress. </p>",
           "tint": "#ffffff",
           "statuses": [
-            "restrain"
+            "restrained"
           ],
           "sort": 0,
           "flags": {},

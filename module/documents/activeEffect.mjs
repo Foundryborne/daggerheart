@@ -57,6 +57,27 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
             update.img = 'icons/magic/life/heart-cross-blue.webp';
         }
 
+        const immuneStatuses =
+            data.statuses?.filter(
+                status =>
+                    this.parent.system.rules?.conditionImmunities &&
+                    this.parent.system.rules.conditionImmunities[status]
+            ) ?? [];
+        if (immuneStatuses.length > 0) {
+            update.statuses = data.statuses.filter(x => !immuneStatuses.includes(x));
+            const conditions = CONFIG.DH.GENERAL.conditions();
+            const scrollingTexts = immuneStatuses.map(status => ({
+                text: game.i18n.format('DAGGERHEART.ACTIVEEFFECT.immuneStatusText', {
+                    status: game.i18n.localize(conditions[status].name)
+                })
+            }));
+            if (update.statuses.length > 0) {
+                setTimeout(() => scrollingTexts, 500);
+            } else {
+                this.parent.queueScrollText(scrollingTexts);
+            }
+        }
+
         if (Object.keys(update).length > 0) {
             await this.updateSource(update);
         }
@@ -76,7 +97,10 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
             change.value = change.value.replaceAll(/origin\.@/gi, '@');
             try {
                 const effect = foundry.utils.fromUuidSync(change.effect.origin);
-                const doc = effect.parent?.parent;
+                const doc =
+                    effect.parent?.parent instanceof game.system.api.documents.DhpActor
+                        ? effect.parent
+                        : effect.parent.parent;
                 if (doc) parseModel = doc;
             } catch (_) {}
         }

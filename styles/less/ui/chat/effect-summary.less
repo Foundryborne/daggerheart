@@ -80,39 +80,52 @@
         gap: 5px;
     }
 
-    .token-target-container {
+    .token-target-outer-container {
         display: flex;
-        align-items: center;
-        gap: 13px;
-        border-radius: 6px;
-        padding: 0 2px;
-        border-radius: 6px;
-        background: transparent;
-        transition: all 0.3s ease;
-        padding: 5px;
-        transition: all 0.3s ease;
+        flex-direction: column;
+        gap: 2px;
 
-        &.clickable {
-            cursor: pointer;
+        .token-target-container {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            border-radius: 6px;
+            padding: 0 2px;
+            border-radius: 6px;
+            background: transparent;
+            transition: all 0.3s ease;
+            padding: 5px;
+            transition: all 0.3s ease;
 
-            &:hover {
-                background: @golden-10;
+            &.clickable {
+                cursor: pointer;
+
+                &:hover {
+                    background: @golden-10;
+                }
+            }
+
+            img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                pointer-events: none;
+            }
+
+            .title {
+                font-size: var(--font-size-20);
+                color: @golden;
+                font-weight: 700;
+                margin: 0;
+                pointer-events: none;
             }
         }
 
-        img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .title {
-            font-size: var(--font-size-20);
-            color: @golden;
-            font-weight: 700;
-            margin: 0;
-            pointer-events: none;
+        .token-target-immunity {
+            white-space: nowrap;
+            font-style: italic;
+            font-size: 8px;
+            padding: 0 5px;
         }
     }
 

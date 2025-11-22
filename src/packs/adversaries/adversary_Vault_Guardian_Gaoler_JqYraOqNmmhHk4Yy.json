@@ -361,7 +361,7 @@
           "description": "<p>You are<strong> </strong><em>Restrained</em> within the Gaoler until freed with a successful Strength Roll (18). While <em>Restrained</em>, you can only attack the Gaoler. </p>",
           "tint": "#ffffff",
           "statuses": [
-            "restrain"
+            "restrained"
           ],
           "sort": 0,
           "flags": {},

@@ -71,12 +71,20 @@
         </div>
     {{/each}}
 
-    {{#if thresholdImmunities}}
-    <div class="resources-container">
-        <div class="resource-container">
-            <h4 class="armor-title">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.thresholdImmunities"}}</h4>
+    {{#if reduceSeverity}}
+        <div class="resources-container">
+            <div class="resource-container">
+                <h4 class="armor-title">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.reduceSeverity" nr=reduceSeverity}}</h4>
+            </div>
         </div>
-    </div>
+    {{/if}}
+
+    {{#if thresholdImmunities}}
+        <div class="resources-container">
+            <div class="resource-container">
+                <h4 class="armor-title">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.thresholdImmunities"}}</h4>
+            </div>
+        </div>
     {{/if}}
 
     {{#each thresholdImmunities as | immunity key |}}

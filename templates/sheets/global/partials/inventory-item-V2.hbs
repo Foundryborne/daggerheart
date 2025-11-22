@@ -56,7 +56,7 @@ Parameters:
     </div>
 
     {{!-- Simple Resource --}}
-    {{#if (and (not hideResources) (eq item.system.resource.type 'simple'))}}
+    {{#if (and (not hideResources) (not (eq item.system.resource.type 'diceValue')))}}
     {{> "systems/daggerheart/templates/sheets/global/partials/item-resource.hbs"}}
     {{/if}}
     {{#if (and (not hideResources) (gte item.system.quantity 0))}}
