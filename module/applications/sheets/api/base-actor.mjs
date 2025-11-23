@@ -1,3 +1,4 @@
+import { itemIsIdentical } from '../../../helpers/utils.mjs';
 import DHBaseActorSettings from './actor-setting.mjs';
 import DHApplicationMixin from './application-mixin.mjs';
 
@@ -248,9 +249,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                                 });
                             }
 
-                            const existingItem = this.document.items.find(
-                                x => x._stats.compendiumSource === actorItem._stats.compendiumSource
-                            );
+                            const existingItem = this.document.items.find(x => itemIsIdentical(x, dropDocument));
                             if (existingItem) {
                                 cancel = true;
                                 await existingItem.update({
