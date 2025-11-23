@@ -24,19 +24,16 @@ export default class ItemTransferDialog extends HandlebarsApplicationMixin(Appli
     };
 
     static PARTS = {
-        main: { template: 'systems/daggerheart/templates/dialogs/item-transfer/main.hbs' },
-        footer: { template: 'systems/daggerheart/templates/dialogs/item-transfer/footer.hbs' }
+        main: { template: 'systems/daggerheart/templates/dialogs/item-transfer.hbs' }
     };
 
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
 
-        if (partId === 'main') {
-            htmlElement.querySelector('.number-display').addEventListener('change', event => {
-                this.quantity = isNaN(event.target.value) ? this.quantity : Number(event.target.value);
-                this.render();
-            });
-        }
+        htmlElement.querySelector('.number-display').addEventListener('change', event => {
+            this.quantity = isNaN(event.target.value) ? this.quantity : Number(event.target.value);
+            this.render();
+        });
     }
 
     async _prepareContext(_options) {
