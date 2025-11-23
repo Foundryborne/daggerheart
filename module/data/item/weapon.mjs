@@ -51,6 +51,8 @@ export default class DHWeapon extends AttachableItem {
                     name: 'Attack',
                     img: 'icons/skills/melee/blood-slash-foam-red.webp',
                     _id: foundry.utils.randomID(),
+                    baseAction: true,
+                    chatDisplay: false,
                     systemPath: 'attack',
                     type: 'attack',
                     range: 'melee',
