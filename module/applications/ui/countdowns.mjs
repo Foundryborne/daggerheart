@@ -184,9 +184,9 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         const countdown = settings.countdowns[target.id];
         const newMax =
             countdown.progress.looping === CONFIG.DH.GENERAL.countdownLoopingTypes.increasing.id
-                ? countdown.progress.max + 1
+                ? Number(countdown.progress.max) + 1
                 : countdown.progress.looping === CONFIG.DH.GENERAL.countdownLoopingTypes.decreasing.id
-                  ? Math.max(countdown.progress.max - 1, 0)
+                  ? Math.max(Number(countdown.progress.max) - 1, 0)
                   : countdown.progress.max;
         await settings.updateSource({
             [`countdowns.${target.id}.progress`]: {

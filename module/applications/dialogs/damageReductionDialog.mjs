@@ -10,6 +10,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         this.reject = reject;
         this.actor = actor;
         this.damage = damage;
+        this.damageType = damageType;
         this.rulesDefault = game.settings.get(
             CONFIG.DH.id,
             CONFIG.DH.SETTINGS.gameSettings.Automation
@@ -56,6 +57,11 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             },
             null
         );
+
+        this.reduceSeverity = this.damageType.reduce((value, curr) => {
+            return Math.max(this.actor.system.rules.damageReduction.reduceSeverity[curr], value);
+        }, 0);
+        this.actor.system.rules.damageReduction.reduceSeverity[this.damageType];
 
         this.thresholdImmunities = Object.keys(actor.system.rules.damageReduction.thresholdImmunities).reduce(
             (acc, key) => {
@@ -111,7 +117,9 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             CONFIG.DH.GENERAL.ruleChoice.onWithToggle.id,
             CONFIG.DH.GENERAL.ruleChoice.offWithToggle.id
         ].includes(this.rulesDefault);
-        context.thresholdImmunities = this.thresholdImmunities;
+        context.reduceSeverity = this.reduceSeverity;
+        context.thresholdImmunities =
+            Object.keys(this.thresholdImmunities).length > 0 ? this.thresholdImmunities : null;
 
         const { selectedArmorMarks, selectedStressMarks, stressReductions, currentMarks, currentDamage } =
             this.getDamageInfo();
@@ -173,6 +181,9 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             this.damage - armorMarkReduction - selectedStressMarks.length - stressReductions.length,
             0
         );
+        if (this.reduceSeverity) {
+            currentDamage = Math.max(currentDamage - this.reduceSeverity, 0);
+        }
 
         if (this.thresholdImmunities[currentDamage]) currentDamage = 0;
 

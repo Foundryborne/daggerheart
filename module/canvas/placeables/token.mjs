@@ -24,7 +24,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
                         acc.push({
                             name: game.i18n.localize(statusData.name),
                             statuses: [status],
-                            img: statusData.icon,
+                            img: statusData.icon ?? statusData.img,
                             tint: effect.tint
                         });
                     }

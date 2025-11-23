@@ -51,6 +51,13 @@ export default class DhCompanion extends BaseDataActor {
                     }
                 }
             ),
+            rules: new fields.SchemaField({
+                conditionImmunities: new fields.SchemaField({
+                    hidden: new fields.BooleanField({ initial: false }),
+                    restrained: new fields.BooleanField({ initial: false }),
+                    vulnerable: new fields.BooleanField({ initial: false })
+                })
+            }),
             attack: new ActionField({
                 initial: {
                     name: 'Attack',

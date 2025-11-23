@@ -426,7 +426,7 @@
           "description": "<p>You are <em>Restrained</em> and <em>Vulnerable</em> until you break free with a successful Strength Roll or the Kraken takes Major or greater damage. While <em>Restrained</em> and <em>Vulnerable</em> in this way, you must mark a Stress when you make an action roll.</p>",
           "tint": "#ffffff",
           "statuses": [
-            "restrain",
+            "restrained",
             "vulnerable"
           ],
           "sort": 0,

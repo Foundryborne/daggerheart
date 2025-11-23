@@ -57,6 +57,13 @@ export default class DhpAdversary extends BaseDataActor {
                 hitPoints: resourceField(0, 0, 'DAGGERHEART.GENERAL.HitPoints.plural', true),
                 stress: resourceField(0, 0, 'DAGGERHEART.GENERAL.stress', true)
             }),
+            rules: new fields.SchemaField({
+                conditionImmunities: new fields.SchemaField({
+                    hidden: new fields.BooleanField({ initial: false }),
+                    restrained: new fields.BooleanField({ initial: false }),
+                    vulnerable: new fields.BooleanField({ initial: false })
+                })
+            }),
             attack: new ActionField({
                 initial: {
                     name: 'Attack',

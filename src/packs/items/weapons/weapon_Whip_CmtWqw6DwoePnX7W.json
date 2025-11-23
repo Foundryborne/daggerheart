@@ -54,6 +54,7 @@
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
       "_id": "AVjlF2Mv5AMDflgy",
+      "baseAction": true,
       "systemPath": "attack",
       "type": "attack",
       "range": "veryClose",
@@ -108,7 +109,7 @@
         "includeBase": false
       },
       "description": "",
-      "chatDisplay": true,
+      "chatDisplay": false,
       "actionType": "action",
       "cost": [],
       "uses": {

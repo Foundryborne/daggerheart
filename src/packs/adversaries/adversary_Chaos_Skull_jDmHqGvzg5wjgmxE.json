@@ -239,7 +239,59 @@
       },
       "_id": "m6uPm4vujrUjSFPw",
       "img": "icons/magic/air/fog-gas-smoke-blue-gray.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Levitation",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "_id": "k6iaQVfMZhrpwYQj",
+          "img": "icons/magic/air/fog-gas-smoke-blue-gray.webp",
+          "changes": [
+            {
+              "key": "system.rules.conditionImmunities.restrained",
+              "mode": 5,
+              "value": "1",
+              "priority": null
+            }
+          ],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>The Skull levitates several feet off the ground and can’t be <em>Restrained</em>.</p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.351",
+            "systemId": "daggerheart",
+            "systemVersion": "1.2.4",
+            "createdTime": 1763845938979,
+            "modifiedTime": 1763846023794,
+            "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
+          },
+          "_key": "!actors.items.effects!jDmHqGvzg5wjgmxE.m6uPm4vujrUjSFPw.k6iaQVfMZhrpwYQj"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "ownership": {

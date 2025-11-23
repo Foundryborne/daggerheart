@@ -1519,6 +1519,10 @@ export const itemResourceTypes = {
     diceValue: {
         id: 'diceValue',
         label: 'DAGGERHEART.CONFIG.ItemResourceType.diceValue'
+    },
+    die: {
+        id: 'die',
+        label: 'DAGGERHEART.CONFIG.ItemResourceType.die'
     }
 };
 

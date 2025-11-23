@@ -250,6 +250,10 @@ export default class DhCharacter extends BaseDataActor {
                     thresholdImmunities: new fields.SchemaField({
                         minor: new fields.BooleanField({ initial: false })
                     }),
+                    reduceSeverity: new fields.SchemaField({
+                        magical: new fields.NumberField({ initial: 0, min: 0 }),
+                        physical: new fields.NumberField({ initial: 0, min: 0 })
+                    }),
                     disabledArmor: new fields.BooleanField({ intial: false })
                 }),
                 attack: new fields.SchemaField({
@@ -278,6 +282,11 @@ export default class DhCharacter extends BaseDataActor {
                             label: 'DAGGERHEART.GENERAL.Rules.attack.roll.trait.label'
                         })
                     })
+                }),
+                conditionImmunities: new fields.SchemaField({
+                    hidden: new fields.BooleanField({ initial: false }),
+                    restrained: new fields.BooleanField({ initial: false }),
+                    vulnerable: new fields.BooleanField({ initial: false })
                 }),
                 runeWard: new fields.BooleanField({ initial: false }),
                 burden: new fields.SchemaField({

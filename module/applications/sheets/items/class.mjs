@@ -125,8 +125,8 @@ export default class ClassSheet extends DHBaseItemSheet {
     async _onDrop(event) {
         event.stopPropagation();
         const data = TextEditor.getDragEventData(event);
-        const item = data.data ?? (await fromUuid(data.uuid));
-        const itemType = data.data ? data.type : item.type;
+        const item = await fromUuid(data.uuid);
+        const itemType = data.type === 'ActiveEffect' ? data.type : item.type;
         const target = event.target.closest('fieldset.drop-section');
         if (itemType === 'subclass') {
             if (item.system.linkedClass) {

@@ -53,12 +53,16 @@
             <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.material"}}</label>
             {{formInput fields.material value=values.material choices=@root.diceSoNiceMaterials localize=true}}
           </div>
-          <div class="button-container">
-            <button type="button" data-action="preview" data-key="{{dsnTab.id}}">
-              <i class="fa-solid fa-dice"></i>
-              <span>{{localize "Preview"}}</span>
-            </button>
+          <div class="label-container">
+            <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.font"}}</label>
+            {{formInput fields.font value=values.font choices=@root.diceSoNiceFonts localize=true}}
           </div>
+        </div>
+        <div class="button-container">
+          <button type="button" data-action="preview" data-key="{{dsnTab.id}}">
+            <i class="fa-solid fa-dice"></i>
+            <span>{{localize "Preview"}}</span>
+          </button>
         </div>
       </div>
     </section>

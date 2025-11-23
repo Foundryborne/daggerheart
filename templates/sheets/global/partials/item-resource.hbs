@@ -3,7 +3,7 @@
         <i class="{{#if item.system.resource.icon}}{{item.system.resource.icon}}{{else}}fa-solid fa-hashtag{{/if}}"></i>
         <input type="number" class="inventory-item-resource" value="{{item.system.resource.value}}" min="0" max="{{rollParsed item.system.resource.max item.actor item true}}" />
     </div>
-{{else}}
+{{else if (eq item.system.resource.type 'diceValue')}}
     <div class="item-resources">
         {{#times (rollParsed item.system.resource.max item.parent item numerical=true)}}
             {{#with (ifThen (lookup ../item.system.resource.diceStates this) (lookup ../item.system.resource.diceStates this) this) as | state |}}
@@ -18,4 +18,11 @@
         {{/times}}
         <a data-action="handleResourceDice" data-tooltip="DAGGERHEART.APPLICATIONS.ResourceDice.rerollDice"><i class="fa-solid fa-dice resource-edit"></i></a>
     </div>
+{{else if (eq item.system.resource.type 'die')}}
+    <a class="item-resource die" data-action="advanceResourceDie">
+        <div class="item-dice-resource">
+            <label>{{#if item.system.resource.value}}{{item.system.resource.value}}{{/if}}</label>
+            <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/" item.system.resource.dieFaces ".svg"}}" />
+        </div>
+    </a>
 {{/if}}

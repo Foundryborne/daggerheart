@@ -22,6 +22,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             _id: new fields.DocumentIdField({ initial: () => foundry.utils.randomID() }),
             systemPath: new fields.StringField({ required: true, initial: 'actions' }),
             type: new fields.StringField({ initial: undefined, readonly: true, required: true }),
+            baseAction: new fields.BooleanField({ initial: false }),
             name: new fields.StringField({ initial: undefined }),
             description: new fields.HTMLField(),
             img: new fields.FilePathField({ initial: undefined, categories: ['IMAGE'], base64: false }),

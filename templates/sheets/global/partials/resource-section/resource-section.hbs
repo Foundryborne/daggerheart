@@ -1,0 +1,20 @@
+<fieldset>
+    <legend>
+        {{localize "DAGGERHEART.GENERAL.Resource.single"}} 
+        {{#unless source.system.resource}}
+            <a data-action="addResource"><i class="fa-solid fa-plus icon-button"></i></a>
+        {{else}}
+            <a data-action="removeResource"><i class="fa-solid fa-trash"></i></a>
+        {{/unless}}
+    </legend>
+
+    {{#if source.system.resource}}
+        {{#if (eq source.system.resource.type 'simple')}}
+            {{> "systems/daggerheart/templates/sheets/global/partials/resource-section/simple.hbs"}}
+        {{else if (eq source.system.resource.type 'diceValue')}}
+            {{> "systems/daggerheart/templates/sheets/global/partials/resource-section/dice-value.hbs"}}
+        {{else}}
+            {{> "systems/daggerheart/templates/sheets/global/partials/resource-section/die.hbs"}}
+        {{/if}}
+    {{/if}}
+</fieldset>

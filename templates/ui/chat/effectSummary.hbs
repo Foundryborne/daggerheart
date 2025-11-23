@@ -23,9 +23,14 @@
         </div>
         <div class="targets-container">
             {{#each targets}}
-                <div class="token-target-container  {{#if this.id}}clickable{{/if}}" data-token="{{this.id}}">
-                    <img src="{{this.texture.src}}" />
-                    <h2 class="title">{{this.name}}</h2>
+                <div class="token-target-outer-container">
+                    <div class="token-target-container  {{#if this.token.id}}clickable{{/if}}" data-token="{{this.token.id}}">
+                        <img src="{{this.token.texture.src}}" />
+                        <h2 class="title">{{this.token.name}}</h2>
+                    </div>
+                    {{#if this.conditionImmunities}}
+                        <span class="token-target-immunity">{{this.conditionImmunities}}</span>
+                    {{/if}}
                 </div>
             {{/each}}
         </div>

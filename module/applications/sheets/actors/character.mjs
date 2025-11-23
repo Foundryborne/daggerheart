@@ -8,7 +8,6 @@ import { getDocFromElement, getDocFromElementSync } from '../../../helpers/utils
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
-const { TextEditor } = foundry.applications.ux;
 export default class CharacterSheet extends DHBaseActorSheet {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
@@ -31,6 +30,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             toggleEquipItem: CharacterSheet.#toggleEquipItem,
             toggleResourceDice: CharacterSheet.#toggleResourceDice,
             handleResourceDice: CharacterSheet.#handleResourceDice,
+            advanceResourceDie: CharacterSheet.#advanceResourceDie,
             cancelBeastform: CharacterSheet.#cancelBeastform,
             useDowntime: this.useDowntime
         },
@@ -147,6 +147,10 @@ export default class CharacterSheet extends DHBaseActorSheet {
         // Add listener for armor marks input
         htmlElement.querySelectorAll('.armor-marks-input').forEach(element => {
             element.addEventListener('change', this.updateArmorMarks.bind(this));
+        });
+
+        htmlElement.querySelectorAll('.item-resource.die').forEach(element => {
+            element.addEventListener('contextmenu', this.lowerResourceDie.bind(this));
         });
     }
 
@@ -858,6 +862,27 @@ export default class CharacterSheet extends DHBaseActorSheet {
         });
     }
 
+    /** */
+    static #advanceResourceDie(_, target) {
+        this.updateResourceDie(target, true);
+    }
+
+    lowerResourceDie(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.updateResourceDie(event.target, false);
+    }
+
+    async updateResourceDie(target, advance) {
+        const item = await getDocFromElement(target);
+        if (!item) return;
+
+        const advancedValue = item.system.resource.value + (advance ? 1 : -1);
+        await item.update({
+            'system.resource.value': Math.min(advancedValue, Number(item.system.resource.dieFaces.split('d')[1]))
+        });
+    }
+
     /**
      *
      */
@@ -881,6 +906,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const item = await getDocFromElement(event.target);
 
         const dragData = {
+            originActor: this.document.uuid,
+            originId: item.id,
             type: item.documentName,
             uuid: item.uuid
         };
@@ -894,9 +921,12 @@ export default class CharacterSheet extends DHBaseActorSheet {
         // Prevent event bubbling to avoid duplicate handling
         event.preventDefault();
         event.stopPropagation();
+        const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
 
-        super._onDrop(event);
-        this._onDropItem(event, TextEditor.getDragEventData(event));
+        const { cancel } = await super._onDrop(event);
+        if (cancel) return;
+
+        this._onDropItem(event, data);
     }
 
     async _onDropItem(event, data) {
@@ -905,6 +935,14 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
         if (item.type === 'domainCard' && !this.document.system.loadoutSlot.available) {
             itemData.system.inVault = true;
+        }
+
+        const typesThatReplace = ['ancestry', 'community'];
+        if (typesThatReplace.includes(item.type)) {
+            await this.document.deleteEmbeddedDocuments(
+                'Item',
+                this.document.items.filter(x => x.type === item.type).map(x => x.id)
+            );
         }
 
         if (item.type === 'beastform') {

@@ -355,7 +355,14 @@
               "range": "melee"
             }
           },
-          "changes": [],
+          "changes": [
+            {
+              "key": "system.rules.conditionImmunities.hidden",
+              "mode": 5,
+              "value": "1",
+              "priority": null
+            }
+          ],
           "disabled": false,
           "duration": {
             "startTime": null,
@@ -366,7 +373,7 @@
             "startRound": null,
             "startTurn": null
           },
-          "description": "<p> You Glow until the end of the scene and can’t become <em>Hidden</em>. Attack rolls made against you have advantage.</p>",
+          "description": "<p>You Glow until the end of the scene and can’t become <em>Hidden</em>. Attack rolls made against you have advantage.</p>",
           "tint": "#ffffff",
           "statuses": [],
           "sort": 0,
@@ -375,12 +382,12 @@
             "compendiumSource": null,
             "duplicateSource": null,
             "exportSource": null,
-            "coreVersion": "13.346",
+            "coreVersion": "13.351",
             "systemId": "daggerheart",
             "systemVersion": "0.0.1",
             "createdTime": 1754079525282,
-            "modifiedTime": 1754079558712,
-            "lastModifiedBy": "MQSznptE5yLT7kj8"
+            "modifiedTime": 1763847816177,
+            "lastModifiedBy": "Q4RzhhaPfvLUzzbw"
           },
           "_key": "!actors.items.effects!8mJYMpbLTb8qIOrr.NepVGKOo1lHYjA1F.bYBrgiSwHwYfQyjn"
         }

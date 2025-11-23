@@ -47,15 +47,30 @@ export default class EffectsField extends fields.ArrayField {
     static async applyEffects(targets) {
         if (!this.effects?.length || !targets?.length) return;
 
+        const conditions = CONFIG.DH.GENERAL.conditions();
         let effects = this.effects;
         const messageTargets = [];
         targets.forEach(async baseToken => {
             if (this.hasSave && token.saved.success === true) effects = this.effects.filter(e => e.onSave === true);
             if (!effects.length) return;
 
-            const token = canvas.tokens.get(baseToken.id);
+            const token =
+                canvas.tokens.get(baseToken.id) ?? foundry.utils.fromUuidSync(baseToken.actorId).prototypeToken;
             if (!token) return;
-            messageTargets.push(token.document);
+
+            const messageToken = token.document ?? token;
+            const conditionImmunities = messageToken.actor.system.rules.conditionImmunities ?? {};
+            messageTargets.push({
+                token: messageToken,
+                conditionImmunities: Object.values(conditionImmunities).some(x => x)
+                    ? game.i18n.format('DAGGERHEART.UI.Chat.effectSummary.immunityTo', {
+                          immunities: Object.keys(conditionImmunities)
+                              .filter(x => conditionImmunities[x])
+                              .map(x => game.i18n.localize(conditions[x].name))
+                              .join(', ')
+                      })
+                    : null
+            });
 
             effects.forEach(async e => {
                 const effect = this.item.effects.get(e._id);

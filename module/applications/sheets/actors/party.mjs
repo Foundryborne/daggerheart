@@ -7,7 +7,6 @@ import { socketEvent } from '../../../systemRegistration/socket.mjs';
 import GroupRollDialog from '../../dialogs/group-roll-dialog.mjs';
 import DhpActor from '../../../documents/actor.mjs';
 import DHItem from '../../../documents/item.mjs';
-import DhParty from '../../../data/actor/party.mjs';
 
 export default class Party extends DHBaseActorSheet {
     constructor(options) {
@@ -21,7 +20,7 @@ export default class Party extends DHBaseActorSheet {
         classes: ['party'],
         position: {
             width: 550,
-            height: 900,
+            height: 900
         },
         window: {
             resizable: true
@@ -41,7 +40,7 @@ export default class Party extends DHBaseActorSheet {
             selectRefreshable: DaggerheartMenu.selectRefreshable,
             refreshActors: DaggerheartMenu.refreshActors
         },
-        dragDrop: [{ dragSelector: '.actors-section .inventory-item', dropSelector: null }]
+        dragDrop: [{ dragSelector: '[data-item-id][draggable="true"]', dropSelector: null }]
     };
 
     /**@override */
@@ -439,23 +438,28 @@ export default class Party extends DHBaseActorSheet {
     }
 
     /* -------------------------------------------- */
-
     async _onDragStart(event) {
-        const item = event.currentTarget.closest('.inventory-item');
+        const item = await getDocFromElement(event.target);
+        const dragData = {
+            originActor: this.document.uuid,
+            originId: item.id,
+            type: item.documentName,
+            uuid: item.uuid
+        };
 
-        if (item) {
-            const adversaryData = { type: 'Actor', uuid: item.dataset.itemUuid };
-            event.dataTransfer.setData('text/plain', JSON.stringify(adversaryData));
-            event.dataTransfer.setDragImage(item, 60, 0);
-        }
+        event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+        super._onDragStart(event);
     }
 
     async _onDrop(event) {
         // Prevent event bubbling to avoid duplicate handling
         event.preventDefault();
         event.stopPropagation();
-
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
+
+        const { cancel } = await super._onDrop(event);
+        if (cancel) return;
+
         const document = await foundry.utils.fromUuid(data.uuid);
 
         if (document instanceof DhpActor && Party.ALLOWED_ACTOR_TYPES.includes(document.type)) {

@@ -439,7 +439,7 @@
           "description": "<p>You are <em>Restrained </em>until the Defender takes Severe damage.</p>",
           "tint": "#ffffff",
           "statuses": [
-            "restrain"
+            "restrained"
           ],
           "sort": 0,
           "flags": {},

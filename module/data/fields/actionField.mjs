@@ -258,7 +258,11 @@ export function ActionMixin(Base) {
             const systemData = {
                 title: game.i18n.localize('DAGGERHEART.CONFIG.ActionType.action'),
                 origin: origin,
-                action: { name: this.name, img: this.img, tags: this.tags ? this.tags : ['Spell', 'Arcana', 'Lv 10'] },
+                action: {
+                    name: this.name,
+                    img: this.baseAction ? this.parent.parent.img : this.img,
+                    tags: this.tags ? this.tags : ['Spell', 'Arcana', 'Lv 10']
+                },
                 itemOrigin: this.item,
                 description: this.description || (this.item instanceof Item ? this.item.system.description : '')
             };
