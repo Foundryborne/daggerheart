@@ -199,18 +199,32 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     static async #deleteFeature(_, element) {
         const target = element.closest('[data-item-uuid]');
         const feature = await getDocFromElement(target);
+
         if (!feature) {
             await this.document.update({
                 'system.features': this.document.system.features
                     .filter(x => x.item)
                     .map(x => ({ ...x, item: x.item.uuid }))
             });
-        } else
+        } else {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
+                        type: game.i18n.localize('TYPES.Item.feature'),
+                        name: feature.name
+                    })
+                },
+                content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', { name: feature.name })
+            });
+
+            if (!confirmed) return;
+
             await this.document.update({
                 'system.features': this.document.system.features
                     .filter(x => target.dataset.type !== x.type || x.item.uuid !== feature.uuid)
                     .map(x => ({ ...x, item: x.item.uuid }))
             });
+        }
     }
 
     /**
