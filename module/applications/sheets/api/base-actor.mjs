@@ -271,7 +271,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                             cancel = true;
                         }
                     } else {
-                        await originActor.deleteEmbeddedDocuments('Item', [data.originId]);
+                        await originActor.deleteEmbeddedDocuments('Item', [data.originId], { render: false });
                         const createData = dropDocument.toObject();
                         await this.document.createEmbeddedDocuments('Item', [createData]);
                     }
