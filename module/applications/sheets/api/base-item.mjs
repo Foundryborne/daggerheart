@@ -33,9 +33,9 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             removeResource: DHBaseItemSheet.#removeResource
         },
         dragDrop: [
-            { dragSelector: null, dropSelector: '.tab.features .drop-section' },
+            { dragSelector: null, dropSelector: '.drop-section' },
             { dragSelector: '.feature-item', dropSelector: null },
-            { dragSelector: '.action-item', dropSelector: null }
+            { dragSelector: '.inventory-item', dropSelector: null }
         ],
         contextMenus: [
             {
@@ -242,37 +242,30 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
      * @param {DragEvent} event - The drag event
      */
     async _onDragStart(event) {
+        /* Can prolly be improved a lot, but I don't wanna >_< */
         const featureItem = event.currentTarget.closest('.feature-item');
+        const inventoryItem = event.currentTarget.closest('.inventory-item');
+        const lineItem = event.currentTarget.closest('.item-line');
+        const dragItemData = featureItem ?? inventoryItem ?? lineItem;
 
-        if (featureItem) {
-            const feature = this.document.system.features.find(x => x?.id === featureItem.id);
-            if (!feature) {
+        const dragItem = await foundry.utils.fromUuid(dragItemData.dataset.itemUuid);
+        if (dragItem) {
+            if (!dragItem) {
                 ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
                 return;
             }
 
-            const featureData = { type: 'Item', data: { ...feature.toObject(), _id: null }, fromInternal: true };
-            event.dataTransfer.setData('text/plain', JSON.stringify(featureData));
-            event.dataTransfer.setDragImage(featureItem.querySelector('img'), 60, 0);
-        } else {
-            const actionItem = event.currentTarget.closest('.action-item');
-            if (actionItem) {
-                const action = this.document.system.actions[actionItem.dataset.index];
-                if (!action) {
-                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.actionIsMissing'));
-                    return;
-                }
-
-                const actionData = {
-                    type: 'Action',
-                    data: { ...action.toObject(), id: action.id, itemUuid: this.document.uuid },
-                    fromInternal: true
+            let dragData = {};
+            if (dragItemData.dataset.type === 'effect')
+                dragData = {
+                    type: 'ActiveEffect',
+                    fromInternal: this.document.uuid,
+                    data: { ...dragItem, uuid: dragItem.uuid, id: dragItem.id }
                 };
-                event.dataTransfer.setData('text/plain', JSON.stringify(actionData));
-                event.dataTransfer.setDragImage(actionItem.querySelector('img'), 60, 0);
-            } else {
-                super._onDragStart(event);
-            }
+            else dragData = { type: 'Item', uuid: dragItem.uuid, id: dragItem.id, fromInternal: this.document.id };
+
+            event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+            event.dataTransfer.setDragImage(dragItemData.querySelector('img'), 60, 0);
         }
     }
 
@@ -284,7 +277,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         super._onDrop(event);
 
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-        if (data.fromInternal) return;
+        if (data.fromInternal === this.document.id) return;
 
         const target = event.target.closest('fieldset.drop-section');
         let item = await fromUuid(data.uuid);

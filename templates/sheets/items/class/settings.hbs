@@ -32,7 +32,7 @@
             <input type="text" name="system.characterGuide.suggestedTraits.knowledge" value="{{source.system.characterGuide.suggestedTraits.knowledge}}" />
         </fieldset>
         
-        <fieldset class="one-column">
+        <fieldset class="one-column {{#if (eq document.parent.type 'character')}}disabled{{/if}}">
             <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.suggestedEquipment"}}</legend>
             <fieldset class="one-column drop-section primary-weapon-section {{#if (eq document.parent.type 'character')}}inactive{{/if}}">
                 <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.suggestedPrimaryWeaponTitle"}}</legend>
@@ -86,7 +86,7 @@
             </fieldset>
         </fieldset>
 
-        <fieldset class="one-column">
+        <fieldset class="one-column {{#if (eq document.parent.type 'character')}}disabled{{/if}}">
             <legend>{{localize "DAGGERHEART.GENERAL.inventory"}}</legend>
             <fieldset class="one-column drop-section take-section {{#if (eq document.parent.type 'character')}}inactive{{/if}}">
                 <legend>{{localize "DAGGERHEART.GENERAL.take"}}</legend>
