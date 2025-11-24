@@ -1,4 +1,3 @@
-import { waitForDiceSoNice } from '../../../helpers/utils.mjs';
 import { emitAsGM, GMUpdateEvent, RefreshType, socketEvent } from '../../../systemRegistration/socket.mjs';
 
 const fields = foundry.data.fields;
@@ -67,43 +66,36 @@ export default class CountdownField extends fields.ArrayField {
             };
         }
 
-        const update = async () => {
-            await emitAsGM(
-                GMUpdateEvent.UpdateCountdowns,
-                async () => {
-                    const countdownSetting = game.settings.get(
-                        CONFIG.DH.id,
-                        CONFIG.DH.SETTINGS.gameSettings.Countdowns
-                    );
-                    await countdownSetting.updateSource(data);
-                    await game.settings.set(
-                        CONFIG.DH.id,
-                        CONFIG.DH.SETTINGS.gameSettings.Countdowns,
-                        countdownSetting.toObject()
-                    ),
-                        game.socket.emit(`system.${CONFIG.DH.id}`, {
-                            action: socketEvent.Refresh,
-                            data: { refreshType: RefreshType.Countdown }
-                        });
-                    Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
-                },
-                data,
-                null,
-                {
-                    refreshType: RefreshType.Countdown
-                }
-            );
-        };
-
         if (game.modules.get('dice-so-nice')?.active) {
-            Promise.all(
+            await Promise.all(
                 countdownMessages.map(message => {
                     return game.dice3d.waitFor3DAnimationByMessageID(message.id);
                 })
-            ).then(update);
-        } else {
-            update();
+            );
         }
+
+        await emitAsGM(
+            GMUpdateEvent.UpdateCountdowns,
+            async () => {
+                const countdownSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
+                await countdownSetting.updateSource(data);
+                await game.settings.set(
+                    CONFIG.DH.id,
+                    CONFIG.DH.SETTINGS.gameSettings.Countdowns,
+                    countdownSetting.toObject()
+                ),
+                    game.socket.emit(`system.${CONFIG.DH.id}`, {
+                        action: socketEvent.Refresh,
+                        data: { refreshType: RefreshType.Countdown }
+                    });
+                Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
+            },
+            data,
+            null,
+            {
+                refreshType: RefreshType.Countdown
+            }
+        );
     }
 
     /**

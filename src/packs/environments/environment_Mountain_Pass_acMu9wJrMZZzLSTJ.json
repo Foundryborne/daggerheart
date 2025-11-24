@@ -404,8 +404,8 @@
                 "progress": {
                   "looping": "looping",
                   "type": "actionRoll",
-                  "start": 4,
-                  "startFormula": null,
+                  "start": 1,
+                  "startFormula": "4",
                   "current": 1
                 },
                 "ownership": {}

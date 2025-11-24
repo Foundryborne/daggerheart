@@ -200,20 +200,16 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                   ? Math.max(Number(progressMax) - 1, 0)
                   : progressMax;
 
-        const update = async () => {
-            await settings.updateSource({
-                [`countdowns.${target.id}.progress`]: {
-                    current: newMax,
-                    start: newMax
-                }
-            });
-            await emitAsGM(GMUpdateEvent.UpdateCountdowns, DhCountdowns.gmSetSetting.bind(settings), settings, null, {
-                refreshType: RefreshType.Countdown
-            });
-        };
-
-        if (message) waitForDiceSoNice(message, update);
-        else update();
+        await waitForDiceSoNice(message);
+        await settings.updateSource({
+            [`countdowns.${target.id}.progress`]: {
+                current: newMax,
+                start: newMax
+            }
+        });
+        await emitAsGM(GMUpdateEvent.UpdateCountdowns, DhCountdowns.gmSetSetting.bind(settings), settings, null, {
+            refreshType: RefreshType.Countdown
+        });
     }
 
     static async editCountdown(increase, target) {

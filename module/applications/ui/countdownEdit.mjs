@@ -59,9 +59,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
                       ? 'DAGGERHEART.UI.Countdowns.decreasingLoop'
                       : 'DAGGERHEART.UI.Countdowns.loop'
                 : null;
-            const randomizeValid = Roll.parse(countdown.progress.startFormula ?? '').some(
-                x => x instanceof foundry.dice.terms.Die
-            );
+            const randomizeValid = !new Roll(countdown.progress.startFormula ?? '').isDeterministic;
             acc[key] = {
                 ...countdown,
                 typeName: game.i18n.localize(CONFIG.DH.GENERAL.countdownBaseTypes[countdown.type].label),
@@ -208,17 +206,15 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         const countdown = this.data.countdowns[button.dataset.countdownId];
         const roll = await new Roll(countdown.progress.startFormula).roll();
         const message = await roll.toMessage({ title: 'Countdown' });
-        const update = async () => {
-            await this.updateSetting({
-                [`countdowns.${button.dataset.countdownId}.progress`]: {
-                    start: roll.total,
-                    current: this.getMatchingCurrentValue(countdown, roll.total, countdown.progress.current)
-                }
-            });
-            this.render();
-        };
 
-        waitForDiceSoNice(message, update);
+        await waitForDiceSoNice(message);
+        await this.updateSetting({
+            [`countdowns.${button.dataset.countdownId}.progress`]: {
+                start: roll.total,
+                current: this.getMatchingCurrentValue(countdown, roll.total, countdown.progress.current)
+            }
+        });
+        this.render();
     }
 
     static async #removeCountdown(event, button) {

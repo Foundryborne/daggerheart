@@ -36,7 +36,7 @@ export default class DhCountdownAction extends DHBaseAction {
 
     /** @inheritDoc */
     static migrateData(source) {
-        for (let countdown of source.countdown) {
+        for (const countdown of source.countdown) {
             if (countdown.progress.max) {
                 countdown.progress.startFormula = countdown.progress.max;
                 countdown.progress.start = 1;
