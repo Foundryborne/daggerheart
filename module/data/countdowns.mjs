@@ -234,9 +234,9 @@ export class DhCountdown extends foundry.abstract.DataModel {
     /** @inheritDoc */
     static migrateData(source) {
         if (source.progress.max) {
-            source.progress.startFormula = source.progress.max;
             source.progress.start = Number(source.progress.max);
             source.progress.max = null;
+            source.progress.startFormula = null;
         }
 
         return super.migrateData(source);
