@@ -545,7 +545,8 @@
                 "progress": {
                   "looping": "looping",
                   "type": "actionRoll",
-                  "max": "6",
+                  "start": 6,
+                  "startFormula": null,
                   "current": 1
                 },
                 "ownership": {}

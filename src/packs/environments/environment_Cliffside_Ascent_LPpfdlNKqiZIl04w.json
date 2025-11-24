@@ -174,7 +174,8 @@
                 "progress": {
                   "looping": "noLooping",
                   "type": "custom",
-                  "max": "12",
+                  "start": 12,
+                  "startFormula": null,
                   "current": 1
                 },
                 "ownership": {}

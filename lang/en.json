@@ -343,7 +343,8 @@
                             "progress": {
                                 "current": { "label": "Current" },
                                 "looping": { "label": "Looping" },
-                                "max": { "label": "Max" },
+                                "start": { "label": "Start" },
+                                "startFormula": { "label": "Start Formula" },
                                 "type": {
                                     "label": { "label": "Label", "hint": "Used for custom" },
                                     "value": { "label": "Value" }
@@ -371,12 +372,13 @@
                 "newCountdown": "New Countdown",
                 "removeCountdownTitle": "Remove Countdown",
                 "removeCountdownText": "Are you sure you want to remove the countdown: {name}?",
-                "current": "Current",
-                "max": "Max",
-                "currentCountdownValue": "Current: {value}",
-                "currentCountdownMax": "Max: {value}",
+                "current": "Current Value",
+                "start": "Start Value",
+                "startFormula": "Randomized Start Value Formula",
+                "currentCountdownCurrent": "Current: {value}",
+                "currentCountdownStart": "Start: {value}",
                 "category": "Category",
-                "progressionType": "Progression Type",
+                "progressionType": "Progression",
                 "decreasing": "Decreasing",
                 "looping": "Looping",
                 "defaultOwnershipTooltip": "The default player ownership of countdowns",

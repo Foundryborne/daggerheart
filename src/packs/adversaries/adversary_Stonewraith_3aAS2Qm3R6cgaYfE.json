@@ -543,7 +543,8 @@
                 "progress": {
                   "looping": "noLooping",
                   "type": "custom",
-                  "max": "8",
+                  "start": 8,
+                  "startFormula": null,
                   "current": 1
                 },
                 "ownership": {}

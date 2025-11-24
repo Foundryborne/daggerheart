@@ -476,7 +476,8 @@
                 "progress": {
                   "looping": "looping",
                   "type": "custom",
-                  "max": "6",
+                  "start": 6,
+                  "startFormula": null,
                   "current": 1
                 },
                 "ownership": {}

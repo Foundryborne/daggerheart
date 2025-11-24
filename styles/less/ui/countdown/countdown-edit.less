@@ -129,12 +129,20 @@
                     }
                 }
             }
-            .countdown-edit-subrow {
+
+            .countdown-edit-row-container {
                 display: flex;
-                gap: 8px;
+                flex-direction: column;
+                gap: 2px;
+
+                .countdown-edit-subrow {
+                    display: flex;
+                    gap: 8px;
+                }
             }
 
             .countdown-edit-input {
+                position: relative;
                 flex: 1;
                 display: flex;
                 flex-direction: column;
@@ -151,10 +159,55 @@
 
                 &.tiny {
                     flex: 0;
+
+                    label {
+                        white-space: nowrap;
+                    }
+
                     input {
                         min-width: 2.5rem;
                     }
                 }
+
+                .countdown-random-input {
+                    padding-right: var(--input-height);
+                }
+
+                .countdown-random-button {
+                    position: absolute;
+                    right: 0px;
+                    bottom: 0px;
+                    border-radius: 0 6px 6px 0;
+                    height: var(--input-height);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0 8px;
+
+                    &[disabled] {
+                        opacity: 0.5;
+                    }
+
+                    i {
+                        font-size: 18px;
+                    }
+                }
+
+                // .countdown-random-container {
+                //     width: 100%;
+                //     display: flex;
+
+                //     input {
+                //         border-radius: 6px 0 0 6px;
+                //         border-right: 0;
+                //     }
+
+                //     button {
+                //         border-radius: 0 6px 6px 0;
+                //         height: var(--input-height);
+                //         border: 1px solid white;
+                //     }
+                // }
 
                 input,
                 select {

@@ -445,3 +445,11 @@ export function itemIsIdentical(a, b) {
 
     return compendiumSource && name & description;
 }
+
+export function waitForDiceSoNice(message, update) {
+    if (game.modules.get('dice-so-nice')?.active) {
+        game.dice3d.waitFor3DAnimationByMessageID(message.id).then(async () => await update());
+    } else {
+        update();
+    }
+}

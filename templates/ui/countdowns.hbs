@@ -10,7 +10,7 @@
                             <div class="countdown-tool-controls">
                                 {{#if countdown.editable}}<a data-action="decreaseCountdown" id="{{id}}"><i class="fa-solid fa-minus"></i></a>{{/if}}
                                 <div class="progress-tag">
-                                    {{countdown.progress.current}}/{{countdown.progress.max}}
+                                    {{countdown.progress.current}}/{{countdown.progress.start}}
                                 </div>
                                 {{#if countdown.editable}}<a data-action="increaseCountdown" id="{{id}}"><i class="fa-solid fa-plus"></i></a>{{/if}}
                             </div>

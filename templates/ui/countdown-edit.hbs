@@ -29,8 +29,8 @@
                         <div class="countdown-edit-text">
                             <h4>{{countdown.name}}</h4>
                             <div class="countdown-edit-subtext">
-                                <div class="countdown-edit-sub-tag">{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.currentCountdownValue" value=countdown.progress.current}}</div>
-                                <div class="countdown-edit-sub-tag">{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.currentCountdownMax" value=countdown.progress.max}}</div>
+                                <div class="countdown-edit-sub-tag">{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.currentCountdownCurrent" value=countdown.progress.current}}</div>
+                                <div class="countdown-edit-sub-tag">{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.currentCountdownStart" value=countdown.progress.start}}</div>
                                 <div class="countdown-edit-sub-tag">{{countdown.typeName}}</div>
                                 <div class="countdown-edit-sub-tag">{{countdown.progress.typeName}}</div>
 
@@ -59,32 +59,42 @@
                     </div>
                 </div>
                 {{#if countdown.editing}}
-                    <div class="countdown-edit-subrow">
-                        <div class="countdown-edit-input tiny">
-                            <label>{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.current"}}</label>
-                            <input type="number" name="{{concat "countdowns." id ".progress.current"}}" value="{{countdown.progress.current}}" />
+                    <div class="countdown-edit-row-container">
+                        <div class="countdown-edit-subrow">
+                            <div class="countdown-edit-input tiny">
+                                <label>{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.current"}}</label>
+                                <input type="number" name="{{concat "countdowns." id ".progress.current"}}" value="{{countdown.progress.current}}" />
+                            </div>
+                            <div class="countdown-edit-input tiny">
+                                <label>{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.start"}}</label>
+                                <input type="number" name="{{concat "countdowns." id ".progress.start"}}" value="{{countdown.progress.start}}" />
+                            </div>
+                            <div class="countdown-edit-input">
+                                <label>{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.startFormula"}}</label>
+                                <input class="countdown-random-input" type="text" name="{{concat "countdowns." id ".progress.startFormula"}}" value="{{countdown.progress.startFormula}}" />
+                                <a class="countdown-random-button" data-action="randomiseCountdownStart" data-countdown-id="{{id}}" {{#unless countdown.randomizeValid}}disabled{{/unless}}><i class="fa-solid fa-dice fa-fw"></i></a>
+                            </div>
+                            
                         </div>
-                        <div class="countdown-edit-input tiny">
-                            <label>{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.max"}}</label>
-                            <input type="number" name="{{concat "countdowns." id ".progress.max"}}" value="{{countdown.progress.max}}" />
-                        </div>
-                        <div class="countdown-edit-input tiny type-input">
-                            <label>{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.category"}}</label>
-                            <select name="{{concat "countdowns." id ".type"}}">
-                                {{selectOptions ../countdownBaseTypes selected=countdown.type localize=true}}
-                            </select>
-                        </div>
-                        <div class="countdown-edit-input">
-                            <label>{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.progressionType"}}</label>
-                            <select name="{{concat "countdowns." id ".progress.type"}}">
-                                {{selectOptions ../countdownProgressionTypes selected=countdown.progress.type localize=true}}
-                            </select>
-                        </div>
-                        <div class="countdown-edit-input looping-input tiny">
-                            <label>{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.looping"}}</label>
-                            <select name="{{concat "countdowns." id ".progress.looping"}}">
-                                {{selectOptions ../countdownLoopingTypes selected=countdown.progress.looping localize=true}}
-                            </select>
+                        <div class="countdown-edit-subrow">
+                            <div class="countdown-edit-input tiny type-input">
+                                <label>{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.category"}}</label>
+                                <select name="{{concat "countdowns." id ".type"}}">
+                                    {{selectOptions ../countdownBaseTypes selected=countdown.type localize=true}}
+                                </select>
+                            </div>
+                            <div class="countdown-edit-input">
+                                <label>{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.progressionType"}}</label>
+                                <select name="{{concat "countdowns." id ".progress.type"}}">
+                                    {{selectOptions ../countdownProgressionTypes selected=countdown.progress.type localize=true}}
+                                </select>
+                            </div>
+                            <div class="countdown-edit-input looping-input tiny">
+                                <label>{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.looping"}}</label>
+                                <select name="{{concat "countdowns." id ".progress.looping"}}">
+                                    {{selectOptions ../countdownLoopingTypes selected=countdown.progress.looping localize=true}}
+                                </select>
+                            </div>
                         </div>
                     </div>
                 {{/if}}
