@@ -21,8 +21,56 @@ import { registerRollDiceHooks } from './module/dice/dhRoll.mjs';
 import './node_modules/@yaireo/tagify/dist/tagify.css';
 import TemplateManager from './module/documents/templateManager.mjs';
 
+CONFIG.DH = SYSTEM;
+CONFIG.TextEditor.enrichers.push(...enricherConfig);
+
+CONFIG.Dice.rolls = [BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll];
+CONFIG.Dice.daggerheart = {
+    DHRoll: DHRoll,
+    DualityRoll: DualityRoll,
+    D20Roll: D20Roll,
+    DamageRoll: DamageRoll
+};
+
+CONFIG.Actor.documentClass = documents.DhpActor;
+CONFIG.Actor.dataModels = models.actors.config;
+
+CONFIG.Item.documentClass = documents.DHItem;
+CONFIG.Item.dataModels = models.items.config;
+
+CONFIG.ActiveEffect.documentClass = documents.DhActiveEffect;
+CONFIG.ActiveEffect.dataModels = models.activeEffects.config;
+
+CONFIG.Combat.documentClass = documents.DhpCombat;
+CONFIG.Combat.dataModels = { base: models.DhCombat };
+CONFIG.Combatant.dataModels = { base: models.DhCombatant };
+
+CONFIG.ChatMessage.dataModels = models.chatMessages.config;
+CONFIG.ChatMessage.documentClass = documents.DhChatMessage;
+CONFIG.ChatMessage.template = 'systems/daggerheart/templates/ui/chat/chat-message.hbs';
+
+CONFIG.Canvas.rulerClass = placeables.DhRuler;
+CONFIG.Canvas.layers.templates.layerClass = placeables.DhTemplateLayer;
+CONFIG.MeasuredTemplate.objectClass = placeables.DhMeasuredTemplate;
+
+CONFIG.Token.documentClass = documents.DhToken;
+CONFIG.Token.prototypeSheetClass = applications.sheetConfigs.DhPrototypeTokenConfig;
+CONFIG.Token.objectClass = placeables.DhTokenPlaceable;
+CONFIG.Token.rulerClass = placeables.DhTokenRuler;
+CONFIG.Token.hudClass = applications.hud.DHTokenHUD;
+
+CONFIG.ui.combat = applications.ui.DhCombatTracker;
+CONFIG.ui.chat = applications.ui.DhChatLog;
+CONFIG.ui.hotbar = applications.ui.DhHotbar;
+CONFIG.ui.sidebar = applications.sidebar.DhSidebar;
+CONFIG.ui.daggerheartMenu = applications.sidebar.DaggerheartMenu;
+CONFIG.ui.resources = applications.ui.DhFearTracker;
+CONFIG.ui.countdowns = applications.ui.DhCountdowns;
+CONFIG.ux.ContextMenu = applications.ux.DHContextMenu;
+CONFIG.ux.TooltipManager = documents.DhTooltipManager;
+CONFIG.ux.TemplateManager = new TemplateManager();
+
 Hooks.once('init', () => {
-    CONFIG.DH = SYSTEM;
     game.system.api = {
         applications,
         data,
@@ -32,30 +80,11 @@ Hooks.once('init', () => {
         fields
     };
 
-    CONFIG.TextEditor.enrichers.push(...enricherConfig);
-
-    CONFIG.Dice.daggerheart = {
-        DHRoll: DHRoll,
-        DualityRoll: DualityRoll,
-        D20Roll: D20Roll,
-        DamageRoll: DamageRoll
-    };
-
-    CONFIG.Dice.rolls = [BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll];
-    CONFIG.MeasuredTemplate.objectClass = placeables.DhMeasuredTemplate;
-
     const { DocumentSheetConfig } = foundry.applications.apps;
-    CONFIG.Token.documentClass = documents.DhToken;
-    CONFIG.Token.prototypeSheetClass = applications.sheetConfigs.DhPrototypeTokenConfig;
     DocumentSheetConfig.unregisterSheet(TokenDocument, 'core', foundry.applications.sheets.TokenConfig);
     DocumentSheetConfig.registerSheet(TokenDocument, SYSTEM.id, applications.sheetConfigs.DhTokenConfig, {
         makeDefault: true
     });
-
-    CONFIG.Item.documentClass = documents.DHItem;
-
-    //Registering the Item DataModel
-    CONFIG.Item.dataModels = models.items.config;
 
     const { Items, Actors } = foundry.documents.collections;
     Items.unregisterSheet('core', foundry.applications.sheets.ItemSheetV2);
@@ -74,9 +103,6 @@ Hooks.once('init', () => {
     Items.registerSheet(SYSTEM.id, applications.sheets.items.Armor, { types: ['armor'], makeDefault: true });
     Items.registerSheet(SYSTEM.id, applications.sheets.items.Beastform, { types: ['beastform'], makeDefault: true });
 
-    CONFIG.Actor.documentClass = documents.DhpActor;
-    CONFIG.Actor.dataModels = models.actors.config;
-
     Actors.unregisterSheet('core', foundry.applications.sheets.ActorSheetV2);
     Actors.registerSheet(SYSTEM.id, applications.sheets.actors.Character, { types: ['character'], makeDefault: true });
     Actors.registerSheet(SYSTEM.id, applications.sheets.actors.Companion, { types: ['companion'], makeDefault: true });
@@ -89,9 +115,6 @@ Hooks.once('init', () => {
         types: ['party'],
         makeDefault: true
     });
-
-    CONFIG.ActiveEffect.documentClass = documents.DhActiveEffect;
-    CONFIG.ActiveEffect.dataModels = models.activeEffects.config;
 
     DocumentSheetConfig.unregisterSheet(
         CONFIG.ActiveEffect.documentClass,
@@ -106,38 +129,6 @@ Hooks.once('init', () => {
             makeDefault: true
         }
     );
-
-    CONFIG.Token.hudClass = applications.hud.DHTokenHUD;
-
-    CONFIG.Combat.dataModels = {
-        base: models.DhCombat
-    };
-
-    CONFIG.Combatant.dataModels = {
-        base: models.DhCombatant
-    };
-
-    CONFIG.ChatMessage.dataModels = models.chatMessages.config;
-    CONFIG.ChatMessage.documentClass = documents.DhChatMessage;
-    CONFIG.ChatMessage.template = 'systems/daggerheart/templates/ui/chat/chat-message.hbs';
-
-    CONFIG.Canvas.rulerClass = placeables.DhRuler;
-    CONFIG.Canvas.layers.templates.layerClass = placeables.DhTemplateLayer;
-    CONFIG.Token.objectClass = placeables.DhTokenPlaceable;
-    CONFIG.Combat.documentClass = documents.DhpCombat;
-    CONFIG.ui.combat = applications.ui.DhCombatTracker;
-    CONFIG.ui.chat = applications.ui.DhChatLog;
-    CONFIG.ui.hotbar = applications.ui.DhHotbar;
-    CONFIG.ui.sidebar = applications.sidebar.DhSidebar;
-    CONFIG.ui.daggerheartMenu = applications.sidebar.DaggerheartMenu;
-    CONFIG.Token.rulerClass = placeables.DhTokenRuler;
-
-    CONFIG.ui.resources = applications.ui.DhFearTracker;
-    CONFIG.ui.countdowns = applications.ui.DhCountdowns;
-    CONFIG.ux.ContextMenu = applications.ux.DHContextMenu;
-    CONFIG.ux.TooltipManager = documents.DhTooltipManager;
-
-    CONFIG.ux.TemplateManager = new TemplateManager();
 
     game.socket.on(`system.${SYSTEM.id}`, socketRegistration.handleSocketEvent);
 
