@@ -34,7 +34,7 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
         context.systemStatusEffects = Object.keys(context.statusEffects).reduce((acc, key) => {
             const effect = context.statusEffects[key];
             if (effect.systemEffect) {
-                const disabled = !effect.isActive && this.actor.system.rules.conditionImmunities[key];
+                const disabled = !effect.isActive && this.actor.system.rules?.conditionImmunities?.[key];
                 acc[key] = { ...effect, disabled };
             }
 
