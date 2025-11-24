@@ -1,3 +1,4 @@
+import { waitForDiceSoNice } from '../../helpers/utils.mjs';
 import { emitAsGM, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -123,13 +124,14 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                       : 'DAGGERHEART.UI.Countdowns.loop'
                 : null;
             const loopDisabled =
-                !countdownEditable || (isLooping && (countdown.progress.current > 0 || countdown.progress.max === '0'));
+                !countdownEditable ||
+                (isLooping && (countdown.progress.current > 0 || countdown.progress.start === '0'));
 
             acc[key] = {
                 ...countdown,
                 editable: countdownEditable,
                 noPlayerAccess: nonGmPlayers.length && playersWithAccess.length === 0,
-                shouldLoop: isLooping && countdown.progress.current === 0 && countdown.progress.max > 0,
+                shouldLoop: isLooping && countdown.progress.current === 0 && countdown.progress.start > 0,
                 loopDisabled: isLooping ? loopDisabled : null,
                 loopTooltip: isLooping && game.i18n.localize(loopTooltip)
             };
@@ -182,16 +184,27 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
 
         const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
         const countdown = settings.countdowns[target.id];
+
+        let progressMax = countdown.progress.start;
+        let message = null;
+        if (countdown.progress.startFormula) {
+            const roll = await new Roll(countdown.progress.startFormula).evaluate();
+            progressMax = roll.total;
+            message = await roll.toMessage();
+        }
+
         const newMax =
             countdown.progress.looping === CONFIG.DH.GENERAL.countdownLoopingTypes.increasing.id
-                ? Number(countdown.progress.max) + 1
+                ? Number(progressMax) + 1
                 : countdown.progress.looping === CONFIG.DH.GENERAL.countdownLoopingTypes.decreasing.id
-                  ? Math.max(Number(countdown.progress.max) - 1, 0)
-                  : countdown.progress.max;
+                  ? Math.max(Number(progressMax) - 1, 0)
+                  : progressMax;
+
+        await waitForDiceSoNice(message);
         await settings.updateSource({
             [`countdowns.${target.id}.progress`]: {
                 current: newMax,
-                max: newMax
+                start: newMax
             }
         });
         await emitAsGM(GMUpdateEvent.UpdateCountdowns, DhCountdowns.gmSetSetting.bind(settings), settings, null, {
@@ -205,7 +218,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
         const countdown = settings.countdowns[target.id];
         const newCurrent = increase
-            ? Math.min(countdown.progress.current + 1, countdown.progress.max)
+            ? Math.min(countdown.progress.current + 1, countdown.progress.start)
             : Math.max(countdown.progress.current - 1, 0);
         await settings.updateSource({ [`countdowns.${target.id}.progress.current`]: newCurrent });
         await emitAsGM(GMUpdateEvent.UpdateCountdowns, DhCountdowns.gmSetSetting.bind(settings), settings, null, {

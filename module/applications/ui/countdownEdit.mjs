@@ -1,4 +1,5 @@
 import { DhCountdown } from '../../data/countdowns.mjs';
+import { waitForDiceSoNice } from '../../helpers/utils.mjs';
 import { emitAsGM, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -26,6 +27,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
             toggleCountdownEdit: CountdownEdit.#toggleCountdownEdit,
             editCountdownImage: CountdownEdit.#editCountdownImage,
             editCountdownOwnership: CountdownEdit.#editCountdownOwnership,
+            randomiseCountdownStart: CountdownEdit.#randomiseCountdownStart,
             removeCountdown: CountdownEdit.#removeCountdown
         },
         form: { handler: this.updateData, submitOnChange: true }
@@ -57,6 +59,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
                       ? 'DAGGERHEART.UI.Countdowns.decreasingLoop'
                       : 'DAGGERHEART.UI.Countdowns.loop'
                 : null;
+            const randomizeValid = !new Roll(countdown.progress.startFormula ?? '').isDeterministic;
             acc[key] = {
                 ...countdown,
                 typeName: game.i18n.localize(CONFIG.DH.GENERAL.countdownBaseTypes[countdown.type].label),
@@ -67,6 +70,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
                     )
                 },
                 editing: this.editingCountdowns.has(key),
+                randomizeValid,
                 loopTooltip
             };
 
@@ -123,16 +127,24 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         // Sync current and max if max is changing and they were equal before
         for (const [id, countdown] of Object.entries(settingsData.countdowns ?? {})) {
             const existing = this.data.countdowns[id];
-            const wasEqual = existing && existing.progress.current === existing.progress.max;
-            if (wasEqual && countdown.progress.max !== existing.progress.max) {
-                countdown.progress.current = countdown.progress.max;
-            } else {
-                countdown.progress.current = Math.min(countdown.progress.current, countdown.progress.max);
-            }
+            countdown.progress.current = this.getMatchingCurrentValue(
+                existing,
+                countdown.progress.start,
+                countdown.progress.current
+            );
         }
 
         this.hideNewCountdowns = hideNewCountdowns;
         this.updateSetting(settingsData);
+    }
+
+    getMatchingCurrentValue(oldCount, newStart, newCurrent) {
+        const wasEqual = oldCount && oldCount.progress.current === oldCount.progress.start;
+        if (wasEqual && newStart !== oldCount.progress.start) {
+            return newStart;
+        } else {
+            return Math.min(newCurrent, newStart);
+        }
     }
 
     async gmSetSetting(data) {
@@ -188,6 +200,21 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         if (!data) return;
 
         this.updateSetting({ [`countdowns.${button.dataset.countdownId}`]: data });
+    }
+
+    static async #randomiseCountdownStart(_, button) {
+        const countdown = this.data.countdowns[button.dataset.countdownId];
+        const roll = await new Roll(countdown.progress.startFormula).roll();
+        const message = await roll.toMessage({ title: 'Countdown' });
+
+        await waitForDiceSoNice(message);
+        await this.updateSetting({
+            [`countdowns.${button.dataset.countdownId}.progress`]: {
+                start: roll.total,
+                current: this.getMatchingCurrentValue(countdown, roll.total, countdown.progress.current)
+            }
+        });
+        this.render();
     }
 
     static async #removeCountdown(event, button) {

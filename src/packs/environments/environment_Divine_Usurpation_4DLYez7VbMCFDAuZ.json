@@ -197,7 +197,8 @@
                 "progress": {
                   "looping": "noLooping",
                   "type": "custom",
-                  "max": "8",
+                  "start": 1,
+                  "startFormula": "8",
                   "current": 1
                 },
                 "ownership": {}
@@ -607,7 +608,7 @@
                 "progress": {
                   "looping": "noLooping",
                   "type": "custom",
-                  "max": "10",
+                  "startValue": "10",
                   "current": 1
                 },
                 "ownership": {}

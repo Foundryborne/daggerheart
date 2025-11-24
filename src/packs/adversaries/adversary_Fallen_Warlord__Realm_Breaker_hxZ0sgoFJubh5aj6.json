@@ -623,7 +623,8 @@
                 "progress": {
                   "looping": "decreasing",
                   "type": "actionRoll",
-                  "max": "8",
+                  "start": 1,
+                  "startFormula": "8",
                   "current": 1
                 },
                 "ownership": {}

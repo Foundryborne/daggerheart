@@ -361,7 +361,8 @@
                 "progress": {
                   "looping": "noLooping",
                   "type": "characterAttack",
-                  "max": "5",
+                  "start": 1,
+                  "startFormula": "5",
                   "current": 1
                 },
                 "ownership": {}

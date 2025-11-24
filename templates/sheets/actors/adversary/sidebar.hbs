@@ -34,6 +34,16 @@
                     <h4>{{localize "DAGGERHEART.GENERAL.attack"}}</h4>
                 </div>
             </div>
+            {{#if (lt source.system.criticalThreshold 20)}}
+                <div class="status-number">
+                    <div class='status-value armor-slots'>
+                        <p>{{source.system.criticalThreshold}}+</p>
+                    </div>
+                    <div class="status-label">
+                        <h4>{{localize "DAGGERHEART.GENERAL.criticalShort"}}</h4>
+                    </div>
+                </div>
+            {{/if}}
         </div>
         <div class="status-section">
             <div class="threshold-section">

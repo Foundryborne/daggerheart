@@ -634,7 +634,8 @@
                 "progress": {
                   "looping": "noLooping",
                   "type": "actionRoll",
-                  "max": "1d8",
+                  "start": 1,
+                  "startFormula": "1d8",
                   "current": 1
                 },
                 "ownership": {}

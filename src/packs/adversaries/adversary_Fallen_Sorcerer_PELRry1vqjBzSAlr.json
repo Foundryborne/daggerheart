@@ -579,7 +579,8 @@
                 "progress": {
                   "looping": "looping",
                   "type": "actionRoll",
-                  "max": "2d6",
+                  "start": 1,
+                  "startFormula": "2d6",
                   "current": 1
                 },
                 "ownership": {}

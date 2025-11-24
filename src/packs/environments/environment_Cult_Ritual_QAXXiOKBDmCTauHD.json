@@ -374,7 +374,8 @@
                 "progress": {
                   "looping": "noLooping",
                   "type": "fear",
-                  "max": "6",
+                  "start": 1,
+                  "startFormula": "6",
                   "current": 1
                 },
                 "ownership": {}

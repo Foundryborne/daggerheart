@@ -167,10 +167,15 @@ export class DhCountdown extends foundry.abstract.DataModel {
                     initial: 1,
                     label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.progress.current.label'
                 }),
-                max: new FormulaField({
+                start: new fields.NumberField({
                     required: true,
+                    integer: true,
                     initial: 1,
-                    label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.progress.max.label',
+                    label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.progress.start.label',
+                    deterministic: false
+                }),
+                startFormula: new FormulaField({
+                    label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.progress.startFormula.label',
                     deterministic: false
                 }),
                 looping: new fields.StringField({
@@ -206,7 +211,7 @@ export class DhCountdown extends foundry.abstract.DataModel {
             ownership: ownership,
             progress: {
                 current: 1,
-                max: 1
+                start: 1
             }
         };
     }
@@ -224,5 +229,16 @@ export class DhCountdown extends foundry.abstract.DataModel {
 
             return acc;
         }, {});
+    }
+
+    /** @inheritDoc */
+    static migrateData(source) {
+        if (source.progress.max) {
+            source.progress.start = Number(source.progress.max);
+            source.progress.max = null;
+            source.progress.startFormula = null;
+        }
+
+        return super.migrateData(source);
     }
 }

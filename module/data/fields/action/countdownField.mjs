@@ -40,16 +40,38 @@ export default class CountdownField extends fields.ArrayField {
         }
 
         const data = { countdowns: {} };
+        const countdownMessages = [];
         for (let countdown of config.countdowns) {
-            const { total: max } = await new Roll(countdown.progress.max).evaluate();
+            let startFormula = countdown.progress.startFormula ? countdown.progress.startFormula : null;
+            let countdownStart = startFormula ?? '1';
+            if (startFormula) {
+                const roll = await new Roll(startFormula).roll();
+                if (roll.dice.length > 0) {
+                    countdownStart = roll.total;
+                    const message = await roll.toMessage();
+                    countdownMessages.push(message);
+                } else {
+                    startFormula = null;
+                }
+            }
+
             data.countdowns[foundry.utils.randomID()] = {
                 ...countdown,
                 progress: {
                     ...countdown.progress,
-                    current: max,
-                    max: max
+                    current: countdownStart,
+                    start: countdownStart,
+                    startFormula
                 }
             };
+        }
+
+        if (game.modules.get('dice-so-nice')?.active) {
+            await Promise.all(
+                countdownMessages.map(message => {
+                    return game.dice3d.waitFor3DAnimationByMessageID(message.id);
+                })
+            );
         }
 
         await emitAsGM(
