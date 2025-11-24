@@ -8,8 +8,9 @@
         {{formGroup systemFields.attack.fields.img value=document._source.system.attack.img label="DAGGERHEART.GENERAL.imagePath" name="system.attack.img" localize=true}}
         {{formGroup systemFields.attack.fields.name value=document._source.system.attack.name label="DAGGERHEART.ACTIONS.Settings.attackName" name="system.attack.name" localize=true}}
     </fieldset>
-    <fieldset class="flex">
+    <fieldset class="one-column">
         <legend>{{localize "DAGGERHEART.GENERAL.attack"}}</legend>
+        <div class="nest-inputs">
             {{formField systemFields.attack.fields.roll.fields.bonus value=document._source.system.attack.roll.bonus label="DAGGERHEART.ACTIONS.Settings.attackBonus" name="system.attack.roll.bonus" localize=true}}
             {{formField systemFields.attack.fields.range value=document._source.system.attack.range label="DAGGERHEART.GENERAL.range" name="system.attack.range" localize=true}}
             {{#if systemFields.attack.fields.target.fields}}
@@ -18,6 +19,8 @@
                     {{ formField systemFields.attack.fields.target.fields.amount value=document._source.system.attack.target.amount label="DAGGERHEART.GENERAL.amount" name="system.attack.target.amount" localize=true}}
                 {{/if}}
             {{/if}}
+        </div>
+        {{formGroup systemFields.criticalThreshold value=document._source.system.criticalThreshold label="DAGGERHEART.ACTIONS.Settings.criticalThreshold" name="system.criticalThreshold" localize=true}}
     </fieldset>
     {{> 'systems/daggerheart/templates/actionTypes/damage.hbs' fields=systemFields.attack.fields.damage.fields.parts.element.fields source=document.system.attack.damage path="system.attack." directField=systemFields.attack.fields.damage.fields.direct horde=(eq document._source.system.type 'horde')}}
 </section>

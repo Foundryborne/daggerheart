@@ -39,6 +39,7 @@ export default class DhpAdversary extends BaseDataActor {
                 integer: true,
                 label: 'DAGGERHEART.GENERAL.hordeHp'
             }),
+            criticalThreshold: new fields.NumberField({ required: true, integer: true, min: 1, max: 20, initial: 20 }),
             damageThresholds: new fields.SchemaField({
                 major: new fields.NumberField({
                     required: true,
@@ -54,8 +55,20 @@ export default class DhpAdversary extends BaseDataActor {
                 })
             }),
             resources: new fields.SchemaField({
-                hitPoints: resourceField(0, 0, 'DAGGERHEART.GENERAL.HitPoints.plural', true),
-                stress: resourceField(0, 0, 'DAGGERHEART.GENERAL.stress', true)
+                hitPoints: resourceField(
+                    0,
+                    0,
+                    'DAGGERHEART.GENERAL.HitPoints.plural',
+                    true,
+                    game.i18n.localize('DAGGERHEART.GENERAL.max')
+                ),
+                stress: resourceField(
+                    0,
+                    0,
+                    'DAGGERHEART.GENERAL.stress',
+                    true,
+                    game.i18n.localize('DAGGERHEART.GENERAL.max')
+                )
             }),
             rules: new fields.SchemaField({
                 conditionImmunities: new fields.SchemaField({

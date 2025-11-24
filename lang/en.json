@@ -103,6 +103,7 @@
             "Settings": {
                 "attackBonus": "Attack Bonus",
                 "attackName": "Attack Name",
+                "criticalThreshold": "Critical Threshold",
                 "includeBase": { "label": "Include Item Damage" },
                 "multiplier": "Multiplier",
                 "saveHint": "Set a default Trait to enable Reaction Roll. It can be changed later in Reaction Roll Dialog.",

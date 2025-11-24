@@ -13,8 +13,6 @@ export default class D20Roll extends DHRoll {
         DISADVANTAGE: -1
     };
 
-    static CRITICAL_TRESHOLD = 20;
-
     static DefaultDialog = D20RollDialog;
 
     get title() {
@@ -37,7 +35,7 @@ export default class D20Roll extends DHRoll {
 
     get isCritical() {
         if (!this.d20._evaluated) return;
-        return this.d20.total >= this.constructor.CRITICAL_TRESHOLD;
+        return this.d20.total >= this.data.system.criticalThreshold;
     }
 
     get hasAdvantage() {
