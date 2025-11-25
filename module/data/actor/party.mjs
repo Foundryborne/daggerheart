@@ -36,6 +36,23 @@ export default class DhParty extends BaseDataActor {
         }
     }
 
+    async _preDelete() {
+        /* Clear all partyMembers from tagTeam setting.*/
+        /* Revisit this when tagTeam is improved for many parties */
+        const tagTeam = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
+        await tagTeam.updateSource({
+            initiator: this.partyMembers.some(x => x.id === tagTeam.initiator) ? null : tagTeam.initiator,
+            members: Object.keys(tagTeam.members).reduce((acc, key) => {
+                if (this.partyMembers.find(x => x.id === key)) {
+                    acc[`-=${key}`] = null;
+                }
+
+                return acc;
+            }, {})
+        });
+        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll, tagTeam);
+    }
+
     _onDelete(options, userId) {
         super._onDelete(options, userId);
 
