@@ -1,7 +1,9 @@
-<div class="effects-display-container">
-    {{#each effects as | effect |}}
-        <div class="effect-container">
-            <img src="{{effect.img}}" />
-        </div>
-    {{/each}}
+<div>
+    <div class="effects-display-container">
+        {{#each effects as | effect |}}
+            <div class="effect-container" data-tooltip="#effect-display#" data-uuid="{{effect.uuid}}" id="{{effect.id}}">
+                <img src="{{effect.img}}" />
+            </div>
+        {{/each}}
+    </div>
 </div>
