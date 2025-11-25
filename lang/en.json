@@ -2585,6 +2585,9 @@
                 "decreasingLoop": "Decreasing Looping",
                 "increasingLoop": "Increasing Looping"
             },
+            "EffectsDisplay": {
+                "title": ""
+            },
             "ItemBrowser": {
                 "title": "Daggerheart Compendium Browser",
                 "hint": "Select a Folder in sidebar to start browsing through the compendium",
