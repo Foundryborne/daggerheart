@@ -2703,10 +2703,9 @@
             },
             "Sidebar": {
                 "actorDirectory": {
-                    "adversary": "Tier {tier} Adversary",
+                    "tier": "Tier {tier} {type}",
                     "character": "Level {level} Character",
-                    "companion": "{partner}'s Companion",
-                    "environment": "Tier {tier} Environment"
+                    "companion": "{partner}'s Companion"
                 },
                 "daggerheartMenu": {
                     "title": "Daggerheart Menu",

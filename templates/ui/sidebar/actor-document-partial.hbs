@@ -4,8 +4,8 @@
     {{/if}}
     <a class="entry-name ellipsis" data-action="activateEntry">
         <span>{{name}}</span>
-        {{#if (eq type "adversary")}}
-            <span class="entry-subtitle">{{localize "DAGGERHEART.UI.Sidebar.actorDirectory.adversary" tier=system.tier}}</span>
+        {{#if (or (eq type "adversary") (eq type "environment"))}}
+            <span class="entry-subtitle">{{localize "DAGGERHEART.UI.Sidebar.actorDirectory.tier" tier=system.tier type=(@root.getTypeLabel this)}}</span>
         {{else if (eq type "character")}}
             <span class="entry-subtitle">{{localize "DAGGERHEART.UI.Sidebar.actorDirectory.character" level=system.levelData.level.current}}</span>
         {{else if (eq type "companion")}}
@@ -14,8 +14,6 @@
             {{else}}
                 <span class="entry-subtitle">{{localize "TYPES.Actor.companion"}}</span>
             {{/if}}
-        {{else if (eq type "environment")}}
-            <span class="entry-subtitle">{{localize "DAGGERHEART.UI.Sidebar.actorDirectory.environment" tier=system.tier}}</span>
         {{/if}}
     </a>
 </li>
