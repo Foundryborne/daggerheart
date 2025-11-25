@@ -7,7 +7,26 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         let html = options.html;
         if (element.dataset.tooltip === '#effect-display#') {
             this.#bordered = true;
-            const effect = await foundry.utils.fromUuid(element.dataset.uuid);
+            let effect = {};
+            if (element.dataset.uuid) {
+                const effectData = (await foundry.utils.fromUuid(element.dataset.uuid)).toObject();
+                effect = {
+                    ...effectData,
+                    name: game.i18n.localize(effectData.name),
+                    description: game.i18n.localize(effectData.description ?? effectData.parent.system.description)
+                };
+            } else {
+                const conditions = CONFIG.DH.GENERAL.conditions();
+                const condition = conditions[element.dataset.condition];
+                effect = {
+                    ...condition,
+                    name: game.i18n.localize(condition.name),
+                    description: game.i18n.localize(condition.description),
+                    appliedBy: element.dataset.appliedBy,
+                    isLockedCondition: true
+                };
+            }
+
             html = await foundry.applications.handlebars.renderTemplate(
                 `systems/daggerheart/templates/ui/tooltip/effect-display.hbs`,
                 {

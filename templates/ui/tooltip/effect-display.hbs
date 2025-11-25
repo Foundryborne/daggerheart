@@ -1,9 +1,16 @@
 <div class="daggerheart dh-style tooltip">
     <div class="tooltip-header">
         <h3>{{effect.name}}</h3>
-        <div class="helper">{{localize "[Right Click] Remove Effect"}}</div>
+        <div class="helper">
+            {{#unless effect.isLockedCondition}}
+                {{localize "DAGGERHEART.UI.EffectsDisplay.removeThing" thing=(localize "DAGGERHEART.GENERAL.Effect.single")}}
+            {{/unless}}
+        </div>
     </div>
     <div>
         {{#if effect.description}}{{{effect.description}}}{{else}}{{{effect.parent.system.description}}}{{/if}}
     </div>
+    {{#if effect.appliedBy}}
+        <footer class="tooltip-footer">{{localize "DAGGERHEART.UI.EffectsDisplay.appliedBy" by=effect.appliedBy}}</footer>
+    {{/if}}
 </div>

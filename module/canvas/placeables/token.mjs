@@ -10,29 +10,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         this.effects.overlay = null;
 
         // Categorize effects
-        const statusMap = new Map(foundry.CONFIG.statusEffects.map(status => [status.id, status]));
-        const activeEffects = (this.actor ? this.actor.effects.filter(x => !x.disabled) : []).reduce((acc, effect) => {
-            acc.push(effect);
-
-            const currentStatusActiveEffects = acc.filter(
-                x => x.statuses.size === 1 && x.name === game.i18n.localize(statusMap.get(x.statuses.first())?.name)
-            );
-            for (var status of effect.statuses) {
-                if (!currentStatusActiveEffects.find(x => x.statuses.has(status))) {
-                    const statusData = statusMap.get(status);
-                    if (statusData) {
-                        acc.push({
-                            name: game.i18n.localize(statusData.name),
-                            statuses: [status],
-                            img: statusData.icon ?? statusData.img,
-                            tint: effect.tint
-                        });
-                    }
-                }
-            }
-
-            return acc;
-        }, []);
+        const activeEffects = this.actor?.getActiveEffects() ?? [];
         const overlayEffect = activeEffects.findLast(e => e.img && e.getFlag?.('core', 'overlay'));
 
         // Draw effects

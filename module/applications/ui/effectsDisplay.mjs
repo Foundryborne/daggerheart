@@ -1,3 +1,5 @@
+import { RefreshType } from '../../systemRegistration/socket.mjs';
+
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 /**
@@ -48,7 +50,7 @@ export default class DhEffectsDisplay extends HandlebarsApplicationMixin(Applica
         super._attachPartListeners(partId, htmlElement, options);
 
         if (this.element) {
-            this.element.querySelectorAll('.effect-container').forEach(element => {
+            this.element.querySelectorAll('.effect-container a').forEach(element => {
                 element.addEventListener('contextmenu', this.removeEffect.bind(this));
             });
         }
@@ -70,7 +72,7 @@ export default class DhEffectsDisplay extends HandlebarsApplicationMixin(Applica
                   ? game.user.character
                   : null
               : canvas.tokens.controlled[0].actor;
-        return actor?.effects ? Array.from(actor.effects) : [];
+        return actor?.getActiveEffects() ?? [];
     };
 
     toggleHidden(token, focused) {
@@ -92,6 +94,7 @@ export default class DhEffectsDisplay extends HandlebarsApplicationMixin(Applica
 
     setupHooks() {
         Hooks.on('controlToken', this.toggleHidden.bind(this));
+        Hooks.on(RefreshType.EffectsDisplay, this.toggleHidden.bind(this));
     }
 
     async close(options) {
@@ -99,6 +102,7 @@ export default class DhEffectsDisplay extends HandlebarsApplicationMixin(Applica
         if (options.closeKey) return;
 
         Hooks.off('controlToken', this.toggleHidden);
+        Hooks.off(RefreshType.EffectsDisplay, this.toggleHidden);
         return super.close(options);
     }
 

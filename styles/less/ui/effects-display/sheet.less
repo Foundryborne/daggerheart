@@ -2,8 +2,9 @@
     position: absolute;
     right: 0;
     width: 68px;
-    max-height: 300px;
+    max-height: 600px;
     overflow: hidden;
+    border: 0;
 
     .window-content {
         > div {
@@ -14,13 +15,20 @@
     .effects-display-container {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 4px;
 
         .effect-container {
-            cursor: pointer;
+            position: relative;
+            pointer-events: all;
+            border: 2px solid light-dark(@dark-blue, @golden);
 
-            img {
-                pointer-events: all;
+            .effect-locked {
+                position: absolute;
+                bottom: 4px;
+                right: 4px;
+                font-size: 24px;
+                color: @golden;
+                filter: drop-shadow(0 0 3px black);
             }
         }
     }
