@@ -4,7 +4,6 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
     static DEFAULT_OPTIONS = {
         classes: ['daggerheart'],
         actions: {
-            effect: { handler: DHTokenHUD.#onToggleEffect, buttons: [0, 2] },
             combat: DHTokenHUD.#onToggleCombat,
             togglePartyTokens: DHTokenHUD.#togglePartyTokens
         }
@@ -214,18 +213,5 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
             status.cssClass = [status.isActive ? 'active' : null, status.isOverlay ? 'overlay' : null].filterJoin(' ');
         }
         return choices;
-    }
-
-    static async #onToggleEffect(event, target) {
-        if (!this.actor) {
-            ui.notifications.warn('HUD.WarningEffectNoActor', { localize: true });
-            return;
-        }
-
-        const statusId = target.dataset.statusId;
-        await this.actor.toggleStatusEffect(statusId, {
-            active: !target.classList.contains('active'),
-            overlay: event.button === 2
-        });
     }
 }
