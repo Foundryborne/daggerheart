@@ -38,6 +38,20 @@ export default class DhpDeathMove extends HandlebarsApplicationMixin(Application
         return context;
     }
 
+    async handleAvoidDeath() {
+        console.log("Avoid Death!");
+        if (game.modules.get('dice-so-nice')?.active) {
+
+            const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
+        
+            const hopeDice = await getDiceSoNicePreset(diceSoNice.hope, 12);
+        }
+    }
+
+    handleRiskItAll() {
+        console.log("Risk It All!");
+    }
+
     static selectMove(_, button) {
         const move = button.dataset.move;
         this.selectedMove = CONFIG.DH.GENERAL.deathMoves[move];
@@ -73,6 +87,18 @@ export default class DhpDeathMove extends HandlebarsApplicationMixin(Application
 
         cls.create(msg);
 
+        if (CONFIG.DH.GENERAL.deathMoves.avoidDeath === this.selectedMove) {
+            this.handleAvoidDeath();
+            return;
+        }
+
+        if (CONFIG.DH.GENERAL.deathMoves.riskItAll === this.selectedMove) {
+            this.handleRiskItAll();
+            return;
+        }
+
+
         this.close();
+
     }
 }
