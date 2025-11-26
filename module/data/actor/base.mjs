@@ -106,6 +106,21 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
         return data;
     }
 
+    async _preDelete() {
+        /* Clear all partyMembers from tagTeam setting.*/
+        /* Revisit this when tagTeam is improved for many parties */
+        if (this.parent.parties.size > 0) {
+            const tagTeam = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
+            await tagTeam.updateSource({
+                initiator: this.parent.id === tagTeam.initiator ? null : tagTeam.initiator,
+                members: Object.keys(tagTeam.members).find(x => x === this.parent.id)
+                    ? { [`-=${this.parent.id}`]: null }
+                    : {}
+            });
+            await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll, tagTeam);
+        }
+    }
+
     async _preUpdate(changes, options, userId) {
         const allowed = await super._preUpdate(changes, options, userId);
         if (allowed === false) return;

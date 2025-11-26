@@ -204,7 +204,7 @@ export default class DhpActor extends Actor {
 
                 for (let domainCard of domainCards) {
                     const itemCard = this.items.find(x => x.uuid === domainCard);
-                    itemCard.delete();
+                    itemCard?.delete();
                 }
             }
 
@@ -337,6 +337,8 @@ export default class DhpActor extends Actor {
                     const embeddedItem = await this.createEmbeddedDocuments('Item', [
                         {
                             ...multiclassData,
+                            uuid: multiclassItem.uuid,
+                            _stats: multiclassItem._stats,
                             system: {
                                 ...multiclassData.system,
                                 features: multiclassData.system.features.filter(x => x.type !== 'hope'),
@@ -349,6 +351,8 @@ export default class DhpActor extends Actor {
                     await this.createEmbeddedDocuments('Item', [
                         {
                             ...subclassData,
+                            uuid: subclassItem.uuid,
+                            _stats: subclassItem._stats,
                             system: {
                                 ...subclassData.system,
                                 isMulticlass: true
@@ -363,12 +367,15 @@ export default class DhpActor extends Actor {
 
             for (var domainCard of domainCards) {
                 if (levelupAuto) {
-                    const itemData = (await foundry.utils.fromUuid(domainCard.data[0])).toObject();
+                    const cardItem = await foundry.utils.fromUuid(domainCard.data[0]);
+                    const cardData = cardItem.toObject();
                     const embeddedItem = await this.createEmbeddedDocuments('Item', [
                         {
-                            ...itemData,
+                            ...cardData,
+                            uuid: cardItem.uuid,
+                            _stats: cardItem._stats,
                             system: {
-                                ...itemData.system,
+                                ...cardData.system,
                                 inVault: true
                             }
                         }
@@ -382,12 +389,15 @@ export default class DhpActor extends Actor {
             const achievementDomainCards = [];
             if (levelupAuto) {
                 for (var card of Object.values(level.achievements.domainCards)) {
-                    const itemData = (await foundry.utils.fromUuid(card.uuid)).toObject();
+                    const cardItem = await foundry.utils.fromUuid(card.uuid);
+                    const cardData = cardItem.toObject();
                     const embeddedItem = await this.createEmbeddedDocuments('Item', [
                         {
-                            ...itemData,
+                            ...cardData,
+                            uuid: cardItem.uuid,
+                            _stats: cardItem._stats,
                             system: {
-                                ...itemData.system,
+                                ...cardData.system,
                                 inVault: true
                             }
                         }

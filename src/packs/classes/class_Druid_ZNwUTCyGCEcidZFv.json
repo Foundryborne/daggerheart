@@ -4,7 +4,7 @@
   "_id": "ZNwUTCyGCEcidZFv",
   "img": "icons/creatures/mammals/wolf-howl-moon-black.webp",
   "system": {
-    "description": "<p>Becoming a druid is more than an occupation; it’s a calling for those who wish to learn from and protect the magic of the wilderness. While one might underestimate a gentle druid who practices the often-quiet work of cultivating flora, druids who channel the untamed forces of nature are terrifying to behold. Druids cultivate their abilities in small groups, often connected by a specific ethos or locale, but some choose to work alone. Through years of study and dedication, druids can learn to transform into beasts and shape nature itself.</p>",
+    "description": "<p>Becoming a druid is more than an occupation; it’s a calling for those who wish to learn from and protect the magic of the wilderness. While one might underestimate a gentle druid who practices the often-quiet work of cultivating flora, druids who channel the untamed forces of nature are terrifying to behold. Druids cultivate their abilities in small groups, often connected by a specific ethos or locale, but some choose to work alone. Through years of study and dedication, druids can learn to transform into beasts and shape nature itself.</p><p></p><h4>CLASS ITEMS</h4><p>A small bag of rocks and bones or a strange pendant found in the dirt</p><p></p><h4>DRUID’S HOPE FEATURE</h4><p><em><strong>Evolution:</strong></em> <strong>Spend 3 Hope</strong> to transform into a Beastform without marking a Stress. When you do, choose one trait to raise by +1 until you drop out of that Beastform.</p><p></p><h4>CLASS FEATURES</h4><p><em><strong>Beastform: </strong></em><strong>Mark a Stress</strong> to magically transform into a creature of your tier or lower from the Beastform list. You can drop out of this form at any time. While transformed, you can’t use weapons or cast spells from domain cards, but you can still use other features or abilities you have access to. Spells you cast before you transform stay active and last for their normal duration, and you can talk and communicate as normal. Additionally, you gain the Beastform’s features, add their Evasion bonus to your Evasion, and use the trait specified in their statistics for your attack. While you’re in a Beastform, your armor becomes part of your body and you mark Armor Slots as usual; when you drop out of a Beastform, those marked Armor Slots remain marked. If you mark your last Hit Point, you automatically drop out of this form.</p><p><em><strong>Wildtouch: </strong></em>You can perform harmless, subtle effects that involve nature—such as causing a flower to rapidly grow, summoning a slight gust of wind, or starting a campfire—at will.</p>",
     "domains": [
       "sage",
       "arcana"
@@ -87,12 +87,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.351",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.2",
+    "systemVersion": "1.2.6",
     "createdTime": 1754222247012,
-    "modifiedTime": 1756399003725,
-    "lastModifiedBy": "gbAAZWyczKwejDNh"
+    "modifiedTime": 1764073660360,
+    "lastModifiedBy": "9HOfUKAXuCu7hUPY"
   },
   "_key": "!items!ZNwUTCyGCEcidZFv"
 }
