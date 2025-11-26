@@ -2705,7 +2705,8 @@
                 "actorDirectory": {
                     "tier": "Tier {tier} {type}",
                     "character": "Level {level} Character",
-                    "companion": "{partner}'s Companion"
+                    "companion": "Level {level} - {partner}",
+                    "companionNoPartner": "No Partner"
                 },
                 "daggerheartMenu": {
                     "title": "Daggerheart Menu",

@@ -10,9 +10,9 @@
             <span class="entry-subtitle">{{localize "DAGGERHEART.UI.Sidebar.actorDirectory.character" level=system.levelData.level.current}}</span>
         {{else if (eq type "companion")}}
             {{#if system.partner}}
-                <span class="entry-subtitle">{{localize "DAGGERHEART.UI.Sidebar.actorDirectory.companion" partner=system.partner.name}}</span>
+                <span class="entry-subtitle">{{localize "DAGGERHEART.UI.Sidebar.actorDirectory.companion" level=system.levelData.level.current partner=system.partner.name}}</span>
             {{else}}
-                <span class="entry-subtitle">{{localize "TYPES.Actor.companion"}}</span>
+                <span class="entry-subtitle">{{localize "DAGGERHEART.UI.Sidebar.actorDirectory.companionNoPartner"}}</span>
             {{/if}}
         {{/if}}
     </a>
