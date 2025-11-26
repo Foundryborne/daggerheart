@@ -1,28 +1,45 @@
 #tooltip.bordered-tooltip {
-    width: 320px;
-    border: 1px solid light-dark(@dark-blue, @golden);
+    border: 1px solid @golden;
+    background-image: url('../assets/parchments/dh-parchment-dark.png');
 
     .daggerheart.dh-style.tooltip {
-        color: @beige;
+        display: flex;
+        flex-direction: column;
+        text-align: start;
+        width: 100%;
+        gap: 5px;
+        padding: 0px;
+        border-radius: 3px;
 
         .tooltip-header {
             display: flex;
             flex-direction: column;
-            text-align: center;
+            text-align: start;
+            width: 100%;
+            padding: 5px;
+            gap: 0px;
 
-            .helper {
+            h2 {
+                display: flex;
+                justify-content: start;
+                font-size: var(--font-size-20);
+                color: @golden;
+                font-weight: 700;
+                margin: 0;
+                padding: 0;
+            }
+
+            .subtitle {
                 font-size: 12px;
-                font-style: italic;
             }
         }
 
-        .tooltip-footer {
-            display: flex;
-            justify-content: center;
+        .close-hint {
+            border-radius: 3px;
+            padding: 3px;
+            background: @rustic-brown-80;
+            color: @golden;
             font-size: 12px;
-            width: 100%;
-            font-style: italic;
-            font-weight: bold;
         }
     }
 }

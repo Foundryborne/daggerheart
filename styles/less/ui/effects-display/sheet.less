@@ -1,7 +1,7 @@
 .daggerheart.dh-style.effects-display {
     position: absolute;
     right: 0;
-    width: 68px;
+    width: 40px;
     max-height: 600px;
     overflow: hidden;
     border: 0;
@@ -20,13 +20,18 @@
         .effect-container {
             position: relative;
             pointer-events: all;
-            border: 2px solid light-dark(@dark-blue, @golden);
+            border: 1px solid light-dark(@dark-blue, @golden);
+            border-radius: 3px;
+
+            img {
+                border-radius: 3px;
+            }
 
             .effect-locked {
                 position: absolute;
                 bottom: 4px;
                 right: 4px;
-                font-size: 24px;
+                font-size: 16px;
                 color: @golden;
                 filter: drop-shadow(0 0 3px black);
             }
