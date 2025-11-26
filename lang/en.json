@@ -1221,7 +1221,7 @@
                 },
                 "burning": {
                     "name": "Burning",
-                    "description": "When you roll the maximum value on a damage die, roll an additional damage die.",
+                    "description": "When you roll a 6 on a damage die, the target must mark a Stress.",
                     "actions": {
                         "burn": {
                             "name": "Burn",

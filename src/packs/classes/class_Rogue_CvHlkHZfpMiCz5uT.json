@@ -4,7 +4,7 @@
   "_id": "CvHlkHZfpMiCz5uT",
   "img": "icons/magic/defensive/shield-barrier-blades-teal.webp",
   "system": {
-    "description": "<p>Rogues are scoundrels, often in both attitude and practice. Broadly known as liars and thieves, the best among this class move through the world anonymously. Utilizing their sharp wits and blades, rogues trick their foes through social manipulation as easily as breaking locks, climbing through windows, or dealing underhanded blows. These masters of magical craft manipulate shadow and movement, adding an array of useful and deadly tools to their repertoire. Rogues frequently establish guilds to meet future accomplices, hire out jobs, and hone secret skills, proving that there’s honor among thieves for those who know where to look.</p>",
+    "description": "<p>Rogues are scoundrels, often in both attitude and practice. Broadly known as liars and thieves, the best among this class move through the world anonymously. Utilizing their sharp wits and blades, rogues trick their foes through social manipulation as easily as breaking locks, climbing through windows, or dealing underhanded blows. These masters of magical craft manipulate shadow and movement, adding an array of useful and deadly tools to their repertoire. Rogues frequently establish guilds to meet future accomplices, hire out jobs, and hone secret skills, proving that there’s honor among thieves for those who know where to look.</p><p></p><h4>CLASS ITEMS</h4><p>A set of forgery tools or a grappling hook</p><p></p><h4>ROGUE’S HOPE FEATURE</h4><p><em><strong>Rogue’s Dodge:</strong></em> <strong>Spend 3 Hope</strong> to gain a +2 bonus to your Evasion until the next time an attack succeeds against you. Otherwise, this bonus lasts until your next rest.</p><p></p><h4>CLASS FEATURES</h4><p><em><strong>Cloaked:</strong></em> Any time you would be <em>Hidden</em>, you are instead <em>Cloaked</em>. In addition to the benefits of the <em>Hidden</em> condition, while <em>Cloaked</em> you remain unseen if you are stationary when an adversary moves to where they would normally see you.</p><p>After you make an attack or end a move within line of sight of an adversary, you are no longer Cloaked.</p><p><em><strong>Sneak Attack:</strong></em> When you succeed on an attack while Cloaked or while an ally is within Melee range of your target, add a number of <strong>d6s</strong> equal to your tier to your damage roll.</p><p></p>",
     "domains": [
       "midnight",
       "grace"
@@ -87,12 +87,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.351",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.2",
+    "systemVersion": "1.2.6",
     "createdTime": 1754325275832,
-    "modifiedTime": 1756398839983,
-    "lastModifiedBy": "gbAAZWyczKwejDNh"
+    "modifiedTime": 1764074347573,
+    "lastModifiedBy": "9HOfUKAXuCu7hUPY"
   },
   "_key": "!items!CvHlkHZfpMiCz5uT"
 }

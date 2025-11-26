@@ -4,7 +4,7 @@
   "_id": "BTyfve69LKqoOi9S",
   "img": "icons/weapons/bows/shortbow-recurve-yellow-blue.webp",
   "system": {
-    "description": "<p>Rangers are highly skilled hunters who, despite their martial abilities, rarely lend their skills to an army. Through mastery of the body and a deep understanding of the wilderness, rangers become sly tacticians, pursuing their quarry with cunning and patience. Many rangers track and fight alongside an animal companion with whom they’ve forged a powerful spiritual bond. By honing their skills in the wild, rangers become expert trackers, as likely to ensnare their foes in a trap as they are to assail them head-on.</p>",
+    "description": "<p>Rangers are highly skilled hunters who, despite their martial abilities, rarely lend their skills to an army. Through mastery of the body and a deep understanding of the wilderness, rangers become sly tacticians, pursuing their quarry with cunning and patience. Many rangers track and fight alongside an animal companion with whom they’ve forged a powerful spiritual bond. By honing their skills in the wild, rangers become expert trackers, as likely to ensnare their foes in a trap as they are to assail them head-on.</p><p></p><h4>CLASS ITEMS</h4><p>A trophy from your first kill or a seemingly broken compass</p><p></p><h4>RANGER’S HOPE FEATURE</h4><p><em><strong>Hold Them Off:</strong></em> <strong>Spend 3 Hope</strong> when you succeed on an attack with a weapon to use that same roll against two additional adversaries within range of the attack.</p><p></p><h4>CLASS FEATURE</h4><p><em><strong>Ranger’s Focus:</strong></em> <strong>Spend a Hope</strong> and make an attack against a target. On a success, deal your attack’s normal damage and temporarily make the attack’s target your Focus. Until this feature ends or you make a different creature your Focus, you gain the following benefits against your Focus:</p><p>• You know precisely what direction they are in.</p><p>• When you deal damage to them, they must mark a Stress.</p><p>• When you fail an attack against them, you can end your Ranger’s Focus feature to reroll your Duality Dice.</p>",
     "domains": [
       "bone",
       "sage"
@@ -83,12 +83,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.351",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.2",
+    "systemVersion": "1.2.6",
     "createdTime": 1754268869310,
-    "modifiedTime": 1756398897309,
-    "lastModifiedBy": "gbAAZWyczKwejDNh"
+    "modifiedTime": 1764074066172,
+    "lastModifiedBy": "9HOfUKAXuCu7hUPY"
   },
   "_key": "!items!BTyfve69LKqoOi9S"
 }

@@ -4,7 +4,7 @@
   "_id": "DchOzHcWIJE9FKcR",
   "img": "icons/magic/symbols/rune-sigil-horned-white-purple.webp",
   "system": {
-    "description": "<p>Not all innate magic users choose to hone their craft, but those who do can become powerful sorcerers. The gifts of these wielders are passed down through families, even if the family is unaware of or reluctant to practice them. A sorcerer’s abilities can range from the elemental to the illusionary and beyond, and many practitioners band together into collectives based on their talents. The act of becoming a formidable sorcerer is not the practice of acquiring power, but learning to cultivate and control the power one already possesses. The magic of a misguided or undisciplined sorcerer is a dangerous</p><p>force indeed.</p>",
+    "description": "<p>Not all innate magic users choose to hone their craft, but those who do can become powerful sorcerers. The gifts of these wielders are passed down through families, even if the family is unaware of or reluctant to practice them. A sorcerer’s abilities can range from the elemental to the illusionary and beyond, and many practitioners band together into collectives based on their talents. The act of becoming a formidable sorcerer is not the practice of acquiring power, but learning to cultivate and control the power one already possesses. The magic of a misguided or undisciplined sorcerer is a dangerous force indeed.</p><p></p><h4>CLASS ITEMS</h4><p>A whispering orb or a family heirloom</p><p></p><h4>SORCERER’S HOPE FEATURE</h4><p><em><strong>Volatile Magic:</strong></em> <strong>Spend 3 Hope</strong> to reroll any number of your damage dice on an attack that deals magic damage.</p><p></p><h4>CLASS FEATURES</h4><p><em><strong>Arcane Sense:</strong></em> You can sense the presence of magical people and objects within Close range.</p><p><em><strong>Minor Illusion:</strong></em> Make a <strong>Spellcast Roll (10)</strong>. On a success, you create a minor visual illusion no larger than yourself</p><p>within Close range. This illusion is convincing to anyone at Close range or farther.</p><p><em><strong>Channel Raw Power:</strong></em> Once per long rest, you can place a domain card from your loadout into your vault and choose to either:</p><p>• Gain Hope equal to the level of the card.</p><p>• Enhance a spell that deals damage, gaining a bonus to your damage roll equal to twice the level of the card.</p>",
     "domains": [
       "arcana",
       "midnight"
@@ -91,12 +91,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.350",
+    "coreVersion": "13.351",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.2",
+    "systemVersion": "1.2.6",
     "createdTime": 1754349743129,
-    "modifiedTime": 1760018753854,
-    "lastModifiedBy": "fBcTgyTzoARBvohY"
+    "modifiedTime": 1764074848299,
+    "lastModifiedBy": "9HOfUKAXuCu7hUPY"
   },
   "_key": "!items!DchOzHcWIJE9FKcR"
 }
