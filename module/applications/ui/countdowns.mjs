@@ -60,10 +60,6 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     async _renderFrame(options) {
         const frame = await super._renderFrame(options);
 
-        if (game.system.api.applications.ui.DhEffectsDisplay.getTokenEffects().length > 0) {
-            frame.classList.add('effects-present');
-        }
-
         const iconOnly =
             game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode) ===
             CONFIG.DH.GENERAL.countdownAppMode.iconOnly;
@@ -154,11 +150,6 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         if (refreshType === RefreshType.Countdown) this.render();
     };
 
-    effectDisplayToggle = (hidden, _token) => {
-        if (hidden) this.element.classList.remove('effects-present');
-        else this.element.classList.add('effects-present');
-    };
-
     static canPerformEdit() {
         if (game.user.isGM) return true;
 
@@ -243,7 +234,6 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     }
 
     setupHooks() {
-        Hooks.on(CONFIG.DH.HOOKS.effectDisplayToggle, this.effectDisplayToggle.bind());
         Hooks.on(socketEvent.Refresh, this.cooldownRefresh.bind());
     }
 
@@ -251,7 +241,6 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         /* Opt out of Foundry's standard behavior of closing all application windows marked as UI when Escape is pressed */
         if (options.closeKey) return;
 
-        Hooks.off(CONFIG.DH.HOOKS.effectDisplayToggle, this.effectDisplayToggle);
         Hooks.off(socketEvent.Refresh, this.cooldownRefresh);
         return super.close(options);
     }

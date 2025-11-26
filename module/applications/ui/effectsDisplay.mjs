@@ -81,7 +81,7 @@ export default class DhEffectsDisplay extends HandlebarsApplicationMixin(Applica
 
         Hooks.callAll(CONFIG.DH.HOOKS.effectDisplayToggle, this.element.hidden, token);
 
-        if (effects.length > 0) this.render();
+        this.render();
     }
 
     async removeEffect(event) {
