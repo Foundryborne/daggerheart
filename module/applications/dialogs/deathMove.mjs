@@ -1,6 +1,6 @@
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
-export default class DhpDeathMove extends HandlebarsApplicationMixin(ApplicationV2) {
+export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV2) {
     constructor(actor) {
         super({});
 

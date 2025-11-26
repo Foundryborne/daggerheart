@@ -1,5 +1,5 @@
 import DHBaseActorSheet from '../api/base-actor.mjs';
-import DhpDeathMove from '../../dialogs/deathMove.mjs';
+import DhDeathMove from '../../dialogs/deathMove.mjs';
 import { abilities } from '../../../config/actorConfig.mjs';
 import { CharacterLevelup, LevelupViewMode } from '../../levelup/_module.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
@@ -669,7 +669,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * @type {ApplicationClickAction}
      */
     static async #makeDeathMove() {
-        await new DhpDeathMove(this.document).render({ force: true });
+        await new DhDeathMove(this.document).render({ force: true });
     }
 
     /**
