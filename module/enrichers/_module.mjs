@@ -1,10 +1,11 @@
 import { default as DhDamageEnricher, renderDamageButton } from './DamageEnricher.mjs';
 import { default as DhDualityRollEnricher, renderDualityButton } from './DualityRollEnricher.mjs';
+import { default as DhFateRollEnricher, renderFateButton } from './FateRollEnricher.mjs';
 import { default as DhEffectEnricher } from './EffectEnricher.mjs';
 import { default as DhTemplateEnricher, renderMeasuredTemplate } from './TemplateEnricher.mjs';
 import { default as DhLookupEnricher } from './LookupEnricher.mjs';
 
-export { DhDamageEnricher, DhDualityRollEnricher, DhEffectEnricher, DhTemplateEnricher };
+export { DhDamageEnricher, DhDualityRollEnricher, DhEffectEnricher, DhTemplateEnricher, DhFateRollEnricher };
 
 export const enricherConfig = [
     {
@@ -14,6 +15,10 @@ export const enricherConfig = [
     {
         pattern: /\[\[\/dr\s?(.*?)\]\]({[^}]*})?/g,
         enricher: DhDualityRollEnricher
+    },
+    {
+        pattern: /\[\[\/fr\s?(.*?)\]\]({[^}]*})?/g,
+        enricher: DhFateRollEnricher
     },
     {
         pattern: /@Effect\[([^\[\]]*)\]({[^}]*})?/g,
@@ -37,6 +42,10 @@ export const enricherRenderSetup = element => {
     element
         .querySelectorAll('.duality-roll-button')
         .forEach(element => element.addEventListener('click', renderDualityButton));
+
+    element
+        .querySelectorAll('.fate-roll-button')
+        .forEach(element => element.addEventListener('click', renderFateButton));
 
     element
         .querySelectorAll('.measured-template-button')

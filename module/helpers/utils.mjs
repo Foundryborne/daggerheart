@@ -1,4 +1,4 @@
-import { diceTypes, getDiceSoNicePresets, range } from '../config/generalConfig.mjs';
+import { diceTypes, getDiceSoNicePresets, getDiceSoNicePreset, range } from '../config/generalConfig.mjs';
 import Tagify from '@yaireo/tagify';
 
 export const capitalize = string => {
@@ -67,6 +67,13 @@ export const setDiceSoNiceForDualityRoll = async (rollResult, advantageState, ho
         rollResult.dice[2].options =
             advantageState === 1 ? diceSoNicePresets.advantage : diceSoNicePresets.disadvantage;
     }
+};
+
+export const setDiceSoNiceForFateRoll = async (rollResult, hopeFaces) => {
+    if (!game.modules.get('dice-so-nice')?.active) return;
+    const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
+    const diceSoNicePresets = await getDiceSoNicePreset(diceSoNice.hope, hopeFaces);
+    rollResult.dice[0].options = diceSoNicePresets.hope;
 };
 
 export const chunkify = (array, chunkSize, mappingFunc) => {

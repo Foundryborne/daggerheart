@@ -68,6 +68,17 @@
                             {{/if}}
                         {{/if}}
                     {{/if}}
+                    {{#if (eq @root.rollType 'FateRoll')}}
+                        <div class="dice-option">
+                            <img class="dice-icon" src="{{concat 'systems/daggerheart/assets/icons/dice/hope/' @root.roll.dHope.denomination '.svg'}}" alt="">
+                            <div class="dice-select">
+                                <span class="label">{{localize "DAGGERHEART.GENERAL.hope"}}</span>
+                                <select name="roll.dice.dHope">
+                                    {{selectOptions diceOptions selected=@root.roll.dHope.denomination}}
+                                </select>
+                            </div>
+                        </div>
+                    {{/if}}
                 </div>
 
                 <fieldset class="experience-container">

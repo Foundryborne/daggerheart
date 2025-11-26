@@ -8,8 +8,9 @@ import * as fields from './module/data/fields/_module.mjs';
 import RegisterHandlebarsHelpers from './module/helpers/handlebarsHelper.mjs';
 import { enricherConfig, enricherRenderSetup } from './module/enrichers/_module.mjs';
 import { getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs';
-import { BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll } from './module/dice/_module.mjs';
+import { BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll, FateRoll } from './module/dice/_module.mjs';
 import { enrichedDualityRoll } from './module/enrichers/DualityRollEnricher.mjs';
+import { enrichedFateRoll } from './module/enrichers/FateRollEnricher.mjs';
 import {
     handlebarsRegistration,
     runMigrations,
@@ -24,12 +25,13 @@ import TemplateManager from './module/documents/templateManager.mjs';
 CONFIG.DH = SYSTEM;
 CONFIG.TextEditor.enrichers.push(...enricherConfig);
 
-CONFIG.Dice.rolls = [BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll];
+CONFIG.Dice.rolls = [BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll, FateRoll];
 CONFIG.Dice.daggerheart = {
     DHRoll: DHRoll,
     DualityRoll: DualityRoll,
     D20Roll: D20Roll,
-    DamageRoll: DamageRoll
+    DamageRoll: DamageRoll,
+    FateRoll: FateRoll
 };
 
 CONFIG.Actor.documentClass = documents.DhpActor;
@@ -240,6 +242,28 @@ Hooks.on('chatMessage', (_, message) => {
         });
         return false;
     }
+
+    if (message.startsWith('/fr')) {
+        const result =
+            message.trim().toLowerCase() === '/fr' ? { result: {} } : rollCommandToJSON(message.replace(/\/fr\s?/, ''));
+        if (!result) {
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateParsing'));
+            return false;
+        }
+
+        const { result: rollCommand, flavor } = result;
+
+        const target = getCommandTarget({ allowNull: true });
+        const title = 'Fate';
+
+        enrichedFateRoll({
+            target,
+            title,
+            label: 'test',
+        });
+        return false;
+    }
+
 });
 
 Hooks.on('moveToken', async (movedToken, data) => {
