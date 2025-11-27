@@ -2702,6 +2702,12 @@
                 "documentIsMissing": "The {documentType} is missing from the world."
             },
             "Sidebar": {
+                "actorDirectory": {
+                    "tier": "Tier {tier} {type}",
+                    "character": "Level {level} Character",
+                    "companion": "Level {level} - {partner}",
+                    "companionNoPartner": "No Partner"
+                },
                 "daggerheartMenu": {
                     "title": "Daggerheart Menu",
                     "startSession": "Start Session",

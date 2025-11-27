@@ -1,0 +1,19 @@
+<li class="directory-item entry document {{@root.documentCls}} flexrow" data-entry-id="{{id}}">
+    {{#if thumbnail}}
+    <img class="thumbnail" src="{{thumbnail}}" alt="{{name}}" loading="lazy">
+    {{/if}}
+    <a class="entry-name ellipsis" data-action="activateEntry">
+        <span>{{name}}</span>
+        {{#if (or (eq type "adversary") (eq type "environment"))}}
+            <span class="entry-subtitle">{{localize "DAGGERHEART.UI.Sidebar.actorDirectory.tier" tier=system.tier type=(@root.getTypeLabel this)}}</span>
+        {{else if (eq type "character")}}
+            <span class="entry-subtitle">{{localize "DAGGERHEART.UI.Sidebar.actorDirectory.character" level=system.levelData.level.current}}</span>
+        {{else if (eq type "companion")}}
+            {{#if system.partner}}
+                <span class="entry-subtitle">{{localize "DAGGERHEART.UI.Sidebar.actorDirectory.companion" level=system.levelData.level.current partner=system.partner.name}}</span>
+            {{else}}
+                <span class="entry-subtitle">{{localize "DAGGERHEART.UI.Sidebar.actorDirectory.companionNoPartner"}}</span>
+            {{/if}}
+        {{/if}}
+    </a>
+</li>
