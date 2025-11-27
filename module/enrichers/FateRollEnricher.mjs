@@ -1,15 +1,15 @@
-import { abilities } from '../config/actorConfig.mjs';
 import { getCommandTarget, rollCommandToJSON } from '../helpers/utils.mjs';
 
 export default function DhFateRollEnricher(match, _options) {
     const roll = rollCommandToJSON(match[1], match[0]);
     if (!roll) return match[0];
 
-    return getFateMessage(roll.result, roll.flavor ?? 'FLAVOR');
+    return getFateMessage(roll.result, roll?.flavor);
 }
 
 function getFateMessage(roll, flavor) {
-    const label = flavor ?? 'fate';
+    const label = flavor ?? 'Fate';
+    console.log("ROLL", roll);
 
     const dataLabel = game.i18n.localize('DAGGERHEART.GENERAL.fate');
 
@@ -19,6 +19,7 @@ function getFateMessage(roll, flavor) {
             data-title="${label}"
             data-label="${dataLabel}"
             data-hope="${roll?.hope ?? 'd12'}" 
+            data-fear="${roll?.fear ?? 'd12'}"
             ${label}
         </button>
     `;

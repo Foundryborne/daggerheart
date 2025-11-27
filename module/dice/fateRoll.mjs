@@ -34,6 +34,11 @@ export default class FateRoll extends D20Roll {
         return false;
     }
 
+
+    get fateDie() {
+        return "Hope";
+    }
+
     static getHooks(hooks) {
         return [...(hooks ?? []), 'Fate'];
     }
@@ -67,61 +72,9 @@ export default class FateRoll extends D20Roll {
         data.hope = {
             dice: roll.dHope.denomination,
             value: roll.dHope.total,
-            rerolled: {
-                any: roll.dHope.results.some(x => x.rerolled),
-                rerolls: roll.dHope.results.filter(x => x.rerolled)
-            }
         };
 
         return data;
     }
 
-    // static async reroll(rollString, target, message) {
-    //     let parsedRoll = game.system.api.dice.DualityRoll.fromData({ ...rollString, evaluated: false });
-    //     const term = parsedRoll.terms[target.dataset.dieIndex];
-    //     await term.reroll(`/r1=${term.total}`);
-    //     if (game.modules.get('dice-so-nice')?.active) {
-    //         const diceSoNiceRoll = {
-    //             _evaluated: true,
-    //             dice: [
-    //                 new foundry.dice.terms.Die({
-    //                     ...term,
-    //                     faces: term._faces,
-    //                     results: term.results.filter(x => !x.rerolled)
-    //                 })
-    //             ],
-    //             options: { appearance: {} }
-    //         };
-
-    //         const diceSoNicePresets = await getDiceSoNicePresets(`d${term._faces}`, `d${term._faces}`);
-    //         const type = target.dataset.type;
-    //         if (diceSoNicePresets[type]) {
-    //             diceSoNiceRoll.dice[0].options = diceSoNicePresets[type];
-    //         }
-
-    //         await game.dice3d.showForRoll(diceSoNiceRoll, game.user, true);
-    //     }
-
-    //     await parsedRoll.evaluate();
-
-    //     const newRoll = game.system.api.dice.DualityRoll.postEvaluate(parsedRoll, {
-    //         targets: message.system.targets,
-    //         roll: {
-    //             advantage: message.system.roll.advantage?.type,
-    //             difficulty: message.system.roll.difficulty ? Number(message.system.roll.difficulty) : null
-    //         }
-    //     });
-    //     newRoll.extra = newRoll.extra.slice(2);
-
-    //     const tagTeamSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
-    //     Hooks.call(`${CONFIG.DH.id}.postRollDuality`, {
-    //         source: { actor: message.system.source.actor ?? '' },
-    //         targets: message.system.targets,
-    //         tagTeamSelected: Object.values(tagTeamSettings.members).some(x => x.messageId === message._id),
-    //         roll: newRoll,
-    //         rerolledRoll:
-    //             newRoll.result.duality !== message.system.roll.result.duality ? message.system.roll : undefined
-    //     });
-    //     return { newRoll, parsedRoll };
-    // }
 }

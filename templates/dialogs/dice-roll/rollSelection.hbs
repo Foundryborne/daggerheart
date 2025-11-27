@@ -69,6 +69,8 @@
                         {{/if}}
                     {{/if}}
                     {{#if (eq @root.rollType 'FateRoll')}}
+                        {{#if (eq @root.roll.fateDie 'Hope')}}
+
                         <div class="dice-option">
                             <img class="dice-icon" src="{{concat 'systems/daggerheart/assets/icons/dice/hope/' @root.roll.dHope.denomination '.svg'}}" alt="">
                             <div class="dice-select">
@@ -78,6 +80,20 @@
                                 </select>
                             </div>
                         </div>
+                        {{/if}}
+
+                        {{#if (eq @root.roll.fateDie 'Fear')}}
+                        <div class="dice-option">
+                            <img class="dice-icon" src="{{concat 'systems/daggerheart/assets/icons/dice/fear/' @root.roll.dFear.denomination '.svg'}}" alt="">
+                            <div class="dice-select">
+                                <span class="label">{{localize "DAGGERHEART.GENERAL.fear"}}</span>
+                                <select name="roll.dice.dFear">
+                                    {{selectOptions diceOptions selected=@root.roll.dFear.denomination}}
+                                </select>
+                            </div>
+                        </div>
+                        {{/if}}
+
                     {{/if}}
                 </div>
 
@@ -154,7 +170,9 @@
                 {{> 'systems/daggerheart/templates/dialogs/dice-roll/costSelection.hbs'}}
             {{/if}}
 
-            <span class="formula-label"><b>{{localize "DAGGERHEART.GENERAL.formula"}}:</b> {{@root.formula}}</span>
+            {{#if (ne @root.rollType 'FateRoll')}}
+                <span class="formula-label"><b>{{localize "DAGGERHEART.GENERAL.formula"}}:</b> {{@root.formula}}</span>
+            {{/if}}
                 
             <div class="roll-dialog-controls">
                 <select class="roll-mode-select" name="selectedRollMode">
