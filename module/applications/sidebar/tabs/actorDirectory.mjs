@@ -8,11 +8,12 @@ export default class DhActorDirectory extends foundry.applications.sidebar.tabs.
     async _prepareDirectoryContext(context, options) {
         await super._prepareDirectoryContext(context, options);
         const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
+        const environmentTypes = CONFIG.DH.ACTOR.environmentTypes;
         context.getTypeLabel = document => {
             return document.type === 'adversary'
-                ? game.i18n.localize(adversaryTypes[document.system.type].label)
+                ? game.i18n.localize(adversaryTypes[document.system.type]?.label ?? 'TYPES.Actor.adversary')
                 : document.type === 'environment'
-                  ? game.i18n.localize(CONFIG.DH.ACTOR.environmentTypes[document.system.type].label)
+                  ? game.i18n.localize(environmentTypes[document.system.type]?.label ?? 'TYPES.Actor.environment')
                   : null;
         };
     }
