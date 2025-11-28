@@ -15,6 +15,14 @@
 
             scrollbar-width: thin;
             scrollbar-color: light-dark(@dark-blue, @golden) transparent;
+
+            fieldset {
+                flex: 1;
+            }
+
+            fieldset:first-child {
+                max-height: max-content;
+            }
         }
     }
 }
