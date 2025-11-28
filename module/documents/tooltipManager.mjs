@@ -24,6 +24,53 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
                 this.tooltip.innerHTML = html;
                 options.direction = this._determineItemTooltipDirection(element);
             }
+        } else if (element.dataset.tooltip?.startsWith('#battlepoints#')) {
+            const combat = game.combats.get(element.dataset.combatId);
+            const nrCharacters = Number(element.dataset.nrCharacters);
+            const currentBP = element.dataset.bpCurrent;
+            const maxBP = element.dataset.bpMax;
+
+            const categories = combat.combatants.reduce((acc, combatant) => {
+                if (combatant.actor.type === 'adversary') {
+                    const keyData = Object.keys(acc).reduce((identifiers, categoryKey) => {
+                        if (identifiers) return identifiers;
+                        const category = acc[categoryKey];
+                        const groupingIndex = category.findIndex(grouping =>
+                            grouping.types.includes(combatant.actor.system.type)
+                        );
+                        if (groupingIndex !== -1) identifiers = { categoryKey, groupingIndex };
+
+                        return identifiers;
+                    }, null);
+                    if (keyData) {
+                        const { categoryKey, groupingIndex } = keyData;
+                        const grouping = acc[categoryKey][groupingIndex];
+                        const partyAmount =
+                            CONFIG.DH.ACTOR.adversaryTypes[combatant.actor.system.type].partyAmountPerBP;
+                        grouping.individuals = (grouping.individuals ?? 0) + 1;
+
+                        const currentNr = grouping.nr ?? 0;
+                        grouping.nr = partyAmount
+                            ? Math.ceil(grouping.individuals / (nrCharacters ?? 0))
+                            : currentNr + 1;
+                    }
+                }
+
+                return acc;
+            }, foundry.utils.deepClone(CONFIG.DH.ENCOUNTER.adversaryTypeCostBrackets));
+
+            html = await foundry.applications.handlebars.renderTemplate(
+                `systems/daggerheart/templates/ui/tooltip/battlepoints.hbs`,
+                {
+                    categories,
+                    nrCharacters,
+                    currentBP,
+                    maxBP
+                }
+            );
+
+            this.tooltip.innerHTML = html;
+            options.direction = this._determineItemTooltipDirection(element);
         } else {
             const attack = element.dataset.tooltip?.startsWith('#attack#');
             if (attack) {

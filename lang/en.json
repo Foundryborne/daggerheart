@@ -682,6 +682,14 @@
                     "description": "Enemies that enhance their allies and/or disrupt their opponents."
                 }
             },
+            "AdversaryTypeCost": {
+                "minion": "for each group of Minions equal to the size of the party.",
+                "support": "for each Social or Support adversary.",
+                "standard": "for each Horde, Ranged, Skulk, or Standard adversary.",
+                "leader": "for each Leader adversary.",
+                "bruiser": "for each Bruiser adversary.",
+                "solo": "for each Solo adversary."
+            },
             "ArmorFeature": {
                 "burning": {
                     "name": "Burning",
@@ -904,6 +912,14 @@
                 "normal": "Normal",
                 "evolved": "Evolved",
                 "hybrid": "Hybrid"
+            },
+            "BPModifiers": {
+                "increaseDamage": "if you add +1d4 (or a static +2) to all adversaries' damage rolls (to increase the challenge without lengthening the battle)",
+                "lessDifficult": "if the fight should be less difficult or shorter.",
+                "lowerTier": "if you choose an adversary from a lower tier.",
+                "manySolos": "if you're using 2 or more Solo adversaries.",
+                "moreDangerous": "if the fight should be more dangerous or last longer",
+                "noToughies": "if you don't include any Bruisers, Hordes, Leaders, or Solos"
             },
             "Burden": {
                 "oneHanded": "One-Handed",

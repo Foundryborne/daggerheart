@@ -20,11 +20,53 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
         }
     };
 
+    /** @inheritDoc */
+    async _preparePartContext(_partId, context, _options) {
+        return context;
+    }
+
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
+
+        await this._prepareTrackerContext(context, options);
+        await this._prepareCombatContext(context, options);
+
+        return context;
+    }
+
     async _prepareCombatContext(context, options) {
         await super._prepareCombatContext(context, options);
 
+        const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
+        const maxBP = CONFIG.DH.ENCOUNTER.BaseBPPerEncounter(context.characters.length);
+        const currentBP = context.adversaries
+            .reduce((acc, adversary) => {
+                const existingEntry = acc.find(
+                    x => x.adversary.name === adversary.name && x.adversary.type === adversary.type
+                );
+                if (existingEntry) {
+                    existingEntry.nr += 1;
+                } else {
+                    acc.push({ adversary, nr: 1 });
+                }
+                return acc;
+            }, [])
+            .reduce((acc, entry) => {
+                const adversary = entry.adversary;
+                const type = adversaryTypes[adversary.type];
+                const bpCost = type.bpCost ?? 0;
+                if (type.partyAmountPerBP) {
+                    acc += context.characters.length === 0 ? 0 : Math.ceil(entry.nr / context.characters.length);
+                } else {
+                    acc += bpCost;
+                }
+
+                return acc;
+            }, 0);
+
         Object.assign(context, {
-            fear: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear)
+            fear: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
+            battlepoints: { max: maxBP, current: currentBP }
         });
     }
 
@@ -99,6 +141,7 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
             resource,
             active: index === combat.turn,
             canPing: combatant.sceneId === canvas.scene?.id && game.user.hasPermission('PING_CANVAS'),
+            type: combatant.actor.system.type,
             img: await this._getCombatantThumbnail(combatant)
         };
 
