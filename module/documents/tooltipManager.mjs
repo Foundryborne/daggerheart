@@ -221,7 +221,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
 
         const nrCharacters = characters.length;
         const currentBP = AdversaryBPPerEncounter(adversaries, characters);
-        const maxBP = combat.system.battleToggles.reduce(
+        const maxBP = combat.system.extendedBattleToggles.reduce(
             (acc, toggle) => acc + toggle.category,
             BaseBPPerEncounter(nrCharacters)
         );
@@ -252,18 +252,21 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             return acc;
         }, foundry.utils.deepClone(CONFIG.DH.ENCOUNTER.adversaryTypeCostBrackets));
 
+        const extendedBattleToggles = combat.system.extendedBattleToggles;
         const toggles = Object.keys(CONFIG.DH.ENCOUNTER.BPModifiers)
             .reduce((acc, categoryKey) => {
                 const category = CONFIG.DH.ENCOUNTER.BPModifiers[categoryKey];
                 acc.push(
                     ...Object.keys(category).reduce((acc, toggleKey) => {
+                        const grouping = category[toggleKey];
                         acc.push({
-                            ...category[toggleKey],
+                            ...grouping,
                             categoryKey: Number(categoryKey),
                             toggleKey,
-                            checked: combat.system.battleToggles.find(
+                            checked: extendedBattleToggles.find(
                                 x => x.category == categoryKey && x.grouping === toggleKey
-                            )
+                            ),
+                            disabled: grouping.automatic
                         });
 
                         return acc;
@@ -301,6 +304,13 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
                     : [...combat.system.battleToggles, { category: Number(category), grouping }]
             }
         });
+
+        await combat.toggleModifierEffects(
+            event.target.checked,
+            combat.combatants.filter(x => x.actor.type === 'adversary').map(x => x.actor),
+            category,
+            grouping
+        );
 
         this.tooltip.innerHTML = await this.getBattlepointHTML(combatId);
         const lockedTooltip = this.lockTooltip();

@@ -75,33 +75,68 @@ export const BPModifiers = {
     [-2]: {
         manySolos: {
             sort: 1,
-            description: 'DAGGERHEART.CONFIG.BPModifiers.manySolos'
+            description: 'DAGGERHEART.CONFIG.BPModifiers.manySolos.description',
+            automatic: true,
+            conditional: (_combat, adversaries) => {
+                return adversaries.filter(x => x.system.type === 'solo').length > 1;
+            }
         },
         increaseDamage: {
             sort: 2,
-            description: 'DAGGERHEART.CONFIG.BPModifiers.increaseDamage'
+            description: 'DAGGERHEART.CONFIG.BPModifiers.increaseDamage.description',
+            effects: [
+                {
+                    name: 'DAGGERHEART.CONFIG.BPModifiers.increaseDamage.effect.name',
+                    description: 'DAGGERHEART.CONFIG.BPModifiers.increaseDamage.effect.description',
+                    img: 'icons/magic/control/buff-flight-wings-red.webp',
+                    changes: [
+                        {
+                            key: 'system.bonuses.damage.physical.dice',
+                            mode: 2,
+                            value: '1d4'
+                        },
+                        {
+                            key: 'system.bonuses.damage.magical.dice',
+                            mode: 2,
+                            value: '1d4'
+                        }
+                    ]
+                }
+            ]
         }
     },
     [-1]: {
         lessDifficult: {
             sort: 2,
-            description: 'DAGGERHEART.CONFIG.BPModifiers.lessDifficult'
+            description: 'DAGGERHEART.CONFIG.BPModifiers.lessDifficult.description'
         }
     },
     1: {
         lowerTier: {
             sort: 1,
-            description: 'DAGGERHEART.CONFIG.BPModifiers.lowerTier'
+            description: 'DAGGERHEART.CONFIG.BPModifiers.lowerTier.description',
+            automatic: true,
+            conditional: (_combat, adversaries, characters) => {
+                const characterMaxTier = characters.reduce((maxTier, character) => {
+                    return character.system.tier > maxTier ? character.system.tier : maxTier;
+                }, 1);
+                return adversaries.some(adversary => adversary.system.tier < characterMaxTier);
+            }
         },
         noToughies: {
             sort: 2,
-            description: 'DAGGERHEART.CONFIG.BPModifiers.noToughies'
+            description: 'DAGGERHEART.CONFIG.BPModifiers.noToughies.description',
+            automatic: true,
+            conditional: (_combat, adversaries) => {
+                const toughyTypes = ['bruiser', 'horde', 'leader', 'solo'];
+                return !adversaries.some(adversary => toughyTypes.includes(adversary.system.type));
+            }
         }
     },
     2: {
         moreDangerous: {
             sort: 2,
-            description: 'DAGGERHEART.CONFIG.BPModifiers.moreDangerous'
+            description: 'DAGGERHEART.CONFIG.BPModifiers.moreDangerous.description'
         }
     }
 };

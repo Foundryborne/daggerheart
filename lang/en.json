@@ -914,12 +914,28 @@
                 "hybrid": "Hybrid"
             },
             "BPModifiers": {
-                "increaseDamage": "if you add +1d4 (or a static +2) to all adversaries' damage rolls (to increase the challenge without lengthening the battle)",
-                "lessDifficult": "if the fight should be less difficult or shorter.",
-                "lowerTier": "if you choose an adversary from a lower tier.",
-                "manySolos": "if you're using 2 or more Solo adversaries.",
-                "moreDangerous": "if the fight should be more dangerous or last longer",
-                "noToughies": "if you don't include any Bruisers, Hordes, Leaders, or Solos"
+                "increaseDamage": {
+                    "description": "if you add +1d4 (or a static +2) to all adversaries' damage rolls (to increase the challenge without lengthening the battle)",
+                    "effect": {
+                        "name": "Increase Damage",
+                        "description": "Add 1d4 to damage"
+                    }
+                },
+                "lessDifficult": {
+                    "description": "if the fight should be less difficult or shorter."
+                },
+                "lowerTier": {
+                    "description": "if you choose an adversary from a lower tier."
+                },
+                "manySolos": {
+                    "description": "if you're using 2 or more Solo adversaries."
+                },
+                "moreDangerous": {
+                    "description": "if the fight should be more dangerous or last longer"
+                },
+                "noToughies": {
+                    "description": "if you don't include any Bruisers, Hordes, Leaders, or Solos"
+                }
             },
             "Burden": {
                 "oneHanded": "One-Handed",
