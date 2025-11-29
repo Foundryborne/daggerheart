@@ -129,7 +129,10 @@ export const BPModifiers = {
             automatic: true,
             conditional: (_combat, adversaries) => {
                 const toughyTypes = ['bruiser', 'horde', 'leader', 'solo'];
-                return !adversaries.some(adversary => toughyTypes.includes(adversary.system.type));
+                return (
+                    adversaries.length > 0 &&
+                    !adversaries.some(adversary => toughyTypes.includes(adversary.system.type))
+                );
             }
         }
     },
