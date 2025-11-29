@@ -197,7 +197,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             this.config.actionType = this.reactionOverride
                 ? CONFIG.DH.ITEM.actionTypes.reaction.id
                 : this.config.actionType === CONFIG.DH.ITEM.actionTypes.reaction.id
-                  ? null
+                  ? CONFIG.DH.ITEM.actionTypes.action.id
                   : this.config.actionType;
             this.render();
         }
