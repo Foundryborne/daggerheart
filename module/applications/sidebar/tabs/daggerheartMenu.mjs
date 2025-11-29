@@ -44,6 +44,18 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
     /* -------------------------------------------- */
 
     /** @inheritDoc */
+    async _onRender(context, options) {
+        super._onRender(context, options);
+
+        Hooks.callAll(
+            CONFIG.DH.HOOKS.sidebarMenuRender,
+            this,
+            this.element.querySelector('[data-application-part="main"]'),
+            context
+        );
+    }
+
+    /** @inheritDoc */
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
         context.refreshables = this.refreshSelections;
