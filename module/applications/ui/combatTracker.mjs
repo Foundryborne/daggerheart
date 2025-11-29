@@ -1,3 +1,5 @@
+import { AdversaryBPPerEncounter } from '../../config/encounterConfig.mjs';
+
 export default class DhCombatTracker extends foundry.applications.sidebar.tabs.CombatTracker {
     static DEFAULT_OPTIONS = {
         actions: {
@@ -37,36 +39,16 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
     async _prepareCombatContext(context, options) {
         await super._prepareCombatContext(context, options);
 
-        const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
-        const maxBP = CONFIG.DH.ENCOUNTER.BaseBPPerEncounter(context.characters.length);
-        const currentBP = context.adversaries
-            .reduce((acc, adversary) => {
-                const existingEntry = acc.find(
-                    x => x.adversary.name === adversary.name && x.adversary.type === adversary.type
-                );
-                if (existingEntry) {
-                    existingEntry.nr += 1;
-                } else {
-                    acc.push({ adversary, nr: 1 });
-                }
-                return acc;
-            }, [])
-            .reduce((acc, entry) => {
-                const adversary = entry.adversary;
-                const type = adversaryTypes[adversary.type];
-                const bpCost = type.bpCost ?? 0;
-                if (type.partyAmountPerBP) {
-                    acc += context.characters.length === 0 ? 0 : Math.ceil(entry.nr / context.characters.length);
-                } else {
-                    acc += bpCost;
-                }
-
-                return acc;
-            }, 0);
+        const modifierBP =
+            this.combats
+                .find(x => x.active)
+                ?.system?.battleToggles?.reduce((acc, toggle) => acc + toggle.category, 0) ?? 0;
+        const maxBP = CONFIG.DH.ENCOUNTER.BaseBPPerEncounter(context.characters.length) + modifierBP;
+        const currentBP = AdversaryBPPerEncounter(context.adversaries, context.characters);
 
         Object.assign(context, {
             fear: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
-            battlepoints: { max: maxBP, current: currentBP }
+            battlepoints: { max: maxBP, current: currentBP, hasModifierBP: Boolean(modifierBP) }
         });
     }
 

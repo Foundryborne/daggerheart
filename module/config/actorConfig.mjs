@@ -121,7 +121,8 @@ export const adversaryTypes = {
         id: 'leader',
         label: 'DAGGERHEART.CONFIG.AdversaryType.leader.label',
         description: 'DAGGERHEART.ACTORS.Adversary.leader.description',
-        bpCost: 3
+        bpCost: 3,
+        bpDescription: 'DAGGERHEART.CONFIG.AdversaryType.leader.'
     },
     minion: {
         id: 'minion',

@@ -64,7 +64,9 @@
             {{/if}}
         </strong>
 
-        <div class="encounter-battlepoints" data-tooltip="#battlepoints#" data-combat-id="{{combat.id}}" data-bp-current="{{battlepoints.current}}" data-bp-max="{{battlepoints.max}}" data-nr-characters="{{characters.length}}">{{battlepoints.current}}/{{battlepoints.max}} BP</div>
+        <div class="encounter-battlepoints" data-tooltip="#battlepoints#" data-combat-id="{{combat.id}}">
+            {{battlepoints.current}}/{{battlepoints.max}} BP{{#if battlepoints.hasModifierBP}}*{{/if}}
+        </div>
 
         {{!-- Combat Controls --}}
         <div class="inner-controls">
