@@ -2,6 +2,7 @@ import { AdversaryBPPerEncounter, BaseBPPerEncounter } from '../config/encounter
 
 export default class DhTooltipManager extends foundry.helpers.interaction.TooltipManager {
     #wide = false;
+    #bordered = false;
 
     async activate(element, options = {}) {
         const { TextEditor } = foundry.applications.ux;
@@ -21,6 +22,41 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             return;
         } else {
             this.#wide = false;
+        }
+
+        if (element.dataset.tooltip === '#effect-display#') {
+            this.#bordered = true;
+            let effect = {};
+            if (element.dataset.uuid) {
+                const effectData = (await foundry.utils.fromUuid(element.dataset.uuid)).toObject();
+                effect = {
+                    ...effectData,
+                    name: game.i18n.localize(effectData.name),
+                    description: game.i18n.localize(effectData.description ?? effectData.parent.system.description)
+                };
+            } else {
+                const conditions = CONFIG.DH.GENERAL.conditions();
+                const condition = conditions[element.dataset.condition];
+                effect = {
+                    ...condition,
+                    name: game.i18n.localize(condition.name),
+                    description: game.i18n.localize(condition.description),
+                    appliedBy: element.dataset.appliedBy,
+                    isLockedCondition: true
+                };
+            }
+
+            html = await foundry.applications.handlebars.renderTemplate(
+                `systems/daggerheart/templates/ui/tooltip/effect-display.hbs`,
+                {
+                    effect
+                }
+            );
+
+            this.tooltip.innerHTML = html;
+            options.direction = this._determineItemTooltipDirection(element);
+        } else {
+            this.#bordered = false;
         }
 
         if (element.dataset.tooltip?.startsWith('#item#')) {
@@ -132,6 +168,14 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         super.activate(element, { ...options, html: html });
     }
 
+    _setStyle(position = {}) {
+        super._setStyle(position);
+
+        if (this.#bordered) {
+            this.tooltip.classList.add('bordered-tooltip');
+        }
+    }
+
     _determineItemTooltipDirection(element, prefered = this.constructor.TOOLTIP_DIRECTIONS.LEFT) {
         const pos = element.getBoundingClientRect();
         const dirs = this.constructor.TOOLTIP_DIRECTIONS;
@@ -212,6 +256,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
 
         return clone;
     }
+
     /** Get HTML for Battlepoints tooltip */
     async getBattlepointHTML(combatId) {
         const combat = game.combats.get(combatId);

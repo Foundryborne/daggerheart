@@ -61,6 +61,7 @@ CONFIG.Token.hudClass = applications.hud.DHTokenHUD;
 
 CONFIG.ui.combat = applications.ui.DhCombatTracker;
 CONFIG.ui.chat = applications.ui.DhChatLog;
+CONFIG.ui.effectsDisplay = applications.ui.DhEffectsDisplay;
 CONFIG.ui.hotbar = applications.ui.DhHotbar;
 CONFIG.ui.sidebar = applications.sidebar.DhSidebar;
 CONFIG.ui.actors = applications.sidebar.DhActorDirectory;
@@ -167,6 +168,9 @@ Hooks.on('ready', async () => {
         ui.countdowns = new CONFIG.ui.countdowns();
         ui.countdowns.render({ force: true });
     }
+
+    ui.effectsDisplay = new CONFIG.ui.effectsDisplay();
+    ui.effectsDisplay.render({ force: true });
 
     if (!(ui.compendiumBrowser instanceof applications.ui.ItemBrowser))
         ui.compendiumBrowser = new applications.ui.ItemBrowser();
