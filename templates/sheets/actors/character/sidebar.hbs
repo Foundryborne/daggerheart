@@ -104,16 +104,16 @@
             </div>
             <ul class="items-sidebar-list">
                 {{#if document.system.usedUnarmed}}
-                    {{> 'daggerheart.inventory-item-compact'
+                {{> 'daggerheart.inventory-item-compact'
                     item=document.system.usedUnarmed
-                    type='action'
-                    }}
+                    type='attack'
+                }}
                 {{/if}}
                 {{#each document.items as |item|}}
                 {{#if item.system.equipped}}
                 {{> 'daggerheart.inventory-item-compact'
-                item=item
-                type=item.type
+                    item=item
+                    type=item.type
                 }}
                 {{/if}}
                 {{/each}}
