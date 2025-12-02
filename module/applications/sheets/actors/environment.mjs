@@ -139,6 +139,14 @@ export default class DhpEnvironment extends DHBaseActorSheet {
         }
     }
 
+    _onDropItem(event, item) {
+        if (this.document.uuid !== item.parent?.uuid) {
+            return null; // block all drag drop except internal ones
+        }
+
+        return super._onDropItem(event, item);
+    }
+
     /* -------------------------------------------- */
     /*  Application Clicks Actions                  */
     /* -------------------------------------------- */
