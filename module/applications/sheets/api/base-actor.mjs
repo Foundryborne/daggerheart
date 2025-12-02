@@ -70,13 +70,13 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
             .hideAttribution;
 
         // Prepare inventory data
-        if (["party", "character"].includes(this.document.type)) {
+        if (['party', 'character'].includes(this.document.type)) {
             context.inventory = {
                 currencies: {},
                 weapons: this.document.itemTypes.weapon.sort((a, b) => a.sort - b.sort),
                 armor: this.document.itemTypes.armor.sort((a, b) => a.sort - b.sort),
                 consumables: this.document.itemTypes.consumable.sort((a, b) => a.sort - b.sort),
-                loot: this.document.itemTypes.loot.sort((a, b) => a.sort - b.sort),
+                loot: this.document.itemTypes.loot.sort((a, b) => a.sort - b.sort)
             };
             const { title, ...currencies } = game.settings.get(
                 CONFIG.DH.id,
@@ -240,11 +240,15 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
     /*  Application Drag/Drop                       */
     /* -------------------------------------------- */
 
-    async _onDropItem(event, item) {        
+    async _onDropItem(event, item) {
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
         const physicalActorTypes = ['character', 'party'];
         const originActor = item.actor;
-        if (item.actor?.uuid === this.document.uuid || !originActor || !physicalActorTypes.includes(this.document.type)) {
+        if (
+            item.actor?.uuid === this.document.uuid ||
+            !originActor ||
+            !physicalActorTypes.includes(this.document.type)
+        ) {
             return super._onDropItem(event, item);
         }
 
