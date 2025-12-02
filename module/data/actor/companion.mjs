@@ -108,6 +108,10 @@ export default class DhCompanion extends BaseDataActor {
     get proficiency() {
         return this.partner?.system?.proficiency ?? 1;
     }
+    
+    isItemValid() {
+        return false;
+    }
 
     prepareBaseData() {
         this.attack.roll.bonus = this.partner?.system?.spellcastModifier ?? 0;

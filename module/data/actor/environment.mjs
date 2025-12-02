@@ -51,4 +51,8 @@ export default class DhEnvironment extends BaseDataActor {
     get features() {
         return this.parent.items.filter(x => x.type === 'feature');
     }
+
+    isItemValid(source) {
+        return source.type === "feature";
+    }
 }

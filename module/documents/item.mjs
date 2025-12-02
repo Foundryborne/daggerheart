@@ -28,6 +28,13 @@ export default class DHItem extends foundry.documents.Item {
         return doc;
     }
 
+    static async createDocuments(sources, operation) {
+        // Ensure that items being created are valid to the actor its being added to
+        const actor = operation.parent;
+        sources = actor?.system?.isItemValid ? sources.filter((s) => actor.system.isItemValid(s)) : sources;
+        return super.createDocuments(sources, operation);
+    }
+
     /* -------------------------------------------- */
 
     /** @inheritDoc */
