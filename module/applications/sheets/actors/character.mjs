@@ -214,33 +214,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         context.resources.stress.emptyPips =
             context.resources.stress.max < maxResource ? maxResource - context.resources.stress.max : 0;
 
-        context.inventory = { currencies: {} };
-        const { title, ...currencies } = game.settings.get(
-            CONFIG.DH.id,
-            CONFIG.DH.SETTINGS.gameSettings.Homebrew
-        ).currency;
-        for (let key in currencies) {
-            context.inventory.currencies[key] = {
-                ...currencies[key],
-                field: context.systemFields.gold.fields[key],
-                value: context.source.system.gold[key]
-            };
-        }
-        // context.inventory = {
-        //     currency: {
-        //         title: game.i18n.localize('DAGGERHEART.CONFIG.Gold.title'),
-        //         coins: game.i18n.localize('DAGGERHEART.CONFIG.Gold.coins'),
-        //         handfuls: game.i18n.localize('DAGGERHEART.CONFIG.Gold.handfuls'),
-        //         bags: game.i18n.localize('DAGGERHEART.CONFIG.Gold.bags'),
-        //         chests: game.i18n.localize('DAGGERHEART.CONFIG.Gold.chests')
-        //     }
-        // };
-
         context.beastformActive = this.document.effects.find(x => x.type === 'beastform');
-
-        // if (context.inventory.length === 0) {
-        //     context.inventory = Array(1).fill(Array(5).fill([]));
-        // }
 
         return context;
     }
@@ -918,20 +892,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
         super._onDragStart(event);
     }
 
-    async _onDrop(event) {
-        // Prevent event bubbling to avoid duplicate handling
-        event.preventDefault();
-        event.stopPropagation();
-        const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
+    async _onDropItem(event, item) {
+        if (this.document.uuid === item.parent?.uuid) {
+            return this._onSortItem(event, item);
+        }
 
-        const { cancel } = await super._onDrop(event);
-        if (cancel) return;
-
-        this._onDropItem(event, data);
-    }
-
-    async _onDropItem(event, data) {
-        const item = await Item.implementation.fromDropData(data);
         const itemData = item.toObject();
 
         if (item.type === 'domainCard' && !this.document.system.loadoutSlot.available) {
@@ -963,10 +928,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             }
         }
 
-        if (this.document.uuid === item.parent?.uuid) return this._onSortItem(event, itemData);
-        const createdItem = await this._onDropItemCreate(itemData);
-
-        return createdItem;
+        return await this._onDropItemCreate(itemData);
     }
 
     async _onDropItemCreate(itemData, event) {

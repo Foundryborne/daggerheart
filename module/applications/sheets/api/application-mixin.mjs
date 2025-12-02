@@ -322,10 +322,10 @@ export default function DHApplicationMixin(Base) {
         _onDrop(event) {
             event.stopPropagation();
             const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-            if (data.fromInternal === this.document.uuid) return;
-
-            if (data.type === 'ActiveEffect') {
+            if (data.type === 'ActiveEffect' && data.fromInternal !== this.document.uuid) {
                 this.document.createEmbeddedDocuments('ActiveEffect', [data.data]);
+            } else {
+                return super._onDrop(event);
             }
         }
 

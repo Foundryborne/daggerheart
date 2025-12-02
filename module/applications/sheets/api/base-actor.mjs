@@ -69,6 +69,28 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         context.showAttribution = !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
             .hideAttribution;
 
+        // Prepare inventory data
+        if (["party", "character"].includes(this.document.type)) {
+            context.inventory = {
+                currencies: {},
+                weapons: this.document.itemTypes.weapon.sort((a, b) => a.sort - b.sort),
+                armor: this.document.itemTypes.armor.sort((a, b) => a.sort - b.sort),
+                consumables: this.document.itemTypes.consumable.sort((a, b) => a.sort - b.sort),
+                loot: this.document.itemTypes.loot.sort((a, b) => a.sort - b.sort),
+            };
+            const { title, ...currencies } = game.settings.get(
+                CONFIG.DH.id,
+                CONFIG.DH.SETTINGS.gameSettings.Homebrew
+            ).currency;
+            for (const key in currencies) {
+                context.inventory.currencies[key] = {
+                    ...currencies[key],
+                    field: context.systemFields.gold.fields[key],
+                    value: context.source.system.gold[key]
+                };
+            }
+        }
+
         return context;
     }
 
@@ -218,68 +240,55 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
     /*  Application Drag/Drop                       */
     /* -------------------------------------------- */
 
-    async _onDrop(event) {
+    async _onDropItem(event, item) {        
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-        if (data.originActor === this.document.uuid) return { cancel: true };
-
-        /* Handling transfer of inventoryItems */
-        let cancel = false;
         const physicalActorTypes = ['character', 'party'];
-        if (physicalActorTypes.includes(this.document.type)) {
-            const originActor = data.originActor ? await foundry.utils.fromUuid(data.originActor) : null;
-            if (data.originId && originActor && physicalActorTypes.includes(originActor.type)) {
-                const dropDocument = await foundry.utils.fromUuid(data.uuid);
-
-                if (dropDocument.system.metadata.isInventoryItem) {
-                    cancel = true;
-                    if (dropDocument.system.metadata.isQuantifiable) {
-                        const actorItem = originActor.items.get(data.originId);
-                        const quantityTransfered =
-                            actorItem.system.quantity === 1
-                                ? 1
-                                : await game.system.api.applications.dialogs.ItemTransferDialog.configure(dropDocument);
-
-                        if (quantityTransfered) {
-                            if (quantityTransfered === actorItem.system.quantity) {
-                                await originActor.deleteEmbeddedDocuments('Item', [data.originId]);
-                            } else {
-                                cancel = true;
-                                await actorItem.update({
-                                    'system.quantity': actorItem.system.quantity - quantityTransfered
-                                });
-                            }
-
-                            const existingItem = this.document.items.find(x => itemIsIdentical(x, dropDocument));
-                            if (existingItem) {
-                                cancel = true;
-                                await existingItem.update({
-                                    'system.quantity': existingItem.system.quantity + quantityTransfered
-                                });
-                            } else {
-                                const createData = dropDocument.toObject();
-                                await this.document.createEmbeddedDocuments('Item', [
-                                    {
-                                        ...createData,
-                                        system: {
-                                            ...createData.system,
-                                            quantity: quantityTransfered
-                                        }
-                                    }
-                                ]);
-                            }
-                        } else {
-                            cancel = true;
-                        }
-                    } else {
-                        await originActor.deleteEmbeddedDocuments('Item', [data.originId]);
-                        const createData = dropDocument.toObject();
-                        await this.document.createEmbeddedDocuments('Item', [createData]);
-                    }
-                }
-            }
+        const originActor = item.actor;
+        if (item.actor?.uuid === this.document.uuid || !originActor || !physicalActorTypes.includes(this.document.type)) {
+            return super._onDropItem(event, item);
         }
 
-        return { cancel };
+        /* Handling transfer of inventoryItems */
+        if (item.system.metadata.isInventoryItem) {
+            if (item.system.metadata.isQuantifiable) {
+                const actorItem = originActor.items.get(data.originId);
+                const quantityTransfered =
+                    actorItem.system.quantity === 1
+                        ? 1
+                        : await game.system.api.applications.dialogs.ItemTransferDialog.configure(item);
+
+                if (quantityTransfered) {
+                    if (quantityTransfered === actorItem.system.quantity) {
+                        await originActor.deleteEmbeddedDocuments('Item', [data.originId]);
+                    } else {
+                        await actorItem.update({
+                            'system.quantity': actorItem.system.quantity - quantityTransfered
+                        });
+                    }
+
+                    const existingItem = this.document.items.find(x => itemIsIdentical(x, item));
+                    if (existingItem) {
+                        await existingItem.update({
+                            'system.quantity': existingItem.system.quantity + quantityTransfered
+                        });
+                    } else {
+                        const createData = item.toObject();
+                        await this.document.createEmbeddedDocuments('Item', [
+                            {
+                                ...createData,
+                                system: {
+                                    ...createData.system,
+                                    quantity: quantityTransfered
+                                }
+                            }
+                        ]);
+                    }
+                }
+            } else {
+                await originActor.deleteEmbeddedDocuments('Item', [data.originId]);
+                await this.document.createEmbeddedDocuments('Item', [item.toObject()]);
+            }
+        }
     }
 
     /**
