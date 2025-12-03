@@ -2032,6 +2032,7 @@
             "basics": "Basics",
             "bonus": "Bonus",
             "burden": "Burden",
+            "condition": "Condition",
             "continue": "Continue",
             "criticalSuccess": "Critical Success",
             "criticalShort": "Critical",
@@ -2584,6 +2585,10 @@
                 "loop": "Looping",
                 "decreasingLoop": "Decreasing Looping",
                 "increasingLoop": "Increasing Looping"
+            },
+            "EffectsDisplay": {
+                "removeThing": "[Right Click] Remove {thing}",
+                "appliedBy": "Applied By: {by}"
             },
             "ItemBrowser": {
                 "title": "Daggerheart Compendium Browser",

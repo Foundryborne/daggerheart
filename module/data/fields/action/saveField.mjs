@@ -46,7 +46,7 @@ export default class SaveField extends fields.SchemaField {
         if (SaveField.getAutomation() !== CONFIG.DH.SETTINGS.actionAutomationChoices.never.id || force) {
             targets ??= config.targets.filter(t => !config.hasRoll || t.hit);
             await SaveField.rollAllSave.call(this, targets, config.event, message);
-        } else return false;
+        } else return;
     }
 
     /**

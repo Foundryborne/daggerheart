@@ -16,5 +16,24 @@
             scrollbar-width: thin;
             scrollbar-color: light-dark(@dark-blue, @golden) transparent;
         }
+
+        .biography-section {
+            prose-mirror {
+                --min-height: 50px;
+            }
+
+            prose-mirror.inactive .editor-content {
+                position: relative;
+            }
+        }
+
+        &:has(.prosemirror.active) {
+            .biography-section {
+                flex: 1;
+                &:not(:has(prose-mirror.active)) {
+                    display: none;
+                }
+            }
+        }
     }
 }

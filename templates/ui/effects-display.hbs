@@ -1,0 +1,14 @@
+<div>
+    <div class="effects-display-container">
+        {{#each effects as | effect |}}
+            <span class="effect-container {{#if effect.condition}}disabled{{/if}}" data-tooltip="#effect-display#" id="{{effect.id}}"
+                data-applied-by="{{effect.appliedBy}}" {{#if effect.condition}}data-condition="{{effect.condition}}"{{else}}data-uuid="{{effect.uuid}}"{{/if}}
+            >
+                <a {{#if effect.condition}}disabled{{/if}}>
+                    <img src="{{effect.img}}" />
+                </a>
+                {{#if effect.condition}}<i class="effect-locked fa-solid fa-lock"></i>{{/if}}
+            </span>
+        {{/each}}
+    </div>
+</div>
