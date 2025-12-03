@@ -120,17 +120,6 @@
     }
   },
   "flags": {},
-  "_stats": {
-    "compendiumSource": null,
-    "duplicateSource": null,
-    "exportSource": null,
-    "coreVersion": "13.347",
-    "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
-    "createdTime": 1753922784353,
-    "modifiedTime": 1755385316790,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
-  },
   "_id": "UFVGl1osOsJTneLf",
   "sort": 2000000,
   "ownership": {
@@ -315,15 +304,7 @@
           "sort": 0,
           "flags": {},
           "_stats": {
-            "compendiumSource": null,
-            "duplicateSource": null,
-            "exportSource": null,
-            "coreVersion": "13.346",
-            "systemId": "daggerheart",
-            "systemVersion": "0.0.1",
-            "createdTime": 1754084548483,
-            "modifiedTime": 1754084580744,
-            "lastModifiedBy": "MQSznptE5yLT7kj8"
+            "compendiumSource": null
           },
           "_key": "!actors.items.effects!UFVGl1osOsJTneLf.x3g1lM5S1W7DAKIc.QDXyAMk33kJGe6hU"
         }
@@ -336,15 +317,7 @@
       },
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754084531966,
-        "modifiedTime": 1754143300180,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "compendiumSource": null
       },
       "_key": "!actors.items!UFVGl1osOsJTneLf.x3g1lM5S1W7DAKIc"
     },
@@ -475,15 +448,7 @@
       },
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754084605936,
-        "modifiedTime": 1754143308994,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "compendiumSource": null
       },
       "_key": "!actors.items!UFVGl1osOsJTneLf.L48tQmj5O3s2pjBn"
     }

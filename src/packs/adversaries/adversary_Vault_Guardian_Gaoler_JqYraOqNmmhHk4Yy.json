@@ -114,17 +114,6 @@
     }
   },
   "flags": {},
-  "_stats": {
-    "compendiumSource": null,
-    "duplicateSource": null,
-    "exportSource": null,
-    "coreVersion": "13.347",
-    "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
-    "createdTime": 1753922784367,
-    "modifiedTime": 1755385547451,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
-  },
   "_id": "JqYraOqNmmhHk4Yy",
   "sort": 3400000,
   "ownership": {
@@ -248,15 +237,7 @@
       },
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754130520190,
-        "modifiedTime": 1754130576902,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "compendiumSource": null
       },
       "_key": "!actors.items!JqYraOqNmmhHk4Yy.YiF0i85DeRoP4lEs"
     },
@@ -366,15 +347,7 @@
           "sort": 0,
           "flags": {},
           "_stats": {
-            "compendiumSource": null,
-            "duplicateSource": null,
-            "exportSource": null,
-            "coreVersion": "13.346",
-            "systemId": "daggerheart",
-            "systemVersion": "0.0.1",
-            "createdTime": 1754130637275,
-            "modifiedTime": 1754130664152,
-            "lastModifiedBy": "MQSznptE5yLT7kj8"
+            "compendiumSource": null
           },
           "_key": "!actors.items.effects!JqYraOqNmmhHk4Yy.VlHp8RjHy7MK8rqC.6TZlstmWJPbeoL7i"
         }
@@ -387,15 +360,7 @@
       },
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754130579909,
-        "modifiedTime": 1754130667604,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "compendiumSource": null
       },
       "_key": "!actors.items!JqYraOqNmmhHk4Yy.VlHp8RjHy7MK8rqC"
     }

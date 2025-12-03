@@ -114,17 +114,6 @@
     "motivesAndTactics": "Hide in plain sight, preserve the forest, root down, swing branches"
   },
   "flags": {},
-  "_stats": {
-    "compendiumSource": null,
-    "duplicateSource": null,
-    "exportSource": null,
-    "coreVersion": "13.350",
-    "systemId": "daggerheart",
-    "systemVersion": "1.1.2",
-    "createdTime": 1753922784314,
-    "modifiedTime": 1760382572320,
-    "lastModifiedBy": "fBcTgyTzoARBvohY"
-  },
   "_id": "XK78QUfY8c8Go8Uv",
   "sort": 3400000,
   "ownership": {
@@ -248,15 +237,7 @@
       },
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.350",
-        "systemId": "daggerheart",
-        "systemVersion": "1.1.2",
-        "createdTime": 1760381988359,
-        "modifiedTime": 1760382038663,
-        "lastModifiedBy": "fBcTgyTzoARBvohY"
+        "compendiumSource": null
       },
       "_key": "!actors.items!XK78QUfY8c8Go8Uv.ERco8urSuHgrtnzL"
     },
@@ -347,15 +328,7 @@
       },
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.350",
-        "systemId": "daggerheart",
-        "systemVersion": "1.1.2",
-        "createdTime": 1760382060546,
-        "modifiedTime": 1760382297884,
-        "lastModifiedBy": "fBcTgyTzoARBvohY"
+        "compendiumSource": null
       },
       "_key": "!actors.items!XK78QUfY8c8Go8Uv.Q2slH9qkBO5SPw43"
     },
@@ -449,15 +422,7 @@
           "sort": 0,
           "flags": {},
           "_stats": {
-            "compendiumSource": null,
-            "duplicateSource": null,
-            "exportSource": null,
-            "coreVersion": "13.350",
-            "systemId": "daggerheart",
-            "systemVersion": "1.1.2",
-            "createdTime": 1760382462603,
-            "modifiedTime": 1760382500728,
-            "lastModifiedBy": "fBcTgyTzoARBvohY"
+            "compendiumSource": null
           },
           "_key": "!actors.items.effects!XK78QUfY8c8Go8Uv.sqkgw26P2KiQVtXT.3PY5KIG6d3dr3dty"
         }
@@ -470,15 +435,7 @@
       },
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.350",
-        "systemId": "daggerheart",
-        "systemVersion": "1.1.2",
-        "createdTime": 1760382346850,
-        "modifiedTime": 1760382517980,
-        "lastModifiedBy": "fBcTgyTzoARBvohY"
+        "compendiumSource": null
       },
       "_key": "!actors.items!XK78QUfY8c8Go8Uv.sqkgw26P2KiQVtXT"
     }
