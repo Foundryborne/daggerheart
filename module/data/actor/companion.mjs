@@ -1,7 +1,7 @@
 import BaseDataActor from './base.mjs';
 import DhLevelData from '../levelData.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
-import { ActionField, ActionsField } from '../fields/actionField.mjs';
+import { ActionField } from '../fields/actionField.mjs';
 import { adjustDice, adjustRange } from '../../helpers/utils.mjs';
 import DHCompanionSettings from '../../applications/sheets-configs/companion-settings.mjs';
 import { resourceField, bonusField } from '../fields/actorField.mjs';

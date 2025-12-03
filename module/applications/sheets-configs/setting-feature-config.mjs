@@ -158,7 +158,14 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
             this.render();
         } else {
             const action = this.move.actions.get(id);
-            await new DHActionConfig(action, async updatedMove => {
+            await new DHActionConfig(action, async (updatedMove, effectData) => {
+                if (effectData?.length) {
+                    const currentEffects = foundry.utils.getProperty(this.settings, `${this.movePath}.effects`);
+                    await this.settings.updateSource({
+                        [`${this.movePath}.effects`]: [...currentEffects, ...effectData]
+                    });
+                }
+
                 await this.settings.updateSource({ [`${this.actionsPath}.${id}`]: updatedMove });
                 this.move = foundry.utils.getProperty(this.settings, this.movePath);
                 this.render();
@@ -167,7 +174,13 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
     }
 
     static async removeItem(_, target) {
-        await this.settings.updateSource({ [`${this.actionsPath}.-=${target.dataset.id}`]: null });
+        const { type, id } = target.dataset;
+        if (type === 'effect') {
+            await this.settings.updateSource({ [`${this.movePath}.effects.-=${id}`]: null });
+        } else {
+            await this.settings.updateSource({ [`${this.actionsPath}.-=${target.dataset.id}`]: null });
+        }
+
         this.move = foundry.utils.getProperty(this.settings, this.movePath);
         this.render();
     }
