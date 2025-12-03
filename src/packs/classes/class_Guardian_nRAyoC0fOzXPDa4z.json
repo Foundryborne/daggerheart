@@ -4,7 +4,7 @@
   "_id": "nRAyoC0fOzXPDa4z",
   "img": "icons/equipment/shield/heater-wooden-sword-green.webp",
   "system": {
-    "description": "<p>The title of guardian represents an array of martial professions, speaking more to their moral compass and unshakeable fortitude than the means by which they fight. While many guardians join groups of militants for either a country or cause, they’re more likely to follow those few they truly care for, majority be damned. Guardians are known for fighting with remarkable ferocity even against overwhelming odds, defending their cohort above all else. Woe betide those who harm the ally of a guardian, as the guardian will answer this injury in kind.</p>",
+    "description": "<p>The title of guardian represents an array of martial professions, speaking more to their moral compass and unshakeable fortitude than the means by which they fight. While many guardians join groups of militants for either a country or cause, they’re more likely to follow those few they truly care for, majority be damned. Guardians are known for fighting with remarkable ferocity even against overwhelming odds, defending their cohort above all else. Woe betide those who harm the ally of a guardian, as the guardian will answer this injury in kind.</p><p></p><h4>CLASS ITEMS</h4><p>A totem from your mentor or a secret key</p><p></p><h4>GUARDIAN’S HOPE FEATURE</h4><p><em><strong>Frontline Tank:</strong></em> <strong>Spend 3 Hope</strong> to clear 2 Armor Slots.</p><p></p><h4>CLASS FEATURE</h4><p><em><strong>Unstoppable:</strong></em> Once per long rest, you can become Unstoppable. You gain an Unstoppable Die. At level 1, your Unstoppable Die is a <strong>d4</strong>. Place it on your character sheet in the space provided, starting with the 1 value facing up. After you make a damage roll that deals 1 or more Hit Points to a target, increase the Unstoppable Die value by one. When the die’s value would exceed its maximum value or when the scene ends, remove the die and drop out of Unstoppable. At level 5, your Unstoppable Die increases to a <strong>d6</strong>.</p><p>While Unstoppable, you gain the following benefits:</p><p>• You reduce the severity of physical damage by one threshold (Severe to Major, Major to Minor, Minor to None).</p><p>• You add the current value of the Unstoppable Die to your damage roll.</p><p>• You can’t be Restrained or Vulnerable.</p>",
     "domains": [
       "valor",
       "blade"
@@ -83,12 +83,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.347",
+    "coreVersion": "13.351",
     "systemId": "daggerheart",
-    "systemVersion": "1.1.2",
+    "systemVersion": "1.2.6",
     "createdTime": 1754246931974,
-    "modifiedTime": 1756398951257,
-    "lastModifiedBy": "gbAAZWyczKwejDNh"
+    "modifiedTime": 1764073702031,
+    "lastModifiedBy": "9HOfUKAXuCu7hUPY"
   },
   "_key": "!items!nRAyoC0fOzXPDa4z"
 }

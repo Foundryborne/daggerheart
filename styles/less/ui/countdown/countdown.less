@@ -12,16 +12,21 @@
 }
 
 .daggerheart.dh-style.countdowns {
-    position: initial;
+    position: relative;
     border: 0;
     border-radius: 4px;
     box-shadow: none;
     width: 300px;
     pointer-events: all;
     align-self: flex-end;
+    transition: 0.3s right ease-in-out;
 
     .window-title {
         font-family: @font-body;
+    }
+
+    #ui-right:has(#effects-display .effect-container) & {
+        right: 62px;
     }
 
     &.icon-only {

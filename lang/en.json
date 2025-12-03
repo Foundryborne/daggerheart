@@ -1221,7 +1221,7 @@
                 },
                 "burning": {
                     "name": "Burning",
-                    "description": "When you roll the maximum value on a damage die, roll an additional damage die.",
+                    "description": "When you roll a 6 on a damage die, the target must mark a Stress.",
                     "actions": {
                         "burn": {
                             "name": "Burn",
@@ -2032,6 +2032,7 @@
             "basics": "Basics",
             "bonus": "Bonus",
             "burden": "Burden",
+            "condition": "Condition",
             "continue": "Continue",
             "criticalSuccess": "Critical Success",
             "criticalShort": "Critical",
@@ -2585,6 +2586,10 @@
                 "decreasingLoop": "Decreasing Looping",
                 "increasingLoop": "Increasing Looping"
             },
+            "EffectsDisplay": {
+                "removeThing": "[Right Click] Remove {thing}",
+                "appliedBy": "Applied By: {by}"
+            },
             "ItemBrowser": {
                 "title": "Daggerheart Compendium Browser",
                 "hint": "Select a Folder in sidebar to start browsing through the compendium",
@@ -2702,6 +2707,12 @@
                 "documentIsMissing": "The {documentType} is missing from the world."
             },
             "Sidebar": {
+                "actorDirectory": {
+                    "tier": "Tier {tier} {type}",
+                    "character": "Level {level} Character",
+                    "companion": "Level {level} - {partner}",
+                    "companionNoPartner": "No Partner"
+                },
                 "daggerheartMenu": {
                     "title": "Daggerheart Menu",
                     "startSession": "Start Session",

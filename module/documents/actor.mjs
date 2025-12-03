@@ -204,7 +204,7 @@ export default class DhpActor extends Actor {
 
                 for (let domainCard of domainCards) {
                     const itemCard = this.items.find(x => x.uuid === domainCard);
-                    itemCard.delete();
+                    itemCard?.delete();
                 }
             }
 
@@ -337,6 +337,8 @@ export default class DhpActor extends Actor {
                     const embeddedItem = await this.createEmbeddedDocuments('Item', [
                         {
                             ...multiclassData,
+                            uuid: multiclassItem.uuid,
+                            _stats: multiclassItem._stats,
                             system: {
                                 ...multiclassData.system,
                                 features: multiclassData.system.features.filter(x => x.type !== 'hope'),
@@ -349,6 +351,8 @@ export default class DhpActor extends Actor {
                     await this.createEmbeddedDocuments('Item', [
                         {
                             ...subclassData,
+                            uuid: subclassItem.uuid,
+                            _stats: subclassItem._stats,
                             system: {
                                 ...subclassData.system,
                                 isMulticlass: true
@@ -363,12 +367,15 @@ export default class DhpActor extends Actor {
 
             for (var domainCard of domainCards) {
                 if (levelupAuto) {
-                    const itemData = (await foundry.utils.fromUuid(domainCard.data[0])).toObject();
+                    const cardItem = await foundry.utils.fromUuid(domainCard.data[0]);
+                    const cardData = cardItem.toObject();
                     const embeddedItem = await this.createEmbeddedDocuments('Item', [
                         {
-                            ...itemData,
+                            ...cardData,
+                            uuid: cardItem.uuid,
+                            _stats: cardItem._stats,
                             system: {
-                                ...itemData.system,
+                                ...cardData.system,
                                 inVault: true
                             }
                         }
@@ -382,12 +389,15 @@ export default class DhpActor extends Actor {
             const achievementDomainCards = [];
             if (levelupAuto) {
                 for (var card of Object.values(level.achievements.domainCards)) {
-                    const itemData = (await foundry.utils.fromUuid(card.uuid)).toObject();
+                    const cardItem = await foundry.utils.fromUuid(card.uuid);
+                    const cardData = cardItem.toObject();
                     const embeddedItem = await this.createEmbeddedDocuments('Item', [
                         {
-                            ...itemData,
+                            ...cardData,
+                            uuid: cardItem.uuid,
+                            _stats: cardItem._stats,
                             system: {
-                                ...itemData.system,
+                                ...cardData.system,
                                 inVault: true
                             }
                         }
@@ -833,5 +843,38 @@ export default class DhpActor extends Actor {
         const tags = [];
         if (this.system._getTags) tags.push(...this.system._getTags());
         return tags;
+    }
+
+    /** Get active effects */
+    getActiveEffects() {
+        const statusMap = new Map(foundry.CONFIG.statusEffects.map(status => [status.id, status]));
+        return this.effects
+            .filter(x => !x.disabled)
+            .reduce((acc, effect) => {
+                acc.push(effect);
+
+                const currentStatusActiveEffects = acc.filter(
+                    x => x.statuses.size === 1 && x.name === game.i18n.localize(statusMap.get(x.statuses.first()).name)
+                );
+
+                for (var status of effect.statuses) {
+                    if (!currentStatusActiveEffects.find(x => x.statuses.has(status))) {
+                        const statusData = statusMap.get(status);
+                        if (statusData) {
+                            acc.push({
+                                condition: status,
+                                appliedBy: game.i18n.localize(effect.name),
+                                name: game.i18n.localize(statusData.name),
+                                statuses: new Set([status]),
+                                img: statusData.icon ?? statusData.img,
+                                description: game.i18n.localize(statusData.description),
+                                tint: effect.tint
+                            });
+                        }
+                    }
+                }
+
+                return acc;
+            }, []);
     }
 }

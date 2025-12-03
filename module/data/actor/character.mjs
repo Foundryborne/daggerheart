@@ -678,6 +678,8 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     async _preDelete() {
+        super._preDelete();
+
         if (this.companion) {
             this.companion.updateLevel(1);
         }

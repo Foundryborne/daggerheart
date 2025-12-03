@@ -4,12 +4,31 @@
     }
 }
 
-#interface #ui-right #sidebar {
-    menu li button {
-        img {
-            width: 22px;
-            max-width: unset;
-            filter: @beige-filter;
+#interface #ui-right {
+    #ui-right-column-1 {
+        position: relative;
+    }
+
+    #sidebar {
+        menu li button {
+            img {
+                width: 22px;
+                max-width: unset;
+                filter: @beige-filter;
+            }
+        }
+    }
+}
+
+.actors-sidebar {
+    .directory-item.actor .entry-name:has(.entry-subtitle) {
+        display: flex;
+        flex-direction: column;
+        line-height: 1rem;
+        padding-top: 0.125rem;
+        .entry-subtitle {
+            color: var(--color-text-subtle);
+            font-size: var(--font-size-12);
         }
     }
 }
