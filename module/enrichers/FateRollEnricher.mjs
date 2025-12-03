@@ -34,14 +34,15 @@ export const renderFateButton = async event => {
         {
             target,
             title: button.dataset.title,
-            label: button.dataset.label
+            label: button.dataset.label,
+            fateType
         },
         event
     );
 };
 
 export const enrichedFateRoll = async (
-    { target, title, label },
+    { target, title, label, fateType },
     event
 ) => {
     const config = {
@@ -50,14 +51,15 @@ export const enrichedFateRoll = async (
         roll: {
             label: label,
         },
-        hasRoll: true
+        hasRoll: true,
+        fateType: fateType
     };
 
     if (target) {
         await target.diceRoll(config);
     } else {
         // For no target, call FateRoll directly with basic data
-        config.data = { experiences: {}, traits: {} };
+        config.data = { experiences: {}, traits: {}, fateType: fateType };
         config.source = { actor: null };
         await CONFIG.Dice.daggerheart.FateRoll.build(config);
     }

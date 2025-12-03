@@ -69,11 +69,18 @@ export const setDiceSoNiceForDualityRoll = async (rollResult, advantageState, ho
     }
 };
 
-export const setDiceSoNiceForFateRoll = async (rollResult, hopeFaces) => {
+export const setDiceSoNiceForHopeFateRoll = async (rollResult, hopeFaces) => {
     if (!game.modules.get('dice-so-nice')?.active) return;
     const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
     const diceSoNicePresets = await getDiceSoNicePreset(diceSoNice.hope, hopeFaces);
     rollResult.dice[0].options = diceSoNicePresets.hope;
+};
+
+export const setDiceSoNiceForFearFateRoll = async (rollResult, fearFaces) => {
+    if (!game.modules.get('dice-so-nice')?.active) return;
+    const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
+    const diceSoNicePresets = await getDiceSoNicePreset(diceSoNice.fear, fearFaces);
+    rollResult.dice[0].options = diceSoNicePresets.fear;
 };
 
 export const chunkify = (array, chunkSize, mappingFunc) => {

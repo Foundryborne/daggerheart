@@ -249,6 +249,7 @@ Hooks.on('chatMessage', (_, message) => {
     }
 
     if (message.startsWith('/fr')) {
+        console.log("fr message", message);
         const result =
             message.trim().toLowerCase() === '/fr' ? { result: {} } : rollCommandToJSON(message.replace(/\/fr\s?/, ''));
         if (!result) {
@@ -258,6 +259,10 @@ Hooks.on('chatMessage', (_, message) => {
 
         const { result: rollCommand, flavor } = result;
 
+        console.log("rollCommand", rollCommand);
+        const fateType = rollCommand.type ?? "Hope";
+        console.log("fateType", fateType);
+
         const target = getCommandTarget({ allowNull: true });
         const title = 'Fate';
 
@@ -265,6 +270,7 @@ Hooks.on('chatMessage', (_, message) => {
             target,
             title,
             label: 'test',
+            fateType
         });
         return false;
     }

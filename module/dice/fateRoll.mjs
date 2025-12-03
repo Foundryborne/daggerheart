@@ -1,6 +1,6 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 import D20Roll from './d20Roll.mjs';
-import { setDiceSoNiceForFateRoll } from '../helpers/utils.mjs';
+import { setDiceSoNiceForHopeFateRoll, setDiceSoNiceForFearFateRoll } from '../helpers/utils.mjs';
 
 export default class FateRoll extends D20Roll {
      constructor(formula, data = {}, options = {}) {
@@ -30,13 +30,27 @@ export default class FateRoll extends D20Roll {
         // this.#hopeDice = `d${face}`;
     }
 
+    get dFear() {
+        // if ( !(this.terms[1] instanceof foundry.dice.terms.Die) ) return;
+        if (!(this.dice[0] instanceof foundry.dice.terms.Die)) this.createBaseDice();
+        return this.dice[0];
+        // return this.#fearDice;
+    }
+
+    set dFear(faces) {
+        if (!(this.dice[0] instanceof foundry.dice.terms.Die)) this.createBaseDice();
+        this.dice[0].faces = this.getFaces(faces);
+        // this.#fearDice = `d${face}`;
+    }
+
     get isCritical() {
         return false;
     }
 
 
     get fateDie() {
-        return "Hope";
+        console.log("fateRoll this", this);
+        return this.data.fateType;
     }
 
     static getHooks(hooks) {
@@ -64,18 +78,25 @@ export default class FateRoll extends D20Roll {
         console.log("config", config);
         console.log("message", message);
 
-        await setDiceSoNiceForFateRoll(
-            roll,
-            config.roll.fate.dice
-        );
+        if (roll.fateDie === "Hope") {
+            await setDiceSoNiceForHopeFateRoll(
+                roll,
+                config.roll.fate.dice
+            );
+        } else {
+           await setDiceSoNiceForFearFateRoll(
+                roll,
+                config.roll.fate.dice
+            );
+        }
     }
 
     static postEvaluate(roll, config = {}) {
         const data = super.postEvaluate(roll, config);
 
         data.fate = {
-            dice: roll.dHope.denomination,
-            value: roll.dHope.total,
+            dice: roll.fateDie === "Hope" ? roll.dHope.denomination : roll.dFear.denomination,
+            value: roll.fateDie === "Hope" ? roll.dHope.total : roll.dFear.total,
             fateDie: roll.fateDie
         };
 
