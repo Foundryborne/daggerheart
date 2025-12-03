@@ -19,7 +19,6 @@ function getFateMessage(roll, flavor) {
             data-title="${label}"
             data-label="${dataLabel}"
             data-hope="${roll?.hope ?? 'd12'}" 
-            data-fear="${roll?.fear ?? 'd12'}"
             ${label}
         </button>
     `;
