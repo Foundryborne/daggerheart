@@ -119,7 +119,6 @@ export default class DualityRoll extends D20Roll {
 
     /** @inheritDoc */
     static fromData(data) {
-        console.log("data", data);
         data.terms[0].class = foundry.dice.terms.Die.name;
         data.terms[2].class = foundry.dice.terms.Die.name;
         return super.fromData(data);
@@ -175,9 +174,6 @@ export default class DualityRoll extends D20Roll {
 
     static async buildEvaluate(roll, config = {}, message = {}) {
         await super.buildEvaluate(roll, config, message);
-        console.log("roll", config);
-        console.log("config", config);
-        console.log("message", message);
 
         await setDiceSoNiceForDualityRoll(
             roll,

@@ -49,7 +49,6 @@ export default class FateRoll extends D20Roll {
 
 
     get fateDie() {
-        console.log("fateRoll this", this);
         return this.data.fateType;
     }
 
@@ -59,7 +58,6 @@ export default class FateRoll extends D20Roll {
 
     /** @inheritDoc */
     static fromData(data) {
-        console.log("data", data);
         data.terms[0].class = foundry.dice.terms.Die.name;
         return super.fromData(data);
     }
@@ -74,9 +72,6 @@ export default class FateRoll extends D20Roll {
 
     static async buildEvaluate(roll, config = {}, message = {}) {
         await super.buildEvaluate(roll, config, message);
-        console.log("roll", config);
-        console.log("config", config);
-        console.log("message", message);
 
         if (roll.fateDie === "Hope") {
             await setDiceSoNiceForHopeFateRoll(

@@ -103,7 +103,10 @@
                         {{/if}}
                     </div>
                 </div>
-                <div class="roll-formula">{{roll.formula}}</div>
+                {{#if roll.fate}}
+                {{else}}
+                    <div class="roll-formula">{{roll.formula}}</div>
+                {{/if}}
             </div>
         </div>
     </div>

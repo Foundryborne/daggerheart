@@ -89,7 +89,6 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             }
             if (this.type === 'fateRoll') {
                 html.classList.add('fate');
-                html.classList.add('hope');
             }
 
             const autoExpandRoll = game.settings.get(
