@@ -1,104 +1,172 @@
-@primary-blue: #1488cc;
-@secondary-blue: #2b32b2;
+:root {
+    --primary-blue: #1488cc;
+    --secondary-blue: #2b32b2;
 
-@golden: #f3c267;
-@golden-10: #f3c26710;
-@golden-40: #f3c26740;
-@golden-90: #f3c26790;
-@golden-bg: #f3c2671a;
-@golden-secondary: #eaaf42;
-@golden-filter: brightness(0) saturate(100%) invert(89%) sepia(13%) saturate(2008%) hue-rotate(332deg) brightness(99%)
-    contrast(92%);
+    --golden: #f3c267;
+    --golden-10: #f3c26710;
+    --golden-40: #f3c26740;
+    --golden-90: #f3c26790;
+    --golden-bg: #f3c2671a;
+    --golden-secondary: #eaaf42;
+    --golden-filter: brightness(0) saturate(100%) invert(89%) sepia(13%) saturate(2008%) hue-rotate(332deg) brightness(99%) contrast(92%);
 
-@chat-blue: #8f87ee;
-@chat-blue-10: #8f87ee10;
-@chat-blue-40: #8f87ee40;
-@chat-blue-bg: #14142599;
+    --chat-blue: #8f87ee;
+    --chat-blue-10: #8f87ee10;
+    --chat-blue-40: #8f87ee40;
+    --chat-blue-bg: #14142599;
 
-@chat-purple: #a778b1;
-@chat-purple-10: #a778b110;
-@chat-purple-40: #a778b140;
-@chat-purple-bg: #2a152e99;
+    --chat-purple: #a778b1;
+    --chat-purple-10: #a778b110;
+    --chat-purple-40: #a778b140;
+    --chat-purple-bg: #2a152e99;
 
-@medium-red: #d04747;
-@medium-red-10: #d0474710;
-@medium-red-40: #d0474740;
+    --medium-red: #d04747;
+    --medium-red-10: #d0474710;
+    --medium-red-40: #d0474740;
 
-@dark-golden: #2b1d03;
-@dark-golden-40: #2b1d0340;
-@dark-golden-80: #2b1d0380;
+    --dark-golden: #2b1d03;
+    --dark-golden-40: #2b1d0340;
+    --dark-golden-80: #2b1d0380;
+
+    --red: #e54e4e;
+    --red-10: #e54e4e10;
+    --red-40: #e54e4e40;
+
+    --dark-red: #3c0000;
+    --dark-red-10: #3c000010;
+    --dark-red-40: #3c000040;
+
+    --green: #40a640;
+    --green-10: #40a64010;
+    --green-40: #40a64040;
+
+    --dark-green: #011b01;
+    --dark-green-10: #011b0110;
+    --dark-green-40: #011b0140;
+
+    --dark-blue: #18162e;
+    --dark-blue-10: #18162e10;
+    --dark-blue-40: #18162e40;
+    --dark-blue-50: #18162e50;
+    --dark-blue-60: #18162e60;
+    --dark-blue-90: #18162e90;
+    --semi-transparent-dark-blue: rgba(24, 22, 46, 0.33);
+
+    --dark: #222222;
+    --dark-15: #22222215;
+    --dark-40: #22222240;
+    --dark-80: #22222280;
+    --dark-filter: brightness(0) saturate(100%);
+
+    --grey-filter: brightness(15%) saturate(20%);
+
+    --deep-black: #0e0d15;
+
+    --beige: #efe6d8;
+    --beige-15: #efe6d815;
+    --beige-50: #efe6d850;
+    --beige-80: #efe6d880;
+    --beige-filter: brightness(0) saturate(100%) invert(87%) sepia(25%) saturate(164%) hue-rotate(339deg) brightness(106%) contrast(87%);
+    --bright-beige-filter: brightness(0) saturate(100%) invert(87%) sepia(15%) saturate(343%) hue-rotate(333deg) brightness(110%) contrast(87%);
+
+    --soft-white-shadow: rgba(255, 255, 255, 0.05);
+
+    --light-black: rgba(0, 0, 0, 0.3);
+    --soft-shadow: rgba(0, 0, 0, 0.05);
+
+    --gradient-green: linear-gradient(151.21deg, var(--green, #40a640) 7.21%, var(--dark-green, #011b01) 92.79%);
+    --gradient-red: linear-gradient(151.21deg, var(--red, #e54e4e) 7.21%, var(--dark-red, #3c0000) 92.79%);
+
+    --gradient-hp: linear-gradient(15deg, rgb(70, 20, 10) 0%, rgb(190, 0, 0) 42%, rgb(252, 176, 69) 100%);
+    --gradient-stress: linear-gradient(15deg, rgb(130, 59, 1) 0%, rgb(252, 142, 69) 65%, rgb(190, 0, 0) 100%);
+
+    --primary-color-fear: rgba(9, 71, 179, 0.75);
+}
+
+@primary-blue: var(--primary-blue, #1488cc);
+@secondary-blue: var(--secondary-blue, #2b32b2);
+
+@golden: var(--golden, #f3c267);
+@golden-10: var(--golden-10, #f3c26710);
+@golden-40: var(--golden-40, #f3c26740);
+@golden-90: var(--golden-90, #f3c26790);
+@golden-bg: var(--golden-bg, #f3c2671a);
+@golden-secondary: var(--golden-secondary, #eaaf42);
+@golden-filter: var(--golden-filter, brightness(0) saturate(100%) invert(89%) sepia(13%) saturate(2008%) hue-rotate(332deg) brightness(99%) contrast(92%));
+
+@chat-blue: var(--chat-blue, #8f87ee);
+@chat-blue-10: var(--chat-blue-10, #8f87ee10);
+@chat-blue-40: var(--chat-blue-40, #8f87ee40);
+@chat-blue-bg: var(--chat-blue-bg, #14142599);
+
+@chat-purple: var(--chat-purple, #a778b1);
+@chat-purple-10: var(--chat-purple-10, #a778b110);
+@chat-purple-40: var(--chat-purple-40, #a778b140);
+@chat-purple-bg: var(--chat-purple-bg, #2a152e99);
+
+@medium-red: var(--medium-red, #d04747);
+@medium-red-10: var(--medium-red-10, #d0474710);
+@medium-red-40: var(--medium-red-40, #d0474740);
+
+@dark-golden: var(--dark-golden, #2b1d03);
+@dark-golden-40: var(--dark-golden-40, #2b1d0340);
+@dark-golden-80: var(--dark-golden-80, #2b1d0380);
+
+@red: var(--red, #e54e4e);
+@red-10: var(--red-10, #e54e4e10);
+@red-40: var(--red-40, #e54e4e40);
+
+@dark-red: var(--dark-red, #3c0000);
+@dark-red-10: var(--dark-red-10, #3c000010);
+@dark-red-40: var(--dark-red-40, #3c000040);
+
+@green: var(--green, #40a640);
+@green-10: var(--green-10, #40a64010);
+@green-40: var(--green-40, #40a64040);
+
+@dark-green: var(--dark-green, #011b01);
+@dark-green-10: var(--dark-green-10, #011b0110);
+@dark-green-40: var(--dark-green-40, #011b0140);
+
+@dark-blue: var(--dark-blue, #18162e);
+@dark-blue-10: var(--dark-blue-10, #18162e10);
+@dark-blue-40: var(--dark-blue-40, #18162e40);
+@dark-blue-50: var(--dark-blue-50, #18162e50);
+@dark-blue-60: var(--dark-blue-60, #18162e60);
+@dark-blue-90: var(--dark-blue-90, #18162e90);
+@semi-transparent-dark-blue: var(--semi-transparent-dark-blue, rgba(24, 22, 46, 0.33));
+
+@dark: var(--dark, #222222);
+@dark-15: var(--dark-15, #22222215);
+@dark-40: var(--dark-40, #22222240);
+@dark-80: var(--dark-80, #22222280);
+@dark-filter: var(--dark-filter, brightness(0) saturate(100%));
+
+@grey-filter: var(--grey-filter, brightness(15%) saturate(20%));
+
+@deep-black: var(--deep-black, #0e0d15);
+
+@beige: var(--beige, #efe6d8);
+@beige-15: var(--beige-15, #efe6d815);
+@beige-50: var(--beige-50, #efe6d850);
+@beige-80: var(--beige-80, #efe6d880);
+@beige-filter: var(--beige-filter, brightness(0) saturate(100%) invert(87%) sepia(25%) saturate(164%) hue-rotate(339deg) brightness(106%) contrast(87%));
+@bright-beige-filter: var(--bright-beige-filter, brightness(0) saturate(100%) invert(87%) sepia(15%) saturate(343%) hue-rotate(333deg) brightness(110%) contrast(87%));
+
+@soft-white-shadow: var(--soft-white-shadow, rgba(255, 255, 255, 0.05));
+
+@light-black: var(--light-black, rgba(0, 0, 0, 0.3));
+@soft-shadow: var(--soft-shadow, rgba(0, 0, 0, 0.05));
+
+@gradient-green: var(--gradient-green, linear-gradient(151.21deg, var(--green, #40a640) 7.21%, var(--dark-green, #011b01) 92.79%));
+@gradient-red: var(--gradient-red, linear-gradient(151.21deg, var(--red, #e54e4e) 7.21%, var(--dark-red, #3c0000) 92.79%));
+
+@gradient-hp: var(--gradient-hp, linear-gradient(15deg, rgb(70, 20, 10) 0%, rgb(190, 0, 0) 42%, rgb(252, 176, 69) 100%));
+@gradient-stress: var(--gradient-stress, linear-gradient(15deg, rgb(130, 59, 1) 0%, rgb(252, 142, 69) 65%, rgb(190, 0, 0) 100%));
+
+@primary-color-fear: var(--primary-color-fear, rgba(9, 71, 179, 0.75));
 
 @rustic-brown-80: #4c340780;
-
-@red: #e54e4e;
-@red-10: #e54e4e10;
-@red-40: #e54e4e40;
-
-@dark-red: #3c0000;
-@dark-red-10: #3c000010;
-@dark-red-40: #3c000040;
-
-@green: #40a640;
-@green-10: #40a64010;
-@green-40: #40a64040;
-
-@dark-green: #011b01;
-@dark-green-10: #011b0110;
-@dark-green-40: #011b0140;
-
-@dark-blue: #18162e;
-@dark-blue-10: #18162e10;
-@dark-blue-40: #18162e40;
-@dark-blue-50: #18162e50;
-@dark-blue-60: #18162e60;
-@dark-blue-90: #18162e90;
-@semi-transparent-dark-blue: rgba(24, 22, 46, 0.33);
-
-@dark: #222;
-@dark-15: #22222215;
-@dark-40: #22222240;
-@dark-80: #22222280;
-@dark-filter: brightness(0) saturate(100%);
-
-@grey-filter: brightness(15%) saturate(20%);
-
-@deep-black: #0e0d15;
-
-@beige: #efe6d8;
-@beige-15: #efe6d815;
-@beige-50: #efe6d850;
-@beige-80: #efe6d880;
-@beige-filter: brightness(0) saturate(100%) invert(87%) sepia(25%) saturate(164%) hue-rotate(339deg) brightness(106%)
-    contrast(87%);
-@bright-beige-filter: brightness(0) saturate(100%) invert(87%) sepia(15%) saturate(343%) hue-rotate(333deg)
-    brightness(110%) contrast(87%);
-
-@soft-white-shadow: rgba(255, 255, 255, 0.05);
-
-@light-black: rgba(0, 0, 0, 0.3);
-@soft-shadow: rgba(0, 0, 0, 0.05);
-
-@gradient-green: linear-gradient(151.21deg, @green 7.21%, @dark-green 92.79%);
-@gradient-red: linear-gradient(151.21deg, @red 7.21%, @dark-red 92.79%);
-
-@gradient-hp: linear-gradient(15deg, rgb(70, 20, 10) 0%, rgb(190, 0, 0) 42%, rgb(252, 176, 69) 100%);
-@gradient-stress: linear-gradient(15deg, rgb(130, 59, 1) 0%, rgb(252, 142, 69) 65%, rgb(190, 0, 0) 100%);
-
-// TODO: Remove this colors section once new chat layout is done
-@miss: rgb(255, 0, 0);
-@hit: rgb(0, 128, 0);
-@positive: #699969;
-@secondaryShadow: gold;
-@primaryAccent: #778899;
-@hope: #ffe760;
-@fear: #0032b1;
-@fearBackgroundStart: rgba(15, 15, 97, 0.6);
-@fearBackgroundEnd: rgba(0, 0, 255, 0.6);
-@critical: #430070;
-@criticalBackgroundStart: rgba(37, 8, 37, 0.6);
-@criticalBackgroundEnd: rgba(128, 0, 128, 0.6);
-@primary-color-fear: rgba(9, 71, 179, 0.75);
-
 @keyframes glow {
     0% {
         box-shadow: 0 0 1px 1px @golden;
