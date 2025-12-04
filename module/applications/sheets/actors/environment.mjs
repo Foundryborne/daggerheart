@@ -37,11 +37,11 @@ export default class DhpEnvironment extends DHBaseActorSheet {
         header: { template: 'systems/daggerheart/templates/sheets/actors/environment/header.hbs' },
         features: {
             template: 'systems/daggerheart/templates/sheets/actors/environment/features.hbs',
-            scrollable: ['feature-section']
+            scrollable: ['.feature-section']
         },
         potentialAdversaries: {
             template: 'systems/daggerheart/templates/sheets/actors/environment/potentialAdversaries.hbs',
-            scrollable: ['items-sections']
+            scrollable: ['.items-section']
         },
         notes: { template: 'systems/daggerheart/templates/sheets/actors/environment/notes.hbs' }
     };
