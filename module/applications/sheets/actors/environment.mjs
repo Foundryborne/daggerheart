@@ -130,21 +130,14 @@ export default class DhpEnvironment extends DHBaseActorSheet {
     /* -------------------------------------------- */
 
     async _onDragStart(event) {
-        const item = event.currentTarget.closest('.inventory-item');
-
+        const item = event.currentTarget.closest('.inventory-item[data-type=adversary]');
         if (item) {
             const adversaryData = { type: 'Actor', uuid: item.dataset.itemUuid };
             event.dataTransfer.setData('text/plain', JSON.stringify(adversaryData));
             event.dataTransfer.setDragImage(item, 60, 0);
+        } else {
+            return super._onDragStart(event);
         }
-    }
-
-    _onDropItem(event, item) {
-        if (this.document.uuid !== item.parent?.uuid) {
-            return null; // block all drag drop except internal ones
-        }
-
-        return super._onDropItem(event, item);
     }
 
     /* -------------------------------------------- */

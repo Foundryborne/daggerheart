@@ -1,4 +1,4 @@
-import { itemIsIdentical } from '../../../helpers/utils.mjs';
+import { getDocFromElement, itemIsIdentical } from '../../../helpers/utils.mjs';
 import DHBaseActorSettings from './actor-setting.mjs';
 import DHApplicationMixin from './application-mixin.mjs';
 
@@ -301,7 +301,6 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
      */
     async _onDragStart(event) {
         const attackItem = event.currentTarget.closest('.inventory-item[data-type="attack"]');
-
         if (attackItem) {
             const attackData = {
                 type: 'Attack',
@@ -311,8 +310,20 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
             };
             event.dataTransfer.setData('text/plain', JSON.stringify(attackData));
             event.dataTransfer.setDragImage(attackItem.querySelector('img'), 60, 0);
-        } else if (this.document.type !== 'environment') {
-            super._onDragStart(event);
+            return;
+        } 
+        
+        const item = await getDocFromElement(event.target);
+        if (item) {
+            const dragData = {
+                originActor: this.document.uuid,
+                originId: item.id,
+                type: item.documentName,
+                uuid: item.uuid
+            };
+            event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
         }
+
+        super._onDragStart(event);
     }
 }

@@ -419,18 +419,6 @@ export default class Party extends DHBaseActorSheet {
     }
 
     /* -------------------------------------------- */
-    async _onDragStart(event) {
-        const item = await getDocFromElement(event.target);
-        const dragData = {
-            originActor: this.document.uuid,
-            originId: item.id,
-            type: item.documentName,
-            uuid: item.uuid
-        };
-
-        event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
-        super._onDragStart(event);
-    }
 
     async _onDropActor(event, document) {
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);

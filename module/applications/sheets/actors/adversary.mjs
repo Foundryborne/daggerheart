@@ -25,7 +25,8 @@ export default class AdversarySheet extends DHBaseActorSheet {
                     action: 'editAttribution'
                 }
             ]
-        }
+        },
+        dragDrop: [{ dragSelector: '[data-item-id][draggable="true"]', dropSelector: null }]
     };
 
     static PARTS = {
@@ -161,14 +162,6 @@ export default class AdversarySheet extends DHBaseActorSheet {
             secrets: this.document.isOwner,
             relativeTo: this.document
         });
-    }
-
-    _onDropItem(event, item) {
-        if (this.document.uuid !== item.parent?.uuid) {
-            return null; // block all drag drop except internal ones
-        }
-
-        return super._onDropItem(event, item);
     }
 
     /* -------------------------------------------- */
