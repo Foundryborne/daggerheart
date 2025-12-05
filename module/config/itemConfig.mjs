@@ -459,7 +459,19 @@ export const allArmorFeatures = () => {
         ...armorFeatures,
         ...Object.keys(homebrewFeatures).reduce((acc, key) => {
             const feature = homebrewFeatures[key];
-            acc[key] = { ...feature, label: feature.name };
+            const actionEffects = [];
+            const actions = feature.actions.map(action => {
+                const effects = action.effects.map(effect => feature.effects.find(x => x.id === effect._id));
+                actionEffects.push(...effects);
+                return {
+                    ...action,
+                    effects: effects,
+                    type: action.type
+                };
+            });
+            const effects = feature.effects.filter(effect => !actionEffects.some(x => x.id === effect.id));
+
+            acc[key] = { ...feature, label: feature.name, effects, actions };
             return acc;
         }, {})
     };
@@ -1414,11 +1426,24 @@ export const weaponFeatures = {
 export const allWeaponFeatures = () => {
     const homebrewFeatures = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).itemFeatures
         .weaponFeatures;
+
     return {
         ...weaponFeatures,
         ...Object.keys(homebrewFeatures).reduce((acc, key) => {
             const feature = homebrewFeatures[key];
-            acc[key] = { ...feature, label: feature.name };
+            const actionEffects = [];
+            const actions = feature.actions.map(action => {
+                const effects = action.effects.map(effect => feature.effects.find(x => x.id === effect._id));
+                actionEffects.push(...effects);
+                return {
+                    ...action,
+                    effects: effects,
+                    type: action.type
+                };
+            });
+            const effects = feature.effects.filter(effect => !actionEffects.some(x => x.id === effect.id));
+
+            acc[key] = { ...feature, label: feature.name, effects, actions };
             return acc;
         }, {})
     };

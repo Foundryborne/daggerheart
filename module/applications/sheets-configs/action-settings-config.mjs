@@ -1,6 +1,13 @@
 import DHActionBaseConfig from './action-base-config.mjs';
 
-export default class DHActionConfig extends DHActionBaseConfig {
+export default class DHActionSettingsConfig extends DHActionBaseConfig {
+    constructor(action, effects, sheetUpdate) {
+        super(action);
+
+        this.effects = effects;
+        this.sheetUpdate = sheetUpdate;
+    }
+
     static DEFAULT_OPTIONS = {
         ...DHActionBaseConfig.DEFAULT_OPTIONS,
         actions: {
@@ -13,41 +20,25 @@ export default class DHActionConfig extends DHActionBaseConfig {
 
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
-        if (!!this.action.effects) context.effects = this.action.effects.map(e => this.action.item.effects.get(e._id));
+        context.effects = this.effects;
         context.getEffectDetails = this.getEffectDetails.bind(this);
 
         return context;
     }
 
+    getEffectDetails(id) {
+        return this.effects.find(x => x.id === id);
+    }
+
     static async addEffect(_event) {
         if (!this.action.effects) return;
-        const effectData = this._addEffectData.bind(this)();
+        const effectData = game.system.api.data.activeEffects.BaseEffect.getDefaultObject();
         const data = this.action.toObject();
 
-        const [created] = await this.action.item.createEmbeddedDocuments('ActiveEffect', [effectData], {
-            render: false
-        });
-        data.effects.push({ _id: created._id });
+        this.sheetUpdate(data, effectData);
+        this.effects = [...this.effects, effectData];
+        data.effects.push({ _id: effectData.id });
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
-        this.action.item.effects.get(created._id).sheet.render(true);
-    }
-
-    /**
-     * The data for a newly created applied effect.
-     * @returns {object}
-     * @protected
-     */
-    _addEffectData() {
-        return {
-            name: this.action.item.name,
-            img: this.action.item.img,
-            origin: this.action.item.uuid,
-            transfer: false
-        };
-    }
-
-    getEffectDetails(id) {
-        return this.action.item.effects.get(id);
     }
 
     static removeEffect(event, button) {
@@ -55,11 +46,21 @@ export default class DHActionConfig extends DHActionBaseConfig {
         const index = button.dataset.index,
             effectId = this.action.effects[index]._id;
         this.constructor.removeElement.bind(this)(event, button);
-        this.action.item.deleteEmbeddedDocuments('ActiveEffect', [effectId]);
+        this.sheetUpdate(
+            this.action.toObject(),
+            this.effects.find(x => x.id === effectId),
+            true
+        );
     }
 
-    static editEffect(event) {
+    static async editEffect(event) {
         const id = event.target.closest('[data-effect-id]')?.dataset?.effectId;
-        this.action.item.effects.get(id).sheet.render(true);
+        const updatedEffect = await game.system.api.applications.sheetConfigs.SettingActiveEffectConfig.configure(
+            this.getEffectDetails(id)
+        );
+        if (!updatedEffect) return;
+
+        this.effects = await this.sheetUpdate(this.action.toObject(), { ...updatedEffect, id });
+        this.render();
     }
 }

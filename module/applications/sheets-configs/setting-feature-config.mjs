@@ -1,5 +1,5 @@
 import { actionsTypes } from '../../data/action/_module.mjs';
-import DHActionConfig from './action-config.mjs';
+import ActionSettingsConfig from './action-settings-config.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -158,17 +158,26 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
             this.render();
         } else {
             const action = this.move.actions.get(id);
-            await new DHActionConfig(action, async (updatedMove, effectData) => {
-                if (effectData?.length) {
+            await new ActionSettingsConfig(action, this.move.effects, async (updatedMove, effectData, deleteEffect) => {
+                let updatedEffects = null;
+                if (effectData) {
                     const currentEffects = foundry.utils.getProperty(this.settings, `${this.movePath}.effects`);
+                    const existingEffectIndex = currentEffects.findIndex(x => x.id === effectData.id);
+
+                    updatedEffects = deleteEffect
+                        ? currentEffects.filter(x => x.id !== effectData.id)
+                        : existingEffectIndex === -1
+                          ? [...currentEffects, effectData]
+                          : currentEffects.with(existingEffectIndex, effectData);
                     await this.settings.updateSource({
-                        [`${this.movePath}.effects`]: [...currentEffects, ...effectData]
+                        [`${this.movePath}.effects`]: updatedEffects
                     });
                 }
 
                 await this.settings.updateSource({ [`${this.actionsPath}.${id}`]: updatedMove });
                 this.move = foundry.utils.getProperty(this.settings, this.movePath);
                 this.render();
+                return updatedEffects;
             }).render(true);
         }
     }
