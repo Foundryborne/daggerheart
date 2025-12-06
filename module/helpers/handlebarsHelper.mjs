@@ -36,7 +36,7 @@ export default class RegisterHandlebarsHelpers {
     }
 
     static damageFormula(attack) {
-        return game.system.api.fields.ActionFields.DamageField.getFormulaString.bind(attack)(attack.damage.parts);
+        return attack.getDamageFormula();
     }
 
     static formulaValue(formula, item) {

@@ -162,22 +162,6 @@ export default class DamageField extends fields.SchemaField {
     }
 
     /**
-     * Return a display ready damage formula string
-     * Must be called within Action context or similar.
-     * @param {Array<object>} parts Damage Parts
-     * @param {object} data Action getRollData
-     * @returns Formula string
-     */
-    static getFormulaString(parts) {
-        const strings = [];
-        for (const { value } of parts) {
-            strings.push(Roll.replaceFormulaData(value.getFormula(), this.actor?.getRollData() ?? {}));
-        }
-
-        return strings.join(' + ');
-    }
-
-    /**
      * Prepare formulas for Damage Roll
      * Must be called within Action context or similar.
      * @param {object[]} formulas   Array of formatted formulas object
