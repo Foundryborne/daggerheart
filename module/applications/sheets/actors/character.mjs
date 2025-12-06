@@ -879,15 +879,32 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
     async _onDropItem(event, item) {
         if (this.document.uuid === item.parent?.uuid) {
-            return this._onSortItem(event, item);
+            return super._onDropItem(event, item);
         }
-
-        const itemData = item.toObject();
 
         if (item.type === 'domainCard' && !this.document.system.loadoutSlot.available) {
+            const itemData = item.toObject();
             itemData.system.inVault = true;
+            return await this._onDropItemCreate(itemData);
+        } else if (item.type === 'beastform') {
+            if (this.document.effects.find(x => x.type === 'beastform')) {
+                return ui.notifications.warn(
+                    game.i18n.localize('DAGGERHEART.UI.Notifications.beastformAlreadyApplied')
+                );
+            }
+
+            const itemData = item.toObject();
+            const data = await game.system.api.data.items.DHBeastform.getWildcardImage(this.document, itemData);
+            if (!data?.selectedImage) {
+                return;
+            } else if (data) {
+                if (data.usesDynamicToken) itemData.system.tokenRingImg = data.selectedImage;
+                else itemData.system.tokenImg = data.selectedImage;
+                return await this._onDropItemCreate(itemData);
+            }
         }
 
+        // If this is a type that gets deleted, delete it first (but still defer to super)
         const typesThatReplace = ['ancestry', 'community'];
         if (typesThatReplace.includes(item.type)) {
             await this.document.deleteEmbeddedDocuments(
@@ -896,24 +913,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             );
         }
 
-        if (item.type === 'beastform') {
-            if (this.document.effects.find(x => x.type === 'beastform')) {
-                return ui.notifications.warn(
-                    game.i18n.localize('DAGGERHEART.UI.Notifications.beastformAlreadyApplied')
-                );
-            }
-
-            const data = await game.system.api.data.items.DHBeastform.getWildcardImage(this.document, itemData);
-            if (data) {
-                if (!data.selectedImage) return;
-                else {
-                    if (data.usesDynamicToken) itemData.system.tokenRingImg = data.selectedImage;
-                    else itemData.system.tokenImg = data.selectedImage;
-                }
-            }
-        }
-
-        return await this._onDropItemCreate(itemData);
+        return super._onDropItem(event, item);
     }
 
     async _onDropItemCreate(itemData, event) {
