@@ -451,3 +451,8 @@ export async function waitForDiceSoNice(message) {
         await game.dice3d.waitFor3DAnimationByMessageID(message.id);
     }
 }
+
+export async function getCritDamageBonus(formula) {
+    const critRoll = new Roll(formula);
+    return critRoll.dice.reduce((acc, dice) => acc + dice.faces, 0);
+}
