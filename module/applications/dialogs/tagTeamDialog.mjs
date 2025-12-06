@@ -263,14 +263,16 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         const fearUpdate = { key: 'fear', value: null, total: null, enabled: true };
         for (let memberId of Object.keys(this.data.members)) {
             const resourceUpdates = [];
-            if (systemData.roll.isCritical || systemData.roll.result.duality === 1) {
-                const value =
-                    memberId !== this.data.initiator.id
-                        ? 1
-                        : this.data.initiator.cost
-                          ? 1 - this.data.initiator.cost
-                          : 1;
+            const rollGivesHope = systemData.roll.isCritical || systemData.roll.result.duality === 1;
+            if (memberId === this.data.initiator.id) {
+                const value = this.data.initiator.cost
+                    ? rollGivesHope
+                        ? 1 - this.data.initiator.cost
+                        : -this.data.initiator.cost
+                    : 1;
                 resourceUpdates.push({ key: 'hope', value: value, total: -value, enabled: true });
+            } else if (rollGivesHope) {
+                resourceUpdates.push({ key: 'hope', value: 1, total: -1, enabled: true });
             }
             if (systemData.roll.isCritical) resourceUpdates.push({ key: 'stress', value: -1, total: 1, enabled: true });
             if (systemData.roll.result.duality === -1) {
