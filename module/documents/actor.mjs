@@ -877,4 +877,32 @@ export default class DhpActor extends Actor {
                 return acc;
             }, []);
     }
+
+    /* Temporarily copying the foundry method to add a fix to a bug with scenes 
+       https://discord.com/channels/170995199584108546/1296292044011995136/1446693077443149856
+    */
+    getDependentTokens({ scenes, linked = false } = {}) {
+        if (this.isToken && !scenes) return [this.token];
+        if (scenes) scenes = Array.isArray(scenes) ? scenes : [scenes];
+        else scenes = Array.from(this._dependentTokens.keys());
+
+        /* Code to filter out nonexistant scenes */
+        scenes = scenes.filter(scene => game.scenes.some(x => x.id === scene.id));
+
+        if (this.isToken) {
+            const parent = this.token.parent;
+            return scenes.includes(parent) ? [this.token] : [];
+        }
+
+        const allTokens = [];
+        for (const scene of scenes) {
+            if (!scene) continue;
+            const tokens = this._dependentTokens.get(scene);
+            for (const token of tokens ?? []) {
+                if (!linked || token.actorLink) allTokens.push(token);
+            }
+        }
+
+        return allTokens;
+    }
 }
