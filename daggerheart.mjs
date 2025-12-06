@@ -43,6 +43,7 @@ CONFIG.ActiveEffect.dataModels = models.activeEffects.config;
 
 CONFIG.Combat.documentClass = documents.DhpCombat;
 CONFIG.Combat.dataModels = { base: models.DhCombat };
+CONFIG.Combatant.documentClass = documents.DHCombatant;
 CONFIG.Combatant.dataModels = { base: models.DhCombatant };
 
 CONFIG.ChatMessage.dataModels = models.chatMessages.config;

@@ -261,7 +261,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
     async getBattlepointHTML(combatId) {
         const combat = game.combats.get(combatId);
         const adversaries =
-            combat.turns?.filter(x => x.isNPC)?.map(x => ({ ...x.actor, type: x.actor.system.type })) ?? [];
+            combat.turns?.filter(x => x.actor?.isNPC)?.map(x => ({ ...x.actor, type: x.actor.system.type })) ?? [];
         const characters = combat.turns?.filter(x => !x.isNPC) ?? [];
 
         const nrCharacters = characters.length;
