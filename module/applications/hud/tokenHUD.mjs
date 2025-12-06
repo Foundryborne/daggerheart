@@ -21,7 +21,6 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
 
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
-
         context.partyOnCanvas =
             this.actor.type === 'party' &&
             this.actor.system.partyMembers.some(member => member.getActiveTokens().length > 0);
@@ -31,6 +30,7 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
         context.canToggleCombat = DHTokenHUD.#nonCombatTypes.includes(this.actor.type)
             ? false
             : context.canToggleCombat;
+
         context.systemStatusEffects = Object.keys(context.statusEffects).reduce((acc, key) => {
             const effect = context.statusEffects[key];
             if (effect.systemEffect) {
@@ -193,16 +193,18 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
         }
 
         // Update the status of effects which are active for the token actor
-        const activeEffects = this.actor?.effects || [];
+        const activeEffects = this.actor?.getActiveEffects() || [];
         for (const effect of activeEffects) {
             for (const statusId of effect.statuses) {
                 const status = choices[statusId];
+                status.instances = 1 + (status.instances ?? 0);
+                status.locked = status.locked || effect.condition || status.instances > 1;
                 if (!status) continue;
                 if (status._id) {
                     if (status._id !== effect.id) continue;
                 }
                 status.isActive = true;
-                if (effect.getFlag('core', 'overlay')) status.isOverlay = true;
+                if (effect.getFlag?.('core', 'overlay')) status.isOverlay = true;
             }
         }
 

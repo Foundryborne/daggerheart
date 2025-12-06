@@ -26,3 +26,5 @@ export const userFlags = {
     welcomeMessage: 'welcome-message',
     countdownMode: 'countdown-mode'
 };
+
+export const combatToggle = 'combat-toggle-origin';

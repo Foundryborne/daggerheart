@@ -119,17 +119,6 @@
     }
   },
   "flags": {},
-  "_stats": {
-    "compendiumSource": null,
-    "duplicateSource": null,
-    "exportSource": null,
-    "coreVersion": "13.347",
-    "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
-    "createdTime": 1753922784246,
-    "modifiedTime": 1755384371297,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
-  },
   "_id": "9x2xY9zwc3xzbXo5",
   "sort": 1800000,
   "ownership": {
@@ -307,15 +296,7 @@
       },
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754014765553,
-        "modifiedTime": 1754143942478,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "compendiumSource": null
       },
       "_key": "!actors.items!9x2xY9zwc3xzbXo5.0DSCzAFXy0hV4afJ"
     },
@@ -444,15 +425,7 @@
           "sort": 0,
           "flags": {},
           "_stats": {
-            "compendiumSource": null,
-            "duplicateSource": null,
-            "exportSource": null,
-            "coreVersion": "13.346",
-            "systemId": "daggerheart",
-            "systemVersion": "0.0.1",
-            "createdTime": 1754014907002,
-            "modifiedTime": 1754014933428,
-            "lastModifiedBy": "MQSznptE5yLT7kj8"
+            "compendiumSource": null
           },
           "_key": "!actors.items.effects!9x2xY9zwc3xzbXo5.rreGFW5TbhUoZf2T.F3E7fiz01AbF2kr5"
         }
@@ -465,15 +438,7 @@
       },
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754014840148,
-        "modifiedTime": 1754143956037,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "compendiumSource": null
       },
       "_key": "!actors.items!9x2xY9zwc3xzbXo5.rreGFW5TbhUoZf2T"
     }

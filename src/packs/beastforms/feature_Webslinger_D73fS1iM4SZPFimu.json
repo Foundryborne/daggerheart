@@ -95,14 +95,7 @@
       "sort": 0,
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "lastModifiedBy": "FecEtPuoQh6MpjQ0",
-        "modifiedTime": 1753576128082
+        "compendiumSource": null
       },
       "_key": "!items.effects!D73fS1iM4SZPFimu.cBJueH89gNvvDKfQ"
     }
@@ -113,17 +106,6 @@
     "FecEtPuoQh6MpjQ0": 3
   },
   "flags": {},
-  "_stats": {
-    "compendiumSource": null,
-    "duplicateSource": null,
-    "exportSource": null,
-    "coreVersion": "13.350",
-    "systemId": "daggerheart",
-    "systemVersion": "1.2.0",
-    "createdTime": 1753576005315,
-    "modifiedTime": 1762786690091,
-    "lastModifiedBy": "gtrqalNxfl7iRwL8"
-  },
   "_id": "D73fS1iM4SZPFimu",
   "sort": 1700000,
   "_key": "!items!D73fS1iM4SZPFimu"

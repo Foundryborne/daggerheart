@@ -108,52 +108,64 @@ export const adversaryTypes = {
     bruiser: {
         id: 'bruiser',
         label: 'DAGGERHEART.CONFIG.AdversaryType.bruiser.label',
-        description: 'DAGGERHEART.ACTORS.Adversary.bruiser.description'
+        description: 'DAGGERHEART.ACTORS.Adversary.bruiser.description',
+        bpCost: 4
     },
     horde: {
         id: 'horde',
         label: 'DAGGERHEART.CONFIG.AdversaryType.horde.label',
-        description: 'DAGGERHEART.ACTORS.Adversary.horde.description'
+        description: 'DAGGERHEART.ACTORS.Adversary.horde.description',
+        bpCost: 2
     },
     leader: {
         id: 'leader',
         label: 'DAGGERHEART.CONFIG.AdversaryType.leader.label',
-        description: 'DAGGERHEART.ACTORS.Adversary.leader.description'
+        description: 'DAGGERHEART.ACTORS.Adversary.leader.description',
+        bpCost: 3,
+        bpDescription: 'DAGGERHEART.CONFIG.AdversaryType.leader.'
     },
     minion: {
         id: 'minion',
         label: 'DAGGERHEART.CONFIG.AdversaryType.minion.label',
-        description: 'DAGGERHEART.ACTORS.Adversary.minion.description'
+        description: 'DAGGERHEART.ACTORS.Adversary.minion.description',
+        bpCost: 1,
+        partyAmountPerBP: true
     },
     ranged: {
         id: 'ranged',
         label: 'DAGGERHEART.CONFIG.AdversaryType.ranged.label',
-        description: 'DAGGERHEART.ACTORS.Adversary.ranged.description'
+        description: 'DAGGERHEART.ACTORS.Adversary.ranged.description',
+        bpCost: 2
     },
     skulk: {
         id: 'skulk',
         label: 'DAGGERHEART.CONFIG.AdversaryType.skulk.label',
-        description: 'DAGGERHEART.ACTORS.Adversary.skulk.description'
+        description: 'DAGGERHEART.ACTORS.Adversary.skulk.description',
+        bpCost: 2
     },
     social: {
         id: 'social',
         label: 'DAGGERHEART.CONFIG.AdversaryType.social.label',
-        description: 'DAGGERHEART.ACTORS.Adversary.social.description'
+        description: 'DAGGERHEART.ACTORS.Adversary.social.description',
+        bpCost: 1
     },
     solo: {
         id: 'solo',
         label: 'DAGGERHEART.CONFIG.AdversaryType.solo.label',
-        description: 'DAGGERHEART.ACTORS.Adversary.solo.description'
+        description: 'DAGGERHEART.ACTORS.Adversary.solo.description',
+        bpCost: 5
     },
     standard: {
         id: 'standard',
         label: 'DAGGERHEART.CONFIG.AdversaryType.standard.label',
-        description: 'DAGGERHEART.ACTORS.Adversary.standard.description'
+        description: 'DAGGERHEART.ACTORS.Adversary.standard.description',
+        bpCost: 2
     },
     support: {
         id: 'support',
         label: 'DAGGERHEART.CONFIG.AdversaryType.support.label',
-        description: 'DAGGERHEART.ACTORS.Adversary.support.description'
+        description: 'DAGGERHEART.ACTORS.Adversary.support.description',
+        bpCost: 1
     }
 };
 

@@ -47,17 +47,6 @@
   },
   "effects": [],
   "flags": {},
-  "_stats": {
-    "compendiumSource": "Compendium.daggerheart.subclasses.Item.3YIVugLcucLNtLSZ",
-    "duplicateSource": null,
-    "exportSource": null,
-    "coreVersion": "13.347",
-    "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
-    "createdTime": 1754174646194,
-    "modifiedTime": 1755391585771,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
-  },
   "ownership": {
     "default": 0,
     "LgnbNMLaxandgMQq": 3

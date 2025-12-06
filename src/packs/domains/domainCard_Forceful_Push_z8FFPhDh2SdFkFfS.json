@@ -55,17 +55,6 @@
     }
   },
   "flags": {},
-  "_stats": {
-    "compendiumSource": null,
-    "duplicateSource": null,
-    "exportSource": null,
-    "coreVersion": "13.347",
-    "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
-    "createdTime": 1754067019520,
-    "modifiedTime": 1755429828890,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
-  },
   "effects": [
     {
       "name": "Forcefully Pushed",
@@ -101,13 +90,7 @@
       "sort": 0,
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "compendiumSource": null
       },
       "_key": "!items.effects!z8FFPhDh2SdFkFfS.95oX6QYPySdyyh2v"
     }

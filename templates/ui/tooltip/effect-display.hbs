@@ -1,0 +1,24 @@
+<div class="daggerheart dh-style tooltip">
+    <div class="tooltip-header">
+        <h2>{{effect.name}}</h2>
+        {{#if effect.appliedBy}}
+            <p class="subtitle">{{localize "DAGGERHEART.UI.EffectsDisplay.appliedBy" by=effect.appliedBy}}</p>
+        {{/if}}
+    </div>
+
+    {{#if effect.description}}
+        <div class="description">
+            {{{effect.description}}}
+        </div>
+    {{else if effect.parent.system.description}}
+        <div class="description">
+            {{{effect.parent.system.description}}}
+        </div>
+    {{/if}}
+
+    {{#unless effect.isLockedCondition}}
+        <p class="close-hint">
+            <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.EffectsDisplay.removeThing" thing=(localize "DAGGERHEART.GENERAL.Effect.single")}}
+        </p>
+    {{/unless}}
+</div>

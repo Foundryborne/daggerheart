@@ -72,8 +72,32 @@ export default class DHToken extends TokenDocument {
         }
         return attributes;
     }
-    
+
     _shouldRecordMovementHistory() {
         return false;
+    }
+
+    /**@inheritdoc */
+    static async createCombatants(tokens, combat) {
+        combat ??= game.combats.viewed;
+        if (combat?.system?.battleToggles?.length) {
+            await combat.toggleModifierEffects(
+                true,
+                tokens.map(x => x.actor)
+            );
+        }
+        super.createCombatants(tokens, combat ?? {});
+    }
+
+    /**@inheritdoc */
+    static async deleteCombatants(tokens, { combat } = {}) {
+        combat ??= game.combats.viewed;
+        if (combat?.system?.battleToggles?.length) {
+            await combat.toggleModifierEffects(
+                false,
+                tokens.map(x => x.actor)
+            );
+        }
+        super.deleteCombatants(tokens, combat ?? {});
     }
 }

@@ -682,6 +682,14 @@
                     "description": "Enemies that enhance their allies and/or disrupt their opponents."
                 }
             },
+            "AdversaryTypeCost": {
+                "minion": "for each group of Minions equal to the size of the party.",
+                "support": "for each Social or Support adversary.",
+                "standard": "for each Horde, Ranged, Skulk, or Standard adversary.",
+                "leader": "for each Leader adversary.",
+                "bruiser": "for each Bruiser adversary.",
+                "solo": "for each Solo adversary."
+            },
             "ArmorFeature": {
                 "burning": {
                     "name": "Burning",
@@ -904,6 +912,30 @@
                 "normal": "Normal",
                 "evolved": "Evolved",
                 "hybrid": "Hybrid"
+            },
+            "BPModifiers": {
+                "increaseDamage": {
+                    "description": "if you add +1d4 (or a static +2) to all adversaries' damage rolls (to increase the challenge without lengthening the battle)",
+                    "effect": {
+                        "name": "Increase Damage",
+                        "description": "Add 1d4 to damage"
+                    }
+                },
+                "lessDifficult": {
+                    "description": "if the fight should be less difficult or shorter."
+                },
+                "lowerTier": {
+                    "description": "if you choose an adversary from a lower tier."
+                },
+                "manySolos": {
+                    "description": "if you're using 2 or more Solo adversaries."
+                },
+                "moreDangerous": {
+                    "description": "if the fight should be more dangerous or last longer"
+                },
+                "noToughies": {
+                    "description": "if you don't include any Bruisers, Hordes, Leaders, or Solos"
+                }
             },
             "Burden": {
                 "oneHanded": "One-Handed",
@@ -2032,6 +2064,7 @@
             "basics": "Basics",
             "bonus": "Bonus",
             "burden": "Burden",
+            "condition": "Condition",
             "continue": "Continue",
             "criticalSuccess": "Critical Success",
             "criticalShort": "Critical",
@@ -2093,6 +2126,7 @@
             "missingDragDropThing": "Drop {thing} here",
             "multiclass": "Multiclass",
             "newCategory": "New Category",
+            "newThing": "New {thing}",
             "none": "None",
             "noTarget": "No current target",
             "partner": "Partner",
@@ -2382,8 +2416,8 @@
                 "newDowntimeMove": "Downtime Move",
                 "downtimeMove": "Downtime Move",
                 "armorFeature": "Armor Feature",
-                "weaponFeature": "Weapon Feaure",
-                "newFeature": "New ItemFeature",
+                "weaponFeature": "Weapon Feature",
+                "newFeature": "New Item Feature",
                 "downtimeMoves": "Downtime Moves",
                 "itemFeatures": "Item Features",
                 "nrChoices": "# Moves Per Rest",
@@ -2585,6 +2619,10 @@
                 "decreasingLoop": "Decreasing Looping",
                 "increasingLoop": "Increasing Looping"
             },
+            "EffectsDisplay": {
+                "removeThing": "[Right Click] Remove {thing}",
+                "appliedBy": "Applied By: {by}"
+            },
             "ItemBrowser": {
                 "title": "Daggerheart Compendium Browser",
                 "hint": "Select a Folder in sidebar to start browsing through the compendium",
@@ -2702,6 +2740,12 @@
                 "documentIsMissing": "The {documentType} is missing from the world."
             },
             "Sidebar": {
+                "actorDirectory": {
+                    "tier": "Tier {tier} {type}",
+                    "character": "Level {level} Character",
+                    "companion": "Level {level} - {partner}",
+                    "companionNoPartner": "No Partner"
+                },
                 "daggerheartMenu": {
                     "title": "Daggerheart Menu",
                     "startSession": "Start Session",

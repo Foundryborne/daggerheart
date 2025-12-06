@@ -214,33 +214,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         context.resources.stress.emptyPips =
             context.resources.stress.max < maxResource ? maxResource - context.resources.stress.max : 0;
 
-        context.inventory = { currencies: {} };
-        const { title, ...currencies } = game.settings.get(
-            CONFIG.DH.id,
-            CONFIG.DH.SETTINGS.gameSettings.Homebrew
-        ).currency;
-        for (let key in currencies) {
-            context.inventory.currencies[key] = {
-                ...currencies[key],
-                field: context.systemFields.gold.fields[key],
-                value: context.source.system.gold[key]
-            };
-        }
-        // context.inventory = {
-        //     currency: {
-        //         title: game.i18n.localize('DAGGERHEART.CONFIG.Gold.title'),
-        //         coins: game.i18n.localize('DAGGERHEART.CONFIG.Gold.coins'),
-        //         handfuls: game.i18n.localize('DAGGERHEART.CONFIG.Gold.handfuls'),
-        //         bags: game.i18n.localize('DAGGERHEART.CONFIG.Gold.bags'),
-        //         chests: game.i18n.localize('DAGGERHEART.CONFIG.Gold.chests')
-        //     }
-        // };
-
         context.beastformActive = this.document.effects.find(x => x.type === 'beastform');
-
-        // if (context.inventory.length === 0) {
-        //     context.inventory = Array(1).fill(Array(5).fill([]));
-        // }
 
         return context;
     }
@@ -717,6 +691,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         };
         const result = await this.document.diceRoll({
             ...config,
+            actionType: 'action',
             headerTitle: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.actor.name}`,
             title: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
                 ability: abilityLabel
@@ -902,47 +877,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
         });
     }
 
-    async _onDragStart(event) {
-        const item = await getDocFromElement(event.target);
-
-        const dragData = {
-            originActor: this.document.uuid,
-            originId: item.id,
-            type: item.documentName,
-            uuid: item.uuid
-        };
-
-        event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
-
-        super._onDragStart(event);
-    }
-
-    async _onDrop(event) {
-        // Prevent event bubbling to avoid duplicate handling
-        event.preventDefault();
-        event.stopPropagation();
-        const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-
-        const { cancel } = await super._onDrop(event);
-        if (cancel) return;
-
-        this._onDropItem(event, data);
-    }
-
-    async _onDropItem(event, data) {
-        const item = await Item.implementation.fromDropData(data);
-        const itemData = item.toObject();
-
-        if (item.type === 'domainCard' && !this.document.system.loadoutSlot.available) {
-            itemData.system.inVault = true;
-        }
-
-        const typesThatReplace = ['ancestry', 'community'];
-        if (typesThatReplace.includes(item.type)) {
-            await this.document.deleteEmbeddedDocuments(
-                'Item',
-                this.document.items.filter(x => x.type === item.type).map(x => x.id)
-            );
+    async _onDropItem(event, item) {
+        if (this.document.uuid === item.parent?.uuid) {
+            return super._onDropItem(event, item);
         }
 
         if (item.type === 'beastform') {
@@ -952,20 +889,27 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 );
             }
 
+            const itemData = item.toObject();
             const data = await game.system.api.data.items.DHBeastform.getWildcardImage(this.document, itemData);
-            if (data) {
-                if (!data.selectedImage) return;
-                else {
-                    if (data.usesDynamicToken) itemData.system.tokenRingImg = data.selectedImage;
-                    else itemData.system.tokenImg = data.selectedImage;
-                }
+            if (!data?.selectedImage) {
+                return;
+            } else if (data) {
+                if (data.usesDynamicToken) itemData.system.tokenRingImg = data.selectedImage;
+                else itemData.system.tokenImg = data.selectedImage;
+                return await this._onDropItemCreate(itemData);
             }
         }
 
-        if (this.document.uuid === item.parent?.uuid) return this._onSortItem(event, itemData);
-        const createdItem = await this._onDropItemCreate(itemData);
+        // If this is a type that gets deleted, delete it first (but still defer to super)
+        const typesThatReplace = ['ancestry', 'community'];
+        if (typesThatReplace.includes(item.type)) {
+            await this.document.deleteEmbeddedDocuments(
+                'Item',
+                this.document.items.filter(x => x.type === item.type).map(x => x.id)
+            );
+        }
 
-        return createdItem;
+        return super._onDropItem(event, item);
     }
 
     async _onDropItemCreate(itemData, event) {

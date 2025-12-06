@@ -1,3 +1,5 @@
+import { AdversaryBPPerEncounter } from '../../config/encounterConfig.mjs';
+
 export default class DhCombatTracker extends foundry.applications.sidebar.tabs.CombatTracker {
     static DEFAULT_OPTIONS = {
         actions: {
@@ -20,11 +22,33 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
         }
     };
 
+    /** @inheritDoc */
+    async _preparePartContext(_partId, context, _options) {
+        return context;
+    }
+
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
+
+        await this._prepareTrackerContext(context, options);
+        await this._prepareCombatContext(context, options);
+
+        return context;
+    }
+
     async _prepareCombatContext(context, options) {
         await super._prepareCombatContext(context, options);
 
+        const modifierBP =
+            this.combats
+                .find(x => x.active)
+                ?.system?.extendedBattleToggles?.reduce((acc, toggle) => acc + toggle.category, 0) ?? 0;
+        const maxBP = CONFIG.DH.ENCOUNTER.BaseBPPerEncounter(context.characters.length) + modifierBP;
+        const currentBP = AdversaryBPPerEncounter(context.adversaries, context.characters);
+
         Object.assign(context, {
-            fear: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear)
+            fear: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
+            battlepoints: { max: maxBP, current: currentBP, hasModifierBP: Boolean(modifierBP) }
         });
     }
 
@@ -99,6 +123,7 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
             resource,
             active: index === combat.turn,
             canPing: combatant.sceneId === canvas.scene?.id && game.user.hasPermission('PING_CANVAS'),
+            type: combatant.actor.system.type,
             img: await this._getCombatantThumbnail(combatant)
         };
 

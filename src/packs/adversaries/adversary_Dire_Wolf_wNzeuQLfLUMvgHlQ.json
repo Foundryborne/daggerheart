@@ -120,17 +120,6 @@
     }
   },
   "flags": {},
-  "_stats": {
-    "compendiumSource": null,
-    "duplicateSource": null,
-    "exportSource": null,
-    "coreVersion": "13.347",
-    "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
-    "createdTime": 1753922784257,
-    "modifiedTime": 1755384380804,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
-  },
   "_id": "wNzeuQLfLUMvgHlQ",
   "sort": 5100000,
   "ownership": {
@@ -328,15 +317,7 @@
       },
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.350",
-        "systemId": "daggerheart",
-        "systemVersion": "1.1.2",
-        "createdTime": 1754044226022,
-        "modifiedTime": 1760209346410,
-        "lastModifiedBy": "fBcTgyTzoARBvohY"
+        "compendiumSource": null
       },
       "_key": "!actors.items!wNzeuQLfLUMvgHlQ.wQXEnMqrl2jo91oy"
     },
@@ -472,15 +453,7 @@
           "sort": 0,
           "flags": {},
           "_stats": {
-            "compendiumSource": null,
-            "duplicateSource": null,
-            "exportSource": null,
-            "coreVersion": "13.346",
-            "systemId": "daggerheart",
-            "systemVersion": "0.0.1",
-            "createdTime": 1754044420696,
-            "modifiedTime": 1754044425763,
-            "lastModifiedBy": "MQSznptE5yLT7kj8"
+            "compendiumSource": null
           },
           "_key": "!actors.items.effects!wNzeuQLfLUMvgHlQ.85XrqDvLP30YOO43.YNKHEFQ4ucGr4Rmc"
         }
@@ -493,15 +466,7 @@
       },
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754044355011,
-        "modifiedTime": 1754143975342,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "compendiumSource": null
       },
       "_key": "!actors.items!wNzeuQLfLUMvgHlQ.85XrqDvLP30YOO43"
     }

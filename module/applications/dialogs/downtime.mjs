@@ -1,3 +1,5 @@
+import { refreshIsAllowed } from '../../helpers/utils.mjs';
+
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -94,11 +96,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
         const actionItems = this.actor.items.reduce((acc, x) => {
             if (x.system.actions) {
                 const recoverable = x.system.actions.reduce((acc, action) => {
-                    if (
-                        action.uses.recovery &&
-                        ((action.uses.recovery === 'longRest' && !this.shortrest) ||
-                            action.uses.recovery === 'shortRest')
-                    ) {
+                    if (refreshIsAllowed([this.shortrest ? 'shortRest' : 'longRest'], action.uses.recovery)) {
                         acc.push({
                             title: x.name,
                             name: action.name,
@@ -120,8 +118,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
             if (
                 x.system.resource &&
                 x.system.resource.type &&
-                ((x.system.resource.recovery === 'longRest') === !this.shortrest ||
-                    x.system.resource.recovery === 'shortRest')
+                refreshIsAllowed([this.shortrest ? 'shortRest' : 'longRest'], action.uses.recovery)
             ) {
                 acc.push({
                     title: game.i18n.localize(`TYPES.Item.${x.type}`),

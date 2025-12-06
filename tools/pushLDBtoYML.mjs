@@ -22,7 +22,8 @@ for (const pack of packs) {
     }
     await extractPack(`${MODULE_ID}/${pack}`, `${MODULE_ID}/src/${pack}`, {
         yaml,
-        transformName
+        transformName,
+        transformEntry,
     });
 }
 /**
@@ -35,6 +36,23 @@ function transformName(doc) {
     const prefix = ['actors', 'items'].includes(type) ? doc.type : type;
 
     return `${doc.name ? `${prefix}_${safeFileName}_${doc._id}` : doc._id}.${yaml ? 'yml' : 'json'}`;
+}
+
+function transformEntry(entry) {
+    function prune(stats) {
+        return stats ? { compendiumSource: stats.compendiumSource } : stats;
+    }
+
+    delete entry._stats;
+    for (const effect of entry.effects ?? []) {
+        effect._stats = prune(effect._stats)
+    }
+    for (const item of entry.items ?? []) {
+        item._stats = prune(item._stats);
+        for (const effect of item.effects ?? []) {
+            effect._stats = prune(effect._stats)
+        }
+    }
 }
 
 async function deepGetDirectories(distPath) {

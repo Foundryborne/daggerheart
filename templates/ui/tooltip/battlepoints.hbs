@@ -1,0 +1,29 @@
+<div class="daggerheart dh-style tooltip">
+    <div class="battlepoint-categories-container">
+        <h3>{{localize "Adversaries"}} ({{currentBP}}/{{maxBP}})</h3>
+        {{#each categories as |category key|}}
+            {{#each category as |grouping index|}}
+                <div class="battlepoint-grouping-container">
+                    {{#if grouping.nr}}
+                        <label>{{key}} BP: {{concat (localize grouping.description) ' ' '('grouping.nr 'x)'}}</label>
+                    {{else}}
+                        <label class="unselected-grouping">{{key}} BP - {{localize grouping.description}}</label>
+                    {{/if}}
+                </div>
+            {{/each}}
+        {{/each}}
+    </div>
+    <div class="battlepoint-toggles-container">
+        <h3>{{localize "Modifiers"}}</h3>
+        {{#each toggles as |toggle|}}
+            <div class="battlepoint-toggle-container {{#if (and toggle.disabled (not toggle.checked))}}inactive{{/if}}">
+                {{#if toggle.disabled}}
+                    <i class="grouping-lock fa-solid {{#if toggle.checked}}fa-lock{{else}}fa-unlock{{/if}}"></i>
+                {{else}}
+                    <input type="checkbox" data-combat-id="{{@root.combatId}}" data-category="{{toggle.categoryKey}}" data-grouping="{{toggle.toggleKey}}" {{checked toggle.checked}} />
+                {{/if}}
+                <label class="unselected-grouping">{{toggle.categoryKey}} BP: {{localize toggle.description}}</label>
+            </div>
+        {{/each}}
+    </div>
+</div>

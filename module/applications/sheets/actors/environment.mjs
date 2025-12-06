@@ -37,11 +37,11 @@ export default class DhpEnvironment extends DHBaseActorSheet {
         header: { template: 'systems/daggerheart/templates/sheets/actors/environment/header.hbs' },
         features: {
             template: 'systems/daggerheart/templates/sheets/actors/environment/features.hbs',
-            scrollable: ['feature-section']
+            scrollable: ['.feature-section']
         },
         potentialAdversaries: {
             template: 'systems/daggerheart/templates/sheets/actors/environment/potentialAdversaries.hbs',
-            scrollable: ['items-sections']
+            scrollable: ['.items-section']
         },
         notes: { template: 'systems/daggerheart/templates/sheets/actors/environment/notes.hbs' }
     };
@@ -130,12 +130,13 @@ export default class DhpEnvironment extends DHBaseActorSheet {
     /* -------------------------------------------- */
 
     async _onDragStart(event) {
-        const item = event.currentTarget.closest('.inventory-item');
-
+        const item = event.currentTarget.closest('.inventory-item[data-type=adversary]');
         if (item) {
             const adversaryData = { type: 'Actor', uuid: item.dataset.itemUuid };
             event.dataTransfer.setData('text/plain', JSON.stringify(adversaryData));
             event.dataTransfer.setDragImage(item, 60, 0);
+        } else {
+            return super._onDragStart(event);
         }
     }
 

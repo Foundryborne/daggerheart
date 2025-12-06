@@ -25,7 +25,8 @@ export default class AdversarySheet extends DHBaseActorSheet {
                     action: 'editAttribution'
                 }
             ]
-        }
+        },
+        dragDrop: [{ dragSelector: '[data-item-id][draggable="true"]', dropSelector: null }]
     };
 
     static PARTS = {

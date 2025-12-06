@@ -1,9 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cinzel+Decorative:wght@700&family=Montserrat:wght@400;600&display=swap');
 @import './mixin.less';
 
-@font-title: 'Cinzel Decorative', serif;
-@font-subtitle: 'Cinzel', serif;
-@font-body: 'Montserrat', sans-serif;
+:root {
+    --font-title: 'Cinzel Decorative';
+    --font-subtitle: 'Cinzel';
+    --font-body: 'Montserrat';
+}
+
+@font-title: ~"var(--font-title, 'Cinzel Decorative'), serif";
+@font-subtitle: ~"var(--font-subtitle, 'Cinzel'), serif";
+@font-body: ~"var(--font-body, 'Montserrat'), sans-serif";
 
 .dh-style {
     .dh-typography();

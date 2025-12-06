@@ -1,0 +1,42 @@
+.daggerheart.dh-style.tooltip {
+    .battlepoint-categories-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 16px;
+
+        .battlepoint-grouping-container {
+            display: flex;
+            gap: 4px;
+
+            .unselected-grouping {
+                opacity: 0.4;
+            }
+        }
+    }
+
+    .battlepoint-toggles-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .battlepoint-toggle-container {
+            display: flex;
+            gap: 4px;
+
+            &.inactive {
+                opacity: 0.4;
+            }
+
+            .grouping-lock {
+                font-size: 17.5px;
+                margin: 0 5px;
+                color: @golden;
+            }
+
+            input {
+                margin-top: 0;
+            }
+        }
+    }
+}

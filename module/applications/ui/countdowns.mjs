@@ -14,7 +14,6 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     constructor(options = {}) {
         super(options);
 
-        this.sidebarCollapsed = true;
         this.setupHooks();
     }
 
@@ -98,11 +97,10 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
         context.isGM = game.user.isGM;
-        context.sidebarCollapsed = this.sidebarCollapsed;
+
         context.iconOnly =
             game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode) ===
             CONFIG.DH.GENERAL.countdownAppMode.iconOnly;
-
         const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
         context.countdowns = this.#getCountdowns().reduce((acc, { key, countdown, ownership }) => {
             const playersWithAccess = game.users.reduce((acc, user) => {

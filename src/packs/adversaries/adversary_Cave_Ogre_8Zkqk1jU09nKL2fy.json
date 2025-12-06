@@ -119,17 +119,6 @@
     }
   },
   "flags": {},
-  "_stats": {
-    "compendiumSource": null,
-    "duplicateSource": null,
-    "exportSource": null,
-    "coreVersion": "13.347",
-    "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
-    "createdTime": 1753922784233,
-    "modifiedTime": 1755384280132,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
-  },
   "_id": "8Zkqk1jU09nKL2fy",
   "sort": 1500000,
   "ownership": {
@@ -284,15 +273,7 @@
       },
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754011303846,
-        "modifiedTime": 1754143837385,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "compendiumSource": null
       },
       "_key": "!actors.items!8Zkqk1jU09nKL2fy.ynuyMl1sMQYINfcQ"
     },
@@ -318,15 +299,7 @@
       },
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754011637183,
-        "modifiedTime": 1754011673466,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "compendiumSource": null
       },
       "_key": "!actors.items!8Zkqk1jU09nKL2fy.szu5YYQ6klkDbqAT"
     },
@@ -500,15 +473,7 @@
       },
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754011680074,
-        "modifiedTime": 1754143860893,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "compendiumSource": null
       },
       "_key": "!actors.items!8Zkqk1jU09nKL2fy.zGvaBYJPOOnQVQEn"
     },
@@ -588,15 +553,7 @@
       },
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754011925214,
-        "modifiedTime": 1754143873733,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "compendiumSource": null
       },
       "_key": "!actors.items!8Zkqk1jU09nKL2fy.Qxkddj6nQc4RDExW"
     }

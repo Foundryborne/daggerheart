@@ -141,6 +141,10 @@ export default class DhpAdversary extends BaseDataActor {
         return this.parent.items.filter(x => x.type === 'feature');
     }
 
+    isItemValid(source) {
+        return source.type === "feature";
+    }
+
     async _preUpdate(changes, options, user) {
         const allowed = await super._preUpdate(changes, options, user);
         if (allowed === false) return false;

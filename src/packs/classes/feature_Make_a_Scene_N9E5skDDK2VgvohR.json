@@ -90,29 +90,12 @@
       "sort": 0,
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "compendiumSource": null
       },
       "_key": "!items.effects!N9E5skDDK2VgvohR.8G9zDv1gac6dEHmS"
     }
   ],
   "flags": {},
-  "_stats": {
-    "compendiumSource": "Compendium.daggerheart.classes.Item.OxmucTHHfuBSv2dn",
-    "duplicateSource": null,
-    "exportSource": null,
-    "coreVersion": "13.347",
-    "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
-    "createdTime": 1754174534518,
-    "modifiedTime": 1755391180683,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
-  },
   "ownership": {
     "default": 0,
     "LgnbNMLaxandgMQq": 3

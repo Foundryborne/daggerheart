@@ -64,6 +64,12 @@
             {{/if}}
         </strong>
 
+        {{#if (and combats.length user.isGM)}}
+            <div class="encounter-battlepoints" data-tooltip="#battlepoints#" data-combat-id="{{combat.id}}">
+                {{battlepoints.current}}/{{battlepoints.max}} BP{{#if battlepoints.hasModifierBP}}*{{/if}}
+            </div>
+        {{/if}}
+
         {{!-- Combat Controls --}}
         <div class="inner-controls">
             {{#if hasCombat}}

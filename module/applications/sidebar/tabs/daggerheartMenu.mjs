@@ -1,3 +1,5 @@
+import { refreshIsAllowed } from '../../../helpers/utils.mjs';
+
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { AbstractSidebarTab } = foundry.applications.sidebar;
 /**
@@ -58,7 +60,7 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
             if (['character', 'adversary'].includes(actor.type) && actor.prototypeToken.actorLink) {
                 const updates = {};
                 for (let item of actor.items) {
-                    if (item.system.metadata?.hasResource && types.includes(item.system.resource?.recovery)) {
+                    if (item.system.metadata?.hasResource && refreshIsAllowed(types, item.system.resource?.recovery)) {
                         if (!refreshedActors[actor.id])
                             refreshedActors[actor.id] = { name: actor.name, img: actor.img, refreshed: new Set() };
                         refreshedActors[actor.id].refreshed.add(
@@ -79,7 +81,7 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
                     if (item.system.metadata?.hasActions) {
                         const refreshTypes = new Set();
                         const actions = item.system.actions.filter(action => {
-                            if (types.includes(action.uses.recovery)) {
+                            if (refreshIsAllowed(types, action.uses.recovery)) {
                                 refreshTypes.add(action.uses.recovery);
                                 return true;
                             }

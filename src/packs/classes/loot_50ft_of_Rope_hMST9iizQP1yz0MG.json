@@ -10,17 +10,6 @@
   },
   "effects": [],
   "flags": {},
-  "_stats": {
-    "compendiumSource": "Compendium.daggerheart.classes.Item.KF2oCpxX8s9jcvWT",
-    "duplicateSource": null,
-    "exportSource": null,
-    "coreVersion": "13.346",
-    "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
-    "createdTime": 1754174513423,
-    "modifiedTime": 1754174513423,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
-  },
   "ownership": {
     "default": 0,
     "LgnbNMLaxandgMQq": 3

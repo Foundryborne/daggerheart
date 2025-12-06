@@ -35,14 +35,8 @@ export default class RegisterHandlebarsHelpers {
         return accum;
     }
 
-    static damageFormula(attack, actor) {
-        const traitTotal = actor.system.traits?.[attack.roll.trait]?.value;
-        const instances = [
-            attack.damage.parts.map(x => Roll.replaceFormulaData(x.value.getFormula(), actor)).join(' + '),
-            traitTotal
-        ].filter(x => x);
-
-        return instances.join(traitTotal > 0 ? ' + ' : ' - ');
+    static damageFormula(attack) {
+        return attack.getDamageFormula();
     }
 
     static formulaValue(formula, item) {

@@ -8,7 +8,7 @@
 
         <div class="settings-items">
             {{#each move.effects}}
-                {{> "systems/daggerheart/templates/settings/components/settings-item-line.hbs" id=this.id type="effect" }}
+                {{> "systems/daggerheart/templates/settings/components/settings-item-line.hbs" actionId=../move.id id=this.id type="effect" }}
             {{/each}}
         </div>
     </fieldset>

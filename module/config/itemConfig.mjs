@@ -459,7 +459,16 @@ export const allArmorFeatures = () => {
         ...armorFeatures,
         ...Object.keys(homebrewFeatures).reduce((acc, key) => {
             const feature = homebrewFeatures[key];
-            acc[key] = { ...feature, label: feature.name };
+            const actions = feature.actions.map(action => ({
+                ...action,
+                effects: action.effects.map(effect => feature.effects.find(x => x.id === effect._id)),
+                type: action.type
+            }));
+            const actionEffects = actions.flatMap(a => a.effects);
+
+            const effects = feature.effects.filter(effect => !actionEffects.some(x => x.id === effect.id));
+
+            acc[key] = { ...feature, label: feature.name, effects, actions };
             return acc;
         }, {})
     };
@@ -1414,11 +1423,21 @@ export const weaponFeatures = {
 export const allWeaponFeatures = () => {
     const homebrewFeatures = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).itemFeatures
         .weaponFeatures;
+
     return {
         ...weaponFeatures,
         ...Object.keys(homebrewFeatures).reduce((acc, key) => {
             const feature = homebrewFeatures[key];
-            acc[key] = { ...feature, label: feature.name };
+
+            const actions = feature.actions.map(action => ({
+                ...action,
+                effects: action.effects.map(effect => feature.effects.find(x => x.id === effect._id)),
+                type: action.type
+            }));
+            const actionEffects = actions.flatMap(a => a.effects);
+            const effects = feature.effects.filter(effect => !actionEffects.some(x => x.id === effect.id));
+
+            acc[key] = { ...feature, label: feature.name, effects, actions };
             return acc;
         }, {})
     };

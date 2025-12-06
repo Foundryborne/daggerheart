@@ -43,6 +43,7 @@ CONFIG.ActiveEffect.dataModels = models.activeEffects.config;
 
 CONFIG.Combat.documentClass = documents.DhpCombat;
 CONFIG.Combat.dataModels = { base: models.DhCombat };
+CONFIG.Combatant.documentClass = documents.DHCombatant;
 CONFIG.Combatant.dataModels = { base: models.DhCombatant };
 
 CONFIG.ChatMessage.dataModels = models.chatMessages.config;
@@ -61,8 +62,10 @@ CONFIG.Token.hudClass = applications.hud.DHTokenHUD;
 
 CONFIG.ui.combat = applications.ui.DhCombatTracker;
 CONFIG.ui.chat = applications.ui.DhChatLog;
+CONFIG.ui.effectsDisplay = applications.ui.DhEffectsDisplay;
 CONFIG.ui.hotbar = applications.ui.DhHotbar;
 CONFIG.ui.sidebar = applications.sidebar.DhSidebar;
+CONFIG.ui.actors = applications.sidebar.DhActorDirectory;
 CONFIG.ui.daggerheartMenu = applications.sidebar.DaggerheartMenu;
 CONFIG.ui.resources = applications.ui.DhFearTracker;
 CONFIG.ui.countdowns = applications.ui.DhCountdowns;
@@ -166,6 +169,9 @@ Hooks.on('ready', async () => {
         ui.countdowns = new CONFIG.ui.countdowns();
         ui.countdowns.render({ force: true });
     }
+
+    ui.effectsDisplay = new CONFIG.ui.effectsDisplay();
+    ui.effectsDisplay.render({ force: true });
 
     if (!(ui.compendiumBrowser instanceof applications.ui.ItemBrowser))
         ui.compendiumBrowser = new applications.ui.ItemBrowser();

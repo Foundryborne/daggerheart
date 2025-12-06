@@ -4,10 +4,11 @@
     {{formGroup fields.disabled value=source.disabled rootId=rootId}}
 
     {{#if isActorEffect}}
-    {{formGroup fields.origin value=source.origin rootId=rootId disabled=true}}
+        {{formGroup fields.origin value=source.origin rootId=rootId disabled=true}}
     {{/if}}
+    
     {{#if isItemEffect}}
-    {{formGroup fields.transfer value=source.transfer rootId=rootId label=legacyTransfer.label hint=(localize "DAGGERHEART.EFFECTS.Attachments.transferHint")}}
+        {{formGroup fields.transfer value=source.transfer rootId=rootId label=legacyTransfer.label hint=(localize "DAGGERHEART.EFFECTS.Attachments.transferHint")}}
     {{/if}}
 
     {{formGroup fields.statuses value=source.statuses options=statuses rootId=rootId classes="statuses"}}

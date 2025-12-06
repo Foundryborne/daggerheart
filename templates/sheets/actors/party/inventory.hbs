@@ -52,7 +52,7 @@
         title='TYPES.Item.weapon'
         type='weapon'
         actorType='party'
-        collection=document.itemTypes.weapon
+        collection=@root.inventory.weapons
         isGlassy=true
         canCreate=true
         hideResources=true
@@ -62,7 +62,7 @@
         title='TYPES.Item.armor'
         type='armor'
         actorType='party'
-        collection=document.itemTypes.armor
+        collection=@root.inventory.armor
         isGlassy=true
         canCreate=true
         hideResources=true
@@ -72,7 +72,7 @@
         title='TYPES.Item.consumable'
         type='consumable'
         actorType='party'
-        collection=document.itemTypes.consumable
+        collection=@root.inventory.consumables
         isGlassy=true
         canCreate=true
         hideContextMenu=true
@@ -81,7 +81,7 @@
         title='TYPES.Item.loot'
         type='loot'
         actorType='party'
-        collection=document.itemTypes.loot
+        collection=@root.inventory.loot
         isGlassy=true
         canCreate=true
         hideContextMenu=true

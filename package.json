@@ -15,7 +15,7 @@
     "readline": "^1.3.0",
     "pushLDBtoYML": "node ./tools/pushLDBtoYML.mjs",
     "pullYMLtoLDB": "node ./tools/pullYMLtoLDB.mjs",
-    "pullYMLtoLDBBuild": "node ./tools/pullYMLtoLDBBuild.mjs",
+    "pullYMLtoLDBBuild": "node ./tools/pullYMLtoLDB.mjs --build",
     "createSymlink": "node ./tools/create-symlink.mjs",
     "setup:dev": "node ./tools/dev-setup.mjs"
   },

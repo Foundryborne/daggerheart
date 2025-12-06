@@ -844,4 +844,65 @@ export default class DhpActor extends Actor {
         if (this.system._getTags) tags.push(...this.system._getTags());
         return tags;
     }
+
+    /** Get active effects */
+    getActiveEffects() {
+        const statusMap = new Map(foundry.CONFIG.statusEffects.map(status => [status.id, status]));
+        return this.effects
+            .filter(x => !x.disabled)
+            .reduce((acc, effect) => {
+                acc.push(effect);
+
+                const currentStatusActiveEffects = acc.filter(
+                    x => x.statuses.size === 1 && x.name === game.i18n.localize(statusMap.get(x.statuses.first()).name)
+                );
+
+                for (var status of effect.statuses) {
+                    if (!currentStatusActiveEffects.find(x => x.statuses.has(status))) {
+                        const statusData = statusMap.get(status);
+                        if (statusData) {
+                            acc.push({
+                                condition: status,
+                                appliedBy: game.i18n.localize(effect.name),
+                                name: game.i18n.localize(statusData.name),
+                                statuses: new Set([status]),
+                                img: statusData.icon ?? statusData.img,
+                                description: game.i18n.localize(statusData.description),
+                                tint: effect.tint
+                            });
+                        }
+                    }
+                }
+
+                return acc;
+            }, []);
+    }
+
+    /* Temporarily copying the foundry method to add a fix to a bug with scenes 
+       https://discord.com/channels/170995199584108546/1296292044011995136/1446693077443149856
+    */
+    getDependentTokens({ scenes, linked = false } = {}) {
+        if (this.isToken && !scenes) return [this.token];
+        if (scenes) scenes = Array.isArray(scenes) ? scenes : [scenes];
+        else scenes = Array.from(this._dependentTokens.keys());
+
+        /* Code to filter out nonexistant scenes */
+        scenes = scenes.filter(scene => game.scenes.some(x => x.id === scene.id));
+
+        if (this.isToken) {
+            const parent = this.token.parent;
+            return scenes.includes(parent) ? [this.token] : [];
+        }
+
+        const allTokens = [];
+        for (const scene of scenes) {
+            if (!scene) continue;
+            const tokens = this._dependentTokens.get(scene);
+            for (const token of tokens ?? []) {
+                if (!linked || token.actorLink) allTokens.push(token);
+            }
+        }
+
+        return allTokens;
+    }
 }

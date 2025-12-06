@@ -93,25 +93,6 @@ export default class Party extends DHBaseActorSheet {
     /*  Prepare Context                             */
     /* -------------------------------------------- */
 
-    async _prepareContext(_options) {
-        const context = await super._prepareContext(_options);
-
-        context.inventory = { currencies: {} };
-        const { title, ...currencies } = game.settings.get(
-            CONFIG.DH.id,
-            CONFIG.DH.SETTINGS.gameSettings.Homebrew
-        ).currency;
-        for (let key in currencies) {
-            context.inventory.currencies[key] = {
-                ...currencies[key],
-                field: context.systemFields.gold.fields[key],
-                value: context.source.system.gold[key]
-            };
-        }
-
-        return context;
-    }
-
     async _preparePartContext(partId, context, options) {
         context = await super._preparePartContext(partId, context, options);
         switch (partId) {
@@ -438,30 +419,9 @@ export default class Party extends DHBaseActorSheet {
     }
 
     /* -------------------------------------------- */
-    async _onDragStart(event) {
-        const item = await getDocFromElement(event.target);
-        const dragData = {
-            originActor: this.document.uuid,
-            originId: item.id,
-            type: item.documentName,
-            uuid: item.uuid
-        };
 
-        event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
-        super._onDragStart(event);
-    }
-
-    async _onDrop(event) {
-        // Prevent event bubbling to avoid duplicate handling
-        event.preventDefault();
-        event.stopPropagation();
+    async _onDropActor(event, document) {
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-
-        const { cancel } = await super._onDrop(event);
-        if (cancel) return;
-
-        const document = await foundry.utils.fromUuid(data.uuid);
-
         if (document instanceof DhpActor && Party.ALLOWED_ACTOR_TYPES.includes(document.type)) {
             const currentMembers = this.document.system.partyMembers.map(x => x.uuid);
             if (currentMembers.includes(data.uuid)) {
@@ -469,11 +429,11 @@ export default class Party extends DHBaseActorSheet {
             }
 
             await this.document.update({ 'system.partyMembers': [...currentMembers, document.uuid] });
-        } else if (document instanceof DHItem) {
-            this.document.createEmbeddedDocuments('Item', [document.toObject()]);
         } else {
             ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.onlyCharactersInPartySheet'));
         }
+
+        return null;
     }
 
     static async #deletePartyMember(event, target) {
