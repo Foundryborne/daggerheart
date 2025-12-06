@@ -116,14 +116,14 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             context.isLite = this.config.roll?.lite;
             context.extraFormula = this.config.extraFormula;
             context.formula = this.roll.constructFormula(this.config);
-            if (this.actor.system.traits) context.abilities = this.getTraitModifiers();
+            if (this.actor?.system?.traits) context.abilities = this.getTraitModifiers();
 
             context.showReaction = !this.config.roll?.type && context.rollType === 'DualityRoll';
             context.reactionOverride = this.reactionOverride;
         }
 
         const tagTeamSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
-        if (tagTeamSetting.members[this.actor.id] && !this.config.skips?.createMessage) {
+        if (this.actor && tagTeamSetting.members[this.actor.id] && !this.config.skips?.createMessage) {
             context.activeTagTeamRoll = true;
             context.tagTeamSelected = this.config.tagTeamSelected;
         }

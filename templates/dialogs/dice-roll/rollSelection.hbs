@@ -70,17 +70,20 @@
                     {{/if}}
                 </div>
 
-                <fieldset class="experience-container">
-                    <legend>{{localize "DAGGERHEART.GENERAL.experience.plural"}}</legend>
-                    {{#each experiences}}
-                        {{#if name}}
-                            <div class="experience-chip {{#if (includes ../selectedExperiences id)}}selected{{/if}}" data-action="selectExperience" data-key="{{id}}" data-tooltip="{{this.description}}">
-                                <span><i class="{{ifThen (includes ../selectedExperiences id) "fa-solid" "fa-regular"}} fa-circle"></i></span>
-                                <span class="label">{{name}} +{{value}}</span>
-                            </div>
-                        {{/if}}
-                    {{/each}}
-                </fieldset>
+                {{#if experiences.length}}
+                    <fieldset class="experience-container">
+                        <legend>{{localize "DAGGERHEART.GENERAL.experience.plural"}}</legend>
+                        {{#each experiences}}
+                            {{#if name}}
+                                <div class="experience-chip {{#if (includes ../selectedExperiences id)}}selected{{/if}}" data-action="selectExperience" data-key="{{id}}" data-tooltip="{{this.description}}">
+                                    <span><i class="{{ifThen (includes ../selectedExperiences id) "fa-solid" "fa-regular"}} fa-circle"></i></span>
+                                    <span class="label">{{name}} +{{value}}</span>
+                                </div>
+                            {{/if}}
+                        {{/each}}
+                    </fieldset>
+                {{/if}}
+
                 <fieldset class="modifier-container {{#if (eq @root.rollType 'DualityRoll')}}two-columns{{else}}one-column{{/if}}">
                     <legend>{{localize "DAGGERHEART.GENERAL.Modifier.plural"}}</legend>
                     <div class="nest-inputs">
