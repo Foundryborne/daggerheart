@@ -882,11 +882,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             return super._onDropItem(event, item);
         }
 
-        if (item.type === 'domainCard' && !this.document.system.loadoutSlot.available) {
-            const itemData = item.toObject();
-            itemData.system.inVault = true;
-            return await this._onDropItemCreate(itemData);
-        } else if (item.type === 'beastform') {
+        if (item.type === 'beastform') {
             if (this.document.effects.find(x => x.type === 'beastform')) {
                 return ui.notifications.warn(
                     game.i18n.localize('DAGGERHEART.UI.Notifications.beastformAlreadyApplied')
