@@ -468,3 +468,8 @@ export function refreshIsAllowed(allowedTypes, typeToCheck) {
             return false;
     }
 }
+
+export async function getCritDamageBonus(formula) {
+    const critRoll = new Roll(formula);
+    return critRoll.dice.reduce((acc, dice) => acc + dice.faces, 0);
+}
