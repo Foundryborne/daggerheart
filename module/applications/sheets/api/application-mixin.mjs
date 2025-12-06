@@ -662,6 +662,9 @@ export default function DHApplicationMixin(Base) {
             };
             if (inVault) data['system.inVault'] = true;
             if (disabled) data.disabled = true;
+            if (type === "domainCard" && parent?.system.domains?.length) {
+                data.system.domain = parent.system.domains[0];
+            }
 
             const doc = await cls.create(data, { parent, renderSheet: !event.shiftKey });
             if (parentIsItem && type === 'feature') {
