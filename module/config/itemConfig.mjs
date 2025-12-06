@@ -459,16 +459,13 @@ export const allArmorFeatures = () => {
         ...armorFeatures,
         ...Object.keys(homebrewFeatures).reduce((acc, key) => {
             const feature = homebrewFeatures[key];
-            const actionEffects = [];
-            const actions = feature.actions.map(action => {
-                const effects = action.effects.map(effect => feature.effects.find(x => x.id === effect._id));
-                actionEffects.push(...effects);
-                return {
-                    ...action,
-                    effects: effects,
-                    type: action.type
-                };
-            });
+            const actions = feature.actions.map(action => ({
+                ...action,
+                effects: action.effects.map(effect => feature.effects.find(x => x.id === effect._id)),
+                type: action.type
+            }));
+            const actionEffects = actions.flatMap(a => a.effects);
+
             const effects = feature.effects.filter(effect => !actionEffects.some(x => x.id === effect.id));
 
             acc[key] = { ...feature, label: feature.name, effects, actions };
@@ -1431,16 +1428,13 @@ export const allWeaponFeatures = () => {
         ...weaponFeatures,
         ...Object.keys(homebrewFeatures).reduce((acc, key) => {
             const feature = homebrewFeatures[key];
-            const actionEffects = [];
-            const actions = feature.actions.map(action => {
-                const effects = action.effects.map(effect => feature.effects.find(x => x.id === effect._id));
-                actionEffects.push(...effects);
-                return {
-                    ...action,
-                    effects: effects,
-                    type: action.type
-                };
-            });
+
+            const actions = feature.actions.map(action => ({
+                ...action,
+                effects: action.effects.map(effect => feature.effects.find(x => x.id === effect._id)),
+                type: action.type
+            }));
+            const actionEffects = actions.flatMap(a => a.effects);
             const effects = feature.effects.filter(effect => !actionEffects.some(x => x.id === effect.id));
 
             acc[key] = { ...feature, label: feature.name, effects, actions };

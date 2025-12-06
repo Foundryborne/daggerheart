@@ -102,6 +102,8 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
         return (
             (await foundry.applications.api.DialogV2.input({
                 window: { title: game.i18n.localize('DAGGERHEART.CONFIG.SelectAction.selectType') },
+                position: { width: 300 },
+                classes: ['daggerheart', 'dh-style'],
                 content: await foundry.applications.handlebars.renderTemplate(
                     'systems/daggerheart/templates/actionTypes/actionType.hbs',
                     { types: CONFIG.DH.ACTIONS.actionTypes }
@@ -185,7 +187,24 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
     static async removeItem(_, target) {
         const { type, id } = target.dataset;
         if (type === 'effect') {
-            await this.settings.updateSource({ [`${this.movePath}.effects.-=${id}`]: null });
+            const move = foundry.utils.getProperty(this.settings, this.movePath);
+            for (const action of move.actions) {
+                const remainingEffects = action.effects.filter(x => x._id !== id);
+                if (action.effects.length !== remainingEffects.length) {
+                    await action.update({
+                        effects: remainingEffects.map(x => {
+                            const { _id, ...rest } = x;
+                            return { ...rest, _id: _id };
+                        })
+                    });
+                }
+            }
+            await this.settings.updateSource({
+                [this.movePath]: {
+                    effects: move.effects.filter(x => x.id !== id),
+                    actions: move.actions
+                }
+            });
         } else {
             await this.settings.updateSource({ [`${this.actionsPath}.-=${target.dataset.id}`]: null });
         }
