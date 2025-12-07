@@ -134,6 +134,10 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
 
+        htmlElement.querySelectorAll('.inventory-item-quantity').forEach(element => {
+            element.addEventListener('change', this.updateItemQuantity.bind(this));
+            element.addEventListener('click', e => e.stopPropagation());
+        });
         htmlElement.querySelectorAll('.item-button .action-uses-button').forEach(element => {
             element.addEventListener('contextmenu', DHBaseActorSheet.#modifyActionUses);
         });
@@ -170,6 +174,18 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
      */
     static #getFeatureContextOptions() {
         return this._getContextMenuCommonOptions.call(this, { usable: true, toChat: true });
+    }
+
+    /* -------------------------------------------- */
+    /*  Application Listener Actions                */
+    /* -------------------------------------------- */
+
+    async updateItemQuantity(event) {
+        const item = await getDocFromElement(event.currentTarget);
+        if (!item) return;
+
+        await item.update({ 'system.quantity': event.currentTarget.value });
+        this.render();
     }
 
     /* -------------------------------------------- */
