@@ -135,7 +135,7 @@ const registerNonConfigSettings = () => {
 };
 
 /** 
- * Triggers a reset and non-forced re-render on all given actors (if given) 
+ * Triggers a reset and non-forced re-render on all given actors (if given)
  * or all world actors and actors in all scenes to show immediate results for a changed setting.
  */
 function resetActors(actors) {
