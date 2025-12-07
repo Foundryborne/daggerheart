@@ -3,7 +3,7 @@
         <div class="levelup-navigation-actions {{#if (not this.showTabs)}}test{{/if}}">       
             {{#if this.navigate.previous.fromSummary}}
                 <button data-action="activatePart" data-part="advancements">{{localize "DAGGERHEART.APPLICATIONS.Levelup.navigateToLevelup"}}</button>
-                <button data-action="save" {{#if (not this.levelup.allLevelsFinished)}}disabled{{/if}}>{{localize "Finish Levelup"}}</button>
+                <button data-action="save" {{#if (not this.levelup.allLevelsFinished)}}disabled{{/if}}>{{localize "DAGGERHEART.APPLICATIONS.Levelup.finishLevelup"}}</button>
             {{else}}
                 {{#if (not this.navigate.previous.disabled)}}
                     <button data-action="updateCurrentLevel" >{{this.navigate.previous.label}}</button>
