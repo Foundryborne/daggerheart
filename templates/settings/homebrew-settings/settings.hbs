@@ -34,7 +34,7 @@
             </div>
             <div class="toggleable-row">
                 {{formGroup settingFields.schema.fields.currency.fields.coins.fields.label value=settingFields._source.currency.coins.label localize=true}}
-                <input type="checkbox" {{checked settingFields._source.currency.coins.enabled}} disabled />
+                <input type="checkbox" name="currency.coins.enabled" {{checked settingFields._source.currency.coins.enabled}} />
             </div>
             <div class="toggleable-row">
                 {{formGroup settingFields.schema.fields.currency.fields.handfuls.fields.label value=settingFields._source.currency.handfuls.label localize=true}}
