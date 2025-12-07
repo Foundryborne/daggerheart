@@ -36,6 +36,9 @@ const registerMenuSettings = () => {
             if (value.maxFear) {
                 if (ui.resources) ui.resources.render({ force: true });
             }
+
+            // Some homebrew settings may change sheets in various ways, so trigger a re-render
+            resetActors();
         }
     });
 
@@ -130,3 +133,19 @@ const registerNonConfigSettings = () => {
         type: DhTagTeamRoll
     });
 };
+
+/** 
+ * Triggers a reset and non-forced re-render on all given actors (if given) 
+ * or all world actors and actors in all scenes to show immediate results for a changed setting.
+ */
+function resetActors(actors) {
+    actors ??= [
+        game.actors.contents,
+        game.scenes.contents.flatMap((s) => s.tokens.contents).flatMap((t) => t.actor ?? []),
+    ].flat();
+    actors = new Set(actors);
+    for (const actor of actors) {
+        actor.reset();
+        actor.render();
+    }
+}
