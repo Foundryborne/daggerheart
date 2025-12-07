@@ -182,10 +182,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
 
     async updateItemQuantity(event) {
         const item = await getDocFromElement(event.currentTarget);
-        if (!item) return;
-
-        await item.update({ 'system.quantity': event.currentTarget.value });
-        this.render();
+        await item?.update({ 'system.quantity': event.currentTarget.value });
     }
 
     /* -------------------------------------------- */
