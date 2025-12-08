@@ -212,30 +212,12 @@
       "sort": 0,
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "lastModifiedBy": "LgnbNMLaxandgMQq",
-        "modifiedTime": 1754239949068
+        "compendiumSource": null
       },
       "_key": "!items.effects!99U7YWNCxFZHCiT0.FK4IdbxluRErfYor"
     }
   ],
   "flags": {},
-  "_stats": {
-    "compendiumSource": "Compendium.daggerheart.subclasses.Item.6j1RP4fz3BwSfoli",
-    "duplicateSource": null,
-    "exportSource": null,
-    "coreVersion": "13.347",
-    "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
-    "createdTime": 1754174646194,
-    "modifiedTime": 1755391572653,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
-  },
   "ownership": {
     "default": 0,
     "LgnbNMLaxandgMQq": 3

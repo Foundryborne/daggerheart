@@ -1,5 +1,6 @@
 import * as GENERAL from './generalConfig.mjs';
 import * as DOMAIN from './domainConfig.mjs';
+import * as ENCOUNTER from './encounterConfig.mjs';
 import * as ACTOR from './actorConfig.mjs';
 import * as ITEM from './itemConfig.mjs';
 import * as SETTINGS from './settingsConfig.mjs';
@@ -13,6 +14,7 @@ export const SYSTEM_ID = 'daggerheart';
 
 export const SYSTEM = {
     id: SYSTEM_ID,
+    ENCOUNTER,
     GENERAL,
     DOMAIN,
     ACTOR,

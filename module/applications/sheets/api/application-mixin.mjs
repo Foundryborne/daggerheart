@@ -322,10 +322,11 @@ export default function DHApplicationMixin(Base) {
         _onDrop(event) {
             event.stopPropagation();
             const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-            if (data.fromInternal === this.document.uuid) return;
-
-            if (data.type === 'ActiveEffect') {
+            if (data.type === 'ActiveEffect' && data.fromInternal !== this.document.uuid) {
                 this.document.createEmbeddedDocuments('ActiveEffect', [data.data]);
+            } else {
+                // Fallback to super, but note that item sheets do not have this function
+                return super._onDrop?.(event);
             }
         }
 
@@ -662,6 +663,9 @@ export default function DHApplicationMixin(Base) {
             };
             if (inVault) data['system.inVault'] = true;
             if (disabled) data.disabled = true;
+            if (type === "domainCard" && parent?.system.domains?.length) {
+                data.system.domain = parent.system.domains[0];
+            }
 
             const doc = await cls.create(data, { parent, renderSheet: !event.shiftKey });
             if (parentIsItem && type === 'feature') {

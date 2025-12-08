@@ -19,14 +19,22 @@ export default class BeastformEffect extends BaseEffect {
                     base64: false
                 }),
                 tokenSize: new fields.SchemaField({
-                    height: new fields.NumberField({ integer: true, nullable: true }),
-                    width: new fields.NumberField({ integer: true, nullable: true })
+                    height: new fields.NumberField({ integer: false, nullable: true }),
+                    width: new fields.NumberField({ integer: false, nullable: true })
                 })
             }),
             advantageOn: new fields.ArrayField(new fields.StringField()),
             featureIds: new fields.ArrayField(new fields.StringField()),
             effectIds: new fields.ArrayField(new fields.StringField())
         };
+    }
+
+    /** @inheritDoc */
+    static migrateData(source) {
+        if (!source.characterTokenData.tokenSize.height) source.characterTokenData.tokenSize.height = 1;
+        if (!source.characterTokenData.tokenSize.width) source.characterTokenData.tokenSize.width = 1;
+
+        return super.migrateData(source);
     }
 
     async _onCreate(_data, _options, userId) {

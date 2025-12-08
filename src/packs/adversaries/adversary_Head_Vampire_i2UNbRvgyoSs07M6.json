@@ -120,17 +120,6 @@
     }
   },
   "flags": {},
-  "_stats": {
-    "compendiumSource": null,
-    "duplicateSource": null,
-    "exportSource": null,
-    "coreVersion": "13.347",
-    "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
-    "createdTime": 1753922784283,
-    "modifiedTime": 1755385468446,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
-  },
   "_id": "i2UNbRvgyoSs07M6",
   "sort": 3400000,
   "ownership": {
@@ -307,15 +296,7 @@
       },
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754128368124,
-        "modifiedTime": 1754128576298,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "compendiumSource": null
       },
       "_key": "!actors.items!i2UNbRvgyoSs07M6.c30Cc5mofs2arb9j"
     },
@@ -387,15 +368,7 @@
       },
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754128418603,
-        "modifiedTime": 1754128564670,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "compendiumSource": null
       },
       "_key": "!actors.items!i2UNbRvgyoSs07M6.1RfqKn7gYbWbSl0A"
     },
@@ -488,15 +461,7 @@
       },
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.347",
-        "systemId": "daggerheart",
-        "systemVersion": "1.0.4",
-        "createdTime": 1754128497673,
-        "modifiedTime": 1755266523384,
-        "lastModifiedBy": "VZIeX2YDvX338Zvr"
+        "compendiumSource": null
       },
       "_key": "!actors.items!i2UNbRvgyoSs07M6.Oj6qkLG1N6uqQHcx"
     },
@@ -551,15 +516,7 @@
       },
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754128578585,
-        "modifiedTime": 1754129057806,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "compendiumSource": null
       },
       "_key": "!actors.items!i2UNbRvgyoSs07M6.IWtpuQCuV82lOSry"
     },
@@ -657,15 +614,7 @@
       },
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754128664385,
-        "modifiedTime": 1754128847871,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "compendiumSource": null
       },
       "_key": "!actors.items!i2UNbRvgyoSs07M6.6FsQf339qGHnz3ZF"
     }

@@ -109,9 +109,9 @@ export default class DHEnvironmentSettings extends DHBaseActorSettings {
 
     async _onDrop(event) {
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-        if (data.fromInternal) return;
-
         const item = await fromUuid(data.uuid);
+        if (data.fromInternal && item?.parent?.uuid === this.actor.uuid) return;
+
         if (item.type === 'adversary' && event.target.closest('.category-container')) {
             const target = event.target.closest('.category-container');
             const path = `system.potentialAdversaries.${target.dataset.potentialAdversary}.adversaries`;

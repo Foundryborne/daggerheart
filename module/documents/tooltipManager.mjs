@@ -1,10 +1,29 @@
+import { AdversaryBPPerEncounter, BaseBPPerEncounter } from '../config/encounterConfig.mjs';
+
 export default class DhTooltipManager extends foundry.helpers.interaction.TooltipManager {
+    #wide = false;
     #bordered = false;
 
     async activate(element, options = {}) {
         const { TextEditor } = foundry.applications.ux;
 
         let html = options.html;
+        if (element.dataset.tooltip?.startsWith('#battlepoints#')) {
+            this.#wide = true;
+
+            html = await this.getBattlepointHTML(element.dataset.combatId);
+            options.direction = this._determineItemTooltipDirection(element);
+            super.activate(element, { ...options, html: html });
+
+            const lockedTooltip = this.lockTooltip();
+            lockedTooltip.querySelectorAll('.battlepoint-toggle-container input').forEach(element => {
+                element.addEventListener('input', this.toggleModifier.bind(this));
+            });
+            return;
+        } else {
+            this.#wide = false;
+        }
+
         if (element.dataset.tooltip === '#effect-display#') {
             this.#bordered = true;
             let effect = {};
@@ -219,5 +238,129 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
                 );
             }
         }
+    }
+
+    /**@inheritdoc */
+    _setStyle(position = {}) {
+        super._setStyle(position);
+
+        if (this.#wide) {
+            this.tooltip.classList.add('wide');
+        }
+    }
+
+    /**@inheritdoc */
+    lockTooltip() {
+        const clone = super.lockTooltip();
+        clone.classList.add('wide');
+
+        return clone;
+    }
+
+    /** Get HTML for Battlepoints tooltip */
+    async getBattlepointHTML(combatId) {
+        const combat = game.combats.get(combatId);
+        const adversaries =
+            combat.turns?.filter(x => x.actor?.isNPC)?.map(x => ({ ...x.actor, type: x.actor.system.type })) ?? [];
+        const characters = combat.turns?.filter(x => !x.isNPC) ?? [];
+
+        const nrCharacters = characters.length;
+        const currentBP = AdversaryBPPerEncounter(adversaries, characters);
+        const maxBP = combat.system.extendedBattleToggles.reduce(
+            (acc, toggle) => acc + toggle.category,
+            BaseBPPerEncounter(nrCharacters)
+        );
+
+        const categories = combat.combatants.reduce((acc, combatant) => {
+            if (combatant.actor.type === 'adversary') {
+                const keyData = Object.keys(acc).reduce((identifiers, categoryKey) => {
+                    if (identifiers) return identifiers;
+                    const category = acc[categoryKey];
+                    const groupingIndex = category.findIndex(grouping =>
+                        grouping.types.includes(combatant.actor.system.type)
+                    );
+                    if (groupingIndex !== -1) identifiers = { categoryKey, groupingIndex };
+
+                    return identifiers;
+                }, null);
+                if (keyData) {
+                    const { categoryKey, groupingIndex } = keyData;
+                    const grouping = acc[categoryKey][groupingIndex];
+                    const partyAmount = CONFIG.DH.ACTOR.adversaryTypes[combatant.actor.system.type].partyAmountPerBP;
+                    grouping.individuals = (grouping.individuals ?? 0) + 1;
+
+                    const currentNr = grouping.nr ?? 0;
+                    grouping.nr = partyAmount ? Math.ceil(grouping.individuals / (nrCharacters ?? 0)) : currentNr + 1;
+                }
+            }
+
+            return acc;
+        }, foundry.utils.deepClone(CONFIG.DH.ENCOUNTER.adversaryTypeCostBrackets));
+
+        const extendedBattleToggles = combat.system.extendedBattleToggles;
+        const toggles = Object.keys(CONFIG.DH.ENCOUNTER.BPModifiers)
+            .reduce((acc, categoryKey) => {
+                const category = CONFIG.DH.ENCOUNTER.BPModifiers[categoryKey];
+                acc.push(
+                    ...Object.keys(category).reduce((acc, toggleKey) => {
+                        const grouping = category[toggleKey];
+                        acc.push({
+                            ...grouping,
+                            categoryKey: Number(categoryKey),
+                            toggleKey,
+                            checked: extendedBattleToggles.find(
+                                x => x.category == categoryKey && x.grouping === toggleKey
+                            ),
+                            disabled: grouping.automatic
+                        });
+
+                        return acc;
+                    }, [])
+                );
+                return acc;
+            }, [])
+            .sort((a, b) => {
+                if (a.categoryKey < b.categoryKey) return -1;
+                if (a.categoryKey > b.categoryKey) return 1;
+                else return a.toggleKey.localeCompare(b.toggleKey);
+            });
+
+        return await foundry.applications.handlebars.renderTemplate(
+            `systems/daggerheart/templates/ui/tooltip/battlepoints.hbs`,
+            {
+                combatId: combat.id,
+                nrCharacters,
+                currentBP,
+                maxBP,
+                categories,
+                toggles
+            }
+        );
+    }
+
+    /** Enable/disable a BP modifier */
+    async toggleModifier(event) {
+        const { combatId, category, grouping } = event.target.dataset;
+        const combat = game.combats.get(combatId);
+        await combat.update({
+            system: {
+                battleToggles: combat.system.battleToggles.some(x => x.category == category && x.grouping === grouping)
+                    ? combat.system.battleToggles.filter(x => x.category != category && x.grouping !== grouping)
+                    : [...combat.system.battleToggles, { category: Number(category), grouping }]
+            }
+        });
+
+        await combat.toggleModifierEffects(
+            event.target.checked,
+            combat.combatants.filter(x => x.actor.type === 'adversary').map(x => x.actor),
+            category,
+            grouping
+        );
+
+        this.tooltip.innerHTML = await this.getBattlepointHTML(combatId);
+        const lockedTooltip = this.lockTooltip();
+        lockedTooltip.querySelectorAll('.battlepoint-toggle-container input').forEach(element => {
+            element.addEventListener('input', this.toggleModifier.bind(this));
+        });
     }
 }

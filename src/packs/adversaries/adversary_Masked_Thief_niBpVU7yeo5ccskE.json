@@ -120,17 +120,6 @@
     }
   },
   "flags": {},
-  "_stats": {
-    "compendiumSource": null,
-    "duplicateSource": null,
-    "exportSource": null,
-    "coreVersion": "13.347",
-    "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
-    "createdTime": 1753922784304,
-    "modifiedTime": 1755385217678,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
-  },
   "_id": "niBpVU7yeo5ccskE",
   "sort": 3000000,
   "ownership": {
@@ -326,15 +315,7 @@
       },
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754080943420,
-        "modifiedTime": 1754142758679,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "compendiumSource": null
       },
       "_key": "!actors.items!niBpVU7yeo5ccskE.Cgk36WXthA9LwOYb"
     },
@@ -438,15 +419,7 @@
           "sort": 0,
           "flags": {},
           "_stats": {
-            "compendiumSource": null,
-            "duplicateSource": null,
-            "exportSource": null,
-            "coreVersion": "13.346",
-            "systemId": "daggerheart",
-            "systemVersion": "0.0.1",
-            "createdTime": 1754081140666,
-            "modifiedTime": 1754081194531,
-            "lastModifiedBy": "MQSznptE5yLT7kj8"
+            "compendiumSource": null
           },
           "_key": "!actors.items.effects!niBpVU7yeo5ccskE.tP2DD751nOLxFVps.zMut1PRphlwE0xOa"
         }
@@ -459,15 +432,7 @@
       },
       "flags": {},
       "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754081025242,
-        "modifiedTime": 1754142767652,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "compendiumSource": null
       },
       "_key": "!actors.items!niBpVU7yeo5ccskE.tP2DD751nOLxFVps"
     }

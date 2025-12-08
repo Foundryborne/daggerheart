@@ -1,140 +1,147 @@
-.daggerheart.dh-style.tooltip {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    border-width: 0;
-
-    .tooltip-title-container {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        gap: 16px;
-
-        .tooltip-image {
-            height: 40px;
-            width: 40px;
-            border-radius: 6px;
-            border: 1px solid @golden;
-        }
+#tooltip,
+.locked-tooltip {
+    &.wide {
+        max-width: 480px;
     }
 
-    .tooltip-title {
-        margin: 0;
-        text-align: center;
-    }
-
-    .tooltip-image {
-        height: 180px;
-        width: 180px;
-    }
-
-    .tooltip-description {
-        font-style: italic;
-        text-align: start;
-    }
-
-    .simple-info {
-        font-style: italic;
-    }
-
-    .tooltip-sub-title {
-        margin: 0;
-        color: light-dark(@dark-blue, @beige);
-    }
-
-    .tooltip-information-section {
-        width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4px;
-
-        &.spaced {
-            margin-top: 8px;
-        }
-
-        &.triple {
-            grid-template-columns: 1fr 1fr 1fr;
-        }
-
-        .tooltip-information {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2px;
-
-            &.full-width {
-                grid-column: span 2;
-            }
-
-            label {
-                font-weight: bold;
-            }
-
-            label,
-            div {
-                white-space: nowrap;
-            }
-        }
-    }
-
-    .tooltip-chips {
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-        gap: 8px;
-
-        .tooltip-chip {
-            font-size: var(--font-size-18);
-            padding: 2px 4px;
-            border: 1px solid light-dark(@dark-blue, @golden);
-            border-radius: 6px;
-            color: light-dark(@dark, @beige);
-            background-image: url(../assets/parchments/dh-parchment-dark.png);
-        }
-    }
-
-    .tooltip-tags {
-        width: 100%;
+    .daggerheart.dh-style.tooltip {
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 4px;
+        border-width: 0;
 
-        .tooltip-tag {
+        .tooltip-title-container {
             width: 100%;
-            display: grid;
-            grid-template-columns: 80px 1fr;
-            align-items: start;
-            gap: 8px;
-            padding: 4px;
-            border: 1px solid light-dark(@dark-blue, @golden);
-            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
 
-            .tooltip-tag-label-container {
-                display: flex;
-                align-items: center;
-                flex-direction: column;
-                gap: 2px;
-
-                .tooltip-tag-image {
-                    width: 40px;
-                    height: 40px;
-                }
-            }
-
-            .tooltip-tag-label {
-                font-weight: bold;
-                text-align: center;
-            }
-
-            .tooltip-tag-description {
-                display: flex;
-                flex-wrap: wrap;
+            .tooltip-image {
+                height: 40px;
+                width: 40px;
+                border-radius: 6px;
+                border: 1px solid @golden;
             }
         }
-    }
 
-    .spaced {
-        margin-bottom: 4px;
+        .tooltip-title {
+            margin: 0;
+            text-align: center;
+        }
+
+        .tooltip-image {
+            height: 180px;
+            width: 180px;
+        }
+
+        .tooltip-description {
+            font-style: italic;
+            text-align: start;
+        }
+
+        .simple-info {
+            font-style: italic;
+        }
+
+        .tooltip-sub-title {
+            margin: 0;
+            color: light-dark(@dark-blue, @beige);
+        }
+
+        .tooltip-information-section {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px;
+
+            &.spaced {
+                margin-top: 8px;
+            }
+
+            &.triple {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            .tooltip-information {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 2px;
+
+                &.full-width {
+                    grid-column: span 2;
+                }
+
+                label {
+                    font-weight: bold;
+                }
+
+                label,
+                div {
+                    white-space: nowrap;
+                }
+            }
+        }
+
+        .tooltip-chips {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            .tooltip-chip {
+                font-size: var(--font-size-18);
+                padding: 2px 4px;
+                border: 1px solid light-dark(@dark-blue, @golden);
+                border-radius: 6px;
+                color: light-dark(@dark, @beige);
+                background-image: url(../assets/parchments/dh-parchment-dark.png);
+            }
+        }
+
+        .tooltip-tags {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            .tooltip-tag {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 80px 1fr;
+                align-items: start;
+                gap: 8px;
+                padding: 4px;
+                border: 1px solid light-dark(@dark-blue, @golden);
+                border-radius: 6px;
+
+                .tooltip-tag-label-container {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    gap: 2px;
+
+                    .tooltip-tag-image {
+                        width: 40px;
+                        height: 40px;
+                    }
+                }
+
+                .tooltip-tag-label {
+                    font-weight: bold;
+                    text-align: center;
+                }
+
+                .tooltip-tag-description {
+                    display: flex;
+                    flex-wrap: wrap;
+                }
+            }
+        }
+
+        .spaced {
+            margin-bottom: 4px;
+        }
     }
 }

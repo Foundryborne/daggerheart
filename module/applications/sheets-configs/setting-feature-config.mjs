@@ -1,5 +1,5 @@
 import { actionsTypes } from '../../data/action/_module.mjs';
-import DHActionConfig from './action-config.mjs';
+import ActionSettingsConfig from './action-settings-config.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -102,6 +102,8 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
         return (
             (await foundry.applications.api.DialogV2.input({
                 window: { title: game.i18n.localize('DAGGERHEART.CONFIG.SelectAction.selectType') },
+                position: { width: 300 },
+                classes: ['daggerheart', 'dh-style'],
                 content: await foundry.applications.handlebars.renderTemplate(
                     'systems/daggerheart/templates/actionTypes/actionType.hbs',
                     { types: CONFIG.DH.ACTIONS.actionTypes }
@@ -158,16 +160,55 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
             this.render();
         } else {
             const action = this.move.actions.get(id);
-            await new DHActionConfig(action, async updatedMove => {
+            await new ActionSettingsConfig(action, this.move.effects, async (updatedMove, effectData, deleteEffect) => {
+                let updatedEffects = null;
+                if (effectData) {
+                    const currentEffects = foundry.utils.getProperty(this.settings, `${this.movePath}.effects`);
+                    const existingEffectIndex = currentEffects.findIndex(x => x.id === effectData.id);
+
+                    updatedEffects = deleteEffect
+                        ? currentEffects.filter(x => x.id !== effectData.id)
+                        : existingEffectIndex === -1
+                          ? [...currentEffects, effectData]
+                          : currentEffects.with(existingEffectIndex, effectData);
+                    await this.settings.updateSource({
+                        [`${this.movePath}.effects`]: updatedEffects
+                    });
+                }
+
                 await this.settings.updateSource({ [`${this.actionsPath}.${id}`]: updatedMove });
                 this.move = foundry.utils.getProperty(this.settings, this.movePath);
                 this.render();
+                return updatedEffects;
             }).render(true);
         }
     }
 
     static async removeItem(_, target) {
-        await this.settings.updateSource({ [`${this.actionsPath}.-=${target.dataset.id}`]: null });
+        const { type, id } = target.dataset;
+        if (type === 'effect') {
+            const move = foundry.utils.getProperty(this.settings, this.movePath);
+            for (const action of move.actions) {
+                const remainingEffects = action.effects.filter(x => x._id !== id);
+                if (action.effects.length !== remainingEffects.length) {
+                    await action.update({
+                        effects: remainingEffects.map(x => {
+                            const { _id, ...rest } = x;
+                            return { ...rest, _id: _id };
+                        })
+                    });
+                }
+            }
+            await this.settings.updateSource({
+                [this.movePath]: {
+                    effects: move.effects.filter(x => x.id !== id),
+                    actions: move.actions
+                }
+            });
+        } else {
+            await this.settings.updateSource({ [`${this.actionsPath}.-=${target.dataset.id}`]: null });
+        }
+
         this.move = foundry.utils.getProperty(this.settings, this.movePath);
         this.render();
     }

@@ -66,6 +66,10 @@ export default class DHDomainCard extends BaseDataItem {
                 ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.duplicateDomainCard'));
                 return false;
             }
+
+            if (!this.actor.system.loadoutSlot.available) {
+                data.system.inVault = true;
+            }
         }
     }
 

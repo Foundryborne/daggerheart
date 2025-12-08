@@ -1,4 +1,5 @@
 export { default as ActionConfig } from './action-config.mjs';
+export { default as ActionSettingsConfig } from './action-settings-config.mjs';
 export { default as CharacterSettings } from './character-settings.mjs';
 export { default as AdversarySettings } from './adversary-settings.mjs';
 export { default as CompanionSettings } from './companion-settings.mjs';

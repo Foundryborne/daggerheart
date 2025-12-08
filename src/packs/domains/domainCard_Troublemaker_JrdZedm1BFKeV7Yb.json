@@ -91,17 +91,6 @@
     }
   },
   "flags": {},
-  "_stats": {
-    "compendiumSource": null,
-    "duplicateSource": null,
-    "exportSource": null,
-    "coreVersion": "13.347",
-    "systemId": "daggerheart",
-    "systemVersion": "1.0.5",
-    "createdTime": 1753922784535,
-    "modifiedTime": 1755429160838,
-    "lastModifiedBy": "VZIeX2YDvX338Zvr"
-  },
   "_id": "JrdZedm1BFKeV7Yb",
   "sort": 3400000,
   "effects": [],

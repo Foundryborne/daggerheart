@@ -8,16 +8,5 @@
   "description": "",
   "sort": 500000,
   "flags": {},
-  "_stats": {
-    "compendiumSource": null,
-    "duplicateSource": null,
-    "exportSource": null,
-    "coreVersion": "13.346",
-    "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
-    "createdTime": 1748717115983,
-    "modifiedTime": 1752681433948,
-    "lastModifiedBy": "YNJ4HgHtFrTI89mx"
-  },
   "_key": "!folders!c380soh7Z1YAqzOT"
 }

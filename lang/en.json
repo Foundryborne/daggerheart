@@ -386,7 +386,8 @@
                 "hideNewCountdowns": "Hide New Countdowns"
             },
             "DaggerheartMenu": {
-                "title": "GM Tools"
+                "title": "GM Tools",
+                "refreshFeatures": "Refresh Features"
             },
             "DeleteConfirmation": {
                 "title": "Delete {type} - {name}",
@@ -504,6 +505,7 @@
                 },
                 "navigateLevel": "To Level {level}",
                 "navigateToLevelup": "Return To Levelup",
+                "finishLevelup": "Finish Levelup",
                 "navigateToSummary": "To Summary",
                 "options": {
                     "trait": "Gain a +1 bonus to two unmarked character traits and mark them.",
@@ -681,6 +683,14 @@
                     "label": "Support",
                     "description": "Enemies that enhance their allies and/or disrupt their opponents."
                 }
+            },
+            "AdversaryTypeCost": {
+                "minion": "for each group of Minions equal to the size of the party.",
+                "support": "for each Social or Support adversary.",
+                "standard": "for each Horde, Ranged, Skulk, or Standard adversary.",
+                "leader": "for each Leader adversary.",
+                "bruiser": "for each Bruiser adversary.",
+                "solo": "for each Solo adversary."
             },
             "ArmorFeature": {
                 "burning": {
@@ -904,6 +914,30 @@
                 "normal": "Normal",
                 "evolved": "Evolved",
                 "hybrid": "Hybrid"
+            },
+            "BPModifiers": {
+                "increaseDamage": {
+                    "description": "if you add +1d4 (or a static +2) to all adversaries' damage rolls (to increase the challenge without lengthening the battle)",
+                    "effect": {
+                        "name": "Increase Damage",
+                        "description": "Add 1d4 to damage"
+                    }
+                },
+                "lessDifficult": {
+                    "description": "if the fight should be less difficult or shorter."
+                },
+                "lowerTier": {
+                    "description": "if you choose an adversary from a lower tier."
+                },
+                "manySolos": {
+                    "description": "if you're using 2 or more Solo adversaries."
+                },
+                "moreDangerous": {
+                    "description": "if the fight should be more dangerous or last longer"
+                },
+                "noToughies": {
+                    "description": "if you don't include any Bruisers, Hordes, Leaders, or Solos"
+                }
             },
             "Burden": {
                 "oneHanded": "One-Handed",
@@ -2075,6 +2109,7 @@
             },
             "hope": "Hope",
             "hordeHp": "Horde HP",
+            "icon": "Icon",
             "identify": "Identity",
             "imagePath": "Image Path",
             "inactiveEffects": "Inactive Effects",
@@ -2096,6 +2131,7 @@
             "missingDragDropThing": "Drop {thing} here",
             "multiclass": "Multiclass",
             "newCategory": "New Category",
+            "newThing": "New {thing}",
             "none": "None",
             "noTarget": "No current target",
             "partner": "Partner",
@@ -2110,6 +2146,7 @@
             "recovery": "Recovery",
             "refresh": "Refresh",
             "reroll": "Reroll",
+            "rerolled": "Rerolled",
             "rerollThing": "Reroll {thing}",
             "resource": "Resource",
             "roll": "Roll",
@@ -2209,7 +2246,9 @@
                 "evolvedDrag": "Drag a form here to evolve it.",
                 "hybridize": "Hybridize",
                 "hybridizeFeatureTitle": "Hybrid Features",
-                "hybridizeDrag": "Drag a form here to hybridize it."
+                "hybridizeDrag": "Drag a form here to hybridize it.",
+                "mainTrait": "Main Trait",
+                "traitBonus": "Trait Bonus"
             },
             "Class": {
                 "hopeFeatures": "Hope Features",
@@ -2385,8 +2424,8 @@
                 "newDowntimeMove": "Downtime Move",
                 "downtimeMove": "Downtime Move",
                 "armorFeature": "Armor Feature",
-                "weaponFeature": "Weapon Feaure",
-                "newFeature": "New ItemFeature",
+                "weaponFeature": "Weapon Feature",
+                "newFeature": "New Item Feature",
                 "downtimeMoves": "Downtime Moves",
                 "itemFeatures": "Item Features",
                 "nrChoices": "# Moves Per Rest",
@@ -2552,7 +2591,8 @@
                     "selectMember": "Select a Member",
                     "rerollTitle": "Reroll Group Roll",
                     "rerollContent": "Are you sure you want to reroll your {trait} check?",
-                    "rerollTooltip": "Reroll"
+                    "rerollTooltip": "Reroll",
+                    "wholePartySelected": "The whole party is selected"
                 },
                 "healingRoll": {
                     "title": "Heal - {damage}",

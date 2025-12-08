@@ -23,7 +23,7 @@ export default class SettingActiveEffectConfig extends HandlebarsApplicationMixi
     }
 
     static DEFAULT_OPTIONS = {
-        classes: ['daggerheart', 'sheet', 'dh-style', 'active-effect-config'],
+        classes: ['daggerheart', 'sheet', 'dh-style', 'active-effect-config', 'standard-form'],
         tag: 'form',
         position: {
             width: 560
@@ -131,6 +131,7 @@ export default class SettingActiveEffectConfig extends HandlebarsApplicationMixi
         if (partId in context.tabs) context.tab = context.tabs[partId];
         switch (partId) {
             case 'details':
+                context.statuses = CONFIG.statusEffects.map(s => ({ value: s.id, label: game.i18n.localize(s.name) }));
                 context.isActorEffect = false;
                 context.isItemEffect = true;
                 const useGeneric = game.settings.get(
@@ -138,10 +139,13 @@ export default class SettingActiveEffectConfig extends HandlebarsApplicationMixi
                     CONFIG.DH.SETTINGS.gameSettings.appearance
                 ).showGenericStatusEffects;
                 if (!useGeneric) {
-                    context.statuses = Object.values(CONFIG.DH.GENERAL.conditions).map(status => ({
-                        value: status.id,
-                        label: game.i18n.localize(status.name)
-                    }));
+                    context.statuses = [
+                        ...context.statuses,
+                        Object.values(CONFIG.DH.GENERAL.conditions).map(status => ({
+                            value: status.id,
+                            label: game.i18n.localize(status.name)
+                        }))
+                    ];
                 }
                 break;
             case 'changes':
@@ -157,7 +161,7 @@ export default class SettingActiveEffectConfig extends HandlebarsApplicationMixi
         return context;
     }
 
-    static async #onSubmit(event, form, formData) {
+    static async #onSubmit(_event, _form, formData) {
         this.data = foundry.utils.expandObject(formData.object);
         this.close();
     }
@@ -193,11 +197,11 @@ export default class SettingActiveEffectConfig extends HandlebarsApplicationMixi
      * @type {ApplicationClickAction}
      */
     static async #addChange() {
-        const submitData = foundry.utils.expandObject(new FormDataExtended(this.form).object);
-        const changes = Object.values(submitData.changes ?? {});
-        changes.push({});
+        const { changes, ...rest } = foundry.utils.expandObject(new FormDataExtended(this.form).object);
+        const updatedChanges = Object.values(changes ?? {});
+        updatedChanges.push({});
 
-        this.effect.changes = changes;
+        this.effect = { ...rest, changes: updatedChanges };
         this.render();
     }
 
@@ -208,12 +212,12 @@ export default class SettingActiveEffectConfig extends HandlebarsApplicationMixi
      */
     static async #deleteChange(event) {
         const submitData = foundry.utils.expandObject(new FormDataExtended(this.form).object);
-        const changes = Object.values(submitData.changes);
+        const updatedChanges = Object.values(submitData.changes);
         const row = event.target.closest('li');
         const index = Number(row.dataset.index) || 0;
-        changes.splice(index, 1);
+        updatedChanges.splice(index, 1);
 
-        this.effect.changes = changes;
+        this.effect = { ...submitData, changes: updatedChanges };
         this.render();
     }
 

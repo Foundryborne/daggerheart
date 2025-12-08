@@ -2,6 +2,7 @@ export * as actionConfig from './actionConfig.mjs';
 export * as actorConfig from './actorConfig.mjs';
 export * as domainConfig from './domainConfig.mjs';
 export * as effectConfig from './effectConfig.mjs';
+export * as encounterConfig from './encounterConfig.mjs';
 export * as flagsConfig from './flagsConfig.mjs';
 export * as generalConfig from './generalConfig.mjs';
 export * as hooksConfig from './hooksConfig.mjs';
