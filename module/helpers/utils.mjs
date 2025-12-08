@@ -471,5 +471,5 @@ export function refreshIsAllowed(allowedTypes, typeToCheck) {
 
 export async function getCritDamageBonus(formula) {
     const critRoll = new Roll(formula);
-    return critRoll.dice.reduce((acc, dice) => acc + dice.faces, 0);
+    return critRoll.dice.reduce((acc, dice) => acc + dice.faces * dice.number, 0);
 }
