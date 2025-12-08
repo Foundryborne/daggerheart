@@ -89,6 +89,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                     value: context.source.system.gold[key]
                 };
             }
+            context.inventory.hasCurrency = Object.values(context.inventory.currencies).some((c) => c.enabled);
         }
 
         return context;

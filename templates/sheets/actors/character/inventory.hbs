@@ -12,16 +12,18 @@
         </a>
     </div>
 
-    <div class="currency-section">
-        {{#each this.inventory.currencies as | currency |}}
-            {{#if currency.enabled}}
-                <div class="input">
-                    <span>{{localize currency.label}}</span>
-                    {{formInput currency.field value=currency.value enriched=currency.value toggled=true}}
-                </div>
-            {{/if}}
-        {{/each}}
-    </div>
+    {{#if this.inventory.hasCurrency}}
+        <div class="currency-section">
+            {{#each this.inventory.currencies as | currency |}}
+                {{#if currency.enabled}}
+                    <div class="input">
+                        <span>{{localize currency.label}}</span>
+                        {{formInput currency.field value=currency.value enriched=currency.value toggled=true}}
+                    </div>
+                {{/if}}
+            {{/each}}
+        </div>
+    {{/if}}
 
     <div class="items-section">
         {{> 'daggerheart.inventory-items'
