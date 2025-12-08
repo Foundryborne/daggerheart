@@ -386,7 +386,8 @@
                 "hideNewCountdowns": "Hide New Countdowns"
             },
             "DaggerheartMenu": {
-                "title": "GM Tools"
+                "title": "GM Tools",
+                "refreshFeatures": "Refresh Features"
             },
             "DeleteConfirmation": {
                 "title": "Delete {type} - {name}",
@@ -504,6 +505,7 @@
                 },
                 "navigateLevel": "To Level {level}",
                 "navigateToLevelup": "Return To Levelup",
+                "finishLevelup": "Finish Levelup",
                 "navigateToSummary": "To Summary",
                 "options": {
                     "trait": "Gain a +1 bonus to two unmarked character traits and mark them.",
@@ -2105,6 +2107,7 @@
             },
             "hope": "Hope",
             "hordeHp": "Horde HP",
+            "icon": "Icon",
             "identify": "Identity",
             "imagePath": "Image Path",
             "inactiveEffects": "Inactive Effects",
@@ -2141,6 +2144,7 @@
             "recovery": "Recovery",
             "refresh": "Refresh",
             "reroll": "Reroll",
+            "rerolled": "Rerolled",
             "rerollThing": "Reroll {thing}",
             "resource": "Resource",
             "roll": "Roll",
@@ -2240,7 +2244,9 @@
                 "evolvedDrag": "Drag a form here to evolve it.",
                 "hybridize": "Hybridize",
                 "hybridizeFeatureTitle": "Hybrid Features",
-                "hybridizeDrag": "Drag a form here to hybridize it."
+                "hybridizeDrag": "Drag a form here to hybridize it.",
+                "mainTrait": "Main Trait",
+                "traitBonus": "Trait Bonus"
             },
             "Class": {
                 "hopeFeatures": "Hope Features",
@@ -2583,7 +2589,8 @@
                     "selectMember": "Select a Member",
                     "rerollTitle": "Reroll Group Roll",
                     "rerollContent": "Are you sure you want to reroll your {trait} check?",
-                    "rerollTooltip": "Reroll"
+                    "rerollTooltip": "Reroll",
+                    "wholePartySelected": "The whole party is selected"
                 },
                 "healingRoll": {
                     "title": "Heal - {damage}",

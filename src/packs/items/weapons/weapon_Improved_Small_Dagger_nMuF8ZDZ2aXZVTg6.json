@@ -10,7 +10,7 @@
     "attached": [],
     "tier": 2,
     "equipped": false,
-    "secondary": false,
+    "secondary": true,
     "burden": "oneHanded",
     "weaponFeatures": [
       {

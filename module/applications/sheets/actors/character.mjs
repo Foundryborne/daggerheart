@@ -139,10 +139,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
             element.addEventListener('change', this.updateItemResource.bind(this));
             element.addEventListener('click', e => e.stopPropagation());
         });
-        htmlElement.querySelectorAll('.inventory-item-quantity').forEach(element => {
-            element.addEventListener('change', this.updateItemQuantity.bind(this));
-            element.addEventListener('click', e => e.stopPropagation());
-        });
 
         // Add listener for armor marks input
         htmlElement.querySelectorAll('.armor-marks-input').forEach(element => {
@@ -590,14 +586,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const max = event.currentTarget.max ? Number(event.currentTarget.max) : null;
         const value = max ? Math.min(Number(event.currentTarget.value), max) : event.currentTarget.value;
         await item.update({ 'system.resource.value': value });
-        this.render();
-    }
-
-    async updateItemQuantity(event) {
-        const item = await getDocFromElement(event.currentTarget);
-        if (!item) return;
-
-        await item.update({ 'system.quantity': event.currentTarget.value });
         this.render();
     }
 

@@ -325,7 +325,8 @@ export default function DHApplicationMixin(Base) {
             if (data.type === 'ActiveEffect' && data.fromInternal !== this.document.uuid) {
                 this.document.createEmbeddedDocuments('ActiveEffect', [data.data]);
             } else {
-                return super._onDrop(event);
+                // Fallback to super, but note that item sheets do not have this function
+                return super._onDrop?.(event);
             }
         }
 

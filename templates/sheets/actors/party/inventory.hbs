@@ -15,37 +15,18 @@
         </a>
     </div>
 
-    <div class="currency-section">
-        {{#each this.inventory.currencies as | currency |}}
-            {{#if currency.enabled}}
-                <div class="input">
-                    <span>{{localize currency.label}}</span>
-                    {{formInput currency.field value=currency.value enriched=currency.value toggled=true}}
-                </div>
-            {{/if}}
-        {{/each}}
-        {{!-- <div class="input">
-            <span>{{localize this.inventory.currency.coins}}</span>
-            {{formInput systemFields.gold.fields.coins value=source.system.gold.coins enriched=source.system.gold.coins
-            localize=true toggled=true}}
+    {{#if inventory.hasCurrency}}
+        <div class="currency-section">
+            {{#each this.inventory.currencies as | currency |}}
+                {{#if currency.enabled}}
+                    <div class="input">
+                        <span>{{localize currency.label}}</span>
+                        {{formInput currency.field value=currency.value enriched=currency.value toggled=true}}
+                    </div>
+                {{/if}}
+            {{/each}}
         </div>
-        <div class="input">
-            <span>{{localize this.inventory.currency.handfuls}}</span>
-            {{formInput systemFields.gold.fields.handfuls value=source.system.gold.handfuls
-            enriched=source.system.gold.handfuls localize=true toggled=true}}
-        </div>
-        <div class="input">
-            <span>{{localize this.inventory.currency.bags}}</span>
-            {{formInput systemFields.gold.fields.bags value=source.system.gold.bags enriched=source.system.gold.bags
-            localize=true toggled=true}}
-        </div>
-        <div class="input">
-            <span>{{localize this.inventory.currency.chests}}</span>
-            {{formInput systemFields.gold.fields.chests value=source.system.gold.chests
-            enriched=source.system.gold.chests localize=true toggled=true}}
-        </div> --}}
-
-    </div>
+    {{/if}}
 
     <div class="items-section">
         {{> 'daggerheart.inventory-items'

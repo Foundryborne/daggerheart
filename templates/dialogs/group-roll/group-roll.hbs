@@ -40,7 +40,7 @@
 
     <fieldset class="one-column">
         <legend>{{localize "DAGGERHEART.UI.Chat.groupRoll.partyTeam"}}</legend>
-        <span class="tooltip-container" {{#if allSelected}}data-tooltip="{{localize "The whole party is selected"}}"{{/if}}>
+        <span class="tooltip-container" {{#if allSelected}}data-tooltip="{{localize "DAGGERHEART.UI.Chat.groupRoll.wholePartySelected"}}"{{/if}}>
             <input type="text" class="team-push-input" {{disabled @root.allSelected}}/>
         </span>
         {{#if (gt this.members.length 0)}}
