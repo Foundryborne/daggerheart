@@ -12,6 +12,7 @@ export default function DhFateRollEnricher(match, _options) {
 function getFateMessage(roll, flavor) {
     console.log("roll", roll);
     const label = flavor ?? 'Fate';
+    const fateType = roll?.type ?? 'Hope'
 
     const dataLabel = game.i18n.localize('DAGGERHEART.GENERAL.fate');
 
@@ -20,8 +21,9 @@ function getFateMessage(roll, flavor) {
         <button type="button" class="fate-roll-button${roll?.inline ? ' inline' : ''}"
             data-title="${label}"
             data-label="${dataLabel}"
-            data-fateType="${roll?.hope ?? roll?.fear ?? 'Hope'}"
-            ${label}
+            data-fateType="${fateType}"
+        >
+            ${fateType} ${label} Roll
         </button>
     `;
 
