@@ -118,7 +118,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
             if (
                 x.system.resource &&
                 x.system.resource.type &&
-                refreshIsAllowed([this.shortrest ? 'shortRest' : 'longRest'], action.uses.recovery)
+                refreshIsAllowed([this.shortrest ? 'shortRest' : 'longRest'], x.system.resource.recovery)
             ) {
                 acc.push({
                     title: game.i18n.localize(`TYPES.Item.${x.type}`),
