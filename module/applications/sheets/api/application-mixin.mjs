@@ -178,6 +178,60 @@ export default function DHApplicationMixin(Base) {
         _attachPartListeners(partId, htmlElement, options) {
             super._attachPartListeners(partId, htmlElement, options);
             this._dragDrop.forEach(d => d.bind(htmlElement));
+
+            for (const deltaInput of htmlElement.querySelectorAll('input[data-allow-delta]')) {
+                deltaInput.dataset.numValue = deltaInput.value;
+                deltaInput.inputMode = 'numeric';
+                deltaInput.pattern = '^[+=\\-]?\d*';
+
+                const handleUpdate = (delta = 0) => {
+                    const min = Number(deltaInput.min) || 0;
+                    const max = Number(deltaInput.max) || Infinity;
+                    const current = Number(deltaInput.dataset.numValue);
+                    const rawNumber = Number(deltaInput.value);
+                    if (Number.isNaN(rawNumber)) {
+                        deltaInput.value = delta ? Math.clamp(current + delta, min, max) : current;
+                        return;
+                    }
+
+                    const newValue =
+                        deltaInput.value.startsWith('+') || deltaInput.value.startsWith('-')
+                            ? Math.clamp(current + rawNumber + delta, min, max)
+                            : Math.clamp(rawNumber + delta, min, max);
+                    deltaInput.value = deltaInput.dataset.numValue = newValue;
+                };
+
+                // Force valid characters while inputting
+                deltaInput.addEventListener('input', () => {
+                    deltaInput.value = /[+=\-]?\d*/.exec(deltaInput.value)?.at(0) ?? deltaInput.value;
+                });
+
+                // Recreate Keyup/Keydown support
+                deltaInput.addEventListener('keydown', event => {
+                    const step = event.key === 'ArrowUp' ? 1 : event.key === 'ArrowDown' ? -1 : 0;
+                    if (step !== 0) {
+                        handleUpdate(step);
+                        deltaInput.dispatchEvent(new Event("change", { bubbles: true }));
+                    }
+                });
+
+                // Mousewheel while focused support
+                deltaInput.addEventListener(
+                    'wheel',
+                    event => {
+                        if (deltaInput === document.activeElement) {
+                            event.preventDefault();
+                            handleUpdate(Math.sign(-1 * event.deltaY));
+                            deltaInput.dispatchEvent(new Event("change", { bubbles: true }));
+                        }
+                    },
+                    { passive: false }
+                );
+
+                deltaInput.addEventListener('change', () => {
+                    handleUpdate();
+                });
+            }
         }
 
         /**@inheritdoc */

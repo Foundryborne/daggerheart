@@ -18,7 +18,7 @@
                 {{#if currency.enabled}}
                     <div class="input">
                         <span>{{localize currency.label}}</span>
-                        {{formInput currency.field value=currency.value enriched=currency.value toggled=true}}
+                        <input type="text" name="{{currency.field.fieldPath}}" data-allow-delta value="{{currency.value}}" data-dtype="Number" min="0" step="1" />
                     </div>
                 {{/if}}
             {{/each}}
