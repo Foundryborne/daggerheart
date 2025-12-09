@@ -87,7 +87,7 @@ export default class DhEffectsDisplay extends HandlebarsApplicationMixin(Applica
     async removeEffect(event) {
         const element = event.target.closest('.effect-container');
         const effects = DhEffectsDisplay.getTokenEffects();
-        const effect = effects.find(x => x.id === element.id);
+        const effect = effects.find(x => x.id === element.dataset.effectId);
         await effect.delete();
         this.render();
     }
