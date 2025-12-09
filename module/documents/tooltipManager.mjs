@@ -10,6 +10,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         let html = options.html;
         if (element.dataset.tooltip?.startsWith('#battlepoints#')) {
             this.#wide = true;
+            this.#bordered = true;
 
             html = await this.getBattlepointHTML(element.dataset.combatId);
             options.direction = this._determineItemTooltipDirection(element);
@@ -22,6 +23,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             return;
         } else {
             this.#wide = false;
+            this.#bordered = false;
         }
 
         if (element.dataset.tooltip === '#effect-display#') {
@@ -168,14 +170,6 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         super.activate(element, { ...options, html: html });
     }
 
-    _setStyle(position = {}) {
-        super._setStyle(position);
-
-        if (this.#bordered) {
-            this.tooltip.classList.add('bordered-tooltip');
-        }
-    }
-
     _determineItemTooltipDirection(element, prefered = this.constructor.TOOLTIP_DIRECTIONS.LEFT) {
         const pos = element.getBoundingClientRect();
         const dirs = this.constructor.TOOLTIP_DIRECTIONS;
@@ -247,12 +241,17 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         if (this.#wide) {
             this.tooltip.classList.add('wide');
         }
+
+        if (this.#bordered) {
+            this.tooltip.classList.add('bordered-tooltip');
+        }
     }
 
     /**@inheritdoc */
     lockTooltip() {
         const clone = super.lockTooltip();
-        clone.classList.add('wide');
+        if (this.#wide) clone.classList.add('wide');
+        if (this.#bordered) clone.classList.add('bordered-tooltip');
 
         return clone;
     }

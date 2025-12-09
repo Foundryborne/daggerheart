@@ -42,13 +42,13 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
         const modifierBP =
             this.combats
                 .find(x => x.active)
-                ?.system?.extendedBattleToggles?.reduce((acc, toggle) => acc + toggle.category, 0) ?? 0;
+                ?.system?.extendedBattleToggles?.reduce((acc, toggle) => (acc ?? 0) + toggle.category, null) ?? null;
         const maxBP = CONFIG.DH.ENCOUNTER.BaseBPPerEncounter(context.characters.length) + modifierBP;
         const currentBP = AdversaryBPPerEncounter(context.adversaries, context.characters);
 
         Object.assign(context, {
             fear: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
-            battlepoints: { max: maxBP, current: currentBP, hasModifierBP: Boolean(modifierBP) }
+            battlepoints: { max: maxBP, current: currentBP, hasModifierBP: modifierBP !== null }
         });
     }
 

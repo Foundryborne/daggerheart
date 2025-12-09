@@ -1,20 +1,24 @@
 <div class="daggerheart dh-style tooltip">
+    
+    <div class="tooltip-header"><h2>{{localize "Adversaries"}} ({{currentBP}}/{{maxBP}})</h2></div>
     <div class="battlepoint-categories-container">
-        <h3>{{localize "Adversaries"}} ({{currentBP}}/{{maxBP}})</h3>
-        {{#each categories as |category key|}}
-            {{#each category as |grouping index|}}
-                <div class="battlepoint-grouping-container">
-                    {{#if grouping.nr}}
-                        <label>{{key}} BP: {{concat (localize grouping.description) ' ' '('grouping.nr 'x)'}}</label>
-                    {{else}}
-                        <label class="unselected-grouping">{{key}} BP - {{localize grouping.description}}</label>
-                    {{/if}}
-                </div>
+        <div class="battlepoint-categories-inner-container">
+            {{#each categories as |category key|}}
+                {{#each category as |grouping index|}}
+                    <div class="battlepoint-grouping-container">
+                        {{#if grouping.nr}}
+                            <label>{{key}} BP: {{concat (localize grouping.description) ' ' '('grouping.nr 'x)'}}</label>
+                        {{else}}
+                            <label class="unselected-grouping">{{key}} BP - {{localize grouping.description}}</label>
+                        {{/if}}
+                    </div>
+                {{/each}}
             {{/each}}
-        {{/each}}
+        </div>
     </div>
+
+    <div class="tooltip-header"><h2>{{localize "Modifiers"}}</h2></div>
     <div class="battlepoint-toggles-container">
-        <h3>{{localize "Modifiers"}}</h3>
         {{#each toggles as |toggle|}}
             <div class="battlepoint-toggle-container {{#if (and toggle.disabled (not toggle.checked))}}inactive{{/if}}">
                 {{#if toggle.disabled}}
