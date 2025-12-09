@@ -1,29 +1,30 @@
 import { getCommandTarget, rollCommandToJSON } from '../helpers/utils.mjs';
 
 export default function DhFateRollEnricher(match, _options) {
-    console.log("match", match);
     const roll = rollCommandToJSON(match[1], match[0]);
     if (!roll) return match[0];
-    console.log("roll", roll);
 
     return getFateMessage(roll.result, roll?.flavor);
 }
 
 function getFateMessage(roll, flavor) {
-    console.log("roll", roll);
-    const label = flavor ?? 'Fate';
-    const fateType = roll?.type ?? 'Hope'
+    const fateType = roll?.type ?? 'Hope';
+    const fateTypeLocalized = fateType === "Hope" ? game.i18n.localize("DAGGERHEART.GENERAL.hope") : game.i18n.localize("DAGGERHEART.GENERAL.fear");
+
+    const title = flavor ?? fateTypeLocalized + ' ' + 
+        game.i18n.localize('DAGGERHEART.GENERAL.fate') + ' ' + 
+        game.i18n.localize('DAGGERHEART.GENERAL.roll');
 
     const dataLabel = game.i18n.localize('DAGGERHEART.GENERAL.fate');
 
     const fateElement = document.createElement('span');
     fateElement.innerHTML = `
         <button type="button" class="fate-roll-button${roll?.inline ? ' inline' : ''}"
-            data-title="${label}"
+            data-title="${title}"
             data-label="${dataLabel}"
             data-fateType="${fateType}"
         >
-            ${fateType} ${label} Roll
+            ${title}
         </button>
     `;
 
@@ -39,7 +40,7 @@ export const renderFateButton = async event => {
             target,
             title: button.dataset.title,
             label: button.dataset.label,
-            fateType: button.dataset.fateType
+            fateType: button.dataset.fatetype
         },
         event
     );
@@ -59,12 +60,7 @@ export const enrichedFateRoll = async (
         fateType: fateType
     };
 
-    if (target) {
-        await target.diceRoll(config);
-    } else {
-        // For no target, call FateRoll directly with basic data
-        config.data = { experiences: {}, traits: {}, fateType: fateType };
-        config.source = { actor: null };
-        await CONFIG.Dice.daggerheart.FateRoll.build(config);
-    }
+    config.data = { experiences: {}, traits: {}, fateType: fateType };
+    config.source = { actor: target?.uuid };
+    await CONFIG.Dice.daggerheart.FateRoll.build(config);
 };

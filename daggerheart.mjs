@@ -259,7 +259,16 @@ Hooks.on('chatMessage', (_, message) => {
 
         const { result: rollCommand, flavor } = result;
 
-        const fateType = rollCommand.type ?? "Hope";
+        const fateTypeFromRollCommand = rollCommand?.type ? 
+            (rollCommand?.type?.toLowerCase() == "fear" ? "Fear" : 
+                (rollCommand?.type?.toLowerCase() == "hope" ? "Hope" : "BAD")) : "Hope";
+
+        if (fateTypeFromRollCommand == "BAD") {
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateParsing'));
+            return false;
+        }
+         
+        const fateType = fateTypeFromRollCommand;
 
         const target = getCommandTarget({ allowNull: true });
         const title = fateType + ' Fate Roll';
