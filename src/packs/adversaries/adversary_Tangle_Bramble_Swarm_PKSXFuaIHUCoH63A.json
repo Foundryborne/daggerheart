@@ -312,9 +312,10 @@
                 {
                   "value": {
                     "custom": {
-                      "enabled": false
+                      "enabled": false,
+                      "formula": ""
                     },
-                    "flatMultiplier": 1,
+                    "flatMultiplier": 2,
                     "dice": "d6",
                     "bonus": 8,
                     "multiplier": "flat"
@@ -331,12 +332,14 @@
                     "dice": "d6",
                     "bonus": null,
                     "custom": {
-                      "enabled": false
+                      "enabled": false,
+                      "formula": ""
                     }
                   }
                 }
               ],
-              "includeBase": false
+              "includeBase": false,
+              "direct": true
             },
             "target": {
               "type": "any",
