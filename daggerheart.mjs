@@ -10,7 +10,7 @@ import { enricherConfig, enricherRenderSetup } from './module/enrichers/_module.
 import { getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs';
 import { BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll, FateRoll } from './module/dice/_module.mjs';
 import { enrichedDualityRoll } from './module/enrichers/DualityRollEnricher.mjs';
-import { enrichedFateRoll } from './module/enrichers/FateRollEnricher.mjs';
+import { enrichedFateRoll, getFateType } from './module/enrichers/FateRollEnricher.mjs';
 import {
     handlebarsRegistration,
     runMigrations,
@@ -259,12 +259,10 @@ Hooks.on('chatMessage', (_, message) => {
 
         const { result: rollCommand, flavor } = result;
 
-        const fateTypeFromRollCommand = rollCommand?.type ? 
-            (rollCommand?.type?.toLowerCase() == "fear" ? "Fear" : 
-                (rollCommand?.type?.toLowerCase() == "hope" ? "Hope" : "BAD")) : "Hope";
+        const fateTypeFromRollCommand = getFateType(rollCommand?.type);
 
         if (fateTypeFromRollCommand == "BAD") {
-            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateParsing'));
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateParsing') + ". Bad Fate Type. Valid Fate Types are 'Hope' and 'Fear'.");
             return false;
         }
          

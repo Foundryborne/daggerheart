@@ -4,11 +4,33 @@ export default function DhFateRollEnricher(match, _options) {
     const roll = rollCommandToJSON(match[1], match[0]);
     if (!roll) return match[0];
 
+    const fateTypeFromRoll = getFateType(roll?.type);
+
+    if (fateTypeFromRoll == "BAD") {
+        ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateParsing') + ". Bad Fate Type. Valid Fate Types are 'Hope' and 'Fear'.");
+        return;
+    }
+
     return getFateMessage(roll.result, roll?.flavor);
 }
 
+export function getFateType(fateTypeValue) {
+    const fateTypeFromValue = fateTypeValue ? 
+        (fateTypeValue.toLowerCase() == "fear" ? "Fear" : 
+            (fateTypeValue.toLowerCase() == "hope" ? "Hope" : "BAD")) : "Hope";
+
+
+    return fateTypeFromValue;
+}
+
 function getFateMessage(roll, flavor) {
-    const fateType = roll?.type ?? 'Hope';
+    const fateType = getFateType(roll?.type);
+ 
+    if (fateType == "BAD") {
+        ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateParsing') + ". Bad Fate Type. Valid Fate Types are 'Hope' and 'Fear'.");
+        return '';
+    }
+    
     const fateTypeLocalized = fateType === "Hope" ? game.i18n.localize("DAGGERHEART.GENERAL.hope") : game.i18n.localize("DAGGERHEART.GENERAL.fear");
 
     const title = flavor ?? fateTypeLocalized + ' ' + 
@@ -34,13 +56,21 @@ function getFateMessage(roll, flavor) {
 export const renderFateButton = async event => {
     const button = event.currentTarget,
         target = getCommandTarget({ allowNull: true });
+    console.log("button", button);
+
+    const fateTypeFromButton = getFateType(button.dataset?.fatetype);
+
+    if (fateTypeFromButton == "BAD") {
+        ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateParsing') + ". Bad Fate Type. Valid Fate Types are 'Hope' and 'Fear'.");
+        return;
+    }
 
     await enrichedFateRoll(
         {
             target,
             title: button.dataset.title,
             label: button.dataset.label,
-            fateType: button.dataset.fatetype
+            fateType: fateTypeFromButton
         },
         event
     );
