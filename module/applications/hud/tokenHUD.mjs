@@ -197,6 +197,8 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
         for (const effect of activeEffects) {
             for (const statusId of effect.statuses) {
                 const status = choices[statusId];
+                if (!status) continue;
+
                 status.instances = 1 + (status.instances ?? 0);
                 status.locked = status.locked || effect.condition || status.instances > 1;
                 if (!status) continue;
