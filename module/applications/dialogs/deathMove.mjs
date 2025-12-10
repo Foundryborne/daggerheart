@@ -1,3 +1,6 @@
+import { enrichedFateRoll } from '../../enrichers/FateRollEnricher.mjs';
+
+
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -40,12 +43,14 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
 
     async handleAvoidDeath() {
         console.log("Avoid Death!");
-        if (game.modules.get('dice-so-nice')?.active) {
-
-            const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
-        
-            const hopeDice = await getDiceSoNicePreset(diceSoNice.hope, 12);
-        }
+        const target = this.actor.uuid;
+        await enrichedFateRoll({
+            target,
+            title: "Avoid Death Hope Fate Roll",
+            label: 'test',
+            fateType: "Hope"
+        });
+        console.log("enrichedFateRoll done...");
     }
 
     handleRiskItAll() {
@@ -87,6 +92,8 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
 
         cls.create(msg);
 
+        this.close();
+
         if (CONFIG.DH.GENERAL.deathMoves.avoidDeath === this.selectedMove) {
             this.handleAvoidDeath();
             return;
@@ -96,9 +103,6 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
             this.handleRiskItAll();
             return;
         }
-
-
-        this.close();
 
     }
 }
