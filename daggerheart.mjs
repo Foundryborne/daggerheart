@@ -262,7 +262,7 @@ Hooks.on('chatMessage', (_, message) => {
         const fateTypeFromRollCommand = getFateType(rollCommand?.type);
 
         if (fateTypeFromRollCommand == "BAD") {
-            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateParsing') + ". Bad Fate Type. Valid Fate Types are 'Hope' and 'Fear'.");
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateTypeParsing'));
             return false;
         }
          

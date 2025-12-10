@@ -7,7 +7,7 @@ export default function DhFateRollEnricher(match, _options) {
     const fateTypeFromRoll = getFateType(roll?.type);
 
     if (fateTypeFromRoll == "BAD") {
-        ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateParsing') + ". Bad Fate Type. Valid Fate Types are 'Hope' and 'Fear'.");
+        ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateTypeParsing'));
         return;
     }
 
@@ -27,10 +27,10 @@ function getFateMessage(roll, flavor) {
     const fateType = getFateType(roll?.type);
  
     if (fateType == "BAD") {
-        ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateParsing') + ". Bad Fate Type. Valid Fate Types are 'Hope' and 'Fear'.");
+        ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateTypeParsing'));
         return '';
     }
-    
+
     const fateTypeLocalized = fateType === "Hope" ? game.i18n.localize("DAGGERHEART.GENERAL.hope") : game.i18n.localize("DAGGERHEART.GENERAL.fear");
 
     const title = flavor ?? fateTypeLocalized + ' ' + 
@@ -61,7 +61,7 @@ export const renderFateButton = async event => {
     const fateTypeFromButton = getFateType(button.dataset?.fatetype);
 
     if (fateTypeFromButton == "BAD") {
-        ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateParsing') + ". Bad Fate Type. Valid Fate Types are 'Hope' and 'Fear'.");
+        ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateTypeParsing'));
         return;
     }
 

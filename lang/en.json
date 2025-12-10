@@ -2687,6 +2687,7 @@
                 "onlyUseableByPC": "This can only be used with a PC token",
                 "dualityParsing": "Duality roll not properly formatted",
                 "fateParsing": "Fate roll not properly formatted",
+                "fateTypeParsing": "Fate roll not properly formatted, bad fate type. Valid types are 'Hope' and 'Fear'",
                 "attributeFaulty": "The supplied Attribute doesn't exist",
                 "domainCardWrongDomain": "You don't have access to that Domain",
                 "domainCardToHighLevel": "The Domain Card is too high level to be selected",
