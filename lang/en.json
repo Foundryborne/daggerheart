@@ -2504,6 +2504,11 @@
                     "hint": "Apply variant rules from the Daggerheart system",
                     "name": "Variant Rules",
                     "actionTokens": "Action Tokens"
+                },
+                "SpotlightRequestQueue": {
+                    "name": "Spotlight Request Queue",
+                    "label": "Spotlight Request Queue",
+                    "hint": "Adds more structure to spotlight requests by ordering them from oldest to newest"
                 }
             },
             "Resources": {
