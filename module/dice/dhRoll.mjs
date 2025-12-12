@@ -237,6 +237,51 @@ export default class DHRoll extends Roll {
     }
 }
 
+async function automateHopeFear(config) {
+    const automationSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+    const hopeFearAutomation = automationSettings.hopeFear;
+    if (!config.source?.actor ||
+        (game.user.isGM ? !hopeFearAutomation.gm : !hopeFearAutomation.players) ||
+        config.actionType === 'reaction' ||
+        config.tagTeamSelected ||
+        config.skips?.resources)
+        return;
+    const actor = await fromUuid(config.source.actor);
+    let updates = [];
+    if (!actor) return;
+
+    if (config.rerolledRoll) {
+        if (config.roll.result.duality != config.rerolledRoll.result.duality) {
+            const hope = (config.roll.isCritical || config.roll.result.duality === 1 ? 1 : 0)
+                - (config.rerolledRoll.isCritical || config.rerolledRoll.result.duality === 1 ? 1 : 0);
+            const stress = (config.roll.isCritical ? 1 : 0) - (config.rerolledRoll.isCritical ? 1 : 0);
+            const fear = (config.roll.result.duality === -1 ? 1 : 0)
+                - (config.rerolledRoll.result.duality === -1 ? 1 : 0)
+
+            if (hope !== 0)
+                updates.push({ key: 'hope', value: hope, total: -1 * hope, enabled: true });
+            if (stress !== 0)
+                updates.push({ key: 'stress', value: -1 * stress, total: stress, enabled: true });
+            if (fear !== 0)
+                updates.push({ key: 'fear', value: fear, total: -1 * fear, enabled: true });
+        }
+    } else {
+        if (config.roll.isCritical || config.roll.result.duality === 1)
+            updates.push({ key: 'hope', value: 1, total: -1, enabled: true });
+        if (config.roll.isCritical)
+            updates.push({ key: 'stress', value: -1, total: 1, enabled: true });
+        if (config.roll.result.duality === -1)
+            updates.push({ key: 'fear', value: 1, total: -1, enabled: true });
+    }
+
+    if (updates.length) {
+        const target = actor.system.partner ?? actor;
+        if (!['dead', 'defeated', 'unconscious'].some(x => actor.statuses.has(x))) {
+            await target.modifyResource(updates);
+        }
+    }
+}
+
 export const registerRollDiceHooks = () => {
     Hooks.on(`${CONFIG.DH.id}.postRollDuality`, async (config, message) => {
         const automationSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
@@ -254,38 +299,7 @@ export const registerRollDiceHooks = () => {
             }
         }
 
-        const hopeFearAutomation = automationSettings.hopeFear;
-        if (
-            !config.source?.actor ||
-            (game.user.isGM ? !hopeFearAutomation.gm : !hopeFearAutomation.players) ||
-            config.actionType === 'reaction' ||
-            config.tagTeamSelected ||
-            config.skips?.resources
-        )
-            return;
-        const actor = await fromUuid(config.source.actor);
-        let updates = [];
-        if (!actor) return;
-        if (config.roll.isCritical || config.roll.result.duality === 1)
-            updates.push({ key: 'hope', value: 1, total: -1, enabled: true });
-        if (config.roll.isCritical) updates.push({ key: 'stress', value: 1, total: -1, enabled: true });
-        if (config.roll.result.duality === -1) updates.push({ key: 'fear', value: 1, total: -1, enabled: true });
-
-        if (config.rerolledRoll) {
-            if (config.rerolledRoll.isCritical || config.rerolledRoll.result.duality === 1)
-                updates.push({ key: 'hope', value: -1, total: 1, enabled: true });
-            if (config.rerolledRoll.isCritical) updates.push({ key: 'stress', value: -1, total: 1, enabled: true });
-            if (config.rerolledRoll.result.duality === -1)
-                updates.push({ key: 'fear', value: -1, total: 1, enabled: true });
-        }
-
-        if (updates.length) {
-            const target = actor.system.partner ?? actor;
-            if (!['dead', 'defeated', 'unconscious'].some(x => actor.statuses.has(x))) {
-                if (config.rerolledRoll) target.modifyResource(updates);
-                else config.costs = [...(config.costs ?? []), ...updates];
-            }
-        }
+        await automateHopeFear(config);
 
         if (!config.roll.hasOwnProperty('success') && !config.targets?.length) return;
 
@@ -296,7 +310,5 @@ export const registerRollDiceHooks = () => {
             const currentCombatant = game.combat.combatants.get(game.combat.current?.combatantId);
             if (currentCombatant?.actorId == actor.id) ui.combat.setCombatantSpotlight(currentCombatant.id);
         }
-
-        return;
     });
 };

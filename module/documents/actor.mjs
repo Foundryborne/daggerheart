@@ -679,6 +679,10 @@ export default class DhpActor extends Actor {
         return updates;
     }
 
+    /**
+     * Resources are modified asynchronously, so be careful not to update the same resource in
+     * quick succession.
+     */
     async modifyResource(resources) {
         if (!resources?.length) return;
 

@@ -262,8 +262,7 @@ export default class DualityRoll extends D20Roll {
             targets: message.system.targets,
             tagTeamSelected: Object.values(tagTeamSettings.members).some(x => x.messageId === message._id),
             roll: newRoll,
-            rerolledRoll:
-                newRoll.result.duality !== message.system.roll.result.duality ? message.system.roll : undefined
+            rerolledRoll: message.system.roll
         });
         return { newRoll, parsedRoll };
     }
