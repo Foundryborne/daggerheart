@@ -1801,6 +1801,7 @@
                 "plural": "Costs"
             },
             "Damage": {
+                "massive": "Massive",
                 "severe": "Severe",
                 "major": "Major",
                 "minor": "Minor",
@@ -2517,6 +2518,10 @@
                     "actionTokens": {
                         "enabled": { "label": "Enabled" },
                         "tokens": { "label": "Tokens" }
+                    },
+                    "massiveDamage":{
+                        "title":"Massive Damage",
+                        "enabled": { "label": "Enabled" }
                     }
                 }
             },

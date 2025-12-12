@@ -761,6 +761,10 @@ export default class DhpActor extends Actor {
     }
 
     convertDamageToThreshold(damage) {
+        const massiveDamageEnabled=game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).massiveDamage.enabled;
+        if (massiveDamageEnabled && damage >= (this.system.damageThresholds.severe * 2)) {
+            return 4; 
+        }
         return damage >= this.system.damageThresholds.severe ? 3 : damage >= this.system.damageThresholds.major ? 2 : 1;
     }
 
