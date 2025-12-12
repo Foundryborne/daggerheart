@@ -2440,9 +2440,12 @@
                 },
                 "currency": {
                     "title": "Currency Overrides",
+                    "changeIcon": "Change Currency Icon",
                     "currencyName": "Currency Name",
                     "coinName": "Coin Name",
                     "handfulName": "Handful Name",
+                    "iconName": "Icon Name",
+                    "iconNameHint": "Icons are from fontawesome",
                     "bagName": "Bag Name",
                     "chestName": "Chest Name"
                 },
