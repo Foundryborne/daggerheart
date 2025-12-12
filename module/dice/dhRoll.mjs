@@ -247,10 +247,12 @@ export const registerRollDiceHooks = () => {
             !config.skips?.updateCountdowns
         ) {
             const { updateCountdowns } = game.system.api.applications.ui.DhCountdowns;
-            await updateCountdowns(CONFIG.DH.GENERAL.countdownProgressionTypes.actionRoll.id);
 
             if (config.roll.result.duality === -1) {
-                await updateCountdowns(CONFIG.DH.GENERAL.countdownProgressionTypes.fear.id);
+                await updateCountdowns(CONFIG.DH.GENERAL.countdownProgressionTypes.actionRoll.id,
+                    CONFIG.DH.GENERAL.countdownProgressionTypes.fear.id);
+            } else {
+                await updateCountdowns(CONFIG.DH.GENERAL.countdownProgressionTypes.actionRoll.id);
             }
         }
 
