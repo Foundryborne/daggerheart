@@ -21,7 +21,7 @@ export const AdversaryBPPerEncounter = (adversaries, characters) => {
             if (type.partyAmountPerBP) {
                 acc += characters.length === 0 ? 0 : Math.ceil(entry.nr / characters.length);
             } else {
-                acc += bpCost;
+                acc += bpCost * entry.nr;
             }
 
             return acc;

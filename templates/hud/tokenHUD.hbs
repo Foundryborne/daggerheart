@@ -46,8 +46,12 @@
     </button>
     <div class="palette status-effects" data-palette="effects">
         {{#each systemStatusEffects as |status|}}
-            <div class="effect-control-container" {{#if status.disabled}}data-tooltip="{{localize "DAGGERHEART.UI.Tooltip.immune"}}"{{else if status.title}}data-tooltip-text="{{status.title}}"{{/if}}>
-                <img class="effect-control {{status.cssClass}} {{#if (or status.disabled status.locked)}}disabled{{/if}}" src="{{status.src}}" data-action="effect" data-status-id="{{status.id}}">
+            <div 
+                class="effect-control effect-control-container {{status.cssClass}} {{#if (or status.disabled status.locked)}}disabled{{/if}}" 
+                {{#if status.disabled}}data-tooltip="{{localize "DAGGERHEART.UI.Tooltip.immune"}}"{{else if status.title}}data-tooltip-text="{{status.title}}"{{/if}}
+                data-action="effect" data-status-id="{{status.id}}"
+            >
+                <img src="{{status.src}}" />
                 {{#if status.disabled}}
                     <span class="effect-control-disabled-marker">/</span>
                 {{/if}}
@@ -57,8 +61,12 @@
         {{#if genericStatusEffects}}
             <label class="palette-category-title">{{localize "DAGGERHEART.APPLICATIONS.HUD.tokenHUD.genericEffects"}}</label>
             {{#each genericStatusEffects as |status|}}
-                <div class="effect-control-container" {{#if status.title}}data-tooltip-text="{{status.title}}"{{/if}}>
-                    <img class="effect-control {{status.cssClass}} {{#if (or status.disabled status.locked)}}disabled{{/if}}" src="{{status.src}}" data-action="effect" data-status-id="{{status.id}}" >
+                <div 
+                    class="effect-control effect-control-container {{status.cssClass}} {{#if (or status.disabled status.locked)}}disabled{{/if}}" 
+                    {{#if status.title}}data-tooltip-text="{{status.title}}"{{/if}}
+                    data-action="effect" data-status-id="{{status.id}}"
+                >
+                    <img src="{{status.src}}" />
                     {{#if status.locked}}<i class="effect-locked fa-solid fa-lock"></i>{{/if}}
                 </div>
             {{/each}}

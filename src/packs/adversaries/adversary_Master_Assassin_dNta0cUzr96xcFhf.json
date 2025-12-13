@@ -233,7 +233,89 @@
       "system": {
         "description": "<p> The Assassin deals direct damage while they’re <em>Hidden</em>.</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "xFBE0jLf96fbCY7K": {
+            "type": "attack",
+            "_id": "xFBE0jLf96fbCY7K",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>The Assassin deals direct damage while they’re <em>Hidden</em>.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d10",
+                    "bonus": 2,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              ],
+              "includeBase": false,
+              "direct": true
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Hidden attack",
+            "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
+            "range": "close"
+          }
+        },
         "originItemType": null,
         "originId": null
       },

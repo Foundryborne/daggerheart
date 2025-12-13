@@ -108,7 +108,8 @@
             },
             "base": false
           }
-        ]
+        ],
+        "direct": true
       },
       "type": "attack",
       "chatDisplay": false
@@ -358,7 +359,8 @@
                   }
                 }
               ],
-              "includeBase": false
+              "includeBase": false,
+              "direct": true
             },
             "target": {
               "type": "any",

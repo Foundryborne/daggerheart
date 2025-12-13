@@ -32,6 +32,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             icon: 'fa-solid fa-gears'
         },
         actions: {
+            editCurrencyIcon: this.changeCurrencyIcon,
             addItem: this.addItem,
             editItem: this.editItem,
             removeItem: this.removeItem,
@@ -113,6 +114,45 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             traitArray: Object.values(updatedSettings.traitArray)
         });
         this.render();
+    }
+
+    static async changeCurrencyIcon(_, target) {
+        const type = target.dataset.currency;
+        const currentIcon = this.settings.currency[type].icon;
+        const icon = await foundry.applications.api.DialogV2.input({
+            classes: ['daggerheart', 'dh-style', 'change-currency-icon'],
+            content: await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/settings/homebrew-settings/change-currency-icon.hbs',
+                { currentIcon }
+            ),
+            window: {
+                title: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.currency.changeIcon'),
+                icon: 'fa-solid fa-coins'
+            },
+            render: (_, dialog) => {
+                const icon = dialog.element.querySelector('.displayed-icon i');
+                const input = dialog.element.querySelector('input');
+                const reset = dialog.element.querySelector('button[data-action=reset]');
+                input.addEventListener('input', () => {
+                    icon.classList.value = input.value;
+                });
+                reset.addEventListener('click', () => {
+                    const currencyField = DhHomebrew.schema.fields.currency.fields[type];
+                    const initial = currencyField.fields.icon.getInitialValue();
+                    input.value = icon.classList.value = initial;
+                });
+            },
+            ok: {
+                callback: (_, button) => button.form.elements.icon.value
+            }
+        });
+
+        if (icon !== null) {
+            await this.settings.updateSource({
+                [`currency.${type}.icon`]: icon
+            });
+            this.render();
+        }
     }
 
     static async addItem(_, target) {

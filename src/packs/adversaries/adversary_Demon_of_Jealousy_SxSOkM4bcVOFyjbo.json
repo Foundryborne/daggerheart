@@ -107,7 +107,8 @@
             },
             "base": false
           }
-        ]
+        ],
+        "direct": true
       },
       "img": "icons/magic/symbols/rune-sigil-rough-white-teal.webp",
       "type": "attack",

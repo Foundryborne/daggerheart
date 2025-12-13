@@ -1,14 +1,15 @@
 import { defaultRestOptions } from '../../config/generalConfig.mjs';
 import { ActionsField } from '../fields/actionField.mjs';
 
-const currencyField = (initial, label) =>
+const currencyField = (initial, label, icon) =>
     new foundry.data.fields.SchemaField({
         enabled: new foundry.data.fields.BooleanField({ required: true, initial: true }),
         label: new foundry.data.fields.StringField({
             required: true,
             initial,
             label
-        })
+        }),
+        icon: new foundry.data.fields.StringField({ required: true, nullable: false, blank: true, initial: icon })
     });
 
 export default class DhHomebrew extends foundry.abstract.DataModel {
@@ -45,10 +46,22 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                     initial: 'Gold',
                     label: 'DAGGERHEART.SETTINGS.Homebrew.currency.currencyName'
                 }),
-                coins: currencyField('Coins', 'DAGGERHEART.SETTINGS.Homebrew.currency.coinName'),
-                handfuls: currencyField('Handfuls', 'DAGGERHEART.SETTINGS.Homebrew.currency.handfulName'),
-                bags: currencyField('Bags', 'DAGGERHEART.SETTINGS.Homebrew.currency.bagName'),
-                chests: currencyField('Chests', 'DAGGERHEART.SETTINGS.Homebrew.currency.chestName')
+                coins: currencyField(
+                    'Coins',
+                    'DAGGERHEART.SETTINGS.Homebrew.currency.coinName',
+                    'fa-solid fa-coin-front'
+                ),
+                handfuls: currencyField(
+                    'Handfuls',
+                    'DAGGERHEART.SETTINGS.Homebrew.currency.handfulName',
+                    'fa-solid fa-coins'
+                ),
+                bags: currencyField('Bags', 'DAGGERHEART.SETTINGS.Homebrew.currency.bagName', 'fa-solid fa-sack'),
+                chests: currencyField(
+                    'Chests',
+                    'DAGGERHEART.SETTINGS.Homebrew.currency.chestName',
+                    'fa-solid fa-treasure-chest'
+                )
             }),
             restMoves: new fields.SchemaField({
                 longRest: new fields.SchemaField({
@@ -139,22 +152,10 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
     /** @inheritDoc */
     _initializeSource(source, options = {}) {
         source = super._initializeSource(source, options);
-        source.currency.coins = {
-            enabled: source.currency.coins.enabled ?? true,
-            label: source.currency.coins.label || source.currency.coins
-        };
-        source.currency.handfuls = {
-            enabled: source.currency.handfuls.enabled ?? true,
-            label: source.currency.handfuls.label || source.currency.handfuls
-        };
-        source.currency.bags = {
-            enabled: source.currency.bags.enabled ?? true,
-            label: source.currency.bags.label || source.currency.bags
-        };
-        source.currency.chests = {
-            enabled: source.currency.chests.enabled ?? true,
-            label: source.currency.chests.label || source.currency.chests
-        };
+        for (const type of ['coins', 'handfuls', 'bags', 'chests']) {
+            const initial = this.schema.fields.currency.fields[type].getInitialValue();
+            source.currency[type] = foundry.utils.mergeObject(initial, source.currency[type], { inplace: false });
+        }
         return source;
     }
 }

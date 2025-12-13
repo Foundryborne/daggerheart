@@ -245,7 +245,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         });
 
         if (!result) return;
-        await game.system.api.fields.ActionFields.CostField.execute.call({ actor }, result);
 
         const newMessageData = foundry.utils.deepClone(message.system);
         foundry.utils.setProperty(newMessageData, `${path}.result`, result.roll);
