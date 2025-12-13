@@ -122,24 +122,24 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         const icon = await foundry.applications.api.DialogV2.input({
             classes: ['daggerheart', 'dh-style', 'change-currency-icon'],
             content: await foundry.applications.handlebars.renderTemplate(
-                "systems/daggerheart/templates/settings/homebrew-settings/change-currency-icon.hbs",
+                'systems/daggerheart/templates/settings/homebrew-settings/change-currency-icon.hbs',
                 { currentIcon }
             ),
             window: {
-                title: game.i18n.localize("DAGGERHEART.SETTINGS.Homebrew.currency.changeIcon"),
-                icon: "fa-solid fa-coins"
+                title: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.currency.changeIcon'),
+                icon: 'fa-solid fa-coins'
             },
             render: (_, dialog) => {
-                const icon = dialog.element.querySelector(".displayed-icon i");
-                const input = dialog.element.querySelector("input");
-                const reset = dialog.element.querySelector("button[data-action=reset]");
-                input.addEventListener("input", () => {
+                const icon = dialog.element.querySelector('.displayed-icon i');
+                const input = dialog.element.querySelector('input');
+                const reset = dialog.element.querySelector('button[data-action=reset]');
+                input.addEventListener('input', () => {
                     icon.classList.value = input.value;
                 });
-                reset.addEventListener("click", () => {
+                reset.addEventListener('click', () => {
                     const currencyField = DhHomebrew.schema.fields.currency.fields[type];
                     const initial = currencyField.fields.icon.getInitialValue();
-                    input.value = icon.classList.value = initial;                    
+                    input.value = icon.classList.value = initial;
                 });
             },
             ok: {
@@ -147,10 +147,10 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             }
         });
 
-        if (icon) {
-            await this.settings.updateSource({ 
-                [`currency.${type}.icon`]: icon,
-            });        
+        if (icon !== null) {
+            await this.settings.updateSource({
+                [`currency.${type}.icon`]: icon
+            });
             this.render();
         }
     }

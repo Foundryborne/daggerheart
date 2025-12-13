@@ -9,7 +9,7 @@ const currencyField = (initial, label, icon) =>
             initial,
             label
         }),
-        icon: new foundry.data.fields.StringField({ required: true, nullable: false, blank: false, initial: icon }),
+        icon: new foundry.data.fields.StringField({ required: true, nullable: false, blank: true, initial: icon })
     });
 
 export default class DhHomebrew extends foundry.abstract.DataModel {
@@ -46,10 +46,22 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                     initial: 'Gold',
                     label: 'DAGGERHEART.SETTINGS.Homebrew.currency.currencyName'
                 }),
-                coins: currencyField('Coins', 'DAGGERHEART.SETTINGS.Homebrew.currency.coinName', "fa-solid fa-coin-front"),
-                handfuls: currencyField('Handfuls', 'DAGGERHEART.SETTINGS.Homebrew.currency.handfulName', "fa-solid fa-coins"),
-                bags: currencyField('Bags', 'DAGGERHEART.SETTINGS.Homebrew.currency.bagName', "fa-solid fa-sack"),
-                chests: currencyField('Chests', 'DAGGERHEART.SETTINGS.Homebrew.currency.chestName', "fa-solid fa-treasure-chest")
+                coins: currencyField(
+                    'Coins',
+                    'DAGGERHEART.SETTINGS.Homebrew.currency.coinName',
+                    'fa-solid fa-coin-front'
+                ),
+                handfuls: currencyField(
+                    'Handfuls',
+                    'DAGGERHEART.SETTINGS.Homebrew.currency.handfulName',
+                    'fa-solid fa-coins'
+                ),
+                bags: currencyField('Bags', 'DAGGERHEART.SETTINGS.Homebrew.currency.bagName', 'fa-solid fa-sack'),
+                chests: currencyField(
+                    'Chests',
+                    'DAGGERHEART.SETTINGS.Homebrew.currency.chestName',
+                    'fa-solid fa-treasure-chest'
+                )
             }),
             restMoves: new fields.SchemaField({
                 longRest: new fields.SchemaField({
@@ -140,7 +152,7 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
     /** @inheritDoc */
     _initializeSource(source, options = {}) {
         source = super._initializeSource(source, options);
-        for (const type of ["coins", "handfuls", "bags", "chests"]) {
+        for (const type of ['coins', 'handfuls', 'bags', 'chests']) {
             const initial = this.schema.fields.currency.fields[type].getInitialValue();
             source.currency[type] = foundry.utils.mergeObject(initial, source.currency[type], { inplace: false });
         }
