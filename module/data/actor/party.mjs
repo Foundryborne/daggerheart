@@ -3,13 +3,6 @@ import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayFie
 
 export default class DhParty extends BaseDataActor {
     /**@inheritdoc */
-    static get metadata() {
-        return foundry.utils.mergeObject(super.metadata, {
-            usesSize: false
-        });
-    }
-
-    /**@inheritdoc */
     static defineSchema() {
         const fields = foundry.data.fields;
         return {

@@ -42,7 +42,7 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
             hasResistances: true,
             hasAttribution: false,
             hasLimitedView: true,
-            usesSize: true
+            usesSize: false
         };
     }
 
