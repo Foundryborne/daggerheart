@@ -141,6 +141,12 @@ export function ActionMixin(Base) {
             return this.documentName;
         }
 
+        //Getter for icons
+        get typeIcon() {
+            const config = CONFIG.DH.ACTIONS.actionTypes[this.type];
+            return config?.icon || 'fa-question'; // Fallback icon just in case
+        }
+
         get relativeUUID() {
             return `.Item.${this.item.id}.Action.${this.id}`;
         }

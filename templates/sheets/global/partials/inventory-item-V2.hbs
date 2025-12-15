@@ -158,10 +158,12 @@ Parameters:
     <div class="item-button">
         {{#if (and (eq action.type 'beastform') @root.beastformActive)}}
           <button type="button" data-action="cancelBeastform" data-item-uuid="{{action.uuid}}">
+            <i class="fa-solid {{action.typeIcon}} action-icon"></i>
             {{localize "DAGGERHEART.ACTORS.Character.cancelBeastform"}}
           </button>
         {{else}}
           <button type="button" data-action="useItem" data-item-uuid="{{action.uuid}}">
+            <i class="fa-solid {{action.typeIcon}} action-icon"></i>
             {{action.name}}
           </button>
         {{/if}}
