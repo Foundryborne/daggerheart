@@ -1146,6 +1146,14 @@
                 "rect": "Rectangle",
                 "ray": "Ray"
             },
+            "TokenSize": {
+                "tiny": "Tiny",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "huge": "Huge",
+                "gargantuan": "Gargantuan"
+            },
             "Traits": {
                 "agility": {
                     "name": "Agility",
@@ -2166,6 +2174,7 @@
                 "plural": "Targets"
             },
             "title": "Title",
+            "tokenSize": "Token Size",
             "total": "Total",
             "traitModifier": "Trait Modifier",
             "true": "True",
@@ -2527,8 +2536,8 @@
                         "enabled": { "label": "Enabled" },
                         "tokens": { "label": "Tokens" }
                     },
-                    "massiveDamage":{
-                        "title":"Massive Damage",
+                    "massiveDamage": {
+                        "title": "Massive Damage",
                         "enabled": { "label": "Enabled" }
                     }
                 }
@@ -2800,7 +2809,8 @@
                 "companionPartnerLevelBlock": "The companion needs an assigned partner to level up.",
                 "configureAttribution": "Configure Attribution",
                 "deleteItem": "Delete Item",
-                "immune": "Immune"
+                "immune": "Immune",
+                "tokenSize": "The token size used on the canvas"
             }
         }
     }

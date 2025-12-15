@@ -54,6 +54,8 @@ CONFIG.Canvas.rulerClass = placeables.DhRuler;
 CONFIG.Canvas.layers.templates.layerClass = placeables.DhTemplateLayer;
 CONFIG.MeasuredTemplate.objectClass = placeables.DhMeasuredTemplate;
 
+CONFIG.Scene.documentClass = documents.DhScene;
+
 CONFIG.Token.documentClass = documents.DhToken;
 CONFIG.Token.prototypeSheetClass = applications.sheetConfigs.DhPrototypeTokenConfig;
 CONFIG.Token.objectClass = placeables.DhTokenPlaceable;

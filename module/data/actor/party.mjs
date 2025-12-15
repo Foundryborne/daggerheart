@@ -3,6 +3,13 @@ import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayFie
 
 export default class DhParty extends BaseDataActor {
     /**@inheritdoc */
+    static get metadata() {
+        return foundry.utils.mergeObject(super.metadata, {
+            usesSize: false
+        });
+    }
+
+    /**@inheritdoc */
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
@@ -26,7 +33,7 @@ export default class DhParty extends BaseDataActor {
     /* -------------------------------------------- */
 
     isItemValid(source) {
-        return ["weapon", "armor", "consumable", "loot"].includes(source.type);
+        return ['weapon', 'armor', 'consumable', 'loot'].includes(source.type);
     }
 
     prepareBaseData() {

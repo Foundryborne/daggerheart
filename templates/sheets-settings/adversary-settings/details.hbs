@@ -13,6 +13,7 @@
             {{/if}}
             {{formGroup systemFields.difficulty value=document._source.system.difficulty localize=true}}
         </div>
+        {{formGroup systemFields.size value=document._source.system.size label=(localize "DAGGERHEART.GENERAL.tokenSize") localize=true}}
         {{formField systemFields.description value=document._source.system.description label=(localize "DAGGERHEART.ACTORS.Adversary.FIELDS.description.label")}}
         {{formField systemFields.motivesAndTactics value=document._source.system.motivesAndTactics label=(localize "DAGGERHEART.ACTORS.Adversary.FIELDS.motivesAndTactics.label")}}
     </fieldset>

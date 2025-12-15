@@ -41,7 +41,8 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
             settingSheet: null,
             hasResistances: true,
             hasAttribution: false,
-            hasLimitedView: true
+            hasLimitedView: true,
+            usesSize: true
         };
     }
 
@@ -75,6 +76,13 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
                     'DAGGERHEART.GENERAL.DamageResistance.magicalImmunity',
                     'DAGGERHEART.GENERAL.DamageResistance.magicalReduction'
                 )
+            });
+        if (this.metadata.usesSize)
+            schema.size = new fields.StringField({
+                required: true,
+                nullable: false,
+                choices: CONFIG.DH.ACTOR.tokenSize,
+                initial: CONFIG.DH.ACTOR.tokenSize.medium.id
             });
         return schema;
     }
@@ -136,6 +144,14 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
                 return acc;
             }, []);
             options.scrollingTextData = textData;
+        }
+
+        if (!this.parent.isToken && changes.system?.size) {
+            const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
+            this.parent.prototypeToken.update({
+                width: tokenSizes[changes.system.size],
+                height: tokenSizes[changes.system.size]
+            });
         }
 
         if (changes.system?.resources) {

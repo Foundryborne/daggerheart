@@ -100,4 +100,18 @@ export default class DHToken extends TokenDocument {
         }
         super.deleteCombatants(tokens, combat ?? {});
     }
+
+    /**@inheritdoc */
+    _onRelatedUpdate(update = {}, operation = {}) {
+        super._onRelatedUpdate(update, operation);
+
+        if (!this.actor?.isOwner) return;
+        const activeGM = game.users.activeGM; // Let the active GM take care of updates if available
+        if (this.actor.system.metadata.usesSize && activeGM && game.user.id === activeGM.id) {
+            const dimensions = { height: this.actor.system.size, width: this.actor.system.size };
+            if (dimensions.width !== this.width || dimensions.height !== this.height) {
+                this.parent?.syncTokenDimensions(this, dimensions);
+            }
+        }
+    }
 }
