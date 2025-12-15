@@ -1458,6 +1458,12 @@ export const orderedWeaponFeatures = () => {
     return Object.values(all).sort((a, b) => game.i18n.localize(a.label).localeCompare(game.i18n.localize(b.label)));
 };
 
+export const featureForm = {
+    passive: "DAGGERHEART.CONFIG.FeatureForm.passive",
+    action: "DAGGERHEART.CONFIG.FeatureForm.action",
+    reaction: "DAGGERHEART.CONFIG.FeatureForm.reaction"
+};
+
 export const featureTypes = {
     ancestry: {
         id: 'ancestry',

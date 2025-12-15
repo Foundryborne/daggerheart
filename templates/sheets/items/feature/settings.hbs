@@ -4,4 +4,8 @@
     data-group='{{tabs.settings.group}}'
 >
     {{> "systems/daggerheart/templates/sheets/global/partials/resource-section/resource-section.hbs" }}
+    <fieldset class="two-columns">
+        <span>{{localize "DAGGERHEART.CONFIG.FeatureForm.label"}}</span>
+        {{formInput document.system.schema.fields.featureForm value=system.featureForm choices=featureFormChoices localize=true}}
+    </fieldset>
 </section>

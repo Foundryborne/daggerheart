@@ -31,4 +31,11 @@ export default class FeatureSheet extends DHBaseItemSheet {
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
+//Might be wrong location but testing out if here is okay.
+    /**@override */
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
+        context.featureFormChoices = CONFIG.DH.ITEM.featureForm;
+        return context;
+    }
 }

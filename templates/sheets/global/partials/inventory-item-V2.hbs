@@ -49,6 +49,19 @@ Parameters:
           {{tag}}
         </div>
         {{/each}}
+
+        {{!-- Feature Form Tag Start --}}
+        {{#if (eq ../type 'feature')}}
+            {{#if (or (eq @root.document.type 'adversary') (eq @root.document.type 'environment'))}}
+                {{#if system.featureForm}}
+                    <div class="tag feature-form">
+                        <span class="recall-value">{{localize (concat "DAGGERHEART.CONFIG.FeatureForm." system.featureForm)}}</span>
+                    </div>
+                {{/if}}
+            {{/if}}
+        {{/if}}
+        {{!-- Feature Form Tag End --}}
+
       </div>
       {{/if}}
       {{/with}}

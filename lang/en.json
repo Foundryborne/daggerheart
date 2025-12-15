@@ -1033,6 +1033,12 @@
                     "description": ""
                 }
             },
+            "FeatureForm":{
+                "label": "Feature Form",
+                "passive": "Passive",
+                "action":"Action",
+                "reaction":"Reaction"
+            },
             "Gold": {
                 "title": "Gold",
                 "coins": "Coins",
