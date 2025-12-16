@@ -257,42 +257,6 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
     /*  Application Drag/Drop                       */
     /* -------------------------------------------- */
 
-    async #determineTransferQuantity({ originActor, item, currency }) {
-        originActor ??= item?.actor;
-        const max = item?.system.quantity ?? originActor.system.gold[currency] ?? null;
-        if (!max || max === 0) return null;
-        if (max === 1) return max;
-
-        const homebrewKey = CONFIG.DH.SETTINGS.gameSettings.Homebrew;
-        const currencySetting = game.settings.get(CONFIG.DH.id, homebrewKey).currency?.[currency] ?? null;
-        const name = item?.name ?? currencySetting?.label;
-
-        return foundry.applications.api.DialogV2.input({
-            classes: ['daggerheart', 'dh-style', "item-transfer"],
-            content: await foundry.applications.handlebars.renderTemplate(
-                "systems/daggerheart/templates/dialogs/item-transfer.hbs",
-                {
-                    originActor: originActor,
-                    targetActor: this.document,
-                    itemImage: item?.img,
-                    currencyIcon: currencySetting?.icon,
-                    max,
-                }
-            ),
-            window: {
-                title: name,
-                icon: 'fa-solid fa-hand-holding-hand'
-            },
-            position: {
-                width: 400,
-            },
-            ok: {
-                label: game.i18n.localize("DAGGERHEART.APPLICATIONS.ItemTransfer.transfer"),
-                callback: (_, button) => button.form.elements.quantity.value || null,
-            }
-        });
-    }
-
     async _onDrop(event) {
         event.stopPropagation();
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
@@ -300,7 +264,11 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
             const originActor = await foundry.utils.fromUuid(data.originActor);
             if (!originActor || originActor.uuid === this.document.uuid) return;
             const currency = data.currency;
-            const quantity = await this.#determineTransferQuantity({ originActor, currency });
+            const quantity = await game.system.api.applications.dialogs.ItemTransferDialog.configure({
+                originActor,
+                targetActor: this.document,
+                currency
+            });
             if (quantity) {
                 originActor.update({ [`system.gold.${currency}`]: Math.max(0, originActor.system.gold[currency] - quantity) });
                 this.document.update({ [`system.gold.${currency}`]: this.document.system.gold[currency] + quantity });
@@ -326,7 +294,10 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         if (item.system.metadata.isInventoryItem) {
             if (item.system.metadata.isQuantifiable) {
                 const actorItem = originActor.items.get(data.originId);
-                const quantityTransfered = await this.#determineTransferQuantity({ item });
+                const quantityTransfered = await game.system.api.applications.dialogs.ItemTransferDialog.configure({
+                    item,
+                    targetActor: this.document
+                });
 
                 if (quantityTransfered) {
                     if (quantityTransfered === actorItem.system.quantity) {
