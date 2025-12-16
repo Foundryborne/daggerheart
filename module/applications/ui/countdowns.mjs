@@ -245,14 +245,20 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         return super.close(options);
     }
 
-    static async updateCountdowns(progressType) {
+    /**
+     * Sends updates of the countdowns to the GM player. Since this is asynchronous, be sure to
+     * update all the countdowns at the same time.
+     *
+     * @param  {...any} progressTypes Countdowns to be updated
+     */
+    static async updateCountdowns(...progressTypes) {
         const { countdownAutomation } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
         if (!countdownAutomation) return;
 
         const countdownSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
         const updatedCountdowns = Object.keys(countdownSetting.countdowns).reduce((acc, key) => {
             const countdown = countdownSetting.countdowns[key];
-            if (countdown.progress.type === progressType && countdown.progress.current > 0) {
+            if (progressTypes.indexOf(countdown.progress.type) !== -1 && countdown.progress.current > 0) {
                 acc.push(key);
             }
 
@@ -260,7 +266,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         }, []);
 
         const countdownData = countdownSetting.toObject();
-        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, {
+        const settings = {
             ...countdownData,
             countdowns: Object.keys(countdownData.countdowns).reduce((acc, key) => {
                 const countdown = foundry.utils.deepClone(countdownData.countdowns[key]);
@@ -271,14 +277,12 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                 acc[key] = countdown;
                 return acc;
             }, {})
+        };
+        await emitAsGM(GMUpdateEvent.UpdateCountdowns,
+            DhCountdowns.gmSetSetting.bind(settings),
+            settings, null, {
+                refreshType: RefreshType.Countdown
         });
-
-        const data = { refreshType: RefreshType.Countdown };
-        await game.socket.emit(`system.${CONFIG.DH.id}`, {
-            action: socketEvent.Refresh,
-            data
-        });
-        Hooks.callAll(socketEvent.Refresh, data);
     }
 
     async _onRender(context, options) {

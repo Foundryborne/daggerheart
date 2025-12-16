@@ -679,6 +679,10 @@ export default class DhpActor extends Actor {
         return updates;
     }
 
+    /**
+     * Resources are modified asynchronously, so be careful not to update the same resource in
+     * quick succession.
+     */
     async modifyResource(resources) {
         if (!resources?.length) return;
 
@@ -761,6 +765,10 @@ export default class DhpActor extends Actor {
     }
 
     convertDamageToThreshold(damage) {
+        const massiveDamageEnabled=game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).massiveDamage.enabled;
+        if (massiveDamageEnabled && damage >= (this.system.damageThresholds.severe * 2)) {
+            return 4; 
+        }
         return damage >= this.system.damageThresholds.severe ? 3 : damage >= this.system.damageThresholds.major ? 2 : 1;
     }
 
@@ -854,7 +862,7 @@ export default class DhpActor extends Actor {
                 acc.push(effect);
 
                 const currentStatusActiveEffects = acc.filter(
-                    x => x.statuses.size === 1 && x.name === game.i18n.localize(statusMap.get(x.statuses.first()).name)
+                    x => x.statuses.size === 1 && x.name === game.i18n.localize(statusMap.get(x.statuses.first())?.name)
                 );
 
                 for (var status of effect.statuses) {

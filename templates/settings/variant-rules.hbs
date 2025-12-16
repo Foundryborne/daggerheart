@@ -22,6 +22,13 @@
         </div>
     </div>
 
+    <div class="form-group">
+        <label>{{localize "DAGGERHEART.SETTINGS.VariantRules.FIELDS.massiveDamage.title"}}</label>
+        <div class="form-fields">
+            {{formGroup settingFields.schema.fields.massiveDamage.fields.enabled value=settingFields._source.massiveDamage.enabled localize=true}}
+        </div>
+    </div>
+
     <footer class="form-footer">
         <button data-action="reset">
             <i class="fa-solid fa-arrow-rotate-left"></i>

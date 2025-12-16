@@ -39,6 +39,13 @@ export default class DhVariantRules extends foundry.abstract.DataModel {
                     label: 'DAGGERHEART.CONFIG.Range.close.name'
                 }),
                 far: new fields.NumberField({ required: true, initial: 60, label: 'DAGGERHEART.CONFIG.Range.far.name' })
+            }),
+            massiveDamage: new fields.SchemaField({
+                enabled: new fields.BooleanField({
+                    required: true,
+                    initial: false,
+                    label: 'DAGGERHEART.SETTINGS.VariantRules.FIELDS.massiveDamage.enabled.label'
+                })
             })
         };
     }
