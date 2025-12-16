@@ -413,7 +413,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "CKy2r6FguyTSO9Fm",
       "img": "icons/skills/melee/strike-axe-energy-pink.webp",
@@ -500,7 +501,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "hWxjmdc1O5J1otLM",
       "img": "icons/magic/perception/shadow-stealth-eyes-purple.webp",

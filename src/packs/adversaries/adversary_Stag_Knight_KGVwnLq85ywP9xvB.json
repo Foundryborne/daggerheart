@@ -363,7 +363,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "CYaSykD9BUxpiOxg",
       "img": "icons/skills/melee/strike-blade-hooked-green-purple.webp",
@@ -447,7 +448,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "1LHHdn4ToSwSznuP",
       "img": "icons/magic/nature/root-vine-barrier-wall-brown.webp",

@@ -330,7 +330,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "Ye35DuZroQfeFoNw",
       "img": "icons/skills/ranged/arrows-flying-salvo-yellow.webp",

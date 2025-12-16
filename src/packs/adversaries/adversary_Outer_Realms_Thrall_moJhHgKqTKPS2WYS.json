@@ -272,7 +272,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "7DWNmxZvp1Fm3aq3",
       "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",

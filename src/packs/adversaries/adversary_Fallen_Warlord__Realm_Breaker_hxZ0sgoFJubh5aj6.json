@@ -476,7 +476,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "PVLjJaQLH3LK3svk",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -612,7 +613,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "48tIwFQr64IQ5LaY",
       "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
@@ -690,7 +692,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "v74W0MUqVi9vPUEw",
       "img": "icons/magic/death/skull-energy-light-purple.webp",
@@ -715,7 +718,8 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "RscRTl8U8u6WcwAB",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",

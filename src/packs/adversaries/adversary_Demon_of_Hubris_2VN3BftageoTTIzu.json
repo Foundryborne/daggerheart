@@ -454,7 +454,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "Y3W44ifKIcoYpONN",
       "img": "icons/skills/melee/spear-tips-quintuple-orange.webp",
@@ -509,7 +510,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "6BKWOTuxQWJd5RP5",
       "img": "icons/creatures/unholy/demon-fire-horned-winged-roar.webp",
@@ -587,7 +589,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "FLp1dPSJz1ezY0gD",
       "img": "icons/magic/control/fear-fright-shadow-monster-red.webp",

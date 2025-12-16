@@ -183,7 +183,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "b6Qviz1ANG8OrAYq",
       "img": "icons/skills/wounds/injury-face-impact-orange.webp",

@@ -260,7 +260,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "csCWQuSqic5ckHeO",
       "img": "icons/magic/perception/orb-eye-scrying.webp",
@@ -381,7 +382,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "UvgVDn0YjISLdKE4",
       "img": "icons/magic/perception/silhouette-stealth-shadow.webp",

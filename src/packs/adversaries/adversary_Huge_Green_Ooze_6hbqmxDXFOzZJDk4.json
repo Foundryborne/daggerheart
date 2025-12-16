@@ -416,7 +416,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "pfXYuH7rtsyVjSXh",
       "img": "icons/creatures/slimes/slime-face-melting-green.webp",
@@ -508,7 +509,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "Mq90kFBM5ix2pzzh",
       "img": "icons/creatures/slimes/slime-movement-pseudopods-green.webp",

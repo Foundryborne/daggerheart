@@ -403,7 +403,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "0h4IVmCgWXyQngAw",
       "img": "icons/skills/targeting/crosshair-triple-strike-orange.webp",

@@ -296,7 +296,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "WsNoSwwtv0r80BMj",
       "img": "icons/magic/water/wave-water-teal.webp",
@@ -390,7 +391,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "SDTS3LOPMVJOt1S1",
       "img": "icons/creatures/reptiles/snake-fangs-bite-green-yellow.webp",

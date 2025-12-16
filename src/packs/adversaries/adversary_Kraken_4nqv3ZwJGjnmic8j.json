@@ -365,7 +365,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "vz2BWhispgR7mSWF",
       "img": "icons/magic/water/orb-water-bubbles-blue.webp",
@@ -504,7 +505,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "eksa3E2ecBgdib6h",
       "img": "icons/magic/water/projectile-icecicle-glowing.webp",
@@ -599,7 +601,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "m4aybzb8tXWHelDU",
       "img": "icons/skills/melee/strike-weapons-orange.webp",

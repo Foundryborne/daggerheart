@@ -443,7 +443,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "Zn25zBr96y1hrmnr",
       "img": "icons/magic/lightning/bolt-strike-purple.webp",
@@ -540,7 +541,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "urXRi4bdBfvl8U6K",
       "img": "icons/magic/control/sihouette-hold-beam-green.webp",

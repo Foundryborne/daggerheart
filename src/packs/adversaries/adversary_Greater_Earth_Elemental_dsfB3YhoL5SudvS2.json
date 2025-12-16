@@ -487,7 +487,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "q45DiEFlXqcXZ5hv",
       "img": "icons/magic/earth/barrier-stone-brown-green.webp",
@@ -621,7 +622,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "ag7t5EW358M0qiSL",
       "img": "icons/skills/melee/strike-weapons-orange.webp",

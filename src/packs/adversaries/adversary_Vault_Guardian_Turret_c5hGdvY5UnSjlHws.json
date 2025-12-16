@@ -289,7 +289,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "uwAr6wR4k7ppI2cW",
       "img": "icons/skills/targeting/crosshair-pointed-orange.webp",
@@ -388,7 +389,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "G7qZ9RHPyNns3axX",
       "img": "icons/commodities/tech/cog-brass.webp",
@@ -487,7 +489,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "ALDtQci3ktq9cajU",
       "img": "icons/magic/sonic/explosion-shock-wave-teal.webp",

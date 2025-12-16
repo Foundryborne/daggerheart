@@ -290,7 +290,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "FC8PIf4BVkhmoJX8",
       "img": "icons/magic/death/skull-flames-white-blue.webp",
@@ -412,7 +413,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "dlMdfUjy2GaqgeOJ",
       "img": "icons/creatures/unholy/demon-fire-horned-mask.webp",
@@ -507,7 +509,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "7qjx1c4C1fUfvXnu",
       "img": "icons/skills/melee/strike-weapons-orange.webp",

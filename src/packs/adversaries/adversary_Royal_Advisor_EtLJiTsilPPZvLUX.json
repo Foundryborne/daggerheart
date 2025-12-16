@@ -343,7 +343,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "lG6vMc0zUbijpvCM",
       "img": "icons/skills/social/diplomacy-handshake.webp",
@@ -398,7 +399,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "iwNrNBbvm3RMgSw5",
       "img": "icons/skills/social/diplomacy-unity-alliance.webp",

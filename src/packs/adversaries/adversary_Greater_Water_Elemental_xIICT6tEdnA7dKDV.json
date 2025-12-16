@@ -310,7 +310,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "B8ZrtRCZrwwwWJOE",
       "img": "icons/magic/water/projectile-icecicle-glowing.webp",
@@ -438,7 +439,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "bcwFQeuU6ZfIGjau",
       "img": "icons/magic/water/vortex-water-whirlpool-blue.webp",
@@ -533,7 +535,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "BGE42W1XPd0vpimR",
       "img": "icons/magic/water/tendrils-ice-thorns.webp",

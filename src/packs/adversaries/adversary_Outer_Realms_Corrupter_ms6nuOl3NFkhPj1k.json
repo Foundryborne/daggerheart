@@ -375,7 +375,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "gBLVvHbyekmIUITD",
       "img": "icons/magic/unholy/barrier-shield-glowing-pink.webp",

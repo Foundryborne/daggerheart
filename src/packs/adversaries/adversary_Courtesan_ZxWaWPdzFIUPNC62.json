@@ -300,7 +300,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "rSMUPC5GhR982ifg",
       "img": "icons/magic/perception/eye-slit-orange.webp",

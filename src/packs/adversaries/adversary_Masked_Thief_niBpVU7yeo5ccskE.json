@@ -302,7 +302,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "Cgk36WXthA9LwOYb",
       "img": "icons/skills/melee/strike-sword-gray.webp",
@@ -379,7 +380,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "tP2DD751nOLxFVps",
       "img": "icons/environment/traps/trap-jaw-tan.webp",

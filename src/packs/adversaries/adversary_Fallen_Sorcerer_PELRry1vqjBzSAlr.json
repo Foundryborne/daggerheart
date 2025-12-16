@@ -311,7 +311,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "s15sNyb3JYMzBLIU",
       "img": "icons/magic/fire/projectile-beams-salvo-red.webp",
@@ -364,7 +365,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "ecp9o8t1dQFXGsse",
       "img": "icons/magic/death/skull-energy-light-white.webp",
@@ -429,7 +431,8 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "C74czwNeWF5vS1DZ",
       "img": "icons/magic/symbols/ring-circle-smoke-blue.webp",
@@ -549,7 +552,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "gwSgBhkcekCGvXxz",
       "img": "icons/magic/unholy/strike-hand-glow-pink.webp",

@@ -422,7 +422,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "K3MQO1I42nmfM2F2",
       "img": "icons/magic/sonic/explosion-shock-sound-wave.webp",
@@ -531,7 +532,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "u9dR2Qh3swHZalXj",
       "img": "icons/magic/unholy/orb-contained-pink.webp",

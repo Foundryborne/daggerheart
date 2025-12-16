@@ -475,7 +475,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "djKDZawLnGF1zkbY",
       "img": "icons/skills/movement/arrow-upward-yellow.webp",
@@ -530,7 +531,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "RoxNNIn0m9rHQDH8",
       "img": "icons/environment/people/charge.webp",

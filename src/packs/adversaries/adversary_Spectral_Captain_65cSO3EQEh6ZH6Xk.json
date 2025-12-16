@@ -359,7 +359,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "7YVe4DfEWMNLXNvu",
       "img": "icons/magic/death/undead-skeleton-worn-blue.webp",
@@ -414,7 +415,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "X0vtV30ACVVZ6NfF",
       "img": "icons/magic/defensive/shield-barrier-flaming-diamond-teal.webp",
@@ -509,7 +511,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "b9wn9oVMne8E1OYx",
       "img": "icons/skills/melee/strike-weapons-orange.webp",

@@ -372,7 +372,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "za6Qr0CjI9Kb4I0U",
       "img": "icons/skills/movement/arrows-up-trio-red.webp",
@@ -427,7 +428,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "s0WcpK43WN2ptqNc",
       "img": "icons/skills/melee/strike-dagger-blood-red.webp",
@@ -522,7 +524,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "PcNgHScmTd9l3exN",
       "img": "icons/skills/melee/strike-weapons-orange.webp",

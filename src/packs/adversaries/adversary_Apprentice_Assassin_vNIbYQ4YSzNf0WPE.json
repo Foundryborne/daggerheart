@@ -223,7 +223,8 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "passive"
       },
       "_id": "2yREz60uPY80tAa4",
       "img": "icons/magic/symbols/runes-carved-stone-yellow.webp",
@@ -278,7 +279,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "4wT7CmM1DJEPcraF",
       "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",

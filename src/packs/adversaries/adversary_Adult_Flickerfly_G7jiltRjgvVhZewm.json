@@ -263,7 +263,7 @@
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
       "effects": [],
       "folder": null,
-      "sort": 0,
+      "sort": 100000,
       "ownership": {
         "default": 0,
         "MQSznptE5yLT7kj8": 3
@@ -360,7 +360,7 @@
         }
       ],
       "folder": null,
-      "sort": 0,
+      "sort": 200000,
       "ownership": {
         "default": 0,
         "MQSznptE5yLT7kj8": 3
@@ -461,13 +461,14 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "BuL6ndgaiJtjaM2T",
       "img": "icons/skills/melee/strike-slashes-orange.webp",
       "effects": [],
       "folder": null,
-      "sort": 0,
+      "sort": 300000,
       "ownership": {
         "default": 0,
         "MQSznptE5yLT7kj8": 3
@@ -540,13 +541,14 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "bOTsfXr9yNIGkIzK",
       "img": "icons/magic/light/explosion-glow-spiral-yellow.webp",
       "effects": [],
       "folder": null,
-      "sort": 0,
+      "sort": 400000,
       "ownership": {
         "default": 0,
         "MQSznptE5yLT7kj8": 3
@@ -701,13 +703,14 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "49cIxZRFiAM6jDva",
       "img": "icons/magic/air/fog-gas-smoke-purple.webp",
       "effects": [],
       "folder": null,
-      "sort": 0,
+      "sort": 500000,
       "ownership": {
         "default": 0,
         "MQSznptE5yLT7kj8": 3
@@ -756,13 +759,14 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "KLdLRKoJHBJlHwYe",
       "img": "icons/skills/movement/arrow-upward-yellow.webp",
       "effects": [],
       "folder": null,
-      "sort": 0,
+      "sort": 600000,
       "ownership": {
         "default": 0,
         "MQSznptE5yLT7kj8": 3
@@ -787,7 +791,7 @@
       "img": "icons/skills/movement/feet-winged-boots-blue.webp",
       "effects": [],
       "folder": null,
-      "sort": 0,
+      "sort": 700000,
       "ownership": {
         "default": 0,
         "fBcTgyTzoARBvohY": 3

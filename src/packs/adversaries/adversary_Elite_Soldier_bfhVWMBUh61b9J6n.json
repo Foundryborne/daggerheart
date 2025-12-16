@@ -336,7 +336,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "ojiIZHBd0sMLxSUE",
       "img": "icons/skills/melee/hand-grip-sword-orange.webp",
@@ -391,7 +392,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "zcfyEY29yWqJtZbl",
       "img": "icons/magic/defensive/shield-barrier-blue.webp",

@@ -342,7 +342,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "ZqfLMjVkbUwDw4p6",
       "img": "icons/commodities/tech/transmission.webp",
@@ -441,7 +442,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "lqyN4CQop53BzarW",
       "img": "icons/magic/light/beam-rays-blue.webp",
@@ -540,7 +542,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "IHQoqt39T772FVMs",
       "img": "icons/magic/fire/explosion-embers-orange.webp",
@@ -644,7 +647,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "XtnByqUr9AuYU9Ip",
       "img": "icons/skills/movement/arrow-upward-yellow.webp",
@@ -781,7 +785,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "3bPURmuwQs06fThQ",
       "img": "icons/magic/lightning/bolt-strike-embers-teal.webp",
@@ -858,7 +863,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "ijIaKjroxq3xZd9Z",
       "img": "icons/magic/sonic/explosion-impact-shock-wave.webp",
@@ -996,7 +1002,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "JCue4ko61bjhedXv",
       "img": "icons/creatures/invertebrates/wasp-swarm-tan.webp",
@@ -1096,7 +1103,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "ITzpRJr2jWK0Ksmp",
       "img": "icons/creatures/magical/construct-golem-stone-blue.webp",
@@ -1195,7 +1203,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "YvfzPyJbbv2ia6Yp",
       "img": "icons/magic/sonic/explosion-shock-wave-teal.webp",

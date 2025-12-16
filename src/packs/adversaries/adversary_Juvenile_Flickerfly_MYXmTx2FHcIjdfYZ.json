@@ -450,7 +450,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "Bt7MqMkPpPpzWksK",
       "img": "icons/magic/light/explosion-glow-spiral-yellow.webp",
@@ -610,7 +611,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "EjfM83eVCdcVGC3c",
       "img": "icons/magic/air/fog-gas-smoke-purple.webp",

@@ -354,7 +354,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "g0h3Zo6xqgfSlyxi",
       "img": "icons/skills/melee/strike-slashes-red.webp",

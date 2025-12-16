@@ -477,7 +477,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "QV2ytK4b1VWF71OS",
       "img": "icons/magic/water/projectiles-ice-faceted-shard-salvo-blue.webp",
@@ -600,7 +601,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "CcRTxCDCJskiu3fI",
       "img": "icons/magic/water/barrier-ice-wall-snow.webp",
@@ -722,7 +724,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "nXZHOfcYvjg3YMNU",
       "img": "icons/commodities/leather/scales-blue.webp",
@@ -861,7 +864,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "QHdJgT2fvwqquyf7",
       "img": "icons/skills/melee/strike-weapons-orange.webp",

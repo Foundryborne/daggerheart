@@ -435,7 +435,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "L48tQmj5O3s2pjBn",
       "img": "icons/weapons/swords/sword-flanged-lightning.webp",

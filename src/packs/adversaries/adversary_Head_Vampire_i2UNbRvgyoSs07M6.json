@@ -448,7 +448,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "Oj6qkLG1N6uqQHcx",
       "img": "icons/creatures/abilities/fang-tooth-blood-red.webp",
@@ -503,7 +504,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "IWtpuQCuV82lOSry",
       "img": "icons/creatures/mammals/bat-giant-tattered-purple.webp",
@@ -601,7 +603,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "6FsQf339qGHnz3ZF",
       "img": "icons/magic/unholy/strike-beam-blood-small-red-purple.webp",

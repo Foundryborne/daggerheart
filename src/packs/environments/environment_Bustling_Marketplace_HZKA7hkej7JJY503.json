@@ -168,7 +168,8 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "60uDqt9omFifZ7xd",
       "img": "icons/commodities/treasure/brooch-jeweled-pink.webp",
@@ -291,7 +292,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "56qjiKMoN6S9riI6",
       "img": "icons/skills/social/theft-pickpocket-bribery-brown.webp",
@@ -316,7 +318,8 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "l2FzZpR2reVmlkdp",
       "img": "icons/skills/movement/arrow-upward-blue.webp",
