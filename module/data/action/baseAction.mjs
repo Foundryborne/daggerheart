@@ -324,7 +324,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     _getTags() {
         const tags = [
             game.i18n.localize(`DAGGERHEART.ACTIONS.TYPES.${this.type}.name`),
-            game.i18n.localize(`DAGGERHEART.CONFIG.ActionType.${this.actionType}`)
         ];
 
         return tags;

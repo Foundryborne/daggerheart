@@ -620,11 +620,6 @@
             }
         },
         "CONFIG": {
-            "ActionType": {
-                "passive": "Passive",
-                "action": "Action",
-                "reaction": "Reaction"
-            },
             "AdversaryTrait": {
                 "relentless": {
                     "name": "Relentless",
