@@ -1,9 +1,18 @@
-<div>
-    <div class="item-transfer-container">
-        <input type="range" step="1" min="0" max="{{item.system.quantity}}" name="quantity" value="{{quantity}}" />
-        <input type="text" value="{{quantity}}" class="number-display" />
+<div class="summary">
+    <img class="actor-img" src="{{originActor.img}}" />
+    <div class="granted-item">
+        {{#if itemImage}}
+            <img src="{{itemImage}}" />
+        {{else}}
+            <i inert class="currency-icon {{currencyIcon}}"></i>
+        {{/if}}
+        <i inert class="fa-solid fa-hand-holding"></i>
     </div>
-    <footer class="item-sheet-footer">
-        <button type="button" data-action="finish">{{localize "DAGGERHEART.APPLICATIONS.ItemTransfer.transfer"}}</button>
-    </footer>
+    <img class="actor-img" src="{{targetActor.img}}" />
+</div>
+<div class="form-group">
+    <label>{{localize "DAGGERHEART.GENERAL.quantity"}}</label>
+    <div class="form-fields">
+        <range-picker step="1" min="1" max="{{max}}" name="quantity" value="{{max}}"></range-picker>
+    </div>
 </div>
