@@ -269,9 +269,8 @@ const updateActorsRangeDependentEffects = async (token) => {
             }
 
             const distanceBetween = canvas.grid.measurePath([
-                // TODO: missing { ...movedToken.toObject(), x: data.destination.x, y: data.destination.y }
-                userTarget.document,
-                token
+                userTarget.document.movement.destination,
+                token.movement.destination
             ]).distance;
             const distance = rangeMeasurement[range];
 
