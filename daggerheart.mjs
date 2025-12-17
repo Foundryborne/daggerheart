@@ -305,13 +305,14 @@ const updateAllRangeDependentEffects = async () => {
     }
 };
 
+const debouncedRangeEffectCall = foundry.utils.debounce(updateAllRangeDependentEffects, 50);
+
 Hooks.on('targetToken', async (user, token, targeted) => {
-    // TODO: There is a bug when you untarget one token and retarget a new one
-    await updateAllRangeDependentEffects();
+    debouncedRangeEffectCall();
 });
 
 Hooks.on('moveToken', async (movedToken, data) => {
-    await updateAllRangeDependentEffects();
+    debouncedRangeEffectCall();
 });
 
 Hooks.on('renderCompendiumDirectory', (app, html) => applications.ui.ItemBrowser.injectSidebarButton(html));
