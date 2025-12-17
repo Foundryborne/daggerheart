@@ -252,7 +252,8 @@ Hooks.on('moveToken', async (movedToken, data) => {
     const effectsAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).effects;
     if (!effectsAutomation.rangeDependent) return;
 
-    const rangeDependantEffects = movedToken.actor.effects.filter(effect => effect.system.rangeDependence?.enabled);
+    const allEffects = [...movedToken.actor.allApplicableEffects()];
+    const rangeDependantEffects = allEffects.filter(effect => effect.system.rangeDependence?.enabled);
 
     const updateEffects = async (disposition, token, effects, effectUpdates) => {
         const rangeMeasurement = game.settings.get(
@@ -287,7 +288,8 @@ Hooks.on('moveToken', async (movedToken, data) => {
             await updateEffects(token.disposition, token, rangeDependantEffects, effectUpdates);
         }
 
-        if (token.actor) await updateEffects(movedToken.disposition, token, token.actor.effects, effectUpdates);
+        if (token.actor)
+            await updateEffects(movedToken.disposition, token, [...token.actor.allApplicableEffects()], effectUpdates);
     }
 
     for (let key in effectUpdates) {
