@@ -146,14 +146,6 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
             options.scrollingTextData = textData;
         }
 
-        if (!this.parent.isToken && changes.system?.size) {
-            const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
-            this.parent.prototypeToken.update({
-                width: tokenSizes[changes.system.size],
-                height: tokenSizes[changes.system.size]
-            });
-        }
-
         if (changes.system?.resources) {
             const defeatedSettings = game.settings.get(
                 CONFIG.DH.id,

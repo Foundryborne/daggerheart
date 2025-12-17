@@ -102,6 +102,17 @@ export default class DHToken extends TokenDocument {
     }
 
     /**@inheritdoc */
+    getSize(data = {}) {
+        if (this.actor?.system.metadata.usesSize) {
+            const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
+            const size = tokenSizes[this.actor.system.size];
+            return super.getSize({ ...data, width: size, height: size });
+        }
+
+        return super.getSize(data);
+    }
+
+    /**@inheritdoc */
     _onRelatedUpdate(update = {}, operation = {}) {
         super._onRelatedUpdate(update, operation);
 
