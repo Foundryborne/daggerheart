@@ -2,8 +2,22 @@
     <line-div></line-div>
     <div class="name-row">
         <h1 class='actor-name'>
-            <input type='text' name='name' value='{{source.name}}' placeholder="{{localize "DAGGERHEART.GENERAL.actorName"}}"
-            />
+            <div class="name-wrapper">
+                <input
+                    type='text'
+                    name='name'
+                    id='actor-name-{{document.id}}'
+                    value='{{document.name}}'
+                    placeholder='{{localize "DAGGERHEART.GENERAL.actorName"}}'
+                />
+                <label for="actor-name-{{document.id}}">
+                    {{#if document.name}}
+                        {{document.name}}
+                    {{else}}
+                        <span>{{localize "DAGGERHEART.GENERAL.actorName"}}</span>
+                    {{/if}}
+                </label>
+            </div>
         </h1>
     </div>
     <div class="tags">
