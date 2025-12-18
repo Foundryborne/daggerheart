@@ -50,8 +50,10 @@ aside[role='tooltip']:has(div.daggerheart.dh-style.tooltip) {
 
     .tags {
         display: flex;
-        gap: 10px;
+        gap: 5px 10px;
         padding-bottom: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
 
         .tag {
             display: flex;
@@ -142,7 +144,7 @@ aside[role='tooltip']:has(div.daggerheart.dh-style.tooltip) {
 }
 
 aside[role='tooltip'].locked-tooltip:has(div.daggerheart.dh-style.tooltip) {
-    box-shadow: 0 0 20px @golden-90;
+    box-shadow: 0 0 25px @golden-90;
 }
 
 .theme-light #tooltip:has(div.daggerheart.dh-style.tooltip),
@@ -151,7 +153,7 @@ aside[role='tooltip'].locked-tooltip:has(div.daggerheart.dh-style.tooltip) {
 }
 
 .theme-light aside[role='tooltip'].locked-tooltip:has(div.daggerheart.dh-style.tooltip) {
-    box-shadow: 0 0 20px @dark-blue-90;
+    box-shadow: 0 0 25px @dark-blue-90;
 }
 
 #tooltip,
