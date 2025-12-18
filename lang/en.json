@@ -2787,7 +2787,9 @@
                 "companionPartnerLevelBlock": "The companion needs an assigned partner to level up.",
                 "configureAttribution": "Configure Attribution",
                 "deleteItem": "Delete Item",
-                "immune": "Immune"
+                "immune": "Immune",
+                "middleClick": "[Middle Click] Keep tooltip view"
+
             }
         }
     }
