@@ -248,6 +248,9 @@ export default function DHApplicationMixin(Base) {
                 input.addEventListener("keydown", event => {
                     if (event.key === "Enter") input.blur();
                 });
+
+                // Chrome sometimes add <br>, which aren't a problem for the value but are for the placeholder
+                input.addEventListener("input", () => input.querySelectorAll("br").forEach((i) => i.remove()));
             }
         }
 

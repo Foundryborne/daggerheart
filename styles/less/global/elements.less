@@ -46,6 +46,10 @@
 
     .input[contenteditable] {
         cursor: var(--cursor-text);
+        &:empty:before {
+            color: light-dark(@dark-40, @beige-50);
+            content: attr(placeholder);
+        }
     }
 
     input[type='checkbox'],
