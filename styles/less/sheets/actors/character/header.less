@@ -34,57 +34,22 @@
         .name-row {
             display: flex;
             gap: 5px;
-            align-items: center;
+            align-items: end;
             justify-content: space-between;
             padding: 0;
             padding-top: 5px;
             flex: 1;
 
-            .name-wrapper {
-                display: flex;
-                align-items: center;
-                position: relative;
-                width: 100%;
-                min-height: 42px;
+            input[type='text'] {
+                font-size: var(--font-size-32);
+                height: 42px;
+                text-align: start;
                 border: 1px solid transparent;
-                border-radius: 6px;
                 outline: 2px solid transparent;
+                transition: all 0.3s ease;
+
                 &:hover {
                     outline: 2px solid light-dark(@dark, @golden);
-                }
-                input[type='text'] {
-                    font-size: var(--font-size-28);
-                    font-family: var(--dh-font-body, 'Montserrat'), sans-serif;
-                    height: auto;
-                    text-align: start;
-                    position:absolute;
-                    opacity: 0;
-                    pointer-events: none;
-                    z-index:-1;
-                    transition: opacity 0.1s ease-out;
-                    &:focus {
-                        position: static;
-                        opacity: 1;
-                        pointer-events: auto;
-                        z-index: auto;
-                        width: 100%;
-                    }
-                }
-                label {
-                    display: inline-block;
-                    position: static;
-                    cursor: text;
-                    color:light-dark(@dark, @golden);
-                    font-size: var(--font-size-32);
-                    font-family: var(--dh-font-title, 'Cinzel Decorative'), serif;
-                    text-align: start;
-                    line-height: 1.1;
-                    min-height: 42px; 
-                    word-break: break-word; 
-                    width: 100%;
-                }
-                input[type='text']:focus ~ label {
-                    display: none;
                 }
             }
 
