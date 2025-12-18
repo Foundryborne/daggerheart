@@ -102,7 +102,7 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
      * @returns {object}
      */
     getRollData() {
-        const data = { ...this };
+        const data = { ...this, system: { ...this.system, system: {} } };
         return data;
     }
 
