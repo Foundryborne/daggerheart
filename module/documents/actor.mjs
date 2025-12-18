@@ -526,7 +526,7 @@ export default class DhpActor extends Actor {
 
     /**@inheritdoc */
     getRollData() {
-        const rollData = super.getRollData();
+        const rollData = { ...super.getRollData() };
         rollData.name = this.name;
         rollData.system = this.system.getRollData();
         rollData.prof = this.system.proficiency ?? 1;
