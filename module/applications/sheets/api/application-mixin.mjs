@@ -382,8 +382,8 @@ export default function DHApplicationMixin(Base) {
                         fromInternal: this.document.uuid
                     };
                     event.dataTransfer.setData('text/plain', JSON.stringify(effectData));
-                    event.dataTransfer.setDragImage(inventoryItem.querySelector('img'), 60, 0);
                 }
+                event.dataTransfer.setDragImage(inventoryItem.querySelector('img'), 60, 0);
             }
         }
 
