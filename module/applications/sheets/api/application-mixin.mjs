@@ -179,6 +179,7 @@ export default function DHApplicationMixin(Base) {
             super._attachPartListeners(partId, htmlElement, options);
             this._dragDrop.forEach(d => d.bind(htmlElement));
 
+            // Handle delta inputs
             for (const deltaInput of htmlElement.querySelectorAll('input[data-allow-delta]')) {
                 deltaInput.dataset.numValue = deltaInput.value;
                 deltaInput.inputMode = 'numeric';
@@ -230,6 +231,22 @@ export default function DHApplicationMixin(Base) {
 
                 deltaInput.addEventListener('change', () => {
                     handleUpdate();
+                });
+            }
+
+            // Handle contenteditable
+            for (const input of htmlElement.querySelectorAll('[contenteditable][data-property]')) {
+                const property = input.dataset.property;
+                input.addEventListener("blur", () => {
+                    const selection = document.getSelection();
+                    if (input.contains(selection.anchorNode)) {
+                        selection.empty();
+                    }
+                    this.document.update({ [property]: input.textContent });
+                });
+
+                input.addEventListener("keydown", event => {
+                    if (event.key === "Enter") input.blur();
                 });
             }
         }

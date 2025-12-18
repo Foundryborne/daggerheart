@@ -6,7 +6,8 @@
 
     input[type='text'],
     input[type='number'],
-    textarea {
+    textarea,
+    .input[contenteditable] {
         background: light-dark(transparent, transparent);
         border-radius: 6px;
         box-shadow: 0 4px 30px @soft-shadow;
@@ -41,6 +42,10 @@
                 background: transparent;
             }
         }
+    }
+
+    .input[contenteditable] {
+        cursor: var(--cursor-text);
     }
 
     input[type='checkbox'],
