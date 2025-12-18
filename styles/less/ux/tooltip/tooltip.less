@@ -1,8 +1,8 @@
 @import '../../utils/colors.less';
 @import '../../utils/fonts.less';
 
-#tooltip:has(div.daggerheart.dh-style.tooltip),
-aside[role='tooltip']:has(div.daggerheart.dh-style.tooltip) {
+#tooltip:has(div.daggerheart.dh-style.tooltip.card-style),
+aside[role='tooltip']:has(div.daggerheart.dh-style.tooltip.card-style) {
     padding: 0;
     border: none;
     border-radius: 10px;
@@ -143,12 +143,12 @@ aside[role='tooltip']:has(div.daggerheart.dh-style.tooltip) {
     }
 }
 
-aside[role='tooltip'].locked-tooltip:has(div.daggerheart.dh-style.tooltip) {
+aside[role='tooltip'].locked-tooltip:has(div.daggerheart.dh-style.tooltip.card-style) {
     box-shadow: 0 0 25px @golden-90;
 }
 
-.theme-light #tooltip:has(div.daggerheart.dh-style.tooltip),
-.theme-light aside[role='tooltip']:has(div.daggerheart.dh-style.tooltip) {
+.theme-light #tooltip:has(div.daggerheart.dh-style.tooltip.card-style),
+.theme-light aside[role='tooltip']:has(div.daggerheart.dh-style.tooltip.card-style) {
     background-image: url('../assets/parchments/dh-parchment-light.png');
 }
 
@@ -157,7 +157,8 @@ aside[role='tooltip'].locked-tooltip:has(div.daggerheart.dh-style.tooltip) {
 }
 
 #tooltip,
-.locked-tooltip {
+.locked-tooltip,
+.daggerheart.dh-style.tooltip {
     &.wide {
         max-width: 480px;
 
