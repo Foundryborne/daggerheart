@@ -131,7 +131,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
      */
     getRollData(options = {}) {
         const actorRollData = this.actor?.getRollData() ?? {};
-        const data = { ...actorRollData, item: { ...this, system: this.system } };
+        const data = { ...actorRollData, item: { ...this } };
         return data;
     }
 
