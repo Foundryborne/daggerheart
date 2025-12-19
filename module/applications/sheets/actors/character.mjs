@@ -48,7 +48,12 @@ export default class CharacterSheet extends DHBaseActorSheet {
             {
                 dragSelector: '[data-item-id] [draggable="true"]',
                 dropSelector: null
+            },
+            {
+                dragSelector: '[data-item-id][draggable="true"]',
+                dropSelector: null
             }
+
         ],
         contextMenus: [
             {
