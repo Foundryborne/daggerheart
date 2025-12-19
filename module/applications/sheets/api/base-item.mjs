@@ -35,7 +35,8 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         dragDrop: [
             { dragSelector: null, dropSelector: '.drop-section' },
             { dragSelector: '.feature-item', dropSelector: null },
-            { dragSelector: '.inventory-item', dropSelector: null }
+            { dragSelector: '.inventory-item', dropSelector: null },
+            { dragSelector: '.inventory-item [draggable="true"]', dropSelector: null }
         ],
         contextMenus: [
             {
