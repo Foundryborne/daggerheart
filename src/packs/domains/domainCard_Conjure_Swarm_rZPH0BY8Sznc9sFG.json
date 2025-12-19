@@ -208,13 +208,13 @@
       },
       "changes": [
         {
-          "key": "system.resistance.magical.reduction",
+          "key": "system.rules.damageReduction.reduceSeverity.magical",
           "mode": 2,
           "value": "1",
           "priority": null
         },
         {
-          "key": "system.resistance.magical.reduction",
+          "key": "system.rules.damageReduction.reduceSeverity.physical",
           "mode": 2,
           "value": "1",
           "priority": null

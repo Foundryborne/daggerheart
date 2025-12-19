@@ -5,8 +5,7 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
         actions: {
             requestSpotlight: this.requestSpotlight,
             toggleSpotlight: this.toggleSpotlight,
-            setActionTokens: this.setActionTokens,
-            openCountdowns: this.openCountdowns
+            setActionTokens: this.setActionTokens
         }
     };
 
@@ -57,21 +56,26 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
 
         const adversaries = context.turns?.filter(x => x.isNPC) ?? [];
         const characters = context.turns?.filter(x => !x.isNPC) ?? [];
+        const spotlightQueueEnabled = game.settings.get(
+            CONFIG.DH.id,
+            CONFIG.DH.SETTINGS.gameSettings.SpotlightRequestQueue
+        );
 
         const spotlightRequests = characters
-            ?.filter(x => !x.isNPC)
+            ?.filter(x => !x.isNPC && spotlightQueueEnabled)
             .filter(x => x.system.spotlight.requestOrderIndex > 0)
             .sort((a, b) => {
                 const valueA = a.system.spotlight.requestOrderIndex;
                 const valueB = b.system.spotlight.requestOrderIndex;
-
                 return valueA - valueB;
             });
 
         Object.assign(context, {
             actionTokens: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).actionTokens,
             adversaries,
-            characters: characters?.filter(x => !x.isNPC).filter(x => x.system.spotlight.requestOrderIndex == 0),
+            characters: characters
+                ?.filter(x => !x.isNPC)
+                .filter(x => !spotlightQueueEnabled || x.system.spotlight.requestOrderIndex == 0),
             spotlightRequests
         });
     }
@@ -161,9 +165,13 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
 
         if (this.viewed.turn !== toggleTurn) {
             const { updateCountdowns } = game.system.api.applications.ui.DhCountdowns;
-            await updateCountdowns(CONFIG.DH.GENERAL.countdownProgressionTypes.spotlight.id);
             if (combatant.actor.type === 'character') {
-                await updateCountdowns(CONFIG.DH.GENERAL.countdownProgressionTypes.characterSpotlight.id);
+                await updateCountdowns(
+                    CONFIG.DH.GENERAL.countdownProgressionTypes.spotlight.id,
+                    CONFIG.DH.GENERAL.countdownProgressionTypes.characterSpotlight.id
+                );
+            } else {
+                await updateCountdowns(CONFIG.DH.GENERAL.countdownProgressionTypes.spotlight.id);
             }
 
             const autoPoints = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).actionPoints;

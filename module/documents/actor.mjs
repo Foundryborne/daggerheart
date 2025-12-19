@@ -526,7 +526,7 @@ export default class DhpActor extends Actor {
 
     /**@inheritdoc */
     getRollData() {
-        const rollData = super.getRollData();
+        const rollData = super.getRollData().clone();
         rollData.name = this.name;
         rollData.system = this.system.getRollData();
         rollData.prof = this.system.proficiency ?? 1;
@@ -679,6 +679,10 @@ export default class DhpActor extends Actor {
         return updates;
     }
 
+    /**
+     * Resources are modified asynchronously, so be careful not to update the same resource in
+     * quick succession.
+     */
     async modifyResource(resources) {
         if (!resources?.length) return;
 
@@ -761,6 +765,10 @@ export default class DhpActor extends Actor {
     }
 
     convertDamageToThreshold(damage) {
+        const massiveDamageEnabled=game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).massiveDamage.enabled;
+        if (massiveDamageEnabled && damage >= (this.system.damageThresholds.severe * 2)) {
+            return 4; 
+        }
         return damage >= this.system.damageThresholds.severe ? 3 : damage >= this.system.damageThresholds.major ? 2 : 1;
     }
 

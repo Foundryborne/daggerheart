@@ -198,7 +198,7 @@ foundry.dice.terms.Die.prototype.selfCorrecting = function (modifier) {
 };
 
 export const getDamageKey = damage => {
-    return ['none', 'minor', 'major', 'severe', 'any'][damage];
+    return ['none', 'minor', 'major', 'severe', 'massive','any'][damage];
 };
 
 export const getDamageLabel = damage => {
@@ -211,7 +211,8 @@ export const damageKeyToNumber = key => {
         minor: 1,
         major: 2,
         severe: 3,
-        any: 4
+        massive: 4,
+        any: 5
     }[key];
 };
 

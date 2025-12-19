@@ -32,7 +32,7 @@
       "img": "icons/equipment/chest/breastplate-helmet-metal.webp",
       "changes": [
         {
-          "key": "system.rules.damageReduction.maxArmorMarked.stressExtra",
+          "key": "system.rules.damageReduction.maxArmorMarked.value",
           "mode": 2,
           "value": "1",
           "priority": null

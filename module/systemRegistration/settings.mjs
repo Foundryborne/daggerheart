@@ -13,6 +13,16 @@ export const registerDHSettings = () => {
     registerMenuSettings();
     registerMenus();
     registerNonConfigSettings();
+
+    game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.SpotlightRequestQueue, {
+        name: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.SpotlightRequestQueue.name'),
+        label: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.SpotlightRequestQueue.label'),
+        hint: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.SpotlightRequestQueue.hint'),
+        scope: 'world',
+        config: true,
+        type: Boolean,
+        onChange: () => ui.combat.render(),
+    })
 };
 
 const registerMenuSettings = () => {
