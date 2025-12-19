@@ -445,20 +445,22 @@ export default class DhCharacter extends BaseDataActor {
         if (item.system.originItemType !== CONFIG.DH.ITEM.featureTypes.subclass.id) {
             return true;
         }
-        if (this.class.subclass) {
-            const prop = item.system.multiclassOrigin ? 'multiclass' : 'class';
-            const subclassState = this[prop].subclass?.system?.featureState;
-            if (!subclassState) return false;
+        if (!this.class.subclass) return false;
 
-            if (
-                item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.foundation ||
-                (item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.specialization &&
-                    subclassState >= 2) ||
-                (item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.mastery && subclassState >= 3)
-            ) {
-                return true;
+        const prop = item.system.multiclassOrigin ? 'multiclass' : 'class';
+        const subclassState = this[prop].subclass?.system?.featureState;
+        if (!subclassState) return false;
+
+        if (
+            item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.foundation ||
+            (item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.specialization &&
+                subclassState >= 2) ||
+            (item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.mastery && subclassState >= 3)
+        ) {
+            return true;
+        } else {
+            return false;
             }
-        }
     }
 
     get sheetLists() {
