@@ -1,4 +1,5 @@
 import DHBaseActorSettings from '../../applications/sheets/api/actor-setting.mjs';
+import DHItem from '../../documents/item.mjs';
 import { getScrollTextData } from '../../helpers/utils.mjs';
 
 const resistanceField = (resistanceLabel, immunityLabel, reductionLabel) =>
@@ -104,6 +105,17 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
     getRollData() {
         const data = { ...this };
         return data;
+    }
+
+    /**
+     * Checks if an item is available for use, such as multiclass features being disabled
+     * on a character.
+     *
+     * @param {DHItem} item The item being checked for availability
+     * @return {boolean} whether the item is available
+     */
+    isItemAvailable(item) {
+        return true;
     }
 
     async _preDelete() {
