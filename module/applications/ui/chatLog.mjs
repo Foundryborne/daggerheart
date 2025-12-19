@@ -59,6 +59,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         html.querySelectorAll('.group-roll-header-expand-section').forEach(element =>
             element.addEventListener('click', this.groupRollExpandSection)
         );
+        // Despite documentation, data may be empty. For example, a module's chat message.
         if (!data?.message) return;
         html.querySelectorAll('.simple-roll-button').forEach(element =>
             element.addEventListener('click', event => this.onRollSimple(event, data.message))

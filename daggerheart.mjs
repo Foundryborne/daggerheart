@@ -195,6 +195,7 @@ Hooks.once('dicesoniceready', () => {});
 
 Hooks.on('renderChatMessageHTML', (_, element, message) => {
     enricherRenderSetup(element);
+    // Despite documentation, message may be empty. For example, a module's chat message.
     if (!message) return;
     const cssClass = message.message.flags?.daggerheart?.cssClass;
     if (cssClass) cssClass.split(' ').forEach(cls => element.classList.add(cls));
