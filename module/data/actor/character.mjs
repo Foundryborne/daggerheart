@@ -451,6 +451,7 @@ export default class DhCharacter extends BaseDataActor {
             } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.class.id) {
                 classFeatures.push(item);
             } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.subclass.id) {
+                // TODO(nsalyzyn): Reuse this code for elsewhere
                 if (this.class.subclass) {
                     const prop = item.system.multiclassOrigin ? 'multiclass' : 'class';
                     const subclassState = this[prop].subclass?.system?.featureState;

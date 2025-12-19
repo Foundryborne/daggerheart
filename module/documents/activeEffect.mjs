@@ -196,6 +196,7 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
     prepareDerivedData() {
         /* Preventing subclass features from transferring to actor if they do not have the right subclass advancement */
         if (this.parent?.type === 'feature') {
+            // TODO(nsalyzyn): Reuse this code for elsewhere
             const origSubclassParent = this.parent.system.originItemType === 'subclass';
             if (origSubclassParent) {
                 const subclass = this.parent.parent.items.find(

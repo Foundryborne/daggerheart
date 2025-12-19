@@ -94,6 +94,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
 
     getRefreshables() {
         const actionItems = this.actor.items.reduce((acc, x) => {
+            // TODO(nsalyzyn): Eliminate items that the are part of the subclass the actor doesn't have access to.
             if (x.system.actions) {
                 const recoverable = x.system.actions.reduce((acc, action) => {
                     if (refreshIsAllowed([this.shortrest ? 'shortRest' : 'longRest'], action.uses.recovery)) {
