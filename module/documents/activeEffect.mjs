@@ -197,7 +197,7 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         /* Check for item availability such as in the case of subclass advancement. */
         if (this.parent?.parent?.system?.isItemAvailable) {
             if (!this.parent.parent.system.isItemAvailable(this.parent)) {
-                this.transfer = false
+                this.transfer = false;
             }
         }
     }
