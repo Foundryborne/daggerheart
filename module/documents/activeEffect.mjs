@@ -200,6 +200,5 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
                 this.transfer = false
             }
         }
-        return;
     }
 }
