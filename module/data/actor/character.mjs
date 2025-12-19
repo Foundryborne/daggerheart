@@ -460,7 +460,7 @@ export default class DhCharacter extends BaseDataActor {
             return true;
         } else {
             return false;
-            }
+        }
     }
 
     get sheetLists() {
