@@ -183,7 +183,6 @@ export default function DHApplicationMixin(Base) {
             for (const deltaInput of htmlElement.querySelectorAll('input[data-allow-delta]')) {
                 deltaInput.dataset.numValue = deltaInput.value;
                 deltaInput.inputMode = 'numeric';
-                deltaInput.pattern = '^[+=\\-]?\d*';
 
                 const handleUpdate = (delta = 0) => {
                     const min = Number(deltaInput.min) || 0;
