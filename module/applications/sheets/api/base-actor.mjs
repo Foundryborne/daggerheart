@@ -36,7 +36,6 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         ],
         dragDrop: [
             { dragSelector: '.inventory-item[data-type="attack"]', dropSelector: null },
-            { dragSelector: '.inventory-item[data-type="attack"] [draggable="true"]', dropSelector: null },
             { dragSelector: ".currency[data-currency] .drag-handle", dropSelector: null }
         ]
     };

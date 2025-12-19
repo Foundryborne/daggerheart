@@ -25,10 +25,7 @@ export default class DhpEnvironment extends DHBaseActorSheet {
             toggleResourceDice: DhpEnvironment.#toggleResourceDice,
             handleResourceDice: DhpEnvironment.#handleResourceDice
         },
-        dragDrop: [
-            { dragSelector: '.inventory-item', dropSelector: null },
-            { dragSelector: '.inventory-item [draggable="true"]', dropSelector: null }
-        ]
+        dragDrop: [{ dragSelector: '.inventory-item', dropSelector: null }]
     };
 
     /**@override */

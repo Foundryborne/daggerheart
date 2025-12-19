@@ -124,10 +124,7 @@ export default function DHApplicationMixin(Base) {
                     }
                 }
             ],
-            dragDrop: [
-                { dragSelector: '.inventory-item[data-type="effect"]', dropSelector: null },
-                { dragSelector: '.inventory-item[data-type="effect"] [draggable="true"]', dropSelector: null }
-            ],
+            dragDrop: [{ dragSelector: '.inventory-item[data-type="effect"]', dropSelector: null }],
             tagifyConfigs: []
         };
 
