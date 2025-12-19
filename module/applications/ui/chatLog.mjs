@@ -56,6 +56,10 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     }
 
     addChatListeners = async (app, html, data) => {
+        html.querySelectorAll('.group-roll-header-expand-section').forEach(element =>
+            element.addEventListener('click', this.groupRollExpandSection)
+        );
+        if (!data?.message) return;
         html.querySelectorAll('.simple-roll-button').forEach(element =>
             element.addEventListener('click', event => this.onRollSimple(event, data.message))
         );
@@ -76,9 +80,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         );
         html.querySelectorAll('.group-roll-success').forEach(element =>
             element.addEventListener('click', event => this.groupRollSuccessEvent(event, data.message))
-        );
-        html.querySelectorAll('.group-roll-header-expand-section').forEach(element =>
-            element.addEventListener('click', this.groupRollExpandSection)
         );
     };
 
