@@ -93,4 +93,5 @@ export const enrichedFateRoll = async (
     config.data = { experiences: {}, traits: {}, fateType: fateType };
     config.source = { actor: target?.uuid };
     await CONFIG.Dice.daggerheart.FateRoll.build(config);
+    return config;
 };

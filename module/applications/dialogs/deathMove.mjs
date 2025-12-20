@@ -44,13 +44,21 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
     async handleAvoidDeath() {
         console.log("Avoid Death!");
         const target = this.actor.uuid;
-        await enrichedFateRoll({
+        const config = await enrichedFateRoll({
             target,
             title: "Avoid Death Hope Fate Roll",
             label: 'test',
             fateType: "Hope"
         });
-        console.log("enrichedFateRoll done...");
+        console.log("enrichedFateRoll done...", config);
+        console.log("config.roll.fate.value", config.roll.fate.value);
+        console.log("actor", this.actor);
+        if (config.roll.fate.value <= this.actor.system.levelData.level.current) {
+            // apply scarring - for now directly apply - later add a button.
+            console.log("Adding a scar...", this.actor.system.scars);
+            this.actor.system.scars.push({id:"1", name: "scar1", description: "description1"});
+            console.log("Adding a scar result", this.actor.system.scars);
+        }
     }
 
     handleRiskItAll() {
