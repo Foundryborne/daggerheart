@@ -75,7 +75,8 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
                     {
                         item: item,
                         description: item.system?.enrichedDescription ?? item.enrichedDescription,
-                        config: CONFIG.DH
+                        config: CONFIG.DH,
+                        allDomains: CONFIG.DH.DOMAIN.allDomains()
                     }
                 );
 

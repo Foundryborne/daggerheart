@@ -307,7 +307,8 @@
                   }
                 }
               ],
-              "includeBase": false
+              "includeBase": false,
+              "direct": true
             },
             "target": {
               "type": "any",
@@ -319,7 +320,7 @@
               "trait": null,
               "difficulty": null,
               "bonus": null,
-              "advState": "neutral",
+              "advState": "advantage",
               "diceRolling": {
                 "multiplier": "prof",
                 "flatMultiplier": 1,

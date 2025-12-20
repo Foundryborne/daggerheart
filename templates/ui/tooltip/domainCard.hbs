@@ -6,7 +6,7 @@
     <div class="tooltip-information-section">
         <div class="tooltip-information">
             <label>{{localize "DAGGERHEART.GENERAL.Domain.single"}}</label>
-            {{#with (lookup config.DOMAIN.domains item.system.domain) as | domain |}}
+            {{#with (lookup allDomains item.system.domain) as | domain |}}
                 <div>{{localize domain.label}}</div>
             {{/with}}
         </div>

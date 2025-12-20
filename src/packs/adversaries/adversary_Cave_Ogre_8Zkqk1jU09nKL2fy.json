@@ -39,7 +39,8 @@
     "experiences": {
       "7GpgCWSe6hNwnOO7": {
         "name": "Throw",
-        "value": 2
+        "value": 2,
+        "description": ""
       }
     },
     "bonuses": {
@@ -105,7 +106,8 @@
             },
             "base": false
           }
-        ]
+        ],
+        "direct": true
       },
       "name": "Club",
       "img": "icons/weapons/clubs/club-banded-barbed-black.webp",
@@ -337,10 +339,11 @@
                 {
                   "value": {
                     "custom": {
-                      "enabled": false
+                      "enabled": false,
+                      "formula": ""
                     },
                     "flatMultiplier": 1,
-                    "dice": "d12",
+                    "dice": "d10",
                     "bonus": 2,
                     "multiplier": "flat"
                   },
@@ -356,12 +359,14 @@
                     "dice": "d6",
                     "bonus": null,
                     "custom": {
-                      "enabled": false
+                      "enabled": false,
+                      "formula": ""
                     }
                   }
                 }
               ],
-              "includeBase": false
+              "includeBase": false,
+              "direct": true
             },
             "target": {
               "type": "any",
@@ -528,7 +533,8 @@
                   }
                 }
               ],
-              "includeBase": false
+              "includeBase": false,
+              "direct": true
             },
             "target": {
               "type": "any",

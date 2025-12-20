@@ -427,7 +427,8 @@
                   }
                 }
               ],
-              "includeBase": false
+              "includeBase": false,
+              "direct": true
             },
             "target": {
               "type": "any",

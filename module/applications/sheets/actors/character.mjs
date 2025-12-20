@@ -685,8 +685,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 ability: abilityLabel
             })
         });
-
-        if (result) game.system.api.fields.ActionFields.CostField.execute.call(this, result);
     }
 
     //TODO: redo toggleEquipItem method
