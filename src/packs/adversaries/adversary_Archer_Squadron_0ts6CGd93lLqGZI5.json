@@ -328,7 +328,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "Wuf5y9tJ88BwzLv2",
       "img": "icons/skills/ranged/arrows-flying-triple-brown.webp",
@@ -425,7 +426,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "ayGHTtyjSuIR4BrV",
       "img": "icons/skills/ranged/arrows-flying-salvo-blue.webp",

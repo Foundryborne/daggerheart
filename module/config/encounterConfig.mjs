@@ -84,6 +84,7 @@ export const BPModifiers = {
         increaseDamage: {
             sort: 2,
             description: 'DAGGERHEART.CONFIG.BPModifiers.increaseDamage.description',
+            effectTargetTypes: ['adversary'],
             effects: [
                 {
                     name: 'DAGGERHEART.CONFIG.BPModifiers.increaseDamage.effect.name',

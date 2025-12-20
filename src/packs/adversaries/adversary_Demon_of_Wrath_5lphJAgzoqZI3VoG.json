@@ -286,7 +286,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "a33PW8UkziliowlR",
       "img": "icons/skills/melee/maneuver-greatsword-yellow.webp",
@@ -393,7 +394,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "DjGydqLXT4rDa7Av",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -482,7 +484,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "2F75BO0xEU8Zlj7T",
       "img": "icons/creatures/unholy/demon-fire-horned-clawed.webp",

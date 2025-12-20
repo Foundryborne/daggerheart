@@ -289,7 +289,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "jNmMyq5QI2HNgffy",
       "img": "icons/magic/death/skull-weapon-staff-glow-pink.webp",
@@ -467,7 +468,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "4EECsXzHFG0RoIg0",
       "img": "icons/magic/unholy/projectile-missile-green.webp",
@@ -561,7 +563,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "XxXOrFovbCz9zFxR",
       "img": "icons/magic/death/undead-zombie-grave-green.webp",
@@ -640,7 +643,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "k4MSykLRoW3qp7Lk",
       "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
@@ -756,7 +760,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "FKcuCo0v2U7fVkqq",
       "img": "icons/magic/unholy/hand-claw-fire-green.webp",

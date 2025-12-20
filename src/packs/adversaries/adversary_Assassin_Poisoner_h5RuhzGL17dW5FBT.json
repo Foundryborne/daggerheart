@@ -419,7 +419,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "lAmiK8wVxjyHwKlp",
       "img": "icons/magic/air/fog-gas-smoke-green.webp",

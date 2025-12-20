@@ -388,7 +388,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "Ks3HpB4W1l5FqR7p",
       "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",

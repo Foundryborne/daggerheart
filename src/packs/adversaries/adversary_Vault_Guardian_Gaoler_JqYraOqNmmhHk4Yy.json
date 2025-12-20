@@ -308,7 +308,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "VlHp8RjHy7MK8rqC",
       "img": "icons/environment/traps/cage-grey-steel.webp",

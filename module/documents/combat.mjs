@@ -28,6 +28,7 @@ export default class DhpCombat extends Combat {
                         ...effect,
                         name: game.i18n.localize(effect.name),
                         description: game.i18n.localize(effect.description),
+                        effectTargetTypes: grouping.effectTargetTypes ?? [],
                         flags: {
                             [`${CONFIG.DH.id}.${CONFIG.DH.FLAGS.combatToggle}`]: {
                                 category: toggle.category,
@@ -45,11 +46,7 @@ export default class DhpCombat extends Combat {
             for (let actor of actors) {
                 await actor.createEmbeddedDocuments(
                     'ActiveEffect',
-                    effects.map(effect => ({
-                        ...effect,
-                        name: game.i18n.localize(effect.name),
-                        description: game.i18n.localize(effect.description)
-                    }))
+                    effects.filter(x => x.effectTargetTypes.includes(actor.type))
                 );
             }
         } else {

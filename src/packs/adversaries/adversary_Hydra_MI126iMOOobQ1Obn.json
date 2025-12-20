@@ -354,7 +354,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "b2KflqWoOxHMQf97",
       "img": "icons/magic/life/cross-beam-green.webp",
@@ -432,7 +433,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "bCeCu8M25izOAsuY",
       "img": "icons/magic/death/skull-energy-light-white.webp",
@@ -485,7 +487,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "sJzjcRBgYRp5f53E",
       "img": "icons/magic/symbols/star-rising-purple.webp",

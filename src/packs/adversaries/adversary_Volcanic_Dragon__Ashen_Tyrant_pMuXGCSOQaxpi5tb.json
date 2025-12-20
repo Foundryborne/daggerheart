@@ -614,7 +614,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "AXhSVGL33i0j6DAw",
       "img": "icons/creatures/abilities/tail-swipe-green.webp",
@@ -669,7 +670,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "ggCol5LQ2ZpeQjly",
       "img": "icons/magic/air/fog-gas-smoke-brown.webp",
@@ -819,7 +821,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "uWiyaJPXcoW06pOM",
       "img": "icons/creatures/abilities/mouth-teeth-fire-orange.webp",

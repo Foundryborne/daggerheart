@@ -315,7 +315,8 @@
           }
         },
         "originItemType": null,
-        "multiclassOrigin": false
+        "multiclassOrigin": false,
+        "featureForm": "action"
       },
       "_id": "Q2slH9qkBO5SPw43",
       "img": "icons/consumables/nuts/nut-spiked-shell.webp",
@@ -378,7 +379,8 @@
           }
         },
         "originItemType": null,
-        "multiclassOrigin": false
+        "multiclassOrigin": false,
+        "featureForm": "action"
       },
       "_id": "sqkgw26P2KiQVtXT",
       "img": "icons/consumables/plants/thorned-stem-brown.webp",

@@ -320,7 +320,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "dI2MGjC7NFAru1Gd",
       "img": "icons/magic/defensive/shield-barrier-blades-teal.webp",
@@ -426,7 +427,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "PnQ0m0FLnpht7oE4",
       "img": "icons/magic/earth/barrier-stone-explosion-red.webp",
@@ -532,7 +534,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "s2luvEVxJLZmOrdh",
       "img": "icons/magic/light/projectiles-trio-pink.webp",
@@ -565,7 +568,7 @@
             "actionType": "action",
             "cost": [],
             "uses": {
-              "value": null,
+              "value": 0,
               "max": "1",
               "recovery": null
             },
@@ -611,7 +614,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "9cPigHRcUfJC9gD8",
       "img": "icons/magic/defensive/barrier-shield-dome-blue-purple.webp",

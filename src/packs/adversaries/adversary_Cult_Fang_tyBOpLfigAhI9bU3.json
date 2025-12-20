@@ -364,7 +364,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "ohASSruBxcvuItIK",
       "img": "icons/magic/unholy/barrier-fire-pink.webp",

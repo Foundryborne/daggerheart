@@ -414,7 +414,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "b2QvDYOq1nreI2uD",
       "img": "icons/creatures/mammals/bull-horned-blue.webp",
@@ -512,7 +513,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "WxbHcbaeb6L7g8qN",
       "img": "icons/skills/melee/strike-slashes-red.webp",

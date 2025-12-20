@@ -308,7 +308,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "WEbHwamS5ZBphiKq",
       "img": "icons/creatures/unholy/demons-horned-glowing-pink.webp",
@@ -403,7 +404,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "3mOBJE5c3cP2cGP1",
       "img": "icons/skills/melee/strike-weapons-orange.webp",

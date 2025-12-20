@@ -341,7 +341,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "kCffzM8rX8NEr9d2",
       "img": "icons/magic/unholy/beam-ringed-impact-purple.webp",
@@ -401,7 +402,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "IHWDn097sRgjlZXO",
       "img": "icons/magic/unholy/orb-contained-pink.webp",
@@ -511,7 +513,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "JpSrduK3vjd9h098",
       "img": "icons/magic/air/fog-gas-smoke-dense-pink.webp",
@@ -643,7 +646,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "x6FbcrfOscb3er6P",
       "img": "icons/magic/unholy/silhouette-robe-evil-glow.webp",

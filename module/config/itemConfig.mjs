@@ -5,7 +5,6 @@ export const armorFeatures = {
         actions: [
             {
                 type: 'damage',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.ArmorFeature.burning.actions.burn.name',
                 description: 'DAGGERHEART.CONFIG.ArmorFeature.burning.actions.burn.description',
@@ -174,7 +173,6 @@ export const armorFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.ArmorFeature.hopeful.actions.hope.name',
                 description: 'DAGGERHEART.CONFIG.ArmorFeature.hopeful.actions.hope.description',
@@ -188,7 +186,6 @@ export const armorFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.ArmorFeature.impenetrable.actions.impenetrable.name',
                 description: 'DAGGERHEART.CONFIG.ArmorFeature.impenetrable.actions.impenetrable.description',
@@ -231,7 +228,6 @@ export const armorFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.ArmorFeature.painful.actions.pain.name',
                 description: 'DAGGERHEART.CONFIG.ArmorFeature.painful.actions.pain.description',
@@ -269,7 +265,6 @@ export const armorFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.ArmorFeature.quiet.actions.quiet.name',
                 description: 'DAGGERHEART.CONFIG.ArmorFeature.quiet.actions.quiet.description',
@@ -306,7 +301,6 @@ export const armorFeatures = {
         actions: [
             {
                 type: 'attack',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.ArmorFeature.resilient.actions.resilient.name',
                 description: 'DAGGERHEART.CONFIG.ArmorFeature.resilient.actions.resilient.description',
@@ -353,7 +347,6 @@ export const armorFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.ArmorFeature.shifting.actions.shift.name',
                 description: 'DAGGERHEART.CONFIG.ArmorFeature.shifting.actions.shift.description',
@@ -373,7 +366,6 @@ export const armorFeatures = {
         actions: [
             {
                 type: 'attack',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.ArmorFeature.timeslowing.actions.slowTime.name',
                 description: 'DAGGERHEART.CONFIG.ArmorFeature.timeslowing.actions.slowTime.description',
@@ -401,7 +393,6 @@ export const armorFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.ArmorFeature.truthseeking.actions.truthseeking.name',
                 description: 'DAGGERHEART.CONFIG.ArmorFeature.truthseeking.actions.truthseeking.description',
@@ -537,7 +528,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.bouncing.actions.bounce.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.bouncing.actions.bounce.description',
@@ -582,7 +572,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.brutal.actions.addDamage.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.brutal.actions.addDamage.description',
@@ -596,7 +585,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.burning.actions.burn.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.burning.actions.burn.description',
@@ -610,7 +598,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.charged.actions.markStress.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.charged.actions.markStress.description',
@@ -647,7 +634,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.concussive.actions.attack.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.concussive.actions.attack.description',
@@ -688,7 +674,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.deadly.actions.extraDamage.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.deadly.actions.extraDamage.description',
@@ -702,7 +687,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.deflecting.actions.deflect.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.deflecting.actions.deflect.description',
@@ -739,7 +723,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'damage',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.destructive.actions.attack.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.destructive.actions.attack.descriptive',
@@ -784,7 +767,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.devastating.actions.devastate.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.devastating.actions.devastate.description',
@@ -835,7 +817,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.doubledUp.actions.doubleUp.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.doubledUp.actions.doubleUp.description',
@@ -849,7 +830,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.dueling.actions.duel.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.dueling.actions.duel.description',
@@ -863,7 +843,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect', // Should prompt a dc 14 reaction save on adversaries
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.eruptive.actions.erupt.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.eruptive.actions.erupt.description',
@@ -877,7 +856,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.grappling.actions.grapple.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.grappling.actions.grapple.description',
@@ -897,7 +875,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.greedy.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.greedy.description',
@@ -929,7 +906,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'healing',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.healing.actions.heal.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.healing.actions.heal.description',
@@ -977,7 +953,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.hooked.actions.hook.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.hooked.actions.hook.description',
@@ -991,7 +966,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.hot.actions.hot.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.hot.actions.hot.description',
@@ -1005,7 +979,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.invigorating.actions.invigorate.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.invigorating.actions.invigorate.description',
@@ -1019,7 +992,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.lifestealing.actions.lifesteal.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.lifestealing.actions.lifesteal.description',
@@ -1033,7 +1005,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.lockedOn.actions.lockOn.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.lockedOn.actions.lockOn.description',
@@ -1047,7 +1018,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.long.actions.long.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.long.actions.long.description',
@@ -1061,7 +1031,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.lucky.actions.luck.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.lucky.actions.luck.description',
@@ -1099,7 +1068,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.painful.actions.pain.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.painful.actions.pain.description',
@@ -1145,7 +1113,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.parry.actions.parry.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.parry.actions.parry.description',
@@ -1159,7 +1126,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.persuasive.actions.persuade.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.persuasive.actions.persuade.description',
@@ -1196,7 +1162,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.pompous.actions.pompous.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.pompous.actions.pompous.description',
@@ -1240,7 +1205,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.quick.actions.quick.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.quick.actions.quick.description',
@@ -1278,7 +1242,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.reloading.actions.reload.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.reloading.actions.reload.description',
@@ -1292,7 +1255,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.retractable.actions.retract.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.retractable.actions.retract.description',
@@ -1306,7 +1268,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.returning.actions.return.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.returning.actions.return.description',
@@ -1320,7 +1281,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.scary.actions.scare.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.scary.actions.scare.description',
@@ -1376,7 +1336,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.sheltering.actions.shelter.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.sheltering.actions.shelter.description',
@@ -1390,7 +1349,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.startling.actions.startle.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.startling.actions.startle.description',
@@ -1410,7 +1368,6 @@ export const weaponFeatures = {
         actions: [
             {
                 type: 'effect',
-                actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.timebending.actions.bendTime.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.timebending.actions.bendTime.description',
@@ -1456,6 +1413,12 @@ export const orderedWeaponFeatures = () => {
         };
     });
     return Object.values(all).sort((a, b) => game.i18n.localize(a.label).localeCompare(game.i18n.localize(b.label)));
+};
+
+export const featureForm = {
+    passive: "DAGGERHEART.CONFIG.FeatureForm.passive",
+    action: "DAGGERHEART.CONFIG.FeatureForm.action",
+    reaction: "DAGGERHEART.CONFIG.FeatureForm.reaction"
 };
 
 export const featureTypes = {
@@ -1513,21 +1476,6 @@ export const featureSubTypes = {
     foundation: 'foundation',
     specialization: 'specialization',
     mastery: 'mastery'
-};
-
-export const actionTypes = {
-    passive: {
-        id: 'passive',
-        label: 'DAGGERHEART.CONFIG.ActionType.passive'
-    },
-    action: {
-        id: 'action',
-        label: 'DAGGERHEART.CONFIG.ActionType.action'
-    },
-    reaction: {
-        id: 'reaction',
-        label: 'DAGGERHEART.CONFIG.ActionType.reaction'
-    }
 };
 
 export const itemResourceTypes = {

@@ -67,6 +67,21 @@
                     </div>
                 {{/if}}
             {{/if}}
+
+<!-- Feature Form Tags for adversary/environment actors -->
+            {{#if (eq type 'feature')}}
+                {{#if (or (eq @root.document.type 'adversary') (eq @root.document.type 'environment'))}}
+                    {{#if item.system.featureForm}}
+                        <div class="item-tags">
+                            <div class="tag">
+                                <span class="recall-label">{{localize "DAGGERHEART.CONFIG.FeatureForm.label"}}: </span>
+                                <span class="recall-value">{{localize (concat "DAGGERHEART.CONFIG.FeatureForm." item.system.featureForm)}}</span>
+                            </div>
+                        </div>
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+
             {{#if  (eq type 'domainCard')}}
                 {{#if isSidebar}}
                     <div class="item-labels">

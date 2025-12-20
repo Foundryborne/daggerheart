@@ -352,7 +352,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "X0VgwJbK2n3mez0p",
       "img": "icons/creatures/abilities/fang-tooth-blood-red.webp",
@@ -407,7 +408,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "DKVB4rbX2M1CCVM7",
       "img": "icons/magic/air/fog-gas-smoke-blue-gray.webp",

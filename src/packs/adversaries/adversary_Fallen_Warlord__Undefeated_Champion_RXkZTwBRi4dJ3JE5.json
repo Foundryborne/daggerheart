@@ -470,7 +470,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "t8yOkGWmPgQ6EbIr",
       "img": "icons/skills/melee/sword-stuck-glowing-pink.webp",
@@ -525,7 +526,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "AP7W9ruUCdTHO69S",
       "img": "icons/magic/death/undead-skeleton-worn-blue.webp",
@@ -615,7 +617,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "55P7ZijSbQeVHCw4",
       "img": "icons/magic/unholy/barrier-fire-pink.webp",
@@ -749,7 +752,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "ReWtcLE5akrSauI1",
       "img": "icons/skills/melee/strike-weapons-orange.webp",
@@ -827,7 +831,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "tQRotPLi3eokgUdM",
       "img": "icons/magic/death/skull-energy-light-purple.webp",

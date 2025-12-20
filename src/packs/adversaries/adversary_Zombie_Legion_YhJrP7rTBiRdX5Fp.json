@@ -406,7 +406,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "d5Vilu9cUub1O6TD",
       "img": "icons/skills/melee/strike-slashes-orange.webp",

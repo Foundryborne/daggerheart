@@ -69,12 +69,12 @@
           }
         ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Spend Hope",
         "img": "icons/magic/light/projectile-beam-yellow.webp",
-        "range": ""
+        "range": "self"
       }
     },
     "originItemType": null,

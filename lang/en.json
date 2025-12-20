@@ -623,11 +623,6 @@
             }
         },
         "CONFIG": {
-            "ActionType": {
-                "passive": "Passive",
-                "action": "Action",
-                "reaction": "Reaction"
-            },
             "AdversaryTrait": {
                 "relentless": {
                     "name": "Relentless",
@@ -1035,6 +1030,12 @@
                     "label": "Event",
                     "description": ""
                 }
+            },
+            "FeatureForm": {
+                "label": "Feature Form",
+                "passive": "Passive",
+                "action": "Action",
+                "reaction": "Reaction"
             },
             "Gold": {
                 "title": "Gold",
@@ -2105,6 +2106,7 @@
             "fear": "Fear",
             "features": "Features",
             "formula": "Formula",
+            "general": "General",
             "gm": "GM",
             "healing": "Healing",
             "healingRoll": "Healing Roll",

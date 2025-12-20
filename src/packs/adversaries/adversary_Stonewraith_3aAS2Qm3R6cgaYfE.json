@@ -339,7 +339,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "tQgxiSS48TJ3X1Dl",
       "img": "icons/creatures/abilities/mouth-teeth-rows-white.webp",
@@ -521,7 +522,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "9Z0i0uURfBMVIapJ",
       "img": "icons/magic/sonic/projectile-sound-rings-wave.webp",
@@ -616,7 +618,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "faM1UzclP0X3ZrkJ",
       "img": "icons/skills/melee/strike-weapons-orange.webp",

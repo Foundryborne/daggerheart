@@ -49,6 +49,19 @@ Parameters:
           {{tag}}
         </div>
         {{/each}}
+
+        {{!-- Feature Form Tag Start --}}
+        {{#if (eq ../type 'feature')}}
+            {{#if (or (eq @root.document.type 'adversary') (eq @root.document.type 'environment'))}}
+                {{#if system.featureForm}}
+                    <div class="tag feature-form">
+                        <span class="recall-value">{{localize (concat "DAGGERHEART.CONFIG.FeatureForm." system.featureForm)}}</span>
+                    </div>
+                {{/if}}
+            {{/if}}
+        {{/if}}
+        {{!-- Feature Form Tag End --}}
+
       </div>
       {{/if}}
       {{/with}}
@@ -145,10 +158,12 @@ Parameters:
     <div class="item-button">
         {{#if (and (eq action.type 'beastform') @root.beastformActive)}}
           <button type="button" data-action="cancelBeastform" data-item-uuid="{{action.uuid}}">
+            <i class="fa-solid {{action.typeIcon}} action-icon"></i>
             {{localize "DAGGERHEART.ACTORS.Character.cancelBeastform"}}
           </button>
         {{else}}
           <button type="button" data-action="useItem" data-item-uuid="{{action.uuid}}">
+            <i class="fa-solid {{action.typeIcon}} action-icon"></i>
             {{action.name}}
           </button>
         {{/if}}

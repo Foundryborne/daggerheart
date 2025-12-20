@@ -456,7 +456,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "LBKPfi8XktBAwbrt",
       "img": "icons/skills/wounds/blood-spurt-spray-red.webp",
