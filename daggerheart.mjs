@@ -193,11 +193,9 @@ Hooks.on('ready', async () => {
 
 Hooks.once('dicesoniceready', () => {});
 
-Hooks.on('renderChatMessageHTML', (app, element, _) => {
+Hooks.on('renderChatMessageHTML', (document, element) => {
     enricherRenderSetup(element);
-    // Despite documentation, the third parameter may be empty as per
-    // https://github.com/foundryvtt/foundryvtt/issues/11984
-    const cssClass = app.flags?.daggerheart?.cssClass;
+    const cssClass = document.flags?.daggerheart?.cssClass;
     if (cssClass) cssClass.split(' ').forEach(cls => element.classList.add(cls));
 });
 

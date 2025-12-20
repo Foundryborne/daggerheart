@@ -55,10 +55,8 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         ];
     }
 
-    addChatListeners = async (app, html, data) => {
-        // Despite documentation, the third parameter may be empty as per
-        // https://github.com/foundryvtt/foundryvtt/issues/11984
-        const message = data?.message ?? app.toObject(false);
+    addChatListeners = async (document, html, data) => {
+        const message = data?.message ?? document.toObject(false);
         html.querySelectorAll('.simple-roll-button').forEach(element =>
             element.addEventListener('click', event => this.onRollSimple(event, message))
         );
