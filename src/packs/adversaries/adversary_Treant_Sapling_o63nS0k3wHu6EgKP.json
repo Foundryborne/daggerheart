@@ -97,13 +97,15 @@
         ]
       },
       "type": "attack",
-      "chatDisplay": false
+      "chatDisplay": false,
+      "range": ""
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 95,
       "artist": ""
-    }
+    },
+    "size": "small"
   },
   "flags": {},
   "_id": "o63nS0k3wHu6EgKP",

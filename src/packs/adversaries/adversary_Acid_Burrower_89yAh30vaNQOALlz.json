@@ -40,7 +40,8 @@
     "experiences": {
       "pe7OIoJsqlpMXEvs": {
         "name": "Tremor Sense",
-        "value": 2
+        "value": 2,
+        "description": ""
       }
     },
     "bonuses": {
@@ -148,7 +149,8 @@
       "source": "Daggerheart SRD",
       "page": 75,
       "artist": ""
-    }
+    },
+    "size": "large"
   },
   "flags": {},
   "ownership": {

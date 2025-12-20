@@ -39,7 +39,8 @@
     "experiences": {
       "Gtr9I2G39GcXT2Si": {
         "name": "Local Knowledge",
-        "value": 3
+        "value": 3,
+        "description": ""
       }
     },
     "bonuses": {
@@ -116,7 +117,8 @@
       "source": "Daggerheart SRD",
       "page": 77,
       "artist": ""
-    }
+    },
+    "size": "medium"
   },
   "flags": {},
   "_id": "JRhrrEg5UroURiAD",
