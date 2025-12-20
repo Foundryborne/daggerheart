@@ -1,11 +1,16 @@
+import DHToken from './token.mjs';
+
 export default class DhScene extends Scene {
     /** A map of `TokenDocument` IDs embedded in this scene long with new dimensions from actor size-category changes */
     #sizeSyncBatch = new Map();
 
     /** Synchronize a token's dimensions with its actor's size category. */
-    syncTokenDimensions(tokenDoc, dimensions) {
+    syncTokenDimensions(tokenDoc, tokenSize) {
         if (!tokenDoc.parent?.tokens.has(tokenDoc.id)) return;
-        this.#sizeSyncBatch.set(tokenDoc.id, dimensions);
+        this.#sizeSyncBatch.set(tokenDoc.id, {
+            size: tokenSize,
+            position: { x: tokenDoc.x, y: tokenDoc.y, elevation: tokenDoc.elevation }
+        });
         this.#processSyncBatch();
     }
 
@@ -15,8 +20,22 @@ export default class DhScene extends Scene {
         const entries = this.#sizeSyncBatch
             .entries()
             .toArray()
-            .map(([_id, { width, height }]) => ({ _id, width: tokenSizes[width], height: tokenSizes[height] }));
+            .map(([_id, { size, position }]) => {
+                const tokenSize = tokenSizes[size];
+                const updatedPosition = DHToken.getSnappedPositionInSquareGrid(
+                    this.grid,
+                    position,
+                    tokenSize,
+                    tokenSize
+                );
+                return {
+                    _id,
+                    width: tokenSize,
+                    height: tokenSize,
+                    ...updatedPosition
+                };
+            });
         this.#sizeSyncBatch.clear();
-        this.updateEmbeddedDocuments('Token', entries, { animation: { movementSpeed: 1 } });
+        this.updateEmbeddedDocuments('Token', entries, { animation: { movementSpeed: 1.5 } });
     }, 0);
 }

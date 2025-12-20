@@ -73,16 +73,27 @@ export default class DhpActor extends Actor {
     /**@inheritdoc */
     async _preCreate(data, options, user) {
         if ((await super._preCreate(data, options, user)) === false) return false;
+        const update = {};
+
+        // Set default token size. Done here as we do not want to set a datamodel default, since that would apply the sizing to third party actor modules that aren't set up with the size system.
+        if (this.system.metadata.usesSize) {
+            Object.assign(update, {
+                system: {
+                    size: CONFIG.DH.ACTOR.tokenSize.medium.id
+                }
+            });
+        }
 
         // Configure prototype token settings
-        const prototypeToken = {};
         if (['character', 'companion', 'party'].includes(this.type))
-            Object.assign(prototypeToken, {
-                sight: { enabled: true },
-                actorLink: true,
-                disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
+            Object.assign(update, {
+                prototypeToken: {
+                    sight: { enabled: true },
+                    actorLink: true,
+                    disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
+                }
             });
-        this.updateSource({ prototypeToken });
+        this.updateSource(update);
     }
 
     _onUpdate(changes, options, userId) {
@@ -765,9 +776,10 @@ export default class DhpActor extends Actor {
     }
 
     convertDamageToThreshold(damage) {
-        const massiveDamageEnabled=game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).massiveDamage.enabled;
-        if (massiveDamageEnabled && damage >= (this.system.damageThresholds.severe * 2)) {
-            return 4; 
+        const massiveDamageEnabled = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules)
+            .massiveDamage.enabled;
+        if (massiveDamageEnabled && damage >= this.system.damageThresholds.severe * 2) {
+            return 4;
         }
         return damage >= this.system.damageThresholds.severe ? 3 : damage >= this.system.damageThresholds.major ? 2 : 1;
     }

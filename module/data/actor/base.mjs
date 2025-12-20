@@ -80,9 +80,9 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
         if (this.metadata.usesSize)
             schema.size = new fields.StringField({
                 required: true,
-                nullable: false,
+                nullable: true,
                 choices: CONFIG.DH.ACTOR.tokenSize,
-                initial: CONFIG.DH.ACTOR.tokenSize.medium.id
+                initial: null
             });
         return schema;
     }

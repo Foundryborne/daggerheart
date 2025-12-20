@@ -43,12 +43,12 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
             tokenSizes: new fields.SchemaField({
                 tiny: new fields.NumberField({
                     integer: false,
-                    initial: 0.4,
+                    initial: 0.5,
                     label: 'DAGGERHEART.CONFIG.TokenSize.tiny'
                 }),
                 small: new fields.NumberField({
                     integer: false,
-                    initial: 0.6,
+                    initial: 0.8,
                     label: 'DAGGERHEART.CONFIG.TokenSize.small'
                 }),
                 medium: new fields.NumberField({

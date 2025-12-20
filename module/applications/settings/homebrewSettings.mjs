@@ -427,10 +427,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
 
     static async resetTokenSizes() {
         await this.settings.updateSource({
-            tokenSizes: Object.values(this.settings.schema.fields.tokenSizes.fields).reduce(
-                (acc, field) => ({ ...acc, [field.name]: field.initial }),
-                {}
-            )
+            tokenSizes: this.settings.schema.fields.tokenSizes.initial
         });
 
         this.render();
