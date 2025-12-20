@@ -1028,11 +1028,11 @@
                     "description": ""
                 }
             },
-            "FeatureForm":{
+            "FeatureForm": {
                 "label": "Feature Form",
                 "passive": "Passive",
-                "action":"Action",
-                "reaction":"Reaction"
+                "action": "Action",
+                "reaction": "Reaction"
             },
             "Gold": {
                 "title": "Gold",
@@ -2095,6 +2095,7 @@
             "fear": "Fear",
             "features": "Features",
             "formula": "Formula",
+            "general": "General",
             "gm": "GM",
             "healing": "Healing",
             "healingRoll": "Healing Roll",
@@ -2528,8 +2529,8 @@
                         "enabled": { "label": "Enabled" },
                         "tokens": { "label": "Tokens" }
                     },
-                    "massiveDamage":{
-                        "title":"Massive Damage",
+                    "massiveDamage": {
+                        "title": "Massive Damage",
                         "enabled": { "label": "Enabled" }
                     }
                 }

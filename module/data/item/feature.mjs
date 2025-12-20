@@ -33,9 +33,9 @@ export default class DHFeature extends BaseDataItem {
             identifier: new fields.StringField(),
             featureForm: new fields.StringField({
                 required: true,
-                initial: "passive",
+                initial: 'passive',
                 choices: CONFIG.DH.ITEM.featureForm,
-                label: "DAGGERHEART.CONFIG.featureForm.label",
+                label: 'DAGGERHEART.CONFIG.FeatureForm.label'
             })
         };
     }
