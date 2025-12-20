@@ -23,11 +23,11 @@
         {{/if}}
         <div class="tag" data-tooltip="DAGGERHEART.UI.Tooltip.tokenSize">
             <i class="fa-solid fa-circle-user"></i>
-            {{#if source.system.size}}
+            {{#unless (eq source.system.size 'custom')}}
                 <span>{{localize (concat "DAGGERHEART.CONFIG.TokenSize." source.system.size)}}</span>
             {{else}}
                 <span>{{source.prototypeToken.width}}x{{source.prototypeToken.height}}</span>
-            {{/if}}
+            {{/unless}}
         </div>
     </div>
     <line-div></line-div>

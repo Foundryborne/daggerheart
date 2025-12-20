@@ -212,6 +212,11 @@ export const adversaryTraits = {
 };
 
 export const tokenSize = {
+    custom: {
+        id: 'custom',
+        value: 0,
+        label: 'DAGGERHEART.GENERAL.custom'
+    },
     tiny: {
         id: 'tiny',
         value: 1,

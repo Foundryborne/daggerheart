@@ -611,6 +611,9 @@
                 "insufficientHope": "The initiating character doesn't have enough hope",
                 "createTagTeam": "Create TagTeam Roll",
                 "chatMessageRollTitle": "Roll"
+            },
+            "TokenConfig": {
+                "actorSizeUsed": "Actor size is set, determining the dimensions"
             }
         },
         "CLASS": {

@@ -111,7 +111,7 @@ export default class DHToken extends CONFIG.Token.documentClass {
             const actor = document.actor;
             if (actor?.system.metadata.usesSize) {
                 const tokenSize = tokenSizes[actor.system.size];
-                if (tokenSize) {
+                if (tokenSize && tokenSize !== CONFIG.DH.ACTOR.tokenSize.custom.id) {
                     document.updateSource({
                         width: tokenSize,
                         height: tokenSize
@@ -126,12 +126,21 @@ export default class DHToken extends CONFIG.Token.documentClass {
         super._onRelatedUpdate(update, operation);
 
         if (!this.actor?.isOwner) return;
+
+        const updates = Array.isArray(update) ? update : [update];
         const activeGM = game.users.activeGM; // Let the active GM take care of updates if available
-        if (this.actor.system.metadata.usesSize && update.system?.size && activeGM && game.user.id === activeGM.id) {
-            const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
-            const tokenSize = tokenSizes[update.system.size];
-            if (tokenSize !== this.width || tokenSize !== this.height) {
-                this.parent?.syncTokenDimensions(this, update.system.size);
+        for (let update of updates) {
+            if (
+                this.actor.system.metadata.usesSize &&
+                update.system?.size &&
+                activeGM &&
+                game.user.id === activeGM.id
+            ) {
+                const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
+                const tokenSize = tokenSizes[update.system.size];
+                if (tokenSize !== this.width || tokenSize !== this.height) {
+                    this.parent?.syncTokenDimensions(this, update.system.size);
+                }
             }
         }
     }
@@ -156,8 +165,10 @@ export default class DHToken extends CONFIG.Token.documentClass {
         if (this.actor?.system.metadata.usesSize) {
             const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
             const tokenSize = tokenSizes[this.actor.system.size];
-            width = tokenSize ?? width;
-            height = tokenSize ?? height;
+            if (tokenSize && tokenSize !== CONFIG.DH.ACTOR.tokenSize.custom.id) {
+                width = tokenSize ?? width;
+                height = tokenSize ?? height;
+            }
         }
 
         // Round width and height to nearest multiple of 0.5 if not small

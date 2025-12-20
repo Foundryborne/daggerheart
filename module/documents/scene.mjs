@@ -7,8 +7,10 @@ export default class DhScene extends Scene {
     /** Synchronize a token's dimensions with its actor's size category. */
     syncTokenDimensions(tokenDoc, tokenSize) {
         if (!tokenDoc.parent?.tokens.has(tokenDoc.id)) return;
+        const prototype = tokenDoc.actor?.prototypeToken ?? tokenDoc;
         this.#sizeSyncBatch.set(tokenDoc.id, {
             size: tokenSize,
+            prototypeSize: { width: prototype.width, height: prototype.height },
             position: { x: tokenDoc.x, y: tokenDoc.y, elevation: tokenDoc.elevation }
         });
         this.#processSyncBatch();
@@ -20,18 +22,15 @@ export default class DhScene extends Scene {
         const entries = this.#sizeSyncBatch
             .entries()
             .toArray()
-            .map(([_id, { size, position }]) => {
+            .map(([_id, { size, prototypeSize, position }]) => {
                 const tokenSize = tokenSizes[size];
-                const updatedPosition = DHToken.getSnappedPositionInSquareGrid(
-                    this.grid,
-                    position,
-                    tokenSize,
-                    tokenSize
-                );
+                const width = size !== CONFIG.DH.ACTOR.tokenSize.custom.id ? tokenSize : prototypeSize.width;
+                const height = size !== CONFIG.DH.ACTOR.tokenSize.custom.id ? tokenSize : prototypeSize.height;
+                const updatedPosition = DHToken.getSnappedPositionInSquareGrid(this.grid, position, width, height);
                 return {
                     _id,
-                    width: tokenSize,
-                    height: tokenSize,
+                    width,
+                    height,
                     ...updatedPosition
                 };
             });
