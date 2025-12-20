@@ -193,11 +193,12 @@ Hooks.on('ready', async () => {
 
 Hooks.once('dicesoniceready', () => {});
 
-Hooks.on('renderChatMessageHTML', (_, element, message) => {
+Hooks.on('renderChatMessageHTML', (app, element, _) => {
     enricherRenderSetup(element);
-    // Despite documentation, message may be empty. For example, a module's chat message.
-    if (!message) return;
-    const cssClass = message.message.flags?.daggerheart?.cssClass;
+    // Despite documentation, the third parameter may be empty as per
+    // https://github.com/foundryvtt/foundryvtt/issues/11984
+    const message = app._source;
+    const cssClass = message.flags?.daggerheart?.cssClass;
     if (cssClass) cssClass.split(' ').forEach(cls => element.classList.add(cls));
 });
 

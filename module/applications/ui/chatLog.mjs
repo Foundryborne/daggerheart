@@ -55,32 +55,33 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         ];
     }
 
-    addChatListeners = async (app, html, data) => {
-        html.querySelectorAll('.group-roll-header-expand-section').forEach(element =>
-            element.addEventListener('click', this.groupRollExpandSection)
-        );
-        // Despite documentation, data may be empty. For example, a module's chat message.
-        if (!data?.message) return;
+    addChatListeners = async (app, html, _) => {
+        // Despite documentation, the third parameter may be empty as per
+        // https://github.com/foundryvtt/foundryvtt/issues/11984
+        const message = app._source;
         html.querySelectorAll('.simple-roll-button').forEach(element =>
-            element.addEventListener('click', event => this.onRollSimple(event, data.message))
+            element.addEventListener('click', event => this.onRollSimple(event, message))
         );
         html.querySelectorAll('.ability-use-button').forEach(element =>
-            element.addEventListener('click', event => this.abilityUseButton(event, data.message))
+            element.addEventListener('click', event => this.abilityUseButton(event, message))
         );
         html.querySelectorAll('.action-use-button').forEach(element =>
-            element.addEventListener('click', event => this.actionUseButton(event, data.message))
+            element.addEventListener('click', event => this.actionUseButton(event, message))
         );
         html.querySelectorAll('.reroll-button').forEach(element =>
-            element.addEventListener('click', event => this.rerollEvent(event, data.message))
+            element.addEventListener('click', event => this.rerollEvent(event, message))
         );
         html.querySelectorAll('.group-roll-button').forEach(element =>
-            element.addEventListener('click', event => this.groupRollButton(event, data.message))
+            element.addEventListener('click', event => this.groupRollButton(event, message))
         );
         html.querySelectorAll('.group-roll-reroll').forEach(element =>
-            element.addEventListener('click', event => this.groupRollReroll(event, data.message))
+            element.addEventListener('click', event => this.groupRollReroll(event, message))
         );
         html.querySelectorAll('.group-roll-success').forEach(element =>
-            element.addEventListener('click', event => this.groupRollSuccessEvent(event, data.message))
+            element.addEventListener('click', event => this.groupRollSuccessEvent(event, message))
+        );
+        html.querySelectorAll('.group-roll-header-expand-section').forEach(element =>
+            element.addEventListener('click', this.groupRollExpandSection)
         );
     };
 
