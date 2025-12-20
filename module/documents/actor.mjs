@@ -76,7 +76,7 @@ export default class DhpActor extends Actor {
         const update = {};
 
         // Set default token size. Done here as we do not want to set a datamodel default, since that would apply the sizing to third party actor modules that aren't set up with the size system.
-        if (this.system.metadata.usesSize) {
+        if (this.system.metadata.usesSize && !data.system?.size) {
             Object.assign(update, {
                 system: {
                     size: CONFIG.DH.ACTOR.tokenSize.medium.id

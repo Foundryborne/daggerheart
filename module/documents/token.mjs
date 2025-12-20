@@ -111,7 +111,7 @@ export default class DHToken extends CONFIG.Token.documentClass {
             const actor = document.actor;
             if (actor?.system.metadata.usesSize) {
                 const tokenSize = tokenSizes[actor.system.size];
-                if (tokenSize && tokenSize !== CONFIG.DH.ACTOR.tokenSize.custom.id) {
+                if (tokenSize && actor.system.size !== CONFIG.DH.ACTOR.tokenSize.custom.id) {
                     document.updateSource({
                         width: tokenSize,
                         height: tokenSize
@@ -165,7 +165,7 @@ export default class DHToken extends CONFIG.Token.documentClass {
         if (this.actor?.system.metadata.usesSize) {
             const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
             const tokenSize = tokenSizes[this.actor.system.size];
-            if (tokenSize && tokenSize !== CONFIG.DH.ACTOR.tokenSize.custom.id) {
+            if (tokenSize && this.actor.system.size !== CONFIG.DH.ACTOR.tokenSize.custom.id) {
                 width = tokenSize ?? width;
                 height = tokenSize ?? height;
             }
