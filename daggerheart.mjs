@@ -197,8 +197,7 @@ Hooks.on('renderChatMessageHTML', (app, element, _) => {
     enricherRenderSetup(element);
     // Despite documentation, the third parameter may be empty as per
     // https://github.com/foundryvtt/foundryvtt/issues/11984
-    const message = app.toObject(false);
-    const cssClass = message.flags?.daggerheart?.cssClass;
+    const cssClass = app.flags?.daggerheart?.cssClass;
     if (cssClass) cssClass.split(' ').forEach(cls => element.classList.add(cls));
 });
 
