@@ -226,7 +226,7 @@ export default class DualityRoll extends D20Roll {
         await DualityRoll.dualityUpdate(config);
     }
 
-    static async automateHopeFear(config) {
+    static async addDualityResourceUpdates(config) {
         const automationSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
         const hopeFearAutomation = automationSettings.hopeFear;
         if (
@@ -289,7 +289,7 @@ export default class DualityRoll extends D20Roll {
             }
         }
 
-        await DualityRoll.automateHopeFear(config);
+        await DualityRoll.addDualityResourceUpdates(config);
 
         if (!config.roll.hasOwnProperty('success') && !config.targets?.length) return;
 
@@ -341,16 +341,17 @@ export default class DualityRoll extends D20Roll {
 
         const tagTeamSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
 
+        const actor = message.system.source.actor ? await foundry.utils.fromUuid(message.system.source.actor) : null;
         const config = {
             source: { actor: message.system.source.actor ?? '' },
             targets: message.system.targets,
             tagTeamSelected: Object.values(tagTeamSettings.members).some(x => x.messageId === message._id),
             roll: newRoll,
             rerolledRoll: message.system.roll,
-            resourceUpdates: new ResourceUpdateMap(message.system.source.actor ?? '')
+            resourceUpdates: new ResourceUpdateMap(actor)
         };
 
-        await DualityRoll.automateHopeFear(config);
+        await DualityRoll.addDualityResourceUpdates(config);
         await config.resourceUpdates.updateResources();
 
         return { newRoll, parsedRoll };

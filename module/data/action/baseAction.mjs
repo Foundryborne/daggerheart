@@ -241,7 +241,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             selectedRollMode: game.settings.get('core', 'rollMode'),
             data: this.getRollData(),
             evaluate: this.hasRoll,
-            resourceUpdates: new ResourceUpdateMap(this.actor.uuid)
+            resourceUpdates: new ResourceUpdateMap(this.actor)
         };
 
         DHBaseAction.applyKeybindings(config);
@@ -332,11 +332,12 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 }
 
 export class ResourceUpdateMap extends Map {
-    #actorUuid;
+    #actor;
 
-    constructor(actorUuid) {
+    constructor(actor) {
         super();
-        this.#actorUuid = actorUuid;
+
+        this.#actor = actor;
     }
 
     addResources(resources) {
@@ -361,9 +362,8 @@ export class ResourceUpdateMap extends Map {
     }
 
     async updateResources() {
-        const actor = await foundry.utils.fromUuid(this.#actorUuid);
-        if (actor) {
-            const target = actor.system.partner ?? actor;
+        if (this.#actor) {
+            const target = this.#actor.system.partner ?? this.#actor;
             await target.modifyResource(this.#getResources());
         }
     }
