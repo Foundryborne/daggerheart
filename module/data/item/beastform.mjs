@@ -196,14 +196,14 @@ export default class DHBeastform extends BaseDataItem {
 
         await this.parent.parent.createEmbeddedDocuments('ActiveEffect', [beastformEffect.toObject()]);
 
-        let width = this.tokenSize.width;
-        let height = this.tokenSize.height;
-        if (this.tokenSize.size !== 'custom') {
-            const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
-            const tokenSize = tokenSizes[this.tokenSize.size];
-            width = tokenSize;
-            height = tokenSize;
-        }
+        const autoTokenSize =
+            this.tokenSize.size !== 'custom'
+                ? game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes[
+                      this.tokenSize.size
+                  ]
+                : null;
+        const width = autoTokenSize ?? this.tokenSize.width;
+        const height = autoTokenSize ?? this.tokenSize.height;
 
         const prototypeTokenUpdate = {
             height,
