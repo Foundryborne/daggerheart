@@ -173,12 +173,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return actorData;
     }
 
-    joinResourceUpdates(updates) {
-        return updates.reduce((acc, update) => {
-            if (acc) return acc;
-        }, []);
-    }
-
     /**
      * Execute each part of the Action workflow in order, calling a specific event before and after each part.
      * @param {object} config Config object usually created from prepareConfig method
