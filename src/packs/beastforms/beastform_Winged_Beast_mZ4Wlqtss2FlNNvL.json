@@ -9,7 +9,8 @@
     "tokenRingImg": "icons/creatures/birds/raptor-owl-flying-moon.webp",
     "tokenSize": {
       "height": null,
-      "width": null
+      "width": null,
+      "size": "tiny"
     },
     "mainTrait": "finesse",
     "advantageOn": {

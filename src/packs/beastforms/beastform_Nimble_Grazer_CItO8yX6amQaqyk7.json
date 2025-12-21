@@ -9,7 +9,8 @@
     "tokenRingImg": "icons/creatures/mammals/deer-antlers-glowing-blue.webp",
     "tokenSize": {
       "height": null,
-      "width": null
+      "width": null,
+      "size": "medium"
     },
     "mainTrait": "agility",
     "advantageOn": {

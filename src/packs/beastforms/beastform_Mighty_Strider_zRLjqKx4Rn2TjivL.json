@@ -9,7 +9,8 @@
     "tokenRingImg": "icons/environment/creatures/horse-tan.webp",
     "tokenSize": {
       "height": null,
-      "width": null
+      "width": null,
+      "size": "large"
     },
     "mainTrait": "agility",
     "advantageOn": {

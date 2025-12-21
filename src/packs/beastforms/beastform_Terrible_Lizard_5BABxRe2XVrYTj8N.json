@@ -9,7 +9,8 @@
     "tokenRingImg": "icons/creatures/abilities/dragon-breath-purple.webp",
     "tokenSize": {
       "height": null,
-      "width": null
+      "width": null,
+      "size": "gargantuan"
     },
     "mainTrait": "strength",
     "advantageOn": {
