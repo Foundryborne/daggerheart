@@ -2262,7 +2262,9 @@
                 "hybridizeFeatureTitle": "Hybrid Features",
                 "hybridizeDrag": "Drag a form here to hybridize it.",
                 "mainTrait": "Main Trait",
-                "traitBonus": "Trait Bonus"
+                "traitBonus": "Trait Bonus",
+                "evolvedTokenHint": "An evolved beastform's token is based on that of the form you evolve",
+                "evolvedImagePlaceholder": "The image for the form selected for evolution will be used"
             },
             "Class": {
                 "hopeFeatures": "Hope Features",
