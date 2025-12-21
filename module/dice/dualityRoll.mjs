@@ -2,6 +2,7 @@ import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 import D20Roll from './d20Roll.mjs';
 import { setDiceSoNiceForDualityRoll } from '../helpers/utils.mjs';
 import { getDiceSoNicePresets } from '../config/generalConfig.mjs';
+import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
 
 export default class DualityRoll extends D20Roll {
     _advantageFaces = 6;
@@ -219,6 +220,88 @@ export default class DualityRoll extends D20Roll {
         return data;
     }
 
+    static async buildPost(roll, config, message) {
+        await super.buildPost(roll, config, message);
+
+        await DualityRoll.dualityUpdate(config);
+    }
+
+    static async automateHopeFear(config) {
+        const automationSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+        const hopeFearAutomation = automationSettings.hopeFear;
+        if (
+            !config.source?.actor ||
+            (game.user.isGM ? !hopeFearAutomation.gm : !hopeFearAutomation.players) ||
+            config.actionType === 'reaction' ||
+            config.tagTeamSelected ||
+            config.skips?.resources
+        )
+            return;
+        const actor = await fromUuid(config.source.actor);
+        let updates = [];
+        if (!actor) return;
+
+        if (config.rerolledRoll) {
+            if (config.roll.result.duality != config.rerolledRoll.result.duality) {
+                const hope =
+                    (config.roll.isCritical || config.roll.result.duality === 1 ? 1 : 0) -
+                    (config.rerolledRoll.isCritical || config.rerolledRoll.result.duality === 1 ? 1 : 0);
+                const stress = (config.roll.isCritical ? 1 : 0) - (config.rerolledRoll.isCritical ? 1 : 0);
+                const fear =
+                    (config.roll.result.duality === -1 ? 1 : 0) - (config.rerolledRoll.result.duality === -1 ? 1 : 0);
+
+                if (hope !== 0) updates.push({ key: 'hope', value: hope, total: -1 * hope, enabled: true });
+                if (stress !== 0) updates.push({ key: 'stress', value: -1 * stress, total: stress, enabled: true });
+                if (fear !== 0) updates.push({ key: 'fear', value: fear, total: -1 * fear, enabled: true });
+            }
+        } else {
+            if (config.roll.isCritical || config.roll.result.duality === 1)
+                updates.push({ key: 'hope', value: 1, total: -1, enabled: true });
+            if (config.roll.isCritical) updates.push({ key: 'stress', value: -1, total: 1, enabled: true });
+            if (config.roll.result.duality === -1) updates.push({ key: 'fear', value: 1, total: -1, enabled: true });
+        }
+
+        if (updates.length) {
+            // const target = actor.system.partner ?? actor;
+            if (!['dead', 'defeated', 'unconscious'].some(x => actor.statuses.has(x))) {
+                config.resourceUpdates.addResources(updates);
+            }
+        }
+    }
+
+    static async dualityUpdate(config) {
+        const automationSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+        if (
+            automationSettings.countdownAutomation &&
+            config.actionType !== 'reaction' &&
+            !config.tagTeamSelected &&
+            !config.skips?.updateCountdowns
+        ) {
+            const { updateCountdowns } = game.system.api.applications.ui.DhCountdowns;
+
+            if (config.roll.result.duality === -1) {
+                await updateCountdowns(
+                    CONFIG.DH.GENERAL.countdownProgressionTypes.actionRoll.id,
+                    CONFIG.DH.GENERAL.countdownProgressionTypes.fear.id
+                );
+            } else {
+                await updateCountdowns(CONFIG.DH.GENERAL.countdownProgressionTypes.actionRoll.id);
+            }
+        }
+
+        await DualityRoll.automateHopeFear(config);
+
+        if (!config.roll.hasOwnProperty('success') && !config.targets?.length) return;
+
+        const rollResult = config.roll.success || config.targets.some(t => t.hit),
+            looseSpotlight = !rollResult || config.roll.result.duality === -1;
+
+        if (looseSpotlight && game.combat?.active) {
+            const currentCombatant = game.combat.combatants.get(game.combat.current?.combatantId);
+            if (currentCombatant?.actorId == actor.id) ui.combat.setCombatantSpotlight(currentCombatant.id);
+        }
+    }
+
     static async reroll(rollString, target, message) {
         let parsedRoll = game.system.api.dice.DualityRoll.fromData({ ...rollString, evaluated: false });
         const term = parsedRoll.terms[target.dataset.dieIndex];
@@ -257,13 +340,19 @@ export default class DualityRoll extends D20Roll {
         newRoll.extra = newRoll.extra.slice(2);
 
         const tagTeamSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
-        Hooks.call(`${CONFIG.DH.id}.postRollDuality`, {
+
+        const config = {
             source: { actor: message.system.source.actor ?? '' },
             targets: message.system.targets,
             tagTeamSelected: Object.values(tagTeamSettings.members).some(x => x.messageId === message._id),
             roll: newRoll,
-            rerolledRoll: message.system.roll
-        });
+            rerolledRoll: message.system.roll,
+            resourceUpdates: new ResourceUpdateMap(message.system.source.actor ?? '')
+        };
+
+        await DualityRoll.automateHopeFear(config);
+        await config.resourceUpdates.updateResources();
+
         return { newRoll, parsedRoll };
     }
 }

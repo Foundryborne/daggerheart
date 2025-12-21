@@ -173,6 +173,12 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return actorData;
     }
 
+    joinResourceUpdates(updates) {
+        return updates.reduce((acc, update) => {
+            if (acc) return acc;
+        }, []);
+    }
+
     /**
      * Execute each part of the Action workflow in order, calling a specific event before and after each part.
      * @param {object} config Config object usually created from prepareConfig method
@@ -206,6 +212,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         // Execute the Action Worflow in order based of schema fields
         await this.executeWorkflow(config);
+        await config.resourceUpdates.updateResources();
 
         if (Hooks.call(`${CONFIG.DH.id}.postUseAction`, this, config) === false) return;
 
@@ -239,8 +246,10 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             isDirect: !!this.damage?.direct,
             selectedRollMode: game.settings.get('core', 'rollMode'),
             data: this.getRollData(),
-            evaluate: this.hasRoll
+            evaluate: this.hasRoll,
+            resourceUpdates: new ResourceUpdateMap(this.actor.uuid)
         };
+
         DHBaseAction.applyKeybindings(config);
         return config;
     }
@@ -322,10 +331,46 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @returns {string[]} An array of localized tag strings.
      */
     _getTags() {
-        const tags = [
-            game.i18n.localize(`DAGGERHEART.ACTIONS.TYPES.${this.type}.name`),
-        ];
+        const tags = [game.i18n.localize(`DAGGERHEART.ACTIONS.TYPES.${this.type}.name`)];
 
         return tags;
+    }
+}
+
+export class ResourceUpdateMap extends Map {
+    #actorUuid;
+
+    constructor(actorUuid) {
+        super();
+        this.#actorUuid = actorUuid;
+    }
+
+    addResources(resources) {
+        for (const resource of resources) {
+            if (!resource.key) continue;
+
+            const existing = this.get(resource.key);
+            if (existing) {
+                this.set(resource.key, {
+                    ...existing,
+                    value: existing.value + (resource.value ?? 0),
+                    total: existing.total + (resource.total ?? 0)
+                });
+            } else {
+                this.set(resource.key, resource);
+            }
+        }
+    }
+
+    #getResources() {
+        return Array.from(this.values());
+    }
+
+    async updateResources() {
+        const actor = await foundry.utils.fromUuid(this.#actorUuid);
+        if (actor) {
+            const target = actor.system.partner ?? actor;
+            await target.modifyResource(this.#getResources());
+        }
     }
 }

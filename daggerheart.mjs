@@ -17,7 +17,6 @@ import {
     socketRegistration
 } from './module/systemRegistration/_module.mjs';
 import { placeables } from './module/canvas/_module.mjs';
-import { registerRollDiceHooks } from './module/dice/dhRoll.mjs';
 import './node_modules/@yaireo/tagify/dist/tagify.css';
 import TemplateManager from './module/documents/templateManager.mjs';
 
@@ -177,7 +176,6 @@ Hooks.on('ready', async () => {
         ui.compendiumBrowser = new applications.ui.ItemBrowser();
 
     socketRegistration.registerSocketHooks();
-    registerRollDiceHooks();
     socketRegistration.registerUserQueries();
 
     if (!game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.welcomeMessage)) {
