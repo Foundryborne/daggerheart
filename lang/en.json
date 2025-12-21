@@ -2236,6 +2236,7 @@
                     "tokenRingImg": { "label": "Subject Texture" },
                     "tokenSize": {
                         "placeholder": "Using character dimensions",
+                        "disabledPlaceholder": "Set by character size",
                         "height": { "label": "Height" },
                         "width": { "label": "Width" }
                     },
