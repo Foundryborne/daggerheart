@@ -134,17 +134,23 @@ const registerNonConfigSettings = () => {
     });
 };
 
-/** 
+/**
  * Triggers a reset and non-forced re-render on all given actors (if given)
  * or all world actors and actors in all scenes to show immediate results for a changed setting.
  */
 function resetActors(actors) {
     actors ??= [
         game.actors.contents,
-        game.scenes.contents.flatMap((s) => s.tokens.contents).flatMap((t) => t.actor ?? []),
+        game.scenes.contents.flatMap(s => s.tokens.contents).flatMap(t => t.actor ?? [])
     ].flat();
     actors = new Set(actors);
     for (const actor of actors) {
+        for (const app of Object.values(actor.apps)) {
+            for (const element of app.element?.querySelectorAll('prose-mirror.active')) {
+                element.open = false; // This triggers a save
+            }
+        }
+
         actor.reset();
         actor.render();
     }
