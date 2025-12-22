@@ -357,11 +357,17 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
         const experienceIncreaseTagify = htmlElement.querySelector('.levelup-experience-increases');
         if (experienceIncreaseTagify) {
+            const allExperiences = {
+                ...this.actor.system.experiences,
+                ...this.levelup.levels[this.levelup.currentLevel].achievements.experiences
+            };
             tagifyElement(
                 experienceIncreaseTagify,
-                Object.keys(this.actor.system.experiences).reduce((acc, id) => {
-                    const experience = this.actor.system.experiences[id];
-                    acc.push({ id: id, label: experience.name });
+                Object.keys(allExperiences).reduce((acc, id) => {
+                    const experience = allExperiences[id];
+                    if (experience.name) {
+                        acc.push({ id: id, label: experience.name });
+                    }
 
                     return acc;
                 }, []),

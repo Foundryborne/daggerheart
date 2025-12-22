@@ -104,7 +104,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             context.roll = this.roll;
             context.rollType = this.roll?.constructor.name;
             context.rallyDie = this.roll.rallyChoices;
-            const experiences = this.config.data?.experiences || {};
+            const experiences = this.config.data?.system.experiences || {};
             context.experiences = Object.keys(experiences).map(id => ({
                 id,
                 ...experiences[id]
@@ -185,7 +185,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
                           extKey: button.dataset.key,
                           key: this.config?.data?.parent?.isNPC ? 'fear' : 'hope',
                           value: 1,
-                          name: this.config.data?.experiences?.[button.dataset.key]?.name
+                          name: this.config.data?.system.experiences?.[button.dataset.key]?.name
                       }
                   ];
         this.render();
