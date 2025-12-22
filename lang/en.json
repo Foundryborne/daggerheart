@@ -586,6 +586,7 @@
             },
             "OwnershipSelection": {
                 "title": "Ownership Selection - {name}",
+                "noPlayers": "No players to assign ownership to",
                 "default": "Default Ownership"
             },
             "ReactionRoll": {
