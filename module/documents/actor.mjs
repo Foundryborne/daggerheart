@@ -3,6 +3,7 @@ import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
 import { createScrollText, damageKeyToNumber } from '../helpers/utils.mjs';
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
+import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
 
 export default class DhpActor extends Actor {
     parties = new Set();
@@ -477,6 +478,7 @@ export default class DhpActor extends Actor {
     async diceRoll(config) {
         config.source = { ...(config.source ?? {}), actor: this.uuid };
         config.data = this.getRollData();
+        config.resourceUpdates = new ResourceUpdateMap(this);
         const rollClass = config.roll.lite ? CONFIG.Dice.daggerheart['DHRoll'] : this.rollClass;
         return await rollClass.build(config);
     }
@@ -765,9 +767,10 @@ export default class DhpActor extends Actor {
     }
 
     convertDamageToThreshold(damage) {
-        const massiveDamageEnabled=game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).massiveDamage.enabled;
-        if (massiveDamageEnabled && damage >= (this.system.damageThresholds.severe * 2)) {
-            return 4; 
+        const massiveDamageEnabled = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules)
+            .massiveDamage.enabled;
+        if (massiveDamageEnabled && damage >= this.system.damageThresholds.severe * 2) {
+            return 4;
         }
         return damage >= this.system.damageThresholds.severe ? 3 : damage >= this.system.damageThresholds.major ? 2 : 1;
     }
