@@ -262,7 +262,7 @@ export function ActionMixin(Base) {
         async toChat(origin) {
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
-                title: game.i18n.localize('DAGGERHEART.CONFIG.ActionType.action'),
+                title: game.i18n.localize('DAGGERHEART.CONFIG.FeatureForm.action'),
                 origin: origin,
                 action: {
                     name: this.name,
