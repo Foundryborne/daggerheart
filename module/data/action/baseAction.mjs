@@ -95,6 +95,9 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     prepareData() {
         this.name = this.name || game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[this.type].name);
         this.img = this.img ?? this.parent?.parent?.img;
+
+        /* Fallback to feature description */
+        this.description = this.description || this.parent?.description;
     }
 
     /**
