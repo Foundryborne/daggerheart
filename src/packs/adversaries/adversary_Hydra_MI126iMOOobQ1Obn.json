@@ -221,7 +221,7 @@
       "name": "Many-Headed Menace",
       "type": "feature",
       "system": {
-        "description": "<p>The Hydra begins with three heads and can have up to five. When the Hydra takes Major or greater damage, they lose a head.</p>",
+        "description": "<p>The @Lookup[@name] begins with three heads and can have up to five. When the @Lookup[@name] takes Major or greater damage, they lose a head.</p>",
         "resource": {
           "type": "simple",
           "value": 3,
@@ -251,7 +251,7 @@
       "name": "Relentless (X)",
       "type": "feature",
       "system": {
-        "description": "<p>The Hydra can be spotlighted X times per GM turn, where X is the Hydra’s number of heads. Spend Fear as usual to spotlight them. <br /><br />Note: Automation is not added so manually spend fear as per text.</p>",
+        "description": "<p>The @Lookup[@name] can be spotlighted X times per GM turn, where X is the @Lookup[@name]’s number of heads. Spend Fear as usual to spotlight them.</p><section class=\"secret\" id=\"secret-AOW6OiOMzL5FUfWv\"><p><br />Note: Automation is not added so manually spend fear as per text.</p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -276,14 +276,14 @@
       "name": "Regeneration",
       "type": "feature",
       "system": {
-        "description": "<p>If the Hydra has any marked HP, <strong>spend a Fear</strong> to clear a HP and grow two heads.</p>",
+        "description": "<p>If the @Lookup[@name] has any marked HP, <strong>spend a Fear</strong> to clear a HP and grow two heads.</p>",
         "resource": null,
         "actions": {
           "SsRtZwee1mYlPLUy": {
             "type": "healing",
             "_id": "SsRtZwee1mYlPLUy",
             "systemPath": "actions",
-            "description": "<p>If the Hydra has any marked HP, <strong>spend a Fear</strong> to clear a HP and grow two heads.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -384,7 +384,7 @@
             "type": "damage",
             "_id": "nJxpFR4Ul0e2RrL4",
             "systemPath": "actions",
-            "description": "<p>All PCs within Far range lose 2 Hope.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -456,7 +456,7 @@
       "name": "Magical Weakness",
       "type": "feature",
       "system": {
-        "description": "<p>When the Hydra takes magic damage, they become Dazed until the next roll with Fear. While Dazed, they can’t use their Regeneration action but are immune to magic damage.</p>",
+        "description": "<p>When the @Lookup[@name] takes magic damage, they become Dazed until the next roll with Fear. While Dazed, they can’t use their Regeneration action but are immune to magic damage.</p>",
         "resource": null,
         "actions": {
           "heAkvOuQG1EJmVbb": {

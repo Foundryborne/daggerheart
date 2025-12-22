@@ -221,14 +221,14 @@
       "name": "Shadow's Embrace",
       "type": "feature",
       "system": {
-        "description": "<p>The Fang can climb and walk on vertical surfaces. <strong>Mark a Stress</strong> to move from one shadow to another within Far range.</p>",
+        "description": "<p>The @Lookup[@name] can climb and walk on vertical surfaces. <strong>Mark a Stress</strong> to move from one shadow to another within Far range.</p>",
         "resource": null,
         "actions": {
           "hjuqvsMB7KNLNvjg": {
             "type": "effect",
             "_id": "hjuqvsMB7KNLNvjg",
             "systemPath": "actions",
-            "description": "<p>The Fang can climb and walk on vertical surfaces. <strong>Mark a Stress</strong> to move from one shadow to another within Far range.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -276,14 +276,14 @@
       "name": "Pick Off the Straggler",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to cause a target within Melee range to make an Instinct Reaction Roll. On a failure, the target must mark 2 Stress and is teleported with the Fang to a shadow within Far range, making them temporarily Vulnerable. On a success, the target must mark a Stress.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to cause a target within Melee range to make an Instinct Reaction Roll. On a failure, the target must mark 2 Stress and is teleported with the @Lookup[@name] to a shadow within Far range, making them temporarily Vulnerable. On a success, the target must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "QjQ04SAwfjrxliNI": {
             "type": "attack",
             "_id": "QjQ04SAwfjrxliNI",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to cause a target within Melee range to make an Instinct Reaction Roll. On a failure, the target must mark 2 Stress and is teleported with the Fang to a shadow within Far range, making them temporarily Vulnerable. On a success, the target must mark a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

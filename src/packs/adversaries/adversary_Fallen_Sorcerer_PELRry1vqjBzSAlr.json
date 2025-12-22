@@ -227,14 +227,14 @@
       "name": "Conflagration",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to unleash an all-consuming f i restorm and make an attack against all targets within Close range. Targets the Sorcerer succeeds against take <strong>2d10+6</strong> direct magic damage.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to unleash an all-consuming firestorm and make an attack against all targets within Close range. Targets the @Lookup[@name] succeeds against take <strong>2d10+6</strong> direct magic damage.</p><p>@Template[type:emanation|range:c]</p>",
         "resource": null,
         "actions": {
           "v7zZo52Dnj1e1i2G": {
             "type": "attack",
             "_id": "v7zZo52Dnj1e1i2G",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to unleash an all-consuming f i restorm and make an attack against all targets within Close range. Targets the Sorcerer succeeds against take <strong>2d10+6</strong> direct magic damage.</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -341,7 +341,7 @@
             "type": "effect",
             "_id": "mXWOpXcYALYqicTw",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to trap a target within Far range in a powerful illusion of their worst fears. While trapped, the target is <em>Restrained</em> and <em>Vulnerable</em> until they break free, ending both conditions, with a successful Instinct Roll.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -428,7 +428,7 @@
       "name": "Slippery",
       "type": "feature",
       "system": {
-        "description": "<p>When the Sorcerer takes damage from an attack, they can teleport up to Far range.</p>",
+        "description": "<p>When the @Lookup[@name] takes damage from an attack, they can teleport up to Far range.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -454,7 +454,7 @@
       "name": "Shackles of Guilt",
       "type": "feature",
       "system": {
-        "description": "<p><em>Countdown (Loop 2d6)</em>. When the Sorcerer is in the spotlight for the first time, activate the countdown. When it triggers, all targets within Far range become Vulnerable and must mark a Stress as they relive their greatest regrets. A target can break free from their regret with a successful Presence or Strength Roll. When a PC fails to break free, they lose a Hope.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p><em>Countdown (Loop 2d6)</em>. When the @Lookup[@name] is in the spotlight for the first time, activate the countdown. When it triggers, all targets within Far range become Vulnerable and must mark a Stress as they relive their greatest regrets. A target can break free from their regret with a successful Presence or Strength Roll. When a PC fails to break free, they lose a Hope.</p><p>@Template[type:emanation|range:f]</p>",
         "resource": null,
         "actions": {
           "7b0FkpAnWz9a5EWx": {
@@ -518,7 +518,7 @@
             "type": "countdown",
             "_id": "11PtfoxbgOXxNlkG",
             "systemPath": "actions",
-            "description": "<p><em>Countdown (Loop 2d6)</em>. When the Sorcerer is in the spotlight for the first time, activate the countdown.</p>",
+            "description": "<p><em>Countdown (Loop 2d6)</em>. When the @Lookup[@name] is in the spotlight for the first time, activate the countdown.</p>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"

@@ -227,7 +227,7 @@
       "name": "Horde (2d4+1)",
       "type": "feature",
       "system": {
-        "description": "<p>When the Pack has marked half or more of their HP, their standard attack deals <strong>2d4+1</strong> physical damage instead.</p>",
+        "description": "<p>When the @Lookup[@name] has marked half or more of their HP, their standard attack deals <strong>2d4+1</strong> physical damage instead.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -259,7 +259,7 @@
             "type": "damage",
             "_id": "XyLlX9RWSxciZ7oV",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to make all targets within Very Close range lose a Hope. If a target is not able to lose a Hope, they must instead mark 2 Stress.</p><p>@Template[type:emanation|range:vc]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -331,14 +331,14 @@
       "name": "Momentum",
       "type": "feature",
       "system": {
-        "description": "<p>When the Pack makes a successful attack against a PC, you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "BApDkAKPfyBkqrKY": {
             "type": "healing",
             "_id": "BApDkAKPfyBkqrKY",
             "systemPath": "actions",
-            "description": "<p>When the Pack makes a successful attack against a PC, you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "reaction",
             "cost": [],

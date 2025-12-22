@@ -235,7 +235,7 @@
             "type": "damage",
             "_id": "55hCZsJQhJNcZ0lX",
             "systemPath": "actions",
-            "description": "<p>Slam the ground, knocking all targets within Very Close range back to Far range. Each target knocked back this way must mark a Stress.</p><p>@Template[type:emanation|range:vc]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -308,14 +308,14 @@
       "_id": "rreGFW5TbhUoZf2T",
       "img": "icons/magic/nature/root-vine-entangled-hand.webp",
       "system": {
-        "description": "<p>Make an attack against a target within Close range. On a success, <strong>spend a Fear</strong> to pull them into Melee range, deal <strong>1d6+2</strong> physical damage, and <em>Restrain</em> them until the Defender takes Severe damage.</p>",
+        "description": "<p>Make an attack against a target within Close range. On a success, <strong>spend a Fear</strong> to pull them into Melee range, deal <strong>1d6+2</strong> physical damage, and <em>Restrain</em> them until the @Lookup[@name] takes Severe damage.</p>",
         "resource": null,
         "actions": {
           "nQ3vXrrKBizZoaDt": {
             "type": "attack",
             "_id": "nQ3vXrrKBizZoaDt",
             "systemPath": "actions",
-            "description": "<p>Make an attack against a target within Close range. On a success, <strong>spend a Fear</strong> to pull them into Melee range, deal <strong>1d6+2</strong> physical damage, and <em>Restrain</em> them until the Defender takes Severe damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

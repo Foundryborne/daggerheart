@@ -221,7 +221,7 @@
       "name": "Punish the Guilty",
       "type": "feature",
       "system": {
-        "description": "<p>The Archer deals double damage to targets marked Guilty by a High Seraph.</p>",
+        "description": "<p>The @Lookup[@name] deals double damage to targets marked Guilty by a High Seraph.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -253,7 +253,7 @@
             "type": "attack",
             "_id": "pQLfy0I6sZhgAoIm",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to make a standard attack against up to three targets.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

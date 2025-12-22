@@ -252,14 +252,14 @@
       "name": "Swashbuckler",
       "type": "feature",
       "system": {
-        "description": "<p>When the Tough marks 2 or fewer HP from an attack within Melee range, the attacker must mark a Stress.</p>",
+        "description": "<p>When the @Lookup[@name] marks 2 or fewer HP from an attack within Melee range, the attacker must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "xg3K78wfOhg8oCd3": {
             "type": "damage",
             "_id": "xg3K78wfOhg8oCd3",
             "systemPath": "actions",
-            "description": "<p>When the Tough marks 2 or fewer HP from an attack within Melee range, the attacker must mark a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -337,7 +337,7 @@
             "type": "attack",
             "_id": "uJl1NJQ55yd9oCwz",
             "systemPath": "actions",
-            "description": "<p>Make an attack against a target within Very Close range. On a success, <strong>mark a Stress</strong> to move into Melee range of the target, dealing <strong>3d4</strong> physical damage and knocking the target back to Close range.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

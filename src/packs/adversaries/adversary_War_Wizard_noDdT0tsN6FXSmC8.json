@@ -239,7 +239,7 @@
             "type": "effect",
             "_id": "39zC1I5DYozI47lP",
             "systemPath": "actions",
-            "description": "<p>Before or after making a standard attack, you can <strong>mark a Stress</strong> to teleport to a location within Far range.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -287,14 +287,14 @@
       "name": "Refresh Warding Sphere",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to refresh the Wizard’s “Warding Sphere” reaction.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to refresh the @Lookup[@name]’s “Warding Sphere” reaction.</p>",
         "resource": null,
         "actions": {
           "FCuksmAGRC4061zm": {
             "type": "effect",
             "_id": "FCuksmAGRC4061zm",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to refresh the Wizard’s “Warding Sphere” reaction.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -350,7 +350,7 @@
             "type": "attack",
             "_id": "vnMq4NuQO6GYxWhM",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> and choose a point within Far range. A Very Close area around that point erupts into impassable terrain. All targets within that area must make an Agility Reaction Roll (14). Targets who fail take <strong>2d10</strong> physical damage and are thrown out of the area. Targets who succeed take half damage and aren’t moved.</p><p>@Template[type:circle|range:vc]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -457,7 +457,7 @@
             "type": "attack",
             "_id": "DFHR8LtvjZjHP6BL",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to unleash a precise hail of magical blasts. All targets in the scene must make an Agility Reaction Roll. Targets who fail take <strong>2d12</strong> magic damage. Targets who succeed take half damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -557,14 +557,14 @@
       "name": "Warding Sphere",
       "type": "feature",
       "system": {
-        "description": "<p>When the Wizard takes damage from an attack within Close range, deal <strong>2d6</strong> magic damage to the attacker. This reaction can’t be used again until the Wizard refreshes it with their “Refresh Warding Sphere” action.</p>",
+        "description": "<p>When the @Lookup[@name] takes damage from an attack within Close range, deal <strong>2d6</strong> magic damage to the attacker. This reaction can’t be used again until the @Lookup[@name] refreshes it with their “Refresh Warding Sphere” action.</p>",
         "resource": null,
         "actions": {
           "2fHrpaZW9toi6nin": {
             "type": "damage",
             "_id": "2fHrpaZW9toi6nin",
             "systemPath": "actions",
-            "description": "<p>When the Wizard takes damage from an attack within Close range, deal <strong>2d6</strong> magic damage to the attacker. This reaction can’t be used again until the Wizard refreshes it with their “Refresh Warding Sphere” action.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

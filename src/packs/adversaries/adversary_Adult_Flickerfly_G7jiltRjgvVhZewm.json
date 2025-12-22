@@ -221,14 +221,14 @@
       "name": "Relentless (4)",
       "type": "feature",
       "system": {
-        "description": "<p>The Flickerfly can be spotlighted up to four times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "description": "<p>The @Lookup[@name] can be spotlighted up to four times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
         "actions": {
           "poUhJdSkhjiVL2Vp": {
             "type": "effect",
             "_id": "poUhJdSkhjiVL2Vp",
             "systemPath": "actions",
-            "description": "<p>The Flickerfly can be spotlighted up to four times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "passive",
             "cost": [
@@ -279,14 +279,14 @@
       "name": "Never Misses",
       "type": "feature",
       "system": {
-        "description": "<p>When the Flickerfly makes an attack, the target’s Evasion is halved against the attack.</p>",
+        "description": "<p>When the @Lookup[@name] makes an attack, the target’s Evasion is halved against the attack.</p>",
         "resource": null,
         "actions": {
           "VRGPnDhDpReXUZZF": {
             "type": "effect",
             "_id": "VRGPnDhDpReXUZZF",
             "systemPath": "actions",
-            "description": "<p>When the Flickerfly makes an attack, the target’s Evasion is halved against the attack.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "passive",
             "cost": [],
@@ -376,14 +376,14 @@
       "name": "Whirlwind",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to whirl, making an attack against all targets within Very Close range. Targets the Flickerfly succeeds against take <strong>3d8</strong> direct physical damage.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to whirl, making an attack against all targets within Very Close range. Targets the @Lookup[@name] succeeds against take <strong>3d8</strong> direct physical damage.</p><p>@Template[type:emanation|range:vc]</p>",
         "resource": null,
         "actions": {
           "RV1wKufKrMPN6MOo": {
             "type": "attack",
             "_id": "RV1wKufKrMPN6MOo",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to whirl, making an attack against all targets within Very Close range. Targets the Flickerfly succeeds against take <strong>3d8</strong> direct physical damage.</p><p>@Template[type:emanation|range:vc]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -484,14 +484,14 @@
       "name": "Mind Dance",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to create a magically dazzling display that grapples the minds of nearby foes. All targets within Close range must make an Instinct Reaction Roll. For each target who failed, you gain a Fear and the Flickerfl y learns one of the target’s fears.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to create a magically dazzling display that grapples the minds of nearby foes. All targets within Close range must make an Instinct Reaction Roll. For each target who failed, you gain a Fear and the @Lookup[@name] learns one of the target’s fears.</p><p>@Template[type:emanation|range:c]</p>",
         "resource": null,
         "actions": {
           "GNwsDlCabx3fiG4g": {
             "type": "attack",
             "_id": "GNwsDlCabx3fiG4g",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to create a magically dazzling display that grapples the minds of nearby foes. All targets within Close range must make an Instinct Reaction Roll. For each target who failed, you gain a Fear and the Flickerfl y learns one of the target’s fears.</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -564,14 +564,14 @@
       "name": "Hallucinatory Breath",
       "type": "feature",
       "system": {
-        "description": "<p><em>Countdown (Loop 1d6)</em>. When the Flickerfly takes damage for the first time, activate the countdown. When it triggers, the Flickerfly breathes hallucinatory gas on all targets in front of them up to Far range. Targets must make an Instinct Reaction Roll or be tormented by fearful hallucinations. Targets whose fears are known to the Flickerfl y have disadvantage on this roll. Targets who fail lose 2 Hope and take <strong>3d8+3</strong> direct magic damage.</p><p>@Template[type:inFront|range:f]</p>",
+        "description": "<p><em>Countdown (Loop 1d6)</em>. When the @Lookup[@name] takes damage for the first time, activate the countdown. When it triggers, the @Lookup[@name] breathes hallucinatory gas on all targets in front of them up to Far range. Targets must make an Instinct Reaction Roll or be tormented by fearful hallucinations. Targets whose fears are known to the @Lookup[@name] have disadvantage on this roll. Targets who fail lose 2 Hope and take <strong>3d8+3</strong> direct magic damage.</p><p>@Template[type:inFront|range:f]</p>",
         "resource": null,
         "actions": {
           "YOyKyKGTUEWkMmJe": {
             "type": "attack",
             "_id": "YOyKyKGTUEWkMmJe",
             "systemPath": "actions",
-            "description": "<p>The Flickerfly breathes hallucinatory gas on all targets in front of them up to Far range. Targets must make an Instinct Reaction Roll or be tormented by fearful hallucinations. Targets whose fears are known to the Flickerfly have disadvantage on this roll. Targets who fail lose 2 Hope and take <strong>3d8+3</strong> direct magic damage.</p><p>@Template[type:inFront|range:f]</p>",
+            "description": "<p>The @Lookup[@name] breathes hallucinatory gas on all targets in front of them up to Far range. Targets must make an Instinct Reaction Roll or be tormented by fearful hallucinations. Targets whose fears are known to the @Lookup[@name] have disadvantage on this roll. Targets who fail lose 2 Hope and take <strong>3d8+3</strong> direct magic damage.</p><p>@Template[type:inFront|range:f]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -669,7 +669,7 @@
             "type": "countdown",
             "_id": "lBhmLc33pcXzJHT3",
             "systemPath": "actions",
-            "description": "<p><em>Countdown (Loop 1d6)</em>. When the Flickerfly takes damage for the first time, activate the countdown.</p>",
+            "description": "<p><em>Countdown (Loop 1d6)</em>. When the @Lookup[@name] takes damage for the first time, activate the countdown.</p>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"
@@ -726,14 +726,14 @@
       "name": "Uncanny Reflexes",
       "type": "feature",
       "system": {
-        "description": "<p>When the Flickerfly takes damage from an attack within Close range, you can mark a Stress to take half damage.</p>",
+        "description": "<p>When the @Lookup[@name] takes damage from an attack within Close range, you can mark a Stress to take half damage.</p>",
         "resource": null,
         "actions": {
           "FocbilGTpvUjlb7m": {
             "type": "effect",
             "_id": "FocbilGTpvUjlb7m",
             "systemPath": "actions",
-            "description": "<p>When the Flickerfly takes damage from an attack within Close range, you can mark a Stress to take half damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "reaction",
             "cost": [
@@ -782,7 +782,7 @@
       "name": "Deadly Flight",
       "type": "feature",
       "system": {
-        "description": "<p>While flying the Flickerfly can move up to Far range instead of Close range before taking an action.</p>",
+        "description": "<p>While flying the @Lookup[@name] can move up to Far range instead of Close range before taking an action.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,

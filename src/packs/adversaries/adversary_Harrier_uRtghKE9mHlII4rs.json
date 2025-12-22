@@ -228,7 +228,7 @@
       "_id": "t9Fa5jKLhvjD8Ar2",
       "img": "icons/skills/movement/arrow-upward-blue.webp",
       "system": {
-        "description": "<p>After making a standard attack, the Harrier can move anywhere within Far range.</p>",
+        "description": "<p>After making a standard attack, the @Lookup[@name] can move anywhere within Far range.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -261,7 +261,7 @@
             "type": "attack",
             "_id": "FiuiLUbNUL0YKq7w",
             "systemPath": "actions",
-            "description": "<p>When a creature moves into Melee range to make an attack, you can <strong>mark a Stress</strong> before the attack roll to move anywhere within Close range and make an attack against that creature. On a success, deal <strong>1d10+2</strong> physical damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

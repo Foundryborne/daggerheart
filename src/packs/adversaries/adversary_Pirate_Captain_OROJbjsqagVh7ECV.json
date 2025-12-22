@@ -234,14 +234,14 @@
       "_id": "PsMA3x6giL8tixbf",
       "img": "icons/magic/control/mouth-smile-deception-purple.webp",
       "system": {
-        "description": "<p>When the Captain marks 2 or fewer HP from an attack within Melee range, the attacker must mark a Stress.</p>",
+        "description": "<p>When the @Lookup[@name] marks 2 or fewer HP from an attack within Melee range, the attacker must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "xYphrI8GtMHHuT9a": {
             "type": "damage",
             "_id": "xYphrI8GtMHHuT9a",
             "systemPath": "actions",
-            "description": "<p>When the Captain marks 2 or fewer HP from an attack within Melee range, the attacker must mark a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -320,7 +320,7 @@
             "type": "effect",
             "_id": "NlgIp0KrmZoS27Xy",
             "systemPath": "actions",
-            "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon a Pirate Raiders Horde, which appears at Far range.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -370,14 +370,14 @@
       "_id": "brHnMc0TDiWVT4U6",
       "img": "icons/magic/death/skull-energy-light-purple.webp",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to choose a target who has three or more Pirates within Melee range of them. The Captain leads the Pirates in hurling threats and promises of a watery grave. The target must make a Presence Reaction Roll. On a failure, the target marks <strong>1d4+1</strong> Stress. On a success, they must mark a Stress.</p>",
+        "description": "<p><strong>Spend a Fear</strong> to choose a target who has three or more Pirates within Melee range of them. The @Lookup[@name] leads the Pirates in hurling threats and promises of a watery grave. The target must make a Presence Reaction Roll. On a failure, the target marks <strong>1d4+1</strong> Stress. On a success, they must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "h2vM7jDTeFttVJKN": {
             "type": "attack",
             "_id": "h2vM7jDTeFttVJKN",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to choose a target who has three or more Pirates within Melee range of them. The Captain leads the Pirates in hurling threats and promises of a watery grave. The target must make a Presence Reaction Roll. On a failure, the target marks <strong>1d4+1</strong> Stress. On a success, they must mark a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -476,14 +476,14 @@
       "_id": "V4EcsqMd70BTrDNu",
       "img": "icons/skills/melee/strike-weapons-orange.webp",
       "system": {
-        "description": "<p>When the Captain makes a successful attack against a PC, you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "78Qphxjbs7cOYsNf": {
             "type": "healing",
             "_id": "78Qphxjbs7cOYsNf",
             "systemPath": "actions",
-            "description": "<p>When the Captain makes a successful attack against a PC, you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

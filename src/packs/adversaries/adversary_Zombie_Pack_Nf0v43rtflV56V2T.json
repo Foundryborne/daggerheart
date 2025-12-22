@@ -223,7 +223,7 @@
       "_id": "nNJGAhWu0IuS2ybn",
       "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
       "system": {
-        "description": "<p>When the Zombies have marked half or more of their HP, their standard attack deals <strong>1d4+2</strong> physical damage instead.</p>",
+        "description": "<p>When the @Lookup[@name] have marked half or more of their HP, their standard attack deals <strong>1d4+2</strong> physical damage instead.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -249,14 +249,14 @@
       "_id": "jQmltra0ovHE33Nx",
       "img": "icons/magic/death/blood-corruption-vomit-red.webp",
       "system": {
-        "description": "<p>When the Zombies mark HP from an attack within Melee range, you can <strong>mark a Stress</strong> to make a standard attack against the attacker.</p>",
+        "description": "<p>When the @Lookup[@name]s mark HP from an attack within Melee range, you can <strong>mark a Stress</strong> to make a standard attack against the attacker.</p>",
         "resource": null,
         "actions": {
           "0Im5AEgp8gJaVJHh": {
             "type": "effect",
             "_id": "0Im5AEgp8gJaVJHh",
             "systemPath": "actions",
-            "description": "<p>When the Zombies mark HP from an attack within Melee range, you can <strong>mark a Stress</strong> to make a standard attack against the attacker.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

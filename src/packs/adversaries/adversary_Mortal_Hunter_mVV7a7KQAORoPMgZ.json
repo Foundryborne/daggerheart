@@ -227,14 +227,14 @@
       "name": "Terrifying",
       "type": "feature",
       "system": {
-        "description": "<p>When the Hunter makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
         "resource": null,
         "actions": {
           "9T1g3FH38cnCRG8k": {
             "type": "damage",
             "_id": "9T1g3FH38cnCRG8k",
             "systemPath": "actions",
-            "description": "<p>When the Hunter makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -305,14 +305,14 @@
       "name": "Deathlock",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to curse a target within Very Close range with a necrotic Deathlock until the end of the scene. Attacks made by the Hunter against a Deathlocked target deal direct damage. The Hunter can only maintain one Deathlock at a time.</p>",
+        "description": "<p><strong>Spend a Fear</strong> to curse a target within Very Close range with a necrotic Deathlock until the end of the scene. Attacks made by the @Lookup[@name] against a Deathlocked target deal direct damage. The @Lookup[@name] can only maintain one Deathlock at a time.</p>",
         "resource": null,
         "actions": {
           "LUNsI29woLk4m2wo": {
             "type": "effect",
             "_id": "LUNsI29woLk4m2wo",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to curse a target within Very Close range with a necrotic Deathlock until the end of the scene. Attacks made by the Hunter against a Deathlocked target deal direct damage. The Hunter can only maintain one Deathlock at a time.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -347,7 +347,7 @@
             "_id": "zLKfwa8a2YBRLKAF",
             "systemPath": "actions",
             "baseAction": false,
-            "description": "<p> Attacks made by the Hunter against a Deathlocked target deal direct damage.</p>",
+            "description": "<p>Attacks made by the @Lookup[@name] against a Deathlocked target deal direct damage.</p>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"
@@ -491,7 +491,7 @@
             "type": "attack",
             "_id": "wxOfNoEogH1EU0Jb",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to spotlight <strong>1d4</strong> allies. Attacks they make while spotlighted in this way deal half damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -564,14 +564,14 @@
       "name": "Rampage",
       "type": "feature",
       "system": {
-        "description": "<p><em>Countdown (Loop 1d6)</em>. When the Hunter is in the spotlight for the first time, activate the countdown. When it triggers, move the Hunter in a straight line to a point within Far range and make an attack against all targets in their path. Targets the Hunter succeeds against take <strong>2d8+2</strong> physical damage.</p><p>@Template[type:ray|range:f]</p>",
+        "description": "<p><em>Countdown (Loop 1d6)</em>. When the @Lookup[@name] is in the spotlight for the first time, activate the countdown. When it triggers, move the @Lookup[@name] in a straight line to a point within Far range and make an attack against all targets in their path. Targets the @Lookup[@name] succeeds against take <strong>2d8+2</strong> physical damage.</p><p>@Template[type:ray|range:f]</p>",
         "resource": null,
         "actions": {
           "VjiFxuzfAaq5N1jy": {
             "type": "attack",
             "_id": "VjiFxuzfAaq5N1jy",
             "systemPath": "actions",
-            "description": "<p>Move the Hunter in a straight line to a point within Far range and make an attack against all targets in their path. Targets the Hunter succeeds against take <strong>2d8+2</strong> physical damage.</p><p>@Template[type:ray|range:f]</p>",
+            "description": "<p>Move the @Lookup[@name] in a straight line to a point within Far range and make an attack against all targets in their path. Targets the @Lookup[@name] succeeds against take <strong>2d8+2</strong> physical damage.</p><p>@Template[type:ray|range:f]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -644,7 +644,7 @@
             "type": "countdown",
             "_id": "BhA3vxCuMs4UbbQU",
             "systemPath": "actions",
-            "description": "<p><em>Countdown (Loop 1d6)</em>. When the Hunter is in the spotlight for the first time, activate the countdown.</p>",
+            "description": "<p><em>Countdown (Loop 1d6)</em>. When the @Lookup[@name] is in the spotlight for the first time, activate the countdown.</p>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"

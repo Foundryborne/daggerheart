@@ -227,14 +227,14 @@
       "name": "Terrifying",
       "type": "feature",
       "system": {
-        "description": "<p>When the Demon makes a successful attack, all PCs within Far range must lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack, all PCs within Far range must lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
         "resource": null,
         "actions": {
           "v3XbljQeHEyfuSXz": {
             "type": "damage",
             "_id": "v3XbljQeHEyfuSXz",
             "systemPath": "actions",
-            "description": "<p>When the Demon makes a successful attack, all PCs within Far range must lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -319,7 +319,7 @@
             "type": "damage",
             "_id": "nNfWqBgysVPtFh4w",
             "systemPath": "actions",
-            "description": "<p>When a PC within Far range fails a roll, they can choose to reroll their Fear Die and take the new result. If they still fail, they mark 2 Stress and the Demon clears a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -390,14 +390,14 @@
       "name": "Unparalleled Skill",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to deal the Demon’s standard attack damage to a target within Close range.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to deal the @Lookup[@name]’s standard attack damage to a target within Close range.</p>",
         "resource": null,
         "actions": {
           "MYOD2VAfdVC6hMCs": {
             "type": "damage",
             "_id": "MYOD2VAfdVC6hMCs",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to deal the Demon’s standard attack damage to a target within Close range.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -484,7 +484,7 @@
             "type": "effect",
             "_id": "ozGST8UY2MJnrd3w",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to spotlight two other Demons within Far range.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -533,14 +533,14 @@
       "name": "You Pale in Comparison",
       "type": "feature",
       "system": {
-        "description": "<p>When a PC fails a roll within Close range of the Demon, they must mark a Stress.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>When a PC fails a roll within Close range of the @Lookup[@name], they must mark a Stress.</p><p>@Template[type:emanation|range:c]</p>",
         "resource": null,
         "actions": {
           "kuCPWb9cu3pZdAhh": {
             "type": "damage",
             "_id": "kuCPWb9cu3pZdAhh",
             "systemPath": "actions",
-            "description": "<p>When a PC fails a roll within Close range of the Demon, they must mark a Stress.</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

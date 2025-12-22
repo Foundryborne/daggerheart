@@ -237,7 +237,7 @@
       "name": "Chevalier",
       "type": "feature",
       "system": {
-        "description": "<p>While the Knight is on a mount, they gain a +2 bonus to their Difficulty. When they take Severe damage, they’re knocked from their mount and lose this benefit until they’re next spotlighted.</p>",
+        "description": "<p>While the @Lookup[@name] is on a mount, they gain a +2 bonus to their Difficulty. When they take Severe damage, they’re knocked from their mount and lose this benefit until they’re next spotlighted.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -306,7 +306,7 @@
       "name": "Heavily Armored",
       "type": "feature",
       "system": {
-        "description": "<p> When the Knight takes physical damage, reduce it by 3.</p>",
+        "description": "<p>When the @Lookup[@name] takes physical damage, reduce it by 3.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -375,14 +375,14 @@
       "name": "Cavalry Charge",
       "type": "feature",
       "system": {
-        "description": "<p>If the Knight is mounted, move up to Far range and make a standard attack against a target. On a success, deal <strong>2d8+4</strong> physical damage and the target must mark a Stress.</p>",
+        "description": "<p>If the @Lookup[@name] is mounted, move up to Far range and make a standard attack against a target. On a success, deal <strong>2d8+4</strong> physical damage and the target must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "Mb079uPkaZgpo9y3": {
             "type": "attack",
             "_id": "Mb079uPkaZgpo9y3",
             "systemPath": "actions",
-            "description": "<p>If the Knight is mounted, move up to Far range and make a standard attack against a target. On a success, deal <strong>2d8+4</strong> physical damage and the target must mark a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -505,7 +505,7 @@
             "type": "effect",
             "_id": "V5fLHHdTOita6u9f",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to spotlight <strong>[[/r 1d4+1]]</strong> allies. Attacks they make while spotlighted in this way deal half damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

@@ -223,14 +223,14 @@
       "_id": "Efa6t9Ow8b1DRyZV",
       "img": "icons/skills/melee/shield-damaged-broken-gold.webp",
       "system": {
-        "description": "<p>On a successful attack within Melee range against the Snake, the attacker must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
+        "description": "<p>On a successful attack within Melee range against the @Lookup[@name], the attacker must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
         "resource": null,
         "actions": {
           "H1nUSOudbtha1lnC": {
             "type": "damage",
             "_id": "H1nUSOudbtha1lnC",
             "systemPath": "actions",
-            "description": "<p>On a successful attack within Melee range against the Snake, the attacker must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -302,14 +302,14 @@
       "_id": "Ro9XCeXsTOT9SXyo",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Very Close range. Targets the Snake succeeds against take <strong>1d6+1</strong> physical damage.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Very Close range. Targets the @Lookup[@name] succeeds against take <strong>1d6+1</strong> physical damage.</p>",
         "resource": null,
         "actions": {
           "2UzeQYL5HeyF3zwh": {
             "type": "attack",
             "_id": "2UzeQYL5HeyF3zwh",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Very Close range. Targets the Snake succeeds against take <strong>1d6+1</strong> physical damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -408,7 +408,7 @@
       "_id": "LR5XHauNtWcl18CY",
       "img": "icons/magic/acid/projectile-needles-salvo-green.webp",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to introduce a <strong>d6</strong> Spitter Die. When the Snake is in the spotlight, roll this die. On a result of 5 or higher, all targets in front of the Snake within Far range must succeed on an Agility Reaction Roll or take <strong>1d4</strong> physical damage. The Snake can take the spotlight a second time this GM turn.</p><p>@Template[type:inFront|range:f]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to introduce a <strong>d6</strong> Spitter Die. When the @Lookup[@name] is in the spotlight, roll this die. On a result of 5 or higher, all targets in front of the @Lookup[@name] within Far range must succeed on an Agility Reaction Roll or take <strong>1d4</strong> physical damage. The @Lookup[@name] can take the spotlight a second time this GM turn.</p><p>@Template[type:inFront|range:f]</p>",
         "resource": null,
         "actions": {
           "yx5fjMLLwSnvSbqs": {
@@ -449,7 +449,7 @@
             "type": "attack",
             "_id": "Ds6KlQKZCOhh5OMT",
             "systemPath": "actions",
-            "description": "<p>All targets in front of the Snake within Far range must succeed on an Agility Reaction Roll or take <strong>1d4</strong> physical damage.</p><p>@Template[type:inFront|range:f]</p>",
+            "description": "<p>All targets in front of the @Lookup[@name] within Far range must succeed on an Agility Reaction Roll or take <strong>1d4</strong> physical damage.</p><p>@Template[type:inFront|range:f]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -522,7 +522,7 @@
             "type": "attack",
             "_id": "xccwknU2xHUwQSdn",
             "systemPath": "actions",
-            "description": "<p>When the Snake is in the spotlight, roll the spitter die. On a result of 5 or higher, do a spit Attack.</p>",
+            "description": "<p>When the @Lookup[@name] is in the spotlight, roll the spitter die. On a result of 5 or higher, do a spit Attack.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

@@ -232,7 +232,7 @@
       "_id": "yBaLF9DwPH2GSRKf",
       "img": "icons/magic/time/hourglass-brown-orange.webp",
       "system": {
-        "description": "<p>When you spotlight the Zombie and they don’t have a token on their stat block, they can’t act yet. Place a token on their stat block and describe what they’re preparing to do. When you spotlight the Zombie and they have a token on their stat block, clear the token and they can act.</p>",
+        "description": "<p>When you spotlight the @Lookup[@name] and they don’t have a token on their stat block, they can’t act yet. Place a token on their stat block and describe what they’re preparing to do. When you spotlight the @Lookup[@name] and they have a token on their stat block, clear the token and they can act.</p>",
         "resource": {
           "type": "simple",
           "value": 0,
@@ -263,14 +263,14 @@
       "_id": "LP7xVLMTkJsmiIvl",
       "img": "icons/skills/melee/strike-slashes-red.webp",
       "system": {
-        "description": "<p>Make a standard attack with advantage against a target the Zombie has <em>Restrained</em>. On a success, the attack deals direct damage.</p>",
+        "description": "<p>Make a standard attack with advantage against a target the @Lookup[@name] has <em>Restrained</em>. On a success, the attack deals direct damage.</p>",
         "resource": null,
         "actions": {
           "qCcWw60cPZnEWbpG": {
             "type": "attack",
             "_id": "qCcWw60cPZnEWbpG",
             "systemPath": "actions",
-            "description": "<p>Make a standard attack with advantage against a target the Zombie has <em>Restrained</em>. On a success, the attack deals direct damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -365,14 +365,14 @@
       "_id": "69reUZ5tv3splqyO",
       "img": "icons/creatures/abilities/mouth-teeth-lamprey-red.webp",
       "system": {
-        "description": "<p>When the Zombies makes a successful standard attack, you can <strong>mark a Stress</strong> to temporarily Restrain the target and force them to mark 2 Stress.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful standard attack, you can <strong>mark a Stress</strong> to temporarily Restrain the target and force them to mark 2 Stress.</p>",
         "resource": null,
         "actions": {
           "xV1z3dk9c7jIkk7v": {
             "type": "damage",
             "_id": "xV1z3dk9c7jIkk7v",
             "systemPath": "actions",
-            "description": "<p>When the Zombies makes a successful standard attack, you can <strong>mark a Stress</strong> to temporarily Restrain the target and force them to mark 2 Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

@@ -232,14 +232,14 @@
       "name": "Searing Glance",
       "type": "feature",
       "system": {
-        "description": "<p>When a PC within Close range makes a Presence Roll, you can <strong>mark a Stress</strong> to cast a gaze toward the aftermath. On the target’s failure, they must mark 2 Stress and are <em>Vulnerable</em> until the scene ends or they succeed on a social action against the Courtesan. On the target’s success, they must mark a Stress.</p>",
+        "description": "<p>When a PC within Close range makes a Presence Roll, you can <strong>mark a Stress</strong> to cast a gaze toward the aftermath. On the target’s failure, they must mark 2 Stress and are <em>Vulnerable</em> until the scene ends or they succeed on a social action against the @Lookup[@name]. On the target’s success, they must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "dRtDCrAPLc1GYqBs": {
             "type": "damage",
             "_id": "dRtDCrAPLc1GYqBs",
             "systemPath": "actions",
-            "description": "<p>When a PC within Close range makes a Presence Roll, you can <strong>mark a Stress</strong> to cast a gaze toward the aftermath. On the target’s failure, they must mark 2 Stress and are <em>Vulnerable</em> until the scene ends or they succeed on a social action against the Courtesan. On the target’s success, they must mark a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

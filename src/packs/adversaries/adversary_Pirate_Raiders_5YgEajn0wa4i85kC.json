@@ -229,7 +229,7 @@
       "_id": "Q7DRbWjHl64CNwag",
       "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
       "system": {
-        "description": "<p>When the Raiders have marked half or more of their HP, their standard attack deals <strong>1d4+1</strong> physical damage instead.</p>",
+        "description": "<p>When the @Lookup[@name] have marked half or more of their HP, their standard attack deals <strong>1d4+1</strong> physical damage instead.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -255,14 +255,14 @@
       "_id": "N401rF937fLXMuMA",
       "img": "icons/magic/control/mouth-smile-deception-purple.webp",
       "system": {
-        "description": "<p>When the Raiders mark 2 or fewer HP from an attack within Melee range, the attacker must mark a Stress.</p>",
+        "description": "<p>When the @Lookup[@name] mark 2 or fewer HP from an attack within Melee range, the attacker must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "ejadA9jjMnVNVczS": {
             "type": "damage",
             "_id": "ejadA9jjMnVNVczS",
             "systemPath": "actions",
-            "description": "<p>When the Raiders mark 2 or fewer HP from an attack within Melee range, the attacker must mark a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

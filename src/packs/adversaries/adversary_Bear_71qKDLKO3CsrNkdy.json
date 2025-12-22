@@ -234,7 +234,7 @@
       "_id": "2fXzhh2qil8dw3vw",
       "img": "icons/skills/melee/strike-slashes-orange.webp",
       "system": {
-        "description": "<p>Targets who mark HP from the Bear’s standard attack are knocked back to Very Close range.</p>",
+        "description": "<p>Targets who mark HP from the @Lookup[@name]’s standard attack are knocked back to Very Close range.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -267,7 +267,7 @@
             "type": "attack",
             "_id": "PXL3e51eBYZ4O2lb",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to make an attack against a target within Melee range. On a success, deal <strong>3d4+10</strong> physical damage and the target is <em>Restrained</em> until they break free with a successful Strength Roll.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

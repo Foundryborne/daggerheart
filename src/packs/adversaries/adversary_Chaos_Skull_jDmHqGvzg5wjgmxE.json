@@ -221,7 +221,7 @@
       "name": "Levitation",
       "type": "feature",
       "system": {
-        "description": "<p>The Skull levitates several feet off the ground and can’t be <em>Restrained</em>.</p>",
+        "description": "<p>The @Lookup[@name] levitates several feet off the ground and can’t be <em>Restrained</em>.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -290,7 +290,7 @@
       "name": "Wards",
       "type": "feature",
       "system": {
-        "description": "<p> The Skull is resistant to magic damage.</p>",
+        "description": "<p>The @Lookup[@name] is resistant to magic damage.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -359,14 +359,14 @@
       "name": "Magic Burst",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Close range. Targets the Skull succeeds against take <strong>2d6+4</strong> magic damage.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Close range. Targets the @Lookup[@name] succeeds against take <strong>2d6+4</strong> magic damage.</p><p>@Template[type:emanation|range:c]</p>",
         "resource": null,
         "actions": {
           "iF0PD1t3yovKMTfy": {
             "type": "attack",
             "_id": "iF0PD1t3yovKMTfy",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Close range. Targets the Skull succeeds against take <strong>2d6+4</strong> magic damage.</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -466,14 +466,14 @@
       "name": "Siphon Magic",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to make an attack against a PC with a Spellcast trait within Very Close range. On a success, the target marks <strong>1d4</strong> Stress and the Skull clears that many Stress. Additionally, on a success, the Skull can immediately be spotlighted again.</p>",
+        "description": "<p><strong>Spend a Fear</strong> to make an attack against a PC with a Spellcast trait within Very Close range. On a success, the target marks <strong>1d4</strong> Stress and the @Lookup[@name] clears that many Stress. Additionally, on a success, the @Lookup[@name] can immediately be spotlighted again.</p>",
         "resource": null,
         "actions": {
           "872Fq88Hitwc6f3W": {
             "type": "attack",
             "_id": "872Fq88Hitwc6f3W",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to make an attack against a PC with a Spellcast trait within Very Close range. On a success, the target marks <strong>1d4</strong> Stress and the Skull clears that many Stress. Additionally, on a success, the Skull can immediately be spotlighted again.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

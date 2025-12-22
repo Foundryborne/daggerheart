@@ -236,7 +236,7 @@
             "type": "attack",
             "_id": "Yi3rvjj0Umqt5Z8j",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to say something mocking and force a target within Close range to make a Presence Reaction Roll (14) to see if they can save face. On a failure, the target must mark 2 Stress and is Vulnerable until the scene ends.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -380,14 +380,14 @@
       "_id": "Ux42ELBBuSYwm4yW",
       "img": "icons/skills/social/diplomacy-unity-alliance.webp",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> and target a PC. The Courtier convinces a crowd or prominent individual that the target is the cause of their current conflict or misfortune.</p>",
+        "description": "<p><strong>Spend a Fear</strong> and target a PC. The @Lookup[@name] convinces a crowd or prominent individual that the target is the cause of their current conflict or misfortune.</p>",
         "resource": null,
         "actions": {
           "IwuFowlcXyjvfOxp": {
             "type": "effect",
             "_id": "IwuFowlcXyjvfOxp",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> and target a PC. The Courtier convinces a crowd or prominent individual that the target is the cause of their current conflict or misfortune.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

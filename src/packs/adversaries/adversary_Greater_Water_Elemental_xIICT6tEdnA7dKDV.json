@@ -228,7 +228,7 @@
             "type": "attack",
             "_id": "Gk5tcqshtwP4JsKS",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to attack a target within Very Close range. On a success, deal <strong>2d4+7</strong> physical damage and the target’s next action has disadvantage. On a failure, the target must mark a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -377,14 +377,14 @@
       "name": "Drowning Embrace",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to make an attack against all targets within Very Close range. Targets the Elemental succeeds against become <em>Restrained</em> and <em>Vulnerable</em> as they begin drowning. A target can break free, ending both conditions, with a successful Strength or Instinct Roll.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to make an attack against all targets within Very Close range. Targets the @Lookup[@name] succeeds against become <em>Restrained</em> and <em>Vulnerable</em> as they begin drowning. A target can break free, ending both conditions, with a successful Strength or Instinct Roll.</p><p>@Template[type:emanation|range:vc]</p>",
         "resource": null,
         "actions": {
           "ooYbiLrYjoWXIfe9": {
             "type": "attack",
             "_id": "ooYbiLrYjoWXIfe9",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to make an attack against all targets within Very Close range. Targets the Elemental succeeds against become <em>Restrained</em> and <em>Vulnerable</em> as they begin drowning. A target can break free, ending both conditions, with a successful Strength or Instinct Roll.</p><p>@Template[type:emanation|range:vc]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -502,14 +502,14 @@
       "name": "High Tide",
       "type": "feature",
       "system": {
-        "description": "<p>When the Elemental makes a successful standard attack, you can <strong>mark a Stress</strong> to knock the target back to Close range.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful standard attack, you can <strong>mark a Stress</strong> to knock the target back to Close range.</p>",
         "resource": null,
         "actions": {
           "MXSyEGbaHeFgyOsB": {
             "type": "effect",
             "_id": "MXSyEGbaHeFgyOsB",
             "systemPath": "actions",
-            "description": "<p>When the Elemental makes a successful standard attack, you can <strong>mark a Stress</strong> to knock the target back to Close range.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

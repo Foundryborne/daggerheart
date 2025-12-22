@@ -227,14 +227,14 @@
       "name": "Draining Bite",
       "type": "feature",
       "system": {
-        "description": "<p>Make an attack against a target within Melee range. On a success, deal <strong>5d4</strong> physical damage. A target who marks HP from this attack loses a Hope and must mark a Stress. The Vampire then clears a HP.</p>",
+        "description": "<p>Make an attack against a target within Melee range. On a success, deal <strong>5d4</strong> physical damage. A target who marks HP from this attack loses a Hope and must mark a Stress. The @Lookup[@name] then clears a HP.</p>",
         "resource": null,
         "actions": {
           "GxJ7oxrrFp7VsybV": {
             "type": "attack",
             "_id": "GxJ7oxrrFp7VsybV",
             "systemPath": "actions",
-            "description": "<p>Make an attack against a target within Melee range. On a success, deal <strong>5d4</strong> physical damage. A target who marks HP from this attack loses a Hope and must mark a Stress. The Vampire then clears a HP.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -375,14 +375,14 @@
       "name": "Mistform",
       "type": "feature",
       "system": {
-        "description": "<p>When the Vampire takes physical damage, you can <strong>spend a Fear</strong> to take half damage.</p>",
+        "description": "<p>When the @Lookup[@name] takes physical damage, you can <strong>spend a Fear</strong> to take half damage.</p>",
         "resource": null,
         "actions": {
           "TDu6DplfPluwInhi": {
             "type": "effect",
             "_id": "TDu6DplfPluwInhi",
             "systemPath": "actions",
-            "description": "<p>When the Vampire takes physical damage, you can <strong>spend a Fear</strong> to take half damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

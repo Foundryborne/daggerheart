@@ -228,7 +228,7 @@
       "name": "Unprotected Mind",
       "type": "feature",
       "system": {
-        "description": "<p> The Demon’s standard attack deals direct damage.</p>",
+        "description": "<p>The @Lookup[@name]’s standard attack deals direct damage.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -253,7 +253,7 @@
       "name": "My Turn",
       "type": "feature",
       "system": {
-        "description": "<p>When the Demon marks HP from an attack, <strong>spend a number of Fear equal to the HP marked by the Demon</strong> to cause the attacker to mark the same number of HP.</p>",
+        "description": "<p>When the @Lookup[@name] marks HP from an attack, <strong>spend a number of Fear equal to the HP marked by the @Lookup[@name]</strong> to cause the attacker to mark the same number of HP.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -286,7 +286,7 @@
             "type": "effect",
             "_id": "UU3H5aPQejOSoFZw",
             "systemPath": "actions",
-            "description": "<p>When a creature within Close range takes damage from a different adversary, you can <strong>mark a Stress</strong> to add a <strong>d4</strong> to the damage roll.</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -335,14 +335,14 @@
       "name": "What's Yours Is Mine",
       "type": "feature",
       "system": {
-        "description": "<p>When a PC takes Severe damage within Very Close range of the Demon, you can <strong>spend a Fear</strong> to cause the target to make a Finesse Reaction Roll. On a failure, the Demon seizes one item or consumable of their choice from the target’s inventory.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p>When a PC takes Severe damage within Very Close range of the @Lookup[@name], you can <strong>spend a Fear</strong> to cause the target to make a Finesse Reaction Roll. On a failure, the @Lookup[@name] seizes one item or consumable of their choice from the target’s inventory.</p><p>@Template[type:emanation|range:vc]</p>",
         "resource": null,
         "actions": {
           "3cGZ2CofM9HUlELH": {
             "type": "attack",
             "_id": "3cGZ2CofM9HUlELH",
             "systemPath": "actions",
-            "description": "<p>When a PC takes Severe damage within Very Close range of the Demon, you can <strong>spend a Fear</strong> to cause the target to make a Finesse Reaction Roll. On a failure, the Demon seizes one item or consumable of their choice from the target’s inventory.</p><p>@Template[type:emanation|range:vc]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

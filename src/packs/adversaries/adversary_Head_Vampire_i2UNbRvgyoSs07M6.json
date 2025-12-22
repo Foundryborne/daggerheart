@@ -227,14 +227,14 @@
       "name": "Terrifying",
       "type": "feature",
       "system": {
-        "description": "<p>When the Vampire makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
         "resource": null,
         "actions": {
           "Rf2ZL3EjCzudonRb": {
             "type": "damage",
             "_id": "Rf2ZL3EjCzudonRb",
             "systemPath": "actions",
-            "description": "<p>When the Vampire makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -305,14 +305,14 @@
       "name": "Look into My Eyes",
       "type": "feature",
       "system": {
-        "description": "<p>A creature who moves into Melee range of the Vampire must make an Instinct Reaction Roll. On a failure, you gain <strong>[[/r 1d4]]</strong> Fear.</p>",
+        "description": "<p>A creature who moves into Melee range of the @Lookup[@name] must make an Instinct Reaction Roll. On a failure, you gain <strong>[[/r 1d4]]</strong> Fear.</p>",
         "resource": null,
         "actions": {
           "lOgkZTR1hybc6bnJ": {
             "type": "attack",
             "_id": "lOgkZTR1hybc6bnJ",
             "systemPath": "actions",
-            "description": "<p>A creature who moves into Melee range of the Vampire must make an Instinct Reaction Roll. On a failure, you gain <strong>[[/r 1d4]]</strong> Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -377,14 +377,14 @@
       "name": "Feed on Followers",
       "type": "feature",
       "system": {
-        "description": "<p>When the Vampire is within Melee range of an ally, they can cause the ally to mark a HP. The Vampire then clears a HP.</p>",
+        "description": "<p>When the @Lookup[@name] is within Melee range of an ally, they can cause the ally to mark a HP. The @Lookup[@name] then clears a HP.</p>",
         "resource": null,
         "actions": {
           "tM6TBTtmCXTnIzen": {
             "type": "healing",
             "_id": "tM6TBTtmCXTnIzen",
             "systemPath": "actions",
-            "description": "<p>When the Vampire is within Melee range of an ally, they can cause the ally to mark a HP. The Vampire then clears a HP.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -478,7 +478,7 @@
             "type": "effect",
             "_id": "5Q6RMUTiauKw0tDj",
             "systemPath": "actions",
-            "description": "<p><strong>Spend 2 Fear</strong> to summon [[/r 1d4]] @UUID[Compendium.daggerheart.adversaries.Actor.WWyUp6Mxl1S3KYUG]{Vampires}, who appear at Far range and immediately take the spotlight.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -527,14 +527,14 @@
       "name": "Lifesuck",
       "type": "feature",
       "system": {
-        "description": "<p>When the Vampire is spotlighted, roll a <strong>d8</strong>. On a result of 6 or higher, all targets within Very Close range must mark a HP.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p>When the @Lookup[@name] is spotlighted, roll a <strong>d8</strong>. On a result of 6 or higher, all targets within Very Close range must mark a HP.</p><p>@Template[type:emanation|range:vc]</p>",
         "resource": null,
         "actions": {
           "DA8qT2omBcG4oryX": {
             "type": "attack",
             "_id": "DA8qT2omBcG4oryX",
             "systemPath": "actions",
-            "description": "<p>When the Vampire is spotlighted, roll a <strong>d8</strong>. On a result of 6 or higher, all targets within Very Close range must mark a HP.</p><p>@Template[type:emanation|range:vc]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

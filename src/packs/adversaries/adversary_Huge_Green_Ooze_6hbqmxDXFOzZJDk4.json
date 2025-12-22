@@ -227,7 +227,7 @@
       "name": "Slow",
       "type": "feature",
       "system": {
-        "description": "<p>When you spotlight the Ooze and they don’t have a token on their stat block, they can’t act yet. Place a token on their stat block and describe what they’re preparing to do. When you spotlight the Ooze and they have a token on their stat block, clear the token and they can act.</p>",
+        "description": "<p>When you spotlight the @Lookup[@name] and they don’t have a token on their stat block, they can’t act yet. Place a token on their stat block and describe what they’re preparing to do. When you spotlight the @Lookup[@name] and they have a token on their stat block, clear the token and they can act.</p>",
         "resource": {
           "type": "simple",
           "value": 0,
@@ -257,14 +257,14 @@
       "name": "Acidic Form",
       "type": "feature",
       "system": {
-        "description": "<p>When the Ooze makes a successful attack, the target must mark an Armor Slot without receiving its benefi ts (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack, the target must mark an Armor Slot without receiving its benefi ts (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
         "resource": null,
         "actions": {
           "gtT2oHSyZg9OHHJD": {
             "type": "damage",
             "_id": "gtT2oHSyZg9OHHJD",
             "systemPath": "actions",
-            "description": "<p>When the Ooze makes a successful attack, the target must mark an Armor Slot without receiving its benefi ts (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -335,7 +335,7 @@
       "name": "Envelop",
       "type": "feature",
       "system": {
-        "description": "<p>Make an attack against a target within Melee range. On a success, the Ooze Envelops them and the target must mark 2 Stress. While Enveloped, the target must mark an additional Stress every time they make an action roll. When the Ooze takes Severe damage, all Enveloped targets are freed and the condition is cleared.</p>",
+        "description": "<p>Make an attack against a target within Melee range. On a success, the @Lookup[@name] Envelops them and the target must mark 2 Stress. While Enveloped, the target must mark an additional Stress every time they make an action roll. When the @Lookup[@name] takes Severe damage, all Enveloped targets are freed and the condition is cleared.</p>",
         "resource": null,
         "actions": {
           "hQBYPagz5yuTcCQq": {
@@ -476,14 +476,14 @@
       "name": "Split",
       "type": "feature",
       "system": {
-        "description": "<p>When the Ooze has 4 or more HP marked, you can <strong>spend a Fear</strong> to split them into two @UUID[Compendium.daggerheart.adversaries.Actor.SHXedd9zZPVfUgUa]{Green Oozes}(with no marked HP or Stress). Immediately spotlight both of them.</p>",
+        "description": "<p>When the @Lookup[@name] has 4 or more HP marked, you can <strong>spend a Fear</strong> to split them into two @UUID[Compendium.daggerheart.adversaries.Actor.SHXedd9zZPVfUgUa]{Green Oozes}(with no marked HP or Stress). Immediately spotlight both of them.</p>",
         "resource": null,
         "actions": {
           "iQsYAqpUFvJslRDr": {
             "type": "effect",
             "_id": "iQsYAqpUFvJslRDr",
             "systemPath": "actions",
-            "description": "<p>When the Ooze has 4 or more HP marked, you can <strong>spend a Fear</strong> to split them into two @UUID[Compendium.daggerheart.adversaries.Actor.SHXedd9zZPVfUgUa]{Green Oozes}(with no marked HP or Stress). Immediately spotlight both of them.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

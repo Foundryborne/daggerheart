@@ -252,14 +252,14 @@
       "name": "Relentless (2)",
       "type": "feature",
       "system": {
-        "description": "<p>The Obsidian Predator can be spotlighted up to two times per GM turn Spend Fear as usual to spotlight them</p>",
+        "description": "<p>The @Lookup[@name] can be spotlighted up to two times per GM turn Spend Fear as usual to spotlight them</p>",
         "resource": null,
         "actions": {
           "XuhmupOVJj8ae6q0": {
             "type": "effect",
             "_id": "XuhmupOVJj8ae6q0",
             "systemPath": "actions",
-            "description": "<p>The Obsidian Predator can be spotlighted up to two times per GM turn Spend Fear as usual to spotlight them.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "passive",
             "cost": [
@@ -310,7 +310,7 @@
       "name": "Flying",
       "type": "feature",
       "system": {
-        "description": "<p> While flying, the Obsidian Predator gains a +3 bonus to their Difficulty.</p>",
+        "description": "<p>While flying, the @Lookup[@name] gains a +3 bonus to their Difficulty.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -379,7 +379,7 @@
       "name": "Obsidian Scales",
       "type": "feature",
       "system": {
-        "description": "<p>The Obsidian Predator is resistant to physical damage.</p>",
+        "description": "<p>The @Lookup[@name] is resistant to physical damage.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -448,14 +448,14 @@
       "name": "Avalanche Tail",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Close range. Targets the Obsidian Predator succeeds against take <strong>4d6+4</strong> physical damage and are knocked.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Close range. Targets the @Lookup[@name] succeeds against take <strong>4d6+4</strong> physical damage and are knocked.</p><p>@Template[type:emanation|range:c]</p>",
         "resource": null,
         "actions": {
           "23y0BoufIgNq62j9": {
             "type": "attack",
             "_id": "23y0BoufIgNq62j9",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Close range. Targets the Obsidian Predator succeeds against take <strong>4d6+4</strong> physical damage and are knocked.</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -590,14 +590,14 @@
       "name": "Dive-Bomb",
       "type": "feature",
       "system": {
-        "description": "<p>If the Obsidian Predator is flying, mark a <strong>Stress</strong> to choose a point within Far range. Move to that point and make an attack against all targets within Very Close range. Targets the Obsidian Predator succeeds against take <strong>2d10+6</strong> physical damage and must mark a Stress and lose a Hope.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p>If the @Lookup[@name] is flying, mark a <strong>Stress</strong> to choose a point within Far range. Move to that point and make an attack against all targets within Very Close range. Targets the @Lookup[@name] succeeds against take <strong>2d10+6</strong> physical damage and must mark a Stress and lose a Hope.</p><p>@Template[type:emanation|range:vc]</p>",
         "resource": null,
         "actions": {
           "OpAT9nxlbgvnhdBg": {
             "type": "attack",
             "_id": "OpAT9nxlbgvnhdBg",
             "systemPath": "actions",
-            "description": "<p>If the Obsidian Predator is flying, mark a <strong>Stress</strong> to choose a point within Far range. Move to that point and make an attack against all targets within Very Close range. Targets the Obsidian Predator succeeds against take <strong>2d10+6</strong> physical damage and must mark a Stress and lose a Hope.</p><p>@Template[type:emanation|range:vc]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -740,7 +740,7 @@
       "name": "Erupting Rage",
       "type": "feature",
       "system": {
-        "description": "<p>When the Obsidian Predator marks their last HP, replace them with the @UUID[Compendium.daggerheart.adversaries.Actor.eArAPuB38CNR0ZIM]{Molten Scourge} and immediately spotlight them.</p>",
+        "description": "<p>When the @Lookup[@name] marks their last HP, replace them with the @UUID[Compendium.daggerheart.adversaries.Actor.eArAPuB38CNR0ZIM]{Molten Scourge} and immediately spotlight them.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,

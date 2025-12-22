@@ -227,14 +227,14 @@
       "name": "Captive Audience",
       "type": "feature",
       "system": {
-        "description": "<p>If the Siren makes a standard attack against a target Entranced by their song, the attack deals <strong>2d10+1</strong> damage instead of their standard damage.</p>",
+        "description": "<p>If the @Lookup[@name] makes a standard attack against a target Entranced by their song, the attack deals <strong>2d10+1</strong> damage instead of their standard damage.</p>",
         "resource": null,
         "actions": {
           "FxWbdt0hRNv2k9Pm": {
             "type": "attack",
             "_id": "FxWbdt0hRNv2k9Pm",
             "systemPath": "actions",
-            "description": "<p>If the Siren makes a standard attack against a target Entranced by their song, the attack deals <strong>2d10+1</strong> damage instead of their standard damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -326,14 +326,14 @@
       "name": "Enchanting Song",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to sing a song that affects all targets within Close range. Targets must succeed on an Instinct Reaction Roll or become Entranced until they mark 2 Stress. Other Sirens within Close range of the target can <strong>mark a Stress</strong> to each add a +1 bonus to the Difficulty of the reaction roll. While Entranced, a target can’t act and is <em>Vulnerable</em>.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to sing a song that affects all targets within Close range. Targets must succeed on an Instinct Reaction Roll or become Entranced until they mark 2 Stress. Other @Lookup[@name]s within Close range of the target can <strong>mark a Stress</strong> to each add a +1 bonus to the Difficulty of the reaction roll. While Entranced, a target can’t act and is <em>Vulnerable</em>.</p><p>@Template[type:emanation|range:c]</p>",
         "resource": null,
         "actions": {
           "FY8K8Nsg0TKAWok8": {
             "type": "attack",
             "_id": "FY8K8Nsg0TKAWok8",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to sing a song that affects all targets within Close range. Targets must succeed on an Instinct Reaction Roll or become Entranced until they mark 2 Stress. Other Sirens within Close range of the target can <strong>mark a Stress</strong> to each add a +1 bonus to the Difficulty of the reaction roll. While Entranced, a target can’t act and is <em>Vulnerable</em>.</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

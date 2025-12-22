@@ -239,7 +239,7 @@
             "type": "attack",
             "_id": "T7N9rDCaB5VOm6AY",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to offer a target a dangerous bargain for something they want or need. If used on a PC, they must make a Presence Reaction Roll (17). On a failure, they must mark 2 Stress or take the deal.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -331,14 +331,14 @@
       "name": "The Best Muscle Money Can Buy",
       "type": "feature",
       "system": {
-        "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon 1d4+1 Tier 1 adversaries, who appear at Far range, to enforce the Baron’s will.</p>",
+        "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon 1d4+1 Tier 1 adversaries, who appear at Far range, to enforce the @Lookup[@name]’s will.</p>",
         "resource": null,
         "actions": {
           "9NA6vgfsv0y2tX9v": {
             "type": "effect",
             "_id": "9NA6vgfsv0y2tX9v",
             "systemPath": "actions",
-            "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon 1d4+1 Tier 1 adversaries, who appear at Far range, to enforce the Baron’s will.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

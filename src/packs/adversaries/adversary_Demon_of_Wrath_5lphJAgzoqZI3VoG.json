@@ -228,7 +228,7 @@
       "name": "Anger Unrelenting",
       "type": "feature",
       "system": {
-        "description": "<p>The Demon’s attacks deal direct damage.</p>",
+        "description": "<p>The @Lookup[@name]’s attacks deal direct damage.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -260,7 +260,7 @@
             "type": "effect",
             "_id": "V142qYppCGJn8OiN",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to boil the blood of all PCs within Far range. They use a d20 as their Fear Die until the end of the scene.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -309,14 +309,14 @@
       "name": "Retalliation",
       "type": "feature",
       "system": {
-        "description": "<p>When the Demon takes damage from an attack within Close range, you can <strong>mark a Stress</strong> to make a standard attack against the attacker.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>When the @Lookup[@name] takes damage from an attack within Close range, you can <strong>mark a Stress</strong> to make a standard attack against the attacker.</p><p>@Template[type:emanation|range:c]</p>",
         "resource": null,
         "actions": {
           "hxrdtBm4dYN7KGZm": {
             "type": "attack",
             "_id": "hxrdtBm4dYN7KGZm",
             "systemPath": "actions",
-            "description": "<p>When the Demon takes damage from an attack within Close range, you can <strong>mark a Stress</strong> to make a standard attack against the attacker.</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -417,14 +417,14 @@
       "name": "Blood and Souls",
       "type": "feature",
       "system": {
-        "description": "<p><em>Countdown (Loop 6)</em>. Activate the first time an attack is made within sight of the Demon. It ticks down when a PC takes a violent action. When it triggers, summon [[/r 1d4]]@UUID[Compendium.daggerheart.adversaries.Actor.3tqCjDwJAQ7JKqMb]{Minor Demons}, who appear at Close range.</p>",
+        "description": "<p><em>Countdown (Loop 6)</em>. Activate the first time an attack is made within sight of the @Lookup[@name]. It ticks down when a PC takes a violent action. When it triggers, summon [[/r 1d4]]@UUID[Compendium.daggerheart.adversaries.Actor.3tqCjDwJAQ7JKqMb]{Minor Demons}, who appear at Close range.</p>",
         "resource": null,
         "actions": {
           "szg3qA09aJUt9WKS": {
             "type": "countdown",
             "_id": "szg3qA09aJUt9WKS",
             "systemPath": "actions",
-            "description": "<p><em>Countdown (Loop 6)</em>. Activate the first time an attack is made within sight of the Demon. It ticks down when a PC takes a violent action.</p>",
+            "description": "<p><em>Countdown (Loop 6)</em>. Activate the first time an attack is made within sight of the @Lookup[@name]. It ticks down when a PC takes a violent action.</p>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"

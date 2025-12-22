@@ -229,7 +229,7 @@
       "_id": "9RduwBLYcBaiouYk",
       "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
       "system": {
-        "description": "<p>When the Mosquitoes have marked half or more of their HP, their standard attack deals <strong>1d4+1</strong> physical damage instead.</p>",
+        "description": "<p>When the @Lookup[@name] have marked half or more of their HP, their standard attack deals <strong>1d4+1</strong> physical damage instead.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -255,7 +255,7 @@
       "_id": "gxYV6iTMM1S9Vv5v",
       "img": "icons/commodities/biological/wing-insect-green.webp",
       "system": {
-        "description": "<p>While flying, the Mosquitoes have a +2 bonus to their Difficulty.</p>",
+        "description": "<p>While flying, the @Lookup[@name] have a +2 bonus to their Difficulty.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -325,14 +325,14 @@
       "_id": "BTlMLjG65KQs0Jk2",
       "img": "icons/skills/wounds/blood-drip-droplet-red.webp",
       "system": {
-        "description": "<p>When the Mosquitoes’ attack causes a target to mark HP, you can <strong>mark a Stress</strong> to force the target to mark an additional HP.</p>",
+        "description": "<p>When the @Lookup[@name]’s attack causes a target to mark HP, you can <strong>mark a Stress</strong> to force the target to mark an additional HP.</p>",
         "resource": null,
         "actions": {
           "7ee6IhkKYDehjLmg": {
             "type": "effect",
             "_id": "7ee6IhkKYDehjLmg",
             "systemPath": "actions",
-            "description": "<p>When the Mosquitoes’ attack causes a target to mark HP, you can <strong>mark a Stress</strong> to force the target to mark an additional HP.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

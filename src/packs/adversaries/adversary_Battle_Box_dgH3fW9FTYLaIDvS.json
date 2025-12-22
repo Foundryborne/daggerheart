@@ -227,14 +227,14 @@
       "name": "Relentless (2)",
       "type": "feature",
       "system": {
-        "description": "<p>The Box can be spotlighted up to two times times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "description": "<p>The @Lookup[@name] can be spotlighted up to two times times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
         "actions": {
           "2JfPSV3pw6pv0BXd": {
             "type": "effect",
             "_id": "2JfPSV3pw6pv0BXd",
             "systemPath": "actions",
-            "description": "<p>The Box can be spotlighted up to two times times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "passive",
             "cost": [
@@ -285,14 +285,14 @@
       "name": "Randomized Tactics",
       "type": "feature",
       "system": {
-        "description": "<p>Mark a Stress and roll a <strong>d6</strong>. The Box uses the corresponding move:</p><ol><li><p><strong>Mana Beam</strong></p></li><li><p><strong>Fire Jets</strong></p></li><li><p><strong>Trample</strong></p></li><li><p><strong>Shocking Gas</strong></p></li><li><p><strong>Stunning Clap</strong></p></li><li><p><strong>Psionic Whine</strong></p></li></ol>",
+        "description": "<p>Mark a Stress and roll a <strong>d6</strong>. The @Lookup[@name] uses the corresponding move:</p><ol><li><p><strong>Mana Beam</strong></p></li><li><p><strong>Fire Jets</strong></p></li><li><p><strong>Trample</strong></p></li><li><p><strong>Shocking Gas</strong></p></li><li><p><strong>Stunning Clap</strong></p></li><li><p><strong>Psionic Whine</strong></p></li></ol>",
         "resource": null,
         "actions": {
           "FX9jwg5ZNjAWnti3": {
             "type": "attack",
             "_id": "FX9jwg5ZNjAWnti3",
             "systemPath": "actions",
-            "description": "<p>Mark a Stress and roll a <strong>d6</strong>. The Box uses the corresponding move:</p><ol><li><p><strong>Mana Beam</strong></p></li><li><p><strong>Fire Jets</strong></p></li><li><p><strong>Trample</strong></p></li><li><p><strong>Shocking Gas</strong></p></li><li><p><strong>Stunning Clap</strong></p></li><li><p><strong>Psionic Whine</strong></p></li></ol>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -365,14 +365,14 @@
       "name": "Mana Beam",
       "type": "feature",
       "system": {
-        "description": "<p>The Box fires a searing beam. Make an attack against a target within Far range. On a success, deal <strong>2d10+2</strong> magic damage. </p>",
+        "description": "<p>The @Lookup[@name] fires a searing beam. Make an attack against a target within Far range. On a success, deal <strong>2d10+2</strong> magic damage.</p>",
         "resource": null,
         "actions": {
           "Co09oXMw0yBjGaws": {
             "type": "attack",
             "_id": "Co09oXMw0yBjGaws",
             "systemPath": "actions",
-            "description": "<p>The Box fires a searing beam. Make an attack against a target within Far range. On a success, deal <strong>2d10+2</strong> magic damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -465,14 +465,14 @@
       "name": "Fire Jets",
       "type": "feature",
       "system": {
-        "description": "<p>The Box shoots into the air, spinning and releasing jets of flame. Make an attack against all targets within Close range. Targets the Box succeeds against take <strong>2d8</strong> physical damage.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>The @Lookup[@name] shoots into the air, spinning and releasing jets of flame. Make an attack against all targets within Close range. Targets the @Lookup[@name] succeeds against take <strong>2d8</strong> physical damage.</p><p>@Template[type:emanation|range:c]</p>",
         "resource": null,
         "actions": {
           "hRAKaOdzQXLYBNVV": {
             "type": "attack",
             "_id": "hRAKaOdzQXLYBNVV",
             "systemPath": "actions",
-            "description": "<p>The Box shoots into the air, spinning and releasing jets of flame. Make an attack against all targets within Close range. Targets the Box succeeds against take <strong>2d8</strong> physical damage.</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -565,14 +565,14 @@
       "name": "Trample",
       "type": "feature",
       "system": {
-        "description": "<p>The Box rockets around erratically. Make an attack against all PCs within Close range. Targets the Box succeeds against take <strong>1d6+5</strong> physical damage and are Vulnerable until their next roll with Hope. </p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>The @Lookup[@name] rockets around erratically. Make an attack against all PCs within Close range. Targets the @Lookup[@name] succeeds against take <strong>1d6+5</strong> physical damage and are Vulnerable until their next roll with Hope.</p><p>@Template[type:emanation|range:c]</p>",
         "resource": null,
         "actions": {
           "IOgPMu12Xnn33TfG": {
             "type": "attack",
             "_id": "IOgPMu12Xnn33TfG",
             "systemPath": "actions",
-            "description": "<p>The Box rockets around erratically. Make an attack against all PCs within Close range. Targets the Box succeeds against take <strong>1d6+5</strong> physical damage and are Vulnerable until their next roll with Hope.</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -709,14 +709,14 @@
       "name": "Shocking Gas",
       "type": "feature",
       "system": {
-        "description": "<p>The Box sprays out a silver gas sparking with lightning. All targets within Close range must succeed on a Finesse Reaction Roll or mark 3 Stress. </p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>The @Lookup[@name] sprays out a silver gas sparking with lightning. All targets within Close range must succeed on a Finesse Reaction Roll or mark 3 Stress.</p><p>@Template[type:emanation|range:c]</p>",
         "resource": null,
         "actions": {
           "ky4OMl558J5wCbDp": {
             "type": "attack",
             "_id": "ky4OMl558J5wCbDp",
             "systemPath": "actions",
-            "description": "<p>The Box sprays out a silver gas sparking with lightning. All targets within Close range must succeed on a Finesse Reaction Roll or mark 3 Stress.</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -808,14 +808,14 @@
       "name": "Stunning Clap",
       "type": "feature",
       "system": {
-        "description": "<p>The Box leaps and their sides clap, creating a small sonic boom. All targets within Very Close range must succeed on a Strength Reaction Roll or become <em>Vulnerable</em> until the cube is defeated.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p>The @Lookup[@name] leaps and their sides clap, creating a small sonic boom. All targets within Very Close range must succeed on a Strength Reaction Roll or become <em>Vulnerable</em> until the cube is defeated.</p><p>@Template[type:emanation|range:vc]</p>",
         "resource": null,
         "actions": {
           "LQtopkrtSlCQ5MAr": {
             "type": "attack",
             "_id": "LQtopkrtSlCQ5MAr",
             "systemPath": "actions",
-            "description": "<p>The Box leaps and their sides clap, creating a small sonic boom. All targets within Very Close range must succeed on a Strength Reaction Roll or become <em>Vulnerable</em> until the cube is defeated.</p><p>@Template[type:emanation|range:vc]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -925,14 +925,14 @@
       "name": "Psionic Whine",
       "type": "feature",
       "system": {
-        "description": "<p>The Box releases a cluster of mechanical bees whose buzz rattles mortal minds. All targets within Close range must succeed on a Presence Reaction Roll or take <strong>2d4+9</strong> direct magic damage.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>The @Lookup[@name] releases a cluster of mechanical bees whose buzz rattles mortal minds. All targets within Close range must succeed on a Presence Reaction Roll or take <strong>2d4+9</strong> direct magic damage.</p><p>@Template[type:emanation|range:c]</p>",
         "resource": null,
         "actions": {
           "3R3pGOUj4rHaUzPK": {
             "type": "attack",
             "_id": "3R3pGOUj4rHaUzPK",
             "systemPath": "actions",
-            "description": "<p>The Box releases a cluster of mechanical bees whose buzz rattles mortal minds. All targets within Close range must succeed on a Presence Reaction Roll or take <strong>2d4+9</strong> direct magic damage.</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -1025,14 +1025,14 @@
       "name": "Overcharge",
       "type": "feature",
       "system": {
-        "description": "<p>Before rolling damage for the Box’s attack, you can <strong>mark a Stress</strong> to add a <strong>d6</strong> to the damage roll. Additionally, you gain a Fear.</p>",
+        "description": "<p>Before rolling damage for the @Lookup[@name]’s attack, you can <strong>mark a Stress</strong> to add a <strong>d6</strong> to the damage roll. Additionally, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "3XOvKoYz4CqMNrU9": {
             "type": "healing",
             "_id": "3XOvKoYz4CqMNrU9",
             "systemPath": "actions",
-            "description": "<p>Before rolling damage for the Box’s attack, you can <strong>mark a Stress</strong> to add a <strong>d6</strong> to the damage roll. Additionally, you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -1126,14 +1126,14 @@
       "name": "Death Quake",
       "type": "feature",
       "system": {
-        "description": "<p>When the Box marks their last HP, the magic powering them ruptures in an explosion of force. All targets within Close range must succeed on an Instinct Reaction Roll or take <strong>2d8+1</strong> magic damage</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>When the @Lookup[@name] marks their last HP, the magic powering them ruptures in an explosion of force. All targets within Close range must succeed on an Instinct Reaction Roll or take <strong>2d8+1</strong> magic damage</p><p>@Template[type:emanation|range:c]</p>",
         "resource": null,
         "actions": {
           "oCpv4zi9jtEpo0K1": {
             "type": "attack",
             "_id": "oCpv4zi9jtEpo0K1",
             "systemPath": "actions",
-            "description": "<p>When the Box marks their last HP, the magic powering them ruptures in an explosion of force. All targets within Close range must succeed on an Instinct Reaction Roll or take <strong>2d8+1</strong> magic damage</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

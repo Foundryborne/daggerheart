@@ -229,14 +229,14 @@
       "_id": "dhycdSd4NYdPOYbP",
       "img": "icons/weapons/daggers/dagger-crooked-ice-blue.webp",
       "system": {
-        "description": "<p>When the Shadow succeeds on a standard attack that has advantage, they deal 1d6+6 physical damage instead of their standard damage.</p>",
+        "description": "<p>When the @Lookup[@name] succeeds on a standard attack that has advantage, they deal 1d6+6 physical damage instead of their standard damage.</p>",
         "resource": null,
         "actions": {
           "6G5Dasl1pP8pfYkZ": {
             "type": "attack",
             "_id": "6G5Dasl1pP8pfYkZ",
             "systemPath": "actions",
-            "description": "<p>When the Shadow succeeds on a standard attack that has advantage, they deal 1d6+6 physical damage instead of their standard damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -329,14 +329,14 @@
       "_id": "ILIogeKbYioPutRw",
       "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
       "system": {
-        "description": "<p>Become <em>Hidden</em> until after the Shadow’s next attack. Attacks made while Hidden from this feature have advantage.</p>",
+        "description": "<p>Become <em>Hidden</em> until after the @Lookup[@name]’s next attack. Attacks made while Hidden from this feature have advantage.</p>",
         "resource": null,
         "actions": {
           "s0X44RPg5hA8lVax": {
             "type": "effect",
             "_id": "s0X44RPg5hA8lVax",
             "systemPath": "actions",
-            "description": "<p>Become <em>Hidden</em> until after the Shadow’s next attack. Attacks made while Hidden from this feature have advantage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

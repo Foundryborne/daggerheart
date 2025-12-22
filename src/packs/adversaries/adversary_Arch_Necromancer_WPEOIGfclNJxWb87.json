@@ -239,7 +239,7 @@
             "type": "attack",
             "_id": "wi2DDvBhlg6sxQoc",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to spotlight <strong>1d4</strong> allies. Attacks they make while spotlighted in this way deal half damage, or full damage if you spend a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -319,7 +319,7 @@
             "type": "attack",
             "_id": "vaXLESD4sRkQ3Ahn",
             "systemPath": "actions",
-            "description": "<p><strong>Mark 2 Stress</strong> to cause all targets within Far range to make a Strength Reaction Roll. Targets who fail take <strong>2d20+12</strong> magic damage and you gain a Fear. Targets who succeed take half damage. A target who marks 2 or more HP must also <strong>mark 2 Stress</strong> and becomes <em>Vulnerable</em> until they roll with Hope.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -537,7 +537,7 @@
             "type": "effect",
             "_id": "gZg3AkzCYUTExjE6",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to summon a @UUID[Compendium.daggerheart.adversaries.Actor.YhJrP7rTBiRdX5Fp]{Zombie Legion}, which appears at Close range and immediately takes the spotlight.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -586,14 +586,14 @@
       "name": "Not Today, My Dears",
       "type": "feature",
       "system": {
-        "description": "<p>When the Necromancer has marked 7 or more of their HP, you can <strong>spend a Fear</strong> to have them teleport away to a safe location to recover. A PC who succeeds on an Instinct Roll can trace the teleportation magic to their destination.</p>",
+        "description": "<p>When the @Lookup[@name] has marked 7 or more of their HP, you can <strong>spend a Fear</strong> to have them teleport away to a safe location to recover. A PC who succeeds on an Instinct Roll can trace the teleportation magic to their destination.</p>",
         "resource": null,
         "actions": {
           "DX8WPeLVrRBB2CdM": {
             "type": "attack",
             "_id": "DX8WPeLVrRBB2CdM",
             "systemPath": "actions",
-            "description": "<p>When the Necromancer has marked 7 or more of their HP, you can <strong>spend a Fear</strong> to have them teleport away to a safe location to recover. A PC who succeeds on an Instinct Roll can trace the teleportation magic to their destination.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -666,14 +666,14 @@
       "name": "Your Life Is Mine",
       "type": "feature",
       "system": {
-        "description": "<p><em>Countdown (Loop 2d6)</em>. When the Necromancer has marked 6 or more of their HP, activate the countdown. When it triggers, deal <strong>2d10+6</strong> direct magic damage to a target within Close range. The Necromancer then <strong>clears a number of Stress or HP</strong> equal to the number of HP marked by the target from this attack.</p>",
+        "description": "<p><em>Countdown (Loop 2d6)</em>. When the @Lookup[@name] has marked 6 or more of their HP, activate the countdown. When it triggers, deal <strong>2d10+6</strong> direct magic damage to a target within Close range. The @Lookup[@name] then <strong>clears a number of Stress or HP</strong> equal to the number of HP marked by the target from this attack.</p>",
         "resource": null,
         "actions": {
           "YzepYov9vEMcBPU1": {
             "type": "damage",
             "_id": "YzepYov9vEMcBPU1",
             "systemPath": "actions",
-            "description": "<p>Deal <strong>2d10+6</strong> direct magic damage to a target within Close range. The Necromancer then <strong>clears a number of Stress or HP</strong> equal to the number of HP marked by the target from this attack.</p>",
+            "description": "<p>Deal <strong>2d10+6</strong> direct magic damage to a target within Close range. The @Lookup[@name] then <strong>clears a number of Stress or HP</strong> equal to the number of HP marked by the target from this attack.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -726,7 +726,7 @@
             "type": "countdown",
             "_id": "LXhwkNCDFeUric8D",
             "systemPath": "actions",
-            "description": "<p><em>Countdown (Loop 2d6)</em>. When the Necromancer has marked 6 or more of their HP, activate the countdown.</p>",
+            "description": "<p><em>Countdown (Loop 2d6)</em>. When the @Lookup[@name] has marked 6 or more of their HP, activate the countdown.</p>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"

@@ -223,7 +223,7 @@
       "_id": "9Zuu892SO5NmtI4w",
       "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
       "system": {
-        "description": "<p>When the Swarm has marked half or more of their HP, their standard attack deals <strong>1d4+1</strong> physical damage instead.</p>",
+        "description": "<p>When the @Lookup[@name] has marked half or more of their HP, their standard attack deals <strong>1d4+1</strong> physical damage instead.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -249,7 +249,7 @@
       "_id": "0O6ckwZE34RBnjpB",
       "img": "icons/creatures/mammals/rodent-rat-green.webp",
       "system": {
-        "description": "<p>All targets within Melee range have disadvantage on attacks against targets other than the Swarm.</p>",
+        "description": "<p>All targets within Melee range have disadvantage on attacks against targets other than the @Lookup[@name].</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,

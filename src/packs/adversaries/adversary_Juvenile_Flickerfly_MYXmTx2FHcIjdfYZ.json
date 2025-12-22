@@ -221,14 +221,14 @@
       "name": "Relentless (3)",
       "type": "feature",
       "system": {
-        "description": "<p>The Flickerfly can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "description": "<p>The @Lookup[@name] can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
         "actions": {
           "FgoP6tlMUxnv5k4Z": {
             "type": "effect",
             "_id": "FgoP6tlMUxnv5k4Z",
             "systemPath": "actions",
-            "description": "<p>The Flickerfly can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "passive",
             "cost": [
@@ -279,14 +279,14 @@
       "name": "Peerless Accuracy",
       "type": "feature",
       "system": {
-        "description": "<p>Before the Flickerfly makes an attack, roll a d6. On a result of 4 or higher, the target’s Evasion is halved against this attack.</p>",
+        "description": "<p>Before the @Lookup[@name] makes an attack, roll a d6. On a result of 4 or higher, the target’s Evasion is halved against this attack.</p>",
         "resource": null,
         "actions": {
           "RrKQktP8MI4YQR5k": {
             "type": "attack",
             "_id": "RrKQktP8MI4YQR5k",
             "systemPath": "actions",
-            "description": "<p>Before the Flickerfly makes an attack, roll a d6. On a result of 4 or higher, the target’s Evasion is halved against this attack.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -400,14 +400,14 @@
       "name": "Mind Dance",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to create a magically dazzling display that grapples the minds of nearby foes. All targets within Close range must make an Instinct Reaction Roll. For each target who failed, you gain a Fear and the Flickerfl y learns one of the target’s fears.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to create a magically dazzling display that grapples the minds of nearby foes. All targets within Close range must make an Instinct Reaction Roll. For each target who failed, you gain a Fear and the @Lookup[@name] learns one of the target’s fears.</p><p>@Template[type:emanation|range:c]</p>",
         "resource": null,
         "actions": {
           "0wL3ieMrXEb2gcxe": {
             "type": "attack",
             "_id": "0wL3ieMrXEb2gcxe",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to create a magically dazzling display that grapples the minds of nearby foes. All targets within Close range must make an Instinct Reaction Roll. For each target who failed, you gain a Fear and the Flickerfl y learns one of the target’s fears.</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -473,14 +473,14 @@
       "name": "Hallucinatory Breath",
       "type": "feature",
       "system": {
-        "description": "<p>Countdown (Loop 1d6). When the Flickerfly takes damage for the first time, activate the countdown. When it triggers, the Flickerfly breathes hallucinatory gas on all targets in front of them up to Far range. Targets must succeed on an Instinct Reaction Roll or be tormented by fearful hallucinations. Targets whose fears are known to the Flickerfly have disadvantage on this roll. Targets who fail must mark a Stress and lose a Hope.</p><p>@Template[type:inFront|range:f]</p>",
+        "description": "<p>Countdown (Loop 1d6). When the @Lookup[@name] takes damage for the first time, activate the countdown. When it triggers, the @Lookup[@name] breathes hallucinatory gas on all targets in front of them up to Far range. Targets must succeed on an Instinct Reaction Roll or be tormented by fearful hallucinations. Targets whose fears are known to the @Lookup[@name] have disadvantage on this roll. Targets who fail must mark a Stress and lose a Hope.</p><p>@Template[type:inFront|range:f]</p>",
         "resource": null,
         "actions": {
           "USEkCakSzYcZbBwY": {
             "type": "attack",
             "_id": "USEkCakSzYcZbBwY",
             "systemPath": "actions",
-            "description": "<p>The Flickerfly breathes hallucinatory gas on all targets in front of them up to Far range. Targets must succeed on an Instinct Reaction Roll or be tormented by fearful hallucinations. Targets whose fears are known to the Flickerfl y have disadvantage on this roll. Targets who fail must mark a Stress and lose a Hope.</p><p>@Template[type:inFront|range:f]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -577,7 +577,7 @@
             "type": "countdown",
             "_id": "n8ZuLjwTf2FJ7V6n",
             "systemPath": "actions",
-            "description": "<p>Countdown (Loop 1d6). When the Flickerfly takes damage for the first time, activate the countdown.</p>",
+            "description": "<p>Countdown (Loop 1d6). When the @Lookup[@name] takes damage for the first time, activate the countdown.</p>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"

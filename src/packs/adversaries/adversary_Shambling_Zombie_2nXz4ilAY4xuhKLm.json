@@ -223,7 +223,7 @@
       "_id": "IpUWqXjwP2Lp5Zhs",
       "img": "icons/magic/death/undead-zombie-grave-green.webp",
       "system": {
-        "description": "<p>When the Zombie is within Melee range of a creature and at least one other Zombie is within Close range, all attacks against that creature have advantage.</p>",
+        "description": "<p>When the @Lookup[@name] is within Melee range of a creature and at least one other @Lookup[@name] is within Close range, all attacks against that creature have advantage.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -249,14 +249,14 @@
       "_id": "iiOjamlZIuhpDC8W",
       "img": "icons/magic/death/skull-energy-light-purple.webp",
       "system": {
-        "description": "<p>Targets who mark HP from the Zombie’s attacks must also mark a Stress.</p>",
+        "description": "<p>Targets who mark HP from the @Lookup[@name]’s attacks must also mark a Stress.</p>",
         "resource": null,
         "actions": {
           "JUw16Jag9uTfBmKZ": {
             "type": "damage",
             "_id": "JUw16Jag9uTfBmKZ",
             "systemPath": "actions",
-            "description": "<p>Targets who mark HP from the Zombie’s attacks must also mark a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

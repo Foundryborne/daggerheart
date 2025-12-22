@@ -258,14 +258,14 @@
       "name": "Crownsguard",
       "type": "feature",
       "system": {
-        "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon six Tier 3 Minions, who appear at Close range to enforce the Monarch’s will.</p>",
+        "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon six Tier 3 Minions, who appear at Close range to enforce the @Lookup[@name]’s will.</p>",
         "resource": null,
         "actions": {
           "OJyqqCi0npye34y2": {
             "type": "effect",
             "_id": "OJyqqCi0npye34y2",
             "systemPath": "actions",
-            "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon six Tier 3 Minions, who appear at Close range to enforce the Monarch’s will.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -314,14 +314,14 @@
       "name": "Casus Belli",
       "type": "feature",
       "system": {
-        "description": "<p><em>Long-Term Countdown (8)</em>. <strong>Spend a Fear</strong> to activate after the Monarch’s desire for war is first revealed. When it triggers, the Monarch has a reason to rally the nation to war and the support to act on that reason. You gain [[/r 1d4]]<strong> </strong>Fear.</p>",
+        "description": "<p><em>Long-Term Countdown (8)</em>. <strong>Spend a Fear</strong> to activate after the @Lookup[@name]’s desire for war is first revealed. When it triggers, the @Lookup[@name] has a reason to rally the nation to war and the support to act on that reason. You gain [[/r 1d4]]<strong> </strong>Fear.</p>",
         "resource": null,
         "actions": {
           "CNEOOdPI4xVJ2JeP": {
             "type": "countdown",
             "_id": "CNEOOdPI4xVJ2JeP",
             "systemPath": "actions",
-            "description": "<p><em>Long-Term Countdown (8)</em>. <strong>Spend a Fear</strong> to activate after the Monarch’s desire for war is first revealed.</p>",
+            "description": "<p><em>Long-Term Countdown (8)</em>. <strong>Spend a Fear</strong> to activate after the @Lookup[@name]’s desire for war is first revealed.</p>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"
@@ -367,7 +367,7 @@
             "type": "healing",
             "_id": "QnZoH9LjJvKl5YcF",
             "systemPath": "actions",
-            "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\">The Monarch has a reason to rally the nation to war and the support to act on that reason. You gain </span><span class=\"inline-roll roll\" data-mode=\"roll\" data-flavor=\"\" data-formula=\"1d4\" data-tooltip-text=\"1d4\" style=\"box-sizing: border-box; cursor: pointer; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(11, 10, 19, 0.9); border-color: rgb(129, 107, 102); border-style: solid; border-width: 0.8px; border-image: none 100% / 1 / 0 stretch; border-radius: 2px; color: rgb(239, 230, 216); margin: -1px 0px; padding: 1px 4px 0px; white-space: nowrap; word-break: break-all; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\">1d4</span><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\"> </span><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\">Fear.</span></p>",
+            "description": "<p>The @Lookup[@name] has a <span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\">reason to rally the nation to war and the support to act on that reason. You gain </span><span class=\"inline-roll roll\" data-mode=\"roll\" data-flavor=\"\" data-formula=\"1d4\" data-tooltip-text=\"1d4\" style=\"box-sizing: border-box; cursor: pointer; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(11, 10, 19, 0.9); border-color: rgb(129, 107, 102); border-style: solid; border-width: 0.8px; border-image: none 100% / 1 / 0 stretch; border-radius: 2px; color: rgb(239, 230, 216); margin: -1px 0px; padding: 1px 4px 0px; white-space: nowrap; word-break: break-all; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\">1d4</span><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\"> </span><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\">Fear.</span></p>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"

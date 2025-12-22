@@ -227,14 +227,14 @@
       "name": "From Above",
       "type": "feature",
       "system": {
-        "description": "<p>When the Knight succeeds on a standard attack from above a target, they deal <strong>3d12+3</strong> physical damage instead of their standard damage.</p>",
+        "description": "<p>When the @Lookup[@name] succeeds on a standard attack from above a target, they deal <strong>3d12+3</strong> physical damage instead of their standard damage.</p>",
         "resource": null,
         "actions": {
           "PZNJgyomR7MK2xUP": {
             "type": "damage",
             "_id": "PZNJgyomR7MK2xUP",
             "systemPath": "actions",
-            "description": "<p>When the Knight succeeds on a standard attack from above a target, they deal <strong>3d12+3</strong> physical damage instead of their standard damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -306,14 +306,14 @@
       "name": "Blade of the Forest",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to make an attack against all targets within Very Close range. Targets the Knight succeeds against take physical damage equal to <strong>[[/r 3d4]]</strong> + the target’s Major threshold.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to make an attack against all targets within Very Close range. Targets the @Lookup[@name] succeeds against take physical damage equal to <strong>[[/r 3d4]]</strong> + the target’s Major threshold.</p><p>@Template[type:emanation|range:vc]</p>",
         "resource": null,
         "actions": {
           "xPSVwVVOC5gc2KTi": {
             "type": "attack",
             "_id": "xPSVwVVOC5gc2KTi",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to make an attack against all targets within Very Close range. Targets the Knight succeeds against take physical damage equal to <strong>[[/r 3d4]]</strong> + the target’s Major threshold.</p><p>@Template[type:emanation|range:vc]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -386,14 +386,14 @@
       "name": "Thorny Armor",
       "type": "feature",
       "system": {
-        "description": "<p>When the Knight takes damage from an attack within Melee range, you can <strong>mark a Stress</strong> to deal <strong>1d10+5</strong> physical damage to the attacker.</p>",
+        "description": "<p>When the @Lookup[@name] takes damage from an attack within Melee range, you can <strong>mark a Stress</strong> to deal <strong>1d10+5</strong> physical damage to the attacker.</p>",
         "resource": null,
         "actions": {
           "b5KO7xpWspZS0swK": {
             "type": "damage",
             "_id": "b5KO7xpWspZS0swK",
             "systemPath": "actions",
-            "description": "<p>When the Knight takes damage from an attack within Melee range, you can <strong>mark a Stress</strong> to deal <strong>1d10+5</strong> physical damage to the attacker.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

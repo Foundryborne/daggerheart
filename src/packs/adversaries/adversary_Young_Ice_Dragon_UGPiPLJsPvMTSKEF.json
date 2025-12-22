@@ -227,14 +227,14 @@
       "name": "Relentless (3)",
       "type": "feature",
       "system": {
-        "description": "<p>The Dragon can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "description": "<p>The @Lookup[@name] can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
         "actions": {
           "cmZsrUJa9FJ8gZKP": {
             "type": "effect",
             "_id": "cmZsrUJa9FJ8gZKP",
             "systemPath": "actions",
-            "description": "<p>The Dragon can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "passive",
             "cost": [
@@ -285,14 +285,14 @@
       "name": "Rend and Crush",
       "type": "feature",
       "system": {
-        "description": "<p>If a target damaged by the Dragon doesn’t mark an Armor Slot to reduce the damage, they must mark a Stress.</p>",
+        "description": "<p>If a target damaged by the @Lookup[@name] doesn’t mark an Armor Slot to reduce the damage, they must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "dHoMdLfAl6UKjXRP": {
             "type": "damage",
             "_id": "dHoMdLfAl6UKjXRP",
             "systemPath": "actions",
-            "description": "<p>If a target damaged by the Dragon doesn’t mark an Armor Slot to reduce the damage, they must mark a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -363,7 +363,7 @@
       "name": "No Hope",
       "type": "feature",
       "system": {
-        "description": "<p>When a PC rolls with Fear while within Far range of the Dragon, they lose a Hope.</p>",
+        "description": "<p>When a PC rolls with Fear while within Far range of the @Lookup[@name], they lose a Hope.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -388,14 +388,14 @@
       "name": "Blizzard Breath",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend 2 Fear</strong> to release an icy whorl in front of the Dragon within Close range. All targets in this area must make an Agility Reaction Roll. Targets who fail take <strong>4d6+5</strong> magic damage and are Restrained by ice until they break free with a successful Strength Roll. Targets who succeed must mark 2 Stress or take half damage.</p><p>@Template[type:inFront|range:c]</p>",
+        "description": "<p><strong>Spend 2 Fear</strong> to release an icy whorl in front of the @Lookup[@name] within Close range. All targets in this area must make an Agility Reaction Roll. Targets who fail take <strong>4d6+5</strong> magic damage and are Restrained by ice until they break free with a successful Strength Roll. Targets who succeed must mark 2 Stress or take half damage.</p><p>@Template[type:inFront|range:c]</p>",
         "resource": null,
         "actions": {
           "CBecTlgyUBFxgoi5": {
             "type": "attack",
             "_id": "CBecTlgyUBFxgoi5",
             "systemPath": "actions",
-            "description": "<p><strong>Spend 2 Fear</strong> to release an icy whorl in front of the Dragon within Close range. All targets in this area must make an Agility Reaction Roll. Targets who fail take <strong>4d6+5</strong> magic damage and are Restrained by ice until they break free with a successful Strength Roll. Targets who succeed must mark 2 Stress or take half damage.</p><p>@Template[type:inFront|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -539,14 +539,14 @@
       "name": "Avalanche",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to have the Dragon unleash a huge downfall of snow and ice, covering all other creatures within Far range. All targets within this area must succeed on an Instinct Reaction Roll or be buried in snow and rocks, becoming <em>Vulnerable</em> until they dig themselves out from the debris. For each PC that fails the reaction roll, you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to have the @Lookup[@name] unleash a huge downfall of snow and ice, covering all other creatures within Far range. All targets within this area must succeed on an Instinct Reaction Roll or be buried in snow and rocks, becoming <em>Vulnerable</em> until they dig themselves out from the debris. For each PC that fails the reaction roll, you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
         "resource": null,
         "actions": {
           "G9LjoXShkCcgx8EC": {
             "type": "attack",
             "_id": "G9LjoXShkCcgx8EC",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to have the Dragon unleash a huge downfall of snow and ice, covering all other creatures within Far range. All targets within this area must succeed on an Instinct Reaction Roll or be buried in snow and rocks, becoming <em>Vulnerable</em> until they dig themselves out from the debris. For each PC that fails the reaction roll, you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -663,7 +663,7 @@
       "name": "Frozen Scales",
       "type": "feature",
       "system": {
-        "description": "<p>When a creature makes a successful attack against the Dragon from within Very Close range, they must mark a Stress and become Chilled until their next rest or they clear a Stress. While they are Chilled, they have disadvantage on attack rolls.</p>",
+        "description": "<p>When a creature makes a successful attack against the @Lookup[@name] from within Very Close range, they must mark a Stress and become Chilled until their next rest or they clear a Stress. While they are Chilled, they have disadvantage on attack rolls.</p>",
         "resource": null,
         "actions": {
           "QZMpj1qEWI6Er7q2": {
@@ -791,14 +791,14 @@
       "name": "Momentum",
       "type": "feature",
       "system": {
-        "description": "<p>When the Dragon makes a successful attack against a PC, you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "5V5SDnUBg9dQOkLW": {
             "type": "healing",
             "_id": "5V5SDnUBg9dQOkLW",
             "systemPath": "actions",
-            "description": "<p>When the Dragon makes a successful attack against a PC, you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "reaction",
             "cost": [],

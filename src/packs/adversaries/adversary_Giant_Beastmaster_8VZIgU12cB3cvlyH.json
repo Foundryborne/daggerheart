@@ -227,7 +227,7 @@
       "name": "Two as One",
       "type": "feature",
       "system": {
-        "description": "<p>When the Beastmaster is spotlighted, you can also spotlight a Tier 1 animal adversary currently under their control.</p>",
+        "description": "<p>When the @Lookup[@name] is spotlighted, you can also spotlight a Tier 1 animal adversary currently under their control.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -259,7 +259,7 @@
             "type": "attack",
             "_id": "ErwQgU4dwBcmZIBX",
             "systemPath": "actions",
-            "description": "<p>Make a standard attack against a target. On a success, you can <strong>mark a Stress</strong> to pin them to a nearby surface. The pinned target is <em>Restrained</em> until they break free with a successful Finesse or Strength Roll.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -394,14 +394,14 @@
       "name": "Deadly Companion",
       "type": "feature",
       "system": {
-        "description": "<p>Twice per scene, summon a Bear, Dire Wolf, or similar Tier 1 animal adversary under the Beastmaster’s control. The adversary appears at Close range and is immediately spotlighted.</p>",
+        "description": "<p>Twice per scene, summon a Bear, Dire Wolf, or similar Tier 1 animal adversary under the @Lookup[@name]’s control. The adversary appears at Close range and is immediately spotlighted.</p>",
         "resource": null,
         "actions": {
           "eSRUMqpQDPRG9leg": {
             "type": "effect",
             "_id": "eSRUMqpQDPRG9leg",
             "systemPath": "actions",
-            "description": "<p>Twice per scene, summon a @UUID[Compendium.daggerheart.adversaries.Actor.71qKDLKO3CsrNkdy]{Bear}, @UUID[Compendium.daggerheart.adversaries.Actor.wNzeuQLfLUMvgHlQ]{Dire Wolf} or similar Tier 1 animal adversary under the Beastmaster’s control. The adversary appears at Close range and is immediately spotlighted.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

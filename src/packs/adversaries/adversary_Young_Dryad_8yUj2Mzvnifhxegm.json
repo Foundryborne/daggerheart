@@ -236,7 +236,7 @@
             "type": "attack",
             "_id": "0VOUNQKNjwlLhnRW",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to spotlight <strong>1d4</strong> allies within range of a target they can attack without moving. On a success, their attacks deal half damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -317,7 +317,7 @@
             "type": "effect",
             "_id": "cXOjhfMgKh2yD1mc",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to form a cage around a target within Very Close range and Restrain them until they’re freed with a successful Strength Roll. When a creature makes an action roll against the cage, they must mark a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -411,14 +411,14 @@
       "_id": "4f79icB7Dd1xLEZQ",
       "img": "icons/skills/melee/strike-weapons-orange.webp",
       "system": {
-        "description": "<p>When the Dryad makes a successful attack against a PC, you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "9MGyAjWtLbDz8Znu": {
             "type": "healing",
             "_id": "9MGyAjWtLbDz8Znu",
             "systemPath": "actions",
-            "description": "<p>When the Dryad makes a successful attack against a PC, you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "reaction",
             "cost": [],

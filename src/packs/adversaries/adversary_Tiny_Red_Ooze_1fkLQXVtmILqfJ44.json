@@ -219,7 +219,7 @@
       "_id": "zsUMP2qNmNpVHwk0",
       "img": "icons/magic/fire/blast-jet-stream-splash.webp",
       "system": {
-        "description": "<p>When a creature within Melee range deals damage to the Ooze, they take <strong>1d6</strong> direct magic damage.</p>",
+        "description": "<p>When a creature within Melee range deals damage to the @Lookup[@name], they take <strong>1d6</strong> direct magic damage.</p>",
         "resource": null,
         "actions": {
           "cHaEnBwinVKmoS9s": {

@@ -236,7 +236,7 @@
             "type": "attack",
             "_id": "84rwldOFvTPrrHJJ",
             "systemPath": "actions",
-            "description": "<p>Make an attack against a target within Far range. On a success, <strong>mark a Stress</strong> to deal <strong>1d12+3</strong> physical damage. If the target marks HP from this attack, they have disadvantage on Agility Rolls until they clear at least 1 HP.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

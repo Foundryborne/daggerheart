@@ -221,14 +221,14 @@
       "name": "Will-Shattering Touch",
       "type": "feature",
       "system": {
-        "description": "<p>When a PC takes damage from the Corrupter, they lose a Hope.</p>",
+        "description": "<p>When a PC takes damage from the @Lookup[@name], they lose a Hope.</p>",
         "resource": null,
         "actions": {
           "q2PUiGoUQqsMghtW": {
             "type": "damage",
             "_id": "q2PUiGoUQqsMghtW",
             "systemPath": "actions",
-            "description": "<p>When a PC takes damage from the Corrupter, they lose a Hope.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -306,7 +306,7 @@
             "type": "attack",
             "_id": "6vX6VHpXX7OiGSWH",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to spew partially digested portions of consumed realities at all targets within Close range. Targets must succeed on a Knowledge Reaction Roll or mark 2 Stress.</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

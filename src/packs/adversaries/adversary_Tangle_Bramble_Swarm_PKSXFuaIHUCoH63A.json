@@ -259,7 +259,7 @@
       "_id": "4dSzqtYvH385r9Ng",
       "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
       "system": {
-        "description": "<p>When the Swarm has marked half or more of their HP, their standard attack deals <strong>1d4+2</strong> physical damage instead.</p>",
+        "description": "<p>When the @Lookup[@name] has marked half or more of their HP, their standard attack deals <strong>1d4+2</strong> physical damage instead.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -292,7 +292,7 @@
             "type": "damage",
             "_id": "CiA4K6py0eW6eihU",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to deal <strong>2d6+8</strong> direct physical damage to a target with 3 or more bramble tokens.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -376,14 +376,14 @@
       "_id": "JRSGc3ozDnKCAvCj",
       "img": "icons/magic/nature/root-vine-entangled-hands.webp",
       "system": {
-        "description": "<p>When the Swarm succeeds on an attack, give the target a bramble token. If a target has any bramble tokens, they are Restrained. If a target has 3 or more bramble tokens, they are also Vulnerable. All bramble tokens can be removed by succeeding on a Finesse Roll (12 + the number of bramble tokens) or dealing Major or greater damage to the Swarm. If bramble tokens are removed from a target using a Finesse Roll, a number of Tangle Bramble Minions spawn within Melee range equal to the number of tokens removed.</p>",
+        "description": "<p>When the @Lookup[@name] succeeds on an attack, give the target a bramble token. If a target has any bramble tokens, they are Restrained. If a target has 3 or more bramble tokens, they are also Vulnerable. All bramble tokens can be removed by succeeding on a Finesse Roll (12 + the number of bramble tokens) or dealing Major or greater damage to the Swarm. If bramble tokens are removed from a target using a Finesse Roll, a number of @Lookup[@name] Minions spawn within Melee range equal to the number of tokens removed.</p>",
         "resource": null,
         "actions": {
           "Cdw2XxA5NhAQhQse": {
             "type": "effect",
             "_id": "Cdw2XxA5NhAQhQse",
             "systemPath": "actions",
-            "description": "<p>When the Swarm succeeds on an attack, give the target a bramble token. If a target has any bramble tokens, they are Restrained. If a target has 3 or more bramble tokens, they are also Vulnerable. All bramble tokens can be removed by succeeding on a Finesse Roll (12 + the number of bramble tokens) or dealing Major or greater damage to the Swarm. If bramble tokens are removed from a target using a Finesse Roll, a number of Tangle Bramble Minions spawn within Melee range equal to the number of tokens removed.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

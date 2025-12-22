@@ -223,14 +223,14 @@
       "_id": "OZKEz4eK9h7zCbuf",
       "img": "icons/magic/death/skull-energy-light-purple.webp",
       "system": {
-        "description": "<p>When the Knight makes a successful attack, all PCs within Close range lose a Hope and you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack, all PCs within Close range lose a Hope and you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "9EiPNrGzwLtuf9g0": {
             "type": "damage",
             "_id": "9EiPNrGzwLtuf9g0",
             "systemPath": "actions",
-            "description": "<p>When the Knight makes a successful attack, all PCs within Close range lose a Hope and you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -302,14 +302,14 @@
       "_id": "WdVLwy9RNkVlZnCL",
       "img": "icons/skills/melee/strike-sword-steel-yellow.webp",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Very Close range. Targets the Knight succeeds against take <strong>1d8+2</strong> physical damage and must mark a Stress.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Very Close range. Targets the @Lookup[@name] succeeds against take <strong>1d8+2</strong> physical damage and must mark a Stress.</p><p>@Template[type:emanation|range:vc]</p>",
         "resource": null,
         "actions": {
           "vMv4monku9LOSxUZ": {
             "type": "attack",
             "_id": "vMv4monku9LOSxUZ",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Very Close range. Targets the Knight succeeds against take <strong>1d8+2</strong> physical damage and must mark a Stress.</p><p>@Template[type:emanation|range:vc]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -435,14 +435,14 @@
       "_id": "STesKV2KB61PlwCh",
       "img": "icons/magic/death/hand-undead-skeleton-fire-pink.webp",
       "system": {
-        "description": "<p>When the Knight is defeated, they make an attack against a target within Very Close range (prioritizing the creature who killed them). On a success, the target takes <strong>1d4+8</strong> physical damage and loses <strong>1d4</strong> Hope.</p>",
+        "description": "<p>When the @Lookup[@name] is defeated, they make an attack against a target within Very Close range (prioritizing the creature who killed them). On a success, the target takes <strong>1d4+8</strong> physical damage and loses <strong>1d4</strong> Hope.</p>",
         "resource": null,
         "actions": {
           "NtGhAVVOJF6ZGBRv": {
             "type": "attack",
             "_id": "NtGhAVVOJF6ZGBRv",
             "systemPath": "actions",
-            "description": "<p>When the Knight is defeated, they make an attack against a target within Very Close range (prioritizing the creature who killed them). On a success, the target takes <strong>1d4+8</strong> physical damage and loses <strong>1d4</strong> Hope.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

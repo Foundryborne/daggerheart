@@ -229,14 +229,14 @@
       "_id": "qEn4baWgkjKtmILp",
       "img": "icons/equipment/shield/shield-round-boss-wood-brown.webp",
       "system": {
-        "description": "<p>A creature who tries to move within Very Close range of the Guard must succeed on an Agility Roll. If additional Bladed Guards are standing in a line alongside the first, and each is within Melee range of another guard in the line, the Difficulty increases by the total number of guards in that line.</p>",
+        "description": "<p>A creature who tries to move within Very Close range of the @Lookup[@name] must succeed on an Agility Roll. If additional @Lookup[@name]s are standing in a line alongside the first, and each is within Melee range of another guard in the line, the Difficulty increases by the total number of guards in that line.</p>",
         "resource": null,
         "actions": {
           "3lbeEeJdjzPn0MoG": {
             "type": "attack",
             "_id": "3lbeEeJdjzPn0MoG",
             "systemPath": "actions",
-            "description": "<p>A creature who tries to move within Very Close range of the Guard must succeed on an Agility Roll. If additional Bladed Guards are standing in a line alongside the first, and each is within Melee range of another guard in the line, the Difficulty increases by the total number of guards in that line.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "passive",
             "cost": [],
@@ -309,7 +309,7 @@
             "type": "attack",
             "_id": "TK5R00afB1RIA6gp",
             "systemPath": "actions",
-            "description": "<p>Make an attack against a target within Very Close range. On a success, <strong>mark a Stress</strong> to Restrain the target until they break free with a successful attack, Finesse Roll, or Strength Roll.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

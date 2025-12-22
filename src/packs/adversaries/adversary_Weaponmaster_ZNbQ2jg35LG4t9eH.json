@@ -223,14 +223,14 @@
       "_id": "tyGgOqQzDSIypoMz",
       "img": "icons/skills/melee/strike-sword-dagger-runes-gold.webp",
       "system": {
-        "description": "<p>Make a standard attack against a target. On a success, <strong>mark a Stress</strong> to Taunt the target until their next successful attack. The next time the Taunted target attacks, they have disadvantage against targets other than the Weaponmaster.</p>",
+        "description": "<p>Make a standard attack against a target. On a success, <strong>mark a Stress</strong> to Taunt the target until their next successful attack. The next time the Taunted target attacks, they have disadvantage against targets other than the @Lookup[@name].</p>",
         "resource": null,
         "actions": {
           "mlPgZJNL2TjykjUb": {
             "type": "attack",
             "_id": "mlPgZJNL2TjykjUb",
             "systemPath": "actions",
-            "description": "<p>Make a standard attack against a target. On a success, <strong>mark a Stress</strong> to Taunt the target until their next successful attack. The next time the Taunted target attacks, they have disadvantage against targets other than the Weaponmaster.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -378,7 +378,7 @@
             "type": "healing",
             "_id": "WQ067ZFiG2QMBo2n",
             "systemPath": "actions",
-            "description": "<p>Once per scene, spend a Fear to clear 2 HP and 2 Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -508,14 +508,14 @@
       "_id": "oYNVPQOy5oQli5Il",
       "img": "icons/skills/melee/strike-weapons-orange.webp",
       "system": {
-        "description": "<p>When the Weaponmaster makes a successful attack against a PC, you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "jeKcXbdw8gPF4OQA": {
             "type": "healing",
             "_id": "jeKcXbdw8gPF4OQA",
             "systemPath": "actions",
-            "description": "<p>When the Weaponmaster makes a successful attack against a PC, you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "reaction",
             "cost": [],

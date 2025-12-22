@@ -227,14 +227,14 @@
       "name": "Bramble Patch",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to target a point within Far range. Create a patch of thorns that covers an area within Close range of that point. All targets within that area take <strong>2d6+2</strong> physical damage when they act. A target must succeed on a Finesse Roll or deal more than 20 damage to the Dryad with an attack to leave the area.</p><p>@Template[type:circle|range:c]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to target a point within Far range. Create a patch of thorns that covers an area within Close range of that point. All targets within that area take <strong>2d6+2</strong> physical damage when they act. A target must succeed on a Finesse Roll or deal more than 20 damage to the @Lookup[@name] with an attack to leave the area.</p><p>@Template[type:circle|range:c]</p>",
         "resource": null,
         "actions": {
           "iCJdIs57hfh5Cb0u": {
             "type": "attack",
             "_id": "iCJdIs57hfh5Cb0u",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to target a point within Far range. Create a patch of thorns that covers an area within Close range of that point. All targets within that area take <strong>2d6+2</strong> physical damage when they act. A target must succeed on a Finesse Roll or deal more than 20 damage to the Dryad with an attack to leave the area.</p><p>@Template[type:circle|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -367,7 +367,7 @@
             "type": "effect",
             "_id": "84Q2b0zIY9c7Yhho",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to grow three @UUID[Compendium.daggerheart.adversaries.Actor.o63nS0k3wHu6EgKP]{Treant Sapling Minions}, who appear at Close range and immediately take the spotlight.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

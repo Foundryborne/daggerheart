@@ -226,7 +226,7 @@
       "name": "Flying",
       "type": "feature",
       "system": {
-        "description": "<p>While flying, the Bat gains a +3 bonus to their Difficulty.</p>",
+        "description": "<p>While flying, the @Lookup[@name] gains a +3 bonus to their Difficulty.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -295,14 +295,14 @@
       "name": "Screech",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to send a high-pitch screech out toward all targets in front of the Bat within Far range. Those targets must mark <strong>1d4</strong> Stress.</p><p>@Template[type:inFront|range:f]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to send a high-pitch screech out toward all targets in front of the @Lookup[@name] within Far range. Those targets must mark <strong>1d4</strong> Stress.</p><p>@Template[type:inFront|range:f]</p>",
         "resource": null,
         "actions": {
           "2ILfoiBoMyBCtBsL": {
             "type": "damage",
             "_id": "2ILfoiBoMyBCtBsL",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to send a high-pitch screech out toward all targets in front of the Bat within Far range. Those targets must mark <strong>1d4</strong> Stress.</p><p>@Template[type:inFront|range:f]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -380,7 +380,7 @@
             "type": "attack",
             "_id": "wW7WGisUBzyxjsH2",
             "systemPath": "actions",
-            "description": "<p>When an allied Vampire marks HP, you can <strong>mark a Stress</strong> to fl y into Melee range of the attacker and make an attack with advantage against them. On a success, deal <strong>2d6+2</strong> physical damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

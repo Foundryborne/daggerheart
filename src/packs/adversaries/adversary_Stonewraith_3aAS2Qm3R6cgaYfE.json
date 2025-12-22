@@ -227,7 +227,7 @@
       "name": "Stonestrider",
       "type": "feature",
       "system": {
-        "description": "<p>The Stonewraith can move through stone and earth as easily as air. While within stone or earth, they are Hidden and immune to all damage.</p>",
+        "description": "<p>The @Lookup[@name] can move through stone and earth as easily as air. While within stone or earth, they are Hidden and immune to all damage.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -259,7 +259,7 @@
             "type": "attack",
             "_id": "E8C2Nd4mwcGTXoXb",
             "systemPath": "actions",
-            "description": "<p>While <em>Hidden</em>, <strong>mark a Stress</strong> to leap into Melee range with a target within Very Close range. The target must succeed on an Agility or Instinct Reaction Roll (15) or take <strong>2d8</strong> physical damage and become temporarily Restrained.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -408,7 +408,7 @@
             "type": "attack",
             "_id": "4UGEEuK9XY8leCBV",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to roar while within a cave and cause a cave-in. All targets within Close range must succeed on an Agility Reaction Roll (14) or take <strong>2d10</strong> physical damage. The rubble can be cleared with a Progress Countdown (8).</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -545,14 +545,14 @@
       "name": "Momentum",
       "type": "feature",
       "system": {
-        "description": "<p>When the Stonewraith makes a successful attack against a PC, you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "IIZPctjF4MJkWs4b": {
             "type": "healing",
             "_id": "IIZPctjF4MJkWs4b",
             "systemPath": "actions",
-            "description": "<p>When the Stonewraith makes a successful attack against a PC, you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "reaction",
             "cost": [],

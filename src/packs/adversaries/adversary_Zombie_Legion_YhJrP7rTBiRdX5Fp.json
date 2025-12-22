@@ -221,7 +221,7 @@
       "name": "Horde (2d6+5)",
       "type": "feature",
       "system": {
-        "description": "<p>When the Legion has marked half or more of their HP, their standard attack deals <strong>2d6+5</strong> physical damage instead.</p>",
+        "description": "<p>When the @Lookup[@name] has marked half or more of their HP, their standard attack deals <strong>2d6+5</strong> physical damage instead.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -246,7 +246,7 @@
       "name": "Unyielding",
       "type": "feature",
       "system": {
-        "description": "<p>The Legion has resistance to physical damage.</p>",
+        "description": "<p>The @Lookup[@name] has resistance to physical damage.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -315,14 +315,14 @@
       "name": "Relentless (2)",
       "type": "feature",
       "system": {
-        "description": "<p>The Legion can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "description": "<p>The @Lookup[@name] can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
         "actions": {
           "IACoLeO6VmnK0qkW": {
             "type": "effect",
             "_id": "IACoLeO6VmnK0qkW",
             "systemPath": "actions",
-            "description": "<p>The Legion can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "passive",
             "cost": [
@@ -373,14 +373,14 @@
       "name": "Overwhelm",
       "type": "feature",
       "system": {
-        "description": "<p>When the Legion takes Minor damage from an attack within Melee range, you can <strong>mark a Stress</strong> to make a standard attack with advantage against the attacker.</p>",
+        "description": "<p>When the @Lookup[@name] takes Minor damage from an attack within Melee range, you can <strong>mark a Stress</strong> to make a standard attack with advantage against the attacker.</p>",
         "resource": null,
         "actions": {
           "TJ9DhHRuqK5X5Zx5": {
             "type": "effect",
             "_id": "TJ9DhHRuqK5X5Zx5",
             "systemPath": "actions",
-            "description": "<p>When the Legion takes Minor damage from an attack within Melee range, you can <strong>mark a Stress</strong> to make a standard attack with advantage against the attacker.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

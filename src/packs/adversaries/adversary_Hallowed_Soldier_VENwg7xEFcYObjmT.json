@@ -214,7 +214,7 @@
       "name": "Minion (13)",
       "type": "feature",
       "system": {
-        "description": "<p>The Soldier is defeated when they take any damage. For every 13 damage a PC deals to the Soldier, defeat an additional Minion within range the attack would succeed against.</p>",
+        "description": "<p>The @Lookup[@name] is defeated when they take any damage. For every 13 damage a PC deals to the @Lookup[@name], defeat an additional Minion within range the attack would succeed against.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -239,14 +239,14 @@
       "name": "Divine Flight",
       "type": "feature",
       "system": {
-        "description": "<p>While the Soldier is flying, <strong>spend a Fear</strong> to move up to Far range instead of Close range before taking an action.</p>",
+        "description": "<p>While the @Lookup[@name] is flying, <strong>spend a Fear</strong> to move up to Far range instead of Close range before taking an action.</p>",
         "resource": null,
         "actions": {
           "aCRmnQ5n7FrbQykj": {
             "type": "effect",
             "_id": "aCRmnQ5n7FrbQykj",
             "systemPath": "actions",
-            "description": "<p>While the Soldier is flying, <strong>spend a Fear</strong> to move up to Far range instead of Close range before taking an action.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -294,14 +294,14 @@
       "name": "Group Attack",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Hallowed Soldiers within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 10 physical damage each. Combine this damage.</p>",
+        "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all @Lookup[@name]s within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 10 physical damage each. Combine this damage.</p>",
         "resource": null,
         "actions": {
           "eo7J0v1B5zPHul1M": {
             "type": "effect",
             "_id": "eo7J0v1B5zPHul1M",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Hallowed Soldiers within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 10 physical damage each. Combine this damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
