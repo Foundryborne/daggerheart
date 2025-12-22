@@ -36,6 +36,7 @@
     },
 
     "DAGGERHEART": {
+        "CharacterSheet": "Character Sheet",
         "ACTIONS": {
             "TYPES": {
                 "attack": {
@@ -2172,6 +2173,7 @@
             "traitModifier": "Trait Modifier",
             "true": "True",
             "type": "Type",
+            "typeSheet": "{type} Sheet",
             "unarmed": "Unarmed",
             "unarmedAttack": "Unarmed Attack",
             "unarmored": "Unarmored",
