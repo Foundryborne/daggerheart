@@ -2173,7 +2173,7 @@
             "traitModifier": "Trait Modifier",
             "true": "True",
             "type": "Type",
-            "typeSheet": "{type} Sheet",
+            "typeSheet": "Default DH {type} Sheet",
             "unarmed": "Unarmed",
             "unarmedAttack": "Unarmed Attack",
             "unarmored": "Unarmored",
