@@ -43,7 +43,6 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
     }
 
     async handleAvoidDeath() {
-        console.log("Avoid Death!");
         const target = this.actor.uuid;
         const config = await enrichedFateRoll({
             target,
@@ -51,12 +50,8 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
             label: 'test',
             fateType: "Hope"
         });
-        console.log("enrichedFateRoll done...", config);
-        console.log("config.roll.fate.value", config.roll.fate.value);
-        console.log("actor", this.actor);
         if (config.roll.fate.value <= this.actor.system.levelData.level.current) {
             // apply scarring - for now directly apply - later add a button.
-            console.log("Adding a scar...", this.actor.system.scars);
             const newScarAmount = this.actor.system.scars + 1;
 
             await this.actor.update(
@@ -66,14 +61,10 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
                     }
                 }
             );
-
-            console.log("Adding a scar result", this.actor.system.scars);
         }
     }
 
     async handleRiskItAll() {
-        console.log("Risk It All!");
-
         const config = await enrichedDualityRoll({
             reaction: true,
             traitValue: null,
@@ -84,8 +75,6 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
             actionType: null,
             advantage: null
         });
-
-        console.log("config", config);
 
         if (config.roll.isCritical) {
             console.log("Clear all stress and HP");
@@ -105,6 +94,10 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
             return;
         }
         
+    }
+
+    async handleBlazeOfGlory() {
+        console.log("TODO: Blaze Of Glory");
     }
 
     static selectMove(_, button) {
@@ -151,6 +144,11 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
 
         if (CONFIG.DH.GENERAL.deathMoves.riskItAll === this.selectedMove) {
             this.handleRiskItAll();
+            return;
+        }
+
+        if (CONFIG.DH.GENERAL.deathMoves.blazeOfGlory === this.selectedMove) {
+            this.handleBlazeOfGlory();
             return;
         }
 
