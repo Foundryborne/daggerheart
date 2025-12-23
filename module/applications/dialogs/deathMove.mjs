@@ -1,4 +1,5 @@
 import { enrichedFateRoll } from '../../enrichers/FateRollEnricher.mjs';
+import { enrichedDualityRoll } from '../../enrichers/DualityRollEnricher.mjs';
 
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -56,13 +57,67 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
         if (config.roll.fate.value <= this.actor.system.levelData.level.current) {
             // apply scarring - for now directly apply - later add a button.
             console.log("Adding a scar...", this.actor.system.scars);
-            this.actor.system.scars.push({id:"1", name: "scar1", description: "description1"});
+            const scar = {
+                [foundry.utils.randomID()]: { 
+                    name: "A scar " + this.actor.system.scars.length,
+                    description: "A description"
+                }
+            }
+            console.log("scar", scar);
+
+            console.log('something goes here to update the scars data...');
+
+            
+        await this.actor.update(
+            {
+                system: {
+                     scars: {
+                        scar
+                    }
+                }
+            },
+            { overwrite: true }
+        );
+
+
             console.log("Adding a scar result", this.actor.system.scars);
         }
     }
 
-    handleRiskItAll() {
+    async handleRiskItAll() {
         console.log("Risk It All!");
+
+        const config = await enrichedDualityRoll({
+            reaction: true,
+            traitValue: null,
+            target: null,
+            difficulty: null,
+            title: "Risk It All",
+            label: 'test',
+            actionType: null,
+            advantage: null
+        });
+
+        console.log("config", config);
+
+        if (config.roll.isCritical) {
+            console.log("Clear all stress and HP");
+            return;
+        }
+
+        // Hope
+        if (config.roll.result.duality == 1) {
+            console.log("Need to clear up Stress and HP up to hope value");
+            console.log("Hope rolled", config.roll.hope.value);
+            return;
+        }
+
+        //Fear
+        if (config.roll.result.duality == -1) {
+            console.log("You have died...");
+            return;
+        }
+        
     }
 
     static selectMove(_, button) {

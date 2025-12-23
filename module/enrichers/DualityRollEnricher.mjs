@@ -105,4 +105,5 @@ export const enrichedDualityRoll = async (
         config.source = { actor: null };
         await CONFIG.Dice.daggerheart.DualityRoll.build(config);
     }
+    return config;
 };
