@@ -117,7 +117,8 @@
       "source": "Daggerheart SRD",
       "page": 88,
       "artist": ""
-    }
+    },
+    "size": "medium"
   },
   "flags": {},
   "_id": "8mJYMpbLTb8qIOrr",
@@ -484,7 +485,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "9SO2ov36lFH2YV0S",
       "img": "icons/creatures/reptiles/snake-fangs-bite-green.webp",
@@ -600,7 +602,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "047o6OtNlUwLG1H1",
       "img": "icons/magic/earth/strike-body-stone-crumble.webp",
@@ -695,7 +698,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "IRIaFxFughjXVu0Y",
       "img": "icons/skills/melee/strike-weapons-orange.webp",

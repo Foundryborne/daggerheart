@@ -201,7 +201,8 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "cAbSo5VQHxJqJPKm",
       "img": "icons/magic/unholy/silhouette-robe-evil-power.webp",
@@ -222,11 +223,12 @@
       "name": "Someone Comes to Town",
       "type": "feature",
       "system": {
-        "description": "<p>Introduce a signifi cant NPC who wants to hire the party for something or who relates to a PC’s background. </p><section id=\"secret-DB6Th0yGCjAsAZp6\" class=\"secret\"><p><em>Did they know the PCs were here? What do they want in this town?</em></p></section>",
+        "description": "<p>Introduce a significant NPC who wants to hire the party for something or who relates to a PC’s background.</p><section class=\"secret\" id=\"secret-DB6Th0yGCjAsAZp6\"><p><em>Did they know the PCs were here? What do they want in this town?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "QPezCAC18vIc5xRC",
       "img": "icons/environment/people/commoner.webp",
@@ -303,7 +305,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "H3LNvVrUbsAkgjni",
       "img": "icons/skills/melee/unarmed-punch-fist-white.webp",

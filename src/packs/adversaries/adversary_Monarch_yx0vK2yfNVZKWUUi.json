@@ -122,7 +122,8 @@
       "source": "Daggerheart SRD",
       "page": 94,
       "artist": ""
-    }
+    },
+    "size": "medium"
   },
   "flags": {},
   "_id": "yx0vK2yfNVZKWUUi",
@@ -235,7 +236,8 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "iYHCYTJzZbw5f0pF",
       "img": "icons/commodities/treasure/crown-gold-satin-gems-red.webp",
@@ -290,7 +292,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "9K7C1PR4Q6QrUjjb",
       "img": "icons/environment/people/charge.webp",
@@ -435,7 +438,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "kA5NZTdiknsh7wxp",
       "img": "icons/sundries/scrolls/scroll-bound-sealed-red-tan.webp",

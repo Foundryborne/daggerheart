@@ -9,7 +9,8 @@
     "tokenRingImg": "icons/creatures/invertebrates/spider-mandibles-brown.webp",
     "tokenSize": {
       "height": null,
-      "width": null
+      "width": null,
+      "size": "tiny"
     },
     "mainTrait": "finesse",
     "advantageOn": {

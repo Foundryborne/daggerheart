@@ -9,7 +9,8 @@
     "tokenRingImg": "icons/creatures/tentacles/tentacles-octopus-black-pink.webp",
     "tokenSize": {
       "height": null,
-      "width": null
+      "width": null,
+      "size": "tiny"
     },
     "mainTrait": "agility",
     "advantageOn": {

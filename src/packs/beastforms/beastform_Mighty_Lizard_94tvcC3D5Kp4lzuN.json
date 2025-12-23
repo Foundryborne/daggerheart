@@ -9,7 +9,8 @@
     "tokenRingImg": "icons/creatures/reptiles/lizard-iguana-green.webp",
     "tokenSize": {
       "height": null,
-      "width": null
+      "width": null,
+      "size": "large"
     },
     "mainTrait": "instinct",
     "advantageOn": {

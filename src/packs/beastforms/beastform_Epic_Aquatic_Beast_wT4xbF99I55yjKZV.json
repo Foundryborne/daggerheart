@@ -9,7 +9,8 @@
     "tokenRingImg": "icons/creatures/fish/squid-kraken-teal.webp",
     "tokenSize": {
       "height": null,
-      "width": null
+      "width": null,
+      "size": "gargantuan"
     },
     "mainTrait": "agility",
     "advantageOn": {

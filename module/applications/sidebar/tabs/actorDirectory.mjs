@@ -17,4 +17,30 @@ export default class DhActorDirectory extends foundry.applications.sidebar.tabs.
                   : null;
         };
     }
+
+    /** @inheritDoc */
+    _onDragStart(event) {
+        let actor;
+        const { entryId } = event.currentTarget.dataset;
+        if (entryId) {
+            actor = this.collection.get(entryId);
+            if (!actor?.visible) return false;
+        }
+        super._onDragStart(event);
+
+        // Create the drag preview.
+        if (actor && canvas.ready) {
+            const img = event.currentTarget.querySelector('img');
+            const pt = actor.prototypeToken;
+            const usesSize = actor.system.metadata.usesSize;
+            const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
+            const width = usesSize ? tokenSizes[actor.system.size] : pt.width;
+            const height = usesSize ? tokenSizes[actor.system.size] : pt.height;
+
+            const w = width * canvas.dimensions.size * Math.abs(pt.texture.scaleX) * canvas.stage.scale.x;
+            const h = height * canvas.dimensions.size * Math.abs(pt.texture.scaleY) * canvas.stage.scale.y;
+            const preview = foundry.applications.ux.DragDrop.implementation.createDragImage(img, w, h);
+            event.dataTransfer.setDragImage(preview, w / 2, h / 2);
+        }
+    }
 }

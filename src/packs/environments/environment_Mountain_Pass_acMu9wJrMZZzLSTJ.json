@@ -222,7 +222,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "jkm03DXYYajsRk2j",
       "img": "icons/magic/earth/projectile-boulder-dust.webp",
@@ -247,7 +248,8 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "hkZVEduCWJFR0h2S",
       "img": "icons/creatures/birds/corvid-flying-wings-purple.webp",
@@ -382,7 +384,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "K8ld4m5yTA6WZwUs",
       "img": "icons/magic/water/snowflake-ice-blue-white.webp",

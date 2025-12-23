@@ -195,7 +195,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "0Rgqw1kUPeJ11ldd",
       "img": "icons/magic/unholy/orb-swirling-teal.webp",
@@ -370,7 +371,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "oFfu3hUhp4ta4qwT",
       "img": "icons/magic/unholy/barrier-fire-pink.webp",
@@ -395,7 +397,8 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "WltEUhtYwfnX8WCc",
       "img": "icons/skills/wounds/blood-drip-droplet-red.webp",

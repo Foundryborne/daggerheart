@@ -65,20 +65,30 @@ export default class BeastformEffect extends BaseEffect {
                 }
             };
 
-            const updateToken = token => ({
-                ...baseUpdate,
-                'texture': {
-                    enabled: this.characterTokenData.usesDynamicToken,
-                    src: token.flags.daggerheart?.beastformTokenImg ?? this.characterTokenData.tokenImg
-                },
-                'ring': {
-                    subject: {
-                        texture:
-                            token.flags.daggerheart?.beastformSubjectTexture ?? this.characterTokenData.tokenRingImg
-                    }
-                },
-                'flags.daggerheart': { '-=beastformTokenImg': null, '-=beastformSubjectTexture': null }
-            });
+            const updateToken = token => {
+                const { x, y } = game.system.api.documents.DhToken.getSnappedPositionInSquareGrid(
+                    token.object.scene.grid,
+                    { x: token.x, y: token.y, elevation: token.elevation },
+                    baseUpdate.width,
+                    baseUpdate.height
+                );
+                return {
+                    ...baseUpdate,
+                    x,
+                    y,
+                    'texture': {
+                        enabled: this.characterTokenData.usesDynamicToken,
+                        src: token.flags.daggerheart?.beastformTokenImg ?? this.characterTokenData.tokenImg
+                    },
+                    'ring': {
+                        subject: {
+                            texture:
+                                token.flags.daggerheart?.beastformSubjectTexture ?? this.characterTokenData.tokenRingImg
+                        }
+                    },
+                    'flags.daggerheart': { '-=beastformTokenImg': null, '-=beastformSubjectTexture': null }
+                };
+            };
 
             await updateActorTokens(this.parent.parent, update, updateToken);
 

@@ -220,8 +220,8 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                         !roll.system.isCritical && criticalRoll
                             ? (await getCritDamageBonus(damage.formula)) + damage.total
                             : damage.total;
+                    const updatedDamageParts = damage.parts;
                     if (systemData.damage[key]) {
-                        const updatedDamageParts = damage.parts;
                         if (!roll.system.isCritical && criticalRoll) {
                             for (let part of updatedDamageParts) {
                                 const criticalDamage = await getCritDamageBonus(part.formula);

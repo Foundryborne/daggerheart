@@ -117,7 +117,8 @@
       "source": "Daggerheart SRD",
       "page": 91,
       "artist": ""
-    }
+    },
+    "size": "medium"
   },
   "flags": {},
   "_id": "pnyjIGxxvurcWmTv",
@@ -329,7 +330,8 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "BKgv2D1IdI813R8k",
       "img": "icons/skills/movement/arrows-up-trio-red.webp",

@@ -117,7 +117,8 @@
       "source": "Daggerheart SRD",
       "page": 87,
       "artist": ""
-    }
+    },
+    "size": "large"
   },
   "flags": {},
   "_id": "YnObCleGjPT7yqEc",
@@ -311,7 +312,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "ro8AtBdgklyyuydK",
       "img": "icons/skills/melee/shield-damaged-broken-orange.webp",
@@ -410,7 +412,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "kKBbEAffbHxmHo15",
       "img": "icons/skills/melee/strike-flail-spiked-pink.webp",
@@ -505,7 +508,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "B0EniYxyLvjJSqYb",
       "img": "icons/skills/melee/strike-weapons-orange.webp",

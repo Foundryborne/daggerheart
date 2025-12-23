@@ -46,7 +46,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         },
         dragDrop: [
             {
-                dragSelector: '[data-item-id][draggable="true"]',
+                dragSelector: '[data-item-id][draggable="true"], [data-item-id] [draggable="true"]',
                 dropSelector: null
             }
         ],
@@ -675,16 +675,21 @@ export default class CharacterSheet extends DHBaseActorSheet {
             roll: {
                 trait: button.dataset.attribute
             },
-            hasRoll: true
-        };
-        const result = await this.document.diceRoll({
-            ...config,
+            hasRoll: true,
             actionType: 'action',
             headerTitle: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.actor.name}`,
             title: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
                 ability: abilityLabel
             })
-        });
+        };
+        const result = await this.document.diceRoll(config);
+
+        /* This could be avoided by baking config.costs into config.resourceUpdates. Didn't feel like messing with it at the time */
+        const costResources = result.costs
+            .filter(x => x.enabled)
+            .map(cost => ({ ...cost, value: -cost.value, total: -cost.total }));
+        config.resourceUpdates.addResources(costResources);
+        await config.resourceUpdates.updateResources();
     }
 
     //TODO: redo toggleEquipItem method
@@ -861,6 +866,15 @@ export default class CharacterSheet extends DHBaseActorSheet {
         new game.system.api.applications.dialogs.Downtime(this.document, button.dataset.type === 'shortRest').render({
             force: true
         });
+    }
+
+    /** @inheritdoc */
+    async _onDragStart(event) {
+        const inventoryItem = event.currentTarget.closest('.inventory-item');
+        if (inventoryItem) {
+            event.dataTransfer.setDragImage(inventoryItem.querySelector('img'), 60, 0);
+        }
+        super._onDragStart(event);
     }
 
     async _onDropItem(event, item) {

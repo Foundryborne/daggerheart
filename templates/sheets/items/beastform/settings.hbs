@@ -20,18 +20,35 @@
         {{/unless}}
     {{/if}}
 
-    <fieldset class="two-columns even">
+    <fieldset>
         <legend>{{localize "DAGGERHEART.ITEMS.Beastform.tokenTitle"}}</legend>
+        {{#unless (eq source.system.beastformType 'evolved')}}
+            <div class="full-width">
+                {{formGroup systemFields.tokenImg value=source.system.tokenImg localize=true}}
+            </div>
 
-        <div class="full-width">
-            {{formGroup systemFields.tokenImg value=source.system.tokenImg localize=true}}
-        </div>
-
-        <div class="full-width">
-            {{formGroup systemFields.tokenRingImg value=source.system.tokenRingImg localize=true}}
-        </div>
-
-        {{formGroup systemFields.tokenSize.fields.height value=source.system.tokenSize.height localize=true placeholder=(localize "DAGGERHEART.ITEMS.Beastform.FIELDS.tokenSize.placeholder") }}
-        {{formGroup systemFields.tokenSize.fields.width value=source.system.tokenSize.width localize=true placeholder=(localize "DAGGERHEART.ITEMS.Beastform.FIELDS.tokenSize.placeholder")}}
+            <div class="full-width">
+                {{formGroup systemFields.tokenRingImg value=source.system.tokenRingImg localize=true}}
+            </div>
+            <div class="nest-inputs">
+                {{formGroup systemFields.tokenSize.fields.size value=source.system.tokenSize.size label=(localize "DAGGERHEART.GENERAL.tokenSize") localize=true }}
+                {{formGroup 
+                    systemFields.tokenSize.fields.height 
+                    value=source.system.tokenSize.height 
+                    localize=true 
+                    placeholder=(localize (ifThen dimensionsDisabled "DAGGERHEART.ITEMS.Beastform.FIELDS.tokenSize.disabledPlaceholder" "DAGGERHEART.ITEMS.Beastform.FIELDS.tokenSize.placeholder")) 
+                    disabled=dimensionsDisabled 
+                }}
+                {{formGroup 
+                    systemFields.tokenSize.fields.width 
+                    value=source.system.tokenSize.width 
+                    localize=true 
+                    placeholder=(localize (ifThen dimensionsDisabled "DAGGERHEART.ITEMS.Beastform.FIELDS.tokenSize.disabledPlaceholder" "DAGGERHEART.ITEMS.Beastform.FIELDS.tokenSize.placeholder")) 
+                    disabled=dimensionsDisabled 
+                }}
+            </div>
+        {{else}}
+            <span class="hint">{{localize "DAGGERHEART.ITEMS.Beastform.evolvedTokenHint"}}</span>
+        {{/unless}}
     </fieldset>
 </section>

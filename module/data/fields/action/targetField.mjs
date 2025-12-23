@@ -79,7 +79,7 @@ export default class TargetField extends fields.SchemaField {
         return {
             id: token.id,
             actorId: token.actor.uuid,
-            name: token.actor.name,
+            name: token.name,
             img: token.actor.img,
             difficulty: token.actor.system.difficulty,
             evasion: token.actor.system.evasion,

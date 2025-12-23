@@ -9,7 +9,8 @@
     "tokenRingImg": "icons/creatures/mammals/wolf-howl-moon-forest-blue.webp",
     "tokenSize": {
       "height": null,
-      "width": null
+      "width": null,
+      "size": "medium"
     },
     "mainTrait": "strength",
     "advantageOn": {

@@ -26,7 +26,7 @@ export default class DhParty extends BaseDataActor {
     /* -------------------------------------------- */
 
     isItemValid(source) {
-        return ["weapon", "armor", "consumable", "loot"].includes(source.type);
+        return ['weapon', 'armor', 'consumable', 'loot'].includes(source.type);
     }
 
     prepareBaseData() {

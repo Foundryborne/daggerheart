@@ -92,6 +92,18 @@ export default class BeastformField extends fields.SchemaField {
 
             beastformEffect.changes = [...beastformEffect.changes, ...evolvedForm.changes];
             formData.system.features = [...formData.system.features, ...selectedForm.system.features.map(x => x.uuid)];
+
+            const baseSize = evolvedData.form.system.tokenSize.size;
+            const evolvedSize =
+                baseSize === 'custom'
+                    ? 'custom'
+                    : (Object.keys(CONFIG.DH.ACTOR.tokenSize).find(
+                          x => CONFIG.DH.ACTOR.tokenSize[x].value === CONFIG.DH.ACTOR.tokenSize[baseSize].value + 1
+                      ) ?? baseSize);
+            formData.system.tokenSize = {
+                ...evolvedData.form.system.tokenSize,
+                size: evolvedSize
+            };
         }
 
         if (selectedForm.system.beastformType === CONFIG.DH.ITEM.beastformTypes.hybrid.id) {

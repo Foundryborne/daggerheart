@@ -1,15 +1,7 @@
 <header class="character-header-sheet">
     <line-div></line-div>
     <div class="name-row">
-        <h1 class='actor-name'>
-            <input
-                type='text'
-                name='name'
-                value='{{document.name}}'
-                placeholder='{{localize "DAGGERHEART.GENERAL.actorName"}}'
-            />
-        </h1>
-
+        <h1 class="actor-name input" contenteditable="plaintext-only" data-property="name" placeholder="{{localize "DAGGERHEART.GENERAL.actorName"}}">{{source.name}}</h1>
         <div class='level-div'>
             <h3 class='label'>
                 {{#if (or document.system.needsCharacterSetup document.system.levelData.canLevelUp)}}

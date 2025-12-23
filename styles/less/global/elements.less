@@ -6,7 +6,8 @@
 
     input[type='text'],
     input[type='number'],
-    textarea {
+    textarea,
+    .input[contenteditable] {
         background: light-dark(transparent, transparent);
         border-radius: 6px;
         box-shadow: 0 4px 30px @soft-shadow;
@@ -40,6 +41,14 @@
             &:hover {
                 background: transparent;
             }
+        }
+    }
+
+    .input[contenteditable] {
+        cursor: var(--cursor-text);
+        &:empty:before {
+            color: light-dark(@dark-40, @beige-50);
+            content: attr(placeholder);
         }
     }
 

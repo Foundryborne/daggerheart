@@ -111,7 +111,8 @@
       "source": "Daggerheart SRD",
       "page": 86,
       "artist": ""
-    }
+    },
+    "size": "medium"
   },
   "flags": {},
   "_id": "TLzY1nDw0Bu9Ud40",
@@ -330,7 +331,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "u5NL1eUJeAkIEpgt",
       "img": "icons/magic/lightning/bolt-strike-sparks-teal.webp",

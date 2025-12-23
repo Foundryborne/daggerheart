@@ -259,7 +259,8 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "ZA2RzxH5FlnrcYLN",
       "img": "icons/magic/death/undead-ghosts-trio-blue.webp",
@@ -331,7 +332,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "i0FV2Djaq0vB57cq",
       "img": "icons/magic/death/skull-weapon-staff-glow-pink.webp",

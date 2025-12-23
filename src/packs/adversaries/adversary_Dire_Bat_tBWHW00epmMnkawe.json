@@ -116,7 +116,8 @@
       "source": "Daggerheart SRD",
       "page": 93,
       "artist": ""
-    }
+    },
+    "size": "medium"
   },
   "flags": {},
   "_id": "tBWHW00epmMnkawe",
@@ -350,7 +351,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "o69lipskvBwGVhe4",
       "img": "icons/magic/sonic/projectile-sound-rings-wave.webp",
@@ -456,7 +458,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "BQPGgbNzKbNkGDJb",
       "img": "icons/skills/melee/strike-slashes-red.webp",

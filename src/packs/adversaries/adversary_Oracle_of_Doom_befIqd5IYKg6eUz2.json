@@ -117,7 +117,8 @@
       "source": "Daggerheart SRD",
       "page": 99,
       "artist": ""
-    }
+    },
+    "size": "large"
   },
   "flags": {},
   "_id": "befIqd5IYKg6eUz2",
@@ -467,7 +468,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "QoFecwKWBFzrk4Wp",
       "img": "icons/magic/death/skeleton-skull-soul-blue.webp",
@@ -546,7 +548,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "A4yI2RENCuLk6mg9",
       "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
@@ -571,7 +574,8 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "IPoWZmSQ2kgWek5T",
       "img": "icons/magic/symbols/mask-yellow-orange.webp",
@@ -657,7 +661,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "kuxTMjy8lOmNSa8e",
       "img": "icons/magic/control/sihouette-hold-beam-green.webp",

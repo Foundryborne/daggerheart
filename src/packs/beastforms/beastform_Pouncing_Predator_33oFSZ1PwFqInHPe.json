@@ -9,7 +9,8 @@
     "tokenRingImg": "icons/creatures/abilities/cougar-roar-rush-orange.webp",
     "tokenSize": {
       "height": null,
-      "width": null
+      "width": null,
+      "size": "medium"
     },
     "mainTrait": "instinct",
     "advantageOn": {

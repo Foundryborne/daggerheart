@@ -49,7 +49,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "AbominationVaults.webp",
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,
@@ -67,10 +67,10 @@
     "disposition": -1,
     "displayBars": 0,
     "bar1": {
-      "attribute": "resources.hitPoints"
+      "attribute": null
     },
     "bar2": {
-      "attribute": "resources.stress"
+      "attribute": null
     },
     "light": {
       "negative": false,
@@ -118,7 +118,7 @@
         "ring": null,
         "background": null
       },
-      "effects": 1,
+      "effects": 0,
       "subject": {
         "scale": 1,
         "texture": null
@@ -249,7 +249,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "maK5OyfrOxcjCoPt",
       "img": "icons/magic/nature/root-vine-spiral-thorns-teal.webp",
@@ -313,7 +314,8 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "uG5A2XQuUcPsXzgP",
       "img": "icons/magic/nature/hand-weapon-wood-bark-brown.webp",
@@ -361,7 +363,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "3kkkbnWEvXk5TPK8",
       "img": "icons/magic/unholy/strike-hand-glow-pink.webp",

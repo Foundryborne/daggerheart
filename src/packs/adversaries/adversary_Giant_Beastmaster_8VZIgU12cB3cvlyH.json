@@ -117,7 +117,8 @@
       "source": "Daggerheart SRD",
       "page": 87,
       "artist": ""
-    }
+    },
+    "size": "large"
   },
   "flags": {},
   "_id": "8VZIgU12cB3cvlyH",
@@ -332,7 +333,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "6ZrDjgnWufJohkp1",
       "img": "icons/skills/ranged/arrow-flying-broadhead-metal.webp",
@@ -420,7 +422,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "w1oHm0NoEavQgUzl",
       "img": "icons/creatures/mammals/ox-bull-horned-glowing-orange.webp",

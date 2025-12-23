@@ -117,7 +117,8 @@
       "source": "Daggerheart SRD",
       "page": 98,
       "artist": ""
-    }
+    },
+    "size": "medium"
   },
   "flags": {},
   "_id": "r1mbfSSwKWdcFdAU",
@@ -371,7 +372,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "FilEB21L5q9XxKE1",
       "img": "icons/magic/light/beams-rays-orange-purple-small.webp",
@@ -514,7 +516,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "Vrb8dIJcOJ3ClwO5",
       "img": "icons/magic/light/beam-strike-orange-gold.webp",
@@ -569,7 +572,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "9LpLXpQBfQryJA60",
       "img": "icons/magic/holy/barrier-shield-winged-blue.webp",

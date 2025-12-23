@@ -211,6 +211,44 @@ export const adversaryTraits = {
     }
 };
 
+export const tokenSize = {
+    custom: {
+        id: 'custom',
+        value: 0,
+        label: 'DAGGERHEART.GENERAL.custom'
+    },
+    tiny: {
+        id: 'tiny',
+        value: 1,
+        label: 'DAGGERHEART.CONFIG.TokenSize.tiny'
+    },
+    small: {
+        id: 'small',
+        value: 2,
+        label: 'DAGGERHEART.CONFIG.TokenSize.small'
+    },
+    medium: {
+        id: 'medium',
+        value: 3,
+        label: 'DAGGERHEART.CONFIG.TokenSize.medium'
+    },
+    large: {
+        id: 'large',
+        value: 4,
+        label: 'DAGGERHEART.CONFIG.TokenSize.large'
+    },
+    huge: {
+        id: 'huge',
+        value: 5,
+        label: 'DAGGERHEART.CONFIG.TokenSize.huge'
+    },
+    gargantuan: {
+        id: 'gargantuan',
+        value: 6,
+        label: 'DAGGERHEART.CONFIG.TokenSize.gargantuan'
+    }
+};
+
 export const levelChoices = {
     attributes: {
         name: 'attributes',

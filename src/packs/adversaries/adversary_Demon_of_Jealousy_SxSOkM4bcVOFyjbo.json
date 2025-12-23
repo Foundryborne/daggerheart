@@ -118,7 +118,8 @@
       "source": "Daggerheart SRD",
       "page": 92,
       "artist": ""
-    }
+    },
+    "size": "medium"
   },
   "flags": {},
   "_id": "SxSOkM4bcVOFyjbo",
@@ -256,7 +257,8 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "KVyhgMJSSHTwRISA",
       "img": "icons/magic/control/fear-fright-monster-grin-purple-blue.webp",
@@ -311,7 +313,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "pSAupMWw1eYqm84z",
       "img": "icons/magic/perception/eye-ringed-glow-angry-small-teal.webp",
@@ -383,7 +386,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "589tCxFc8KZ3rdzP",
       "img": "icons/magic/perception/hand-eye-black.webp",

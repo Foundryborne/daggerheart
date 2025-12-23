@@ -1,10 +1,7 @@
 <header class='adversary-header-sheet'>
     <line-div></line-div>
     <div class="name-row">
-        <h1 class='actor-name'>
-            <input type='text' name='name' value='{{source.name}}' placeholder="{{localize "DAGGERHEART.GENERAL.actorName"}}"
-            />
-        </h1>
+        <h1 class='input actor-name' contenteditable="plaintext-only" data-property="name" placeholder="{{localize "DAGGERHEART.GENERAL.actorName"}}">{{source.name}}</h1>
     </div>
     <div class="tags">
         <div class="tag">
@@ -21,6 +18,14 @@
                 <span>/{{localize "DAGGERHEART.GENERAL.HitPoints.short"}}</span>
             </div>
         {{/if}}
+        <div class="tag" data-tooltip="DAGGERHEART.UI.Tooltip.tokenSize">
+            <i class="fa-solid fa-circle-user"></i>
+            {{#unless (eq source.system.size 'custom')}}
+                <span>{{localize (concat "DAGGERHEART.CONFIG.TokenSize." source.system.size)}}</span>
+            {{else}}
+                <span>{{source.prototypeToken.width}}x{{source.prototypeToken.height}}</span>
+            {{/unless}}
+        </div>
     </div>
     <line-div></line-div>
     <div class="adversary-info">

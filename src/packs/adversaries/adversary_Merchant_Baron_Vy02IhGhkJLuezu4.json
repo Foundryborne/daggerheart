@@ -122,7 +122,8 @@
       "source": "Daggerheart SRD",
       "page": 88,
       "artist": ""
-    }
+    },
+    "size": "medium"
   },
   "flags": {},
   "_id": "Vy02IhGhkJLuezu4",
@@ -308,7 +309,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "7dxToUpxOyISXXde",
       "img": "icons/commodities/currency/coins-plain-stack-gold-yellow.webp",
@@ -363,7 +365,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "QnDvERcyaq3XLCjF",
       "img": "icons/environment/people/charge.webp",

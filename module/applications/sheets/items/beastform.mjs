@@ -77,6 +77,7 @@ export default class BeastformSheet extends DHBaseItemSheet {
                         name: context.document.system.advantageOn[key].value
                     }))
                 );
+                context.dimensionsDisabled = context.document.system.tokenSize.size !== 'custom';
                 break;
             case 'effects':
                 context.effects.actives = context.effects.actives.map(effect => {
