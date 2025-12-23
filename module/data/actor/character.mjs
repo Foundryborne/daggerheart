@@ -78,12 +78,7 @@ export default class DhCharacter extends BaseDataActor {
                 bags: new fields.NumberField({ initial: 0, integer: true }),
                 chests: new fields.NumberField({ initial: 0, integer: true })
             }),
-            scars: new fields.TypedObjectField(
-                new fields.SchemaField({
-                    name: new fields.StringField({}),
-                    description: new fields.StringField()
-                })
-            ),
+            scars: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.scars' }),
             biography: new fields.SchemaField({
                 background: new fields.HTMLField(),
                 connections: new fields.HTMLField(),
@@ -633,7 +628,7 @@ export default class DhCharacter extends BaseDataActor {
                 ? armor.system.baseThresholds.severe + this.levelData.level.current
                 : this.levelData.level.current * 2
         };
-        this.resources.hope.max -= Object.keys(this.scars).length;
+        this.resources.hope.max -= this.scars;
         this.resources.hitPoints.max += this.class.value?.system?.hitPoints ?? 0;
     }
 
@@ -704,5 +699,10 @@ export default class DhCharacter extends BaseDataActor {
         return [this.class.value?.name, this.class.subclass?.name, this.community?.name, this.ancestry?.name].filter(
             t => !!t
         );
+    }
+
+    static migrateData(source) {
+        if (typeof (source.scars) === 'object') source.scars = 0;
+        return super.migrateData(source);
     }
 }

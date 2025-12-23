@@ -57,28 +57,15 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
         if (config.roll.fate.value <= this.actor.system.levelData.level.current) {
             // apply scarring - for now directly apply - later add a button.
             console.log("Adding a scar...", this.actor.system.scars);
-            const scar = {
-                [foundry.utils.randomID()]: { 
-                    name: "A scar " + this.actor.system.scars.length,
-                    description: "A description"
-                }
-            }
-            console.log("scar", scar);
+            const newScarAmount = this.actor.system.scars + 1;
 
-            console.log('something goes here to update the scars data...');
-
-            
-        await this.actor.update(
-            {
-                system: {
-                     scars: {
-                        scar
+            await this.actor.update(
+                {
+                    system: {
+                        scars: newScarAmount
                     }
                 }
-            },
-            { overwrite: true }
-        );
-
+            );
 
             console.log("Adding a scar result", this.actor.system.scars);
         }
