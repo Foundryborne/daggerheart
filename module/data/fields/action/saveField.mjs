@@ -142,11 +142,7 @@ export default class SaveField extends fields.SchemaField {
             await chatMessage.update(changes);
             // }, 100);
         };
-        if (game.modules.get('dice-so-nice')?.active)
-            game.dice3d
-                .waitFor3DAnimationByMessageID(result.message.id ?? result.message._id)
-                .then(async () => await updateMsg(message, targetId, result));
-        else await updateMsg(message, targetId, result);
+        await updateMsg(message, targetId, result);
     }
 
     /**
