@@ -1,6 +1,6 @@
 <div class="daggerheart dh-style tooltip card-style">
     <img class="tooltip-image" src="{{attack.img}}" />
-    <h2 class="tooltip-title">{{attack.name}}</h2>
+    <h2 class="tooltip-title">{{localize attack.name}}</h2>
     <div class="tags">
         {{#if (lookup config.ACTOR.abilities attack.roll.trait)}}
             <div class="tag">
@@ -31,6 +31,6 @@
     {{/if}}
 
     <p class="tooltip-hint">
-        <i class="fa-solid fa-computer-emouse"></i> {{localize "DAGGERHEART.UI.Tooltip.middleClick"}}
+        <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.Tooltip.middleClick"}}
     </p>
 </div>

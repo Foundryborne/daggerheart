@@ -1,31 +1,41 @@
-<div class="daggerheart dh-style tooltip">
-    <h2 class="tooltip-title">{{item.name}}</h2>
+<div class="daggerheart dh-style tooltip card-style">
     <img class="tooltip-image" src="{{item.img}}" />
-    <div class="tooltip-description">{{{description}}}</div>
+    <h2 class="tooltip-title">{{item.name}}</h2>
+    <p class="tooltip-subtitle"><i>{{item.system.examples}}</i></p>
 
-    <div class="simple-info">{{item.system.examples}}</div>
-    {{> "systems/daggerheart/templates/ui/tooltip/parts/tooltipChips.hbs" chips=item.system.advantageOn label=(localize "DAGGERHEART.ITEMS.Beastform.FIELDS.advantageOn.label")}}
+    {{#if description}}
+        <div class="tooltip-description">{{{description}}}</div>
+    {{/if}}
 
-    <div class="tooltip-information-section spaced">
-        {{#with item.system.beastformAttackData}}
-            <div class="tooltip-information">
-                <label>{{localize "DAGGERHEART.ITEMS.Beastform.mainTrait"}}</label>
-                <div>{{this.trait}}</div>
+    <div class="tags">
+        {{#with item.system.beastformAttackData}} 
+            <div class="tag">
+                <span>{{localize "DAGGERHEART.ITEMS.Beastform.mainTrait"}} {{this.trait}}</span>
             </div>
-            <div class="tooltip-information">
-                <label>{{localize "DAGGERHEART.ITEMS.Beastform.traitBonus"}}</label>
-                <div>{{this.traitBonus}}</div>
+            <div class="tag">
+                <span>{{localize "DAGGERHEART.ITEMS.Beastform.traitBonus"}} {{this.traitBonus}}</span>
             </div>
-            <div class="tooltip-information">
-                <label>{{localize "DAGGERHEART.GENERAL.evasion"}}</label>
-                <div>{{this.evasionBonus}}</div>
+            <div class="tag">
+                <span>{{localize "DAGGERHEART.GENERAL.evasion"}} {{this.evasionBonus}}</span>
             </div>
-            <div class="tooltip-information">
-                <label>{{localize "DAGGERHEART.GENERAL.damage"}}</label>
-                <div>{{concat this.damageDice ' ' this.damageBonus}} <i class="fa-solid fa-hand-fist"></i></div>
+            <div class="tag">
+                <span>{{localize "DAGGERHEART.GENERAL.damage"}} {{concat this.damageDice ' ' this.damageBonus}} <i class="fa-solid fa-hand-fist"></i></span>
             </div>
         {{/with}}
     </div>
 
+    <h2 class="tooltip-title">{{localize "DAGGERHEART.ITEMS.Beastform.FIELDS.advantageOn.label"}}</h2>
+    <div class="tags advantages">
+        {{#each item.system.advantageOn as | chip |}}
+            <div class="tag">
+                <span>{{ifThen chip.value chip.value chip}}</span>
+            </div>
+        {{/each}}
+    </div>
+
     {{> "systems/daggerheart/templates/ui/tooltip/parts/tooltipTags.hbs" features=item.system.features label=(localize "DAGGERHEART.GENERAL.features")}}
+
+    <p class="tooltip-hint">
+        <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.Tooltip.middleClick"}}
+    </p>
 </div>
