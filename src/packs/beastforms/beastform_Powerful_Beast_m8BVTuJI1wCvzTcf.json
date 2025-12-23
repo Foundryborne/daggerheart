@@ -9,7 +9,8 @@
     "tokenRingImg": "icons/creatures/abilities/bear-roar-bite-brown-green.webp",
     "tokenSize": {
       "height": null,
-      "width": null
+      "width": null,
+      "size": "large"
     },
     "mainTrait": "strength",
     "advantageOn": {

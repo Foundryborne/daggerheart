@@ -111,7 +111,8 @@
       "source": "Daggerheart SRD",
       "page": 84,
       "artist": ""
-    }
+    },
+    "size": "medium"
   },
   "flags": {},
   "_id": "0ts6CGd93lLqGZI5",
@@ -328,7 +329,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "Wuf5y9tJ88BwzLv2",
       "img": "icons/skills/ranged/arrows-flying-triple-brown.webp",
@@ -425,7 +427,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "ayGHTtyjSuIR4BrV",
       "img": "icons/skills/ranged/arrows-flying-salvo-blue.webp",

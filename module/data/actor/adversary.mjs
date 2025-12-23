@@ -11,7 +11,8 @@ export default class DhpAdversary extends BaseDataActor {
             label: 'TYPES.Actor.adversary',
             type: 'adversary',
             settingSheet: DHAdversarySettings,
-            hasAttribution: true
+            hasAttribution: true,
+            usesSize: true
         });
     }
 
@@ -142,7 +143,7 @@ export default class DhpAdversary extends BaseDataActor {
     }
 
     isItemValid(source) {
-        return source.type === "feature";
+        return source.type === 'feature';
     }
 
     async _preUpdate(changes, options, user) {

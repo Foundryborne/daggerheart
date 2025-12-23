@@ -435,6 +435,34 @@ export default class DhCharacter extends BaseDataActor {
         return attack;
     }
 
+    /** @inheritDoc */
+    isItemAvailable(item) {
+        if (!super.isItemAvailable(this)) return false;
+        /**
+         * Preventing subclass features from being available if the chacaracter does not
+         * have the right subclass advancement
+         */
+        if (item.system.originItemType !== CONFIG.DH.ITEM.featureTypes.subclass.id) {
+            return true;
+        }
+        if (!this.class.subclass) return false;
+
+        const prop = item.system.multiclassOrigin ? 'multiclass' : 'class';
+        const subclassState = this[prop].subclass?.system?.featureState;
+        if (!subclassState) return false;
+
+        if (
+            item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.foundation ||
+            (item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.specialization &&
+                subclassState >= 2) ||
+            (item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.mastery && subclassState >= 3)
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     get sheetLists() {
         const ancestryFeatures = [],
             communityFeatures = [],
@@ -443,7 +471,7 @@ export default class DhCharacter extends BaseDataActor {
             companionFeatures = [],
             features = [];
 
-        for (let item of this.parent.items) {
+        for (let item of this.parent.items.filter(x => this.isItemAvailable(x))) {
             if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.ancestry.id) {
                 ancestryFeatures.push(item);
             } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.community.id) {
@@ -451,20 +479,7 @@ export default class DhCharacter extends BaseDataActor {
             } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.class.id) {
                 classFeatures.push(item);
             } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.subclass.id) {
-                if (this.class.subclass) {
-                    const prop = item.system.multiclassOrigin ? 'multiclass' : 'class';
-                    const subclassState = this[prop].subclass?.system?.featureState;
-                    if (!subclassState) continue;
-
-                    if (
-                        item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.foundation ||
-                        (item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.specialization &&
-                            subclassState >= 2) ||
-                        (item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.mastery && subclassState >= 3)
-                    ) {
-                        subclassFeatures.push(item);
-                    }
-                }
+                subclassFeatures.push(item);
             } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.companion.id) {
                 companionFeatures.push(item);
             } else if (item.type === 'feature' && !item.system.type) {

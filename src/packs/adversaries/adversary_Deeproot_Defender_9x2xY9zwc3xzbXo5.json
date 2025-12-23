@@ -116,7 +116,8 @@
       "source": "Daggerheart SRD",
       "page": 76,
       "artist": ""
-    }
+    },
+    "size": "medium"
   },
   "flags": {},
   "_id": "9x2xY9zwc3xzbXo5",
@@ -285,7 +286,8 @@
         },
         "originItemType": null,
         "subType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "effects": [],
       "folder": null,
@@ -388,7 +390,8 @@
         },
         "originItemType": null,
         "subType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "effects": [
         {

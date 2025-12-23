@@ -311,7 +311,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "asSGMUdf4gG4PO8F",
       "img": "icons/magic/death/bones-crossed-gray.webp",
@@ -383,7 +384,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "mnpqMpYCjdlwtvBp",
       "img": "icons/magic/death/skull-weapon-staff-glow-pink.webp",
@@ -438,7 +440,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "chJRXNg5zyTGbcG5",
       "img": "icons/magic/death/undead-zombie-grave-green.webp",

@@ -222,7 +222,8 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "uxu8YrvYVxP3Qc2y",
       "img": "icons/skills/melee/unarmed-punch-fist-yellow-red.webp",
@@ -277,7 +278,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "21tdueq5Wgvj3vG4",
       "img": "icons/environment/settlement/watchtower-moonlit-blue.webp",

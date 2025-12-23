@@ -3,5 +3,12 @@
     data-tab='{{tabs.settings.id}}'
     data-group='{{tabs.settings.group}}'
 >
+    {{#if (or (eq document.parent.type "adversary") (eq document.parent.type "environment"))}}
+        <fieldset class="two-columns">
+            <legend>{{localize "DAGGERHEART.GENERAL.general"}}</legend>
+            <span>{{localize "DAGGERHEART.CONFIG.FeatureForm.label"}}</span>
+            {{formInput document.system.schema.fields.featureForm value=document.system.featureForm choices=featureFormChoices localize=true}}
+        </fieldset>
+    {{/if}}
     {{> "systems/daggerheart/templates/sheets/global/partials/resource-section/resource-section.hbs" }}
 </section>

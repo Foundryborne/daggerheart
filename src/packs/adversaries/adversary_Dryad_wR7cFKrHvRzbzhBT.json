@@ -117,7 +117,8 @@
       "source": "Daggerheart SRD",
       "page": 93,
       "artist": ""
-    }
+    },
+    "size": "medium"
   },
   "flags": {},
   "_id": "wR7cFKrHvRzbzhBT",
@@ -337,7 +338,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "i9HbArl09dX2BvzY",
       "img": "icons/magic/nature/root-vines-grow-brown.webp",
@@ -392,7 +394,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "yKWQLL3qsEZlQjyb",
       "img": "icons/magic/nature/tree-animated-stump-mushrooms-teal.webp",
@@ -517,7 +520,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "z4JbqiHuxrWy6Cpu",
       "img": "icons/magic/nature/vines-thorned-curled-glow-teal-purple.webp",

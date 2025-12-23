@@ -9,7 +9,8 @@
     "tokenRingImg": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
     "tokenSize": {
       "height": null,
-      "width": null
+      "width": null,
+      "size": "small"
     },
     "mainTrait": "strength",
     "advantageOn": {

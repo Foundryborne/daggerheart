@@ -43,6 +43,12 @@ export default class DHBeastform extends BaseDataItem {
                 base64: false
             }),
             tokenSize: new fields.SchemaField({
+                size: new fields.StringField({
+                    required: true,
+                    nullable: false,
+                    choices: CONFIG.DH.ACTOR.tokenSize,
+                    initial: CONFIG.DH.ACTOR.tokenSize.custom.id
+                }),
                 height: new fields.NumberField({ integer: true, min: 1, initial: null, nullable: true }),
                 width: new fields.NumberField({ integer: true, min: 1, initial: null, nullable: true })
             }),
@@ -190,9 +196,18 @@ export default class DHBeastform extends BaseDataItem {
 
         await this.parent.parent.createEmbeddedDocuments('ActiveEffect', [beastformEffect.toObject()]);
 
+        const autoTokenSize =
+            this.tokenSize.size !== 'custom'
+                ? game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes[
+                      this.tokenSize.size
+                  ]
+                : null;
+        const width = autoTokenSize ?? this.tokenSize.width;
+        const height = autoTokenSize ?? this.tokenSize.height;
+
         const prototypeTokenUpdate = {
-            height: this.tokenSize.height,
-            width: this.tokenSize.width,
+            height,
+            width,
             texture: {
                 src: this.tokenImg
             },
@@ -202,16 +217,25 @@ export default class DHBeastform extends BaseDataItem {
                 }
             }
         };
-
-        const tokenUpdate = token => ({
-            ...prototypeTokenUpdate,
-            flags: {
-                daggerheart: {
-                    beastformTokenImg: token.texture.src,
-                    beastformSubjectTexture: token.ring.subject.texture
+        const tokenUpdate = token => {
+            const { x, y } = game.system.api.documents.DhToken.getSnappedPositionInSquareGrid(
+                token.object.scene.grid,
+                { x: token.x, y: token.y, elevation: token.elevation },
+                width ?? token.width,
+                height ?? token.height
+            );
+            return {
+                ...prototypeTokenUpdate,
+                x,
+                y,
+                flags: {
+                    daggerheart: {
+                        beastformTokenImg: token.texture.src,
+                        beastformSubjectTexture: token.ring.subject.texture
+                    }
                 }
-            }
-        });
+            };
+        };
 
         await updateActorTokens(this.parent.parent, prototypeTokenUpdate, tokenUpdate);
 

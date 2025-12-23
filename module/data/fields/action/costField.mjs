@@ -75,7 +75,7 @@ export default class CostField extends fields.ArrayField {
                 }
             }, []);
 
-        await actor.modifyResource(resources);
+        config.resourceUpdates.addResources(resources);
     }
 
     /**

@@ -268,7 +268,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "tm9FL5gJF7Oheu21",
       "img": "icons/magic/death/skull-energy-light-white.webp",
@@ -340,7 +341,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "HwSKX5r40ux0OfJN",
       "img": "icons/sundries/documents/document-sealed-red-white.webp",
@@ -419,7 +421,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "YPMgWUagVq1Hicqo",
       "img": "icons/magic/perception/orb-eye-scrying.webp",

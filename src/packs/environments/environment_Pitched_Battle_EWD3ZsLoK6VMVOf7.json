@@ -172,7 +172,8 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "fnvOiHKsd34EaLqG",
       "img": "icons/magic/fire/flame-burning-building.webp",
@@ -278,7 +279,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "r9kkodHghWm01mje",
       "img": "icons/magic/fire/explosion-flame-lightning-strike.webp",
@@ -303,7 +305,8 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "ZAIvH5CfhehW48EY",
       "img": "icons/environment/people/charge.webp",

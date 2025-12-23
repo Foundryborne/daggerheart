@@ -18,6 +18,14 @@
                 <span>/{{localize "DAGGERHEART.GENERAL.HitPoints.short"}}</span>
             </div>
         {{/if}}
+        <div class="tag" data-tooltip="DAGGERHEART.UI.Tooltip.tokenSize">
+            <i class="fa-solid fa-circle-user"></i>
+            {{#unless (eq source.system.size 'custom')}}
+                <span>{{localize (concat "DAGGERHEART.CONFIG.TokenSize." source.system.size)}}</span>
+            {{else}}
+                <span>{{source.prototypeToken.width}}x{{source.prototypeToken.height}}</span>
+            {{/unless}}
+        </div>
     </div>
     <line-div></line-div>
     <div class="adversary-info">

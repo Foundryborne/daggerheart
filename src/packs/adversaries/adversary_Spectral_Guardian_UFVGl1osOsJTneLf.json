@@ -117,7 +117,8 @@
       "source": "Daggerheart SRD",
       "page": 90,
       "artist": ""
-    }
+    },
+    "size": "medium"
   },
   "flags": {},
   "_id": "UFVGl1osOsJTneLf",
@@ -435,7 +436,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "L48tQmj5O3s2pjBn",
       "img": "icons/weapons/swords/sword-flanged-lightning.webp",

@@ -29,7 +29,7 @@
                     <div class="roll-target" data-token="{{id}}">
                         <img class="target-img" src="{{img}}">
                         <div class="target-data">
-                            <div class="target-name" data-perm-id="{{actorId}}"><span>{{name}}</span></div>
+                            <div class="target-name"><span>{{name}}</span></div>
                             {{#if (and ../hasRoll (hasProperty this "hit"))}}
                                 <div class="target-hit-status {{#if hit}}is-hit{{else}}is-miss{{/if}}" data-perm-id="{{actorId}}" data-perm-hidden="true">
                                     {{#if hit}}

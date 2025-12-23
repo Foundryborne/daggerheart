@@ -104,7 +104,8 @@
       "source": "Daggerheart SRD",
       "page": 98,
       "artist": ""
-    }
+    },
+    "size": "medium"
   },
   "flags": {},
   "_id": "VENwg7xEFcYObjmT",
@@ -327,7 +328,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "ZpypjDbaurs1YSFb",
       "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",

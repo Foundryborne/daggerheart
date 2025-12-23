@@ -277,7 +277,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "eSTq8Y0v4Dwd13XU",
       "img": "icons/weapons/artillery/catapult-simple.webp",
@@ -302,7 +303,8 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "U59K0WKVjwbgzMZU",
       "img": "icons/environment/people/charge.webp",
@@ -401,7 +403,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "bemKmwjBtbEFVWXM",
       "img": "icons/magic/earth/projectile-stone-boulder-brown.webp",

@@ -150,7 +150,8 @@
       "source": "Daggerheart SRD",
       "page": 100,
       "artist": ""
-    }
+    },
+    "size": "gargantuan"
   },
   "prototypeToken": {
     "name": "Volcanic Dragon: Obsidian Predator",
@@ -528,7 +529,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "8bMOItTuL7PfAYcJ",
       "img": "icons/creatures/abilities/tail-swipe-green.webp",
@@ -716,7 +718,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "5wLxyaWJuUhkx1EX",
       "img": "icons/creatures/reptiles/dragon-winged-blue.webp",
@@ -741,7 +744,8 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "5llfnRwO7mfzDFgT",
       "img": "icons/magic/fire/flame-burning-eye.webp",

@@ -9,7 +9,8 @@
     "tokenRingImg": "icons/creatures/birds/corvid-flying-wings-purple.webp",
     "tokenSize": {
       "height": null,
-      "width": null
+      "width": null,
+      "size": "large"
     },
     "mainTrait": "finesse",
     "advantageOn": {

@@ -150,7 +150,8 @@
       "source": "Daggerheart SRD",
       "page": 100,
       "artist": ""
-    }
+    },
+    "size": "gargantuan"
   },
   "prototypeToken": {
     "name": "Volcanic Dragon: Molten Scourge",
@@ -419,7 +420,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "bpjpHxf6tj4i3H4r",
       "img": "icons/creatures/abilities/tail-swipe-green.webp",
@@ -518,7 +520,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "NuksKUrbf4yj4vR2",
       "img": "icons/magic/fire/blast-jet-stream-embers-red.webp",
@@ -699,7 +702,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "2mK8kxfp2WBUeBri",
       "img": "icons/magic/fire/blast-jet-stream-embers-orange.webp",
@@ -818,7 +822,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "3VdQdUDULZCQPvLZ",
       "img": "icons/magic/fire/blast-jet-stream-embers-red.webp",
@@ -843,7 +848,8 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "qYFoyDSdZ5X2h245",
       "img": "icons/magic/fire/flame-burning-eye.webp",

@@ -1,4 +1,5 @@
 import DHBaseActorSettings from '../../applications/sheets/api/actor-setting.mjs';
+import DHItem from '../../documents/item.mjs';
 import { getScrollTextData } from '../../helpers/utils.mjs';
 
 const resistanceField = (resistanceLabel, immunityLabel, reductionLabel) =>
@@ -41,7 +42,8 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
             settingSheet: null,
             hasResistances: true,
             hasAttribution: false,
-            hasLimitedView: true
+            hasLimitedView: true,
+            usesSize: false
         };
     }
 
@@ -76,6 +78,13 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
                     'DAGGERHEART.GENERAL.DamageResistance.magicalReduction'
                 )
             });
+        if (this.metadata.usesSize)
+            schema.size = new fields.StringField({
+                required: true,
+                nullable: false,
+                choices: CONFIG.DH.ACTOR.tokenSize,
+                initial: CONFIG.DH.ACTOR.tokenSize.custom.id
+            });
         return schema;
     }
 
@@ -104,6 +113,17 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
     getRollData() {
         const data = { ...this };
         return data;
+    }
+
+    /**
+     * Checks if an item is available for use, such as multiclass features being disabled
+     * on a character.
+     *
+     * @param {DHItem} item The item being checked for availability
+     * @return {boolean} whether the item is available
+     */
+    isItemAvailable(item) {
+        return true;
     }
 
     async _preDelete() {

@@ -122,7 +122,8 @@
       "source": "Daggerheart SRD",
       "page": 77,
       "artist": ""
-    }
+    },
+    "size": "medium"
   },
   "flags": {},
   "_id": "mK3A5FTx6k8iPU3F",
@@ -292,7 +293,8 @@
         },
         "originItemType": null,
         "subType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "effects": [],
       "folder": null,
@@ -356,7 +358,8 @@
         },
         "originItemType": null,
         "subType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "effects": [],
       "folder": null,
@@ -452,7 +455,8 @@
         },
         "originItemType": null,
         "subType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "effects": [],
       "folder": null,

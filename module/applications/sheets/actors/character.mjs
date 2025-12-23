@@ -675,16 +675,21 @@ export default class CharacterSheet extends DHBaseActorSheet {
             roll: {
                 trait: button.dataset.attribute
             },
-            hasRoll: true
-        };
-        const result = await this.document.diceRoll({
-            ...config,
+            hasRoll: true,
             actionType: 'action',
             headerTitle: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.actor.name}`,
             title: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
                 ability: abilityLabel
             })
-        });
+        };
+        const result = await this.document.diceRoll(config);
+
+        /* This could be avoided by baking config.costs into config.resourceUpdates. Didn't feel like messing with it at the time */
+        const costResources = result.costs
+            .filter(x => x.enabled)
+            .map(cost => ({ ...cost, value: -cost.value, total: -cost.total }));
+        config.resourceUpdates.addResources(costResources);
+        await config.resourceUpdates.updateResources();
     }
 
     //TODO: redo toggleEquipItem method

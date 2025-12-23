@@ -93,7 +93,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
     }
 
     getRefreshables() {
-        const actionItems = this.actor.items.reduce((acc, x) => {
+        const actionItems = this.actor.items.filter(x => this.actor.system.isItemAvailable(x)).reduce((acc, x) => {
             if (x.system.actions) {
                 const recoverable = x.system.actions.reduce((acc, action) => {
                     if (refreshIsAllowed([this.shortrest ? 'shortRest' : 'longRest'], action.uses.recovery)) {

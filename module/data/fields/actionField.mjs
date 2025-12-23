@@ -141,6 +141,12 @@ export function ActionMixin(Base) {
             return this.documentName;
         }
 
+        //Getter for icons
+        get typeIcon() {
+            const config = CONFIG.DH.ACTIONS.actionTypes[this.type];
+            return config?.icon || 'fa-question'; // Fallback icon just in case
+        }
+
         get relativeUUID() {
             return `.Item.${this.item.id}.Action.${this.id}`;
         }
@@ -256,7 +262,7 @@ export function ActionMixin(Base) {
         async toChat(origin) {
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
-                title: game.i18n.localize('DAGGERHEART.CONFIG.ActionType.action'),
+                title: game.i18n.localize('DAGGERHEART.CONFIG.FeatureForm.action'),
                 origin: origin,
                 action: {
                     name: this.name,

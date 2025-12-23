@@ -30,7 +30,13 @@ export default class DHFeature extends BaseDataItem {
                 initial: null
             }),
             multiclassOrigin: new fields.BooleanField({ initial: false }),
-            identifier: new fields.StringField()
+            identifier: new fields.StringField(),
+            featureForm: new fields.StringField({
+                required: true,
+                initial: 'passive',
+                choices: CONFIG.DH.ITEM.featureForm,
+                label: 'DAGGERHEART.CONFIG.FeatureForm.label'
+            })
         };
     }
 }

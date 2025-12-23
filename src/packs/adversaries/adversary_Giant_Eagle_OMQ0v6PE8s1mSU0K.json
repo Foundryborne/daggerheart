@@ -143,7 +143,8 @@
       "source": "Daggerheart SRD",
       "page": 87,
       "artist": ""
-    }
+    },
+    "size": "large"
   },
   "flags": {},
   "ownership": {
@@ -410,7 +411,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "MabIQE1Kjn60j08J",
       "img": "icons/skills/melee/strike-slashes-orange.webp",
@@ -553,7 +555,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "NEOQ0E9AGSSIDm4v",
       "img": "icons/skills/movement/arrow-upward-yellow.webp",
@@ -671,7 +674,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "jY0ynjYvbS6E3NgJ",
       "img": "icons/skills/movement/arrow-down-pink.webp",

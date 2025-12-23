@@ -221,7 +221,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "HfuVxgVidIVsapvI",
       "img": "icons/magic/perception/shadow-stealth-eyes-purple.webp",

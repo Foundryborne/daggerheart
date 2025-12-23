@@ -117,7 +117,8 @@
       "source": "Daggerheart SRD",
       "page": 89,
       "artist": ""
-    }
+    },
+    "size": "medium"
   },
   "flags": {},
   "_id": "mVV7a7KQAORoPMgZ",
@@ -424,7 +425,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "r1T70u9n3bRfUTX5",
       "img": "icons/magic/unholy/hand-marked-pink.webp",
@@ -540,7 +542,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "5AQTqW1GDidHfU3a",
       "img": "icons/skills/movement/arrows-up-trio-red.webp",
@@ -676,7 +679,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "IOCG3J20wUHvyvvh",
       "img": "icons/magic/movement/trail-streak-zigzag-yellow.webp",

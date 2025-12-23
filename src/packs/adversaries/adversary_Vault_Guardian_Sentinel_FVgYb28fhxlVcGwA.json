@@ -111,7 +111,8 @@
       "source": "Daggerheart SRD",
       "page": 96,
       "artist": ""
-    }
+    },
+    "size": "medium"
   },
   "flags": {},
   "_id": "FVgYb28fhxlVcGwA",
@@ -284,7 +285,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "DLspoIclNJcTB3YJ",
       "img": "icons/magic/perception/eye-ringed-glow-angry-red.webp",
@@ -434,7 +436,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "LVFZ4AfVhS6Q9hRy",
       "img": "icons/magic/sonic/projectile-shock-wave-blue.webp",
@@ -529,7 +532,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "N4446BxubUanUQHH",
       "img": "icons/skills/melee/strike-weapons-orange.webp",

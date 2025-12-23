@@ -279,7 +279,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "OWUM3eFiZrIn0Bjd",
       "img": "icons/magic/unholy/orb-hands-pink.webp",
@@ -384,7 +385,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "CL3wPZNOtw6m5WVT",
       "img": "icons/magic/unholy/hand-light-pink.webp",
@@ -561,7 +563,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "AJdG1krRvixBFCZG",
       "img": "icons/magic/unholy/silhouette-robe-evil-glow.webp",
@@ -638,7 +641,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "GUAo44cJCnS1GE9p",
       "img": "icons/magic/unholy/barrier-fire-pink.webp",
