@@ -360,9 +360,10 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
             const allExperiences = {
                 ...this.actor.system.experiences,
                 ...Object.values(this.levelup.levels).reduce((acc, level) => {
-                    Object.keys(level.achievements.experiences).forEach(
-                        x => (acc[x] = level.achievements.experiences[x])
-                    );
+                    for (const key of Object.keys(level.achievements.experiences)) {
+                        acc[key] = level.achievements.experiences[key];
+                    }
+
                     return acc;
                 }, {})
             };
