@@ -34,8 +34,55 @@ export default class DhTokenConfig extends foundry.applications.sheets.TokenConf
 
     async _prepareAppearanceTab() {
         const context = await super._prepareAppearanceTab();
-        context.actorSizeUsed = this.token.actor ? Boolean(this.token.actor.system.size) : false;
+        context.tokenSizes = CONFIG.DH.ACTOR.tokenSize;
+        context.usesActorSize = this.token.actor?.system?.metadata?.usesSize;
+        context.actorSizeDisable = context.usesActorSize && this.token.actor.system.size !== 'custom';
 
         return context;
+    }
+
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        switch (partId) {
+            case 'appearance':
+                htmlElement
+                    .querySelector('#dhTokenSize')
+                    ?.addEventListener('change', this.onTokenSizeChange.bind(this));
+                break;
+        }
+    }
+
+    async onTokenSizeChange(event) {
+        const value = event.target.value;
+        const tokenSizeDimensions = this.element.querySelector('#tokenSizeDimensions');
+        if (tokenSizeDimensions) {
+            const disabled = value !== 'custom';
+
+            tokenSizeDimensions.dataset.tooltip = disabled
+                ? game.i18n.localize('DAGGERHEART.APPLICATIONS.TokenConfig.actorSizeUsed')
+                : '';
+
+            const disabledIcon = tokenSizeDimensions.querySelector('i');
+            if (disabledIcon) {
+                disabledIcon.style.opacity = disabled ? '' : '0';
+            }
+
+            const dimensionsInputs = tokenSizeDimensions.querySelectorAll('.form-fields input');
+            for (const input of dimensionsInputs) {
+                input.disabled = disabled;
+            }
+        }
+    }
+
+    async _processSubmitData(event, form, submitData, options) {
+        const tokenSizeSelect = this.element.querySelector('#dhTokenSize');
+        if (tokenSizeSelect && this.token.actor) {
+            if (tokenSizeSelect.value !== this.token.actor.system.size) {
+                this.token.actor.update({ 'system.size': tokenSizeSelect.value });
+            }
+        }
+
+        super._processSubmitData(event, form, submitData, options);
     }
 }
