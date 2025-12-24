@@ -1,4 +1,18 @@
 export default class DhTokenConfig extends foundry.applications.sheets.TokenConfig {
+    /** @override */
+    static PARTS = {
+        tabs: super.PARTS.tabs,
+        identity: super.PARTS.identity,
+        appearance: {
+            template: 'systems/daggerheart/templates/sheets-settings/token-config/appearance.hbs',
+            scrollable: ['']
+        },
+        vision: super.PARTS.vision,
+        light: super.PARTS.light,
+        resources: super.PARTS.resources,
+        footer: super.PARTS.footer
+    };
+
     /** @inheritDoc */
     async _prepareResourcesTab() {
         const token = this.token;
@@ -16,5 +30,12 @@ export default class DhTokenConfig extends foundry.applications.sheets.TokenConf
             turnMarkerModes: DhTokenConfig.TURN_MARKER_MODES,
             turnMarkerAnimations: CONFIG.Combat.settings.turnMarkerAnimations
         };
+    }
+
+    async _prepareAppearanceTab() {
+        const context = await super._prepareAppearanceTab();
+        context.actorSizeUsed = this.token.actor ? Boolean(this.token.actor.system.size) : false;
+
+        return context;
     }
 }

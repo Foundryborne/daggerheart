@@ -95,6 +95,9 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     prepareData() {
         this.name = this.name || game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[this.type].name);
         this.img = this.img ?? this.parent?.parent?.img;
+
+        /* Fallback to feature description */
+        this.description = this.description || this.parent?.description;
     }
 
     /**
@@ -193,8 +196,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     async use(event) {
         if (!this.actor) throw new Error("An Action can't be used outside of an Actor context.");
 
-        if (this.chatDisplay) await this.toChat();
-
         let config = this.prepareConfig(event);
         if (!config) return;
 
@@ -208,8 +209,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         // Execute the Action Worflow in order based of schema fields
         await this.executeWorkflow(config);
+        await config.resourceUpdates.updateResources();
 
         if (Hooks.call(`${CONFIG.DH.id}.postUseAction`, this, config) === false) return;
+
+        if (this.chatDisplay) await this.toChat();
 
         return config;
     }
@@ -239,8 +243,10 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             isDirect: !!this.damage?.direct,
             selectedRollMode: game.settings.get('core', 'rollMode'),
             data: this.getRollData(),
-            evaluate: this.hasRoll
+            evaluate: this.hasRoll,
+            resourceUpdates: new ResourceUpdateMap(this.actor)
         };
+
         DHBaseAction.applyKeybindings(config);
         return config;
     }
@@ -322,11 +328,46 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @returns {string[]} An array of localized tag strings.
      */
     _getTags() {
-        const tags = [
-            game.i18n.localize(`DAGGERHEART.ACTIONS.TYPES.${this.type}.name`),
-            game.i18n.localize(`DAGGERHEART.CONFIG.ActionType.${this.actionType}`)
-        ];
+        const tags = [game.i18n.localize(`DAGGERHEART.ACTIONS.TYPES.${this.type}.name`)];
 
         return tags;
+    }
+}
+
+export class ResourceUpdateMap extends Map {
+    #actor;
+
+    constructor(actor) {
+        super();
+
+        this.#actor = actor;
+    }
+
+    addResources(resources) {
+        for (const resource of resources) {
+            if (!resource.key) continue;
+
+            const existing = this.get(resource.key);
+            if (existing) {
+                this.set(resource.key, {
+                    ...existing,
+                    value: existing.value + (resource.value ?? 0),
+                    total: existing.total + (resource.total ?? 0)
+                });
+            } else {
+                this.set(resource.key, resource);
+            }
+        }
+    }
+
+    #getResources() {
+        return Array.from(this.values());
+    }
+
+    async updateResources() {
+        if (this.#actor) {
+            const target = this.#actor.system.partner ?? this.#actor;
+            await target.modifyResource(this.#getResources());
+        }
     }
 }

@@ -117,7 +117,8 @@
       "source": "Daggerheart SRD",
       "page": 99,
       "artist": ""
-    }
+    },
+    "size": "large"
   },
   "flags": {},
   "_id": "befIqd5IYKg6eUz2",
@@ -226,14 +227,14 @@
       "name": "Terrifying",
       "type": "feature",
       "system": {
-        "description": "<p>When the Oracle makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
         "resource": null,
         "actions": {
           "VjdSO1lAdTIAlofM": {
             "type": "damage",
             "_id": "VjdSO1lAdTIAlofM",
             "systemPath": "actions",
-            "description": "<p>When the Oracle makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -304,14 +305,14 @@
       "name": "Walls Closing In",
       "type": "feature",
       "system": {
-        "description": "<p>When a creature rolls a failure while within Very Far range of the Oracle, they must mark a Stress.</p>",
+        "description": "<p>When a creature rolls a failure while within Very Far range of the @Lookup[@name], they must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "u9iEsvV5ktvOxNp5": {
             "type": "damage",
             "_id": "u9iEsvV5ktvOxNp5",
             "systemPath": "actions",
-            "description": "<p>When a creature rolls a failure while within Very Far range of the Oracle, they must mark a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -389,7 +390,7 @@
             "type": "attack",
             "_id": "IiSgpy6Axfqo9f9V",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to present a target within Far range with a vision of their personal nightmare. The target must make a Knowledge Reaction Roll. On a failure, they lose all Hope and take <strong>2d20+4</strong> direct magic damage. On a success, they take half damage and lose a Hope.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -467,7 +468,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "QoFecwKWBFzrk4Wp",
       "img": "icons/magic/death/skeleton-skull-soul-blue.webp",
@@ -495,7 +497,7 @@
             "type": "attack",
             "_id": "71UnFo3CBBPtbao3",
             "systemPath": "actions",
-            "description": "<p>Once per day, <strong>spend 2 Fear</strong> to summon <strong>2d4</strong> Tier 2 or below Minions relevant to one of the PC’s personal nightmares. They appear at Close range relative to that PC.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -546,7 +548,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "A4yI2RENCuLk6mg9",
       "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
@@ -567,11 +570,12 @@
       "name": "Ominous Knowledge",
       "type": "feature",
       "system": {
-        "description": "<p>When the Oracle sees a mortal creature, they instantly know one of their personal nightmares.</p>",
+        "description": "<p>When the @Lookup[@name] sees a mortal creature, they instantly know one of their personal nightmares.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "IPoWZmSQ2kgWek5T",
       "img": "icons/magic/symbols/mask-yellow-orange.webp",
@@ -592,14 +596,14 @@
       "name": "Vengeful Fate",
       "type": "feature",
       "system": {
-        "description": "<p>When the Oracle marks HP from an attack within Very Close range, you can <strong>mark a Stress</strong> to knock the attacker back to Far range and deal <strong>2d10+4</strong> physical damage.</p>",
+        "description": "<p>When the @Lookup[@name] marks HP from an attack within Very Close range, you can <strong>mark a Stress</strong> to knock the attacker back to Far range and deal <strong>2d10+4</strong> physical damage.</p>",
         "resource": null,
         "actions": {
           "vJ7kARKL5H87T1BY": {
             "type": "damage",
             "_id": "vJ7kARKL5H87T1BY",
             "systemPath": "actions",
-            "description": "<p>When the Oracle marks HP from an attack within Very Close range, you can <strong>mark a Stress</strong> to knock the attacker back to Far range and deal <strong>2d10+4</strong> physical damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -657,7 +661,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "kuxTMjy8lOmNSa8e",
       "img": "icons/magic/control/sihouette-hold-beam-green.webp",

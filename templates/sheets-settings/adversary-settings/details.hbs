@@ -13,6 +13,7 @@
             {{/if}}
             {{formGroup systemFields.difficulty value=document._source.system.difficulty localize=true}}
         </div>
+        {{formGroup systemFields.size value=document._source.system.size label=(localize "DAGGERHEART.GENERAL.tokenSize") localize=true}}
         {{formField systemFields.description value=document._source.system.description label=(localize "DAGGERHEART.ACTORS.Adversary.FIELDS.description.label")}}
         {{formField systemFields.motivesAndTactics value=document._source.system.motivesAndTactics label=(localize "DAGGERHEART.ACTORS.Adversary.FIELDS.motivesAndTactics.label")}}
     </fieldset>
@@ -21,12 +22,12 @@
         <fieldset class="flex">
             <legend>{{localize "DAGGERHEART.GENERAL.HitPoints.plural"}}</legend>
             {{formGroup systemFields.resources.fields.hitPoints.fields.value value=document._source.system.resources.hitPoints.value label=(localize "DAGGERHEART.ACTORS.Adversary.FIELDS.resources.hitPoints.value.label")}}
-            {{formGroup systemFields.resources.fields.hitPoints.fields.max value=document._source.system.resources.hitPoints.max}}
+            {{formGroup systemFields.resources.fields.hitPoints.fields.max value=document._source.system.resources.hitPoints.max label=(localize "DAGGERHEART.ACTORS.Adversary.FIELDS.resources.hitPoints.max.label")}}
         </fieldset>
         <fieldset class="flex">
             <legend>{{localize "DAGGERHEART.GENERAL.stress"}}</legend>
             {{formGroup systemFields.resources.fields.stress.fields.value value=document._source.system.resources.stress.value label=(localize "DAGGERHEART.ACTORS.Adversary.FIELDS.resources.stress.value.label")}}
-            {{formGroup systemFields.resources.fields.stress.fields.max value=document._source.system.resources.stress.max}}
+            {{formGroup systemFields.resources.fields.stress.fields.max value=document._source.system.resources.stress.max label=(localize "DAGGERHEART.ACTORS.Adversary.FIELDS.resources.stress.max.label")}}
         </fieldset>
     </div>
 

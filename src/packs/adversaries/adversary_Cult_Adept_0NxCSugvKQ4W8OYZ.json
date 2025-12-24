@@ -122,7 +122,8 @@
       "source": "Daggerheart SRD",
       "page": 85,
       "artist": ""
-    }
+    },
+    "size": "medium"
   },
   "flags": {},
   "_id": "0NxCSugvKQ4W8OYZ",
@@ -238,7 +239,7 @@
             "type": "attack",
             "_id": "TQv3o9sRnlDNbPyu",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to make a standard attack against a target within range. On a success, the target must mark a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -341,7 +342,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "kCffzM8rX8NEr9d2",
       "img": "icons/magic/unholy/beam-ringed-impact-purple.webp",
@@ -362,14 +364,14 @@
       "name": "Shroud of the Fallen",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to wrap an ally within Close range in a shroud of Protection until the Adept marks their last HP. While Protected, the target has resistance to all damage.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to wrap an ally within Close range in a shroud of Protection until the @Lookup[@name] marks their last HP. While Protected, the target has resistance to all damage.</p>",
         "resource": null,
         "actions": {
           "8yRj7EpEI4PlKNhl": {
             "type": "effect",
             "_id": "8yRj7EpEI4PlKNhl",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to wrap an ally within Close range in a shroud of Protection until the Adept marks their last HP. While Protected, the target has resistance to all damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -401,7 +403,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "IHWDn097sRgjlZXO",
       "img": "icons/magic/unholy/orb-contained-pink.webp",
@@ -479,7 +482,7 @@
             "type": "effect",
             "_id": "g4RDHrY0AEYXjH52",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> and choose a point within Far range. All targets within Close range of that point are <em>Restrained</em> in smoky chains until they break free with a successful Strength or Instinct Roll. A target Restrained by this feature must spend a Hope to make an action roll.</p><p>@Template[type:circle|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -511,7 +514,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "JpSrduK3vjd9h098",
       "img": "icons/magic/air/fog-gas-smoke-dense-pink.webp",
@@ -578,7 +582,7 @@
             "type": "healing",
             "_id": "3tibqB97ooJesxf0",
             "systemPath": "actions",
-            "description": "<p>Twice per scene, when a PC rolls a failure with Fear, clear a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -643,7 +647,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "x6FbcrfOscb3er6P",
       "img": "icons/magic/unholy/silhouette-robe-evil-glow.webp",

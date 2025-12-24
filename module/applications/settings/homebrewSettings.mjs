@@ -44,6 +44,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             deleteAdversaryType: this.deleteAdversaryType,
             selectAdversaryType: this.selectAdversaryType,
             save: this.save,
+            resetTokenSizes: this.resetTokenSizes,
             reset: this.reset
         },
         form: { handler: this.updateData, submitOnChange: true }
@@ -422,6 +423,14 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
     static async save() {
         await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew, this.settings.toObject());
         this.close();
+    }
+
+    static async resetTokenSizes() {
+        await this.settings.updateSource({
+            tokenSizes: this.settings.schema.fields.tokenSizes.initial
+        });
+
+        this.render();
     }
 
     static async reset() {

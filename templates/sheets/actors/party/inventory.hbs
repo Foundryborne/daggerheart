@@ -17,10 +17,10 @@
 
     {{#if inventory.hasCurrency}}
         <div class="currency-section">
-            {{#each this.inventory.currencies as | currency |}}
+            {{#each this.inventory.currencies as |currency key|}}
                 {{#if currency.enabled}}
-                    <div class="input">
-                        <span>
+                    <div class="input currency" data-currency="{{key}}">
+                        <span class="drag-handle">
                             <i class="{{currency.icon}}" inert></i> {{localize currency.label}}
                         </span>
                         <input type="text" name="{{currency.field.fieldPath}}" data-allow-delta value="{{currency.value}}" data-dtype="Number" min="0" step="1" />

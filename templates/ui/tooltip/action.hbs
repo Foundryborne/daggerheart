@@ -1,82 +1,67 @@
-<div class="daggerheart dh-style tooltip">
-    <h2 class="tooltip-title">{{localize item.name}}</h2>
+<div class="daggerheart dh-style tooltip card-style">
     <img class="tooltip-image" src="{{item.img}}" />
-    <div class="tooltip-description">{{{description}}}</div>
-    {{#if item.uses.max}}
-        <h4 class="tooltip-sub-title">{{localize "DAGGERHEART.GENERAL.uses"}}</h4>
-        <div class="tooltip-information-section triple spaced">
-            <div class="tooltip-information">
-                <label>{{localize "DAGGERHEART.GENERAL.used"}}</label>
-                <div>{{item.uses.value}}</div>
+    <h2 class="tooltip-title">{{localize item.name}}</h2>
+    <div class="tags">
+        {{#if item.uses.max}}
+            <div class="tag">
+              <span>{{localize "DAGGERHEART.GENERAL.used"}} {{item.uses.value}}</span>
             </div>
-            <div class="tooltip-information">
-                <label>{{localize "DAGGERHEART.GENERAL.max"}}</label>
-                <div>{{formulaValue item.uses.max item}}</div>
+            <div class="tag">
+              <span>{{localize "DAGGERHEART.GENERAL.max"}} {{formulaValue item.uses.max item}}</span>
             </div>
-            <div class="tooltip-information">
-                <label>{{localize "DAGGERHEART.GENERAL.recovery"}}</label>
-                {{#with (lookup config.GENERAL.refreshTypes item.uses.recovery) as | type |}}
-                    <div>{{localize type.label}}</div>
-                {{/with}}
+            <div class="tag">
+              <span>{{localize "DAGGERHEART.GENERAL.recovery"}} {{#with (lookup config.GENERAL.refreshTypes item.uses.recovery) as | type |}}{{localize type.label}}{{/with}}</span>
             </div>
-        </div>
-    {{/if}}
-
-    {{#if (gt item.cost.length 0)}}
-        <h4 class="tooltip-sub-title">{{localize "DAGGERHEART.GENERAL.Cost.plural"}}</h4>
-        {{#each item.cost as | cost |}}
-            <div class="tooltip-information-section border spaced">
-                <div class="tooltip-information">
-                    <label>{{localize "Type"}}</label>
-                    {{#with (lookup @root.config.GENERAL.abilityCosts cost.type) as | type |}}
-                        <div>{{localize type.label}}</div>
-                    {{/with}}
+        {{/if}}
+        {{#if (gt item.cost.length 0)}}
+            {{#each item.cost as | cost |}}
+                <div class="tag">
+                  <span>{{localize "Type"}} {{#with (lookup @root.config.GENERAL.abilityCosts cost.type) as | type |}}{{localize type.label}}{{/with}}</span>
                 </div>
-                <div class="tooltip-information">
-                    <label>{{localize "DAGGERHEART.GENERAL.value"}}</label>
-                    <div>{{cost.value}}</div>
+                <div class="tag">
+                  <span>{{localize "DAGGERHEART.GENERAL.value"}} {{cost.value}}</span>
                 </div>
                 {{#if cost.scalable}}
-                    <div class="tooltip-information">
-                        <label>{{localize "DAGGERHEART.GENERAL.scalable"}}</label>
-                        <div>{{localize "DAGGERHEART.GENERAL.true"}}</div>
-                    </div>
-                    <div class="tooltip-information">
-                        <label>{{localize "DAGGERHEART.GENERAL.value"}}</label>
-                        <div>{{cost.step}}</div>
-                    </div>
+                  <div class="tag">
+                    <span>{{localize "DAGGERHEART.GENERAL.scalable"}} {{localize "DAGGERHEART.GENERAL.true"}}</span>
+                  </div>
+                  <div class="tag">
+                    <span>{{localize "DAGGERHEART.GENERAL.step"}} {{cost.step}}</span>
+                  </div>
                 {{/if}}
+            {{/each}}
+        {{/if}}
+        {{#if (or item.range item.target)}}
+            <div class="tag">
+              <span>
+                  {{localize "DAGGERHEART.GENERAL.range"}} 
+                  {{#if item.range}}
+                      {{#with (lookup @root.config.GENERAL.range item.range) as | range |}}
+                          {{localize range.label}}
+                      {{/with}}
+                  {{else}}
+                      {{localize "DAGGERHEART.GENERAL.none"}}
+                  {{/if}}
+              </span>
             </div>
-        {{/each}}
-    {{/if}}
-
-    {{#if (or item.range item.target)}}
-        <h4 class="tooltip-sub-title">{{localize "DAGGERHEART.UI.Tooltip.rangeAndTarget"}}</h4>
-        <div class="tooltip-information-section border spaced">
-            <div class="tooltip-information">
-                <label>{{localize "DAGGERHEART.GENERAL.range"}}</label>
-                <div>
-                    {{#if item.range}}
-                        {{#with (lookup @root.config.GENERAL.range item.range) as | range |}}
-                            <div>{{localize range.label}}</div>
-                        {{/with}}
-                    {{else}}
-                        <div>{{localize "DAGGERHEART.GENERAL.none"}}</div>
-                    {{/if}}
-                </div>
-            </div>
-            <div class="tooltip-information">
-                <label>{{localize "DAGGERHEART.GENERAL.Target.single"}}</label>
-                <div>
-                    {{#if item.target.type}}
-                        {{#with (lookup @root.config.ACTIONS.targetTypes item.target.type) as | target |}}
-                            <div>{{@root.item.target.amount}} {{localize target.label}}</div>
-                        {{/with}}
-                    {{else}}
-                        <div>{{localize "DAGGERHEART.GENERAL.none"}}</div>
-                    {{/if}}
-                </div>
-            </div>
+        {{/if}}
+        <div class="tag">
+          <span>
+              {{localize "DAGGERHEART.GENERAL.Target.single"}} 
+              {{#if item.target.type}}
+                  {{#with (lookup @root.config.ACTIONS.targetTypes item.target.type) as | target |}}
+                      {{@root.item.target.amount}} {{localize target.label}}
+                  {{/with}}
+              {{else}}
+                  {{localize "DAGGERHEART.GENERAL.none"}}
+              {{/if}}
+          </span>
         </div>
+    </div>
+    {{#if description}}
+        <div class="tooltip-description">{{{description}}}</div>
     {{/if}}
+    <p class="tooltip-hint">
+        <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.Tooltip.middleClick"}}
+    </p>
 </div>

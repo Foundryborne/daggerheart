@@ -9,7 +9,8 @@
     "tokenRingImg": "icons/creatures/reptiles/dragon-winged-blue.webp",
     "tokenSize": {
       "height": null,
-      "width": null
+      "width": null,
+      "size": "gargantuan"
     },
     "mainTrait": "finesse",
     "advantageOn": {

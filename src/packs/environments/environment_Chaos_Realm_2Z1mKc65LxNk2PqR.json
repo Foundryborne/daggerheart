@@ -335,7 +335,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "0OYHJZqT0DlVz5be",
       "img": "icons/magic/control/sihouette-hold-beam-green.webp",
@@ -441,7 +442,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "RNbAdBZM6gDNaRPn",
       "img": "icons/magic/unholy/energy-smoke-pink.webp",
@@ -496,7 +498,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "SZpUJeJETVQtZwae",
       "img": "icons/creatures/unholy/demons-horned-glowing-pink.webp",
@@ -574,7 +577,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "MyIh4CJsDnkjmeYs",
       "img": "icons/magic/perception/hand-eye-pink.webp",

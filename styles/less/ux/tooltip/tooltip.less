@@ -1,5 +1,246 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+
+#tooltip:has(div.daggerheart.dh-style.tooltip.card-style),
+aside[role='tooltip']:has(div.daggerheart.dh-style.tooltip.card-style) {
+    padding: 0;
+    border: none;
+    border-radius: 10px;
+    height: max-content;
+    max-height: 650px;
+    width: 18rem;
+    background-image: url('../assets/parchments/dh-parchment-dark.png');
+    outline: 1px solid light-dark(@dark-80, @beige-80);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.80);
+
+    .tooltip-title {
+        font-size: var(--font-size-20);
+        color: light-dark(@dark-blue, @golden);
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    .tooltip-subtitle {
+        margin: 0;
+    }
+
+    .tooltip-image {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        mask-image: linear-gradient(180deg, black 88%, transparent 100%);
+    }
+
+    .tooltip-description {
+        font-style: inherit;
+        text-align: inherit;
+        width: 100%;
+        padding: 5px 10px;
+        position: relative;
+        margin-top: 5px;
+
+        &::before {
+            content: '';
+            background: @golden;
+            mask-image: linear-gradient(270deg, transparent 0%, black 50%, transparent 100%);
+            height: 2px;
+            width: calc(100% - 10px);
+        }
+
+        &::before {
+            position: absolute;
+            top: -5px;
+        }
+    }
+
+    .tooltip-tags {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        padding: 5px 10px;
+        position: relative;
+        padding-top: 10px;
+        max-height: 150px;
+        overflow-y: auto;
+        position: relative;
+
+        scrollbar-width: thin;
+        scrollbar-color: light-dark(@dark-blue, @golden) transparent;
+
+        &::before {
+            content: '';
+            background: @golden;
+            mask-image: linear-gradient(270deg, transparent 0%, black 50%, transparent 100%);
+            height: 2px;
+            width: calc(100% - 10px);
+        }
+
+        &::before {
+            position: absolute;
+            top: 0px;
+        }
+
+        .tooltip-tag {
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+
+            .tooltip-tag-label-container {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+
+                img {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 3px;
+                }
+            }
+        }
+    }
+
+    .tags {
+        display: flex;
+        gap: 5px 10px;
+        padding-bottom: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        &.advantages {
+            width: 100%;
+            padding: 5px 10px;
+            padding-bottom: 16px;
+            position: relative;
+            margin-top: 5px;
+
+            &::before {
+                content: '';
+                background: @golden;
+                mask-image: linear-gradient(270deg, transparent 0%, black 50%, transparent 100%);
+                height: 2px;
+                width: calc(100% - 10px);
+            }
+
+            &::before {
+                position: absolute;
+                top: -5px;
+            }
+
+            .tag {
+                background: @green-10;
+                color: @green;
+                border-color: @green;
+            }
+        }
+
+        .tag {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 3px 5px;
+            font-size: var(--font-size-12);
+            font: @font-body;
+
+            background: light-dark(@dark-15, @beige-15);
+            border: 1px solid light-dark(@dark, @beige);
+            border-radius: 3px;
+        }
+
+        .label {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            font-size: var(--font-size-12);
+        }
+    }
+
+    .item-icons-list {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        align-items: end;
+        justify-content: center;
+        top: 25px;
+        right: 10px;
+        z-index: 1;
+
+        .item-icon {
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            text-align: center;
+            padding-right: 8px;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            background: light-dark(@dark-blue-60, @dark-golden-80);
+            backdrop-filter: blur(8px);
+            border: 4px double light-dark(@beige, @golden);
+            color: light-dark(@beige, @golden);
+            border-radius: 999px;
+            transition: all 0.3s ease;
+
+            .recall-label {
+                font-size: var(--font-size-14);
+                opacity: 0;
+                margin-right: 0.3rem;
+                transition: all 0.3s ease;
+            }
+
+            i {
+                font-size: 0.8rem;
+            }
+
+            img {
+                height: 24px;
+                width: 24px;
+            }
+
+            &:hover {
+                max-width: 300px;
+                padding: 0 10px;
+                border-radius: 60px;
+
+                .recall-label {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .tooltip-hint {
+        border-radius: 3px;
+        padding: 3px;
+        background: light-dark(@dark-blue-60, @rustic-brown-80);
+        color: light-dark(@dark-blue, @golden);
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+}
+
+aside[role='tooltip'].locked-tooltip:has(div.daggerheart.dh-style.tooltip.card-style) {
+    box-shadow: 0 0 25px @golden-90;
+    outline: 1px solid light-dark(@dark-blue, @golden);
+}
+
+.theme-light #tooltip:has(div.daggerheart.dh-style.tooltip.card-style),
+.theme-light aside[role='tooltip']:has(div.daggerheart.dh-style.tooltip.card-style) {
+    background-image: url('../assets/parchments/dh-parchment-light.png');
+}
+
+.theme-light aside[role='tooltip'].locked-tooltip:has(div.daggerheart.dh-style.tooltip) {
+    box-shadow: 0 0 25px @dark-blue-90;
+    outline: 1px solid light-dark(@dark-blue, @golden);
+    
+}
+
 #tooltip,
-.locked-tooltip {
+.locked-tooltip,
+.daggerheart.dh-style.tooltip {
     &.wide {
         max-width: 480px;
 
@@ -46,11 +287,6 @@
 
         .simple-info {
             font-style: italic;
-        }
-
-        .tooltip-sub-title {
-            margin: 0;
-            color: light-dark(@dark-blue, @beige);
         }
 
         .tooltip-information-section {
@@ -101,46 +337,6 @@
                 border-radius: 6px;
                 color: light-dark(@dark, @beige);
                 background-image: url(../assets/parchments/dh-parchment-dark.png);
-            }
-        }
-
-        .tooltip-tags {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-
-            .tooltip-tag {
-                width: 100%;
-                display: grid;
-                grid-template-columns: 80px 1fr;
-                align-items: start;
-                gap: 8px;
-                padding: 4px;
-                border: 1px solid light-dark(@dark-blue, @golden);
-                border-radius: 6px;
-
-                .tooltip-tag-label-container {
-                    display: flex;
-                    align-items: center;
-                    flex-direction: column;
-                    gap: 2px;
-
-                    .tooltip-tag-image {
-                        width: 40px;
-                        height: 40px;
-                    }
-                }
-
-                .tooltip-tag-label {
-                    font-weight: bold;
-                    text-align: center;
-                }
-
-                .tooltip-tag-description {
-                    display: flex;
-                    flex-wrap: wrap;
-                }
             }
         }
 

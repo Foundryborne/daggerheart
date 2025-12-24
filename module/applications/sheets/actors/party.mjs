@@ -40,7 +40,7 @@ export default class Party extends DHBaseActorSheet {
             selectRefreshable: DaggerheartMenu.selectRefreshable,
             refreshActors: DaggerheartMenu.refreshActors
         },
-        dragDrop: [{ dragSelector: '[data-item-id][draggable="true"]', dropSelector: null }]
+        dragDrop: [{ dragSelector: '[data-item-id]', dropSelector: null }]
     };
 
     /**@override */

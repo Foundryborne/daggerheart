@@ -252,7 +252,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "1aOeMMX0XuDtZbbB",
       "img": "icons/magic/nature/root-vine-spiral-thorns-teal.webp",
@@ -391,7 +392,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "JKFkDvwUOP35Tsr1",
       "img": "icons/creatures/magical/construct-face-stone-pink.webp",
@@ -508,7 +510,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "kYxuTZjH7HDUGeWh",
       "img": "icons/magic/air/fog-gas-smoke-brown.webp",

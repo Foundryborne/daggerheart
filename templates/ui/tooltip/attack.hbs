@@ -1,35 +1,36 @@
-<div class="daggerheart dh-style tooltip">
-    <h2 class="tooltip-title">{{attack.name}}</h2>
+<div class="daggerheart dh-style tooltip card-style">
     <img class="tooltip-image" src="{{attack.img}}" />
-    <div class="tooltip-description">{{{description}}}</div>
-
-    <div class="tooltip-information-section spaced">
-
+    <h2 class="tooltip-title">{{localize attack.name}}</h2>
+    <div class="tags">
         {{#if (lookup config.ACTOR.abilities attack.roll.trait)}}
-            <div class="tooltip-information">
-                <label>{{localize "DAGGERHEART.GENERAL.Trait.single"}}</label>
-                {{#with (lookup config.ACTOR.abilities attack.roll.trait) as | trait |}}
-                    <div>{{localize trait.label}}</div>
-                {{/with}}
+            <div class="tag">
+                <span>
+                    {{localize "DAGGERHEART.GENERAL.Trait.single"}}
+                    {{#with (lookup config.ACTOR.abilities attack.roll.trait) as | trait |}}
+                        {{localize trait.label}}
+                    {{/with}}
+                </span>
             </div>
         {{/if}}
-
         {{#if (lookup config.GENERAL.range attack.range)}}
-            <div class="tooltip-information">
-                <label>{{localize "DAGGERHEART.GENERAL.range"}}</label>
-                {{#with (lookup config.GENERAL.range attack.range) as | range |}}
-                    <div>{{localize range.label}}</div>
-                {{/with}}
+            <div class="tag">
+                <span>
+                    {{localize "DAGGERHEART.GENERAL.range"}}
+                    {{#with (lookup config.GENERAL.range attack.range) as | range |}}
+                        {{localize range.label}}
+                    {{/with}}
+                </span>
             </div>
         {{/if}}
-
-        <div class="tooltip-information">
-            <label>{{localize "DAGGERHEART.GENERAL.damage"}}</label>
-            <div>{{{damageFormula attack}}}</div>
-        </div>
-        <div class="tooltip-information">
-            <label>{{localize "DAGGERHEART.GENERAL.damageType"}}</label>
-            <div>{{{damageSymbols attack.damage.parts}}}</div>
+        <div class="tag">
+            <span>{{{damageFormula attack}}} {{{damageSymbols attack.damage.parts}}}</span>
         </div>
     </div>
+    {{#if description}}
+        <div class="tooltip-description">{{{description}}}</div>
+    {{/if}}
+
+    <p class="tooltip-hint">
+        <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.Tooltip.middleClick"}}
+    </p>
 </div>

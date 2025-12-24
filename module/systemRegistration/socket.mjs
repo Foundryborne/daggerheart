@@ -73,10 +73,13 @@ export const registerSocketHooks = () => {
                     Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
                     break;
                 case GMUpdateEvent.UpdateSaveMessage:
-                    const action = await fromUuid(data.update.action),
-                        message = game.messages.get(data.update.message);
-                    if (!action || !message) return;
-                    action.updateSaveMessage(data.update.result, message, data.update.token);
+                    const message = game.messages.get(data.update.message);
+                    if (!message) return;
+                    game.system.api.fields.ActionFields.SaveField.updateSaveMessage(
+                        data.update.result,
+                        message,
+                        data.update.token
+                    );
                     break;
             }
 

@@ -40,6 +40,38 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
             traitArray: new fields.ArrayField(new fields.NumberField({ required: true, integer: true }), {
                 initial: () => [2, 1, 1, 0, 0, -1]
             }),
+            tokenSizes: new fields.SchemaField({
+                tiny: new fields.NumberField({
+                    integer: false,
+                    initial: 0.5,
+                    label: 'DAGGERHEART.CONFIG.TokenSize.tiny'
+                }),
+                small: new fields.NumberField({
+                    integer: false,
+                    initial: 0.8,
+                    label: 'DAGGERHEART.CONFIG.TokenSize.small'
+                }),
+                medium: new fields.NumberField({
+                    integer: false,
+                    initial: 1,
+                    label: 'DAGGERHEART.CONFIG.TokenSize.medium'
+                }),
+                large: new fields.NumberField({
+                    integer: false,
+                    initial: 2,
+                    label: 'DAGGERHEART.CONFIG.TokenSize.large'
+                }),
+                huge: new fields.NumberField({
+                    integer: false,
+                    initial: 3,
+                    label: 'DAGGERHEART.CONFIG.TokenSize.huge'
+                }),
+                gargantuan: new fields.NumberField({
+                    integer: false,
+                    initial: 4,
+                    label: 'DAGGERHEART.CONFIG.TokenSize.gargantuan'
+                })
+            }),
             currency: new fields.SchemaField({
                 title: new fields.StringField({
                     required: true,

@@ -1,23 +1,19 @@
 <div class="ownership-outer-container">
-    <div class="form-group">
-        <div class="form-fields">
-            <label>{{localize "DAGGERHEART.APPLICATIONS.OwnershipSelection.default"}}</label>
-            <select name="default" data-dtype="Number" disabled>
-                {{selectOptions ownershipDefaultOptions selected=defaultOwnership labelAttr="label" valueAttr="value" localize=true }}
-            </select>
-        </div>
-    </div>
-    <ul class="ownership-list">
-        {{#each ownership as |player id|}}
-            <li class="ownership-container">
-                <img src="{{player.img}}" />
-                <span>{{player.name}}</span>
-                <select name="{{concat "ownership." id}}" data-dtype="Number">
-                    {{selectOptions @root.ownershipOptions selected=player.ownership  labelAttr="label" valueAttr="value" localize=true }}
-                </select>
-            </li>
-        {{/each}}
-    </ul>
+    {{#if showOwnership}}
+        <ul class="ownership-list">
+            {{#each ownership as |player id|}}
+                <li class="ownership-container">
+                    <img src="{{player.img}}" />
+                    <span>{{player.name}}</span>
+                    <select name="{{concat "ownership." id}}" data-dtype="Number">
+                        {{selectOptions @root.ownershipOptions selected=player.ownership  labelAttr="label" valueAttr="value" localize=true }}
+                    </select>
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <span class="hint">{{localize "DAGGERHEART.APPLICATIONS.OwnershipSelection.noPlayers"}}</span>
+    {{/if}}
     <footer class="flexrow">
         <button type="submit">{{localize "Save"}}</button>
     </footer>

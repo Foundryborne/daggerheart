@@ -17,7 +17,6 @@ import {
     socketRegistration
 } from './module/systemRegistration/_module.mjs';
 import { placeables } from './module/canvas/_module.mjs';
-import { registerRollDiceHooks } from './module/dice/dhRoll.mjs';
 import './node_modules/@yaireo/tagify/dist/tagify.css';
 import TemplateManager from './module/documents/templateManager.mjs';
 
@@ -54,6 +53,8 @@ CONFIG.Canvas.rulerClass = placeables.DhRuler;
 CONFIG.Canvas.layers.templates.layerClass = placeables.DhTemplateLayer;
 CONFIG.MeasuredTemplate.objectClass = placeables.DhMeasuredTemplate;
 
+CONFIG.Scene.documentClass = documents.DhScene;
+
 CONFIG.Token.documentClass = documents.DhToken;
 CONFIG.Token.prototypeSheetClass = applications.sheetConfigs.DhPrototypeTokenConfig;
 CONFIG.Token.objectClass = placeables.DhTokenPlaceable;
@@ -89,34 +90,94 @@ Hooks.once('init', () => {
         makeDefault: true
     });
 
+    const sheetLabel = typePath => () =>
+        game.i18n.format('DAGGERHEART.GENERAL.typeSheet', {
+            type: game.i18n.localize(typePath)
+        });
+
     const { Items, Actors } = foundry.documents.collections;
     Items.unregisterSheet('core', foundry.applications.sheets.ItemSheetV2);
-    Items.registerSheet(SYSTEM.id, applications.sheets.items.Ancestry, { types: ['ancestry'], makeDefault: true });
-    Items.registerSheet(SYSTEM.id, applications.sheets.items.Community, { types: ['community'], makeDefault: true });
-    Items.registerSheet(SYSTEM.id, applications.sheets.items.Class, { types: ['class'], makeDefault: true });
-    Items.registerSheet(SYSTEM.id, applications.sheets.items.Subclass, { types: ['subclass'], makeDefault: true });
-    Items.registerSheet(SYSTEM.id, applications.sheets.items.Feature, { types: ['feature'], makeDefault: true });
-    Items.registerSheet(SYSTEM.id, applications.sheets.items.DomainCard, { types: ['domainCard'], makeDefault: true });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Ancestry, {
+        types: ['ancestry'],
+        makeDefault: true,
+        label: sheetLabel('TYPES.Item.ancestry')
+    });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Community, {
+        types: ['community'],
+        makeDefault: true,
+        label: sheetLabel('TYPES.Item.community')
+    });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Class, {
+        types: ['class'],
+        makeDefault: true,
+        label: sheetLabel('TYPES.Item.class')
+    });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Subclass, {
+        types: ['subclass'],
+        makeDefault: true,
+        label: sheetLabel('TYPES.Item.subclass')
+    });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Feature, {
+        types: ['feature'],
+        makeDefault: true,
+        label: sheetLabel('TYPES.Item.feature')
+    });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.DomainCard, {
+        types: ['domainCard'],
+        makeDefault: true,
+        label: sheetLabel('TYPES.Item.domainCard')
+    });
     Items.registerSheet(SYSTEM.id, applications.sheets.items.Loot, {
         types: ['loot'],
-        makeDefault: true
+        makeDefault: true,
+        label: sheetLabel('TYPES.Item.loot')
     });
-    Items.registerSheet(SYSTEM.id, applications.sheets.items.Consumable, { types: ['consumable'], makeDefault: true });
-    Items.registerSheet(SYSTEM.id, applications.sheets.items.Weapon, { types: ['weapon'], makeDefault: true });
-    Items.registerSheet(SYSTEM.id, applications.sheets.items.Armor, { types: ['armor'], makeDefault: true });
-    Items.registerSheet(SYSTEM.id, applications.sheets.items.Beastform, { types: ['beastform'], makeDefault: true });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Consumable, {
+        types: ['consumable'],
+        makeDefault: true,
+        label: sheetLabel('TYPES.Item.consumable')
+    });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Weapon, {
+        types: ['weapon'],
+        makeDefault: true,
+        label: sheetLabel('TYPES.Item.weapon')
+    });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Armor, {
+        types: ['armor'],
+        makeDefault: true,
+        label: sheetLabel('TYPES.Item.armor')
+    });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Beastform, {
+        types: ['beastform'],
+        makeDefault: true,
+        label: sheetLabel('TYPES.Item.beastform')
+    });
 
     Actors.unregisterSheet('core', foundry.applications.sheets.ActorSheetV2);
-    Actors.registerSheet(SYSTEM.id, applications.sheets.actors.Character, { types: ['character'], makeDefault: true });
-    Actors.registerSheet(SYSTEM.id, applications.sheets.actors.Companion, { types: ['companion'], makeDefault: true });
-    Actors.registerSheet(SYSTEM.id, applications.sheets.actors.Adversary, { types: ['adversary'], makeDefault: true });
+    Actors.registerSheet(SYSTEM.id, applications.sheets.actors.Character, {
+        types: ['character'],
+        makeDefault: true,
+        label: sheetLabel('TYPES.Actor.character')
+    });
+    Actors.registerSheet(SYSTEM.id, applications.sheets.actors.Companion, {
+        types: ['companion'],
+        makeDefault: true,
+        label: sheetLabel('TYPES.Actor.companion')
+    });
+    Actors.registerSheet(SYSTEM.id, applications.sheets.actors.Adversary, {
+        types: ['adversary'],
+        makeDefault: true,
+        label: sheetLabel('TYPES.Actor.adversary')
+    });
     Actors.registerSheet(SYSTEM.id, applications.sheets.actors.Environment, {
         types: ['environment'],
-        makeDefault: true
+        makeDefault: true,
+        label: sheetLabel('TYPES.Actor.environment')
     });
     Actors.registerSheet(SYSTEM.id, applications.sheets.actors.Party, {
         types: ['party'],
-        makeDefault: true
+        makeDefault: true,
+        label: sheetLabel('TYPES.Actor.party')
     });
 
     DocumentSheetConfig.unregisterSheet(
@@ -129,7 +190,8 @@ Hooks.once('init', () => {
         SYSTEM.id,
         applications.sheetConfigs.ActiveEffectConfig,
         {
-            makeDefault: true
+            makeDefault: true,
+            label: sheetLabel('DOCUMENT.ActiveEffect')
         }
     );
 
@@ -138,9 +200,10 @@ Hooks.once('init', () => {
     // Make Compendium Dialog resizable
     foundry.applications.sidebar.apps.Compendium.DEFAULT_OPTIONS.window.resizable = true;
 
+    DocumentSheetConfig.unregisterSheet(foundry.documents.Scene, 'core', foundry.applications.sheets.SceneConfig);
     DocumentSheetConfig.registerSheet(foundry.documents.Scene, SYSTEM.id, applications.scene.DhSceneConfigSettings, {
         makeDefault: true,
-        label: 'Daggerheart'
+        label: sheetLabel('DOCUMENT.Scene')
     });
 
     settingsRegistration.registerDHSettings();
@@ -177,7 +240,6 @@ Hooks.on('ready', async () => {
         ui.compendiumBrowser = new applications.ui.ItemBrowser();
 
     socketRegistration.registerSocketHooks();
-    registerRollDiceHooks();
     socketRegistration.registerUserQueries();
 
     if (!game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.welcomeMessage)) {
@@ -193,9 +255,9 @@ Hooks.on('ready', async () => {
 
 Hooks.once('dicesoniceready', () => {});
 
-Hooks.on('renderChatMessageHTML', (_, element, message) => {
+Hooks.on('renderChatMessageHTML', (document, element) => {
     enricherRenderSetup(element);
-    const cssClass = message.message.flags?.daggerheart?.cssClass;
+    const cssClass = document.flags?.daggerheart?.cssClass;
     if (cssClass) cssClass.split(' ').forEach(cls => element.classList.add(cls));
 });
 
@@ -248,52 +310,70 @@ Hooks.on('chatMessage', (_, message) => {
     }
 });
 
-Hooks.on('moveToken', async (movedToken, data) => {
-    const effectsAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).effects;
-    if (!effectsAutomation.rangeDependent) return;
+const updateActorsRangeDependentEffects = async token => {
+    const rangeMeasurement = game.settings.get(
+        CONFIG.DH.id,
+        CONFIG.DH.SETTINGS.gameSettings.variantRules
+    ).rangeMeasurement;
 
-    const rangeDependantEffects = movedToken.actor.effects.filter(effect => effect.system.rangeDependence?.enabled);
+    for (let effect of token.actor.allApplicableEffects()) {
+        if (!effect.system.rangeDependence?.enabled) continue;
+        const { target, range, type } = effect.system.rangeDependence;
 
-    const updateEffects = async (disposition, token, effects, effectUpdates) => {
-        const rangeMeasurement = game.settings.get(
-            CONFIG.DH.id,
-            CONFIG.DH.SETTINGS.gameSettings.variantRules
-        ).rangeMeasurement;
-
-        for (let effect of effects.filter(x => x.system.rangeDependence?.enabled)) {
-            const { target, range, type } = effect.system.rangeDependence;
-            if ((target === 'friendly' && disposition !== 1) || (target === 'hostile' && disposition !== -1))
-                return false;
+        // If there are no targets, assume false. Otherwise, start with the effect enabled.
+        let enabledEffect = game.user.targets.size !== 0;
+        // Expect all targets to meet the rangeDependence requirements
+        for (let userTarget of game.user.targets) {
+            const disposition = userTarget.document.disposition;
+            if ((target === 'friendly' && disposition !== 1) || (target === 'hostile' && disposition !== -1)) {
+                enabledEffect = false;
+                break;
+            }
 
             const distanceBetween = canvas.grid.measurePath([
-                { ...movedToken.toObject(), x: data.destination.x, y: data.destination.y },
-                token
+                userTarget.document.movement.destination,
+                token.movement.destination
             ]).distance;
             const distance = rangeMeasurement[range];
 
             const reverse = type === CONFIG.DH.GENERAL.rangeInclusion.outsideRange.id;
-            const newDisabled = reverse ? distanceBetween <= distance : distanceBetween > distance;
-            const oldDisabled = effectUpdates[effect.uuid] ? effectUpdates[effect.uuid].disabled : newDisabled;
-            effectUpdates[effect.uuid] = {
-                disabled: oldDisabled || newDisabled,
-                value: effect
-            };
-        }
-    };
-
-    const effectUpdates = {};
-    for (let token of game.scenes.find(x => x.active).tokens) {
-        if (token.id !== movedToken.id) {
-            await updateEffects(token.disposition, token, rangeDependantEffects, effectUpdates);
+            if (reverse ? distanceBetween <= distance : distanceBetween > distance) {
+                enabledEffect = false;
+                break;
+            }
         }
 
-        if (token.actor) await updateEffects(movedToken.disposition, token, token.actor.effects, effectUpdates);
+        await effect.update({ disabled: !enabledEffect });
     }
+};
 
-    for (let key in effectUpdates) {
-        const effect = effectUpdates[key];
-        await effect.value.update({ disabled: effect.disabled });
+const updateAllRangeDependentEffects = async () => {
+    const effectsAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).effects;
+    if (!effectsAutomation.rangeDependent) return;
+
+    // Only consider tokens on the active scene
+    const tokens = game.scenes.find(x => x.active).tokens;
+    if (game.user.character) {
+        // The character updates their character's token. There can be only one token.
+        const characterToken = tokens.find(x => x.actor === game.user.character);
+        updateActorsRangeDependentEffects(characterToken);
+    } else if (game.user.isGM) {
+        // The GM is responsible for all other tokens.
+        const playerCharacters = game.users.players.filter(x => x.active).map(x => x.character);
+        for (let token of tokens.filter(x => !playerCharacters.includes(x.actor))) {
+            updateActorsRangeDependentEffects(token);
+        }
     }
+};
+
+const debouncedRangeEffectCall = foundry.utils.debounce(updateAllRangeDependentEffects, 50);
+
+Hooks.on('targetToken', async (user, token, targeted) => {
+    debouncedRangeEffectCall();
+});
+
+Hooks.on('moveToken', async (movedToken, data) => {
+    debouncedRangeEffectCall();
 });
 
 Hooks.on('renderCompendiumDirectory', (app, html) => applications.ui.ItemBrowser.injectSidebarButton(html));

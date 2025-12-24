@@ -111,7 +111,8 @@
       "page": 95,
       "artist": ""
     },
-    "motivesAndTactics": "Hide in plain sight, preserve the forest, root down, swing branches"
+    "motivesAndTactics": "Hide in plain sight, preserve the forest, root down, swing branches",
+    "size": "large"
   },
   "flags": {},
   "_id": "XK78QUfY8c8Go8Uv",
@@ -220,7 +221,7 @@
       "name": "Just a Tree",
       "type": "feature",
       "system": {
-        "description": "<p>Before they make their first attack in a fight or after they become Hidden the Treant is indistinguishable from other trees until they next act or a PC succeeds on an Instinct Roll to identify them.</p>",
+        "description": "<p>Before they make their first attack in a fight or after they become Hidden the @Lookup[@name] is indistinguishable from other trees until they next act or a PC succeeds on an Instinct Roll to identify them.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -245,14 +246,14 @@
       "name": "Seed Barrage",
       "type": "feature",
       "system": {
-        "description": "<p>Mark a Stress and make an attack against up to three targets within Close range pummeling them with giant acorns Targets the Treant succeeds against take <strong>2d10+5</strong> physical damage.</p>",
+        "description": "<p><strong>Mark a Stress</strong> and make an attack against up to three targets within Close range pummeling them with giant acorns. Targets the @Lookup[@name] succeeds against take <strong>2d10+5</strong> physical damage.</p>",
         "resource": null,
         "actions": {
           "cM5BBUSFxOHBsV2G": {
             "type": "damage",
             "_id": "cM5BBUSFxOHBsV2G",
             "systemPath": "actions",
-            "description": "<p>Mark a Stress and make an attack against up to three targets within Close range pummeling them with giant acorns Targets the Treant succeeds against take <strong>2d10+5</strong> physical damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -315,7 +316,8 @@
           }
         },
         "originItemType": null,
-        "multiclassOrigin": false
+        "multiclassOrigin": false,
+        "featureForm": "action"
       },
       "_id": "Q2slH9qkBO5SPw43",
       "img": "icons/consumables/nuts/nut-spiked-shell.webp",
@@ -336,7 +338,7 @@
       "name": "Take Root",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to Root the Treant in place. The Treant is Restrained while Rooted and can end this effect instead of moving while they are spotlighted. While Rooted the Treant has resistance to physical damage.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to Root the @Lookup[@name] in place. The @Lookup[@name] is Restrained while Rooted and can end this effect instead of moving while they are spotlighted. While Rooted the @Lookup[@name] has resistance to physical damage.</p>",
         "resource": null,
         "actions": {
           "008EelRlcs6CKGvM": {
@@ -378,7 +380,8 @@
           }
         },
         "originItemType": null,
-        "multiclassOrigin": false
+        "multiclassOrigin": false,
+        "featureForm": "action"
       },
       "_id": "sqkgw26P2KiQVtXT",
       "img": "icons/consumables/plants/thorned-stem-brown.webp",

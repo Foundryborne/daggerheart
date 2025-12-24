@@ -11,7 +11,8 @@ export default class DhpAdversary extends BaseDataActor {
             label: 'TYPES.Actor.adversary',
             type: 'adversary',
             settingSheet: DHAdversarySettings,
-            hasAttribution: true
+            hasAttribution: true,
+            usesSize: true
         });
     }
 
@@ -59,15 +60,13 @@ export default class DhpAdversary extends BaseDataActor {
                     0,
                     0,
                     'DAGGERHEART.GENERAL.HitPoints.plural',
-                    true,
-                    game.i18n.localize('DAGGERHEART.GENERAL.max')
+                    true
                 ),
                 stress: resourceField(
                     0,
                     0,
                     'DAGGERHEART.GENERAL.stress',
-                    true,
-                    game.i18n.localize('DAGGERHEART.GENERAL.max')
+                    true
                 )
             }),
             rules: new fields.SchemaField({
@@ -142,7 +141,7 @@ export default class DhpAdversary extends BaseDataActor {
     }
 
     isItemValid(source) {
-        return source.type === "feature";
+        return source.type === 'feature';
     }
 
     async _preUpdate(changes, options, user) {

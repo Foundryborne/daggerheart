@@ -117,7 +117,8 @@
       "source": "Daggerheart SRD",
       "page": 84,
       "artist": ""
-    }
+    },
+    "size": "medium"
   },
   "flags": {},
   "_id": "h5RuhzGL17dW5FBT",
@@ -226,14 +227,14 @@
       "name": "Grindletooth Venom",
       "type": "feature",
       "system": {
-        "description": "<p>Targets who mark HP from the Assassin’s attacks are Vulnerable until they clear a HP.</p>",
+        "description": "<p>Targets who mark HP from the @Lookup[@name]’s attacks are Vulnerable until they clear a HP.</p>",
         "resource": null,
         "actions": {
           "L83tU1TgmqoH9SSn": {
             "type": "effect",
             "_id": "L83tU1TgmqoH9SSn",
             "systemPath": "actions",
-            "description": "<p>Targets who mark HP from the Assassin’s attacks are Vulnerable until they clear a HP.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -318,7 +319,7 @@
       "name": "Assassin Poisoner",
       "type": "feature",
       "system": {
-        "description": "<p>The Assassin has advantage on attacks if they are <em>Hidden</em>.</p>",
+        "description": "<p>The @Lookup[@name] has advantage on attacks if they are <em>Hidden</em>.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -394,7 +395,7 @@
             "type": "effect",
             "_id": "sp7RfJRQJsEUm09m",
             "systemPath": "actions",
-            "description": "<p>Drop a smoke bomb that fills the air within Close range with smoke, Dizzying all targets in this area. Dizzied targets have disadvantage on their next action roll, then clear the condition.</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -419,7 +420,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "lAmiK8wVxjyHwKlp",
       "img": "icons/magic/air/fog-gas-smoke-green.webp",

@@ -194,27 +194,10 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
     }
 
     prepareDerivedData() {
-        /* Preventing subclass features from transferring to actor if they do not have the right subclass advancement */
-        if (this.parent?.type === 'feature') {
-            const origSubclassParent = this.parent.system.originItemType === 'subclass';
-            if (origSubclassParent) {
-                const subclass = this.parent.parent.items.find(
-                    x =>
-                        x.type === 'subclass' &&
-                        x.system.isMulticlass === (this.parent.system.identifier === 'multiclass')
-                );
-
-                if (subclass) {
-                    const featureState = subclass.system.featureState;
-
-                    if (
-                        (this.parent.system.identifier === CONFIG.DH.ITEM.featureSubTypes.specialization &&
-                            featureState < 2) ||
-                        (this.parent.system.identifier === CONFIG.DH.ITEM.featureSubTypes.mastery && featureState < 3)
-                    ) {
-                        this.transfer = false;
-                    }
-                }
+        /* Check for item availability such as in the case of subclass advancement. */
+        if (this.parent?.parent?.system?.isItemAvailable) {
+            if (!this.parent.parent.system.isItemAvailable(this.parent)) {
+                this.transfer = false;
             }
         }
     }

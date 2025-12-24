@@ -462,7 +462,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "EP4FXeQqbqFGQoIX",
       "img": "icons/skills/movement/arrow-down-pink.webp",

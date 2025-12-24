@@ -117,7 +117,8 @@
       "source": "Daggerheart SRD",
       "page": 86,
       "artist": ""
-    }
+    },
+    "size": "medium"
   },
   "flags": {},
   "_id": "ChwwVqowFw8hJQwT",
@@ -226,7 +227,7 @@
       "name": "Warped Fortitude",
       "type": "feature",
       "system": {
-        "description": "<p>The Experiment is resistant to physical damage.</p>",
+        "description": "<p>The @Lookup[@name] is resistant to physical damage.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -295,7 +296,7 @@
       "name": "Overwhelm",
       "type": "feature",
       "system": {
-        "description": "<p>When a target the Experiment attacks has other adversaries within Very Close range, the Experiment deals double damage.</p>",
+        "description": "<p>When a target the @Lookup[@name] attacks has other adversaries within Very Close range, the @Lookup[@name] deals double damage.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -320,14 +321,14 @@
       "name": "Lurching Lunge",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to spotlight the Experiment as an additional GM move instead of spending Fear.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to spotlight the @Lookup[@name] as an additional GM move instead of spending Fear.</p>",
         "resource": null,
         "actions": {
           "i3FANnO1t9AzJdTp": {
             "type": "effect",
             "_id": "i3FANnO1t9AzJdTp",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to spotlight the Experiment as an additional GM move instead of spending Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -354,7 +355,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "g0h3Zo6xqgfSlyxi",
       "img": "icons/skills/melee/strike-slashes-red.webp",

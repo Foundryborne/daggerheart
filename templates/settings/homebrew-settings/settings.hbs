@@ -25,6 +25,20 @@
             {{/each}}
         </fieldset>
 
+        <fieldset class="three-columns">
+            <legend>
+                {{localize "Token Sizes"}} 
+                <a data-action="resetTokenSizes"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+            </legend>
+
+            {{formGroup settingFields.schema.fields.tokenSizes.fields.tiny value=settingFields._source.tokenSizes.tiny localize=true}}
+            {{formGroup settingFields.schema.fields.tokenSizes.fields.small value=settingFields._source.tokenSizes.small localize=true}}
+            {{formGroup settingFields.schema.fields.tokenSizes.fields.medium value=settingFields._source.tokenSizes.medium localize=true}}
+            {{formGroup settingFields.schema.fields.tokenSizes.fields.large value=settingFields._source.tokenSizes.large localize=true}}
+            {{formGroup settingFields.schema.fields.tokenSizes.fields.huge value=settingFields._source.tokenSizes.huge localize=true}}
+            {{formGroup settingFields.schema.fields.tokenSizes.fields.gargantuan value=settingFields._source.tokenSizes.gargantuan localize=true}}
+        </fieldset>
+
         <fieldset>
             <legend>
                 {{localize "DAGGERHEART.SETTINGS.Homebrew.currency.title"}} 

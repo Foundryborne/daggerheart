@@ -124,29 +124,21 @@ export default class SaveField extends fields.SchemaField {
      */
     static async updateSaveMessage(result, message, targetId) {
         if (!result) return;
-        const updateMsg = async function (message, targetId, result) {
-            // setTimeout(async () => {
-            const chatMessage = ui.chat.collection.get(message._id),
-                changes = {
-                    flags: {
-                        [game.system.id]: {
-                            reactionRolls: {
-                                [targetId]: {
-                                    result: result.roll.total,
-                                    success: result.roll.success
-                                }
+
+        const chatMessage = ui.chat.collection.get(message._id),
+            changes = {
+                flags: {
+                    [game.system.id]: {
+                        reactionRolls: {
+                            [targetId]: {
+                                result: result.roll.total,
+                                success: result.roll.success
                             }
                         }
                     }
-                };
-            await chatMessage.update(changes);
-            // }, 100);
-        };
-        if (game.modules.get('dice-so-nice')?.active)
-            game.dice3d
-                .waitFor3DAnimationByMessageID(result.message.id ?? result.message._id)
-                .then(async () => await updateMsg(message, targetId, result));
-        else await updateMsg(message, targetId, result);
+                }
+            };
+        await chatMessage.update(changes);
     }
 
     /**

@@ -1,20 +1,35 @@
 .daggerheart.dh-style.dialog.item-transfer {
-    .item-transfer-container {
-        display: grid;
-        grid-template-columns: 1fr 42px;
-        gap: 4px;
+    .summary {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem;
+        
+        .actor-img {
+            border-radius: 50%;
+            width: 5rem;
+            height: 5rem;
+            object-fit: cover;
+            object-position: top center;
+        }
 
-        .number-display {
-            text-align: center;
+        .granted-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-32);
+
+            img {
+                width: 2rem;
+                height: 2rem;
+                object-fit: contain;
+                border-radius: 3px;
+            }
         }
     }
-
-    .item-sheet-footer {
-        padding-top: 8px;
-        display: flex;
-
-        button {
-            flex: 1;
-        }
+    label {
+        flex: 0;
+        margin-right: 0.5rem;
     }
 }

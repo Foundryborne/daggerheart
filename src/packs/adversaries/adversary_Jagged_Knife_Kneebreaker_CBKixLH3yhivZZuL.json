@@ -122,7 +122,8 @@
       "source": "Daggerheart SRD",
       "page": 78,
       "artist": ""
-    }
+    },
+    "size": "medium"
   },
   "flags": {},
   "_id": "CBKixLH3yhivZZuL",
@@ -233,7 +234,7 @@
       "_id": "vipYd2zMFs0i4Ock",
       "img": "icons/commodities/metal/chain-silver.webp",
       "system": {
-        "description": "<p>Creatures <em>Restrained</em> by the Kneebreaker take double damage from attacks by other adversaries.</p>",
+        "description": "<p>Creatures <em>Restrained</em> by the @Lookup[@name] take double damage from attacks by other adversaries.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -259,14 +260,14 @@
       "_id": "Sa4Nt0eoDjirBKGf",
       "img": "icons/skills/melee/unarmed-punch-fist.webp",
       "system": {
-        "description": "<p>Make an attack against a target within Melee range. On a success, the target takes no damage but is Restrained and <em>Vulnerable</em>. The target can break free, clearing both conditions, with a successful Strength Roll or is freed automatically if the Kneebreaker takes Major or greater damage.</p>",
+        "description": "<p>Make an attack against a target within Melee range. On a success, the target takes no damage but is Restrained and <em>Vulnerable</em>. The target can break free, clearing both conditions, with a successful Strength Roll or is freed automatically if the @Lookup[@name] takes Major or greater damage.</p>",
         "resource": null,
         "actions": {
           "uMNSQzNPVPhHT34T": {
             "type": "attack",
             "_id": "uMNSQzNPVPhHT34T",
             "systemPath": "actions",
-            "description": "<p>Make an attack against a target within Melee range. On a success, the target takes no damage but is Restrained and <em>Vulnerable</em>. The target can break free, clearing both conditions, with a successful Strength Roll or is freed automatically if the Kneebreaker takes Major or greater damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -316,7 +317,8 @@
         },
         "originItemType": null,
         "subType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "effects": [
         {

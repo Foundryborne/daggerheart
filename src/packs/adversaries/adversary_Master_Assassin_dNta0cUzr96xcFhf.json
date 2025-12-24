@@ -122,7 +122,8 @@
       "source": "Daggerheart SRD",
       "page": 84,
       "artist": ""
-    }
+    },
+    "size": "medium"
   },
   "flags": {},
   "_id": "dNta0cUzr96xcFhf",
@@ -231,7 +232,7 @@
       "name": "Won't See it Coming",
       "type": "feature",
       "system": {
-        "description": "<p> The Assassin deals direct damage while they’re <em>Hidden</em>.</p>",
+        "description": "<p>The @Lookup[@name] deals direct damage while they’re <em>Hidden</em>.</p>",
         "resource": null,
         "actions": {
           "xFBE0jLf96fbCY7K": {
@@ -239,7 +240,7 @@
             "_id": "xFBE0jLf96fbCY7K",
             "systemPath": "actions",
             "baseAction": false,
-            "description": "<p>The Assassin deals direct damage while they’re <em>Hidden</em>.</p>",
+            "description": "",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"
@@ -338,14 +339,14 @@
       "name": "Strike as One",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to spotlight a number of other Assassins equal to the Assassin’s unmarked Stress.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to spotlight a number of other Assassins equal to the @Lookup[@name]’s unmarked Stress.</p>",
         "resource": null,
         "actions": {
           "vKRDbD07bqR317Zv": {
             "type": "effect",
             "_id": "vKRDbD07bqR317Zv",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to spotlight a number of other Assassins equal to the Assassin’s unmarked Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -372,7 +373,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "action"
       },
       "_id": "za6Qr0CjI9Kb4I0U",
       "img": "icons/skills/movement/arrows-up-trio-red.webp",
@@ -393,14 +395,14 @@
       "name": "The Subtle Blade",
       "type": "feature",
       "system": {
-        "description": "<p>When the Assassin successfully makes a standard attack against a <em>Vulnerable</em> target, you can <strong>spend a Fear</strong> to deal Severe damage instead of their standard damage.</p>",
+        "description": "<p>When the @Lookup[@name] successfully makes a standard attack against a <em>Vulnerable</em> target, you can <strong>spend a Fear</strong> to deal Severe damage instead of their standard damage.</p>",
         "resource": null,
         "actions": {
           "tYkZ9BwjlOg61BhE": {
             "type": "effect",
             "_id": "tYkZ9BwjlOg61BhE",
             "systemPath": "actions",
-            "description": "<p>When the Assassin successfully makes a standard attack against a <em>Vulnerable</em> target, you can <strong>spend a Fear</strong> to deal Severe damage instead of their standard damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -427,7 +429,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "s0WcpK43WN2ptqNc",
       "img": "icons/skills/melee/strike-dagger-blood-red.webp",
@@ -448,14 +451,14 @@
       "name": "Momentum",
       "type": "feature",
       "system": {
-        "description": "<p> When the Assassin makes a successful attack against a PC, you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "7EP5X5kodzMCBQZO": {
             "type": "healing",
             "_id": "7EP5X5kodzMCBQZO",
             "systemPath": "actions",
-            "description": "<p>When the Assassin makes a successful attack against a PC, you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "reaction",
             "cost": [],
@@ -522,7 +525,8 @@
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "featureForm": "reaction"
       },
       "_id": "PcNgHScmTd9l3exN",
       "img": "icons/skills/melee/strike-weapons-orange.webp",
