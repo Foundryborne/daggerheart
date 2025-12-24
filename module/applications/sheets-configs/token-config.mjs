@@ -35,6 +35,7 @@ export default class DhTokenConfig extends foundry.applications.sheets.TokenConf
     async _prepareAppearanceTab() {
         const context = await super._prepareAppearanceTab();
         context.tokenSizes = CONFIG.DH.ACTOR.tokenSize;
+        context.tokenSize = this.document.actor.system.size;
         context.usesActorSize = this.token.actor?.system?.metadata?.usesSize;
         context.actorSizeDisable = context.usesActorSize && this.token.actor.system.size !== 'custom';
 
