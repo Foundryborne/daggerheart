@@ -53,6 +53,28 @@ export default class DhTokenConfig extends foundry.applications.sheets.TokenConf
         }
     }
 
+    /** @inheritDoc */
+    _previewChanges(changes) {
+        if (!changes || !this._preview) return;
+
+        const tokenSizeSelect = this.element?.querySelector('#dhTokenSize');
+        if (this.token.actor && tokenSizeSelect && tokenSizeSelect.value !== 'custom') {
+            const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
+            const tokenSize = tokenSizes[tokenSizeSelect.value];
+            changes.width = tokenSize;
+            changes.height = tokenSize;
+        }
+
+        const deletions = { '-=actorId': null, '-=actorLink': null };
+        const mergeOptions = { inplace: false, performDeletions: true };
+        this._preview.updateSource(mergeObject(changes, deletions, mergeOptions));
+
+        if (this._preview?.object?.destroyed === false) {
+            this._preview.object.initializeSources();
+            this._preview.object.renderFlags.set({ refresh: true });
+        }
+    }
+
     async onTokenSizeChange(event) {
         const value = event.target.value;
         const tokenSizeDimensions = this.element.querySelector('#tokenSizeDimensions');
