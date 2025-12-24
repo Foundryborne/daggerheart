@@ -51,6 +51,7 @@ export default class OwnershipSelection extends HandlebarsApplicationMixin(Appli
 
             return acc;
         }, {});
+        context.showOwnership = Boolean(Object.keys(context.ownership).length);
 
         return context;
     }
