@@ -227,14 +227,14 @@
       "name": "Relentless (2)",
       "type": "feature",
       "system": {
-        "description": "<p>The Gorgon can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "description": "<p>The @Lookup[@name] can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
         "actions": {
           "GSYD7y0ywAqyKUfm": {
             "type": "effect",
             "_id": "GSYD7y0ywAqyKUfm",
             "systemPath": "actions",
-            "description": "<p>The Gorgon can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "passive",
             "cost": [
@@ -285,14 +285,14 @@
       "name": "Sunsear Arrows",
       "type": "feature",
       "system": {
-        "description": "<p>When the Gorgon makes a successful standard attack, the target Glows until the end of the scene and can’t become <em>Hidden</em>. Attack rolls made against a Glowing target have advantage.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful standard attack, the target Glows until the end of the scene and can’t become <em>Hidden</em>. Attack rolls made against a Glowing target have advantage.</p>",
         "resource": null,
         "actions": {
           "fnTd5BjBAK46vRRk": {
             "type": "effect",
             "_id": "fnTd5BjBAK46vRRk",
             "systemPath": "actions",
-            "description": "<p>When the Gorgon makes a successful standard attack, the target Glows until the end of the scene and can’t become <em>Hidden</em>. Attack rolls made against a Glowing target have advantage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -382,14 +382,14 @@
       "name": "Crown of Serpents",
       "type": "feature",
       "system": {
-        "description": "<p>Make an attack roll against a target within Melee range using the Gorgon’s protective snakes. On a success, mark a Stress to deal <strong>2d10+4</strong> physical damage and the target must mark a Stress.</p>",
+        "description": "<p>Make an attack roll against a target within Melee range using the @Lookup[@name]’s protective snakes. On a success, mark a Stress to deal <strong>2d10+4</strong> physical damage and the target must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "ryfj8eiYYNGJPtBg": {
             "type": "attack",
             "_id": "ryfj8eiYYNGJPtBg",
             "systemPath": "actions",
-            "description": "<p>Make an attack roll against a target within Melee range using the Gorgon’s protective snakes. On a success, mark a Stress to deal <strong>2d10+4</strong> physical damage and the target must mark a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -507,14 +507,14 @@
       "name": "Petrifying Gaze",
       "type": "feature",
       "system": {
-        "description": "<p>When the Gorgon takes damage from an attack within Close range, you can <strong>spend a Fear</strong> to force the attacker to make an Instinct Reaction Roll. On a failure, they begin to turn to stone, marking a HP and starting a Petrification Countdown (4). This countdown ticks down when the Gorgon is attacked. When it triggers, the target must make a death move. If the Gorgon is defeated, all petrification countdowns end.</p>",
+        "description": "<p>When the @Lookup[@name] takes damage from an attack within Close range, you can <strong>spend a Fear</strong> to force the attacker to make an Instinct Reaction Roll. On a failure, they begin to turn to stone, marking a HP and starting a Petrification Countdown (4). This countdown ticks down when the @Lookup[@name] is attacked. When it triggers, the target must make a death move. If the @Lookup[@name] is defeated, all petrification countdowns end.</p>",
         "resource": null,
         "actions": {
           "ySkX0wOpEFqtgeD9": {
             "type": "attack",
             "_id": "ySkX0wOpEFqtgeD9",
             "systemPath": "actions",
-            "description": "<p>When the Gorgon takes damage from an attack within Close range, you can <strong>spend a Fear</strong> to force the attacker to make an Instinct Reaction Roll. On a failure, they begin to turn to stone, marking a HP and starting a Petrification Countdown (4). This countdown ticks down when the Gorgon is attacked. When it triggers, the target must make a death move. If the Gorgon is defeated, all petrification countdowns end.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -567,7 +567,7 @@
             "type": "countdown",
             "_id": "ywZTs3D8ClT7tAsa",
             "systemPath": "actions",
-            "description": "<p>On a failure, they begin to turn to stone, marking a HP and starting a Petrification Countdown (4). This countdown ticks down when the Gorgon is attacked. When it triggers, the target must make a death move. If the Gorgon is defeated, all petrification countdowns end.</p>",
+            "description": "<p>On a failure, they begin to turn to stone, marking a HP and starting a Petrification Countdown (4). This countdown ticks down when the @Lookup[@name] is attacked. When it triggers, the target must make a death move. If the @Lookup[@name] is defeated, all petrification countdowns end.</p>",
             "chatDisplay": false,
             "originItem": {
               "type": "itemCollection"
@@ -624,14 +624,14 @@
       "name": "Momentum",
       "type": "feature",
       "system": {
-        "description": "<p>When the Gorgon makes a successful attack against a PC, you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "V6tkBYSjOt1LZCkp": {
             "type": "healing",
             "_id": "V6tkBYSjOt1LZCkp",
             "systemPath": "actions",
-            "description": "<p>When the Gorgon makes a successful attack against a PC, you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "reaction",
             "cost": [],

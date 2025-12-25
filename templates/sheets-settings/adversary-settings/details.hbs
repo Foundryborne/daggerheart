@@ -22,12 +22,12 @@
         <fieldset class="flex">
             <legend>{{localize "DAGGERHEART.GENERAL.HitPoints.plural"}}</legend>
             {{formGroup systemFields.resources.fields.hitPoints.fields.value value=document._source.system.resources.hitPoints.value label=(localize "DAGGERHEART.ACTORS.Adversary.FIELDS.resources.hitPoints.value.label")}}
-            {{formGroup systemFields.resources.fields.hitPoints.fields.max value=document._source.system.resources.hitPoints.max}}
+            {{formGroup systemFields.resources.fields.hitPoints.fields.max value=document._source.system.resources.hitPoints.max label=(localize "DAGGERHEART.ACTORS.Adversary.FIELDS.resources.hitPoints.max.label")}}
         </fieldset>
         <fieldset class="flex">
             <legend>{{localize "DAGGERHEART.GENERAL.stress"}}</legend>
             {{formGroup systemFields.resources.fields.stress.fields.value value=document._source.system.resources.stress.value label=(localize "DAGGERHEART.ACTORS.Adversary.FIELDS.resources.stress.value.label")}}
-            {{formGroup systemFields.resources.fields.stress.fields.max value=document._source.system.resources.stress.max}}
+            {{formGroup systemFields.resources.fields.stress.fields.max value=document._source.system.resources.stress.max label=(localize "DAGGERHEART.ACTORS.Adversary.FIELDS.resources.stress.max.label")}}
         </fieldset>
     </div>
 

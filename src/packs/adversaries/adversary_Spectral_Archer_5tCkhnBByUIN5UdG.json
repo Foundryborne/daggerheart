@@ -227,7 +227,7 @@
       "name": "Ghost",
       "type": "feature",
       "system": {
-        "description": "<p>The Archer has resistance to physical damage. <strong>Mark a Stress</strong> to move up to Close range through solid objects.</p>",
+        "description": "<p>The @Lookup[@name] has resistance to physical damage. <strong>Mark a Stress</strong> to move up to Close range through solid objects.</p>",
         "resource": null,
         "actions": {
           "kkKfo1gwetxB3tFQ": {
@@ -333,7 +333,7 @@
             "type": "attack",
             "_id": "KahJnM94QQfy6oMK",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to make an attack within Far range against a PC who is within Very Close range of at least two other PCs. On a success, the target takes <strong>2d8+12</strong> physical damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

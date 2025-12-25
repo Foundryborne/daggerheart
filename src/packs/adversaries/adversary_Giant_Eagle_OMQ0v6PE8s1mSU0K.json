@@ -252,7 +252,7 @@
       "name": "Flight",
       "type": "feature",
       "system": {
-        "description": "<p>While flying, the Eagle gains a +3 bonus to their Difficulty.</p>",
+        "description": "<p>While flying, the @Lookup[@name] gains a +3 bonus to their Difficulty.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -328,7 +328,7 @@
             "type": "attack",
             "_id": "KwsxjI3jBzmxgkPu",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to attack a target within Far range. On a success, deal <strong>2d10+2</strong> physical damage and knock the target over, making them <em>Vulnerable</em> until they next act.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -472,14 +472,14 @@
       "name": "Take Off",
       "type": "feature",
       "system": {
-        "description": "<p>Make an attack against a target within Very Close range. On a success, deal <strong>2d4+3</strong> physical damage and the target must succeed on an Agility Reaction Roll or become temporarily Restrained within the Eagle’s massive talons. If the target is Restrained, the Eagle immediately lifts into the air to Very Far range above the battlefi eld while holding them. </p>",
+        "description": "<p>Make an attack against a target within Very Close range. On a success, deal <strong>2d4+3</strong> physical damage and the target must succeed on an Agility Reaction Roll or become temporarily Restrained within the @Lookup[@name]’s massive talons. If the target is Restrained, the @Lookup[@name] immediately lifts into the air to Very Far range above the battlefi eld while holding them.</p>",
         "resource": null,
         "actions": {
           "NtgA9EQPF2Rdb9KK": {
             "type": "attack",
             "_id": "NtgA9EQPF2Rdb9KK",
             "systemPath": "actions",
-            "description": "<p>Make an attack against a target within Very Close range. On a success, deal <strong>2d4+3</strong> physical damage and the target must succeed on an Agility Reaction Roll or become temporarily Restrained within the Eagle’s massive talons. If the target is Restrained, the Eagle immediately lifts into the air to Very Far range above the battlefi eld while holding them.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -616,14 +616,14 @@
       "name": "Deadly Drop",
       "type": "feature",
       "system": {
-        "description": "<p>While flying, the Eagle can drop a Restrained target they are holding. When dropped, the target is no longer Restrained but starts falling. If their fall isn’t prevented during the PCs’ next action, the target takes <strong>2d20</strong> physical damage when they land.</p>",
+        "description": "<p>While flying, the @Lookup[@name] can drop a Restrained target they are holding. When dropped, the target is no longer Restrained but starts falling. If their fall isn’t prevented during the PCs’ next action, the target takes <strong>2d20</strong> physical damage when they land.</p>",
         "resource": null,
         "actions": {
           "1tO018UgL0VG51ti": {
             "type": "damage",
             "_id": "1tO018UgL0VG51ti",
             "systemPath": "actions",
-            "description": "<p>While flying, the Eagle can drop a Restrained target they are holding. When dropped, the target is no longer Restrained but starts falling. If their fall isn’t prevented during the PCs’ next action, the target takes <strong>2d20</strong> physical damage when they land.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

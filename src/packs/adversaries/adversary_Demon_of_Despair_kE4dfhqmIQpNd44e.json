@@ -227,7 +227,7 @@
       "name": "Depths of Despair",
       "type": "feature",
       "system": {
-        "description": "<p>The Demon deals double damage to PCs with 0 Hope.</p>",
+        "description": "<p>The @Lookup[@name] deals double damage to PCs with 0 Hope.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -259,7 +259,7 @@
             "type": "effect",
             "_id": "n0RYO05pROFU6ov3",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to weigh down the spirits of all PCs within Far range. All targets affected replace their Hope Die with a <strong>d8</strong> until they roll a success with Hope or their next rest.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -357,7 +357,7 @@
             "type": "damage",
             "_id": "urrp8SCFgqbmSTvm",
             "systemPath": "actions",
-            "description": "<p>When a PC fails with Fear, you can <strong>mark a Stress</strong> to cause all other PCs within Close range to lose a Hope.</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -436,14 +436,14 @@
       "name": "Momentum",
       "type": "feature",
       "system": {
-        "description": "<p>When the Demon makes a successful attack against a PC, you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "N0Xx6GnijLXIMGBw": {
             "type": "healing",
             "_id": "N0Xx6GnijLXIMGBw",
             "systemPath": "actions",
-            "description": "<p>When the Demon makes a successful attack against a PC, you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

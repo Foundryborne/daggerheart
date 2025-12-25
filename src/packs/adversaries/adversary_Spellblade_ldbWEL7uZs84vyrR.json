@@ -230,7 +230,7 @@
       "_id": "BwuoAv3EWT0m1apk",
       "img": "icons/weapons/swords/sword-runed-glowing.webp",
       "system": {
-        "description": "<p>Damage dealt by the Spellblade’s standard attack is considered both physical and magic.</p>",
+        "description": "<p>Damage dealt by the @Lookup[@name]’s standard attack is considered both physical and magic.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -263,7 +263,7 @@
             "type": "attack",
             "_id": "K4VnxigKTiu7hhZx",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> and target a group within Far range. All targets must succeed on an Agility Reaction Roll or take <strong>1d8+2</strong> magic damage. You gain a Fear for each target who marked HP from this attack.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -364,14 +364,14 @@
       "_id": "piyJhdHzztabmZ8I",
       "img": "icons/skills/movement/arrows-up-trio-red.webp",
       "system": {
-        "description": "<p><strong>Spend 2 Fear</strong> to spotlight up to fi ve allies within Far range.</p>",
+        "description": "<p><strong>Spend 2 Fear</strong> to spotlight up to five allies within Far range.</p>",
         "resource": null,
         "actions": {
           "N42NPEu7fcVDXEvl": {
             "type": "effect",
             "_id": "N42NPEu7fcVDXEvl",
             "systemPath": "actions",
-            "description": "<p><strong>Spend 2 Fear</strong> to spotlight up to fi ve allies within Far range.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -421,14 +421,14 @@
       "_id": "P9nD5K2ztkZGo2I8",
       "img": "icons/skills/melee/strike-weapons-orange.webp",
       "system": {
-        "description": "<p>When the Spellblade makes a successful attack against a PC, you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "f4AulN6MeMaEvqbk": {
             "type": "healing",
             "_id": "f4AulN6MeMaEvqbk",
             "systemPath": "actions",
-            "description": "<p>When the Spellblade makes a successful attack against a PC, you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "reaction",
             "cost": [],

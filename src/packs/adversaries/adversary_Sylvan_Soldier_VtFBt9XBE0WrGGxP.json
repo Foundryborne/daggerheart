@@ -229,14 +229,14 @@
       "_id": "uo5DbPuQQ018Pyfd",
       "img": "icons/creatures/abilities/wolf-howl-moon-purple.webp",
       "system": {
-        "description": "<p>If the Soldier makes a standard attack and another Sylvan Soldier is within Melee range of the target, deal <strong>1d8+5</strong> physical damage instead of their standard damage.</p>",
+        "description": "<p>If the @Lookup[@name] makes a standard attack and another @Lookup[@name] is within Melee range of the target, deal <strong>1d8+5</strong> physical damage instead of their standard damage.</p>",
         "resource": null,
         "actions": {
           "dmlz83o2JOAoGiuK": {
             "type": "attack",
             "_id": "dmlz83o2JOAoGiuK",
             "systemPath": "actions",
-            "description": "<p>If the Soldier makes a standard attack and another Sylvan Soldier is within Melee range of the target, deal <strong>1d8+5</strong> physical damage instead of their standard damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -336,7 +336,7 @@
             "type": "attack",
             "_id": "UyL02IaAO3m8LgWI",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to pull down a tree within Close range. A creature hit by the tree must succeed on an Agility Reaction Roll (15) or take <strong>1d10</strong> physical damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -437,14 +437,14 @@
       "_id": "1dmKoSnV82sLc8xZ",
       "img": "icons/magic/nature/root-vine-leaves-green.webp",
       "system": {
-        "description": "<p>When the Soldier makes a successful attack, you can <strong>mark a Stress</strong> to become Hidden until the Soldier’s next attack or a PC succeeds on an Instinct Roll (14) to find them.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack, you can <strong>mark a Stress</strong> to become Hidden until the @Lookup[@name]’s next attack or a PC succeeds on an Instinct Roll (14) to find them.</p>",
         "resource": null,
         "actions": {
           "l32BjO9J0jFvD0Zy": {
             "type": "effect",
             "_id": "l32BjO9J0jFvD0Zy",
             "systemPath": "actions",
-            "description": "<p>When the Soldier makes a successful attack, you can <strong>mark a Stress</strong> to become Hidden until the Soldier’s next attack or a PC succeeds on an Instinct Roll (14) to find them.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

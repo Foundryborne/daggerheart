@@ -223,14 +223,14 @@
       "_id": "c1jcZZD616J5Y4Mb",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
       "system": {
-        "description": "<p>The Elemental can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "description": "<p>The @Lookup[@name] can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
         "actions": {
           "oFsBEbdXCpX9XLQy": {
             "type": "effect",
             "_id": "oFsBEbdXCpX9XLQy",
             "systemPath": "actions",
-            "description": "<p>The Elemental can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "passive",
             "cost": [],
@@ -273,14 +273,14 @@
       "_id": "7AXE86WNd68OySkD",
       "img": "icons/magic/fire/explosion-flame-lightning-strike.webp",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to choose a point within Far range. The ground within Very Close range of that point immediately bursts into fl ames. All creatures within this area must make an Agility Reaction Roll. Targets who fail take <strong>2d8</strong> magic damage from the fl ames. Targets who succeed take half damage.</p><p>@Template[type:circle|range:vc]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to choose a point within Far range. The ground within Very Close range of that point immediately bursts into flames. All creatures within this area must make an Agility Reaction Roll. Targets who fail take <strong>2d8</strong> magic damage from the flames. Targets who succeed take half damage.</p><p>@Template[type:circle|range:vc]</p>",
         "resource": null,
         "actions": {
           "x1VCkfcSYiPyg8fk": {
             "type": "attack",
             "_id": "x1VCkfcSYiPyg8fk",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to choose a point within Far range. The ground within Very Close range of that point immediately bursts into fl ames. All creatures within this area must make an Agility Reaction Roll. Targets who fail take <strong>2d8</strong> magic damage from the fl ames. Targets who succeed take half damage.</p><p>@Template[type:circle|range:vc]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -489,7 +489,7 @@
       "_id": "3u6wvKPJAS2v5nWV",
       "img": "icons/magic/fire/elemental-fire-flying.webp",
       "system": {
-        "description": "<p>Three times per scene, when the Elemental moves onto objects that are highly flammable, consume them to clear a HP or a Stress.</p>",
+        "description": "<p>Three times per scene, when the @Lookup[@name] moves onto objects that are highly flammable, consume them to clear a HP or a Stress.</p>",
         "resource": {
           "type": "simple",
           "value": 0,
@@ -501,7 +501,7 @@
             "type": "healing",
             "_id": "CTWSVVisdgJgF7pd",
             "systemPath": "actions",
-            "description": "<p>Three times per scene, when the Elemental moves onto objects that are highly flammable, consume them to clear a HP or a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -568,7 +568,7 @@
             "type": "healing",
             "_id": "e0fG0xtj6hOUp66o",
             "systemPath": "actions",
-            "description": "<p>Three times per scene, when the Elemental moves onto objects that are highly flammable, consume them to clear a HP or a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -656,14 +656,14 @@
       "_id": "kssnXljBaV31iX58",
       "img": "icons/skills/melee/strike-weapons-orange.webp",
       "system": {
-        "description": "<p> When the Elemental makes a successful attack against a PC, you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "rPj1Wf22Kai3eBCv": {
             "type": "healing",
             "_id": "rPj1Wf22Kai3eBCv",
             "systemPath": "actions",
-            "description": "<p>When the Elemental makes a successful attack against a PC, you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "reaction",
             "cost": [],

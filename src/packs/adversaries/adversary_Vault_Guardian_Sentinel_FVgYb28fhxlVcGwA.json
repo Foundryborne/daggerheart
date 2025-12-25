@@ -221,7 +221,7 @@
       "name": "Kinetic Slam",
       "type": "feature",
       "system": {
-        "description": "<p>Targets who take damage from the Sentinel’s standard attack are knocked back to Very Close range.</p>",
+        "description": "<p>Targets who take damage from the @Lookup[@name]’s standard attack are knocked back to Very Close range.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -246,14 +246,14 @@
       "name": "Box In",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to choose a target within Very Close range to focus on. That target has disadvantage on attack rolls when they’re within Very Close range of the Sentinel. The Sentinel can only focus on one target at a time.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to choose a target within Very Close range to focus on. That target has disadvantage on attack rolls when they’re within Very Close range of the @Lookup[@name]. The @Lookup[@name]Sentinel can only focus on one target at a time.</p>",
         "resource": null,
         "actions": {
           "4RQnBu4kcUs3PcPH": {
             "type": "effect",
             "_id": "4RQnBu4kcUs3PcPH",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to choose a target within Very Close range to focus on. That target has disadvantage on attack rolls when they’re within Very Close range of the Sentinel. The Sentinel can only focus on one target at a time.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -358,7 +358,7 @@
             "type": "attack",
             "_id": "mI9i9iwrM48NjzeE",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to lob explosive magic at a point within Far range. All targets within Very Close range of that point must make an Agility Reaction Roll. Targets who fail take <strong>2d8+20</strong> magic damage and are knocked back to Close range. Targets who succeed take half damage and aren’t knocked back.</p><p>@Template[type:circle|range:vc]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -458,14 +458,14 @@
       "name": "Momentum",
       "type": "feature",
       "system": {
-        "description": "<p>When the Sentinel makes a successful attack against a PC, you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "AtXg38fItOgiYUee": {
             "type": "healing",
             "_id": "AtXg38fItOgiYUee",
             "systemPath": "actions",
-            "description": "<p>When the Sentinel makes a successful attack against a PC, you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "reaction",
             "cost": [],

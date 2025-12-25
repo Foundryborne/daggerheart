@@ -228,14 +228,14 @@
       "_id": "LIAbel7pMzAHpgF3",
       "img": "icons/skills/movement/arrows-up-trio-red.webp",
       "system": {
-        "description": "<p>When you spotlight the Lieutenant, <strong>mark a Stress</strong> to also spotlight two allies within Close range.</p>",
+        "description": "<p>When you spotlight the @Lookup[@name], <strong>mark a Stress</strong> to also spotlight two allies within Close range.</p>",
         "resource": null,
         "actions": {
           "IfMFU67g4sfhSYtm": {
             "type": "effect",
             "_id": "IfMFU67g4sfhSYtm",
             "systemPath": "actions",
-            "description": "<p>When you spotlight the Lieutenant, <strong>mark a Stress</strong> to also spotlight two allies within Close range.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -319,7 +319,7 @@
             "type": "attack",
             "_id": "fzVyO0DUwIVEUCtg",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to make an attack against a Vulnerable target within Close range. On a success, deal <strong>2d6+12</strong> physical damage and the target must mark a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -445,14 +445,14 @@
       "_id": "uelnRgGStjJ27VtO",
       "img": "icons/skills/melee/strike-weapons-orange.webp",
       "system": {
-        "description": "<p>When the Lieutenant makes a successful attack against a PC, you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "GSjfSgBzyhbVcpbt": {
             "type": "healing",
             "_id": "GSjfSgBzyhbVcpbt",
             "systemPath": "actions",
-            "description": "<p>When the Lieutenant makes a successful attack against a PC, you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

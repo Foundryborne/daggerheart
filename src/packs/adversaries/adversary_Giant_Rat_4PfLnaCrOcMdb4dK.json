@@ -222,7 +222,7 @@
       "_id": "v3AcLcWrXy2rtW4Z",
       "img": "icons/magic/symbols/runes-carved-stone-yellow.webp",
       "system": {
-        "description": "<p>The Rat is defeated when they take any damage. For every 3 damage a PC deals to the Rat, defeat an additional Minion within range the attack would succeed against.</p>",
+        "description": "<p>The @Lookup[@name] is defeated when they take any damage. For every 3 damage a PC deals to the @Lookup[@name], defeat an additional Minion within range the attack would succeed against.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -248,14 +248,14 @@
       "_id": "fsaBlCjTdq1jM23G",
       "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Giant Rats within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 1 physical damage each. Combine this damage.</p>",
+        "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all @Lookup[@name]s within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 1 physical damage each. Combine this damage.</p>",
         "resource": null,
         "actions": {
           "q8chow47nQLR9qeF": {
             "type": "attack",
             "_id": "q8chow47nQLR9qeF",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Giant Rats within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 1 physical damage each. Combine this damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

@@ -95,6 +95,9 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     prepareData() {
         this.name = this.name || game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[this.type].name);
         this.img = this.img ?? this.parent?.parent?.img;
+
+        /* Fallback to feature description */
+        this.description = this.description || this.parent?.description;
     }
 
     /**
@@ -159,18 +162,16 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @returns {object}
      */
     getRollData(data = {}) {
-        if (!this.actor) return null;
-        const actorData = this.actor.getRollData(false);
+        const actorData = this.actor ? this.actor.getRollData(false) : {};
 
-        // Add Roll results to RollDatas
-        actorData.result = data.roll?.total ?? 1;
-
-        actorData.scale = data.costs?.length // Right now only return the first scalable cost.
-            ? (data.costs.find(c => c.scalable)?.total ?? 1)
-            : 1;
-        actorData.roll = {};
-
-        return actorData;
+        return {
+            ...actorData,
+            result: data.roll?.total ?? 1,
+            scale: data.costs?.length // Right now only return the first scalable cost.
+                ? (data.costs.find(c => c.scalable)?.total ?? 1)
+                : 1,
+            roll: {}
+        };
     }
 
     /**

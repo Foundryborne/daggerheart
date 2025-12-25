@@ -1,21 +1,22 @@
-<div class="daggerheart dh-style tooltip">
-    <h2 class="tooltip-title">{{item.name}}</h2>
+<div class="daggerheart dh-style tooltip armor card-style">
     <img class="tooltip-image" src="{{item.img}}" />
-    <div class="tooltip-description">{{{description}}}</div>
-
-    <div class="tooltip-information-section">
-        <div class="tooltip-information full-width">
-            <label>{{localize "DAGGERHEART.ITEMS.Armor.baseScore"}}</label>
-            <div>{{item.system.baseScore}}</div>
+    <h2 class="tooltip-title">{{item.name}}</h2>
+    <div class="tags">
+        <div class="tag">
+          <span>{{localize "DAGGERHEART.ITEMS.Armor.baseScore"}} {{item.system.baseScore}}</span>
         </div>
-        
-        <div class="tooltip-information">
-            <label>{{localize "DAGGERHEART.ITEMS.Armor.baseThresholds.major"}}</label>
-            <div>{{item.system.baseThresholds.major}}</div>
+        <div class="tag">
+          <span>{{localize "DAGGERHEART.ITEMS.Armor.baseThresholds.major"}} {{item.system.baseThresholds.major}}</span>
         </div>
-        <div class="tooltip-information">
-            <label>{{localize "DAGGERHEART.ITEMS.Armor.baseThresholds.severe"}}</label>
-            <div>{{item.system.baseThresholds.severe}}</div>
+        <div class="tag">
+          <span>{{localize "DAGGERHEART.ITEMS.Armor.baseThresholds.severe"}} {{item.system.baseThresholds.severe}}</span>
         </div>
     </div>
+    {{#if description}}
+        <div class="tooltip-description">{{{description}}}</div>
+    {{/if}}
+
+    <p class="tooltip-hint">
+        <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.Tooltip.middleClick"}}
+    </p>
 </div>

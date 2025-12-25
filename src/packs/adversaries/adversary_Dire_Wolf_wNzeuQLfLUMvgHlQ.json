@@ -229,14 +229,14 @@
       "_id": "wQXEnMqrl2jo91oy",
       "img": "icons/creatures/abilities/wolf-howl-moon-purple.webp",
       "system": {
-        "description": "<p>If the Wolf makes a successful standard attack and another Dire Wolf is within Melee range of the target, deal <strong>1d6+5</strong> physical damage instead of their standard damage and you gain a Fear.</p>",
+        "description": "<p>If the @Lookup[@name] makes a successful standard attack and another @Lookup[@name] is within Melee range of the target, deal <strong>1d6+5</strong> physical damage instead of their standard damage and you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "FFQvt3sMfuwXxIrf": {
             "type": "attack",
             "_id": "FFQvt3sMfuwXxIrf",
             "systemPath": "actions",
-            "description": "<p>If the Wolf makes a successful standard attack and another Dire Wolf is within Melee range of the target, deal <strong>1d6+5</strong> physical damage instead of their standard damage and you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "passive",
             "cost": [],
@@ -335,7 +335,7 @@
             "type": "attack",
             "_id": "Tvizq1jEfG8FyfNc",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to make an attack against a target within Melee range. On a success, deal <strong>3d4+10</strong> direct physical damage and make them <em>Vulnerable</em> until they clear at least 1 HP.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

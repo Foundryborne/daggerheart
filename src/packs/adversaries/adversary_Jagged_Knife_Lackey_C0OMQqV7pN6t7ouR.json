@@ -222,7 +222,7 @@
       "_id": "hfP30YIlYDW9wkHe",
       "img": "icons/magic/symbols/runes-carved-stone-yellow.webp",
       "system": {
-        "description": "<p>The Lackey is defeated when they take any damage. For every 3 damage a PC deals to the Lackey, defeat an additional Minion within range the attack would succeed against.</p>",
+        "description": "<p>The @Lookup[@name] is defeated when they take any damage. For every 3 damage a PC deals to the @Lookup[@name], defeat an additional Minion within range the attack would succeed against.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -248,14 +248,14 @@
       "_id": "1k5TmQIAunM7Bv32",
       "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Jagged Knife Lackeys within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 2 physical damage each. Combine this damage.</p>",
+        "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all @Lookup[@name] within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 2 physical damage each. Combine this damage.</p>",
         "resource": null,
         "actions": {
           "aoQDb2m32NDxE6ZP": {
             "type": "effect",
             "_id": "aoQDb2m32NDxE6ZP",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Jagged Knife Lackeys within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 2 physical damage each. Combine this damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

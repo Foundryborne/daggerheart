@@ -234,7 +234,7 @@
       "_id": "rEJ1kAfhHQZWhrZj",
       "img": "icons/commodities/biological/hand-clawed-tan.webp",
       "system": {
-        "description": "<p>When the Zombie takes Major or greater damage, they mark an additional HP.</p>",
+        "description": "<p>When the @Lookup[@name] takes Major or greater damage, they mark an additional HP.</p>",
         "resource": null,
         "actions": {
           "Y8LQe5TzbdK2mOG9": {
@@ -317,7 +317,7 @@
       "_id": "0fn7rVLwBnyCyvTA",
       "img": "icons/skills/melee/strike-slashes-orange.webp",
       "system": {
-        "description": "<p>When the Zombie makes a standard attack, they can attack all targets within Very Close range.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p>When the @Lookup[@name] makes a standard attack, they can attack all targets within Very Close range.</p><p>@Template[type:emanation|range:vc]</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -343,14 +343,14 @@
       "_id": "gw1Z2VazlRXYCiCK",
       "img": "icons/magic/death/skull-trio-badge-purple.webp",
       "system": {
-        "description": "<p>When the Zombie is within Very Close range of a corpse, they can incorporate it into themselves, clearing a HP and a Stress.</p>",
+        "description": "<p>When the @Lookup[@name] is within Very Close range of a corpse, they can incorporate it into themselves, clearing a HP and a Stress.</p>",
         "resource": null,
         "actions": {
           "PfaFRZKFnHGg6mU4": {
             "type": "healing",
             "_id": "PfaFRZKFnHGg6mU4",
             "systemPath": "actions",
-            "description": "<p>When the Zombie is within Very Close range of a corpse, they can incorporate it into themselves, clearing a HP and a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -470,7 +470,7 @@
             "type": "attack",
             "_id": "2NYC0D7wkBNrUAKl",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to cause all PCs within Far range to make a Presence Reaction Roll (13). Targets who fail lose a Hope and you gain a Fear for each. Targets who succeed must mark a Stress.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

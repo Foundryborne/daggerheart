@@ -229,7 +229,7 @@
       "_id": "5VPb3OJDv6Q5150r",
       "img": "icons/skills/movement/arrow-upward-white.webp",
       "system": {
-        "description": "<p>The Bandit climbs just as easily as they run.</p>",
+        "description": "<p>The @Lookup[@name] climbs just as easily as they run.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -255,14 +255,14 @@
       "_id": "V7haVmSLm6vTeffc",
       "img": "icons/skills/movement/arrow-down-pink.webp",
       "system": {
-        "description": "<p>When the Bandit succeeds on a standard attack from above a target, they deal <strong>1d10+1</strong> physical damage instead of their standard damage.</p>",
+        "description": "<p>When the @Lookup[@name] succeeds on a standard attack from above a target, they deal <strong>1d10+1</strong> physical damage instead of their standard damage.</p>",
         "resource": null,
         "actions": {
           "X7xdCLY7ySMpaTHe": {
             "type": "damage",
             "_id": "X7xdCLY7ySMpaTHe",
             "systemPath": "actions",
-            "description": "<p>When the Bandit succeeds on a standard attack from above a target, they deal <strong>1d10+1</strong> physical damage instead of their standard damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

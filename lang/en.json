@@ -586,6 +586,7 @@
             },
             "OwnershipSelection": {
                 "title": "Ownership Selection - {name}",
+                "noPlayers": "No players to assign ownership to",
                 "default": "Default Ownership"
             },
             "ReactionRoll": {
@@ -2825,6 +2826,7 @@
                 "configureAttribution": "Configure Attribution",
                 "deleteItem": "Delete Item",
                 "immune": "Immune",
+                "middleClick": "[Middle Click] Keep tooltip view",
                 "tokenSize": "The token size used on the canvas"
             }
         }

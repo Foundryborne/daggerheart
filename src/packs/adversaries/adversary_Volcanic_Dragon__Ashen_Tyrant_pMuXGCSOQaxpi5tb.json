@@ -252,14 +252,14 @@
       "name": "Relentless (4)",
       "type": "feature",
       "system": {
-        "description": "<p>The Ashen Tyrant can be spotlighted up to four times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "description": "<p>The @Lookup[@name] can be spotlighted up to four times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
         "actions": {
           "cvhKUhLycuEeloKH": {
             "type": "effect",
             "_id": "cvhKUhLycuEeloKH",
             "systemPath": "actions",
-            "description": "<p>The Ashen Tyrant can be spotlighted up to four times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "passive",
             "cost": [
@@ -310,7 +310,7 @@
       "name": "Cornered",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> instead of spending a Fear to spotlight the Ashen Tyrant.</p>",
+        "description": "<p><strong>Mark a Stress</strong> instead of spending a Fear to spotlight the @Lookup[@name].</p>",
         "resource": null,
         "actions": {
           "nIBoqkOFWx0vpbnj": {
@@ -365,7 +365,7 @@
       "name": "Injured Wings",
       "type": "feature",
       "system": {
-        "description": "<p>While flying, the Ashen Tyrant gains a +1 bonus to their Difficulty.</p>",
+        "description": "<p>While flying, the @Lookup[@name] gains a +1 bonus to their Difficulty.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -434,14 +434,14 @@
       "name": "Ashes to Ashes",
       "type": "feature",
       "system": {
-        "description": "<p>When a PC rolls a failure while within Close range of the Ashen Tyrant, they lose a Hope and you gain a Fear. If the PC can’t lose a Hope, they must mark a HP.</p>",
+        "description": "<p>When a PC rolls a failure while within Close range of the @Lookup[@name], they lose a Hope and you gain a Fear. If the PC can’t lose a Hope, they must mark a HP.</p>",
         "resource": null,
         "actions": {
           "q6gbeIrGMII6IeiM": {
             "type": "damage",
             "_id": "q6gbeIrGMII6IeiM",
             "systemPath": "actions",
-            "description": "<p>When a PC rolls a failure while within Close range of the Ashen Tyrant, they lose a Hope and you gain a Fear. If the PC can’t lose a Hope, they must mark a HP.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -512,14 +512,14 @@
       "name": "Desperate Rampage",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Close range. Targets the Ashen Tyrant succeeds against take <strong>2d20+2</strong> physical damage, are knocked back to Close range of where they were, and must mark a Stress.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Close range. Targets the @Lookup[@name] succeeds against take <strong>2d20+2</strong> physical damage, are knocked back to Close range of where they were, and must mark a Stress.</p><p>@Template[type:emanation|range:c]</p>",
         "resource": null,
         "actions": {
           "3glUQAcsLBcCumnS": {
             "type": "attack",
             "_id": "3glUQAcsLBcCumnS",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Close range. Targets the Ashen Tyrant succeeds against take <strong>2d20+2</strong> physical damage, are knocked back to Close range of where they were, and must mark a Stress.</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -644,7 +644,7 @@
             "type": "effect",
             "_id": "UrD4A68IBJgyfvvt",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to smash the ground and kick up ash within Far range. While within the ash cloud, a target has disadvantage on action rolls. The ash cloud clears the next time an adversary is spotlighted.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -693,14 +693,14 @@
       "name": "Apocalyptic Thrasing",
       "type": "feature",
       "system": {
-        "description": "<p><em>Countdown (1d12)</em>. <strong>Spend a Fear</strong> to activate. It ticks down when a PC rolls with Fear. When it triggers, the Ashen Tyrant thrashes about, causing environmental damage (such as an earthquake, avalanche, or collapsing walls). All targets within Far range must make a Strength Reaction Roll. Targets who fail take 2d10+10 physical damage and are Restrained by the rubble until they break free with a successful Strength Roll. Targets who succeed take half damage. If the Ashen Tyrant is defeated while this countdown is active, trigger the countdown immediately as the destruction caused by their death throes.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p><em>Countdown (1d12)</em>. <strong>Spend a Fear</strong> to activate. It ticks down when a PC rolls with Fear. When it triggers, the @Lookup[@name] thrashes about, causing environmental damage (such as an earthquake, avalanche, or collapsing walls). All targets within Far range must make a Strength Reaction Roll. Targets who fail take 2d10+10 physical damage and are Restrained by the rubble until they break free with a successful Strength Roll. Targets who succeed take half damage. If the @Lookup[@name] is defeated while this countdown is active, trigger the countdown immediately as the destruction caused by their death throes.</p><p>@Template[type:emanation|range:f]</p>",
         "resource": null,
         "actions": {
           "OznXxmwiPwzuFPQZ": {
             "type": "attack",
             "_id": "OznXxmwiPwzuFPQZ",
             "systemPath": "actions",
-            "description": "<p>When the countdown triggers, the Ashen Tyrant thrashes about, causing environmental damage (such as an earthquake, avalanche, or collapsing walls). All targets within Far range must make a Strength Reaction Roll. Targets who fail take 2d10+10 physical damage and are Restrained by the rubble until they break free with a successful Strength Roll. Targets who succeed take half damage. If the Ashen Tyrant is defeated while this countdown is active, trigger the countdown immediately as the destruction caused by their death throes.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "<p>When the countdown triggers, the @Lookup[@name] thrashes about, causing environmental damage (such as an earthquake, avalanche, or collapsing walls). All targets within Far range must make a Strength Reaction Roll. Targets who fail take 2d10+10 physical damage and are Restrained by the rubble until they break free with a successful Strength Roll. Targets who succeed take half damage. If the @Lookup[@name] is defeated while this countdown is active, trigger the countdown immediately as the destruction caused by their death throes.</p><p>@Template[type:emanation|range:f]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

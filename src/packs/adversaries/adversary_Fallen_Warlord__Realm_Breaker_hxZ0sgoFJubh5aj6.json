@@ -262,14 +262,14 @@
       "name": "Relentless (2)",
       "type": "feature",
       "system": {
-        "description": "<p>The Realm-Breaker can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "description": "<p>The @Lookup[@name] can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
         "actions": {
           "9IHzeKjP35M5jj3b": {
             "type": "effect",
             "_id": "9IHzeKjP35M5jj3b",
             "systemPath": "actions",
-            "description": "<p>The Realm-Breaker can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "passive",
             "cost": [
@@ -320,14 +320,14 @@
       "name": "Firespite Plate Armor",
       "type": "feature",
       "system": {
-        "description": "<p>When the Realm-Breaker takes damage, reduce it by <strong>2d10</strong>.</p>",
+        "description": "<p>When the @Lookup[@name] takes damage, reduce it by <strong>2d10</strong>.</p>",
         "resource": null,
         "actions": {
           "djEIhnCsuCUdwC0m": {
             "type": "attack",
             "_id": "djEIhnCsuCUdwC0m",
             "systemPath": "actions",
-            "description": "<p>When the Realm-Breaker takes damage, reduce it by <strong>2d10</strong>.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -399,7 +399,7 @@
             "type": "attack",
             "_id": "zMVhUekP8pcyQGFR",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to make a standard attack against all targets within Very Close range. When a target uses armor to reduce damage from this attack, they must mark 2 Armor Slots.</p><p>@Template[type:emanation|range:vc]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -499,14 +499,14 @@
       "name": "All-Consuming Rage",
       "type": "feature",
       "system": {
-        "description": "<p><em>Countdown (Decreasing 8)</em>. When the Realm-Breaker is in the spotlight for the first time, activate the countdown. When it triggers, create a torrent of incarnate rage that rends flesh from bone. All targets within Far range must make a Presence Reaction Roll. Targets who fail take <strong>2d6+10</strong> direct magic damage. Targets who succeed take half damage. For each HP marked from this damage, summon a @UUID[Compendium.daggerheart.adversaries.Actor.OsLG2BjaEdTZUJU9]{Fallen Shock Troop} within Very Close range of the target who marked that HP. If the countdown ever decreases its maximum value to 0, the Realm-Breaker marks their remaining HP and all targets within Far range must mark all remaining HP and make a death move.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p><em>Countdown (Decreasing 8)</em>. When the @Lookup[@name] is in the spotlight for the first time, activate the countdown. When it triggers, create a torrent of incarnate rage that rends flesh from bone. All targets within Far range must make a Presence Reaction Roll. Targets who fail take <strong>2d6+10</strong> direct magic damage. Targets who succeed take half damage. For each HP marked from this damage, summon a @UUID[Compendium.daggerheart.adversaries.Actor.OsLG2BjaEdTZUJU9]{Fallen Shock Troop} within Very Close range of the target who marked that HP. If the countdown ever decreases its maximum value to 0, the @Lookup[@name] marks their remaining HP and all targets within Far range must mark all remaining HP and make a death move.</p><p>@Template[type:emanation|range:f]</p>",
         "resource": null,
         "actions": {
           "rgy5wXyXJWh6uWxC": {
             "type": "attack",
             "_id": "rgy5wXyXJWh6uWxC",
             "systemPath": "actions",
-            "description": "<p>When it triggers, create a torrent of incarnate rage that rends flesh from bone. All targets within Far range must make a Presence Reaction Roll. Targets who fail take <strong>2d6+10</strong> direct magic damage. Targets who succeed take half damage. For each HP marked from this damage, summon a @UUID[Compendium.daggerheart.adversaries.Actor.OsLG2BjaEdTZUJU9]{Fallen Shock Troop} within Very Close range of the target who marked that HP. If the countdown ever decreases its maximum value to 0, the Realm-Breaker marks their remaining HP and all targets within Far range must mark all remaining HP and make a death move.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "<p>When it triggers, create a torrent of incarnate rage that rends flesh from bone. All targets within Far range must make a Presence Reaction Roll. Targets who fail take <strong>2d6+10</strong> direct magic damage. Targets who succeed take half damage. For each HP marked from this damage, summon a @UUID[Compendium.daggerheart.adversaries.Actor.OsLG2BjaEdTZUJU9]{Fallen Shock Troop} within Very Close range of the target who marked that HP. If the countdown ever decreases its maximum value to 0, the @Lookup[@name] marks their remaining HP and all targets within Far range must mark all remaining HP and make a death move.</p><p>@Template[type:emanation|range:f]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -579,7 +579,7 @@
             "type": "countdown",
             "_id": "8e3BHmOFLvRwPbTW",
             "systemPath": "actions",
-            "description": "<p><em>Countdown (Decreasing 8)</em>. When the Realm-Breaker is in the spotlight for the first time, activate the countdown.</p>",
+            "description": "<p><em>Countdown (Decreasing 8)</em>. When the @Lookup[@name] is in the spotlight for the first time, activate the countdown.</p>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"
@@ -636,14 +636,14 @@
       "name": "Doombringer",
       "type": "feature",
       "system": {
-        "description": "<p>When a target marks HP from an attack by the Realm-Breaker, all PCs within Far range of the target must lose a Hope.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p>When a target marks HP from an attack by the @Lookup[@name], all PCs within Far range of the target must lose a Hope.</p><p>@Template[type:emanation|range:f]</p>",
         "resource": null,
         "actions": {
           "WEBPJCbXfBeyHFJ4": {
             "type": "damage",
             "_id": "WEBPJCbXfBeyHFJ4",
             "systemPath": "actions",
-            "description": "<p>When a target marks HP from an attack by the Realm-Breaker, all PCs within Far range of the target must lose a Hope.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -715,7 +715,7 @@
       "name": "I Have Never Known Defeat",
       "type": "feature",
       "system": {
-        "description": "<p>When the Realm-Breaker marks their last HP, replace them with the @UUID[Compendium.daggerheart.adversaries.Actor.RXkZTwBRi4dJ3JE5]{Fallen Warlord: Undefeated Champion} and immediately spotlight them.</p>",
+        "description": "<p>When the @Lookup[@name] marks their last HP, replace them with the @UUID[Compendium.daggerheart.adversaries.Actor.RXkZTwBRi4dJ3JE5]{Fallen Warlord: Undefeated Champion} and immediately spotlight them.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,

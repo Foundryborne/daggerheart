@@ -223,7 +223,7 @@
       "_id": "6mL2FQ9pQdfoDNzG",
       "img": "icons/skills/targeting/crosshair-triple-strike-orange.webp",
       "system": {
-        "description": "<p>When two or more adversaries are within Very Close range of a creature, all damage the Archer deals to that creature is doubled.</p>",
+        "description": "<p>When two or more adversaries are within Very Close range of a creature, all damage the @Lookup[@name] deals to that creature is doubled.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -256,7 +256,7 @@
             "type": "attack",
             "_id": "nKmxl3D7g4p7Zcub",
             "systemPath": "actions",
-            "description": "<p>Make an attack against a Vulnerable target within Far range. On a success, <strong>mark a Stress</strong> to deal <strong>3d4+8</strong> physical damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

@@ -223,7 +223,7 @@
       "_id": "ouvJweENF1kLYcOT",
       "img": "icons/magic/death/bones-crossed-orange.webp",
       "system": {
-        "description": "<p>The Warrior is resistant to physical damage.</p>",
+        "description": "<p>The @Lookup[@name] is resistant to physical damage.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -293,7 +293,7 @@
       "_id": "hYl31ThCmZdc0MFa",
       "img": "icons/magic/death/hand-dirt-undead-zombie.webp",
       "system": {
-        "description": "<p>When the Warrior is defeated, you can spotlight them and roll a <strong>d6</strong>. On a result of 6, if there are other adversaries on the battlefi eld, the Warrior re-forms with no marked HP.</p>",
+        "description": "<p>When the @Lookup[@name] is defeated, you can spotlight them and roll a <strong>d6</strong>. On a result of 6, if there are other adversaries on the battlefield, the @Lookup[@name] re-forms with no marked HP.</p>",
         "resource": null,
         "actions": {
           "QnuFrptj8oARaA3i": {

@@ -1,29 +1,32 @@
-<div class="daggerheart dh-style tooltip">
-    <h2 class="tooltip-title">{{item.name}}</h2>
+<div class="daggerheart dh-style tooltip domain-card card-style">
+    <div class="item-icons-list">
+        <span class="item-icon">
+            <span class="recall-value">{{item.system.recallCost}}</span>
+            <i class="fa-solid fa-bolt"></i>
+        </span>
+        <span class="item-icon">
+            {{#with (lookup config.DOMAIN.domains item.system.domain) as | domain |}}
+                <img src="{{domain.src}}" alt="">
+            {{/with}}
+        </span>
+    </div>
     <img class="tooltip-image" src="{{item.img}}" />
-    <div class="tooltip-description">{{{description}}}</div>
-
-    <div class="tooltip-information-section">
-        <div class="tooltip-information">
-            <label>{{localize "DAGGERHEART.GENERAL.Domain.single"}}</label>
-            {{#with (lookup allDomains item.system.domain) as | domain |}}
-                <div>{{localize domain.label}}</div>
-            {{/with}}
-        </div>
-        
-        <div class="tooltip-information">
-            <label>{{localize "Type"}}</label>
+    <h2 class="tooltip-title">{{item.name}}</h2>
+    <div class="tags">
+        <div class="tag">
             {{#with (lookup config.DOMAIN.cardTypes item.system.type) as | type |}}
-                <div>{{localize type.label}}</div>
+                <span>{{localize type.label}}</span>
             {{/with}}
         </div>
-        <div class="tooltip-information">
-            <label>{{localize "DAGGERHEART.GENERAL.level"}}</label>
-            <div>{{item.system.level}}</div>
-        </div>
-        <div class="tooltip-information">
-            <label>{{localize "DAGGERHEART.ITEMS.DomainCard.recallCost"}}</label>
-            <div>{{item.system.recallCost}}</div>
+        <div class="tag">
+            <span>{{localize 'DAGGERHEART.GENERAL.levelShort'}} {{ item.system.level }}</span>
         </div>
     </div>
+    {{#if description}}      
+      <div class="tooltip-description">{{{description}}}</div>
+    {{/if}}
+
+    <p class="tooltip-hint">
+        <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.Tooltip.middleClick"}}
+    </p>
 </div>

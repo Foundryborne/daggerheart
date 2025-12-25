@@ -223,14 +223,14 @@
       "_id": "y3oUmDLGkcSjOO5Q",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
       "system": {
-        "description": "<p>The Construct can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "description": "<p>The @Lookup[@name] can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
         "actions": {
           "bay0pyPsCyDEZKuk": {
             "type": "effect",
             "_id": "bay0pyPsCyDEZKuk",
             "systemPath": "actions",
-            "description": "<p>The Construct can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "passive",
             "cost": [
@@ -282,7 +282,7 @@
       "_id": "p4HLIkiM3HsglRoA",
       "img": "icons/commodities/metal/barstock-broken-steel.webp",
       "system": {
-        "description": "<p>When the Construct marks HP from physical damage, they must mark an additional HP.</p>",
+        "description": "<p>When the @Lookup[@name] marks HP from physical damage, they must mark an additional HP.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -308,14 +308,14 @@
       "_id": "93m085bEaKFzvEWT",
       "img": "icons/skills/movement/arrow-upward-blue.webp",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets in the Construct’s path when they move. Targets the Construct succeeds against take <strong>1d8</strong> physical damage.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets in the @Lookup[@name]’s path when they move. Targets the @Lookup[@name] succeeds against take <strong>1d8</strong> physical damage.</p>",
         "resource": null,
         "actions": {
           "OswphW4Z1B5oa4ts": {
             "type": "attack",
             "_id": "OswphW4Z1B5oa4ts",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets in the Construct’s path when they move. Targets the Construct succeeds against take <strong>1d8</strong> physical damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -416,14 +416,14 @@
       "_id": "EF6YIDjQ0liFubGA",
       "img": "icons/creatures/magical/construct-golem-stone-blue.webp",
       "system": {
-        "description": "<p>Before rolling damage for the Construct’s attack, you can <strong>mark a Stress</strong> to gain a +10 bonus to the damage roll. The Construct can then take the spotlight again.</p>",
+        "description": "<p>Before rolling damage for the @Lookup[@name]’s attack, you can <strong>mark a Stress</strong> to gain a +10 bonus to the damage roll. The @Lookup[@name] can then take the spotlight again.</p>",
         "resource": null,
         "actions": {
           "xYACTiZzApmCXXmf": {
             "type": "effect",
             "_id": "xYACTiZzApmCXXmf",
             "systemPath": "actions",
-            "description": "<p>Before rolling damage for the Construct’s attack, you can <strong>mark a Stress</strong> to gain a +10 bonus to the damage roll. The Construct can then take the spotlight again.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -517,14 +517,14 @@
       "_id": "UlGLuV1L33tDWkli",
       "img": "icons/magic/sonic/explosion-shock-wave-teal.webp",
       "system": {
-        "description": "<p>When the Construct marks their last HP, the magic powering them ruptures in an explosion of force. Make an attack with advantage against all targets within Very Close range. Targets the Construct succeeds against take <strong>1d12+2</strong> magic damage.</p>",
+        "description": "<p>When the @Lookup[@name] marks their last HP, the magic powering them ruptures in an explosion of force. Make an attack with advantage against all targets within Very Close range. Targets the @Lookup[@name] succeeds against take <strong>1d12+2</strong> magic damage.</p>",
         "resource": null,
         "actions": {
           "fkIWRdcGPgHgm6VC": {
             "type": "attack",
             "_id": "fkIWRdcGPgHgm6VC",
             "systemPath": "actions",
-            "description": "<p>When the Construct marks their last HP, the magic powering them ruptures in an explosion of force. Make an attack with advantage against all targets within Very Close range. Targets the Construct succeeds against take <strong>1d12+2</strong> magic damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

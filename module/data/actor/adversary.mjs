@@ -60,15 +60,13 @@ export default class DhpAdversary extends BaseDataActor {
                     0,
                     0,
                     'DAGGERHEART.GENERAL.HitPoints.plural',
-                    true,
-                    game.i18n.localize('DAGGERHEART.GENERAL.max')
+                    true
                 ),
                 stress: resourceField(
                     0,
                     0,
                     'DAGGERHEART.GENERAL.stress',
-                    true,
-                    game.i18n.localize('DAGGERHEART.GENERAL.max')
+                    true
                 )
             }),
             rules: new fields.SchemaField({

@@ -232,14 +232,14 @@
       "name": "Devastating Retort",
       "type": "feature",
       "system": {
-        "description": "<p>A PC who rolls less than 17 on an action roll targeting the Advisor must mark a Stress.</p>",
+        "description": "<p>A PC who rolls less than 17 on an action roll targeting the @Lookup[@name] must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "gtM7UPq6xHgJHPPp": {
             "type": "damage",
             "_id": "gtM7UPq6xHgJHPPp",
             "systemPath": "actions",
-            "description": "<p>A PC who rolls less than 17 on an action roll targeting the Advisor must mark a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -310,14 +310,14 @@
       "name": "Bend Ears",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to influence an NPC within Melee range with whispered words. That target’s opinion on one matter shifts toward the Advisor’s preference unless it is in direct opposition to the target’s motives.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to influence an NPC within Melee range with whispered words. That target’s opinion on one matter shifts toward the @Lookup[@name]’s preference unless it is in direct opposition to the target’s motives.</p>",
         "resource": null,
         "actions": {
           "JNFTnARlTAKermLx": {
             "type": "effect",
             "_id": "JNFTnARlTAKermLx",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to influence an NPC within Melee range with whispered words. That target’s opinion on one matter shifts toward the Advisor’s preference unless it is in direct opposition to the target’s motives.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -373,7 +373,7 @@
             "type": "effect",
             "_id": "6oaHwUVWTmF362vI",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to convince a crowd or notable individual that one person or group is responsible for some problem facing the target. The target becomes hostile to the scapegoat until convinced of their innocence with a successful Presence Roll (17).</p><p>[[/dr trait=presence difficulty=17]]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

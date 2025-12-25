@@ -260,14 +260,14 @@
       "_id": "MFmGN6Tbf5GYxrQ9",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
       "system": {
-        "description": "<p>The Burrower can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "description": "<p>The @Lookup[@name] can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
         "actions": {
           "3lGGgkxnzgUwHGIp": {
             "type": "effect",
             "_id": "3lGGgkxnzgUwHGIp",
             "systemPath": "actions",
-            "description": "<p>The Burrower can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "description": "",
             "chatDisplay": false,
             "actionType": "passive",
             "cost": [
@@ -319,14 +319,14 @@
       "_id": "ctXYwil2D1zfsekT",
       "img": "icons/magic/earth/barrier-stone-explosion-red.webp",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to have the Burrower burst out of the ground. All creatures within Very Close range must succeed on an Agility Reaction Roll or be knocked over, making them Vulnerable until they next act.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to have the @Lookup[@name] burst out of the ground. All creatures within Very Close range must succeed on an Agility Reaction Roll or be knocked over, making them Vulnerable until they next act.</p><p>@Template[type:emanation|range:vc]</p>",
         "resource": null,
         "actions": {
           "4ppSeiTdbqnMzWAs": {
             "type": "attack",
             "_id": "4ppSeiTdbqnMzWAs",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to have the Burrower burst out of the ground. All creatures within Very Close range must succeed on an Agility Reaction Roll or be knocked over, making them Vulnerable until they next act.</p><p>@Template[type:emanation|range:vc]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -444,14 +444,14 @@
       "_id": "UpFsnlbZkyvM2Ftv",
       "img": "icons/magic/acid/projectile-smoke-glowing.webp",
       "system": {
-        "description": "<p>Make an attack against all targets in front of the Burrower within Close range. Targets the Burrower succeeds against take <strong>2d6</strong> physical damage and must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP and you gain a Fear.</p><p>@Template[type:inFront|range:c]</p>",
+        "description": "<p>Make an attack against all targets in front of the @Lookup[@name] within Close range. Targets the @Lookup[@name] succeeds against take <strong>2d6</strong> physical damage and must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP and you gain a Fear.</p><p>@Template[type:inFront|range:c]</p>",
         "resource": null,
         "actions": {
           "yd10HwK6Wa3OEvv2": {
             "type": "attack",
             "_id": "yd10HwK6Wa3OEvv2",
             "systemPath": "actions",
-            "description": "<p>Make an attack against all targets in front of the Burrower within Close range. Targets the Burrower succeeds against take <strong>2d6</strong> physical damage and must mark an Armor Slot without receiving its benefi ts (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP and you gain a Fear.</p><p>@Template[type:inFront|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -571,14 +571,14 @@
       "_id": "aNIVT5LKhwLyjKpI",
       "img": "icons/magic/acid/dissolve-drip-droplet-smoke.webp",
       "system": {
-        "description": "<p>When the Burrower takes Severe damage, all creatures within Close range are bathed in their acidic blood, taking <strong>1d10</strong> physical damage. This splash covers the ground within Very Close range with blood, and all creatures other than the Burrower who move through it take <strong>1d6</strong> physical damage.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>When the @Lookup[@name] takes Severe damage, all creatures within Close range are bathed in their acidic blood, taking <strong>1d10</strong> physical damage. This splash covers the ground within Very Close range with blood, and all creatures other than the @Lookup[@name] who move through it take <strong>1d6</strong> physical damage.</p><p>@Template[type:emanation|range:c]</p>",
         "resource": null,
         "actions": {
           "XbtTzOBvlTaxOKTy": {
             "type": "damage",
             "_id": "XbtTzOBvlTaxOKTy",
             "systemPath": "actions",
-            "description": "<p>When the Burrower takes Severe damage, all creatures within Close range are bathed in their acidic blood, taking <strong>1d10</strong> physical damage. This splash covers the ground within Very Close range with blood, and all creatures other than the Burrower who move through it take <strong>1d6</strong> physical damage.</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -632,7 +632,7 @@
             "type": "damage",
             "_id": "xpcp1ECTWF20kxve",
             "systemPath": "actions",
-            "description": "<p>This splash covers the ground within Very Close range with blood, and all creatures other than the Burrower who move through it take <strong>1d6</strong> physical damage.</p>",
+            "description": "<p>This splash covers the ground within Very Close range with blood, and all creatures other than the @Lookup[@name] who move through it take <strong>1d6</strong> physical damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

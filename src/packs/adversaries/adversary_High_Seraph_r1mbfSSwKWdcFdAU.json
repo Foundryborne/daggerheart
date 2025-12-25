@@ -227,14 +227,14 @@
       "name": "Relentless (3)",
       "type": "feature",
       "system": {
-        "description": "<p>The Seraph can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "description": "<p>The @Lookup[@name] can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
         "actions": {
           "7oqXSF66R2GlB17O": {
             "type": "effect",
             "_id": "7oqXSF66R2GlB17O",
             "systemPath": "actions",
-            "description": "<p>The Seraph can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "passive",
             "cost": [
@@ -285,14 +285,14 @@
       "name": "Divine Flight",
       "type": "feature",
       "system": {
-        "description": "<p>While the Seraph is flying, <strong>spend a Fear</strong> to move up to Far range instead of Close range before taking an action.</p>",
+        "description": "<p>While the @Lookup[@name] is flying, <strong>spend a Fear</strong> to move up to Far range instead of Close range before taking an action.</p>",
         "resource": null,
         "actions": {
           "ZgspQLiGhuKURA1T": {
             "type": "effect",
             "_id": "ZgspQLiGhuKURA1T",
             "systemPath": "actions",
-            "description": "<p>While the Seraph is flying, <strong>spend a Fear</strong> to move up to Far range instead of Close range before taking an action.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -340,14 +340,14 @@
       "name": "Judgement",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to make a target Guilty in the eyes of the Seraph’s god until the Seraph is defeated. While Guilty, the target doesn’t gain Hope on a result with Hope. When the Seraph succeeds on a standard attack against a Guilty target, they deal Severe damage instead of their standard damage. The Seraph can only mark one target at a time.</p>",
+        "description": "<p><strong>Spend a Fear</strong> to make a target Guilty in the eyes of the Seraph’s god until the @Lookup[@name] is defeated. While Guilty, the target doesn’t gain Hope on a result with Hope. When the @Lookup[@name] succeeds on a standard attack against a Guilty target, they deal Severe damage instead of their standard damage. The @Lookup[@name] can only mark one target at a time.</p>",
         "resource": null,
         "actions": {
           "ErGJWtFIXFPgKtek": {
             "type": "effect",
             "_id": "ErGJWtFIXFPgKtek",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to make a target Guilty in the eyes of the Seraph’s god until the Seraph is defeated. While Guilty, the target doesn’t gain Hope on a result with Hope. When the Seraph succeeds on a standard attack against a Guilty target, they deal Severe damage instead of their standard damage. The Seraph can only mark one target at a time.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -438,7 +438,7 @@
             "type": "attack",
             "_id": "HwC75gazlN0k30AL",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to reflect a sliver of divinity as a searing beam of light that hits up to twenty targets within Very Far range. Targets must make a Presence Reaction Roll, with disadvantage if they are marked Guilty. Targets who fail take <strong>4d6+12</strong> magic damage. Targets who succeed take half damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -545,7 +545,7 @@
             "type": "effect",
             "_id": "j6DmU9dtob5QStxY",
             "systemPath": "actions",
-            "description": "<p>Once per scene, <strong>spend a Fear</strong> to spotlight all other adversaries within Far range. Attacks they make while spotlighted in this way deal half damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

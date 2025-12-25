@@ -227,7 +227,7 @@
       "name": "Ghost",
       "type": "feature",
       "system": {
-        "description": "<p>The Guardian has resistance to physical damage. <strong>Mark a Stress</strong> to move up to Close range through solid objects.</p>",
+        "description": "<p>The @Lookup[@name] has resistance to physical damage. <strong>Mark a Stress</strong> to move up to Close range through solid objects.</p>",
         "resource": null,
         "actions": {
           "X1JlwWqyYHjahbpA": {
@@ -333,7 +333,7 @@
             "type": "attack",
             "_id": "AdfULyYsj9YPcCj6",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to make an attack against a target within Very Close range. On a success, deal <strong>2d10+6</strong> physical damage and the target must mark a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

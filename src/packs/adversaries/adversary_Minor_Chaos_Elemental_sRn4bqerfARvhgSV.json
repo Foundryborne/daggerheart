@@ -223,7 +223,7 @@
       "_id": "4Rw5KC5klRseiLvn",
       "img": "icons/magic/defensive/shield-barrier-flaming-diamond-blue.webp",
       "system": {
-        "description": "<p>The Elemental is resistant to magic damage.</p>",
+        "description": "<p>The @Lookup[@name] is resistant to magic damage.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -300,7 +300,7 @@
             "type": "damage",
             "_id": "g4CVwjDeJgTJ2oCw",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a HP</strong> to force all targets within Close range to mark a Stress and become <em>Vulnerable</em> until their next rest or they clear a HP.</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -431,7 +431,7 @@
             "type": "damage",
             "_id": "QzuQIAtSrgz9Zd5V",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to transform the area within Very Close range into a different biome. All targets within this area take <strong>2d6+3</strong> direct magic damage.</p><p>@Template[type:emanation|range:vc]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -512,7 +512,7 @@
       "_id": "dnVB2DxbpYtwt0S0",
       "img": "icons/magic/light/beam-impact-deflect-teal.webp",
       "system": {
-        "description": "<p>When the Elemental takes damage from an attack within Close range, deal an amount of damage to the attacker equal to half the damage they dealt.</p>",
+        "description": "<p>When the @Lookup[@name] takes damage from an attack within Close range, deal an amount of damage to the attacker equal to half the damage they dealt.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -539,14 +539,14 @@
       "_id": "JqRfb0IZ3aJrVazI",
       "img": "icons/skills/melee/strike-weapons-orange.webp",
       "system": {
-        "description": "<p>When the Elemental makes a successful attack against a PC, you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "zpQIB9z9kK2BlfqZ": {
             "type": "healing",
             "_id": "zpQIB9z9kK2BlfqZ",
             "systemPath": "actions",
-            "description": "<p>When the Elemental makes a successful attack against a PC, you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

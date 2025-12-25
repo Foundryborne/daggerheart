@@ -1,12 +1,16 @@
-<div class="daggerheart dh-style tooltip">
-    <h2 class="tooltip-title">{{item.name}}</h2>
+<div class="daggerheart dh-style tooltip card-style">
     <img class="tooltip-image" src="{{item.img}}" />
-    <div class="tooltip-description">{{{description}}}</div>
-
-    <div class="tooltip-information-section">
-        <div class="tooltip-information full-width">
-            <label>{{localize "DAGGERHEART.GENERAL.quantity"}}</label>
-            <div>{{item.system.quantity}}</div>
+    <h2 class="tooltip-title">{{item.name}}</h2>
+    <div class="tags">
+        <div class="tag">
+          <span>{{localize "DAGGERHEART.GENERAL.quantity"}} {{item.system.quantity}}</span>
         </div>
     </div>
+    {{#if description}}
+        <div class="tooltip-description">{{{description}}}</div>
+    {{/if}}
+
+    <p class="tooltip-hint">
+        <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.Tooltip.middleClick"}}
+    </p>
 </div>

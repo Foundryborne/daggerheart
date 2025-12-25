@@ -221,7 +221,7 @@
       "name": "Horde (1d6+3)",
       "type": "feature",
       "system": {
-        "description": "<p>When the Squadron has marked half or more of their HP, their standard attack deals <strong>1d6+3</strong> physical damage instead.</p>",
+        "description": "<p>When the @Lookup[@name] has marked half or more of their HP, their standard attack deals <strong>1d6+3</strong> physical damage instead.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -246,14 +246,14 @@
       "name": "Focused Volley",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to target a point within Far range. Make an attack with advantage against all targets within Close range of that point. Targets the Squadron succeeds against take <strong>1d10+4</strong> physical damage.</p><p>@Template[type:circle|range:c]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to target a point within Far range. Make an attack with advantage against all targets within Close range of that point. Targets the @Lookup[@name] succeeds against take <strong>1d10+4</strong> physical damage.</p><p>@Template[type:circle|range:c]</p>",
         "resource": null,
         "actions": {
           "uG7Hl2DqaT69aNs1": {
             "type": "attack",
             "_id": "uG7Hl2DqaT69aNs1",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to target a point within Far range. Make an attack with advantage against all targets within Close range of that point. Targets the Squadron succeeds against take <strong>1d10+4</strong> physical damage.</p><p>@Template[type:circle|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -358,7 +358,7 @@
             "type": "attack",
             "_id": "mH6mmJIMM1fwzePt",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to target a point within Far range. Until the next roll with Fear, a creature who moves within Close range of that point must make an Agility Reaction Roll. On a failure, they take <strong>2d6+3</strong> physical damage. On a success, they take half damage.</p><p>@Template[type:circle|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

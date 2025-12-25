@@ -236,7 +236,7 @@
             "type": "attack",
             "_id": "PJbZ4ibLPle9BBRv",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to make a standard attack against two targets within Melee range.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -344,7 +344,7 @@
             "type": "attack",
             "_id": "ZkcplnqoMP7dH9F4",
             "systemPath": "actions",
-            "description": "<p>Make an attack against a target within Very Close range. On a success, <strong>spend a Fear</strong> to deal <strong>1d4+4</strong> physical damage and Poison them until their next rest or they succeed on a Knowledge Roll (16). While Poisoned, the target must roll a <strong>d6</strong> before they make an action roll. On a result of 4 or lower, they must mark a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -480,7 +480,7 @@
       "_id": "TmDpAY5t3PjhEv9K",
       "img": "icons/skills/melee/strike-weapons-orange.webp",
       "system": {
-        "description": "<p>When the Scorpion makes a successful attack against a PC, you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "1Fn4rvhueQoMXqFc": {

@@ -280,11 +280,19 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                                     break;
                                 case 'experience':
                                     if (!advancement[choiceKey]) advancement[choiceKey] = [];
+                                    const allExperiences = {
+                                        ...this.actor.system.experiences,
+                                        ...Object.values(this.levelup.levels).reduce((acc, level) => {
+                                            for (const key of Object.keys(level.achievements.experiences)) {
+                                                acc[key] = level.achievements.experiences[key];
+                                            }
+
+                                            return acc;
+                                        }, {})
+                                    };
                                     const data = checkbox.data.map(data => {
-                                        const experience = Object.keys(this.actor.system.experiences).find(
-                                            x => x === data
-                                        );
-                                        return this.actor.system.experiences[experience]?.name ?? '';
+                                        const experience = Object.keys(allExperiences).find(x => x === data);
+                                        return allExperiences[experience]?.name ?? '';
                                     });
                                     advancement[choiceKey].push({ data: data, value: checkbox.value });
                                     break;

@@ -229,14 +229,14 @@
       "_id": "adPXzpvLREjN3len",
       "img": "icons/skills/ranged/arrow-flying-spiral-blue.webp",
       "system": {
-        "description": "<p>If the Sniper is <em>Hidden</em> when they make a successful standard attack against a target, they deal <strong>1d10+4</strong> physical damage instead of their standard damage.</p>",
+        "description": "<p>If the @Lookup[@name] is <em>Hidden</em> when they make a successful standard attack against a target, they deal <strong>1d10+4</strong> physical damage instead of their standard damage.</p>",
         "resource": null,
         "actions": {
           "2eX7P0wSfbKKu8dJ": {
             "type": "attack",
             "_id": "2eX7P0wSfbKKu8dJ",
             "systemPath": "actions",
-            "description": "<p>If the Sniper is <em>Hidden</em> when they make a successful standard attack against a target, they deal <strong>1d10+4</strong> physical damage instead of their standard damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

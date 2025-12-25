@@ -221,14 +221,14 @@
       "name": "Terrifying",
       "type": "feature",
       "system": {
-        "description": "<p>When the Zombie makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
         "resource": null,
         "actions": {
           "dquYnt5qiHZfnyD9": {
             "type": "damage",
             "_id": "dquYnt5qiHZfnyD9",
             "systemPath": "actions",
-            "description": "<p>When the Zombie makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -299,7 +299,7 @@
       "name": "Fearsome Presence",
       "type": "feature",
       "system": {
-        "description": "<p>PCs can’t spend Hope to use features against the Zombie.</p>",
+        "description": "<p>PCs can’t spend Hope to use features against the @Lookup[@name].</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -324,14 +324,14 @@
       "name": "Perfect Strike",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress </strong>to make a standard attack against all targets within Very Close range. Targets the Zombie succeeds against are <em>Vulnerable</em> until their next rest.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p><strong>Mark a Stress </strong>to make a standard attack against all targets within Very Close range. Targets the @Lookup[@name] succeeds against are <em>Vulnerable</em> until their next rest.</p><p>@Template[type:emanation|range:vc]</p>",
         "resource": null,
         "actions": {
           "un9btM1mN53JHIgV": {
             "type": "attack",
             "_id": "un9btM1mN53JHIgV",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress </strong>to make a standard attack against all targets within Very Close range. Targets the Zombie succeeds against are <em>Vulnerable</em> until their next rest.</p><p>@Template[type:emanation|range:vc]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -446,7 +446,7 @@
             "startRound": null,
             "startTurn": null
           },
-          "description": "<p><em>Vulnerable</em> until yournext rest.</p>",
+          "description": "<p><em>Vulnerable</em> until your next rest.</p>",
           "tint": "#ffffff",
           "statuses": [
             "vulnerable"
@@ -475,14 +475,14 @@
       "name": "Skilled Opportunist",
       "type": "feature",
       "system": {
-        "description": "<p>When another adversary deals damage to a target within Very Close range of the Zombie, you can <strong>spend a Fear</strong> to add the Zombie’s standard attack damage to the damage roll.</p>",
+        "description": "<p>When another adversary deals damage to a target within Very Close range of the @Lookup[@name], you can <strong>spend a Fear</strong> to add the @Lookup[@name]’s standard attack damage to the damage roll.</p>",
         "resource": null,
         "actions": {
           "To2z7XQItxcMxKBp": {
             "type": "effect",
             "_id": "To2z7XQItxcMxKBp",
             "systemPath": "actions",
-            "description": "<p>When another adversary deals damage to a target within Very Close range of the Zombie, you can <strong>spend a Fear</strong> to add the Zombie’s standard attack damage to the damage roll.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

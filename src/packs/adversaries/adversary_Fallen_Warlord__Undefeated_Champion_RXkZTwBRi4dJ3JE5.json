@@ -263,14 +263,14 @@
       "name": "Relentless (3)",
       "type": "feature",
       "system": {
-        "description": "<p>The Undefeated Champion can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "description": "<p>The @Lookup[@name] can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
         "actions": {
           "BoDTEH8Y6i9G1d4R": {
             "type": "effect",
             "_id": "BoDTEH8Y6i9G1d4R",
             "systemPath": "actions",
-            "description": "<p>The Undefeated Champion can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "passive",
             "cost": [
@@ -321,14 +321,14 @@
       "name": "Faltering Armor",
       "type": "feature",
       "system": {
-        "description": "<p>When the Undefeated Champion takes damage, reduce it by <strong>1d10</strong>.</p>",
+        "description": "<p>When the @Lookup[@name] takes damage, reduce it by <strong>1d10</strong>.</p>",
         "resource": null,
         "actions": {
           "REOzNvunSAU3UcEx": {
             "type": "attack",
             "_id": "REOzNvunSAU3UcEx",
             "systemPath": "actions",
-            "description": "<p>When the Undefeated Champion takes damage, reduce it by <strong>1d10</strong>.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -393,14 +393,14 @@
       "name": "Shattering Strike",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to make a standard attack against all targets within Very Close range. PCs the Champion succeeds against lose a number of Hope equal to the HP they marked from this attack.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to make a standard attack against all targets within Very Close range. PCs the @Lookup[@name] succeeds against lose a number of Hope equal to the HP they marked from this attack.</p><p>@Template[type:emanation|range:vc]</p>",
         "resource": null,
         "actions": {
           "t1GhGnEhNYyJ7p2U": {
             "type": "attack",
             "_id": "t1GhGnEhNYyJ7p2U",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to make a standard attack against all targets within Very Close range. PCs the Champion succeeds against lose a number of Hope equal to the HP they marked from this attack.</p><p>@Template[type:emanation|range:vc]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -500,7 +500,7 @@
             "type": "effect",
             "_id": "hGMzqw00JTlYfHYy",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to summon a number of @UUID[Compendium.daggerheart.adversaries.Actor.OsLG2BjaEdTZUJU9]{Fallen Shock Troops} equal to twice the number of PCs. The Shock Troops appear at Far range.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -549,14 +549,14 @@
       "name": "Circle of Defilement",
       "type": "feature",
       "system": {
-        "description": "<p><em>Countdown (1d8)</em>. When the Undefeated Champion is in the spotlight for the first time, activate the countdown. When it triggers, activate a magical circle covering an area within Far range of the Champion. A target within that area is Vulnerable until they leave the circle. The circle can be removed by dealing Severe damage to the Undefeated Champion.</p>",
+        "description": "<p><em>Countdown (1d8)</em>. When the @Lookup[@name] is in the spotlight for the first time, activate the countdown. When it triggers, activate a magical circle covering an area within Far range of the @Lookup[@name]. A target within that area is Vulnerable until they leave the circle. The circle can be removed by dealing Severe damage to the @Lookup[@name].</p>",
         "resource": null,
         "actions": {
           "mHeYZ8e8MbkGz22d": {
             "type": "effect",
             "_id": "mHeYZ8e8MbkGz22d",
             "systemPath": "actions",
-            "description": "<p>Activate a magical circle covering an area within Far range of the Champion. A target within that area is Vulnerable until they leave the circle. The circle can be removed by dealing Severe damage to the Undefeated Champion.</p>",
+            "description": "<p>Activate a magical circle covering an area within Far range of the @Lookup[@name]. A target within that area is Vulnerable until they leave the circle. The circle can be removed by dealing Severe damage to the @Lookup[@name].</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -583,7 +583,7 @@
             "type": "countdown",
             "_id": "4x13WyksHU0u0j20",
             "systemPath": "actions",
-            "description": "<p><em>Countdown (1d8)</em>. When the Undefeated Champion is in the spotlight for the first time, activate the countdown.</p>",
+            "description": "<p><em>Countdown (1d8)</em>. When the @Lookup[@name] is in the spotlight for the first time, activate the countdown.</p>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"
@@ -679,14 +679,14 @@
       "name": "Momentum",
       "type": "feature",
       "system": {
-        "description": "<p>When the Undefeated Champion makes a successful attack against a PC, you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "i1Wmh6Mok4Qsur00": {
             "type": "healing",
             "_id": "i1Wmh6Mok4Qsur00",
             "systemPath": "actions",
-            "description": "<p>When the Undefeated Champion makes a successful attack against a PC, you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "reaction",
             "cost": [],
@@ -775,14 +775,14 @@
       "name": "Doombringer",
       "type": "feature",
       "system": {
-        "description": "<p>When a target marks HP from an attack by the Undefeated Champion, all PCs within Far range of the target lose a Hope.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p>When a target marks HP from an attack by the @Lookup[@name], all PCs within Far range of the target lose a Hope.</p><p>@Template[type:emanation|range:f]</p>",
         "resource": null,
         "actions": {
           "liwKSCTmQqZasAf6": {
             "type": "damage",
             "_id": "liwKSCTmQqZasAf6",
             "systemPath": "actions",
-            "description": "<p>When a target marks HP from an attack by the Undefeated Champion, all PCs within Far range of the target lose a Hope.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

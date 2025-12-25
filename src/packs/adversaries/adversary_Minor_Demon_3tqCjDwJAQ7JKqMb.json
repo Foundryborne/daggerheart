@@ -222,14 +222,14 @@
       "_id": "4xoydX3YwsLujuaI",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
       "system": {
-        "description": "<p>The Demon can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "description": "<p>The @Lookup[@name] can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
         "actions": {
           "lfYFbb71wWaR8DJs": {
             "type": "effect",
             "_id": "lfYFbb71wWaR8DJs",
             "systemPath": "actions",
-            "description": "<p>The Demon can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "passive",
             "cost": [
@@ -281,14 +281,14 @@
       "_id": "kD9kO92V7t3IqZu8",
       "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
       "system": {
-        "description": "<p>When a PC rolls a failure with Fear while within Close range of the Demon, they lose a Hope.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>When a PC rolls a failure with Fear while within Close range of the @Lookup[@name], they lose a Hope.</p><p>@Template[type:emanation|range:c]</p>",
         "resource": null,
         "actions": {
           "XQ7QebA0iGvMti4A": {
             "type": "damage",
             "_id": "XQ7QebA0iGvMti4A",
             "systemPath": "actions",
-            "description": "<p>When a PC rolls a failure with Fear while within Close range of the Demon, they lose a Hope.</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -367,7 +367,7 @@
             "type": "attack",
             "_id": "nOzLQ0NJzeB3vKiV",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to rain down hellfire within Far range. All targets within the area must make an Agility Reaction Roll. Targets who fail take <strong>1d20+3</strong> magic damage. Targets who succeed take half damage.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -468,14 +468,14 @@
       "_id": "bpLBGTW1DmXPgIcx",
       "img": "icons/magic/death/skull-energy-light-white.webp",
       "system": {
-        "description": "<p>Before rolling damage for the Demon’s attack, you can <strong>mark a Stress</strong> to gain a bonus to the damage roll equal to the Demon’s current number of marked HP.</p>",
+        "description": "<p>Before rolling damage for the @Lookup[@name]’s attack, you can <strong>mark a Stress</strong> to gain a bonus to the damage roll equal to the @Lookup[@name]’s current number of marked HP.</p>",
         "resource": null,
         "actions": {
           "vZq3iaJrMzLYbqQN": {
             "type": "effect",
             "_id": "vZq3iaJrMzLYbqQN",
             "systemPath": "actions",
-            "description": "<p>Before rolling damage for the Demon’s attack, you can <strong>mark a Stress</strong> to gain a bonus to the damage roll equal to the Demon’s current number of marked HP.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -525,14 +525,14 @@
       "_id": "w400aHTlADxDihpt",
       "img": "icons/skills/melee/strike-weapons-orange.webp",
       "system": {
-        "description": "<p>When the Demon makes a successful attack against a PC, you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "Cmd4f2gfxgOZsN6f": {
             "type": "healing",
             "_id": "Cmd4f2gfxgOZsN6f",
             "systemPath": "actions",
-            "description": "<p>When the Demon makes a successful attack against a PC, you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

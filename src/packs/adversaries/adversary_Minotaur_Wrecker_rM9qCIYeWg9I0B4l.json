@@ -221,14 +221,14 @@
       "name": "Ramp Up",
       "type": "feature",
       "system": {
-        "description": "<p>You must <strong>spend a Fear</strong> to spotlight the Minotaur. While spotlighted, they can make their standard attack against all targets within range.</p>",
+        "description": "<p>You must <strong>spend a Fear</strong> to spotlight the @Lookup[@name]. While spotlighted, they can make their standard attack against all targets within range.</p>",
         "resource": null,
         "actions": {
           "oVGqHl82zSjnlym3": {
             "type": "effect",
             "_id": "oVGqHl82zSjnlym3",
             "systemPath": "actions",
-            "description": "<p>You must <strong>spend a Fear</strong> to spotlight the Minotaur. While spotlighted, they can make their standard attack against all targets within range.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -276,14 +276,14 @@
       "name": "Charging Bull",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to charge through a group within Close range and make an attack against all targets in the Minotaur’s path. Targets the Minotaur succeeds against take <strong>2d6+8</strong> physical damage and are knocked back to Very Far range. If a target is knocked into a solid object or another creature, they take an extra <strong>1d6</strong> damage (combine the damage).</p>",
+        "description": "<p><strong>Mark a Stress</strong> to charge through a group within Close range and make an attack against all targets in the @Lookup[@name]’s path. Targets the @Lookup[@name] succeeds against take <strong>2d6+8</strong> physical damage and are knocked back to Very Far range. If a target is knocked into a solid object or another creature, they take an extra <strong>1d6</strong> damage (combine the damage).</p>",
         "resource": null,
         "actions": {
           "8fgkb7U2pxNyiHrB": {
             "type": "attack",
             "_id": "8fgkb7U2pxNyiHrB",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to charge through a group within Close range and make an attack against all targets in the Minotaur’s path. Targets the Minotaur succeeds against take <strong>2d6+8</strong> physical damage and are knocked back to Very Far range. If a target is knocked into a solid object or another creature, they take an extra <strong>1d6</strong> damage (combine the damage).</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

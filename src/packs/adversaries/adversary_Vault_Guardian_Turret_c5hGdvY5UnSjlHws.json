@@ -221,7 +221,7 @@
       "name": "Slow Firing",
       "type": "feature",
       "system": {
-        "description": "<p>When you spotlight the Turret and they don’t have a token on their stat block, they can’t make a standard attack. Place a token on their stat block and describe what they’re preparing to do. When you spotlight the Turret and they have a token on their stat block, clear the token and they can attack.</p>",
+        "description": "<p>When you spotlight the @Lookup[@name] and they don’t have a token on their stat block, they can’t make a standard attack. Place a token on their stat block and describe what they’re preparing to do. When you spotlight the @Lookup[@name] and they have a token on their stat block, clear the token and they can attack.</p>",
         "resource": {
           "type": "simple",
           "value": 0,
@@ -251,14 +251,14 @@
       "name": "Mark Target",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to Mark a target within Far range until the Turret is destroyed or the Marked target becomes Hidden. While the target is Marked, their Evasion is halved.</p>",
+        "description": "<p><strong>Spend a Fear</strong> to Mark a target within Far range until the @Lookup[@name] is destroyed or the Marked target becomes Hidden. While the target is Marked, their Evasion is halved.</p>",
         "resource": null,
         "actions": {
           "1SfYAIIr5znuHCKX": {
             "type": "effect",
             "_id": "1SfYAIIr5znuHCKX",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to Mark a target within Far range until the Turret is destroyed or the Marked target becomes Hidden. While the target is Marked, their Evasion is halved.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -356,14 +356,14 @@
       "name": "Concentrate Fire",
       "type": "feature",
       "system": {
-        "description": "<p>When another adversary deals damage to a target within Far range of the Turret, you can <strong>mark a Stress</strong> to add the Turret’s standard attack damage to the damage roll.</p>",
+        "description": "<p>When another adversary deals damage to a target within Far range of the @Lookup[@name], you can <strong>mark a Stress</strong> to add the @Lookup[@name]’s standard attack damage to the damage roll.</p>",
         "resource": null,
         "actions": {
           "3cqPKBRtwxtLwDpN": {
             "type": "effect",
             "_id": "3cqPKBRtwxtLwDpN",
             "systemPath": "actions",
-            "description": "<p>When another adversary deals damage to a target within Far range of the Turret, you can <strong>mark a Stress</strong> to add the Turret’s standard attack damage to the damage roll.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -412,14 +412,14 @@
       "name": "Detonation",
       "type": "feature",
       "system": {
-        "description": "<p>When the Turret is destroyed, they explode. All targets within Close range must make an Agility Reaction Roll. Targets who fail take <strong>3d20</strong> physical damage. Targets who succeed take half damage.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>When the @Lookup[@name] is destroyed, they explode. All targets within Close range must make an Agility Reaction Roll. Targets who fail take <strong>3d20</strong> physical damage. Targets who succeed take half damage.</p><p>@Template[type:emanation|range:c]</p>",
         "resource": null,
         "actions": {
           "i1PZ9ddYdOOs2xSb": {
             "type": "attack",
             "_id": "i1PZ9ddYdOOs2xSb",
             "systemPath": "actions",
-            "description": "<p>When the Turret is destroyed, they explode. All targets within Close range must make an Agility Reaction Roll. Targets who fail take <strong>3d20</strong> physical damage. Targets who succeed take half damage.</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

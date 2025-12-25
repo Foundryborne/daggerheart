@@ -46,7 +46,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         },
         dragDrop: [
             {
-                dragSelector: '[data-item-id][draggable="true"]',
+                dragSelector: '[data-item-id][draggable="true"], [data-item-id] [draggable="true"]',
                 dropSelector: null
             }
         ],
@@ -866,6 +866,15 @@ export default class CharacterSheet extends DHBaseActorSheet {
         new game.system.api.applications.dialogs.Downtime(this.document, button.dataset.type === 'shortRest').render({
             force: true
         });
+    }
+
+    /** @inheritdoc */
+    async _onDragStart(event) {
+        const inventoryItem = event.currentTarget.closest('.inventory-item');
+        if (inventoryItem) {
+            event.dataTransfer.setDragImage(inventoryItem.querySelector('img'), 60, 0);
+        }
+        super._onDragStart(event);
     }
 
     async _onDropItem(event, item) {

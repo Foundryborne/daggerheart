@@ -259,7 +259,7 @@
             "type": "attack",
             "_id": "XquYMA2xJZUKSmXQ",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to move into Melee range of an ally and make a standard attack against a target within Very Close range. On a success, deal <strong>2d10+2</strong> physical damage and the ally can clear a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -359,14 +359,14 @@
       "name": "Vassal's Loyalty",
       "type": "feature",
       "system": {
-        "description": "<p>When the Soldier is within Very Close range of a knight or other noble who would take damage, you can mark a Stress to move into Melee range of them and take the damage instead.</p>",
+        "description": "<p>When the @Lookup[@name] is within Very Close range of a knight or other noble who would take damage, you can mark a Stress to move into Melee range of them and take the damage instead.</p>",
         "resource": null,
         "actions": {
           "dwpQNx63V6hL1mXZ": {
             "type": "effect",
             "_id": "dwpQNx63V6hL1mXZ",
             "systemPath": "actions",
-            "description": "<p>When the Soldier is within Very Close range of a knight or other noble who would take damage, you can mark a Stress to move into Melee range of them and take the damage instead.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

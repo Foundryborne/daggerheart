@@ -18,12 +18,12 @@ Parameters:
 --}}
 
 <li class="inventory-item" data-item-id="{{item.id}}" {{#if (or (eq type 'action' ) (eq type 'attack' ))}}
-  data-action-id="{{item.id}}" {{/if}} data-item-uuid="{{item.uuid}}" data-type="{{type}}" data-no-compendium-edit="{{noCompendiumEdit}}" draggable="true">
+  data-action-id="{{item.id}}" {{/if}} data-item-uuid="{{item.uuid}}" data-type="{{type}}" data-no-compendium-edit="{{noCompendiumEdit}}">
   <div class="inventory-item-header {{#if hideContextMenu}}padded{{/if}}" {{#unless noExtensible}}data-action="toggleExtended" {{/unless}}>
     {{!-- Image --}}
     <div class="img-portait" data-action='{{ifThen (or (hasProperty item "use") (eq type "attack")) "useItem" (ifThen
       (hasProperty item "toChat" ) "toChat" "editDoc" ) }}' {{#unless hideTooltip}} {{#if (eq type 'attack' )}}
-      data-tooltip="#attack#{{item.actor.uuid}}" {{else}} data-tooltip="#item#{{item.uuid}}" {{/if}} {{/unless}}>
+      data-tooltip="#attack#{{item.actor.uuid}}" {{else}} data-tooltip="#item#{{item.uuid}}" {{/if}} {{/unless}} draggable="true">
       <img src="{{item.img}}" class="item-img {{#if isActor}}actor-img{{/if}}" />
       {{#if (or item.system.actionsList.size item.system.actionsList.length item.actionType)}}
         {{#if @root.isNPC}}
@@ -35,7 +35,7 @@ Parameters:
     </div>
 
     {{!-- Name & Tags --}}
-    <div class="item-label">
+    <div class="item-label" draggable="true">
 
       {{!-- Item Name --}}
       <span class="item-name">{{localize item.name}} {{#unless (or noExtensible (not item.system.description))}}<span class="expanded-icon"><i class="fa-solid fa-expand"></i></span>{{/unless}}</span>

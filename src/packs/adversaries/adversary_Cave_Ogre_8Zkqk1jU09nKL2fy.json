@@ -230,14 +230,14 @@
       "_id": "ynuyMl1sMQYINfcQ",
       "img": "icons/weapons/clubs/club-spiked-glowing.webp",
       "system": {
-        "description": "<p>You must <strong>spend a Fear</strong> to spotlight the Ogre. While spotlighted, they can make their standard attack against all targets within range.</p>",
+        "description": "<p>You must <strong>spend a Fear</strong> to spotlight the @Lookup[@name]. While spotlighted, they can make their standard attack against all targets within range.</p>",
         "resource": null,
         "actions": {
           "UoZ6vXRXvWYjpJpZ": {
             "type": "effect",
             "_id": "UoZ6vXRXvWYjpJpZ",
             "systemPath": "actions",
-            "description": "<p>You must <strong>spend a Fear</strong> to spotlight the Ogre. While spotlighted, they can make their standard attack against all targets within range.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -286,7 +286,7 @@
       "_id": "szu5YYQ6klkDbqAT",
       "img": "icons/skills/wounds/bone-broken-marrow-red.webp",
       "system": {
-        "description": "<p>The Ogre’s attacks deal direct damage.</p>",
+        "description": "<p>The @Lookup[@name]’s attacks deal direct damage.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -312,14 +312,14 @@
       "_id": "zGvaBYJPOOnQVQEn",
       "img": "icons/magic/earth/projectile-stone-boulder-orange.webp",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to pick up heavy objects and throw them at all targets in front of the Ogre within Far range. Make an attack against these targets. Targets the Ogre succeeds against take <strong>1d10+2</strong> physical damage. If they succeed against more than one target, you gain a Fear.</p><p>@Template[type:inFront|range:f]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to pick up heavy objects and throw them at all targets in front of the @Lookup[@name] within Far range. Make an attack against these targets. Targets the @Lookup[@name] succeeds against take <strong>1d10+2</strong> physical damage. If they succeed against more than one target, you gain a Fear.</p><p>@Template[type:inFront|range:f]</p>",
         "resource": null,
         "actions": {
           "3p1qfHy5uHe4H2hB": {
             "type": "attack",
             "_id": "3p1qfHy5uHe4H2hB",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to pick up heavy objects and throw them at all targets in front of the Ogre within Far range. Make an attack against these targets. Targets the Ogre succeeds against take <strong>1d10+2</strong> physical damage. If they succeed against more than one target, you gain a Fear.</p><p>@Template[type:inFront|range:f]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -490,14 +490,14 @@
       "_id": "Qxkddj6nQc4RDExW",
       "img": "icons/skills/melee/strike-flail-destructive-yellow.webp",
       "system": {
-        "description": "<p>When the Ogre marks 2 or more HP, they can rampage. Move the Ogre to a point within Close range and deal <strong>2d6+3</strong> direct physical damage to all targets in their path.</p>",
+        "description": "<p>When the @Lookup[@name] marks 2 or more HP, they can rampage. Move the @Lookup[@name] to a point within Close range and deal <strong>2d6+3</strong> direct physical damage to all targets in their path.</p>",
         "resource": null,
         "actions": {
           "PtTu9bnCJKMySBSV": {
             "type": "damage",
             "_id": "PtTu9bnCJKMySBSV",
             "systemPath": "actions",
-            "description": "<p>When the Ogre marks 2 or more HP, they can rampage. Move the Ogre to a point within Close range and deal <strong>2d6+3</strong> direct physical damage to all targets in their path.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

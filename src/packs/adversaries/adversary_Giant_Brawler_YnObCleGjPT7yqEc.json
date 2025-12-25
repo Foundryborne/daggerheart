@@ -227,14 +227,14 @@
       "name": "Battering Ram",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to have the Brawler charge at an inanimate object within Close range they could feasibly smash (such as a wall, cart, or market stand) and destroy it. All targets within Very Close range of the object must succeed on an Agility Reaction Roll or take <strong>2d4+3</strong> physical damage from the shrapnel.</p><p>@Template[type:circle|range:vc]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to have the @Lookup[@name] charge at an inanimate object within Close range they could feasibly smash (such as a wall, cart, or market stand) and destroy it. All targets within Very Close range of the object must succeed on an Agility Reaction Roll or take <strong>2d4+3</strong> physical damage from the shrapnel.</p><p>@Template[type:circle|range:vc]</p>",
         "resource": null,
         "actions": {
           "zns57MqnZ6M1d4r0": {
             "type": "attack",
             "_id": "zns57MqnZ6M1d4r0",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to have the Brawler charge at an inanimate object within Close range they could feasibly smash (such as a wall, cart, or market stand) and destroy it. All targets within Very Close range of the object must succeed on an Agility Reaction Roll or take <strong>2d4+3</strong> physical damage from the shrapnel.</p><p>@Template[type:circle|range:vc]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -334,14 +334,14 @@
       "name": "Bloody Reprisal",
       "type": "feature",
       "system": {
-        "description": "<p>When the Brawler marks 2 or more HP from an attack within Very Close range, you can make a standard attack against the attacker. On a success, the Brawler deals <strong>2d6+15</strong> physical damage instead of their standard damage.</p>",
+        "description": "<p>When the @Lookup[@name] marks 2 or more HP from an attack within Very Close range, you can make a standard attack against the attacker. On a success, the @Lookup[@name] deals <strong>2d6+15</strong> physical damage instead of their standard damage.</p>",
         "resource": null,
         "actions": {
           "D53yjFXoP5uFXe9M": {
             "type": "attack",
             "_id": "D53yjFXoP5uFXe9M",
             "systemPath": "actions",
-            "description": "<p>When the Brawler marks 2 or more HP from an attack within Very Close range, you can make a standard attack against the attacker. On a success, the Brawler deals <strong>2d6+15</strong> physical damage instead of their standard damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -434,14 +434,14 @@
       "name": "Momentum",
       "type": "feature",
       "system": {
-        "description": "<p>When the Brawler makes a successful attack against a PC, you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "U2AfyadkJluHXA4r": {
             "type": "healing",
             "_id": "U2AfyadkJluHXA4r",
             "systemPath": "actions",
-            "description": "<p>When the Brawler makes a successful attack against a PC you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "reaction",
             "cost": [],

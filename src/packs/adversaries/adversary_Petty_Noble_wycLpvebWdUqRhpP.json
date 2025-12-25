@@ -229,7 +229,7 @@
       "_id": "Jbq36nElH6RDacLU",
       "img": "icons/skills/social/diplomacy-writing-letter.webp",
       "system": {
-        "description": "<p> All social actions made against the Noble on their land have disadvantage.</p>",
+        "description": "<p>All social actions made against the @Lookup[@name] on their land have disadvantage.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -255,7 +255,7 @@
       "_id": "ebdAPBso5ROmdFNO",
       "img": "icons/environment/people/infantry-armored.webp",
       "system": {
-        "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon <strong>1d4</strong> @UUID[Compendium.daggerheart.adversaries.Actor.B4LZcGuBAHzyVdzy]{Bladed Guards}, who appear at Far range to enforce the Noble’s will.</p>",
+        "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon <strong>1d4</strong> @UUID[Compendium.daggerheart.adversaries.Actor.B4LZcGuBAHzyVdzy]{Bladed Guards}, who appear at Far range to enforce the @Lookup[@name]’s will.</p>",
         "resource": null,
         "actions": {
           "cUKwhq1imsTVru8D": {
@@ -336,14 +336,14 @@
       "_id": "xN09fSsg33nURqpk",
       "img": "icons/commodities/currency/coin-embossed-skull-gold.webp",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> and target a PC. The Noble proclaims that the target and their allies are exiled from the noble’s territory. While exiled, the target and their allies have disadvantage during social situations within the Noble’s domain.</p>",
+        "description": "<p><strong>Spend a Fear</strong> and target a PC. The @Lookup[@name] proclaims that the target and their allies are exiled from the @Lookup[@name]’s territory. While exiled, the target and their allies have disadvantage during social situations within the @Lookup[@name]’s domain.</p>",
         "resource": null,
         "actions": {
           "dAHzRxf0iztyc1mI": {
             "type": "effect",
             "_id": "dAHzRxf0iztyc1mI",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> and target a PC. The Noble proclaims that the target and their allies are exiled from the noble’s territory. While exiled, the target and their allies have disadvantage during social situations within the Noble’s domain.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

@@ -227,14 +227,14 @@
       "name": "Relentless (3)",
       "type": "feature",
       "system": {
-        "description": "<p>The Kraken can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "description": "<p>The @Lookup[@name] can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
         "actions": {
           "420LQBs27zQTAXfY": {
             "type": "effect",
             "_id": "420LQBs27zQTAXfY",
             "systemPath": "actions",
-            "description": "<p>The Kraken can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "passive",
             "cost": [
@@ -285,7 +285,7 @@
       "name": "Many Tentacles",
       "type": "feature",
       "system": {
-        "description": "<p>While the Kraken has 7 or fewer marked HP, they can make their standard attack against two targets within range.</p>",
+        "description": "<p>While the @Lookup[@name] has 7 or fewer marked HP, they can make their standard attack against two targets within range.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -310,7 +310,7 @@
       "name": "Grapple and Drown",
       "type": "feature",
       "system": {
-        "description": "<p>Make an attack roll against a target within Close range. On a success, <strong>mark a Stress</strong> to grab them with a tentacle and drag them beneath the water. The target is <em>Restrained</em> and <em>Vulnerable</em> until they break free with a successful Strength Roll or the Kraken takes Major or greater damage. While <em>Restrained</em> and <em>Vulnerable</em> in this way, a target must mark a Stress when they make an action roll.</p>",
+        "description": "<p>Make an attack roll against a target within Close range. On a success, <strong>mark a Stress</strong> to grab them with a tentacle and drag them beneath the water. The target is <em>Restrained</em> and <em>Vulnerable</em> until they break free with a successful Strength Roll or the @Lookup[@name] takes Major or greater damage. While <em>Restrained</em> and <em>Vulnerable</em> in this way, a target must mark a Stress when they make an action roll.</p>",
         "resource": null,
         "actions": {
           "SX2Y4OapGEawl17j": {
@@ -435,7 +435,7 @@
             "type": "attack",
             "_id": "pHZUiZRSj4FuG0uK",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to spew a line of boiling water at any number of targets in a line up to Far range. All targets must succeed on an Agility Reaction Roll or take <strong>4d6+9</strong> physical damage. If a target marks an Armor Slot to reduce the damage, they must also mark a Stress.</p><p>@Template[type:ray|range:f]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -528,14 +528,14 @@
       "name": "Momentum",
       "type": "feature",
       "system": {
-        "description": "<p>When the Kraken makes a successful attack against a PC, you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "hXQtIGmSaWKMOuFB": {
             "type": "healing",
             "_id": "hXQtIGmSaWKMOuFB",
             "systemPath": "actions",
-            "description": "<p>When the Kraken makes a successful attack against a PC, you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "reaction",
             "cost": [],

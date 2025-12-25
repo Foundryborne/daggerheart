@@ -216,7 +216,7 @@
       "_id": "g9GQ9cMPNETxKXOz",
       "img": "icons/magic/symbols/runes-carved-stone-yellow.webp",
       "system": {
-        "description": "<p>The Dredge is defeated when they take any damage. For every 4 damage a PC deals to the Dredge, defeat an additional Minion within range the attack would succeed against.</p>",
+        "description": "<p>The @Lookup[@name] is defeated when they take any damage. For every 4 damage a PC deals to the @Lookup[@name], defeat an additional Minion within range the attack would succeed against.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -242,14 +242,14 @@
       "_id": "wl9KKEpVWDBu62hU",
       "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Dredges within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 1 physical damage each. Combine this damage.</p>",
+        "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all @Lookup[@name]s within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 1 physical damage each. Combine this damage.</p>",
         "resource": null,
         "actions": {
           "Sz55uB8xkoNytLwJ": {
             "type": "effect",
             "_id": "Sz55uB8xkoNytLwJ",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Dredges within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 1 physical damage each. Combine this damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

@@ -255,7 +255,7 @@
       "_id": "jH1VMpj4dCUhKVCJ",
       "img": "icons/magic/symbols/runes-carved-stone-yellow.webp",
       "system": {
-        "description": "<p>The Bramble is defeated when they take any damage. For every 4 damage a PC deals to the Tangle Bramble, defeat an additional Minion within range the attack would succeed against.</p>",
+        "description": "<p>The @Lookup[@name] is defeated when they take any damage. For every 4 damage a PC deals to the @Lookup[@name], defeat an additional Minion within range the attack would succeed against.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -281,14 +281,14 @@
       "_id": "WiobzuyvJ46zfsOv",
       "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Tangle Brambles within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 2 physical damage each. Combine this damage.</p>",
+        "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all @Lookup[@name]s within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 2 physical damage each. Combine this damage.</p>",
         "resource": null,
         "actions": {
           "ZC5pKIb9N82vgMWu": {
             "type": "effect",
             "_id": "ZC5pKIb9N82vgMWu",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Tangle Brambles within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 2 physical damage each. Combine this damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -338,7 +338,7 @@
       "_id": "KBMf7oBfFSHoafKN",
       "img": "icons/magic/nature/root-vines-knot-brown.webp",
       "system": {
-        "description": "<p>When an attack from the Bramble causes a target to mark HP and there are three or more Tangle Bramble Minions within Close range, you can combine the Minions into a @UUID[Compendium.daggerheart.adversaries.Actor.PKSXFuaIHUCoH63A]{Tangle Bramble Swarm Horde}. The Horde’s HP is equal to the number of Minions combined.</p>",
+        "description": "<p>When an attack from the @Lookup[@name] causes a target to mark HP and there are three or more @Lookup[@name] Minions within Close range, you can combine the Minions into a @UUID[Compendium.daggerheart.adversaries.Actor.PKSXFuaIHUCoH63A]{Tangle Bramble Swarm Horde}. The Horde’s HP is equal to the number of Minions combined.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,

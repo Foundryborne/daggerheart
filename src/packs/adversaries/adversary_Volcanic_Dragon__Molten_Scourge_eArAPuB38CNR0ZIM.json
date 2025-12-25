@@ -252,14 +252,14 @@
       "name": "Relentless (3)",
       "type": "feature",
       "system": {
-        "description": "<p>The Molten Scourge can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "description": "<p>The @Lookup[@name] can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
         "actions": {
           "ngzXlah4Lv3eK6i5": {
             "type": "effect",
             "_id": "ngzXlah4Lv3eK6i5",
             "systemPath": "actions",
-            "description": "<p>The Molten Scourge can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "passive",
             "cost": [
@@ -310,7 +310,7 @@
       "name": "Cracked Scales",
       "type": "feature",
       "system": {
-        "description": "<p>When the Molten Scourge takes damage, roll a number of d6s equal to HP marked. For each result of 4 or higher, you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] takes damage, roll a number of d6s equal to HP marked. For each result of 4 or higher, you gain a Fear.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -335,14 +335,14 @@
       "name": "Shattering Might",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to make an attack against a target within Very Close range. On a success, the target takes <strong>4d8+1</strong> physical damage, loses a Hope, and is knocked back to Close range. The Molten Scourge clears a Stress.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to make an attack against a target within Very Close range. On a success, the target takes <strong>4d8+1</strong> physical damage, loses a Hope, and is knocked back to Close range. The @Lookup[@name] clears a Stress.</p>",
         "resource": null,
         "actions": {
           "YNw3E6309te5JPoM": {
             "type": "attack",
             "_id": "YNw3E6309te5JPoM",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to make an attack against a target within Very Close range. On a success, the target takes <strong>4d8+1</strong> physical damage, loses a Hope, and is knocked back to Close range. The Molten Scourge clears a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -442,14 +442,14 @@
       "name": "Eruption",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to erupt lava from beneath the Molten Scourge’s scales, filling the area within Very Close range with molten lava. All targets in that area must succeed on an Agility Reaction Roll or take <strong>4d6+6</strong> physical damage and be knocked back to Close range. This area remains lava. When a creature other than the Molten Scourge enters that area or acts while inside of it, they must mark 6 HP.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to erupt lava from beneath the @Lookup[@name]’s scales, filling the area within Very Close range with molten lava. All targets in that area must succeed on an Agility Reaction Roll or take <strong>4d6+6</strong> physical damage and be knocked back to Close range. This area remains lava. When a creature other than the @Lookup[@name] enters that area or acts while inside of it, they must mark 6 HP.</p><p>@Template[type:emanation|range:vc]</p>",
         "resource": null,
         "actions": {
           "OpwKa8tQQoaEIZiS": {
             "type": "attack",
             "_id": "OpwKa8tQQoaEIZiS",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to erupt lava from beneath the Molten Scourge’s scales, filling the area within Very Close range with molten lava. All targets in that area must succeed on an Agility Reaction Roll or take <strong>4d6+6</strong> physical damage and be knocked back to Close range. This area remains lava. When a creature other than the Molten Scourge enters that area or acts while inside of it, they must mark 6 HP.</p><p>@Template[type:emanation|range:vc]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -542,14 +542,14 @@
       "name": "Volcanic Breath",
       "type": "feature",
       "system": {
-        "description": "<p>When the Molten Scourge takes Major damage, roll a <strong>d10</strong>. On a result of 8 or higher, the Molten Scourge breathes a flow of lava in front of them within Far range. All targets in that area must make an Agility Reaction Roll. Targets who fail take <strong>2d10+4</strong> physical damage, mark <strong>1d4</strong> Stress, and are Vulnerable until they clear a Stress. Targets who succeed take half damage and must mark a Stress.</p><p>@Template[type:inFront|range:f]</p>",
+        "description": "<p>When the @Lookup[@name] takes Major damage, roll a <strong>d10</strong>. On a result of 8 or higher, the @Lookup[@name] breathes a flow of lava in front of them within Far range. All targets in that area must make an Agility Reaction Roll. Targets who fail take <strong>2d10+4</strong> physical damage, mark <strong>1d4</strong> Stress, and are Vulnerable until they clear a Stress. Targets who succeed take half damage and must mark a Stress.</p><p>@Template[type:inFront|range:f]</p>",
         "resource": null,
         "actions": {
           "OhrssSQhmciZt1Rm": {
             "type": "attack",
             "_id": "OhrssSQhmciZt1Rm",
             "systemPath": "actions",
-            "description": "<p>When the Molten Scourge takes Major damage, roll a <strong>d10</strong>. On a result of 8 or higher, the Molten Scourge breathes a flow of lava in front of them within Far range.</p>",
+            "description": "<p>When the @Lookup[@name] takes Major damage, roll a <strong>d10</strong>. On a result of 8 or higher, the @Lookup[@name] breathes a flow of lava in front of them within Far range.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -602,7 +602,7 @@
             "type": "attack",
             "_id": "LBNvfABGWcrygpQM",
             "systemPath": "actions",
-            "description": "<p>The Molten Scourge breathes a flow of lava in front of them within Far range. All targets in that area must make an Agility Reaction Roll. Targets who fail take <strong>2d10+4</strong> physical damage, mark <strong>1d4</strong> Stress, and are Vulnerable until they clear a Stress. Targets who succeed take half damage and must mark a Stress.</p><p>@Template[type:inFront|range:f]</p>",
+            "description": "<p>The @Lookup[@name] breathes a flow of lava in front of them within Far range. All targets in that area must make an Agility Reaction Roll. Targets who fail take <strong>2d10+4</strong> physical damage, mark <strong>1d4</strong> Stress, and are Vulnerable until they clear a Stress. Targets who succeed take half damage and must mark a Stress.</p><p>@Template[type:inFront|range:f]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -763,14 +763,14 @@
       "name": "Lava Splash",
       "type": "feature",
       "system": {
-        "description": "<p>When the Molten Scourge takes Severe damage from an attack within Very Close range, molten blood gushes from the wound and deals <strong>2d10+4</strong> direct physical damage to the attacker.</p>",
+        "description": "<p>When the @Lookup[@name] takes Severe damage from an attack within Very Close range, molten blood gushes from the wound and deals <strong>2d10+4</strong> direct physical damage to the attacker.</p>",
         "resource": null,
         "actions": {
           "WtrAv8peQ71OBoO1": {
             "type": "damage",
             "_id": "WtrAv8peQ71OBoO1",
             "systemPath": "actions",
-            "description": "<p>When the Molten Scourge takes Severe damage from an attack within Very Close range, molten blood gushes from the wound and deals <strong>2d10+4</strong> direct physical damage to the attacker.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -844,7 +844,7 @@
       "name": "Ashen Vengeance",
       "type": "feature",
       "system": {
-        "description": "<p>When the Molten Scourge marks their last HP, replace them with the @UUID[Compendium.daggerheart.adversaries.Actor.pMuXGCSOQaxpi5tb]{Ashen Tyrant} and immediately spotlight them.</p>",
+        "description": "<p>When the @Lookup[@name] marks their last HP, replace them with the @UUID[Compendium.daggerheart.adversaries.Actor.pMuXGCSOQaxpi5tb]{Ashen Tyrant} and immediately spotlight them.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,

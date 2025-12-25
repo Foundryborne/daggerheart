@@ -221,7 +221,7 @@
       "name": "Chaotic Form",
       "type": "feature",
       "system": {
-        "description": "<p>When the Abomination attacks, roll <strong>2d4</strong> and use the result as their attack modifi er.</p>",
+        "description": "<p>When the @Lookup[@name] attacks, roll <strong>2d4</strong> and use the result as their attack modifier.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -246,14 +246,14 @@
       "name": "Disorienting Presence",
       "type": "feature",
       "system": {
-        "description": "<p>When a target takes damage from the Abomination, they must make an Instinct Reaction Roll. On a failure, they gain disadvantage on their next action roll and you gain a Fear.</p>",
+        "description": "<p>When a target takes damage from the @Lookup[@name], they must make an Instinct Reaction Roll. On a failure, they gain disadvantage on their next action roll and you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "4diIu0AzPjitQ94k": {
             "type": "attack",
             "_id": "4diIu0AzPjitQ94k",
             "systemPath": "actions",
-            "description": "<p>When a target takes damage from the Abomination, they must make an Instinct Reaction Roll. On a failure, they gain disadvantage on their next action roll and you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -367,14 +367,14 @@
       "name": "Reality Quake",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to rattle the edges of reality within Far range of the Abomination. All targets within that area must succeed on a Knowledge Reaction Roll or become Unstuck from reality until the end of the scene. When an Unstuck target spends Hope or marks Armor Slots, HP, or Stress, they must double the amount spent or marked.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to rattle the edges of reality within Far range of the @Lookup[@name]. All targets within that area must succeed on a Knowledge Reaction Roll or become Unstuck from reality until the end of the scene. When an Unstuck target spends Hope or marks Armor Slots, HP, or Stress, they must double the amount spent or marked.</p><p>@Template[type:emanation|range:f]</p>",
         "resource": null,
         "actions": {
           "7apNSLz8m7sxyLhU": {
             "type": "attack",
             "_id": "7apNSLz8m7sxyLhU",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to rattle the edges of reality within Far range of the Abomination. All targets within that area must succeed on a Knowledge Reaction Roll or become Unstuck from reality until the end of the scene. When an Unstuck target spends Hope or marks Armor Slots, HP, or Stress, they must double the amount spent or marked.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -482,14 +482,14 @@
       "name": "Unreal Form",
       "type": "feature",
       "system": {
-        "description": "<p>When the Abomination takes damage, reduce it by <strong>1d20</strong>. If the Abomination marks 1 or fewer Hit Points from a successful attack against them, you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] takes damage, reduce it by <strong>1d20</strong>. If the @Lookup[@name] marks 1 or fewer Hit Points from a successful attack against them, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "ohpbyDEgSTVJ7qaF": {
             "type": "attack",
             "_id": "ohpbyDEgSTVJ7qaF",
             "systemPath": "actions",
-            "description": "<p>When the Abomination takes damage, reduce it by <strong>1d20</strong>. If the Abomination marks 1 or fewer Hit Points from a successful attack against them, you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

@@ -38,7 +38,6 @@ export default class OwnershipSelection extends HandlebarsApplicationMixin(Appli
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
-        context.ownershipDefaultOptions = CONFIG.DH.GENERAL.basicOwnershiplevels;
         context.ownershipOptions = CONFIG.DH.GENERAL.simpleOwnershiplevels;
         context.defaultOwnership = this.defaultOwnership;
         context.ownership = game.users.reduce((acc, user) => {
@@ -52,6 +51,7 @@ export default class OwnershipSelection extends HandlebarsApplicationMixin(Appli
 
             return acc;
         }, {});
+        context.showOwnership = Boolean(Object.keys(context.ownership).length);
 
         return context;
     }

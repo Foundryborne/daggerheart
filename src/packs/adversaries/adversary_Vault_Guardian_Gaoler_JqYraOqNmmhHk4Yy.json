@@ -221,7 +221,7 @@
       "name": "Blocking Shield",
       "type": "feature",
       "system": {
-        "description": "<p>Creatures within Melee range of the Gaoler have disadvantage on attack rolls against them. Creatures trapped inside the Gaoler are immune to this feature.</p>",
+        "description": "<p>Creatures within Melee range of the @Lookup[@name] have disadvantage on attack rolls against them. Creatures trapped inside the @Lookup[@name] are immune to this feature.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -246,14 +246,14 @@
       "name": "Lock Up",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to make an attack against a target within Very Close range. On a success, the target is <em>Restrained</em> within the Gaoler until freed with a successful Strength Roll (18). While <em>Restrained</em>, the target can only attack the Gaoler. </p>",
+        "description": "<p><strong>Mark a Stress</strong> to make an attack against a target within Very Close range. On a success, the target is <em>Restrained</em> within the @Lookup[@name] until freed with a successful Strength Roll (18). While <em>Restrained</em>, the target can only attack the @Lookup[@name].</p>",
         "resource": null,
         "actions": {
           "NawX2Kuk4GXI5loW": {
             "type": "attack",
             "_id": "NawX2Kuk4GXI5loW",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to make an attack against a target within Very Close range. On a success, the target is <em>Restrained</em> within the Gaoler until freed with a successful Strength Roll (18). While <em>Restrained</em>, the target can only attack the Gaoler. </p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

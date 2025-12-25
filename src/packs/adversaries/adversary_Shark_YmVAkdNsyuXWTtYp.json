@@ -221,14 +221,14 @@
       "name": "Terrifying",
       "type": "feature",
       "system": {
-        "description": "<p>When the Shark makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
         "resource": null,
         "actions": {
           "NoEb6qR3ktIu9kRJ": {
             "type": "damage",
             "_id": "NoEb6qR3ktIu9kRJ",
             "systemPath": "actions",
-            "description": "<p>When the Shark makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -299,14 +299,14 @@
       "name": "Rending Bite",
       "type": "feature",
       "system": {
-        "description": "<p>When the Shark makes a successful attack, the target must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack, the target must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
         "resource": null,
         "actions": {
           "a0gC7uWycUB2NgKS": {
             "type": "attack",
             "_id": "a0gC7uWycUB2NgKS",
             "systemPath": "actions",
-            "description": "<p>When the Shark makes a successful attack, the target must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -423,14 +423,14 @@
       "name": "Blood in the Water",
       "type": "feature",
       "system": {
-        "description": "<p>When a creature within Close range of the Shark marks HP from another creature’s attack, you can <strong>mark a Stress</strong> to immediately spotlight the Shark, moving them into Melee range of the target and making a standard attack.</p>",
+        "description": "<p>When a creature within Close range of the @Lookup[@name] marks HP from another creature’s attack, you can <strong>mark a Stress</strong> to immediately spotlight the @Lookup[@name], moving them into Melee range of the target and making a standard attack.</p>",
         "resource": null,
         "actions": {
           "sE9KRd9siZeYHPhb": {
             "type": "effect",
             "_id": "sE9KRd9siZeYHPhb",
             "systemPath": "actions",
-            "description": "<p>When a creature within Close range of the Shark marks HP from another creature’s attack, you can <strong>mark a Stress</strong> to immediately spotlight the Shark, moving them into Melee range of the target and making a standard attack.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

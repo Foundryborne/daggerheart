@@ -221,7 +221,7 @@
       "name": "Slow",
       "type": "feature",
       "system": {
-        "description": "<p>When you spotlight the Elemental and they don’t have a token on their stat block, they can’t act yet. Place a token on their stat block and describe what they’re preparing to do. When you spotlight the Elemental and they have a token on their stat block, clear the token and they can act.</p>",
+        "description": "<p>When you spotlight the @Lookup[@name] and they don’t have a token on their stat block, they can’t act yet. Place a token on their stat block and describe what they’re preparing to do. When you spotlight the @Lookup[@name] and they have a token on their stat block, clear the token and they can act.</p>",
         "resource": {
           "type": "simple",
           "value": 0,
@@ -251,14 +251,14 @@
       "name": "Crushing Blows",
       "type": "feature",
       "system": {
-        "description": "<p>When the Elemental makes a successful attack, the target must mark an Armor Slot without receiving its benefi ts (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack, the target must mark an Armor Slot without receiving its benefi ts (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
         "resource": null,
         "actions": {
           "0sXciTiPc30v8czv": {
             "type": "damage",
             "_id": "0sXciTiPc30v8czv",
             "systemPath": "actions",
-            "description": "<p>When the Elemental makes a successful attack, the target must mark an Armor Slot without receiving its benefi ts (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -329,7 +329,7 @@
       "name": "Immovable Object",
       "type": "feature",
       "system": {
-        "description": "<p>An attack that would move the Elemental moves them two fewer ranges (for example, Far becomes Very Close). When the Elemental takes physical damage, reduce it by 7.</p>",
+        "description": "<p>An attack that would move the @Lookup[@name] moves them two fewer ranges (for example, Far becomes Very Close). When the @Lookup[@name] takes physical damage, reduce it by 7.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -398,14 +398,14 @@
       "name": "Rockslide",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to create a rockslide that buries the land in front of Elemental within Close range with rockfall. All targets in this area must make an Agility Reaction Roll (19). Targets who fail take <strong>2d12+5</strong> physical damage and become Vulnerable until their next roll with Hope. Targets who succeed take half damage.</p><p>@Template[type:inFront|range:c]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to create a rockslide that buries the land in front of @Lookup[@name] within Close range with rockfall. All targets in this area must make an Agility Reaction Roll (19). Targets who fail take <strong>2d12+5</strong> physical damage and become Vulnerable until their next roll with Hope. Targets who succeed take half damage.</p><p>@Template[type:inFront|range:c]</p>",
         "resource": null,
         "actions": {
           "eLGIC3kVjLo8FEvy": {
             "type": "attack",
             "_id": "eLGIC3kVjLo8FEvy",
             "systemPath": "actions",
-            "description": "<p><strong>Mark a Stress</strong> to create a rockslide that buries the land in front of Elemental within Close range with rockfall. All targets in this area must make an Agility Reaction Roll (19). Targets who fail take <strong>2d12+5</strong> physical damage and become Vulnerable until their next roll with Hope. Targets who succeed take half damage.</p><p>@Template[type:inFront|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -549,14 +549,14 @@
       "name": "Momentum",
       "type": "feature",
       "system": {
-        "description": "<p>When the Elemental makes a successful attack against a PC, you gain a Fear.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "FPIpslusIeVQGdnb": {
             "type": "healing",
             "_id": "FPIpslusIeVQGdnb",
             "systemPath": "actions",
-            "description": "<p>When the Elemental makes a successful attack against a PC, you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "reaction",
             "cost": [],

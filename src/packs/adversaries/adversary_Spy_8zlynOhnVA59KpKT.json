@@ -227,14 +227,14 @@
       "name": "Gathering Secrets",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to describe how the Spy knows a secret about a PC in the scene.</p>",
+        "description": "<p><strong>Spend a Fear</strong> to describe how the @Lookup[@name] knows a secret about a PC in the scene.</p>",
         "resource": null,
         "actions": {
           "iq5KzP5hgA4377fO": {
             "type": "effect",
             "_id": "iq5KzP5hgA4377fO",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to describe how the Spy knows a secret about a PC in the scene.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -283,14 +283,14 @@
       "name": "Fly on the Wall",
       "type": "feature",
       "system": {
-        "description": "<p>When a PC or group is discussing something sensitive, you can <strong>mark a Stress</strong> to reveal that the Spy is present in the scene, observing them. If the Spy escapes the scene to report their findings, you gain <strong>1d4</strong> Fear.</p>",
+        "description": "<p>When a PC or group is discussing something sensitive, you can <strong>mark a Stress</strong> to reveal that the @Lookup[@name] is present in the scene, observing them. If the @Lookup[@name] escapes the scene to report their findings, you gain <strong>1d4</strong> Fear.</p>",
         "resource": null,
         "actions": {
           "Ml8nt7SPNFc2iQno": {
             "type": "effect",
             "_id": "Ml8nt7SPNFc2iQno",
             "systemPath": "actions",
-            "description": "<p>When a PC or group is discussing something sensitive, you can <strong>mark a Stress</strong> to reveal that the Spy is present in the scene, observing them. If the Spy escapes the scene to report their findings, you gain <strong>1d4</strong> Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -319,7 +319,7 @@
             "type": "healing",
             "_id": "qCA2hTMIYGW0FhGy",
             "systemPath": "actions",
-            "description": "<p>If the Spy escapes the scene to report their findings, you gain <strong>1d4</strong> Fear.</p>",
+            "description": "<p>If the @Lookup[@name] escapes the scene to report their findings, you gain <strong>1d4</strong> Fear.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

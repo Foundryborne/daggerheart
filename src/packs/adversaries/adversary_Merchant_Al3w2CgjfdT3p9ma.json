@@ -229,7 +229,7 @@
       "_id": "3Fwj28UxUcdMifoi",
       "img": "icons/skills/social/diplomacy-handshake.webp",
       "system": {
-        "description": "<p>A PC who succeeds on a Presence Roll against the Merchant gains a discount on purchases. A PC who fails on a Presence Roll against the Merchant must pay more and has disadvantage on future Presence Rolls against the Merchant.</p>",
+        "description": "<p>A PC who succeeds on a Presence Roll against the @Lookup[@name] gains a discount on purchases. A PC who fails on a Presence Roll against the @Lookup[@name] must pay more and has disadvantage on future Presence Rolls against the @Lookup[@name].</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -255,14 +255,14 @@
       "_id": "Ksdgov6mYg7Og2ys",
       "img": "icons/skills/social/trading-justice-scale-yellow.webp",
       "system": {
-        "description": "<p>When a PC rolls a 14 or lower on a Presence Roll made against the Merchant, they must mark a Stress.</p>",
+        "description": "<p>When a PC rolls a 14 or lower on a Presence Roll made against the @Lookup[@name], they must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "sTHDvAggf1nUX4Ai": {
             "type": "damage",
             "_id": "sTHDvAggf1nUX4Ai",
             "systemPath": "actions",
-            "description": "<p>When a PC rolls a 14 or lower on a Presence Roll made against the Merchant, they must mark a Stress.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

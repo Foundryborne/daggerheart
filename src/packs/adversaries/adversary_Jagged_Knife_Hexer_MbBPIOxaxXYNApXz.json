@@ -235,7 +235,7 @@
             "type": "effect",
             "_id": "yzjCJyfGzZrEd0G3",
             "systemPath": "actions",
-            "description": "<p>Choose a target within Far range and temporarily Curse them. While the target is Cursed, you can <strong>mark a Stress</strong> when that target rolls with Hope to make the roll be with Fear instead.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -320,14 +320,14 @@
       "_id": "d8uVdKpTm9yw6TZS",
       "img": "icons/magic/unholy/projectile-bolts-salvo-pink.webp",
       "system": {
-        "description": "<p>Make an attack against up to three targets within Very Close range. <strong>Mark a Stress</strong> to deal <strong>2d6+3</strong> magic damage to targets the Hexer succeeded against.</p>",
+        "description": "<p>Make an attack against up to three targets within Very Close range. <strong>Mark a Stress</strong> to deal <strong>2d6+3</strong> magic damage to targets the @Lookup[@name] succeeded against.</p>",
         "resource": null,
         "actions": {
           "HmvmqoMli6oC2y2a": {
             "type": "attack",
             "_id": "HmvmqoMli6oC2y2a",
             "systemPath": "actions",
-            "description": "<p>Make an attack against up to three targets within Very Close range. <strong>Mark a Stress</strong> to deal <strong>2d6+3</strong> magic damage to targets the Hexer succeeded against.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
