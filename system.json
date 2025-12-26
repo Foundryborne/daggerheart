@@ -263,6 +263,7 @@
         },
         "ActiveEffect": {
             "beastform": {},
+            "companion": {},
             "horde": {}
         },
         "Combat": {

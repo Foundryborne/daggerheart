@@ -108,9 +108,19 @@ export default class DhCompanion extends BaseDataActor {
     get proficiency() {
         return this.partner?.system?.proficiency ?? 1;
     }
-    
+
     isItemValid() {
         return false;
+    }
+
+    allApplicableEffects(baseEffects) {
+        if (!this.partner) return baseEffects;
+
+        const effects = [
+            ...Array.from(baseEffects),
+            ...Array.from(this.partner.getBaseApplicableEffects()).filter(x => x.type === 'companion')
+        ];
+        return effects;
     }
 
     prepareBaseData() {

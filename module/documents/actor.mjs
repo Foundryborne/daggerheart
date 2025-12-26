@@ -71,6 +71,25 @@ export default class DhpActor extends Actor {
         return doc;
     }
 
+    getBaseApplicableEffects() {
+        const effects = [...this.effects];
+        if (CONFIG.ActiveEffect.legacyTransferral) return;
+
+        for (const item of this.items) {
+            for (const effect of item.effects) {
+                if (effect.transfer) effects.push(effect);
+            }
+        }
+
+        return effects;
+    }
+
+    allApplicableEffects() {
+        const effects = this.getBaseApplicableEffects();
+
+        return this.system.allApplicableEffects?.(effects) ?? effects;
+    }
+
     /**@inheritdoc */
     async _preCreate(data, options, user) {
         if ((await super._preCreate(data, options, user)) === false) return false;

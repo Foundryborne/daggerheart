@@ -453,8 +453,7 @@ export default class DhCharacter extends BaseDataActor {
 
         if (
             item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.foundation ||
-            (item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.specialization &&
-                subclassState >= 2) ||
+            (item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.specialization && subclassState >= 2) ||
             (item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.mastery && subclassState >= 3)
         ) {
             return true;
@@ -571,6 +570,16 @@ export default class DhCharacter extends BaseDataActor {
                 await primary.update({ 'system.equipped': false });
             }
         }
+    }
+
+    allApplicableEffects(baseEffects) {
+        if (!this.companion) return baseEffects;
+
+        const effects = [
+            ...Array.from(baseEffects),
+            ...Array.from(this.companion.getBaseApplicableEffects()).filter(x => x.type === 'companion')
+        ];
+        return effects;
     }
 
     prepareBaseData() {
