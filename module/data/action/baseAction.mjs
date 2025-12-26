@@ -33,7 +33,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                 initial: 'action',
                 nullable: false,
                 required: true
-            })
+            }),
+            targetUuid: new fields.StringField({ initial: undefined })
         };
 
         this.extraSchemas.forEach(s => {
@@ -241,7 +242,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             selectedRollMode: game.settings.get('core', 'rollMode'),
             data: this.getRollData(),
             evaluate: this.hasRoll,
-            resourceUpdates: new ResourceUpdateMap(this.actor)
+            resourceUpdates: new ResourceUpdateMap(this.actor),
+            targetUuid: this.targetUuid
         };
 
         DHBaseAction.applyKeybindings(config);

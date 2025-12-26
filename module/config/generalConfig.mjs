@@ -232,7 +232,7 @@ export const defaultRestOptions = {
                     actionType: 'action',
                     chatDisplay: false,
                     target: {
-                        type: 'self'
+                        type: 'friendly'
                     },
                     damage: {
                         parts: [
@@ -298,7 +298,7 @@ export const defaultRestOptions = {
                     actionType: 'action',
                     chatDisplay: false,
                     target: {
-                        type: 'self'
+                        type: 'friendly'
                     },
                     damage: {
                         parts: [
@@ -341,7 +341,7 @@ export const defaultRestOptions = {
                     actionType: 'action',
                     chatDisplay: false,
                     target: {
-                        type: 'self'
+                        type: 'friendly'
                     },
                     damage: {
                         parts: [
@@ -350,7 +350,7 @@ export const defaultRestOptions = {
                                 value: {
                                     custom: {
                                         enabled: true,
-                                        formula: '@system.resources.hitPoints.max'
+                                        formula: '100'
                                     }
                                 }
                             }
@@ -407,7 +407,7 @@ export const defaultRestOptions = {
                     actionType: 'action',
                     chatDisplay: false,
                     target: {
-                        type: 'self'
+                        type: 'friendly'
                     },
                     damage: {
                         parts: [
@@ -416,7 +416,7 @@ export const defaultRestOptions = {
                                 value: {
                                     custom: {
                                         enabled: true,
-                                        formula: '@system.armorScore'
+                                        formula: '100'
                                     }
                                 }
                             }

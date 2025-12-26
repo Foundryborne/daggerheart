@@ -15,9 +15,22 @@
                 </div>
             </details>
             {{#each move.actions as | action index |}}
-                <button class="action-use-button" data-move-index="{{@../key}}" data-action-index="{{index}}" data-move-path="{{../movePath}}" >
-                    <span>{{localize action.name}}</span>
-                </button>
+                <div class="action-use-button-parent">
+                    <button class="action-use-button" data-move-index="{{@../key}}" data-action-index="{{index}}" data-move-path="{{../movePath}}" >
+                        <span>{{localize action.name}}</span>
+                    </button>
+                    {{#if move.needsTarget}}
+                        <div class="action-use-target">
+                            <label>{{localize "DAGGERHEART.GENERAL.Bonuses.rest.target"}}:</label>
+                            <select>
+                                <option value="{{../../selfId}}">{{localize "DAGGERHEART.GENERAL.Bonuses.rest.targetSelf"}}</option>
+                                {{#each ../../characters as | character |}}
+                                    <option value="{{character.uuid}}">{{character.name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    {{/if}}
+                </div>
             {{/each}}
         {{/each}}
     </ul>
