@@ -54,6 +54,12 @@
         {
             "name": "chrisryan10",
             "discord": "lazjen"
+        },
+        {
+            "name": "nsalyzyn",
+            "url": "https://github.com/nsalyzyn",
+            "email": "nsalyzyn@gmail.com",
+            "discord": "nsalyzyn"
         }
     ],
     "esmodules": ["build/daggerheart.js"],
