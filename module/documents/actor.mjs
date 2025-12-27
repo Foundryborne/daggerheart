@@ -539,7 +539,10 @@ export default class DhpActor extends Actor {
 
     /**@inheritdoc */
     getRollData() {
-        const rollData = super.getRollData().clone();
+        const rollData = foundry.utils.deepClone(super.getRollData());
+        /* system gets repeated infinately which causes issues when trying to use the data for document creation */
+        delete rollData.system;
+
         rollData.name = this.name;
         rollData.system = this.system.getRollData();
         rollData.prof = this.system.proficiency ?? 1;

@@ -1,41 +1,30 @@
-export default class DhPrototypeTokenConfig extends foundry.applications.sheets.PrototypeTokenConfig {
-    /** @override */
-    static PARTS = {
-        tabs: super.PARTS.tabs,
-        identity: super.PARTS.identity,
-        appearance: {
-            template: 'systems/daggerheart/templates/sheets-settings/token-config/appearance.hbs',
-            scrollable: ['']
-        },
-        vision: super.PARTS.vision,
-        light: super.PARTS.light,
-        resources: super.PARTS.resources,
-        footer: super.PARTS.footer
+import DHTokenConfigMixin from './token-config-mixin.mjs';
+import { getActorSizeFromForm } from './token-config-mixin.mjs';
+
+export default class DhPrototypeTokenConfig extends DHTokenConfigMixin(
+    foundry.applications.sheets.PrototypeTokenConfig
+) {
+    /** @inheritDoc */
+    static DEFAULT_OPTIONS = {
+        ...super.DEFAULT_OPTIONS,
+        form: { handler: DhPrototypeTokenConfig.#onSubmit }
     };
 
-    /** @inheritDoc */
-    async _prepareResourcesTab() {
-        const token = this.token;
-        const usesTrackableAttributes = !foundry.utils.isEmpty(CONFIG.Actor.trackableAttributes);
-        const attributeSource =
-            this.actor?.system instanceof foundry.abstract.DataModel && usesTrackableAttributes
-                ? this.actor?.type
-                : this.actor?.system;
-        const TokenDocument = foundry.utils.getDocumentClass('Token');
-        const attributes = TokenDocument.getTrackedAttributes(attributeSource);
-        return {
-            barAttributes: TokenDocument.getTrackedAttributeChoices(attributes, attributeSource),
-            bar1: token.getBarAttribute?.('bar1'),
-            bar2: token.getBarAttribute?.('bar2'),
-            turnMarkerModes: DhPrototypeTokenConfig.TURN_MARKER_MODES,
-            turnMarkerAnimations: CONFIG.Combat.settings.turnMarkerAnimations
-        };
-    }
+    /**
+     * Process form submission for the sheet
+     * @this {PrototypeTokenConfig}
+     * @type {ApplicationFormSubmission}
+     */
+    static async #onSubmit(event, form, formData) {
+        const submitData = this._processFormData(event, form, formData);
+        submitData.detectionModes ??= []; // Clear detection modes array
+        this._processChanges(submitData);
+        const changes = { prototypeToken: submitData };
 
-    async _prepareAppearanceTab() {
-        const context = await super._prepareAppearanceTab();
-        context.actorSizeUsed = this.token.actor ? Boolean(this.token.actor.system.size) : false;
+        const changedTokenSizeValue = getActorSizeFromForm(this.element, this.actor);
+        if (changedTokenSizeValue) changes.system = { size: changedTokenSizeValue };
 
-        return context;
+        this.actor.validate({ changes, clean: true, fallback: false });
+        await this.actor.update(changes);
     }
 }

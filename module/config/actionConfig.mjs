@@ -2,7 +2,7 @@ export const actionTypes = {
     attack: {
         id: 'attack',
         name: 'DAGGERHEART.ACTIONS.TYPES.attack.name',
-        icon: 'fa-khanda',
+        icon: 'fa-hand-fist',
         tooltip: 'DAGGERHEART.ACTIONS.TYPES.attack.tooltip'
     },
     countdown: {

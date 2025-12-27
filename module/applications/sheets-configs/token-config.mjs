@@ -1,41 +1,11 @@
-export default class DhTokenConfig extends foundry.applications.sheets.TokenConfig {
-    /** @override */
-    static PARTS = {
-        tabs: super.PARTS.tabs,
-        identity: super.PARTS.identity,
-        appearance: {
-            template: 'systems/daggerheart/templates/sheets-settings/token-config/appearance.hbs',
-            scrollable: ['']
-        },
-        vision: super.PARTS.vision,
-        light: super.PARTS.light,
-        resources: super.PARTS.resources,
-        footer: super.PARTS.footer
-    };
+import DHTokenConfigMixin from './token-config-mixin.mjs';
+import { getActorSizeFromForm } from './token-config-mixin.mjs';
 
-    /** @inheritDoc */
-    async _prepareResourcesTab() {
-        const token = this.token;
-        const usesTrackableAttributes = !foundry.utils.isEmpty(CONFIG.Actor.trackableAttributes);
-        const attributeSource =
-            this.actor?.system instanceof foundry.abstract.DataModel && usesTrackableAttributes
-                ? this.actor?.type
-                : this.actor?.system;
-        const TokenDocument = foundry.utils.getDocumentClass('Token');
-        const attributes = TokenDocument.getTrackedAttributes(attributeSource);
-        return {
-            barAttributes: TokenDocument.getTrackedAttributeChoices(attributes, attributeSource),
-            bar1: token.getBarAttribute?.('bar1'),
-            bar2: token.getBarAttribute?.('bar2'),
-            turnMarkerModes: DhTokenConfig.TURN_MARKER_MODES,
-            turnMarkerAnimations: CONFIG.Combat.settings.turnMarkerAnimations
-        };
-    }
+export default class DhTokenConfig extends DHTokenConfigMixin(foundry.applications.sheets.TokenConfig) {
+    async _processSubmitData(event, form, submitData, options) {
+        const changedTokenSizeValue = getActorSizeFromForm(this.element, this.actor);
+        if (changedTokenSizeValue) this.token.actor.update({ 'system.size': changedTokenSizeValue });
 
-    async _prepareAppearanceTab() {
-        const context = await super._prepareAppearanceTab();
-        context.actorSizeUsed = this.token.actor ? Boolean(this.token.actor.system.size) : false;
-
-        return context;
+        super._processSubmitData(event, form, submitData, options);
     }
 }
