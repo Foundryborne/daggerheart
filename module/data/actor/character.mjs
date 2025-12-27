@@ -286,6 +286,9 @@ export default class DhCharacter extends BaseDataActor {
                 runeWard: new fields.BooleanField({ initial: false }),
                 burden: new fields.SchemaField({
                     ignore: new fields.BooleanField()
+                }),
+                roll: new fields.SchemaField({
+                    guaranteedCritical: new fields.BooleanField()
                 })
             })
         };

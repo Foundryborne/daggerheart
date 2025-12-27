@@ -12,6 +12,8 @@ export default class DualityRoll extends D20Roll {
     constructor(formula, data = {}, options = {}) {
         super(formula, data, options);
         this.rallyChoices = this.setRallyChoices();
+        this.guaranteedCritical = this.setGuaranteedCritical();
+        console.log("guaranteedCritical", this.guaranteedCritical);
     }
 
     static messageType = 'dualityRoll';
@@ -70,6 +72,18 @@ export default class DualityRoll extends D20Roll {
         this._advantageNumber = Number(value);
     }
 
+    setGuaranteedCritical() {
+        console.log("setGuaranteedCritical", this);
+        return this.data?.parent?.appliedEffects.reduce((a, c) => {
+            console.log("a,c", a,c);
+
+            const change = c.changes.find(ch => ch.key === 'system.rules.role.guaranteedCritical');
+            console.log("change", change);
+             if (change) a.push({ value: c.id, label: change.value });
+            return a;
+        }, false);
+    }
+
     setRallyChoices() {
         return this.data?.parent?.appliedEffects.reduce((a, c) => {
             const change = c.changes.find(ch => ch.key === 'system.bonuses.rally');
@@ -90,6 +104,11 @@ export default class DualityRoll extends D20Roll {
     }
 
     get isCritical() {
+        if (this.guaranteedCritical) {
+            this.dHope.total = this.dice[0]?.faces ?? 12;
+            this.dFear.total = this.dice[1]?.faces ?? 12;
+            return true;
+        }
         if (!this.dHope._evaluated || !this.dFear._evaluated) return;
         return this.dHope.total === this.dFear.total;
     }
@@ -105,11 +124,8 @@ export default class DualityRoll extends D20Roll {
     }
 
     get totalLabel() {
-        const label = this.withHope
-            ? 'DAGGERHEART.GENERAL.hope'
-            : this.withFear
-              ? 'DAGGERHEART.GENERAL.fear'
-              : 'DAGGERHEART.GENERAL.criticalSuccess';
+        const label = this.isCritical ? 'DAGGERHEART.GENERAL.criticalSuccess' :
+            this.withHope ? 'DAGGERHEART.GENERAL.hope' : 'DAGGERHEART.GENERAL.fear';
 
         return game.i18n.localize(label);
     }
