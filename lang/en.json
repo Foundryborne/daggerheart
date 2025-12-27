@@ -69,7 +69,8 @@
                 },
                 "summon": {
                     "name": "Summon",
-                    "tooltip": "Create tokens in the scene."
+                    "tooltip": "Create tokens in the scene.",
+                    "error": "You do not have permission to summon tokens or there is no active scene."
                 }
             },
             "Config": {
