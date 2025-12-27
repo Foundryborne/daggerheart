@@ -121,6 +121,11 @@
                 },
                 "cost": {
                     "stepTooltip": "+{step} per step"
+                },
+                "summon":{
+                    "addSummonEntry": "Add Summon Entry",
+                    "actorUUID": "Actor to Summon",
+                    "count": "Count"
                 }
             }
         },

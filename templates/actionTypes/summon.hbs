@@ -1,0 +1,14 @@
+<fieldset class="one-column">
+    <legend>{{localize "DAGGERHEART.ACTIONS.TYPES.summon.name"}}</legend>
+    <p class="hint">{{localize "DAGGERHEART.ACTIONS.Settings.summonHint"}}</p>
+    <div class="nest-inputs">
+        {{#each source.tokenArray}}
+            <div class="summon-entry">
+                {{formField ../fields.documentUUID label=DAGGERHEART.ACTIONS.Settings.summon.actorUUID name="tokenArray.{{@index}}.actorUUID" value=this.actorUUID documentType="Actor"}}
+                {{formField ../fields.number label=DAGGERHEART.ACTIONS.Settings.summon.count name="tokenArray.{{@index}}.count" value=this.count min=1}}
+                <button type="button" class="remove-summon-entry" data-index="{{@index}}" title="{{localize 'DAGGERHEART.UI.Button.remove'}}"><i class="fa-solid fa-trash"></i></button>
+            </div>
+        {{/each}}
+        <button type="button" class="add-summon-entry" title="{{localize 'DAGGERHEART.UI.Button.add'}}"><i class="fa-solid fa-plus"></i> {{localize "DAGGERHEART.ACTIONS.Settings.summon.addSummonEntry"}}</button>
+    </div>
+</fieldset>

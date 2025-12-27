@@ -23,4 +23,14 @@ export default class DHSummonAction extends DHBaseAction {
     get canSummon() {
         return game.user.can('TOKEN_CREATE');
     }
+
+    //Accessor for summon manager for performing the summon action
+    get summonManager() {
+        return game.dh.summon; //incomplete implementation
+    }
+
+    //Logic to perform the summon action - incomplete implementation
+    async _performAction(event, ...args) {
+        return this.summonManager.summonTokens(this.tokenArray);
+    }
 }
