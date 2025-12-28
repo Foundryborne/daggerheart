@@ -30,7 +30,7 @@ export default class DhpEnvironment extends DHBaseActorSheet {
                 dragSelector: '[data-item-id][draggable="true"], [data-item-id] [draggable="true"]',
                 dropSelector: null
             }
-        ],
+        ]
     };
 
     /**@override */
@@ -80,6 +80,9 @@ export default class DhpEnvironment extends DHBaseActorSheet {
                 await this._prepareHeaderContext(context, options);
 
                 break;
+            case 'features':
+                await this._prepareFeaturesContext(context, options);
+                break;
             case 'notes':
                 await this._prepareNotesContext(context, options);
                 break;
@@ -113,6 +116,22 @@ export default class DhpEnvironment extends DHBaseActorSheet {
                 })
             };
         }
+    }
+
+    /**
+     * Prepare render context for the features part.
+     * @param {ApplicationRenderContext} context
+     * @param {ApplicationRenderOptions} options
+     * @returns {Promise<void>}
+     * @protected
+     */
+    async _prepareFeaturesContext(context, _options) {
+        const featureForms = ['passive', 'action', 'reaction'];
+        context.features = this.document.system.features.sort((a, b) =>
+            a.system.featureForm !== b.system.featureForm
+                ? featureForms.indexOf(a.system.featureForm) - featureForms.indexOf(b.system.featureForm)
+                : a.sort - b.sort
+        );
     }
 
     /**

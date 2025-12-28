@@ -49,6 +49,19 @@ export default class DHEnvironmentSettings extends DHBaseActorSettings {
         }
     };
 
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
+
+        const featureForms = ['passive', 'action', 'reaction'];
+        context.features = context.document.system.features.sort((a, b) =>
+            a.system.featureForm !== b.system.featureForm
+                ? featureForms.indexOf(a.system.featureForm) - featureForms.indexOf(b.system.featureForm)
+                : a.sort - b.sort
+        );
+
+        return context;
+    }
+
     /**
      *  Adds a new category entry to the actor.
      * @type {ApplicationClickAction}
