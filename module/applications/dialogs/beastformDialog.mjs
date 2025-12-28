@@ -286,13 +286,9 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
                     if (data) {
                         if (!data.selectedImage) selected = null;
                         else {
-                            if (evolved) {
-                                if (evolved.usesDynamicToken) evolved.system.tokenRingImg = data.selectedImage;
-                                else evolved.system.tokenImg = data.selectedImage;
-                            } else {
-                                if (data.usesDynamicToken) selected.system.tokenRingImg = data.selectedImage;
-                                else selected.system.tokenImg = data.selectedImage;
-                            }
+                            const imageSource = evolved ?? selected;
+                            if (imageSource.usesDynamicToken) imageSource.system.tokenRingImg = data.selectedImage;
+                            else imageSource.system.tokenImg = data.selectedImage;
                         }
                     }
 
