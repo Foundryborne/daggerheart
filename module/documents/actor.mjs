@@ -543,6 +543,7 @@ export default class DhpActor extends Actor {
         /* system gets repeated infinately which causes issues when trying to use the data for document creation */
         delete rollData.system;
 
+        rollData.id = this.id;
         rollData.name = this.name;
         rollData.system = this.system.getRollData();
         rollData.prof = this.system.proficiency ?? 1;
