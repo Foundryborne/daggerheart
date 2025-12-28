@@ -2112,6 +2112,7 @@
             "formula": "Formula",
             "general": "General",
             "gm": "GM",
+            "guaranteedCriticalSuccess": "Guaranteed Critical Success",
             "healing": "Healing",
             "healingRoll": "Healing Roll",
             "hit": {

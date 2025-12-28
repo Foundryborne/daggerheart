@@ -97,7 +97,19 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
     }
 
     async handleBlazeOfGlory() {
-        console.log("TODO: Blaze Of Glory");
+        this.actor.createEmbeddedDocuments('ActiveEffect', [
+            {
+                name: game.i18n.localize('DAGGERHEART.CONFIG.DeathMoves.blazeOfGlory.name'),
+                img: 'icons/magic/movement/abstract-ribbons-red-orange.webp',
+                changes: [
+                    {
+                        key: 'system.rules.roll.guaranteedCritical',
+                        mode: 2,
+                        value: "true"
+                    }
+                ]
+            }
+        ]);
     }
 
     static selectMove(_, button) {
