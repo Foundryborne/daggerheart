@@ -1,7 +1,7 @@
 import { emitAsGM, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
-import { createScrollText, damageKeyToNumber } from '../helpers/utils.mjs';
+import { createScrollText, damageKeyToNumber, getDamageKey } from '../helpers/utils.mjs';
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
 import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
 
@@ -629,6 +629,19 @@ export default class DhpActor extends Actor {
                         if (stressUpdate) stressUpdate.value += stressSpent;
                         else updates.push({ value: stressSpent, key: 'stress' });
                     }
+                }
+            }
+            if (this.type === 'adversary') {
+                const reducedSeverity = hpDamage.damageTypes.reduce((value, curr) => {
+                    return Math.max(this.system.rules.damageReduction.reduceSeverity[curr], value);
+                }, 0);
+                hpDamage.value = Math.max(hpDamage.value - reducedSeverity, 0);
+
+                if (
+                    hpDamage.value &&
+                    this.system.rules.damageReduction.thresholdImmunities[getDamageKey(hpDamage.value)]
+                ) {
+                    hpDamage.value -= 1;
                 }
             }
         }
