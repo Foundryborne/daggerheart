@@ -350,7 +350,7 @@ export const defaultRestOptions = {
                                 value: {
                                     custom: {
                                         enabled: true,
-                                        formula: '100'
+                                        formula: '@system.resources.hitPoints.max'
                                     }
                                 }
                             }
@@ -416,7 +416,7 @@ export const defaultRestOptions = {
                                 value: {
                                     custom: {
                                         enabled: true,
-                                        formula: '100'
+                                        formula: '@system.armorScore'
                                     }
                                 }
                             }
