@@ -326,6 +326,7 @@
                 "equip": "Equip",
                 "sendToChat": "Send To Chat",
                 "toLoadout": "Send to Loadout",
+                "recall": "Recall",
                 "toVault": "Send to Vault",
                 "unequip": "Unequip",
                 "useItem": "Use Item"

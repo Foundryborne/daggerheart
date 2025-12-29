@@ -9,7 +9,7 @@
     <fieldset>
         <legend>{{localize tabs.features.label}}</legend>
         <ul class="feature-list">
-            {{#each document.system.features as |feature|}}
+            {{#each @root.features as |feature|}}
                 <li class="feature-item" id="{{feature.id}}" draggable="true">
                     <img src="{{feature.img}}" alt="">
                     <div class="label">

@@ -1,7 +1,7 @@
 import { burden } from '../../config/generalConfig.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import DhLevelData from '../levelData.mjs';
-import BaseDataActor from './base.mjs';
+import BaseDataActor, { commonActorRules } from './base.mjs';
 import { attributeField, resourceField, stressDamageReductionRule, bonusField } from '../fields/actorField.mjs';
 import { ActionField } from '../fields/actionField.mjs';
 import DHCharacterSettings from '../../applications/sheets-configs/character-settings.mjs';
@@ -217,44 +217,41 @@ export default class DhCharacter extends BaseDataActor {
             }),
             companion: new ForeignDocumentUUIDField({ type: 'Actor', nullable: true, initial: null }),
             rules: new fields.SchemaField({
-                damageReduction: new fields.SchemaField({
-                    maxArmorMarked: new fields.SchemaField({
-                        value: new fields.NumberField({
-                            required: true,
+                ...commonActorRules({
+                    damageReduction: {
+                        magical: new fields.BooleanField({ initial: false }),
+                        physical: new fields.BooleanField({ initial: false }),
+                        maxArmorMarked: new fields.SchemaField({
+                            value: new fields.NumberField({
+                                required: true,
+                                integer: true,
+                                initial: 1,
+                                label: 'DAGGERHEART.GENERAL.Rules.damageReduction.maxArmorMarkedBonus'
+                            }),
+                            stressExtra: new fields.NumberField({
+                                required: true,
+                                integer: true,
+                                initial: 0,
+                                label: 'DAGGERHEART.GENERAL.Rules.damageReduction.maxArmorMarkedStress.label',
+                                hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.maxArmorMarkedStress.hint'
+                            })
+                        }),
+                        stressDamageReduction: new fields.SchemaField({
+                            severe: stressDamageReductionRule(
+                                'DAGGERHEART.GENERAL.Rules.damageReduction.stress.severe'
+                            ),
+                            major: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.major'),
+                            minor: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.minor'),
+                            any: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.any')
+                        }),
+                        increasePerArmorMark: new fields.NumberField({
                             integer: true,
                             initial: 1,
-                            label: 'DAGGERHEART.GENERAL.Rules.damageReduction.maxArmorMarkedBonus'
+                            label: 'DAGGERHEART.GENERAL.Rules.damageReduction.increasePerArmorMark.label',
+                            hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.increasePerArmorMark.hint'
                         }),
-                        stressExtra: new fields.NumberField({
-                            required: true,
-                            integer: true,
-                            initial: 0,
-                            label: 'DAGGERHEART.GENERAL.Rules.damageReduction.maxArmorMarkedStress.label',
-                            hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.maxArmorMarkedStress.hint'
-                        })
-                    }),
-                    stressDamageReduction: new fields.SchemaField({
-                        severe: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.severe'),
-                        major: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.major'),
-                        minor: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.minor'),
-                        any: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.any')
-                    }),
-                    increasePerArmorMark: new fields.NumberField({
-                        integer: true,
-                        initial: 1,
-                        label: 'DAGGERHEART.GENERAL.Rules.damageReduction.increasePerArmorMark.label',
-                        hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.increasePerArmorMark.hint'
-                    }),
-                    magical: new fields.BooleanField({ initial: false }),
-                    physical: new fields.BooleanField({ initial: false }),
-                    thresholdImmunities: new fields.SchemaField({
-                        minor: new fields.BooleanField({ initial: false })
-                    }),
-                    reduceSeverity: new fields.SchemaField({
-                        magical: new fields.NumberField({ initial: 0, min: 0 }),
-                        physical: new fields.NumberField({ initial: 0, min: 0 })
-                    }),
-                    disabledArmor: new fields.BooleanField({ intial: false })
+                        disabledArmor: new fields.BooleanField({ intial: false })
+                    }
                 }),
                 attack: new fields.SchemaField({
                     damage: new fields.SchemaField({
@@ -282,11 +279,6 @@ export default class DhCharacter extends BaseDataActor {
                             label: 'DAGGERHEART.GENERAL.Rules.attack.roll.trait.label'
                         })
                     })
-                }),
-                conditionImmunities: new fields.SchemaField({
-                    hidden: new fields.BooleanField({ initial: false }),
-                    restrained: new fields.BooleanField({ initial: false }),
-                    vulnerable: new fields.BooleanField({ initial: false })
                 }),
                 runeWard: new fields.BooleanField({ initial: false }),
                 burden: new fields.SchemaField({
@@ -453,8 +445,7 @@ export default class DhCharacter extends BaseDataActor {
 
         if (
             item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.foundation ||
-            (item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.specialization &&
-                subclassState >= 2) ||
+            (item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.specialization && subclassState >= 2) ||
             (item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.mastery && subclassState >= 3)
         ) {
             return true;
