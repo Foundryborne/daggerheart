@@ -43,12 +43,29 @@ export default class DhSceneNavigation extends foundry.applications.ui.SceneNavi
         return context;
     }
 
-    static async #openSceneEnvironment(_event, button) {
+    static async #openSceneEnvironment(event, button) {
         const scene = game.scenes.get(button.dataset.sceneId);
-        const sceneEnvironments = Object.keys(scene.flags.daggerheart.sceneEnvironments);
-        const environment = await foundry.utils.fromUuid(
-            scene.flags.daggerheart.sceneEnvironments[sceneEnvironments[0]]
-        );
-        environment.sheet.render(true);
+        const sceneEnvironments = new game.system.api.data.scenes.DHScene(scene.flags.daggerheart).sceneEnvironments;
+
+        if (sceneEnvironments.length === 1) {
+            sceneEnvironments[0].sheet.render(true);
+        } else {
+            new ContextMenu(
+                button,
+                '.scene-environment',
+                sceneEnvironments.map(environment => ({
+                    name: environment.name,
+                    callback: () => {
+                        environment.sheet.render({ force: true });
+                    }
+                })),
+                {
+                    jQuery: false,
+                    fixed: true
+                }
+            );
+
+            CONFIG.ux.ContextMenu.triggerContextMenu(event, '.scene-environment');
+        }
     }
 }
