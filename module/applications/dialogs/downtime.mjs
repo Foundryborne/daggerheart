@@ -181,12 +181,17 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
                 .filter(x => category.moves[x].selected)
                 .flatMap(key => {
                     const move = category.moves[key];
+                    const needsTarget = move.actions.filter(x => x.target?.type && x.target.type !== 'self').length > 0;
                     return [...Array(move.selected).keys()].map(_ => ({
                         ...move,
-                        movePath: `${categoryKey}.moves.${key}`
+                        movePath: `${categoryKey}.moves.${key}`,
+                        needsTarget: needsTarget
                     }));
                 });
         });
+        const characters = game.actors.filter(x => x.type === 'character')
+            .filter(x => x.testUserPermission(game.user, 'LIMITED'))
+            .filter(x => x.uuid !== this.actor.uuid);
 
         const cls = getDocumentClass('ChatMessage');
         const msg = {
@@ -206,7 +211,9 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
                         `DAGGERHEART.APPLICATIONS.Downtime.${this.shortrest ? 'shortRest' : 'longRest'}.title`
                     ),
                     actor: { name: this.actor.name, img: this.actor.img },
-                    moves: moves
+                    moves: moves,
+                    characters: characters,
+                    selfId: this.actor.uuid
                 }
             ),
             flags: {
