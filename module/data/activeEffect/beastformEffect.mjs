@@ -66,12 +66,20 @@ export default class BeastformEffect extends BaseEffect {
             };
 
             const updateToken = token => {
-                const { x, y } = game.system.api.documents.DhToken.getSnappedPositionInSquareGrid(
-                    token.object.scene.grid,
-                    { x: token.x, y: token.y, elevation: token.elevation },
-                    baseUpdate.width,
-                    baseUpdate.height
-                );
+                let x = null,
+                    y = null;
+                if (token.object?.scene?.grid) {
+                    const positionData = game.system.api.documents.DhToken.getSnappedPositionInSquareGrid(
+                        token.object.scene.grid,
+                        { x: token.x, y: token.y, elevation: token.elevation },
+                        baseUpdate.width,
+                        baseUpdate.height
+                    );
+
+                    x = positionData.x;
+                    y = positionData.y;
+                }
+
                 return {
                     ...baseUpdate,
                     x,
