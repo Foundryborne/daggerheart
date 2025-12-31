@@ -2577,7 +2577,7 @@
                 "disabledText": "Daggerheart Measurements are disabled in System Settings - Variant Rules",
                 "rangeMeasurement": "Range Measurement",
                 "sceneEnvironments": "Scene Environments",
-                "noEnvironmentLinked": "Drag in an environment"
+                "dragEnvironmentHere": "Drag environments here"
             }
         },
         "UI": {

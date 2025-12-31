@@ -32,7 +32,7 @@ export default class DhSceneNavigation extends foundry.applications.ui.SceneNavi
                     ...x,
                     hasEnvironments,
                     environmentImage: hasEnvironments
-                        ? daggerheartInfo.sceneEnvironments[environmentKeys[0]].environment.img
+                        ? daggerheartInfo.sceneEnvironments[environmentKeys[0]].img
                         : null,
                     environments: daggerheartInfo.sceneEnvironments
                 };
@@ -47,7 +47,7 @@ export default class DhSceneNavigation extends foundry.applications.ui.SceneNavi
         const scene = game.scenes.get(button.dataset.sceneId);
         const sceneEnvironments = Object.keys(scene.flags.daggerheart.sceneEnvironments);
         const environment = await foundry.utils.fromUuid(
-            scene.flags.daggerheart.sceneEnvironments[sceneEnvironments[0]].environment
+            scene.flags.daggerheart.sceneEnvironments[sceneEnvironments[0]]
         );
         environment.sheet.render(true);
     }

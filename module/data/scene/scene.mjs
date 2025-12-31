@@ -1,4 +1,4 @@
-import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
+import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 
 export default class DHScene extends foundry.abstract.DataModel {
     static defineSchema() {
@@ -16,15 +16,7 @@ export default class DHScene extends foundry.abstract.DataModel {
                 close: new fields.NumberField({ integer: true, label: 'DAGGERHEART.CONFIG.Range.close.name' }),
                 far: new fields.NumberField({ integer: true, label: 'DAGGERHEART.CONFIG.Range.far.name' })
             }),
-            sceneEnvironments: new fields.TypedObjectField(
-                new fields.SchemaField({
-                    environment: new ForeignDocumentUUIDField({ type: 'Actor' }),
-                    icon: new fields.StringField({
-                        required: true,
-                        initial: CONFIG.DH.GENERAL.environmentIcons.tree.icon
-                    })
-                })
-            )
+            sceneEnvironments: new ForeignDocumentUUIDArrayField({ type: 'Actor' })
         };
     }
 }

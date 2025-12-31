@@ -731,36 +731,3 @@ export const sceneRangeMeasurementSetting = {
         label: 'Custom'
     }
 };
-
-export const environmentIcons = {
-    tree: {
-        name: 'DAGGERHEART.CONFIG.EnvironmentIcons.tree',
-        icon: 'fa-solid fa-tree',
-        unicode: '&#xf1bb'
-    },
-    mountain: {
-        name: 'DAGGERHEART.CONFIG.EnvironmentIcons.mountain',
-        icon: 'fa-solid fa-mountain',
-        unicode: '&#xf6fc'
-    },
-    city: {
-        name: 'DAGGERHEART.CONFIG.EnvironmentIcons.city',
-        icon: 'fa-solid fa-house',
-        unicode: '&#xf015'
-    },
-    dungeon: {
-        name: 'DAGGERHEART.CONFIG.EnvironmentIcons.dungeon',
-        icon: 'fa-solid fa-dungeon',
-        unicode: '&#xf6d9'
-    },
-    water: {
-        name: 'DAGGERHEART.CONFIG.EnvironmentIcons.water',
-        icon: 'fa-solid fa-water',
-        unicode: '&#xf773'
-    },
-    social: {
-        name: 'DAGGERHEART.CONFIG.EnvironmentIcons.social',
-        icon: 'fa-solid fa-masks-theater',
-        unicode: '&#xf630'
-    }
-};
