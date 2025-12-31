@@ -1016,6 +1016,14 @@
                 "spell": "Spell",
                 "grimoire": "Grimoire"
             },
+            "EnvironmentIcons": {
+                "city": "City",
+                "dungeon": "Dungeon",
+                "mountain": "Mountain",
+                "social": "Social",
+                "tree": "Tree",
+                "water": "Water"
+            },
             "EnvironmentType": {
                 "exploration": {
                     "label": "Exploration",
@@ -2567,7 +2575,9 @@
                     }
                 },
                 "disabledText": "Daggerheart Measurements are disabled in System Settings - Variant Rules",
-                "rangeMeasurement": "Range Measurement"
+                "rangeMeasurement": "Range Measurement",
+                "sceneEnvironments": "Scene Environments",
+                "noEnvironmentLinked": "Drag in an environment"
             }
         },
         "UI": {

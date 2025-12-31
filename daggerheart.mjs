@@ -62,6 +62,7 @@ CONFIG.Token.rulerClass = placeables.DhTokenRuler;
 CONFIG.Token.hudClass = applications.hud.DHTokenHUD;
 
 CONFIG.ui.combat = applications.ui.DhCombatTracker;
+CONFIG.ui.nav = applications.ui.DhSceneNavigation;
 CONFIG.ui.chat = applications.ui.DhChatLog;
 CONFIG.ui.effectsDisplay = applications.ui.DhEffectsDisplay;
 CONFIG.ui.hotbar = applications.ui.DhHotbar;
