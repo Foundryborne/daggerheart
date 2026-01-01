@@ -330,14 +330,14 @@ const updateActorsRangeDependentEffects = async token => {
                 break;
             }
 
-            const distanceBetween = canvas.grid.measurePath([
-                userTarget.document.movement.destination,
-                token.movement.destination
-            ]).distance;
-            const distance = rangeMeasurement[range];
-
+            // Get required distance and special case 5 feet to test adjacency
+            const required = rangeMeasurement[range];
             const reverse = type === CONFIG.DH.GENERAL.rangeInclusion.outsideRange.id;
-            if (reverse ? distanceBetween <= distance : distanceBetween > distance) {
+            const inRange =
+                required === 5
+                    ? userTarget.isAdjacentWith(token.object)
+                    : userTarget.distanceTo(token.object) <= required;
+            if (reverse ? inRange : !inRange) {
                 enabledEffect = false;
                 break;
             }
@@ -351,16 +351,15 @@ const updateAllRangeDependentEffects = async () => {
     const effectsAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).effects;
     if (!effectsAutomation.rangeDependent) return;
 
-    // Only consider tokens on the active scene
-    const tokens = game.scenes.find(x => x.active).tokens;
+    const tokens = canvas.scene.tokens;
     if (game.user.character) {
         // The character updates their character's token. There can be only one token.
         const characterToken = tokens.find(x => x.actor === game.user.character);
         updateActorsRangeDependentEffects(characterToken);
-    } else if (game.user.isGM) {
+    } else if (game.user.isActiveGM) {
         // The GM is responsible for all other tokens.
         const playerCharacters = game.users.players.filter(x => x.active).map(x => x.character);
-        for (let token of tokens.filter(x => !playerCharacters.includes(x.actor))) {
+        for (const token of tokens.filter(x => !playerCharacters.includes(x.actor))) {
             updateActorsRangeDependentEffects(token);
         }
     }
@@ -368,12 +367,14 @@ const updateAllRangeDependentEffects = async () => {
 
 const debouncedRangeEffectCall = foundry.utils.debounce(updateAllRangeDependentEffects, 50);
 
-Hooks.on('targetToken', async (user, token, targeted) => {
+Hooks.on('targetToken', () => {
     debouncedRangeEffectCall();
 });
 
-Hooks.on('moveToken', async (movedToken, data) => {
-    debouncedRangeEffectCall();
+Hooks.on('refreshToken', (_, options) => {
+    if (options.refreshPosition) {
+        debouncedRangeEffectCall();
+    }
 });
 
 Hooks.on('renderCompendiumDirectory', (app, html) => applications.ui.ItemBrowser.injectSidebarButton(html));
