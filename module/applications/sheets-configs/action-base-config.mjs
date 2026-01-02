@@ -29,7 +29,9 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             removeElement: this.removeElement,
             editEffect: this.editEffect,
             addDamage: this.addDamage,
-            removeDamage: this.removeDamage
+            removeDamage: this.removeDamage,
+            addTrigger: this.addTrigger,
+            removeTrigger: this.removeTrigger
         },
         form: {
             handler: this.updateForm,
@@ -55,6 +57,10 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         effect: {
             id: 'effect',
             template: 'systems/daggerheart/templates/sheets-settings/action-settings/effect.hbs'
+        },
+        trigger: {
+            id: 'trigger',
+            template: 'systems/daggerheart/templates/sheets-settings/action-settings/trigger.hbs'
         }
     };
 
@@ -82,6 +88,14 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             id: 'effect',
             icon: null,
             label: 'DAGGERHEART.GENERAL.Tabs.effects'
+        },
+        trigger: {
+            active: false,
+            cssClass: '',
+            group: 'primary',
+            id: 'trigger',
+            icon: null,
+            label: 'DAGGERHEART.GENERAL.Tabs.triggers'
         }
     };
 
@@ -111,6 +125,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         context.baseSaveDifficulty = this.action.actor?.baseSaveDifficulty;
         context.baseAttackBonus = this.action.actor?.system.attack?.roll.bonus;
         context.hasRoll = this.action.hasRoll;
+        context.triggerOptions = CONFIG.DH.TRIGGER.triggers;
 
         const settingsTiers = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers;
         context.tierOptions = [
@@ -221,6 +236,18 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         const data = this.action.toObject(),
             index = button.dataset.index;
         data.damage.parts.splice(index, 1);
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
+    static addTrigger() {
+        const data = this.action.toObject();
+        data.triggers.push({ hook: CONFIG.DH.TRIGGER.triggers.dualityRoll.id });
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
+    static removeTrigger(_event, button) {
+        const data = this.action.toObject();
+        data.triggers = data.triggers.filter((_, index) => index !== Number.parseInt(button.dataset.index));
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 

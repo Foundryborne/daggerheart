@@ -224,6 +224,30 @@ export default class DualityRoll extends D20Roll {
         await super.buildPost(roll, config, message);
 
         await DualityRoll.dualityUpdate(config);
+        await DualityRoll.handleTriggers(roll, config);
+    }
+
+    static async handleTriggers(roll, config) {
+        const updates = [];
+        const dualityUpdates = await game.system.registeredTriggers.runTrigger(
+            CONFIG.DH.TRIGGER.triggers.dualityRoll.id,
+            roll.data?.parent,
+            roll,
+            roll.data?.parent
+        );
+        if (dualityUpdates?.length) updates.push(...dualityUpdates);
+
+        if (config.roll.result.duality === -1) {
+            const fearUpdates = await game.system.registeredTriggers.runTrigger(
+                CONFIG.DH.TRIGGER.triggers.fearRoll.id,
+                roll.data?.parent,
+                roll,
+                roll.data?.parent
+            );
+            if (fearUpdates?.length) updates.push(...fearUpdates);
+        }
+
+        config.resourceUpdates.addResources(updates);
     }
 
     static async addDualityResourceUpdates(config) {

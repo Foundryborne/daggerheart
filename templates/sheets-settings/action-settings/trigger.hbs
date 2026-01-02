@@ -1,0 +1,18 @@
+<section 
+    class="tab {{this.tabs.trigger.cssClass}}"
+    data-group="primary"
+    data-tab="trigger"
+>
+        <button data-action="addTrigger">{{localize "Add Trigger"}} <i class="fa-solid fa-plus icon-button"></i></button>
+    
+        {{#each @root.source.triggers as |trigger index|}}
+            <fieldset class="one-column">
+                <legend><a data-action="removeTrigger" data-index="{{index}}"><i class="fa-solid fa-trash"></i></a></legend>
+
+                <select id="triggerOptionSelect">
+                    {{selectOptions @root.triggerOptions seleced=trigger.trigger localize=true}}
+                </select>
+                {{formInput @root.fields.triggers.element.fields.command value=trigger.command elementType="code-mirror" name=(concat "triggers." index ".command") aria=(object label=(localize "Test"))}}
+            </fieldset>
+        {{/each}}
+</section>

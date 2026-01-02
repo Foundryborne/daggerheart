@@ -2,6 +2,7 @@ import DhpActor from '../../documents/actor.mjs';
 import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
 import { ActionMixin } from '../fields/actionField.mjs';
 import { originItemField } from '../chat-message/actorRoll.mjs';
+import TriggerField from '../fields/triggerField.mjs';
 
 const fields = foundry.data.fields;
 
@@ -34,7 +35,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                 nullable: false,
                 required: true
             }),
-            targetUuid: new fields.StringField({ initial: undefined })
+            targetUuid: new fields.StringField({ initial: undefined }),
+            triggers: new fields.ArrayField(new TriggerField())
         };
 
         this.extraSchemas.forEach(s => {
@@ -343,6 +345,10 @@ export class ResourceUpdateMap extends Map {
     }
 
     addResources(resources) {
+        if (!resources?.length) return;
+        const invalidResources = resources.some(resource => !resource.key);
+        if (invalidResources) return;
+
         for (const resource of resources) {
             if (!resource.key) continue;
 

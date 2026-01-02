@@ -8,7 +8,7 @@
  * @property {boolean} isInventoryItem- Indicates whether items of this type is a Inventory Item
  */
 
-import { addLinkedItemsDiff, createScrollText, getScrollTextData, updateLinkedItemApps } from '../../helpers/utils.mjs';
+import { addLinkedItemsDiff, getScrollTextData, updateLinkedItemApps } from '../../helpers/utils.mjs';
 import { ActionsField } from '../fields/actionField.mjs';
 import FormulaField from '../fields/formulaField.mjs';
 
@@ -133,6 +133,26 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         const actorRollData = this.actor?.getRollData() ?? {};
         const data = { ...actorRollData, item: { ...this } };
         return data;
+    }
+
+    prepareBaseData() {
+        super.prepareBaseData();
+
+        for (const action of this.actions) {
+            const actionsToRegister = [];
+            for (let i = 0; i < action.triggers.length; i++) {
+                const trigger = action.triggers[i];
+                const fn = new foundry.utils.AsyncFunction('roll', 'actor', `{${trigger.command}\n}`);
+                actionsToRegister.push(fn.bind(action));
+                if (i === action.triggers.length - 1)
+                    game.system.registeredTriggers.registerTriggers(
+                        trigger.trigger,
+                        action.actor?.uuid,
+                        this.parent.uuid,
+                        actionsToRegister
+                    );
+            }
+        }
     }
 
     async _preCreate(data, options, user) {

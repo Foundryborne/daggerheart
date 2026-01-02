@@ -1217,6 +1217,10 @@
                     }
                 }
             },
+            "Triggers": {
+                "dualityRoll": "Duality Roll",
+                "fearRoll": "Fear Roll"
+            },
             "WeaponFeature": {
                 "barrier": {
                     "name": "Barrier",
@@ -2057,7 +2061,8 @@
                 "itemFeatures": "Item Features",
                 "questions": "Questions",
                 "configuration": "Configuration",
-                "base": "Base"
+                "base": "Base",
+                "triggers": "Triggers"
             },
             "Tiers": {
                 "singular": "Tier",

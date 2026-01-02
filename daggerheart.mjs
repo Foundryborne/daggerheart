@@ -84,6 +84,8 @@ Hooks.once('init', () => {
         fields
     };
 
+    game.system.registeredTriggers = new RegisteredTriggers();
+
     const { DocumentSheetConfig } = foundry.applications.apps;
     DocumentSheetConfig.unregisterSheet(TokenDocument, 'core', foundry.applications.sheets.TokenConfig);
     DocumentSheetConfig.registerSheet(TokenDocument, SYSTEM.id, applications.sheetConfigs.DhTokenConfig, {
@@ -378,3 +380,33 @@ Hooks.on('moveToken', async (movedToken, data) => {
 
 Hooks.on('renderCompendiumDirectory', (app, html) => applications.ui.ItemBrowser.injectSidebarButton(html));
 Hooks.on('renderDocumentDirectory', (app, html) => applications.ui.ItemBrowser.injectSidebarButton(html));
+
+class RegisteredTriggers extends Map {
+    constructor() {
+        super();
+    }
+
+    async registerTriggers(trigger, actor, uuid, commands) {
+        const existingTrigger = this.get(trigger);
+        if (!existingTrigger) this.set(trigger, new Map());
+
+        this.get(trigger).set(uuid, { actor, commands });
+    }
+
+    async runTrigger(trigger, currentActor, ...args) {
+        const updates = [];
+        const dualityTrigger = this.get(trigger);
+        if (dualityTrigger) {
+            for (let { actor, commands } of dualityTrigger.values()) {
+                if (currentActor?.uuid !== actor) continue;
+
+                for (let command of commands) {
+                    const commandUpdates = await command(...args);
+                    if (commandUpdates?.length) updates.push(...commandUpdates);
+                }
+            }
+        }
+
+        return updates;
+    }
+}
