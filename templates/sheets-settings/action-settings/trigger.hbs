@@ -5,13 +5,20 @@
 >
         <button data-action="addTrigger">{{localize "Add Trigger"}} <i class="fa-solid fa-plus icon-button"></i></button>
     
-        {{#each @root.source.triggers as |trigger index|}}
+        {{#each @root.triggers as |trigger index|}}
             <fieldset class="one-column">
                 <legend><a data-action="removeTrigger" data-index="{{index}}"><i class="fa-solid fa-trash"></i></a></legend>
 
-                <select id="triggerOptionSelect">
-                    {{selectOptions @root.triggerOptions seleced=trigger.trigger localize=true}}
-                </select>
+                <div class="trigger-data">
+                    <select name="{{concat "triggers." index ".trigger"}}">
+                        {{selectOptions @root.triggerOptions seleced=trigger.trigger localize=true}}
+                    </select>
+                    <div class="hint-section">
+                        <strong>{{localize "Context: "}}</strong>
+                        <span class="hint">{{localize trigger.hint}}</span>
+                    </div>
+                </div>
+
                 {{formInput @root.fields.triggers.element.fields.command value=trigger.command elementType="code-mirror" name=(concat "triggers." index ".command") aria=(object label=(localize "Test"))}}
             </fieldset>
         {{/each}}

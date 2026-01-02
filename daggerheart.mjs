@@ -401,8 +401,18 @@ class RegisteredTriggers extends Map {
                 if (currentActor?.uuid !== actor) continue;
 
                 for (let command of commands) {
-                    const commandUpdates = await command(...args);
-                    if (commandUpdates?.length) updates.push(...commandUpdates);
+                    try {
+                        const commandUpdates = await command(...args);
+                        if (commandUpdates?.length) updates.push(...commandUpdates);
+                    } catch (_) {
+                        const triggerName = game.i18n.localize(CONFIG.DH.TRIGGER.triggers[trigger].label);
+                        ui.notifications.error(
+                            game.i18n.format('DAGGERHEART.CONFIG.Triggers.triggerError', {
+                                trigger: triggerName,
+                                actor: currentActor?.name
+                            })
+                        );
+                    }
                 }
             }
         }

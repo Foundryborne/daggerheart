@@ -90,7 +90,9 @@
                     "customFormula": "Custom Formula",
                     "formula": "Formula"
                 },
-                "displayInChat": "Display in chat"
+                "displayInChat": "Display in chat",
+                "deleteTriggerTitle": "Delete Trigger",
+                "deleteTriggerContent": "Are you sure you want to delete the {trigger} trigger?"
             },
             "RollField": {
                 "diceRolling": {
@@ -1218,8 +1220,15 @@
                 }
             },
             "Triggers": {
-                "dualityRoll": "Duality Roll",
-                "fearRoll": "Fear Roll"
+                "dualityRoll": {
+                    "label": "Duality Roll",
+                    "hint": "this: Action, roll: DhRoll, actor: DhActor"
+                },
+                "fearRoll": {
+                    "label": "Fear Roll",
+                    "hint": "this: Action\nroll: DhRoll\nactor: DhActor"
+                },
+                "triggerError": "{trigger} trigger failed for {actor}. It's probably configured wrong."
             },
             "WeaponFeature": {
                 "barrier": {
