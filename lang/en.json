@@ -1016,14 +1016,6 @@
                 "spell": "Spell",
                 "grimoire": "Grimoire"
             },
-            "EnvironmentIcons": {
-                "city": "City",
-                "dungeon": "Dungeon",
-                "mountain": "Mountain",
-                "social": "Social",
-                "tree": "Tree",
-                "water": "Water"
-            },
             "EnvironmentType": {
                 "exploration": {
                     "label": "Exploration",

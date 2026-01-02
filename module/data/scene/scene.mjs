@@ -1,6 +1,6 @@
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 
-/*  Foundry does not add any system data for subtyped Scenes. The data model is therefore mainly for reference until this changes.
+/*  Foundry does not add any system data for subtyped Scenes. The data model is therefore used by instantiating a new instance of it for sceneConfigSettings.mjs.
     Needed dataprep and lifetime hooks are handled in documents/scene.
 */
 export default class DHScene extends foundry.abstract.DataModel {
