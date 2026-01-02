@@ -80,7 +80,13 @@
         },
         "name": "Clear Stress",
         "img": "icons/magic/symbols/rune-sigil-black-pink.webp",
-        "range": ""
+        "range": "",
+        "triggers": [
+          {
+            "trigger": "dualityRoll",
+            "command": "/* Check if there's a Strange Pattern match */\nconst dice = [roll.dFear.total, roll.dHope.total];\nconst resource = this.parent.resource?.diceStates ? Object.values(this.parent.resource.diceStates).map(x => x.value)[0] : null;\nconst diceMatch = dice.includes(resource);\n\nif (!diceMatch) return;\n\n/* Create a dialog to choose Hope or Stress - or to cancel*/\nconst choice = await foundry.applications.api.DialogV2.wait({\n  classes: ['dh-style', 'two-big-buttons'],\n  window: { title: 'Strange Patterns' },\n  content: 'Increase Hope or clear stress?',\n  buttons: [\n      {\n          action: 'hope',\n          label: 'Hope',\n          icon: 'fa-solid fa-plus'\n      },\n      {\n          action: 'stress',\n          label: 'Stress',\n          icon: 'fa-solid fa-book'\n      }\n  ]\n});\n  \nif (!choice) return;\n\n/* Return resource update according to choice */\nconst isHope = choice === 'hope';\nreturn [{ key: choice, value: isHope ? 1 : -1, total: isHope ? -1 : 1, enabled: true }];"
+          }
+        ]
       }
     },
     "originItemType": null,

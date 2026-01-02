@@ -138,7 +138,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
     prepareBaseData() {
         super.prepareBaseData();
 
-        for (const action of this.actions) {
+        for (const action of this.actions ?? []) {
             const actionsToRegister = [];
             for (let i = 0; i < action.triggers.length; i++) {
                 const trigger = action.triggers[i];
