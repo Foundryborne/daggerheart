@@ -26,15 +26,13 @@ export default class DhSceneNavigation extends foundry.applications.ui.SceneNavi
                 if (!scene.flags.daggerheart) return x;
 
                 const daggerheartInfo = new game.system.api.data.scenes.DHScene(scene.flags.daggerheart);
-                const environmentKeys = Object.keys(daggerheartInfo.sceneEnvironments);
-                const hasEnvironments = environmentKeys.length;
+                const environments = daggerheartInfo.sceneEnvironments.filter(x => x);
+                const hasEnvironments = environments.length > 0;
                 return {
                     ...x,
                     hasEnvironments,
-                    environmentImage: hasEnvironments
-                        ? daggerheartInfo.sceneEnvironments[environmentKeys[0]].img
-                        : null,
-                    environments: daggerheartInfo.sceneEnvironments
+                    environmentImage: hasEnvironments ? environments[0].img : null,
+                    environments: environments
                 };
             });
         context.scenes.active = extendScenes(context.scenes.active);
@@ -47,7 +45,7 @@ export default class DhSceneNavigation extends foundry.applications.ui.SceneNavi
         const scene = game.scenes.get(button.dataset.sceneId);
         const sceneEnvironments = new game.system.api.data.scenes.DHScene(scene.flags.daggerheart).sceneEnvironments;
 
-        if (sceneEnvironments.length === 1) {
+        if (sceneEnvironments.length === 1 || event.shiftKey) {
             sceneEnvironments[0].sheet.render(true);
         } else {
             new ContextMenu(
@@ -56,6 +54,15 @@ export default class DhSceneNavigation extends foundry.applications.ui.SceneNavi
                 sceneEnvironments.map(environment => ({
                     name: environment.name,
                     callback: () => {
+                        if (scene.flags.daggerheart.sceneEnvironments[0] !== environment.uuid) {
+                            const newEnvironments = scene.flags.daggerheart.sceneEnvironments;
+                            const newFirst = newEnvironments.splice(
+                                newEnvironments.findIndex(x => x === environment.uuid)
+                            )[0];
+                            newEnvironments.unshift(newFirst);
+                            scene.update({ 'flags.daggerheart.sceneEnvironments': newEnvironments });
+                        }
+
                         environment.sheet.render({ force: true });
                     }
                 })),

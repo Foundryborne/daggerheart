@@ -1,8 +1,15 @@
+import { RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+
 export default class DhSceneConfigSettings extends foundry.applications.sheets.SceneConfig {
-    constructor(options = {}) {
+    constructor(options) {
         super(options);
 
-        this.daggerheartFlag = new game.system.api.data.scenes.DHScene(this.document.flags.daggerheart);
+        Hooks.on(socketEvent.Refresh, ({ refreshType }) => {
+            if (refreshType === RefreshType.Scene) {
+                this.daggerheartFlag = new game.system.api.data.scenes.DHScene(this.document.flags.daggerheart);
+                this.render();
+            }
+        });
     }
 
     static DEFAULT_OPTIONS = {
@@ -32,6 +39,11 @@ export default class DhSceneConfigSettings extends foundry.applications.sheets.S
     }
 
     static TABS = DhSceneConfigSettings.buildTabs();
+
+    async _preFirstRender(context, options) {
+        await super._preFirstRender(context, options);
+        this.daggerheartFlag = new game.system.api.data.scenes.DHScene(this.document.flags.daggerheart);
+    }
 
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
