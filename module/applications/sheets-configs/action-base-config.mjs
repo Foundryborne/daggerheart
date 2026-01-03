@@ -7,6 +7,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
 
         this.action = action;
         this.openSection = null;
+        this.openTrigger = this.action.triggers.length > 0 ? 0 : null;
     }
 
     get title() {
@@ -31,7 +32,8 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             addDamage: this.addDamage,
             removeDamage: this.removeDamage,
             addTrigger: this.addTrigger,
-            removeTrigger: this.removeTrigger
+            removeTrigger: this.removeTrigger,
+            expandTrigger: this.expandTrigger
         },
         form: {
             handler: this.updateForm,
@@ -126,9 +128,10 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         context.baseAttackBonus = this.action.actor?.system.attack?.roll.bonus;
         context.hasRoll = this.action.hasRoll;
         context.triggerOptions = CONFIG.DH.TRIGGER.triggers;
-        context.triggers = context.source.triggers.map(trigger => ({
+        context.triggers = context.source.triggers.map((trigger, index) => ({
             ...trigger,
-            hint: CONFIG.DH.TRIGGER.triggers[trigger.trigger].hint
+            hint: CONFIG.DH.TRIGGER.triggers[trigger.trigger].hint,
+            revealed: this.openTrigger === index
         }));
 
         const settingsTiers = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers;
@@ -245,7 +248,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
 
     static addTrigger() {
         const data = this.action.toObject();
-        data.triggers.push({ hook: CONFIG.DH.TRIGGER.triggers.dualityRoll.id });
+        data.triggers.push({ trigger: CONFIG.DH.TRIGGER.triggers.dualityRoll.id });
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
@@ -265,6 +268,33 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         const data = this.action.toObject();
         data.triggers = data.triggers.filter((_, index) => index !== Number.parseInt(button.dataset.index));
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
+    static async expandTrigger(_event, button) {
+        const index = Number.parseInt(button.dataset.index);
+        const toggle = (element, codeMirror) => {
+            codeMirror.classList.toggle('revealed');
+            const button = element.querySelector('a > i');
+            button.classList.toggle('fa-angle-up');
+            button.classList.toggle('fa-angle-down');
+        };
+
+        const fieldset = button.closest('fieldset');
+        const codeMirror = fieldset.querySelector('.code-mirror-wrapper');
+        toggle(fieldset, codeMirror);
+
+        if (this.openTrigger !== null && this.openTrigger !== index) {
+            const previouslyExpanded = fieldset
+                .closest(`section`)
+                .querySelector(`fieldset[data-index="${this.openTrigger}"]`);
+            const codeMirror = previouslyExpanded.querySelector('.code-mirror-wrapper');
+            toggle(previouslyExpanded, codeMirror);
+            this.openTrigger = index;
+        } else if (this.openTrigger === index) {
+            this.openTrigger = null;
+        } else {
+            this.openTrigger = index;
+        }
     }
 
     /** Specific implementation in extending classes **/

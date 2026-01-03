@@ -1226,7 +1226,10 @@
                 },
                 "fearRoll": {
                     "label": "Fear Roll",
-                    "hint": "this: Action\nroll: DhRoll\nactor: DhActor"
+                    "hint": "this: Action, roll: DhRoll, actor: DhActor"
+                },
+                "triggerTexts": {
+                    "strangePatternsContent": "Increase Hope or clear stress?"
                 },
                 "triggerError": "{trigger} trigger failed for {actor}. It's probably configured wrong."
             },

@@ -4,6 +4,7 @@ export default class TriggerField extends foundry.data.fields.SchemaField {
             {
                 trigger: new foundry.data.fields.StringField({
                     nullable: false,
+                    blank: false,
                     initial: CONFIG.DH.TRIGGER.triggers.dualityRoll.id,
                     choices: CONFIG.DH.TRIGGER.triggers
                 }),
