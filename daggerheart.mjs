@@ -395,6 +395,9 @@ class RegisteredTriggers extends Map {
 
     async runTrigger(trigger, currentActor, ...args) {
         const updates = [];
+        const triggerSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).triggers;
+        if (!triggerSettings.enabled) return updates;
+
         const dualityTrigger = this.get(trigger);
         if (dualityTrigger) {
             for (let { actor, commands } of dualityTrigger.values()) {
@@ -402,8 +405,8 @@ class RegisteredTriggers extends Map {
 
                 for (let command of commands) {
                     try {
-                        const commandUpdates = await command(...args);
-                        if (commandUpdates?.length) updates.push(...commandUpdates);
+                        const result = await command(...args);
+                        if (result?.updates?.length) updates.push(...result.updates);
                     } catch (_) {
                         const triggerName = game.i18n.localize(CONFIG.DH.TRIGGER.triggers[trigger].label);
                         ui.notifications.error(

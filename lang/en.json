@@ -2448,6 +2448,12 @@
                             "hint": "Automatically apply effects. Targets must be selected before the action is made and Reaction Roll Automation must be different than Never. Bypass users permissions."
                         }
                     },
+                    "triggers": {
+                        "enabled": {
+                            "label": "Enabled",
+                            "hint": "Advanced automation such as triggering a popup for a wizard's Strange Patterns"
+                        }
+                    },
                     "summaryMessages": {
                         "label": "Summary Messages"
                     }
@@ -2457,6 +2463,9 @@
                 },
                 "roll": {
                     "title": "Actions"
+                },
+                "trigger": {
+                    "title": "Triggers"
                 }
             },
             "Homebrew": {
