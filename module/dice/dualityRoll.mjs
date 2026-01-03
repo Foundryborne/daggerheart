@@ -26,6 +26,7 @@ export default class DualityRoll extends D20Roll {
     }
 
     get dHope() {
+        console.log("dHope", this.dice, this.terms);
         // if ( !(this.terms[0] instanceof foundry.dice.terms.Die) ) return;
         if (!(this.dice[0] instanceof foundry.dice.terms.Die)) this.createBaseDice();
         return this.dice[0];
@@ -33,12 +34,14 @@ export default class DualityRoll extends D20Roll {
     }
 
     set dHope(faces) {
+         console.log("set dHope", this.dice, this.terms);
         if (!(this.dice[0] instanceof foundry.dice.terms.Die)) this.createBaseDice();
-        this.terms[0].faces = this.getFaces(faces);
+        this.dice[0].faces = this.getFaces(faces);
         // this.#hopeDice = `d${face}`;
     }
 
     get dFear() {
+        console.log("dFear", this.dice, this.terms);
         // if ( !(this.terms[1] instanceof foundry.dice.terms.Die) ) return;
         if (!(this.dice[1] instanceof foundry.dice.terms.Die)) this.createBaseDice();
         return this.dice[1];
@@ -46,6 +49,7 @@ export default class DualityRoll extends D20Roll {
     }
 
     set dFear(faces) {
+        console.log("set dFear", this.dice, this.terms);
         if (!(this.dice[1] instanceof foundry.dice.terms.Die)) this.createBaseDice();
         this.dice[1].faces = this.getFaces(faces);
         // this.#fearDice = `d${face}`;
@@ -130,12 +134,22 @@ export default class DualityRoll extends D20Roll {
 
     /** @inheritDoc */
     static fromData(data) {
+        console.log("fromData", data);
         data.terms[0].class = foundry.dice.terms.Die.name;
         data.terms[2].class = foundry.dice.terms.Die.name;
         return super.fromData(data);
     }
 
     createBaseDice() {
+        if (this.guaranteedCritical) {
+            console.log("gc - createBaseDice");
+            this.terms[0] = new foundry.dice.terms.Die({ faces: 1, number: 1 });
+            this.terms[1] = new foundry.dice.terms.OperatorTerm({ operator: '+' });
+            this.terms[2] = new foundry.dice.terms.Die({ faces: 1, number: 1 });
+            this.terms = [this.terms[0], this.terms[1], this.terms[2]];
+            return;
+        }
+
         if (this.dice[0] instanceof foundry.dice.terms.Die && this.dice[1] instanceof foundry.dice.terms.Die) {
             this.terms = [this.terms[0], this.terms[1], this.terms[2]];
             return;
@@ -143,6 +157,13 @@ export default class DualityRoll extends D20Roll {
         this.terms[0] = new foundry.dice.terms.Die({ faces: 12 });
         this.terms[1] = new foundry.dice.terms.OperatorTerm({ operator: '+' });
         this.terms[2] = new foundry.dice.terms.Die({ faces: 12 });
+    }
+
+    configureModifiers() {
+        console.log("this.guaranteedCritical", this.guaranteedCritical);
+        if (!this.guaranteedCritical) {
+            super.configureModifiers();
+        }
     }
 
     applyAdvantage() {

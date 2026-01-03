@@ -26,7 +26,7 @@ export default class FateRoll extends D20Roll {
 
     set dHope(faces) {
         if (!(this.dice[0] instanceof foundry.dice.terms.Die)) this.createBaseDice();
-        this.terms[0].faces = this.getFaces(faces);
+        this.dice[0].faces = this.getFaces(faces);
         // this.#hopeDice = `d${face}`;
     }
 
