@@ -326,6 +326,7 @@
                 "equip": "Equip",
                 "sendToChat": "Send To Chat",
                 "toLoadout": "Send to Loadout",
+                "recall": "Recall",
                 "toVault": "Send to Vault",
                 "unequip": "Unequip",
                 "useItem": "Use Item"
@@ -1800,7 +1801,9 @@
                             "label": "Long Rest: Bonus Long Rest Moves",
                             "hint": "The number of extra Long Rest Moves the character can take during a Long Rest."
                         }
-                    }
+                    },
+                    "target": "Target",
+                    "targetSelf": "Self"
                 },
                 "maxLoadout": {
                     "label": "Max Loadout Cards Bonus"

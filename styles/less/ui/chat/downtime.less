@@ -99,12 +99,35 @@
                 }
             }
 
+            .action-use-button-parent {
+                width: 100%;
+
+                .action-use-target {
+                    display:flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 4px;
+                    width: 100%;
+                    padding: 4px 8px 10px 40px;
+                    font-size: var(--font-size-12);
+
+                    label {
+                        font-weight: bold;
+                    }
+
+                    select {
+                        flex: 1;
+                    }
+                }
+            }
+
             .action-use-button {
                 width: -webkit-fill-available;
                 margin: 0 8px;
                 font-weight: 600;
                 height: 40px;
             }
+
         }
     }
 }

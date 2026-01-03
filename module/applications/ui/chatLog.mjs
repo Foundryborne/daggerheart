@@ -134,7 +134,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
 
     async actionUseButton(event, message) {
         const { moveIndex, actionIndex, movePath } = event.currentTarget.dataset;
-        const parent = await foundry.utils.fromUuid(message.system.actor);
+        const targetUuid = event.currentTarget.closest('.action-use-button-parent').querySelector('select')?.value;
+        const parent = await foundry.utils.fromUuid(targetUuid || message.system.actor)
+
         const actionType = message.system.moves[moveIndex].actions[actionIndex];
         const cls = game.system.api.models.actions.actionsTypes[actionType.type];
         const action = new cls(
@@ -146,7 +148,8 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                     type: CONFIG.DH.ITEM.originItemType.restMove,
                     itemPath: movePath,
                     actionIndex: actionIndex
-                }
+                },
+                targetUuid: targetUuid
             },
             { parent: parent.system }
         );

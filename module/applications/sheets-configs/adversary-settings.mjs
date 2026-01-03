@@ -51,6 +51,19 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         }
     };
 
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
+
+        const featureForms = ['passive', 'action', 'reaction'];
+        context.features = context.document.system.features.sort((a, b) =>
+            a.system.featureForm !== b.system.featureForm
+                ? featureForms.indexOf(a.system.featureForm) - featureForms.indexOf(b.system.featureForm)
+                : a.sort - b.sort
+        );
+
+        return context;
+    }
+
     /* -------------------------------------------- */
 
     /**
@@ -98,16 +111,16 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
 
     async _onDrop(event) {
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-        
+
         const item = await fromUuid(data.uuid);
         if (item?.type === 'feature') {
             if (data.fromInternal && item.parent?.uuid === this.actor.uuid) {
                 return;
             }
-            
+
             const itemData = item.toObject();
             delete itemData._id;
-            
+
             await this.actor.createEmbeddedDocuments('Item', [itemData]);
         }
     }

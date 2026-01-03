@@ -2,27 +2,48 @@ import DHBaseActorSettings from '../../applications/sheets/api/actor-setting.mjs
 import DHItem from '../../documents/item.mjs';
 import { getScrollTextData } from '../../helpers/utils.mjs';
 
+const fields = foundry.data.fields;
+
 const resistanceField = (resistanceLabel, immunityLabel, reductionLabel) =>
-    new foundry.data.fields.SchemaField({
-        resistance: new foundry.data.fields.BooleanField({
+    new fields.SchemaField({
+        resistance: new fields.BooleanField({
             initial: false,
             label: `${resistanceLabel}.label`,
             hint: `${resistanceLabel}.hint`,
             isAttributeChoice: true
         }),
-        immunity: new foundry.data.fields.BooleanField({
+        immunity: new fields.BooleanField({
             initial: false,
             label: `${immunityLabel}.label`,
             hint: `${immunityLabel}.hint`,
             isAttributeChoice: true
         }),
-        reduction: new foundry.data.fields.NumberField({
+        reduction: new fields.NumberField({
             integer: true,
             initial: 0,
             label: `${reductionLabel}.label`,
             hint: `${reductionLabel}.hint`
         })
     });
+
+/* Common rules applying to Characters and Adversaries */
+export const commonActorRules = (extendedData = { damageReduction: {} }) => ({
+    conditionImmunities: new fields.SchemaField({
+        hidden: new fields.BooleanField({ initial: false }),
+        restrained: new fields.BooleanField({ initial: false }),
+        vulnerable: new fields.BooleanField({ initial: false })
+    }),
+    damageReduction: new fields.SchemaField({
+        thresholdImmunities: new fields.SchemaField({
+            minor: new fields.BooleanField({ initial: false })
+        }),
+        reduceSeverity: new fields.SchemaField({
+            magical: new fields.NumberField({ initial: 0, min: 0 }),
+            physical: new fields.NumberField({ initial: 0, min: 0 })
+        }),
+        ...extendedData.damageReduction
+    })
+});
 
 /**
  * Describes metadata about the actor data model type
@@ -54,7 +75,6 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
 
     /** @inheritDoc */
     static defineSchema() {
-        const fields = foundry.data.fields;
         const schema = {};
 
         if (this.metadata.hasAttribution) {
