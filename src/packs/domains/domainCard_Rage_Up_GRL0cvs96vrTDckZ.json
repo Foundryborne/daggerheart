@@ -113,13 +113,13 @@
           "key": "system.bonuses.damage.magical.bonus",
           "mode": 2,
           "value": "2*@system.traits.strength.value",
-          "priority": null
+          "priority": 21
         },
         {
           "key": "system.bonuses.damage.physical.bonus",
           "mode": 2,
           "value": "2*@system.traits.strength.value",
-          "priority": null
+          "priority": 21
         }
       ],
       "disabled": false,
@@ -162,13 +162,13 @@
           "key": "system.bonuses.damage.magical.bonus",
           "mode": 2,
           "value": "4*@system.traits.strength.value",
-          "priority": null
+          "priority": 21
         },
         {
           "key": "system.bonuses.damage.physical.bonus",
           "mode": 2,
           "value": "4*@system.traits.strength.value",
-          "priority": null
+          "priority": 21
         }
       ],
       "disabled": false,

@@ -37,13 +37,13 @@
           "key": "system.bonuses.damage.primaryWeapon.bonus",
           "mode": 2,
           "value": "@system.traits.agility.value",
-          "priority": null
+          "priority": 21
         },
         {
           "key": "system.bonuses.damage.secondaryWeapon.bonus",
           "mode": 2,
           "value": "@system.traits.agility.value",
-          "priority": null
+          "priority": 21
         }
       ],
       "disabled": true,
