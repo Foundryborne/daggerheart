@@ -43,4 +43,39 @@ export default class DhActorDirectory extends foundry.applications.sidebar.tabs.
             event.dataTransfer.setDragImage(preview, w / 2, h / 2);
         }
     }
+
+    _getEntryContextOptions() {
+        const options = super._getEntryContextOptions();
+        options.push({
+            name: 'Duplicate To New Tier',
+            icon: `<i class="fa-solid fa-arrow-trend-up" inert></i>`,
+            condition: li => {
+                const actor = game.actors.get(li.dataset.entryId);
+                return actor?.type === 'adversary' && actor.system.type !== 'social';
+            },
+            callback: async li => {
+                const actor = game.actors.get(li.dataset.entryId);
+                if (!actor) throw new Error('Unexpected missing actor');
+
+                const tier = await foundry.applications.api.Dialog.input({
+                    window: { title: 'Pick a new tier for this adversary' },
+                    content: '<input name="tier" type="number" min="1" max="4" step="1" autofocus>',
+                    ok: {
+                        label: 'Create Adversary',
+                        callback: (event, button, dialog) => Math.clamp(button.form.elements.tier.valueAsNumber, 1, 4)
+                    }
+                });
+
+                if (tier === actor.system.tier) {
+                    ui.notifications.warn('This actor is already at this tier');
+                } else if (tier) {
+                    const source = actor.system.adjustForTier(tier);
+                    await Actor.create(source);
+                    ui.notifications.info(`Tier ${tier} ${actor.name} created`);
+                }
+            }
+        });
+
+        return options;
+    }
 }

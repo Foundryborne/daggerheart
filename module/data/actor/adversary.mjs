@@ -2,6 +2,7 @@ import DHAdversarySettings from '../../applications/sheets-configs/adversary-set
 import { ActionField } from '../fields/actionField.mjs';
 import BaseDataActor, { commonActorRules } from './base.mjs';
 import { resourceField, bonusField } from '../fields/actorField.mjs';
+import { parseTermsFromSimpleFormula } from '../../helpers/utils.mjs';
 
 export default class DhpAdversary extends BaseDataActor {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Adversary'];
@@ -188,4 +189,407 @@ export default class DhpAdversary extends BaseDataActor {
         ];
         return tags;
     }
+
+    adjustForTier(tier) {
+        const source = this.parent.toObject(true);
+        console.log('Actors and source', this.parent, source);
+
+        /** @type {(2 | 3 | 4)[]} */
+        const tiers = new Array(Math.abs(tier - this.tier))
+            .fill(0)
+            .map((_, idx) => idx + Math.min(tier, this.tier) + 1);
+        if (tier < this.tier) tiers.reverse();
+        const typeData = ADVERSARY_DATA[source.system.type] ?? ADVERSARY_DATA[source.system.standard];
+        const tierEntries = tiers.map(t => ({ tier: t, ...typeData[t] }));
+
+        // Apply simple tier changes
+        const scale = tier > this.tier ? 1 : -1;
+        for (const entry of tierEntries) {
+            source.system.difficulty += scale * entry.difficulty;
+            source.system.damageThresholds.major += scale * entry.majorThreshold;
+            source.system.damageThresholds.severe += scale * entry.severeThreshold;
+            source.system.resources.hitPoints.max += scale * entry.hp;
+            source.system.resources.stress.max += scale * entry.stress;
+            source.system.attack.roll.bonus += scale * entry.attack;
+        }
+
+        /** Returns the mean and standard deviation of a series of average damages */
+        const analyzeDamageRange = range => {
+            if (range.length <= 1) throw Error('Unexpected damage range, must have at least two entries');
+            const mean = range.reduce((a, b) => a + b, 0) / range.length;
+            const deviations = range.map(r => r - mean);
+            const standardDeviation = Math.sqrt(deviations.reduce((r, d) => r + d * d, 0) / (range.length - 1));
+            return { mean, standardDeviation };
+        };
+
+        // Calculate mean and standard deviation of expected damage ranges in each tier. Also create a function to remap damage
+        const currentDamageRange = analyzeDamageRange(typeData[source.system.tier].damage);
+        const newDamageRange = analyzeDamageRange(typeData[tier].damage);
+        const convertDamage = (damage, newMean) => {
+            const hitPointParts = damage.parts.filter(d => d.applyTo === 'hitPoints');
+            if (hitPointParts.length === 1 && !hitPointParts[0].value.custom.enabled) {
+                const value = hitPointParts[0].value;
+                value.flatMultiplier = Math.max(0, value.flatMultiplier + tier - source.system.tier);
+                const baseAverage = (value.flatMultiplier * (Number(value.dice.replace('d', '')) + 1)) / 2;
+                value.bonus = Math.round(newMean - baseAverage);
+            } else {
+                ui.notifications.error(
+                    `Failed to convert item ${item.name}: Other kinds of damage is currently unsupported`
+                );
+            }
+        };
+
+        const parseDamage = damage => {
+            const formula = damage.parts
+                .filter(p => p.applyTo === 'hitPoints')
+                .map(p =>
+                    p.value.custom.enabled
+                        ? p.value.custom.formula
+                        : [p.value.flatMultiplier ? `${p.value.flatMultiplier}${p.value.dice}` : 0, p.value.bonus ?? 0]
+                              .filter(p => !!p)
+                              .join('+')
+                )
+                .join('+');
+            const terms = parseTermsFromSimpleFormula(formula);
+            const mean = terms.reduce((r, t) => r + (t.modifier ?? 0) + (t.dice ? (t.dice * (t.faces + 1)) / 2 : 0), 0);
+            return { formula, terms, mean };
+        };
+
+        // Update damage of base attack
+        const atkAverage = parseDamage(source.system.attack.damage).mean;
+        const deviation = (atkAverage - currentDamageRange.mean) / currentDamageRange.standardDeviation;
+        const newAtkAverage = newDamageRange.mean + newDamageRange.standardDeviation * deviation;
+        const damage = source.system.attack.damage;
+        convertDamage(damage, newAtkAverage);
+
+        // Update damage of each item action, making sure to also update the description if possible
+        for (const item of source.items) {
+            // todo: damage inlines (must be done before other changes so that it doesn't get incorrectly applied)
+
+            for (const action of Object.values(item.system.actions)) {
+                const damage = action.damage;
+                if (!damage) continue;
+                const { formula, mean } = parseDamage(damage);
+                if (mean === 0) continue;
+
+                const deviation = (mean - currentDamageRange.mean) / currentDamageRange.standardDeviation;
+                const newMean = newDamageRange.mean + newDamageRange.standardDeviation * deviation;
+                convertDamage(damage, newMean);
+
+                const oldFormulaRegexp = new RegExp(formula.replace('+', '(?:\\s)?\\+(?:\\s)?'));
+                const newFormula = parseDamage(action.damage).formula;
+                item.system.description = item.system.description.replace(oldFormulaRegexp, newFormula);
+                action.description = action.description.replace(oldFormulaRegexp, newFormula);
+            }
+        }
+
+        // Finally set the tier of the source data, now that everything is complete
+        source.system.tier = tier;
+        return source;
+    }
 }
+
+/**
+ * @typedef {Object} TierData
+ * @property {number} difficulty
+ * @property {number} majorThreshold
+ * @property {number} severeThreshold
+ * @property {number} hp
+ * @property {number} stress
+ * @property {number} attack
+ * @property {number[]} damage
+ */
+
+/** @typedef {Record<2 | 3 | 4, TierData> & Record<1, { damage: number[] }} AdversaryScalingData */
+
+/** @type {Record<string, AdversaryScalingData>} */
+export const ADVERSARY_DATA = {
+    bruiser: {
+        1: {
+            damage: [8, 11]
+        },
+        2: {
+            difficulty: 2,
+            majorThreshold: 5,
+            severeThreshold: 10,
+            hp: 1,
+            stress: 2,
+            attack: 2,
+            damage: [12, 16]
+        },
+        3: {
+            difficulty: 2,
+            majorThreshold: 7,
+            severeThreshold: 15,
+            hp: 1,
+            stress: 0,
+            attack: 2,
+            damage: [18, 22]
+        },
+        4: {
+            difficulty: 2,
+            majorThreshold: 12,
+            severeThreshold: 25,
+            hp: 1,
+            stress: 0,
+            attack: 2,
+            damage: [30, 45]
+        }
+    },
+    horde: {
+        1: {
+            damage: [5, 8]
+        },
+        2: {
+            difficulty: 2,
+            majorThreshold: 5,
+            severeThreshold: 8,
+            hp: 2,
+            stress: 0,
+            attack: 0,
+            damage: [9, 13]
+        },
+        3: {
+            difficulty: 2,
+            majorThreshold: 5,
+            severeThreshold: 12,
+            hp: 0,
+            stress: 1,
+            attack: 1,
+            damage: [14, 19]
+        },
+        4: {
+            difficulty: 2,
+            majorThreshold: 10,
+            severeThreshold: 15,
+            hp: 2,
+            stress: 0,
+            attack: 0,
+            damage: [20, 30]
+        }
+    },
+    leader: {
+        1: {
+            damage: [6, 9]
+        },
+        2: {
+            difficulty: 2,
+            majorThreshold: 6,
+            severeThreshold: 10,
+            hp: 0,
+            stress: 0,
+            attack: 1,
+            damage: [12, 15]
+        },
+        3: {
+            difficulty: 2,
+            majorThreshold: 6,
+            severeThreshold: 15,
+            hp: 1,
+            stress: 0,
+            attack: 2,
+            damage: [15, 18]
+        },
+        4: {
+            difficulty: 2,
+            majorThreshold: 12,
+            severeThreshold: 25,
+            hp: 1,
+            stress: 1,
+            attack: 3,
+            damage: [25, 35]
+        }
+    },
+    minion: {
+        1: {
+            damage: [1, 3]
+        },
+        2: {
+            difficulty: 2,
+            majorThreshold: 0,
+            severeThreshold: 0,
+            hp: 0,
+            stress: 0,
+            attack: 1,
+            damage: [2, 4]
+        },
+        3: {
+            difficulty: 2,
+            majorThreshold: 0,
+            severeThreshold: 0,
+            hp: 0,
+            stress: 1,
+            attack: 1,
+            damage: [5, 8]
+        },
+        4: {
+            difficulty: 2,
+            majorThreshold: 0,
+            severeThreshold: 0,
+            hp: 0,
+            stress: 0,
+            attack: 1,
+            damage: [10, 12]
+        }
+    },
+    ranged: {
+        1: {
+            damage: [6, 9]
+        },
+        2: {
+            difficulty: 2,
+            majorThreshold: 3,
+            severeThreshold: 6,
+            hp: 1,
+            stress: 0,
+            attack: 1,
+            damage: [12, 16]
+        },
+        3: {
+            difficulty: 2,
+            majorThreshold: 7,
+            severeThreshold: 14,
+            hp: 1,
+            stress: 1,
+            attack: 2,
+            damage: [15, 18]
+        },
+        4: {
+            difficulty: 2,
+            majorThreshold: 5,
+            severeThreshold: 10,
+            hp: 1,
+            stress: 1,
+            attack: 1,
+            damage: [25, 35]
+        }
+    },
+    skulk: {
+        1: {
+            damage: [5, 8]
+        },
+        2: {
+            difficulty: 2,
+            majorThreshold: 3,
+            severeThreshold: 8,
+            hp: 1,
+            stress: 1,
+            attack: 1,
+            damage: [9, 13]
+        },
+        3: {
+            difficulty: 2,
+            majorThreshold: 8,
+            severeThreshold: 12,
+            hp: 1,
+            stress: 1,
+            attack: 1,
+            damage: [14, 18]
+        },
+        4: {
+            difficulty: 2,
+            majorThreshold: 8,
+            severeThreshold: 10,
+            hp: 1,
+            stress: 1,
+            attack: 1,
+            damage: [20, 35]
+        }
+    },
+    solo: {
+        1: {
+            damage: [8, 11]
+        },
+        2: {
+            difficulty: 2,
+            majorThreshold: 5,
+            severeThreshold: 10,
+            hp: 0,
+            stress: 1,
+            attack: 2,
+            damage: [15, 20]
+        },
+        3: {
+            difficulty: 2,
+            majorThreshold: 7,
+            severeThreshold: 15,
+            hp: 2,
+            stress: 1,
+            attack: 2,
+            damage: [20, 30]
+        },
+        4: {
+            difficulty: 2,
+            majorThreshold: 12,
+            severeThreshold: 25,
+            hp: 0,
+            stress: 1,
+            attack: 3,
+            damage: [30, 45]
+        }
+    },
+    standard: {
+        1: {
+            damage: [4, 6]
+        },
+        2: {
+            difficulty: 2,
+            majorThreshold: 3,
+            severeThreshold: 8,
+            hp: 0,
+            stress: 0,
+            attack: 1,
+            damage: [8, 12]
+        },
+        3: {
+            difficulty: 2,
+            majorThreshold: 7,
+            severeThreshold: 15,
+            hp: 1,
+            stress: 1,
+            attack: 1,
+            damage: [12, 17]
+        },
+        4: {
+            difficulty: 2,
+            majorThreshold: 10,
+            severeThreshold: 15,
+            hp: 0,
+            stress: 1,
+            attack: 1,
+            damage: [17, 20]
+        }
+    },
+    support: {
+        1: {
+            damage: [3, 5]
+        },
+        2: {
+            difficulty: 2,
+            majorThreshold: 3,
+            severeThreshold: 8,
+            hp: 1,
+            stress: 1,
+            attack: 1,
+            damage: [5, 12]
+        },
+        3: {
+            difficulty: 2,
+            majorThreshold: 7,
+            severeThreshold: 12,
+            hp: 0,
+            stress: 0,
+            attack: 1,
+            damage: [13, 16]
+        },
+        4: {
+            difficulty: 2,
+            majorThreshold: 8,
+            severeThreshold: 10,
+            hp: 1,
+            stress: 1,
+            attack: 1,
+            damage: [18, 25]
+        }
+    }
+};

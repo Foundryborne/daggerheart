@@ -481,3 +481,38 @@ export function htmlToText(html) {
 
     return tempDivElement.textContent || tempDivElement.innerText || '';
 }
+
+/**
+ * Given a simple flavor-less formula with only +/- operators, returns a list of damage partial terms.
+ * All subtracted terms become negative terms.
+ */
+export function parseTermsFromSimpleFormula(formula) {
+    const roll = formula instanceof Roll ? formula : new Roll(formula);
+
+    // Parse from right to left so that when we hit an operator, we already have the term.
+    return roll.terms.reduceRight(
+        (result, term) => {
+            // Ignore + terms, we assume + by default
+            if (term.expression === " + ") return result;
+
+            // - terms modify the last term we parsed
+            if (term.expression === " - ") {
+                const termToModify = result[0];
+                if (termToModify) {
+                    if (termToModify.modifier) termToModify.modifier *= -1;
+                    if (termToModify.dice) termToModify.dice *= -1;
+                }
+                return result;
+            }
+
+            result.unshift({
+                modifier: term instanceof foundry.dice.terms.NumericTerm ? term.number : 0,
+                dice: term instanceof foundry.dice.terms.Die ? term.number : 0,
+                faces: term.faces ?? null,
+            });
+
+            return result;
+        },
+        [],
+    );
+}
