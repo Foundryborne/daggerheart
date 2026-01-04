@@ -155,7 +155,8 @@
         {
           "key": "system.evasion",
           "mode": 2,
-          "value": "@system.armorScore"
+          "value": "@system.armorScore",
+          "priority": 21
         }
       ],
       "transfer": false,
