@@ -386,11 +386,11 @@ class RegisteredTriggers extends Map {
         super();
     }
 
-    async registerTriggers(trigger, actor, uuid, commands) {
+    async registerTriggers(trigger, actor, triggeringActorType, uuid, commands) {
         const existingTrigger = this.get(trigger);
         if (!existingTrigger) this.set(trigger, new Map());
 
-        this.get(trigger).set(uuid, { actor, commands });
+        this.get(trigger).set(uuid, { actor, triggeringActorType, commands });
     }
 
     async runTrigger(trigger, currentActor, ...args) {
@@ -400,15 +400,19 @@ class RegisteredTriggers extends Map {
 
         const dualityTrigger = this.get(trigger);
         if (dualityTrigger) {
-            for (let { actor, commands } of dualityTrigger.values()) {
-                if (currentActor?.uuid !== actor) continue;
+            for (let { actor, triggeringActorType, commands } of dualityTrigger.values()) {
+                const triggerData = CONFIG.DH.TRIGGER.triggers[trigger];
+                if (triggerData.usesActor && triggeringActorType !== 'any') {
+                    if (triggeringActorType === 'self' && currentActor?.uuid !== actor) continue;
+                    else if (triggeringActorType === 'other' && currentActor?.uuid === actor) continue;
+                }
 
                 for (let command of commands) {
                     try {
                         const result = await command(...args);
                         if (result?.updates?.length) updates.push(...result.updates);
                     } catch (_) {
-                        const triggerName = game.i18n.localize(CONFIG.DH.TRIGGER.triggers[trigger].label);
+                        const triggerName = game.i18n.localize(triggerData.label);
                         ui.notifications.error(
                             game.i18n.format('DAGGERHEART.CONFIG.Triggers.triggerError', {
                                 trigger: triggerName,

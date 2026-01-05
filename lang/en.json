@@ -1145,7 +1145,8 @@
                 "any": "Any",
                 "friendly": "Friendly",
                 "hostile": "Hostile",
-                "self": "Self"
+                "self": "Self",
+                "other": "Other"
             },
             "TemplateTypes": {
                 "circle": "Circle",
@@ -1220,17 +1221,25 @@
                 }
             },
             "Triggers": {
+                "postDamageReduction": {
+                    "label": "After Damage Reduction"
+                },
+                "preDamageReduction": {
+                    "label": "Before Damage Reduction"
+                },
                 "dualityRoll": {
-                    "label": "Duality Roll",
-                    "hint": "this: Action, roll: DhRoll, actor: DhActor"
+                    "label": "Duality Roll"
                 },
                 "fearRoll": {
-                    "label": "Fear Roll",
-                    "hint": "this: Action, roll: DhRoll, actor: DhActor"
+                    "label": "Fear Roll"
                 },
                 "triggerTexts": {
-                    "strangePatternsContent": "Increase Hope or clear stress?"
+                    "strangePatternsContent": "Increase Hope or clear stress?",
+                    "ferocityContent": "Spend 2 Hope to gain {bonus} bonus Evasion until after the next attack against you?",
+                    "ferocityEffectDescription": "Your evasion is increased by {bonus}. This bonus lasts until after the next attack made against you."
                 },
+                "triggerType": "Trigger Type",
+                "triggeringActorType": "Triggering Actor Type",
                 "triggerError": "{trigger} trigger failed for {actor}. It's probably configured wrong."
             },
             "WeaponFeature": {

@@ -2,23 +2,43 @@
     .trigger-data {
         width: 100%;
         display: flex;
-        align-items: center;
+        justify-content: space-between;
         gap: 8px;
 
-        select {
+        .trigger-data-inner {
             flex: 1;
+            display: flex;
+            flex-direction: column;
+
+            select {
+                flex: 1;
+            }
+
+            .select-section {
+                flex: 1;
+                display: flex;
+                gap: 8px;
+            }
+
+            .programmer-section {
+                flex: 3;
+                display: flex;
+                flex-direction: column;
+
+                .hint-section {
+                    display: flex;
+                    gap: 4px;
+
+                    .hint {
+                        flex: 1;
+                        flex-wrap: wrap;
+                    }
+                }
+            }
         }
 
-        .hint-section {
-            flex: 3;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-
-            .hint {
-                flex: 1;
-                flex-wrap: wrap;
-            }
+        .expand-trigger {
+            font-size: 18px;
         }
     }
 

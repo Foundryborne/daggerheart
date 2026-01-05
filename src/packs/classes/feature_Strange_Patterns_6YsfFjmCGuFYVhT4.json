@@ -84,6 +84,7 @@
         "triggers": [
           {
             "trigger": "dualityRoll",
+            "triggeringActorType": "self",
             "command": "/* Check if there's a Strange Pattern match */\nconst dice = [roll.dFear.total, roll.dHope.total];\nconst resource = this.parent.resource?.diceStates ? Object.values(this.parent.resource.diceStates).map(x => x.value)[0] : null;\nconst diceMatch = dice.includes(resource);\n\nif (!diceMatch) return;\n\n/* Create a dialog to choose Hope or Stress - or to cancel*/\nconst choice = await foundry.applications.api.DialogV2.wait({\n  classes: ['dh-style', 'two-big-buttons'],\n  window: { title: this.item.name },\n  content: game.i18n.localize('DAGGERHEART.CONFIG.Triggers.triggerTexts.strangePatternsContent'),\n  buttons: [\n      {\n          action: 'hope',\n          label: game.i18n.localize('DAGGERHEART.GENERAL.hope'),\n          icon: 'fa-solid fa-hands-holding'\n      },\n      {\n          action: 'stress',\n          label: game.i18n.localize('DAGGERHEART.GENERAL.stress'),\n          icon: 'fa-solid fa-bolt-lightning'\n      }\n  ]\n});\n  \nif (!choice) return;\n\n/* Return resource update according to choice */\nconst isHope = choice === 'hope';\nconst updates = [{ key: choice, value: isHope ? 1 : -1, total: isHope ? -1 : 1, enabled: true }];\nreturn { updates };"
           }
         ]

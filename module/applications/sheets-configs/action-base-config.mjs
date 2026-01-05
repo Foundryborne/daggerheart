@@ -127,12 +127,16 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         context.baseSaveDifficulty = this.action.actor?.baseSaveDifficulty;
         context.baseAttackBonus = this.action.actor?.system.attack?.roll.bonus;
         context.hasRoll = this.action.hasRoll;
-        context.triggerOptions = CONFIG.DH.TRIGGER.triggers;
-        context.triggers = context.source.triggers.map((trigger, index) => ({
-            ...trigger,
-            hint: CONFIG.DH.TRIGGER.triggers[trigger.trigger].hint,
-            revealed: this.openTrigger === index
-        }));
+        context.triggers = context.source.triggers.map((trigger, index) => {
+            const { hint, returns, usesActor } = CONFIG.DH.TRIGGER.triggers[trigger.trigger];
+            return {
+                ...trigger,
+                hint,
+                returns,
+                usesActor,
+                revealed: this.openTrigger === index
+            };
+        });
 
         const settingsTiers = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers;
         context.tierOptions = [
@@ -248,7 +252,10 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
 
     static addTrigger() {
         const data = this.action.toObject();
-        data.triggers.push({ trigger: CONFIG.DH.TRIGGER.triggers.dualityRoll.id });
+        data.triggers.push({
+            trigger: CONFIG.DH.TRIGGER.triggers.dualityRoll.id,
+            triggeringActor: CONFIG.DH.TRIGGER.triggerActorTargetType.any.id
+        });
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
