@@ -85,7 +85,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         }
     };
 
-    static CLEAN_ARRAYS = ['damage.parts', 'cost', 'effects'];
+    static CLEAN_ARRAYS = ['damage.parts', 'cost', 'effects','summon'];
 
     _getTabs(tabs) {
         for (const v of Object.values(tabs)) {

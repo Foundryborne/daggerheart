@@ -125,7 +125,8 @@
                 "summon":{
                     "addSummonEntry": "Add Summon Entry",
                     "actorUUID": "Actor to Summon",
-                    "count": "Count"
+                    "count": "Count",
+                    "hint": "Add Actor(s) and the quantity to summon under this action."
                 }
             }
         },

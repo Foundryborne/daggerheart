@@ -1,14 +1,43 @@
-<fieldset class="one-column">
-    <legend>{{localize "DAGGERHEART.ACTIONS.TYPES.summon.name"}}</legend>
-    <p class="hint">{{localize "DAGGERHEART.ACTIONS.Settings.summonHint"}}</p>
-    <div class="nest-inputs">
-        {{#each source.tokenArray}}
-            <div class="summon-entry">
-                {{formField ../fields.documentUUID label=DAGGERHEART.ACTIONS.Settings.summon.actorUUID name="tokenArray.{{@index}}.actorUUID" value=this.actorUUID documentType="Actor"}}
-                {{formField ../fields.number label=DAGGERHEART.ACTIONS.Settings.summon.count name="tokenArray.{{@index}}.count" value=this.count min=1}}
-                <button type="button" class="remove-summon-entry" data-index="{{@index}}" title="{{localize 'DAGGERHEART.UI.Button.remove'}}"><i class="fa-solid fa-trash"></i></button>
+<fieldset class="one-column" data-key="summon">
+    <legend>
+        {{localize "DAGGERHEART.ACTIONS.TYPES.summon.name"}}
+        <a><i class="fa-solid fa-plus icon-button" data-action="addElement"></i></a>
+    </legend>
+    <p class="hint">{{localize "DAGGERHEART.ACTIONS.Settings.summon.hint"}}</p>
+    {{#each source as |entry index|}} 
+        <div class="nest-inputs summon-entry">
+            
+            {{!-- Actor --}}
+            <div class="summon-actor-drop drop-section" data-index="{{index}}">
+                {{#if entry.actorUUID}}
+                    {{!-- Filled State --}}
+                    {{#with (lookup @root.summonActors index) as |actor|}}
+                    <div class="suggested-item item-line">
+                        <img class="image" src="{{actor.img}}" title="{{actor.name}}"/>
+                        <span class="actor-name">{{actor.name}}</span>
+                        {{!-- Hidden input to store the actual value --}}
+                        <input type="hidden" name="summon.{{index}}.actorUUID" value="{{../entry.actorUUID}}">
+                    </div>
+                    {{/with}}
+                {{else}}
+                    {{!-- Empty State --}}
+                    <div class="drag-area">
+                        {{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "Actor")}}
+                        <input type="hidden" name="summon.{{index}}.actorUUID" value="">
+                    </div>
+                {{/if}}
             </div>
-        {{/each}}
-        <button type="button" class="add-summon-entry" title="{{localize 'DAGGERHEART.UI.Button.add'}}"><i class="fa-solid fa-plus"></i> {{localize "DAGGERHEART.ACTIONS.Settings.summon.addSummonEntry"}}</button>
-    </div>
+
+            {{!-- Count --}}
+            {{formField ../fields.count 
+                label="DAGGERHEART.ACTIONS.Settings.summon.count" 
+                name=(concat "summon." index ".count") 
+                value=entry.count 
+                min=1
+                localize=true}}
+            {{!-- Obtained idea from cost.hbs --}}    
+            <a class="btn" data-tooltip="{{localize "CONTROLS.CommonDelete"}}" data-action="removeElement" data-index="{{index}}"><i class="fas fa-trash"></i></a> 
+        
+        </div>
+    {{/each}}
 </fieldset>
