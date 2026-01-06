@@ -1,0 +1,24 @@
+<fieldset class="one-column" data-key="summon">
+    <legend>
+        {{localize "DAGGERHEART.DIALOGS.Summon.title"}}
+    </legend>
+    <p class="hint">{{localize "DAGGERHEART.DIALOGS.Summon.hint"}}</p>
+
+    <div class="summons-list">
+        {{#each summons as |entry index|}} 
+            <ul class="actor-summon-item">
+                <div class="actor-summon-line">
+                    <img class="image" src="{{entry.img}}" />
+                    {{#if (gte entry.count 1)}}
+                    <h4 class="h4">
+                        {{entry.name}} (x{{entry.count}})
+                    </h4>
+                    {{else}}
+                    <h4 class="h4 disabled">
+                        {{entry.name}}
+                    </h4>
+                    {{/if}}
+                </div>
+            </ul>
+        {{/each}}
+    </div>          
