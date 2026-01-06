@@ -70,7 +70,8 @@
                 "summon": {
                     "name": "Summon",
                     "tooltip": "Create tokens in the scene.",
-                    "error": "You do not have permission to summon tokens or there is no active scene."
+                    "error": "You do not have permission to summon tokens or there is no active scene.",
+                    "invalidDrop": "You can only drop Actor entities to summon."
                 }
             },
             "Config": {
@@ -125,6 +126,7 @@
                 "summon":{
                     "addSummonEntry": "Add Summon Entry",
                     "actorUUID": "Actor to Summon",
+                    "actor": "Actor",
                     "count": "Count",
                     "hint": "Add Actor(s) and the quantity to summon under this action."
                 }

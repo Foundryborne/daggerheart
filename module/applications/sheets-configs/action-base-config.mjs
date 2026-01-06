@@ -35,7 +35,8 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             handler: this.updateForm,
             submitOnChange: true,
             closeOnSubmit: false
-        }
+        },
+        dragDrop: [{ dragSelector: null, dropSelector: '.summon-actor-drop'}]
     };
 
     static PARTS = {
@@ -233,4 +234,15 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         this.tabGroups.primary = 'base';
         await super.close(options);
     }
+
+    /** Implementation for dragdrop for summon actor selection **/
+    async _onDrop(event) {
+        const data = foundry.applications.ux.TextEditor.getDragEventData(event);
+        const item=await foundry.utils.fromUuid(data.uuid);
+        if (!(item instanceof game.system.api.documents.DhpActor)) {
+            ui.notifications.warn(game.i18n.localize("DAGGERHEART.ACTIONS.TYPES.summon.invalidDrop"));
+            return;
+        }
+    }
+        
 }

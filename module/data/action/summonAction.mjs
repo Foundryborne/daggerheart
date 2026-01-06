@@ -1,4 +1,3 @@
-import { ui } from '../../applications/_module.mjs';
 import DHBaseAction from './baseAction.mjs';
 
 export default class DHSummonAction extends DHBaseAction {
