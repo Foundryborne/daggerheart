@@ -78,6 +78,20 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
 
         if (config.roll.isCritical) {
             console.log("Clear all stress and HP");
+            await this.actor.update(
+                {
+                    system: {
+                        resources: {
+                            hitPoints: {
+                                value: 0
+                            },
+                            stress: {
+                                value: 0
+                            }
+                        }
+                    }
+                }
+            );
             return;
         }
 
