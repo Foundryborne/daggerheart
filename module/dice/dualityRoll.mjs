@@ -116,13 +116,8 @@ export default class DualityRoll extends D20Roll {
 
     /** @inheritDoc */
     static fromData(data) {
-        console.log("fromData", data);
-        console.log("fromData, options, roll", data?.options?.roll);
-        console.log("fromData, options, roll, fear", data?.options?.roll?.fear);
-        console.log("fromData, options, roll, hope", data?.options?.roll?.hope);
-        console.log("fromData, terms", data.terms);
         if (data.options.guaranteedCritical) {
-            
+            console.log("TODO: set the max values for Hope and Fear here?");
         }
         data.terms[0].class = foundry.dice.terms.Die.name;
         data.terms[2].class = foundry.dice.terms.Die.name;
