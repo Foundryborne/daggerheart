@@ -77,7 +77,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             cost: this.data.initiator.cost
         };
 
-        const selectedMember = Object.values(context.members).find(x => x.selected);
+        const selectedMember = Object.values(context.members).find(x => x.selected && x.roll);
         const selectedIsCritical = selectedMember?.roll?.system?.isCritical;
         context.selectedData = {
             result: selectedMember
