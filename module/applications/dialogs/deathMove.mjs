@@ -100,6 +100,7 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
         this.actor.createEmbeddedDocuments('ActiveEffect', [
             {
                 name: game.i18n.localize('DAGGERHEART.CONFIG.DeathMoves.blazeOfGlory.name'),
+                description: game.i18n.localize('DAGGERHEART.CONFIG.DeathMoves.blazeOfGlory.description'),
                 img: 'icons/magic/movement/abstract-ribbons-red-orange.webp',
                 changes: [
                     {

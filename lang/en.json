@@ -1008,7 +1008,7 @@
                 },
                 "blazeOfGlory": {
                     "name": "Blaze Of Glory",
-                    "description": " Your character embraces death and goes out in a blaze of glory. Take one final action. It automatically critically succeeds (with GM approval), and then you cross through the veil of death."
+                    "description": " Your character embraces death and goes out in a blaze of glory. Take one final action. It automatically critically succeeds (with GM approval), and then you cross through the veil of death. NOTE: A Blaze of Glory effect has been added to your character. Any Duality Roll will automatically be a critical."
                 }
             },
             "DomainCardTypes": {
