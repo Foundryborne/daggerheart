@@ -29,7 +29,8 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             removeElement: this.removeElement,
             editEffect: this.editEffect,
             addDamage: this.addDamage,
-            removeDamage: this.removeDamage
+            removeDamage: this.removeDamage,
+            editDoc: this.editDoc
         },
         form: {
             handler: this.updateForm,
@@ -216,10 +217,31 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     static removeElement(event, button) {
         event.stopPropagation();
         const data = this.action.toObject(),
-            key = event.target.closest('[data-key]').dataset.key,
-            index = button.dataset.index;
+            key = event.target.closest('[data-key]').dataset.key;
+
+        // Prefer explicit index, otherwise find by uuid
+        let index = button?.dataset.index;
+        if (index === undefined || index === null || index === '') {
+            const uuid = button?.dataset.uuid ?? button?.dataset.itemUuid;
+            index = data[key].findIndex(e => (e?.actorUUID ?? e?.uuid) === uuid);
+            if (index === -1) return;
+        } else index = Number(index);
+
         data[key].splice(index, 1);
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
+    static async editDoc(event, button) {
+        event.stopPropagation();
+        const uuid = button?.dataset.itemUuid ?? button?.dataset.uuid; // Obtain uuid from dataset
+        if (!uuid) return;    
+        //Try catching errors
+        try {
+            const doc = await foundry.utils.fromUuid(uuid);
+            if (doc?.sheet) return doc.sheet.render({ force: true });
+        } catch (err) {
+            console.warn("editDoc action failed for", uuid, err);
+        }
     }
 
     static addDamage(_event) {
@@ -259,7 +281,17 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         }
         //Add to summon array
         const actionData = this.action.toObject(); // Get current action data
-        actionData.summon.push({ actorUUID: data.uuid, count: 1 });// Add new summon entry
+        //checking to see if actor is already in summon list add 1 to count instead of adding new entry
+        let countvalue = 1;
+        for (const entry of actionData.summon) {
+            if (entry.actorUUID === data.uuid) {
+                entry.count += 1;
+                countvalue = entry.count;
+                await this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(actionData) });
+                return;
+            }
+        }
+        actionData.summon.push({ actorUUID: data.uuid, count: countvalue });// Add new summon entry
         await this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(actionData) }); // Update the form with new data
     }
         
