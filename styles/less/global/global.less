@@ -9,6 +9,26 @@
     border-radius: 3px;
     color: light-dark(@dark-blue-50, @beige-50);
     font-family: @font-body;
+    &.summon-actor-drop {
+        height: fit-content;
+        min-height: inherit;
+        display: flex;
+        justify-content: center;
+        .actors-list.summon-entry .actor-summon-item .actor-summon-line {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            .image{
+                max-width: 10%;
+            }
+            .h4{
+                width: --webkit-fill-available;
+            }
+            .controls.effect-control{
+                padding:3px;
+            }
+        }
+    }
 }
 
 .daggerheart.dh-style {

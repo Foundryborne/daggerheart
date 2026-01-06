@@ -36,7 +36,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             submitOnChange: true,
             closeOnSubmit: false
         },
-        dragDrop: [{ dragSelector: null, dropSelector: '.summon-actor-drop'}]
+        dragDrop: [{ dragSelector: null, dropSelector: '.summon-entry', handlers: ['_onDrop'] }]
     };
 
     static PARTS = {
@@ -100,6 +100,20 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options, 'action');
         context.source = this.action.toObject(true);
+        // Resolving summon entries so actions can read entry.name / entry.img / entry.uuid
+        if (Array.isArray(context.source.summon)) {
+            context.source.summon = await Promise.all(context.source.summon.map(async entry => {
+                if (!entry) return entry;
+                const uuid = entry.actorUUID ?? entry.uuid;
+                entry.uuid = uuid;
+                try {
+                    const doc = await foundry.utils.fromUuid(uuid);
+                    entry.name = entry.name ?? doc?.name;
+                    entry.img = entry.img ?? (doc?.img ?? doc?.prototypeToken?.texture?.src ?? null);
+                } catch (_) {}
+                return entry;
+            }));
+        }
         context.openSection = this.openSection;
         context.tabs = this._getTabs(this.constructor.TABS);
         context.config = CONFIG.DH;
@@ -243,6 +257,10 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             ui.notifications.warn(game.i18n.localize("DAGGERHEART.ACTIONS.TYPES.summon.invalidDrop"));
             return;
         }
+        //Add to summon array
+        const actionData = this.action.toObject(); // Get current action data
+        actionData.summon.push({ actorUUID: data.uuid, count: 1 });// Add new summon entry
+        await this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(actionData) }); // Update the form with new data
     }
         
 }

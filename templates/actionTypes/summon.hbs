@@ -1,13 +1,51 @@
 <fieldset class="one-column" data-key="summon">
     <legend>
         {{localize "DAGGERHEART.ACTIONS.TYPES.summon.name"}}
-        <a><i class="fa-solid fa-plus icon-button" data-action="addElement"></i></a>
     </legend>
     <p class="hint">{{localize "DAGGERHEART.ACTIONS.Settings.summon.hint"}}</p>
-    {{#each source as |entry index|}} 
+    {{!-- {{#each source as |entry index|}} 
         <div class="nest-inputs summon-entry">
         {{formField ../fields.actorUUID label="DAGGERHEART.ACTIONS.Settings.summon.actor" value=entry.actorUUID name=(concat "summon." index ".actorUUID") localize=true classes="summon-actor-drop"}}
         {{formField ../fields.count label="DAGGERHEART.ACTIONS.Settings.summon.count" value=entry.count name=(concat "summon." index ".count") localize=true}}
         </div>
-    {{/each}}
+    {{/each}} --}}
+
+    <div class="drag-area summon-actor-drop">
+        <div class="actors-list summon-entry">
+            
+            {{#each source as |entry index|}} 
+                <ul class="actor-summon-item">
+                    <div class="actor-summon-line">
+                        <img class="image" src="{{entry.img}}" />
+                        <h4 class="h4">
+                            {{entry.name}}
+                        </h4>
+                        {{formField ../fields.count label="DAGGERHEART.ACTIONS.Settings.summon.count" value=entry.count name=(concat "summon." index ".count") localize=true}}
+                        <div class="controls">
+                            <a
+                                    class='effect-control'
+                                    data-action='editDoc'
+                                    data-item-uuid="{{entry.uuid}}"
+                                    data-tooltip='{{localize "DAGGERHEART.UI.Tooltip.openItemWorld"}}'
+                                >
+                                    <i class="fa-solid fa-globe"></i>
+                                </a>
+                                <a
+                                    class='effect-control'
+                                    data-action='removeElement'
+                                    data-target="summon"
+                                    data-uuid="{{entry.uuid}}"
+                                    data-tooltip='{{localize "CONTROLS.CommonDelete"}}'
+                                >
+                                    <i class='fas fa-trash'></i>
+                                </a>
+                        </div>
+                    </div>
+                </ul>  
+            {{/each}}
+            {{#unless source.length}}
+                    <span>{{localize "DAGGERHEART.GENERAL.dropActorsHere"}}</span>
+            {{/unless}}
+        </div>    
+    </div>
 </fieldset>
