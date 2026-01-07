@@ -5,44 +5,46 @@ export default class DHSummonDialog extends HandlebarsApplicationMixin(Applicati
         super(summonData);
         // Initialize summons and index
         this.summons = summonData.summons || [];
-        this.index = 0;
     }
 
-    get_title() {
-        return game.i18n.localize("DAGGERHEART.DIALOGS.SUMMON.title");
-    }
+    static PARTS = {
+        main: { template: 'systems/daggerheart/templates/dialogs/summon/summonDialog.hbs' }
+    };
+
 
     static DEFAULT_OPTIONS= {
-        ...super.DEFAULT_OPTIONS,
-        template: 'systems/daggerheart/module/applications/dialogs/summon/summonDialog.hbs',
-        width: 400,
-        height: 'auto',
+        tag: 'form',
+        window: {
+            title: "DAGGERHEART.APPLICATIONS.Summon.title",
+            resizable: false
+        },
+        position: { 
+            width: 400,
+            height: 'auto'
+        },
         classes: ['daggerheart', 'dialog', 'summon-dialog'],
-        dragDrop: [{ dragSelector: '.summon-token', dropSelector: null, handler:'onDrop'}]
+        dragDrop: [{dragSelector: '.summon-token'}],
     };
 
     async _prepareContext() {
         const context = await super._prepareContext();
-        context.summons=this.summons;
-        context.index=this.index;
+        context.summons=await Promise.all(this.summons.map(async(entry)=>{
+            const actor = await fromUuid(entry.actorUUID);
+            return {
+                ...entry,
+                name: actor?.name || game.i18n.localize("DAGGERHEART.GENERAL.Unknown"),
+                img: actor?.img || 'icons/svg/mystery-man.svg',
+            };
+        }));
         return context;
     }
 
-    getData(options={}) {
-        const data = super.getData(options);
-        data.summons=this.summons;
-        data.index=this.index;
-        return data;
-    }
-    async prepareContext() {
-        const context = await super.prepareContext();
-        return context;
+    _onDragStart(event) {
+        const uuid = event.currentTarget.dataset.uuid;
+        if(!uuid) return;
+        const dragData = { type: 'Actor', uuid: uuid };
+        event.dataTransfer.effectAllowed = 'all';
+        event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
     }
 
-    async onDrop(event) {//add to canvas
-        event.preventDefault();
-        const tokenData = JSON.parse(event.dataTransfer.getData('text/plain'));
-        const position = { x: event.clientX, y: event.clientY };
-        await canvas.scene.createEmbeddedDocuments("Token", [tokenData], { temporary: false, x: position.x, y: position.y });
-    }
 }

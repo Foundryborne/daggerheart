@@ -1,24 +1,28 @@
 <fieldset class="one-column" data-key="summon">
     <legend>
-        {{localize "DAGGERHEART.DIALOGS.Summon.title"}}
+        {{localize "DAGGERHEART.APPLICATIONS.Summon.title"}}
     </legend>
-    <p class="hint">{{localize "DAGGERHEART.DIALOGS.Summon.hint"}}</p>
+    <p class="hint">{{localize "DAGGERHEART.APPLICATIONS.Summon.hint"}}</p>
 
     <div class="summons-list">
-        {{#each summons as |entry index|}} 
-            <ul class="actor-summon-item">
+        
+        <ul class="actor-summon-item">
+            {{#each summons as |entry index|}} 
+            <li class="summon-token" draggable="true" data-uuid="{{entry.actorUUID}}">  
                 <div class="actor-summon-line">
                     <img class="image" src="{{entry.img}}" />
                     {{#if (gte entry.count 1)}}
                     <h4 class="h4">
-                        {{entry.name}} (x{{entry.count}})
+                        {{entry.name}}
                     </h4>
+                    <span>Count: {{entry.count}}</span>
                     {{else}}
                     <h4 class="h4 disabled">
                         {{entry.name}}
                     </h4>
                     {{/if}}
                 </div>
-            </ul>
-        {{/each}}
+            </li>
+            {{/each}}
+        </ul>
     </div>          

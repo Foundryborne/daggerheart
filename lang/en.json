@@ -610,6 +610,10 @@
                 "title": "{name} Resource",
                 "rerollDice": "Reroll Dice"
             },
+            "Summon": {
+                "title": "Summon Tokens",
+                "hint": "Drag tokens from the list below into the scene to summon them."
+            },
             "TagTeamSelect": {
                 "title": "Tag Team Roll",
                 "leaderTitle": "Initiating Character",
