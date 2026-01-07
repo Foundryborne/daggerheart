@@ -197,6 +197,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         let config = this.prepareConfig(event);
         if (!config) return;
 
+        await this.addEffects(config);
+
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
         // Display configuration window if necessary
@@ -261,6 +263,16 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             if (clsField?.prepareConfig) if (clsField.prepareConfig.call(this, config) === false) return false;
         }
         return config;
+    }
+
+    /** */
+    async addEffects(config) {
+        let effects = [];
+        if (this.actor) {
+            effects = Array.from(await this.actor.allApplicableEffects());
+        }
+
+        config.effects = effects;
     }
 
     /**

@@ -136,6 +136,13 @@ export default class D20Roll extends DHRoll {
         return modifiers;
     }
 
+    bonusEffectBuilder(config) {
+        const changeKeys = [`roll.${this.options.actionType}`, `roll.${this.options.roll.type}`];
+        config.bonusEffects = foundry.utils.deepClone(
+            config.effects.filter(x => x.changes.some(x => changeKeys.includes(x.key)))
+        );
+    }
+
     static postEvaluate(roll, config = {}) {
         const data = super.postEvaluate(roll, config);
         data.type = config.actionType;

@@ -173,6 +173,23 @@ export default class DualityRoll extends D20Roll {
         return modifiers;
     }
 
+    bonusEffectBuilder() {
+        return this.options.effects.reduce((acc, effect) => {
+            if (effect.changes.some(x => x.key.includes(`system.bonuses.roll`))) {
+                acc[effect.id] = {
+                    id: effect.id,
+                    name: effect.name,
+                    description: effect.description,
+                    changes: effect.changes,
+                    origEffect: effect,
+                    selected: !effect.disabled
+                };
+            }
+
+            return acc;
+        }, {});
+    }
+
     static async buildEvaluate(roll, config = {}, message = {}) {
         await super.buildEvaluate(roll, config, message);
 
