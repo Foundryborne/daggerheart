@@ -33,17 +33,62 @@ export default class DHSummonField extends fields.ArrayField {
             console.log("No actors configured for this Summon action.");
             return;
         }
-        // FOR NOW: Just log the data to prove the schema working or not
-        console.group("Summon Action Triggered");
+        
         for (const entry of validSummons) {
             const actor = await fromUuid(entry.actorUUID);
-            console.log(`- Ready to summon ${entry.count}x [${actor?.name || "Unknown Actor"}]`);
         }
-        console.groupEnd();
-        //Open Summon Dialog
-        const summonData = { summons: validSummons };
-        console.log(summonData);
-        const dialog = new DHSummonDialog(summonData);
-        dialog.render(true);
+
+        // //Open Summon Dialog
+        // const summonData = { summons: validSummons };
+        // console.log(summonData);
+        // const dialog = new DHSummonDialog(summonData);
+        // dialog.render(true);
+
+        // Create folder and add tokens to actor folder
+        const rootFolderName = game.i18n.localize("DAGGERHEART.APPLICATIONS.Summon.title");
+        let rootFolder = game.folders.find(f => f.name === rootFolderName && f.type === 'Actor');
+        if (!rootFolder) {
+            rootFolder = await Folder.create({ 
+                name: rootFolderName, 
+                type: 'Actor', 
+            });
+        }
+        const parentName = this.item.name ?? "Unkown Feature";
+        const actionName = this.name ?? "Unkown Action";
+        const subFolderName = `${parentName} - ${actionName}`;
+
+        let subFolder = game.folders.find(f => f.name === subFolderName && f.type === 'Actor' && f.folder?.id === rootFolder.id);
+        if (!subFolder) {
+            subFolder = await Folder.create({
+                name: subFolderName,
+                type: 'Actor',
+                folder: rootFolder.id
+            });
+            const actorsToSummon = [];
+            for (const entry of validSummons) {
+                const sourceActor = await fromUuid(entry.actorUUID);
+                if (!sourceActor) {
+                    console.warn('DHSummonField: Could not find actor for UUID', entry.actorUUID);
+                    continue;
+                }
+                const actorData = sourceActor.toObject();
+                delete actorData._id; // Remove _id to create a new Actor
+                actorData.folder = subFolder.id;
+
+                for (let i = 0; i < entry.count; i++) {
+                    const newActor = foundry.utils.deepClone(actorData);
+                    if (entry.count > 1) {
+                        newActor.name = `${actorData.name} ${i + 1}`;
+                    }
+                    actorsToSummon.push(newActor);
+                }
+            }
+            if (actorsToSummon.length > 0) {
+                await Actor.createDocuments(actorsToSummon);
+                ui.notifications.info(`Summoned ${actorsToSummon.length} actors successfully in folder ${subFolder.name}.`);
+            }
+        } else {
+            ui.notifications.info(`Summon actors already exist in folder ${subFolder.name}.`);
+        }
     }
 }
