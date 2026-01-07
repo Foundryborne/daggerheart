@@ -1,20 +1,20 @@
+import DHSummonField from '../fields/action/summonField.mjs';
 import DHBaseAction from './baseAction.mjs';
+import DHSummonDialog from '../../applications/dialogs/summonDialog.mjs';
 
 export default class DHSummonAction extends DHBaseAction {
     static defineSchema() {
-        const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            summon: new fields.ArrayField(new fields.SchemaField({
-                actorUUID: new fields.DocumentUUIDField({ type: 'Actor', required: true }),
-                count: new fields.NumberField({ required: true, default: 1, min: 1, integer: true })
-            }), { required: false, initial: [] })
+            summon: new DHSummonField({ required: false, initial: [] })
         };
     }
 
+    static extraSchemas=[...super.extraSchemas,'summon'];
+
     get defaultValues() {
         return {
-             summon: { actorUUID: "", count: 1 }
+             summon: []
         };
     }
 
@@ -30,12 +30,6 @@ export default class DHSummonAction extends DHBaseAction {
         return game.user.can('TOKEN_CREATE');
     }
 
-    //Accessor for summon manager for performing the summon action
-    get summonManager() {
-        return game.dh.summon; //incomplete implementation
-    }
-
-    //Logic to perform the summon action - incomplete implementation
     async _performAction(event, ...args) {
         const validSummons = this.summon.filter(entry => entry.actorUUID);
         if (validSummons.length === 0) {
@@ -50,5 +44,7 @@ export default class DHSummonAction extends DHBaseAction {
             console.log(`- Ready to summon ${entry.count}x [${actor?.name || "Unknown Actor"}]`);
         }
         console.groupEnd();
-    }   
+
+        //Todo: Open Summon Dialog
+    }
 }
