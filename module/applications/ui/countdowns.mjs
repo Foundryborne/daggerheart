@@ -91,7 +91,10 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             countdown,
             ownership: DhCountdowns.#getPlayerOwnership(game.user, setting, countdown)
         }));
-        return values.filter(v => v.ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE);
+        return values.filter(v => 
+            v.ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE &&
+            this.#shouldShowCountdown(v.countdown)
+        );
     }
 
     /** @override */
@@ -247,6 +250,19 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     setupHooks() {
         Hooks.on(socketEvent.Refresh, this.cooldownRefresh.bind());
     }
+    #onFocus() {
+        if (!this._isFocused){
+            this._isFocused = true;
+            this.render()
+        }
+    }
+
+    #onBlur() {
+        if (this._isFocused){
+            this._isFocused = false;
+            this.render()
+        }
+    }
 
     async close(options) {
         /* Opt out of Foundry's standard behavior of closing all application windows marked as UI when Escape is pressed */
@@ -302,5 +318,10 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         if (options?.force) {
             document.getElementById('ui-right-column-1')?.appendChild(this.element);
         }
+        // Hover/focus listeners
+        this.element.addEventListener('mouseenter', this.#onFocus.bind(this));
+        this.element.addEventListener('mouseleave', this.#onBlur.bind(this));
+        this.element.addEventListener('focusin', this.#onFocus.bind(this));
+        this.element.addEventListener('focusout', this.#onBlur.bind(this));
     }
 }
