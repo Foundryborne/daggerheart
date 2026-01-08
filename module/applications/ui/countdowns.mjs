@@ -15,6 +15,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         super(options);
 
         this.setupHooks();
+        this._isFocused = false;
     }
 
     /** @inheritDoc */
@@ -137,6 +138,16 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         }, {});
 
         return context;
+    }
+
+    /**Filter countdowns based on focus state */
+    #shouldShowCountdown(countdown){
+        // Always show narrative and encounter countdowns
+        if (countdown.type !== CONFIG.DH.GENERAL.countdownBaseTypes.longterm.id){
+            return true;
+        }
+        // Only show longterm countdowns when focused/hovered
+        return this._isFocused;
     }
 
     static #getPlayerOwnership(user, setting, countdown) {
