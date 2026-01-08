@@ -64,6 +64,23 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
         }
     }
 
+    async clearAllStressAndHitpoints() {
+        await this.actor.update(
+            {
+                system: {
+                    resources: {
+                        hitPoints: {
+                            value: 0
+                        },
+                        stress: {
+                            value: 0
+                        }
+                    }
+                }
+            }
+        );
+    }
+
     async handleRiskItAll() {
         const config = await enrichedDualityRoll({
             reaction: true,
@@ -78,20 +95,7 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
 
         if (config.roll.isCritical) {
             console.log("Clear all stress and HP");
-            await this.actor.update(
-                {
-                    system: {
-                        resources: {
-                            hitPoints: {
-                                value: 0
-                            },
-                            stress: {
-                                value: 0
-                            }
-                        }
-                    }
-                }
-            );
+            this.clearAllStressAndHitpoints();
             return;
         }
 
@@ -99,6 +103,10 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
         if (config.roll.result.duality == 1) {
             console.log("Need to clear up Stress and HP up to hope value");
             console.log("Hope rolled", config.roll.hope.value);
+            if (config.roll.hope.value >= (this.actor.system.resources.hitPoints.value + this.actor.system.resources.stress.value)) {
+                console.log("Hope roll value is more than the HP + Stress, auto- remove");
+                this.clearAllStressAndHitpoints();
+            }
             return;
         }
 
