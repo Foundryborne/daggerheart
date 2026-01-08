@@ -106,14 +106,18 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode) ===
             CONFIG.DH.GENERAL.countdownAppMode.iconOnly;
         const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-        context.countdowns = this.#getCountdowns().reduce((acc, { key, countdown, ownership }) => {
-            const playersWithAccess = game.users.reduce((acc, user) => {
-                const ownership = DhCountdowns.#getPlayerOwnership(user, setting, countdown);
-                if (!user.isGM && ownership && ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE) {
-                    acc.push(user);
-                }
-                return acc;
-            }, []);
+
+        const allCountdowns = this.#getCountdowns();
+
+        const { longTermCountdowns, otherCountdowns } = allCountdowns.reduce((acc, { key, countdown, ownership }) => {
+        const playersWithAccess = game.users.reduce((acc, user) => {
+            const ownership = DhCountdowns.#getPlayerOwnership(user, setting, countdown);
+            if (!user.isGM && ownership && ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE) {
+                acc.push(user);
+            }
+            return acc;
+        }, []);
+      
             const nonGmPlayers = game.users.filter(x => !x.isGM);
 
             const countdownEditable = game.user.isGM || ownership === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
@@ -129,7 +133,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                 !countdownEditable ||
                 (isLooping && (countdown.progress.current > 0 || countdown.progress.start === '0'));
 
-            acc[key] = {
+            const countdownData = {
                 ...countdown,
                 editable: countdownEditable,
                 noPlayerAccess: nonGmPlayers.length && playersWithAccess.length === 0,
@@ -137,9 +141,21 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                 loopDisabled: isLooping ? loopDisabled : null,
                 loopTooltip: isLooping && game.i18n.localize(loopTooltip)
             };
+            if (countdown.type == CONFIG.DH.GENERAL.countdownBaseTypes.longterm.id){
+                if (this._isFocused){
+                    acc.longTermCountdowns.push([key, countdownData]);
+                }
+            } else {
+                acc.otherCountdowns.push([key, countdownData])
+            }
+            return acc;
+        }, {longTermCountdowns: [], otherCountdowns: []});
+
+        // Combine: regular countdowns first, then long-term
+        context.countdowns = [...otherCountdowns, ...longTermCountdowns].reduce((acc, [key, countdown]) => {
+            acc[key]=countdown;
             return acc;
         }, {});
-
         return context;
     }
 
