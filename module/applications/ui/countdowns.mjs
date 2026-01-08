@@ -92,8 +92,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             ownership: DhCountdowns.#getPlayerOwnership(game.user, setting, countdown)
         }));
         return values.filter(v => 
-            v.ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE &&
-            this.#shouldShowCountdown(v.countdown)
+            v.ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE
         );
     }
 
@@ -156,6 +155,13 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             acc[key]=countdown;
             return acc;
         }, {});
+        context.hasHiddenLongTerm = !this._isFocused && allCountdowns.some(
+            ({countdown}) => countdown.type === CONFIG.DH.GENERAL.countdownBaseTypes.longterm.id
+        );
+        console.log('Debug - isFocused:', this._isFocused);
+        console.log('Debug - hasHiddenLongTerm:', context.hasHiddenLongTerm);
+        console.log('Debug - allCountdowns:', allCountdowns);
+        console.log('Debug - longterm countdowns:', allCountdowns.filter(({countdown}) => countdown.type === CONFIG.DH.GENERAL.countdownBaseTypes.longterm.id));
         return context;
     }
 
