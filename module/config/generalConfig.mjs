@@ -690,6 +690,10 @@ export const countdownBaseTypes = {
     encounter: {
         id: 'encounter',
         label: 'DAGGERHEART.APPLICATIONS.Countdown.types.encounter'
+    },
+    longterm: {
+        id: 'longterm',
+        label: 'DAGGERHEART.APPLICATIONS.Countdown.types.longterm'
     }
 };
 

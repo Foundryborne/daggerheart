@@ -365,7 +365,8 @@
                 "toggleSimple": "Toggle Simple View",
                 "types": {
                     "narrative": "Narrative",
-                    "encounter": "Encounter"
+                    "encounter": "Encounter",
+                    "longterm": "Long Term"
                 }
             },
             "CountdownEdit": {
