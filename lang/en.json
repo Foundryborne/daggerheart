@@ -124,12 +124,7 @@
                     "stepTooltip": "+{step} per step"
                 },
                 "summon": {
-                    "addSummonEntry": "Add Summon Entry",
-                    "actorUUID": "Actor to Summon",
-                    "actor": "Actor",
-                    "count": "Count",
-                    "dropSummonsHere": "Drop Summons Here",
-                    "hint": "Add Actor(s) and the quantity to summon under this action."
+                    "dropSummonsHere": "Drop Summons Here"
                 }
             }
         },
@@ -610,10 +605,6 @@
             "ResourceDice": {
                 "title": "{name} Resource",
                 "rerollDice": "Reroll Dice"
-            },
-            "Summon": {
-                "title": "Summon Tokens",
-                "hint": "Drag tokens from the list below into the scene to summon them."
             },
             "TagTeamSelect": {
                 "title": "Tag Team Roll",

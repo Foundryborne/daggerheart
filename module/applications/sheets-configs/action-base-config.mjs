@@ -109,7 +109,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options, 'action');
         context.source = this.action.toObject(true);
-        // Resolving summon entries so actions can read entry.name / entry.img / entry.uuid
+
         context.summons = [];
         for (const summon of context.source.summon) {
             const actor = await foundry.utils.fromUuid(summon.actorUUID);
@@ -233,17 +233,10 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
-    static async editDoc(event, button) {
-        event.stopPropagation();
-        const uuid = button?.dataset.itemUuid ?? button?.dataset.uuid; // Obtain uuid from dataset
-        if (!uuid) return;
-        //Try catching errors
-        try {
-            const doc = await foundry.utils.fromUuid(uuid);
-            if (doc?.sheet) return doc.sheet.render({ force: true });
-        } catch (err) {
-            console.warn('editDoc action failed for', uuid, err);
-        }
+    static async editDoc(_event, target) {
+        const element = target.closest('[data-item-uuid]');
+        const doc = (await foundry.utils.fromUuid(element.dataset.itemUuid)) ?? null;
+        if (doc) return doc.sheet.render({ force: true });
     }
 
     static addDamage(_event) {
@@ -264,6 +257,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     }
 
     updateSummonCount(event) {
+        event.stopPropagation();
         const wrapper = event.target.closest('.summon-count-wrapper');
         const index = wrapper.dataset.index;
         const data = this.action.toObject();
