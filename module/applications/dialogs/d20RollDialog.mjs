@@ -104,7 +104,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             context.roll = this.roll;
             context.rollType = this.roll?.constructor.name;
             context.rallyDie = this.roll.rallyChoices;
-            const experiences = this.config.data?.system.experiences || {};
+            const experiences = this.config.data?.system?.experiences || {};
             context.experiences = Object.keys(experiences).map(id => ({
                 id,
                 ...experiences[id]
