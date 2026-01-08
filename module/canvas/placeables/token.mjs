@@ -1,4 +1,12 @@
 export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
+    /** @inheritdoc */
+    async _draw(options) {
+        await super._draw(options);
+
+        if (this.document.flags.daggerheart?.createPlacement)
+            this.previewHelp ||= this.addChild(this.#drawPreviewHelp());
+    }
+
     /** @inheritDoc */
     async _drawEffects() {
         this.effects.renderable = false;
@@ -68,5 +76,26 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         const posY = number === 0 ? height - bh : 0;
         bar.position.set(0, posY);
         return true;
+    }
+
+    /**
+     * Draw a helptext for previews as a text object
+     * @returns {PreciseText}    The Text object for the preview helper
+     */
+    #drawPreviewHelp() {
+        const { uiScale } = canvas.dimensions;
+
+        const textStyle = CONFIG.canvasTextStyle.clone();
+        textStyle.fontSize = 18;
+        textStyle.wordWrapWidth = this.w * 2.5;
+        textStyle.fontStyle = 'italic';
+
+        const helpText = new PreciseText(
+            `(${game.i18n.localize('DAGGERHEART.UI.Tooltip.previewTokenHelp')})`,
+            textStyle
+        );
+        helpText.anchor.set(helpText.width / 900, 1);
+        helpText.scale.set(uiScale, uiScale);
+        return helpText;
     }
 }

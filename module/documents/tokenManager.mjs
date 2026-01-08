@@ -39,10 +39,11 @@ export default class DhTokenManager {
         canvas.app.view.addEventListener('contextmenu', this.#activePreview.events.contextmenu);
     }
 
-    async createPreviewAsync(actor, tokenData) {
+    /* Currently intended for using as a preview of where to create a token. (note the flag) */
+    async createPreviewAsync(actor, tokenData = {}) {
         return new Promise(resolve => {
             this.#resolve = resolve;
-            this.createPreview(actor, tokenData);
+            this.createPreview(actor, { ...tokenData, flags: { daggerheart: { createPlacement: true } } });
         });
     }
 

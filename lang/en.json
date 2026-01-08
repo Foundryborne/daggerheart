@@ -2827,7 +2827,8 @@
                 "deleteItem": "Delete Item",
                 "immune": "Immune",
                 "middleClick": "[Middle Click] Keep tooltip view",
-                "tokenSize": "The token size used on the canvas"
+                "tokenSize": "The token size used on the canvas",
+                "previewTokenHelp": "Left-click to place, right-click to cancel"
             }
         }
     }

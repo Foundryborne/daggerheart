@@ -33,6 +33,7 @@ export default class DHSummonField extends fields.ArrayField {
             return;
         }
 
+        this.actor.sheet?.minimize();
         const summonData = [];
         for (const summon of this.summon) {
             /* Possibly check for any available instances in the world with prepared images */
@@ -53,12 +54,12 @@ export default class DHSummonField extends fields.ArrayField {
             const result = await CONFIG.ux.TokenManager.createPreviewAsync(summon.actor, {
                 name: `${summon.actor.prototypeToken.name}${summon.count > 1 ? ` (${summon.count}x)` : ''}`
             });
-            if (!result) return;
+            if (!result) return this.actor.sheet?.maximize();
 
             summon.count--;
             if (summon.count === 0) {
                 summonIndex++;
-                if (summonIndex === summonData.length) return;
+                if (summonIndex === summonData.length) return this.actor.sheet?.maximize();
             }
 
             handleSummon(summonIndex);
