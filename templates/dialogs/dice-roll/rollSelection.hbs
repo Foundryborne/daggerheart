@@ -74,14 +74,12 @@
                     <fieldset class="experience-container">
                         <legend>{{localize "DAGGERHEART.GENERAL.Effect.plural"}}</legend>
 
-                        <div>
-                            {{#each selectedEffects as |effect id|}}
-                                <div class="experience-chip {{#if effect.selected}}selected{{/if}}" data-action="toggleSelectedEffect" data-key="{{id}}" data-tooltip="{{this.description}}">
-                                    <span><i class="{{ifThen effect.selected "fa-solid" "fa-regular"}} fa-circle"></i></span>
-                                    <span class="label">{{effect.name}}</span>
-                                </div>
-                            {{/each}}
-                        </div>
+                        {{#each selectedEffects as |effect id|}}
+                            <div class="experience-chip {{#if effect.selected}}selected{{/if}}" data-action="toggleSelectedEffect" data-key="{{id}}" data-tooltip="{{this.description}}">
+                                <span><i class="{{ifThen effect.selected "fa-solid" "fa-regular"}} fa-circle"></i></span>
+                                <span class="label">{{effect.name}}</span>
+                            </div>
+                        {{/each}}
                     </fieldset>
                 {{/if}}
 

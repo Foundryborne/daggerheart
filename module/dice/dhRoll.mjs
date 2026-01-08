@@ -1,5 +1,4 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
-import { BonusFields } from '../data/actor/character.mjs';
 
 export default class DHRoll extends Roll {
     baseTerms = [];
@@ -249,6 +248,26 @@ export default class DHRoll extends Roll {
     }
 
     bonusEffectBuilder() {
+        const changeKeys = this.getActionChangeKeys();
+        return (
+            this.options.effects?.reduce((acc, effect) => {
+                if (effect.changes.some(x => changeKeys.some(key => x.key.includes(key)))) {
+                    acc[effect.id] = {
+                        id: effect.id,
+                        name: effect.name,
+                        description: effect.description,
+                        changes: effect.changes,
+                        origEffect: effect,
+                        selected: !effect.disabled
+                    };
+                }
+
+                return acc;
+            }, {}) ?? []
+        );
+    }
+
+    getActionChangeKeys() {
         return [];
     }
 }

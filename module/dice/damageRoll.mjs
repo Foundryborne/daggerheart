@@ -107,23 +107,27 @@ export default class DamageRoll extends DHRoll {
         return modifiers;
     }
 
-    bonusEffectBuilder() {
+    getActionChangeKeys() {
         const type = this.options.messageType ?? (this.options.hasHealing ? 'healing' : 'damage');
+        const changeKeys = [];
 
-        return this.options.effects.reduce((acc, effect) => {
-            if (effect.changes.some(x => x.key.includes(`system.bonuses.${type}`))) {
-                acc[effect.id] = {
-                    id: effect.id,
-                    name: effect.name,
-                    description: effect.description,
-                    changes: effect.changes,
-                    origEffect: effect,
-                    selected: !effect.disabled
-                };
+        for (const roll of this.options.roll) {
+            for (const damageType of roll.damageTypes) changeKeys.push(`system.bonuses.${type}.${damageType}`);
+        }
+
+        const item = this.data.parent.items?.get(this.options.source.item);
+        if (item) {
+            switch (item.type) {
+                case 'weapon':
+                    if (!this.options.hasHealing)
+                        ['primaryWeapon', 'secondaryWeapon'].forEach(w =>
+                            changeKeys.push(`system.bonuses.damage.${w}`)
+                        );
+                    break;
             }
+        }
 
-            return acc;
-        }, {});
+        return changeKeys;
     }
 
     constructFormula(config) {
@@ -161,7 +165,7 @@ export default class DamageRoll extends DHRoll {
         }
 
         if (config.isCritical && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-            const total = part.roll.dice.reduce((acc, term) => acc + term._faces * term._number, 0);
+            let total = part.roll.dice.reduce((acc, term) => acc + term._faces * term._number, 0);
             if (total > 0) {
                 part.roll.terms.push(...this.formatModifier(total));
             }

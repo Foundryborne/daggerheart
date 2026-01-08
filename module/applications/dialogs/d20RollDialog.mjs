@@ -78,7 +78,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             icon
         }));
 
-        context.hasSelectedEffects = Boolean(Object.keys(this.selectedEffects).length);
+        context.hasSelectedEffects = Boolean(this.selectedEffects && Object.keys(this.selectedEffects).length);
         context.selectedEffects = this.selectedEffects;
 
         this.config.costs ??= [];

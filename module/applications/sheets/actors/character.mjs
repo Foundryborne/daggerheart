@@ -337,15 +337,20 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     }
                     const type = 'effect';
                     const cls = game.system.api.models.actions.actionsTypes[type];
-                    const action = new cls({
-                        ...cls.getSourceConfig(doc.system),
-                        type: type,
-                        chatDisplay: false,
-                        cost: [{
-                            key: 'stress',
-                            value: doc.system.recallCost
-                        }]
-                    }, { parent: doc.system });
+                    const action = new cls(
+                        {
+                            ...cls.getSourceConfig(doc.system),
+                            type: type,
+                            chatDisplay: false,
+                            cost: [
+                                {
+                                    key: 'stress',
+                                    value: doc.system.recallCost
+                                }
+                            ]
+                        },
+                        { parent: doc.system }
+                    );
                     const config = await action.use(event);
                     if (config) {
                         return doc.update({ 'system.inVault': false });
@@ -706,8 +711,10 @@ export default class CharacterSheet extends DHBaseActorSheet {
             headerTitle: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
                 ability: abilityLabel
             }),
+            effects: Array.from(await this.document.allApplicableEffects()),
             roll: {
-                trait: button.dataset.attribute
+                trait: button.dataset.attribute,
+                type: 'trait'
             },
             hasRoll: true,
             actionType: 'action',

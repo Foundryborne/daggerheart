@@ -173,21 +173,32 @@ export default class DualityRoll extends D20Roll {
         return modifiers;
     }
 
-    bonusEffectBuilder() {
-        return this.options.effects.reduce((acc, effect) => {
-            if (effect.changes.some(x => x.key.includes(`system.bonuses.roll`))) {
-                acc[effect.id] = {
-                    id: effect.id,
-                    name: effect.name,
-                    description: effect.description,
-                    changes: effect.changes,
-                    origEffect: effect,
-                    selected: !effect.disabled
-                };
-            }
+    getActionChangeKeys() {
+        const changeKeys = new Set([`system.bonuses.roll.${this.options.actionType}`]);
 
-            return acc;
-        }, {});
+        if (this.options.roll.type !== CONFIG.DH.GENERAL.rollTypes.attack.id) {
+            changeKeys.add(`system.bonuses.roll.${this.options.roll.type}`);
+        }
+
+        if (
+            this.options.roll.type === CONFIG.DH.GENERAL.rollTypes.attack.id ||
+            (this.options.roll.type === CONFIG.DH.GENERAL.rollTypes.spellcast.id && this.options.hasDamage)
+        ) {
+            changeKeys.add(`system.bonuses.roll.attack`);
+        }
+
+        if (this.options.roll.trait && this.data.traits?.[this.options.roll.trait]) {
+            if (this.options.roll.type !== CONFIG.DH.GENERAL.rollTypes.spellcast.id)
+                changeKeys.add('system.bonuses.roll.trait');
+        }
+
+        const weapons = ['primaryWeapon', 'secondaryWeapon'];
+        weapons.forEach(w => {
+            if (this.options.source.item && this.options.source.item === this.data[w]?.id)
+                changeKeys.add(`system.bonuses.roll.${w}`);
+        });
+
+        return changeKeys;
     }
 
     static async buildEvaluate(roll, config = {}, message = {}) {
