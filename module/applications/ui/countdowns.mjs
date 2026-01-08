@@ -158,10 +158,6 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         context.hasHiddenLongTerm = !this._isFocused && allCountdowns.some(
             ({countdown}) => countdown.type === CONFIG.DH.GENERAL.countdownBaseTypes.longterm.id
         );
-        console.log('Debug - isFocused:', this._isFocused);
-        console.log('Debug - hasHiddenLongTerm:', context.hasHiddenLongTerm);
-        console.log('Debug - allCountdowns:', allCountdowns);
-        console.log('Debug - longterm countdowns:', allCountdowns.filter(({countdown}) => countdown.type === CONFIG.DH.GENERAL.countdownBaseTypes.longterm.id));
         return context;
     }
 
