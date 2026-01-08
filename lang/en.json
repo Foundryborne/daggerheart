@@ -2661,7 +2661,8 @@
                 "noPlayerAccess": "This countdown isn't visible to any players",
                 "loop": "Looping",
                 "decreasingLoop": "Decreasing Looping",
-                "increasingLoop": "Increasing Looping"
+                "increasingLoop": "Increasing Looping",
+                "longTermIndicator": "Long Term Countdowns"
             },
             "EffectsDisplay": {
                 "removeThing": "[Right Click] Remove {thing}",
