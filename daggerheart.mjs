@@ -2,6 +2,7 @@ import { SYSTEM } from './module/config/system.mjs';
 import * as applications from './module/applications/_module.mjs';
 import * as data from './module/data/_module.mjs';
 import * as models from './module/data/_module.mjs';
+import * as canvas from './module/canvas/_module.mjs';
 import * as documents from './module/documents/_module.mjs';
 import * as dice from './module/dice/_module.mjs';
 import * as fields from './module/data/fields/_module.mjs';
@@ -19,6 +20,7 @@ import {
 import { placeables } from './module/canvas/_module.mjs';
 import './node_modules/@yaireo/tagify/dist/tagify.css';
 import TemplateManager from './module/documents/templateManager.mjs';
+import TokenManager from './module/documents/tokenManager.mjs';
 
 CONFIG.DH = SYSTEM;
 CONFIG.TextEditor.enrichers.push(...enricherConfig);
@@ -51,6 +53,8 @@ CONFIG.ChatMessage.template = 'systems/daggerheart/templates/ui/chat/chat-messag
 
 CONFIG.Canvas.rulerClass = placeables.DhRuler;
 CONFIG.Canvas.layers.templates.layerClass = placeables.DhTemplateLayer;
+CONFIG.Canvas.layers.tokens.layerClass = canvas.DhTokenLayer;
+
 CONFIG.MeasuredTemplate.objectClass = placeables.DhMeasuredTemplate;
 
 CONFIG.Scene.documentClass = documents.DhScene;
@@ -73,6 +77,7 @@ CONFIG.ui.countdowns = applications.ui.DhCountdowns;
 CONFIG.ux.ContextMenu = applications.ux.DHContextMenu;
 CONFIG.ux.TooltipManager = documents.DhTooltipManager;
 CONFIG.ux.TemplateManager = new TemplateManager();
+CONFIG.ux.TokenManager = new TokenManager();
 
 Hooks.once('init', () => {
     game.system.api = {

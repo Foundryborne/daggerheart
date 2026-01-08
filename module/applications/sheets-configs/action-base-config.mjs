@@ -15,7 +15,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        classes: ['daggerheart', 'dh-style', 'dialog', 'max-800'],
+        classes: ['daggerheart', 'dh-style', 'dialog', 'action-config', 'max-800'],
         window: {
             icon: 'fa-solid fa-wrench',
             resizable: false
@@ -37,7 +37,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             submitOnChange: true,
             closeOnSubmit: false
         },
-        dragDrop: [{ dragSelector: null, dropSelector: '.summon-entry', handlers: ['_onDrop'] }]
+        dragDrop: [{ dragSelector: null, dropSelector: '#summon-drop-zone', handlers: ['_onDrop'] }]
     };
 
     static PARTS = {
@@ -87,7 +87,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         }
     };
 
-    static CLEAN_ARRAYS = ['damage.parts', 'cost', 'effects','summon'];
+    static CLEAN_ARRAYS = ['damage.parts', 'cost', 'effects', 'summon'];
 
     _getTabs(tabs) {
         for (const v of Object.values(tabs)) {
@@ -98,23 +98,24 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         return tabs;
     }
 
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        htmlElement.querySelectorAll('.summon-count-wrapper input').forEach(element => {
+            element.addEventListener('change', this.updateSummonCount.bind(this));
+        });
+    }
+
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options, 'action');
         context.source = this.action.toObject(true);
         // Resolving summon entries so actions can read entry.name / entry.img / entry.uuid
-        if (Array.isArray(context.source.summon)) {
-            context.source.summon = await Promise.all(context.source.summon.map(async entry => {
-                if (!entry) return entry;
-                const uuid = entry.actorUUID ?? entry.uuid;
-                entry.uuid = uuid;
-                try {
-                    const doc = await foundry.utils.fromUuid(uuid);
-                    entry.name = entry.name ?? doc?.name;
-                    entry.img = entry.img ?? (doc?.img ?? doc?.prototypeToken?.texture?.src ?? null);
-                } catch (_) {}
-                return entry;
-            }));
+        context.summons = [];
+        for (const summon of context.source.summon) {
+            const actor = await foundry.utils.fromUuid(summon.actorUUID);
+            context.summons.push({ actor, count: summon.count });
         }
+
         context.openSection = this.openSection;
         context.tabs = this._getTabs(this.constructor.TABS);
         context.config = CONFIG.DH;
@@ -197,8 +198,9 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     }
 
     static async updateForm(event, _, formData) {
-        const submitData = this._prepareSubmitData(event, formData),
-            data = foundry.utils.mergeObject(this.action.toObject(), submitData);
+        const submitData = this._prepareSubmitData(event, formData);
+
+        const data = foundry.utils.mergeObject(this.action.toObject(), submitData);
         this.action = await this.action.update(data);
 
         this.sheetUpdate?.(this.action);
@@ -234,13 +236,13 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     static async editDoc(event, button) {
         event.stopPropagation();
         const uuid = button?.dataset.itemUuid ?? button?.dataset.uuid; // Obtain uuid from dataset
-        if (!uuid) return;    
+        if (!uuid) return;
         //Try catching errors
         try {
             const doc = await foundry.utils.fromUuid(uuid);
             if (doc?.sheet) return doc.sheet.render({ force: true });
         } catch (err) {
-            console.warn("editDoc action failed for", uuid, err);
+            console.warn('editDoc action failed for', uuid, err);
         }
     }
 
@@ -261,6 +263,14 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
+    updateSummonCount(event) {
+        const wrapper = event.target.closest('.summon-count-wrapper');
+        const index = wrapper.dataset.index;
+        const data = this.action.toObject();
+        data.summon[index].count = Number.parseInt(event.target.value);
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
     /** Specific implementation in extending classes **/
     static async addEffect(_event) {}
     static removeEffect(_event, _button) {}
@@ -271,28 +281,28 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         await super.close(options);
     }
 
-    /** Implementation for dragdrop for summon actor selection **/
     async _onDrop(event) {
         const data = foundry.applications.ux.TextEditor.getDragEventData(event);
-        const item=await foundry.utils.fromUuid(data.uuid);
+        const item = await foundry.utils.fromUuid(data.uuid);
         if (!(item instanceof game.system.api.documents.DhpActor)) {
-            ui.notifications.warn(game.i18n.localize("DAGGERHEART.ACTIONS.TYPES.summon.invalidDrop"));
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.summon.invalidDrop'));
             return;
         }
-        //Add to summon array
-        const actionData = this.action.toObject(); // Get current action data
-        //checking to see if actor is already in summon list add 1 to count instead of adding new entry
+
+        const actionData = this.action.toObject();
         let countvalue = 1;
         for (const entry of actionData.summon) {
             if (entry.actorUUID === data.uuid) {
                 entry.count += 1;
                 countvalue = entry.count;
-                await this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(actionData) });
+                await this.constructor.updateForm.bind(this)(null, null, {
+                    object: foundry.utils.flattenObject(actionData)
+                });
                 return;
             }
         }
-        actionData.summon.push({ actorUUID: data.uuid, count: countvalue });// Add new summon entry
-        await this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(actionData) }); // Update the form with new data
+
+        actionData.summon.push({ actorUUID: data.uuid, count: countvalue });
+        await this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(actionData) });
     }
-        
 }

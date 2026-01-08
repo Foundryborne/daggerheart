@@ -1,46 +1,50 @@
-<fieldset class="one-column" data-key="summon">
+<fieldset class="one-column" id="summon-drop-zone" data-key="summon">
     <legend>
         {{localize "DAGGERHEART.ACTIONS.TYPES.summon.name"}}
     </legend>
-    <p class="hint">{{localize "DAGGERHEART.ACTIONS.Settings.summon.hint"}}</p>
 
-    <div class="drag-area summon-actor-drop">
-        <div class="actors-list summon-entry">
-            
-            {{#each source as |entry index|}} 
-                <ul class="actor-summon-item">
-                    <div class="actor-summon-line">
-                        <img class="image" src="{{entry.img}}" />
-                        <h4 class="h4">
-                            {{entry.name}}
-                        </h4>
-                        {{formField ../fields.count label="DAGGERHEART.ACTIONS.Settings.summon.count" value=entry.count name=(concat "summon." index ".count") localize=true}}
-                        <div class="controls">
-                            <a
-                                    class='effect-control'
-                                    data-action='editDoc'
-                                    data-item-uuid="{{entry.uuid}}"
-                                    data-tooltip='{{localize "DAGGERHEART.UI.Tooltip.openItemWorld"}}'
-                                >
-                                    <i class="fa-solid fa-globe"></i>
-                                </a>
-                                <a
-                                    class='effect-control'
-                                    data-action='removeElement'
-                                    data-target="summon"
-                                    data-uuid="{{entry.uuid}}"
-                                    data-index="{{index}}"
-                                    data-tooltip='{{localize "CONTROLS.CommonDelete"}}'
-                                >
-                                    <i class='fas fa-trash'></i>
-                                </a>
+    <ul class="actor-summon-items">   
+        {{#each @root.summons as |summon index|}} 
+            <li class="actor-summon-line">
+                <div class="actor-summon-name">
+                    <img class="image" src="{{summon.actor.img}}" />
+                    <h4 class="h4">
+                        {{summon.actor.name}}
+                    </h4>
+                </div>
+
+                <div class="actor-summon-controls">
+                    <div class="form-group summon-count-wrapper" data-index="{{index}}">
+                        <div class="form-fields">
+                            <input type="text" data-dtype="Number" value="{{summon.count}}" />
                         </div>
                     </div>
-                </ul>  
-            {{/each}}
-            {{#unless source.length}}
-                    <span>{{localize "DAGGERHEART.GENERAL.dropActorsHere"}}</span>
-            {{/unless}}
-        </div>    
-    </div>
+
+                    <div class="controls">
+                        <a
+                                class='effect-control'
+                                data-action='editDoc'
+                                data-item-uuid="{{summon.actor.uuid}}"
+                                data-tooltip='{{localize "DAGGERHEART.UI.Tooltip.openItemWorld"}}'
+                            >
+                                <i class="fa-solid fa-globe"></i>
+                            </a>
+                            <a
+                                class='effect-control'
+                                data-action='removeElement'
+                                data-target="summon"
+                                data-uuid="{{summon.actor.uuid}}"
+                                data-index="{{index}}"
+                                data-tooltip='{{localize "CONTROLS.CommonDelete"}}'
+                            >
+                                <i class='fas fa-trash'></i>
+                            </a>
+                    </div>
+                </div>
+            </li>
+        {{/each}}
+        <div class="summon-dragger">
+            <span>{{localize "DAGGERHEART.ACTIONS.Settings.summon.dropSummonsHere"}}</span>
+        </div>
+    </ul>
 </fieldset>

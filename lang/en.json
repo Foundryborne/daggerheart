@@ -123,11 +123,12 @@
                 "cost": {
                     "stepTooltip": "+{step} per step"
                 },
-                "summon":{
+                "summon": {
                     "addSummonEntry": "Add Summon Entry",
                     "actorUUID": "Actor to Summon",
                     "actor": "Actor",
                     "count": "Count",
+                    "dropSummonsHere": "Drop Summons Here",
                     "hint": "Add Actor(s) and the quantity to summon under this action."
                 }
             }
