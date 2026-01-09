@@ -2781,7 +2781,9 @@
                 "gmRequired": "This action requires an online GM",
                 "gmOnly": "This can only be accessed by the GM",
                 "noActorOwnership": "You do not have permissions for this character",
-                "documentIsMissing": "The {documentType} is missing from the world."
+                "documentIsMissing": "The {documentType} is missing from the world.",
+                "tokenActorMissing": "{name} is missing an Actor",
+                "tokenActorsMissing": "[{names}] missing Actors"
             },
             "Sidebar": {
                 "actorDirectory": {
