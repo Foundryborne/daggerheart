@@ -143,6 +143,10 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
     }
 
     static async takeMove() {
+        const autoExpandDescription = game.settings.get(
+                            CONFIG.DH.id,
+                            CONFIG.DH.SETTINGS.gameSettings.appearance
+                        ).expandRollMessage?.desc;
         const cls = getDocumentClass('ChatMessage');
         const msg = {
             user: game.user.id,
@@ -154,7 +158,9 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
                     author: game.users.get(game.user.id),
                     title: game.i18n.localize(this.selectedMove.name),
                     img: this.selectedMove.img,
-                    description: game.i18n.localize(this.selectedMove.description)
+                    description: game.i18n.localize(this.selectedMove.description),
+                    open: autoExpandDescription ? 'open' : '',
+                    chevron: autoExpandDescription ? 'fa-chevron-up' : 'fa-chevron-down'
                 }
             ),
             title: game.i18n.localize(
