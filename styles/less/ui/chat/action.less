@@ -102,17 +102,27 @@
             .summons-header {
                 font-size: var(--font-size-14);
                 text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
 
-                span::before,
-                span::after {
-                    color: @dark-blue;
+                span {
+                    width: 100%;
                 }
+
+                &:before,
+                &:after {
+                    content: ' ';
+                    height: 1px;
+                    width: 100%;
+                }
+
                 &:before {
-                    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, @dark-blue 100%);
+                    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, light-dark(@dark-blue, @golden) 100%);
                 }
 
                 &:after {
-                    background: linear-gradient(90deg, @dark-blue 0%, rgba(0, 0, 0, 0) 100%);
+                    background: linear-gradient(90deg, light-dark(@dark-blue, @golden) 0%, rgba(0, 0, 0, 0) 100%);
                 }
             }
 
