@@ -123,7 +123,7 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
             {
                 name: game.i18n.localize('DAGGERHEART.CONFIG.DeathMoves.blazeOfGlory.name'),
                 description: game.i18n.localize('DAGGERHEART.CONFIG.DeathMoves.blazeOfGlory.description'),
-                img: 'icons/magic/movement/abstract-ribbons-red-orange.webp',
+                img: CONFIG.DH.GENERAL.deathMoves.blazeOfGlory.img,
                 changes: [
                     {
                         key: 'system.rules.roll.guaranteedCritical',
