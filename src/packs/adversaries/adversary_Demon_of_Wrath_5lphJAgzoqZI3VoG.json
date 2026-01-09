@@ -457,11 +457,12 @@
             "img": "icons/creatures/unholy/demon-fire-horned-clawed.webp",
             "range": ""
           },
-          "7G6uWlFEeOLsJIWY": {
-            "type": "effect",
-            "_id": "7G6uWlFEeOLsJIWY",
+          "FlE6i0tbKEguF9wz": {
+            "type": "summon",
+            "_id": "FlE6i0tbKEguF9wz",
             "systemPath": "actions",
-            "description": "<p>Summon [[/r 1d4]]@UUID[Compendium.daggerheart.adversaries.Actor.3tqCjDwJAQ7JKqMb]{Minor Demons}, who appear at Close range.</p>",
+            "baseAction": false,
+            "description": "",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"
@@ -474,13 +475,13 @@
               "recovery": null,
               "consumeOnSuccess": false
             },
-            "effects": [],
-            "target": {
-              "type": "any",
-              "amount": null
-            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.3tqCjDwJAQ7JKqMb",
+                "count": "1d4"
+              }
+            ],
             "name": "Summon",
-            "img": "icons/creatures/unholy/demon-fire-horned-clawed.webp",
             "range": ""
           }
         },

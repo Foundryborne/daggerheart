@@ -287,7 +287,35 @@
       "system": {
         "description": "<p>Summon three @Compendium[daggerheart.adversaries.Actor.C0OMQqV7pN6t7ouR], who appear at Far range.</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "MCTBsw9lusUdubj0": {
+            "type": "summon",
+            "_id": "MCTBsw9lusUdubj0",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.C0OMQqV7pN6t7ouR",
+                "count": "3"
+              }
+            ],
+            "name": "Summon",
+            "range": ""
+          }
+        },
         "originItemType": null,
         "subType": null,
         "originId": null,
