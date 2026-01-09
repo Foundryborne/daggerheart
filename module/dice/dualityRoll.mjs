@@ -298,7 +298,7 @@ export default class DualityRoll extends D20Roll {
 
         if (looseSpotlight && game.combat?.active) {
             const currentCombatant = game.combat.combatants.get(game.combat.current?.combatantId);
-            if (currentCombatant?.actorId == actor.id) ui.combat.setCombatantSpotlight(currentCombatant.id);
+            if (currentCombatant?.actorId == config.data.id) ui.combat.setCombatantSpotlight(currentCombatant.id);
         }
     }
 

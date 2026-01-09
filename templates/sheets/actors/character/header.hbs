@@ -87,11 +87,16 @@
             </div>
         {{/if}}
         <div class="downtime-section">
-            <button type="button" data-action="useDowntime" data-type="shortRest" data-tooltip="{{localize "DAGGERHEART.APPLICATIONS.Downtime.shortRest.title"}}">
-                <i class="fa-solid fa-utensils"></i>
+            {{#if document.parties.size}}
+                <button type="button" data-action="viewParty" data-tooltip="DAGGERHEART.ACTORS.Character.viewParty">
+                    <i class="fa-solid fa-fw fa-users"></i>
+                </button>
+            {{/if}}
+            <button type="button" data-action="useDowntime" data-type="shortRest" data-tooltip="DAGGERHEART.APPLICATIONS.Downtime.shortRest.title">
+                <i class="fa-solid fa-fw fa-utensils"></i>
             </button>
-            <button type="button" data-action="useDowntime" data-type="longRest" data-tooltip="{{localize "DAGGERHEART.APPLICATIONS.Downtime.longRest.title"}}">
-                <i class="fa-solid fa-bed"></i>
+            <button type="button" data-action="useDowntime" data-type="longRest" data-tooltip="DAGGERHEART.APPLICATIONS.Downtime.longRest.title">
+                <i class="fa-solid fa-fw fa-bed"></i>
             </button>
         </div>
     </div>

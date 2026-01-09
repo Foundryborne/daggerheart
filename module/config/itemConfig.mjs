@@ -435,7 +435,8 @@ export const armorFeatures = {
                     {
                         key: 'system.resistance.magical.reduction',
                         mode: 2,
-                        value: '@system.armorScore'
+                        value: '@system.armorScore',
+                        priority: 21
                     }
                 ]
             }
@@ -709,7 +710,8 @@ export const weaponFeatures = {
                             {
                                 key: 'system.evasion',
                                 mode: 2,
-                                value: '@system.armorScore'
+                                value: '@system.armorScore',
+                                priority: 21
                             }
                         ]
                     }
@@ -1324,7 +1326,8 @@ export const weaponFeatures = {
                     {
                         key: 'system.bonuses.damage.primaryWeapon.bonus',
                         mode: 2,
-                        value: '@system.traits.agility.value'
+                        value: '@system.traits.agility.value',
+                        priority: 21
                     }
                 ]
             }
@@ -1416,9 +1419,9 @@ export const orderedWeaponFeatures = () => {
 };
 
 export const featureForm = {
-    passive: "DAGGERHEART.CONFIG.FeatureForm.passive",
-    action: "DAGGERHEART.CONFIG.FeatureForm.action",
-    reaction: "DAGGERHEART.CONFIG.FeatureForm.reaction"
+    passive: 'DAGGERHEART.CONFIG.FeatureForm.passive',
+    action: 'DAGGERHEART.CONFIG.FeatureForm.action',
+    reaction: 'DAGGERHEART.CONFIG.FeatureForm.reaction'
 };
 
 export const featureTypes = {

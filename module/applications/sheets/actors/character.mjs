@@ -32,7 +32,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
             handleResourceDice: CharacterSheet.#handleResourceDice,
             advanceResourceDie: CharacterSheet.#advanceResourceDie,
             cancelBeastform: CharacterSheet.#cancelBeastform,
-            useDowntime: this.useDowntime
+            useDowntime: this.useDowntime,
+            viewParty: CharacterSheet.#viewParty
         },
         window: {
             resizable: true,
@@ -316,6 +317,45 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     const actorLoadout = doc.actor.system.loadoutSlot;
                     if (actorLoadout.available) return doc.update({ 'system.inVault': false });
                     ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.loadoutMaxReached'));
+                }
+            },
+            {
+                name: 'recall',
+                icon: 'fa-solid fa-bolt-lightning',
+                condition: target => {
+                    const doc = getDocFromElementSync(target);
+                    return doc && doc.system.inVault;
+                },
+                callback: async (target, event) => {
+                    const doc = await getDocFromElement(target);
+                    const actorLoadout = doc.actor.system.loadoutSlot;
+                    if (!actorLoadout.available) {
+                        ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.loadoutMaxReached'));
+                        return;
+                    }
+                    if (doc.system.recallCost == 0) {
+                        return doc.update({ 'system.inVault': false });
+                    }
+                    const type = 'effect';
+                    const cls = game.system.api.models.actions.actionsTypes[type];
+                    const action = new cls(
+                        {
+                            ...cls.getSourceConfig(doc.system),
+                            type: type,
+                            chatDisplay: false,
+                            cost: [
+                                {
+                                    key: 'stress',
+                                    value: doc.system.recallCost
+                                }
+                            ]
+                        },
+                        { parent: doc.system }
+                    );
+                    const config = await action.use(event);
+                    if (config) {
+                        return doc.update({ 'system.inVault': false });
+                    }
                 }
             },
             {
@@ -856,6 +896,41 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const item = await getDocFromElement(target);
         if (!item) return;
         game.system.api.fields.ActionFields.BeastformField.handleActiveTransformations.call(item);
+    }
+
+    static async #viewParty(_, target) {
+        const parties = this.document.parties;
+        if (parties.size <= 1) {
+            parties.first()?.sheet.render({ force: true });
+            return;
+        }
+
+        const buttons = parties.map(p => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.classList.add('plain');
+            const img = document.createElement('img');
+            img.src = p.img;
+            button.append(img);
+            const name = document.createElement('span');
+            name.textContent = p.name;
+            button.append(name);
+            button.addEventListener('click', () => {
+                p.sheet?.render({ force: true });
+                game.tooltip.dismissLockedTooltips();
+            });
+            return button;
+        });
+
+        const html = document.createElement('div');
+        html.classList.add('party-list');
+        html.append(...buttons);
+
+        game.tooltip.dismissLockedTooltips();
+        game.tooltip.activate(target, {
+            html,
+            locked: true
+        });
     }
 
     /**

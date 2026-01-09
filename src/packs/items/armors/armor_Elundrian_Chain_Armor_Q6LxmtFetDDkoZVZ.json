@@ -42,7 +42,8 @@
         {
           "key": "system.resistance.magical.reduction",
           "mode": 2,
-          "value": "@system.armorScore"
+          "value": "@system.armorScore",
+          "priority": 21
         }
       ],
       "_id": "xGxqTCO8MjNq5Cw6",

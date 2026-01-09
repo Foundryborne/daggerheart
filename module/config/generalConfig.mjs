@@ -232,7 +232,7 @@ export const defaultRestOptions = {
                     actionType: 'action',
                     chatDisplay: false,
                     target: {
-                        type: 'self'
+                        type: 'friendly'
                     },
                     damage: {
                         parts: [
@@ -298,7 +298,7 @@ export const defaultRestOptions = {
                     actionType: 'action',
                     chatDisplay: false,
                     target: {
-                        type: 'self'
+                        type: 'friendly'
                     },
                     damage: {
                         parts: [
@@ -341,7 +341,7 @@ export const defaultRestOptions = {
                     actionType: 'action',
                     chatDisplay: false,
                     target: {
-                        type: 'self'
+                        type: 'friendly'
                     },
                     damage: {
                         parts: [
@@ -407,7 +407,7 @@ export const defaultRestOptions = {
                     actionType: 'action',
                     chatDisplay: false,
                     target: {
-                        type: 'self'
+                        type: 'friendly'
                     },
                     damage: {
                         parts: [

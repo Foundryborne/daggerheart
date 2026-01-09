@@ -1,0 +1,1519 @@
+{
+  "name": "Consumables",
+  "img": "icons/consumables/potions/bottle-corked-red.webp",
+  "description": "<p>To generate a random consumable, choose a rarity, roll the designated dice, and match the total to the item in the table:</p><ul><li><p>Common: 1d12 or 2d12</p></li><li><p>Uncommon: 2d12 or 3d12</p></li><li><p>Rare: 3d12 or 4d12</p></li><li><p>Legendary: 4d12 or 5d12</p></li></ul>",
+  "results": [
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "name": "Stride Potion",
+      "img": "icons/consumables/potions/potion-flask-corked-cyan.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.lNtcrkgFGOJNaroE",
+      "_id": "HitkUdk2TJyIifWX",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.HitkUdk2TJyIifWX"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "name": "Bolster Potion",
+      "img": "icons/consumables/potions/potion-vial-tube-yellow.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.FOPQNqXbiVO0ilYL",
+      "_id": "nXdPwzbs1TlhuAPG",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.nXdPwzbs1TlhuAPG"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "name": "Control Potion",
+      "img": "icons/consumables/potions/flask-corked-blue.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.eeBhZSGLjuNZuJuI",
+      "_id": "3vNNo1oURhYA3ku3",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.3vNNo1oURhYA3ku3"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "name": "Attune Potion",
+      "img": "icons/consumables/potions/bottle-conical-corked-purple.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.JGD3M9hBHtVAA8XP",
+      "_id": "eIfprIpZdRJCoBQ7",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.eIfprIpZdRJCoBQ7"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "name": "Charm Potion",
+      "img": "icons/consumables/potions/potion-tube-corked-blue.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.CVBbFfOY75YwyQsp",
+      "_id": "LFWeiTR9rC34Tg03",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.LFWeiTR9rC34Tg03"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "name": "Enlighten Potion",
+      "img": "icons/consumables/potions/vial-cork-empty.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.aWHSO2AqDufi7nL4",
+      "_id": "9wcVzrpjZHL87dGg",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.9wcVzrpjZHL87dGg"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "name": "Minor Health Potion",
+      "img": "icons/consumables/potions/potion-tube-corked-red.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.tPfKtKRRjv8qdSqy",
+      "_id": "1IBI7K2c7tyhq9nK",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.1IBI7K2c7tyhq9nK"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "name": "Minor Stamina Potion",
+      "img": "icons/consumables/potions/potion-tube-corked-green.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.b6vGSPFWOlzZZDLO",
+      "_id": "1D9VOgGRjhy6eWqA",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.1D9VOgGRjhy6eWqA"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "name": "Grindletooth Venom",
+      "img": "icons/consumables/potions/bottle-conical-corked-labeled-skull-poison-green.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.8WkhvSzeOmLdnoLJ",
+      "_id": "Nqj2K2UDP27sAkUK",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.Nqj2K2UDP27sAkUK"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "name": "Varik Leaves",
+      "img": "icons/consumables/plants/leaf-serrated-pink.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.hvy5BkG3F6iOIXTx",
+      "_id": "6ynsrta3MiinHg38",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.6ynsrta3MiinHg38"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "name": "Vial of Moondrip",
+      "img": "icons/consumables/potions/bottle-ornate-bat-teal.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.VqEX5YwK5oL3r1t6",
+      "_id": "UDPco0e4rvz8Ch8X",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.UDPco0e4rvz8Ch8X"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "name": "Unstable Arcane Shard",
+      "img": "icons/commodities/gems/gem-faceted-cushion-teal-black.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.mUepnLbkvFk0ha4Z",
+      "_id": "xQV1Uvhy1TqjEpH1",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.xQV1Uvhy1TqjEpH1"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "name": "Potion of Stability",
+      "img": "icons/consumables/potions/bottle-conical-corked-labeled-shell-cyan.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.dvL8oaxpEF6jKvYN",
+      "_id": "pz4dXNbMYuSbFdzN",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.pz4dXNbMYuSbFdzN"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "name": "Improved Grindletooth Venom",
+      "img": "icons/consumables/potions/potion-jar-corked-labeled-poison-skull-green.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.BqBWXXe9T07AMV4u",
+      "_id": "sqdq6x4SEqLdHDPM",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.sqdq6x4SEqLdHDPM"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "name": "Morphing Clay",
+      "img": "icons/commodities/stone/ore-chunk-brown.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.f1NHVSIHJJCIOaBl",
+      "_id": "tceGvaaN4diOnr6V",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.tceGvaaN4diOnr6V"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        16,
+        16
+      ],
+      "name": "Vial of Darksmoke",
+      "img": "icons/consumables/potions/bottle-bulb-empty-glass.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.Nwv5ydGf0MWnzq1n",
+      "_id": "QtGq1JKzwBzWX6Sd",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.QtGq1JKzwBzWX6Sd"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        17,
+        17
+      ],
+      "name": "Jumping Root",
+      "img": "icons/consumables/plants/dried-bundle-wrapped-stems-sticks-brown.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.c2putn9apuurJhWX",
+      "_id": "lidCdzbTqahcajZb",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.lidCdzbTqahcajZb"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        18,
+        18
+      ],
+      "name": "Snap Powder",
+      "img": "icons/commodities/materials/bowl-powder-gold.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.cg6VtQ0eVZjDdcK0",
+      "_id": "m37ithF7wXFYrv6H",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.m37ithF7wXFYrv6H"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        19,
+        19
+      ],
+      "name": "Health Potion",
+      "img": "icons/consumables/potions/bottle-corked-red.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.Aruc2NLutWuVIjP1",
+      "_id": "RFrvEnE7WyDw2YWK",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.RFrvEnE7WyDw2YWK"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        20,
+        20
+      ],
+      "name": "Stamina Potion",
+      "img": "icons/consumables/potions/bottle-corked-green.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.hf3k1POoVSooJyN2",
+      "_id": "Lgs8ccMBUaq0XCHs",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.Lgs8ccMBUaq0XCHs"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        21,
+        21
+      ],
+      "name": "Armor Stitcher",
+      "img": "icons/skills/trades/textiles-stitching-leather-brown.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.VlbsCjvvLNfTzNXb",
+      "_id": "S2nsHwVRSFMbVlKh",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.S2nsHwVRSFMbVlKh"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        22,
+        22
+      ],
+      "name": "Gill Salve",
+      "img": "icons/commodities/materials/bowl-powder-blue.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.Nvbb9mze6o5D0AEg",
+      "_id": "B3cL4jMj0eaW8utR",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.B3cL4jMj0eaW8utR"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        23,
+        23
+      ],
+      "name": "Replication Parchment",
+      "img": "icons/sundries/scrolls/scroll-worn-beige.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.yJkwz4AP6yhGo8Vj",
+      "_id": "sgkt4zYiFSQMOmvo",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.sgkt4zYiFSQMOmvo"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        24,
+        24
+      ],
+      "name": "Improved Arcane Shard",
+      "img": "icons/commodities/gems/gem-faceted-teardrop-blue.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.nQTo6mNoPTEVBtkm",
+      "_id": "CCuzy7Y3KasoCouV",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.CCuzy7Y3KasoCouV"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        25,
+        25
+      ],
+      "name": "Major Stride Potion",
+      "img": "icons/consumables/potions/potion-jar-capped-teal.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.yK6eEDUrsPbZA8G0",
+      "_id": "TtXvBYeeMqQ4gDhO",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.TtXvBYeeMqQ4gDhO"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        26,
+        26
+      ],
+      "name": "Major Bolster Potion",
+      "img": "icons/consumables/potions/potion-jar-corked-orange.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.mnyQDRtngWWQeRXF",
+      "_id": "cRwTxLNJXMVKFW75",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.cRwTxLNJXMVKFW75"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        27,
+        27
+      ],
+      "name": "Major Control Potion",
+      "img": "icons/consumables/potions/bottle-round-corked-blue.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.80s1FLmTLtohZ5GH",
+      "_id": "q15EknW1P2cw4oyb",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.q15EknW1P2cw4oyb"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        28,
+        28
+      ],
+      "name": "Major Attune Potion",
+      "img": "icons/consumables/potions/bottle-round-corked-pink.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.CCPFm5iXXwvyYYwR",
+      "_id": "tkj1X675uJMTkMTR",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.tkj1X675uJMTkMTR"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        29,
+        29
+      ],
+      "name": "Major Charm Potion",
+      "img": "icons/consumables/potions/potion-bottle-corked-blue.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.IJLAUlQymbSjzsri",
+      "_id": "N6ImVJLHEOXxFSAE",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.N6ImVJLHEOXxFSAE"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        30,
+        30
+      ],
+      "name": "Major Enlighten Potion",
+      "img": "icons/consumables/potions/bottle-corked-empty.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.SDdv1G2veMLKrxcJ",
+      "_id": "NuHqSzBX7daJRor8",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.NuHqSzBX7daJRor8"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        31,
+        31
+      ],
+      "name": "Blood of the Yorgi",
+      "img": "icons/consumables/potions/potion-tube-corked-bat-gold-red.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.pDGzmczoTlKGmKgd",
+      "_id": "jpOQNSqbtl0ry3UU",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.jpOQNSqbtl0ry3UU"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        32,
+        32
+      ],
+      "name": "Homet’s Secret Potion",
+      "img": "icons/consumables/potions/conical-ornate-purple.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.VSwa1LpQ9PjZKsWF",
+      "_id": "QQsRU8GRbQeFU3KP",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.QQsRU8GRbQeFU3KP"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        33,
+        33
+      ],
+      "name": "Redthorn Saliva",
+      "img": "icons/commodities/materials/slime-thick-blue.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.s2Exl2XFuoOhtIov",
+      "_id": "UJfqKp0GtIrUEPyb",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.UJfqKp0GtIrUEPyb"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        34,
+        34
+      ],
+      "name": "Channelstone",
+      "img": "icons/commodities/stone/engraved-symbol-water-grey.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.IKMVQ6VwtapwoUim",
+      "_id": "VHCnZip35MMw57CG",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.VHCnZip35MMw57CG"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        35,
+        35
+      ],
+      "name": "Mythic Dust",
+      "img": "icons/commodities/materials/bowl-powder-grey.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.Zsh2AvZr8EkGtLyw",
+      "_id": "zphlOIuZBXFZcEVa",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.zphlOIuZBXFZcEVa"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        36,
+        36
+      ],
+      "name": "Acidpaste",
+      "img": "icons/commodities/materials/bowl-powder-teal.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.cfVFmS8vT9dbq9s1",
+      "_id": "bVFt8cYycBuUItfq",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.bVFt8cYycBuUItfq"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        37,
+        37
+      ],
+      "name": "Hopehold Flare",
+      "img": "icons/commodities/tech/smoke-bomb-purple.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.EhaQCPJ8oiqpRIwB",
+      "_id": "atidisB2nCu9CF3b",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.atidisB2nCu9CF3b"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        38,
+        38
+      ],
+      "name": "Major Arcane Shard",
+      "img": "icons/commodities/gems/gem-rough-round-blue.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.AA7bmiwv00lshPrC",
+      "_id": "VQ75yVBccK73Gif3",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.VQ75yVBccK73Gif3"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        39,
+        39
+      ],
+      "name": "Featherbone",
+      "img": "icons/commodities/bones/bones-stack-worn-brown.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.DpxEMpwfasEBpORU",
+      "_id": "hPKdeNWzJqCuFfjX",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.hPKdeNWzJqCuFfjX"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        40,
+        40
+      ],
+      "name": "Circle of the Void",
+      "img": "icons/magic/unholy/orb-glowing-purple.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.elsyP6VhHw1JjGSl",
+      "_id": "sh98CSXJL593xj0h",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.sh98CSXJL593xj0h"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        41,
+        41
+      ],
+      "name": "Sun Tree Sap",
+      "img": "icons/consumables/drinks/wine-amphora-clay-pink.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.kwexUzdM9wm1Qums",
+      "_id": "lL2638NxooIcWgfL",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.lL2638NxooIcWgfL"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        42,
+        42
+      ],
+      "name": "Dripfang Poison",
+      "img": "icons/consumables/potions/potion-jug-corked-skull-poison-brown-green.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.eU8VpbWB2NHIL47n",
+      "_id": "xXPyThPKW3noUC1t",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.xXPyThPKW3noUC1t"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        43,
+        43
+      ],
+      "name": "Major Health Potion",
+      "img": "icons/consumables/potions/bottle-round-label-cork-red.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.cM7pHe8bBAxSZ2xR",
+      "_id": "x2EnrXxULti4Chpb",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.x2EnrXxULti4Chpb"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        44,
+        44
+      ],
+      "name": "Major Stamina Potion",
+      "img": "icons/consumables/potions/bottle-round-label-cork-green.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.I4cQ03xbxnc81EGa",
+      "_id": "2WsA7zyGFJROyf8n",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.2WsA7zyGFJROyf8n"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        45,
+        45
+      ],
+      "name": "Ogre Musk",
+      "img": "icons/commodities/materials/slime-thick-green.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.qr1bosjFcUfuwq4B",
+      "_id": "vNlix6NqUSWwq2MU",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.vNlix6NqUSWwq2MU"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        46,
+        46
+      ],
+      "name": "Wingsprout",
+      "img": "icons/consumables/plants/leaf-broad-blue.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.n10vozlmosVR6lo4",
+      "_id": "iCj1YAinJxuGT2EN",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.iCj1YAinJxuGT2EN"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        47,
+        47
+      ],
+      "name": "Jar of Lost Voices",
+      "img": "icons/containers/kitchenware/jug-wrapped-red.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.yUol6M5b8jsbk9za",
+      "_id": "mTq9bibanrSynx3t",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.mTq9bibanrSynx3t"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        48,
+        48
+      ],
+      "name": "Dragonbloom Tea",
+      "img": "icons/consumables/drinks/tea-jug-gourd-brown.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.wM18PWWW2Ami4fBG",
+      "_id": "oEKTJg1p52E1NVqm",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.oEKTJg1p52E1NVqm"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        49,
+        49
+      ],
+      "name": "Bridge Seed",
+      "img": "icons/consumables/plants/leaf-old-dried-curled-green.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.RrIasiMCt6mqVTps",
+      "_id": "viK90OvIqxwj8kcD",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.viK90OvIqxwj8kcD"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        50,
+        50
+      ],
+      "name": "Sleeping Sap",
+      "img": "icons/consumables/potions/bottle-bulb-corked-labeled-blue.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.XZavUVlHEvE2srEt",
+      "_id": "7bOHwnq9xyBXT0Or",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.7bOHwnq9xyBXT0Or"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        51,
+        51
+      ],
+      "name": "Feast of Xuria",
+      "img": "icons/consumables/food/bowl-stew-tofu-potato-red.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.aX6NyxkNzu0LcJpt",
+      "_id": "aF8qVVOuVHUCyDon",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.aF8qVVOuVHUCyDon"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        52,
+        52
+      ],
+      "name": "Bonding Honey",
+      "img": "icons/consumables/food/soup-broth-bowl-wooden-yellow.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.PfQvqopXgvroBklL",
+      "_id": "dXbNSYrZs1LpnX2D",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.dXbNSYrZs1LpnX2D"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        53,
+        53
+      ],
+      "name": "Shrinking Potion",
+      "img": "icons/consumables/potions/flask-decorated-label-pink.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.HGixKenQwhyRAYNk",
+      "_id": "YpBzj89kfEpjmhO7",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.YpBzj89kfEpjmhO7"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        54,
+        54
+      ],
+      "name": "Growing Potion",
+      "img": "icons/consumables/potions/potion-bottle-corked-labeled-green.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.fl2f3ees8RFMze9t",
+      "_id": "3QHLVvfKx73UTKmm",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.3QHLVvfKx73UTKmm"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        55,
+        55
+      ],
+      "name": "Knowledge Stone",
+      "img": "icons/commodities/treasure/token-engraved-blue-glowing.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.nL9IALzm9BNi5oSt",
+      "_id": "C4MpR7mBHjIiPRzo",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.C4MpR7mBHjIiPRzo"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        56,
+        56
+      ],
+      "name": "Sweet Moss",
+      "img": "icons/consumables/plants/succulent-bundle-green.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.GrDrRqWgv7gvl9vn",
+      "_id": "Z5UPngFMi7TSojoM",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.Z5UPngFMi7TSojoM"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        57,
+        57
+      ],
+      "name": "Blinding Orb",
+      "img": "icons/magic/light/explosion-star-large-blue-yellow.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.eAXHdzA5qNPldOpn",
+      "_id": "bMCETSm5oYxdpRyu",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.bMCETSm5oYxdpRyu"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        58,
+        58
+      ],
+      "name": "Death Tea",
+      "img": "icons/consumables/drinks/wine-amphora-clay-gray.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.xDnJeF1grkmKck8Q",
+      "_id": "wkAnGk1yLHE6bzfr",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.wkAnGk1yLHE6bzfr"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        59,
+        59
+      ],
+      "name": "Mirror of Marigold",
+      "img": "icons/commodities/treasure/token-silver-blue.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.UFQVwgYOUZ88UxcH",
+      "_id": "XKAAfJUyqwRSRgh1",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.XKAAfJUyqwRSRgh1"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        60,
+        60
+      ],
+      "name": "Stardrop",
+      "img": "icons/magic/light/projectiles-star-purple.webp",
+      "documentUuid": "Compendium.daggerheart.consumables.Item.y4c1jrlHrf0wBWOq",
+      "_id": "91ALaXvFQDOq5h2A",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!tF04P02yVN1YDVel.91ALaXvFQDOq5h2A"
+    }
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "Bgvu4A6AMkRFOTGR": 3
+  },
+  "flags": {},
+  "formula": "1d60",
+  "_id": "tF04P02yVN1YDVel",
+  "sort": 300000,
+  "_key": "!tables!tF04P02yVN1YDVel"
+}

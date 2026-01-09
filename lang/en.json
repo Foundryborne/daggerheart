@@ -233,6 +233,7 @@
                     "confirmText": "Would you like to level up your companion {name} by {levelChange} levels at this time? (You can do it manually later)"
                 },
                 "viewLevelups": "View Levelups",
+                "viewParty": "View Party",
                 "InvalidOldCharacterImportTitle": "Old Character Import",
                 "InvalidOldCharacterImportText": "Character data exported prior to system version 1.1 will not generate a complete character. Do you wish to continue?",
                 "cancelBeastform": "Cancel Beastform"
@@ -333,6 +334,7 @@
                 "equip": "Equip",
                 "sendToChat": "Send To Chat",
                 "toLoadout": "Send to Loadout",
+                "recall": "Recall",
                 "toVault": "Send to Vault",
                 "unequip": "Unequip",
                 "useItem": "Use Item"
@@ -1807,7 +1809,9 @@
                             "label": "Long Rest: Bonus Long Rest Moves",
                             "hint": "The number of extra Long Rest Moves the character can take during a Long Rest."
                         }
-                    }
+                    },
+                    "target": "Target",
+                    "targetSelf": "Self"
                 },
                 "maxLoadout": {
                     "label": "Max Loadout Cards Bonus"

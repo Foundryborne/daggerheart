@@ -1,6 +1,6 @@
 import DHAdversarySettings from '../../applications/sheets-configs/adversary-settings.mjs';
 import { ActionField } from '../fields/actionField.mjs';
-import BaseDataActor from './base.mjs';
+import BaseDataActor, { commonActorRules } from './base.mjs';
 import { resourceField, bonusField } from '../fields/actorField.mjs';
 
 export default class DhpAdversary extends BaseDataActor {
@@ -56,25 +56,11 @@ export default class DhpAdversary extends BaseDataActor {
                 })
             }),
             resources: new fields.SchemaField({
-                hitPoints: resourceField(
-                    0,
-                    0,
-                    'DAGGERHEART.GENERAL.HitPoints.plural',
-                    true
-                ),
-                stress: resourceField(
-                    0,
-                    0,
-                    'DAGGERHEART.GENERAL.stress',
-                    true
-                )
+                hitPoints: resourceField(0, 0, 'DAGGERHEART.GENERAL.HitPoints.plural', true),
+                stress: resourceField(0, 0, 'DAGGERHEART.GENERAL.stress', true)
             }),
             rules: new fields.SchemaField({
-                conditionImmunities: new fields.SchemaField({
-                    hidden: new fields.BooleanField({ initial: false }),
-                    restrained: new fields.BooleanField({ initial: false }),
-                    vulnerable: new fields.BooleanField({ initial: false })
-                })
+                ...commonActorRules()
             }),
             attack: new ActionField({
                 initial: {

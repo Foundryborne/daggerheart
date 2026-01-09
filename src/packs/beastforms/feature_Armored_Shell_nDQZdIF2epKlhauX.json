@@ -100,7 +100,7 @@
           "key": "system.resistance.physical.reduction",
           "mode": 2,
           "value": "@system.armorScore",
-          "priority": null
+          "priority": 21
         }
       ],
       "disabled": false,
