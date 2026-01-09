@@ -119,7 +119,7 @@ export const tagifyElement = (element, baseOptions, onChange, tagifyOptions = {}
                             spellcheck='false'
                             tabIndex="${this.settings.a11y.focusableTags ? 0 : -1}"
                             class="${this.settings.classNames.tag} ${tagData.class ? tagData.class : ''}"
-                            data-tooltip="${tagData.description || tagData.name}"
+                            data-tooltip="${tagData.description ? htmlToText(tagData.description) : tagData.name}"
                             ${this.getAttributes(tagData)}> 
                     <x class="${this.settings.classNames.tagX}" role='button' aria-label='remove tag'></x>
                     <div>
@@ -198,7 +198,7 @@ foundry.dice.terms.Die.prototype.selfCorrecting = function (modifier) {
 };
 
 export const getDamageKey = damage => {
-    return ['none', 'minor', 'major', 'severe', 'massive','any'][damage];
+    return ['none', 'minor', 'major', 'severe', 'massive', 'any'][damage];
 };
 
 export const getDamageLabel = damage => {
@@ -473,4 +473,11 @@ export function refreshIsAllowed(allowedTypes, typeToCheck) {
 export async function getCritDamageBonus(formula) {
     const critRoll = new Roll(formula);
     return critRoll.dice.reduce((acc, dice) => acc + dice.faces * dice.number, 0);
+}
+
+export function htmlToText(html) {
+    var tempDivElement = document.createElement('div');
+    tempDivElement.innerHTML = html;
+
+    return tempDivElement.textContent || tempDivElement.innerText || '';
 }
