@@ -21,6 +21,8 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
 
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
+        if (!this.actor) return context;
+
         context.partyOnCanvas =
             this.actor.type === 'party' &&
             this.actor.system.partyMembers.some(member => member.getActiveTokens().length > 0);
@@ -58,14 +60,33 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
     }
 
     static async #onToggleCombat() {
+        const tokensWithoutActors = canvas.tokens.controlled.filter(t => !t.actor);
+        const warning =
+            tokensWithoutActors.length === 1
+                ? game.i18n.format('DAGGERHEART.UI.Notifications.tokenActorMissing', {
+                      name: tokensWithoutActors[0].name
+                  })
+                : game.i18n.format('DAGGERHEART.UI.Notifications.tokenActorsMissing', {
+                      names: tokensWithoutActors.map(x => x.name).join(', ')
+                  });
+
         const tokens = canvas.tokens.controlled
-            .filter(t => !t.actor || !DHTokenHUD.#nonCombatTypes.includes(t.actor.type))
+            .filter(t => t.actor && !DHTokenHUD.#nonCombatTypes.includes(t.actor.type))
             .map(t => t.document);
-        if (!this.object.controlled) tokens.push(this.document);
+        if (!this.object.controlled && this.document.actor) tokens.push(this.document);
 
         try {
-            if (this.document.inCombat) await TokenDocument.implementation.deleteCombatants(tokens);
-            else await TokenDocument.implementation.createCombatants(tokens);
+            if (this.document.inCombat) {
+                const tokensInCombat = tokens.filter(t => t.inCombat);
+                await TokenDocument.implementation.deleteCombatants([...tokensInCombat, ...tokensWithoutActors]);
+            } else {
+                if (tokensWithoutActors.length) {
+                    ui.notifications.warn(warning);
+                }
+
+                const tokensOutOfCombat = tokens.filter(t => !t.inCombat);
+                await TokenDocument.implementation.createCombatants(tokensOutOfCombat);
+            }
         } catch (err) {
             ui.notifications.warn(err.message);
         }

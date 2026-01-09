@@ -9,7 +9,7 @@ export const AdversaryBPPerEncounter = (adversaries, characters) => {
             );
             if (existingEntry) {
                 existingEntry.nr += 1;
-            } else {
+            } else if (adversary.type) {
                 acc.push({ adversary, nr: 1 });
             }
             return acc;

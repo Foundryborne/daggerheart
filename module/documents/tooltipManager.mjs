@@ -262,7 +262,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         const combat = game.combats.get(combatId);
         const adversaries =
             combat.turns?.filter(x => x.actor?.isNPC)?.map(x => ({ ...x.actor, type: x.actor.system.type })) ?? [];
-        const characters = combat.turns?.filter(x => !x.isNPC) ?? [];
+        const characters = combat.turns?.filter(x => !x.isNPC && x.actor) ?? [];
 
         const nrCharacters = characters.length;
         const currentBP = AdversaryBPPerEncounter(adversaries, characters);
@@ -272,7 +272,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         );
 
         const categories = combat.combatants.reduce((acc, combatant) => {
-            if (combatant.actor.type === 'adversary') {
+            if (combatant.actor?.type === 'adversary') {
                 const keyData = Object.keys(acc).reduce((identifiers, categoryKey) => {
                     if (identifiers) return identifiers;
                     const category = acc[categoryKey];
@@ -352,7 +352,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
 
         await combat.toggleModifierEffects(
             event.target.checked,
-            combat.combatants.filter(x => x.actor.type === 'adversary').map(x => x.actor),
+            combat.combatants.filter(x => x.actor?.type === 'adversary').map(x => x.actor),
             category,
             grouping
         );
