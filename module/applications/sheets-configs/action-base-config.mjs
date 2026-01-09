@@ -111,7 +111,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         context.source = this.action.toObject(true);
 
         context.summons = [];
-        for (const summon of context.source.summon) {
+        for (const summon of context.source.summon ?? []) {
             const actor = await foundry.utils.fromUuid(summon.actorUUID);
             context.summons.push({ actor, count: summon.count });
         }
@@ -261,7 +261,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         const wrapper = event.target.closest('.summon-count-wrapper');
         const index = wrapper.dataset.index;
         const data = this.action.toObject();
-        data.summon[index].count = Number.parseInt(event.target.value);
+        data.summon[index].count = event.target.value;
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 

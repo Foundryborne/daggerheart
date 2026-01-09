@@ -71,7 +71,9 @@
                     "name": "Summon",
                     "tooltip": "Create tokens in the scene.",
                     "error": "You do not have permission to summon tokens or there is no active scene.",
-                    "invalidDrop": "You can only drop Actor entities to summon."
+                    "invalidDrop": "You can only drop Actor entities to summon.",
+                    "chatMessageTitle": "Test2",
+                    "chatMessageHeaderTitle": "Summoning"
                 }
             },
             "Config": {
@@ -2180,6 +2182,10 @@
             "stress": "Stress",
             "subclasses": "Subclasses",
             "success": "Success",
+            "summon": {
+                "single": "Summon",
+                "plural": "Summons"
+            },
             "take": "Take",
             "Target": {
                 "single": "Target",

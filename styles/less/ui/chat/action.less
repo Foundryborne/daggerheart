@@ -98,6 +98,51 @@
 
         .description {
             padding: 8px;
+
+            .summons-header {
+                font-size: var(--font-size-14);
+                text-align: center;
+
+                span::before,
+                span::after {
+                    color: @dark-blue;
+                }
+                &:before {
+                    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, @dark-blue 100%);
+                }
+
+                &:after {
+                    background: linear-gradient(90deg, @dark-blue 0%, rgba(0, 0, 0, 0) 100%);
+                }
+            }
+
+            .summons-container {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+
+                .summon-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .summon-label-container {
+                        flex: 1;
+                        display: flex;
+                        align-items: center;
+                        gap: 4px;
+
+                        img {
+                            height: 32px;
+                        }
+
+                        label {
+                            display: flex;
+                            flex-wrap: wrap;
+                        }
+                    }
+                }
+            }
         }
 
         .ability-card-footer {

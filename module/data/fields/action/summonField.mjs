@@ -1,3 +1,5 @@
+import FormulaField from '../formulaField.mjs';
+
 const fields = foundry.data.fields;
 
 export default class DHSummonField extends fields.ArrayField {
@@ -12,11 +14,9 @@ export default class DHSummonField extends fields.ArrayField {
                 type: 'Actor',
                 required: true
             }),
-            count: new fields.NumberField({
+            count: new FormulaField({
                 required: true,
-                default: 1,
-                min: 1,
-                integer: true
+                default: '1'
             })
         });
         super(summonFields, options, context);
@@ -33,38 +33,57 @@ export default class DHSummonField extends fields.ArrayField {
             return;
         }
 
-        this.actor.sheet?.minimize();
+        const rolls = [];
         const summonData = [];
         for (const summon of this.summon) {
-            /* Possibly check for any available instances in the world with prepared images */
-            let actor = await foundry.utils.fromUuid(summon.actorUUID);
-
-            /* Check for any available instances of the actor present in the world if we're missing artwork in the compendium */
-            const dataType = game.system.api.data.actors[`Dh${actor.type.capitalize()}`];
-            if (actor.inCompendium && dataType && actor.img === dataType.DEFAULT_ICON) {
-                const worldActorCopy = game.actors.find(x => x.name === actor.name);
-                actor = worldActorCopy ?? actor;
+            let count = summon.count;
+            const roll = new Roll(summon.count);
+            if (!roll.isDeterministic) {
+                await roll.evaluate();
+                if (game.modules.get('dice-so-nice')?.active) rolls.push(roll);
+                count = roll.total;
             }
 
-            summonData.push({ actor, count: summon.count });
+            const actor = DHSummonField.getWorldActor(await foundry.utils.fromUuid(summon.actorUUID));
+            /* Extending summon data in memory so it's available in actionField.toChat. Think it's harmless, but ugly. Could maybe find a better way. */
+            summon.rolledCount = count;
+            summon.actor = actor.toObject();
+
+            summonData.push({ actor, count: count });
         }
 
-        const handleSummon = async summonIndex => {
-            const summon = summonData[summonIndex];
-            const result = await CONFIG.ux.TokenManager.createPreviewAsync(summon.actor, {
-                name: `${summon.actor.prototypeToken.name}${summon.count > 1 ? ` (${summon.count}x)` : ''}`
-            });
-            if (!result) return this.actor.sheet?.maximize();
+        if (rolls.length) await Promise.all(rolls.map(roll => game.dice3d.showForRoll(roll, game.user, true)));
 
-            summon.count--;
-            if (summon.count === 0) {
-                summonIndex++;
-                if (summonIndex === summonData.length) return this.actor.sheet?.maximize();
-            }
+        this.actor.sheet?.minimize();
+        DHSummonField.handleSummon(summonData, this.actor);
+    }
 
-            handleSummon(summonIndex);
-        };
+    /* Check for any available instances of the actor present in the world if we're missing artwork in the compendium */
+    static getWorldActor(baseActor) {
+        const dataType = game.system.api.data.actors[`Dh${baseActor.type.capitalize()}`];
+        if (baseActor.inCompendium && dataType && baseActor.img === dataType.DEFAULT_ICON) {
+            const worldActorCopy = game.actors.find(x => x.name === baseActor.name);
+            return worldActorCopy ?? baseActor;
+        }
 
-        handleSummon(0);
+        return baseActor;
+    }
+
+    static async handleSummon(summonData, actionActor, summonIndex = 0) {
+        const summon = summonData[summonIndex];
+        const result = await CONFIG.ux.TokenManager.createPreviewAsync(summon.actor, {
+            name: `${summon.actor.prototypeToken.name}${summon.count > 1 ? ` (${summon.count}x)` : ''}`
+        });
+
+        if (!result) return actionActor.sheet?.maximize();
+        summon.actor = result.actor;
+
+        summon.count--;
+        if (summon.count === 0) {
+            summonIndex++;
+            if (summonIndex === summonData.length) return actionActor.sheet?.maximize();
+        }
+
+        DHSummonField.handleSummon(summonData, actionActor, summonIndex);
     }
 }

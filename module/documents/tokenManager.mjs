@@ -94,11 +94,11 @@ export default class DhTokenManager {
             ? await game.system.api.documents.DhpActor.create(this.#actor.toObject())
             : this.#actor;
         const tokenData = await actor.getTokenDocument();
-        const token = await canvas.scene.createEmbeddedDocuments('Token', [
+        const result = await canvas.scene.createEmbeddedDocuments('Token', [
             { ...tokenData, x: this.#activePreview.document.x, y: this.#activePreview.document.y }
         ]);
 
         this.#activePreview = undefined;
-        if (this.#resolve) this.#resolve(token);
+        if (this.#resolve && result.length) this.#resolve(result[0]);
     }
 }
