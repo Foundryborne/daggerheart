@@ -272,12 +272,17 @@ export function ActionMixin(Base) {
                 itemOrigin: this.item,
                 description: this.description || (this.item instanceof Item ? this.item.system.description : '')
             };
+
+            const speaker = cls.getSpeaker();
             const msg = {
                 type: 'abilityUse',
                 user: game.user.id,
                 actor: { name: this.actor.name, img: this.actor.img },
                 author: this.author,
-                speaker: cls.getSpeaker(),
+                speaker: {
+                    speaker,
+                    actor: speaker.actor ?? this.actor
+                },
                 title: game.i18n.localize('DAGGERHEART.UI.Chat.action.title'),
                 system: systemData,
                 content: await foundry.applications.handlebars.renderTemplate(
