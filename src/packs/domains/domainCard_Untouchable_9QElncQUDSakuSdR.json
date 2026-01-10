@@ -37,7 +37,7 @@
           "key": "system.evasion",
           "mode": 2,
           "value": "ceil(@system.traits.agility.value / 2)",
-          "priority": null
+          "priority": 21
         }
       ],
       "disabled": false,

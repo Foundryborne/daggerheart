@@ -101,7 +101,7 @@
           "key": "system.traits.presence.value",
           "mode": 5,
           "value": "@cast",
-          "priority": null
+          "priority": 51
         }
       ],
       "disabled": false,

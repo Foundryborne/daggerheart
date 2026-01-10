@@ -1,0 +1,1519 @@
+{
+  "name": "Loot",
+  "img": "icons/commodities/treasure/brooch-gold-ruby.webp",
+  "description": "<p>To generate a random item, choose a rarity, roll the designated dice, and match the total to the item in the table: </p><ul><li><p> Common: 1d12 or 2d12 </p></li><li><p>Uncommon: 2d12 or 3d12 </p></li><li><p>Rare: 3d12 or 4d12 </p></li><li><p>Legendary: 4d12 or 5d12</p></li></ul>",
+  "results": [
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "_id": "U0jqWUc9SVQTwZOt",
+      "name": "Premium Bedroll",
+      "img": "icons/sundries/survival/bedroll-blue-red.webp",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.daggerheart.loot.Item.QGYPNBIufpBguwjC",
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.U0jqWUc9SVQTwZOt"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "_id": "jsje2l4MxyDSeiQ5",
+      "name": "Piper Whistle",
+      "img": "icons/tools/instruments/pipe-flue-tan.webp",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.daggerheart.loot.Item.v4PIoCCEjeE3acys",
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.jsje2l4MxyDSeiQ5"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "name": "Charging Quiver",
+      "img": "icons/containers/ammunition/arrows-quiver-grey-gold.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.gsUDP90d4SRtLEUn",
+      "_id": "OUEywrTcAKy9jOf2",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.OUEywrTcAKy9jOf2"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "name": "Alistair’s Torch",
+      "img": "icons/sundries/lights/torch-brown-lit.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.MeEg57T6MKpw3sme",
+      "_id": "jYHROKTetnH9U1NF",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.jYHROKTetnH9U1NF"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "name": "Speaking Orbs",
+      "img": "icons/commodities/materials/glass-orb-blue-gold.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.LZrG6CFiSjpLA2F1",
+      "_id": "1skyTdrVs2cPMbYd",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.1skyTdrVs2cPMbYd"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "name": "Manacles",
+      "img": "icons/sundries/survival/cuffs-shackles-steel.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.GkmATIuemyFtQX1D",
+      "_id": "ew7VM7lktgEHUVNh",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.ew7VM7lktgEHUVNh"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "name": "Arcane Cloak",
+      "img": "icons/equipment/back/cloak-layered-green-brown.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.4STt98biZwjFoKOe",
+      "_id": "ghM44MABWLVc0594",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.ghM44MABWLVc0594"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "name": "Woven Net",
+      "img": "icons/tools/fishing/net-tan.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.ARuv48PWUGJGBC4n",
+      "_id": "NWltT1Sifub9cFxR",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.NWltT1Sifub9cFxR"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "name": "Fire Jar",
+      "img": "icons/containers/kitchenware/jug-wrapped-red.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.X6RMkIt89wf7qX2E",
+      "_id": "2NbLnKKXmmx5m1Di",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.2NbLnKKXmmx5m1Di"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "name": "Suspended Rod",
+      "img": "icons/commodities/tech/pipe-metal.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.nnj12RiFanq7s5zv",
+      "_id": "COpKr1HYsR8Jkwyn",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.COpKr1HYsR8Jkwyn"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "name": "Glamour Stone",
+      "img": "icons/commodities/treasure/token-engraved-purple-glowing.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.Pj17cvdJ1XG1jv6I",
+      "_id": "e1vjhShtDZSnVUNu",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.e1vjhShtDZSnVUNu"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "name": "Empty Chest",
+      "img": "icons/containers/chest/chest-simple-box-gold-brown.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.p2yy61uKsyIsl8cU",
+      "_id": "HIvObcLTrncfN7Qx",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.HIvObcLTrncfN7Qx"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "name": "Companion Case",
+      "img": "icons/containers/chest/chest-reinforced-steel-red.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.V25uXkAQvK3hUta4",
+      "_id": "fCgRZndg111RI8MC",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.fCgRZndg111RI8MC"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "name": "Piercing Arrows",
+      "img": "icons/weapons/ammunition/arrow-broadhead-glowing-orange.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.I63LTFD6GXHgyGpR",
+      "_id": "97oyM8w0xZjeQkeM",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.97oyM8w0xZjeQkeM"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "name": "Valorstone",
+      "img": "icons/commodities/treasure/token-engraved-spiral-grey-white.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.7yywua9TmQ4WP5WH",
+      "_id": "EY4Rtt8KDpjhTxCH",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.EY4Rtt8KDpjhTxCH"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        16,
+        16
+      ],
+      "name": "Skeleton Key",
+      "img": "icons/sundries/misc/key-ornate-iron-black.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.edkNgwy4xghZreBa",
+      "_id": "XYORiEz8M7K3BNWM",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.XYORiEz8M7K3BNWM"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        17,
+        17
+      ],
+      "name": "Arcane Prism",
+      "img": "icons/commodities/gems/gem-faceted-trillion-blue.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.Mn1eo2Mdtu1kzyxB",
+      "_id": "Yc3x5ifOASG15MrD",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.Yc3x5ifOASG15MrD"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        18,
+        18
+      ],
+      "name": "Minor Stamina Potion Recipe",
+      "img": "icons/sundries/scrolls/scroll-bound-green.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.1TLpFsp3PLDsqoTw",
+      "_id": "akIE4Bu9zq6N4N0d",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.akIE4Bu9zq6N4N0d"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        19,
+        19
+      ],
+      "name": "Minor Health Potion Recipe",
+      "img": "icons/sundries/scrolls/scroll-bound-red.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.PQxvxAVBbkt0TleC",
+      "_id": "GVUbOeXrT0TLPlW9",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.GVUbOeXrT0TLPlW9"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        20,
+        20
+      ],
+      "name": "Homing Compasses",
+      "img": "icons/tools/navigation/compass-worn-copper.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.yrAGYlDyoe4OYl7d",
+      "_id": "0FaxK5udut2y79B7",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.0FaxK5udut2y79B7"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        21,
+        21
+      ],
+      "name": "Corrector Sprite",
+      "img": "icons/magic/light/orbs-smoke-pink.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.G0RktbmtnuAlKCRH",
+      "_id": "R1iPLFiRgHFhm5x2",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.R1iPLFiRgHFhm5x2"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        22,
+        22
+      ],
+      "name": "Gecko Gloves",
+      "img": "icons/equipment/hand/glove-ring-leather-green.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.CGzjBpHJRG8KSt5Y",
+      "_id": "MUWHmP6Bx55SSOpQ",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.MUWHmP6Bx55SSOpQ"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        23,
+        23
+      ],
+      "name": "Lorekeeper",
+      "img": "icons/sundries/books/book-backed-wood-tan.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.JsPYzrqpITqGj23I",
+      "_id": "X2vU11ltW4aMbPcc",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.X2vU11ltW4aMbPcc"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        24,
+        24
+      ],
+      "name": "Vial of Darksmoke Recipe",
+      "img": "icons/sundries/scrolls/scroll-bound-black-brown.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.MhCo8i0cRXzdnXbA",
+      "_id": "SJmfB1HDxXJB6xyS",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.SJmfB1HDxXJB6xyS"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        25,
+        25
+      ],
+      "name": "Bloodstone",
+      "img": "icons/commodities/treasure/token-engraved-eye-red.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.oMd78vhL2x2NO8Mg",
+      "_id": "dEyzIWTTbSk8LaoN",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.dEyzIWTTbSk8LaoN"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        26,
+        26
+      ],
+      "name": "Greatstone",
+      "img": "icons/commodities/treasure/token-etched-h-brown.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.y7zABzR0Q2fRskTw",
+      "_id": "sSwx1g6eqgLqPgBu",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.sSwx1g6eqgLqPgBu"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        27,
+        27
+      ],
+      "name": "Glider",
+      "img": "icons/commodities/leather/leather-patch-red.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.CiXwelozmBDcPY48",
+      "_id": "DSPDKm53Mu6PeaK1",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.DSPDKm53Mu6PeaK1"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        28,
+        28
+      ],
+      "name": "Ring of Silence",
+      "img": "icons/equipment/finger/ring-ball-purple.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.K1ysGnTpNyxPu5Au",
+      "_id": "SSuVJ6WbSdfpMxTx",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.SSuVJ6WbSdfpMxTx"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        29,
+        29
+      ],
+      "name": "Calming Pendant",
+      "img": "icons/equipment/neck/amulet-round-blue.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.tgFFMxpuRSiRrrEB",
+      "_id": "Fwq1wJzAGdO2rUWo",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.Fwq1wJzAGdO2rUWo"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        30,
+        30
+      ],
+      "name": "Dual Flask",
+      "img": "icons/consumables/potions/round-decorated-snake-green.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.HCvcAu3sdHCspGMP",
+      "_id": "elle12djjCs3D6Vr",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.elle12djjCs3D6Vr"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        31,
+        31
+      ],
+      "name": "Bag of Ficklesand",
+      "img": "icons/containers/bags/pouch-cloth-tan.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.v758j4FwNVAurhYK",
+      "_id": "yXyVHCrQEamt9DSt",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.yXyVHCrQEamt9DSt"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        32,
+        32
+      ],
+      "name": "Ring of Resistance",
+      "img": "icons/equipment/finger/ring-shield-silver.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.aUqRifqR5JXXa1dN",
+      "_id": "mHlhtw9BRyMeeGvz",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.mHlhtw9BRyMeeGvz"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        33,
+        33
+      ],
+      "name": "Phoenix Feather",
+      "img": "icons/commodities/materials/feather-red.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.QNtzJSVENww63THa",
+      "_id": "5R86TY964aeYZxLa",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.5R86TY964aeYZxLa"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        34,
+        34
+      ],
+      "name": "Box of Many Goods",
+      "img": "icons/containers/boxes/crate-heavy-yellow.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.bZyT7Qw7iafswlTY",
+      "_id": "6ZhCovGbkTxRJFFx",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.6ZhCovGbkTxRJFFx"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        35,
+        35
+      ],
+      "name": "Airblade Charm",
+      "img": "icons/equipment/neck/amulet-carved-stone-spiral-blue.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.cTYvyaSKBxosM9Y9",
+      "_id": "UYHcpVuL9P26VPBM",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.UYHcpVuL9P26VPBM"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        36,
+        36
+      ],
+      "name": "Portal Seed",
+      "img": "icons/commodities/treasure/egg-ornate-green-gold.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.eRd5Gk7J7hPCqp11",
+      "_id": "yOchOTcWwUwug2st",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.yOchOTcWwUwug2st"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        37,
+        37
+      ],
+      "name": "Paragon’s Chain",
+      "img": "icons/equipment/neck/choker-chain-thin-gold.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.F4hoRfvVdZq5bhhI",
+      "_id": "TFgxOPNDbLYDzxrl",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.TFgxOPNDbLYDzxrl"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        38,
+        38
+      ],
+      "name": "Elusive Amulet",
+      "img": "icons/equipment/neck/pendant-rough-silver-purple.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.PkmTZXRMZL022O75",
+      "_id": "GcJEXPoMDxxWNYno",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.GcJEXPoMDxxWNYno"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        39,
+        39
+      ],
+      "name": "Hopekeeper Locket",
+      "img": "icons/equipment/neck/amulet-round-engraved-spiral-gold.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.9DcFR75tsnBYIp6Z",
+      "_id": "iyiOPysR6uQE7QXR",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.iyiOPysR6uQE7QXR"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        40,
+        40
+      ],
+      "name": "Infinite Bag",
+      "img": "icons/containers/bags/pack-engraved-leather-blue.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.Iedjw1LVWEozVh0J",
+      "_id": "nsg8GxSABbvsZo5v",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.nsg8GxSABbvsZo5v"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        41,
+        41
+      ],
+      "name": "Stride Relic",
+      "img": "icons/commodities/treasure/token-runed-ing-brown.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.FfJISMzYATaPQPLc",
+      "_id": "DFEA1djJSnstOXym",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.DFEA1djJSnstOXym"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        42,
+        42
+      ],
+      "name": "Bolster Relic",
+      "img": "icons/commodities/treasure/token-runed-radr-brown.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.m3EpxlDgxn2tCDDR",
+      "_id": "xa075fPgUGCVVGiy",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.xa075fPgUGCVVGiy"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        43,
+        43
+      ],
+      "name": "Control Relic",
+      "img": "icons/commodities/treasure/token-runed-sigel-brown.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.QPGBDItjrRhXU6iJ",
+      "_id": "zNS3a6JZLlLgXxXI",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.zNS3a6JZLlLgXxXI"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        44,
+        44
+      ],
+      "name": "Attune Relic",
+      "img": "icons/commodities/treasure/token-runed-spiral-grey.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.vK6bKyQTT3m8WvMh",
+      "_id": "pf1zrtyDamclUpb5",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.pf1zrtyDamclUpb5"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        45,
+        45
+      ],
+      "name": "Charm Relic",
+      "img": "icons/commodities/treasure/token-runed-wyn-grey.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.9P9jqGSlxVCbTdLe",
+      "_id": "JNsJQefAYXARnzcB",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.JNsJQefAYXARnzcB"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        46,
+        46
+      ],
+      "name": "Enlighten Relic",
+      "img": "icons/commodities/treasure/token-runed-os-grey.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.vSGx1f9SYUiA29L3",
+      "_id": "Bk2zTfHlpNg4f4AB",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.Bk2zTfHlpNg4f4AB"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        47,
+        47
+      ],
+      "name": "Honing Relic",
+      "img": "icons/commodities/treasure/token-runed-nyd-yellow.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.SAAnEAeXDnhBbLjB",
+      "_id": "BxB4fAXy57tWHc98",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.BxB4fAXy57tWHc98"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        48,
+        48
+      ],
+      "name": "Flickerfly Pendant",
+      "img": "icons/equipment/neck/choker-rough-green.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.9VKYSBQxN9XFWlAm",
+      "_id": "b7JDKti5fXipswXs",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.b7JDKti5fXipswXs"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        49,
+        49
+      ],
+      "name": "Lakestrider Boots",
+      "img": "icons/equipment/feet/shoes-collared-leather-blue.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.NgvmrJYKpA2PrRSo",
+      "_id": "ngpVKb5GIJySdf2Y",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.ngpVKb5GIJySdf2Y"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        50,
+        50
+      ],
+      "name": "Clay Companion",
+      "img": "icons/commodities/gems/pearl-brown.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.lGIk9vBNz0jvskXD",
+      "_id": "IrKbVyqUcSruPPfZ",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.IrKbVyqUcSruPPfZ"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        51,
+        51
+      ],
+      "name": "Mythic Dust Recipe",
+      "img": "icons/sundries/scrolls/scroll-bound-green.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.5YZls8XH3MB7twNa",
+      "_id": "V1R3wUj4l7lnbph1",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.V1R3wUj4l7lnbph1"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        52,
+        52
+      ],
+      "name": "Shard of Memory",
+      "img": "icons/commodities/gems/gem-rough-navette-purple-pink.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.2ULPgNyqCrxea0v0",
+      "_id": "0dFhkeOokjbwptHh",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.0dFhkeOokjbwptHh"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        53,
+        53
+      ],
+      "name": "Gem of Alacrity",
+      "img": "icons/commodities/gems/gem-rough-ball-purple.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.zecFwBUSWtB3HW8X",
+      "_id": "CLObmHdtId5fEs4n",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.CLObmHdtId5fEs4n"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        54,
+        54
+      ],
+      "name": "Gem of Might",
+      "img": "icons/commodities/gems/gem-rough-brilliant-green.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.rtSInNPc4B3ChBUZ",
+      "_id": "17Zw4Tl1s1h5cFZK",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.17Zw4Tl1s1h5cFZK"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        55,
+        55
+      ],
+      "name": "Gem of Precision",
+      "img": "icons/commodities/gems/gem-rough-cushion-green.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.CrvJ7vb4s40YgEcy",
+      "_id": "6zmLU8WdmEWbIHBL",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.6zmLU8WdmEWbIHBL"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        56,
+        56
+      ],
+      "name": "Gem of Insight",
+      "img": "icons/commodities/gems/gem-rough-cushion-blue.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.TbgeT9ZxKHqFqJSN",
+      "_id": "AEeWEQnJwq51mBnM",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.AEeWEQnJwq51mBnM"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        57,
+        57
+      ],
+      "name": "Gem of Audacity",
+      "img": "icons/commodities/gems/gem-rough-cushion-pink-yellow.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.hMu9It3ThCLCXuCA",
+      "_id": "SuymUKc0CeisDgm2",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.SuymUKc0CeisDgm2"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        58,
+        58
+      ],
+      "name": "Gem of Sagacity",
+      "img": "icons/commodities/gems/gem-rough-cushion-purple.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.ua351S7CsH22X1x2",
+      "_id": "27LKVRatgX1asMpR",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.27LKVRatgX1asMpR"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        59,
+        59
+      ],
+      "name": "Ring of Unbreakable Resolve",
+      "img": "icons/equipment/finger/ring-faceted-gold-teal.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.kn71qCQY0DnjmQBJ",
+      "_id": "3A76l2jxYMqVfcQY",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.3A76l2jxYMqVfcQY"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        60,
+        60
+      ],
+      "name": "Belt of Unity",
+      "img": "icons/equipment/waist/belt-buckle-ornate-steel.webp",
+      "documentUuid": "Compendium.daggerheart.loot.Item.gFzkUGCjkRJtyoe9",
+      "_id": "dkLn9gwnlaD4kbZ2",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!S61Shlt2I5CbLRjz.dkLn9gwnlaD4kbZ2"
+    }
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "Bgvu4A6AMkRFOTGR": 3
+  },
+  "flags": {},
+  "formula": "1d60",
+  "_id": "S61Shlt2I5CbLRjz",
+  "sort": 200000,
+  "_key": "!tables!S61Shlt2I5CbLRjz"
+}

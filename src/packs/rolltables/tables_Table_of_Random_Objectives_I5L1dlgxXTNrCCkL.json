@@ -1,0 +1,319 @@
+{
+  "name": "Table of Random Objectives",
+  "img": "icons/sundries/documents/document-torn-diagram-tan.webp",
+  "description": "<p>Layering Goals Other than Attrition into Combat</p>",
+  "results": [
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "_id": "LDuVbmdvhJiEOe7U",
+      "name": "",
+      "img": "icons/svg/d12-grey.svg",
+      "description": "<p>Acquire (obtain or steal) an important item or items.</p>",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "documentUuid": null,
+      "_key": "!tables.results!I5L1dlgxXTNrCCkL.LDuVbmdvhJiEOe7U"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "_id": "FxYpST4nQUTBp1mN",
+      "name": "",
+      "img": "icons/svg/d12-grey.svg",
+      "description": "<p>Capture one or more of the opponents.</p>",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "documentUuid": null,
+      "_key": "!tables.results!I5L1dlgxXTNrCCkL.FxYpST4nQUTBp1mN"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "_id": "bTkZgxqEr4lNxzeK",
+      "name": "",
+      "img": "icons/svg/d12-grey.svg",
+      "description": "<p>Activate a magical device.</p>",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "documentUuid": null,
+      "_key": "!tables.results!I5L1dlgxXTNrCCkL.bTkZgxqEr4lNxzeK"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "_id": "T39LgOL1cw5AIY59",
+      "name": "",
+      "img": "icons/svg/d12-grey.svg",
+      "description": "<p>Frame a character or tarnish their reputation.</p>",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "documentUuid": null,
+      "_key": "!tables.results!I5L1dlgxXTNrCCkL.T39LgOL1cw5AIY59"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "_id": "MHgv8dlrwA3ZmBKq",
+      "name": "",
+      "img": "icons/svg/d12-grey.svg",
+      "description": "<p>Drive the opponent into a corner or ambush point.</p>",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "documentUuid": null,
+      "_key": "!tables.results!I5L1dlgxXTNrCCkL.MHgv8dlrwA3ZmBKq"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "_id": "4USCNNavzVvBqldn",
+      "name": "",
+      "img": "icons/svg/d12-grey.svg",
+      "description": "<p>Stop a magical ritual, legal ceremony, or time-sensitive spell.</p>",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "documentUuid": null,
+      "_key": "!tables.results!I5L1dlgxXTNrCCkL.4USCNNavzVvBqldn"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "_id": "gwZnWTauHsbb6rsr",
+      "name": "",
+      "img": "icons/svg/d12-grey.svg",
+      "description": "<p>Hold the line—keep the enemy from reaching a specific area or group.</p>",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "documentUuid": null,
+      "_key": "!tables.results!I5L1dlgxXTNrCCkL.gwZnWTauHsbb6rsr"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "_id": "beDIxxPyCCVa8nlE",
+      "name": "",
+      "img": "icons/svg/d12-grey.svg",
+      "description": "<p>Plant evidence or a tracking device on a target.</p>",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "documentUuid": null,
+      "_key": "!tables.results!I5L1dlgxXTNrCCkL.beDIxxPyCCVa8nlE"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "_id": "C70V6prVmZd5VRV8",
+      "name": "",
+      "img": "icons/svg/d12-grey.svg",
+      "description": "<p>Secure a specific location ahead of another group’s arrival.</p>",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "documentUuid": null,
+      "_key": "!tables.results!I5L1dlgxXTNrCCkL.C70V6prVmZd5VRV8"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "_id": "i02rh05CvhHlKJCN",
+      "name": "",
+      "img": "icons/svg/d12-grey.svg",
+      "description": "<p>Harass the opponent to deplete their resources or keep them occupied.</p>",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "documentUuid": null,
+      "_key": "!tables.results!I5L1dlgxXTNrCCkL.i02rh05CvhHlKJCN"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "_id": "AbNgD5GCbWuui9oP",
+      "name": "",
+      "img": "icons/svg/d12-grey.svg",
+      "description": "<p>Destroy a piece of architecture, a statue, a shrine, or a weapon.</p>",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "documentUuid": null,
+      "_key": "!tables.results!I5L1dlgxXTNrCCkL.AbNgD5GCbWuui9oP"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "_id": "TCrdyh3qhl2vtQxO",
+      "name": "",
+      "img": "icons/svg/d12-grey.svg",
+      "description": "<p>Investigate a situation to confirm or deny existing information.</p>",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "daggerheart",
+        "systemVersion": "1.4.4",
+        "lastModifiedBy": null
+      },
+      "documentUuid": null,
+      "_key": "!tables.results!I5L1dlgxXTNrCCkL.TCrdyh3qhl2vtQxO"
+    }
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "Bgvu4A6AMkRFOTGR": 3
+  },
+  "flags": {},
+  "formula": "1d12",
+  "_id": "I5L1dlgxXTNrCCkL",
+  "sort": 400000,
+  "_key": "!tables!I5L1dlgxXTNrCCkL"
+}

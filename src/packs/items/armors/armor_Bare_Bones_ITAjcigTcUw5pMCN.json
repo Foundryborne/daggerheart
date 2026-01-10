@@ -39,7 +39,7 @@
           "key": "system.armorScore",
           "mode": 2,
           "value": "@system.traits.strength.value",
-          "priority": null
+          "priority": 21
         }
       ],
       "disabled": false,

@@ -34,6 +34,69 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         this.renderFlags.set({ refreshEffects: true });
     }
 
+    /** 
+     * Returns the distance from this token to another token object.
+     * This value is corrected to handle alternate token sizes and other grid types
+     * according to the diagonal rules.
+     */
+    distanceTo(target) {
+        if (!canvas.ready) return NaN;
+        if (this === target) return 0;
+
+        const originPoint = this.center;
+        const destinationPoint = target.center;
+
+        // Compute for gridless. This version returns circular edge to edge + grid distance,
+        // so that tokens that are touching return 5. 
+        if (canvas.grid.type === CONST.GRID_TYPES.GRIDLESS) {
+            const boundsCorrection = canvas.grid.distance / canvas.grid.size;
+            const originRadius = this.bounds.width * boundsCorrection / 2;
+            const targetRadius = target.bounds.width * boundsCorrection / 2;
+            const distance = canvas.grid.measurePath([originPoint, destinationPoint]).distance;
+            return distance - originRadius - targetRadius + canvas.grid.distance;
+        }
+
+        // Compute what the closest grid space of each token is, then compute that distance
+        const originEdge = this.#getEdgeBoundary(this.bounds, originPoint, destinationPoint);
+        const targetEdge = this.#getEdgeBoundary(target.bounds, originPoint, destinationPoint);
+        const adjustedOriginPoint = canvas.grid.getTopLeftPoint({
+            x: originEdge.x + Math.sign(originPoint.x - originEdge.x),
+            y: originEdge.y + Math.sign(originPoint.y - originEdge.y) 
+        });
+        const adjustDestinationPoint = canvas.grid.getTopLeftPoint({
+            x: targetEdge.x + Math.sign(destinationPoint.x - targetEdge.x),
+            y: targetEdge.y + Math.sign(destinationPoint.y - targetEdge.y) 
+        });
+        return canvas.grid.measurePath([adjustedOriginPoint, adjustDestinationPoint]).distance;
+    }
+
+    /** Returns the point at which a line starting at origin and ending at destination intersects the edge of the bounds */
+    #getEdgeBoundary(bounds, originPoint, destinationPoint) {
+        const points = [
+            { x: bounds.x, y: bounds.y },
+            { x: bounds.x + bounds.width, y: bounds.y },
+            { x: bounds.x + bounds.width, y: bounds.y + bounds.height },
+            { x: bounds.x, y: bounds.y + bounds.height }
+        ];
+        const pairsToTest = [
+            [points[0], points[1]],
+            [points[1], points[2]],
+            [points[2], points[3]],
+            [points[3], points[0]]
+        ];
+        for (const pair of pairsToTest) {
+            const result = foundry.utils.lineSegmentIntersection(originPoint, destinationPoint, pair[0], pair[1]);
+            if (result) return result;
+        }
+
+        return null;
+    }
+
+    /** Tests if the token is at least adjacent with another, with some leeway for diagonals */
+    isAdjacentWith(token) {
+        return this.distanceTo(token) <= (canvas.grid.distance * 1.5);
+    }
+
     /** @inheritDoc */
     _drawBar(number, bar, data) {
         const val = Number(data.value);

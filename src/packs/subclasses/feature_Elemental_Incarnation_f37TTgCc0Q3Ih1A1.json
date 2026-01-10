@@ -255,13 +255,13 @@
           "key": "system.damageThresholds.major",
           "mode": 2,
           "value": "@system.proficiency",
-          "priority": null
+          "priority": 21
         },
         {
           "key": "system.damageThresholds.severe",
           "mode": 2,
           "value": "@system.proficiency",
-          "priority": null
+          "priority": 21
         }
       ],
       "disabled": false,

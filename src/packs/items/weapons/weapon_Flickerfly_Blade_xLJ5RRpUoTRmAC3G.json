@@ -117,7 +117,8 @@
         {
           "key": "system.bonuses.damage.primaryWeapon.bonus",
           "mode": 2,
-          "value": "@system.traits.agility.value"
+          "value": "@system.traits.agility.value",
+          "priority": 21
         }
       ],
       "_id": "jMIrOhpPUncn7dWg",

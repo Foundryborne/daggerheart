@@ -127,7 +127,7 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
             resource,
             active: index === combat.turn,
             canPing: combatant.sceneId === canvas.scene?.id && game.user.hasPermission('PING_CANVAS'),
-            type: combatant.actor.system.type,
+            type: combatant.actor?.system?.type,
             img: await this._getCombatantThumbnail(combatant)
         };
 
@@ -165,7 +165,7 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
 
         if (this.viewed.turn !== toggleTurn) {
             const { updateCountdowns } = game.system.api.applications.ui.DhCountdowns;
-            if (combatant.actor.type === 'character') {
+            if (combatant.actor?.type === 'character') {
                 await updateCountdowns(
                     CONFIG.DH.GENERAL.countdownProgressionTypes.spotlight.id,
                     CONFIG.DH.GENERAL.countdownProgressionTypes.characterSpotlight.id

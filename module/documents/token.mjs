@@ -83,7 +83,7 @@ export default class DHToken extends CONFIG.Token.documentClass {
         if (combat?.system?.battleToggles?.length) {
             await combat.toggleModifierEffects(
                 true,
-                tokens.map(x => x.actor)
+                tokens.filter(x => x.actor).map(x => x.actor)
             );
         }
         super.createCombatants(tokens, combat ?? {});
@@ -95,7 +95,7 @@ export default class DHToken extends CONFIG.Token.documentClass {
         if (combat?.system?.battleToggles?.length) {
             await combat.toggleModifierEffects(
                 false,
-                tokens.map(x => x.actor)
+                tokens.filter(x => x.actor).map(x => x.actor)
             );
         }
         super.deleteCombatants(tokens, combat ?? {});
