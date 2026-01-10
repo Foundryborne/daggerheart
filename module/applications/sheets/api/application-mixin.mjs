@@ -211,7 +211,7 @@ export default function DHApplicationMixin(Base) {
                     const step = event.key === 'ArrowUp' ? 1 : event.key === 'ArrowDown' ? -1 : 0;
                     if (step !== 0) {
                         handleUpdate(step);
-                        deltaInput.dispatchEvent(new Event("change", { bubbles: true }));
+                        deltaInput.dispatchEvent(new Event('change', { bubbles: true }));
                     }
                 });
 
@@ -222,7 +222,7 @@ export default function DHApplicationMixin(Base) {
                         if (deltaInput === document.activeElement) {
                             event.preventDefault();
                             handleUpdate(Math.sign(-1 * event.deltaY));
-                            deltaInput.dispatchEvent(new Event("change", { bubbles: true }));
+                            deltaInput.dispatchEvent(new Event('change', { bubbles: true }));
                         }
                     },
                     { passive: false }
@@ -236,7 +236,7 @@ export default function DHApplicationMixin(Base) {
             // Handle contenteditable
             for (const input of htmlElement.querySelectorAll('[contenteditable][data-property]')) {
                 const property = input.dataset.property;
-                input.addEventListener("blur", () => {
+                input.addEventListener('blur', () => {
                     const selection = document.getSelection();
                     if (input.contains(selection.anchorNode)) {
                         selection.empty();
@@ -244,12 +244,12 @@ export default function DHApplicationMixin(Base) {
                     this.document.update({ [property]: input.textContent });
                 });
 
-                input.addEventListener("keydown", event => {
-                    if (event.key === "Enter") input.blur();
+                input.addEventListener('keydown', event => {
+                    if (event.key === 'Enter') input.blur();
                 });
 
                 // Chrome sometimes add <br>, which aren't a problem for the value but are for the placeholder
-                input.addEventListener("input", () => input.querySelectorAll("br").forEach((i) => i.remove()));
+                input.addEventListener('input', () => input.querySelectorAll('br').forEach(i => i.remove()));
             }
         }
 
@@ -585,7 +585,9 @@ export default function DHApplicationMixin(Base) {
                 if (!doc || !descriptionElement) continue;
 
                 // localize the description (idk if it's still necessary)
-                const description = game.i18n.localize(doc.system?.description ?? doc.description);
+                const description = doc.system?.getEnrichedDescription
+                    ? await doc.system.getEnrichedDescription()
+                    : game.i18n.localize(doc.system?.description ?? doc.description);
 
                 // Enrich the description and attach it;
                 const isAction = doc.documentName === 'Action';
@@ -736,7 +738,7 @@ export default function DHApplicationMixin(Base) {
             };
             if (inVault) data['system.inVault'] = true;
             if (disabled) data.disabled = true;
-            if (type === "domainCard" && parent?.system.domains?.length) {
+            if (type === 'domainCard' && parent?.system.domains?.length) {
                 data.system.domain = parent.system.domains[0];
             }
 

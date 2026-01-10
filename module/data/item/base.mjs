@@ -8,7 +8,7 @@
  * @property {boolean} isInventoryItem- Indicates whether items of this type is a Inventory Item
  */
 
-import { addLinkedItemsDiff, createScrollText, getScrollTextData, updateLinkedItemApps } from '../../helpers/utils.mjs';
+import { addLinkedItemsDiff, getScrollTextData, updateLinkedItemApps } from '../../helpers/utils.mjs';
 import { ActionsField } from '../fields/actionField.mjs';
 import FormulaField from '../fields/formulaField.mjs';
 
@@ -122,6 +122,23 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
         const { source, page } = this.attribution;
         return [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
+    }
+
+    /** */
+    async getDescriptionData() {
+        return this.description;
+    }
+
+    /** */
+    async getEnrichedDescription(large) {
+        if (!this.metadata.hasDescription) return '';
+
+        const description = await this.getDescriptionData(large);
+        return await foundry.applications.ux.TextEditor.implementation.enrichHTML(description, {
+            relativeTo: this,
+            rollData: this.getRollData(),
+            secrets: this.isOwner
+        });
     }
 
     /**

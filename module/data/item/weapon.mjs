@@ -110,6 +110,22 @@ export default class DHWeapon extends AttachableItem {
         );
     }
 
+    /**@inheritdoc */
+    async getDescriptionData(large) {
+        const baseDescription = await super.getDescriptionData();
+        const allFeatures = CONFIG.DH.ITEM.allWeaponFeatures();
+        const features = this.weaponFeatures.map(x => allFeatures[x.value]);
+        if (!features.length) return baseDescription;
+
+        const prepend = await foundry.applications.handlebars.renderTemplate(
+            'systems/daggerheart/templates/sheets/items/weapon/description.hbs',
+            { features, large }
+        );
+
+        const mainDescription = baseDescription ? `\n<hr>\n${baseDescription}` : '';
+        return `${prepend}${mainDescription}`;
+    }
+
     prepareDerivedData() {
         this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
     }
