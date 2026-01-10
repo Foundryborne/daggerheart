@@ -346,15 +346,15 @@
             "countdown": [
               {
                 "name": "Casus Belli",
-                "type": "narrative",
+                "type": "longterm",
                 "defaultOwnership": -1,
                 "img": "icons/sundries/scrolls/scroll-bound-sealed-red-tan.webp",
                 "progress": {
                   "looping": "noLooping",
                   "type": "custom",
-                  "start": 1,
                   "startFormula": "8",
-                  "current": 1
+                  "current": 1,
+                  "start": 1
                 },
                 "ownership": {}
               }
