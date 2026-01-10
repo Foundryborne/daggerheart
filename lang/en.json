@@ -1234,7 +1234,8 @@
                     "label": "Fear Roll"
                 },
                 "triggerTexts": {
-                    "strangePatternsContent": "Increase Hope or clear stress?",
+                    "strangePatternsContentTitle": "Matched {nr} times.",
+                    "strangePatternsContentSubTitle": "Increase hope and stress to a total of {nr}.",
                     "ferocityContent": "Spend 2 Hope to gain {bonus} bonus Evasion until after the next attack against you?",
                     "ferocityEffectDescription": "Your evasion is increased by {bonus}. This bonus lasts until after the next attack made against you."
                 },
