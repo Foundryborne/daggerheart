@@ -1,3 +1,5 @@
+import { emitAsGM, GMUpdateEvent } from '../../systemRegistration/socket.mjs';
+
 export default class DhSceneNavigation extends foundry.applications.ui.SceneNavigation {
     /** @inheritdoc */
     static DEFAULT_OPTIONS = {
@@ -26,7 +28,9 @@ export default class DhSceneNavigation extends foundry.applications.ui.SceneNavi
                 if (!scene.flags.daggerheart) return x;
 
                 const daggerheartInfo = new game.system.api.data.scenes.DHScene(scene.flags.daggerheart);
-                const environments = daggerheartInfo.sceneEnvironments.filter(x => x);
+                const environments = daggerheartInfo.sceneEnvironments.filter(
+                    x => x && x.testUserPermission(game.user, 'LIMITED')
+                );
                 const hasEnvironments = environments.length > 0;
                 return {
                     ...x,
@@ -43,12 +47,14 @@ export default class DhSceneNavigation extends foundry.applications.ui.SceneNavi
 
     static async #openSceneEnvironment(event, button) {
         const scene = game.scenes.get(button.dataset.sceneId);
-        const sceneEnvironments = new game.system.api.data.scenes.DHScene(scene.flags.daggerheart).sceneEnvironments;
+        const sceneEnvironments = new game.system.api.data.scenes.DHScene(
+            scene.flags.daggerheart
+        ).sceneEnvironments.filter(x => x.testUserPermission(game.user, 'LIMITED'));
 
         if (sceneEnvironments.length === 1 || event.shiftKey) {
             sceneEnvironments[0].sheet.render(true);
         } else {
-            new ContextMenu(
+            new foundry.applications.ux.ContextMenu.implementation(
                 button,
                 '.scene-environment',
                 sceneEnvironments.map(environment => ({
@@ -60,7 +66,12 @@ export default class DhSceneNavigation extends foundry.applications.ui.SceneNavi
                                 newEnvironments.findIndex(x => x === environment.uuid)
                             )[0];
                             newEnvironments.unshift(newFirst);
-                            scene.update({ 'flags.daggerheart.sceneEnvironments': newEnvironments });
+                            emitAsGM(
+                                GMUpdateEvent.UpdateDocument,
+                                scene.update.bind(scene),
+                                { 'flags.daggerheart.sceneEnvironments': newEnvironments },
+                                scene.uuid
+                            );
                         }
 
                         environment.sheet.render({ force: true });
