@@ -312,7 +312,14 @@
               "range": "melee"
             }
           },
-          "changes": [],
+          "changes": [
+            {
+              "key": "system.rules.dualityRoll.defaultHopeDice",
+              "mode": 5,
+              "value": "d8",
+              "priority": null
+            }
+          ],
           "disabled": false,
           "duration": {
             "startTime": null,
@@ -323,7 +330,7 @@
             "startRound": null,
             "startTurn": null
           },
-          "description": "<p>All targets aff ected replace their Hope Die with a <strong>d8</strong> until they roll a success with Hope or their next rest.</p>",
+          "description": "<p>All targets affected replace their Hope Die with a <strong>d8</strong> until they roll a success with Hope or their next rest.</p>",
           "tint": "#ffffff",
           "statuses": [],
           "sort": 0,

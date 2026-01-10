@@ -256,34 +256,45 @@
         "description": "<p><strong>Spend a Fear</strong> to boil the blood of all PCs within Far range. They use a d20 as their Fear Die until the end of the scene.</p><p>@Template[type:emanation|range:f]</p>",
         "resource": null,
         "actions": {
-          "V142qYppCGJn8OiN": {
+          "jKvzbQT0vp66DDOH": {
             "type": "effect",
-            "_id": "V142qYppCGJn8OiN",
+            "_id": "jKvzbQT0vp66DDOH",
             "systemPath": "actions",
+            "baseAction": false,
             "description": "",
             "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
             "actionType": "action",
             "cost": [
               {
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "step": null
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
-            "effects": [],
+            "effects": [
+              {
+                "_id": "gFeHLGgeRoDdd3VG",
+                "onSave": false
+              }
+            ],
             "target": {
-              "type": "self",
+              "type": "hostile",
               "amount": null
             },
             "name": "Spend Fear",
-            "img": "icons/skills/melee/maneuver-greatsword-yellow.webp",
-            "range": ""
+            "range": "far"
           }
         },
         "originItemType": null,
@@ -292,7 +303,51 @@
       },
       "_id": "a33PW8UkziliowlR",
       "img": "icons/skills/melee/maneuver-greatsword-yellow.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Battle Lust",
+          "img": "icons/skills/melee/maneuver-greatsword-yellow.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.5lphJAgzoqZI3VoG.Item.a33PW8UkziliowlR",
+          "transfer": false,
+          "_id": "gFeHLGgeRoDdd3VG",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [
+            {
+              "key": "system.rules.dualityRoll.defaultFearDice",
+              "mode": 5,
+              "value": "d20",
+              "priority": null
+            }
+          ],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>You use a d20 as your Fear Die until the end of the scene.</p>",
+          "tint": "#ffffff",
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!5lphJAgzoqZI3VoG.a33PW8UkziliowlR.gFeHLGgeRoDdd3VG"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "ownership": {

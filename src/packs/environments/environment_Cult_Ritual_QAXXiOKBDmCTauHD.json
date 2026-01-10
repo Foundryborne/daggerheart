@@ -136,13 +136,89 @@
       "system": {
         "description": "<p>Cultists dedicated this place to the Fallen Gods, and their foul influence seeps into it. Reduce the PCs’ Hope Die to a d10 while in this environment. The desecration can be removed with a Progress Countdown (6).</p><section class=\"secret\" id=\"secret-iPgKjrXJYw4cy0EX\"><p><em>How do the PCs fist notice that something is wrong about this place? What fears resurface while hope is kept at bay?</em></p></section>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "7W3sWRLzjG3dKcgq": {
+            "type": "effect",
+            "_id": "7W3sWRLzjG3dKcgq",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "8yNIw8Y7rfMdOqWC",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Influence",
+            "range": ""
+          }
+        },
         "originItemType": null,
         "originId": null
       },
       "_id": "iiHjguQG2aBn9g8i",
       "img": "icons/magic/unholy/orb-contained-pink.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Desecrated Ground",
+          "img": "icons/magic/unholy/orb-contained-pink.webp",
+          "origin": "Compendium.daggerheart.environments.Actor.QAXXiOKBDmCTauHD.Item.iiHjguQG2aBn9g8i",
+          "transfer": false,
+          "_id": "8yNIw8Y7rfMdOqWC",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [
+            {
+              "key": "system.rules.dualityRoll.defaultHopeDice",
+              "mode": 5,
+              "value": "d10",
+              "priority": null
+            }
+          ],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>Your Hope Die is reduced to a d10 while in the Desecrated Grounds.</p>",
+          "tint": "#ffffff",
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!QAXXiOKBDmCTauHD.iiHjguQG2aBn9g8i.8yNIw8Y7rfMdOqWC"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "ownership": {

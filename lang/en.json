@@ -194,6 +194,8 @@
                     "unequip": "Unequip",
                     "useItem": "Use Item"
                 },
+                "defaultHopeDice": "Default Hope Dice",
+                "defaultFearDice": "Default Fear Dice",
                 "disadvantageSources": {
                     "label": "Disadvantage Sources",
                     "hint": "Add single words or short text as reminders and hints of what a character has disadvantage on."
