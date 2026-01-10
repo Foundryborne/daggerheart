@@ -343,11 +343,12 @@
             "img": "icons/magic/unholy/barrier-fire-pink.webp",
             "range": ""
           },
-          "suFEnfpOfeVRvnJF": {
-            "type": "effect",
-            "_id": "suFEnfpOfeVRvnJF",
+          "HG7tbEdlYl3yLQnR": {
+            "type": "summon",
+            "_id": "HG7tbEdlYl3yLQnR",
             "systemPath": "actions",
-            "description": "<p>Summon a @UUID[Compendium.daggerheart.adversaries.Actor.3tqCjDwJAQ7JKqMb]{Minor Demon} within Very Close range of the ritual’s leader.</p>",
+            "baseAction": false,
+            "description": "",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"
@@ -360,13 +361,13 @@
               "recovery": null,
               "consumeOnSuccess": false
             },
-            "effects": [],
-            "target": {
-              "type": "any",
-              "amount": null
-            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.3tqCjDwJAQ7JKqMb",
+                "count": "1"
+              }
+            ],
             "name": "Summon Demon",
-            "img": "icons/magic/unholy/barrier-fire-pink.webp",
             "range": ""
           }
         },

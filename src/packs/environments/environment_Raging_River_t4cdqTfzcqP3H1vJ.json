@@ -360,33 +360,40 @@
         "description": "<p><strong>Spend a Fear</strong> to summon a @UUID[Compendium.daggerheart.adversaries.Actor.8KWVLWXFhlY2kYx0]{Glass Snake} within Close range of a chosen PC. The Snake appears in or near the river and immediately takes the spotlight to use their “Spinning Serpent” action.</p><section class=\"secret\" id=\"secret-F8zsJQg3xWOPpH5v\"><p><em>What treasures does the beast have in their burrow? What travelers have already fallen victim to this predator?</em></p></section>",
         "resource": null,
         "actions": {
-          "Mnp0Yzc7EPVXm8So": {
-            "type": "effect",
-            "_id": "Mnp0Yzc7EPVXm8So",
+          "uY9HMKE4Q5g7bRKg": {
+            "type": "summon",
+            "_id": "uY9HMKE4Q5g7bRKg",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to summon a @UUID[Compendium.daggerheart.adversaries.Actor.8KWVLWXFhlY2kYx0]{Glass Snake} within Close range of a chosen PC. The Snake appears in or near the river and immediately takes the spotlight to use their “Spinning Serpent” action.</p><section class=\"secret\" id=\"secret-YIc1Y8jgJKanim7f\"><p><em>What treasures does the beast have in their burrow? What travelers have already fallen victim to this predator?</em></p></section>",
+            "baseAction": false,
+            "description": "",
             "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
             "actionType": "action",
             "cost": [
               {
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "step": null
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
-            "effects": [],
-            "target": {
-              "type": "self",
-              "amount": null
-            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.8KWVLWXFhlY2kYx0",
+                "count": "1"
+              }
+            ],
             "name": "Spend Fear",
-            "img": "icons/creatures/reptiles/snake-fangs-bite-green-yellow.webp",
             "range": ""
           }
         },

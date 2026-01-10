@@ -314,7 +314,7 @@
       "name": "Charcoal Constructs",
       "type": "feature",
       "system": {
-        "description": "<p>Warped animals wreathed in indigo f l ame trample through a point of your choice. All targets within Close range of that point must make an Agility Reaction Roll. Targets who fail take <strong>3d12+3</strong> physical damage. Targets who succeed take half damage instead.</p><p>@Template[type:emanation|range:c]</p><section class=\"secret\" id=\"secret-696PMvOPzHmkdtYc\"><p><em>Are these real animals consumed by the fl ame or merely constructs of the corrupting magic?</em></p></section>",
+        "description": "<p>Warped animals wreathed in indigo flame trample through a point of your choice. All targets within Close range of that point must make an Agility Reaction Roll. Targets who fail take <strong>3d12+3</strong> physical damage. Targets who succeed take half damage instead.</p><p>@Template[type:emanation|range:c]</p><section class=\"secret\" id=\"secret-696PMvOPzHmkdtYc\"><p><em>Are these real animals consumed by the fl ame or merely constructs of the corrupting magic?</em></p></section>",
         "resource": null,
         "actions": {
           "gbXIaKr8em134IZC": {
