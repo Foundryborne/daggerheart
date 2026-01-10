@@ -124,16 +124,24 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         return [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
     }
 
-    /** */
-    async getDescriptionData() {
+    /**
+     * Augments the description for the item with type specific info to display. Implemented in applicable item subtypes.
+     * @param {object} [options] - Options that modify the styling of the rendered template. { headerStyle: undefined|'none'|'large' }
+     * @returns {string}
+     */
+    async getDescriptionData(_options) {
         return this.description;
     }
 
-    /** */
-    async getEnrichedDescription(large) {
+    /**
+     * Gets the enriched and augmented description for the item.
+     * @param {object} [options] - Options that modify the styling of the rendered template. { headerStyle: undefined|'none'|'large' }
+     * @returns {string}
+     */
+    async getEnrichedDescription(options) {
         if (!this.metadata.hasDescription) return '';
 
-        const description = await this.getDescriptionData(large);
+        const description = await this.getDescriptionData(options);
         return await foundry.applications.ux.TextEditor.implementation.enrichHTML(description, {
             relativeTo: this,
             rollData: this.getRollData(),

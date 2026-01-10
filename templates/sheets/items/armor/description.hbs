@@ -1,5 +1,7 @@
 <div class="feature-descriptions">
-    <div class="features-header {{#if @root.large}}large{{/if}}">{{localize "DAGGERHEART.SETTINGS.Homebrew.itemFeatures"}}</div>
+    {{#unless (eq headerStyle 'none')}}
+        <div class="features-header {{#if (eq headerStyle 'large')}}large{{/if}}">{{localize "DAGGERHEART.SETTINGS.Homebrew.itemFeatures"}}</div>
+    {{/unless}}
     {{#each features as | feature |}}
         <div><strong>{{localize feature.label}}</strong>: {{{localize feature.description}}}</div>
     {{/each}}
