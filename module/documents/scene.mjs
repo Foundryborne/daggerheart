@@ -58,8 +58,8 @@ export default class DhScene extends Scene {
             const system = new game.system.api.data.scenes.DHScene(this.flags.daggerheart);
 
             // Clear this scene from all environments that aren't deleted
-            for (const environement of system.sceneEnvironments) {
-                environement?.system?.scenes?.delete(this);
+            for (const environment of system.sceneEnvironments) {
+                environment?.system?.scenes?.delete(this);
             }
         }
     }
