@@ -29,7 +29,17 @@ export default class DHDomainCard extends BaseDataItem {
                 required: true,
                 initial: CONFIG.DH.DOMAIN.cardTypes.ability.id
             }),
-            inVault: new fields.BooleanField({ initial: false })
+            inVault: new fields.BooleanField({ initial: false }),
+            vaultActive: new fields.BooleanField({
+                required: true,
+                nullable: false,
+                initial: false
+            }),
+            loadoutIgnore: new fields.BooleanField({
+                required: true,
+                nullable: false,
+                initial: false
+            })
         };
     }
 

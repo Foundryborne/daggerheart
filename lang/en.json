@@ -2294,6 +2294,8 @@
             "DomainCard": {
                 "type": "Type",
                 "recallCost": "Recall Cost",
+                "vaultActive": "Active In Vault",
+                "loadoutIgnore": "Doesn't Count For Loadout",
                 "foundationTitle": "Foundation",
                 "specializationTitle": "Specialization",
                 "masteryTitle": "Mastery"
