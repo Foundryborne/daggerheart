@@ -40,7 +40,7 @@ export default class DhSceneConfigSettings extends foundry.applications.sheets.S
 
     static TABS = DhSceneConfigSettings.buildTabs();
 
-    async _preFirstRender(context, options) {
+    async _preRender(context, options) {
         await super._preFirstRender(context, options);
         this.daggerheartFlag = new game.system.api.data.scenes.DHScene(this.document.flags.daggerheart);
     }
