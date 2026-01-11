@@ -31,7 +31,7 @@ export default class DHItem extends foundry.documents.Item {
     static async createDocuments(sources, operation) {
         // Ensure that items being created are valid to the actor its being added to
         const actor = operation.parent;
-        sources = actor?.system?.isItemValid ? sources.filter((s) => actor.system.isItemValid(s)) : sources;
+        sources = actor?.system?.isItemValid ? sources.filter(s => actor.system.isItemValid(s)) : sources;
         return super.createDocuments(sources, operation);
     }
 
@@ -146,6 +146,8 @@ export default class DHItem extends foundry.documents.Item {
     /* -------------------------------------------- */
 
     async use(event) {
+        if (this.system.cannotUse) return;
+
         const actions = new Set(this.system.actionsList);
         if (actions?.size) {
             let action = actions.first();

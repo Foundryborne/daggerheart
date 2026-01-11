@@ -39,6 +39,10 @@ export default class DHDomainCard extends BaseDataItem {
                 required: true,
                 nullable: false,
                 initial: false
+            }),
+            domainTouched: new fields.NumberField({
+                nullable: true,
+                initial: null
             })
         };
     }
@@ -46,6 +50,30 @@ export default class DHDomainCard extends BaseDataItem {
     get domainLabel() {
         const allDomainData = CONFIG.DH.DOMAIN.allDomains();
         return game.i18n.localize(allDomainData[this.domain].label);
+    }
+
+    get vaultSupressed() {
+        return this.inVault && !this.vaultActive;
+    }
+
+    get domainTouchedSuppressed() {
+        if (!this.parent.system.domainTouched || this.parent.parent?.type !== 'character') return false;
+
+        const matchingDomainCards = this.parent.parent.items.filter(
+            item => !item.system.inVault && item.system.domain === this.parent.system.domain
+        ).length;
+        return matchingDomainCards < this.parent.system.domainTouched;
+    }
+
+    get cannotUse() {
+        if (this.domainTouchedSuppressed) {
+            return ui.notifications.warn(
+                game.i18n.format('DAGGERHEART.UI.Notifications.domainTouchRequirement', {
+                    nr: this.domainTouched,
+                    domain: game.i18n.localize(CONFIG.DH.DOMAIN.allDomains()[this.domain].label)
+                })
+            );
+        }
     }
 
     /* -------------------------------------------- */
