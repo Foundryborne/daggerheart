@@ -679,6 +679,20 @@ export default class DhCharacter extends BaseDataActor {
                 changes.system.experiences[experience].core = true;
             }
         }
+
+        /* Scars can alter the amount of current hope */
+        if (changes.system?.scars) {
+            const diff = this.system.scars - changes.system.scars;
+            const newHopeMax = this.system.resources.hope.max + diff;
+            const newHopeValue = Math.min(newHopeMax, this.system.resources.hope.value);
+            if (newHopeValue != this.system.resources.hope.value) {
+                changes.system.resources = {
+                    hope: {
+                        value: newHopeValue
+                    }
+                };
+            }
+        }
     }
 
     async _preDelete() {
