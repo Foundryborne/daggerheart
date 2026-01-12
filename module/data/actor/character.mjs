@@ -5,6 +5,7 @@ import BaseDataActor, { commonActorRules } from './base.mjs';
 import { attributeField, resourceField, stressDamageReductionRule, bonusField } from '../fields/actorField.mjs';
 import { ActionField } from '../fields/actionField.mjs';
 import DHCharacterSettings from '../../applications/sheets-configs/character-settings.mjs';
+import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 
 export default class DhCharacter extends BaseDataActor {
     /**@override */
@@ -284,7 +285,8 @@ export default class DhCharacter extends BaseDataActor {
                 burden: new fields.SchemaField({
                     ignore: new fields.BooleanField()
                 })
-            })
+            }),
+            sidebarFavorites: new ForeignDocumentUUIDArrayField({ type: 'Item' })
         };
     }
 

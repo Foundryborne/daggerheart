@@ -96,45 +96,27 @@
     </div>
 
     <div class="shortcut-items-section">
-        <div class="equipment-section">
-            <div class="title">
-                <side-line-div class="invert"></side-line-div>
-                <h3>{{localize "DAGGERHEART.GENERAL.equipment"}}</h3>
-                <side-line-div></side-line-div>
-            </div>
-            <ul class="items-sidebar-list">
-                {{#if document.system.usedUnarmed}}
-                {{> 'daggerheart.inventory-item-compact'
-                    item=document.system.usedUnarmed
-                    type='attack'
-                }}
-                {{/if}}
-                {{#each document.items as |item|}}
-                {{#if item.system.equipped}}
-                {{> 'daggerheart.inventory-item-compact'
-                    item=item
-                    type=item.type
-                }}
-                {{/if}}
-                {{/each}}
-            </ul>
-        </div>
-        <div class="loadout-section">
-            <div class="title">
-                <side-line-div class="invert"></side-line-div>
-                <h3>{{localize "DAGGERHEART.GENERAL.loadout"}}</h3>
-                <side-line-div></side-line-div>
-            </div>
-            <ul class="items-sidebar-list">
-                {{#each document.system.domainCards.loadout as |card|}}
-                {{> 'daggerheart.inventory-item-compact'
-                    item=card
-                    type='domainCard'
-                }}
-
-                {{/each}}
-            </ul>
-        </div>
+        {{#if sidebarFavoritesEmpty}}
+            <div class="empty-favorites"><span>{{localize "DAGGERHEART.GENERAL.favorite.plural"}}</span></div>
+        {{else}}
+            {{#each sidebarFavorites as |category|}}
+                <div class="equipment-section">
+                    <div class="title">
+                        <side-line-div class="invert"></side-line-div>
+                        <h3>{{localize category.label}}</h3>
+                        <side-line-div></side-line-div>
+                    </div>
+                    <ul class="items-sidebar-list">
+                        {{#each category.items as |item|}}
+                            {{> 'daggerheart.inventory-item-compact'
+                                item=item.value
+                                type=item.type
+                            }}
+                        {{/each}}
+                    </ul>
+                </div>
+            {{/each}}
+        {{/if}}
         <div class="experience-section">
             <div class="title">
                 <side-line-div class="invert"></side-line-div>

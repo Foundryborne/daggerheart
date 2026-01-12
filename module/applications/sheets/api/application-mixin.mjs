@@ -539,6 +539,39 @@ export default function DHApplicationMixin(Base) {
                     }
                 });
 
+            options.push({
+                name: 'Unfavorite',
+                icon: 'fa-regular fa-star',
+                condition: target => {
+                    return this.document.type === 'character' && target.closest('.items-sidebar-list');
+                },
+                callback: async (target, _event) => {
+                    const doc = await getDocFromElement(target);
+                    this.document.update({
+                        'system.sidebarFavorites': this.document.system.sidebarFavorites.filter(x => x.id !== doc.id)
+                    });
+                }
+            });
+
+            options.push({
+                name: 'Favorite',
+                icon: 'fa-solid fa-star',
+                condition: target => {
+                    const doc = getDocFromElementSync(target);
+                    return (
+                        !(doc instanceof game.system.api.documents.DhActiveEffect) &&
+                        this.document.type === 'character' &&
+                        !target.closest('.items-sidebar-list')
+                    );
+                },
+                callback: async (target, _event) => {
+                    const doc = await getDocFromElement(target);
+                    this.document.update({
+                        'system.sidebarFavorites': [...this.document.system.sidebarFavorites, doc]
+                    });
+                }
+            });
+
             return options.map(option => ({
                 ...option,
                 icon: `<i class="${option.icon}"></i>`

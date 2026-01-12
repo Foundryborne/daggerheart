@@ -2135,6 +2135,10 @@
                 "plural": "Experiences"
             },
             "failure": "Failure",
+            "favorite": {
+                "single": "Favorite",
+                "plural": "Favorites"
+            },
             "fear": "Fear",
             "features": "Features",
             "formula": "Formula",

@@ -561,6 +561,25 @@
             overflow-y: auto;
             scrollbar-color: light-dark(@dark-blue, @golden) transparent;
         }
+
+        .empty-favorites {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            height: 40px;
+            border: 1px dashed light-dark(@dark-blue-50, @beige-50);
+            border-radius: 3px;
+            color: light-dark(@dark-blue-50, @beige-50);
+            text-align: center;
+            margin-bottom: 10px;
+            margin-left: 4px;
+
+            span {
+                width: 250px;
+            }
+        }
     }
 
     .equipment-section,

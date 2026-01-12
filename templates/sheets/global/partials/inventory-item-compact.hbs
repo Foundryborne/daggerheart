@@ -58,11 +58,6 @@
                 data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.equipped 'unequip' 'equip' }}">
                 <i class="fa-solid fa-fw fa-shield"></i>
             </a>
-            {{else if (eq type 'domainCard')}}
-            <a data-action="toggleVault"
-                data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.inVault 'sendToLoadout' 'sendToVault' }}">
-                <i class="fa-solid fa-fw {{ifThen item.system.inVault 'fa-arrow-up' 'fa-arrow-down'}}"></i>
-            </a>
             {{else if (eq type 'effect')}}
             <a data-action="toggleEffect"
                 data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.disabled 'enableEffect' 'disableEffect' }}">

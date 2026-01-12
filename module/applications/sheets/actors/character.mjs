@@ -33,7 +33,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             advanceResourceDie: CharacterSheet.#advanceResourceDie,
             cancelBeastform: CharacterSheet.#cancelBeastform,
             useDowntime: this.useDowntime,
-            viewParty: CharacterSheet.#viewParty,
+            viewParty: CharacterSheet.#viewParty
         },
         window: {
             resizable: true,
@@ -49,6 +49,10 @@ export default class CharacterSheet extends DHBaseActorSheet {
             {
                 dragSelector: '[data-item-id][draggable="true"], [data-item-id] [draggable="true"]',
                 dropSelector: null
+            },
+            {
+                dragSelector: null,
+                dropSelector: '.character-sidebar-sheet'
             }
         ],
         contextMenus: [
@@ -261,6 +265,24 @@ export default class CharacterSheet extends DHBaseActorSheet {
      */
     async _prepareSidebarContext(context, _options) {
         context.isDeath = this.document.system.deathMoveViable;
+        context.sidebarFavoritesEmpty = this.document.system.sidebarFavorites.length === 0;
+
+        const initialFavorites = this.document.system.usedUnarmed
+            ? {
+                  equipment: {
+                      label: 'DAGGERHEART.GENERAL.equipment',
+                      items: [{ type: 'attack', value: this.document.system.usedUnarmed }]
+                  }
+              }
+            : {};
+        context.sidebarFavorites = this.document.system.sidebarFavorites.reduce((acc, item) => {
+            const type = item.type === 'domainCard' ? item.type : 'equipment';
+            const label = type === 'domainCard' ? 'DAGGERHEART.GENERAL.loadout' : 'DAGGERHEART.GENERAL.equipment';
+            if (!acc[type]) acc[type] = { label, items: [] };
+            acc[type].items.push({ type: item.type, value: item });
+
+            return acc;
+        }, initialFavorites);
     }
 
     /**
@@ -310,7 +332,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 icon: 'fa-solid fa-arrow-up',
                 condition: target => {
                     const doc = getDocFromElementSync(target);
-                    return doc && doc.system.inVault;
+                    const inCharacterSidebar =
+                        this.document.type === 'character' && target.closest('.items-sidebar-list');
+                    return doc && doc.system.inVault && !inCharacterSidebar;
                 },
                 callback: async target => {
                     const doc = await getDocFromElement(target);
@@ -324,7 +348,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 icon: 'fa-solid fa-bolt-lightning',
                 condition: target => {
                     const doc = getDocFromElementSync(target);
-                    return doc && doc.system.inVault;
+                    const inCharacterSidebar =
+                        this.document.type === 'character' && target.closest('.items-sidebar-list');
+                    return doc && doc.system.inVault && !inCharacterSidebar;
                 },
                 callback: async (target, event) => {
                     const doc = await getDocFromElement(target);
@@ -338,15 +364,20 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     }
                     const type = 'effect';
                     const cls = game.system.api.models.actions.actionsTypes[type];
-                    const action = new cls({
-                        ...cls.getSourceConfig(doc.system),
-                        type: type,
-                        chatDisplay: false,
-                        cost: [{
-                            key: 'stress',
-                            value: doc.system.recallCost
-                        }]
-                    }, { parent: doc.system });
+                    const action = new cls(
+                        {
+                            ...cls.getSourceConfig(doc.system),
+                            type: type,
+                            chatDisplay: false,
+                            cost: [
+                                {
+                                    key: 'stress',
+                                    value: doc.system.recallCost
+                                }
+                            ]
+                        },
+                        { parent: doc.system }
+                    );
                     const config = await action.use(event);
                     if (config) {
                         return doc.update({ 'system.inVault': false });
@@ -358,7 +389,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 icon: 'fa-solid fa-arrow-down',
                 condition: target => {
                     const doc = getDocFromElementSync(target);
-                    return doc && !doc.system.inVault;
+                    const inCharacterSidebar =
+                        this.document.type === 'character' && target.closest('.items-sidebar-list');
+                    return doc && !doc.system.inVault && !inCharacterSidebar;
                 },
                 callback: async target => (await getDocFromElement(target)).update({ 'system.inVault': true })
             }
@@ -900,32 +933,32 @@ export default class CharacterSheet extends DHBaseActorSheet {
             return;
         }
 
-        const buttons = parties.map((p) => {
-            const button = document.createElement("button");
-            button.type = "button";
-            button.classList.add("plain");
-            const img = document.createElement("img");
+        const buttons = parties.map(p => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.classList.add('plain');
+            const img = document.createElement('img');
             img.src = p.img;
             button.append(img);
-            const name = document.createElement("span");
+            const name = document.createElement('span');
             name.textContent = p.name;
             button.append(name);
-            button.addEventListener("click", () => {
+            button.addEventListener('click', () => {
                 p.sheet?.render({ force: true });
                 game.tooltip.dismissLockedTooltips();
             });
             return button;
         });
 
-        const html = document.createElement("div");
-        html.classList.add("party-list");
+        const html = document.createElement('div');
+        html.classList.add('party-list');
         html.append(...buttons);
-        
+
         game.tooltip.dismissLockedTooltips();
         game.tooltip.activate(target, {
             html,
-            locked: true,
-        })
+            locked: true
+        });
     }
 
     /**
@@ -948,6 +981,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     async _onDropItem(event, item) {
+        const sidebarDrop = event.target.closest('.character-sidebar-sheet');
+        if (sidebarDrop) {
+            return this._onSidebarDrop(event, item);
+        }
+
         if (this.document.uuid === item.parent?.uuid) {
             return super._onDropItem(event, item);
         }
@@ -985,5 +1023,19 @@ export default class CharacterSheet extends DHBaseActorSheet {
     async _onDropItemCreate(itemData, event) {
         itemData = itemData instanceof Array ? itemData : [itemData];
         return this.document.createEmbeddedDocuments('Item', itemData);
+    }
+
+    async _onSidebarDrop(event, item) {
+        if (!item.testUserPermission(game.user, 'OWNER')) return;
+
+        if (!(item instanceof game.system.api.documents.DHItem)) return;
+        if (!this.document.items.get(item.id)) return;
+
+        const allowedItemTypes = ['domainCard', 'feature', 'weapon', 'armor', 'loot', 'consumable'];
+        if (!allowedItemTypes.includes(item.type)) return;
+
+        if (this.document.system.sidebarFavorites.some(x => x.id === item.id)) return;
+
+        this.document.update({ 'system.sidebarFavorites': [...this.document.system.sidebarFavorites, item] });
     }
 }
