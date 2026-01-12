@@ -267,23 +267,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         context.isDeath = this.document.system.deathMoveViable;
         context.sidebarFavoritesEmpty = this.document.system.sidebarFavorites.length === 0;
         context.showfavorites = !context.sidebarFavoritesEmpty || this.document.system.usedUnarmed;
-
-        // const initialFavorites = this.document.system.usedUnarmed
-        //     ? {
-        //           equipment: {
-        //               label: 'DAGGERHEART.GENERAL.equipment',
-        //               items: [{ type: 'attack', value: this.document.system.usedUnarmed }]
-        //           }
-        //       }
-        //     : {};
-        // context.sidebarFavorites = this.document.system.sidebarFavorites.reduce((acc, item) => {
-        //     const type = item.type === 'domainCard' ? item.type : 'equipment';
-        //     const label = type === 'domainCard' ? 'DAGGERHEART.GENERAL.loadout' : 'DAGGERHEART.GENERAL.equipment';
-        //     if (!acc[type]) acc[type] = { label, items: [] };
-        //     acc[type].items.push({ type: item.type, value: item });
-
-        //     return acc;
-        // }, initialFavorites);
+        context.sidebarFavorites = this.document.system.sidebarFavorites.sort((a, b) => a.sort - b.sort);
     }
 
     /**
@@ -978,7 +962,12 @@ export default class CharacterSheet extends DHBaseActorSheet {
         if (inventoryItem) {
             event.dataTransfer.setDragImage(inventoryItem.querySelector('img'), 60, 0);
         }
-        super._onDragStart(event);
+
+        await super._onDragStart(event);
+        const baseDragData = foundry.applications.ux.TextEditor.getDragEventData(event);
+
+        const sidebarReorder = Boolean(event.target.closest('.items-sidebar-list'));
+        event.dataTransfer.setData('text/plain', JSON.stringify({ ...baseDragData, sidebarReorder }));
     }
 
     async _onDropItem(event, item) {
@@ -1027,16 +1016,57 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     async _onSidebarDrop(event, item) {
-        if (!item.testUserPermission(game.user, 'OWNER')) return;
-
         if (!(item instanceof game.system.api.documents.DHItem)) return;
         if (!this.document.items.get(item.id)) return;
+
+        const data = foundry.applications.ux.TextEditor.getDragEventData(event);
+        if (data.sidebarReorder) {
+            return this.document.update({ 'system.sidebarFavorites': this.getDropSortedFavorites(event, item) });
+        }
+
+        if (!item.testUserPermission(game.user, 'OWNER')) return;
 
         const allowedItemTypes = ['domainCard', 'feature', 'weapon', 'armor', 'loot', 'consumable'];
         if (!allowedItemTypes.includes(item.type)) return;
 
-        if (this.document.system.sidebarFavorites.some(x => x.id === item.id)) return;
+        if (this.document.system.sidebarFavorites.some(x => x.item.id === item.id)) return;
 
-        this.document.update({ 'system.sidebarFavorites': [...this.document.system.sidebarFavorites, item] });
+        const nextSort = this.document.system.sidebarFavorites.length
+            ? this.document.system.sidebarFavorites.reduce((acc, curr) => Math.max(curr.sort, acc), 0) + 100000
+            : 0;
+        this.document.update({
+            'system.sidebarFavorites': [
+                ...this.document.system.sidebarFavorites.map(x => ({ ...x, item: x.item.uuid })),
+                { item, sort: nextSort }
+            ]
+        });
+    }
+
+    getDropSortedFavorites(event, item) {
+        const dropTarget = event.target.closest('[data-item-id]');
+        if (!dropTarget) return;
+
+        const siblings = [];
+        for (const element of dropTarget.parentElement.children) {
+            const siblingId = element.dataset.itemId;
+            if (siblingId && siblingId !== item.id && element.dataset.type !== 'attack')
+                siblings.push(this.document.system.sidebarFavorites.find(x => x.item.id === element.dataset.itemId));
+        }
+
+        const source = this.document.system.sidebarFavorites.find(x => x.item.id === item.id);
+        const target = this.document.system.sidebarFavorites.find(x => x.item.id === dropTarget.dataset.itemId);
+        const sortUpdates = foundry.utils.performIntegerSort(source, { target, siblings });
+        const updates = sortUpdates.map(u => ({
+            sort: u.update.sort,
+            item: u.target?.uuid ?? u.target.item.uuid
+        }));
+
+        const test = this.document.system.sidebarFavorites.reduce((acc, curr) => {
+            if (acc.some(x => x.item === curr.item.uuid)) return acc;
+            acc.push({ ...curr, item: curr.item.uuid });
+
+            return acc;
+        }, updates);
+        return test;
     }
 }

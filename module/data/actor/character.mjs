@@ -286,7 +286,12 @@ export default class DhCharacter extends BaseDataActor {
                     ignore: new fields.BooleanField()
                 })
             }),
-            sidebarFavorites: new ForeignDocumentUUIDArrayField({ type: 'Item' })
+            sidebarFavorites: new fields.ArrayField(
+                new fields.SchemaField({
+                    sort: new fields.NumberField({ required: true, nullable: false, integer: true }),
+                    item: new ForeignDocumentUUIDField({ type: 'Item' })
+                })
+            )
         };
     }
 
