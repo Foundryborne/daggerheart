@@ -15,8 +15,9 @@ export default class DhCombat extends foundry.abstract.TypeDataModel {
     get extendedBattleToggles() {
         const modifiers = CONFIG.DH.ENCOUNTER.BPModifiers;
         const adversaries =
-            this.parent.turns?.filter(x => x.isNPC)?.map(x => ({ ...x.actor, type: x.actor.system.type })) ?? [];
-        const characters = this.parent.turns?.filter(x => !x.isNPC) ?? [];
+            this.parent.turns?.filter(x => x.actor && x.isNPC)?.map(x => ({ ...x.actor, type: x.actor.system.type })) ??
+            [];
+        const characters = this.parent.turns?.filter(x => x.actor && !x.isNPC) ?? [];
 
         const activeAutomatic = Object.keys(modifiers).reduce((acc, categoryKey) => {
             const category = modifiers[categoryKey];

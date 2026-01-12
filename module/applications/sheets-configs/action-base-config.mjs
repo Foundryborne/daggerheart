@@ -7,6 +7,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
 
         this.action = action;
         this.openSection = null;
+        this.openTrigger = this.action.triggers.length > 0 ? 0 : null;
     }
 
     get title() {
@@ -15,7 +16,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        classes: ['daggerheart', 'dh-style', 'dialog', 'action-config', 'max-800'],
+        classes: ['daggerheart', 'dh-style', 'action-config', 'dialog', 'max-800'],
         window: {
             icon: 'fa-solid fa-wrench',
             resizable: false
@@ -30,7 +31,10 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             editEffect: this.editEffect,
             addDamage: this.addDamage,
             removeDamage: this.removeDamage,
-            editDoc: this.editDoc
+            editDoc: this.editDoc,
+            addTrigger: this.addTrigger,
+            removeTrigger: this.removeTrigger,
+            expandTrigger: this.expandTrigger
         },
         form: {
             handler: this.updateForm,
@@ -57,6 +61,10 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         effect: {
             id: 'effect',
             template: 'systems/daggerheart/templates/sheets-settings/action-settings/effect.hbs'
+        },
+        trigger: {
+            id: 'trigger',
+            template: 'systems/daggerheart/templates/sheets-settings/action-settings/trigger.hbs'
         }
     };
 
@@ -84,6 +92,14 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             id: 'effect',
             icon: null,
             label: 'DAGGERHEART.GENERAL.Tabs.effects'
+        },
+        trigger: {
+            active: false,
+            cssClass: '',
+            group: 'primary',
+            id: 'trigger',
+            icon: null,
+            label: 'DAGGERHEART.GENERAL.Tabs.triggers'
         }
     };
 
@@ -128,6 +144,16 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         context.baseSaveDifficulty = this.action.actor?.baseSaveDifficulty;
         context.baseAttackBonus = this.action.actor?.system.attack?.roll.bonus;
         context.hasRoll = this.action.hasRoll;
+        context.triggers = context.source.triggers.map((trigger, index) => {
+            const { hint, returns, usesActor } = CONFIG.DH.TRIGGER.triggers[trigger.trigger];
+            return {
+                ...trigger,
+                hint,
+                returns,
+                usesActor,
+                revealed: this.openTrigger === index
+            };
+        });
 
         const settingsTiers = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers;
         context.tierOptions = [
@@ -254,6 +280,60 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             index = button.dataset.index;
         data.damage.parts.splice(index, 1);
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
+    static addTrigger() {
+        const data = this.action.toObject();
+        data.triggers.push({
+            trigger: CONFIG.DH.TRIGGER.triggers.dualityRoll.id,
+            triggeringActor: CONFIG.DH.TRIGGER.triggerActorTargetType.any.id
+        });
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
+    static async removeTrigger(_event, button) {
+        const trigger = CONFIG.DH.TRIGGER.triggers[this.action.triggers[button.dataset.index].trigger];
+        const confirmed = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: game.i18n.localize('DAGGERHEART.ACTIONS.Config.deleteTriggerTitle')
+            },
+            content: game.i18n.format('DAGGERHEART.ACTIONS.Config.deleteTriggerContent', {
+                trigger: game.i18n.localize(trigger.label)
+            })
+        });
+
+        if (!confirmed) return;
+
+        const data = this.action.toObject();
+        data.triggers = data.triggers.filter((_, index) => index !== Number.parseInt(button.dataset.index));
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
+    static async expandTrigger(_event, button) {
+        const index = Number.parseInt(button.dataset.index);
+        const toggle = (element, codeMirror) => {
+            codeMirror.classList.toggle('revealed');
+            const button = element.querySelector('a > i');
+            button.classList.toggle('fa-angle-up');
+            button.classList.toggle('fa-angle-down');
+        };
+
+        const fieldset = button.closest('fieldset');
+        const codeMirror = fieldset.querySelector('.code-mirror-wrapper');
+        toggle(fieldset, codeMirror);
+
+        if (this.openTrigger !== null && this.openTrigger !== index) {
+            const previouslyExpanded = fieldset
+                .closest(`section`)
+                .querySelector(`fieldset[data-index="${this.openTrigger}"]`);
+            const codeMirror = previouslyExpanded.querySelector('.code-mirror-wrapper');
+            toggle(previouslyExpanded, codeMirror);
+            this.openTrigger = index;
+        } else if (this.openTrigger === index) {
+            this.openTrigger = null;
+        } else {
+            this.openTrigger = index;
+        }
     }
 
     updateSummonCount(event) {

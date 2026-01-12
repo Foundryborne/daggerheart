@@ -94,7 +94,9 @@
                     "customFormula": "Custom Formula",
                     "formula": "Formula"
                 },
-                "displayInChat": "Display in chat"
+                "displayInChat": "Display in chat",
+                "deleteTriggerTitle": "Delete Trigger",
+                "deleteTriggerContent": "Are you sure you want to delete the {trigger} trigger?"
             },
             "RollField": {
                 "diceRolling": {
@@ -1151,7 +1153,8 @@
                 "any": "Any",
                 "friendly": "Friendly",
                 "hostile": "Hostile",
-                "self": "Self"
+                "self": "Self",
+                "other": "Other"
             },
             "TemplateTypes": {
                 "circle": "Circle",
@@ -1224,6 +1227,29 @@
                         "comprehend": "Comprehend"
                     }
                 }
+            },
+            "Triggers": {
+                "postDamageReduction": {
+                    "label": "After Damage Reduction"
+                },
+                "preDamageReduction": {
+                    "label": "Before Damage Reduction"
+                },
+                "dualityRoll": {
+                    "label": "Duality Roll"
+                },
+                "fearRoll": {
+                    "label": "Fear Roll"
+                },
+                "triggerTexts": {
+                    "strangePatternsContentTitle": "Matched {nr} times.",
+                    "strangePatternsContentSubTitle": "Increase hope and stress to a total of {nr}.",
+                    "ferocityContent": "Spend 2 Hope to gain {bonus} bonus Evasion until after the next attack against you?",
+                    "ferocityEffectDescription": "Your evasion is increased by {bonus}. This bonus lasts until after the next attack made against you."
+                },
+                "triggerType": "Trigger Type",
+                "triggeringActorType": "Triggering Actor Type",
+                "triggerError": "{trigger} trigger failed for {actor}. It's probably configured wrong."
             },
             "WeaponFeature": {
                 "barrier": {
@@ -2062,10 +2088,10 @@
                 "partyMembers": "Party Members",
                 "projects": "Projects",
                 "types": "Types",
-                "itemFeatures": "Item Features",
                 "questions": "Questions",
                 "configuration": "Configuration",
-                "base": "Base"
+                "base": "Base",
+                "triggers": "Triggers"
             },
             "Tiers": {
                 "singular": "Tier",
@@ -2443,6 +2469,12 @@
                             "hint": "Automatically apply effects. Targets must be selected before the action is made and Reaction Roll Automation must be different than Never. Bypass users permissions."
                         }
                     },
+                    "triggers": {
+                        "enabled": {
+                            "label": "Enabled",
+                            "hint": "Advanced automation such as triggering a popup for a wizard's Strange Patterns"
+                        }
+                    },
                     "summaryMessages": {
                         "label": "Summary Messages"
                     }
@@ -2452,6 +2484,9 @@
                 },
                 "roll": {
                     "title": "Actions"
+                },
+                "trigger": {
+                    "title": "Triggers"
                 }
             },
             "Homebrew": {
@@ -2579,7 +2614,9 @@
                     }
                 },
                 "disabledText": "Daggerheart Measurements are disabled in System Settings - Variant Rules",
-                "rangeMeasurement": "Range Measurement"
+                "rangeMeasurement": "Range Measurement",
+                "sceneEnvironments": "Scene Environments",
+                "dragEnvironmentHere": "Drag environments here"
             }
         },
         "UI": {
@@ -2792,7 +2829,9 @@
                 "gmRequired": "This action requires an online GM",
                 "gmOnly": "This can only be accessed by the GM",
                 "noActorOwnership": "You do not have permissions for this character",
-                "documentIsMissing": "The {documentType} is missing from the world."
+                "documentIsMissing": "The {documentType} is missing from the world.",
+                "tokenActorMissing": "{name} is missing an Actor",
+                "tokenActorsMissing": "[{names}] missing Actors"
             },
             "Sidebar": {
                 "actorDirectory": {

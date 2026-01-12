@@ -76,16 +76,10 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     /**@inheritdoc */
     async _preparePartContext(partId, context, options) {
         await super._preparePartContext(partId, context, options);
-        const { TextEditor } = foundry.applications.ux;
 
         switch (partId) {
             case 'description':
-                const value = foundry.utils.getProperty(this.document, 'system.description') ?? '';
-                context.enrichedDescription = await TextEditor.enrichHTML(value, {
-                    relativeTo: this.item,
-                    rollData: this.item.getRollData(),
-                    secrets: this.item.isOwner
-                });
+                context.enrichedDescription = await this.document.system.getEnrichedDescription();
                 break;
             case 'effects':
                 await this._prepareEffectsContext(context, options);
