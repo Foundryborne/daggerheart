@@ -109,10 +109,10 @@
                         type="attack"
                     }}
                 {{/if}}
-                {{#each sidebarFavorites as |data|}}
+                {{#each sidebarFavorites as |item|}}
                     {{> 'daggerheart.inventory-item-compact'
-                        item=data.item
-                        type=data.item.type
+                        item=item
+                        type=item.type
                     }}
                 {{/each}}
             </ul>
@@ -122,28 +122,28 @@
                 </div>
             {{/if}}
         </div>
-        
-        <div class="experience-section">
-            <div class="title">
-                <side-line-div class="invert"></side-line-div>
-                <h3>{{localize "DAGGERHEART.GENERAL.experience.single"}}</h3>
-                <side-line-div></side-line-div>
-            </div>
-            <div class="experience-list">
-                {{#each document.system.experiences as |experience id|}}
-                    <div class="experience-row" data-tooltip-text="{{experience.description}}">
-                        <span class="experience-value">
-                            +{{experience.value}}
-                        </span>
-                        <span class="experience-name">{{experience.name}}</span>
-                        <div class="controls">
-                            <a data-action="sendExpToChat" data-type="experience" data-id="{{id}}">
-                                <i class="fa-regular fa-message"></i>
-                            </a>
-                        </div>
+    </div>
+    
+    <div class="experience-section">
+        <div class="title">
+            <side-line-div class="invert"></side-line-div>
+            <h3>{{localize "DAGGERHEART.GENERAL.experience.single"}}</h3>
+            <side-line-div></side-line-div>
+        </div>
+        <div class="experience-list">
+            {{#each document.system.experiences as |experience id|}}
+                <div class="experience-row" data-tooltip-text="{{experience.description}}">
+                    <span class="experience-value">
+                        +{{experience.value}}
+                    </span>
+                    <span class="experience-name">{{experience.name}}</span>
+                    <div class="controls">
+                        <a data-action="sendExpToChat" data-type="experience" data-id="{{id}}">
+                            <i class="fa-regular fa-message"></i>
+                        </a>
                     </div>
-                {{/each}}
-            </div>
+                </div>
+            {{/each}}
         </div>
     </div>
 </aside>

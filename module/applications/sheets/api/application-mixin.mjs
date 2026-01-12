@@ -548,9 +548,7 @@ export default function DHApplicationMixin(Base) {
                 callback: async (target, _event) => {
                     const doc = await getDocFromElement(target);
                     this.document.update({
-                        'system.sidebarFavorites': this.document.system.sidebarFavorites
-                            .filter(x => x.item.id !== doc.id)
-                            .map(x => ({ ...x, item: x.item.uuid }))
+                        'system.sidebarFavorites': this.document.system.sidebarFavorites.filter(x => x.id !== doc.id)
                     });
                 }
             });
@@ -568,15 +566,8 @@ export default function DHApplicationMixin(Base) {
                 },
                 callback: async (target, _event) => {
                     const doc = await getDocFromElement(target);
-                    const nextSort = this.document.system.sidebarFavorites.length
-                        ? this.document.system.sidebarFavorites.reduce((acc, curr) => Math.max(curr.sort, acc), 0) +
-                          100000
-                        : 0;
                     this.document.update({
-                        'system.sidebarFavorites': [
-                            ...this.document.system.sidebarFavorites.map(x => ({ ...x, item: x.item.uuid })),
-                            { sort: nextSort, item: doc.uuid }
-                        ]
+                        'system.sidebarFavorites': [...this.document.system.sidebarFavorites, doc]
                     });
                 }
             });
