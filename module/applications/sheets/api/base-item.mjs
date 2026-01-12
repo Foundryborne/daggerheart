@@ -79,9 +79,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
 
         switch (partId) {
             case 'description':
-                context.enrichedDescription = await this.document.system.getEnrichedDescription({
-                    headerStyle: 'large'
-                });
+                context.enrichedDescription = await this.document.system.getEnrichedDescription();
                 break;
             case 'effects':
                 await this._prepareEffectsContext(context, options);

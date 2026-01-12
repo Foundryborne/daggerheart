@@ -221,15 +221,14 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
                     const itemIsAction = itemValue instanceof game.system.api.models.actions.actionsTypes.base;
                     const value = itemIsAction || !itemValue?.item ? itemValue : itemValue.item;
                     const enrichedValue =
-                        (await value.system?.getEnrichedDescription?.({ headerStyle: 'none' })) ??
+                        (await value.system?.getEnrichedDescription?.()) ??
                         (await TextEditor.enrichHTML(value.system?.description ?? value.description));
                     if (itemIsAction) value.enrichedDescription = enrichedValue;
                     else foundry.utils.setProperty(item, `${basePath}.${index}.enrichedDescription`, enrichedValue);
                 }
             } else {
                 const enrichedValue =
-                    (await item.system?.getEnrichedDescription?.({ headerStyle: 'none' })) ??
-                    (await TextEditor.enrichHTML(pathValue));
+                    (await item.system?.getEnrichedDescription?.()) ?? (await TextEditor.enrichHTML(pathValue));
                 foundry.utils.setProperty(
                     item,
                     `${data.path ? `${data.path}.` : ''}enriched${data.name.capitalize()}`,

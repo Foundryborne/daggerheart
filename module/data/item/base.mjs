@@ -130,7 +130,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
      * @returns {string}
      */
     async getDescriptionData(_options) {
-        return this.description;
+        return { prefix: null, value: this.description, suffix: null };
     }
 
     /**
@@ -138,11 +138,21 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
      * @param {object} [options] - Options that modify the styling of the rendered template. { headerStyle: undefined|'none'|'large' }
      * @returns {string}
      */
-    async getEnrichedDescription(options) {
+    async getEnrichedDescription() {
         if (!this.metadata.hasDescription) return '';
 
-        const description = await this.getDescriptionData(options);
-        return await foundry.applications.ux.TextEditor.implementation.enrichHTML(description, {
+        const appendWithSeparator = (text, add) => {
+            if (!add) return text;
+            if (text) return `${text}\n<hr>\n${add}`;
+            else return add;
+        };
+
+        const { prefix, value, suffix } = await this.getDescriptionData();
+        let fullDescription = prefix ?? '';
+        fullDescription = appendWithSeparator(fullDescription, value);
+        fullDescription = appendWithSeparator(fullDescription, suffix);
+
+        return await foundry.applications.ux.TextEditor.implementation.enrichHTML(fullDescription, {
             relativeTo: this,
             rollData: this.getRollData(),
             secrets: this.isOwner
