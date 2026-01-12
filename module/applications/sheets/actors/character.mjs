@@ -1016,44 +1016,40 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     async _onSidebarDrop(event, item) {
+        if (!item.testUserPermission(game.user, 'OWNER')) return;
+
         if (!(item instanceof game.system.api.documents.DHItem)) return;
         if (!this.document.items.get(item.id)) return;
-
-        const data = foundry.applications.ux.TextEditor.getDragEventData(event);
-        if (data.sidebarReorder) {
-            return this.document.update({ 'system.sidebarFavorites': this.getDropSortedFavorites(event, item) });
-        }
-
-        if (!item.testUserPermission(game.user, 'OWNER')) return;
 
         const allowedItemTypes = ['domainCard', 'feature', 'weapon', 'armor', 'loot', 'consumable'];
         if (!allowedItemTypes.includes(item.type)) return;
 
-        if (this.document.system.sidebarFavorites.some(x => x.item.id === item.id)) return;
+        const siblings = this.document.system.sidebarFavorites.filter(x => x.item.id !== item.id);
+        let source = null;
 
-        const nextSort = this.document.system.sidebarFavorites.length
-            ? this.document.system.sidebarFavorites.reduce((acc, curr) => Math.max(curr.sort, acc), 0) + 100000
-            : 0;
-        this.document.update({
-            'system.sidebarFavorites': [
-                ...this.document.system.sidebarFavorites.map(x => ({ ...x, item: x.item.uuid })),
-                { item, sort: nextSort }
-            ]
-        });
+        const data = foundry.applications.ux.TextEditor.getDragEventData(event);
+        if (data.sidebarReorder) {
+            source = this.document.system.sidebarFavorites.find(x => x.item.id === item.id);
+        } else {
+            if (this.document.system.sidebarFavorites.some(x => x.item.id === item.id)) return;
+            source = { sort: null, item };
+        }
+
+        const update = siblings.length
+            ? this.getDropSortedFavorites(event, source, siblings)
+            : [
+                  ...this.document.system.sidebarFavorites.map(x => ({ ...x, item: x.item.uuid })),
+                  { item, sort: 100000 }
+              ];
+        if (!update) return;
+
+        this.document.update({ 'system.sidebarFavorites': update });
     }
 
-    getDropSortedFavorites(event, item) {
+    getDropSortedFavorites(event, source, siblings) {
         const dropTarget = event.target.closest('[data-item-id]');
         if (!dropTarget) return;
 
-        const siblings = [];
-        for (const element of dropTarget.parentElement.children) {
-            const siblingId = element.dataset.itemId;
-            if (siblingId && siblingId !== item.id && element.dataset.type !== 'attack')
-                siblings.push(this.document.system.sidebarFavorites.find(x => x.item.id === element.dataset.itemId));
-        }
-
-        const source = this.document.system.sidebarFavorites.find(x => x.item.id === item.id);
         const target = this.document.system.sidebarFavorites.find(x => x.item.id === dropTarget.dataset.itemId);
         const sortUpdates = foundry.utils.performIntegerSort(source, { target, siblings });
         const updates = sortUpdates.map(u => ({
