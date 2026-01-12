@@ -141,16 +141,8 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
     async getEnrichedDescription() {
         if (!this.metadata.hasDescription) return '';
 
-        const appendWithSeparator = (text, add) => {
-            if (!add) return text;
-            if (text) return `${text}\n<hr>\n${add}`;
-            else return add;
-        };
-
         const { prefix, value, suffix } = await this.getDescriptionData();
-        let fullDescription = prefix ?? '';
-        fullDescription = appendWithSeparator(fullDescription, value);
-        fullDescription = appendWithSeparator(fullDescription, suffix);
+        const fullDescription = [prefix, value, suffix].filter(p => !!p).join('\n<hr>\n');
 
         return await foundry.applications.ux.TextEditor.implementation.enrichHTML(fullDescription, {
             relativeTo: this,
