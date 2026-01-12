@@ -552,7 +552,6 @@
     .shortcut-items-section {
         overflow-y: hidden;
         padding-top: 10px;
-        padding-bottom: 20px;
         mask-image: linear-gradient(0deg, transparent 0%, black 5%);
         scrollbar-gutter: stable;
         scrollbar-width: thin;
@@ -565,16 +564,17 @@
         .empty-favorites {
             width: 100%;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             box-sizing: border-box;
-            height: 40px;
             border: 1px dashed light-dark(@dark-blue-50, @beige-50);
             border-radius: 3px;
             color: light-dark(@dark-blue-50, @beige-50);
             text-align: center;
             margin-bottom: 10px;
             margin-left: 4px;
+            padding: 4px 0;
 
             span {
                 width: 250px;

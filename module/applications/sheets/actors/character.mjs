@@ -266,23 +266,24 @@ export default class CharacterSheet extends DHBaseActorSheet {
     async _prepareSidebarContext(context, _options) {
         context.isDeath = this.document.system.deathMoveViable;
         context.sidebarFavoritesEmpty = this.document.system.sidebarFavorites.length === 0;
+        context.showfavorites = !context.sidebarFavoritesEmpty || this.document.system.usedUnarmed;
 
-        const initialFavorites = this.document.system.usedUnarmed
-            ? {
-                  equipment: {
-                      label: 'DAGGERHEART.GENERAL.equipment',
-                      items: [{ type: 'attack', value: this.document.system.usedUnarmed }]
-                  }
-              }
-            : {};
-        context.sidebarFavorites = this.document.system.sidebarFavorites.reduce((acc, item) => {
-            const type = item.type === 'domainCard' ? item.type : 'equipment';
-            const label = type === 'domainCard' ? 'DAGGERHEART.GENERAL.loadout' : 'DAGGERHEART.GENERAL.equipment';
-            if (!acc[type]) acc[type] = { label, items: [] };
-            acc[type].items.push({ type: item.type, value: item });
+        // const initialFavorites = this.document.system.usedUnarmed
+        //     ? {
+        //           equipment: {
+        //               label: 'DAGGERHEART.GENERAL.equipment',
+        //               items: [{ type: 'attack', value: this.document.system.usedUnarmed }]
+        //           }
+        //       }
+        //     : {};
+        // context.sidebarFavorites = this.document.system.sidebarFavorites.reduce((acc, item) => {
+        //     const type = item.type === 'domainCard' ? item.type : 'equipment';
+        //     const label = type === 'domainCard' ? 'DAGGERHEART.GENERAL.loadout' : 'DAGGERHEART.GENERAL.equipment';
+        //     if (!acc[type]) acc[type] = { label, items: [] };
+        //     acc[type].items.push({ type: item.type, value: item });
 
-            return acc;
-        }, initialFavorites);
+        //     return acc;
+        // }, initialFavorites);
     }
 
     /**
