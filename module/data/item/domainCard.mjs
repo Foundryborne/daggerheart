@@ -52,11 +52,11 @@ export default class DHDomainCard extends BaseDataItem {
         return game.i18n.localize(allDomainData[this.domain].label);
     }
 
-    get vaultSupressed() {
+    get isVaultSupressed() {
         return this.inVault && !this.vaultActive;
     }
 
-    get domainTouchedSuppressed() {
+    get isDomainTouchedSuppressed() {
         if (!this.parent.system.domainTouched || this.parent.parent?.type !== 'character') return false;
 
         const matchingDomainCards = this.parent.parent.items.filter(
@@ -66,7 +66,7 @@ export default class DHDomainCard extends BaseDataItem {
     }
 
     get cannotUse() {
-        if (this.domainTouchedSuppressed) {
+        if (this.isDomainTouchedSuppressed) {
             return ui.notifications.warn(
                 game.i18n.format('DAGGERHEART.UI.Notifications.domainTouchRequirement', {
                     nr: this.domainTouched,
