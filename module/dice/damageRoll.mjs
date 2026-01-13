@@ -165,7 +165,7 @@ export default class DamageRoll extends DHRoll {
         }
 
         if (config.isCritical && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-            let total = part.roll.dice.reduce((acc, term) => acc + term._faces * term._number, 0);
+            const total = part.roll.dice.reduce((acc, term) => acc + term._faces * term._number, 0);
             if (total > 0) {
                 part.roll.terms.push(...this.formatModifier(total));
             }
