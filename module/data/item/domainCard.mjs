@@ -65,17 +65,6 @@ export default class DHDomainCard extends BaseDataItem {
         return matchingDomainCards < this.parent.system.domainTouched;
     }
 
-    get cannotUse() {
-        if (this.isDomainTouchedSuppressed) {
-            return ui.notifications.warn(
-                game.i18n.format('DAGGERHEART.UI.Notifications.domainTouchRequirement', {
-                    nr: this.domainTouched,
-                    domain: game.i18n.localize(CONFIG.DH.DOMAIN.allDomains()[this.domain].label)
-                })
-            );
-        }
-    }
-
     /* -------------------------------------------- */
 
     /**@override */

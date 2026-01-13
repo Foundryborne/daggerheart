@@ -146,7 +146,15 @@ export default class DHItem extends foundry.documents.Item {
     /* -------------------------------------------- */
 
     async use(event) {
-        if (this.system.cannotUse) return;
+        /* DomainCard check. Can be expanded or made neater */
+        if (this.system.isDomainTouchedSuppressed) {
+            return ui.notifications.warn(
+                game.i18n.format('DAGGERHEART.UI.Notifications.domainTouchRequirement', {
+                    nr: this.domainTouched,
+                    domain: game.i18n.localize(CONFIG.DH.DOMAIN.allDomains()[this.domain].label)
+                })
+            );
+        }
 
         const actions = new Set(this.system.actionsList);
         if (actions?.size) {
