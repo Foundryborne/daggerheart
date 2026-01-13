@@ -86,9 +86,9 @@ export const enrichedDualityRoll = async (
     const config = {
         event: event ?? {},
         title: title,
+        headerTitle: label,
         roll: {
             trait: traitValue && target ? traitValue : null,
-            label: label,
             difficulty: difficulty,
             advantage,
             type: reaction ? 'reaction' : null
