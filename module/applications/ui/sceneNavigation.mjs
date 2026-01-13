@@ -31,7 +31,7 @@ export default class DhSceneNavigation extends foundry.applications.ui.SceneNavi
                 const environments = daggerheartInfo.sceneEnvironments.filter(
                     x => x && x.testUserPermission(game.user, 'LIMITED')
                 );
-                const hasEnvironments = environments.length > 0;
+                const hasEnvironments = environments.length > 0 && x.isView;
                 return {
                     ...x,
                     hasEnvironments,

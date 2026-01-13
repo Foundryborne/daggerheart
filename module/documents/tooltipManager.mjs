@@ -67,7 +67,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             if (item) {
                 const isAction = item instanceof game.system.api.models.actions.actionsTypes.base;
                 const isEffect = item instanceof ActiveEffect;
-                await this.enrichText(item, isAction || isEffect);
+                await this.enrichText(item);
 
                 const type = isAction ? 'action' : isEffect ? 'effect' : item.type;
                 html = await foundry.applications.handlebars.renderTemplate(
@@ -202,10 +202,20 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         }
     }
 
-    async enrichText(item, flatStructure) {
+    async enrichText(item) {
         const { TextEditor } = foundry.applications.ux;
+
+        if (item.system?.metadata?.hasDescription) {
+            const enrichedValue =
+                (await item.system?.getEnrichedDescription?.()) ??
+                (await TextEditor.enrichHTML(item.system.description));
+            foundry.utils.setProperty(item, 'system.enrichedDescription', enrichedValue);
+        } else if (item.description) {
+            const enrichedValue = await TextEditor.enrichHTML(item.description);
+            foundry.utils.setProperty(item, 'enrichedDescription', enrichedValue);
+        }
+
         const enrichPaths = [
-            { path: flatStructure ? '' : 'system', name: 'description' },
             { path: 'system', name: 'features' },
             { path: 'system', name: 'actions' },
             { path: 'system', name: 'customActions' }

@@ -5,10 +5,7 @@ export default class DhSceneConfigSettings extends foundry.applications.sheets.S
         super(options);
 
         Hooks.on(socketEvent.Refresh, ({ refreshType }) => {
-            if (refreshType === RefreshType.Scene) {
-                this.daggerheartFlag = new game.system.api.data.scenes.DHScene(this.document.flags.daggerheart);
-                this.render();
-            }
+            if (refreshType === RefreshType.Scene) this.render();
         });
     }
 
@@ -42,7 +39,9 @@ export default class DhSceneConfigSettings extends foundry.applications.sheets.S
 
     async _preRender(context, options) {
         await super._preFirstRender(context, options);
-        this.daggerheartFlag = new game.system.api.data.scenes.DHScene(this.document.flags.daggerheart);
+
+        if (!options.internalRefresh)
+            this.daggerheartFlag = new game.system.api.data.scenes.DHScene(this.document.flags.daggerheart);
     }
 
     _attachPartListeners(partId, htmlElement, options) {
@@ -52,7 +51,7 @@ export default class DhSceneConfigSettings extends foundry.applications.sheets.S
             case 'dh':
                 htmlElement.querySelector('#rangeMeasurementSetting')?.addEventListener('change', async event => {
                     this.daggerheartFlag.updateSource({ rangeMeasurement: { setting: event.target.value } });
-                    this.render();
+                    this.render({ internalRefresh: true });
                 });
 
                 const dragArea = htmlElement.querySelector('.scene-environments');
@@ -69,7 +68,7 @@ export default class DhSceneConfigSettings extends foundry.applications.sheets.S
             await this.daggerheartFlag.updateSource({
                 sceneEnvironments: [...this.daggerheartFlag.sceneEnvironments, data.uuid]
             });
-            this.render();
+            this.render({ internalRefresh: true });
         }
     }
 
@@ -92,7 +91,7 @@ export default class DhSceneConfigSettings extends foundry.applications.sheets.S
                 (_, index) => index !== Number.parseInt(button.dataset.index)
             )
         });
-        this.render();
+        this.render({ internalRefresh: true });
     }
 
     /** @override */

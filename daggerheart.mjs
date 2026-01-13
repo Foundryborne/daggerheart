@@ -359,7 +359,9 @@ const updateAllRangeDependentEffects = async () => {
     const effectsAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).effects;
     if (!effectsAutomation.rangeDependent) return;
 
-    const tokens = canvas.scene.tokens;
+    const tokens = canvas.scene?.tokens;
+    if (!tokens) return;
+
     if (game.user.character) {
         // The character updates their character's token. There can be only one token.
         const characterToken = tokens.find(x => x.actor === game.user.character);
