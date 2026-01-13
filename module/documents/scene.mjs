@@ -37,4 +37,30 @@ export default class DhScene extends Scene {
         this.#sizeSyncBatch.clear();
         this.updateEmbeddedDocuments('Token', entries, { animation: { movementSpeed: 1.5 } });
     }, 0);
+
+    prepareBaseData() {
+        super.prepareBaseData();
+
+        if (this instanceof game.system.api.documents.DhScene) {
+            const system = new game.system.api.data.scenes.DHScene(this.flags.daggerheart);
+
+            // Register this scene to all environements
+            for (const environment of system.sceneEnvironments) {
+                environment.system.scenes?.add(this);
+            }
+        }
+    }
+
+    _onDelete(options, userId) {
+        super._onDelete(options, userId);
+
+        if (this instanceof game.system.api.documents.DhScene) {
+            const system = new game.system.api.data.scenes.DHScene(this.flags.daggerheart);
+
+            // Clear this scene from all environments that aren't deleted
+            for (const environment of system.sceneEnvironments) {
+                environment?.system?.scenes?.delete(this);
+            }
+        }
+    }
 }

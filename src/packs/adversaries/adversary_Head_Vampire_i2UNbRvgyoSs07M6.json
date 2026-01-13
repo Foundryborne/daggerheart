@@ -474,33 +474,31 @@
         "description": "<p><strong>Spend 2 Fear</strong> to summon [[/r 1d4]] @UUID[Compendium.daggerheart.adversaries.Actor.WWyUp6Mxl1S3KYUG]{Vampires}, who appear at Far range and immediately take the spotlight.</p>",
         "resource": null,
         "actions": {
-          "5Q6RMUTiauKw0tDj": {
-            "type": "effect",
-            "_id": "5Q6RMUTiauKw0tDj",
+          "jGFOnU6PNdWU6iF4": {
+            "type": "summon",
+            "_id": "jGFOnU6PNdWU6iF4",
             "systemPath": "actions",
+            "baseAction": false,
             "description": "",
             "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
             "actionType": "action",
-            "cost": [
-              {
-                "scalable": false,
-                "key": "fear",
-                "value": 2,
-                "step": null
-              }
-            ],
+            "cost": [],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
-            "effects": [],
-            "target": {
-              "type": "any",
-              "amount": null
-            },
-            "name": "Summon Vampires",
-            "img": "icons/creatures/mammals/bat-giant-tattered-purple.webp",
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.WWyUp6Mxl1S3KYUG",
+                "count": "1d4"
+              }
+            ],
+            "name": "Spend Fear",
             "range": ""
           }
         },

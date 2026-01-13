@@ -4,6 +4,7 @@ export default class DHRoll extends Roll {
     baseTerms = [];
     constructor(formula, data = {}, options = {}) {
         super(formula, data, options);
+        options.bonusEffects = this.bonusEffectBuilder();
         if (!this.data || !Object.keys(this.data).length) this.data = options.data;
     }
 
@@ -164,11 +165,17 @@ export default class DHRoll extends Roll {
                 new foundry.dice.terms.OperatorTerm({ operator: '+' }),
                 ...this.constructor.parse(modifier.join(' + '), this.options.data)
             ];
-        } else {
+        } else if (Number.isNumeric(modifier)) {
             const numTerm = modifier < 0 ? '-' : '+';
             return [
                 new foundry.dice.terms.OperatorTerm({ operator: numTerm }),
                 new foundry.dice.terms.NumericTerm({ number: Math.abs(modifier) })
+            ];
+        } else {
+            const numTerm = modifier < 0 ? '-' : '+';
+            return [
+                new foundry.dice.terms.OperatorTerm({ operator: numTerm }),
+                ...this.constructor.parse(modifier, this.options.data)
             ];
         }
     }
@@ -185,18 +192,20 @@ export default class DHRoll extends Roll {
     }
 
     getBonus(path, label) {
-        const bonus = foundry.utils.getProperty(this.data.bonuses, path),
-            modifiers = [];
-        if (bonus?.bonus)
-            modifiers.push({
-                label: label,
-                value: bonus?.bonus
-            });
-        if (bonus?.dice?.length)
-            modifiers.push({
-                label: label,
-                value: bonus?.dice
-            });
+        const modifiers = [];
+        for (const effect of Object.values(this.options.bonusEffects)) {
+            if (!effect.selected) continue;
+            for (const change of effect.changes) {
+                if (!change.key.includes(path)) continue;
+                const changeValue = game.system.api.documents.DhActiveEffect.getChangeValue(
+                    this.data,
+                    change,
+                    effect.origEffect
+                );
+                modifiers.push({ label: label, value: changeValue });
+            }
+        }
+
         return modifiers;
     }
 
@@ -234,5 +243,29 @@ export default class DHRoll extends Roll {
 
     static temporaryModifierBuilder(config) {
         return {};
+    }
+
+    bonusEffectBuilder() {
+        const changeKeys = this.getActionChangeKeys();
+        return (
+            this.options.effects?.reduce((acc, effect) => {
+                if (effect.changes.some(x => changeKeys.some(key => x.key.includes(key)))) {
+                    acc[effect.id] = {
+                        id: effect.id,
+                        name: effect.name,
+                        description: effect.description,
+                        changes: effect.changes,
+                        origEffect: effect,
+                        selected: !effect.disabled
+                    };
+                }
+
+                return acc;
+            }, {}) ?? []
+        );
+    }
+
+    getActionChangeKeys() {
+        return [];
     }
 }

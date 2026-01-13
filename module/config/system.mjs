@@ -7,7 +7,8 @@ import * as SETTINGS from './settingsConfig.mjs';
 import * as EFFECTS from './effectConfig.mjs';
 import * as ACTIONS from './actionConfig.mjs';
 import * as FLAGS from './flagsConfig.mjs';
-import HOOKS from './hooksConfig.mjs';
+import * as HOOKS from './hooksConfig.mjs';
+import * as TRIGGER from './triggerConfig.mjs';
 import * as ITEMBROWSER from './itemBrowserConfig.mjs';
 
 export const SYSTEM_ID = 'daggerheart';
@@ -24,5 +25,6 @@ export const SYSTEM = {
     ACTIONS,
     FLAGS,
     HOOKS,
+    TRIGGER,
     ITEMBROWSER
 };

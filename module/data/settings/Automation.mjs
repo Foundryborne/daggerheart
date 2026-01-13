@@ -173,6 +173,13 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                         label: 'DAGGERHEART.GENERAL.player.plurial'
                     })
                 })
+            }),
+            triggers: new fields.SchemaField({
+                enabled: new fields.BooleanField({
+                    nullable: false,
+                    initial: true,
+                    label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.triggers.enabled.label'
+                })
             })
         };
     }

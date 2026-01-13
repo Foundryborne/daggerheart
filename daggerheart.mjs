@@ -2,6 +2,7 @@ import { SYSTEM } from './module/config/system.mjs';
 import * as applications from './module/applications/_module.mjs';
 import * as data from './module/data/_module.mjs';
 import * as models from './module/data/_module.mjs';
+import * as canvas from './module/canvas/_module.mjs';
 import * as documents from './module/documents/_module.mjs';
 import * as dice from './module/dice/_module.mjs';
 import * as fields from './module/data/fields/_module.mjs';
@@ -19,6 +20,7 @@ import {
 import { placeables } from './module/canvas/_module.mjs';
 import './node_modules/@yaireo/tagify/dist/tagify.css';
 import TemplateManager from './module/documents/templateManager.mjs';
+import TokenManager from './module/documents/tokenManager.mjs';
 
 CONFIG.DH = SYSTEM;
 CONFIG.TextEditor.enrichers.push(...enricherConfig);
@@ -51,6 +53,8 @@ CONFIG.ChatMessage.template = 'systems/daggerheart/templates/ui/chat/chat-messag
 
 CONFIG.Canvas.rulerClass = placeables.DhRuler;
 CONFIG.Canvas.layers.templates.layerClass = placeables.DhTemplateLayer;
+CONFIG.Canvas.layers.tokens.layerClass = canvas.DhTokenLayer;
+
 CONFIG.MeasuredTemplate.objectClass = placeables.DhMeasuredTemplate;
 
 CONFIG.Scene.documentClass = documents.DhScene;
@@ -62,6 +66,7 @@ CONFIG.Token.rulerClass = placeables.DhTokenRuler;
 CONFIG.Token.hudClass = applications.hud.DHTokenHUD;
 
 CONFIG.ui.combat = applications.ui.DhCombatTracker;
+CONFIG.ui.nav = applications.ui.DhSceneNavigation;
 CONFIG.ui.chat = applications.ui.DhChatLog;
 CONFIG.ui.effectsDisplay = applications.ui.DhEffectsDisplay;
 CONFIG.ui.hotbar = applications.ui.DhHotbar;
@@ -73,6 +78,7 @@ CONFIG.ui.countdowns = applications.ui.DhCountdowns;
 CONFIG.ux.ContextMenu = applications.ux.DHContextMenu;
 CONFIG.ux.TooltipManager = documents.DhTooltipManager;
 CONFIG.ux.TemplateManager = new TemplateManager();
+CONFIG.ux.TokenManager = new TokenManager();
 
 Hooks.once('init', () => {
     game.system.api = {
@@ -83,6 +89,8 @@ Hooks.once('init', () => {
         dice,
         fields
     };
+
+    game.system.registeredTriggers = new RegisteredTriggers();
 
     const { DocumentSheetConfig } = foundry.applications.apps;
     DocumentSheetConfig.unregisterSheet(TokenDocument, 'core', foundry.applications.sheets.TokenConfig);
@@ -379,3 +387,50 @@ Hooks.on('refreshToken', (_, options) => {
 
 Hooks.on('renderCompendiumDirectory', (app, html) => applications.ui.ItemBrowser.injectSidebarButton(html));
 Hooks.on('renderDocumentDirectory', (app, html) => applications.ui.ItemBrowser.injectSidebarButton(html));
+
+class RegisteredTriggers extends Map {
+    constructor() {
+        super();
+    }
+
+    async registerTriggers(trigger, actor, triggeringActorType, uuid, commands) {
+        const existingTrigger = this.get(trigger);
+        if (!existingTrigger) this.set(trigger, new Map());
+
+        this.get(trigger).set(uuid, { actor, triggeringActorType, commands });
+    }
+
+    async runTrigger(trigger, currentActor, ...args) {
+        const updates = [];
+        const triggerSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).triggers;
+        if (!triggerSettings.enabled) return updates;
+
+        const dualityTrigger = this.get(trigger);
+        if (dualityTrigger) {
+            for (let { actor, triggeringActorType, commands } of dualityTrigger.values()) {
+                const triggerData = CONFIG.DH.TRIGGER.triggers[trigger];
+                if (triggerData.usesActor && triggeringActorType !== 'any') {
+                    if (triggeringActorType === 'self' && currentActor?.uuid !== actor) continue;
+                    else if (triggeringActorType === 'other' && currentActor?.uuid === actor) continue;
+                }
+
+                for (let command of commands) {
+                    try {
+                        const result = await command(...args);
+                        if (result?.updates?.length) updates.push(...result.updates);
+                    } catch (_) {
+                        const triggerName = game.i18n.localize(triggerData.label);
+                        ui.notifications.error(
+                            game.i18n.format('DAGGERHEART.CONFIG.Triggers.triggerError', {
+                                trigger: triggerName,
+                                actor: currentActor?.name
+                            })
+                        );
+                    }
+                }
+            }
+        }
+
+        return updates;
+    }
+}

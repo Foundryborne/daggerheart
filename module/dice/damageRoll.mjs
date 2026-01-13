@@ -93,7 +93,6 @@ export default class DamageRoll extends DHRoll {
             type = this.options.messageType ?? (this.options.hasHealing ? 'healing' : 'damage'),
             options = part ?? this.options;
 
-        modifiers.push(...this.getBonus(`${type}`, `${type.capitalize()} Bonus`));
         if (!this.options.hasHealing) {
             options.damageTypes?.forEach(t => {
                 modifiers.push(...this.getBonus(`${type}.${t}`, `${t.capitalize()} ${type.capitalize()} Bonus`));
@@ -106,6 +105,29 @@ export default class DamageRoll extends DHRoll {
         }
 
         return modifiers;
+    }
+
+    getActionChangeKeys() {
+        const type = this.options.messageType ?? (this.options.hasHealing ? 'healing' : 'damage');
+        const changeKeys = [];
+
+        for (const roll of this.options.roll) {
+            for (const damageType of roll.damageTypes) changeKeys.push(`system.bonuses.${type}.${damageType}`);
+        }
+
+        const item = this.data.parent.items?.get(this.options.source.item);
+        if (item) {
+            switch (item.type) {
+                case 'weapon':
+                    if (!this.options.hasHealing)
+                        ['primaryWeapon', 'secondaryWeapon'].forEach(w =>
+                            changeKeys.push(`system.bonuses.damage.${w}`)
+                        );
+                    break;
+            }
+        }
+
+        return changeKeys;
     }
 
     constructFormula(config) {

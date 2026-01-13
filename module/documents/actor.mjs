@@ -646,6 +646,19 @@ export default class DhpActor extends Actor {
             }
         }
 
+        const results = await game.system.registeredTriggers.runTrigger(
+            CONFIG.DH.TRIGGER.triggers.postDamageReduction.id,
+            this,
+            updates,
+            this
+        );
+
+        if (results?.length) {
+            const resourceMap = new ResourceUpdateMap(results[0].originActor);
+            for (var result of results) resourceMap.addResources(result.updates);
+            resourceMap.updateResources();
+        }
+
         updates.forEach(
             u =>
                 (u.value =

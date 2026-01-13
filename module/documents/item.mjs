@@ -31,7 +31,7 @@ export default class DHItem extends foundry.documents.Item {
     static async createDocuments(sources, operation) {
         // Ensure that items being created are valid to the actor its being added to
         const actor = operation.parent;
-        sources = actor?.system?.isItemValid ? sources.filter((s) => actor.system.isItemValid(s)) : sources;
+        sources = actor?.system?.isItemValid ? sources.filter(s => actor.system.isItemValid(s)) : sources;
         return super.createDocuments(sources, operation);
     }
 
@@ -146,6 +146,16 @@ export default class DHItem extends foundry.documents.Item {
     /* -------------------------------------------- */
 
     async use(event) {
+        /* DomainCard check. Can be expanded or made neater */
+        if (this.system.isDomainTouchedSuppressed) {
+            return ui.notifications.warn(
+                game.i18n.format('DAGGERHEART.UI.Notifications.domainTouchRequirement', {
+                    nr: this.domainTouched,
+                    domain: game.i18n.localize(CONFIG.DH.DOMAIN.allDomains()[this.domain].label)
+                })
+            );
+        }
+
         const actions = new Set(this.system.actionsList);
         if (actions?.size) {
             let action = actions.first();
