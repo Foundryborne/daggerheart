@@ -61,7 +61,14 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
                     }
                 }
             );
+
+            if (newScarAmount >= this.actor.system.resources.hope.max) {
+                return "You have " + newScarAmount + " Scars and have crossed out your last Hope slot. Your character's journey ends."
+            }
+
+            return "You have a new scar, total scars: " + newScarAmount;
         }
+        return "You have avoided a new scar.";
     }
 
     async clearAllStressAndHitpoints() {
@@ -94,9 +101,8 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
         });
 
         if (config.roll.isCritical) {
-            console.log("Clear all stress and HP");
             this.clearAllStressAndHitpoints();
-            return;
+            return "Critical Rolled, clearing all marked Stress and Hit Points";
         }
 
         // Hope
@@ -104,16 +110,15 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
             console.log("Need to clear up Stress and HP up to hope value");
             console.log("Hope rolled", config.roll.hope.value);
             if (config.roll.hope.value >= (this.actor.system.resources.hitPoints.value + this.actor.system.resources.stress.value)) {
-                console.log("Hope roll value is more than the HP + Stress, auto- remove");
                 this.clearAllStressAndHitpoints();
+                return "Hope roll value is more than the marked Stress and Hit Points, clearing both.";
             }
-            return;
+            return "TODO - need to clear Stress and/or Hit Points up to: " + config.roll.hope.value;
         }
 
         //Fear
         if (config.roll.result.duality == -1) {
-            console.log("You have died...");
-            return;
+            return "Fear rolled higher, you have died...";
         }
         
     }
@@ -133,6 +138,8 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
                 ]
             }
         ]);
+
+        return "Blaze of Glory Effect Added!";
     }
 
     static selectMove(_, button) {
@@ -143,6 +150,23 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
     }
 
     static async takeMove() {
+   
+        this.close();
+
+        let result = "";
+
+        if (CONFIG.DH.GENERAL.deathMoves.blazeOfGlory === this.selectedMove) {
+            result = await this.handleBlazeOfGlory();
+        }
+
+        if (CONFIG.DH.GENERAL.deathMoves.avoidDeath === this.selectedMove) {
+            result = await this.handleAvoidDeath();
+        }
+
+        if (CONFIG.DH.GENERAL.deathMoves.riskItAll === this.selectedMove) {
+            result = await this.handleRiskItAll();
+        }
+
         const autoExpandDescription = game.settings.get(
                             CONFIG.DH.id,
                             CONFIG.DH.SETTINGS.gameSettings.appearance
@@ -159,6 +183,7 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
                     title: game.i18n.localize(this.selectedMove.name),
                     img: this.selectedMove.img,
                     description: game.i18n.localize(this.selectedMove.description),
+                    result: result,
                     open: autoExpandDescription ? 'open' : '',
                     chevron: autoExpandDescription ? 'fa-chevron-up' : 'fa-chevron-down'
                 }
@@ -175,23 +200,5 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
         };
 
         cls.create(msg);
-
-        this.close();
-
-        if (CONFIG.DH.GENERAL.deathMoves.avoidDeath === this.selectedMove) {
-            this.handleAvoidDeath();
-            return;
-        }
-
-        if (CONFIG.DH.GENERAL.deathMoves.riskItAll === this.selectedMove) {
-            this.handleRiskItAll();
-            return;
-        }
-
-        if (CONFIG.DH.GENERAL.deathMoves.blazeOfGlory === this.selectedMove) {
-            this.handleBlazeOfGlory();
-            return;
-        }
-
     }
 }
