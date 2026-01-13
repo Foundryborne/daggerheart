@@ -725,6 +725,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             })
         };
         const result = await this.document.diceRoll(config);
+        if (!result) return;
 
         /* This could be avoided by baking config.costs into config.resourceUpdates. Didn't feel like messing with it at the time */
         const costResources = result.costs

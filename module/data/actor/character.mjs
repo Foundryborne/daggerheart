@@ -281,18 +281,20 @@ export default class DhCharacter extends BaseDataActor {
                     })
                 }),
                 dualityRoll: new fields.SchemaField({
-                    defaultHopeDice: new fields.StringField({
+                    defaultHopeDice: new fields.NumberField({
                         nullable: false,
                         required: true,
-                        choices: CONFIG.DH.GENERAL.diceTypes,
-                        initial: CONFIG.DH.GENERAL.diceTypes.d12,
+                        integer: true,
+                        choices: CONFIG.DH.GENERAL.dieFaces,
+                        initial: 12,
                         label: 'DAGGERHEART.ACTORS.Character.defaultHopeDice'
                     }),
-                    defaultFearDice: new fields.StringField({
+                    defaultFearDice: new fields.NumberField({
                         nullable: false,
                         required: true,
-                        choices: CONFIG.DH.GENERAL.diceTypes,
-                        initial: CONFIG.DH.GENERAL.diceTypes.d12,
+                        integer: true,
+                        choices: CONFIG.DH.GENERAL.dieFaces,
+                        initial: 12,
                         label: 'DAGGERHEART.ACTORS.Character.defaultFearDice'
                     })
                 }),
