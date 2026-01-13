@@ -79,7 +79,7 @@ export default class DHSummonField extends fields.ArrayField {
         summon.actor = result.actor;
 
         summon.count--;
-        if (summon.count === 0) {
+        if (summon.count <= 0) {
             summonIndex++;
             if (summonIndex === summonData.length) return actionActor.sheet?.maximize();
         }
