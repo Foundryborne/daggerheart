@@ -194,17 +194,15 @@ export default class DHRoll extends Roll {
     getBonus(path, label) {
         const modifiers = [];
         for (const effect of Object.values(this.options.bonusEffects)) {
-            if (effect.selected) {
-                for (const change of effect.changes) {
-                    if (change.key.includes(path)) {
-                        const changeValue = game.system.api.documents.DhActiveEffect.getChangeValue(
-                            this.data,
-                            change,
-                            effect.origEffect
-                        );
-                        modifiers.push({ label: label, value: changeValue });
-                    }
-                }
+            if (!effect.selected) continue;
+            for (const change of effect.changes) {
+                if (!change.key.includes(path)) continue;
+                const changeValue = game.system.api.documents.DhActiveEffect.getChangeValue(
+                    this.data,
+                    change,
+                    effect.origEffect
+                );
+                modifiers.push({ label: label, value: changeValue });
             }
         }
 
