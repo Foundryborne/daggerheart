@@ -2295,9 +2295,8 @@
                 "type": "Type",
                 "recallCost": "Recall Cost",
                 "vaultActive": "Active In Vault",
-                "loadoutIgnore": "Doesn't Count For Loadout",
+                "loadoutIgnore": "Ignores Loadout Limits",
                 "domainTouched": "Domain Touched",
-                "domainTouchedPlaceholder": "loadout {domain} requirement",
                 "foundationTitle": "Foundation",
                 "specializationTitle": "Specialization",
                 "masteryTitle": "Mastery"

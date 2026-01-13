@@ -39,9 +39,6 @@ export default class DomainCardSheet extends DHBaseItemSheet {
         const context = await super._prepareContext(options);
         context.domain = CONFIG.DH.DOMAIN.allDomains()[this.document.system.domain];
         context.domainChoices = CONFIG.DH.DOMAIN.orderedDomains();
-        context.domainTouchedPlaceholder = game.i18n.format('DAGGERHEART.ITEMS.DomainCard.domainTouchedPlaceholder', {
-            domain: game.i18n.localize(context.domain.label)
-        });
 
         return context;
     }
