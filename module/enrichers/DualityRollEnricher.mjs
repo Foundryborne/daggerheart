@@ -80,7 +80,7 @@ export const renderDualityButton = async event => {
 };
 
 export const enrichedDualityRoll = async (
-    { reaction, traitValue, target, difficulty, title, label, advantage },
+    { reaction, traitValue, target, difficulty, title, label, advantage, customConfig },
     event
 ) => {
     const config = {
@@ -94,7 +94,8 @@ export const enrichedDualityRoll = async (
             type: reaction ? 'reaction' : null
         },
         type: 'trait',
-        hasRoll: true
+        hasRoll: true,
+        ...(customConfig ?? {})
     };
 
     if (target) {

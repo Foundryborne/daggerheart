@@ -44,10 +44,12 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
         const target = this.actor.uuid;
         const config = await enrichedFateRoll({
             target,
-            title: 'Avoid Death Hope Fate Roll',
-            label: 'test',
+            title: game.i18n.localize('DAGGERHEART.CONFIG.DeathMoves.avoidDeath.name'),
+            label: `${game.i18n.localize('DAGGERHEART.GENERAL.hope')} ${game.i18n.localize('DAGGERHEART.GENERAL.fateRoll')}`,
             fateType: 'Hope'
         });
+
+        if (!config.roll.fate) return;
 
         if (config.roll.fate.value <= this.actor.system.levelData.level.current) {
             // apply scarring - for now directly apply - later add a button.
@@ -69,36 +71,30 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
         return game.i18n.localize('DAGGERHEART.UI.Chat.deathMove.avoidScar');
     }
 
-    async clearAllStressAndHitpoints() {
-        await this.actor.update({
-            system: {
-                resources: {
-                    hitPoints: {
-                        value: 0
-                    },
-                    stress: {
-                        value: 0
-                    }
-                }
-            }
-        });
-    }
-
     async handleRiskItAll() {
         const config = await enrichedDualityRoll({
             reaction: true,
             traitValue: null,
-            target: null,
+            target: this.actor,
             difficulty: null,
-            title: 'Risk It All',
-            label: 'test',
+            title: game.i18n.localize('DAGGERHEART.CONFIG.DeathMoves.riskItAll.name'),
+            label: game.i18n.localize('DAGGERHEART.GENERAL.dualityDice'),
             actionType: null,
-            advantage: null
+            advantage: null,
+            customConfig: { skips: { resources: true } }
         });
 
+        if (!config.roll.result) return;
+
+        const clearAllStressAndHitpointsUpdates = [
+            { key: 'hitPoints', clear: true },
+            { key: 'stress', clear: true }
+        ];
+
+        let chatMessage = '';
         if (config.roll.isCritical) {
-            this.clearAllStressAndHitpoints();
-            return game.i18n.localize('DAGGERHEART.UI.Chat.deathMove.riskItAllCritical');
+            config.resourceUpdates.addResources(clearAllStressAndHitpointsUpdates);
+            chatMessage = game.i18n.localize('DAGGERHEART.UI.Chat.deathMove.riskItAllCritical');
         }
 
         if (config.roll.result.duality == 1) {
@@ -108,15 +104,18 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
                 config.roll.hope.value >=
                 this.actor.system.resources.hitPoints.value + this.actor.system.resources.stress.value
             ) {
-                this.clearAllStressAndHitpoints();
-                return 'Hope roll value is more than the marked Stress and Hit Points, clearing both.';
+                config.resourceUpdates.addResources(clearAllStressAndHitpointsUpdates);
+                chatMessage = 'Hope roll value is more than the marked Stress and Hit Points, clearing both.';
             }
-            return 'TODO - need to clear Stress and/or Hit Points up to: ' + config.roll.hope.value;
+            chatMessage = 'TODO - need to clear Stress and/or Hit Points up to: ' + config.roll.hope.value;
         }
 
         if (config.roll.result.duality == -1) {
-            return game.i18n.localize('DAGGERHEART.UI.Chat.deathMove.riskItAllFailure');
+            chatMessage = game.i18n.localize('DAGGERHEART.UI.Chat.deathMove.riskItAllFailure');
         }
+
+        await config.resourceUpdates.updateResources();
+        return chatMessage;
     }
 
     async handleBlazeOfGlory() {
@@ -161,6 +160,8 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
         if (CONFIG.DH.GENERAL.deathMoves.riskItAll === this.selectedMove) {
             result = await this.handleRiskItAll();
         }
+
+        if (!result) return;
 
         const autoExpandDescription = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
             .expandRollMessage?.desc;
