@@ -112,10 +112,12 @@ export default class DamageRoll extends DHRoll {
         const changeKeys = [];
 
         for (const roll of this.options.roll) {
-            for (const damageType of roll.damageTypes) changeKeys.push(`system.bonuses.${type}.${damageType}`);
+            for (const damageType of roll.damageTypes?.values?.() ?? []) {
+                changeKeys.push(`system.bonuses.${type}.${damageType}`);
+            }
         }
 
-        const item = this.data.parent.items?.get(this.options.source.item);
+        const item = this.data.parent?.items?.get(this.options.source.item);
         if (item) {
             switch (item.type) {
                 case 'weapon':

@@ -2,7 +2,6 @@ import { SYSTEM } from './module/config/system.mjs';
 import * as applications from './module/applications/_module.mjs';
 import * as data from './module/data/_module.mjs';
 import * as models from './module/data/_module.mjs';
-import * as canvas from './module/canvas/_module.mjs';
 import * as documents from './module/documents/_module.mjs';
 import * as dice from './module/dice/_module.mjs';
 import * as fields from './module/data/fields/_module.mjs';
@@ -17,7 +16,7 @@ import {
     settingsRegistration,
     socketRegistration
 } from './module/systemRegistration/_module.mjs';
-import { placeables } from './module/canvas/_module.mjs';
+import { placeables, DhTokenLayer } from './module/canvas/_module.mjs';
 import './node_modules/@yaireo/tagify/dist/tagify.css';
 import TemplateManager from './module/documents/templateManager.mjs';
 import TokenManager from './module/documents/tokenManager.mjs';
@@ -53,7 +52,7 @@ CONFIG.ChatMessage.template = 'systems/daggerheart/templates/ui/chat/chat-messag
 
 CONFIG.Canvas.rulerClass = placeables.DhRuler;
 CONFIG.Canvas.layers.templates.layerClass = placeables.DhTemplateLayer;
-CONFIG.Canvas.layers.tokens.layerClass = canvas.DhTokenLayer;
+CONFIG.Canvas.layers.tokens.layerClass = DhTokenLayer;
 
 CONFIG.MeasuredTemplate.objectClass = placeables.DhMeasuredTemplate;
 
