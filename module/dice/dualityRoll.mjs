@@ -85,9 +85,7 @@ export default class DualityRoll extends D20Roll {
     }
 
     get isCritical() {
-        if (this.guaranteedCritical) {
-            return true;
-        }
+        if (this.guaranteedCritical) return true;
         if (!this.dHope._evaluated || !this.dFear._evaluated) return;
         return this.dHope.total === this.dFear.total;
     }
@@ -103,9 +101,13 @@ export default class DualityRoll extends D20Roll {
     }
 
     get totalLabel() {
-        const label = this.guaranteedCritical ? 'DAGGERHEART.GENERAL.guaranteedCriticalSuccess' : 
-            this.isCritical ? 'DAGGERHEART.GENERAL.criticalSuccess' :
-            this.withHope ? 'DAGGERHEART.GENERAL.hope' : 'DAGGERHEART.GENERAL.fear';
+        const label = this.guaranteedCritical
+            ? 'DAGGERHEART.GENERAL.guaranteedCriticalSuccess'
+            : this.isCritical
+              ? 'DAGGERHEART.GENERAL.criticalSuccess'
+              : this.withHope
+                ? 'DAGGERHEART.GENERAL.hope'
+                : 'DAGGERHEART.GENERAL.fear';
 
         return game.i18n.localize(label);
     }
@@ -117,8 +119,9 @@ export default class DualityRoll extends D20Roll {
     /** @inheritDoc */
     static fromData(data) {
         if (data.options.guaranteedCritical) {
-            console.log("TODO: set the max values for Hope and Fear here?");
+            console.log('TODO: set the max values for Hope and Fear here?');
         }
+
         data.terms[0].class = foundry.dice.terms.Die.name;
         data.terms[2].class = foundry.dice.terms.Die.name;
         return super.fromData(data);
@@ -176,7 +179,7 @@ export default class DualityRoll extends D20Roll {
         config.dialog ??= {};
         config.guaranteedCritical = config.data?.parent?.appliedEffects.reduce((a, c) => {
             const change = c.changes.find(ch => ch.key === 'system.rules.roll.guaranteedCritical');
-             if (change) a = true;
+            if (change) a = true;
             return a;
         }, false);
 
@@ -186,7 +189,6 @@ export default class DualityRoll extends D20Roll {
 
         return super.buildConfigure(config, message);
     }
-
 
     static async buildEvaluate(roll, config = {}, message = {}) {
         await super.buildEvaluate(roll, config, message);

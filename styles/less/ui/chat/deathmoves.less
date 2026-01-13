@@ -3,7 +3,7 @@
 @import '../../utils/spacing.less';
 
 #interface.theme-light {
-    .daggerheart.chat.deathmoves {
+    .daggerheart.chat.death-moves {
         .death-moves-list .death-move {
             &:hover {
                 background: @dark-blue-10;
@@ -36,7 +36,7 @@
 }
 
 .daggerheart.chat {
-    &.deathmoves {
+    &.death-moves {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -101,17 +101,13 @@
                 .description {
                     padding: 8px;
                 }
-
-                .result {
-                    padding: 8px;
-                }
             }
 
             .action-use-button-parent {
                 width: 100%;
 
                 .action-use-target {
-                    display:flex;
+                    display: flex;
                     align-items: center;
                     justify-content: space-between;
                     gap: 4px;
@@ -135,7 +131,11 @@
                 font-weight: 600;
                 height: 40px;
             }
+        }
 
+        .result {
+            padding: 8px;
+            font-weight: bold;
         }
     }
 }

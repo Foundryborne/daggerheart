@@ -3,7 +3,7 @@ import D20Roll from './d20Roll.mjs';
 import { setDiceSoNiceForHopeFateRoll, setDiceSoNiceForFearFateRoll } from '../helpers/utils.mjs';
 
 export default class FateRoll extends D20Roll {
-     constructor(formula, data = {}, options = {}) {
+    constructor(formula, data = {}, options = {}) {
         super(formula, data, options);
     }
 
@@ -12,41 +12,32 @@ export default class FateRoll extends D20Roll {
     static DefaultDialog = D20RollDialog;
 
     get title() {
-        return game.i18n.localize(
-            `DAGGERHEART.GENERAL.fateRoll`
-        );
+        return game.i18n.localize(`DAGGERHEART.GENERAL.fateRoll`);
     }
 
     get dHope() {
-        // if ( !(this.terms[0] instanceof foundry.dice.terms.Die) ) return;
         if (!(this.dice[0] instanceof foundry.dice.terms.Die)) this.createBaseDice();
         return this.dice[0];
-        // return this.#hopeDice;
     }
 
     set dHope(faces) {
         if (!(this.dice[0] instanceof foundry.dice.terms.Die)) this.createBaseDice();
         this.dice[0].faces = this.getFaces(faces);
-        // this.#hopeDice = `d${face}`;
     }
 
     get dFear() {
-        // if ( !(this.terms[1] instanceof foundry.dice.terms.Die) ) return;
         if (!(this.dice[0] instanceof foundry.dice.terms.Die)) this.createBaseDice();
         return this.dice[0];
-        // return this.#fearDice;
     }
 
     set dFear(faces) {
         if (!(this.dice[0] instanceof foundry.dice.terms.Die)) this.createBaseDice();
         this.dice[0].faces = this.getFaces(faces);
-        // this.#fearDice = `d${face}`;
     }
 
     get isCritical() {
         return false;
     }
-
 
     get fateDie() {
         return this.data.fateType;
@@ -73,16 +64,10 @@ export default class FateRoll extends D20Roll {
     static async buildEvaluate(roll, config = {}, message = {}) {
         await super.buildEvaluate(roll, config, message);
 
-        if (roll.fateDie === "Hope") {
-            await setDiceSoNiceForHopeFateRoll(
-                roll,
-                config.roll.fate.dice
-            );
+        if (roll.fateDie === 'Hope') {
+            await setDiceSoNiceForHopeFateRoll(roll, config.roll.fate.dice);
         } else {
-           await setDiceSoNiceForFearFateRoll(
-                roll,
-                config.roll.fate.dice
-            );
+            await setDiceSoNiceForFearFateRoll(roll, config.roll.fate.dice);
         }
     }
 
@@ -90,12 +75,11 @@ export default class FateRoll extends D20Roll {
         const data = super.postEvaluate(roll, config);
 
         data.fate = {
-            dice: roll.fateDie === "Hope" ? roll.dHope.denomination : roll.dFear.denomination,
-            value: roll.fateDie === "Hope" ? roll.dHope.total : roll.dFear.total,
+            dice: roll.fateDie === 'Hope' ? roll.dHope.denomination : roll.dFear.denomination,
+            value: roll.fateDie === 'Hope' ? roll.dHope.total : roll.dFear.total,
             fateDie: roll.fateDie
         };
 
         return data;
     }
-
 }

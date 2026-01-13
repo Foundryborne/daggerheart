@@ -686,10 +686,10 @@ export default class DhCharacter extends BaseDataActor {
             const newHopeMax = this.system.resources.hope.max + diff;
             const newHopeValue = Math.min(newHopeMax, this.system.resources.hope.value);
             if (newHopeValue != this.system.resources.hope.value) {
-                changes.system.resources = {
-                    hope: {
-                        value: newHopeValue
-                    }
+                if (!changes.system.resources) changes.system.resources = { hope: { value: 0 } };
+                changes.system.resources.hope = {
+                    ...changes.system.resources.hope,
+                    value: changes.system.resources.hope.value + newHopeValue
                 };
             }
         }
@@ -710,7 +710,7 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     static migrateData(source) {
-        if (typeof (source.scars) === 'object') source.scars = 0;
+        if (typeof source.scars === 'object') source.scars = 0;
         return super.migrateData(source);
     }
 }

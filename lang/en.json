@@ -1009,7 +1009,7 @@
                 },
                 "blazeOfGlory": {
                     "name": "Blaze Of Glory",
-                    "description": " Your character embraces death and goes out in a blaze of glory. Take one final action. It automatically critically succeeds (with GM approval), and then you cross through the veil of death. NOTE: A Blaze of Glory effect has been added to your character. Any Duality Roll will automatically be a critical."
+                    "description": "Your character embraces death and goes out in a blaze of glory. Take one final action. It automatically critically succeeds (with GM approval), and then you cross through the veil of death. NOTE: A Blaze of Glory effect has been added to your character. Any Duality Roll will automatically be a critical."
                 }
             },
             "DomainCardTypes": {
@@ -2605,7 +2605,13 @@
                     "currentTarget": "Current"
                 },
                 "deathMove": {
-                    "title": "Death Move"
+                    "title": "Death Move",
+                    "gainScar": "You gained a scar",
+                    "avoidScar": "You have avoided a new scar",
+                    "journeysEnd": "You have {scars} Scars and have crossed out your last Hope slot. Your character's journey ends.",
+                    "riskItAllCritical": "Critical Rolled, clearing all marked Stress and Hit Points",
+                    "riskItAllFailure": "The fear die rolled higher. You have crossed through the veil of death.",
+                    "blazeOfGlory": "Blaze of Glory Effect Added!"
                 },
                 "dicePool": {
                     "title": "Dice Pool"
