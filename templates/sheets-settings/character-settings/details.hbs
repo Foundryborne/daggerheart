@@ -33,6 +33,9 @@
             {{formGroup systemFields.resources.fields.hope.fields.value value=document._source.system.resources.hope.value localize=true}}
             {{formGroup systemFields.resources.fields.hope.fields.max value=document._source.system.resources.hope.max localize=true}}
 
+            {{formGroup systemFields.scars value=document._source.system.scars localize=true}}
+            <span></span>
+
             {{formGroup systemFields.proficiency value=document._source.system.proficiency localize=true}}
             <span data-tooltip-text="{{localize "DAGGERHEART.UI.Tooltip.maxEvasionClassBound"}}">
                 {{formGroup systemFields.evasion value=document._source.system.evasion label="DAGGERHEART.ACTORS.Character.maxEvasionBonus" localize=true}}
