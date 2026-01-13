@@ -93,10 +93,6 @@ export const registerSocketHooks = () => {
             }
         }
     });
-    Hooks.on(socketEvent.RefreshDocument, async data => {
-        const document = await foundry.utils.fromUuid(data.uuid);
-        document.sheet.render();
-    });
 };
 
 export const registerUserQueries = () => {
