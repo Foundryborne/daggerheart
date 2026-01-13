@@ -37,7 +37,8 @@ export const GMUpdateEvent = {
 export const RefreshType = {
     Countdown: 'DhCoundownRefresh',
     TagTeamRoll: 'DhTagTeamRollRefresh',
-    EffectsDisplay: 'DhEffectsDisplayRefresh'
+    EffectsDisplay: 'DhEffectsDisplayRefresh',
+    Scene: 'DhSceneRefresh'
 };
 
 export const registerSocketHooks = () => {
@@ -91,6 +92,10 @@ export const registerSocketHooks = () => {
                 Hooks.call(socketEvent.Refresh, data.refresh);
             }
         }
+    });
+    Hooks.on(socketEvent.RefreshDocument, async data => {
+        const document = await foundry.utils.fromUuid(data.uuid);
+        document.sheet.render();
     });
 };
 

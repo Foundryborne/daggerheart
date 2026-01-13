@@ -363,33 +363,31 @@
         "description": "<p><strong>Spend a Fear</strong> to grow three @UUID[Compendium.daggerheart.adversaries.Actor.o63nS0k3wHu6EgKP]{Treant Sapling Minions}, who appear at Close range and immediately take the spotlight.</p>",
         "resource": null,
         "actions": {
-          "84Q2b0zIY9c7Yhho": {
-            "type": "effect",
-            "_id": "84Q2b0zIY9c7Yhho",
+          "R84DdS0OIx2cUt1w": {
+            "type": "summon",
+            "_id": "R84DdS0OIx2cUt1w",
             "systemPath": "actions",
+            "baseAction": false,
             "description": "",
             "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
             "actionType": "action",
-            "cost": [
-              {
-                "scalable": false,
-                "key": "fear",
-                "value": 1,
-                "step": null
-              }
-            ],
+            "cost": [],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
-            "effects": [],
-            "target": {
-              "type": "self",
-              "amount": null
-            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.o63nS0k3wHu6EgKP",
+                "count": "3"
+              }
+            ],
             "name": "Spend Fear",
-            "img": "icons/magic/unholy/orb-hands-pink.webp",
             "range": ""
           }
         },

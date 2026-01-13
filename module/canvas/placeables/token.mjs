@@ -1,4 +1,12 @@
 export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
+    /** @inheritdoc */
+    async _draw(options) {
+        await super._draw(options);
+
+        if (this.document.flags.daggerheart?.createPlacement)
+            this.previewHelp ||= this.addChild(this.#drawPreviewHelp());
+    }
+
     /** @inheritDoc */
     async _drawEffects() {
         this.effects.renderable = false;
@@ -34,7 +42,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         this.renderFlags.set({ refreshEffects: true });
     }
 
-    /** 
+    /**
      * Returns the distance from this token to another token object.
      * This value is corrected to handle alternate token sizes and other grid types
      * according to the diagonal rules.
@@ -47,11 +55,11 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         const destinationPoint = target.center;
 
         // Compute for gridless. This version returns circular edge to edge + grid distance,
-        // so that tokens that are touching return 5. 
+        // so that tokens that are touching return 5.
         if (canvas.grid.type === CONST.GRID_TYPES.GRIDLESS) {
             const boundsCorrection = canvas.grid.distance / canvas.grid.size;
-            const originRadius = this.bounds.width * boundsCorrection / 2;
-            const targetRadius = target.bounds.width * boundsCorrection / 2;
+            const originRadius = (this.bounds.width * boundsCorrection) / 2;
+            const targetRadius = (target.bounds.width * boundsCorrection) / 2;
             const distance = canvas.grid.measurePath([originPoint, destinationPoint]).distance;
             return distance - originRadius - targetRadius + canvas.grid.distance;
         }
@@ -61,11 +69,11 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         const targetEdge = this.#getEdgeBoundary(target.bounds, originPoint, destinationPoint);
         const adjustedOriginPoint = canvas.grid.getTopLeftPoint({
             x: originEdge.x + Math.sign(originPoint.x - originEdge.x),
-            y: originEdge.y + Math.sign(originPoint.y - originEdge.y) 
+            y: originEdge.y + Math.sign(originPoint.y - originEdge.y)
         });
         const adjustDestinationPoint = canvas.grid.getTopLeftPoint({
             x: targetEdge.x + Math.sign(destinationPoint.x - targetEdge.x),
-            y: targetEdge.y + Math.sign(destinationPoint.y - targetEdge.y) 
+            y: targetEdge.y + Math.sign(destinationPoint.y - targetEdge.y)
         });
         return canvas.grid.measurePath([adjustedOriginPoint, adjustDestinationPoint]).distance;
     }
@@ -94,7 +102,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
 
     /** Tests if the token is at least adjacent with another, with some leeway for diagonals */
     isAdjacentWith(token) {
-        return this.distanceTo(token) <= (canvas.grid.distance * 1.5);
+        return this.distanceTo(token) <= canvas.grid.distance * 1.5;
     }
 
     /** @inheritDoc */
@@ -131,5 +139,26 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         const posY = number === 0 ? height - bh : 0;
         bar.position.set(0, posY);
         return true;
+    }
+
+    /**
+     * Draw a helptext for previews as a text object
+     * @returns {PreciseText}    The Text object for the preview helper
+     */
+    #drawPreviewHelp() {
+        const { uiScale } = canvas.dimensions;
+
+        const textStyle = CONFIG.canvasTextStyle.clone();
+        textStyle.fontSize = 18;
+        textStyle.wordWrapWidth = this.w * 2.5;
+        textStyle.fontStyle = 'italic';
+
+        const helpText = new PreciseText(
+            `(${game.i18n.localize('DAGGERHEART.UI.Tooltip.previewTokenHelp')})`,
+            textStyle
+        );
+        helpText.anchor.set(helpText.width / 900, 1);
+        helpText.scale.set(uiScale, uiScale);
+        return helpText;
     }
 }

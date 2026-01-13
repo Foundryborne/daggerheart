@@ -2,6 +2,20 @@
     <header class="dialog-header">
         <h1>{{title}}</h1>
     </header>
+
+    {{#if hasSelectedEffects}}
+        <fieldset class="dialog-selection-container">
+            <legend>{{localize "DAGGERHEART.GENERAL.Effect.plural"}}</legend>
+
+            {{#each selectedEffects as |effect id|}}
+                <div class="selection-chip {{#if effect.selected}}selected{{/if}}" data-action="toggleSelectedEffect" data-key="{{id}}" data-tooltip="{{this.description}}">
+                    <span><i class="{{ifThen effect.selected "fa-solid" "fa-regular"}} fa-circle"></i></span>
+                    <span class="label">{{effect.name}}</span>
+                </div>
+            {{/each}}
+        </fieldset>
+    {{/if}}
+
     {{#each @root.formula}}
         <div class="damage-formula">
             <span class="damage-resource"><b>{{localize "DAGGERHEART.GENERAL.formula"}}:</b> {{roll.formula}}</span>

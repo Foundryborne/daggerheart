@@ -1,0 +1,36 @@
+#ui-left #ui-left-column-2 {
+    flex: 0 0 230px;
+
+    .scene-navigation {
+        .scene-wrapper {
+            display: flex;
+            gap: 2px;
+            height: var(--control-size);
+            width: 100%;
+
+            .scene-environment {
+                padding: 0;
+
+                img {
+                    border-radius: 4px;
+                }
+            }
+        }
+
+        .scene {
+            justify-content: center;
+            align-content: center;
+            background: var(--control-bg-color);
+            border: 1px solid var(--control-border-color);
+            border-radius: 4px;
+            color: var(--control-icon-color);
+            pointer-events: all;
+            transition:
+                border 0.25s,
+                color 0.25s;
+            text-shadow: none;
+            width: 200px;
+            max-width: 200px;
+        }
+    }
+}

@@ -267,7 +267,8 @@ export function ActionMixin(Base) {
                 action: {
                     name: this.name,
                     img: this.baseAction ? this.parent.parent.img : this.img,
-                    tags: this.tags ? this.tags : ['Spell', 'Arcana', 'Lv 10']
+                    tags: this.tags ? this.tags : ['Spell', 'Arcana', 'Lv 10'],
+                    summon: this.summon
                 },
                 itemOrigin: this.item,
                 description: this.description || (this.item instanceof Item ? this.item.system.description : '')

@@ -31,7 +31,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
                 dragSelector: '[data-item-id][draggable="true"], [data-item-id] [draggable="true"]',
                 dropSelector: null
             }
-        ],
+        ]
     };
 
     static PARTS = {
@@ -184,7 +184,6 @@ export default class AdversarySheet extends DHBaseActorSheet {
         }
         super._onDragStart(event);
     }
-
 
     /* -------------------------------------------- */
     /*  Application Clicks Actions                  */

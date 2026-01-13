@@ -6,6 +6,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
 
         this.roll = roll;
         this.config = config;
+        this.selectedEffects = this.config.bonusEffects;
     }
 
     static DEFAULT_OPTIONS = {
@@ -20,6 +21,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
             icon: 'fa-solid fa-dice'
         },
         actions: {
+            toggleSelectedEffect: this.toggleSelectedEffect,
             submitRoll: this.submitRoll
         },
         form: {
@@ -57,6 +59,9 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
             icon
         }));
         context.modifiers = this.config.modifiers;
+        context.hasSelectedEffects = Boolean(Object.keys(this.selectedEffects).length);
+        context.selectedEffects = this.selectedEffects;
+
         return context;
     }
 
@@ -66,6 +71,11 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         foundry.utils.mergeObject(this.config.modifiers, rest.modifiers);
         this.config.selectedRollMode = rest.selectedRollMode;
 
+        this.render();
+    }
+
+    static toggleSelectedEffect(_event, button) {
+        this.selectedEffects[button.dataset.key].selected = !this.selectedEffects[button.dataset.key].selected;
         this.render();
     }
 

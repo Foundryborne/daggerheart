@@ -69,7 +69,11 @@
                 },
                 "summon": {
                     "name": "Summon",
-                    "tooltip": "Create tokens in the scene."
+                    "tooltip": "Create tokens in the scene.",
+                    "error": "You do not have permission to summon tokens or there is no active scene.",
+                    "invalidDrop": "You can only drop Actor entities to summon.",
+                    "chatMessageTitle": "Test2",
+                    "chatMessageHeaderTitle": "Summoning"
                 }
             },
             "Config": {
@@ -90,7 +94,9 @@
                     "customFormula": "Custom Formula",
                     "formula": "Formula"
                 },
-                "displayInChat": "Display in chat"
+                "displayInChat": "Display in chat",
+                "deleteTriggerTitle": "Delete Trigger",
+                "deleteTriggerContent": "Are you sure you want to delete the {trigger} trigger?"
             },
             "RollField": {
                 "diceRolling": {
@@ -120,6 +126,9 @@
                 },
                 "cost": {
                     "stepTooltip": "+{step} per step"
+                },
+                "summon": {
+                    "dropSummonsHere": "Drop Summons Here"
                 }
             }
         },
@@ -194,6 +203,8 @@
                     "unequip": "Unequip",
                     "useItem": "Use Item"
                 },
+                "defaultHopeDice": "Default Hope Dice",
+                "defaultFearDice": "Default Fear Dice",
                 "disadvantageSources": {
                     "label": "Disadvantage Sources",
                     "hint": "Add single words or short text as reminders and hints of what a character has disadvantage on."
@@ -1144,7 +1155,8 @@
                 "any": "Any",
                 "friendly": "Friendly",
                 "hostile": "Hostile",
-                "self": "Self"
+                "self": "Self",
+                "other": "Other"
             },
             "TemplateTypes": {
                 "circle": "Circle",
@@ -1217,6 +1229,29 @@
                         "comprehend": "Comprehend"
                     }
                 }
+            },
+            "Triggers": {
+                "postDamageReduction": {
+                    "label": "After Damage Reduction"
+                },
+                "preDamageReduction": {
+                    "label": "Before Damage Reduction"
+                },
+                "dualityRoll": {
+                    "label": "Duality Roll"
+                },
+                "fearRoll": {
+                    "label": "Fear Roll"
+                },
+                "triggerTexts": {
+                    "strangePatternsContentTitle": "Matched {nr} times.",
+                    "strangePatternsContentSubTitle": "Increase hope and stress to a total of {nr}.",
+                    "ferocityContent": "Spend 2 Hope to gain {bonus} bonus Evasion until after the next attack against you?",
+                    "ferocityEffectDescription": "Your evasion is increased by {bonus}. This bonus lasts until after the next attack made against you."
+                },
+                "triggerType": "Trigger Type",
+                "triggeringActorType": "Triggering Actor Type",
+                "triggerError": "{trigger} trigger failed for {actor}. It's probably configured wrong."
             },
             "WeaponFeature": {
                 "barrier": {
@@ -2055,10 +2090,10 @@
                 "partyMembers": "Party Members",
                 "projects": "Projects",
                 "types": "Types",
-                "itemFeatures": "Item Features",
                 "questions": "Questions",
                 "configuration": "Configuration",
-                "base": "Base"
+                "base": "Base",
+                "triggers": "Triggers"
             },
             "Tiers": {
                 "singular": "Tier",
@@ -2183,6 +2218,10 @@
             "stress": "Stress",
             "subclasses": "Subclasses",
             "success": "Success",
+            "summon": {
+                "single": "Summon",
+                "plural": "Summons"
+            },
             "take": "Take",
             "Target": {
                 "single": "Target",
@@ -2298,6 +2337,9 @@
             "DomainCard": {
                 "type": "Type",
                 "recallCost": "Recall Cost",
+                "vaultActive": "Active In Vault",
+                "loadoutIgnore": "Ignores Loadout Limits",
+                "domainTouched": "Domain Touched",
                 "foundationTitle": "Foundation",
                 "specializationTitle": "Specialization",
                 "masteryTitle": "Mastery"
@@ -2436,6 +2478,12 @@
                             "hint": "Automatically apply effects. Targets must be selected before the action is made and Reaction Roll Automation must be different than Never. Bypass users permissions."
                         }
                     },
+                    "triggers": {
+                        "enabled": {
+                            "label": "Enabled",
+                            "hint": "Advanced automation such as triggering a popup for a wizard's Strange Patterns"
+                        }
+                    },
                     "summaryMessages": {
                         "label": "Summary Messages"
                     }
@@ -2445,6 +2493,9 @@
                 },
                 "roll": {
                     "title": "Actions"
+                },
+                "trigger": {
+                    "title": "Triggers"
                 }
             },
             "Homebrew": {
@@ -2572,7 +2623,9 @@
                     }
                 },
                 "disabledText": "Daggerheart Measurements are disabled in System Settings - Variant Rules",
-                "rangeMeasurement": "Range Measurement"
+                "rangeMeasurement": "Range Measurement",
+                "sceneEnvironments": "Scene Environments",
+                "dragEnvironmentHere": "Drag environments here"
             }
         },
         "UI": {
@@ -2795,7 +2848,8 @@
                 "noActorOwnership": "You do not have permissions for this character",
                 "documentIsMissing": "The {documentType} is missing from the world.",
                 "tokenActorMissing": "{name} is missing an Actor",
-                "tokenActorsMissing": "[{names}] missing Actors"
+                "tokenActorsMissing": "[{names}] missing Actors",
+                "domainTouchRequirement": "This domain card requires {nr} {domain} cards in the loadout to be used"
             },
             "Sidebar": {
                 "actorDirectory": {
@@ -2840,7 +2894,8 @@
                 "deleteItem": "Delete Item",
                 "immune": "Immune",
                 "middleClick": "[Middle Click] Keep tooltip view",
-                "tokenSize": "The token size used on the canvas"
+                "tokenSize": "The token size used on the canvas",
+                "previewTokenHelp": "Left-click to place, right-click to cancel"
             }
         }
     }

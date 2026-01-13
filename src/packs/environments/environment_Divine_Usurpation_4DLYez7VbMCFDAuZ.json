@@ -248,33 +248,31 @@
         "description": "<p><strong>Spend 2 Fear</strong> to summon [[/r 1d4+2]] @UUID[Compendium.daggerheart.adversaries.Actor.OsLG2BjaEdTZUJU9]{Fallen Shock Troop} that appear within Close range of the Usurper to assist their divine siege. Immediately spotlight the Shock Troops to use a “Group Attack” action.</p><section class=\"secret\" id=\"secret-QJHdwGNSuTgS59gn\"><p><em>Which High Fallen do these troops serve? Which god’s fl esh do they wish to feast upon?</em></p></section>",
         "resource": null,
         "actions": {
-          "qIQTEO5t72xFtKYI": {
-            "type": "effect",
-            "_id": "qIQTEO5t72xFtKYI",
+          "okcqGrI4rdghugUi": {
+            "type": "summon",
+            "_id": "okcqGrI4rdghugUi",
             "systemPath": "actions",
-            "description": "<p><strong>Spend 2 Fear</strong> to summon [[/r 1d4+2]] @UUID[Compendium.daggerheart.adversaries.Actor.OsLG2BjaEdTZUJU9]{Fallen Shock Troop} that appear within Close range of the Usurper to assist their divine siege. Immediately spotlight the Shock Troops to use a “Group Attack” action.</p><section class=\"secret\" id=\"secret-fNfGy8lT8b7elPcE\"><p><em>Which High Fallen do these troops serve? Which god’s fl esh do they wish to feast upon?</em></p></section>",
+            "baseAction": false,
+            "description": "",
             "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
             "actionType": "action",
-            "cost": [
-              {
-                "scalable": false,
-                "key": "fear",
-                "value": 2,
-                "step": null
-              }
-            ],
+            "cost": [],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
-            "effects": [],
-            "target": {
-              "type": "self",
-              "amount": null
-            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.OsLG2BjaEdTZUJU9",
+                "count": "1d4+2"
+              }
+            ],
             "name": "Spend Fear",
-            "img": "icons/magic/unholy/orb-hands-pink.webp",
             "range": ""
           }
         },
