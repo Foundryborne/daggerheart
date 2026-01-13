@@ -153,7 +153,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         textStyle.wordWrapWidth = this.w * 2.5;
         textStyle.fontStyle = 'italic';
 
-        const helpText = new PreciseText(
+        const helpText = new foundry.canvas.containers.PreciseText(
             `(${game.i18n.localize('DAGGERHEART.UI.Tooltip.previewTokenHelp')})`,
             textStyle
         );
