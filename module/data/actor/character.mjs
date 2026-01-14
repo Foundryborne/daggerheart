@@ -35,7 +35,14 @@ export default class DhCharacter extends BaseDataActor {
                     'DAGGERHEART.ACTORS.Character.maxHPBonus'
                 ),
                 stress: resourceField(6, 0, 'DAGGERHEART.GENERAL.stress', true),
-                hope: resourceField(6, 2, 'DAGGERHEART.GENERAL.hope')
+                hope: new fields.SchemaField({
+                    value: new fields.NumberField({
+                        initial: 2,
+                        min: 0,
+                        integer: true,
+                        label: 'DAGGERHEART.GENERAL.hope'
+                    })
+                })
             }),
             traits: new fields.SchemaField({
                 agility: attributeField('DAGGERHEART.CONFIG.Traits.agility.name'),
@@ -640,7 +647,9 @@ export default class DhCharacter extends BaseDataActor {
                 ? armor.system.baseThresholds.severe + this.levelData.level.current
                 : this.levelData.level.current * 2
         };
-        this.resources.hope.max -= this.scars;
+
+        const globalHopeMax = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxHope;
+        this.resources.hope.max = globalHopeMax - this.scars;
         this.resources.hitPoints.max += this.class.value?.system?.hitPoints ?? 0;
     }
 
@@ -729,6 +738,8 @@ export default class DhCharacter extends BaseDataActor {
 
     static migrateData(source) {
         if (typeof source.scars === 'object') source.scars = 0;
+        if (source.resources.hope.max) source.scars = 6 - source.resources.hope.max;
+
         return super.migrateData(source);
     }
 }

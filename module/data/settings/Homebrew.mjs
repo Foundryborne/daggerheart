@@ -23,6 +23,13 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                 initial: 12,
                 label: 'DAGGERHEART.SETTINGS.Homebrew.FIELDS.maxFear.label'
             }),
+            maxHope: new fields.NumberField({
+                required: true,
+                integer: true,
+                min: 0,
+                initial: 6,
+                label: 'DAGGERHEART.SETTINGS.Homebrew.FIELDS.maxHope.label'
+            }),
             maxLoadout: new fields.NumberField({
                 required: true,
                 integer: true,
