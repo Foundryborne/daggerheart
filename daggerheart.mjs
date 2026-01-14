@@ -181,9 +181,9 @@ Hooks.once('init', () => {
     });
 
     RollTables.unregisterSheet('core', foundry.applications.sheets.RollTableSheet);
-    RollTables.registerSheet(SYSTEM.id, applications.sheets.RollTableSheet, {
+    RollTables.registerSheet(SYSTEM.id, applications.sheets.rollTables.RollTableSheet, {
         types: ['base'],
-        makeDefault: true,
+        makeDefault: true
     });
 
     DocumentSheetConfig.unregisterSheet(
