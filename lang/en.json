@@ -237,10 +237,13 @@
                     "confirmText": "Would you like to level up your companion {name} by {levelChange} levels at this time? (You can do it manually later)"
                 },
                 "viewLevelups": "View Levelups",
+                "resetCharacter": "Reset Character",
                 "viewParty": "View Party",
                 "InvalidOldCharacterImportTitle": "Old Character Import",
                 "InvalidOldCharacterImportText": "Character data exported prior to system version 1.1 will not generate a complete character. Do you wish to continue?",
-                "cancelBeastform": "Cancel Beastform"
+                "cancelBeastform": "Cancel Beastform",
+                "resetCharacterConfirmationTitle": "Reset Character",
+                "resetCharacterConfirmationContent": "You are reseting all character data except name and portrait. Are you sure?"
             },
             "Companion": {
                 "FIELDS": {
@@ -314,6 +317,8 @@
                 "selectPrimaryWeapon": "Select Primary Weapon",
                 "selectSecondaryWeapon": "Select Secondary Weapon",
                 "selectSubclass": "Select Subclass",
+                "setupSkipTitle": "Skipping Character Setup",
+                "setupSkipContent": "You are skipping the Character Setup by adding this manually. The character setup is the blinking arrows in the top-right. Are you sure you want to continue?",
                 "startingItems": "Starting Items",
                 "story": "Story",
                 "storyExplanation": "Select which background and connection prompts you want to copy into your character's background.",
