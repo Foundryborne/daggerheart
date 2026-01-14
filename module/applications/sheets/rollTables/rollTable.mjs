@@ -4,10 +4,10 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
         const parts = super.PARTS;
         return {
             summary: {
-                template: 'templates\sheets\rollTable\summary.hbs'
+                template: 'templates/sheets/rollTable/summary.hbs',
             },
             ...parts
-        };
+        };5
     }
     static actions = {
         addAltFormula: DhRollTableSheet.#onAddAltFormula,
