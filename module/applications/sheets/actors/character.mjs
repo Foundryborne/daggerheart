@@ -728,9 +728,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
         if (!result) return;
 
         /* This could be avoided by baking config.costs into config.resourceUpdates. Didn't feel like messing with it at the time */
-        const costResources = result.costs
-            .filter(x => x.enabled)
-            .map(cost => ({ ...cost, value: -cost.value, total: -cost.total }));
+        const costResources = result.costs?.filter(x => x.enabled)
+            .map(cost => ({ ...cost, value: -cost.value, total: -cost.total })) || {};
         config.resourceUpdates.addResources(costResources);
         await config.resourceUpdates.updateResources();
     }

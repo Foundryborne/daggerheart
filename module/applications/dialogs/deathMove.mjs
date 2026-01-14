@@ -8,6 +8,8 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
 
         this.actor = actor;
         this.selectedMove = null;
+        this.showRiskItAllButton = false;
+        this.riskItAllButtonLabel = ""
     }
 
     get title() {
@@ -98,16 +100,17 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
         }
 
         if (config.roll.result.duality == 1) {
-            console.log('Need to clear up Stress and HP up to hope value');
-            console.log('Hope rolled', config.roll.hope.value);
             if (
                 config.roll.hope.value >=
                 this.actor.system.resources.hitPoints.value + this.actor.system.resources.stress.value
             ) {
                 config.resourceUpdates.addResources(clearAllStressAndHitpointsUpdates);
-                chatMessage = 'Hope roll value is more than the marked Stress and Hit Points, clearing both.';
+                chatMessage = game.i18n.localize('DAGGERHEART.UI.Chat.deathMove.riskItAllSuccessWithEnoughHope');
+            } else {
+                chatMessage = game.i18n.format('DAGGERHEART.UI.Chat.deathMove.riskItAllSuccess', { hope: config.roll.hope.value })
+                this.showRiskItAllButton = true;
+                this.riskItAllButtonLabel = game.i18n.format('DAGGERHEART.UI.Chat.deathMove.riskItAllClearStressAndHitPoints', { hope: config.roll.hope.value })
             }
-            chatMessage = 'TODO - need to clear Stress and/or Hit Points up to: ' + config.roll.hope.value;
         }
 
         if (config.roll.result.duality == -1) {
@@ -180,7 +183,9 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
                     description: game.i18n.localize(this.selectedMove.description),
                     result: result,
                     open: autoExpandDescription ? 'open' : '',
-                    chevron: autoExpandDescription ? 'fa-chevron-up' : 'fa-chevron-down'
+                    chevron: autoExpandDescription ? 'fa-chevron-up' : 'fa-chevron-down',
+                    showRiskItAllButton: this.showRiskItAllButton,
+                    riskItAllButtonLabel: this.riskItAllButtonLabel
                 }
             ),
             title: game.i18n.localize('DAGGERHEART.UI.Chat.deathMove.title'),

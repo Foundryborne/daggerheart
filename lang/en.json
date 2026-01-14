@@ -2660,12 +2660,15 @@
                 },
                 "deathMove": {
                     "title": "Death Move",
-                    "gainScar": "You gained a scar",
-                    "avoidScar": "You have avoided a new scar",
+                    "gainScar": "You gained a scar.",
+                    "avoidScar": "You have avoided a new scar.",
                     "journeysEnd": "You have {scars} Scars and have crossed out your last Hope slot. Your character's journey ends.",
-                    "riskItAllCritical": "Critical Rolled, clearing all marked Stress and Hit Points",
+                    "riskItAllCritical": "Critical Rolled, clearing all marked Stress and Hit Points.",
                     "riskItAllFailure": "The fear die rolled higher. You have crossed through the veil of death.",
-                    "blazeOfGlory": "Blaze of Glory Effect Added!"
+                    "blazeOfGlory": "Blaze of Glory Effect Added!",
+                    "riskItAllClearStressAndHitPoints": "Clear {hope} Stress Or Hit Points.",
+                    "riskItAllSuccessWithEnoughHope": "Hope roll value is more than the marked Stress and Hit Points, clearing both.",
+                    "riskItAllSuccess": "The hope die rolled higher, clear up to {hope} Stress Or Hit Points."
                 },
                 "dicePool": {
                     "title": "Dice Pool"

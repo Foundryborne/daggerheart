@@ -81,6 +81,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         html.querySelectorAll('.group-roll-header-expand-section').forEach(element =>
             element.addEventListener('click', this.groupRollExpandSection)
         );
+        html.querySelectorAll('.risk-it-all-button').forEach(element =>
+            element.addEventListener('click', event => this.riskItAllClearStressAndHitPoints(event, message))
+        );
     };
 
     setupHooks() {
@@ -370,4 +373,11 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             });
         event.target.closest('.group-roll-section').querySelector('.group-roll-content').classList.toggle('closed');
     }
+
+
+    async riskItAllClearStressAndHitPoints(event, message) {
+        console.log("riskItAllClearStressAndHitPoints button hit!", event, message);
+    }
+    
+    
 }
