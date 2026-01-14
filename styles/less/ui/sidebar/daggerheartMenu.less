@@ -1,42 +1,5 @@
-.theme-light.tab.sidebar-tab.daggerheartMenu-sidebar {
-    fieldset {
-        border-color: @dark-blue;
-
-        legend {
-            color: @dark-blue;
-        }
-    }
-
-    button {
-        background: transparent;
-    }
-
-    .menu-refresh-container .menu-refresh-inner-container .experience-chip {
-        background: @dark-blue-10;
-        color: @dark-blue;
-
-        &.selected {
-            background: @dark-blue-40;
-        }
-    }
-}
-
 .tab.sidebar-tab.daggerheartMenu-sidebar {
     padding: 4px;
-
-    fieldset {
-        border-color: @golden;
-
-        legend {
-            color: @golden;
-        }
-    }
-
-    button {
-        background: @golden;
-        border: 1px solid @dark-blue;
-        color: @dark-blue;
-    }
 
     div[data-application-part] {
         display: flex;
@@ -68,8 +31,8 @@
                 gap: 5px;
                 cursor: pointer;
                 padding: 5px;
-                background: @golden-10;
-                color: @golden;
+                background: light-dark(@dark-blue-10, @golden-10);
+                color: light-dark(@dark-blue, @golden);
 
                 .label {
                     font-style: normal;
@@ -79,7 +42,7 @@
                 }
 
                 &.selected {
-                    background: @golden-40;
+                    background: light-dark(@dark-blue-40, @golden-40);
                 }
             }
         }
