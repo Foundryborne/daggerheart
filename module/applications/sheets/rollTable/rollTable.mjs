@@ -4,7 +4,7 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
         const parts= super.PARTS;
         return{
             summary: {
-                template: "ournewmodifiedsummary.hbs"
+                template: "templates\sheets\rollTable\summary.hbs"
             },
             ...parts
         };
