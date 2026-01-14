@@ -2453,10 +2453,6 @@
                         "label": "Show Resource Change Scrolltexts",
                         "hint": "When a character is damaged, uses armor etc, a scrolling text will briefly appear by the token to signify this."
                     },
-                    "playerCanEditSheet": {
-                        "label": "Players Can Manually Edit Character Settings",
-                        "hint": "Players are allowed to access the manual Character Settings and change their statistics beyond the rules."
-                    },
                     "roll": {
                         "roll": {
                             "label": "Roll",
