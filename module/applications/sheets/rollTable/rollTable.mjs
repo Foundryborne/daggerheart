@@ -1,4 +1,26 @@
 //Setting RollTable
-export default class DhRollTable extends foundry.applications.sheets.RollTableSheet{
+export default class DhRollTableSheet extends foundry.applications.sheets.RollTableSheet{
+    static get PARTS() {
+        const parts= super.PARTS;
+        return{
+            summary: {
+                template: "ournewmodifiedsummary.hbs"
+            },
+            ...parts
+        };
+    }
+    static actions = {
+        addAltFormula: DhRollTableSheet.#onAddAltFormula,
+        removeAltForuma: DhRollTableSheet.#onRemoveAltFormula
+    };
 
+    //Add formulafield
+    static async #onAddAltFormula (event,target) {
+        
+    }
+
+    //Remove formulafield
+    static async #onRemoveAltFormula (event,target) {
+
+    }
 }
