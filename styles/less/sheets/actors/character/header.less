@@ -195,6 +195,22 @@
                 .hope-value {
                     display: flex;
                     cursor: pointer;
+
+                    &.scar {
+                        cursor: initial;
+                        position: relative;
+
+                        ::after {
+                            position: absolute;
+                            content: '/';
+                            color: var(--beige);
+                            font-weight: 700;
+                            font-size: 1.2rem;
+                            left: 1px;
+                            top: -3px;
+                            rotate: 13deg;
+                        }
+                    }
                 }
             }
         }
