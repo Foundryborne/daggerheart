@@ -1,14 +1,16 @@
 //Setting RollTable
 export default class DhRollTableSheet extends foundry.applications.sheets.RollTableSheet {
-    static get PARTS() {
-        const parts = super.PARTS;
+    static buildParts() {
+        const { footer, ...parts } = super.PARTS;
         return {
-            summary: {
-                template: 'templates/sheets/rollTable/summary.hbs',
-            },
-            ...parts
-        };5
+            ...parts,
+            summary: { template: 'systems/daggerheart/templates/sheets/rollTable/summary.hbs' },
+            footer
+        }
     }
+    
+    static PARTS = DhRollTableSheet.buildParts();
+    
     static actions = {
         addAltFormula: DhRollTableSheet.#onAddAltFormula,
         removeAltForuma: DhRollTableSheet.#onRemoveAltFormula
