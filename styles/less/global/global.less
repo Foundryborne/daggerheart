@@ -58,7 +58,8 @@ body.theme-dark,
     color-scheme: dark;
 }
 
+/* .chat-log is hardcoded to be theme-light, so it ruins it. Gotta exclude it */
 body.theme-light,
-.themed.theme-light {
+.themed.theme-light:not(.chat-log) {
     color-scheme: light;
 }

@@ -2,85 +2,17 @@
 @import '../../utils/fonts.less';
 @import '../../utils/spacing.less';
 
+/*sidebar/tabs/chat.hbs is hardcoded to be theme light. So it's okay to listen to interface to handle it*/
 #interface.theme-light {
     .daggerheart.chat-sidebar .chat-log,
     #chat-notifications .chat-log {
-        --text-color: @dark-blue;
-        --bg-color: @dark-blue-40;
-
         .chat-message {
-            .roll-formula {
-                background: @dark-15;
-                color: @dark;
-            }
-
-            &.duality {
-                background-image: url(../assets/parchments/dh-parchment-dark.png);
-
-                .message-content {
-                    color: @beige;
-                }
-
+            &:not(.duality) {
                 .roll-formula {
                     background: @dark-15;
                     color: @dark;
                 }
 
-                .message-header {
-                    .message-sub-header-container {
-                        color: @beige;
-                        h4 {
-                            color: @golden;
-                        }
-                    }
-                    .message-header-metadata {
-                        .message-metadata {
-                            color: @beige;
-                        }
-                    }
-                }
-
-                &.hope {
-                    --text-color: @golden;
-                    --bg-color: @golden-40;
-                    .message-header,
-                    .message-content {
-                        background-color: @golden-bg;
-                    }
-                    .roll-formula {
-                        background: var(--bg-color);
-                        color: var(--text-color);
-                    }
-                }
-
-                &.fear {
-                    --text-color: @chat-blue;
-                    --bg-color: @chat-blue-40;
-                    .message-header,
-                    .message-content {
-                        background-color: @chat-blue-bg;
-                    }
-                    .roll-formula {
-                        background: var(--bg-color);
-                        color: var(--text-color);
-                    }
-                }
-
-                &.critical {
-                    --text-color: @chat-purple;
-                    --bg-color: @chat-purple-40;
-                    .message-header,
-                    .message-content {
-                        background-color: @chat-purple-bg;
-                    }
-                    .roll-formula {
-                        background: var(--bg-color);
-                        color: var(--text-color);
-                    }
-                }
-            }
-
-            &:not(.duality) {
                 .font-20 {
                     color: @dark;
                 }
@@ -153,7 +85,7 @@
 }
 
 .vtt.stream.system-daggerheart .chat-sidebar,
-.daggerheart,
+.daggerheart.chat-sidebar .chat-log,
 #chat-notifications {
     .chat-message {
         --text-color: @golden;
@@ -174,9 +106,32 @@
         }
 
         &.duality {
+            background-image: url(../assets/parchments/dh-parchment-dark.png);
+
+            .message-header,
+            .message-header .message-header-main {
+                .message-sub-header-container {
+                    color: @beige;
+                    h4 {
+                        color: @golden;
+                    }
+                }
+                .message-header-metadata {
+                    .message-metadata {
+                        color: @beige;
+                    }
+                }
+            }
+
+            .roll-formula {
+                background: var(--bg-color);
+                color: var(--text-color);
+            }
+
             &.hope {
                 --text-color: @golden;
                 --bg-color: @golden-40;
+
                 .message-header,
                 .message-content {
                     background-color: @golden-bg;
@@ -201,6 +156,11 @@
                 }
             }
         }
+
+        // &:not(.duality) {
+        //     --text-color: light-dark(@dark-blue, @golden);
+        //     --bg-color: light-dark(@dark-blue-40, @golden-40);
+        // }
 
         .chat-roll {
             font-size: var(--font-size-12);
