@@ -164,26 +164,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
     prepareBaseData() {
         super.prepareBaseData();
-
-        for (const action of this.actions ?? []) {
-            if (!action.actor) continue;
-
-            const actionsToRegister = [];
-            for (let i = 0; i < action.triggers.length; i++) {
-                const trigger = action.triggers[i];
-                const { args } = CONFIG.DH.TRIGGER.triggers[trigger.trigger];
-                const fn = new foundry.utils.AsyncFunction(...args, `{${trigger.command}\n}`);
-                actionsToRegister.push(fn.bind(action));
-                if (i === action.triggers.length - 1)
-                    game.system.registeredTriggers.registerTriggers(
-                        trigger.trigger,
-                        action.actor?.uuid,
-                        trigger.triggeringActorType,
-                        this.parent.uuid,
-                        actionsToRegister
-                    );
-            }
-        }
+        game.system.registeredTriggers.registerItemTriggers(this.parent);
     }
 
     async _preCreate(data, options, user) {

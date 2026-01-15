@@ -208,4 +208,18 @@ export default class DHItem extends foundry.documents.Item {
 
         cls.create(msg);
     }
+
+    deleteTriggers() {
+        const actions = Array.from(this.system.actions ?? []);
+        if (!actions.length) return;
+
+        game.system.registeredTriggers.unregisterTriggers(
+            actions.flatMap(action => action.triggers.map(x => x.trigger)),
+            this.uuid
+        );
+    }
+
+    async _preDelete() {
+        this.deleteTriggers();
+    }
 }
