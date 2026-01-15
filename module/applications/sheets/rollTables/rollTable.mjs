@@ -10,15 +10,23 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
     }
     
     static PARTS = DhRollTableSheet.buildParts();
+
+    static DEFAULT_OPTIONS = {
+        classes: ['daggerheart', 'sheet', 'dh-style']
+    };
     
     static actions = {
         addAltFormula: DhRollTableSheet.#onAddAltFormula,
-        removeAltForuma: DhRollTableSheet.#onRemoveAltFormula
+        removeAltFormula: DhRollTableSheet.#onRemoveAltFormula
     };
 
     //Add formulafield
-    static async #onAddAltFormula(event, target) {}
+    static async #onAddAltFormula(event, target) {
+        
+    }
 
     //Remove formulafield
-    static async #onRemoveAltFormula(event, target) {}
+    static async #onRemoveAltFormula(event, target) {
+
+    }
 }
