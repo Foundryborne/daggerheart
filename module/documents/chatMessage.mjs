@@ -157,7 +157,10 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         event.stopPropagation();
         const config = foundry.utils.deepClone(this.system);
         config.event = event;
-        await this.system.action?.workflow.get('damage')?.execute(config, this._id, true);
+        if (this.system.action) {
+            await this.system.action.addEffects(config);
+            await this.system.action.workflow.get('damage')?.execute(config, this._id, true);
+        }
 
         Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.TagTeamRoll });
         await game.socket.emit(`system.${CONFIG.DH.id}`, {

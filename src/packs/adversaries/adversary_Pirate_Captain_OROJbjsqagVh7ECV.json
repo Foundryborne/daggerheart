@@ -313,36 +313,43 @@
       "_id": "WGEGO0DSOs5cF0EL",
       "img": "icons/environment/people/charge.webp",
       "system": {
-        "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon a Pirate Raiders Horde, which appears at Far range.</p>",
+        "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon a @UUID[Compendium.daggerheart.adversaries.Actor.5YgEajn0wa4i85kC]{Pirate Raider Horde}, which appears at Far range.</p>",
         "resource": null,
         "actions": {
-          "NlgIp0KrmZoS27Xy": {
-            "type": "effect",
-            "_id": "NlgIp0KrmZoS27Xy",
+          "nuYk5WeLLpIKa69q": {
+            "type": "summon",
+            "_id": "nuYk5WeLLpIKa69q",
             "systemPath": "actions",
+            "baseAction": false,
             "description": "",
             "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
             "actionType": "action",
             "cost": [
               {
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "step": null
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
-            "effects": [],
-            "target": {
-              "type": "any",
-              "amount": null
-            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.5YgEajn0wa4i85kC",
+                "count": "1"
+              }
+            ],
             "name": "Mark Stress",
-            "img": "icons/environment/people/charge.webp",
             "range": ""
           }
         },

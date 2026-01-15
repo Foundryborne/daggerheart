@@ -47,6 +47,9 @@
                     disabled=dimensionsDisabled 
                 }}
             </div>
+            <div class="full-width">
+                {{formGroup systemFields.tokenSize.fields.scale value=source.system.tokenSize.scale localize=true }}
+            </div>
         {{else}}
             <span class="hint">{{localize "DAGGERHEART.ITEMS.Beastform.evolvedTokenHint"}}</span>
         {{/unless}}

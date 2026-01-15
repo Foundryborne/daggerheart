@@ -1,16 +1,25 @@
+import { RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+
 export default class DhSceneConfigSettings extends foundry.applications.sheets.SceneConfig {
-    // static DEFAULT_OPTIONS = {
-    //     ...super.DEFAULT_OPTIONS,
-    //     form: {
-    //         handler: this.updateData,
-    //         closeOnSubmit: true
-    //     }
-    // };
+    constructor(options) {
+        super(options);
+
+        Hooks.on(socketEvent.Refresh, ({ refreshType }) => {
+            if (refreshType === RefreshType.Scene) this.render();
+        });
+    }
+
+    static DEFAULT_OPTIONS = {
+        ...super.DEFAULT_OPTIONS,
+        actions: {
+            ...super.DEFAULT_OPTIONS.actions,
+            removeSceneEnvironment: DhSceneConfigSettings.#removeSceneEnvironment
+        }
+    };
 
     static buildParts() {
         const { footer, tabs, ...parts } = super.PARTS;
         const tmpParts = {
-            // tabs,
             tabs: { template: 'systems/daggerheart/templates/scene/tabs.hbs' },
             ...parts,
             dh: { template: 'systems/daggerheart/templates/scene/dh-config.hbs' },
@@ -28,18 +37,38 @@ export default class DhSceneConfigSettings extends foundry.applications.sheets.S
 
     static TABS = DhSceneConfigSettings.buildTabs();
 
+    async _preRender(context, options) {
+        await super._preFirstRender(context, options);
+
+        if (!options.internalRefresh)
+            this.daggerheartFlag = new game.system.api.data.scenes.DHScene(this.document.flags.daggerheart);
+    }
+
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
+
         switch (partId) {
             case 'dh':
                 htmlElement.querySelector('#rangeMeasurementSetting')?.addEventListener('change', async event => {
-                    const flagData = foundry.utils.mergeObject(this.document.flags.daggerheart, {
-                        rangeMeasurement: { setting: event.target.value }
-                    });
-                    this.document.flags.daggerheart = flagData;
-                    this.render();
+                    this.daggerheartFlag.updateSource({ rangeMeasurement: { setting: event.target.value } });
+                    this.render({ internalRefresh: true });
                 });
+
+                const dragArea = htmlElement.querySelector('.scene-environments');
+                if (dragArea) dragArea.ondrop = this._onDrop.bind(this);
+
                 break;
+        }
+    }
+
+    async _onDrop(event) {
+        const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
+        const item = await foundry.utils.fromUuid(data.uuid);
+        if (item instanceof game.system.api.documents.DhpActor && item.type === 'environment') {
+            await this.daggerheartFlag.updateSource({
+                sceneEnvironments: [...this.daggerheartFlag.sceneEnvironments, data.uuid]
+            });
+            this.render({ internalRefresh: true });
         }
     }
 
@@ -48,7 +77,7 @@ export default class DhSceneConfigSettings extends foundry.applications.sheets.S
         context = await super._preparePartContext(partId, context, options);
         switch (partId) {
             case 'dh':
-                context.data = new game.system.api.data.scenes.DHScene(canvas.scene.flags.daggerheart);
+                context.data = this.daggerheartFlag;
                 context.variantRules = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules);
                 break;
         }
@@ -56,8 +85,24 @@ export default class DhSceneConfigSettings extends foundry.applications.sheets.S
         return context;
     }
 
-    // static async updateData(event, _, formData) {
-    //     const data = foundry.utils.expandObject(formData.object);
-    //     this.close(data);
-    // }
+    static async #removeSceneEnvironment(_event, button) {
+        await this.daggerheartFlag.updateSource({
+            sceneEnvironments: this.daggerheartFlag.sceneEnvironments.filter(
+                (_, index) => index !== Number.parseInt(button.dataset.index)
+            )
+        });
+        this.render({ internalRefresh: true });
+    }
+
+    /** @override */
+    async _processSubmitData(event, form, submitData, options) {
+        submitData.flags.daggerheart = this.daggerheartFlag.toObject();
+        for (const key of Object.keys(this.document._source.flags.daggerheart?.sceneEnvironments ?? {})) {
+            if (!submitData.flags.daggerheart.sceneEnvironments[key]) {
+                submitData.flags.daggerheart.sceneEnvironments[`-=${key}`] = null;
+            }
+        }
+
+        super._processSubmitData(event, form, submitData, options);
+    }
 }

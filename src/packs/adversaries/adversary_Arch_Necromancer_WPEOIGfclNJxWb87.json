@@ -533,33 +533,31 @@
         "description": "<p><strong>Spend a Fear</strong> to summon a @UUID[Compendium.daggerheart.adversaries.Actor.YhJrP7rTBiRdX5Fp]{Zombie Legion}, which appears at Close range and immediately takes the spotlight.</p>",
         "resource": null,
         "actions": {
-          "gZg3AkzCYUTExjE6": {
-            "type": "effect",
-            "_id": "gZg3AkzCYUTExjE6",
+          "qSuWxC8xQOhnbBx9": {
+            "type": "summon",
+            "_id": "qSuWxC8xQOhnbBx9",
             "systemPath": "actions",
+            "baseAction": false,
             "description": "",
             "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
             "actionType": "action",
-            "cost": [
-              {
-                "scalable": false,
-                "key": "fear",
-                "value": 1,
-                "step": null
-              }
-            ],
+            "cost": [],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
-            "effects": [],
-            "target": {
-              "type": "any",
-              "amount": null
-            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.YhJrP7rTBiRdX5Fp",
+                "count": "1"
+              }
+            ],
             "name": "Spend Fear",
-            "img": "icons/magic/death/undead-zombie-grave-green.webp",
             "range": ""
           }
         },

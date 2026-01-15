@@ -1,0 +1,37 @@
+<section 
+    class="tab {{this.tabs.trigger.cssClass}}"
+    data-group="primary"
+    data-tab="trigger"
+>
+        <button type="button" data-action="addTrigger">{{localize "Add Trigger"}} <i class="fa-solid fa-plus icon-button"></i></button>
+    
+        {{#each @root.triggers as |trigger index|}}
+            <fieldset class="one-column" data-index="{{index}}">
+                <legend><a data-action="removeTrigger" data-index="{{index}}"><i class="fa-solid fa-trash"></i></a></legend>
+
+                <div class="trigger-data">
+                    <div class="trigger-data-inner">
+                        <div class="select-section">
+                            {{formGroup @root.fields.triggers.element.fields.trigger value=trigger.trigger name=(concat "triggers." index ".trigger") blank=false localize=true}}
+                            {{#if trigger.usesActor}}{{formGroup @root.fields.triggers.element.fields.triggeringActorType value=trigger.triggeringActorType name=(concat "triggers." index ".triggeringActorType") blank=false localize=true}}{{/if}}
+                        </div>
+                        <div class="programmer-section">
+                            <div class="hint-section">
+                                <strong>{{localize "Context: "}}</strong>
+                                <span class="hint">{{localize trigger.hint}}</span>
+                            </div>
+                            <div class="hint-section">
+                                <strong>{{localize "Return: "}}</strong>
+                                <span class="hint">{{localize trigger.returns}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="expand-trigger" data-action="expandTrigger" data-index="{{index}}"><i class="fa-solid fa-angle-down"></i></a>
+                </div>
+
+                <div class="code-mirror-wrapper {{#if trigger.revealed}}revealed{{/if}}">
+                    {{formInput @root.fields.triggers.element.fields.command value=trigger.command elementType="code-mirror" name=(concat "triggers." index ".command") aria=(object label=(localize "Test")) }}
+                </div>
+            </fieldset>
+        {{/each}}
+</section>

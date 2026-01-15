@@ -2,6 +2,7 @@ import DhpActor from '../../documents/actor.mjs';
 import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
 import { ActionMixin } from '../fields/actionField.mjs';
 import { originItemField } from '../chat-message/actorRoll.mjs';
+import TriggerField from '../fields/triggerField.mjs';
 
 const fields = foundry.data.fields;
 
@@ -34,7 +35,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                 nullable: false,
                 required: true
             }),
-            targetUuid: new fields.StringField({ initial: undefined })
+            targetUuid: new fields.StringField({ initial: undefined }),
+            triggers: new fields.ArrayField(new TriggerField())
         };
 
         this.extraSchemas.forEach(s => {
@@ -164,7 +166,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      */
     getRollData(data = {}) {
         const actorData = this.actor ? this.actor.getRollData(false) : {};
-
         actorData.result = data.roll?.total ?? 1;
         actorData.scale = data.costs?.length // Right now only return the first scalable cost.
             ? (data.costs.find(c => c.scalable)?.total ?? 1)
@@ -196,6 +197,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         let config = this.prepareConfig(event);
         if (!config) return;
+
+        await this.addEffects(config);
 
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
@@ -261,6 +264,16 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             if (clsField?.prepareConfig) if (clsField.prepareConfig.call(this, config) === false) return false;
         }
         return config;
+    }
+
+    /** */
+    async addEffects(config) {
+        let effects = [];
+        if (this.actor) {
+            effects = Array.from(await this.actor.allApplicableEffects());
+        }
+
+        config.effects = effects;
     }
 
     /**
@@ -343,6 +356,10 @@ export class ResourceUpdateMap extends Map {
     }
 
     addResources(resources) {
+        if (!resources?.length) return;
+        const invalidResources = resources.some(resource => !resource.key);
+        if (invalidResources) return;
+
         for (const resource of resources) {
             if (!resource.key) continue;
 

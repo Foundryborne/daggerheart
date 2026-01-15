@@ -55,6 +55,21 @@ export default class DHArmor extends AttachableItem {
     }
 
     /**@inheritdoc */
+    async getDescriptionData() {
+        const baseDescription = this.description;
+        const allFeatures = CONFIG.DH.ITEM.allArmorFeatures();
+        const features = this.armorFeatures.map(x => allFeatures[x.value]);
+        if (!features.length) return { prefix: null, value: baseDescription, suffix: null };
+
+        const prefix = await foundry.applications.handlebars.renderTemplate(
+            'systems/daggerheart/templates/sheets/items/armor/description.hbs',
+            { features }
+        );
+
+        return { prefix, value: baseDescription, suffix: null };
+    }
+
+    /**@inheritdoc */
     async _preUpdate(changes, options, user) {
         const allowed = await super._preUpdate(changes, options, user);
         if (allowed === false) return false;

@@ -8,7 +8,7 @@
  * @property {boolean} isInventoryItem- Indicates whether items of this type is a Inventory Item
  */
 
-import { addLinkedItemsDiff, createScrollText, getScrollTextData, updateLinkedItemApps } from '../../helpers/utils.mjs';
+import { addLinkedItemsDiff, getScrollTextData, updateLinkedItemApps } from '../../helpers/utils.mjs';
 import { ActionsField } from '../fields/actionField.mjs';
 import FormulaField from '../fields/formulaField.mjs';
 
@@ -125,6 +125,33 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
     }
 
     /**
+     * Augments the description for the item with type specific info to display. Implemented in applicable item subtypes.
+     * @param {object} [options] - Options that modify the styling of the rendered template. { headerStyle: undefined|'none'|'large' }
+     * @returns {string}
+     */
+    async getDescriptionData(_options) {
+        return { prefix: null, value: this.description, suffix: null };
+    }
+
+    /**
+     * Gets the enriched and augmented description for the item.
+     * @param {object} [options] - Options that modify the styling of the rendered template. { headerStyle: undefined|'none'|'large' }
+     * @returns {string}
+     */
+    async getEnrichedDescription() {
+        if (!this.metadata.hasDescription) return '';
+
+        const { prefix, value, suffix } = await this.getDescriptionData();
+        const fullDescription = [prefix, value, suffix].filter(p => !!p).join('\n<hr>\n');
+
+        return await foundry.applications.ux.TextEditor.implementation.enrichHTML(fullDescription, {
+            relativeTo: this,
+            rollData: this.getRollData(),
+            secrets: this.isOwner
+        });
+    }
+
+    /**
      * Obtain a data object used to evaluate any dice rolls associated with this Item Type
      * @param {object} [options] - Options which modify the getRollData method.
      * @returns {object}
@@ -133,6 +160,30 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         const actorRollData = this.actor?.getRollData() ?? {};
         const data = { ...actorRollData, item: { ...this } };
         return data;
+    }
+
+    prepareBaseData() {
+        super.prepareBaseData();
+
+        for (const action of this.actions ?? []) {
+            if (!action.actor) continue;
+
+            const actionsToRegister = [];
+            for (let i = 0; i < action.triggers.length; i++) {
+                const trigger = action.triggers[i];
+                const { args } = CONFIG.DH.TRIGGER.triggers[trigger.trigger];
+                const fn = new foundry.utils.AsyncFunction(...args, `{${trigger.command}\n}`);
+                actionsToRegister.push(fn.bind(action));
+                if (i === action.triggers.length - 1)
+                    game.system.registeredTriggers.registerTriggers(
+                        trigger.trigger,
+                        action.actor?.uuid,
+                        trigger.triggeringActorType,
+                        this.parent.uuid,
+                        actionsToRegister
+                    );
+            }
+        }
     }
 
     async _preCreate(data, options, user) {

@@ -21,4 +21,39 @@
             <span class="helper-text">{{localize "DAGGERHEART.SETTINGS.Scene.disabledText"}}</span>
         {{/if}}
     </fieldset>
+
+    <fieldset>
+        <legend>
+            <span>{{localize "DAGGERHEART.SETTINGS.Scene.sceneEnvironments"}}</span>
+        </legend>
+
+        <div class="scene-environments">
+            {{#each data.sceneEnvironments as |environment index|}}
+                <div class="scene-environment" data-index="{{index}}">
+                    {{#if environment}}
+                        <div class="scene-environment-inner">
+                            <img src="{{environment.img}}" />
+                            <h5>{{environment.name}}</h5>
+                            <div class="tags">
+                                <div class="tag">
+                                    <span>
+                                        {{localize (concat 'DAGGERHEART.GENERAL.Tiers.' environment.system.tier)}}
+                                    </span>
+                                </div>
+                                {{#if environment.system.type}}
+                                    <div class="tag">
+                                        <span>
+                                            {{localize (concat 'DAGGERHEART.CONFIG.EnvironmentType.' environment.system.type '.label')}}
+                                        </span>
+                                    </div>
+                                {{/if}}
+                            </div>
+                        </div>
+                    {{/if}}
+                    <a data-action="removeSceneEnvironment" data-index="{{index}}"><i class="fa-solid fa-trash remove-icon"></i></a>
+                </div>
+            {{/each}}
+            <span class="drag-area">{{localize "DAGGERHEART.SETTINGS.Scene.dragEnvironmentHere"}}</span>
+        </div>
+    </fieldset>
 </div>

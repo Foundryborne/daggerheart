@@ -1,0 +1,104 @@
+.application.daggerheart.dh-style.action-config {
+    .actor-summon-items {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .actor-summon-line {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border-radius: 3px;
+
+            .actor-summon-name {
+                flex: 2;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+
+                img {
+                    height: 40px;
+                }
+            }
+
+            .actor-summon-controls {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+
+                .controls {
+                    display: flex;
+                    gap: 5px;
+                }
+            }
+        }
+
+        .summon-dragger {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            height: 40px;
+            margin-top: 10px;
+            border: 1px dashed light-dark(@dark-blue-50, @beige-50);
+            border-radius: 3px;
+            color: light-dark(@dark-blue-50, @beige-50);
+        }
+    }
+
+    .trigger-data {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+
+        .trigger-data-inner {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+
+            select {
+                flex: 1;
+            }
+
+            .select-section {
+                flex: 1;
+                display: flex;
+                gap: 8px;
+            }
+
+            .programmer-section {
+                flex: 3;
+                display: flex;
+                flex-direction: column;
+
+                .hint-section {
+                    display: flex;
+                    gap: 4px;
+
+                    .hint {
+                        flex: 1;
+                        flex-wrap: wrap;
+                    }
+                }
+            }
+        }
+
+        .expand-trigger {
+            font-size: 18px;
+        }
+    }
+
+    .code-mirror-wrapper {
+        width: 100%;
+        height: 0;
+        min-height: 0;
+        transition: height 0.1s ease-in-out;
+
+        &.revealed {
+            height: 300px;
+        }
+    }
+}

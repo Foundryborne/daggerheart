@@ -230,6 +230,14 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 result.flatMap(r => r),
                 'name'
             );
+
+            /* If any noticeable slowdown occurs, consider replacing with enriching description on clicking to expand descriptions */
+            for (const item of this.items) {
+                item.system.enrichedDescription =
+                    (await item.system.getEnrichedDescription?.()) ??
+                    (await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.description));
+            }
+
             this.fieldFilter = this._createFieldFilter();
 
             if (this.presets?.filter) {
