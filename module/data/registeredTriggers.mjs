@@ -19,12 +19,13 @@ export default class RegisteredTriggers extends Map {
         }
     }
 
-    registerItemTriggers(item) {
+    registerItemTriggers(item, registerOverride) {
         for (const action of item.system.actions ?? []) {
             if (!action.actor) continue;
 
             /* Non actor-linked should only prep synthetic actors so they're not registering triggers unless they're on the canvas */
             if (
+                !registerOverride &&
                 !action.actor.prototypeToken.actorLink &&
                 (!(action.actor.parent instanceof game.system.api.documents.DhToken) || !action.actor.parent?.uuid)
             )
@@ -83,6 +84,14 @@ export default class RegisteredTriggers extends Map {
     }
 
     registerSceneTriggers(scene) {
+        /* TODO: Finish sceneEnvironment registration and unreg */
+        // const systemData = new game.system.api.data.scenes.DHScene(scene.flags.daggerheart);
+        // for (const environment of systemData.sceneEnvironments) {
+        //     for (const feature of environment.system.features) {
+        //         if(feature) this.registerItemTriggers(feature, true);
+        //     }
+        // }
+
         for (const actor of scene.tokens.filter(x => x.actor).map(x => x.actor)) {
             if (actor.prototypeToken.actorLink) continue;
 
