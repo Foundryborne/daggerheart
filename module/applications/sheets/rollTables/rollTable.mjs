@@ -1,41 +1,41 @@
-//Setting RollTable
-
-//import DhRollTableData from 'systems/daggerheart/module/data/rollTable.mjs';
 export default class DhRollTableSheet extends foundry.applications.sheets.RollTableSheet {
-    static buildParts() {
-        const { footer, ...parts } = super.PARTS;
-        return {
-            ...parts,
-            summary: { template: 'systems/daggerheart/templates/sheets/rollTable/summary.hbs' },
-            footer
-        }
-    }
-    
-    static PARTS = DhRollTableSheet.buildParts();
-
     static DEFAULT_OPTIONS = {
         ...super.DEFAULT_OPTIONS,
-        classes: ['daggerheart', 'sheet', 'dh-style'],
-        actions : {
+        actions: {
             addAltFormula: DhRollTableSheet.#onAddAltFormula,
-         removeAltFormula: DhRollTableSheet.#onRemoveAltFormula
+            removeAltFormula: DhRollTableSheet.#onRemoveAltFormula
         }
     };
 
+    static buildParts() {
+        const { footer, ...parts } = super.PARTS;
+        const test = {
+            ...parts,
+            summary: { template: 'systems/daggerheart/templates/sheets/rollTable/summary.hbs' },
+            footer
+        };
+        return test;
+    }
+
+    static PARTS = DhRollTableSheet.buildParts();
+
     async _preparePartContext(partId, context, options) {
-        context = await super._preparePartContext(partId,context,options);
-        switch(partId) {
+        context = await super._preparePartContext(partId, context, options);
+
+        switch (partId) {
             case 'summary':
-                context.flagData = this.daggerheartFlag
+                context.flagData = this.daggerheartFlag;
                 break;
         }
+
         return context;
     }
 
-    async _preRender(context,options) {
-        await super._preFirstRender(context,options);
+    async _preRender(context, options) {
+        await super._preRender(context, options);
+
         if (!options.internalReferesh)
-            this.daggerheartFlag = new game.system.api.data.scenes.DHScene(this.document.flags.daggerheart)
+            this.daggerheartFlag = new game.system.api.data.DhRollTable(this.document.flags.daggerheart);
     }
 
     /** @override */
@@ -44,19 +44,8 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
 
         super._processSubmitData(event, form, submitData, options);
     }
-    
-    static actions = {
-        addAltFormula: DhRollTableSheet.#onAddAltFormula,
-        removeAltFormula: DhRollTableSheet.#onRemoveAltFormula
-    };
 
-    //Add formulafield
-    static async #onAddAltFormula(event, target) {
-        
-    }
+    static async #onAddAltFormula(_event, target) {}
 
-    //Remove formulafield
-    static async #onRemoveAltFormula(event, target) {
-
-    }
+    static async #onRemoveAltFormula(_event, target) {}
 }
