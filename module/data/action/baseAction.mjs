@@ -198,7 +198,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         let config = this.prepareConfig(event);
         if (!config) return;
 
-        await this.addEffects(config);
+        config.effects = await DHBaseAction.getEffects(this.actor);
 
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
@@ -267,13 +267,9 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     /** */
-    async addEffects(config) {
-        let effects = [];
-        if (this.actor) {
-            effects = Array.from(await this.actor.allApplicableEffects());
-        }
-
-        config.effects = effects;
+    static async getEffects(actor) {
+        if (actor) return Array.from(await actor.allApplicableEffects()).filter(x => !x.isSuppressed);
+        return [];
     }
 
     /**
