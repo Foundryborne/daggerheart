@@ -99,6 +99,12 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         super._replaceHTML(result, content, options);
     }
 
+    /** Remove chat log theme from notifications area */
+    async _onFirstRender(result, content) {
+        await super._onFirstRender(result, content);
+        document.querySelector("#chat-notifications .chat-log")?.classList.remove("themed", "theme-light", "theme-dark")
+    }
+
     async onRollSimple(event, message) {
         const buttonType = event.target.dataset.type ?? 'damage',
             total = message.rolls.reduce((a, c) => a + Roll.fromJSON(c).total, 0),
