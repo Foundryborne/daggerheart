@@ -78,6 +78,7 @@ CONFIG.ux.ContextMenu = applications.ux.DHContextMenu;
 CONFIG.ux.TooltipManager = documents.DhTooltipManager;
 CONFIG.ux.TemplateManager = new TemplateManager();
 CONFIG.ux.TokenManager = new TokenManager();
+CONFIG.debug.triggers = false;
 
 Hooks.once('init', () => {
     game.system.api = {
@@ -501,7 +502,7 @@ class RegisteredTriggers extends Map {
         if (dualityTrigger) {
             const tokenBoundActors = ['adversary', 'environment'];
             const triggerActors = ['character', ...tokenBoundActors];
-            for (let { actor: actorUuid, triggeringActorType, commands } of dualityTrigger.values()) {
+            for (let [itemUuid, { actor: actorUuid, triggeringActorType, commands }] of dualityTrigger.entries()) {
                 const actor = await foundry.utils.fromUuid(actorUuid);
                 if (!actor || !triggerActors.includes(actor.type)) continue;
                 if (tokenBoundActors.includes(actor.type) && !actor.getActiveTokens().length) continue;
@@ -514,6 +515,17 @@ class RegisteredTriggers extends Map {
 
                 for (let command of commands) {
                     try {
+                        if (CONFIG.debug.triggers) {
+                            const item = await foundry.utils.fromUuid(itemUuid);
+                            console.log(
+                                game.i18n.format('DAGGERHEART.UI.ConsoleLogs.triggerRun', {
+                                    actor: actor.name ?? '<Missing Actor>',
+                                    item: item?.name ?? '<Missing Item>',
+                                    trigger: game.i18n.localize(triggerData.label)
+                                })
+                            );
+                        }
+
                         const result = await command(...args);
                         if (result?.updates?.length) updates.push(...result.updates);
                     } catch (_) {
