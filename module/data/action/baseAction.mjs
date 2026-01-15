@@ -198,7 +198,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         let config = this.prepareConfig(event);
         if (!config) return;
 
-        config.effects = await DHBaseAction.getEffects(this.actor);
+        config.effects = await DHBaseAction.getEffects(this.actor, this.item);
 
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
@@ -266,9 +266,20 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return config;
     }
 
-    /** */
-    static async getEffects(actor) {
-        if (actor) return Array.from(await actor.allApplicableEffects()).filter(x => !x.isSuppressed);
+    /**
+     * Get the all potentially applicable effects on the actor
+     * @param {DHActor} actor The actor performing the action
+     * @param {DHItem|DhActor} effectParent The parent of the effect
+     * @returns {DhActiveEffect[]}
+     */
+    static async getEffects(actor, effectParent) {
+        if (actor)
+            return Array.from(await actor.allApplicableEffects()).filter(effect => {
+                /* Effects on weapons only ever apply for the weapon itself */
+                if (effect.parent.type === 'weapon' && effectparent?.id !== effect.parent.id) return false;
+                return !effect.isSuppressed;
+            });
+
         return [];
     }
 
