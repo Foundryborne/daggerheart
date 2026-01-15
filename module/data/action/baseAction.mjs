@@ -276,7 +276,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         if (actor)
             return Array.from(await actor.allApplicableEffects()).filter(effect => {
                 /* Effects on weapons only ever apply for the weapon itself */
-                if (effect.parent.type === 'weapon' && effectparent?.id !== effect.parent.id) return false;
+                if (effect.parent.type === 'weapon' && effectParent?.id !== effect.parent.id) return false;
                 return !effect.isSuppressed;
             });
 
