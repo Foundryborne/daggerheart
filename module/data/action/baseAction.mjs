@@ -198,7 +198,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         let config = this.prepareConfig(event);
         if (!config) return;
 
-        config.effects = await DHBaseAction.getEffects(this.actor, this.item);
+        config.effects = await game.system.api.data.actions.actionsTypes.base.getEffects(this.actor, this.item);
 
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
