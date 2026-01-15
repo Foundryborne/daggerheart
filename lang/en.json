@@ -2061,6 +2061,7 @@
                 "description": "Description",
                 "main": "Data",
                 "information": "Information",
+                "itemFeatures": "Item Features",
                 "notes": "Notes",
                 "inventory": "Inventory",
                 "loadout": "Loadout",
@@ -2512,6 +2513,7 @@
                 "resetMovesText": "Are you sure you want to reset?",
                 "FIELDS": {
                     "maxFear": { "label": "Max Fear" },
+                    "maxHope": { "label": "Max Hope" },
                     "traitArray": { "label": "Initial Trait Modifiers" },
                     "maxLoadout": {
                         "label": "Max Cards in Loadout",
