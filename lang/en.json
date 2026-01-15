@@ -614,6 +614,10 @@
                 "title": "{name} Resource",
                 "rerollDice": "Reroll Dice"
             },
+            "RiskItAllDialog": {
+                "title": "Risk It All - Clear Stress and Hope",
+                "submit": "Submit"
+            },
             "TagTeamSelect": {
                 "title": "Tag Team Roll",
                 "leaderTitle": "Initiating Character",

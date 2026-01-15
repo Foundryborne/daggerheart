@@ -9,7 +9,8 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
         this.actor = actor;
         this.selectedMove = null;
         this.showRiskItAllButton = false;
-        this.riskItAllButtonLabel = ""
+        this.riskItAllButtonLabel = "";
+        this.riskItAllHope = 0;
     }
 
     get title() {
@@ -109,6 +110,7 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
             } else {
                 chatMessage = game.i18n.format('DAGGERHEART.UI.Chat.deathMove.riskItAllSuccess', { hope: config.roll.hope.value })
                 this.showRiskItAllButton = true;
+                this.riskItAllHope = config.roll.hope.value;
                 this.riskItAllButtonLabel = game.i18n.format('DAGGERHEART.UI.Chat.deathMove.riskItAllClearStressAndHitPoints', { hope: config.roll.hope.value })
             }
         }
@@ -185,7 +187,8 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
                     open: autoExpandDescription ? 'open' : '',
                     chevron: autoExpandDescription ? 'fa-chevron-up' : 'fa-chevron-down',
                     showRiskItAllButton: this.showRiskItAllButton,
-                    riskItAllButtonLabel: this.riskItAllButtonLabel
+                    riskItAllButtonLabel: this.riskItAllButtonLabel,
+                    riskItAllHope: this.riskItAllHope
                 }
             ),
             title: game.i18n.localize('DAGGERHEART.UI.Chat.deathMove.title'),

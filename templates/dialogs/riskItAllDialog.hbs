@@ -1,0 +1,18 @@
+<div>
+    <header class="dialog-header">
+        <h1>{{title}}</h1>
+    </header>
+    <div class="risk-it-all-container">
+        <span>TODO magic here</span>
+    </div>
+    <footer class="flexrow">
+        <button data-action="close">
+            <span>{{localize "Cancel"}}</span>
+        </button>
+        <button data-action="submit" {{#if (not this.validChoices)}}disabled{{/if}}>
+            <span>
+                {{localize "DAGGERHEART.APPLICATIONS.RiskItAllDialog.submit"}}
+            </span>
+        </button>
+    </footer>
+</div>

@@ -1,5 +1,6 @@
 import { abilities } from '../../config/actorConfig.mjs';
 import { emitAsGM, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+import RiskItAllDialog from '../dialogs/riskItAllDialog.mjs';
 
 export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLog {
     constructor(options) {
@@ -82,7 +83,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             element.addEventListener('click', this.groupRollExpandSection)
         );
         html.querySelectorAll('.risk-it-all-button').forEach(element =>
-            element.addEventListener('click', event => this.riskItAllClearStressAndHitPoints(event, message))
+            element.addEventListener('click', event => this.riskItAllClearStressAndHitPoints(event, data))
         );
     };
 
@@ -375,8 +376,12 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     }
 
 
-    async riskItAllClearStressAndHitPoints(event, message) {
-        console.log("riskItAllClearStressAndHitPoints button hit!", event, message);
+    async riskItAllClearStressAndHitPoints(event, data) {
+        const hopeValue = event.target.dataset.hope;
+        const config = {
+            hope: hopeValue
+        }
+        await new RiskItAllDialog(data.actor, config).render({ force: true });
     }
     
     
