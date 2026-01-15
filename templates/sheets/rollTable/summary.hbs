@@ -1,6 +1,43 @@
 <section class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
     {{formGroup fields.description value=source.description rootId=rootId}}
-    {{formGroup fields.formula value=source.formula placeholder=formulaPlaceholder rootId=rootId}}
+    <fieldset class="one-column" data-key="formula">
+        <legend>
+            Formula
+            <a><i class="fa-solid fa-plus icon-button" data-action="addAltFormula"></i></a>
+        </legend>
+
+        {{#if isListView}}
+            {{#each formulaList as |row|}}
+                <div class="nest-inputs">
+                    {{formGroup ../flagFields.formulaName 
+                        value=row.key 
+                        name=row.keyInputName 
+                        placeholder="Name" 
+                    }}
+                    {{formGroup ../fields.formula 
+                        value=row.formula 
+                        name=row.formulaInputName 
+                        placeholder="Formula" 
+                    }}
+                    <a class="btn" 
+                       data-tooltip="{{localize "CONTROLS.CommonDelete"}}" 
+                       data-action="removeAltFormula" 
+                       data-index="{{row.index}}">
+                       <i class="fas fa-trash"></i>
+                    </a>
+                </div>
+            {{/each}}
+        {{else}}
+            <div class="nest-inputs">
+                <input type="hidden" name="flags.daggerheart.formulaName" value="{{flagData.formulaName}}">
+                {{formGroup fields.formula 
+                    value=source.formula 
+                    placeholder=formulaPlaceholder 
+                    rootId=rootId
+                }}
+            </div>
+        {{/if}}
+    </fieldset>
     {{formGroup fields.replacement value=source.replacement rootId=rootId}}
     {{formGroup fields.displayRoll value=source.displayRoll rootId=rootId}}
 </section>
