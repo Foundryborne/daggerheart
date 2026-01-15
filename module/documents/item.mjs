@@ -213,10 +213,15 @@ export default class DHItem extends foundry.documents.Item {
         const actions = Array.from(this.system.actions ?? []);
         if (!actions.length) return;
 
-        game.system.registeredTriggers.unregisterTriggers(
-            actions.flatMap(action => action.triggers.map(x => x.trigger)),
-            this.uuid
-        );
+        const triggerKeys = actions.flatMap(action => action.triggers.map(x => x.trigger));
+
+        game.system.registeredTriggers.unregisterTriggers(triggerKeys, this.uuid);
+
+        if (!(this.actor.parent instanceof game.system.api.documents.DhToken)) {
+            for (const token of this.actor.getActiveTokens()) {
+                game.system.registeredTriggers.unregisterTriggers(triggerKeys, `${token.document.uuid}.${this.uuid}`);
+            }
+        }
     }
 
     async _preDelete() {
