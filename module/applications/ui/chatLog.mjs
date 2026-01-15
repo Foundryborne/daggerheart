@@ -92,6 +92,13 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         super.close(options);
     }
 
+    /** Ensure the chat theme inherits the interface theme */
+    _replaceHTML(result, content, options) {
+        const themedElement = result.log?.querySelector(".chat-log");
+        themedElement?.classList.remove("themed", "theme-light", "theme-dark");
+        super._replaceHTML(result, content, options);
+    }
+
     async onRollSimple(event, message) {
         const buttonType = event.target.dataset.type ?? 'damage',
             total = message.rolls.reduce((a, c) => a + Roll.fromJSON(c).total, 0),
