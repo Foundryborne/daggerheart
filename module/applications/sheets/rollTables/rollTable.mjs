@@ -61,7 +61,7 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
 
     /** @override */
     async _processSubmitData(event, form, submitData, options) {
-        //submitData.flags.daggerheart = this.daggerheartFlag.toObject();
+        //submitData.flags.daggerheart = this.daggerheartFlag.toObject(); caused render headaches 
 
         super._processSubmitData(event, form, submitData, options);
     }
