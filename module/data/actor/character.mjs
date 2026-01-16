@@ -280,6 +280,24 @@ export default class DhCharacter extends BaseDataActor {
                         })
                     })
                 }),
+                dualityRoll: new fields.SchemaField({
+                    defaultHopeDice: new fields.NumberField({
+                        nullable: false,
+                        required: true,
+                        integer: true,
+                        choices: CONFIG.DH.GENERAL.dieFaces,
+                        initial: 12,
+                        label: 'DAGGERHEART.ACTORS.Character.defaultHopeDice'
+                    }),
+                    defaultFearDice: new fields.NumberField({
+                        nullable: false,
+                        required: true,
+                        integer: true,
+                        choices: CONFIG.DH.GENERAL.dieFaces,
+                        initial: 12,
+                        label: 'DAGGERHEART.ACTORS.Character.defaultFearDice'
+                    })
+                }),
                 runeWard: new fields.BooleanField({ initial: false }),
                 burden: new fields.SchemaField({
                     ignore: new fields.BooleanField()

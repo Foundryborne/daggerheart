@@ -93,27 +93,29 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
     }
 
     getRefreshables() {
-        const actionItems = this.actor.items.filter(x => this.actor.system.isItemAvailable(x)).reduce((acc, x) => {
-            if (x.system.actions) {
-                const recoverable = x.system.actions.reduce((acc, action) => {
-                    if (refreshIsAllowed([this.shortrest ? 'shortRest' : 'longRest'], action.uses.recovery)) {
-                        acc.push({
-                            title: x.name,
-                            name: action.name,
-                            uuid: action.uuid
-                        });
+        const actionItems = this.actor.items
+            .filter(x => this.actor.system.isItemAvailable(x))
+            .reduce((acc, x) => {
+                if (x.system.actions) {
+                    const recoverable = x.system.actions.reduce((acc, action) => {
+                        if (refreshIsAllowed([this.shortrest ? 'shortRest' : 'longRest'], action.uses.recovery)) {
+                            acc.push({
+                                title: x.name,
+                                name: action.name,
+                                uuid: action.uuid
+                            });
+                        }
+
+                        return acc;
+                    }, []);
+
+                    if (recoverable) {
+                        acc.push(...recoverable);
                     }
-
-                    return acc;
-                }, []);
-
-                if (recoverable) {
-                    acc.push(...recoverable);
                 }
-            }
 
-            return acc;
-        }, []);
+                return acc;
+            }, []);
         const resourceItems = this.actor.items.reduce((acc, x) => {
             if (
                 x.system.resource &&
@@ -189,7 +191,8 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
                     }));
                 });
         });
-        const characters = game.actors.filter(x => x.type === 'character')
+        const characters = game.actors
+            .filter(x => x.type === 'character')
             .filter(x => x.testUserPermission(game.user, 'LIMITED'))
             .filter(x => x.uuid !== this.actor.uuid);
 

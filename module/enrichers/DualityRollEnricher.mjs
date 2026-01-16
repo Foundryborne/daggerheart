@@ -86,9 +86,9 @@ export const enrichedDualityRoll = async (
     const config = {
         event: event ?? {},
         title: title,
+        headerTitle: label,
         roll: {
             trait: traitValue && target ? traitValue : null,
-            label: label,
             difficulty: difficulty,
             advantage,
             type: reaction ? 'reaction' : null
@@ -101,7 +101,7 @@ export const enrichedDualityRoll = async (
         await target.diceRoll(config);
     } else {
         // For no target, call DualityRoll directly with basic data
-        config.data = { experiences: {}, traits: {} };
+        config.data = { experiences: {}, traits: {}, rules: {} };
         config.source = { actor: null };
         await CONFIG.Dice.daggerheart.DualityRoll.build(config);
     }

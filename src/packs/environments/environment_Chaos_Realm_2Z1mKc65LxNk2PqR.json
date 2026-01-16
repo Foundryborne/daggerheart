@@ -467,33 +467,48 @@
         "description": "<p><strong>Spend a Fear</strong> to summon an @UUID[Compendium.daggerheart.adversaries.Actor.A0SeeDzwjvqOsyof]{Outer Realms Abomination}, an@UUID[Compendium.daggerheart.adversaries.Actor.ms6nuOl3NFkhPj1k]{Outer Realms Corrupter}, and [[/r 2d6]] @UUID[Compendium.daggerheart.adversaries.Actor.moJhHgKqTKPS2WYS]{Outer Realms Thrall}, who appear at Close range of a chosen PC in defiance of logic and causality. Immediately spotlight one of these adversaries, and you can spend an additional Fear to automatically succeed on that adversary’s standard attack.</p><section class=\"secret\" id=\"secret-psXRRXLoibTKFpaW\"><p><em>What halfconsumed remnants of the shattered world do these monstrosities cast aside in pursuit of living flesh? What jagged refl ections of former personhood do you catch between moments of unquestioning malice?</em></p></section>",
         "resource": null,
         "actions": {
-          "5a8ESNroEQHAm7rO": {
-            "type": "effect",
-            "_id": "5a8ESNroEQHAm7rO",
+          "KCzdCu2KhAx9KyhT": {
+            "type": "summon",
+            "_id": "KCzdCu2KhAx9KyhT",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to summon an @UUID[Compendium.daggerheart.adversaries.Actor.A0SeeDzwjvqOsyof]{Outer Realms Abomination}, an@UUID[Compendium.daggerheart.adversaries.Actor.ms6nuOl3NFkhPj1k]{Outer Realms Corrupter}, and [[/r 2d6]] @UUID[Compendium.daggerheart.adversaries.Actor.moJhHgKqTKPS2WYS]{Outer Realms Thrall}, who appear at Close range of a chosen PC in defiance of logic and causality. Immediately spotlight one of these adversaries, and you can spend an additional Fear to automatically succeed on that adversary’s standard attack.</p><section class=\"secret\" id=\"secret-ADMZbUwBRqcZNks5\"><p><em>What halfconsumed remnants of the shattered world do these monstrosities cast aside in pursuit of living flesh? What jagged refl ections of former personhood do you catch between moments of unquestioning malice?</em></p></section>",
+            "baseAction": false,
+            "description": "",
             "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
             "actionType": "action",
             "cost": [
               {
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "step": null
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
-            "effects": [],
-            "target": {
-              "type": "any",
-              "amount": null
-            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.A0SeeDzwjvqOsyof",
+                "count": "1"
+              },
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.ms6nuOl3NFkhPj1k",
+                "count": "1"
+              },
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.moJhHgKqTKPS2WYS",
+                "count": "2d6"
+              }
+            ],
             "name": "Spend Fear",
-            "img": "icons/creatures/unholy/demons-horned-glowing-pink.webp",
             "range": ""
           }
         },

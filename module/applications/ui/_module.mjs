@@ -5,4 +5,5 @@ export { default as DhCombatTracker } from './combatTracker.mjs';
 export { default as DhEffectsDisplay } from './effectsDisplay.mjs';
 export { default as DhFearTracker } from './fearTracker.mjs';
 export { default as DhHotbar } from './hotbar.mjs';
+export { default as DhSceneNavigation } from './sceneNavigation.mjs';
 export { ItemBrowser } from './itemBrowser.mjs';

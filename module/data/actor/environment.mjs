@@ -1,8 +1,11 @@
 import BaseDataActor from './base.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 import DHEnvironmentSettings from '../../applications/sheets-configs/environment-settings.mjs';
+import { RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 
 export default class DhEnvironment extends BaseDataActor {
+    scenes = new Set();
+
     /**@override */
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Environment'];
 
@@ -53,6 +56,31 @@ export default class DhEnvironment extends BaseDataActor {
     }
 
     isItemValid(source) {
-        return source.type === "feature";
+        return source.type === 'feature';
+    }
+
+    _onUpdate(changes, options, userId) {
+        super._onUpdate(changes, options, userId);
+        for (const scene of this.scenes) {
+            scene.render();
+        }
+    }
+
+    _onDelete(options, userId) {
+        super._onDelete(options, userId);
+        for (const scene of this.scenes) {
+            if (game.user.isActiveGM) {
+                const newSceneEnvironments = scene.flags.daggerheart.sceneEnvironments.filter(
+                    x => x !== this.parent.uuid
+                );
+                scene.update({ 'flags.daggerheart.sceneEnvironments': newSceneEnvironments }).then(() => {
+                    Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Scene });
+                    game.socket.emit(`system.${CONFIG.DH.id}`, {
+                        action: socketEvent.Refresh,
+                        data: { refreshType: RefreshType.TagTeamRoll }
+                    });
+                });
+            }
+        }
     }
 }

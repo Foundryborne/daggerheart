@@ -123,9 +123,7 @@
         {{/each}}
     </div>
 
-    {{#> 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' showSettings=showSettings }}
-        {{#if ../showSettings}}
-            <button type="button" data-action="openSettings" data-tooltip-text="{{localize "DAGGERHEART.UI.Tooltip.openSheetSettings"}}"><i class="fa-solid fa-wrench"></i></button>
-        {{/if}}
+    {{#> 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' }}
+        <button type="button" data-action="openSettings" data-tooltip-text="{{localize "DAGGERHEART.UI.Tooltip.openSheetSettings"}}"><i class="fa-solid fa-wrench"></i></button>
     {{/'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
 </header>

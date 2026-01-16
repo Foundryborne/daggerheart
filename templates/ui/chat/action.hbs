@@ -8,6 +8,22 @@
             </div>
             <i class="fa-solid fa-chevron-down"></i>
         </summary>
-        <div class="description">{{{description}}}</div>
+        <div class="description">
+            {{{description}}}
+            {{#if action.summon}}
+                <div class="summons-header"><span>{{localize "DAGGERHEART.GENERAL.summon.plural"}}</span></div>
+                <div class="summons-container">
+                    {{#each action.summon}}
+                        <div class="summon-container">
+                            <div class="summon-label-container">
+                                <img src="{{this.actor.img}}" />
+                                <label>{{this.actor.name}}</label>
+                            </div>
+                            <span># {{this.rolledCount}}</span>
+                        </div>
+                    {{/each}}
+                </div>
+            {{/if}}
+        </div>
     </details>
 </div>

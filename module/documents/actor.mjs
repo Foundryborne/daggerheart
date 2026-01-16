@@ -104,6 +104,16 @@ export default class DhpActor extends Actor {
         }
     }
 
+    async _preDelete() {
+        if (this.prototypeToken.actorLink) {
+            game.system.registeredTriggers.unregisterItemTriggers(this.items);
+        } else {
+            for (const token of this.getActiveTokens()) {
+                game.system.registeredTriggers.unregisterItemTriggers(token.actor.items);
+            }
+        }
+    }
+
     _onDelete(options, userId) {
         super._onDelete(options, userId);
         for (const party of this.parties) {
@@ -644,6 +654,19 @@ export default class DhpActor extends Actor {
                     hpDamage.value -= 1;
                 }
             }
+        }
+
+        const results = await game.system.registeredTriggers.runTrigger(
+            CONFIG.DH.TRIGGER.triggers.postDamageReduction.id,
+            this,
+            updates,
+            this
+        );
+
+        if (results?.length) {
+            const resourceMap = new ResourceUpdateMap(results[0].originActor);
+            for (var result of results) resourceMap.addResources(result.updates);
+            resourceMap.updateResources();
         }
 
         updates.forEach(

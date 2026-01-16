@@ -496,6 +496,8 @@ export const diceTypes = {
     d20: 'd20'
 };
 
+export const dieFaces = [4, 6, 8, 10, 12, 20];
+
 export const multiplierTypes = {
     prof: 'Proficiency',
     cast: 'Spellcast',

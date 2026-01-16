@@ -113,18 +113,7 @@
       "name": "Powerful",
       "description": "On a successful attack, roll an additional damage die and discard the lowest result.",
       "img": "icons/magic/control/buff-flight-wings-runes-red-yellow.webp",
-      "changes": [
-        {
-          "key": "system.bonuses.damage.primaryWeapon.extraDice",
-          "mode": 2,
-          "value": "1"
-        },
-        {
-          "key": "system.rules.weapon.dropLowestDamageDice",
-          "mode": 5,
-          "value": "1"
-        }
-      ],
+      "changes": [],
       "_id": "904orawScurM9GjG",
       "type": "base",
       "system": {},

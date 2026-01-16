@@ -10,6 +10,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         this.config = config;
         this.config.experiences = [];
         this.reactionOverride = config.actionType === 'reaction';
+        this.selectedEffects = this.config.bonusEffects;
 
         if (config.source?.action) {
             this.item = config.data.parent.items.get(config.source.item) ?? config.data.parent;
@@ -35,6 +36,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             selectExperience: this.selectExperience,
             toggleReaction: this.toggleReaction,
             toggleTagTeamRoll: this.toggleTagTeamRoll,
+            toggleSelectedEffect: this.toggleSelectedEffect,
             submitRoll: this.submitRoll
         },
         form: {
@@ -75,6 +77,9 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             label,
             icon
         }));
+
+        context.hasSelectedEffects = Boolean(this.selectedEffects && Object.keys(this.selectedEffects).length);
+        context.selectedEffects = this.selectedEffects;
 
         this.config.costs ??= [];
         if (this.config.costs?.length) {
@@ -118,7 +123,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             context.formula = this.roll.constructFormula(this.config);
             if (this.actor?.system?.traits) context.abilities = this.getTraitModifiers();
 
-            context.showReaction = !this.config.roll?.type && context.rollType === 'DualityRoll';
+            context.showReaction = !this.config.roll?.type || context.rollType === 'DualityRoll';
             context.reactionOverride = this.reactionOverride;
         }
 
@@ -205,6 +210,11 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
 
     static toggleTagTeamRoll() {
         this.config.tagTeamSelected = !this.config.tagTeamSelected;
+        this.render();
+    }
+
+    static toggleSelectedEffect(_event, button) {
+        this.selectedEffects[button.dataset.key].selected = !this.selectedEffects[button.dataset.key].selected;
         this.render();
     }
 

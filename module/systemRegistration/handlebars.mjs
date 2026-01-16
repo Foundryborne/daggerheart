@@ -32,6 +32,7 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/actionTypes/effect.hbs',
         'systems/daggerheart/templates/actionTypes/beastform.hbs',
         'systems/daggerheart/templates/actionTypes/countdown.hbs',
+        'systems/daggerheart/templates/actionTypes/summon.hbs',
         'systems/daggerheart/templates/settings/components/settings-item-line.hbs',
         'systems/daggerheart/templates/ui/tooltip/parts/tooltipChips.hbs',
         'systems/daggerheart/templates/ui/tooltip/parts/tooltipTags.hbs',

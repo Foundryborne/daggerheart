@@ -8,7 +8,7 @@
  * @property {boolean} isInventoryItem- Indicates whether items of this type is a Inventory Item
  */
 
-import { addLinkedItemsDiff, createScrollText, getScrollTextData, updateLinkedItemApps } from '../../helpers/utils.mjs';
+import { addLinkedItemsDiff, getScrollTextData, updateLinkedItemApps } from '../../helpers/utils.mjs';
 import { ActionsField } from '../fields/actionField.mjs';
 import FormulaField from '../fields/formulaField.mjs';
 
@@ -125,6 +125,33 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
     }
 
     /**
+     * Augments the description for the item with type specific info to display. Implemented in applicable item subtypes.
+     * @param {object} [options] - Options that modify the styling of the rendered template. { headerStyle: undefined|'none'|'large' }
+     * @returns {string}
+     */
+    async getDescriptionData(_options) {
+        return { prefix: null, value: this.description, suffix: null };
+    }
+
+    /**
+     * Gets the enriched and augmented description for the item.
+     * @param {object} [options] - Options that modify the styling of the rendered template. { headerStyle: undefined|'none'|'large' }
+     * @returns {string}
+     */
+    async getEnrichedDescription() {
+        if (!this.metadata.hasDescription) return '';
+
+        const { prefix, value, suffix } = await this.getDescriptionData();
+        const fullDescription = [prefix, value, suffix].filter(p => !!p).join('\n<hr>\n');
+
+        return await foundry.applications.ux.TextEditor.implementation.enrichHTML(fullDescription, {
+            relativeTo: this,
+            rollData: this.getRollData(),
+            secrets: this.isOwner
+        });
+    }
+
+    /**
      * Obtain a data object used to evaluate any dice rolls associated with this Item Type
      * @param {object} [options] - Options which modify the getRollData method.
      * @returns {object}
@@ -133,6 +160,11 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         const actorRollData = this.actor?.getRollData() ?? {};
         const data = { ...actorRollData, item: { ...this } };
         return data;
+    }
+
+    prepareBaseData() {
+        super.prepareBaseData();
+        game.system.registeredTriggers.registerItemTriggers(this.parent);
     }
 
     async _preCreate(data, options, user) {
@@ -194,6 +226,28 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         if (armorChanged && autoSettings.resourceScrollTexts && this.parent.parent?.type === 'character') {
             const armorData = getScrollTextData(this.parent.parent.system.resources, changed.system.marks, 'armor');
             options.scrollingTextData = [armorData];
+        }
+
+        if (changed.system?.actions) {
+            const triggersToRemove = Object.keys(changed.system.actions).reduce((acc, key) => {
+                if (!changed.system.actions[key]) {
+                    const strippedKey = key.replace('-=', '');
+                    acc.push(...this.actions.get(strippedKey).triggers.map(x => x.trigger));
+                }
+
+                return acc;
+            }, []);
+
+            game.system.registeredTriggers.unregisterTriggers(triggersToRemove, this.parent.uuid);
+
+            if (!(this.parent.parent.token instanceof game.system.api.documents.DhToken)) {
+                for (const token of this.parent.parent.getActiveTokens()) {
+                    game.system.registeredTriggers.unregisterTriggers(
+                        triggersToRemove,
+                        `${token.document.uuid}.${this.parent.uuid}`
+                    );
+                }
+            }
         }
     }
 

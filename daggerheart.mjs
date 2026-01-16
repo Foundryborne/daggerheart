@@ -16,9 +16,10 @@ import {
     settingsRegistration,
     socketRegistration
 } from './module/systemRegistration/_module.mjs';
-import { placeables } from './module/canvas/_module.mjs';
+import { placeables, DhTokenLayer } from './module/canvas/_module.mjs';
 import './node_modules/@yaireo/tagify/dist/tagify.css';
 import TemplateManager from './module/documents/templateManager.mjs';
+import TokenManager from './module/documents/tokenManager.mjs';
 
 CONFIG.DH = SYSTEM;
 CONFIG.TextEditor.enrichers.push(...enricherConfig);
@@ -51,6 +52,8 @@ CONFIG.ChatMessage.template = 'systems/daggerheart/templates/ui/chat/chat-messag
 
 CONFIG.Canvas.rulerClass = placeables.DhRuler;
 CONFIG.Canvas.layers.templates.layerClass = placeables.DhTemplateLayer;
+CONFIG.Canvas.layers.tokens.layerClass = DhTokenLayer;
+
 CONFIG.MeasuredTemplate.objectClass = placeables.DhMeasuredTemplate;
 
 CONFIG.RollTable.documentClass = documents.DhRollTable;
@@ -64,6 +67,7 @@ CONFIG.Token.rulerClass = placeables.DhTokenRuler;
 CONFIG.Token.hudClass = applications.hud.DHTokenHUD;
 
 CONFIG.ui.combat = applications.ui.DhCombatTracker;
+CONFIG.ui.nav = applications.ui.DhSceneNavigation;
 CONFIG.ui.chat = applications.ui.DhChatLog;
 CONFIG.ui.effectsDisplay = applications.ui.DhEffectsDisplay;
 CONFIG.ui.hotbar = applications.ui.DhHotbar;
@@ -75,6 +79,8 @@ CONFIG.ui.countdowns = applications.ui.DhCountdowns;
 CONFIG.ux.ContextMenu = applications.ux.DHContextMenu;
 CONFIG.ux.TooltipManager = documents.DhTooltipManager;
 CONFIG.ux.TemplateManager = new TemplateManager();
+CONFIG.ux.TokenManager = new TokenManager();
+CONFIG.debug.triggers = false;
 
 Hooks.once('init', () => {
     game.system.api = {
@@ -85,6 +91,8 @@ Hooks.once('init', () => {
         dice,
         fields
     };
+
+    game.system.registeredTriggers = new game.system.api.data.RegisteredTriggers();
 
     const { DocumentSheetConfig } = foundry.applications.apps;
     DocumentSheetConfig.unregisterSheet(TokenDocument, 'core', foundry.applications.sheets.TokenConfig);
@@ -310,7 +318,7 @@ Hooks.on('chatMessage', (_, message) => {
             target,
             difficulty,
             title,
-            label: 'test',
+            label: game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll'),
             actionType: null,
             advantage
         });
@@ -359,7 +367,9 @@ const updateAllRangeDependentEffects = async () => {
     const effectsAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).effects;
     if (!effectsAutomation.rangeDependent) return;
 
-    const tokens = canvas.scene.tokens;
+    const tokens = canvas.scene?.tokens;
+    if (!tokens) return;
+
     if (game.user.character) {
         // The character updates their character's token. There can be only one token.
         const characterToken = tokens.find(x => x.actor === game.user.character);
@@ -387,3 +397,13 @@ Hooks.on('refreshToken', (_, options) => {
 
 Hooks.on('renderCompendiumDirectory', (app, html) => applications.ui.ItemBrowser.injectSidebarButton(html));
 Hooks.on('renderDocumentDirectory', (app, html) => applications.ui.ItemBrowser.injectSidebarButton(html));
+
+/* Non actor-linked Actors should unregister the triggers of their tokens if a scene's token layer is torn down */
+Hooks.on('canvasTearDown', canvas => {
+    game.system.registeredTriggers.unregisterSceneTriggers(canvas.scene);
+});
+
+/* Non actor-linked Actors should register the triggers of their tokens on a readied scene */
+Hooks.on('canvasReady', canas => {
+    game.system.registeredTriggers.registerSceneTriggers(canvas.scene);
+});

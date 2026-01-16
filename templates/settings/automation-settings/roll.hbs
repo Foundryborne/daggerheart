@@ -19,4 +19,15 @@
             </div>
         {{/each}}
     </fieldset>
+
+    <fieldset>
+        <legend>
+            {{localize "DAGGERHEART.SETTINGS.Automation.trigger.title"}}
+        </legend>
+
+        <div class="form-group">
+            {{formGroup settingFields.schema.fields.triggers.fields.enabled value=settingFields.triggers.enabled localize=true}}
+            <p class="hint">{{localize "DAGGERHEART.SETTINGS.Automation.FIELDS.triggers.enabled.hint"}}</p>
+        </div>
+    </fieldset>
 </section>

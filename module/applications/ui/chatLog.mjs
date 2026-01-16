@@ -92,6 +92,21 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         super.close(options);
     }
 
+    /** Ensure the chat theme inherits the interface theme */
+    _replaceHTML(result, content, options) {
+        const themedElement = result.log?.querySelector('.chat-log');
+        themedElement?.classList.remove('themed', 'theme-light', 'theme-dark');
+        super._replaceHTML(result, content, options);
+    }
+
+    /** Remove chat log theme from notifications area */
+    async _onFirstRender(result, content) {
+        await super._onFirstRender(result, content);
+        document
+            .querySelector('#chat-notifications .chat-log')
+            ?.classList.remove('themed', 'theme-light', 'theme-dark');
+    }
+
     async onRollSimple(event, message) {
         const buttonType = event.target.dataset.type ?? 'damage',
             total = message.rolls.reduce((a, c) => a + Roll.fromJSON(c).total, 0),
@@ -135,7 +150,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     async actionUseButton(event, message) {
         const { moveIndex, actionIndex, movePath } = event.currentTarget.dataset;
         const targetUuid = event.currentTarget.closest('.action-use-button-parent').querySelector('select')?.value;
-        const parent = await foundry.utils.fromUuid(targetUuid || message.system.actor)
+        const parent = await foundry.utils.fromUuid(targetUuid || message.system.actor);
 
         const actionType = message.system.moves[moveIndex].actions[actionIndex];
         const cls = game.system.api.models.actions.actionsTypes[actionType.type];

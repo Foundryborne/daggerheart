@@ -130,9 +130,14 @@ export default class DualityRoll extends D20Roll {
             this.terms = [this.terms[0], this.terms[1], this.terms[2]];
             return;
         }
-        this.terms[0] = new foundry.dice.terms.Die({ faces: 12 });
+
+        this.terms[0] = new foundry.dice.terms.Die({
+            faces: this.data.rules.dualityRoll?.defaultHopeDice ?? 12
+        });
         this.terms[1] = new foundry.dice.terms.OperatorTerm({ operator: '+' });
-        this.terms[2] = new foundry.dice.terms.Die({ faces: 12 });
+        this.terms[2] = new foundry.dice.terms.Die({
+            faces: this.data.rules.dualityRoll?.defaultFearDice ?? 12
+        });
     }
 
     applyAdvantage() {
@@ -171,6 +176,34 @@ export default class DualityRoll extends D20Roll {
         });
 
         return modifiers;
+    }
+
+    getActionChangeKeys() {
+        const changeKeys = new Set([`system.bonuses.roll.${this.options.actionType}`]);
+
+        if (this.options.roll.type !== CONFIG.DH.GENERAL.rollTypes.attack.id) {
+            changeKeys.add(`system.bonuses.roll.${this.options.roll.type}`);
+        }
+
+        if (
+            this.options.roll.type === CONFIG.DH.GENERAL.rollTypes.attack.id ||
+            (this.options.roll.type === CONFIG.DH.GENERAL.rollTypes.spellcast.id && this.options.hasDamage)
+        ) {
+            changeKeys.add(`system.bonuses.roll.attack`);
+        }
+
+        if (this.options.roll.trait && this.data.traits?.[this.options.roll.trait]) {
+            if (this.options.roll.type !== CONFIG.DH.GENERAL.rollTypes.spellcast.id)
+                changeKeys.add('system.bonuses.roll.trait');
+        }
+
+        const weapons = ['primaryWeapon', 'secondaryWeapon'];
+        weapons.forEach(w => {
+            if (this.options.source.item && this.options.source.item === this.data[w]?.id)
+                changeKeys.add(`system.bonuses.roll.${w}`);
+        });
+
+        return changeKeys;
     }
 
     static async buildEvaluate(roll, config = {}, message = {}) {
@@ -224,6 +257,32 @@ export default class DualityRoll extends D20Roll {
         await super.buildPost(roll, config, message);
 
         await DualityRoll.dualityUpdate(config);
+        await DualityRoll.handleTriggers(roll, config);
+    }
+
+    static async handleTriggers(roll, config) {
+        if (!config.source?.actor) return;
+
+        const updates = [];
+        const dualityUpdates = await game.system.registeredTriggers.runTrigger(
+            CONFIG.DH.TRIGGER.triggers.dualityRoll.id,
+            roll.data?.parent,
+            roll,
+            roll.data?.parent
+        );
+        if (dualityUpdates?.length) updates.push(...dualityUpdates);
+
+        if (config.roll.result.duality === -1) {
+            const fearUpdates = await game.system.registeredTriggers.runTrigger(
+                CONFIG.DH.TRIGGER.triggers.fearRoll.id,
+                roll.data?.parent,
+                roll,
+                roll.data?.parent
+            );
+            if (fearUpdates?.length) updates.push(...fearUpdates);
+        }
+
+        config.resourceUpdates.addResources(updates);
     }
 
     static async addDualityResourceUpdates(config) {

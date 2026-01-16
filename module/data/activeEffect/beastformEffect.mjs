@@ -19,6 +19,7 @@ export default class BeastformEffect extends BaseEffect {
                     base64: false
                 }),
                 tokenSize: new fields.SchemaField({
+                    scale: new fields.NumberField({ nullable: false, initial: 1 }),
                     height: new fields.NumberField({ integer: false, nullable: true }),
                     width: new fields.NumberField({ integer: false, nullable: true })
                 })
@@ -55,7 +56,9 @@ export default class BeastformEffect extends BaseEffect {
             const update = {
                 ...baseUpdate,
                 texture: {
-                    src: this.characterTokenData.tokenImg
+                    src: this.characterTokenData.tokenImg,
+                    scaleX: this.characterTokenData.tokenSize.scale,
+                    scaleY: this.characterTokenData.tokenSize.scale
                 },
                 ring: {
                     enabled: this.characterTokenData.usesDynamicToken,
@@ -86,7 +89,9 @@ export default class BeastformEffect extends BaseEffect {
                     y,
                     'texture': {
                         enabled: this.characterTokenData.usesDynamicToken,
-                        src: token.flags.daggerheart?.beastformTokenImg ?? this.characterTokenData.tokenImg
+                        src: token.flags.daggerheart?.beastformTokenImg ?? this.characterTokenData.tokenImg,
+                        scaleX: this.characterTokenData.tokenSize.scale,
+                        scaleY: this.characterTokenData.tokenSize.scale
                     },
                     'ring': {
                         subject: {
