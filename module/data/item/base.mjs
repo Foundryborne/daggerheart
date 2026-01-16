@@ -164,26 +164,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
     prepareBaseData() {
         super.prepareBaseData();
-
-        for (const action of this.actions ?? []) {
-            if (!action.actor) continue;
-
-            const actionsToRegister = [];
-            for (let i = 0; i < action.triggers.length; i++) {
-                const trigger = action.triggers[i];
-                const { args } = CONFIG.DH.TRIGGER.triggers[trigger.trigger];
-                const fn = new foundry.utils.AsyncFunction(...args, `{${trigger.command}\n}`);
-                actionsToRegister.push(fn.bind(action));
-                if (i === action.triggers.length - 1)
-                    game.system.registeredTriggers.registerTriggers(
-                        trigger.trigger,
-                        action.actor?.uuid,
-                        trigger.triggeringActorType,
-                        this.parent.uuid,
-                        actionsToRegister
-                    );
-            }
-        }
+        game.system.registeredTriggers.registerItemTriggers(this.parent);
     }
 
     async _preCreate(data, options, user) {
@@ -245,6 +226,28 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         if (armorChanged && autoSettings.resourceScrollTexts && this.parent.parent?.type === 'character') {
             const armorData = getScrollTextData(this.parent.parent.system.resources, changed.system.marks, 'armor');
             options.scrollingTextData = [armorData];
+        }
+
+        if (changed.system?.actions) {
+            const triggersToRemove = Object.keys(changed.system.actions).reduce((acc, key) => {
+                if (!changed.system.actions[key]) {
+                    const strippedKey = key.replace('-=', '');
+                    acc.push(...this.actions.get(strippedKey).triggers.map(x => x.trigger));
+                }
+
+                return acc;
+            }, []);
+
+            game.system.registeredTriggers.unregisterTriggers(triggersToRemove, this.parent.uuid);
+
+            if (!(this.parent.parent.token instanceof game.system.api.documents.DhToken)) {
+                for (const token of this.parent.parent.getActiveTokens()) {
+                    game.system.registeredTriggers.unregisterTriggers(
+                        triggersToRemove,
+                        `${token.document.uuid}.${this.parent.uuid}`
+                    );
+                }
+            }
         }
     }
 

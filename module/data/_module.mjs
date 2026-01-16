@@ -1,6 +1,7 @@
 export { default as DhCombat } from './combat.mjs';
 export { default as DhCombatant } from './combatant.mjs';
 export { default as DhTagTeamRoll } from './tagTeamRoll.mjs';
+export { default as RegisteredTriggers } from './registeredTriggers.mjs';
 
 export * as countdowns from './countdowns.mjs';
 export * as actions from './action/_module.mjs';

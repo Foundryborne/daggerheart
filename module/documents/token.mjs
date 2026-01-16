@@ -536,4 +536,10 @@ export default class DHToken extends CONFIG.Token.documentClass {
         };
     }
     //#endregion
+
+    async _preDelete() {
+        if (this.actor && !this.actor.prototypeToken?.actorLink) {
+            game.system.registeredTriggers.unregisterItemTriggers(this.actor.items);
+        }
+    }
 }

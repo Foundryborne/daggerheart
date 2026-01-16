@@ -2,20 +2,18 @@
 @import '../utils/fonts.less';
 @import '../utils/mixin.less';
 
-.theme-light {
-    .daggerheart.chat-sidebar .chat-log,
-    #chat-notifications .chat-log {
-        .chat-message {
-            background-image: url('../assets/parchments/dh-parchment-light.png');
+.daggerheart.chat-sidebar.theme-light,
+#interface.theme-light {
+    .chat-log .chat-message {
+        background-image: url('../assets/parchments/dh-parchment-light.png');
 
-            .message-header .message-header-metadata .message-metadata,
-            .message-header .message-header-main .message-sub-header-container {
-                color: @dark;
-            }
+        .message-header .message-header-metadata .message-metadata,
+        .message-header .message-header-main .message-sub-header-container {
+            color: @dark;
+        }
 
-            .message-header .message-header-main .message-sub-header-container h4 {
-                color: @dark-blue;
-            }
+        .message-header .message-header-main .message-sub-header-container h4 {
+            color: @dark-blue;
         }
     }
 }
