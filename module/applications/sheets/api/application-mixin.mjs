@@ -505,7 +505,10 @@ export default function DHApplicationMixin(Base) {
                         const doc = await getDocFromElement(target),
                             action = doc?.system?.attack ?? doc;
                         const config = action.prepareConfig(event);
-                        config.effects = Array.from(await this.document.allApplicableEffects());
+                        config.effects = await game.system.api.data.actions.actionsTypes.base.getEffects(
+                            this.document,
+                            doc
+                        );
                         config.hasRoll = false;
                         return action && action.workflow.get('damage').execute(config, null, true);
                     }
