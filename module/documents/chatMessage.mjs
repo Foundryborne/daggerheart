@@ -194,7 +194,16 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelectedOrPerm'));
 
         this.consumeOnSuccess();
-        this.system.action?.workflow.get('applyDamage')?.execute(config, targets, true);
+        if (this.system.action) this.system.action.workflow.get('applyDamage')?.execute(config, targets, true);
+        else {
+            for (const target of targets) {
+                const actor = await foundry.utils.fromUuid(target.actorId);
+                if (!actor) continue;
+
+                if (this.system.hasHealing) actor.takeHealing(this.system.damage);
+                else actor.takeDamage(this.system.damage);
+            }
+        }
     }
 
     async onRollSave(event) {
