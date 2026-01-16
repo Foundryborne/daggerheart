@@ -27,6 +27,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             makeDeathMove: CharacterSheet.#makeDeathMove,
             levelManagement: CharacterSheet.#levelManagement,
             viewLevelups: CharacterSheet.#viewLevelups,
+            resetCharacter: CharacterSheet.#resetCharacter,
             toggleEquipItem: CharacterSheet.#toggleEquipItem,
             toggleResourceDice: CharacterSheet.#toggleResourceDice,
             handleResourceDice: CharacterSheet.#handleResourceDice,
@@ -42,6 +43,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     icon: 'fa-solid fa-angles-up',
                     label: 'DAGGERHEART.ACTORS.Character.viewLevelups',
                     action: 'viewLevelups'
+                },
+                {
+                    icon: 'fa-solid fa-arrow-rotate-left',
+                    label: 'DAGGERHEART.ACTORS.Character.resetCharacter',
+                    action: 'resetCharacter'
                 }
             ]
         },
@@ -220,13 +226,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
     async _preparePartContext(partId, context, options) {
         context = await super._preparePartContext(partId, context, options);
         switch (partId) {
-            case 'header':
-                const { playerCanEditSheet, levelupAuto } = game.settings.get(
-                    CONFIG.DH.id,
-                    CONFIG.DH.SETTINGS.gameSettings.Automation
-                );
-                context.showSettings = game.user.isGM || !levelupAuto || (levelupAuto && playerCanEditSheet);
-                break;
             case 'loadout':
                 await this._prepareLoadoutContext(context, options);
                 break;
@@ -667,6 +666,32 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     /**
+     * Resets the character data and removes all embedded documents.
+     */
+    static async #resetCharacter() {
+        const confirmed = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: game.i18n.localize('DAGGERHEART.ACTORS.Character.resetCharacterConfirmationTitle')
+            },
+            content: game.i18n.localize('DAGGERHEART.ACTORS.Character.resetCharacterConfirmationContent')
+        });
+
+        if (!confirmed) return;
+
+        await this.document.update({
+            '==system': {}
+        });
+        await this.document.deleteEmbeddedDocuments(
+            'Item',
+            this.document.items.map(x => x.id)
+        );
+        await this.document.deleteEmbeddedDocuments(
+            'ActiveEffect',
+            this.document.effects.map(x => x.id)
+        );
+    }
+
+    /**
      * Opens the Death Move interface for the character.
      * @type {ApplicationClickAction}
      */
@@ -955,6 +980,18 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     async _onDropItem(event, item) {
+        const setupCriticalItemTypes = ['class', 'subclass', 'ancestry', 'community'];
+        if (this.document.system.needsCharacterSetup && setupCriticalItemTypes.includes(item.type)) {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: game.i18n.localize('DAGGERHEART.APPLICATIONS.CharacterCreation.setupSkipTitle')
+                },
+                content: game.i18n.localize('DAGGERHEART.APPLICATIONS.CharacterCreation.setupSkipContent')
+            });
+
+            if (!confirmed) return;
+        }
+
         if (this.document.uuid === item.parent?.uuid) {
             return super._onDropItem(event, item);
         }
