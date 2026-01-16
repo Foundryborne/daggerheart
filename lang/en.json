@@ -615,7 +615,7 @@
                 "rerollDice": "Reroll Dice"
             },
             "RiskItAllDialog": {
-                "title": "{name} - Risk It All - Clear Stress and/or Hit Points",
+                "title": "Character: {name} - Risk It All - Clear Stress and/or Hit Points",
                 "subtitle": "Clear {hope} Stress and/or Hit Points",
                 "submit": "Submit"
             },

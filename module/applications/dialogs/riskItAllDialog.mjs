@@ -9,7 +9,7 @@ export default class RiskItAllDialog extends HandlebarsApplicationMixin(Applicat
     }
 
     get title() {
-        return game.i18n.format('DAGGERHEART.APPLICATIONS.RiskItAllDialog.title', { actor: this.actor.name });
+        return game.i18n.format('DAGGERHEART.APPLICATIONS.RiskItAllDialog.title', { name: this.actor.name });
     }
 
     static DEFAULT_OPTIONS = {
@@ -34,6 +34,9 @@ export default class RiskItAllDialog extends HandlebarsApplicationMixin(Applicat
         context.title = game.i18n.format('DAGGERHEART.APPLICATIONS.RiskItAllDialog.subtitle', { hope: this.config.hope });
         context.currentHitPointsLabel = "Current Marked Hit Points: " + this.actor.system.resources.hitPoints.value;
         context.currentStressLabel = "Current Marked Stress: " + this.actor.system.resources.stress.value;
+
+        context.newHitPoints = this.actor.system.resources.hitPoints.value;
+        context.newStress = this.actor.system.resources.stress.value;
 
         return context;
     }
