@@ -2679,7 +2679,7 @@
                     "riskItAllFailure": "The fear die rolled higher. You have crossed through the veil of death.",
                     "blazeOfGlory": "Blaze of Glory Effect Added!",
                     "riskItAllDialogButton": "Clear Stress And Hit Points.",
-                    "riskItAllSuccessWithEnoughHope": "Hope roll value is more than the marked Stress and Hit Points. Both are cleared fully.",
+                    "riskItAllSuccessWithEnoughHope": "The Hope value is more than the marked Stress and Hit Points. Both are cleared fully.",
                     "riskItAllSuccess": "The hope die rolled higher, clear up to {hope} Stress And Hit Points."
                 },
                 "dicePool": {

@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="code-mirror-wrapper {{#if trigger.revealed}}revealed{{/if}}">
-                    {{formInput @root.fields.triggers.element.fields.command value=trigger.command elementType="code-mirror" name=(concat "triggers." index ".command") aria=(object label=(localize "Test")) }}
+                    {{formInput @root.fields.triggers.element.fields.command value=trigger.command elementType="code-mirror" name=(concat "triggers." index ".command") }}
                 </div>
             </fieldset>
         {{/each}}

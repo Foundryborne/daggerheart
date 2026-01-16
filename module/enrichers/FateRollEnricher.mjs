@@ -4,56 +4,35 @@ export default function DhFateRollEnricher(match, _options) {
     const roll = rollCommandToJSON(match[1], match[0]);
     if (!roll) return match[0];
 
-    const fateTypeFromRoll = getFateType(roll?.type);
-
-    if (fateTypeFromRoll == 'BAD') {
-        ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateTypeParsing'));
-        return;
-    }
-
     return getFateMessage(roll.result, roll?.flavor);
 }
 
-export function getFateType(fateTypeValue) {
-    const fateTypeFromValue = fateTypeValue
-        ? fateTypeValue.toLowerCase() == 'fear'
-            ? 'Fear'
-            : fateTypeValue.toLowerCase() == 'hope'
-              ? 'Hope'
-              : 'BAD'
-        : 'Hope';
-
-    return fateTypeFromValue;
+export function getFateTypeData(fateTypeValue) {
+    const value = fateTypeValue ? fateTypeValue.capitalize() : 'Hope';
+    const lowercased = fateTypeValue?.toLowerCase?.() ?? 'hope';
+    switch (lowercased) {
+        case 'hope':
+        case 'fear':
+            return { value, label: game.i18n.localize(`DAGGERHEART.GENERAL.${lowercased}`) };
+        default:
+            return null;
+    }
 }
 
 function getFateMessage(roll, flavor) {
-    const fateType = getFateType(roll?.type);
+    const fateTypeData = getFateTypeData(roll?.type);
 
-    if (fateType == 'BAD') {
-        ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateTypeParsing'));
-        return '';
-    }
+    if (!fateTypeData)
+        return ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateTypeParsing'));
 
-    const fateTypeLocalized =
-        fateType === 'Hope'
-            ? game.i18n.localize('DAGGERHEART.GENERAL.hope')
-            : game.i18n.localize('DAGGERHEART.GENERAL.fear');
-
-    const title =
-        flavor ??
-        fateTypeLocalized +
-            ' ' +
-            game.i18n.localize('DAGGERHEART.GENERAL.fate') +
-            ' ' +
-            game.i18n.localize('DAGGERHEART.GENERAL.roll');
-
-    const dataLabel = game.i18n.localize('DAGGERHEART.GENERAL.fate');
+    const { value: fateType, label: fateTypeLabel } = fateTypeData;
+    const title = flavor ?? game.i18n.localize('DAGGERHEART.GENERAL.fateRoll');
 
     const fateElement = document.createElement('span');
     fateElement.innerHTML = `
         <button type="button" class="fate-roll-button${roll?.inline ? ' inline' : ''}"
             data-title="${title}"
-            data-label="${dataLabel}"
+            data-label="${fateTypeLabel}"
             data-fateType="${fateType}"
         >
             ${title}
@@ -68,19 +47,17 @@ export const renderFateButton = async event => {
         target = getCommandTarget({ allowNull: true });
     console.log('button', button);
 
-    const fateTypeFromButton = getFateType(button.dataset?.fatetype);
+    const fateTypeData = getFateTypeData(button.dataset?.fatetype);
 
-    if (fateTypeFromButton == 'BAD') {
-        ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateTypeParsing'));
-        return;
-    }
+    if (!fateTypeData) ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateTypeParsing'));
+    const { value: fateType, label: fateTypeLabel } = fateTypeData;
 
     await enrichedFateRoll(
         {
             target,
             title: button.dataset.title,
             label: button.dataset.label,
-            fateType: fateTypeFromButton
+            fateType: fateType
         },
         event
     );
@@ -93,7 +70,8 @@ export const enrichedFateRoll = async ({ target, title, label, fateType }, event
         headerTitle: label,
         roll: {},
         hasRoll: true,
-        fateType: fateType
+        fateType: fateType,
+        skips: { reaction: true }
     };
 
     config.data = { experiences: {}, traits: {}, fateType: fateType };

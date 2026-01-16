@@ -84,7 +84,7 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
             label: game.i18n.localize('DAGGERHEART.GENERAL.dualityDice'),
             actionType: null,
             advantage: null,
-            customConfig: { skips: { resources: true } }
+            customConfig: { skips: { resources: true, reaction: true } }
         });
 
         if (!config.roll.result) return;

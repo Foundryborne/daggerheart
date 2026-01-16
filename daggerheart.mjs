@@ -10,7 +10,7 @@ import { enricherConfig, enricherRenderSetup } from './module/enrichers/_module.
 import { getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs';
 import { BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll, FateRoll } from './module/dice/_module.mjs';
 import { enrichedDualityRoll } from './module/enrichers/DualityRollEnricher.mjs';
-import { enrichedFateRoll, getFateType } from './module/enrichers/FateRollEnricher.mjs';
+import { enrichedFateRoll, getFateTypeData } from './module/enrichers/FateRollEnricher.mjs';
 import {
     handlebarsRegistration,
     runMigrations,
@@ -322,29 +322,26 @@ Hooks.on('chatMessage', (_, message) => {
     if (message.startsWith('/fr')) {
         const result =
             message.trim().toLowerCase() === '/fr' ? { result: {} } : rollCommandToJSON(message.replace(/\/fr\s?/, ''));
+
         if (!result) {
             ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateParsing'));
             return false;
         }
 
         const { result: rollCommand, flavor } = result;
+        const fateTypeData = getFateTypeData(rollCommand?.type);
 
-        const fateTypeFromRollCommand = getFateType(rollCommand?.type);
+        if (!fateTypeData)
+            return ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateTypeParsing'));
 
-        if (fateTypeFromRollCommand == 'BAD') {
-            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateTypeParsing'));
-            return false;
-        }
-
-        const fateType = fateTypeFromRollCommand;
-
+        const { value: fateType, label: fateTypeLabel } = fateTypeData;
         const target = getCommandTarget({ allowNull: true });
-        const title = fateType + ' Fate Roll';
+        const title = flavor ?? game.i18n.localize('DAGGERHEART.GENERAL.fateRoll');
 
         enrichedFateRoll({
             target,
             title,
-            label: 'test',
+            label: fateTypeLabel,
             fateType
         });
         return false;
