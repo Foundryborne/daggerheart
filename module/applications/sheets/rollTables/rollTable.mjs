@@ -37,10 +37,10 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
                 });
                 this.daggerheartFlag.altFormula.forEach((alt,i) =>{
                     formulas.push({
-                        index: i+1,
+                        index: i+1, //Logic stores not from 0 but from 1 onwards
                         key: alt.key,
                         formula: alt.formula,
-                        formulaInputName:`flags.daggerheart.altFormula.${i}.formula`,
+                        formulaInputName:`flags.daggerheart.altFormula.${i}.formula`, //for .hbs
                         keyInputName: `flags.daggerheart.altFormula.${i}.key`
                     });
                 });
@@ -76,26 +76,33 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
 
     static async #onRemoveAltFormula(_event, target) {
         const visualIndex = parseInt(target.dataset.index);
-        const currentAltFormula=this.daggerheartFlag.altFormula;
-        if(visualIndex===0) {//If deleting formula at [0] index
-            if(currentAltFormula.length>0) {
-                const newCore = currentAltFormula[0];
-                const newAlt = currentAltFormula.slice(1);
-                await this.document.update({formula: newCore.formula});
-                await this.daggerheartFlag.updateSource({
-                    formulaName:newCore.key,
-                    altFormula:newAlt
-                });
-            } else {
-                await this.document.update({ formula: "" });
-                await this.daggerheartFlag.updateSource({ formulaName: "" });
-            }
-        } else {
-            const arrayIndex = visualIndex - 1;           
-            await this.daggerheartFlag.updateSource({
-                altFormula: currentAltFormula.filter((_, i) => i !== arrayIndex)
-            });
-        }
+        // const currentAltFormula=this.daggerheartFlag.altFormula;
+        // if(visualIndex===0) {//If deleting formula at [0] index
+        //     if(currentAltFormula.length>0) { //atleast 2 or more entries in altFormula
+        //         const newCore = currentAltFormula[0];
+        //         const newAlt = currentAltFormula.slice(1);
+        //         // await this.document.update({formula: newCore.formula});
+        //         await this.daggerheartFlag.updateSource({
+        //             formulaName:newCore.key,
+        //             altFormula:newAlt
+        //         });
+        //     }
+        //     // } else { //I feel this logic is flawed for what I intended for exactly 2 entries (if one it prepares differently)
+        //     //     const newCore = currentAltFormula[0];
+        //     //     // await this.document.update({ formula: newCore.formula });
+        //     //     await this.daggerheartFlag.updateSource({ 
+        //     //         formulaName: "",
+        //     //         altFormula: {key:"", formula: newCore.formula} });
+        //     // }
+        // } else { //normal delete that is not [0] index (1st entry)
+        //     const arrayIndex = visualIndex - 1;           
+        //     await this.daggerheartFlag.updateSource({
+        //         altFormula: currentAltFormula.filter((_, i) => i !== arrayIndex)
+        //     });
+        // }
+        await this.daggerheartFlag.updateSource({
+            altFormula: this.daggerheartFlag.altFormula.filter((_, index) => index !== visualIndex)
+        });
         this.render({ internalRefresh: true });
     }
 }
