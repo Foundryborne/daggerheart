@@ -2,8 +2,17 @@
     <header class="dialog-header">
         <h1>{{title}}</h1>
     </header>
+    <div>
+        <span>Remaining points to use here.</span>
+    </div>
     <div class="risk-it-all-container">
-        <span>TODO magic here</span>
+
+        <div class="two-columns even">
+            <span>{{currentHitPointsLabel}}</span>
+            <span>New HP field editor, initial value is current hit points</span>
+            <span>{{currentStressLabel}}</span>
+            <span>New Stress field editor, initial value is current hit points</span>
+        </div>
     </div>
     <footer class="flexrow">
         <button data-action="close">

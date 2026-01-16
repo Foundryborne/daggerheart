@@ -31,12 +31,36 @@ export default class RiskItAllDialog extends HandlebarsApplicationMixin(Applicat
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.RiskItAllDialog = this.RiskItAllDialog;
-        context.title = game.i18n.localize('DAGGERHEART.APPLICATIONS.RiskItAllDialog.submit');
+        context.title = game.i18n.format('DAGGERHEART.APPLICATIONS.RiskItAllDialog.subtitle', { hope: this.config.hope });
+        context.currentHitPointsLabel = "Current Marked Hit Points: " + this.actor.system.resources.hitPoints.value;
+        context.currentStressLabel = "Current Marked Stress: " + this.actor.system.resources.stress.value;
 
         return context;
     }
 
+    static checkForValidChoice() {
+        /*
+        TODO:
+
+        return (this.config.hope == (this.actor.system.resources.hitPoints.value - newHitPointValue) + (this.actor.system.resources.stress.value - newStressValue));
+        */
+       return true;
+    }
+
     static async submit() {
         this.close();
+        // TODO: Update actor with changes.
+        await this.actor.update({
+            system: {
+                resources: {
+                    hitPoints: {
+                        value: 0 // TODO put editted value here
+                    },
+                    stress: {
+                        value: 0 // TODO put editted value here
+                    }
+                }
+            }
+        });
     }
 }
