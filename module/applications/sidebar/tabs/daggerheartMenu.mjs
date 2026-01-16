@@ -25,7 +25,7 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
 
     /** @override */
     static DEFAULT_OPTIONS = {
-        classes: ['dh-style'],
+        classes: ['dh-style', 'directory'],
         window: {
             title: 'SIDEBAR.TabSettings'
         },

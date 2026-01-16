@@ -198,7 +198,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         let config = this.prepareConfig(event);
         if (!config) return;
 
-        await this.addEffects(config);
+        config.effects = await game.system.api.data.actions.actionsTypes.base.getEffects(this.actor, this.item);
 
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
@@ -266,14 +266,26 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return config;
     }
 
-    /** */
-    async addEffects(config) {
-        let effects = [];
-        if (this.actor) {
-            effects = Array.from(await this.actor.allApplicableEffects());
-        }
+    /**
+     * Get the all potentially applicable effects on the actor
+     * @param {DHActor} actor The actor performing the action
+     * @param {DHItem|DhActor} effectParent The parent of the effect
+     * @returns {DhActiveEffect[]}
+     */
+    static async getEffects(actor, effectParent) {
+        if (!actor) return [];
+        
+        return Array.from(await actor.allApplicableEffects()).filter(effect => {
+            /* Effects on weapons only ever apply for the weapon itself */
+            if (effect.parent.type === 'weapon') {
+                /* Unless they're secondary - then they apply only to other primary weapons */
+                if (effect.parent.system.secondary) {
+                    if (effectParent.type !== 'weapon' || effectParent.system.secondary) return false;
+                } else if (effectParent?.id !== effect.parent.id) return false;
+            }
 
-        config.effects = effects;
+            return !effect.isSuppressed;
+        });
     }
 
     /**

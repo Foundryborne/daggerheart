@@ -2085,6 +2085,7 @@
                 "tier4": "tier 4",
                 "domains": "Domains",
                 "downtime": "Downtime",
+                "itemFeatures": "Item Features",
                 "roll": "Roll",
                 "rules": "Rules",
                 "partyMembers": "Party Members",
@@ -2708,6 +2709,9 @@
             "ChatLog": {
                 "rerollDamage": "Reroll Damage",
                 "assignTagRoll": "Assign as Tag Roll"
+            },
+            "ConsoleLogs": {
+                "triggerRun": "DH TRIGGER | Item '{item}' on actor '{actor}' ran a '{trigger}' trigger."
             },
             "Countdowns": {
                 "title": "Countdowns",
