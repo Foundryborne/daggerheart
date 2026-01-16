@@ -615,9 +615,11 @@
                 "rerollDice": "Reroll Dice"
             },
             "RiskItAllDialog": {
-                "title": "Character: {name} - Risk It All - Clear Stress and/or Hit Points",
-                "subtitle": "Clear {hope} Stress and/or Hit Points",
-                "submit": "Submit"
+                "title": "{name} - Risk It All",
+                "subtitle": "Clear Stress and Hit Points",
+                "remainingTitle": "Remaining Points",
+                "clearResource": "Clear {resource}",
+                "finalTitle": "Final Character Resources"
             },
             "TagTeamSelect": {
                 "title": "Tag Team Roll",
@@ -2675,9 +2677,9 @@
                     "riskItAllCritical": "Critical Rolled, clearing all marked Stress and Hit Points.",
                     "riskItAllFailure": "The fear die rolled higher. You have crossed through the veil of death.",
                     "blazeOfGlory": "Blaze of Glory Effect Added!",
-                    "riskItAllClearStressAndHitPoints": "Clear {hope} Stress Or Hit Points.",
-                    "riskItAllSuccessWithEnoughHope": "Hope roll value is more than the marked Stress and Hit Points, clearing both.",
-                    "riskItAllSuccess": "The hope die rolled higher, clear up to {hope} Stress Or Hit Points."
+                    "riskItAllDialogButton": "Clear Stress And Hit Points.",
+                    "riskItAllSuccessWithEnoughHope": "Hope roll value is more than the marked Stress and Hit Points. Both are cleared fully.",
+                    "riskItAllSuccess": "The hope die rolled higher, clear up to {hope} Stress And Hit Points."
                 },
                 "dicePool": {
                     "title": "Dice Pool"

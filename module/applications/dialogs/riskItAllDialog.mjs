@@ -1,11 +1,14 @@
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 export default class RiskItAllDialog extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(actor, config) {
+    constructor(actor, resourceValue) {
         super({});
 
         this.actor = actor;
-        this.validChoices = null;
-        this.config = config;
+        this.resourceValue = resourceValue;
+        this.choices = {
+            hitPoints: 0,
+            stress: 0
+        };
     }
 
     get title() {
@@ -14,10 +17,10 @@ export default class RiskItAllDialog extends HandlebarsApplicationMixin(Applicat
 
     static DEFAULT_OPTIONS = {
         classes: ['daggerheart', 'dh-style', 'dialog', 'views', 'risk-it-all'],
-        position: { width: 'auto', height: 'auto' },
-        window: { icon: 'fa-solid fa-skull' },
+        position: { width: 280, height: 'auto' },
+        window: { icon: 'fa-solid fa-dice fa-xl' },
         actions: {
-            submit: this.submit
+            finish: RiskItAllDialog.#finish
         }
     };
 
@@ -28,42 +31,62 @@ export default class RiskItAllDialog extends HandlebarsApplicationMixin(Applicat
         }
     };
 
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        for (const input of htmlElement.querySelectorAll('.resource-container input'))
+            input.addEventListener('change', this.updateChoice.bind(this));
+    }
+
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
-        context.RiskItAllDialog = this.RiskItAllDialog;
-        context.title = game.i18n.format('DAGGERHEART.APPLICATIONS.RiskItAllDialog.subtitle', { hope: this.config.hope });
-        context.currentHitPointsLabel = "Current Marked Hit Points: " + this.actor.system.resources.hitPoints.value;
-        context.currentStressLabel = "Current Marked Stress: " + this.actor.system.resources.stress.value;
+        context.resourceValue = this.resourceValue;
+        context.remainingResource = this.resourceValue - this.choices.hitPoints - this.choices.stress;
+        context.unfinished = context.remainingResource !== 0;
 
-        context.newHitPoints = this.actor.system.resources.hitPoints.value;
-        context.newStress = this.actor.system.resources.stress.value;
+        context.choices = this.choices;
+        context.final = {
+            hitPoints: {
+                value: this.actor.system.resources.hitPoints.value - this.choices.hitPoints,
+                max: this.actor.system.resources.hitPoints.max
+            },
+            stress: {
+                value: this.actor.system.resources.stress.value - this.choices.stress,
+                max: this.actor.system.resources.stress.max
+            }
+        };
+
+        context;
 
         return context;
     }
 
-    static checkForValidChoice() {
-        /*
-        TODO:
+    updateChoice(event) {
+        let value = Number.parseInt(event.target.value);
+        const choiceKey = event.target.dataset.choice;
+        const actorValue = this.actor.system.resources[choiceKey].value;
+        const remaining = this.resourceValue - this.choices.hitPoints - this.choices.stress;
+        const changeAmount = value - this.choices[choiceKey];
 
-        return (this.config.hope == (this.actor.system.resources.hitPoints.value - newHitPointValue) + (this.actor.system.resources.stress.value - newStressValue));
-        */
-       return true;
+        /* If trying to increase beyond remaining resource points, just increase to max available */
+        if (remaining - changeAmount < 0) value = this.choices[choiceKey] + remaining;
+        else if (actorValue - value < 0) value = actorValue;
+
+        this.choices[choiceKey] = value;
+        this.render();
     }
 
-    static async submit() {
-        this.close();
-        // TODO: Update actor with changes.
+    static async #finish() {
+        const resourceUpdate = Object.keys(this.choices).reduce((acc, resourceKey) => {
+            const value = this.actor.system.resources[resourceKey].value - this.choices[resourceKey];
+            acc[resourceKey] = { value };
+            return acc;
+        }, {});
+
         await this.actor.update({
-            system: {
-                resources: {
-                    hitPoints: {
-                        value: 0 // TODO put editted value here
-                    },
-                    stress: {
-                        value: 0 // TODO put editted value here
-                    }
-                }
-            }
+            'system.resources': resourceUpdate
         });
+
+        this.close();
     }
 }

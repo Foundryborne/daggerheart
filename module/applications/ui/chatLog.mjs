@@ -1,6 +1,5 @@
 import { abilities } from '../../config/actorConfig.mjs';
 import { emitAsGM, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
-import RiskItAllDialog from '../dialogs/riskItAllDialog.mjs';
 
 export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLog {
     constructor(options) {
@@ -98,15 +97,17 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
 
     /** Ensure the chat theme inherits the interface theme */
     _replaceHTML(result, content, options) {
-        const themedElement = result.log?.querySelector(".chat-log");
-        themedElement?.classList.remove("themed", "theme-light", "theme-dark");
+        const themedElement = result.log?.querySelector('.chat-log');
+        themedElement?.classList.remove('themed', 'theme-light', 'theme-dark');
         super._replaceHTML(result, content, options);
     }
 
     /** Remove chat log theme from notifications area */
     async _onFirstRender(result, content) {
         await super._onFirstRender(result, content);
-        document.querySelector("#chat-notifications .chat-log")?.classList.remove("themed", "theme-light", "theme-dark")
+        document
+            .querySelector('#chat-notifications .chat-log')
+            ?.classList.remove('themed', 'theme-light', 'theme-dark');
     }
 
     async onRollSimple(event, message) {
@@ -388,14 +389,8 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         event.target.closest('.group-roll-section').querySelector('.group-roll-content').classList.toggle('closed');
     }
 
-
     async riskItAllClearStressAndHitPoints(event, data) {
-        const hopeValue = event.target.dataset.hope;
-        const config = {
-            hope: hopeValue
-        }
-        await new RiskItAllDialog(data.actor, config).render({ force: true });
+        const resourceValue = event.target.dataset.resourceValue;
+        new game.system.api.applications.dialogs.RiskItAllDialog(data.actor, resourceValue).render({ force: true });
     }
-    
-    
 }

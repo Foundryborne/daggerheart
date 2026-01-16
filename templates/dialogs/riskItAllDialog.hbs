@@ -1,33 +1,39 @@
 <div>
-    <header class="dialog-header">
-        <h1>{{title}}</h1>
-    </header>
-    <div>
-        <span>Remaining points to use here.</span>
-    </div>
     <div class="risk-it-all-container">
-        <div class="two-columns even">
-            <span>{{currentHitPointsLabel}}</span>
-            <div>
-                <span>New Hit Points Value</span>
-                <input type="text" data-dtype="Number" name="newHitPoints" value="{{newHitPoints}}" />
-            </div>
+        <header>{{localize "DAGGERHEART.APPLICATIONS.RiskItAllDialog.subtitle"}}</header>
 
-            <span>{{currentStressLabel}}</span>
-            <div>
-                <span>New Stress Value</span>
-                <input type="text" data-dtype="Number" name="newStress" value="{{newStress}}" />
+        <div class="remaining-section">
+            <label class="section-label">{{localize "DAGGERHEART.APPLICATIONS.RiskItAllDialog.remainingTitle"}}</label>
+            <div>{{this.remainingResource}}</div>
+        </div>
+
+        <div class="resource-section">
+            <div class="resource-container">
+                <label>{{localize "DAGGERHEART.APPLICATIONS.RiskItAllDialog.clearResource" resource=(localize "DAGGERHEART.GENERAL.HitPoints.short")}}: {{this.choices.hitPoints}}</label>
+                <input type="range" step="1" min="0" max="{{this.resourceValue}}" value="{{this.choices.hitPoints}}" name="choices.hitPoints" data-choice="hitPoints" />
+            </div>
+            <div class="resource-container">
+                <label>{{localize "DAGGERHEART.APPLICATIONS.RiskItAllDialog.clearResource" resource=(localize "DAGGERHEART.GENERAL.stress")}}: {{this.choices.stress}}</label>
+                <input type="range" step="1" min="0" max="{{this.resourceValue}}" value="{{this.choices.stress}}" name="choices.stress" data-choice="stress" />
             </div>
         </div>
+
+        <div class="final-section">
+            <label class="section-label">{{localize "DAGGERHEART.APPLICATIONS.RiskItAllDialog.finalTitle"}}</label>
+            <div class="final-section-values-container">
+                <div class="final-section-value-container">
+                    <label>{{localize "DAGGERHEART.GENERAL.HitPoints.plural"}}</label>
+                    <span>{{this.final.hitPoints.value}}/{{this.final.hitPoints.max}}</span>
+                </div>
+                <div class="final-section-value-container">
+                    <label>{{localize "DAGGERHEART.GENERAL.stress"}}</label>
+                    <span>{{this.final.stress.value}}/{{this.final.stress.max}}</span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <button type="button" data-action="finish" {{disabled this.unfinished}}>{{localize "Submit"}}</button>
+        </footer>
     </div>
-    <footer class="flexrow">
-        <button data-action="close">
-            <span>{{localize "Cancel"}}</span>
-        </button>
-        <button data-action="submit" {{#if (not this.validChoices)}}disabled{{/if}}>
-            <span>
-                {{localize "DAGGERHEART.APPLICATIONS.RiskItAllDialog.submit"}}
-            </span>
-        </button>
-    </footer>
 </div>
