@@ -121,7 +121,7 @@ export default class RegisteredTriggers extends Map {
                     else if (triggeringActorType === 'other' && currentActor?.uuid === actorUuid) continue;
                 }
 
-                for (let command of commands) {
+                for (const command of commands) {
                     try {
                         if (CONFIG.debug.triggers) {
                             const item = await foundry.utils.fromUuid(itemUuid);
