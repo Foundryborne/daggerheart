@@ -273,20 +273,19 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @returns {DhActiveEffect[]}
      */
     static async getEffects(actor, effectParent) {
-        if (actor)
-            return Array.from(await actor.allApplicableEffects()).filter(effect => {
-                /* Effects on weapons only ever apply for the weapon itself */
-                if (effect.parent.type === 'weapon') {
-                    /* Unless they're secondary - then they apply only to other primary weapons */
-                    if (effect.parent.system.secondary) {
-                        if (effectParent.type !== 'weapon' || effectParent.system.secondary) return false;
-                    } else if (effectParent?.id !== effect.parent.id) return false;
-                }
+        if (!actor) return [];
+        
+        return Array.from(await actor.allApplicableEffects()).filter(effect => {
+            /* Effects on weapons only ever apply for the weapon itself */
+            if (effect.parent.type === 'weapon') {
+                /* Unless they're secondary - then they apply only to other primary weapons */
+                if (effect.parent.system.secondary) {
+                    if (effectParent.type !== 'weapon' || effectParent.system.secondary) return false;
+                } else if (effectParent?.id !== effect.parent.id) return false;
+            }
 
-                return !effect.isSuppressed;
-            });
-
-        return [];
+            return !effect.isSuppressed;
+        });
     }
 
     /**
