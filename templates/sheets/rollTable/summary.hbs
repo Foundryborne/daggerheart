@@ -1,42 +1,21 @@
 <section class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
     {{formGroup fields.description value=source.description rootId=rootId}}
-    <fieldset class="one-column" data-key="formula">
-        <legend>
-            Formula
-            <a><i class="fa-solid fa-plus icon-button" data-action="addAltFormula"></i></a>
-        </legend>
+    <fieldset class="formulas-section">
+        <legend>{{localize "DAGGERHEART.ROLLTABLES.formula"}}</legend>
 
-        {{#if isListView}}
-            {{#each formulaList as |row|}}
-                <div class="nest-inputs">
-                    {{formGroup ../flagFields.formulaName 
-                        value=row.key 
-                        name=row.keyInputName 
-                        placeholder="Name" 
-                    }}
-                    {{formGroup ../fields.formula 
-                        value=row.formula 
-                        name=row.formulaInputName 
-                        placeholder="Formula" 
-                    }}
-                    <a class="btn" 
-                       data-tooltip="{{localize "CONTROLS.CommonDelete"}}" 
-                       data-action="removeAltFormula" 
-                       data-index="{{row.index}}">
-                       <i class="fas fa-trash"></i>
-                    </a>
-                </div>
+        <div class="formulas-container">
+            <span>{{localize "DAGGERHEART.ROLLTABLES.FIELDS.formulaName.label"}}</span>
+            <span>{{localize "Formula Roll"}}</span>
+            <span></span>
+            {{formInput systemFields.formulaName value=@root.formulaName name="flags.daggerheart.formulaName"}}
+            {{formInput fields.formula value=source.formula placeholder=formulaPlaceholder rootId=rootId}}
+            <button class="formula-button" data-action="addFormula"><i class="fa-solid fa-plus"></i></button>
+            {{#each @root.altFormula as | formula key |}}
+                {{formInput @root.systemFields.altFormula.element.fields.name value=formula.name name=(concat "flags.daggerheart.altFormula." key ".name")}}
+                {{formInput @root.systemFields.altFormula.element.fields.formula value=formula.formula name=(concat "flags.daggerheart.altFormula." key ".formula")}}
+                <a class="formula-button" data-action="removeFormula" data-key="{{key}}"><i class="fa-solid fa-trash"></i></a>
             {{/each}}
-        {{else}}
-            <div class="nest-inputs">
-                {{!-- <input type="hidden" name="flags.daggerheart.formulaName" value="{{flagData.formulaName}}"> --}}
-                {{formGroup fields.formula 
-                    value=source.formula 
-                    placeholder=formulaPlaceholder 
-                    rootId=rootId
-                }}
-            </div>
-        {{/if}}
+        </div>
     </fieldset>
     {{formGroup fields.replacement value=source.replacement rootId=rootId}}
     {{formGroup fields.displayRoll value=source.displayRoll rootId=rootId}}

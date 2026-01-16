@@ -1,21 +1,22 @@
 export default class DhRollTableSheet extends foundry.applications.sheets.RollTableSheet {
     static DEFAULT_OPTIONS = {
         ...super.DEFAULT_OPTIONS,
-        classes:['daggerheart', 'sheet', 'dh-style'],
         actions: {
-            addAltFormula: DhRollTableSheet.#onAddAltFormula,
-            removeAltFormula: DhRollTableSheet.#onRemoveAltFormula
+            drawResult: DhRollTableSheet.#onDrawResult,
+            addFormula: DhRollTableSheet.#addFormula,
+            removeFormula: DhRollTableSheet.#removeFormula
         }
     };
 
     static buildParts() {
-        const { footer, ...parts } = super.PARTS;
-        const test = {
+        const { footer, header, sheet, ...parts } = super.PARTS;
+        return {
+            sheet,
+            header: { template: 'systems/daggerheart/templates/sheets/rollTable/header.hbs' },
             ...parts,
             summary: { template: 'systems/daggerheart/templates/sheets/rollTable/summary.hbs' },
             footer
         };
-        return test;
     }
 
     static PARTS = DhRollTableSheet.buildParts();
@@ -24,28 +25,17 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
         context = await super._preparePartContext(partId, context, options);
 
         switch (partId) {
+            case 'header':
+                context.altFormulaOptions = {
+                    '': { name: this.daggerheartFlag.formulaName },
+                    ...this.daggerheartFlag.altFormula
+                };
+                context.activeAltFormula = this.daggerheartFlag.activeAltFormula;
+                break;
             case 'summary':
-                context.flagFields = this.daggerheartFlag.schema.fields;
-                context.flagData = this.daggerheartFlag;
-                const formulas =[];
-                formulas.push({
-                    index: 0,
-                    key: this.daggerheartFlag.formulaName, //Stored in flags as discussed
-                    formula: context.source.formula, //Settinng default formula as part of first element
-                    formulaInputName: "formula",
-                    keyInputName: "flags.daggerheart.formulaName"
-                });
-                this.daggerheartFlag.altFormula.forEach((alt,i) =>{
-                    formulas.push({
-                        index: i+1, //Logic stores not from 0 but from 1 onwards
-                        key: alt.key,
-                        formula: alt.formula,
-                        formulaInputName:`flags.daggerheart.altFormula.${i}.formula`, //for .hbs
-                        keyInputName: `flags.daggerheart.altFormula.${i}.key`
-                    });
-                });
-                context.formulaList=formulas;
-                context.isListView=formulas.length>1; //Condition to show list view only if more than one entry
+                context.systemFields = this.daggerheartFlag.schema.fields;
+                context.altFormula = this.daggerheartFlag.altFormula;
+                context.formulaName = this.daggerheartFlag.formulaName;
                 break;
         }
 
@@ -55,53 +45,58 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
     async _preRender(context, options) {
         await super._preRender(context, options);
 
-        if (!options.internalReferesh)
+        if (!options.internalRefresh)
             this.daggerheartFlag = new game.system.api.data.DhRollTable(this.document.flags.daggerheart);
     }
 
     /** @override */
     async _processSubmitData(event, form, submitData, options) {
-        //submitData.flags.daggerheart = this.daggerheartFlag.toObject(); caused render headaches 
+        /* RollTable sends an empty dummy event when swapping from view/edit first time */
+        if (Object.keys(submitData).length) {
+            if (!submitData.flags.daggerheart.altFormula) submitData.flags.daggerheart.altFormula = {};
+            for (const formulaKey of Object.keys(this.document._source.flags.daggerheart?.altFormula ?? {})) {
+                if (!submitData.flags.daggerheart.altFormula[formulaKey]) {
+                    submitData.flags.daggerheart.altFormula[`-=${formulaKey}`] = null;
+                }
+            }
+
+            await this.daggerheartFlag.updateSource(submitData.flags.daggerheart);
+        }
 
         super._processSubmitData(event, form, submitData, options);
     }
 
-    static async #onAddAltFormula(_event, target) {
-        const currentAltFormula=this.daggerheartFlag.altFormula;
+    /**
+     * Roll and draw a TableResult.
+     * @this {RollTableSheet}
+     * @type {ApplicationClickAction}
+     */
+    static async #onDrawResult(_event, button) {
+        if (this.form) await this.submit({ operation: { render: false } });
+        button.disabled = true;
+        const table = this.document;
+        const selectedFormula = this.daggerheartFlag.getActiveFormula(this.document.formula);
+        const tableRoll = await table.roll({ selectedFormula });
+        const draws = table.getResultsForRoll(tableRoll.roll.total);
+        if (draws.length > 0) {
+            if (game.settings.get('core', 'animateRollTable')) await this._animateRoll(draws);
+            await table.draw(tableRoll);
+        }
+
+        // Reenable the button if drawing with replacement since the draw won't trigger a sheet re-render
+        if (table.replacement) button.disabled = false;
+    }
+
+    static async #addFormula() {
         await this.daggerheartFlag.updateSource({
-            altFormula:[...currentAltFormula,{key:"",formula:""}]
+            [`altFormula.${foundry.utils.randomID()}`]: game.system.api.data.DhRollTable.getDefaultFormula()
         });
         this.render({ internalRefresh: true });
     }
 
-    static async #onRemoveAltFormula(_event, target) {
-        const visualIndex = parseInt(target.dataset.index);
-        // const currentAltFormula=this.daggerheartFlag.altFormula;
-        // if(visualIndex===0) {//If deleting formula at [0] index
-        //     if(currentAltFormula.length>0) { //atleast 2 or more entries in altFormula
-        //         const newCore = currentAltFormula[0];
-        //         const newAlt = currentAltFormula.slice(1);
-        //         // await this.document.update({formula: newCore.formula});
-        //         await this.daggerheartFlag.updateSource({
-        //             formulaName:newCore.key,
-        //             altFormula:newAlt
-        //         });
-        //     }
-        //     // } else { //I feel this logic is flawed for what I intended for exactly 2 entries (if one it prepares differently)
-        //     //     const newCore = currentAltFormula[0];
-        //     //     // await this.document.update({ formula: newCore.formula });
-        //     //     await this.daggerheartFlag.updateSource({ 
-        //     //         formulaName: "",
-        //     //         altFormula: {key:"", formula: newCore.formula} });
-        //     // }
-        // } else { //normal delete that is not [0] index (1st entry)
-        //     const arrayIndex = visualIndex - 1;           
-        //     await this.daggerheartFlag.updateSource({
-        //         altFormula: currentAltFormula.filter((_, i) => i !== arrayIndex)
-        //     });
-        // }
+    static async #removeFormula(_event, target) {
         await this.daggerheartFlag.updateSource({
-            altFormula: this.daggerheartFlag.altFormula.filter((_, index) => index !== visualIndex)
+            [`altFormula.-=${target.dataset.key}`]: null
         });
         this.render({ internalRefresh: true });
     }

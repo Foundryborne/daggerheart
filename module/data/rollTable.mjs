@@ -7,21 +7,32 @@ export default class DhRollTable extends foundry.abstract.TypeDataModel {
 
         return {
             formulaName: new fields.StringField({
-                // This is to give a name to go together with the core.formula
                 required: true,
                 nullable: false,
-                initial: 'Formula' // Should be a translation
+                initial: 'Roll Formula',
+                label: 'DAGGERHEART.ROLLTABLES.FIELDS.formulaName.label'
             }),
-            altFormula: new fields.ArrayField(
+            altFormula: new fields.TypedObjectField(
                 new fields.SchemaField({
-                    key: new fields.StringField({
-                        required: false,
+                    name: new fields.StringField({
+                        required: true,
                         nullable: false,
-                        blank: true
+                        initial: 'Roll Formula',
+                        label: 'DAGGERHEART.ROLLTABLES.FIELDS.formulaName.label'
                     }),
-                    formula: new FormulaField()
+                    formula: new FormulaField({ label: 'Formula Roll', initial: '1d20' })
                 })
-            )
+            ),
+            activeAltFormula: new fields.StringField({ nullable: true, initial: null })
         };
     }
+
+    getActiveFormula(baseFormula) {
+        return this.activeAltFormula ? (this.altFormula[this.activeAltFormula].formula ?? baseFormula) : baseFormula;
+    }
+
+    static getDefaultFormula = () => ({
+        name: game.i18n.localize('Roll Formula'),
+        formula: '1d20'
+    });
 }

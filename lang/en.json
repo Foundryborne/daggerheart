@@ -2307,6 +2307,12 @@
                 "secondaryWeapon": "Secondary Weapon"
             }
         },
+        "ROLLTABLES": {
+            "FIELDS": {
+                "formulaName": { "label": "Formula Name" }
+            },
+            "formula": "Formula"
+        },
         "SETTINGS": {
             "Appearance": {
                 "FIELDS": {
