@@ -1,7 +1,7 @@
 {
   "name": "Consumables",
   "img": "icons/consumables/potions/bottle-corked-red.webp",
-  "description": "<p>To generate a random consumable, choose a rarity, roll the designated dice, and match the total to the item in the table:</p><ul><li><p>Common: 1d12 or 2d12</p></li><li><p>Uncommon: 2d12 or 3d12</p></li><li><p>Rare: 3d12 or 4d12</p></li><li><p>Legendary: 4d12 or 5d12</p></li></ul>",
+  "description": "",
   "results": [
     {
       "type": "document",
