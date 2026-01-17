@@ -2,9 +2,11 @@
     <img src="{{document.img}}" alt="{{localize "DOCUMENT.FIELDS.img.label"}}">
     <h1>{{document.name}}</h1>
     <div class="roll-table-view-formula-container">
-        <select class="system-update-field" data-path="activeAltFormula">
-            {{selectOptions this.altFormulaOptions selected=this.activeAltFormula labelAttr="name"}}
-        </select>
+        {{#if usesAltFormula}}
+            <select class="system-update-field" data-path="activeAltFormula">
+                {{selectOptions this.altFormulaOptions selected=this.activeAltFormula labelAttr="name"}}
+            </select>
+        {{/if}}
         <h4>{{selectedFormula}}</h4>
     </div>
     <button data-action="changeMode">

@@ -28,7 +28,7 @@ export default class DhRollTable extends foundry.abstract.TypeDataModel {
     }
 
     getActiveFormula(baseFormula) {
-        return this.activeAltFormula ? (this.altFormula[this.activeAltFormula].formula ?? baseFormula) : baseFormula;
+        return this.activeAltFormula ? (this.altFormula[this.activeAltFormula]?.formula ?? baseFormula) : baseFormula;
     }
 
     static getDefaultFormula = () => ({

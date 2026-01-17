@@ -2,7 +2,9 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
     static DEFAULT_OPTIONS = {
         ...super.DEFAULT_OPTIONS,
         actions: {
+            changeMode: DhRollTableSheet.#onChangeMode,
             drawResult: DhRollTableSheet.#onDrawResult,
+            resetResults: DhRollTableSheet.#onResetResults,
             addFormula: DhRollTableSheet.#addFormula,
             removeFormula: DhRollTableSheet.#removeFormula
         }
@@ -44,16 +46,18 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
 
         switch (partId) {
             case 'sheet':
+                context.altFormula = this.daggerheartFlag.altFormula;
+                context.usesAltFormula = Object.keys(this.daggerheartFlag.altFormula).length > 0;
                 context.altFormulaOptions = {
                     '': { name: this.daggerheartFlag.formulaName },
                     ...this.daggerheartFlag.altFormula
                 };
                 context.activeAltFormula = this.daggerheartFlag.activeAltFormula;
-                context.selectedFormula = context.activeAltFormula
-                    ? this.daggerheartFlag.altFormula[context.activeAltFormula].formula
-                    : this.document.formula;
+                context.selectedFormula = this.daggerheartFlag.getActiveFormula(this.document.formula);
                 break;
             case 'header':
+                context.altFormula = this.daggerheartFlag.altFormula;
+                context.usesAltFormula = Object.keys(this.daggerheartFlag.altFormula).length > 0;
                 context.altFormulaOptions = {
                     '': { name: this.daggerheartFlag.formulaName },
                     ...this.daggerheartFlag.altFormula
@@ -70,48 +74,27 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
         return context;
     }
 
+    /* -------------------------------------------- */
+    /*  Flag SystemData update methods              */
+    /* -------------------------------------------- */
+
     async updateSystemField(event) {
         const { dataset, value } = event.target;
         await this.daggerheartFlag.updateSource({ [dataset.path]: value });
         this.render({ internalRefresh: true });
     }
 
-    /** @override */
-    async _processSubmitData(event, form, submitData, options) {
-        /* RollTable sends an empty dummy event when swapping from view/edit first time */
-        if (Object.keys(submitData).length) {
-            if (!submitData.flags.daggerheart.altFormula) submitData.flags.daggerheart.altFormula = {};
-            for (const formulaKey of Object.keys(this.document._source.flags.daggerheart?.altFormula ?? {})) {
-                if (!submitData.flags.daggerheart.altFormula[formulaKey]) {
-                    submitData.flags.daggerheart.altFormula[`-=${formulaKey}`] = null;
-                }
-            }
+    getSystemFlagUpdate() {
+        const deleteUpdate = Object.keys(this.document._source.flags.daggerheart?.altFormula ?? {}).reduce(
+            (acc, formulaKey) => {
+                if (!this.daggerheartFlag.altFormula[formulaKey]) acc.altFormula[`-=${formulaKey}`] = null;
 
-            await this.daggerheartFlag.updateSource(submitData.flags.daggerheart);
-        }
+                return acc;
+            },
+            { altFormula: {} }
+        );
 
-        super._processSubmitData(event, form, submitData, options);
-    }
-
-    /**
-     * Roll and draw a TableResult.
-     * @this {RollTableSheet}
-     * @type {ApplicationClickAction}
-     */
-    static async #onDrawResult(_event, button) {
-        if (this.form) await this.submit({ operation: { render: false } });
-        button.disabled = true;
-        const table = this.document;
-        const selectedFormula = this.daggerheartFlag.getActiveFormula(this.document.formula);
-        const tableRoll = await table.roll({ selectedFormula });
-        const draws = table.getResultsForRoll(tableRoll.roll.total);
-        if (draws.length > 0) {
-            if (game.settings.get('core', 'animateRollTable')) await this._animateRoll(draws);
-            await table.draw(tableRoll);
-        }
-
-        // Reenable the button if drawing with replacement since the draw won't trigger a sheet re-render
-        if (table.replacement) button.disabled = false;
+        return foundry.utils.mergeObject(this.daggerheartFlag.toObject(), deleteUpdate);
     }
 
     static async #addFormula() {
@@ -126,5 +109,62 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
             [`altFormula.-=${target.dataset.key}`]: null
         });
         this.render({ internalRefresh: true });
+    }
+
+    /* -------------------------------------------- */
+    /*  Extended RollTable methods                  */
+    /* -------------------------------------------- */
+
+    /**
+     * Alternate between view and edit modes.
+     * @this {RollTableSheet}
+     * @type {ApplicationClickAction}
+     */
+    static async #onChangeMode() {
+        this.mode = this.isEditMode ? 'view' : 'edit';
+        await this.document.update(this.getSystemFlagUpdate());
+        await this.render({ internalRefresh: true });
+    }
+
+    /** @inheritdoc */
+    async _processSubmitData(event, form, submitData, options) {
+        /* RollTable sends an empty dummy event when swapping from view/edit first time */
+        if (Object.keys(submitData).length) {
+            if (!submitData.flags) submitData.flags = { daggerheart: {} };
+            submitData.flags.daggerheart = this.getSystemFlagUpdate();
+        }
+
+        super._processSubmitData(event, form, submitData, options);
+    }
+
+    /** @inheritdoc */
+    static async #onResetResults() {
+        await this.document.update(this.getSystemFlagUpdate());
+        await this.document.resetResults();
+    }
+
+    /**
+     * Roll and draw a TableResult.
+     * @this {RollTableSheet}
+     * @type {ApplicationClickAction}
+     */
+    static async #onDrawResult(_event, button) {
+        if (this.form) await this.submit({ operation: { render: false } });
+        button.disabled = true;
+        const table = this.document;
+
+        await this.document.update(this.getSystemFlagUpdate());
+
+        /* Sending in the currently selectd activeFormula to table.roll to use as the formula */
+        const selectedFormula = this.daggerheartFlag.getActiveFormula(this.document.formula);
+        const tableRoll = await table.roll({ selectedFormula });
+        const draws = table.getResultsForRoll(tableRoll.roll.total);
+        if (draws.length > 0) {
+            if (game.settings.get('core', 'animateRollTable')) await this._animateRoll(draws);
+            await table.draw(tableRoll);
+        }
+
+        // Reenable the button if drawing with replacement since the draw won't trigger a sheet re-render
+        if (table.replacement) button.disabled = false;
     }
 }

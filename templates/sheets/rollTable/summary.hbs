@@ -7,12 +7,12 @@
             <span>{{localize "DAGGERHEART.ROLLTABLES.FIELDS.formulaName.label"}}</span>
             <span>{{localize "Formula Roll"}}</span>
             <span></span>
-            {{formInput systemFields.formulaName value=@root.formulaName name="flags.daggerheart.formulaName"}}
+            <input type="text" value="{{@root.formulaName}}" class="system-update-field" data-path="formulaName" />
             {{formInput fields.formula value=source.formula placeholder=formulaPlaceholder rootId=rootId}}
             <button class="formula-button" data-action="addFormula"><i class="fa-solid fa-plus"></i></button>
             {{#each @root.altFormula as | formula key |}}
-                {{formInput @root.systemFields.altFormula.element.fields.name value=formula.name name=(concat "flags.daggerheart.altFormula." key ".name")}}
-                {{formInput @root.systemFields.altFormula.element.fields.formula value=formula.formula name=(concat "flags.daggerheart.altFormula." key ".formula")}}
+                <input type="text" value="{{formula.name}}" class="system-update-field" data-path="{{concat "altFormula." key ".name"}}" />
+                <input type="text" value="{{formula.formula}}" class="system-update-field" data-path="{{concat "altFormula." key ".formula"}}" />
                 <a class="formula-button" data-action="removeFormula" data-key="{{key}}"><i class="fa-solid fa-trash"></i></a>
             {{/each}}
         </div>
