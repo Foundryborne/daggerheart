@@ -11,7 +11,10 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
     static buildParts() {
         const { footer, header, sheet, ...parts } = super.PARTS;
         return {
-            sheet,
+            sheet: {
+                ...sheet,
+                template: 'systems/daggerheart/templates/sheets/rollTable/sheet.hbs'
+            },
             header: { template: 'systems/daggerheart/templates/sheets/rollTable/header.hbs' },
             ...parts,
             summary: { template: 'systems/daggerheart/templates/sheets/rollTable/summary.hbs' },
@@ -21,10 +24,35 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
 
     static PARTS = DhRollTableSheet.buildParts();
 
+    async _preRender(context, options) {
+        await super._preRender(context, options);
+
+        if (!options.internalRefresh)
+            this.daggerheartFlag = new game.system.api.data.DhRollTable(this.document.flags.daggerheart);
+    }
+
+    /* root PART has a blank element on _attachPartListeners, so it cannot be used to set the eventListeners for the view mode */
+    async _onRender(context, options) {
+        super._onRender(context, options);
+
+        for (const element of this.element.querySelectorAll('.system-update-field'))
+            element.addEventListener('change', this.updateSystemField.bind(this));
+    }
+
     async _preparePartContext(partId, context, options) {
         context = await super._preparePartContext(partId, context, options);
 
         switch (partId) {
+            case 'sheet':
+                context.altFormulaOptions = {
+                    '': { name: this.daggerheartFlag.formulaName },
+                    ...this.daggerheartFlag.altFormula
+                };
+                context.activeAltFormula = this.daggerheartFlag.activeAltFormula;
+                context.selectedFormula = context.activeAltFormula
+                    ? this.daggerheartFlag.altFormula[context.activeAltFormula].formula
+                    : this.document.formula;
+                break;
             case 'header':
                 context.altFormulaOptions = {
                     '': { name: this.daggerheartFlag.formulaName },
@@ -42,11 +70,10 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
         return context;
     }
 
-    async _preRender(context, options) {
-        await super._preRender(context, options);
-
-        if (!options.internalRefresh)
-            this.daggerheartFlag = new game.system.api.data.DhRollTable(this.document.flags.daggerheart);
+    async updateSystemField(event) {
+        const { dataset, value } = event.target;
+        await this.daggerheartFlag.updateSource({ [dataset.path]: value });
+        this.render({ internalRefresh: true });
     }
 
     /** @override */
