@@ -45,7 +45,6 @@ function getFateMessage(roll, flavor) {
 export const renderFateButton = async event => {
     const button = event.currentTarget,
         target = getCommandTarget({ allowNull: true });
-    console.log('button', button);
 
     const fateTypeData = getFateTypeData(button.dataset?.fatetype);
 

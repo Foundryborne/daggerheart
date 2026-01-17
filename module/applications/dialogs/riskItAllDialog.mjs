@@ -41,6 +41,8 @@ export default class RiskItAllDialog extends HandlebarsApplicationMixin(Applicat
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.resourceValue = this.resourceValue;
+        context.maxHitPointsValue = Math.min(this.resourceValue, this.actor.system.resources.hitPoints.max);
+        context.maxStressValue = Math.min(this.resourceValue, this.actor.system.resources.stress.max);
         context.remainingResource = this.resourceValue - this.choices.hitPoints - this.choices.stress;
         context.unfinished = context.remainingResource !== 0;
 
