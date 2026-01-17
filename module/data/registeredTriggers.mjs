@@ -20,6 +20,7 @@ export default class RegisteredTriggers extends Map {
     }
 
     registerItemTriggers(item, registerOverride) {
+        if (!item.actor || !item._stats.createdTime) return;
         for (const action of item.system.actions ?? []) {
             if (!action.actor) continue;
 
