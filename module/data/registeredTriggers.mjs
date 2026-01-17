@@ -60,7 +60,7 @@ export default class RegisteredTriggers extends Map {
 
     unregisterItemTriggers(items) {
         for (const item of items) {
-            if (!item.system.actions.size) continue;
+            if (!item.system.actions?.size) continue;
 
             const triggers = (item.system.actions ?? []).reduce((acc, action) => {
                 acc.push(...action.triggers.map(x => x.trigger));
