@@ -74,4 +74,49 @@ export default class DhRollTable extends foundry.documents.RollTable {
         // Return the Roll and the results
         return { roll, results };
     }
+
+    async toMessage(results, { roll, messageData = {}, messageOptions = {} } = {}) {
+        messageOptions.rollMode ??= game.settings.get('core', 'rollMode');
+
+        // Construct chat data
+        messageData = foundry.utils.mergeObject(
+            {
+                author: game.user.id,
+                speaker: foundry.documents.ChatMessage.implementation.getSpeaker(),
+                rolls: [],
+                sound: roll ? CONFIG.sounds.dice : null,
+                flags: { 'core.RollTable': this.id }
+            },
+            messageData
+        );
+        if (roll) messageData.rolls.push(roll);
+
+        // Render the chat card which combines the dice roll with the drawn results
+        const detailsPromises = await Promise.allSettled(results.map(r => r.getHTML()));
+        const flavorKey = `TABLE.DrawFlavor${results.length > 1 ? 'Plural' : ''}`;
+        const flavor = game.i18n.format(flavorKey, {
+            number: results.length,
+            name: foundry.utils.escapeHTML(this.name)
+        });
+        messageData.content = await foundry.applications.handlebars.renderTemplate(CONFIG.RollTable.resultTemplate, {
+            description: await TextEditor.implementation.enrichHTML(this.description, {
+                documents: true,
+                secrets: this.isOwner
+            }),
+            flavor: flavor,
+            results: results.map((result, i) => {
+                const r = result.toObject(false);
+                r.details = detailsPromises[i].value ?? '';
+                const useTableIcon =
+                    result.icon === CONFIG.RollTable.resultIcon && this.img !== this.constructor.DEFAULT_ICON;
+                r.icon = useTableIcon ? this.img : result.icon;
+                return r;
+            }),
+            rollHTML: this.displayRoll && roll ? await roll.render() : null,
+            table: this
+        });
+
+        // Create the chat message
+        return foundry.documents.ChatMessage.implementation.create(messageData, messageOptions);
+    }
 }
