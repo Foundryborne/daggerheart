@@ -8,8 +8,9 @@ import * as fields from './module/data/fields/_module.mjs';
 import RegisterHandlebarsHelpers from './module/helpers/handlebarsHelper.mjs';
 import { enricherConfig, enricherRenderSetup } from './module/enrichers/_module.mjs';
 import { getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs';
-import { BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll } from './module/dice/_module.mjs';
+import { BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll, FateRoll } from './module/dice/_module.mjs';
 import { enrichedDualityRoll } from './module/enrichers/DualityRollEnricher.mjs';
+import { enrichedFateRoll, getFateTypeData } from './module/enrichers/FateRollEnricher.mjs';
 import {
     handlebarsRegistration,
     runMigrations,
@@ -24,12 +25,13 @@ import TokenManager from './module/documents/tokenManager.mjs';
 CONFIG.DH = SYSTEM;
 CONFIG.TextEditor.enrichers.push(...enricherConfig);
 
-CONFIG.Dice.rolls = [BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll];
+CONFIG.Dice.rolls = [BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll, FateRoll];
 CONFIG.Dice.daggerheart = {
     DHRoll: DHRoll,
     DualityRoll: DualityRoll,
     D20Roll: D20Roll,
-    DamageRoll: DamageRoll
+    DamageRoll: DamageRoll,
+    FateRoll: FateRoll
 };
 
 CONFIG.Actor.documentClass = documents.DhpActor;
@@ -306,8 +308,8 @@ Hooks.on('chatMessage', (_, message) => {
         const difficulty = rollCommand.difficulty;
 
         const target = getCommandTarget({ allowNull: true });
-        const title = traitValue
-            ? game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
+        const title = flavor ??
+            traitValue ? game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
                   ability: game.i18n.localize(SYSTEM.ACTOR.abilities[traitValue].label)
               })
             : game.i18n.localize('DAGGERHEART.GENERAL.duality');
@@ -321,6 +323,34 @@ Hooks.on('chatMessage', (_, message) => {
             label: game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll'),
             actionType: null,
             advantage
+        });
+        return false;
+    }
+
+    if (message.startsWith('/fr')) {
+        const result =
+            message.trim().toLowerCase() === '/fr' ? { result: {} } : rollCommandToJSON(message.replace(/\/fr\s?/, ''));
+
+        if (!result) {
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateParsing'));
+            return false;
+        }
+
+        const { result: rollCommand, flavor } = result;
+        const fateTypeData = getFateTypeData(rollCommand?.type);
+
+        if (!fateTypeData)
+            return ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateTypeParsing'));
+
+        const { value: fateType, label: fateTypeLabel } = fateTypeData;
+        const target = getCommandTarget({ allowNull: true });
+        const title = flavor ?? game.i18n.localize('DAGGERHEART.GENERAL.fateRoll');
+
+        enrichedFateRoll({
+            target,
+            title,
+            label: fateTypeLabel,
+            fateType
         });
         return false;
     }

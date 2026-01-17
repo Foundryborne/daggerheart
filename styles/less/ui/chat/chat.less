@@ -14,6 +14,7 @@
                 color: @dark;
             }
 
+            &.fate,
             &.duality {
                 background-image: url(../assets/parchments/dh-parchment-dark.png);
 
@@ -66,6 +67,7 @@
                     }
                 }
 
+                &.fate,
                 &.critical {
                     --text-color: @chat-purple;
                     --bg-color: @chat-purple-40;
@@ -80,7 +82,7 @@
                 }
             }
 
-            &:not(.duality) {
+            &:not(.duality .fate) {
                 .font-20 {
                     color: @dark;
                 }
@@ -171,6 +173,28 @@
             &::after {
                 content: '??';
             }
+        }
+
+        &.fate {
+                
+            &.hope {
+                --text-color: @golden;
+                --bg-color: @golden-40;
+                .message-header,
+                .message-content {
+                    background-color: @golden-bg;
+                }
+            }
+
+            &.fear {
+                --text-color: @chat-blue;
+                --bg-color: @chat-blue-40;
+                .message-header,
+                .message-content {
+                    background-color: @chat-blue-bg;
+                }
+            }
+
         }
 
         &.duality {

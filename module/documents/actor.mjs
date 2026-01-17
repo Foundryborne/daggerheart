@@ -764,16 +764,24 @@ export default class DhpActor extends Actor {
                     };
                 }
             } else {
+                const valueFunc = (base, resource, baseMax) => {
+                    if (resource.clear) return baseMax && base.inverted ? baseMax : 0;
+
+                    return (base.value ?? base) + resource.value;
+                };
                 switch (r.key) {
                     case 'fear':
                         ui.resources.updateFear(
-                            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear) + r.value
+                            valueFunc(
+                                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
+                                r
+                            )
                         );
                         break;
                     case 'armor':
                         if (this.system.armor?.system?.marks) {
                             updates.armor.resources['system.marks.value'] = Math.max(
-                                Math.min(this.system.armor.system.marks.value + r.value, this.system.armorScore),
+                                Math.min(valueFunc(this.system.armor.system.marks, r), this.system.armorScore),
                                 0
                             );
                         }
@@ -782,7 +790,7 @@ export default class DhpActor extends Actor {
                         if (this.system.resources?.[r.key]) {
                             updates.actor.resources[`system.resources.${r.key}.value`] = Math.max(
                                 Math.min(
-                                    this.system.resources[r.key].value + r.value,
+                                    valueFunc(this.system.resources[r.key], r, this.system.resources[r.key].max),
                                     this.system.resources[r.key].max
                                 ),
                                 0

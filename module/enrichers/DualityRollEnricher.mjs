@@ -2,7 +2,7 @@ import { abilities } from '../config/actorConfig.mjs';
 import { getCommandTarget, rollCommandToJSON } from '../helpers/utils.mjs';
 
 export default function DhDualityRollEnricher(match, _options) {
-    const roll = rollCommandToJSON(match[1], match[0]);
+    const roll = rollCommandToJSON(match[0]);
     if (!roll) return match[0];
 
     return getDualityMessage(roll.result, roll.flavor);
@@ -80,7 +80,7 @@ export const renderDualityButton = async event => {
 };
 
 export const enrichedDualityRoll = async (
-    { reaction, traitValue, target, difficulty, title, label, advantage },
+    { reaction, traitValue, target, difficulty, title, label, advantage, customConfig },
     event
 ) => {
     const config = {
@@ -94,7 +94,8 @@ export const enrichedDualityRoll = async (
             type: reaction ? 'reaction' : null
         },
         type: 'trait',
-        hasRoll: true
+        hasRoll: true,
+        ...(customConfig ?? {})
     };
 
     if (target) {
@@ -105,4 +106,5 @@ export const enrichedDualityRoll = async (
         config.source = { actor: null };
         await CONFIG.Dice.daggerheart.DualityRoll.build(config);
     }
+    return config;
 };

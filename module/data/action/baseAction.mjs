@@ -376,14 +376,14 @@ export class ResourceUpdateMap extends Map {
             if (!resource.key) continue;
 
             const existing = this.get(resource.key);
-            if (existing) {
+            if (!existing || resource.clear) {
+                this.set(resource.key, resource);
+            } else if (!existing?.clear) {
                 this.set(resource.key, {
                     ...existing,
                     value: existing.value + (resource.value ?? 0),
                     total: existing.total + (resource.total ?? 0)
                 });
-            } else {
-                this.set(resource.key, resource);
             }
         }
     }

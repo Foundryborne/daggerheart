@@ -35,7 +35,14 @@ export default class DhCharacter extends BaseDataActor {
                     'DAGGERHEART.ACTORS.Character.maxHPBonus'
                 ),
                 stress: resourceField(6, 0, 'DAGGERHEART.GENERAL.stress', true),
-                hope: resourceField(6, 2, 'DAGGERHEART.GENERAL.hope')
+                hope: new fields.SchemaField({
+                    value: new fields.NumberField({
+                        initial: 2,
+                        min: 0,
+                        integer: true,
+                        label: 'DAGGERHEART.GENERAL.hope'
+                    })
+                })
             }),
             traits: new fields.SchemaField({
                 agility: attributeField('DAGGERHEART.CONFIG.Traits.agility.name'),
@@ -78,12 +85,7 @@ export default class DhCharacter extends BaseDataActor {
                 bags: new fields.NumberField({ initial: 0, integer: true }),
                 chests: new fields.NumberField({ initial: 0, integer: true })
             }),
-            scars: new fields.TypedObjectField(
-                new fields.SchemaField({
-                    name: new fields.StringField({}),
-                    description: new fields.StringField()
-                })
-            ),
+            scars: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.scars' }),
             biography: new fields.SchemaField({
                 background: new fields.HTMLField(),
                 connections: new fields.HTMLField(),
@@ -301,6 +303,9 @@ export default class DhCharacter extends BaseDataActor {
                 runeWard: new fields.BooleanField({ initial: false }),
                 burden: new fields.SchemaField({
                     ignore: new fields.BooleanField()
+                }),
+                roll: new fields.SchemaField({
+                    guaranteedCritical: new fields.BooleanField()
                 })
             })
         };
@@ -642,7 +647,9 @@ export default class DhCharacter extends BaseDataActor {
                 ? armor.system.baseThresholds.severe + this.levelData.level.current
                 : this.levelData.level.current * 2
         };
-        this.resources.hope.max -= Object.keys(this.scars).length;
+
+        const globalHopeMax = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxHope;
+        this.resources.hope.max = globalHopeMax - this.scars;
         this.resources.hitPoints.max += this.class.value?.system?.hitPoints ?? 0;
     }
 
@@ -699,6 +706,20 @@ export default class DhCharacter extends BaseDataActor {
                 changes.system.experiences[experience].core = true;
             }
         }
+
+        /* Scars can alter the amount of current hope */
+        if (changes.system?.scars) {
+            const diff = this.system.scars - changes.system.scars;
+            const newHopeMax = this.system.resources.hope.max + diff;
+            const newHopeValue = Math.min(newHopeMax, this.system.resources.hope.value);
+            if (newHopeValue != this.system.resources.hope.value) {
+                if (!changes.system.resources) changes.system.resources = { hope: { value: 0 } };
+                changes.system.resources.hope = {
+                    ...changes.system.resources.hope,
+                    value: changes.system.resources.hope.value + newHopeValue
+                };
+            }
+        }
     }
 
     async _preDelete() {
@@ -713,5 +734,12 @@ export default class DhCharacter extends BaseDataActor {
         return [this.class.value?.name, this.class.subclass?.name, this.community?.name, this.ancestry?.name].filter(
             t => !!t
         );
+    }
+
+    static migrateData(source) {
+        if (typeof source.scars === 'object') source.scars = 0;
+        if (source.resources?.hope?.max) source.scars = Math.max(6 - source.resources.hope.max, 0);
+
+        return super.migrateData(source);
     }
 }

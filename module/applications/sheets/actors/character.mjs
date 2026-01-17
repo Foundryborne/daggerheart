@@ -1,5 +1,5 @@
 import DHBaseActorSheet from '../api/base-actor.mjs';
-import DhpDeathMove from '../../dialogs/deathMove.mjs';
+import DhDeathMove from '../../dialogs/deathMove.mjs';
 import { abilities } from '../../../config/actorConfig.mjs';
 import { CharacterLevelup, LevelupViewMode } from '../../levelup/_module.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
@@ -696,7 +696,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * @type {ApplicationClickAction}
      */
     static async #makeDeathMove() {
-        await new DhpDeathMove(this.document).render({ force: true });
+        await new DhDeathMove(this.document).render({ force: true });
     }
 
     /**
@@ -753,9 +753,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
         if (!result) return;
 
         /* This could be avoided by baking config.costs into config.resourceUpdates. Didn't feel like messing with it at the time */
-        const costResources = result.costs
-            .filter(x => x.enabled)
-            .map(cost => ({ ...cost, value: -cost.value, total: -cost.total }));
+        const costResources = result.costs?.filter(x => x.enabled)
+            .map(cost => ({ ...cost, value: -cost.value, total: -cost.total })) || {};
         config.resourceUpdates.addResources(costResources);
         await config.resourceUpdates.updateResources();
     }

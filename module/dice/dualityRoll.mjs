@@ -12,6 +12,7 @@ export default class DualityRoll extends D20Roll {
     constructor(formula, data = {}, options = {}) {
         super(formula, data, options);
         this.rallyChoices = this.setRallyChoices();
+        this.guaranteedCritical = options.guaranteedCritical;
     }
 
     static messageType = 'dualityRoll';
@@ -25,29 +26,23 @@ export default class DualityRoll extends D20Roll {
     }
 
     get dHope() {
-        // if ( !(this.terms[0] instanceof foundry.dice.terms.Die) ) return;
         if (!(this.dice[0] instanceof foundry.dice.terms.Die)) this.createBaseDice();
         return this.dice[0];
-        // return this.#hopeDice;
     }
 
     set dHope(faces) {
         if (!(this.dice[0] instanceof foundry.dice.terms.Die)) this.createBaseDice();
-        this.terms[0].faces = this.getFaces(faces);
-        // this.#hopeDice = `d${face}`;
+        this.dice[0].faces = this.getFaces(faces);
     }
 
     get dFear() {
-        // if ( !(this.terms[1] instanceof foundry.dice.terms.Die) ) return;
         if (!(this.dice[1] instanceof foundry.dice.terms.Die)) this.createBaseDice();
         return this.dice[1];
-        // return this.#fearDice;
     }
 
     set dFear(faces) {
         if (!(this.dice[1] instanceof foundry.dice.terms.Die)) this.createBaseDice();
         this.dice[1].faces = this.getFaces(faces);
-        // this.#fearDice = `d${face}`;
     }
 
     get dAdvantage() {
@@ -90,26 +85,29 @@ export default class DualityRoll extends D20Roll {
     }
 
     get isCritical() {
+        if (this.guaranteedCritical) return true;
         if (!this.dHope._evaluated || !this.dFear._evaluated) return;
         return this.dHope.total === this.dFear.total;
     }
 
     get withHope() {
-        if (!this._evaluated) return;
+        if (!this._evaluated || this.guaranteedCritical) return;
         return this.dHope.total > this.dFear.total;
     }
 
     get withFear() {
-        if (!this._evaluated) return;
+        if (!this._evaluated || this.guaranteedCritical) return;
         return this.dHope.total < this.dFear.total;
     }
 
     get totalLabel() {
-        const label = this.withHope
-            ? 'DAGGERHEART.GENERAL.hope'
-            : this.withFear
-              ? 'DAGGERHEART.GENERAL.fear'
-              : 'DAGGERHEART.GENERAL.criticalSuccess';
+        const label = this.guaranteedCritical
+            ? 'DAGGERHEART.GENERAL.guaranteedCriticalSuccess'
+            : this.isCritical
+              ? 'DAGGERHEART.GENERAL.criticalSuccess'
+              : this.withHope
+                ? 'DAGGERHEART.GENERAL.hope'
+                : 'DAGGERHEART.GENERAL.fear';
 
         return game.i18n.localize(label);
     }
@@ -178,6 +176,21 @@ export default class DualityRoll extends D20Roll {
         return modifiers;
     }
 
+    static async buildConfigure(config = {}, message = {}) {
+        config.dialog ??= {};
+        config.guaranteedCritical = config.data?.parent?.appliedEffects.reduce((a, c) => {
+            const change = c.changes.find(ch => ch.key === 'system.rules.roll.guaranteedCritical');
+            if (change) a = true;
+            return a;
+        }, false);
+
+        if (config.guaranteedCritical) {
+            config.dialog.configure = false;
+        }
+
+        return super.buildConfigure(config, message);
+    }
+
     getActionChangeKeys() {
         const changeKeys = new Set([`system.bonuses.roll.${this.options.actionType}`]);
 
@@ -223,7 +236,7 @@ export default class DualityRoll extends D20Roll {
 
         data.hope = {
             dice: roll.dHope.denomination,
-            value: roll.dHope.total,
+            value: this.guaranteedCritical ? 0 : roll.dHope.total,
             rerolled: {
                 any: roll.dHope.results.some(x => x.rerolled),
                 rerolls: roll.dHope.results.filter(x => x.rerolled)
@@ -231,7 +244,7 @@ export default class DualityRoll extends D20Roll {
         };
         data.fear = {
             dice: roll.dFear.denomination,
-            value: roll.dFear.total,
+            value: this.guaranteedCritical ? 0 : roll.dFear.total,
             rerolled: {
                 any: roll.dFear.results.some(x => x.rerolled),
                 rerolls: roll.dFear.results.filter(x => x.rerolled)
@@ -243,7 +256,7 @@ export default class DualityRoll extends D20Roll {
         };
         data.result = {
             duality: roll.withHope ? 1 : roll.withFear ? -1 : 0,
-            total: roll.dHope.total + roll.dFear.total,
+            total: this.guaranteedCritical ? 0 : roll.dHope.total + roll.dFear.total,
             label: roll.totalLabel
         };
 

@@ -1,14 +1,14 @@
-import { diceTypes, getDiceSoNicePresets, range } from '../config/generalConfig.mjs';
+import { diceTypes, getDiceSoNicePresets, getDiceSoNicePreset, range } from '../config/generalConfig.mjs';
 import Tagify from '@yaireo/tagify';
 
 export const capitalize = string => {
     return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
-export function rollCommandToJSON(text, raw) {
+export function rollCommandToJSON(text) {
     if (!text) return {};
 
-    const flavorMatch = raw?.match(/{(.*)}$/);
+    const flavorMatch = text?.match(/{(.*)}$/);
     const flavor = flavorMatch ? flavorMatch[1] : null;
 
     // Match key="quoted string"  OR  key=unquotedValue
@@ -31,7 +31,7 @@ export function rollCommandToJSON(text, raw) {
         }
         result[key] = value;
     }
-    return Object.keys(result).length > 0 ? { result, flavor } : null;
+    return { result, flavor };
 }
 
 export const getCommandTarget = (options = {}) => {
@@ -67,6 +67,20 @@ export const setDiceSoNiceForDualityRoll = async (rollResult, advantageState, ho
         rollResult.dice[2].options =
             advantageState === 1 ? diceSoNicePresets.advantage : diceSoNicePresets.disadvantage;
     }
+};
+
+export const setDiceSoNiceForHopeFateRoll = async (rollResult, hopeFaces) => {
+    if (!game.modules.get('dice-so-nice')?.active) return;
+    const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
+    const diceSoNicePresets = await getDiceSoNicePreset(diceSoNice.hope, hopeFaces);
+    rollResult.dice[0].options = diceSoNicePresets;
+};
+
+export const setDiceSoNiceForFearFateRoll = async (rollResult, fearFaces) => {
+    if (!game.modules.get('dice-so-nice')?.active) return;
+    const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
+    const diceSoNicePresets = await getDiceSoNicePreset(diceSoNice.fear, fearFaces);
+    rollResult.dice[0].options = diceSoNicePresets;
 };
 
 export const chunkify = (array, chunkSize, mappingFunc) => {

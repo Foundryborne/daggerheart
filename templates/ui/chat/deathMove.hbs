@@ -1,17 +1,32 @@
-<div class="daggerheart chat downtime">
-    <ul class="downtime-moves-list">
-        <details class="downtime-move">
-            <summary class="downtime-label">
-                <img class="downtime-image" src="{{this.img}}" />
+<div class="daggerheart chat death-moves">
+    <ul class="death-moves-list">
+        <details class="death-move" {{this.open}}>
+            <summary class="death-label">
+                <img class="death-image" src="{{this.img}}" />
                 <div class="header-label">
                     <h2 class="title">{{this.title}}</h2>
                     <span class="label">{{localize 'DAGGERHEART.UI.Chat.deathMove.title'}}</span>
                 </div>
-                <i class="fa-solid fa-chevron-down"></i>
+                <i class="fa-solid {{this.chevron}}"></i>
             </summary>
             <div class="description">
                 {{{this.description}}}
             </div>
         </details>
     </ul>
+    <div class="result">
+        {{{this.result}}}
+    </div>
+    {{#if this.showRiskItAllButton}}
+    <div>
+        <button class="risk-it-all-button" data-resource-value="{{this.riskItAllHope}}" data-actor-id="{{this.actorId}}">
+            <span>
+                {{this.riskItAllButtonLabel}}
+            </span>
+        </button>
+        <div>
+            {{/if}}
+
+        </div>
+    </div>
 </div>
