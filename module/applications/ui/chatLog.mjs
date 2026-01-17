@@ -391,6 +391,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
 
     async riskItAllClearStressAndHitPoints(event, data) {
         const resourceValue = event.target.dataset.resourceValue;
-        new game.system.api.applications.dialogs.RiskItAllDialog(data.actor, resourceValue).render({ force: true });
+        const actor = game.actors.get(event.target.dataset.actorId);
+        new game.system.api.applications.dialogs.RiskItAllDialog(actor, resourceValue).render({ force: true });
     }
 }

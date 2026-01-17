@@ -2,7 +2,7 @@ import { abilities } from '../config/actorConfig.mjs';
 import { getCommandTarget, rollCommandToJSON } from '../helpers/utils.mjs';
 
 export default function DhDualityRollEnricher(match, _options) {
-    const roll = rollCommandToJSON(match[1], match[0]);
+    const roll = rollCommandToJSON(match[0]);
     if (!roll) return match[0];
 
     return getDualityMessage(roll.result, roll.flavor);

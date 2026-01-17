@@ -180,7 +180,8 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
                 'systems/daggerheart/templates/ui/chat/deathMove.hbs',
                 {
                     player: this.actor.name,
-                    actor: { name: this.actor.name, img: this.actor.img },
+                    actor: this.actor,
+                    actorId: this.actor._id,
                     author: game.users.get(game.user.id),
                     title: game.i18n.localize(this.selectedMove.name),
                     img: this.selectedMove.img,
