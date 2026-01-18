@@ -669,26 +669,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * Resets the character data and removes all embedded documents.
      */
     static async #resetCharacter() {
-        const confirmed = await foundry.applications.api.DialogV2.confirm({
-            window: {
-                title: game.i18n.localize('DAGGERHEART.ACTORS.Character.resetCharacterConfirmationTitle')
-            },
-            content: game.i18n.localize('DAGGERHEART.ACTORS.Character.resetCharacterConfirmationContent')
-        });
-
-        if (!confirmed) return;
-
-        await this.document.update({
-            '==system': {}
-        });
-        await this.document.deleteEmbeddedDocuments(
-            'Item',
-            this.document.items.map(x => x.id)
-        );
-        await this.document.deleteEmbeddedDocuments(
-            'ActiveEffect',
-            this.document.effects.map(x => x.id)
-        );
+        new game.system.api.applications.dialogs.CharacterResetDialog(this.document).render({ force: true });
     }
 
     /**
@@ -753,8 +734,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
         if (!result) return;
 
         /* This could be avoided by baking config.costs into config.resourceUpdates. Didn't feel like messing with it at the time */
-        const costResources = result.costs?.filter(x => x.enabled)
-            .map(cost => ({ ...cost, value: -cost.value, total: -cost.total })) || {};
+        const costResources =
+            result.costs?.filter(x => x.enabled).map(cost => ({ ...cost, value: -cost.value, total: -cost.total })) ||
+            {};
         config.resourceUpdates.addResources(costResources);
         await config.resourceUpdates.updateResources();
     }

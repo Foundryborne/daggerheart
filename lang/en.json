@@ -330,6 +330,12 @@
                 "title": "{actor} - Character Setup",
                 "traitIncreases": "Trait Increases"
             },
+            "CharacterReset": {
+                "title": "Reset Character",
+                "alwaysDeleteSection": "Deleted Data",
+                "optionalDeleteSection": "Optional Data",
+                "headerTitle": "Select which data you'd like to keep"
+            },
             "CombatTracker": {
                 "combatStarted": "Active",
                 "giveSpotlight": "Give The Spotlight",
@@ -2210,6 +2216,7 @@
                 "single": "Player",
                 "plurial": "Players"
             },
+            "portrait": "Portrait",
             "proficiency": "Proficiency",
             "quantity": "Quantity",
             "range": "Range",
