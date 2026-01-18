@@ -58,7 +58,7 @@ export default class DhAutomation extends foundry.abstract.DataModel {
             defeated: new fields.SchemaField({
                 enabled: new fields.BooleanField({
                     required: true,
-                    initial: false,
+                    initial: true,
                     label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.defeated.enabled.label'
                 }),
                 overlay: new fields.BooleanField({

@@ -867,7 +867,7 @@ export default class DhpActor extends Actor {
     async setDeathMoveDefeated(defeatedIconId) {
         const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
         const actorDefault = settings[`${this.type}Default`];
-        if (!settings.enabled || !actorDefault || actorDefault === defeatedIconId) return;
+        if (!settings.enabled || !settings.enabled || !actorDefault || actorDefault === defeatedIconId) return;
 
         for (let defeatedId of Object.keys(CONFIG.DH.GENERAL.defeatedConditionChoices)) {
             await this.toggleStatusEffect(defeatedId, { overlay: settings.overlay, active: false });
