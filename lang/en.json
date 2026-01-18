@@ -973,6 +973,10 @@
                 "outsideRange": "Outside Range"
             },
             "Condition": {
+                "deathMove": {
+                    "name": "Death Move",
+                    "description": "The character is about to make a Death Move"
+                },
                 "dead": {
                     "name": "Dead",
                     "description": "The character is dead"
@@ -2435,7 +2439,11 @@
                         "overlay": { "label": "Overlay Effect" },
                         "characterDefault": { "label": "Character Default Defeated Status" },
                         "adversaryDefault": { "label": "Adversary Default Defeated Status" },
-                        "companionDefault": { "label": "Companion Default Defeated Status" }
+                        "companionDefault": { "label": "Companion Default Defeated Status" },
+                        "deathMove": { "label": "Death Move" },
+                        "dead": { "label": "Dead" },
+                        "defeated": { "label": "Defeated" },
+                        "unconcious": { "label": "Unconcious" }
                     },
                     "hopeFear": {
                         "label": "Hope & Fear",

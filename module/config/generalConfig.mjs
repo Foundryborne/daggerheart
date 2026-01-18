@@ -179,6 +179,10 @@ export const defeatedConditions = () => {
 };
 
 export const defeatedConditionChoices = {
+    deathMove: {
+        id: 'deathMove',
+        name: 'DAGGERHEART.CONFIG.Condition.deathMove.name'
+    },
     defeated: {
         id: 'defeated',
         name: 'DAGGERHEART.CONFIG.Condition.defeated.name'
