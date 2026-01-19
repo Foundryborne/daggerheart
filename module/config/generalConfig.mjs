@@ -171,7 +171,7 @@ export const defeatedConditions = () => {
         acc[key] = {
             ...choice,
             img: defeated[`${choice.id}Icon`],
-            description: `DAGGERHEART.CONFIG.Condition.${choice.id}.description`
+            description: game.i18n.localize(`DAGGERHEART.CONFIG.Condition.${choice.id}.description`)
         };
 
         return acc;
