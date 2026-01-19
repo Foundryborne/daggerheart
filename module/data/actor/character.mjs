@@ -651,6 +651,11 @@ export default class DhCharacter extends BaseDataActor {
         const globalHopeMax = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxHope;
         this.resources.hope.max = globalHopeMax - this.scars;
         this.resources.hitPoints.max += this.class.value?.system?.hitPoints ?? 0;
+
+        /* Companion Related Data */
+        this.companionData = {
+            levelupChoices: this.levelData.level.current - 1
+        };
     }
 
     prepareDerivedData() {

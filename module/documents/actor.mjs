@@ -241,6 +241,11 @@ export default class DhpActor extends Actor {
                     }
                 }
             });
+
+            if (this.system.companion) {
+                this.system.companion.updateLevel(usedLevel);
+            }
+
             this.sheet.render();
         }
     }

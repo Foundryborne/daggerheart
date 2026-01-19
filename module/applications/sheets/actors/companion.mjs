@@ -38,15 +38,6 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
         }
     };
 
-    /** @inheritDoc */
-    async _onRender(context, options) {
-        await super._onRender(context, options);
-
-        this.element
-            .querySelector('.level-value')
-            ?.addEventListener('change', event => this.document.updateLevel(Number(event.currentTarget.value)));
-    }
-
     /* -------------------------------------------- */
     /*  Application Clicks Actions                  */
     /* -------------------------------------------- */

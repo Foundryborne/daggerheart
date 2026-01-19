@@ -108,7 +108,11 @@ export default class DhCompanion extends BaseDataActor {
     get proficiency() {
         return this.partner?.system?.proficiency ?? 1;
     }
-    
+
+    get canLevelUp() {
+        return this.levelupChoicesLeft > 0;
+    }
+
     isItemValid() {
         return false;
     }
@@ -144,6 +148,17 @@ export default class DhCompanion extends BaseDataActor {
                         break;
                 }
             }
+        }
+    }
+
+    prepareDerivedData() {
+        /* Partner Related Setup */
+        if (this.partner) {
+            this.levelData.level.changed = this.partner.system.levelData.level.current;
+            this.levelupChoicesLeft = Object.values(this.levelData.levelups).reduce((acc, curr) => {
+                acc = Math.max(acc - curr.selections.length, 0);
+                return acc;
+            }, this.partner.system.companionData.levelupChoices);
         }
     }
 

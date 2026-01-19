@@ -1,6 +1,6 @@
 import BaseLevelUp from './levelup.mjs';
 import { defaultCompanionTier, LevelOptionType } from '../../data/levelTier.mjs';
-import { DhLevelup } from '../../data/levelup.mjs';
+import { DhCompanionLevelup as DhLevelup } from '../../data/companionLevelup.mjs';
 import { diceTypes, range } from '../../config/generalConfig.mjs';
 
 export default class DhCompanionLevelUp extends BaseLevelUp {
@@ -9,7 +9,9 @@ export default class DhCompanionLevelUp extends BaseLevelUp {
 
         this.levelTiers = this.addBonusChoices(defaultCompanionTier);
         const playerLevelupData = actor.system.levelData;
-        this.levelup = new DhLevelup(DhLevelup.initializeData(this.levelTiers, playerLevelupData));
+        this.levelup = new DhLevelup(
+            DhLevelup.initializeData(this.levelTiers, playerLevelupData, actor.system.levelupChoicesLeft)
+        );
     }
 
     async _preparePartContext(partId, context) {
