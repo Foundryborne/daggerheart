@@ -2443,7 +2443,7 @@
                         "deathMove": { "label": "Death Move" },
                         "dead": { "label": "Dead" },
                         "defeated": { "label": "Defeated" },
-                        "unconcious": { "label": "Unconcious" }
+                        "unconscious": { "label": "Unconscious" }
                     },
                     "hopeFear": {
                         "label": "Hope & Fear",
