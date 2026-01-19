@@ -727,6 +727,19 @@ export default class DhCharacter extends BaseDataActor {
         }
     }
 
+    _onUpdate(changes, options, userId) {
+        super._onUpdate(changes, options, userId);
+
+        if (game.user.id === userId) {
+            /* Companion updates */
+            if (this.companion) {
+                if (changes.system.levelData?.level?.current !== undefined) {
+                    this.companion.update(this.companion.toObject(), { diff: false, recursive: false });
+                }
+            }
+        }
+    }
+
     async _preDelete() {
         super._preDelete();
 

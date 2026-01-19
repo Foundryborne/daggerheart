@@ -3,6 +3,7 @@ import * as applications from './module/applications/_module.mjs';
 import * as data from './module/data/_module.mjs';
 import * as models from './module/data/_module.mjs';
 import * as documents from './module/documents/_module.mjs';
+import * as collections from './module/documents/collections/_module.mjs';
 import * as dice from './module/dice/_module.mjs';
 import * as fields from './module/data/fields/_module.mjs';
 import RegisterHandlebarsHelpers from './module/helpers/handlebarsHelper.mjs';
@@ -36,6 +37,7 @@ CONFIG.Dice.daggerheart = {
 
 CONFIG.Actor.documentClass = documents.DhpActor;
 CONFIG.Actor.dataModels = models.actors.config;
+CONFIG.Actor.collection = collections.DhActorCollection;
 
 CONFIG.Item.documentClass = documents.DHItem;
 CONFIG.Item.dataModels = models.items.config;
@@ -300,11 +302,12 @@ Hooks.on('chatMessage', (_, message) => {
         const difficulty = rollCommand.difficulty;
 
         const target = getCommandTarget({ allowNull: true });
-        const title = flavor ??
-            traitValue ? game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
-                  ability: game.i18n.localize(SYSTEM.ACTOR.abilities[traitValue].label)
-              })
-            : game.i18n.localize('DAGGERHEART.GENERAL.duality');
+        const title =
+            (flavor ?? traitValue)
+                ? game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
+                      ability: game.i18n.localize(SYSTEM.ACTOR.abilities[traitValue].label)
+                  })
+                : game.i18n.localize('DAGGERHEART.GENERAL.duality');
 
         enrichedDualityRoll({
             reaction,
