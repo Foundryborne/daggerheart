@@ -177,6 +177,16 @@ export default class DhCompanion extends BaseDataActor {
                 changes.system.experiences[experience].core = true;
             }
         }
+
+        /* Force partner data prep */
+        if (this.partner) {
+            if (
+                changes.system?.levelData?.level?.current !== undefined &&
+                changes.system.levelData.level.current !== this._source.levelData.level.current
+            ) {
+                this.partner.update(this.partner.toObject(), { diff: false, recursive: false });
+            }
+        }
     }
 
     async _preDelete() {
