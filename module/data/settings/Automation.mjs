@@ -106,7 +106,7 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                     initial: 'icons/magic/control/sleep-bubble-purple.webp',
                     categories: ['IMAGE'],
                     base64: false,
-                    label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.defeated.unconcious.label'
+                    label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.defeated.unconscious.label'
                 })
             }),
             roll: new fields.SchemaField({
