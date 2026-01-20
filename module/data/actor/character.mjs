@@ -253,34 +253,34 @@ export default class DhCharacter extends BaseDataActor {
                             hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.increasePerArmorMark.hint'
                         }),
                         disabledArmor: new fields.BooleanField({ intial: false })
+                    },
+                    attack: {
+                        damage: {
+                            diceIndex: new fields.NumberField({
+                                integer: true,
+                                min: 0,
+                                max: 5,
+                                initial: 0,
+                                label: 'DAGGERHEART.GENERAL.Rules.attack.damage.dice.label',
+                                hint: 'DAGGERHEART.GENERAL.Rules.attack.damage.dice.hint'
+                            }),
+                            bonus: new fields.NumberField({
+                                required: true,
+                                initial: 0,
+                                min: 0,
+                                label: 'DAGGERHEART.GENERAL.Rules.attack.damage.bonus.label'
+                            })
+                        },
+                        roll: new fields.SchemaField({
+                            trait: new fields.StringField({
+                                required: true,
+                                choices: CONFIG.DH.ACTOR.abilities,
+                                nullable: true,
+                                initial: null,
+                                label: 'DAGGERHEART.GENERAL.Rules.attack.roll.trait.label'
+                            })
+                        })
                     }
-                }),
-                attack: new fields.SchemaField({
-                    damage: new fields.SchemaField({
-                        diceIndex: new fields.NumberField({
-                            integer: true,
-                            min: 0,
-                            max: 5,
-                            initial: 0,
-                            label: 'DAGGERHEART.GENERAL.Rules.attack.damage.dice.label',
-                            hint: 'DAGGERHEART.GENERAL.Rules.attack.damage.dice.hint'
-                        }),
-                        bonus: new fields.NumberField({
-                            required: true,
-                            initial: 0,
-                            min: 0,
-                            label: 'DAGGERHEART.GENERAL.Rules.attack.damage.bonus.label'
-                        })
-                    }),
-                    roll: new fields.SchemaField({
-                        trait: new fields.StringField({
-                            required: true,
-                            choices: CONFIG.DH.ACTOR.abilities,
-                            nullable: true,
-                            initial: null,
-                            label: 'DAGGERHEART.GENERAL.Rules.attack.roll.trait.label'
-                        })
-                    })
                 }),
                 dualityRoll: new fields.SchemaField({
                     defaultHopeDice: new fields.NumberField({

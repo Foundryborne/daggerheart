@@ -105,12 +105,20 @@ export default class DamageField extends fields.SchemaField {
                 damagePromises.push(
                     actor.takeHealing(config.damage).then(updates => targetDamage.push({ token, updates }))
                 );
-            else
+            else {
+                const hpDamageMultiplier = config.actionActor?.system.rules.attack.damage.hpDamageMultiplier ?? 1;
+                if (config.damage.hitPoints) {
+                    for (const part of config.damage.hitPoints.parts) {
+                        part.total = part.total * hpDamageMultiplier;
+                    }
+                }
+
                 damagePromises.push(
                     actor
                         .takeDamage(config.damage, config.isDirect)
                         .then(updates => targetDamage.push({ token, updates }))
                 );
+            }
         }
 
         Promise.all(damagePromises).then(async _ => {
