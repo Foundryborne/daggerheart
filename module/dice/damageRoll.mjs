@@ -292,6 +292,9 @@ export default class DamageRoll extends DHRoll {
                 if (isDie) diceIndex++;
                 return fixedTerm;
             }),
+            options: {
+                roll: []
+            },
             class: 'DamageRoll',
             evaluated: false
         });
