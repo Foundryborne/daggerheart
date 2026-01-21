@@ -2506,6 +2506,7 @@
                 "itemFeatures": "Item Features",
                 "nrChoices": "# Moves Per Rest",
                 "resetMovesTitle": "Reset {type} Downtime Moves",
+                "resetItemFeaturesTitle": "Reset {type}",
                 "resetMovesText": "Are you sure you want to reset?",
                 "FIELDS": {
                     "maxFear": { "label": "Max Fear" },
