@@ -3,7 +3,7 @@ import { ActionField } from '../fields/actionField.mjs';
 import BaseDataActor, { commonActorRules } from './base.mjs';
 import { resourceField, bonusField } from '../fields/actorField.mjs';
 import { parseTermsFromSimpleFormula } from '../../helpers/utils.mjs';
-import { adversaryScalingData } from '../../config/actorConfig.mjs';
+import { adversaryExpectedDamage, adversaryScalingData } from '../../config/actorConfig.mjs';
 
 export default class DhpAdversary extends BaseDataActor {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Adversary'];
@@ -214,18 +214,11 @@ export default class DhpAdversary extends BaseDataActor {
             source.system.attack.roll.bonus += scale * entry.attack;
         }
 
-        /** Returns the mean and standard deviation of a series of average damages */
-        const analyzeDamageRange = range => {
-            if (range.length <= 1) throw Error('Unexpected damage range, must have at least two entries');
-            const mean = range.reduce((a, b) => a + b, 0) / range.length;
-            const deviations = range.map(r => r - mean);
-            const standardDeviation = Math.sqrt(deviations.reduce((r, d) => r + d * d, 0) / (range.length - 1));
-            return { mean, standardDeviation };
-        };
 
         // Calculate mean and standard deviation of expected damage ranges in each tier. Also create a function to remap damage
-        const currentDamageRange = analyzeDamageRange(typeData[source.system.tier].damage);
-        const newDamageRange = analyzeDamageRange(typeData[tier].damage);
+        const expectedDamageData = adversaryExpectedDamage[source.system.type] ?? adversaryExpectedDamage.basic;
+        const currentDamageRange = expectedDamageData[source.system.tier];
+        const newDamageRange = expectedDamageData[tier];
         const convertDamage = (damage, newMean) => {
             const hitPointParts = damage.parts.filter(d => d.applyTo === 'hitPoints');
             if (hitPointParts.length === 1 && !hitPointParts[0].value.custom.enabled) {
@@ -248,14 +241,14 @@ export default class DhpAdversary extends BaseDataActor {
                 )
                 .join('+');
             const terms = parseTermsFromSimpleFormula(formula);
-            const mean = terms.reduce((r, t) => r + (t.modifier ?? 0) + (t.dice ? (t.dice * (t.faces + 1)) / 2 : 0), 0);
-            return { formula, terms, mean };
+            const expected = terms.reduce((r, t) => r + (t.modifier ?? 0) + (t.dice ? (t.dice * (t.faces + 1)) / 2 : 0), 0);
+            return { formula, terms, expected };
         };
 
         // Update damage of base attack
-        const atkAverage = parseDamage(source.system.attack.damage).mean;
-        const deviation = (atkAverage - currentDamageRange.mean) / currentDamageRange.standardDeviation;
-        const newAtkAverage = newDamageRange.mean + newDamageRange.standardDeviation * deviation;
+        const atkAverage = parseDamage(source.system.attack.damage).expected;
+        const deviation = (atkAverage - currentDamageRange.medianDamage) / currentDamageRange.damageDeviation;
+        const newAtkAverage = newDamageRange.medianDamage + newDamageRange.damageDeviation * deviation;
         const damage = source.system.attack.damage;
         convertDamage(damage, newAtkAverage);
 
@@ -266,11 +259,11 @@ export default class DhpAdversary extends BaseDataActor {
             for (const action of Object.values(item.system.actions)) {
                 const damage = action.damage;
                 if (!damage) continue;
-                const { formula, mean } = parseDamage(damage);
+                const { formula, expected: mean } = parseDamage(damage);
                 if (mean === 0) continue;
 
-                const deviation = (mean - currentDamageRange.mean) / currentDamageRange.standardDeviation;
-                const newMean = newDamageRange.mean + newDamageRange.standardDeviation * deviation;
+                const deviation = (mean - currentDamageRange.medianDamage) / currentDamageRange.damageDeviation;
+                const newMean = newDamageRange.medianDamage + newDamageRange.damageDeviation * deviation;
                 convertDamage(damage, newMean);
 
                 const oldFormulaRegexp = new RegExp(formula.replace('+', '(?:\\s)?\\+(?:\\s)?'));
