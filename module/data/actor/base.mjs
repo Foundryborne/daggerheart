@@ -51,6 +51,11 @@ export const commonActorRules = (extendedData = { damageReduction: {}, attack: {
                 nullable: false,
                 initial: 1
             }),
+            hpDamageTakenMultiplier: new fields.NumberField({
+                required: true,
+                nullable: false,
+                initial: 1
+            }),
             ...(extendedData.attack?.damage ?? {})
         })
     })
