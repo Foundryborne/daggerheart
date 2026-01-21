@@ -750,15 +750,15 @@ export const adversaryScalingData = {
 /** Scaling data used for an adversary's damage */
 export const adversaryExpectedDamage = {
   basic: {
-    1: { medianDamage: 7.5, damageDeviation: 1 },
-    2: { medianDamage: 13, damageDeviation: 2 },
-    3: { medianDamage: 15.5, damageDeviation: 1.5 },
-    4: { medianDamage: 27, damageDeviation: 3 }
+    1: { median: 7.5, deviation: 1 },
+    2: { median: 13, deviation: 2 },
+    3: { median: 15.5, deviation: 1.5 },
+    4: { median: 27, deviation: 3 }
   },
   minion: {
-    1: { medianDamage: 2, damageDeviation: 1 },
-    2: { medianDamage: 5, damageDeviation: 0.5 },
-    3: { medianDamage: 6.5, damageDeviation: 1.5 },
-    4: { medianDamage: 11, damageDeviation: 1 }
+    1: { median: 2, deviation: 1 },
+    2: { median: 5, deviation: 0.5 },
+    3: { median: 6.5, deviation: 1.5 },
+    4: { median: 11, deviation: 1 }
   }
 };
