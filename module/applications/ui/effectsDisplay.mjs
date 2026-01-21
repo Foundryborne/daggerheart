@@ -76,6 +76,8 @@ export default class DhEffectsDisplay extends HandlebarsApplicationMixin(Applica
     };
 
     toggleHidden(token, focused) {
+        if (!this.element) return;
+
         const effects = DhEffectsDisplay.getTokenEffects(focused ? token : null);
         this.element.hidden = effects.length === 0;
 
