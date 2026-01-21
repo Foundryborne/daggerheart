@@ -111,7 +111,7 @@ export default class DamageField extends fields.SchemaField {
                 const hpDamageTakenMultiplier = actor.system.rules.attack.damage.hpDamageTakenMultiplier;
                 if (configDamage.hitPoints) {
                     for (const part of configDamage.hitPoints.parts) {
-                        part.total = part.total * hpDamageMultiplier * hpDamageTakenMultiplier;
+                        part.total = Math.ceil(part.total * hpDamageMultiplier * hpDamageTakenMultiplier);
                     }
                 }
 
