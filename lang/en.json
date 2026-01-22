@@ -607,6 +607,7 @@
             },
             "RerollDialog": {
                 "title": "Reroll",
+                "damageTitle": "Reroll Damage",
                 "deselectDiceNotification": "Deselect one of the selected dice first",
                 "acceptCurrentRolls": "Accept Current Rolls"
             },
