@@ -34,6 +34,8 @@ function getDualityMessage(roll, flavor) {
               ? 'Disadvantage'
               : undefined;
 
+    const noResources = Boolean(roll?.noResources);
+
     const dualityElement = document.createElement('span');
     dualityElement.innerHTML = `
         <button type="button" class="duality-roll-button${roll?.inline ? ' inline' : ''}" 
@@ -47,6 +49,7 @@ function getDualityMessage(roll, flavor) {
             ${roll?.trait && abilities[roll.trait] ? `data-trait="${roll.trait}"` : ''}
             ${roll?.advantage ? 'data-advantage="true"' : ''}
             ${roll?.disadvantage ? 'data-disadvantage="true"' : ''}
+            data-no-resources="${noResources}"
         >
             ${roll?.reaction ? '<i class="fa-solid fa-reply"></i>' : '<i class="fa-solid fa-circle-half-stroke"></i>'}
             ${label}
@@ -63,7 +66,8 @@ export const renderDualityButton = async event => {
         traitValue = button.dataset.trait?.toLowerCase(),
         target = getCommandTarget({ allowNull: true }),
         difficulty = button.dataset.difficulty,
-        advantage = button.dataset.advantage ? Number(button.dataset.advantage) : undefined;
+        advantage = button.dataset.advantage ? Number(button.dataset.advantage) : undefined,
+        noResources = button.dataset.noResources === 'true';
 
     await enrichedDualityRoll(
         {
@@ -73,14 +77,15 @@ export const renderDualityButton = async event => {
             difficulty,
             title: button.dataset.title,
             label: button.dataset.label,
-            advantage
+            advantage,
+            noResources
         },
         event
     );
 };
 
 export const enrichedDualityRoll = async (
-    { reaction, traitValue, target, difficulty, title, label, advantage },
+    { reaction, traitValue, target, difficulty, title, label, advantage, noResources },
     event
 ) => {
     const config = {
@@ -93,12 +98,17 @@ export const enrichedDualityRoll = async (
             advantage,
             type: reaction ? 'reaction' : null
         },
+        skips: {
+            resources: noResources,
+            triggers: noResources
+        },
         type: 'trait',
         hasRoll: true
     };
 
     if (target) {
-        await target.diceRoll(config);
+        const result = await target.diceRoll(config);
+        result.resourceUpdates.updateResources();
     } else {
         // For no target, call DualityRoll directly with basic data
         config.data = { experiences: {}, traits: {}, rules: {} };

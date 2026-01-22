@@ -261,7 +261,7 @@ export default class DualityRoll extends D20Roll {
     }
 
     static async handleTriggers(roll, config) {
-        if (!config.source?.actor) return;
+        if (!config.source?.actor || config.skips?.triggers) return;
 
         const updates = [];
         const dualityUpdates = await game.system.registeredTriggers.runTrigger(
