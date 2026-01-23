@@ -3,7 +3,7 @@ import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 export default class DHRoll extends Roll {
     baseTerms = [];
     constructor(formula, data = {}, options = {}) {
-        super(formula, data, options);
+        super(formula, data, foundry.utils.mergeObject(options, { roll: [] }, { overwrite: false }));
         options.bonusEffects = this.bonusEffectBuilder();
         if (!this.data || !Object.keys(this.data).length) this.data = options.data;
     }
