@@ -36,7 +36,8 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             addItem: this.addItem,
             editItem: this.editItem,
             removeItem: this.removeItem,
-            resetMoves: this.resetMoves,
+            resetDowntimeMoves: this.resetDowntimeMoves,
+            resetItemFeatures: this.resetItemFeatures,
             addDomain: this.addDomain,
             toggleSelectedDomain: this.toggleSelectedDomain,
             deleteDomain: this.deleteDomain,
@@ -232,7 +233,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         this.render();
     }
 
-    static async resetMoves(_, target) {
+    static async resetDowntimeMoves(_, target) {
         const confirmed = await foundry.applications.api.DialogV2.confirm({
             window: {
                 title: game.i18n.format('DAGGERHEART.SETTINGS.Homebrew.resetMovesTitle', {
@@ -266,7 +267,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
                     ...move,
                     name: game.i18n.localize(move.name),
                     description: game.i18n.localize(move.description),
-                    actions: move.actions.reduce((acc, key) => {
+                    actions: Object.keys(move.actions).reduce((acc, key) => {
                         const action = move.actions[key];
                         acc[key] = {
                             ...action,
@@ -288,6 +289,31 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
                     ...update.moves
                 }
             }
+        });
+
+        this.render();
+    }
+
+    static async resetItemFeatures(_, target) {
+        const confirmed = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: game.i18n.format('DAGGERHEART.SETTINGS.Homebrew.resetItemFeaturesTitle', {
+                    type: game.i18n.localize(`DAGGERHEART.GENERAL.${target.dataset.type}`)
+                })
+            },
+            content: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.resetMovesText')
+        });
+
+        if (!confirmed) return;
+
+        await this.settings.updateSource({
+            [`itemFeatures.${target.dataset.type}`]: Object.keys(
+                this.settings.itemFeatures[target.dataset.type]
+            ).reduce((acc, key) => {
+                acc[`-=${key}`] = null;
+
+                return acc;
+            }, {})
         });
 
         this.render();
