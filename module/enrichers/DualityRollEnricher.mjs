@@ -34,8 +34,6 @@ function getDualityMessage(roll, flavor) {
               ? 'Disadvantage'
               : undefined;
 
-    const noResources = Boolean(roll?.noResources);
-
     const dualityElement = document.createElement('span');
     dualityElement.innerHTML = `
         <button type="button" class="duality-roll-button${roll?.inline ? ' inline' : ''}" 
@@ -49,7 +47,7 @@ function getDualityMessage(roll, flavor) {
             ${roll?.trait && abilities[roll.trait] ? `data-trait="${roll.trait}"` : ''}
             ${roll?.advantage ? 'data-advantage="true"' : ''}
             ${roll?.disadvantage ? 'data-disadvantage="true"' : ''}
-            data-no-resources="${noResources}"
+            ${roll?.grantResources ? 'data-grant-resources="true"' : ''}
         >
             ${roll?.reaction ? '<i class="fa-solid fa-reply"></i>' : '<i class="fa-solid fa-circle-half-stroke"></i>'}
             ${label}
@@ -67,7 +65,7 @@ export const renderDualityButton = async event => {
         target = getCommandTarget({ allowNull: true }),
         difficulty = button.dataset.difficulty,
         advantage = button.dataset.advantage ? Number(button.dataset.advantage) : undefined,
-        noResources = button.dataset.noResources === 'true';
+        grantResources = Boolean(button.dataset?.grantResources);
 
     await enrichedDualityRoll(
         {
@@ -78,14 +76,14 @@ export const renderDualityButton = async event => {
             title: button.dataset.title,
             label: button.dataset.label,
             advantage,
-            noResources
+            grantResources
         },
         event
     );
 };
 
 export const enrichedDualityRoll = async (
-    { reaction, traitValue, target, difficulty, title, label, advantage, noResources },
+    { reaction, traitValue, target, difficulty, title, label, advantage, grantResources },
     event
 ) => {
     const config = {
@@ -99,8 +97,8 @@ export const enrichedDualityRoll = async (
             type: reaction ? 'reaction' : null
         },
         skips: {
-            resources: noResources,
-            triggers: noResources
+            resources: !grantResources,
+            triggers: !grantResources
         },
         type: 'trait',
         hasRoll: true

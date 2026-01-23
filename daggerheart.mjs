@@ -296,7 +296,7 @@ Hooks.on('chatMessage', (_, message) => {
               ? CONFIG.DH.ACTIONS.advantageState.disadvantage.value
               : undefined;
         const difficulty = rollCommand.difficulty;
-        const noResources = Boolean(rollCommand.noResources);
+        const grantResources = Boolean(rollCommand.grantResources);
 
         const target = getCommandTarget({ allowNull: true });
         const title = traitValue
@@ -314,7 +314,7 @@ Hooks.on('chatMessage', (_, message) => {
             label: game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll'),
             actionType: null,
             advantage,
-            noResources
+            grantResources
         });
         return false;
     }
