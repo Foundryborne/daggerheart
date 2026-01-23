@@ -607,7 +607,7 @@ export default class DhpActor extends Actor {
         if (!updates.length) return;
 
         const hpDamage = updates.find(u => u.key === CONFIG.DH.GENERAL.healingTypes.hitPoints.id);
-        if (hpDamage) {
+        if (hpDamage?.value) {
             hpDamage.value = this.convertDamageToThreshold(hpDamage.value);
             if (
                 this.type === 'character' &&

@@ -42,8 +42,8 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
             this.combats
                 .find(x => x.active)
                 ?.system?.extendedBattleToggles?.reduce((acc, toggle) => (acc ?? 0) + toggle.category, null) ?? null;
-        const maxBP = CONFIG.DH.ENCOUNTER.BaseBPPerEncounter(context.characters.length) + modifierBP;
-        const currentBP = AdversaryBPPerEncounter(context.adversaries, context.characters);
+        const maxBP = CONFIG.DH.ENCOUNTER.BaseBPPerEncounter(context.allCharacters.length) + modifierBP;
+        const currentBP = AdversaryBPPerEncounter(context.adversaries, context.allCharacters);
 
         Object.assign(context, {
             fear: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
@@ -73,9 +73,8 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
         Object.assign(context, {
             actionTokens: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).actionTokens,
             adversaries,
-            characters: characters
-                ?.filter(x => !x.isNPC)
-                .filter(x => !spotlightQueueEnabled || x.system.spotlight.requestOrderIndex == 0),
+            allCharacters: characters,
+            characters: characters.filter(x => !spotlightQueueEnabled || x.system.spotlight.requestOrderIndex == 0),
             spotlightRequests
         });
     }

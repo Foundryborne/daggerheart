@@ -241,6 +241,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             hasHealing: this.hasHealing,
             hasEffect: this.hasEffect,
             hasSave: this.hasSave,
+            onSave: this.save?.damageMod,
             isDirect: !!this.damage?.direct,
             selectedRollMode: game.settings.get('core', 'rollMode'),
             data: this.getRollData(),

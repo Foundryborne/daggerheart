@@ -65,8 +65,15 @@ export default class DhSceneConfigSettings extends foundry.applications.sheets.S
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
         const item = await foundry.utils.fromUuid(data.uuid);
         if (item instanceof game.system.api.documents.DhpActor && item.type === 'environment') {
+            let sceneUuid = data.uuid;
+            if (item.pack) {
+                const inWorldActor = await game.system.api.documents.DhpActor.create([item.toObject()]);
+                if (!inWorldActor.length) return;
+                sceneUuid = inWorldActor[0].uuid;
+            }
+
             await this.daggerheartFlag.updateSource({
-                sceneEnvironments: [...this.daggerheartFlag.sceneEnvironments, data.uuid]
+                sceneEnvironments: [...this.daggerheartFlag.sceneEnvironments, sceneUuid]
             });
             this.render({ internalRefresh: true });
         }
@@ -97,6 +104,10 @@ export default class DhSceneConfigSettings extends foundry.applications.sheets.S
     /** @override */
     async _processSubmitData(event, form, submitData, options) {
         submitData.flags.daggerheart = this.daggerheartFlag.toObject();
+        submitData.flags.daggerheart.sceneEnvironments = submitData.flags.daggerheart.sceneEnvironments.filter(x =>
+            foundry.utils.fromUuidSync(x)
+        );
+
         for (const key of Object.keys(this.document._source.flags.daggerheart?.sceneEnvironments ?? {})) {
             if (!submitData.flags.daggerheart.sceneEnvironments[key]) {
                 submitData.flags.daggerheart.sceneEnvironments[`-=${key}`] = null;

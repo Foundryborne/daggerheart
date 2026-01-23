@@ -188,7 +188,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             config = foundry.utils.deepClone(this.system);
         config.event = event;
 
-        if (this.system.onSave) {
+        if (config.hasSave) {
             const pendingingSaves = targets.filter(t => t.saved.success === null);
             if (pendingingSaves.length) {
                 const confirm = await foundry.applications.api.DialogV2.confirm({

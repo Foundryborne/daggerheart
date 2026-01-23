@@ -210,6 +210,22 @@ export async function runMigrations() {
 
         lastMigrationVersion = '1.2.7';
     }
+
+    if (foundry.utils.isNewerVersion('1.5.5', lastMigrationVersion)) {
+        for (const scene of game.scenes) {
+            if (!scene.flags.daggerheart) continue;
+            const systemData = new game.system.api.data.scenes.DHScene(scene.flags.daggerheart);
+            const sceneEnvironments = systemData.sceneEnvironments;
+
+            const newEnvironments = sceneEnvironments.filter(x => !x?.pack);
+            if (newEnvironments.length !== sceneEnvironments.length)
+                await scene.update({ 'flags.daggerheart.sceneEnvironments': newEnvironments });
+        }
+
+        ui.nav.render(true);
+
+        lastMigrationVersion = '1.5.5';
+    }
     //#endregion
 
     await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion, lastMigrationVersion);
