@@ -225,6 +225,10 @@ export async function runMigrations() {
 
         ui.nav.render(true);
 
+        lastMigrationVersion = '1.5.5';
+    }
+
+    if (foundry.utils.isNewerVersion('1.6.0', lastMigrationVersion)) {
         /* Delevel any companions that are higher level than their partner character */
         for (const companion of game.actors.filter(x => x.type === 'companion')) {
             if (companion.system.levelData.level.current <= 1) continue;
@@ -240,7 +244,7 @@ export async function runMigrations() {
             }
         }
 
-        lastMigrationVersion = '1.5.5';
+        lastMigrationVersion = '1.6.0';
     }
     //#endregion
 
