@@ -368,7 +368,7 @@ export default class DhCharacter extends BaseDataActor {
         const modifiers = subClasses
             ?.map(sc => ({ ...this.traits[sc.system.spellcastingTrait], key: sc.system.spellcastingTrait }))
             .filter(x => x);
-        return modifiers.sort((a, b) => a.value - b.value)[0];
+        return modifiers.sort((a, b) => (b.value ?? 0) - (a.value ?? 0))[0];
     }
 
     get spellcastModifier() {
