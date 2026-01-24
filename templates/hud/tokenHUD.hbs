@@ -11,6 +11,11 @@
     <button type="button" class="control-icon" data-action="sort" data-direction="down" data-tooltip="HUD.ToBack">
         <img src="{{icons.down}}">
     </button>
+    {{#if hasCompanion}}
+        <button type="button" class="control-icon clown-car" data-action="toggleCompanions" data-tooltip="{{#if companionOnCanvas}}{{localize "DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrieveCompanionTokens"}}{{else}}{{localize "DAGGERHEART.APPLICATIONS.HUD.tokenHUD.depositCompanionTokens"}}{{/if}}">
+            <img {{#if companionOnCanvas}}class="flipped"{{/if}} src="{{icons.toggleClowncar}}">
+        </button>
+    {{/if}}
 
     {{#if canConfigure}}
     <button type="button" class="control-icon" data-action="config" data-tooltip="HUD.OpenConfig">
@@ -76,7 +81,7 @@
     
     {{#if (eq actorType 'party')}}
         <button type="button" class="control-icon clown-car" data-action="togglePartyTokens" data-tooltip="{{#if partyOnCanvas}}{{localize "DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrievePartyTokens"}}{{else}}{{localize "DAGGERHEART.APPLICATIONS.HUD.tokenHUD.depositPartyTokens"}}{{/if}}">
-            <img {{#if partyOnCanvas}}class="flipped"{{/if}} src="{{icons.toggleParty}}">
+            <img {{#if partyOnCanvas}}class="flipped"{{/if}} src="{{icons.toggleClowncar}}">
         </button>
     {{/if}}
 

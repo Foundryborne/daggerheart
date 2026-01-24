@@ -5,7 +5,8 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
         classes: ['daggerheart'],
         actions: {
             combat: DHTokenHUD.#onToggleCombat,
-            togglePartyTokens: DHTokenHUD.#togglePartyTokens
+            togglePartyTokens: DHTokenHUD.#togglePartyTokens,
+            toggleCompanions: DHTokenHUD.#toggleCompanions
         }
     };
 
@@ -26,7 +27,7 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
         context.partyOnCanvas =
             this.actor.type === 'party' &&
             this.actor.system.partyMembers.some(member => member.getActiveTokens().length > 0);
-        context.icons.toggleParty = 'systems/daggerheart/assets/icons/arrow-dunk.png';
+        context.icons.toggleClowncar = 'systems/daggerheart/assets/icons/arrow-dunk.png';
         context.actorType = this.actor.type;
         context.usesEffects = this.actor.type !== 'party';
         context.canToggleCombat = DHTokenHUD.#nonCombatTypes.includes(this.actor.type)
@@ -55,6 +56,9 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
                   return acc;
               }, {})
             : null;
+
+        context.hasCompanion = this.actor.system.companion;
+        context.companionOnCanvas = context.hasCompanion && this.actor.system.companion.getActiveTokens().length > 0;
 
         return context;
     }
@@ -101,8 +105,24 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
                 : 'DAGGERHEART.APPLICATIONS.HUD.tokenHUD.depositPartyTokens'
         );
 
+        await this.toggleClowncar(this.actor.system.partyMembers);
+    }
+
+    static async #toggleCompanions(_, button) {
+        const icon = button.querySelector('img');
+        icon.classList.toggle('flipped');
+        button.dataset.tooltip = game.i18n.localize(
+            icon.classList.contains('flipped')
+                ? 'DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrieveCompanionTokens'
+                : 'DAGGERHEART.APPLICATIONS.HUD.tokenHUD.depositCompanionTokens'
+        );
+
+        await this.toggleClowncar([this.actor.system.companion]);
+    }
+
+    async toggleClowncar(actors) {
         const animationDuration = 500;
-        const activeTokens = this.actor.system.partyMembers.flatMap(member => member.getActiveTokens());
+        const activeTokens = actors.flatMap(member => member.getActiveTokens());
         const { x: actorX, y: actorY } = this.document;
         if (activeTokens.length > 0) {
             for (let token of activeTokens) {
@@ -114,14 +134,15 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
             }
         } else {
             const activeScene = game.scenes.find(x => x.id === game.user.viewedScene);
-            const partyTokenData = [];
-            for (let member of this.actor.system.partyMembers) {
+            const tokenData = [];
+            for (let member of actors) {
                 const data = await member.getTokenDocument();
-                partyTokenData.push(data.toObject());
+                tokenData.push(data.toObject());
             }
+
             const newTokens = await activeScene.createEmbeddedDocuments(
                 'Token',
-                partyTokenData.map(tokenData => ({
+                tokenData.map(tokenData => ({
                     ...tokenData,
                     alpha: 0,
                     x: actorX,

@@ -488,7 +488,9 @@
                 "tokenHUD": {
                     "genericEffects": "Foundry Effects",
                     "depositPartyTokens": "Deposit Party Tokens",
-                    "retrievePartyTokens": "Retrieve Party Tokens"
+                    "retrievePartyTokens": "Retrieve Party Tokens",
+                    "depositCompanionTokens": "Deposit Companion Token",
+                    "retrieveCompanionTokens": "Retrieve Companion Token"
                 }
             },
             "ImageSelect": {
