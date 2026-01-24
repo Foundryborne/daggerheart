@@ -71,10 +71,10 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
             title: `${game.i18n.localize('DAGGERHEART.GENERAL.Roll.action')}: ${this.actor.name}`,
             headerTitle: `Companion ${game.i18n.localize('DAGGERHEART.GENERAL.Roll.action')}`,
             roll: {
-                trait: partner.system.spellcastModifierTrait?.key
+                trait: partner.system.spellcastModifierTrait?.key,
+                companionRoll: true
             },
-            hasRoll: true,
-            data: partner.getRollData()
+            hasRoll: true
         };
 
         const result = await partner.diceRoll(config);

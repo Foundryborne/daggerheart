@@ -677,6 +677,8 @@ export default class DhCharacter extends BaseDataActor {
                     }
                 }
             }
+
+            this.companion.system.attack.roll.bonus = this.traits.instinct.value;
         }
 
         this.resources.hope.value = Math.min(baseHope, this.resources.hope.max);
