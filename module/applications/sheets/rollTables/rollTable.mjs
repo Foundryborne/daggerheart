@@ -11,7 +11,7 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
     };
 
     static buildParts() {
-        const { footer, header, sheet, ...parts } = super.PARTS;
+        const { footer, header, sheet, results, ...parts } = super.PARTS;
         return {
             sheet: {
                 ...sheet,
@@ -19,6 +19,11 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
             },
             header: { template: 'systems/daggerheart/templates/sheets/rollTable/header.hbs' },
             ...parts,
+            results: {
+                template: 'systems/daggerheart/templates/sheets/rollTable/results.hbs',
+                templates: ['templates/sheets/roll-table/result-details.hbs'],
+                scrollable: ['table[data-results] tbody']
+            },
             summary: { template: 'systems/daggerheart/templates/sheets/rollTable/summary.hbs' },
             footer
         };
@@ -54,6 +59,7 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
                 };
                 context.activeAltFormula = this.daggerheartFlag.activeAltFormula;
                 context.selectedFormula = this.daggerheartFlag.getActiveFormula(this.document.formula);
+                context.results = this.getExtendedResults(context.results);
                 break;
             case 'header':
                 context.altFormula = this.daggerheartFlag.altFormula;
@@ -69,9 +75,24 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
                 context.altFormula = this.daggerheartFlag.altFormula;
                 context.formulaName = this.daggerheartFlag.formulaName;
                 break;
+            case 'results':
+                context.results = this.getExtendedResults(context.results);
+                break;
         }
 
         return context;
+    }
+
+    getExtendedResults(results) {
+        const bodyDarkMode = document.body.classList.contains('theme-dark');
+        const elementLightMode = this.element.classList.contains('theme-light');
+        const elementDarkMode = this.element.classList.contains('theme-dark');
+        const isDarkMode = elementDarkMode || (!elementLightMode && bodyDarkMode);
+
+        return results.map(x => ({
+            ...x,
+            displayImg: isDarkMode && x.img === 'icons/svg/d20-black.svg' ? 'icons/svg/d20.svg' : x.img
+        }));
     }
 
     /* -------------------------------------------- */

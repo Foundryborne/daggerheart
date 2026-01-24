@@ -30,7 +30,7 @@
         {{#each results as |result i|}}
         <tr class="flexrow{{#if result.drawn}} drawn{{/if}}" data-result-id="{{result.id}}">
             <td class="image">
-                <img src="{{result.img}}" alt="{{localize "TABLE_RESULT.FIELDS.img.label"}}" loading="lazy">
+                <img src="{{result.displayImg}}" alt="{{localize "TABLE_RESULT.FIELDS.img.label"}}" loading="lazy">
             </td>
             <td class="range">{{result.range}}</td>
             <td class="details">
