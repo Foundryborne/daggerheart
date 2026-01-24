@@ -549,7 +549,18 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     get deathMoveViable() {
-        return this.resources.hitPoints.max > 0 && this.resources.hitPoints.value >= this.resources.hitPoints.max;
+        const { characterDefault } = game.settings.get(
+            CONFIG.DH.id,
+            CONFIG.DH.SETTINGS.gameSettings.Automation
+        ).defeated;
+        const deathMoveOutcomeStatuses = Object.keys(CONFIG.DH.GENERAL.defeatedConditionChoices).filter(
+            key => key !== characterDefault
+        );
+        const deathMoveNotResolved = this.parent.statuses.every(status => !deathMoveOutcomeStatuses.includes(status));
+
+        const allHitPointsMarked =
+            this.resources.hitPoints.max > 0 && this.resources.hitPoints.value >= this.resources.hitPoints.max;
+        return deathMoveNotResolved && allHitPointsMarked;
     }
 
     get armorApplicableDamageTypes() {

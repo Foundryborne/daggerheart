@@ -1,5 +1,6 @@
 export { default as AttributionDialog } from './attributionDialog.mjs';
 export { default as BeastformDialog } from './beastformDialog.mjs';
+export { default as CharacterResetDialog } from './characterResetDialog.mjs';
 export { default as d20RollDialog } from './d20RollDialog.mjs';
 export { default as DamageDialog } from './damageDialog.mjs';
 export { default as DamageReductionDialog } from './damageReductionDialog.mjs';

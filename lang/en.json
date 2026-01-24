@@ -330,6 +330,12 @@
                 "title": "{actor} - Character Setup",
                 "traitIncreases": "Trait Increases"
             },
+            "CharacterReset": {
+                "title": "Reset Character",
+                "alwaysDeleteSection": "Deleted Data",
+                "optionalDeleteSection": "Optional Data",
+                "headerTitle": "Select which data you'd like to keep"
+            },
             "CombatTracker": {
                 "combatStarted": "Active",
                 "giveSpotlight": "Give The Spotlight",
@@ -974,6 +980,10 @@
                 "outsideRange": "Outside Range"
             },
             "Condition": {
+                "deathMove": {
+                    "name": "Death Move",
+                    "description": "The character is about to make a Death Move"
+                },
                 "dead": {
                     "name": "Dead",
                     "description": "The character is dead"
@@ -2211,6 +2221,7 @@
                 "single": "Player",
                 "plurial": "Players"
             },
+            "portrait": "Portrait",
             "proficiency": "Proficiency",
             "quantity": "Quantity",
             "range": "Range",
@@ -2442,7 +2453,11 @@
                         "overlay": { "label": "Overlay Effect" },
                         "characterDefault": { "label": "Character Default Defeated Status" },
                         "adversaryDefault": { "label": "Adversary Default Defeated Status" },
-                        "companionDefault": { "label": "Companion Default Defeated Status" }
+                        "companionDefault": { "label": "Companion Default Defeated Status" },
+                        "deathMove": { "label": "Death Move" },
+                        "dead": { "label": "Dead" },
+                        "defeated": { "label": "Defeated" },
+                        "unconscious": { "label": "Unconscious" }
                     },
                     "hopeFear": {
                         "label": "Hope & Fear",
@@ -2876,7 +2891,8 @@
                 "documentIsMissing": "The {documentType} is missing from the world.",
                 "tokenActorMissing": "{name} is missing an Actor",
                 "tokenActorsMissing": "[{names}] missing Actors",
-                "domainTouchRequirement": "This domain card requires {nr} {domain} cards in the loadout to be used"
+                "domainTouchRequirement": "This domain card requires {nr} {domain} cards in the loadout to be used",
+                "knowTheTide": "Know The Tide gained a token"
             },
             "Sidebar": {
                 "actorDirectory": {

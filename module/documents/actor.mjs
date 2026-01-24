@@ -849,8 +849,8 @@ export default class DhpActor extends Actor {
 
     async toggleDefeated(defeatedState) {
         const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
-        const { unconscious, defeated, dead } = CONFIG.DH.GENERAL.conditions();
-        const defeatedConditions = new Set([unconscious.id, defeated.id, dead.id]);
+        const { deathMove, unconscious, defeated, dead } = CONFIG.DH.GENERAL.conditions();
+        const defeatedConditions = new Set([deathMove.id, unconscious.id, defeated.id, dead.id]);
         if (!defeatedState) {
             for (let defeatedId of defeatedConditions) {
                 await this.toggleStatusEffect(defeatedId, { overlay: settings.overlay, active: defeatedState });
@@ -862,6 +862,18 @@ export default class DhpActor extends Actor {
                 await this.toggleStatusEffect(condition, { overlay: settings.overlay, active: defeatedState });
             }
         }
+    }
+
+    async setDeathMoveDefeated(defeatedIconId) {
+        const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
+        const actorDefault = settings[`${this.type}Default`];
+        if (!settings.enabled || !settings.enabled || !actorDefault || actorDefault === defeatedIconId) return;
+
+        for (let defeatedId of Object.keys(CONFIG.DH.GENERAL.defeatedConditionChoices)) {
+            await this.toggleStatusEffect(defeatedId, { overlay: settings.overlay, active: false });
+        }
+
+        if (defeatedIconId) await this.toggleStatusEffect(defeatedIconId, { overlay: settings.overlay, active: true });
     }
 
     queueScrollText(scrollingTextData) {
