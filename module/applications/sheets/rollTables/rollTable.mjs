@@ -115,7 +115,7 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
             { altFormula: {} }
         );
 
-        return foundry.utils.mergeObject(this.daggerheartFlag.toObject(), deleteUpdate);
+        return { ['flags.daggerheart']: foundry.utils.mergeObject(this.daggerheartFlag.toObject(), deleteUpdate) };
     }
 
     static async #addFormula() {
