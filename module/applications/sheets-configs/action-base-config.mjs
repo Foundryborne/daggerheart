@@ -125,6 +125,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options, 'action');
         context.source = this.action.toObject(true);
+        context.action = this.action;
 
         context.summons = [];
         for (const summon of context.source.summon ?? []) {
