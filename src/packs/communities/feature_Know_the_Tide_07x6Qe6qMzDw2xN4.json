@@ -9,13 +9,47 @@
     "resource": {
       "type": "simple",
       "value": 0,
-      "max": "",
-      "icon": "",
-      "recovery": null,
+      "max": "@system.levelData.level.current",
+      "icon": "fa-solid fa-water",
+      "recovery": "session",
       "diceStates": {},
       "dieFaces": "d4"
     },
-    "actions": {},
+    "actions": {
+      "tFlus34KotJjHfTe": {
+        "type": "effect",
+        "_id": "tFlus34KotJjHfTe",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [
+          {
+            "trigger": "fearRoll",
+            "triggeringActorType": "self",
+            "command": "const { max, value } = this.item.system.resource;\nconst maxValue = actor.system.levelData.level.current;\nconst afterUpdate = value+1;\nif (afterUpdate > maxValue) return;\n\nui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.knowTheTide'));\nreturn { updates: [{\n  key: 'resource',\n  itemId: this.item.id,\n  target: this.item,\n  value: 1,\n}]};"
+          }
+        ],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Know The Tide",
+        "range": ""
+      }
+    },
     "originItemType": null,
     "subType": null,
     "originId": null,

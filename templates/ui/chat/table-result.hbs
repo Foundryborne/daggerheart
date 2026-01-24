@@ -1,0 +1,17 @@
+<div class="table-draw" data-table-id="{{table.id}}">
+    {{#if flavor}}<div class="table-flavor">{{flavor}}</div>{{/if}}
+
+    {{#if description}}
+        <div class="table-description {{#if flavor}}flavor-spaced{{/if}}">{{{description}}}</div>
+    {{/if}}
+    {{{rollHTML}}}
+
+    <ul class="table-results">
+        {{#each results as |result|}}
+            <li class="flexrow" data-result-id="{{result.id}}">
+                <img src="{{result.icon}}">
+                {{{result.details}}}
+            </li>
+        {{/each}}
+    </ul>
+</div>

@@ -27,7 +27,7 @@ const resistanceField = (resistanceLabel, immunityLabel, reductionLabel) =>
     });
 
 /* Common rules applying to Characters and Adversaries */
-export const commonActorRules = (extendedData = { damageReduction: {} }) => ({
+export const commonActorRules = (extendedData = { damageReduction: {}, attack: { damage: {} } }) => ({
     conditionImmunities: new fields.SchemaField({
         hidden: new fields.BooleanField({ initial: false }),
         restrained: new fields.BooleanField({ initial: false }),
@@ -41,7 +41,23 @@ export const commonActorRules = (extendedData = { damageReduction: {} }) => ({
             magical: new fields.NumberField({ initial: 0, min: 0 }),
             physical: new fields.NumberField({ initial: 0, min: 0 })
         }),
-        ...extendedData.damageReduction
+        ...(extendedData.damageReduction ?? {})
+    }),
+    attack: new fields.SchemaField({
+        ...extendedData.attack,
+        damage: new fields.SchemaField({
+            hpDamageMultiplier: new fields.NumberField({
+                required: true,
+                nullable: false,
+                initial: 1
+            }),
+            hpDamageTakenMultiplier: new fields.NumberField({
+                required: true,
+                nullable: false,
+                initial: 1
+            }),
+            ...(extendedData.attack?.damage ?? {})
+        })
     })
 });
 

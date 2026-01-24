@@ -99,11 +99,14 @@ export default class D20Roll extends DHRoll {
 
         this.options.roll.modifiers = this.applyBaseBonus();
 
+        const actorExperiences = this.options.roll.companionRoll
+            ? (this.options.data?.companion?.system.experiences ?? {})
+            : (this.options.data.system?.experiences ?? {});
         this.options.experiences?.forEach(m => {
-            if (this.options.data.system?.experiences?.[m])
+            if (actorExperiences[m])
                 this.options.roll.modifiers.push({
-                    label: this.options.data.system.experiences[m].name,
-                    value: this.options.data.system.experiences[m].value
+                    label: actorExperiences[m].name,
+                    value: actorExperiences[m].value
                 });
         });
 

@@ -60,6 +60,9 @@ CONFIG.Canvas.layers.tokens.layerClass = DhTokenLayer;
 
 CONFIG.MeasuredTemplate.objectClass = placeables.DhMeasuredTemplate;
 
+CONFIG.RollTable.documentClass = documents.DhRollTable;
+CONFIG.RollTable.resultTemplate = 'systems/daggerheart/templates/ui/chat/table-result.hbs';
+
 CONFIG.Scene.documentClass = documents.DhScene;
 
 CONFIG.Token.documentClass = documents.DhToken;
@@ -107,7 +110,7 @@ Hooks.once('init', () => {
             type: game.i18n.localize(typePath)
         });
 
-    const { Items, Actors } = foundry.documents.collections;
+    const { Items, Actors, RollTables } = foundry.documents.collections;
     Items.unregisterSheet('core', foundry.applications.sheets.ItemSheetV2);
     Items.registerSheet(SYSTEM.id, applications.sheets.items.Ancestry, {
         types: ['ancestry'],
@@ -190,6 +193,12 @@ Hooks.once('init', () => {
         types: ['party'],
         makeDefault: true,
         label: sheetLabel('TYPES.Actor.party')
+    });
+
+    RollTables.unregisterSheet('core', foundry.applications.sheets.RollTableSheet);
+    RollTables.registerSheet(SYSTEM.id, applications.sheets.rollTables.RollTableSheet, {
+        types: ['base'],
+        makeDefault: true
     });
 
     DocumentSheetConfig.unregisterSheet(
@@ -300,6 +309,7 @@ Hooks.on('chatMessage', (_, message) => {
               ? CONFIG.DH.ACTIONS.advantageState.disadvantage.value
               : undefined;
         const difficulty = rollCommand.difficulty;
+        const grantResources = Boolean(rollCommand.grantResources);
 
         const target = getCommandTarget({ allowNull: true });
         const title =
@@ -317,7 +327,8 @@ Hooks.on('chatMessage', (_, message) => {
             title,
             label: game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll'),
             actionType: null,
-            advantage
+            advantage,
+            grantResources
         });
         return false;
     }

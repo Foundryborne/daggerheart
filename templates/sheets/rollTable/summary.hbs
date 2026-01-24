@@ -1,0 +1,22 @@
+<section class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    {{formGroup fields.description value=source.description rootId=rootId}}
+    <fieldset class="formulas-section">
+        <legend>{{localize "DAGGERHEART.ROLLTABLES.formula"}}</legend>
+
+        <div class="formulas-container">
+            <span>{{localize "DAGGERHEART.ROLLTABLES.FIELDS.formulaName.label"}}</span>
+            <span>{{localize "Formula Roll"}}</span>
+            <span></span>
+            <input type="text" value="{{@root.formulaName}}" class="system-update-field" data-path="formulaName" />
+            {{formInput fields.formula value=source.formula placeholder=formulaPlaceholder rootId=rootId}}
+            <button class="formula-button" data-action="addFormula"><i class="fa-solid fa-plus"></i></button>
+            {{#each @root.altFormula as | formula key |}}
+                <input type="text" value="{{formula.name}}" class="system-update-field" data-path="{{concat "altFormula." key ".name"}}" />
+                <input type="text" value="{{formula.formula}}" class="system-update-field" data-path="{{concat "altFormula." key ".formula"}}" />
+                <a class="formula-button" data-action="removeFormula" data-key="{{key}}"><i class="fa-solid fa-trash"></i></a>
+            {{/each}}
+        </div>
+    </fieldset>
+    {{formGroup fields.replacement value=source.replacement rootId=rootId}}
+    {{formGroup fields.displayRoll value=source.displayRoll rootId=rootId}}
+</section>

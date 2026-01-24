@@ -147,7 +147,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         return await foundry.applications.ux.TextEditor.implementation.enrichHTML(fullDescription, {
             relativeTo: this,
             rollData: this.getRollData(),
-            secrets: this.isOwner
+            secrets: this.parent.isOwner
         });
     }
 

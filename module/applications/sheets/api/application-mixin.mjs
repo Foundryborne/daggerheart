@@ -600,7 +600,7 @@ export default function DHApplicationMixin(Base) {
                     {
                         relativeTo: isAction ? doc.parent : doc,
                         rollData: doc.getRollData?.(),
-                        secrets: isAction ? doc.parent.isOwner : doc.isOwner
+                        secrets: isAction ? doc.parent.parent.isOwner : doc.isOwner
                     }
                 );
             }

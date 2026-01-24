@@ -253,34 +253,34 @@ export default class DhCharacter extends BaseDataActor {
                             hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.increasePerArmorMark.hint'
                         }),
                         disabledArmor: new fields.BooleanField({ intial: false })
+                    },
+                    attack: {
+                        damage: {
+                            diceIndex: new fields.NumberField({
+                                integer: true,
+                                min: 0,
+                                max: 5,
+                                initial: 0,
+                                label: 'DAGGERHEART.GENERAL.Rules.attack.damage.dice.label',
+                                hint: 'DAGGERHEART.GENERAL.Rules.attack.damage.dice.hint'
+                            }),
+                            bonus: new fields.NumberField({
+                                required: true,
+                                initial: 0,
+                                min: 0,
+                                label: 'DAGGERHEART.GENERAL.Rules.attack.damage.bonus.label'
+                            })
+                        },
+                        roll: new fields.SchemaField({
+                            trait: new fields.StringField({
+                                required: true,
+                                choices: CONFIG.DH.ACTOR.abilities,
+                                nullable: true,
+                                initial: null,
+                                label: 'DAGGERHEART.GENERAL.Rules.attack.roll.trait.label'
+                            })
+                        })
                     }
-                }),
-                attack: new fields.SchemaField({
-                    damage: new fields.SchemaField({
-                        diceIndex: new fields.NumberField({
-                            integer: true,
-                            min: 0,
-                            max: 5,
-                            initial: 0,
-                            label: 'DAGGERHEART.GENERAL.Rules.attack.damage.dice.label',
-                            hint: 'DAGGERHEART.GENERAL.Rules.attack.damage.dice.hint'
-                        }),
-                        bonus: new fields.NumberField({
-                            required: true,
-                            initial: 0,
-                            min: 0,
-                            label: 'DAGGERHEART.GENERAL.Rules.attack.damage.bonus.label'
-                        })
-                    }),
-                    roll: new fields.SchemaField({
-                        trait: new fields.StringField({
-                            required: true,
-                            choices: CONFIG.DH.ACTOR.abilities,
-                            nullable: true,
-                            initial: null,
-                            label: 'DAGGERHEART.GENERAL.Rules.attack.roll.trait.label'
-                        })
-                    })
                 }),
                 dualityRoll: new fields.SchemaField({
                     defaultHopeDice: new fields.NumberField({
@@ -368,7 +368,7 @@ export default class DhCharacter extends BaseDataActor {
         const modifiers = subClasses
             ?.map(sc => ({ ...this.traits[sc.system.spellcastingTrait], key: sc.system.spellcastingTrait }))
             .filter(x => x);
-        return modifiers.sort((a, b) => a.value - b.value)[0];
+        return modifiers.sort((a, b) => (b.value ?? 0) - (a.value ?? 0))[0];
     }
 
     get spellcastModifier() {
@@ -549,7 +549,18 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     get deathMoveViable() {
-        return this.resources.hitPoints.max > 0 && this.resources.hitPoints.value >= this.resources.hitPoints.max;
+        const { characterDefault } = game.settings.get(
+            CONFIG.DH.id,
+            CONFIG.DH.SETTINGS.gameSettings.Automation
+        ).defeated;
+        const deathMoveOutcomeStatuses = Object.keys(CONFIG.DH.GENERAL.defeatedConditionChoices).filter(
+            key => key !== characterDefault
+        );
+        const deathMoveNotResolved = this.parent.statuses.every(status => !deathMoveOutcomeStatuses.includes(status));
+
+        const allHitPointsMarked =
+            this.resources.hitPoints.max > 0 && this.resources.hitPoints.value >= this.resources.hitPoints.max;
+        return deathMoveNotResolved && allHitPointsMarked;
     }
 
     get armorApplicableDamageTypes() {
@@ -671,6 +682,8 @@ export default class DhCharacter extends BaseDataActor {
                     }
                 }
             }
+
+            this.companion.system.attack.roll.bonus = this.traits.instinct.value;
         }
 
         this.resources.hope.value = Math.min(baseHope, this.resources.hope.max);

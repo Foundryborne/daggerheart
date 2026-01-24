@@ -1,7 +1,7 @@
 {
-  "name": "Table of Random Objectives",
+  "name": "Random Objectives",
   "img": "icons/sundries/documents/document-torn-diagram-tan.webp",
-  "description": "<p>Layering Goals Other than Attrition into Combat</p>",
+  "description": "",
   "results": [
     {
       "type": "text",
@@ -311,7 +311,20 @@
     "default": 0,
     "Bgvu4A6AMkRFOTGR": 3
   },
-  "flags": {},
+  "flags": {
+    "daggerheart": {
+      "formulaName": "Roll Formula",
+      "altFormula": {},
+      "activeAltFormula": null,
+      "flags": {
+        "daggerheart": {
+          "formulaName": "Roll Formula",
+          "altFormula": {},
+          "activeAltFormula": null
+        }
+      }
+    }
+  },
   "formula": "1d12",
   "_id": "I5L1dlgxXTNrCCkL",
   "sort": 400000,

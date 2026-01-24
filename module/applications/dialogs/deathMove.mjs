@@ -54,10 +54,9 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
 
         if (!config.roll.fate) return;
 
+        let returnMessage = game.i18n.localize('DAGGERHEART.UI.Chat.deathMove.avoidScar');
         if (config.roll.fate.value <= this.actor.system.levelData.level.current) {
-            // apply scarring - for now directly apply - later add a button.
             const newScarAmount = this.actor.system.scars + 1;
-
             await this.actor.update({
                 system: {
                     scars: newScarAmount
@@ -65,13 +64,15 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
             });
 
             if (newScarAmount >= this.actor.system.resources.hope.max) {
+                await this.actor.setDeathMoveDefeated(CONFIG.DH.GENERAL.defeatedConditionChoices.dead.id);
                 return game.i18n.format('DAGGERHEART.UI.Chat.deathMove.journeysEnd', { scars: newScarAmount });
             }
 
-            return game.i18n.localize('DAGGERHEART.UI.Chat.deathMove.gainScar');
+            returnMessage = game.i18n.localize('DAGGERHEART.UI.Chat.deathMove.gainScar');
         }
 
-        return game.i18n.localize('DAGGERHEART.UI.Chat.deathMove.avoidScar');
+        await this.actor.setDeathMoveDefeated(CONFIG.DH.GENERAL.defeatedConditionChoices.unconscious.id);
+        return returnMessage;
     }
 
     async handleRiskItAll() {
@@ -84,6 +85,7 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
             label: game.i18n.localize('DAGGERHEART.GENERAL.dualityDice'),
             actionType: null,
             advantage: null,
+            grantResources: false,
             customConfig: { skips: { resources: true, reaction: true } }
         });
 
@@ -118,6 +120,7 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
         }
 
         if (config.roll.result.duality == -1) {
+            await this.actor.setDeathMoveDefeated(CONFIG.DH.GENERAL.defeatedConditionChoices.dead.id);
             chatMessage = game.i18n.localize('DAGGERHEART.UI.Chat.deathMove.riskItAllFailure');
         }
 
@@ -141,6 +144,7 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
             }
         ]);
 
+        await this.actor.setDeathMoveDefeated(CONFIG.DH.GENERAL.defeatedConditionChoices.dead.id);
         return game.i18n.localize('DAGGERHEART.UI.Chat.deathMove.blazeOfGlory');
     }
 

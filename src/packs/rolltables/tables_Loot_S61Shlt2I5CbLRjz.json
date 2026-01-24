@@ -1,7 +1,7 @@
 {
   "name": "Loot",
   "img": "icons/commodities/treasure/brooch-gold-ruby.webp",
-  "description": "<p>To generate a random item, choose a rarity, roll the designated dice, and match the total to the item in the table: </p><ul><li><p> Common: 1d12 or 2d12 </p></li><li><p>Uncommon: 2d12 or 3d12 </p></li><li><p>Rare: 3d12 or 4d12 </p></li><li><p>Legendary: 4d12 or 5d12</p></li></ul>",
+  "description": "",
   "results": [
     {
       "type": "document",
@@ -1511,8 +1511,27 @@
     "default": 0,
     "Bgvu4A6AMkRFOTGR": 3
   },
-  "flags": {},
-  "formula": "1d60",
+  "flags": {
+    "daggerheart": {
+      "activeAltFormula": "",
+      "formulaName": "Common",
+      "altFormula": {
+        "hJJtajaMk14bYM4X": {
+          "name": "Uncommon",
+          "formula": "3d12"
+        },
+        "yDVeXdKpG7LzjHWa": {
+          "name": "Rare",
+          "formula": "4d12"
+        },
+        "qPHNIuUgWAHauI6V": {
+          "name": "Legendary",
+          "formula": "5d12"
+        }
+      }
+    }
+  },
+  "formula": "2d12",
   "_id": "S61Shlt2I5CbLRjz",
   "sort": 200000,
   "_key": "!tables!S61Shlt2I5CbLRjz"
