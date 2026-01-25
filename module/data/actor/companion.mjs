@@ -131,7 +131,7 @@ export default class DhCompanion extends BaseDataActor {
                         if (selection.data[0] === 'damage') {
                             this.attack.damage.parts[0].value.dice = adjustDice(this.attack.damage.parts[0].value.dice);
                         } else {
-                            this.attack.range = adjustRange(this.attack.range);
+                            this.attack.range = adjustRange(this.attack.range).id;
                         }
                         break;
                     case 'stress':
