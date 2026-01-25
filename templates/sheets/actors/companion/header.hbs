@@ -31,7 +31,7 @@
             <h3 class='label'>
                 {{localize 'DAGGERHEART.GENERAL.level'}}
                 <div class="input-section">
-                    {{#if document.system.levelData.canLevelUp}}
+                    {{#if document.system.canLevelUp}}
                         <button
                             type="button"
                             class="level-button glow" data-tooltip="{{localize "DAGGERHEART.ACTORS.Character.levelUp"}}"
@@ -41,7 +41,7 @@
                         </button>
                     {{/if}}
                     <span {{#unless document.system.partner}}data-tooltip="{{localize "DAGGERHEART.UI.Tooltip.companionPartnerLevelBlock"}}"{{/unless}}>
-                        <input type="text" data-dtype="Number" class="level-value" value={{document.system.levelData.level.changed}} {{#if document.system.needsCharacterSetup}}disabled{{/if}} {{disabled (not document.system.partner)}} />
+                        {{document.system.levelData.level.changed}}
                     </span>
                 </div>
             </h3>

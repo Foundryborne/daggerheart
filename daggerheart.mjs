@@ -3,13 +3,15 @@ import * as applications from './module/applications/_module.mjs';
 import * as data from './module/data/_module.mjs';
 import * as models from './module/data/_module.mjs';
 import * as documents from './module/documents/_module.mjs';
+import * as collections from './module/documents/collections/_module.mjs';
 import * as dice from './module/dice/_module.mjs';
 import * as fields from './module/data/fields/_module.mjs';
 import RegisterHandlebarsHelpers from './module/helpers/handlebarsHelper.mjs';
 import { enricherConfig, enricherRenderSetup } from './module/enrichers/_module.mjs';
 import { getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs';
-import { BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll } from './module/dice/_module.mjs';
+import { BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll, FateRoll } from './module/dice/_module.mjs';
 import { enrichedDualityRoll } from './module/enrichers/DualityRollEnricher.mjs';
+import { enrichedFateRoll, getFateTypeData } from './module/enrichers/FateRollEnricher.mjs';
 import {
     handlebarsRegistration,
     runMigrations,
@@ -24,16 +26,18 @@ import TokenManager from './module/documents/tokenManager.mjs';
 CONFIG.DH = SYSTEM;
 CONFIG.TextEditor.enrichers.push(...enricherConfig);
 
-CONFIG.Dice.rolls = [BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll];
+CONFIG.Dice.rolls = [BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll, FateRoll];
 CONFIG.Dice.daggerheart = {
     DHRoll: DHRoll,
     DualityRoll: DualityRoll,
     D20Roll: D20Roll,
-    DamageRoll: DamageRoll
+    DamageRoll: DamageRoll,
+    FateRoll: FateRoll
 };
 
 CONFIG.Actor.documentClass = documents.DhpActor;
 CONFIG.Actor.dataModels = models.actors.config;
+CONFIG.Actor.collection = collections.DhActorCollection;
 
 CONFIG.Item.documentClass = documents.DHItem;
 CONFIG.Item.dataModels = models.items.config;
@@ -55,6 +59,9 @@ CONFIG.Canvas.layers.templates.layerClass = placeables.DhTemplateLayer;
 CONFIG.Canvas.layers.tokens.layerClass = DhTokenLayer;
 
 CONFIG.MeasuredTemplate.objectClass = placeables.DhMeasuredTemplate;
+
+CONFIG.RollTable.documentClass = documents.DhRollTable;
+CONFIG.RollTable.resultTemplate = 'systems/daggerheart/templates/ui/chat/table-result.hbs';
 
 CONFIG.Scene.documentClass = documents.DhScene;
 
@@ -103,7 +110,7 @@ Hooks.once('init', () => {
             type: game.i18n.localize(typePath)
         });
 
-    const { Items, Actors } = foundry.documents.collections;
+    const { Items, Actors, RollTables } = foundry.documents.collections;
     Items.unregisterSheet('core', foundry.applications.sheets.ItemSheetV2);
     Items.registerSheet(SYSTEM.id, applications.sheets.items.Ancestry, {
         types: ['ancestry'],
@@ -186,6 +193,12 @@ Hooks.once('init', () => {
         types: ['party'],
         makeDefault: true,
         label: sheetLabel('TYPES.Actor.party')
+    });
+
+    RollTables.unregisterSheet('core', foundry.applications.sheets.RollTableSheet);
+    RollTables.registerSheet(SYSTEM.id, applications.sheets.rollTables.RollTableSheet, {
+        types: ['base'],
+        makeDefault: true
     });
 
     DocumentSheetConfig.unregisterSheet(
@@ -296,13 +309,15 @@ Hooks.on('chatMessage', (_, message) => {
               ? CONFIG.DH.ACTIONS.advantageState.disadvantage.value
               : undefined;
         const difficulty = rollCommand.difficulty;
+        const grantResources = Boolean(rollCommand.grantResources);
 
         const target = getCommandTarget({ allowNull: true });
-        const title = traitValue
-            ? game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
-                  ability: game.i18n.localize(SYSTEM.ACTOR.abilities[traitValue].label)
-              })
-            : game.i18n.localize('DAGGERHEART.GENERAL.duality');
+        const title =
+            (flavor ?? traitValue)
+                ? game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
+                      ability: game.i18n.localize(SYSTEM.ACTOR.abilities[traitValue].label)
+                  })
+                : game.i18n.localize('DAGGERHEART.GENERAL.duality');
 
         enrichedDualityRoll({
             reaction,
@@ -312,7 +327,36 @@ Hooks.on('chatMessage', (_, message) => {
             title,
             label: game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll'),
             actionType: null,
-            advantage
+            advantage,
+            grantResources
+        });
+        return false;
+    }
+
+    if (message.startsWith('/fr')) {
+        const result =
+            message.trim().toLowerCase() === '/fr' ? { result: {} } : rollCommandToJSON(message.replace(/\/fr\s?/, ''));
+
+        if (!result) {
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateParsing'));
+            return false;
+        }
+
+        const { result: rollCommand, flavor } = result;
+        const fateTypeData = getFateTypeData(rollCommand?.type);
+
+        if (!fateTypeData)
+            return ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateTypeParsing'));
+
+        const { value: fateType, label: fateTypeLabel } = fateTypeData;
+        const target = getCommandTarget({ allowNull: true });
+        const title = flavor ?? game.i18n.localize('DAGGERHEART.GENERAL.fateRoll');
+
+        enrichedFateRoll({
+            target,
+            title,
+            label: fateTypeLabel,
+            fateType
         });
         return false;
     }
@@ -381,8 +425,8 @@ Hooks.on('targetToken', () => {
     debouncedRangeEffectCall();
 });
 
-Hooks.on('refreshToken', (_, options) => {
-    if (options.refreshPosition) {
+Hooks.on('refreshToken', (token, options) => {
+    if (options.refreshPosition && !token._original) {
         debouncedRangeEffectCall();
     }
 });

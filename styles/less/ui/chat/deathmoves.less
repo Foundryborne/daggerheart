@@ -1,0 +1,152 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+@import '../../utils/spacing.less';
+
+#interface.theme-light {
+    .daggerheart.chat.death-moves {
+        .death-moves-list .death-move {
+            &:hover {
+                background: @dark-blue-10;
+            }
+
+            .death-label {
+                border-bottom: 1px solid @dark-blue;
+
+                .header-label .title {
+                    color: @dark-blue;
+                }
+                .header-label .label {
+                    color: @dark;
+                }
+            }
+
+            .fa-chevron-down {
+                color: @dark-blue;
+            }
+        }
+
+        .description {
+            color: @dark;
+        }
+
+        .result {
+            color: @dark;
+        }
+
+        .risk-it-all-button {
+            color: @dark;
+        }
+    }
+}
+
+.daggerheart.chat {
+    &.death-moves {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        details[open] {
+            .fa-chevron-down {
+                transform: rotate(180deg);
+                transition: all 0.3s ease;
+            }
+        }
+
+        .death-moves-list {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: 100%;
+
+            .fa-chevron-down {
+                transition: all 0.3s ease;
+                margin-left: auto;
+            }
+
+            .death-move {
+                width: 100%;
+
+                .death-label {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    border-bottom: 1px solid @golden;
+                    margin: 0 8px;
+                    padding-bottom: 5px;
+                    width: -webkit-fill-available;
+
+                    &:hover {
+                        background: light-dark(@dark-blue-10, @golden-10);
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                    }
+
+                    .death-image {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 3px;
+                    }
+
+                    .header-label {
+                        padding: 8px;
+                        .title {
+                            font-size: var(--font-size-16);
+                            color: @golden;
+                            font-weight: 700;
+                        }
+                        .label {
+                            font-size: var(--font-size-12);
+                            color: @beige;
+                            margin: 0;
+                        }
+                    }
+                }
+
+                .description {
+                    padding: 8px;
+                }
+            }
+
+            .action-use-button-parent {
+                width: 100%;
+
+                .action-use-target {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 4px;
+                    width: 100%;
+                    padding: 4px 8px 10px 40px;
+                    font-size: var(--font-size-12);
+
+                    label {
+                        font-weight: bold;
+                    }
+
+                    select {
+                        flex: 1;
+                    }
+                }
+            }
+
+            .action-use-button {
+                width: -webkit-fill-available;
+                margin: 0 8px;
+                font-weight: 600;
+                height: 40px;
+            }
+        }
+
+        .result {
+            padding: 8px;
+            font-weight: bold;
+        }
+
+        .risk-it-all-button {
+                width: -webkit-fill-available;
+                margin: 0 8px;
+                font-weight: 600;
+                height: 40px;
+        }
+    }
+}

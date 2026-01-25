@@ -51,6 +51,27 @@ export default class DhScene extends Scene {
         }
     }
 
+    async _preUpdate(changes, options, user) {
+        const allowed = await super._preUpdate(changes, options, user);
+        if (allowed === false) return false;
+
+        if (changes.flags?.daggerheart) {
+            if (this._source.flags.daggerheart) {
+                const unregisterTriggerData = this._source.flags.daggerheart.sceneEnvironments.reduce(
+                    (acc, env) => {
+                        if (!changes.flags.daggerheart.sceneEnvironments.includes(env)) acc.sceneEnvironments.push(env);
+
+                        return acc;
+                    },
+                    { ...this._source.flags.daggerheart, sceneEnvironments: [] }
+                );
+                game.system.registeredTriggers.unregisterSceneEnvironmentTriggers(unregisterTriggerData);
+            }
+
+            game.system.registeredTriggers.registerSceneEnvironmentTriggers(changes.flags.daggerheart);
+        }
+    }
+
     _onDelete(options, userId) {
         super._onDelete(options, userId);
 

@@ -1,12 +1,12 @@
 <aside class="character-sidebar-sheet">
     <div class="portrait {{#if isDeath}}death-roll{{/if}}">
         <img src="{{document.img}}" alt="{{document.name}}" data-action='editImage' data-edit="img">
-        {{#if document.system.class.subclass.system.spellcastingTrait}}
+        {{#if document.system.spellcastModifierTrait.key}}
             <div class="icons-list">
                 <span class="spellcast-icon {{#if isDeath}}no-label{{/if}}">
                     <span class="spellcast-label">
                         {{localize "DAGGERHEART.ITEMS.Subclass.spellcastingTrait"}}: 
-                        {{localize (concat 'DAGGERHEART.CONFIG.Traits.' document.system.class.subclass.system.spellcastingTrait '.short')}}
+                        {{localize (concat 'DAGGERHEART.CONFIG.Traits.' document.system.spellcastModifierTrait.key '.short')}}
                     </span>
                     <i class="fa-solid fa-wand-sparkles"></i>
                 </span>

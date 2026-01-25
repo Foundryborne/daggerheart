@@ -237,10 +237,13 @@
                     "confirmText": "Would you like to level up your companion {name} by {levelChange} levels at this time? (You can do it manually later)"
                 },
                 "viewLevelups": "View Levelups",
+                "resetCharacter": "Reset Character",
                 "viewParty": "View Party",
                 "InvalidOldCharacterImportTitle": "Old Character Import",
                 "InvalidOldCharacterImportText": "Character data exported prior to system version 1.1 will not generate a complete character. Do you wish to continue?",
-                "cancelBeastform": "Cancel Beastform"
+                "cancelBeastform": "Cancel Beastform",
+                "resetCharacterConfirmationTitle": "Reset Character",
+                "resetCharacterConfirmationContent": "You are reseting all character data except name and portrait. Are you sure?"
             },
             "Companion": {
                 "FIELDS": {
@@ -314,6 +317,8 @@
                 "selectPrimaryWeapon": "Select Primary Weapon",
                 "selectSecondaryWeapon": "Select Secondary Weapon",
                 "selectSubclass": "Select Subclass",
+                "setupSkipTitle": "Skipping Character Setup",
+                "setupSkipContent": "You are skipping the Character Setup by adding this manually. The character setup is the blinking arrows in the top-right. Are you sure you want to continue?",
                 "startingItems": "Starting Items",
                 "story": "Story",
                 "storyExplanation": "Select which background and connection prompts you want to copy into your character's background.",
@@ -324,6 +329,12 @@
                 "suggestedWeapons": "Suggested Weapon",
                 "title": "{actor} - Character Setup",
                 "traitIncreases": "Trait Increases"
+            },
+            "CharacterReset": {
+                "title": "Reset Character",
+                "alwaysDeleteSection": "Deleted Data",
+                "optionalDeleteSection": "Optional Data",
+                "headerTitle": "Select which data you'd like to keep"
             },
             "CombatTracker": {
                 "combatStarted": "Active",
@@ -477,7 +488,9 @@
                 "tokenHUD": {
                     "genericEffects": "Foundry Effects",
                     "depositPartyTokens": "Deposit Party Tokens",
-                    "retrievePartyTokens": "Retrieve Party Tokens"
+                    "retrievePartyTokens": "Retrieve Party Tokens",
+                    "depositCompanionTokens": "Deposit Companion Token",
+                    "retrieveCompanionTokens": "Retrieve Companion Token"
                 }
             },
             "ImageSelect": {
@@ -614,6 +627,13 @@
             "ResourceDice": {
                 "title": "{name} Resource",
                 "rerollDice": "Reroll Dice"
+            },
+            "RiskItAllDialog": {
+                "title": "{name} - Risk It All",
+                "subtitle": "Clear Stress and Hit Points",
+                "remainingTitle": "Remaining Points",
+                "clearResource": "Clear {resource}",
+                "finalTitle": "Final Character Resources"
             },
             "TagTeamSelect": {
                 "title": "Tag Team Roll",
@@ -962,6 +982,10 @@
                 "outsideRange": "Outside Range"
             },
             "Condition": {
+                "deathMove": {
+                    "name": "Death Move",
+                    "description": "The character is about to make a Death Move"
+                },
                 "dead": {
                     "name": "Dead",
                     "description": "The character is dead"
@@ -1013,15 +1037,15 @@
             "DeathMoves": {
                 "avoidDeath": {
                     "name": "Avoid Death",
-                    "description": "You drop unconscious temporarily and work with the GM to describe how the situation gets much worse because of it. Then roll your Fear die; if its value is equal to or under your Level, take a Scar."
+                    "description": "Your character avoids death and faces the consequences. They temporarily drop unconscious, and then you work with the GM to describe how the situation worsens. While unconscious, your character can't move or act, and they can't be targeted by an attack. They return to consciousness when an ally clears 1 or more of their marked Hit Points or when the party finishes a long rest. After your character falls unconscious, roll your Hope Die. If its value is equal to or less than your character's level, they gain a scar: permanently cross out a Hope slot and work with the GM to determine its lasting narrative impact and how, if possible, it can be restored. If you ever cross out your last Hope slot, your character's journey ends."
                 },
                 "riskItAll": {
                     "name": "Risk It All",
-                    "description": "Roll your Duality Dice. If Hope is higher, you stay on your feet and clear an amount of Hit Points and/or Stress equal to the value of the Hope die (divide the Hope die value up between these however you’d prefer). If your Fear die is higher, you cross through the veil of death. If the Duality Dice are tied, you stay on your feet and clear all Hit Points and Stress."
+                    "description": "Roll your Duality Dice. If the Hope Die is higher, your character stays on their feet and clears a number of Hit Points or Stress equal to the value of the Hope Die (you can divide the Hope Die value between Hit Points and Stress however you'd prefer). If the Fear Die is higher, your character crosses through the veil of death. If the Duality Dice show matching results, your character stays up and clears all Hit Points and Stress."
                 },
                 "blazeOfGlory": {
                     "name": "Blaze Of Glory",
-                    "description": "With Blaze of Glory, the player is accepting death for the character. Take one action (at GM discretion), which becomes an automatic critical success, then cross through the veil of death."
+                    "description": "Your character embraces death and goes out in a blaze of glory. Take one final action. It automatically critically succeeds (with GM approval), and then you cross through the veil of death. NOTE: A Blaze of Glory effect has been added to your character. Any Duality Roll will automatically be a critical."
                 }
             },
             "DomainCardTypes": {
@@ -2062,6 +2086,7 @@
                 "description": "Description",
                 "main": "Data",
                 "information": "Information",
+                "itemFeatures": "Item Features",
                 "notes": "Notes",
                 "inventory": "Inventory",
                 "loadout": "Loadout",
@@ -2137,6 +2162,7 @@
             "dropActorsHere": "Drop Actors here",
             "dropFeaturesHere": "Drop Features here",
             "duality": "Duality",
+            "dualityDice": "Duality Dice",
             "dualityRoll": "Duality Roll",
             "enabled": "Enabled",
             "evasion": "Evasion",
@@ -2146,11 +2172,14 @@
                 "plural": "Experiences"
             },
             "failure": "Failure",
+            "fate": "Fate",
+            "fateRoll": "Fate Roll",
             "fear": "Fear",
             "features": "Features",
             "formula": "Formula",
             "general": "General",
             "gm": "GM",
+            "guaranteedCriticalSuccess": "Guaranteed Critical Success",
             "healing": "Healing",
             "healingRoll": "Healing Roll",
             "hit": {
@@ -2194,6 +2223,7 @@
                 "single": "Player",
                 "plurial": "Players"
             },
+            "portrait": "Portrait",
             "proficiency": "Proficiency",
             "quantity": "Quantity",
             "range": "Range",
@@ -2210,6 +2240,7 @@
             "rollWith": "{roll} Roll",
             "save": "Save",
             "scalable": "Scalable",
+            "scars": "Scars",
             "situationalBonus": "Situational Bonus",
             "spent": "Spent",
             "step": "Step",
@@ -2352,6 +2383,12 @@
                 "secondaryWeapon": "Secondary Weapon"
             }
         },
+        "ROLLTABLES": {
+            "FIELDS": {
+                "formulaName": { "label": "Formula Name" }
+            },
+            "formula": "Formula"
+        },
         "SETTINGS": {
             "Appearance": {
                 "FIELDS": {
@@ -2418,7 +2455,11 @@
                         "overlay": { "label": "Overlay Effect" },
                         "characterDefault": { "label": "Character Default Defeated Status" },
                         "adversaryDefault": { "label": "Adversary Default Defeated Status" },
-                        "companionDefault": { "label": "Companion Default Defeated Status" }
+                        "companionDefault": { "label": "Companion Default Defeated Status" },
+                        "deathMove": { "label": "Death Move" },
+                        "dead": { "label": "Dead" },
+                        "defeated": { "label": "Defeated" },
+                        "unconscious": { "label": "Unconscious" }
                     },
                     "hopeFear": {
                         "label": "Hope & Fear",
@@ -2450,10 +2491,6 @@
                     "resourceScrollTexts": {
                         "label": "Show Resource Change Scrolltexts",
                         "hint": "When a character is damaged, uses armor etc, a scrolling text will briefly appear by the token to signify this."
-                    },
-                    "playerCanEditSheet": {
-                        "label": "Players Can Manually Edit Character Settings",
-                        "hint": "Players are allowed to access the manual Character Settings and change their statistics beyond the rules."
                     },
                     "roll": {
                         "roll": {
@@ -2511,6 +2548,7 @@
                 "resetMovesText": "Are you sure you want to reset?",
                 "FIELDS": {
                     "maxFear": { "label": "Max Fear" },
+                    "maxHope": { "label": "Max Hope" },
                     "traitArray": { "label": "Initial Trait Modifiers" },
                     "maxLoadout": {
                         "label": "Max Cards in Loadout",
@@ -2658,7 +2696,16 @@
                     "currentTarget": "Current"
                 },
                 "deathMove": {
-                    "title": "Death Move"
+                    "title": "Death Move",
+                    "gainScar": "You gained a scar.",
+                    "avoidScar": "You have avoided a new scar.",
+                    "journeysEnd": "You have {scars} Scars and have crossed out your last Hope slot. Your character's journey ends.",
+                    "riskItAllCritical": "Critical Rolled, clearing all marked Stress and Hit Points.",
+                    "riskItAllFailure": "The fear die rolled higher. You have crossed through the veil of death.",
+                    "blazeOfGlory": "Blaze of Glory Effect Added!",
+                    "riskItAllDialogButton": "Clear Stress And Hit Points.",
+                    "riskItAllSuccessWithEnoughHope": "The Hope value is more than the marked Stress and Hit Points. Both are cleared fully.",
+                    "riskItAllSuccess": "The hope die rolled higher, clear up to {hope} Stress And Hit Points."
                 },
                 "dicePool": {
                     "title": "Dice Pool"
@@ -2780,7 +2827,9 @@
                 "noAssignedPlayerCharacter": "You have no assigned character.",
                 "noSelectedToken": "You have no selected token",
                 "onlyUseableByPC": "This can only be used with a PC token",
-                "dualityParsing": "Duality roll not properly formated",
+                "dualityParsing": "Duality roll not properly formatted",
+                "fateParsing": "Fate roll not properly formatted",
+                "fateTypeParsing": "Fate roll not properly formatted, bad fate type. Valid types are 'Hope' and 'Fear'",
                 "attributeFaulty": "The supplied Attribute doesn't exist",
                 "domainCardWrongDomain": "You don't have access to that Domain",
                 "domainCardToHighLevel": "The Domain Card is too high level to be selected",
@@ -2844,7 +2893,8 @@
                 "documentIsMissing": "The {documentType} is missing from the world.",
                 "tokenActorMissing": "{name} is missing an Actor",
                 "tokenActorsMissing": "[{names}] missing Actors",
-                "domainTouchRequirement": "This domain card requires {nr} {domain} cards in the loadout to be used"
+                "domainTouchRequirement": "This domain card requires {nr} {domain} cards in the loadout to be used",
+                "knowTheTide": "Know The Tide gained a token"
             },
             "Sidebar": {
                 "actorDirectory": {

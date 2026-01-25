@@ -105,12 +105,22 @@ export default class DamageField extends fields.SchemaField {
                 damagePromises.push(
                     actor.takeHealing(config.damage).then(updates => targetDamage.push({ token, updates }))
                 );
-            else
+            else {
+                const configDamage = foundry.utils.deepClone(config.damage);
+                const hpDamageMultiplier = config.actionActor?.system.rules.attack.damage.hpDamageMultiplier ?? 1;
+                const hpDamageTakenMultiplier = actor.system.rules.attack.damage.hpDamageTakenMultiplier;
+                if (configDamage.hitPoints) {
+                    for (const part of configDamage.hitPoints.parts) {
+                        part.total = Math.ceil(part.total * hpDamageMultiplier * hpDamageTakenMultiplier);
+                    }
+                }
+
                 damagePromises.push(
                     actor
-                        .takeDamage(config.damage, config.isDirect)
+                        .takeDamage(configDamage, config.isDirect)
                         .then(updates => targetDamage.push({ token, updates }))
                 );
+            }
         }
 
         Promise.all(damagePromises).then(async _ => {

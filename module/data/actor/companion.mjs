@@ -108,7 +108,11 @@ export default class DhCompanion extends BaseDataActor {
     get proficiency() {
         return this.partner?.system?.proficiency ?? 1;
     }
-    
+
+    get canLevelUp() {
+        return this.levelupChoicesLeft > 0;
+    }
+
     isItemValid() {
         return false;
     }
@@ -147,6 +151,17 @@ export default class DhCompanion extends BaseDataActor {
         }
     }
 
+    prepareDerivedData() {
+        /* Partner Related Setup */
+        if (this.partner) {
+            this.levelData.level.changed = this.partner.system.levelData.level.current;
+            this.levelupChoicesLeft = Object.values(this.levelData.levelups).reduce((acc, curr) => {
+                acc = Math.max(acc - curr.selections.length, 0);
+                return acc;
+            }, this.partner.system.companionData.levelupChoices);
+        }
+    }
+
     async _preUpdate(changes, options, userId) {
         const allowed = await super._preUpdate(changes, options, userId);
         if (allowed === false) return;
@@ -160,6 +175,16 @@ export default class DhCompanion extends BaseDataActor {
             for (var i = 0; i < Math.min(newExperiences.length, 2 - experiences.size); i++) {
                 const experience = newExperiences[i];
                 changes.system.experiences[experience].core = true;
+            }
+        }
+
+        /* Force partner data prep */
+        if (this.partner) {
+            if (
+                changes.system?.levelData?.level?.current !== undefined &&
+                changes.system.levelData.level.current !== this._source.levelData.level.current
+            ) {
+                this.partner.update(this.partner.toObject(), { diff: false, recursive: false });
             }
         }
     }

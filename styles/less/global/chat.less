@@ -15,6 +15,14 @@
         .message-header .message-header-main .message-sub-header-container h4 {
             color: @dark-blue;
         }
+
+        .message-content {
+            .table-draw {
+                .table-description {
+                    color: @dark;
+                }
+            }
+        }
     }
 }
 
@@ -83,12 +91,40 @@
 
             .message-content {
                 padding-bottom: 8px;
+
                 .flavor-text {
                     font-size: var(--font-size-12);
                     line-height: 20px;
                     color: light-dark(@dark, @beige);
                     text-align: center;
                     display: block;
+                }
+
+                .table-draw {
+                    .table-flavor {
+                        padding-top: 5px;
+                        padding-bottom: 0.5rem;
+                        font-size: var(--font-size-12);
+                    }
+
+                    .table-description {
+                        color: @beige;
+                        font-style: italic;
+
+                        &.flavor-spaced {
+                            padding-top: 0;
+                        }
+                    }
+
+                    .table-results {
+                        .description {
+                            flex-basis: min-content;
+
+                            > p:first-of-type {
+                                margin-top: 0;
+                            }
+                        }
+                    }
                 }
             }
         }

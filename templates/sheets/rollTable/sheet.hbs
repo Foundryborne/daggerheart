@@ -1,0 +1,49 @@
+<header class="sheet-header flexrow">
+    <img src="{{document.img}}" alt="{{localize "DOCUMENT.FIELDS.img.label"}}">
+    <h1>{{document.name}}</h1>
+    <div class="roll-table-view-formula-container">
+        {{#if usesAltFormula}}
+            <select class="system-update-field" data-path="activeAltFormula">
+                {{selectOptions this.altFormulaOptions selected=this.activeAltFormula labelAttr="name"}}
+            </select>
+        {{/if}}
+        <h4>{{selectedFormula}}</h4>
+    </div>
+    <button data-action="changeMode">
+        <i class="fa-solid fa-pen" inert></i>
+        <span>{{localize "TABLE.ACTIONS.ChangeMode.Edit"}}</span>
+    </button>
+</header>
+
+{{{descriptionHTML}}}
+
+<table class="flexcol" data-results>
+    <thead>
+        <tr class="flexrow">
+            <th class="image flexrow"></th>
+            <th class="range flexrow">{{localize "TABLE_RESULT.FIELDS.range.label"}}</th>
+            <th class="details flexrow">{{localize "TABLE_RESULT.Details"}}</th>
+            <th class="controls flexrow"></th>
+        </tr>
+    </thead>
+    <tbody class="scrollable">
+        {{#each results as |result i|}}
+        <tr class="flexrow{{#if result.drawn}} drawn{{/if}}" data-result-id="{{result.id}}">
+            <td class="image">
+                <img src="{{result.displayImg}}" alt="{{localize "TABLE_RESULT.FIELDS.img.label"}}" loading="lazy">
+            </td>
+            <td class="range">{{result.range}}</td>
+            <td class="details">
+                {{> "templates/sheets/roll-table/result-details.hbs" result=result}}
+            </td>
+            <td class="controls flexrow">
+                <button class="inline-control icon fa-solid fa-lock{{#unless result.drawn}}-open{{/unless}}"
+                        data-action="lockResult"
+                        data-tooltip aria-label="{{localize "TABLE.ACTIONS.ToggleDrawn"}}"></button>
+                <button class="inline-control icon fa-solid fa-up-from-bracket" data-action="drawSpecificResult"
+                        data-tooltip aria-label="{{localize "TABLE.ACTIONS.DrawSpecificResult"}}"></button>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

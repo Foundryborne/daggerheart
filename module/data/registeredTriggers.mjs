@@ -20,6 +20,7 @@ export default class RegisteredTriggers extends Map {
     }
 
     registerItemTriggers(item, registerOverride) {
+        if (!item.actor || !item._stats.createdTime) return;
         for (const action of item.system.actions ?? []) {
             if (!action.actor) continue;
 
@@ -71,10 +72,21 @@ export default class RegisteredTriggers extends Map {
         }
     }
 
+    unregisterSceneEnvironmentTriggers(flagSystemData) {
+        const sceneData = new game.system.api.data.scenes.DHScene(flagSystemData);
+        for (const environment of sceneData.sceneEnvironments) {
+            if (environment.pack) continue;
+            this.unregisterItemTriggers(environment.system.features);
+        }
+    }
+
     unregisterSceneTriggers(scene) {
+        this.unregisterSceneEnvironmentTriggers(scene.flags.daggerheart);
+
         for (const triggerKey of Object.keys(CONFIG.DH.TRIGGER.triggers)) {
             const existingTrigger = this.get(triggerKey);
             if (!existingTrigger) continue;
+
             const filtered = new Map();
             for (const [uuid, data] of existingTrigger.entries()) {
                 if (!uuid.startsWith(scene.uuid)) filtered.set(uuid, data);
@@ -83,14 +95,17 @@ export default class RegisteredTriggers extends Map {
         }
     }
 
+    registerSceneEnvironmentTriggers(flagSystemData) {
+        const sceneData = new game.system.api.data.scenes.DHScene(flagSystemData);
+        for (const environment of sceneData.sceneEnvironments) {
+            for (const feature of environment.system.features) {
+                if (feature) this.registerItemTriggers(feature, true);
+            }
+        }
+    }
+
     registerSceneTriggers(scene) {
-        /* TODO: Finish sceneEnvironment registration and unreg */
-        // const systemData = new game.system.api.data.scenes.DHScene(scene.flags.daggerheart);
-        // for (const environment of systemData.sceneEnvironments) {
-        //     for (const feature of environment.system.features) {
-        //         if(feature) this.registerItemTriggers(feature, true);
-        //     }
-        // }
+        this.registerSceneEnvironmentTriggers(scene.flags.daggerheart);
 
         for (const actor of scene.tokens.filter(x => x.actor).map(x => x.actor)) {
             if (actor.prototypeToken.actorLink) continue;
@@ -107,13 +122,11 @@ export default class RegisteredTriggers extends Map {
         if (!triggerSettings.enabled) return updates;
 
         const dualityTrigger = this.get(trigger);
-        if (dualityTrigger) {
-            const tokenBoundActors = ['adversary', 'environment'];
-            const triggerActors = ['character', ...tokenBoundActors];
+        if (dualityTrigger?.size) {
+            const triggerActors = ['character', 'adversary', 'environment'];
             for (let [itemUuid, { actor: actorUuid, triggeringActorType, commands }] of dualityTrigger.entries()) {
                 const actor = await foundry.utils.fromUuid(actorUuid);
                 if (!actor || !triggerActors.includes(actor.type)) continue;
-                if (tokenBoundActors.includes(actor.type) && !actor.getActiveTokens().length) continue;
 
                 const triggerData = CONFIG.DH.TRIGGER.triggers[trigger];
                 if (triggerData.usesActor && triggeringActorType !== 'any') {
