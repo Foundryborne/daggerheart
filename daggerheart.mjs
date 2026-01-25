@@ -423,8 +423,8 @@ Hooks.on('targetToken', () => {
     debouncedRangeEffectCall();
 });
 
-Hooks.on('refreshToken', (_, options) => {
-    if (options.refreshPosition) {
+Hooks.on('refreshToken', (token, options) => {
+    if (options.refreshPosition && !token._original) {
         debouncedRangeEffectCall();
     }
 });
