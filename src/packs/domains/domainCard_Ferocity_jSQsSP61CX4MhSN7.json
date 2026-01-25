@@ -41,13 +41,7 @@
         "name": "Spend Hope",
         "img": "icons/skills/melee/maneuver-sword-katana-yellow.webp",
         "range": "",
-        "triggers": [
-          {
-            "trigger": "postDamageReduction",
-            "triggeringActorType": "other",
-            "command": "/* Check if sufficient hope */\nif (this.actor.system.resources.hope.value < 2) return;\n\n/* Check if hit point damage was dealt */\nconst hpDamage = damageUpdates.find(u => u.key === CONFIG.DH.GENERAL.healingTypes.hitPoints.id);\nif (hpDamage.value < 0) return;\n\n/* Dialog to give player choice */\nconst confirmed = await foundry.applications.api.DialogV2.confirm({\n    window: { title: this.item?.name ?? '' },\n    content: game.i18n.format('DAGGERHEART.CONFIG.Triggers.triggerTexts.ferocityContent', { bonus: hpDamage.value }),\n});\n\nif (!confirmed) return;\n\n/* Create the effect */\nthis.actor.createEmbeddedDocuments('ActiveEffect', [{\n  name: this.item.name,\n  img: 'icons/skills/melee/maneuver-sword-katana-yellow.webp',\n  description: game.i18n.format('DAGGERHEART.CONFIG.Triggers.triggerTexts.ferocityEffectDescription', { bonus: hpDamage.value }),\n  changes: [{ key: 'system.evasion', mode: 2, value: hpDamage.value }]\n}]);\n\n/* Update hope */\nreturn { updates: [{ \n  originActor: this.actor, \n  updates: [{\n    key: CONFIG.DH.GENERAL.healingTypes.hope.id,\n    value: -2,\n    total: 2\n  }] \n}]}"
-          }
-        ]
+        "triggers": []
       }
     },
     "attribution": {
