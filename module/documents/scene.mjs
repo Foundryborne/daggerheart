@@ -57,7 +57,7 @@ export default class DhScene extends Scene {
 
         if (changes.flags?.daggerheart) {
             if (this._source.flags.daggerheart) {
-                const unregisterTriggerData = this._source.flags.daggerheart.sceneEnvironments.reduce(
+                const unregisterTriggerData = (this._source.flags.daggerheart.sceneEnvironments ?? []).reduce(
                     (acc, env) => {
                         if (!changes.flags.daggerheart.sceneEnvironments.includes(env)) acc.sceneEnvironments.push(env);
 
