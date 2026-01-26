@@ -90,11 +90,12 @@ export const enrichedDualityRoll = async (
         event: event ?? {},
         title: title,
         headerTitle: label,
+        actionType: reaction ? 'reaction' : null,
         roll: {
             trait: traitValue && target ? traitValue : null,
             difficulty: difficulty,
             advantage,
-            type: reaction ? 'reaction' : null
+           // type: reaction ? 'reaction' : null //not needed really but keeping it for troubleshooting
         },
         skips: {
             resources: !grantResources,

@@ -9,7 +9,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         this.roll = roll;
         this.config = config;
         this.config.experiences = [];
-        this.reactionOverride = config.actionType === 'reaction'|| config.roll?.type === 'reaction';
+        this.reactionOverride = config.actionType === 'reaction';
         this.selectedEffects = this.config.bonusEffects;
 
         if (config.source?.action) {
