@@ -35,7 +35,9 @@ export default class D20Roll extends DHRoll {
 
     get isCritical() {
         if (!this.d20._evaluated) return;
-        return this.d20.total >= this.data.system.criticalThreshold;
+
+        const criticalThreshold = this.options.actionType === 'reaction' ? 20 : this.data.system.criticalThreshold;
+        return this.d20.total >= criticalThreshold;
     }
 
     get hasAdvantage() {
@@ -97,11 +99,14 @@ export default class D20Roll extends DHRoll {
 
         this.options.roll.modifiers = this.applyBaseBonus();
 
+        const actorExperiences = this.options.roll.companionRoll
+            ? (this.options.data?.companion?.system.experiences ?? {})
+            : (this.options.data.system?.experiences ?? {});
         this.options.experiences?.forEach(m => {
-            if (this.options.data.system?.experiences?.[m])
+            if (actorExperiences[m])
                 this.options.roll.modifiers.push({
-                    label: this.options.data.system.experiences[m].name,
-                    value: this.options.data.system.experiences[m].value
+                    label: actorExperiences[m].name,
+                    value: actorExperiences[m].value
                 });
         });
 
@@ -127,13 +132,53 @@ export default class D20Roll extends DHRoll {
         const modifiers = foundry.utils.deepClone(this.options.roll.baseModifiers) ?? [];
 
         modifiers.push(
-            ...this.getBonus(`roll.${this.options.actionType}`, `${this.options.actionType?.capitalize()} Bonus`)
-        );
-        modifiers.push(
-            ...this.getBonus(`roll.${this.options.roll.type}`, `${this.options.roll.type?.capitalize()} Bonus`)
+            ...this.getBonus(
+                `system.bonuses.roll.${this.options.actionType}`,
+                `${this.options.actionType?.capitalize()} Bonus`
+            )
         );
 
+        if (this.options.roll.type !== CONFIG.DH.GENERAL.rollTypes.attack.id) {
+            modifiers.push(
+                ...this.getBonus(
+                    `system.bonuses.roll.${this.options.roll.type}`,
+                    `${this.options.roll.type?.capitalize()} Bonus`
+                )
+            );
+        }
+
+        if (
+            this.options.roll.type === CONFIG.DH.GENERAL.rollTypes.attack.id ||
+            (this.options.roll.type === CONFIG.DH.GENERAL.rollTypes.spellcast.id && this.options.hasDamage)
+        ) {
+            modifiers.push(
+                ...this.getBonus(`system.bonuses.roll.attack`, `${this.options.roll.type?.capitalize()} Bonus`)
+            );
+        }
+
         return modifiers;
+    }
+
+    getActionChangeKeys() {
+        const changeKeys = new Set([`system.bonuses.roll.${this.options.actionType}`]);
+
+        if (this.options.roll.type !== CONFIG.DH.GENERAL.rollTypes.attack.id) {
+            changeKeys.add(`system.bonuses.roll.${this.options.roll.type}`);
+        }
+
+        if (
+            this.options.roll.type === CONFIG.DH.GENERAL.rollTypes.attack.id ||
+            (this.options.roll.type === CONFIG.DH.GENERAL.rollTypes.spellcast.id && this.options.hasDamage)
+        ) {
+            changeKeys.add(`system.bonuses.roll.attack`);
+        }
+
+        if (this.options.roll.trait && this.data.traits?.[this.options.roll.trait]) {
+            if (this.options.roll.type !== CONFIG.DH.GENERAL.rollTypes.spellcast.id)
+                changeKeys.add('system.bonuses.roll.trait');
+        }
+
+        return changeKeys;
     }
 
     static postEvaluate(roll, config = {}) {

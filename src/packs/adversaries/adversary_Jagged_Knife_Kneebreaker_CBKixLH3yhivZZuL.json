@@ -336,7 +336,14 @@
               "range": "melee"
             }
           },
-          "changes": [],
+          "changes": [
+            {
+              "key": "system.rules.attack.damage.hpDamageTakenMultiplier",
+              "mode": 5,
+              "value": "2",
+              "priority": null
+            }
+          ],
           "disabled": false,
           "duration": {
             "startTime": null,
@@ -350,8 +357,8 @@
           "description": "",
           "tint": "#ffffff",
           "statuses": [
-            "restrained",
-            "vulnerable"
+            "vulnerable",
+            "restrained"
           ],
           "sort": 0,
           "flags": {},

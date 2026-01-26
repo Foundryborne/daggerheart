@@ -210,6 +210,42 @@ export async function runMigrations() {
 
         lastMigrationVersion = '1.2.7';
     }
+
+    if (foundry.utils.isNewerVersion('1.5.5', lastMigrationVersion)) {
+        /* Clear out Environments that were added directly from compendium */
+        for (const scene of game.scenes) {
+            if (!scene.flags.daggerheart) continue;
+            const systemData = new game.system.api.data.scenes.DHScene(scene.flags.daggerheart);
+            const sceneEnvironments = systemData.sceneEnvironments;
+
+            const newEnvironments = sceneEnvironments.filter(x => !x?.pack);
+            if (newEnvironments.length !== sceneEnvironments.length)
+                await scene.update({ 'flags.daggerheart.sceneEnvironments': newEnvironments });
+        }
+
+        ui.nav.render(true);
+
+        lastMigrationVersion = '1.5.5';
+    }
+
+    if (foundry.utils.isNewerVersion('1.6.0', lastMigrationVersion)) {
+        /* Delevel any companions that are higher level than their partner character */
+        for (const companion of game.actors.filter(x => x.type === 'companion')) {
+            if (companion.system.levelData.level.current <= 1) continue;
+
+            if (!companion.system.partner) {
+                await companion.updateLevel(1);
+            } else {
+                const endLevel = companion.system.partner.system.levelData.level.current;
+                if (endLevel < companion.system.levelData.level.current) {
+                    companion.system.levelData.level.changed = companion.system.levelData.level.current;
+                    await companion.updateLevel(endLevel);
+                }
+            }
+        }
+
+        lastMigrationVersion = '1.6.0';
+    }
     //#endregion
 
     await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion, lastMigrationVersion);

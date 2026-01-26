@@ -1,0 +1,33 @@
+<div>
+    <div class="character-reset-container">
+        <div class="character-reset-header">{{localize "DAGGERHEART.APPLICATIONS.CharacterReset.headerTitle"}}</div>
+
+        <fieldset>
+            <legend>{{localize "DAGGERHEART.APPLICATIONS.CharacterReset.alwaysDeleteSection"}} <i class="fa-solid fa-lock"></i></legend>
+
+            <div class="reset-data-wrapper two-columns even">
+                {{#each this.data.delete as | data key|}}
+                    <div class="reset-data-container">
+                        <label>{{localize data.label}}</label>
+                        <input type="checkbox" {{checked data.keep}} disabled />
+                    </div>
+                {{/each}}
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>{{localize "DAGGERHEART.APPLICATIONS.CharacterReset.optionalDeleteSection"}}</legend>
+
+            <div class="reset-data-wrapper two-columns even">
+                {{#each this.data.optional as | data key|}}
+                    <div class="reset-data-container">
+                        <label>{{localize data.label}}</label>
+                        <input type="checkbox" name="{{concat "data.optional." key ".keep"}}" {{checked data.keep}} />
+                    </div>
+                {{/each}}
+            </div>
+        </fieldset>
+
+        <button type="button" data-action="finishSelection">{{localize "Reset"}}</button>
+    </div>
+</div>

@@ -81,6 +81,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         html.querySelectorAll('.group-roll-header-expand-section').forEach(element =>
             element.addEventListener('click', this.groupRollExpandSection)
         );
+        html.querySelectorAll('.risk-it-all-button').forEach(element =>
+            element.addEventListener('click', event => this.riskItAllClearStressAndHitPoints(event, data))
+        );
     };
 
     setupHooks() {
@@ -90,6 +93,21 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     close(options) {
         Hooks.off('renderChatMessageHTML', this.addChatListeners);
         super.close(options);
+    }
+
+    /** Ensure the chat theme inherits the interface theme */
+    _replaceHTML(result, content, options) {
+        const themedElement = result.log?.querySelector('.chat-log');
+        themedElement?.classList.remove('themed', 'theme-light', 'theme-dark');
+        super._replaceHTML(result, content, options);
+    }
+
+    /** Remove chat log theme from notifications area */
+    async _onFirstRender(result, content) {
+        await super._onFirstRender(result, content);
+        document
+            .querySelector('#chat-notifications .chat-log')
+            ?.classList.remove('themed', 'theme-light', 'theme-dark');
     }
 
     async onRollSimple(event, message) {
@@ -135,7 +153,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     async actionUseButton(event, message) {
         const { moveIndex, actionIndex, movePath } = event.currentTarget.dataset;
         const targetUuid = event.currentTarget.closest('.action-use-button-parent').querySelector('select')?.value;
-        const parent = await foundry.utils.fromUuid(targetUuid || message.system.actor)
+        const parent = await foundry.utils.fromUuid(targetUuid || message.system.actor);
 
         const actionType = message.system.moves[moveIndex].actions[actionIndex];
         const cls = game.system.api.models.actions.actionsTypes[actionType.type];
@@ -369,5 +387,11 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 element.classList.toggle('fa-angle-down');
             });
         event.target.closest('.group-roll-section').querySelector('.group-roll-content').classList.toggle('closed');
+    }
+
+    async riskItAllClearStressAndHitPoints(event, data) {
+        const resourceValue = event.target.dataset.resourceValue;
+        const actor = game.actors.get(event.target.dataset.actorId);
+        new game.system.api.applications.dialogs.RiskItAllDialog(actor, resourceValue).render({ force: true });
     }
 }

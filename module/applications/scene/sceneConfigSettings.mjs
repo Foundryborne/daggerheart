@@ -5,10 +5,7 @@ export default class DhSceneConfigSettings extends foundry.applications.sheets.S
         super(options);
 
         Hooks.on(socketEvent.Refresh, ({ refreshType }) => {
-            if (refreshType === RefreshType.Scene) {
-                this.daggerheartFlag = new game.system.api.data.scenes.DHScene(this.document.flags.daggerheart);
-                this.render();
-            }
+            if (refreshType === RefreshType.Scene) this.render();
         });
     }
 
@@ -42,7 +39,9 @@ export default class DhSceneConfigSettings extends foundry.applications.sheets.S
 
     async _preRender(context, options) {
         await super._preFirstRender(context, options);
-        this.daggerheartFlag = new game.system.api.data.scenes.DHScene(this.document.flags.daggerheart);
+
+        if (!options.internalRefresh)
+            this.daggerheartFlag = new game.system.api.data.scenes.DHScene(this.document.flags.daggerheart);
     }
 
     _attachPartListeners(partId, htmlElement, options) {
@@ -52,7 +51,7 @@ export default class DhSceneConfigSettings extends foundry.applications.sheets.S
             case 'dh':
                 htmlElement.querySelector('#rangeMeasurementSetting')?.addEventListener('change', async event => {
                     this.daggerheartFlag.updateSource({ rangeMeasurement: { setting: event.target.value } });
-                    this.render();
+                    this.render({ internalRefresh: true });
                 });
 
                 const dragArea = htmlElement.querySelector('.scene-environments');
@@ -66,10 +65,17 @@ export default class DhSceneConfigSettings extends foundry.applications.sheets.S
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
         const item = await foundry.utils.fromUuid(data.uuid);
         if (item instanceof game.system.api.documents.DhpActor && item.type === 'environment') {
+            let sceneUuid = data.uuid;
+            if (item.pack) {
+                const inWorldActor = await game.system.api.documents.DhpActor.create([item.toObject()]);
+                if (!inWorldActor.length) return;
+                sceneUuid = inWorldActor[0].uuid;
+            }
+
             await this.daggerheartFlag.updateSource({
-                sceneEnvironments: [...this.daggerheartFlag.sceneEnvironments, data.uuid]
+                sceneEnvironments: [...this.daggerheartFlag.sceneEnvironments, sceneUuid]
             });
-            this.render();
+            this.render({ internalRefresh: true });
         }
     }
 
@@ -92,12 +98,16 @@ export default class DhSceneConfigSettings extends foundry.applications.sheets.S
                 (_, index) => index !== Number.parseInt(button.dataset.index)
             )
         });
-        this.render();
+        this.render({ internalRefresh: true });
     }
 
     /** @override */
     async _processSubmitData(event, form, submitData, options) {
         submitData.flags.daggerheart = this.daggerheartFlag.toObject();
+        submitData.flags.daggerheart.sceneEnvironments = submitData.flags.daggerheart.sceneEnvironments.filter(x =>
+            foundry.utils.fromUuidSync(x)
+        );
+
         for (const key of Object.keys(this.document._source.flags.daggerheart?.sceneEnvironments ?? {})) {
             if (!submitData.flags.daggerheart.sceneEnvironments[key]) {
                 submitData.flags.daggerheart.sceneEnvironments[`-=${key}`] = null;

@@ -1,0 +1,39 @@
+<div>
+    <div class="risk-it-all-container">
+        <header>{{localize "DAGGERHEART.APPLICATIONS.RiskItAllDialog.subtitle"}}</header>
+
+        <div class="remaining-section">
+            <label class="section-label">{{localize "DAGGERHEART.APPLICATIONS.RiskItAllDialog.remainingTitle"}}</label>
+            <div>{{this.remainingResource}}</div>
+        </div>
+
+        <div class="resource-section">
+            <div class="resource-container">
+                <label>{{localize "DAGGERHEART.APPLICATIONS.RiskItAllDialog.clearResource" resource=(localize "DAGGERHEART.GENERAL.HitPoints.short")}}: {{this.choices.hitPoints}}</label>
+                <input type="range" step="1" min="0" max="{{this.maxHitPointsValue}}" value="{{this.choices.hitPoints}}" name="choices.hitPoints" data-choice="hitPoints" />
+            </div>
+            <div class="resource-container">
+                <label>{{localize "DAGGERHEART.APPLICATIONS.RiskItAllDialog.clearResource" resource=(localize "DAGGERHEART.GENERAL.stress")}}: {{this.choices.stress}}</label>
+                <input type="range" step="1" min="0" max="{{this.maxStressValue}}" value="{{this.choices.stress}}" name="choices.stress" data-choice="stress" />
+            </div>
+        </div>
+
+        <div class="final-section">
+            <label class="section-label">{{localize "DAGGERHEART.APPLICATIONS.RiskItAllDialog.finalTitle"}}</label>
+            <div class="final-section-values-container">
+                <div class="final-section-value-container">
+                    <label>{{localize "DAGGERHEART.GENERAL.HitPoints.plural"}}</label>
+                    <span>{{this.final.hitPoints.value}}/{{this.final.hitPoints.max}}</span>
+                </div>
+                <div class="final-section-value-container">
+                    <label>{{localize "DAGGERHEART.GENERAL.stress"}}</label>
+                    <span>{{this.final.stress.value}}/{{this.final.stress.max}}</span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <button type="button" data-action="finish" {{disabled this.unfinished}}>{{localize "Submit"}}</button>
+        </footer>
+    </div>
+</div>

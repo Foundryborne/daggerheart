@@ -38,15 +38,6 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
         }
     };
 
-    /** @inheritDoc */
-    async _onRender(context, options) {
-        await super._onRender(context, options);
-
-        this.element
-            .querySelector('.level-value')
-            ?.addEventListener('change', event => this.document.updateLevel(Number(event.currentTarget.value)));
-    }
-
     /* -------------------------------------------- */
     /*  Application Clicks Actions                  */
     /* -------------------------------------------- */
@@ -71,10 +62,10 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
             title: `${game.i18n.localize('DAGGERHEART.GENERAL.Roll.action')}: ${this.actor.name}`,
             headerTitle: `Companion ${game.i18n.localize('DAGGERHEART.GENERAL.Roll.action')}`,
             roll: {
-                trait: partner.system.spellcastModifierTrait?.key
+                trait: partner.system.spellcastModifierTrait?.key,
+                companionRoll: true
             },
-            hasRoll: true,
-            data: partner.getRollData()
+            hasRoll: true
         };
 
         const result = await partner.diceRoll(config);

@@ -1,5 +1,5 @@
 import DHBaseActorSheet from '../api/base-actor.mjs';
-import DhpDeathMove from '../../dialogs/deathMove.mjs';
+import DhDeathMove from '../../dialogs/deathMove.mjs';
 import { abilities } from '../../../config/actorConfig.mjs';
 import { CharacterLevelup, LevelupViewMode } from '../../levelup/_module.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
@@ -27,6 +27,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             makeDeathMove: CharacterSheet.#makeDeathMove,
             levelManagement: CharacterSheet.#levelManagement,
             viewLevelups: CharacterSheet.#viewLevelups,
+            resetCharacter: CharacterSheet.#resetCharacter,
             toggleEquipItem: CharacterSheet.#toggleEquipItem,
             toggleResourceDice: CharacterSheet.#toggleResourceDice,
             handleResourceDice: CharacterSheet.#handleResourceDice,
@@ -42,6 +43,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     icon: 'fa-solid fa-angles-up',
                     label: 'DAGGERHEART.ACTORS.Character.viewLevelups',
                     action: 'viewLevelups'
+                },
+                {
+                    icon: 'fa-solid fa-arrow-rotate-left',
+                    label: 'DAGGERHEART.ACTORS.Character.resetCharacter',
+                    action: 'resetCharacter'
                 }
             ]
         },
@@ -224,13 +230,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
     async _preparePartContext(partId, context, options) {
         context = await super._preparePartContext(partId, context, options);
         switch (partId) {
-            case 'header':
-                const { playerCanEditSheet, levelupAuto } = game.settings.get(
-                    CONFIG.DH.id,
-                    CONFIG.DH.SETTINGS.gameSettings.Automation
-                );
-                context.showSettings = game.user.isGM || !levelupAuto || (levelupAuto && playerCanEditSheet);
-                break;
             case 'loadout':
                 await this._prepareLoadoutContext(context, options);
                 break;
@@ -680,11 +679,18 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     /**
+     * Resets the character data and removes all embedded documents.
+     */
+    static async #resetCharacter() {
+        new game.system.api.applications.dialogs.CharacterResetDialog(this.document).render({ force: true });
+    }
+
+    /**
      * Opens the Death Move interface for the character.
      * @type {ApplicationClickAction}
      */
     static async #makeDeathMove() {
-        await new DhpDeathMove(this.document).render({ force: true });
+        await new DhDeathMove(this.document).render({ force: true });
     }
 
     /**
@@ -725,8 +731,10 @@ export default class CharacterSheet extends DHBaseActorSheet {
             headerTitle: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
                 ability: abilityLabel
             }),
+            effects: await game.system.api.data.actions.actionsTypes.base.getEffects(this.document),
             roll: {
-                trait: button.dataset.attribute
+                trait: button.dataset.attribute,
+                type: 'trait'
             },
             hasRoll: true,
             actionType: 'action',
@@ -736,11 +744,12 @@ export default class CharacterSheet extends DHBaseActorSheet {
             })
         };
         const result = await this.document.diceRoll(config);
+        if (!result) return;
 
         /* This could be avoided by baking config.costs into config.resourceUpdates. Didn't feel like messing with it at the time */
-        const costResources = result.costs
-            .filter(x => x.enabled)
-            .map(cost => ({ ...cost, value: -cost.value, total: -cost.total }));
+        const costResources =
+            result.costs?.filter(x => x.enabled).map(cost => ({ ...cost, value: -cost.value, total: -cost.total })) ||
+            {};
         config.resourceUpdates.addResources(costResources);
         await config.resourceUpdates.updateResources();
     }
@@ -840,7 +849,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
     static async #toggleVault(_event, button) {
         const doc = await getDocFromElement(button);
         const { available } = this.document.system.loadoutSlot;
-        if (doc.system.inVault && !available) {
+        if (doc.system.inVault && !available && !doc.system.loadoutIgnore) {
             return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.loadoutMaxReached'));
         }
 
@@ -969,6 +978,18 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const sidebarDrop = event.target.closest('.character-sidebar-sheet');
         if (sidebarDrop) {
             return this._onSidebarDrop(event, item);
+        }
+
+        const setupCriticalItemTypes = ['class', 'subclass', 'ancestry', 'community'];
+        if (this.document.system.needsCharacterSetup && setupCriticalItemTypes.includes(item.type)) {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: game.i18n.localize('DAGGERHEART.APPLICATIONS.CharacterCreation.setupSkipTitle')
+                },
+                content: game.i18n.localize('DAGGERHEART.APPLICATIONS.CharacterCreation.setupSkipContent')
+            });
+
+            if (!confirmed) return;
         }
 
         if (this.document.uuid === item.parent?.uuid) {

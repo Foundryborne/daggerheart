@@ -70,7 +70,10 @@ export default class DhlevelUpViewMode extends HandlebarsApplicationMixin(Applic
                         return checkbox;
                     });
 
-                    let label = game.i18n.localize(option.label);
+                    let label =
+                        optionKey === 'domainCard'
+                            ? game.i18n.format(option.label, { maxLevel: tier.levels.end })
+                            : game.i18n.localize(option.label);
                     return {
                         label: label,
                         checkboxGroups: chunkify(checkboxes, option.minCost, chunkedBoxes => {

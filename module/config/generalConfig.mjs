@@ -171,7 +171,7 @@ export const defeatedConditions = () => {
         acc[key] = {
             ...choice,
             img: defeated[`${choice.id}Icon`],
-            description: `DAGGERHEART.CONFIG.Condition.${choice.id}.description`
+            description: game.i18n.localize(`DAGGERHEART.CONFIG.Condition.${choice.id}.description`)
         };
 
         return acc;
@@ -179,6 +179,10 @@ export const defeatedConditions = () => {
 };
 
 export const defeatedConditionChoices = {
+    deathMove: {
+        id: 'deathMove',
+        name: 'DAGGERHEART.CONFIG.Condition.deathMove.name'
+    },
     defeated: {
         id: 'defeated',
         name: 'DAGGERHEART.CONFIG.Condition.defeated.name'
@@ -495,6 +499,8 @@ export const diceTypes = {
     d12: 'd12',
     d20: 'd20'
 };
+
+export const dieFaces = [4, 6, 8, 10, 12, 20];
 
 export const multiplierTypes = {
     prof: 'Proficiency',

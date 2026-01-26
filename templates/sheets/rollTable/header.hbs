@@ -1,0 +1,20 @@
+<header class="sheet-header img-name">
+    <img src="{{source.img}}" data-action="editImage" data-edit="img" alt="{{localize "DOCUMENT.FIELDS.img.label"}}">
+    
+    <input type="text" name="name" value="{{source.name}}" placeholder="{{localize "DOCUMENT.FIELDS.name.label"}}" aria-label="{{localize "DOCUMENT.FIELDS.name.label"}}">
+    {{#if usesAltFormula}}
+        <div class="form-group">
+            <label>{{localize "Formula"}}</label>
+            <div class="form-fields">
+                <select class="system-update-field" data-path="activeAltFormula">
+                    {{selectOptions this.altFormulaOptions selected=this.activeAltFormula labelAttr="name"}}
+                </select>
+            </div>
+        </div>
+    {{/if}}
+
+    <button data-action="changeMode">
+        <i class="fa-solid fa-eye" inert></i>
+        <span>{{localize "TABLE.ACTIONS.ChangeMode.View"}}</span>
+    </button>
+</header>

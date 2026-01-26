@@ -1,0 +1,60 @@
+.daggerheart.dialog.dh-style.views.risk-it-all {
+    .risk-it-all-container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+
+        header {
+            font-weight: bold;
+            font-size: var(--font-size-20);
+        }
+
+        .section-label {
+            font-size: var(--font-size-18);
+            text-decoration: underline;
+        }
+
+        .remaining-section {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .resource-section {
+            width: 100%;
+            display: flex;
+            gap: 8px;
+        }
+
+        .final-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+
+            .final-section-values-container {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+
+                .final-section-value-container {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 2px;
+                }
+            }
+        }
+    }
+
+    footer {
+        width: 100%;
+        display: flex;
+
+        button {
+            flex: 1;
+        }
+    }
+}

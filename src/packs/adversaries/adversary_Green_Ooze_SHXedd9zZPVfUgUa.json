@@ -510,34 +510,41 @@
         "description": "<p>When the @Lookup[@name] has 3 or more HP marked, you can <strong>spend a Fear</strong> to split them into two @UUID[Compendium.daggerheart.adversaries.Actor.aLkLFuVoKz2NLoBK]{Tiny Green Oozes} (with no marked HP or Stress). Immediately spotlight both of them.</p>",
         "resource": null,
         "actions": {
-          "s5mLw6DRGd76MLcC": {
-            "type": "effect",
-            "_id": "s5mLw6DRGd76MLcC",
+          "J8U7dw3cDSsEirr5": {
+            "type": "summon",
+            "_id": "J8U7dw3cDSsEirr5",
             "systemPath": "actions",
+            "baseAction": false,
             "description": "",
             "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
             "actionType": "action",
             "cost": [
               {
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "step": null
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
-            "effects": [],
-            "target": {
-              "type": "self",
-              "amount": null
-            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.aLkLFuVoKz2NLoBK",
+                "count": "2"
+              }
+            ],
             "name": "Spend Fear",
-            "img": "icons/creatures/slimes/slime-movement-pseudopods-green.webp",
-            "range": ""
+            "range": "self"
           }
         },
         "originItemType": null,

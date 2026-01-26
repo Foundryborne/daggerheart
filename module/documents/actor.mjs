@@ -104,6 +104,16 @@ export default class DhpActor extends Actor {
         }
     }
 
+    async _preDelete() {
+        if (this.prototypeToken.actorLink) {
+            game.system.registeredTriggers.unregisterItemTriggers(this.items);
+        } else {
+            for (const token of this.getActiveTokens()) {
+                game.system.registeredTriggers.unregisterItemTriggers(token.actor.items);
+            }
+        }
+    }
+
     _onDelete(options, userId) {
         super._onDelete(options, userId);
         for (const party of this.parties) {
@@ -231,6 +241,11 @@ export default class DhpActor extends Actor {
                     }
                 }
             });
+
+            if (this.system.companion) {
+                this.system.companion.updateLevel(usedLevel);
+            }
+
             this.sheet.render();
         }
     }
@@ -597,7 +612,7 @@ export default class DhpActor extends Actor {
         if (!updates.length) return;
 
         const hpDamage = updates.find(u => u.key === CONFIG.DH.GENERAL.healingTypes.hitPoints.id);
-        if (hpDamage) {
+        if (hpDamage?.value) {
             hpDamage.value = this.convertDamageToThreshold(hpDamage.value);
             if (
                 this.type === 'character' &&
@@ -754,16 +769,24 @@ export default class DhpActor extends Actor {
                     };
                 }
             } else {
+                const valueFunc = (base, resource, baseMax) => {
+                    if (resource.clear) return baseMax && base.inverted ? baseMax : 0;
+
+                    return (base.value ?? base) + resource.value;
+                };
                 switch (r.key) {
                     case 'fear':
                         ui.resources.updateFear(
-                            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear) + r.value
+                            valueFunc(
+                                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
+                                r
+                            )
                         );
                         break;
                     case 'armor':
                         if (this.system.armor?.system?.marks) {
                             updates.armor.resources['system.marks.value'] = Math.max(
-                                Math.min(this.system.armor.system.marks.value + r.value, this.system.armorScore),
+                                Math.min(valueFunc(this.system.armor.system.marks, r), this.system.armorScore),
                                 0
                             );
                         }
@@ -772,7 +795,7 @@ export default class DhpActor extends Actor {
                         if (this.system.resources?.[r.key]) {
                             updates.actor.resources[`system.resources.${r.key}.value`] = Math.max(
                                 Math.min(
-                                    this.system.resources[r.key].value + r.value,
+                                    valueFunc(this.system.resources[r.key], r, this.system.resources[r.key].max),
                                     this.system.resources[r.key].max
                                 ),
                                 0
@@ -831,8 +854,8 @@ export default class DhpActor extends Actor {
 
     async toggleDefeated(defeatedState) {
         const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
-        const { unconscious, defeated, dead } = CONFIG.DH.GENERAL.conditions();
-        const defeatedConditions = new Set([unconscious.id, defeated.id, dead.id]);
+        const { deathMove, unconscious, defeated, dead } = CONFIG.DH.GENERAL.conditions();
+        const defeatedConditions = new Set([deathMove.id, unconscious.id, defeated.id, dead.id]);
         if (!defeatedState) {
             for (let defeatedId of defeatedConditions) {
                 await this.toggleStatusEffect(defeatedId, { overlay: settings.overlay, active: defeatedState });
@@ -844,6 +867,18 @@ export default class DhpActor extends Actor {
                 await this.toggleStatusEffect(condition, { overlay: settings.overlay, active: defeatedState });
             }
         }
+    }
+
+    async setDeathMoveDefeated(defeatedIconId) {
+        const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
+        const actorDefault = settings[`${this.type}Default`];
+        if (!settings.enabled || !settings.enabled || !actorDefault || actorDefault === defeatedIconId) return;
+
+        for (let defeatedId of Object.keys(CONFIG.DH.GENERAL.defeatedConditionChoices)) {
+            await this.toggleStatusEffect(defeatedId, { overlay: settings.overlay, active: false });
+        }
+
+        if (defeatedIconId) await this.toggleStatusEffect(defeatedIconId, { overlay: settings.overlay, active: true });
     }
 
     queueScrollText(scrollingTextData) {

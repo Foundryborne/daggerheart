@@ -8,6 +8,7 @@ export const config = {
     adversaryRoll: DHActorRoll,
     damageRoll: DHActorRoll,
     dualityRoll: DHActorRoll,
+    fateRoll: DHActorRoll,
     groupRoll: DHGroupRoll,
     systemMessage: DHSystemMessage
 };

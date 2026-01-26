@@ -44,7 +44,8 @@
       "source": "Daggerheart SRD",
       "page": 127,
       "artist": ""
-    }
+    },
+    "loadoutIgnore": true
   },
   "flags": {},
   "_id": "IqxzvvjZiYbgx21A",

@@ -258,57 +258,40 @@
         "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon <strong>1d4</strong> @UUID[Compendium.daggerheart.adversaries.Actor.B4LZcGuBAHzyVdzy]{Bladed Guards}, who appear at Far range to enforce the @Lookup[@name]’s will.</p>",
         "resource": null,
         "actions": {
-          "cUKwhq1imsTVru8D": {
-            "type": "attack",
-            "_id": "cUKwhq1imsTVru8D",
+          "tioTtYfIGFIXRITN": {
+            "type": "summon",
+            "_id": "tioTtYfIGFIXRITN",
             "systemPath": "actions",
-            "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon <strong>1d4</strong> @UUID[Compendium.daggerheart.adversaries.Actor.B4LZcGuBAHzyVdzy]{Bladed Guards}, who appear at Far range to enforce the Noble’s will.</p>",
+            "baseAction": false,
+            "description": "",
             "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
             "actionType": "action",
             "cost": [
               {
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "step": null
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
-              "max": "",
-              "recovery": null
+              "max": "1",
+              "recovery": "scene",
+              "consumeOnSuccess": false
             },
-            "damage": {
-              "parts": [],
-              "includeBase": false
-            },
-            "target": {
-              "type": "any",
-              "amount": null
-            },
-            "effects": [],
-            "roll": {
-              "type": "diceSet",
-              "trait": null,
-              "difficulty": null,
-              "bonus": null,
-              "advState": "neutral",
-              "diceRolling": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d4",
-                "compare": null,
-                "treshold": null
-              },
-              "useDefault": false
-            },
-            "save": {
-              "trait": null,
-              "difficulty": null,
-              "damageMod": "none"
-            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.B4LZcGuBAHzyVdzy",
+                "count": "1d4"
+              }
+            ],
             "name": "Summon Guards",
-            "img": "icons/environment/people/infantry-armored.webp",
             "range": ""
           }
         },

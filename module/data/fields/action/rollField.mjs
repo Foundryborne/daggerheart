@@ -87,7 +87,7 @@ export class DHActionRollData extends foundry.abstract.DataModel {
                 if (this.type === CONFIG.DH.GENERAL.rollTypes.attack.id)
                     modifiers.push({
                         label: 'Bonus to Hit',
-                        value: this.bonus ?? this.parent.actor.system.attack.roll.bonus
+                        value: this.bonus ?? this.parent.actor.system.attack.roll.bonus ?? 0
                     });
                 break;
             default:

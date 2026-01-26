@@ -166,7 +166,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      */
     getRollData(data = {}) {
         const actorData = this.actor ? this.actor.getRollData(false) : {};
-
         actorData.result = data.roll?.total ?? 1;
         actorData.scale = data.costs?.length // Right now only return the first scalable cost.
             ? (data.costs.find(c => c.scalable)?.total ?? 1)
@@ -198,6 +197,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         let config = this.prepareConfig(event);
         if (!config) return;
+
+        config.effects = await game.system.api.data.actions.actionsTypes.base.getEffects(this.actor, this.item);
 
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
@@ -240,6 +241,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             hasHealing: this.hasHealing,
             hasEffect: this.hasEffect,
             hasSave: this.hasSave,
+            onSave: this.save?.damageMod,
             isDirect: !!this.damage?.direct,
             selectedRollMode: game.settings.get('core', 'rollMode'),
             data: this.getRollData(),
@@ -263,6 +265,28 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             if (clsField?.prepareConfig) if (clsField.prepareConfig.call(this, config) === false) return false;
         }
         return config;
+    }
+
+    /**
+     * Get the all potentially applicable effects on the actor
+     * @param {DHActor} actor The actor performing the action
+     * @param {DHItem|DhActor} effectParent The parent of the effect
+     * @returns {DhActiveEffect[]}
+     */
+    static async getEffects(actor, effectParent) {
+        if (!actor) return [];
+
+        return Array.from(await actor.allApplicableEffects()).filter(effect => {
+            /* Effects on weapons only ever apply for the weapon itself */
+            if (effect.parent.type === 'weapon') {
+                /* Unless they're secondary - then they apply only to other primary weapons */
+                if (effect.parent.system.secondary) {
+                    if (effectParent?.type !== 'weapon' || effectParent?.system.secondary) return false;
+                } else if (effectParent?.id !== effect.parent.id) return false;
+            }
+
+            return !effect.isSuppressed;
+        });
     }
 
     /**
@@ -353,14 +377,14 @@ export class ResourceUpdateMap extends Map {
             if (!resource.key) continue;
 
             const existing = this.get(resource.key);
-            if (existing) {
+            if (!existing || resource.clear) {
+                this.set(resource.key, resource);
+            } else if (!existing?.clear) {
                 this.set(resource.key, {
                     ...existing,
                     value: existing.value + (resource.value ?? 0),
                     total: existing.total + (resource.total ?? 0)
                 });
-            } else {
-                this.set(resource.key, resource);
             }
         }
     }

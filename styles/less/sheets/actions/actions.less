@@ -1,4 +1,53 @@
 .application.daggerheart.dh-style.action-config {
+    .actor-summon-items {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .actor-summon-line {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border-radius: 3px;
+
+            .actor-summon-name {
+                flex: 2;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+
+                img {
+                    height: 40px;
+                }
+            }
+
+            .actor-summon-controls {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+
+                .controls {
+                    display: flex;
+                    gap: 5px;
+                }
+            }
+        }
+
+        .summon-dragger {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            height: 40px;
+            margin-top: 10px;
+            border: 1px dashed light-dark(@dark-blue-50, @beige-50);
+            border-radius: 3px;
+            color: light-dark(@dark-blue-50, @beige-50);
+        }
+    }
+
     .trigger-data {
         width: 100%;
         display: flex;

@@ -49,6 +49,7 @@ export default class DHBeastform extends BaseDataItem {
                     choices: CONFIG.DH.ACTOR.tokenSize,
                     initial: CONFIG.DH.ACTOR.tokenSize.custom.id
                 }),
+                scale: new fields.NumberField({ nullable: false, min: 0.2, max: 3, step: 0.05, initial: 1 }),
                 height: new fields.NumberField({ integer: true, min: 1, initial: null, nullable: true }),
                 width: new fields.NumberField({ integer: true, min: 1, initial: null, nullable: true })
             }),
@@ -184,6 +185,7 @@ export default class DHBeastform extends BaseDataItem {
                     tokenImg: this.parent.parent.prototypeToken.texture.src,
                     tokenRingImg: this.parent.parent.prototypeToken.ring.subject.texture,
                     tokenSize: {
+                        scale: this.parent.parent.prototypeToken.texture.scaleX,
                         height: this.parent.parent.prototypeToken.height,
                         width: this.parent.parent.prototypeToken.width
                     }
@@ -209,7 +211,9 @@ export default class DHBeastform extends BaseDataItem {
             height,
             width,
             texture: {
-                src: this.tokenImg
+                src: this.tokenImg,
+                scaleX: this.tokenSize.scale,
+                scaleY: this.tokenSize.scale
             },
             ring: {
                 subject: {

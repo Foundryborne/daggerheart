@@ -87,6 +87,15 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                         break;
                 }
             }
+            if (this.type === 'fateRoll') {
+                html.classList.add('fate');
+                if (this.system.roll?.fate.fateDie == 'Hope') {
+                    html.classList.add('hope');
+                }
+                if (this.system.roll?.fate.fateDie == 'Fear') {
+                    html.classList.add('fear');
+                }
+            }
 
             const autoExpandRoll = game.settings.get(
                     CONFIG.DH.id,
@@ -157,7 +166,12 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         event.stopPropagation();
         const config = foundry.utils.deepClone(this.system);
         config.event = event;
-        await this.system.action?.workflow.get('damage')?.execute(config, this._id, true);
+        if (this.system.action) {
+            const actor = await foundry.utils.fromUuid(config.source.actor);
+            const item = actor?.items.get(config.source.item) ?? null;
+            config.effects = await game.system.api.data.actions.actionsTypes.base.getEffects(actor, item);
+            await this.system.action.workflow.get('damage')?.execute(config, this._id, true);
+        }
 
         Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.TagTeamRoll });
         await game.socket.emit(`system.${CONFIG.DH.id}`, {
@@ -174,7 +188,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             config = foundry.utils.deepClone(this.system);
         config.event = event;
 
-        if (this.system.onSave) {
+        if (config.hasSave) {
             const pendingingSaves = targets.filter(t => t.saved.success === null);
             if (pendingingSaves.length) {
                 const confirm = await foundry.applications.api.DialogV2.confirm({
@@ -189,7 +203,16 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelectedOrPerm'));
 
         this.consumeOnSuccess();
-        this.system.action?.workflow.get('applyDamage')?.execute(config, targets, true);
+        if (this.system.action) this.system.action.workflow.get('applyDamage')?.execute(config, targets, true);
+        else {
+            for (const target of targets) {
+                const actor = await foundry.utils.fromUuid(target.actorId);
+                if (!actor) continue;
+
+                if (this.system.hasHealing) actor.takeHealing(this.system.damage);
+                else actor.takeDamage(this.system.damage);
+            }
+        }
     }
 
     async onRollSave(event) {

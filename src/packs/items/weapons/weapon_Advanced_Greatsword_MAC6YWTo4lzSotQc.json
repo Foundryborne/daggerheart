@@ -118,16 +118,6 @@
           "key": "system.evasion",
           "mode": 2,
           "value": "-1"
-        },
-        {
-          "key": "system.bonuses.damage.primaryWeapon.extraDice",
-          "mode": 2,
-          "value": "1"
-        },
-        {
-          "key": "system.rules.weapon.dropLowestDamageDice",
-          "mode": 5,
-          "value": "1"
         }
       ],
       "_id": "E0PjC15OP55vIype",

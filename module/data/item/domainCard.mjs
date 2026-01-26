@@ -29,13 +29,40 @@ export default class DHDomainCard extends BaseDataItem {
                 required: true,
                 initial: CONFIG.DH.DOMAIN.cardTypes.ability.id
             }),
-            inVault: new fields.BooleanField({ initial: false })
+            inVault: new fields.BooleanField({ initial: false }),
+            vaultActive: new fields.BooleanField({
+                required: true,
+                nullable: false,
+                initial: false
+            }),
+            loadoutIgnore: new fields.BooleanField({
+                required: true,
+                nullable: false,
+                initial: false
+            }),
+            domainTouched: new fields.NumberField({
+                nullable: true,
+                initial: null
+            })
         };
     }
 
     get domainLabel() {
         const allDomainData = CONFIG.DH.DOMAIN.allDomains();
         return game.i18n.localize(allDomainData[this.domain].label);
+    }
+
+    get isVaultSupressed() {
+        return this.inVault && !this.vaultActive;
+    }
+
+    get isDomainTouchedSuppressed() {
+        if (!this.parent.system.domainTouched || this.parent.parent?.type !== 'character') return false;
+
+        const matchingDomainCards = this.parent.parent.items.filter(
+            item => !item.system.inVault && item.system.domain === this.parent.system.domain
+        ).length;
+        return matchingDomainCards < this.parent.system.domainTouched;
     }
 
     /* -------------------------------------------- */

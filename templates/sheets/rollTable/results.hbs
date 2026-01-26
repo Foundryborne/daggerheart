@@ -1,0 +1,55 @@
+<section class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    <table class="flexcol" data-results>
+        <thead>
+            <tr class="flexrow">
+                <th class="image flexrow">
+                    <button class="inline-control icon fa-solid fa-plus" data-action="createResult"
+                            data-tooltip aria-label="{{localize "TABLE.ACTIONS.CreateResult"}}"></button>
+                </th>
+                <th class="details flexrow">{{localize "TABLE_RESULT.Details"}}</th>
+                <th class="weight flexrow">{{localize "TABLE_RESULT.FIELDS.weight.label"}}</th>
+                <th class="range flexrow">{{localize "TABLE_RESULT.FIELDS.range.label"}}</th>
+                <th class="controls flexrow">
+                    <button class="inline-control icon fa-solid fa-scale-balanced" data-action="normalizeResults"
+                        data-tooltip aria-label="{{localize "TABLE.ACTIONS.NormalizeResults"}}"></button>
+                </th>
+            </tr>
+        </thead>
+        <tbody class="scrollable">
+            {{#each results as |result i|}}
+            <tr class="flexrow{{#if result.drawn}} drawn{{/if}}" data-result-id="{{result.id}}">
+                <td class="image flexrow">
+                    <img src="{{result.displayImg}}" data-action="editImage" data-edit="results.{{i}}.img"
+                         alt="{{localize "TABLE_RESULT.FIELDS.img.label"}}" loading="lazy">
+                </td>
+
+                <td class="details">
+                    {{> "templates/sheets/roll-table/result-details.hbs" result=result}}
+                </td>
+
+                <td class="weight flexrow">
+                    <input type="number" name="results.{{i}}.weight" value="{{result.weight}}" placeholder="1">
+                </td>
+
+                <td class="range flexrow">
+                    <input type="number" name="results.{{i}}.range.0" value="{{result.range.[0]}}" placeholder="L">
+                    <span class="dash">–</span>
+                    <input type="number" name="results.{{i}}.range.1" value="{{result.range.[1]}}" placeholder="H">
+                </td>
+
+                <td class="controls flexrow">
+                    <button class="inline-control icon fa-solid fa-file-pen" data-action="openResultSheet"
+                            data-tooltip aria-label="{{localize "TABLE.ACTIONS.OpenResultConfig"}}"></button>
+                    <button class="inline-control icon fa-solid fa-lock{{#unless result.drawn}}-open{{/unless}}"
+                            data-action="lockResult"
+                            data-tooltip aria-label="{{localize "TABLE.ACTIONS.ToggleDrawn"}}"></button>
+                    <button class="inline-control icon fa-solid fa-trash" data-action="deleteResult"
+                            data-tooltip aria-label="{{localize "TABLE.ACTIONS.DeleteResult"}}"></button>
+                </td>
+
+                <input type="hidden" name="results.{{i}}._id" value="{{result.id}}">
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</section>

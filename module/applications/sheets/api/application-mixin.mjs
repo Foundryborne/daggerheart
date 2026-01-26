@@ -505,6 +505,10 @@ export default function DHApplicationMixin(Base) {
                         const doc = await getDocFromElement(target),
                             action = doc?.system?.attack ?? doc;
                         const config = action.prepareConfig(event);
+                        config.effects = await game.system.api.data.actions.actionsTypes.base.getEffects(
+                            this.document,
+                            doc
+                        );
                         config.hasRoll = false;
                         return action && action.workflow.get('damage').execute(config, null, true);
                     }
@@ -629,7 +633,7 @@ export default function DHApplicationMixin(Base) {
                     {
                         relativeTo: isAction ? doc.parent : doc,
                         rollData: doc.getRollData?.(),
-                        secrets: isAction ? doc.parent.isOwner : doc.isOwner
+                        secrets: isAction ? doc.parent.parent.isOwner : doc.isOwner
                     }
                 );
             }
