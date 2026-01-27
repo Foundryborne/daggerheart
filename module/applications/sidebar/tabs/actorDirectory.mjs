@@ -70,7 +70,8 @@ export default class DhActorDirectory extends foundry.applications.sidebar.tabs.
                 content.append(select);
 
                 const tier = await foundry.applications.api.Dialog.input({
-                    window: { title: 'DAGGERHEART.UI.Sidebar.actorDirectory.pickTierTitle' },
+                    classes: ["dh-style", "dialog"],
+                    window: { title: 'DAGGERHEART.UI.Sidebar.actorDirectory.pickTierTitle', classes: ["dh-style"] },
                     content,
                     ok: {
                         label: 'Create Adversary',
