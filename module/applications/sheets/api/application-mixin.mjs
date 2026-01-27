@@ -554,6 +554,7 @@ export default function DHApplicationMixin(Base) {
                 callback: async (target, _event) => {
                     const doc = await getDocFromElement(target);
                     if (doc.type === 'domainCard') {
+                        this.document.setFavoriteItem(doc, false);
                     } else {
                         this.document.update({
                             'system.sidebarFavorites': this.document.system.sidebarFavorites.filter(

@@ -73,26 +73,6 @@ export default class DHDomainCard extends BaseDataItem {
     /* -------------------------------------------- */
 
     /**@inheritdoc */
-    async _preUpdate(data, options, user) {
-        const allowed = await super._preUpdate(data, options, user);
-        if (allowed === false) return;
-
-        if (this.parent.parent?.type === 'character') {
-            if (
-                data.system?.inVault &&
-                !this.inVault &&
-                this.parent.parent.system.sidebarFavorites.find(x => x?.id === this.parent.id)
-            ) {
-                this.parent.parent.update({
-                    'system.sidebarFavorites': this.parent.parent.system.sidebarFavorites.filter(
-                        x => x.id !== this.parent.id
-                    )
-                });
-            }
-        }
-    }
-
-    /**@inheritdoc */
     async _preCreate(data, options, user) {
         const allowed = await super._preCreate(data, options, user);
         if (allowed === false) return;

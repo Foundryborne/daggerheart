@@ -754,8 +754,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
         await config.resourceUpdates.updateResources();
     }
 
-    //TODO: redo toggleEquipItem method
-
     /**
      * Toggles the equipped state of an item (armor or weapon).
      * @type {ApplicationClickAction}
@@ -830,12 +828,13 @@ export default class CharacterSheet extends DHBaseActorSheet {
      */
     static async #toggleVault(_event, button) {
         const doc = await getDocFromElement(button);
-        const { available } = this.document.system.loadoutSlot;
-        if (doc.system.inVault && !available && !doc.system.loadoutIgnore) {
-            return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.loadoutMaxReached'));
-        }
-
-        await doc?.update({ 'system.inVault': !doc.system.inVault });
+        const changedData = await this.document.toggleDomainCardVault(doc);
+        const removedData = changedData.filter(x => !x.add);
+        this.document.update({
+            'system.sidebarFavorites': [
+                ...this.document.system.sidebarFavorites.filter(x => removedData.every(r => r.item.id !== x.id))
+            ]
+        });
     }
 
     /**

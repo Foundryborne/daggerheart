@@ -993,6 +993,18 @@ export default class DhpActor extends Actor {
         return allTokens;
     }
 
+    async toggleDomainCardVault(card, options = { render: true }) {
+        const { render } = options;
+        const { available } = this.system.loadoutSlot;
+
+        if (card.system.inVault && !available && !card.system.loadoutIgnore) {
+            return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.loadoutMaxReached'));
+        }
+
+        await card?.update({ 'system.inVault': !card.system.inVault }, { render });
+        return [{ item: card, add: !card.system.inVault }];
+    }
+
     async unequipBeforeEquip(itemToEquip, options = { render: true }) {
         const { render } = options;
 
@@ -1030,7 +1042,7 @@ export default class DhpActor extends Actor {
             await item.update({ 'system.equipped': equip }, { render });
         };
 
-        if (item.system.equipped) {
+        if (item.system.equipped && [undefined, false].includes(options.equip)) {
             await updateAndAddChangedItem(item, false);
             return changedItems;
         }
@@ -1051,7 +1063,7 @@ export default class DhpActor extends Actor {
                     );
                 }
 
-                const unequippedItems = await this.unequipBeforeEquip(item, { render });
+                const unequippedItems = await this.unequipBeforeEquip(item, { render: false });
                 changedItems.push(...unequippedItems.map(x => ({ item: x, add: false })));
                 await updateAndAddChangedItem(item, true);
                 break;
@@ -1060,11 +1072,18 @@ export default class DhpActor extends Actor {
         return changedItems;
     }
 
+    /* This is very convoluted, and there is almost certainly a better way to do it. I couldn't get it working any better way atm though. */
     async setFavoriteItem(item, setFavorited) {
         const favoritesToRemove = [];
         const favoritesToAdd = [];
-        if (item.type === 'weapon') {
-            const changedData = await this.toggleEquipItem(item, { render: false });
+        if (['weapon', 'armor'].includes(item.type)) {
+            const changedData = await this.toggleEquipItem(item, { render: false, equip: setFavorited });
+            for (const data of changedData) {
+                if (data.add) favoritesToAdd.push(data.item);
+                else favoritesToRemove.push(data.item);
+            }
+        } else if (item.type === 'domainCard') {
+            const changedData = await this.toggleDomainCardVault(item, { render: false });
             for (const data of changedData) {
                 if (data.add) favoritesToAdd.push(data.item);
                 else favoritesToRemove.push(data.item);
