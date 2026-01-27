@@ -34,7 +34,7 @@ export default class DhAutomationSettings extends HandlebarsApplicationMixin(App
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         header: { template: 'systems/daggerheart/templates/settings/automation-settings/header.hbs' },
         general: { template: 'systems/daggerheart/templates/settings/automation-settings/general.hbs' },
-        rules: { template: 'systems/daggerheart/templates/settings/automation-settings/rules.hbs' },
+        rules: { template: 'systems/daggerheart/templates/settings/automation-settings/deathMoves.hbs' },
         roll: { template: 'systems/daggerheart/templates/settings/automation-settings/roll.hbs' },
         footer: { template: 'systems/daggerheart/templates/settings/automation-settings/footer.hbs' }
     };
@@ -42,7 +42,7 @@ export default class DhAutomationSettings extends HandlebarsApplicationMixin(App
     /** @inheritdoc */
     static TABS = {
         main: {
-            tabs: [{ id: 'general' }, { id: 'rules' }, { id: 'roll' }],
+            tabs: [{ id: 'general' }, { id: 'deathMoves' }, { id: 'roll' }],
             initial: 'general',
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
