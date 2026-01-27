@@ -125,7 +125,6 @@
                         </fieldset>
                     {{/if}}
                     <fieldset class="modifier-container {{#if (eq @root.rollType 'DualityRoll')}}two-columns{{else}}one-column{{/if}}">
-                        {{#if @root.advantage}}
                         <legend>{{localize "DAGGERHEART.GENERAL.Modifier.plural"}}</legend>
                         <div class="nest-inputs">
                             <button class="advantage-chip flex1 {{#if (eq advantage 1)}}selected{{/if}}" data-action="updateIsAdvantage" data-advantage="1">
@@ -169,7 +168,6 @@
                                 </select>
                             {{/if}}
                         {{/unless}}
-                        {{/if}}
                         {{#if @root.rallyDie.length}}
                             <span class="formula-label">{{localize "DAGGERHEART.CLASS.Feature.rallyDice"}}</span>
                             <select name="roll.dice._rallyIndex">
