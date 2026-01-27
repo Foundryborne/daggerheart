@@ -164,8 +164,10 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
 
         let result = '';
 
-        const deathMoveAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation)
-            .deathMoves.automation;
+        const deathMoveAutomation = game.settings.get(
+            CONFIG.DH.id,
+            CONFIG.DH.SETTINGS.gameSettings.Automation
+        ).deathMoveAutomation;
         if (CONFIG.DH.GENERAL.deathMoves.blazeOfGlory === this.selectedMove) {
             result = await this.handleBlazeOfGlory(deathMoveAutomation.blazeOfGlory);
         }
