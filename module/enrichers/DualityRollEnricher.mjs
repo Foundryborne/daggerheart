@@ -86,8 +86,7 @@ export const enrichedDualityRoll = async (
     { reaction, traitValue, target, difficulty, title, label, advantage, grantResources, customConfig },
     event
 ) => {
-    const { chatCommandAutomation } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
-    const shouldGrantResources = grantResources === undefined ? chatCommandAutomation : grantResources;
+    const shouldGrantResources = grantResources === undefined ? true : grantResources;
 
     const config = {
         event: event ?? {},
