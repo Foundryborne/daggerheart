@@ -86,6 +86,9 @@ export const enrichedDualityRoll = async (
     { reaction, traitValue, target, difficulty, title, label, advantage, grantResources, customConfig },
     event
 ) => {
+    const { chatCommandAutomation } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+    const shouldGrantResources = grantResources === undefined ? chatCommandAutomation : grantResources;
+
     const config = {
         event: event ?? {},
         title: title,
@@ -94,12 +97,12 @@ export const enrichedDualityRoll = async (
         roll: {
             trait: traitValue && target ? traitValue : null,
             difficulty: difficulty,
-            advantage,
-           // type: reaction ? 'reaction' : null //not needed really but keeping it for troubleshooting
+            advantage
+            // type: reaction ? 'reaction' : null //not needed really but keeping it for troubleshooting
         },
         skips: {
-            resources: !grantResources,
-            triggers: !grantResources
+            resources: !shouldGrantResources,
+            triggers: !shouldGrantResources
         },
         type: 'trait',
         hasRoll: true,

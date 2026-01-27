@@ -2466,6 +2466,10 @@
                         "gm": { "label": "GM" },
                         "players": { "label": "Players" }
                     },
+                    "chatCommandAutomation": {
+                        "label": "Chat Command Resource Automation",
+                        "hint": "Default chat commands to grant resources such as hope and fear when possible"
+                    },
                     "countdownAutomation": {
                         "label": "Countdown Automation",
                         "hint": "Automatically progress countdowns based on their progression settings"

@@ -309,7 +309,7 @@ Hooks.on('chatMessage', (_, message) => {
               ? CONFIG.DH.ACTIONS.advantageState.disadvantage.value
               : undefined;
         const difficulty = rollCommand.difficulty;
-        const grantResources = Boolean(rollCommand.grantResources);
+        const grantResources = rollCommand.grantResources;
 
         const target = getCommandTarget({ allowNull: true });
         const title =

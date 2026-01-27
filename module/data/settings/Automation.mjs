@@ -18,6 +18,11 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                     label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.hopeFear.players.label'
                 })
             }),
+            chatCommandAutomation: new fields.BooleanField({
+                required: true,
+                initial: false,
+                label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.chatCommandAutomation.label'
+            }),
             countdownAutomation: new fields.BooleanField({
                 required: true,
                 initial: true,
