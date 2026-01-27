@@ -578,28 +578,6 @@ export default class DhCharacter extends BaseDataActor {
         return diceTypes[attackDiceIndex];
     }
 
-    static async unequipBeforeEquip(itemToEquip) {
-        const primary = this.primaryWeapon,
-            secondary = this.secondaryWeapon;
-        if (itemToEquip.system.secondary) {
-            if (primary && primary.burden === CONFIG.DH.GENERAL.burden.twoHanded.value) {
-                await primary.update({ 'system.equipped': false });
-            }
-
-            if (secondary) {
-                await secondary.update({ 'system.equipped': false });
-            }
-        } else {
-            if (secondary && itemToEquip.system.burden === CONFIG.DH.GENERAL.burden.twoHanded.value) {
-                await secondary.update({ 'system.equipped': false });
-            }
-
-            if (primary) {
-                await primary.update({ 'system.equipped': false });
-            }
-        }
-    }
-
     prepareBaseData() {
         this.evasion += this.class.value?.system?.evasion ?? 0;
 

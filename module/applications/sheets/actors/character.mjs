@@ -763,32 +763,14 @@ export default class CharacterSheet extends DHBaseActorSheet {
     static async #toggleEquipItem(_event, button) {
         const item = await getDocFromElement(button);
         if (!item) return;
-        if (item.system.equipped) {
-            await item.update({ 'system.equipped': false });
-            return;
-        }
 
-        switch (item.type) {
-            case 'armor':
-                const currentArmor = this.document.system.armor;
-                if (currentArmor) {
-                    await currentArmor.update({ 'system.equipped': false });
-                }
-
-                await item.update({ 'system.equipped': true });
-                break;
-            case 'weapon':
-                if (this.document.effects.find(x => !x.disabled && x.type === 'beastform')) {
-                    return ui.notifications.warn(
-                        game.i18n.localize('DAGGERHEART.UI.Notifications.beastformEquipWeapon')
-                    );
-                }
-
-                await this.document.system.constructor.unequipBeforeEquip.bind(this.document.system)(item);
-
-                await item.update({ 'system.equipped': true });
-                break;
-        }
+        const changedData = await this.document.toggleEquipItem(item);
+        const removedData = changedData.filter(x => !x.add);
+        this.document.update({
+            'system.sidebarFavorites': [
+                ...this.document.system.sidebarFavorites.filter(x => removedData.every(r => r.item.id !== x.id))
+            ]
+        });
     }
 
     /**
@@ -1042,6 +1024,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
         if (this.document.system.sidebarFavorites.some(x => x.id === item.id)) return;
 
-        this.document.update({ 'system.sidebarFavorites': [...this.document.system.sidebarFavorites, item] });
+        this.document.setFavoriteItem(item, true);
     }
 }

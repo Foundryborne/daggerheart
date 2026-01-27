@@ -992,4 +992,91 @@ export default class DhpActor extends Actor {
 
         return allTokens;
     }
+
+    async unequipBeforeEquip(itemToEquip, options = { render: true }) {
+        const { render } = options;
+
+        const primary = this.system.primaryWeapon,
+            secondary = this.system.secondaryWeapon;
+        let unequippedItems = [];
+        if (itemToEquip.system.secondary) {
+            if (primary && primary.system.burden === CONFIG.DH.GENERAL.burden.twoHanded.value) {
+                unequippedItems.push(primary);
+            }
+
+            if (secondary) {
+                unequippedItems.push(secondary);
+            }
+        } else {
+            if (secondary && itemToEquip.system.burden === CONFIG.DH.GENERAL.burden.twoHanded.value) {
+                unequippedItems.push(secondary);
+            }
+
+            if (primary) {
+                unequippedItems.push(primary);
+            }
+        }
+
+        for (const item of unequippedItems) await item?.update({ 'system.equipped': false }, { render });
+
+        return unequippedItems;
+    }
+
+    async toggleEquipItem(item, options = { render: true }) {
+        const { render } = options;
+        const changedItems = [];
+        const updateAndAddChangedItem = async (item, equip) => {
+            changedItems.push({ item, add: equip });
+            await item.update({ 'system.equipped': equip }, { render });
+        };
+
+        if (item.system.equipped) {
+            await updateAndAddChangedItem(item, false);
+            return changedItems;
+        }
+
+        switch (item.type) {
+            case 'armor':
+                const currentArmor = this.system.armor;
+                if (currentArmor) {
+                    await updateAndAddChangedItem(currentArmor, false);
+                }
+
+                await updateAndAddChangedItem(item, true);
+                break;
+            case 'weapon':
+                if (this.effects.find(x => !x.disabled && x.type === 'beastform')) {
+                    return ui.notifications.warn(
+                        game.i18n.localize('DAGGERHEART.UI.Notifications.beastformEquipWeapon')
+                    );
+                }
+
+                const unequippedItems = await this.unequipBeforeEquip(item, { render });
+                changedItems.push(...unequippedItems.map(x => ({ item: x, add: false })));
+                await updateAndAddChangedItem(item, true);
+                break;
+        }
+
+        return changedItems;
+    }
+
+    async setFavoriteItem(item, setFavorited) {
+        const favoritesToRemove = [];
+        const favoritesToAdd = [];
+        if (item.type === 'weapon') {
+            const changedData = await this.toggleEquipItem(item, { render: false });
+            for (const data of changedData) {
+                if (data.add) favoritesToAdd.push(data.item);
+                else favoritesToRemove.push(data.item);
+            }
+        } else if (setFavorited) favoritesToAdd.push(item);
+        else favoritesToRemove.push(item);
+
+        this.update({
+            'system.sidebarFavorites': [
+                ...this.system.sidebarFavorites.filter(x => favoritesToRemove.every(r => r.id !== x.id)),
+                ...favoritesToAdd
+            ]
+        });
+    }
 }

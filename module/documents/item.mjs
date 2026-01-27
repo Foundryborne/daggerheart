@@ -226,5 +226,11 @@ export default class DHItem extends foundry.documents.Item {
 
     async _preDelete() {
         this.deleteTriggers();
+
+        if (this.parent?.type === 'character') {
+            const filteredFavorites = this.parent.system.sidebarFavorites.filter(x => x.id !== this.id);
+            if (this.parent.system.sidebarFavorites.length !== filteredFavorites.length)
+                this.parent.update({ 'system.sidebarFavorites': filteredFavorites });
+        }
     }
 }

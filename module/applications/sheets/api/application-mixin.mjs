@@ -547,13 +547,20 @@ export default function DHApplicationMixin(Base) {
                 name: 'Unfavorite',
                 icon: 'fa-regular fa-star',
                 condition: target => {
-                    return this.document.type === 'character' && target.closest('.items-sidebar-list');
+                    const doc = getDocFromElementSync(target);
+                    const isFavorited = this.document.system.sidebarFavorites.some(x => x.id === doc.id);
+                    return this.document.type === 'character' && isFavorited;
                 },
                 callback: async (target, _event) => {
                     const doc = await getDocFromElement(target);
-                    this.document.update({
-                        'system.sidebarFavorites': this.document.system.sidebarFavorites.filter(x => x.id !== doc.id)
-                    });
+                    if (doc.type === 'domainCard') {
+                    } else {
+                        this.document.update({
+                            'system.sidebarFavorites': this.document.system.sidebarFavorites.filter(
+                                x => x.id !== doc.id
+                            )
+                        });
+                    }
                 }
             });
 
@@ -562,17 +569,16 @@ export default function DHApplicationMixin(Base) {
                 icon: 'fa-solid fa-star',
                 condition: target => {
                     const doc = getDocFromElementSync(target);
+                    const isFavorited = this.document.system.sidebarFavorites.some(x => x.id === doc.id);
                     return (
                         !(doc instanceof game.system.api.documents.DhActiveEffect) &&
                         this.document.type === 'character' &&
-                        !target.closest('.items-sidebar-list')
+                        !isFavorited
                     );
                 },
                 callback: async (target, _event) => {
                     const doc = await getDocFromElement(target);
-                    this.document.update({
-                        'system.sidebarFavorites': [...this.document.system.sidebarFavorites, doc]
-                    });
+                    this.document.setFavoriteItem(doc, true);
                 }
             });
 
