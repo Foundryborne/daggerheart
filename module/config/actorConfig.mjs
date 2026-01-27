@@ -747,18 +747,22 @@ export const adversaryScalingData = {
     }
 };
 
-/** Scaling data used for an adversary's damage */
+/** 
+ * Scaling data used for an adversary's damage.
+ * Tier 4 is missing certain adversary types and therefore skews upwards.
+ * We manually set tier 4 data to hopefully lead to better results
+ */
 export const adversaryExpectedDamage = {
   basic: {
-    1: { median: 7.5, deviation: 1 },
-    2: { median: 13, deviation: 2 },
-    3: { median: 15.5, deviation: 1.5 },
-    4: { median: 27, deviation: 3 }
+    1: { mean: 7.321428571428571, deviation: 1.962519002770912 },
+    2: { mean: 12.444444444444445, deviation: 2.0631069425529676 },
+    3: { mean: 15.722222222222221, deviation: 2.486565208464823 },
+    4: { mean: 26, deviation: 5.2 }
   },
   minion: {
-    1: { median: 2, deviation: 1 },
-    2: { median: 5, deviation: 0.5 },
-    3: { median: 6.5, deviation: 1.5 },
-    4: { median: 11, deviation: 1 }
+    1: { mean: 2.142857142857143, deviation: 1.0690449676496976 },
+    2: { mean: 5, deviation: 0.816496580927726 },
+    3: { mean: 6.5, deviation: 2.1213203435596424 },
+    4: { mean: 11, deviation: 1 }
   }
 };

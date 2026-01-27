@@ -26,8 +26,16 @@ for (const basefile of await fs.readdir(adversariesDirectory)) {
     });
 }
 
+const adversaryTypes = new Set(allData.map(a => a.adversaryType));
+for (const type of [...adversaryTypes].toSorted()) {
+    const perTier = Object.groupBy(allData.filter(a => a.adversaryType === type), a => a.tier);
+    console.log(`${type} per Tier: ${[1, 2, 3, 4].map(t => perTier[t]?.length ?? 0).join(" ")}`)
+}
+
 const result = {
     basic: compileData(allData.filter(d => d.adversaryType !== "minion")),
+    solos_and_bruisers: compileData(allData.filter(d => ["solo", "bruiser"].includes(d.adversaryType))),
+    leader_and_ranged: compileData(allData.filter(d => ["leader", "ranged"].includes(d.adversaryType))),
     minion: compileData(allData.filter(d => d.adversaryType === "minion")),
 };
 
@@ -39,21 +47,45 @@ function compileData(entries) {
     const results = {};
     for (const tier of [1, 2, 3, 4]) {
         const tierEntries = entries.filter(e => e.tier === tier);
-        const allDamage = tierEntries.map(d => d.damage).sort((a, b) => a - b);
-        const median = getMedian(allDamage);
-        const residuals = allDamage.map(d => Math.abs(d - median)).sort((a, b) => a - b);
+        const allDamage = removeOutliers(tierEntries.map(d => d.damage).sort((a, b) => a - b));
+        const mean = getMean(allDamage);
+        if (tier === 4) console.log(allDamage);
         results[tier] = {
-            medianDamage: median,
-            damageDeviation: getMedian(residuals),
+            mean,
+            deviation: getStandardDeviation(allDamage, { mean }),
         };
     }
 
     return results;
 }
 
+function removeOutliers(data) {
+    if (data.length <= 4) return data;
+    const startIdx = Math.floor(data.length * 0.25);
+    const endIdx = Math.ceil(data.length * 0.75);
+    const iqrBound = (data[endIdx] - data[startIdx]) * 1.25;
+    return data.filter((d) => d >= data[startIdx] - iqrBound && d <= data[endIdx] + iqrBound);
+}
+
 function getMedian(numbers) {
+    numbers = numbers.toSorted((a, b) => a - b);
     const medianIdx = numbers.length / 2;
     return medianIdx % 1 ? numbers[Math.floor(medianIdx)] : (numbers[medianIdx] + numbers[medianIdx - 1]) / 2;
+}
+
+function getMean(numbers) {
+    if (numbers.length === 0) return NaN;
+    return numbers.reduce((r, a) => r + a, 0) / numbers.length;
+}
+
+function getMedianAverageDeviation(numbers, { median }) {
+    const residuals = allDamage.map(d => Math.abs(d - median));
+    return getMedian(residuals);
+}
+
+function getStandardDeviation(numbers, { mean }) {
+    const deviations = numbers.map((r) => r - mean);
+    return Math.sqrt(deviations.reduce((r, d) => r + d * d, 0) / (numbers.length - 1));
 }
 
 function parseDamage(damage) {

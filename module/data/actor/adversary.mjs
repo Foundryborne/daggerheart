@@ -193,7 +193,6 @@ export default class DhpAdversary extends BaseDataActor {
 
     adjustForTier(tier) {
         const source = this.parent.toObject(true);
-        console.log('Actors and source', this.parent, source);
 
         /** @type {(2 | 3 | 4)[]} */
         const tiers = new Array(Math.abs(tier - this.tier))
@@ -214,7 +213,7 @@ export default class DhpAdversary extends BaseDataActor {
             source.system.attack.roll.bonus += scale * entry.attack;
         }
 
-        // Get the median and median absolute deviation of expected damage in the previous and new tier
+        // Get the mean and standard deviation of expected damage in the previous and new tier
         const expectedDamageData = adversaryExpectedDamage[source.system.type] ?? adversaryExpectedDamage.basic;
         const currentDamageRange = { tier: source.system.tier, ...expectedDamageData[source.system.tier] };
         const newDamageRange = { tier, ...expectedDamageData[tier] };
@@ -274,8 +273,8 @@ export default class DhpAdversary extends BaseDataActor {
         const dieSizes = ['d4', 'd6', 'd8', 'd10', 'd12', 'd20'];
         const steps = newDamageRange.tier - currentDamageRange.tier;
         const increasing = steps > 0;
-        const deviation = (previousExpected - currentDamageRange.median) / currentDamageRange.deviation;
-        const expected = newDamageRange.median + newDamageRange.deviation * deviation;
+        const deviation = (previousExpected - currentDamageRange.mean) / currentDamageRange.deviation;
+        const expected = newDamageRange.mean + newDamageRange.deviation * deviation;
 
         const value = hitPointParts[0].value;
         const getExpectedDie = () => Number(value.dice.replace('d', '')) / 2;

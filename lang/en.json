@@ -2849,7 +2849,9 @@
                     "tier": "Tier {tier} {type}",
                     "character": "Level {level} Character",
                     "companion": "Level {level} - {partner}",
-                    "companionNoPartner": "No Partner"
+                    "companionNoPartner": "No Partner",
+                    "duplicateToNewTier": "Duplicate to New Tier",
+                    "pickTierTitle": "Pick a new tier for this adversary"
                 },
                 "daggerheartMenu": {
                     "title": "Daggerheart Menu",

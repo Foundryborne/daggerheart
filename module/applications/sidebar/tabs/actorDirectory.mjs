@@ -47,7 +47,7 @@ export default class DhActorDirectory extends foundry.applications.sidebar.tabs.
     _getEntryContextOptions() {
         const options = super._getEntryContextOptions();
         options.push({
-            name: 'Duplicate To New Tier',
+            name: 'DAGGERHEART.UI.Sidebar.actorDirectory.duplicateToNewTier',
             icon: `<i class="fa-solid fa-arrow-trend-up" inert></i>`,
             condition: li => {
                 const actor = game.actors.get(li.dataset.entryId);
@@ -57,12 +57,24 @@ export default class DhActorDirectory extends foundry.applications.sidebar.tabs.
                 const actor = game.actors.get(li.dataset.entryId);
                 if (!actor) throw new Error('Unexpected missing actor');
 
+                const tiers = [1, 2, 3, 4].filter((t) => t !== actor.system.tier);
+                const content = document.createElement("div");
+                const select = document.createElement("select");
+                select.name = "tier";
+                select.append(...tiers.map(t => {
+                    const option = document.createElement("option");
+                    option.value = t;
+                    option.textContent = game.i18n.localize(`DAGGERHEART.GENERAL.Tiers.${t}`);
+                    return option;
+                }));
+                content.append(select);
+
                 const tier = await foundry.applications.api.Dialog.input({
-                    window: { title: 'Pick a new tier for this adversary' },
-                    content: '<input name="tier" type="number" min="1" max="4" step="1" autofocus>',
+                    window: { title: 'DAGGERHEART.UI.Sidebar.actorDirectory.pickTierTitle' },
+                    content,
                     ok: {
                         label: 'Create Adversary',
-                        callback: (event, button, dialog) => Math.clamp(button.form.elements.tier.valueAsNumber, 1, 4)
+                        callback: (event, button, dialog) => Number(button.form.elements.tier.value)
                     }
                 });
 
