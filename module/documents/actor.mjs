@@ -1001,8 +1001,9 @@ export default class DhpActor extends Actor {
             return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.loadoutMaxReached'));
         }
 
-        await card?.update({ 'system.inVault': !card.system.inVault }, { render });
-        return [{ item: card, add: !card.system.inVault }];
+        const toVault = options.toVault ?? !card.system.inVault;
+        await card?.update({ 'system.inVault': toVault }, { render });
+        return [{ item: card, add: !toVault }];
     }
 
     async unequipBeforeEquip(itemToEquip, options = { render: true }) {
@@ -1083,7 +1084,7 @@ export default class DhpActor extends Actor {
                 else favoritesToRemove.push(data.item);
             }
         } else if (item.type === 'domainCard') {
-            const changedData = await this.toggleDomainCardVault(item, { render: false });
+            const changedData = await this.toggleDomainCardVault(item, { render: false, toVault: !setFavorited });
             for (const data of changedData) {
                 if (data.add) favoritesToAdd.push(data.item);
                 else favoritesToRemove.push(data.item);

@@ -532,17 +532,6 @@ export default function DHApplicationMixin(Base) {
                     callback: async target => (await getDocFromElement(target)).toChat(this.document.uuid)
                 });
 
-            if (deletable)
-                options.push({
-                    name: 'CONTROLS.CommonDelete',
-                    icon: 'fa-solid fa-trash',
-                    callback: async (target, event) => {
-                        const doc = await getDocFromElement(target);
-                        if (event.shiftKey) return doc.delete();
-                        else return doc.deleteDialog();
-                    }
-                });
-
             options.push({
                 name: 'Unfavorite',
                 icon: 'fa-regular fa-star',
@@ -553,15 +542,9 @@ export default function DHApplicationMixin(Base) {
                 },
                 callback: async (target, _event) => {
                     const doc = await getDocFromElement(target);
-                    if (doc.type === 'domainCard') {
-                        this.document.setFavoriteItem(doc, false);
-                    } else {
-                        this.document.update({
-                            'system.sidebarFavorites': this.document.system.sidebarFavorites.filter(
-                                x => x.id !== doc.id
-                            )
-                        });
-                    }
+                    this.document.update({
+                        'system.sidebarFavorites': this.document.system.sidebarFavorites.filter(x => x.id !== doc.id)
+                    });
                 }
             });
 
@@ -582,6 +565,17 @@ export default function DHApplicationMixin(Base) {
                     this.document.setFavoriteItem(doc, true);
                 }
             });
+
+            if (deletable)
+                options.push({
+                    name: 'CONTROLS.CommonDelete',
+                    icon: 'fa-solid fa-trash',
+                    callback: async (target, event) => {
+                        const doc = await getDocFromElement(target);
+                        if (event.shiftKey) return doc.delete();
+                        else return doc.deleteDialog();
+                    }
+                });
 
             return options.map(option => ({
                 ...option,
