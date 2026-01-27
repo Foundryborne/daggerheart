@@ -57,21 +57,23 @@ export default class DhActorDirectory extends foundry.applications.sidebar.tabs.
                 const actor = game.actors.get(li.dataset.entryId);
                 if (!actor) throw new Error('Unexpected missing actor');
 
-                const tiers = [1, 2, 3, 4].filter((t) => t !== actor.system.tier);
-                const content = document.createElement("div");
-                const select = document.createElement("select");
-                select.name = "tier";
-                select.append(...tiers.map(t => {
-                    const option = document.createElement("option");
-                    option.value = t;
-                    option.textContent = game.i18n.localize(`DAGGERHEART.GENERAL.Tiers.${t}`);
-                    return option;
-                }));
+                const tiers = [1, 2, 3, 4].filter(t => t !== actor.system.tier);
+                const content = document.createElement('div');
+                const select = document.createElement('select');
+                select.name = 'tier';
+                select.append(
+                    ...tiers.map(t => {
+                        const option = document.createElement('option');
+                        option.value = t;
+                        option.textContent = game.i18n.localize(`DAGGERHEART.GENERAL.Tiers.${t}`);
+                        return option;
+                    })
+                );
                 content.append(select);
 
                 const tier = await foundry.applications.api.Dialog.input({
-                    classes: ["dh-style", "dialog"],
-                    window: { title: 'DAGGERHEART.UI.Sidebar.actorDirectory.pickTierTitle', classes: ["dh-style"] },
+                    classes: ['dh-style', 'dialog'],
+                    window: { title: 'DAGGERHEART.UI.Sidebar.actorDirectory.pickTierTitle' },
                     content,
                     ok: {
                         label: 'Create Adversary',
