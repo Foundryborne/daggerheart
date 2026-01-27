@@ -978,16 +978,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
             return super._onDropItem(event, item);
         }
 
-        // Handle domain card drops
-
-        if (item.type === 'domainCard') {
-            const {available} = this.document.system.loadoutSlot;
-            if (!item?.system.inVault && !available && !item?.system.loadoutIgnore) { //Check if there's space in loadout and if the item ignores loadout limits
-                item?.update({ 'system.inVault': true }); //Add to vault if no space (not working as intended. updateSource instead of update?)
-                return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.loadoutMaxReached')); //Notify user
-            }
-        }
-
         if (item.type === 'beastform') {
             if (this.document.effects.find(x => x.type === 'beastform')) {
                 return ui.notifications.warn(
