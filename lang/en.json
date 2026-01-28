@@ -2111,7 +2111,6 @@
                 "tier4": "tier 4",
                 "domains": "Domains",
                 "downtime": "Downtime",
-                "itemFeatures": "Item Features",
                 "roll": "Roll",
                 "rules": "Rules",
                 "partyMembers": "Party Members",
@@ -2120,7 +2119,8 @@
                 "questions": "Questions",
                 "configuration": "Configuration",
                 "base": "Base",
-                "triggers": "Triggers"
+                "triggers": "Triggers",
+                "deathMoves": "Deathmoves"
             },
             "Tiers": {
                 "singular": "Tier",
@@ -2144,6 +2144,7 @@
             "armorSlots": "Armor Slots",
             "artistAttribution": "Artwork By: {artist}",
             "attack": "Attack",
+            "automation": "Automation",
             "basics": "Basics",
             "bonus": "Bonus",
             "burden": "Burden",

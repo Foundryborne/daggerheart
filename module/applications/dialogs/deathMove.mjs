@@ -43,7 +43,7 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
         return context;
     }
 
-    async handleAvoidDeath() {
+    async handleAvoidDeath(useAutomation) {
         const target = this.actor.uuid;
         const config = await enrichedFateRoll({
             target,
@@ -53,6 +53,7 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
         });
 
         if (!config.roll.fate) return;
+        if (!useAutomation) return '';
 
         let returnMessage = game.i18n.localize('DAGGERHEART.UI.Chat.deathMove.avoidScar');
         if (config.roll.fate.value <= this.actor.system.levelData.level.current) {
@@ -75,7 +76,7 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
         return returnMessage;
     }
 
-    async handleRiskItAll() {
+    async handleRiskItAll(useAutomation) {
         const config = await enrichedDualityRoll({
             reaction: true,
             traitValue: null,
@@ -90,6 +91,7 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
         });
 
         if (!config.roll.result) return;
+        if (!useAutomation) return '';
 
         const clearAllStressAndHitpointsUpdates = [
             { key: 'hitPoints', clear: true },
@@ -128,7 +130,9 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
         return chatMessage;
     }
 
-    async handleBlazeOfGlory() {
+    async handleBlazeOfGlory(useAutomation) {
+        if (!useAutomation) return '';
+
         this.actor.createEmbeddedDocuments('ActiveEffect', [
             {
                 name: game.i18n.localize('DAGGERHEART.CONFIG.DeathMoves.blazeOfGlory.name'),
@@ -160,19 +164,23 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
 
         let result = '';
 
+        const deathMoveAutomation = game.settings.get(
+            CONFIG.DH.id,
+            CONFIG.DH.SETTINGS.gameSettings.Automation
+        ).deathMoveAutomation;
         if (CONFIG.DH.GENERAL.deathMoves.blazeOfGlory === this.selectedMove) {
-            result = await this.handleBlazeOfGlory();
+            result = await this.handleBlazeOfGlory(deathMoveAutomation.blazeOfGlory);
         }
 
         if (CONFIG.DH.GENERAL.deathMoves.avoidDeath === this.selectedMove) {
-            result = await this.handleAvoidDeath();
+            result = await this.handleAvoidDeath(deathMoveAutomation.avoidDeath);
         }
 
         if (CONFIG.DH.GENERAL.deathMoves.riskItAll === this.selectedMove) {
-            result = await this.handleRiskItAll();
+            result = await this.handleRiskItAll(deathMoveAutomation.riskItAll);
         }
 
-        if (!result) return;
+        if (result === undefined) return;
 
         const autoExpandDescription = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
             .expandRollMessage?.desc;

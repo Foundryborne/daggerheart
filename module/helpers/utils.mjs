@@ -12,7 +12,7 @@ export function rollCommandToJSON(text) {
     const flavor = flavorMatch ? flavorMatch[1] : null;
 
     // Match key="quoted string"  OR  key=unquotedValue
-    const PAIR_RE = /(\w+)=("(?:[^"\\]|\\.)*"|\S+)/g;
+    const PAIR_RE = /(\w+)\s*=\s*("(?:[^"\\]|\\.)*"|[^\]\}\s]+)/g; //updated regex to allow escaped quotes in quoted strings and avoid matching closing brackets/braces
     const result = {};
     for (const [, key, raw] of text.matchAll(PAIR_RE)) {
         let value;

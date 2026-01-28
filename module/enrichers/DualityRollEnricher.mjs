@@ -86,19 +86,22 @@ export const enrichedDualityRoll = async (
     { reaction, traitValue, target, difficulty, title, label, advantage, grantResources, customConfig },
     event
 ) => {
+    const shouldGrantResources = grantResources === undefined ? true : grantResources;
+
     const config = {
         event: event ?? {},
         title: title,
         headerTitle: label,
+        actionType: reaction ? 'reaction' : null,
         roll: {
             trait: traitValue && target ? traitValue : null,
             difficulty: difficulty,
-            advantage,
-            type: reaction ? 'reaction' : null
+            advantage
+            // type: reaction ? 'reaction' : null //not needed really but keeping it for troubleshooting
         },
         skips: {
-            resources: !grantResources,
-            triggers: !grantResources
+            resources: !shouldGrantResources,
+            triggers: !shouldGrantResources
         },
         type: 'trait',
         hasRoll: true,
