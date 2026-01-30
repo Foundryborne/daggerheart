@@ -7,7 +7,7 @@ export default function DhTemplateEnricher(match, _options) {
     const range =
         params.range && Number.isNaN(Number(params.range))
             ? Object.values(CONFIG.DH.GENERAL.templateRanges).find(
-                  x => x.id.toLowerCase() === params.range || x.short === params.range
+                  x => x.id.toLowerCase() === params.range.toLowerCase() || x.short === params.range.toLowerCase()
               )?.id
             : params.range;
 
