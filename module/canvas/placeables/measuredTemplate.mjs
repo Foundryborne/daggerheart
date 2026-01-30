@@ -29,9 +29,7 @@ export default class DhMeasuredTemplate extends foundry.canvas.placeables.Measur
 
         const ranges = sceneRangeMeasurement?.setting === custom.id ? sceneRangeMeasurement : settings;
         const distanceKey = ['melee', 'veryClose', 'close', 'far'].find(r => ranges[r] >= distanceValue);
-        if (distanceKey) {
-            result.distance = game.i18n.localize(`DAGGERHEART.CONFIG.Range.${distanceKey}.name`);
-        }
+        result.distance = game.i18n.localize(`DAGGERHEART.CONFIG.Range.${distanceKey ?? "veryFar"}.name`);
         return result;
     }
 }

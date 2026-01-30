@@ -104,7 +104,8 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         // Determine the actual range
         const ranges = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).rangeMeasurement;
         const distanceNum = originToken.distanceTo(this);
-        const distanceLabel = DhMeasuredTemplate.getRangeLabels(distanceNum, ranges).distance;
+        const distanceResult = DhMeasuredTemplate.getRangeLabels(distanceNum, ranges);
+        const distanceLabel = `${distanceResult.distance} ${distanceResult.units}`.trim();
 
         // Create the element
         const element = document.createElement('div');
