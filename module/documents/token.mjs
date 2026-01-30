@@ -269,7 +269,7 @@ export default class DHToken extends CONFIG.Token.documentClass {
 
         // Hexagon symmetry
         if (columns) {
-            const rowData = BaseToken.#getHexagonalShape(height, width, shape, false);
+            const rowData = DHToken.#getHexagonalShape(height, width, shape, false);
             if (!rowData) return null;
 
             // Transpose the offsets/points of the shape in row orientation
