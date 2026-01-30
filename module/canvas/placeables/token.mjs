@@ -1,3 +1,5 @@
+import DhMeasuredTemplate from "./measuredTemplate.mjs";
+
 export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
     /** @inheritdoc */
     async _draw(options) {
@@ -101,11 +103,8 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
 
         // Determine the actual range
         const ranges = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).rangeMeasurement;
-        if (!ranges.enabled) return;
         const distanceNum = originToken.distanceTo(this);
-        const distanceKey = ['melee', 'veryClose', 'close', 'far', 'very far'].find(r => ranges[r] >= distanceNum);
-        const distanceLabel = distanceKey ? game.i18n.localize(`DAGGERHEART.CONFIG.Range.${distanceKey}.name`) : null;
-        if (!distanceLabel) return; // todo: out of bounds instead
+        const distanceLabel = DhMeasuredTemplate.getRangeLabels(distanceNum, ranges).distance;
 
         // Create the element
         const element = document.createElement('div');
