@@ -18,8 +18,9 @@ export default class DhMeasuredTemplate extends foundry.canvas.placeables.Measur
 
     static getRangeLabels(distanceValue, settings) {
         let result = { distance: distanceValue, units: '' };
-        const sceneRangeMeasurement = canvas.scene.flags.daggerheart?.rangeMeasurement;
+        if (!settings.enabled) return result;
 
+        const sceneRangeMeasurement = canvas.scene.flags.daggerheart?.rangeMeasurement;
         const { disable, custom } = CONFIG.DH.GENERAL.sceneRangeMeasurementSetting;
         if (sceneRangeMeasurement?.setting === disable.id) {
             result.distance = distanceValue;
@@ -29,7 +30,7 @@ export default class DhMeasuredTemplate extends foundry.canvas.placeables.Measur
 
         const ranges = sceneRangeMeasurement?.setting === custom.id ? sceneRangeMeasurement : settings;
         const distanceKey = ['melee', 'veryClose', 'close', 'far'].find(r => ranges[r] >= distanceValue);
-        result.distance = game.i18n.localize(`DAGGERHEART.CONFIG.Range.${distanceKey ?? "veryFar"}.name`);
+        result.distance = game.i18n.localize(`DAGGERHEART.CONFIG.Range.${distanceKey ?? 'veryFar'}.name`);
         return result;
     }
 }
