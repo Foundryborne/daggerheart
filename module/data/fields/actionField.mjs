@@ -152,6 +152,7 @@ export function ActionMixin(Base) {
         }
 
         get uuid() {
+            if (!(this.item instanceof game.system.api.documents.DHItem)) return null;
             return `${this.item.uuid}.${this.documentName}.${this.id}`;
         }
 

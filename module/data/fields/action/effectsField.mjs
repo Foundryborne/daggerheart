@@ -73,7 +73,7 @@ export default class EffectsField extends fields.ArrayField {
             });
 
             effects.forEach(async e => {
-                const effect = this.item.effects.get(e._id);
+                const effect = (this.item.applyEffects ?? this.item.effects).get(e._id);
                 if (!token.actor || !effect) return;
                 await EffectsField.applyEffect(effect, token.actor);
             });
@@ -96,7 +96,7 @@ export default class EffectsField extends fields.ArrayField {
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/chat/effectSummary.hbs',
                 {
-                    effects: this.effects.map(e => this.item.effects.get(e._id)),
+                    effects: this.effects.map(e => (this.item.applyEffects ?? this.item.effects).get(e._id)),
                     targets: messageTargets
                 }
             )
@@ -123,7 +123,7 @@ export default class EffectsField extends fields.ArrayField {
 
         // Otherwise, create a new effect on the target
         const effectData = foundry.utils.mergeObject({
-            ...effect.toObject(),
+            ...(effect.toObject?.() ?? effect),
             disabled: false,
             transfer: false,
             origin: effect.uuid

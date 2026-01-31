@@ -165,7 +165,8 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
                     name: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.newDowntimeMove'),
                     img: 'icons/magic/life/cross-worn-green.webp',
                     description: '',
-                    actions: []
+                    actions: [],
+                    effects: []
                 }
             });
         } else if (['armorFeatures', 'weaponFeatures'].includes(type)) {
