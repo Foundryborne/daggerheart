@@ -31,7 +31,7 @@ export default class DhSceneNavigation extends foundry.applications.ui.SceneNavi
                 const environments = daggerheartInfo.sceneEnvironments.filter(
                     x => x && x.testUserPermission(game.user, 'LIMITED')
                 );
-                const hasEnvironments = environments.length > 0 && x.isView;
+                const hasEnvironments = environments.length > 0 && x.active;
                 return {
                     ...x,
                     hasEnvironments,
@@ -39,9 +39,10 @@ export default class DhSceneNavigation extends foundry.applications.ui.SceneNavi
                     environments: environments
                 };
             });
+
         context.scenes.active = extendScenes(context.scenes.active);
         context.scenes.inactive = extendScenes(context.scenes.inactive);
-
+        context.scenes.viewed = context.scenes.viewed ? extendScenes([context.scenes.viewed])[0] : null;
         return context;
     }
 

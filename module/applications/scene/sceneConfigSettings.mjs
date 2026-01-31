@@ -62,7 +62,15 @@ export default class DhSceneConfigSettings extends foundry.applications.sheets.S
     }
 
     async _onDrop(event) {
+        event.stopPropagation();
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
+        if (data.type === 'Level') {
+            const level = await foundry.documents.Level.fromDropData(data);
+            if (level?.parent === this.document) return this._onSortLevel(event, level);
+
+            return;
+        }
+
         const item = await foundry.utils.fromUuid(data.uuid);
         if (item instanceof game.system.api.documents.DhpActor && item.type === 'environment') {
             let sceneUuid = data.uuid;
