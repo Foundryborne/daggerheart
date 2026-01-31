@@ -4,10 +4,11 @@ export default function DhTemplateEnricher(match, _options) {
     const params = parseInlineParams(match[1]);
     const { type, angle = CONFIG.MeasuredTemplate.defaults.angle, inline = false } = params;
     const direction = Number(params.direction) || 0;
+    params.range = params.range?.toLowerCase();
     const range =
         params.range && Number.isNaN(Number(params.range))
             ? Object.values(CONFIG.DH.GENERAL.templateRanges).find(
-                  x => x.id.toLowerCase() === params.range.toLowerCase() || x.short === params.range.toLowerCase()
+                  x => x.id.toLowerCase() === params.range || x.short === params.range
               )?.id
             : params.range;
 
