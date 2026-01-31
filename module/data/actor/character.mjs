@@ -41,7 +41,8 @@ export default class DhCharacter extends BaseDataActor {
                         min: 0,
                         integer: true,
                         label: 'DAGGERHEART.GENERAL.hope'
-                    })
+                    }),
+                    isReversed: new fields.BooleanField({ initial: false })
                 })
             }),
             traits: new fields.SchemaField({
