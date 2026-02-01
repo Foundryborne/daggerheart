@@ -1,4 +1,5 @@
 <div class="chat-roll">
+    {{#if actionDescription}}{{> 'systems/daggerheart/templates/ui/chat/parts/description-part.hbs'}}{{/if}}
     <div class="roll-part-header"><span>{{title}}</span></div>
     {{#if hasRoll}}{{> 'systems/daggerheart/templates/ui/chat/parts/roll-part.hbs'}}{{/if}}
     {{#if (or hasDamage hasHealing)}}{{> 'systems/daggerheart/templates/ui/chat/parts/damage-part.hbs'}}{{/if}}

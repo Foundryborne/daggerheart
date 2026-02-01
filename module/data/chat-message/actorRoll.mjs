@@ -31,6 +31,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     static defineSchema() {
         return {
             title: new fields.StringField(),
+            actionDescription: new fields.HTMLField(),
             roll: new fields.ObjectField(),
             targets: targetsField(),
             hasRoll: new fields.BooleanField({ initial: false }),
