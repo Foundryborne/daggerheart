@@ -154,8 +154,8 @@ export function ActionMixin(Base) {
         get uuid() {
             if (
                 !(
-                    (this.item instanceof game.system.api.documents.DHItem) |
-                    (this.item instanceof game.system.api.documents.DhpActor)
+                    this.item instanceof game.system.api.documents.DHItem ||
+                    this.item instanceof game.system.api.documents.DhpActor
                 )
             )
                 return null;
