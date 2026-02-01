@@ -252,7 +252,8 @@ export const defaultRestOptions = {
                         ]
                     }
                 }
-            }
+            },
+            effects: []
         },
         clearStress: {
             id: 'clearStress',
@@ -285,7 +286,8 @@ export const defaultRestOptions = {
                         ]
                     }
                 }
-            }
+            },
+            effects: []
         },
         repairArmor: {
             id: 'repairArmor',
@@ -318,7 +320,8 @@ export const defaultRestOptions = {
                         ]
                     }
                 }
-            }
+            },
+            effects: []
         },
         prepare: {
             id: 'prepare',
@@ -326,7 +329,8 @@ export const defaultRestOptions = {
             icon: 'fa-solid fa-dumbbell',
             img: 'icons/skills/trades/academics-merchant-scribe.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.prepare.description'),
-            actions: {}
+            actions: {},
+            effects: []
         }
     }),
     longRest: () => ({
@@ -361,7 +365,8 @@ export const defaultRestOptions = {
                         ]
                     }
                 }
-            }
+            },
+            effects: []
         },
         clearStress: {
             id: 'clearStress',
@@ -394,7 +399,8 @@ export const defaultRestOptions = {
                         ]
                     }
                 }
-            }
+            },
+            effects: []
         },
         repairArmor: {
             id: 'repairArmor',
@@ -427,7 +433,8 @@ export const defaultRestOptions = {
                         ]
                     }
                 }
-            }
+            },
+            effects: []
         },
         prepare: {
             id: 'prepare',
@@ -435,7 +442,8 @@ export const defaultRestOptions = {
             icon: 'fa-solid fa-dumbbell',
             img: 'icons/skills/trades/academics-merchant-scribe.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.prepare.description'),
-            actions: {}
+            actions: {},
+            effects: []
         },
         workOnAProject: {
             id: 'workOnAProject',
@@ -443,7 +451,8 @@ export const defaultRestOptions = {
             icon: 'fa-solid fa-diagram-project',
             img: 'icons/skills/social/thumbsup-approval-like.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.workOnAProject.description'),
-            actions: {}
+            actions: {},
+            effects: []
         }
     })
 };

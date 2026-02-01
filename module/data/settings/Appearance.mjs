@@ -42,6 +42,25 @@ export default class DhAppearance extends foundry.abstract.DataModel {
                 damage: new BooleanField(),
                 target: new BooleanField()
             }),
+            showTokenDistance: new StringField({
+                required: true,
+                choices: {
+                    always: {
+                        value: 'always',
+                        label: 'DAGGERHEART.SETTINGS.Appearance.FIELDS.showTokenDistance.choices.always'
+                    },
+                    encounters: {
+                        value: 'encounters',
+                        label: 'DAGGERHEART.SETTINGS.Appearance.FIELDS.showTokenDistance.choices.encounters'
+                    },
+                    never: {
+                        value: 'never',
+                        label: 'DAGGERHEART.SETTINGS.Appearance.FIELDS.showTokenDistance.choices.never'
+                    }
+                },
+                nullable: false,
+                initial: 'always'
+            }),
             hideAttribution: new BooleanField(),
             showGenericStatusEffects: new BooleanField({ initial: true })
         };

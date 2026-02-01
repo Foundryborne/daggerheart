@@ -114,7 +114,22 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * Return Item the action is attached too.
      */
     get item() {
+        if (!this.parent.parent && this.systemPath)
+            return foundry.utils.getProperty(this.parent, this.systemPath).get(this.id);
+
         return this.parent.parent;
+    }
+
+    get applyEffects() {
+        if (this.item.systemPath) {
+            const itemEffectIds = this.item.effects.map(x => x._id);
+            const movePathSplit = this.item.systemPath.split('.');
+            movePathSplit.pop();
+            const move = foundry.utils.getProperty(this.parent, movePathSplit.join('.'));
+            return new Collection(itemEffectIds.map(id => [id, move.effects.find(x => x.id === id)]));
+        }
+
+        return this.item.effects;
     }
 
     /**
@@ -125,7 +140,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             ? this.item
             : this.item?.parent instanceof DhpActor
               ? this.item.parent
-              : this.item?.actor;
+              : null;
     }
 
     static getRollType(parent) {

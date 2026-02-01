@@ -1,3 +1,5 @@
+import DhMeasuredTemplate from "./measuredTemplate.mjs";
+
 export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
     /** @inheritdoc */
     async _draw(options) {
@@ -76,6 +78,60 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
             y: targetEdge.y + Math.sign(destinationPoint.y - targetEdge.y)
         });
         return canvas.grid.measurePath([adjustedOriginPoint, adjustDestinationPoint]).distance;
+    }
+
+    _onHoverIn(event, options) {
+        super._onHoverIn(event, options);
+
+        // Check if the setting is enabled
+        const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).showTokenDistance;
+        if (setting === "never" || (setting === "encounters" && !game.combat?.started)) return;
+
+        // Check if this token isn't invisible and is actually being hovered
+        const isTokenValid =
+            this.visible &&
+            this.hover &&
+            !this.isPreview &&
+            !this.document.isSecret &&
+            !this.controlled &&
+            !this.animation;
+        if (!isTokenValid) return;
+
+        // Ensure we have a single controlled token
+        const originToken = canvas.tokens.controlled[0];
+        if (!originToken || canvas.tokens.controlled.length > 1) return;
+
+        // Determine the actual range
+        const ranges = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).rangeMeasurement;
+        const distanceNum = originToken.distanceTo(this);
+        const distanceResult = DhMeasuredTemplate.getRangeLabels(distanceNum, ranges);
+        const distanceLabel = `${distanceResult.distance} ${distanceResult.units}`.trim();
+
+        // Create the element
+        const element = document.createElement('div');
+        element.id = 'token-hover-distance';
+        element.classList.add('waypoint-label', 'last');
+        const ruler = document.createElement('i');
+        ruler.classList.add('fa-solid', 'fa-ruler');
+        element.appendChild(ruler);
+        const labelEl = document.createElement('span');
+        labelEl.classList.add('total-measurement');
+        labelEl.textContent = distanceLabel;
+        element.appendChild(labelEl);
+
+        // Position the element and add to the DOM
+        const center = this.getCenterPoint();
+        element.style.setProperty('--transformY', 'calc(-100% - 10px)');
+        element.style.setProperty('--position-y', `${this.y}px`);
+        element.style.setProperty('--position-x', `${center.x}px`);
+        element.style.setProperty('--ui-scale', String(canvas.dimensions.uiScale));
+        document.querySelector('#token-hover-distance')?.remove();
+        document.querySelector('#measurement').appendChild(element);
+    }
+
+    _onHoverOut(...args) {
+        super._onHoverOut(...args);
+        document.querySelector('#token-hover-distance')?.remove();
     }
 
     /** Returns the point at which a line starting at origin and ending at destination intersects the edge of the bounds */
