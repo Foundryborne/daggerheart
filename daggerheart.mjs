@@ -20,7 +20,6 @@ import {
 } from './module/systemRegistration/_module.mjs';
 import { placeables, DhTokenLayer } from './module/canvas/_module.mjs';
 import './node_modules/@yaireo/tagify/dist/tagify.css';
-import TemplateManager from './module/documents/templateManager.mjs';
 import TokenManager from './module/documents/tokenManager.mjs';
 
 CONFIG.DH = SYSTEM;
@@ -55,7 +54,7 @@ CONFIG.ChatMessage.documentClass = documents.DhChatMessage;
 CONFIG.ChatMessage.template = 'systems/daggerheart/templates/ui/chat/chat-message.hbs';
 
 CONFIG.Canvas.rulerClass = placeables.DhRuler;
-CONFIG.Canvas.layers.templates.layerClass = placeables.DhTemplateLayer;
+CONFIG.Canvas.layers.regions.layerClass = placeables.DhRegionLayer;
 CONFIG.Canvas.layers.tokens.layerClass = DhTokenLayer;
 
 CONFIG.MeasuredTemplate.objectClass = placeables.DhMeasuredTemplate;
@@ -83,7 +82,6 @@ CONFIG.ui.resources = applications.ui.DhFearTracker;
 CONFIG.ui.countdowns = applications.ui.DhCountdowns;
 CONFIG.ux.ContextMenu = applications.ux.DHContextMenu;
 CONFIG.ux.TooltipManager = documents.DhTooltipManager;
-CONFIG.ux.TemplateManager = new TemplateManager();
 CONFIG.ux.TokenManager = new TokenManager();
 CONFIG.debug.triggers = false;
 

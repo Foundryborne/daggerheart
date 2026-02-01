@@ -58,7 +58,7 @@ export const renderMeasuredTemplate = async event => {
 
     const usedType = type === 'inFront' ? 'cone' : type === 'emanation' ? 'circle' : type;
     const usedAngle =
-        type === CONST.MEASURED_TEMPLATE_TYPES.CONE
+        type === CONFIG.DH.GENERAL.templateTypes.CONE
             ? (angle ?? CONFIG.MeasuredTemplate.defaults.angle)
             : type === CONFIG.DH.GENERAL.templateTypes.INFRONT
               ? '180'
@@ -71,17 +71,31 @@ export const renderMeasuredTemplate = async event => {
         ];
     }
     const distance = type === CONFIG.DH.GENERAL.templateTypes.EMANATION ? baseDistance + 2.5 : baseDistance;
+    const radius = (distance / game.scenes.active.grid.distance) * game.scenes.active.grid.size;
 
     const { width, height } = game.canvas.scene.dimensions;
-    const data = {
+    const shapeData = {
         x: width / 2,
         y: height / 2,
         t: usedType,
         distance: distance,
-        width: type === CONST.MEASURED_TEMPLATE_TYPES.RAY ? 5 : undefined,
+        width: type === CONFIG.DH.GENERAL.templateTypes.RAY ? 5 : undefined,
         angle: usedAngle,
-        direction: direction
+        radius: radius,
+        direction: direction,
+        type: usedType
     };
 
-    CONFIG.ux.TemplateManager.createPreview(data);
+    await canvas.regions.placeRegion(
+        {
+            name: usedType.capitalize(),
+            shapes: [shapeData],
+            restriction: { enabled: false, type: 'move', priority: 0 },
+            behaviors: [],
+            displayMeasurements: true,
+            locked: false,
+            ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE }
+        },
+        { create: true }
+    );
 };
