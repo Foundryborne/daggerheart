@@ -96,6 +96,13 @@ export default class DHRoll extends Roll {
     }
 
     static async toMessage(roll, config) {
+        const item = config.data.parent?.items?.get?.(config.source.item) ?? null;
+        const action = item ? item.system.actions.get(config.source.action) : null;
+        if (action?.chatDisplay && !config.actionChatMessageHandled) {
+            await action.toChat();
+            config.actionChatMessageHandled = true;
+        }
+
         const cls = getDocumentClass('ChatMessage'),
             msgData = {
                 type: this.messageType,

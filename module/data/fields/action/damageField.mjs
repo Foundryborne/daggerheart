@@ -68,6 +68,8 @@ export default class DamageField extends fields.SchemaField {
 
         const damageResult = await CONFIG.Dice.daggerheart.DamageRoll.build(damageConfig);
         if (!damageResult) return false;
+        if (damageResult.actionChatMessageHandled) config.actionChatMessageHandled = true;
+
         config.damage = damageResult.damage;
         config.message ??= damageConfig.message;
     }

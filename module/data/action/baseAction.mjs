@@ -229,7 +229,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         if (Hooks.call(`${CONFIG.DH.id}.postUseAction`, this, config) === false) return;
 
-        if (this.chatDisplay) await this.toChat();
+        if (this.chatDisplay && !config.actionChatMessageHandled) await this.toChat();
 
         return config;
     }
