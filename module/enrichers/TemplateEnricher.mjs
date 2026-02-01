@@ -94,7 +94,8 @@ export const renderMeasuredTemplate = async event => {
             behaviors: [],
             displayMeasurements: true,
             locked: false,
-            ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE }
+            ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE },
+            visibility: CONST.REGION_VISIBILITY.ALWAYS
         },
         { create: true }
     );
