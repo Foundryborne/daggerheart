@@ -101,7 +101,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                     CONFIG.DH.id,
                     CONFIG.DH.SETTINGS.gameSettings.appearance
                 ).expandRollMessage,
-                rollSections = html.querySelectorAll('.roll-part, .description-section'),
+                rollSections = html.querySelectorAll('.roll-part'),
                 itemDesc = html.querySelector('.domain-card-move');
             rollSections.forEach(s => {
                 if (s.classList.contains('roll-section')) {
