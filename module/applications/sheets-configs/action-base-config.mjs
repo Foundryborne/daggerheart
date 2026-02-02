@@ -314,7 +314,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         const index = Number.parseInt(button.dataset.index);
         const toggle = (element, codeMirror) => {
             codeMirror.classList.toggle('revealed');
-            const button = element.querySelector('a > i');
+            const button = element.querySelector('.expand-trigger > i');
             button.classList.toggle('fa-angle-up');
             button.classList.toggle('fa-angle-down');
         };
