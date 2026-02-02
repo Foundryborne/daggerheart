@@ -574,6 +574,39 @@
             }
         }
 
+        .chat-roll .description-section {
+            background: @dark-80;
+            border-radius: 6px;
+
+            .description-header {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 2px;
+
+                .description-header-title {
+                    color: @golden;
+                    font-size: var(--font-size-16);
+                }
+
+                .description-header-subtitle {
+                    font-size: var(--font-size-14);
+                    padding-bottom: 2px;
+                }
+            }
+
+            .roll-part-content .dice-tooltip .wrapper {
+                i {
+                    margin: 0;
+                }
+
+                > :first-child:not(.target-selector) {
+                    margin: 0;
+                }
+            }
+        }
+
         .roll-buttons {
             display: flex;
             gap: 5px;
