@@ -152,8 +152,9 @@ export function ActionMixin(Base) {
         }
 
         get uuid() {
-            if (!(this.item instanceof game.system.api.documents.DHItem)) return null;
-            return `${this.item.uuid}.${this.documentName}.${this.id}`;
+            const isItem = this.item instanceof game.system.api.documents.DHItem;
+            const isActor = this.item instanceof game.system.api.documents.DhpActor;
+            return isItem || isActor ? `${this.item.uuid}.${this.documentName}.${this.id}` : null;
         }
 
         get sheet() {
