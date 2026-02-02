@@ -228,6 +228,15 @@
             font-size: var(--font-size-12);
             padding: 0 20px;
 
+            .roll-part-title {
+                text-align: center;
+                font-family: @font-subtitle;
+                font-size: var(--font-size-18);
+                font-weight: bold;
+                color: var(--text-color);
+                margin-bottom: -2px;
+            }
+
             > .roll-part-header {
                 font-size: var(--font-size-14);
             }
@@ -569,6 +578,30 @@
                         position: absolute;
                         bottom: 0;
                         right: 0;
+                    }
+                }
+            }
+        }
+
+        .chat-roll .description-section {
+            .roll-part-content {
+                .dice-tooltip {
+                    .wrapper {
+                        i {
+                            margin: 0;
+
+                            :first-child {
+                                margin-top: 0;
+                            }
+
+                            :last-child {
+                                margin-bottom: 0;
+                            }
+                        }
+
+                        > :first-child:not(.target-selector) {
+                            margin: 0;
+                        }
                     }
                 }
             }
