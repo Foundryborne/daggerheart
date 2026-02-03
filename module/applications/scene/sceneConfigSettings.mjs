@@ -103,6 +103,7 @@ export default class DhSceneConfigSettings extends foundry.applications.sheets.S
 
     /** @override */
     async _processSubmitData(event, form, submitData, options) {
+        if (!submitData.flags) submitData.flags = {};
         submitData.flags.daggerheart = this.daggerheartFlag.toObject();
         submitData.flags.daggerheart.sceneEnvironments = submitData.flags.daggerheart.sceneEnvironments.filter(x =>
             foundry.utils.fromUuidSync(x)
