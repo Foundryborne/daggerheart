@@ -113,7 +113,7 @@ Parameters:
           data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.inVault 'sendToLoadout' 'sendToVault' }}">
           <i class="fa-solid {{ifThen item.system.inVault 'fa-arrow-up' 'fa-arrow-down'}}"></i>
         </a>
-        {{else if (eq type 'effect')}}
+        {{else if (and (eq type 'effect') (not (eq item.type 'beastform')))}}
         <a data-action="toggleEffect"
           data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.disabled 'enableEffect' 'disableEffect' }}">
           <i class="{{ifThen item.disabled 'fa-solid fa-toggle-off' 'fa-solid fa-toggle-on'}}"></i>
