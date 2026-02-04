@@ -186,4 +186,13 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             else durationDescription.classList.remove('visible');
         }
     }
+
+    /** @inheritDoc */
+    _processFormData(event, form, formData) {
+        const submitData = super._processFormData(event, form, formData);
+        if (submitData.start && !submitData.start.time) submitData.start.time = '0';
+        else if (!submitData) submitData.start = null;
+
+        return submitData;
+    }
 }

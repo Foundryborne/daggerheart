@@ -789,6 +789,10 @@ export const activeEffectDurations = {
         id: 'temporary',
         label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.temporary'
     },
+    act: {
+        id: 'act',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.act'
+    },
     scene: {
         id: 'scene',
         label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.scene'

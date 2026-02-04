@@ -661,6 +661,7 @@
         "CONFIG": {
             "ActiveEffectDuration": {
                 "temporary": "Temporary",
+                "act": "Next Spotlight",
                 "scene": "Next Scene",
                 "shortRest": "Next Rest",
                 "longRest": "Next Long Rest",

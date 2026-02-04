@@ -491,6 +491,12 @@ export function refreshIsAllowed(allowedTypes, typeToCheck) {
     }
 }
 
+function expireActiveEffectIsAllowed(allowedTypes, typeToCheck) {
+    if (typeToCheck === CONFIG.DH.GENERAL.activeEffectDurations.act.id) return true;
+
+    return refreshIsAllowed(allowedTypes, typeToCheck);
+}
+
 export function expireActiveEffects(actor, allowedTypes = null) {
     const shouldExpireEffects = game.settings.get(
         CONFIG.DH.id,
@@ -506,7 +512,7 @@ export function expireActiveEffects(actor, allowedTypes = null) {
             const { temporary, custom } = CONFIG.DH.GENERAL.activeEffectDurations;
             if ([temporary.id, custom.id].includes(effect.system.duration.type)) return false;
 
-            return refreshIsAllowed(allowedTypes, effect.system.duration.type);
+            return expireActiveEffectIsAllowed(allowedTypes, effect.system.duration.type);
         })
         .map(x => x.id);
 
@@ -527,6 +533,8 @@ export function htmlToText(html) {
 
 export function getIconVisibleActiveEffects(effects) {
     return effects.filter(effect => {
+        if (!(effect instanceof game.system.api.documents.DhActiveEffect)) return true;
+
         const alwaysShown = effect.showIcon === CONST.ACTIVE_EFFECT_SHOW_ICON.ALWAYS;
         const conditionalShown = effect.showIcon === CONST.ACTIVE_EFFECT_SHOW_ICON.CONDITIONAL && !effect.transfer; // TODO: system specific logic
 
