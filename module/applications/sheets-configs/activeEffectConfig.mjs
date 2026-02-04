@@ -68,14 +68,18 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                 },
                 render: function (item, search) {
                     const label = game.i18n.localize(item.label);
-                    const matchIndex = label.toLowerCase().indexOf(search);
+                    const matchIndex = label.toLowerCase().indexOf(search.toLowerCase());
 
                     const beforeText = label.slice(0, matchIndex);
                     const matchText = label.slice(matchIndex, matchIndex + search.length);
                     const after = label.slice(matchIndex + search.length, label.length);
 
                     const element = document.createElement('li');
-                    element.innerHTML = `${beforeText}${matchText ? `<strong>${matchText}</strong>` : ''}${after}`;
+                    element.innerHTML =
+                        `${beforeText}${matchText ? `<strong>${matchText}</strong>` : ''}${after}`.replaceAll(
+                            ' ',
+                            '&nbsp;'
+                        );
                     if (item.hint) {
                         element.dataset.tooltip = game.i18n.localize(item.hint);
                     }
