@@ -4,4 +4,12 @@
     {{#if description}}
         <div class="tooltip-description">{{{description}}}</div>
     {{/if}}
+    {{#if item.system.duration.type}}
+        <div class="tooltip-duration">
+            <div class="duration-inner-container">
+                <span>{{localize "EFFECT.DURATION.Label"}}:</span>
+                <span>{{localize (concat "DAGGERHEART.CONFIG.ActiveEffectDuration." item.system.duration.type )}}</span>
+            </div>
+        </div>
+    {{/if}}
 </div>
