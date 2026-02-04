@@ -58,29 +58,29 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
+        },
+        "changes": [
+          {
+            "key": "system.damageThresholds.severe",
+            "value": "+4",
+            "priority": null,
+            "type": "add"
+          }
+        ],
+        "duration": {
+          "type": ""
         }
       },
       "_id": "zFOpzO3tBJPcZcRc",
       "img": "icons/magic/fire/elemental-fire-flying.webp",
-      "changes": [
-        {
-          "key": "system.damageThresholds.severe",
-          "mode": 2,
-          "value": "+4",
-          "priority": null
-        }
-      ],
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">+4 bonus to your Severe threshold</p>",
+      "description": "<p>+4 bonus to your Severe threshold</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -90,6 +90,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!th6HZwEFnVBjUtqm.zFOpzO3tBJPcZcRc"
     },
     {

@@ -177,18 +177,18 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
+        },
+        "changes": [],
+        "duration": {
+          "type": "shortRest"
         }
       },
-      "changes": [],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>Lasts until your next rest or the caster casts Telepathy again.</p>",
       "tint": "#ffffff",
@@ -198,6 +198,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!df4iRqQzRntrF6Qw.zAEaETYSOE2fmcyB"
     },
     {
@@ -213,18 +223,19 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
+        },
+        "changes": [],
+        "duration": {
+          "type": "temporary",
+          "description": "<p>Until they take damage or the GM spends a Fear on their turn to clear this condition.</p>"
         }
       },
-      "changes": [],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>Asleep until they take damage or the GM spends a Fear on their turn to clear this condition.</p>",
       "tint": "#ffffff",
@@ -234,6 +245,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!df4iRqQzRntrF6Qw.gfZTHSgwYSDKsePW"
     }
   ],
