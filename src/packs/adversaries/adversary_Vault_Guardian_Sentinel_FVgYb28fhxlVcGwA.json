@@ -132,12 +132,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -188,7 +185,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -214,7 +211,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -246,7 +244,7 @@
       "name": "Box In",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to choose a target within Very Close range to focus on. That target has disadvantage on attack rolls when they’re within Very Close range of the @Lookup[@name]. The @Lookup[@name]Sentinel can only focus on one target at a time.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to choose a target within Very Close range to focus on. That target has disadvantage on attack rolls when they’re within Very Close range of the @Lookup[@name]. The @Lookup[@name] can only focus on one target at a time.</p>",
         "resource": null,
         "actions": {
           "4RQnBu4kcUs3PcPH": {

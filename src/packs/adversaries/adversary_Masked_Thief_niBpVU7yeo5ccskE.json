@@ -400,30 +400,41 @@
               "type": "withinRange",
               "target": "hostile",
               "range": "melee"
+            },
+            "changes": [],
+            "duration": {
+              "type": "temporary",
+              "description": "<p>Until you break free with a successful Finesse or Strength Roll (13).</p>"
             }
           },
-          "changes": [],
           "disabled": false,
           "duration": {
-            "startTime": null,
-            "combat": null,
-            "seconds": null,
-            "rounds": null,
-            "turns": null,
-            "startRound": null,
-            "startTurn": null
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
           },
           "description": "<p>You are <em>Restrained</em> and <em>Vulnerable</em> until you break free, ending both conditions, with a successful Finesse or Strength Roll (13).</p><p>[[/dr trait=finesse difficulty=13]]<br />[[/dr trait=strength difficulty=13]]</p>",
           "tint": "#ffffff",
           "statuses": [
-            "restrained",
-            "vulnerable"
+            "vulnerable",
+            "restrained"
           ],
           "sort": 0,
           "flags": {},
           "_stats": {
             "compendiumSource": null
           },
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "showIcon": 1,
+          "folder": null,
           "_key": "!actors.items.effects!niBpVU7yeo5ccskE.tP2DD751nOLxFVps.zMut1PRphlwE0xOa"
         }
       ],

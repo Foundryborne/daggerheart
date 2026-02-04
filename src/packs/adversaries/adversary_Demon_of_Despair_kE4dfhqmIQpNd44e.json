@@ -354,25 +354,25 @@
               "type": "withinRange",
               "target": "hostile",
               "range": "melee"
+            },
+            "changes": [
+              {
+                "key": "system.rules.dualityRoll.defaultHopeDice",
+                "value": "d8",
+                "priority": null,
+                "type": "override"
+              }
+            ],
+            "duration": {
+              "type": "shortRest"
             }
           },
-          "changes": [
-            {
-              "key": "system.rules.dualityRoll.defaultHopeDice",
-              "mode": 5,
-              "value": "d8",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
-            "startTime": null,
-            "combat": null,
-            "seconds": null,
-            "rounds": null,
-            "turns": null,
-            "startRound": null,
-            "startTurn": null
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
           },
           "description": "<p>All targets affected replace their Hope Die with a <strong>d8</strong> until they roll a success with Hope or their next rest.</p>",
           "tint": "#ffffff",
@@ -382,6 +382,16 @@
           "_stats": {
             "compendiumSource": null
           },
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "showIcon": 1,
+          "folder": null,
           "_key": "!actors.items.effects!kE4dfhqmIQpNd44e.FC8PIf4BVkhmoJX8.6WSx03mFbpbPWnOI"
         }
       ],

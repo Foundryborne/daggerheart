@@ -50,12 +50,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -106,7 +103,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -132,14 +129,15 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
       "name": "Tip the Scales",
       "type": "feature",
       "system": {
-        "description": "<p>PCs can gain advantage on a Presence Roll by off ering a handful of gold as part of the interaction. </p><section id=\"secret-SkvXxhBWKBtYdJaq\" class=\"secret\"><p><em>Will any coin be accepted or only local currency? How overt are the PCs in offering this bribe?</em></p></section>",
+        "description": "<p>PCs can gain advantage on a Presence Roll by offering a handful of gold as part of the interaction.</p><section id=\"secret-SkvXxhBWKBtYdJaq\" class=\"secret\"><p><em>Will any coin be accepted or only local currency? How overt are the PCs in offering this bribe?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,

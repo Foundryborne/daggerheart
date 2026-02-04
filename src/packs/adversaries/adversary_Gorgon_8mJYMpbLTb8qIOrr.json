@@ -335,25 +335,25 @@
               "type": "withinRange",
               "target": "hostile",
               "range": "melee"
+            },
+            "changes": [
+              {
+                "key": "system.rules.conditionImmunities.hidden",
+                "value": 1,
+                "priority": null,
+                "type": "override"
+              }
+            ],
+            "duration": {
+              "type": "scene"
             }
           },
-          "changes": [
-            {
-              "key": "system.rules.conditionImmunities.hidden",
-              "mode": 5,
-              "value": "1",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
-            "startTime": null,
-            "combat": null,
-            "seconds": null,
-            "rounds": null,
-            "turns": null,
-            "startRound": null,
-            "startTurn": null
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
           },
           "description": "<p>You Glow until the end of the scene and can’t become <em>Hidden</em>. Attack rolls made against you have advantage.</p>",
           "tint": "#ffffff",
@@ -363,6 +363,16 @@
           "_stats": {
             "compendiumSource": null
           },
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "showIcon": 1,
+          "folder": null,
           "_key": "!actors.items.effects!8mJYMpbLTb8qIOrr.NepVGKOo1lHYjA1F.bYBrgiSwHwYfQyjn"
         }
       ],

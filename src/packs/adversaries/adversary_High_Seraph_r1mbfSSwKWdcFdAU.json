@@ -391,20 +391,21 @@
               "type": "withinRange",
               "target": "hostile",
               "range": "melee"
+            },
+            "changes": [],
+            "duration": {
+              "type": "temporary",
+              "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">Until the </span><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif; color: rgb(239, 230, 216); font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">High Seraph</span><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\"> is defeated. </span>The High Seraph can only mark one target at a time.</p>"
             }
           },
-          "changes": [],
           "disabled": false,
           "duration": {
-            "startTime": null,
-            "combat": null,
-            "seconds": null,
-            "rounds": null,
-            "turns": null,
-            "startRound": null,
-            "startTurn": null
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
           },
-          "description": "<p>While Guilty, you don’t gain Hope on a result with Hope. </p>",
+          "description": "<p>While Guilty, you don’t gain Hope on a result with Hope.</p>",
           "tint": "#ffffff",
           "statuses": [],
           "sort": 0,
@@ -412,6 +413,16 @@
           "_stats": {
             "compendiumSource": null
           },
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "showIcon": 1,
+          "folder": null,
           "_key": "!actors.items.effects!r1mbfSSwKWdcFdAU.FilEB21L5q9XxKE1.O8G0oOf9f3qzNOAT"
         }
       ],
