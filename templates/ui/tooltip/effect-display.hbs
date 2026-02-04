@@ -17,9 +17,12 @@
     {{/if}}
 
     {{#if effect.system.duration.type}}
+
         <div class="duration-container">
-            <strong>{{localize "EFFECT.DURATION.Label"}}</strong>
-            <span>{{localize (concat "DAGGERHEART.CONFIG.ActiveEffectDuration." effect.system.duration.type )}}</span>
+            <div class="duration-inner-container">
+                <span>{{localize "EFFECT.DURATION.Label"}}:</span>
+                <span>{{localize (concat "DAGGERHEART.CONFIG.ActiveEffectDuration." effect.system.duration.type )}}</span>
+            </div>
         </div>
     {{/if}}
 
