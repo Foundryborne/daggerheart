@@ -473,6 +473,8 @@ export async function waitForDiceSoNice(message) {
 }
 
 export function refreshIsAllowed(allowedTypes, typeToCheck) {
+    if (!allowedTypes) return true;
+
     switch (typeToCheck) {
         case CONFIG.DH.GENERAL.refreshTypes.scene.id:
         case CONFIG.DH.GENERAL.refreshTypes.session.id:
@@ -487,6 +489,28 @@ export function refreshIsAllowed(allowedTypes, typeToCheck) {
         default:
             return false;
     }
+}
+
+export function expireActiveEffects(actor, allowedTypes = null) {
+    const shouldExpireEffects = game.settings.get(
+        CONFIG.DH.id,
+        CONFIG.DH.SETTINGS.gameSettings.Automation
+    ).autoExpireActiveEffects;
+    if (!shouldExpireEffects) return;
+
+    const effectsToExpire = actor
+        .getActiveEffects()
+        .filter(effect => {
+            if (!effect.system?.duration.type) return false;
+
+            const { temporary, custom } = CONFIG.DH.GENERAL.activeEffectDurations;
+            if ([temporary.id, custom.id].includes(effect.system.duration.type)) return false;
+
+            return refreshIsAllowed(allowedTypes, effect.system.duration.type);
+        })
+        .map(x => x.id);
+
+    actor.deleteEmbeddedDocuments('ActiveEffect', effectsToExpire);
 }
 
 export async function getCritDamageBonus(formula) {

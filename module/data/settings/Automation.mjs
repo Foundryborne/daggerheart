@@ -192,6 +192,11 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                     })
                 })
             }),
+            autoExpireActiveEffects: new fields.BooleanField({
+                required: true,
+                initial: true,
+                label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.autoExpireActiveEffects.label'
+            }),
             triggers: new fields.SchemaField({
                 enabled: new fields.BooleanField({
                     nullable: false,

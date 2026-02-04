@@ -50,6 +50,20 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         });
     }
 
+    /**
+     * Whether this Active Effect is eligible to be registered with the {@link ActiveEffectRegistry}
+     */
+    get isExpiryTrackable() {
+        return (
+            this.persisted &&
+            !this.inCompendium &&
+            this.modifiesActor &&
+            this.start &&
+            this.isTemporary &&
+            !this.isExpired
+        );
+    }
+
     /* -------------------------------------------- */
     /*  Event Handlers                              */
     /* -------------------------------------------- */
