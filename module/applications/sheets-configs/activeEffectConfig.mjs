@@ -8,13 +8,10 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         this.changeChoices = Object.keys(game.system.api.models.actors).reduce((acc, key) => {
             if (!ignoredActorKeys.includes(key)) {
                 const model = game.system.api.models.actors[key];
-                const attributes = CONFIG.Token.documentClass.getTrackedAttributes(model);
-                // As per DHToken._getTrackedAttributesFromSchema, attributes.bar have a max version as well.
-                const maxAttributes = attributes.bar.map(x => [...x, 'max']);
-                attributes.value.push(...maxAttributes);
+                const attributes = CONFIG.Token.documentClass.getTrackedAttributes(model, [], true);
                 const group = game.i18n.localize(model.metadata.label);
                 const choices = CONFIG.Token.documentClass
-                    .getTrackedAttributeChoices(attributes, model)
+                    .getTrackedAttributeChoices(attributes, model, true)
                     .map(x => ({ ...x, group: group }));
                 acc.push(...choices);
             }
