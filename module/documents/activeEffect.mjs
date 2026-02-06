@@ -62,7 +62,7 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
             throw new Error('The array of sub-types to restrict to must not be empty.');
         }
 
-        const creatableEffects = ['base'];
+        const creatableEffects = ['base', 'armor'];
         const documentTypes = this.TYPES.filter(type => creatableEffects.includes(type)).map(type => {
             const labelKey = `TYPES.ActiveEffect.${type}`;
             const label = game.i18n.has(labelKey) ? game.i18n.localize(labelKey) : type;
@@ -140,6 +140,9 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
 
     /**@inheritdoc*/
     static applyChangeField(model, change, field) {
+        if (this.system?.applyChangeField)
+            super.applyChangeField(...this.system.applyChangeField(model, change, field));
+
         change.value = Number.isNumeric(change.value)
             ? change.value
             : DhActiveEffect.getChangeValue(model, change, change.effect);

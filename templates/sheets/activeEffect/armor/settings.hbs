@@ -1,0 +1,12 @@
+<section class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    <button data-action="addEffect">Add Effect</button>
+
+    <div class="armor-effects-container">
+        {{#each source.system.changes as |change index|}}
+            <div class="armor-effect-container">
+                {{formGroup @root.systemFields.changes.element.fields.marked value=change.marked localize=true}}
+                {{formGroup @root.systemFields.changes.element.fields.max value=change.max localize=true}}
+            </div>
+        {{/each}}
+    </div>
+</section>

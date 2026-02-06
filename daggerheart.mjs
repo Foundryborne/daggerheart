@@ -209,8 +209,20 @@ Hooks.once('init', () => {
         SYSTEM.id,
         applications.sheetConfigs.ActiveEffectConfig,
         {
+            types: ['base', 'beastform', 'horde'],
             makeDefault: true,
             label: sheetLabel('DOCUMENT.ActiveEffect')
+        }
+    );
+    DocumentSheetConfig.registerSheet(
+        CONFIG.ActiveEffect.documentClass,
+        SYSTEM.id,
+        applications.sheetConfigs.ArmorActiveEffectConfig,
+        {
+            types: ['armor'],
+            makeDefault: true,
+            label: () =>
+                `${game.i18n.localize('TYPES.ActiveEffect.armor')} ${game.i18n.localize('DAGGERHEART.GENERAL.effect')}`
         }
     );
 

@@ -6,6 +6,7 @@ export { default as CompanionSettings } from './companion-settings.mjs';
 export { default as SettingActiveEffectConfig } from './setting-active-effect-config.mjs';
 export { default as SettingFeatureConfig } from './setting-feature-config.mjs';
 export { default as EnvironmentSettings } from './environment-settings.mjs';
+export { default as ArmorActiveEffectConfig } from './armorActiveEffectConfig.mjs';
 export { default as ActiveEffectConfig } from './activeEffectConfig.mjs';
 export { default as DhTokenConfig } from './token-config.mjs';
 export { default as DhPrototypeTokenConfig } from './prototype-token-config.mjs';
