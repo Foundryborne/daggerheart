@@ -30,7 +30,27 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                 return { value: joined, label: getLabel(joined), group };
             });
 
-            acc.push(...bars, ...values);
+            const getAllLeaves = (root, parentPath = '') => {
+                const leaves = [];
+                const rootKey = `${parentPath ? `${parentPath}.` : ''}${root.name}`;
+                for (const field of Object.values(root.fields)) {
+                    if (field instanceof foundry.data.fields.SchemaField) leaves.push(...getAllLeaves(field, rootKey));
+                    else
+                        leaves.push({
+                            value: `${rootKey}.${field.name}`,
+                            label: game.i18n.localize(field.label),
+                            hint: game.i18n.localize(field.hint),
+                            group
+                        });
+                }
+
+                return leaves;
+            };
+
+            const bonuses = getAllLeaves(model.schema.fields.bonuses);
+            const rules = getAllLeaves(model.schema.fields.rules);
+
+            acc.push(...bars, ...values, ...rules, ...bonuses);
 
             return acc;
         }, []);

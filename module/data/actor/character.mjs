@@ -225,8 +225,16 @@ export default class DhCharacter extends BaseDataActor {
             rules: new fields.SchemaField({
                 ...commonActorRules({
                     damageReduction: {
-                        magical: new fields.BooleanField({ initial: false }),
-                        physical: new fields.BooleanField({ initial: false }),
+                        magical: new fields.BooleanField({
+                            initial: false,
+                            label: 'DAGGERHEART.GENERAL.Rules.damageReduction.magical.label',
+                            hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.magical.hint'
+                        }),
+                        physical: new fields.BooleanField({
+                            initial: false,
+                            label: 'DAGGERHEART.GENERAL.Rules.damageReduction.physical.label',
+                            hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.physical.hint'
+                        }),
                         maxArmorMarked: new fields.SchemaField({
                             value: new fields.NumberField({
                                 required: true,
@@ -256,7 +264,10 @@ export default class DhCharacter extends BaseDataActor {
                             label: 'DAGGERHEART.GENERAL.Rules.damageReduction.increasePerArmorMark.label',
                             hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.increasePerArmorMark.hint'
                         }),
-                        disabledArmor: new fields.BooleanField({ intial: false })
+                        disabledArmor: new fields.BooleanField({
+                            intial: false,
+                            label: 'DAGGERHEART.GENERAL.Rules.damageReduction.disabledArmor.label'
+                        })
                     },
                     attack: {
                         damage: {
@@ -304,12 +315,14 @@ export default class DhCharacter extends BaseDataActor {
                         label: 'DAGGERHEART.ACTORS.Character.defaultFearDice'
                     })
                 }),
-                runeWard: new fields.BooleanField({ initial: false }),
                 burden: new fields.SchemaField({
-                    ignore: new fields.BooleanField()
+                    ignore: new fields.BooleanField({ label: 'DAGGERHEART.ACTORS.Character.burden.ignore.label' })
                 }),
                 roll: new fields.SchemaField({
-                    guaranteedCritical: new fields.BooleanField()
+                    guaranteedCritical: new fields.BooleanField({
+                        label: 'DAGGERHEART.ACTORS.Character.roll.guaranteedCritical.label',
+                        hint: 'DAGGERHEART.ACTORS.Character.roll.guaranteedCritical.hint'
+                    })
                 })
             })
         };

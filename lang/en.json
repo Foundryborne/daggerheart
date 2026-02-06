@@ -192,6 +192,9 @@
                 },
                 "age": "Age",
                 "backgroundQuestions": "Backgrounds",
+                "burden": {
+                    "ignore": { "label": "Burden: Ignore", "hint": "Ignore burden rules" }
+                },
                 "companionFeatures": "Companion Features",
                 "connections": "Connections",
                 "contextMenu": {
@@ -214,6 +217,12 @@
                 "maxEvasionBonus": "Max Evasion Increase",
                 "maxHPBonus": "Max HP Increase",
                 "pronouns": "Pronouns",
+                "roll": {
+                    "guaranteedCritical": {
+                        "label": "Guaranteed Critical",
+                        "hint": "Set to 1 to always roll a critical"
+                    }
+                },
                 "story": {
                     "backgroundTitle": "Background",
                     "characteristics": "Characteristics",
@@ -1840,6 +1849,16 @@
                 "singular": "Adversary",
                 "plural": "Adversaries"
             },
+            "Attack": {
+                "hpDamageMultiplier": {
+                    "label": "HP Damage Multiplier",
+                    "hint": "Multiply any damage you deal by this number"
+                },
+                "hpDamageTakenMultiplier": {
+                    "label": "HP Damage Taken Multiplier",
+                    "hint": "Multiply any damage dealt to you by this number"
+                }
+            },
             "Bonuses": {
                 "rest": {
                     "downtimeAction": "Downtime Action",
@@ -2024,15 +2043,39 @@
                 "reaction": "Reaction Roll"
             },
             "Rules": {
+                "conditionImmunities": {
+                    "hidden": "Condition Immunity: Hidden",
+                    "restrained": "Condition Immunity: Restrained",
+                    "vulnerable": "Condition Immunity: Vulnerable"
+                },
                 "damageReduction": {
+                    "disabledArmor": { "label": "Disabled Armorslots" },
                     "increasePerArmorMark": {
                         "label": "Damage Reduction per Armor Slot",
                         "hint": "A used armor slot normally reduces damage by one step. This value increases the number of steps damage is reduced by."
+                    },
+                    "magical": {
+                        "label": "Daamge Reduction: Only Magical",
+                        "hint": "Armor can only be used to reduce magical damage"
                     },
                     "maxArmorMarkedBonus": "Max Armor Used",
                     "maxArmorMarkedStress": {
                         "label": "Max Armor Used With Stress",
                         "hint": "If this value is set you can use up to that much stress to spend additional Armor Marks beyond your normal maximum."
+                    },
+                    "reduceSeverity": {
+                        "magical": {
+                            "label": "Reduce Damage Severity: Magical",
+                            "hint": "Lowers any magical damage received by the set amount of severity degrees"
+                        },
+                        "physical": {
+                            "label": "Reduce Damage Severity: Physical",
+                            "hint": "Lowers any physical damage received by the set amount of severity degrees"
+                        }
+                    },
+                    "physical": {
+                        "label": "Damage Reduction: Only Physical",
+                        "hint": "Armor can only be used to reduce physical damage"
                     },
                     "stress": {
                         "any": {
@@ -2050,6 +2093,12 @@
                         "minor": {
                             "label": "Stress Damage Reduction: Minor",
                             "hint": "The cost in stress you can pay to reduce minor damage to none."
+                        }
+                    },
+                    "thresholdImmunities": {
+                        "minor": {
+                            "label": "Threshold Immunities: Minor",
+                            "hint": "Automatically ignores minor damage"
                         }
                     }
                 },
