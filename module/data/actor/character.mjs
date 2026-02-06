@@ -35,15 +35,18 @@ export default class DhCharacter extends BaseDataActor {
                     'DAGGERHEART.ACTORS.Character.maxHPBonus'
                 ),
                 stress: resourceField(6, 0, 'DAGGERHEART.GENERAL.stress', true),
-                hope: new fields.SchemaField({
-                    value: new fields.NumberField({
-                        initial: 2,
-                        min: 0,
-                        integer: true,
-                        label: 'DAGGERHEART.GENERAL.hope'
-                    }),
-                    isReversed: new fields.BooleanField({ initial: false })
-                })
+                hope: new fields.SchemaField(
+                    {
+                        value: new fields.NumberField({
+                            initial: 2,
+                            min: 0,
+                            integer: true,
+                            label: 'DAGGERHEART.GENERAL.hope'
+                        }),
+                        isReversed: new fields.BooleanField({ initial: false })
+                    },
+                    { label: 'DAGGERHEART.GENERAL.hope' }
+                )
             }),
             traits: new fields.SchemaField({
                 agility: attributeField('DAGGERHEART.CONFIG.Traits.agility.name'),
