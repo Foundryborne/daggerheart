@@ -1,66 +1,17 @@
 export default class DHToken extends CONFIG.Token.documentClass {
-    /**@inheritdoc */
-    static getTrackedAttributes(data, _path = [], resourcesUseMax = false) {
-        // Case 1 - Infer attributes from schema structure.
-        if (data instanceof foundry.abstract.DataModel || foundry.utils.isSubclass(data, foundry.abstract.DataModel)) {
-            return this._getTrackedAttributesFromSchema(data.schema, _path, resourcesUseMax);
-        }
-        if (data instanceof foundry.data.fields.SchemaField)
-            return this._getTrackedAttributesFromSchema(data, _path, resourcesUseMax);
-
-        // Case 2 - Infer attributes from object structure.
-        if (Array.isArray(data) || foundry.utils.isPlainObject(data)) {
-            return this._getTrackedAttributesFromObject(data, _path);
-        }
-
-        // Case 3 - Retrieve explicitly configured attributes.
-        if (!data || typeof data === 'string') {
-            const config = this._getConfiguredTrackedAttributes(data);
-            if (config) return config;
-            data = undefined;
-        }
-
-        // Track the path and record found attributes
-        if (data !== undefined) return { bar: [], value: [] };
-
-        // Case 4 - Infer attributes from system template.
-        const bar = new Set();
-        const value = new Set();
-        for (const [type, model] of Object.entries(game.model.Actor)) {
-            const dataModel = CONFIG.Actor.dataModels?.[type];
-            const inner = this.getTrackedAttributes(dataModel ?? model, _path);
-            inner.bar.forEach(attr => bar.add(attr.join('.')));
-            inner.value.forEach(attr => value.add(attr.join('.')));
-        }
-
-        return {
-            bar: Array.from(bar).map(attr => attr.split('.')),
-            value: Array.from(value).map(attr => attr.split('.'))
-        };
-    }
-
     /**
      * Inspect the Actor data model and identify the set of attributes which could be used for a Token Bar.
      * @param {object} attributes       The tracked attributes which can be chosen from
      * @returns {object}                A nested object of attribute choices to display
      */
-    static getTrackedAttributeChoices(attributes, model, resourcesUseMax = false) {
+    static getTrackedAttributeChoices(attributes, model) {
         attributes = attributes || this.getTrackedAttributes();
         const barGroup = game.i18n.localize('TOKEN.BarAttributes');
         const valueGroup = game.i18n.localize('TOKEN.BarValues');
 
         const bars = attributes.bar.map(v => {
-            /* Ugly solution for hope */
-            const isHope = resourcesUseMax && v.includes('hope');
-
             const a = v.join('.');
-            const modelLabel = model
-                ? game.i18n.localize(
-                      isHope
-                          ? 'DAGGERHEART.SETTINGS.Homebrew.FIELDS.maxHope.label'
-                          : model.schema.getField(`${resourcesUseMax ? a : `${a}.value`}`).label
-                  )
-                : null;
+            const modelLabel = model ? game.i18n.localize(model.schema.getField(`${a}.value`).label) : null;
             return { group: barGroup, value: a, label: modelLabel ? modelLabel : a };
         });
         bars.sort((a, b) => a.label.compare(b.label));
@@ -96,7 +47,7 @@ export default class DHToken extends CONFIG.Token.documentClass {
         return bars.concat(values);
     }
 
-    static _getTrackedAttributesFromSchema(schema, _path = [], resourcesUseMax = false) {
+    static _getTrackedAttributesFromSchema(schema, _path = []) {
         const attributes = { bar: [], value: [] };
         for (const [name, field] of Object.entries(schema.fields)) {
             const p = _path.concat([name]);
@@ -111,20 +62,10 @@ export default class DHToken extends CONFIG.Token.documentClass {
             if (isSchema || isModel) {
                 const schema = isModel ? field.model.schema : field;
                 const isBar = schema.has && schema.has('value') && schema.has('max');
-                if (isBar) {
-                    attributes.bar.push(p);
-                } else {
+                if (isBar) attributes.bar.push(p);
+                else {
                     const inner = this.getTrackedAttributes(schema, p);
-
-                    /* TODO: Ugly solution. Hope doesn't have a max in schema, it's set in prepareData, so it's not counted as a bar */
-                    if (name === 'hope') {
-                        inner.bar = [['resources', 'hope']];
-                        inner.value = [];
-                    }
-
-                    attributes.bar.push(
-                        ...(inner.bar.length ? inner.bar.map(x => [...x, ...(resourcesUseMax ? ['max'] : [])]) : [])
-                    );
+                    attributes.bar.push(...inner.bar);
                     attributes.value.push(...inner.value);
                 }
             }
