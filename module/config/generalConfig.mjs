@@ -236,6 +236,7 @@ export const defaultRestOptions = {
                     actionType: 'action',
                     chatDisplay: false,
                     target: {
+                        amount: 1,
                         type: 'friendly'
                     },
                     damage: {
@@ -304,6 +305,7 @@ export const defaultRestOptions = {
                     actionType: 'action',
                     chatDisplay: false,
                     target: {
+                        amount: 1,
                         type: 'friendly'
                     },
                     damage: {
@@ -349,6 +351,7 @@ export const defaultRestOptions = {
                     actionType: 'action',
                     chatDisplay: false,
                     target: {
+                        amount: 1,
                         type: 'friendly'
                     },
                     damage: {
@@ -417,6 +420,7 @@ export const defaultRestOptions = {
                     actionType: 'action',
                     chatDisplay: false,
                     target: {
+                        amount: 1,
                         type: 'friendly'
                     },
                     damage: {
