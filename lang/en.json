@@ -446,6 +446,10 @@
                         "description": "Describe how you are preparing for the next day's adventure, then gain a Hope. If you choose to Prepare with one or more members of your party, you may each take two Hope.",
                         "name": "Prepare"
                     },
+                    "prepareWithFriends": {
+                        "description": "Describe how you are preparing for the next day's adventure, then gain a Hope. If you choose to Prepare with one or more members of your party, you may each take two Hope.",
+                        "name": "Prepare (with Friends)"
+                    },
                     "repairArmor": {
                         "description": "Describe how you spend time repairing your armor and clear all of its Armor Slots. You may also do this to an ally's armor instead.",
                         "name": "Repair Armor"
@@ -476,6 +480,10 @@
                     },
                     "prepare": {
                         "name": "Prepare",
+                        "description": "Describe how you prepare yourself for the path ahead, then gain a Hope. If you choose to Prepare with one or more members of your party, you each gain 2 Hope."
+                    },
+                    "prepareWithFriends": {
+                        "name": "Prepare (with Friends)",
                         "description": "Describe how you prepare yourself for the path ahead, then gain a Hope. If you choose to Prepare with one or more members of your party, you each gain 2 Hope."
                     }
                 },
