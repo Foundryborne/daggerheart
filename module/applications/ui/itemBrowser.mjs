@@ -35,7 +35,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             selectFolder: this.selectFolder,
             expandContent: this.expandContent,
             resetFilters: this.resetFilters,
-            sortList: this.sortList
+            sortList: this.sortList,
+            openSettings: this.openSettings
         },
         position: {
             left: 100,
@@ -214,6 +215,10 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     loadItems() {
         let loadTimeout = this.toggleLoader(true);
 
+        const excludedCompendiumPacks = game.settings.get(
+            CONFIG.DH.id,
+            CONFIG.DH.SETTINGS.gameSettings.CompendiumBrowserSettings
+        ).excludedCompendiumPacks;
         const promises = [];
 
         game.packs.forEach(pack => {
@@ -227,7 +232,13 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
         Promise.all(promises).then(async result => {
             this.items = ItemBrowser.sortBy(
-                result.flatMap(r => r),
+                result
+                    .flatMap(r => r)
+                    .filter(x => {
+                        const pack = game.packs.get(x.pack);
+                        const packageName = pack.metadata.packageType === 'world' ? 'world' : pack.metadata.packageName;
+                        return !excludedCompendiumPacks[packageName]?.[x.pack];
+                    }),
                 'name'
             );
 
@@ -510,6 +521,10 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         });
 
         itemListContainer.replaceChildren(...newOrder);
+    }
+
+    static async openSettings() {
+        new game.system.api.applications.dialogs.CompendiumBrowserSettingsDialog().render({ force: true });
     }
 
     _createDragProcess() {

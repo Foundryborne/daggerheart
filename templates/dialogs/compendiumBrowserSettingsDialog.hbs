@@ -1,0 +1,35 @@
+<div>
+    <label class="compendium-settings-label">{{localize "Enable Compendiums"}}</label>
+    <div class="pack-options-container">
+        {{#each packOptions as |option sourceKey|}}
+            <div class="pack-option-container">
+                <label>{{option.label}}</label>
+                <div class="sources-container">
+                    {{#each option.types as |type typeKey|}}
+                        <div class="source-container">
+                            <div class="source-inner-container">
+                                <div class="source-inner-label-container">
+                                    <input type="checkbox" class="source-input" data-source="{{@../key}}" data-type="{{typeKey}}" {{checked type.checked}} />
+                                    <label>{{type.label}}</label>
+                                </div>
+                                <a><i class="fa-solid fa-angle-down"></i></a>
+                            </div>
+
+                            <div class="packs-container">
+                                {{#each type.packs as |pack key|}}
+                                    <div class="pack-container {{#unless pack.included}}excluded{{/unless}}">
+                                        <input type="checkbox" name="{{concat "excludedCompendiumPacks." @../../key "." key}}" {{checked pack.checked}} />
+                                        <label>{{pack.label}}</label>
+                                    </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        {{/each}}
+    </div>
+    <footer>
+        <button data-action="finish">{{localize "Save Settings"}}</button>
+    </footer>
+</div>

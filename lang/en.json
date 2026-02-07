@@ -343,6 +343,9 @@
                 "requestSpotlight": "Request The Spotlight",
                 "openCountdowns": "Countdowns"
             },
+            "CompendiumBrowserSettings": {
+                "title": "Compendium Browser Settings"
+            },
             "ContextMenu": {
                 "disableEffect": "Disable Effect",
                 "enableEffect": "Enable Effect",
@@ -2787,6 +2790,7 @@
             "ItemBrowser": {
                 "title": "Daggerheart Compendium Browser",
                 "hint": "Select a Folder in sidebar to start browsing through the compendium",
+                "browserSettings": "Browser Settings",
                 "searchPlaceholder": "Search...",
                 "columnName": "Name",
                 "tooltipFilters": "Filters",
@@ -2943,7 +2947,7 @@
                 "rulesOn": "Rules On",
                 "rulesOff": "Rules Off",
                 "remainingUses": "Uses refresh on {type}",
-                "rightClickExtand": "Right-Click to extand",
+                "rightClickExtend": "Right-Click to extend",
                 "companionPartnerLevelBlock": "The companion needs an assigned partner to level up.",
                 "configureAttribution": "Configure Attribution",
                 "deleteItem": "Delete Item",
