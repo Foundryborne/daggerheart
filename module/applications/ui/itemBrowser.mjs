@@ -169,6 +169,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         context.formatChoices = this.formatChoices;
         context.items = this.items;
         context.presets = this.presets;
+        context.isGM = game.user.isGM;
+
         return context;
     }
 
