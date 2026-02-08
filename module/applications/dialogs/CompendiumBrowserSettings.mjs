@@ -123,6 +123,16 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
             CONFIG.DH.SETTINGS.gameSettings.CompendiumBrowserSettings,
             settings.toObject()
         );
+
+        this.updated = true;
         this.close();
+    }
+
+    static async configure() {
+        return new Promise(resolve => {
+            const app = new this();
+            app.addEventListener('close', () => resolve(app.updated), { once: true });
+            app.render({ force: true });
+        });
     }
 }

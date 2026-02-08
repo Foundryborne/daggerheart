@@ -1,3 +1,5 @@
+import { RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 /**
@@ -17,6 +19,13 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         this.config = CONFIG.DH.ITEMBROWSER.compendiumConfig;
         this.presets = {};
         this.compendiumBrowserTypeKey = 'compendiumBrowserDefault';
+
+        this.setupHooks = Hooks.on(socketEvent.Refresh, ({ refreshType }) => {
+            if (refreshType === RefreshType.CompendiumBrowser) {
+                this.render({ force: true });
+                this.loadItems();
+            }
+        });
     }
 
     /** @inheritDoc */
@@ -518,7 +527,16 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     static async openSettings() {
-        new game.system.api.applications.dialogs.CompendiumBrowserSettingsDialog().render({ force: true });
+        const settingsUpdated = await game.system.api.applications.dialogs.CompendiumBrowserSettingsDialog.configure();
+        if (settingsUpdated) {
+            Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.CompendiumBrowser });
+            await game.socket.emit(`system.${CONFIG.DH.id}`, {
+                action: socketEvent.Refresh,
+                data: {
+                    refreshType: RefreshType.CompendiumBrowser
+                }
+            });
+        }
     }
 
     _createDragProcess() {
@@ -579,5 +597,10 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
             headerActions.append(button);
         }
+    }
+
+    async close(options = {}) {
+        Hooks.off(socketEvent.Refresh, this.setupHooks);
+        await super.close(options);
     }
 }
