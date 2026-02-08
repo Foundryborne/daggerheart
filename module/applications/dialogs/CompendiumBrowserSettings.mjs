@@ -14,8 +14,7 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
         classes: ['daggerheart', 'dialog', 'dh-style', 'views', 'compendium-brower-settings'],
         window: {
             icon: 'fa-solid fa-book',
-            title: 'DAGGERHEART.APPLICATIONS.CompendiumBrowserSettings.title',
-            resizable: true
+            title: 'DAGGERHEART.APPLICATIONS.CompendiumBrowserSettings.title'
         },
         position: {
             width: 500

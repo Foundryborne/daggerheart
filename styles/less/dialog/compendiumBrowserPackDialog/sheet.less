@@ -2,11 +2,15 @@
     --text-color: light-dark(@dark-blue, @beige);
     color: var(--text-color);
 
-    .window-content > div {
-        overflow: auto;
-        display: flex;
-        flex-direction: column;
-        height: 100%;
+    .window-content {
+        justify-content: space-between;
+
+        > div {
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            max-height: 400px;
+        }
     }
 
     .types-container {
