@@ -22,8 +22,10 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
         this.setupHooks = Hooks.on(socketEvent.Refresh, ({ refreshType }) => {
             if (refreshType === RefreshType.CompendiumBrowser) {
-                this.render({ force: true });
-                this.loadItems();
+                if (this.rendered) {
+                    this.render();
+                    this.loadItems();
+                }
             }
         });
     }
