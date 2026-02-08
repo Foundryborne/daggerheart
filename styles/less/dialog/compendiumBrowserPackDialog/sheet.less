@@ -1,22 +1,13 @@
 .daggerheart.dialog.dh-style.views.compendium-brower-settings {
-    --text-color: beige;
+    --text-color: light-dark(@dark-blue, @beige);
+    color: var(--text-color);
 
-    .compendium-settings-label {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        color: light-dark(@dark-blue, @golden);
-        font-size: var(--font-size-24);
-        font-family: @font-subtitle;
-        font-weight: bold;
-    }
-
-    .pack-options-container {
+    .types-container {
         display: flex;
         flex-direction: column;
         gap: 8px;
 
-        .pack-option-container {
+        .type-container {
             display: flex;
             flex-direction: column;
             gap: 8px;
@@ -32,14 +23,14 @@
                     content: '';
                     flex: 1;
                     height: 2px;
-                    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, @golden 100%);
+                    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, light-dark(@dark-blue, @golden) 100%);
                     margin-right: 8px;
                 }
                 &::after {
                     content: '';
                     flex: 1;
                     height: 2px;
-                    background: linear-gradient(90deg, @golden 0%, rgba(0, 0, 0, 0) 100%);
+                    background: linear-gradient(90deg, light-dark(@dark-blue, @golden) 0%, rgba(0, 0, 0, 0) 100%);
                     margin-left: 8px;
                 }
             }
@@ -48,11 +39,8 @@
                 display: flex;
                 flex-direction: column;
                 gap: 8px;
-                color: var(--text-color);
 
                 .source-container {
-                    padding: 5px;
-                    background: light-dark(@dark-blue-10, @golden-10);
                     display: flex;
                     flex-direction: column;
                     gap: 2px;
@@ -62,25 +50,67 @@
                         justify-content: space-between;
 
                         .source-inner-label-container {
+                            width: 100%;
                             display: flex;
                             align-items: center;
+                            justify-content: space-between;
                             gap: 4px;
-                        }
-                    }
 
-                    .packs-container {
-                        display: grid;
-                        grid-template-columns: 1fr 1fr;
-                        gap: 4px;
-                        padding-left: 24px;
+                            .source-enable-container {
+                                width: 148px;
+                                height: 24px;
+                                padding: 2px 4px;
+                                background-color: light-dark(@dark-blue, @golden);
+                                border-radius: 6px;
+                                position: relative;
+                                display: flex;
+                                align-items: center;
 
-                        .pack-container {
-                            display: flex;
-                            align-items: center;
+                                &.locked {
+                                    opacity: 0.4;
+
+                                    .source-enable-label {
+                                        left: 74px;
+                                    }
+                                }
+
+                                .source-enable-label {
+                                    width: 70px;
+                                    border-radius: 6px;
+                                    border: 1px solid light-dark(@dark-blue, @beige-50);
+                                    text-align: center;
+                                    background-color: light-dark(@golden, @beige);
+                                    color: black;
+                                    position: absolute;
+                                    left: 4px;
+                                    transition: left ease-in 0.4s;
+                                }
+                            }
                         }
                     }
                 }
             }
+        }
+    }
+
+    .checks-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px;
+        transition: height 0.4s ease-in-out;
+        overflow: hidden;
+
+        &.collapsed {
+            height: 0px;
+        }
+
+        &.inner {
+            padding-left: 24px;
+        }
+
+        .check-container {
+            display: flex;
+            align-items: center;
         }
     }
 

@@ -10,7 +10,7 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
     }
 
     static DEFAULT_OPTIONS = {
-        tag: 'form',
+        tag: 'div',
         classes: ['daggerheart', 'dialog', 'dh-style', 'views', 'compendium-brower-settings'],
         window: {
             icon: 'fa-solid fa-book',
@@ -21,21 +21,18 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
             height: 'auto'
         },
         actions: {
+            toggleSource: CompendiumBrowserSettings.#toggleSource,
             finish: CompendiumBrowserSettings.#finish
-        },
-        form: {
-            handler: this.updateData,
-            submitOnChange: true,
-            submitOnClose: false
         }
     };
 
     /** @override */
     static PARTS = {
-        main: {
-            id: 'main',
-            template: 'systems/daggerheart/templates/dialogs/compendiumBrowserSettingsDialog.hbs'
-        }
+        packs: {
+            id: 'packs',
+            template: 'systems/daggerheart/templates/dialogs/compendiumBrowserSettingsDialog/packs.hbs'
+        },
+        footer: { template: 'systems/daggerheart/templates/dialogs/compendiumBrowserSettingsDialog/footer.hbs' }
     };
 
     static #browserPackTypes = ['Actor', 'Item'];
@@ -43,45 +40,36 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
 
-        for (const element of htmlElement.querySelectorAll('.source-input')) {
-            element.addEventListener('change', this.toggleSource.bind(this));
-        }
+        for (const element of htmlElement.querySelectorAll('.pack-checkbox'))
+            element.addEventListener('change', this.toggleTypedPack.bind(this));
     }
 
-    getPackageName = pack => (pack.metadata.packageType === 'world' ? 'world' : pack.metadata.packageName);
-
+    /**@inheritdoc */
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
 
-        const { excludedCompendiumPacks } = this.browserSettings;
-        context.packOptions = game.packs.reduce((acc, pack) => {
-            const { type, name, label, packageType, id } = pack.metadata;
-            if (!CompendiumBrowserSettings.#browserPackTypes.includes(type)) return acc;
+        const excludedSourceData = this.browserSettings.excludedSources;
+        const excludedPackData = this.browserSettings.excludedPacks;
+        context.typePackCollections = game.packs.reduce((acc, pack) => {
+            const { type, label, packageType, packageName, id } = pack.metadata;
+            if (packageType === 'world' || !CompendiumBrowserSettings.#browserPackTypes.includes(type)) return acc;
 
-            const packageName = this.getPackageName(pack);
-            if (!acc[packageName])
-                acc[packageName] = {
-                    label:
-                        packageType === 'world'
-                            ? game.i18n.localize('PACKAGE.Type.world')
-                            : (game.modules.get(packageName)?.title ?? game.system.title),
-                    types: {}
-                };
-            if (!acc[packageName].types[type])
-                acc[packageName].types[type] = {
-                    label: game.i18n.localize(`DOCUMENT.${type}`),
-                    checked: true,
-                    packs: {}
-                };
+            const sourceChecked =
+                !excludedSourceData[packageName] ||
+                !excludedSourceData[packageName].excludedDocumentTypes.includes(type);
+            const sourceLabel = game.modules.get(packageName)?.title ?? game.system.title;
+            if (!acc[type]) acc[type] = { label: game.i18n.localize(`DOCUMENT.${type}s`), sources: {} };
+            if (!acc[type].sources[packageName])
+                acc[type].sources[packageName] = { label: sourceLabel, checked: sourceChecked, packs: [] };
 
-            if (id === 'daggerheart.ancestries') {
-                console.log('test');
-            }
-            acc[packageName].types[type].packs[id] = {
-                label: label,
-                checked: !excludedCompendiumPacks[packageName]?.[id]
-            };
-            acc[packageName].types[type].checked &&= acc[packageName].types[type].packs[id].checked;
+            const checked = !excludedPackData[id] || !excludedPackData[id].excludedDocumentTypes.includes(type);
+
+            acc[type].sources[packageName].packs.push({
+                pack: id,
+                type,
+                label: id === game.system.id ? game.system.title : game.i18n.localize(label),
+                checked: checked
+            });
 
             return acc;
         }, {});
@@ -89,35 +77,40 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
         return context;
     }
 
-    static async updateData(_event, _, formData) {
-        const { excludedCompendiumPacks } = foundry.utils.expandObject(formData.object);
-        this.browserSettings.excludedCompendiumPacks = Object.keys(excludedCompendiumPacks).reduce(
-            (acc, packageKey) => {
-                const flattenedPack = foundry.utils.flattenObject(excludedCompendiumPacks[packageKey]);
-                acc[packageKey] = Object.keys(flattenedPack).reduce((acc, key) => {
-                    acc[key] = !flattenedPack[key];
-                    return acc;
-                }, {});
-                return acc;
-            },
-            {}
-        );
-        this.render();
-    }
-
-    toggleSource(event) {
+    static #toggleSource(event, button) {
         event.stopPropagation();
 
-        const { excludedCompendiumPacks } = this.browserSettings;
-        const { source, type } = event.target.dataset;
+        const target = button.closest('.source-enable-container');
+        const { type, source } = target.dataset;
+        const currentlyExcluded = this.browserSettings.excludedSources[source]
+            ? this.browserSettings.excludedSources[source].excludedDocumentTypes.includes(type)
+            : false;
 
-        const allIncluded = !event.target.checked;
-        const packs = game.packs.filter(pack => this.getPackageName(pack) === source && pack.metadata.type === type);
-        for (const pack of packs) {
-            if (!excludedCompendiumPacks[source]) excludedCompendiumPacks[source] = {};
+        if (!this.browserSettings.excludedSources[source])
+            this.browserSettings.excludedSources[source] = { excludedDocumentTypes: [] };
+        this.browserSettings.excludedSources[source].excludedDocumentTypes = currentlyExcluded
+            ? this.browserSettings.excludedSources[source].excludedDocumentTypes.filter(x => x !== type)
+            : [...(this.browserSettings.excludedSources[source]?.excludedDocumentTypes ?? []), type];
 
-            excludedCompendiumPacks[source][pack.metadata.id] = allIncluded;
-        }
+        target.classList.toggle('locked');
+        target.closest('.source-container').querySelector('.checks-container').classList.toggle('collapsed');
+
+        // this.render();
+    }
+
+    toggleTypedPack(event) {
+        event.stopPropagation();
+
+        const { type, pack } = event.target.dataset;
+        const currentlyExcluded = this.browserSettings.excludedPacks[pack]
+            ? this.browserSettings.excludedPacks[pack].excludedDocumentTypes.includes(type)
+            : false;
+
+        if (!this.browserSettings.excludedPacks[pack])
+            this.browserSettings.excludedPacks[pack] = { excludedDocumentTypes: [] };
+        this.browserSettings.excludedPacks[pack].excludedDocumentTypes = currentlyExcluded
+            ? this.browserSettings.excludedPacks[pack].excludedDocumentTypes.filter(x => x !== type)
+            : [...(this.browserSettings.excludedPacks[pack]?.excludedDocumentTypes ?? []), type];
 
         this.render();
     }

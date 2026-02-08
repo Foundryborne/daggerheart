@@ -2123,7 +2123,9 @@
                 "configuration": "Configuration",
                 "base": "Base",
                 "triggers": "Triggers",
-                "deathMoves": "Deathmoves"
+                "deathMoves": "Deathmoves",
+                "sources": "Sources",
+                "packs": "Packs"
             },
             "Tiers": {
                 "singular": "Tier",

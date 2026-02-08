@@ -215,10 +215,10 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     loadItems() {
         let loadTimeout = this.toggleLoader(true);
 
-        const excludedCompendiumPacks = game.settings.get(
+        const browserSettings = game.settings.get(
             CONFIG.DH.id,
             CONFIG.DH.SETTINGS.gameSettings.CompendiumBrowserSettings
-        ).excludedCompendiumPacks;
+        );
         const promises = [];
 
         game.packs.forEach(pack => {
@@ -232,13 +232,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
         Promise.all(promises).then(async result => {
             this.items = ItemBrowser.sortBy(
-                result
-                    .flatMap(r => r)
-                    .filter(x => {
-                        const pack = game.packs.get(x.pack);
-                        const packageName = pack.metadata.packageType === 'world' ? 'world' : pack.metadata.packageName;
-                        return !excludedCompendiumPacks[packageName]?.[x.pack];
-                    }),
+                result.flatMap(r => r).filter(r => !browserSettings.isEntryExcluded.bind(browserSettings)(r)),
                 'name'
             );
 
