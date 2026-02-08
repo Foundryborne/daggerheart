@@ -109,8 +109,8 @@ export default class DamageField extends fields.SchemaField {
                 );
             else {
                 const configDamage = foundry.utils.deepClone(config.damage);
-                const hpDamageMultiplier = config.actionActor?.system.rules?.attack.damage.hpDamageMultiplier ?? 1;
-                const hpDamageTakenMultiplier = actor.system.rules.attack.damage.hpDamageTakenMultiplier;
+                const hpDamageMultiplier = config.actionActor?.system.rules?.attack?.damage?.hpDamageMultiplier ?? 1;
+                const hpDamageTakenMultiplier = actor.system.rules?.attack?.damage?.hpDamageTakenMultiplier;
                 if (configDamage.hitPoints) {
                     for (const part of configDamage.hitPoints.parts) {
                         part.total = Math.ceil(part.total * hpDamageMultiplier * hpDamageTakenMultiplier);
