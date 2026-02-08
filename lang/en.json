@@ -344,7 +344,9 @@
                 "openCountdowns": "Countdowns"
             },
             "CompendiumBrowserSettings": {
-                "title": "Compendium Browser Settings"
+                "title": "Enable Compendiums",
+                "enableSource": "Enable Source",
+                "disableSource": "Disable Source"
             },
             "ContextMenu": {
                 "disableEffect": "Disable Effect",

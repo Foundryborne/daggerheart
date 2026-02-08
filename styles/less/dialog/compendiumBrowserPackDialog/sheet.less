@@ -2,6 +2,13 @@
     --text-color: light-dark(@dark-blue, @beige);
     color: var(--text-color);
 
+    .window-content > div {
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
     .types-container {
         display: flex;
         flex-direction: column;
@@ -52,39 +59,11 @@
                         .source-inner-label-container {
                             width: 100%;
                             display: flex;
-                            align-items: center;
-                            justify-content: space-between;
-                            gap: 4px;
+                            gap: 8px;
 
-                            .source-enable-container {
-                                width: 148px;
-                                height: 24px;
-                                padding: 2px 4px;
-                                background-color: light-dark(@dark-blue, @golden);
-                                border-radius: 6px;
-                                position: relative;
-                                display: flex;
-                                align-items: center;
-
-                                &.locked {
-                                    opacity: 0.4;
-
-                                    .source-enable-label {
-                                        left: 74px;
-                                    }
-                                }
-
-                                .source-enable-label {
-                                    width: 70px;
-                                    border-radius: 6px;
-                                    border: 1px solid light-dark(@dark-blue, @beige-50);
-                                    text-align: center;
-                                    background-color: light-dark(@golden, @beige);
-                                    color: black;
-                                    position: absolute;
-                                    left: 4px;
-                                    transition: left ease-in 0.4s;
-                                }
+                            i {
+                                font-size: 18px;
+                                // color: light-dark(@dark-blue, @golden);
                             }
                         }
                     }
@@ -94,6 +73,7 @@
     }
 
     .checks-container {
+        padding-left: 24px;
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 4px;
@@ -102,10 +82,6 @@
 
         &.collapsed {
             height: 0px;
-        }
-
-        &.inner {
-            padding-left: 24px;
         }
 
         .check-container {

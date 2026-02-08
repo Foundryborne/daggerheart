@@ -9,15 +9,17 @@
                         <div class="source-container">
                             <div class="source-inner-container">
                                 <div class="source-inner-label-container">
-                                    {{!-- <input type="checkbox" class="source-input" data-source="{{@key}}" data-type="{{@../key}}" {{checked source.checked}} /> --}}
-                                    <label>{{source.label}}</label>
-                                    <a class="source-enable-container {{#unless source.checked}}locked{{/unless}}" data-action="toggleSource" data-source="{{@key}}" data-type="{{@../key}}">
-                                        <div class="source-enable-label">{{localize "Active"}}</div>
+                                    <a 
+                                        data-action="toggleSource" data-source="{{@key}}" data-type="{{@../key}}" 
+                                        data-tooltip="{{#if source.checked}}{{localize "DAGGERHEART.APPLICATIONS.CompendiumBrowserSettings.enableSource"}}{{else}}{{localize "DAGGERHEART.APPLICATIONS.CompendiumBrowserSettings.enableSource"}}{{/if}}"
+                                    >
+                                        <i class="fa-solid {{#if source.checked}}fa-toggle-on{{else}}fa-toggle-off{{/if}}"></i>
                                     </a>
+                                    <label>{{source.label}}</label>
                                 </div>
                             </div>
 
-                            <div class="checks-container inner {{#unless source.checked}}collapsed{{/unless}}">
+                            <div class="checks-container {{#unless source.checked}}collapsed{{/unless}}">
                                 {{#each source.packs as |pack|}}
                                     <div class="check-container">
                                         <input type="checkbox" class="pack-checkbox" data-type="{{pack.type}}" data-pack="{{pack.pack}}" {{checked pack.checked}} />

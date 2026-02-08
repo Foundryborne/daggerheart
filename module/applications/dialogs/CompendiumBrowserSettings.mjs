@@ -14,11 +14,11 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
         classes: ['daggerheart', 'dialog', 'dh-style', 'views', 'compendium-brower-settings'],
         window: {
             icon: 'fa-solid fa-book',
-            title: 'DAGGERHEART.APPLICATIONS.CompendiumBrowserSettings.title'
+            title: 'DAGGERHEART.APPLICATIONS.CompendiumBrowserSettings.title',
+            resizable: true
         },
         position: {
-            width: 500,
-            height: 'auto'
+            width: 500
         },
         actions: {
             toggleSource: CompendiumBrowserSettings.#toggleSource,
@@ -80,8 +80,7 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
     static #toggleSource(event, button) {
         event.stopPropagation();
 
-        const target = button.closest('.source-enable-container');
-        const { type, source } = target.dataset;
+        const { type, source } = button.dataset;
         const currentlyExcluded = this.browserSettings.excludedSources[source]
             ? this.browserSettings.excludedSources[source].excludedDocumentTypes.includes(type)
             : false;
@@ -92,10 +91,10 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
             ? this.browserSettings.excludedSources[source].excludedDocumentTypes.filter(x => x !== type)
             : [...(this.browserSettings.excludedSources[source]?.excludedDocumentTypes ?? []), type];
 
-        target.classList.toggle('locked');
-        target.closest('.source-container').querySelector('.checks-container').classList.toggle('collapsed');
-
-        // this.render();
+        const toggleIcon = button.querySelector('a > i');
+        toggleIcon.classList.toggle('fa-toggle-off');
+        toggleIcon.classList.toggle('fa-toggle-on');
+        button.closest('.source-container').querySelector('.checks-container').classList.toggle('collapsed');
     }
 
     toggleTypedPack(event) {
