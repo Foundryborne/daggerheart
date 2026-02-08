@@ -531,7 +531,10 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     static async openSettings() {
         const settingsUpdated = await game.system.api.applications.dialogs.CompendiumBrowserSettingsDialog.configure();
         if (settingsUpdated) {
-            Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.CompendiumBrowser });
+            if (this.rendered) {
+                this.render();
+                this.loadItems();
+            }
             await game.socket.emit(`system.${CONFIG.DH.id}`, {
                 action: socketEvent.Refresh,
                 data: {
