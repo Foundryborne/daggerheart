@@ -115,6 +115,34 @@ export default class ArmorEffect extends foundry.data.ActiveEffectTypeDataModel 
         await this.parent.update({ 'system.changes': newChanges });
     }
 
+    static orderEffectsForAutoChange(armorEffects, increasing) {
+        const getEffectWeight = effect => {
+            switch (effect.parent.type) {
+                case 'loot':
+                case 'consumable':
+                    return 2;
+                case 'class':
+                case 'subclass':
+                case 'ancestry':
+                case 'community':
+                case 'feature':
+                case 'domainCard':
+                    return 3;
+                case 'weapon':
+                case 'armor':
+                    return 4;
+                case 'character':
+                    return 5;
+                default:
+                    return 1;
+            }
+        };
+
+        return armorEffects.sort((a, b) =>
+            increasing ? getEffectWeight(b) - getEffectWeight(a) : getEffectWeight(a) - getEffectWeight(b)
+        );
+    }
+
     /* Overrides */
 
     prepareBaseData() {

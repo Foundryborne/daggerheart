@@ -458,11 +458,6 @@ export default class DhCharacter extends BaseDataActor {
         return this.parent.items.find(x => x.type === 'armor' && x.system.equipped);
     }
 
-    /* TODO: Prep datastructure to be useful when applying automatic armor damage order */
-    get armorEffects() {
-        return Array.from(this.parent.allApplicableEffects());
-    }
-
     get activeBeastform() {
         return this.parent.effects.find(x => x.type === 'beastform');
     }
@@ -510,6 +505,53 @@ export default class DhCharacter extends BaseDataActor {
         } else {
             return false;
         }
+    }
+
+    async updateArmorValue(armorChange) {
+        if (armorChange === 0) return;
+
+        const increasing = armorChange >= 0;
+        let remainingChange = Math.abs(armorChange);
+        const armorEffects = Array.from(this.parent.allApplicableEffects()).filter(x => x.type === 'armor');
+        const orderedEffects = game.system.api.data.activeEffects.ArmorEffect.orderEffectsForAutoChange(
+            armorEffects,
+            increasing
+        );
+
+        const embeddedUpdates = [];
+        for (const armorEffect of orderedEffects) {
+            let usedArmorChange = 0;
+            if (increasing) {
+                const remainingArmor = armorEffect.system.armorChange.max - armorEffect.system.armorChange.value;
+                usedArmorChange = Math.min(remainingChange, remainingArmor);
+                remainingChange -= usedArmorChange;
+            } else {
+                const changeChange = Math.min(armorEffect.system.armorChange.value, remainingChange);
+                usedArmorChange -= changeChange;
+                remainingChange -= changeChange;
+            }
+
+            if (!usedArmorChange) continue;
+            else {
+                if (!embeddedUpdates[armorEffect.parent.id])
+                    embeddedUpdates[armorEffect.parent.id] = { doc: armorEffect.parent, updates: [] };
+
+                embeddedUpdates[armorEffect.parent.id].updates.push({
+                    '_id': armorEffect.id,
+                    'system.changes': [
+                        {
+                            ...armorEffect.system.armorChange,
+                            value: armorEffect.system.armorChange.value + usedArmorChange
+                        }
+                    ]
+                });
+            }
+
+            if (remainingChange === 0) break;
+        }
+
+        for (const { doc, updates } of Object.values(embeddedUpdates))
+            doc.updateEmbeddedDocuments('ActiveEffect', updates);
     }
 
     get sheetLists() {
