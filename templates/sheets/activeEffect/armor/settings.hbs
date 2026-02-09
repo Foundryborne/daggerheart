@@ -4,8 +4,8 @@
     <div class="armor-effects-container">
         {{#each source.system.changes as |change index|}}
             <div class="armor-effect-container">
-                {{formGroup @root.systemFields.changes.element.fields.marked value=change.marked localize=true}}
-                {{formGroup @root.systemFields.changes.element.fields.max value=change.max localize=true}}
+                {{formGroup @root.systemFields.changes.element.fields.marked name=(concat 'system.changes.' index '.marked') value=change.marked localize=true}}
+                {{formGroup @root.systemFields.changes.element.fields.max name=(concat 'system.changes.' index '.max') value=change.max localize=true}}
             </div>
         {{/each}}
     </div>

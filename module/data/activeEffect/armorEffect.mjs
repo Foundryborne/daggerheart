@@ -40,8 +40,8 @@ export default class ArmorEffect extends foundry.data.ActiveEffectTypeDataModel 
 
     prepareBaseData() {
         for (const change of this.changes) {
-            change.key = 'system.armorTest';
-            change.value = Math.max(change.max - change.marked, change.max);
+            change.key = 'system.armorScore.value';
+            change.value = Math.min(change.max - change.marked, change.max);
         }
     }
 

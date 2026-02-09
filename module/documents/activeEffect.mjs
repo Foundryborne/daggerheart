@@ -139,6 +139,11 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
     /*  Methods                                     */
     /* -------------------------------------------- */
 
+    /**@inheritdoc */
+    static applyChange(actor, change, options) {
+        super.applyChange(actor, change, options);
+    }
+
     /**@inheritdoc*/
     static applyChangeField(model, change, field) {
         if (this.system?.applyChangeField)

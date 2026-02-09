@@ -2,6 +2,7 @@ const { HandlebarsApplicationMixin, DocumentSheetV2 } = foundry.applications.api
 
 export default class ArmorActiveEffectConfig extends HandlebarsApplicationMixin(DocumentSheetV2) {
     static DEFAULT_OPTIONS = {
+        tag: 'form',
         classes: ['daggerheart', 'sheet', 'dh-style', 'active-effect-config', 'armor-effect-config'],
         form: {
             handler: this.updateForm,
@@ -9,7 +10,8 @@ export default class ArmorActiveEffectConfig extends HandlebarsApplicationMixin(
             closeOnSubmit: false
         },
         actions: {
-            addEffect: ArmorActiveEffectConfig.#addEffect
+            addEffect: ArmorActiveEffectConfig.#addEffect,
+            finish: ArmorActiveEffectConfig.#finish
         }
     };
 
@@ -18,7 +20,7 @@ export default class ArmorActiveEffectConfig extends HandlebarsApplicationMixin(
         tabs: { template: 'templates/generic/tab-navigation.hbs' },
         details: { template: 'systems/daggerheart/templates/sheets/activeEffect/armor/details.hbs' },
         settings: { template: 'systems/daggerheart/templates/sheets/activeEffect/armor/settings.hbs' },
-        footer: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-form-footer.hbs' }
+        footer: { template: 'systems/daggerheart/templates/sheets/activeEffect/armor/footer.hbs' }
     };
 
     static TABS = {
@@ -47,7 +49,7 @@ export default class ArmorActiveEffectConfig extends HandlebarsApplicationMixin(
         return partContext;
     }
 
-    async updateForm(_event, _form, formData) {
+    static async updateForm(_event, _form, formData) {
         await this.document.update(formData.object);
         this.render();
     }
@@ -55,5 +57,9 @@ export default class ArmorActiveEffectConfig extends HandlebarsApplicationMixin(
     static #addEffect() {
         this.document.update({ 'system.changes': [...this.document.system.changes, {}] });
         this.render();
+    }
+
+    static #finish() {
+        this.close();
     }
 }

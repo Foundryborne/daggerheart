@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            {{#if document.system.armor.system.marks}}
+            {{#if document.system.armorScore.max}}
                 <div class="status-bar armor-slots">
                     {{#if useResourcePips}}
                     <div class='slot-value'>
@@ -52,14 +52,14 @@
                     </div>
                     {{else}}
                     <div class='status-value'>
-                        <input class="bar-input armor-marks-input" value="{{document.system.armor.system.marks.value}}" type="number">
+                        <input class="bar-input armor-marks-input" value="{{document.system.armorScore.value}}" type="number">
                         <span>/</span>
-                        <span class="bar-label">{{document.system.armorScore}}</span>
+                        <span class="bar-label">{{document.system.armorScore.max}}</span>
                     </div>
                     <progress
                         class='progress-bar stress-color'
-                        value='{{document.system.armor.system.marks.value}}'
-                        max='{{document.system.armorScore}}'
+                        value='{{document.system.armorScore.value}}'
+                        max='{{document.system.armorScore.max}}'
                     ></progress>
                     <div class="status-label">
                         <h4>{{localize "DAGGERHEART.GENERAL.armorSlots"}}</h4>

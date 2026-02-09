@@ -62,7 +62,20 @@ export default class DhCharacter extends BaseDataActor {
                 label: 'DAGGERHEART.GENERAL.proficiency'
             }),
             evasion: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.evasion' }),
-            armorScore: new fields.NumberField({ integer: true, initial: 0, label: 'DAGGERHEART.GENERAL.armorScore' }),
+            armorScore: new fields.SchemaField({
+                value: new fields.NumberField({
+                    integer: true,
+                    initial: 0,
+                    min: 0,
+                    label: 'DAGGERHEART.GENERAL.armorScore'
+                }),
+                max: new fields.NumberField({
+                    integer: true,
+                    initial: 0,
+                    min: 0,
+                    label: 'DAGGERHEART.GENERAL.armorScore'
+                })
+            }),
             damageThresholds: new fields.SchemaField({
                 severe: new fields.NumberField({
                     integer: true,
@@ -665,14 +678,12 @@ export default class DhCharacter extends BaseDataActor {
             }
         }
 
-        const armor = this.armor;
-        this.armorScore = armor ? armor.system.baseScore : 0;
         this.damageThresholds = {
-            major: armor
-                ? armor.system.baseThresholds.major + this.levelData.level.current
+            major: this.armor
+                ? this.armor.system.baseThresholds.major + this.levelData.level.current
                 : this.levelData.level.current,
-            severe: armor
-                ? armor.system.baseThresholds.severe + this.levelData.level.current
+            severe: this.armor
+                ? this.armor.system.baseThresholds.severe + this.levelData.level.current
                 : this.levelData.level.current * 2
         };
 
@@ -705,8 +716,7 @@ export default class DhCharacter extends BaseDataActor {
         this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
 
         this.resources.armor = {
-            value: this.armor?.system?.marks?.value ?? 0,
-            max: this.armorScore,
+            ...this.armorScore,
             isReversed: true
         };
 
