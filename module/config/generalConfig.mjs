@@ -240,6 +240,7 @@ export const defaultRestOptions = {
                     actionType: 'action',
                     chatDisplay: false,
                     target: {
+                        amount: 1,
                         type: 'friendly'
                     },
                     damage: {
@@ -308,6 +309,7 @@ export const defaultRestOptions = {
                     actionType: 'action',
                     chatDisplay: false,
                     target: {
+                        amount: 1,
                         type: 'friendly'
                     },
                     damage: {
@@ -333,7 +335,56 @@ export const defaultRestOptions = {
             icon: 'fa-solid fa-dumbbell',
             img: 'icons/skills/trades/academics-merchant-scribe.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.prepare.description'),
-            actions: {},
+            actions: {
+                prepare: {
+                    type: 'healing',
+                    systemPath: 'restMoves.shortRest.moves.prepare.actions',
+                    name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.prepare.name'),
+                    img: 'icons/skills/trades/academics-merchant-scribe.webp',
+                    actionType: 'action',
+                    chatDisplay: false,
+                    target: {
+                        type: 'self'
+                    },
+                    damage: {
+                        parts: [
+                            {
+                                applyTo: healingTypes.hope.id,
+                                value: {
+                                    custom: {
+                                        enabled: true,
+                                        formula: '1'
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                prepareWithFriends: {
+                    type: 'healing',
+                    systemPath: 'restMoves.shortRest.moves.prepare.actions',
+                    name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.prepareWithFriends.name'),
+                    img: 'icons/skills/trades/academics-merchant-scribe.webp',
+                    actionType: 'action',
+                    chatDisplay: false,
+                    target: {
+                        type: 'self'
+                    },
+                    damage: {
+                        parts: [
+                            {
+                                applyTo: healingTypes.hope.id,
+                                value: {
+                                    custom: {
+                                        enabled: true,
+                                        formula: '2'
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
             effects: []
         }
     }),
@@ -353,6 +404,7 @@ export const defaultRestOptions = {
                     actionType: 'action',
                     chatDisplay: false,
                     target: {
+                        amount: 1,
                         type: 'friendly'
                     },
                     damage: {
@@ -421,6 +473,7 @@ export const defaultRestOptions = {
                     actionType: 'action',
                     chatDisplay: false,
                     target: {
+                        amount: 1,
                         type: 'friendly'
                     },
                     damage: {
@@ -446,7 +499,56 @@ export const defaultRestOptions = {
             icon: 'fa-solid fa-dumbbell',
             img: 'icons/skills/trades/academics-merchant-scribe.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.prepare.description'),
-            actions: {},
+            actions: {
+                prepare: {
+                    type: 'healing',
+                    systemPath: 'restMoves.longRest.moves.prepare.actions',
+                    name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.prepare.name'),
+                    img: 'icons/skills/trades/academics-merchant-scribe.webp',
+                    actionType: 'action',
+                    chatDisplay: false,
+                    target: {
+                        type: 'self'
+                    },
+                    damage: {
+                        parts: [
+                            {
+                                applyTo: healingTypes.hope.id,
+                                value: {
+                                    custom: {
+                                        enabled: true,
+                                        formula: '1'
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                prepareWithFriends: {
+                    type: 'healing',
+                    systemPath: 'restMoves.longRest.moves.prepare.actions',
+                    name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.prepareWithFriends.name'),
+                    img: 'icons/skills/trades/academics-merchant-scribe.webp',
+                    actionType: 'action',
+                    chatDisplay: false,
+                    target: {
+                        type: 'self'
+                    },
+                    damage: {
+                        parts: [
+                            {
+                                applyTo: healingTypes.hope.id,
+                                value: {
+                                    custom: {
+                                        enabled: true,
+                                        formula: '2'
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
             effects: []
         },
         workOnAProject: {

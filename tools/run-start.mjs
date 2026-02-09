@@ -18,7 +18,7 @@ const foundryPath = process.env.FOUNDRY_MAIN_PATH || '../../../../FoundryDev/mai
 const dataPath = process.env.FOUNDRY_DATA_PATH || '../../../';
 
 // Run the original command with proper environment
-const args = ['rollup -c --watch', `node "${foundryPath}" --dataPath="${dataPath}" --noupnp`, 'gulp'];
+const args = ['rollup -c --watch', `node "\"${foundryPath}\"" --dataPath="${dataPath}" --noupnp`, 'gulp'];
 
 spawn('npx', ['concurrently', ...args.map(arg => `"${arg}"`)], {
     stdio: 'inherit',

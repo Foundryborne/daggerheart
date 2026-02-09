@@ -7,16 +7,20 @@ const attributeField = label =>
     });
 
 const resourceField = (max = 0, initial = 0, label, reverse = false, maxLabel) =>
-    new fields.SchemaField({
-        value: new fields.NumberField({ initial: initial, min: 0, integer: true, label }),
-        max: new fields.NumberField({
-            initial: max,
-            integer: true,
-            label:
-                maxLabel ?? game.i18n.format('DAGGERHEART.GENERAL.maxWithThing', { thing: game.i18n.localize(label) })
-        }),
-        isReversed: new fields.BooleanField({ initial: reverse })
-    });
+    new fields.SchemaField(
+        {
+            value: new fields.NumberField({ initial: initial, min: 0, integer: true, label }),
+            max: new fields.NumberField({
+                initial: max,
+                integer: true,
+                label:
+                    maxLabel ??
+                    game.i18n.format('DAGGERHEART.GENERAL.maxWithThing', { thing: game.i18n.localize(label) })
+            }),
+            isReversed: new fields.BooleanField({ initial: reverse })
+        },
+        { label }
+    );
 
 const stressDamageReductionRule = localizationPath =>
     new fields.SchemaField({

@@ -195,6 +195,9 @@
                 },
                 "age": "Age",
                 "backgroundQuestions": "Backgrounds",
+                "burden": {
+                    "ignore": { "label": "Burden: Ignore", "hint": "Ignore burden rules" }
+                },
                 "companionFeatures": "Companion Features",
                 "connections": "Connections",
                 "contextMenu": {
@@ -217,6 +220,12 @@
                 "maxEvasionBonus": "Max Evasion Increase",
                 "maxHPBonus": "Max HP Increase",
                 "pronouns": "Pronouns",
+                "roll": {
+                    "guaranteedCritical": {
+                        "label": "Guaranteed Critical",
+                        "hint": "Set to 1 to always roll a critical"
+                    }
+                },
                 "story": {
                     "backgroundTitle": "Background",
                     "characteristics": "Characteristics",
@@ -346,6 +355,11 @@
                 "requestSpotlight": "Request The Spotlight",
                 "openCountdowns": "Countdowns"
             },
+            "CompendiumBrowserSettings": {
+                "title": "Enable Compendiums",
+                "enableSource": "Enable Source",
+                "disableSource": "Disable Source"
+            },
             "ContextMenu": {
                 "disableEffect": "Disable Effect",
                 "enableEffect": "Enable Effect",
@@ -446,8 +460,12 @@
                         "name": "Clear Stress"
                     },
                     "prepare": {
-                        "description": "Describe how you are preparing for the next day's adventure, then gain a Hope. If you choose to Prepare with one or more members of your party, you may each take two Hope.",
+                        "description": "Describe how you are preparing for the next day's adventure, then gain a Hope.",
                         "name": "Prepare"
+                    },
+                    "prepareWithFriends": {
+                        "description": "You prepare with one or more members of your party, and you each gain 2 Hope.",
+                        "name": "Prepare (together)"
                     },
                     "repairArmor": {
                         "description": "Describe how you spend time repairing your armor and clear all of its Armor Slots. You may also do this to an ally's armor instead.",
@@ -479,7 +497,11 @@
                     },
                     "prepare": {
                         "name": "Prepare",
-                        "description": "Describe how you prepare yourself for the path ahead, then gain a Hope. If you choose to Prepare with one or more members of your party, you each gain 2 Hope."
+                        "description": "Describe how you prepare yourself for the path ahead, then gain a Hope."
+                    },
+                    "prepareWithFriends": {
+                        "name": "Prepare (together)",
+                        "description": "You prepare with one or more members of your party, and you each gain 2 Hope."
                     }
                 },
                 "refreshable": {
@@ -1843,6 +1865,16 @@
                 "singular": "Adversary",
                 "plural": "Adversaries"
             },
+            "Attack": {
+                "hpDamageMultiplier": {
+                    "label": "HP Damage Multiplier",
+                    "hint": "Multiply any damage you deal by this number"
+                },
+                "hpDamageTakenMultiplier": {
+                    "label": "HP Damage Taken Multiplier",
+                    "hint": "Multiply any damage dealt to you by this number"
+                }
+            },
             "Bonuses": {
                 "rest": {
                     "downtimeAction": "Downtime Action",
@@ -2027,15 +2059,39 @@
                 "reaction": "Reaction Roll"
             },
             "Rules": {
+                "conditionImmunities": {
+                    "hidden": "Condition Immunity: Hidden",
+                    "restrained": "Condition Immunity: Restrained",
+                    "vulnerable": "Condition Immunity: Vulnerable"
+                },
                 "damageReduction": {
+                    "disabledArmor": { "label": "Disabled Armorslots" },
                     "increasePerArmorMark": {
                         "label": "Damage Reduction per Armor Slot",
                         "hint": "A used armor slot normally reduces damage by one step. This value increases the number of steps damage is reduced by."
+                    },
+                    "magical": {
+                        "label": "Daamge Reduction: Only Magical",
+                        "hint": "Armor can only be used to reduce magical damage"
                     },
                     "maxArmorMarkedBonus": "Max Armor Used",
                     "maxArmorMarkedStress": {
                         "label": "Max Armor Used With Stress",
                         "hint": "If this value is set you can use up to that much stress to spend additional Armor Marks beyond your normal maximum."
+                    },
+                    "reduceSeverity": {
+                        "magical": {
+                            "label": "Reduce Damage Severity: Magical",
+                            "hint": "Lowers any magical damage received by the set amount of severity degrees"
+                        },
+                        "physical": {
+                            "label": "Reduce Damage Severity: Physical",
+                            "hint": "Lowers any physical damage received by the set amount of severity degrees"
+                        }
+                    },
+                    "physical": {
+                        "label": "Damage Reduction: Only Physical",
+                        "hint": "Armor can only be used to reduce physical damage"
                     },
                     "stress": {
                         "any": {
@@ -2053,6 +2109,12 @@
                         "minor": {
                             "label": "Stress Damage Reduction: Minor",
                             "hint": "The cost in stress you can pay to reduce minor damage to none."
+                        }
+                    },
+                    "thresholdImmunities": {
+                        "minor": {
+                            "label": "Threshold Immunities: Minor",
+                            "hint": "Automatically ignores minor damage"
                         }
                     }
                 },
@@ -2123,7 +2185,9 @@
                 "configuration": "Configuration",
                 "base": "Base",
                 "triggers": "Triggers",
-                "deathMoves": "Deathmoves"
+                "deathMoves": "Deathmoves",
+                "sources": "Sources",
+                "packs": "Packs"
             },
             "Tiers": {
                 "singular": "Tier",
@@ -2155,6 +2219,7 @@
             "continue": "Continue",
             "criticalSuccess": "Critical Success",
             "criticalShort": "Critical",
+            "currentLevel": "Current Level",
             "custom": "Custom",
             "d20Roll": "D20 Roll",
             "damage": "Damage",
@@ -2559,6 +2624,8 @@
                 "resetMovesTitle": "Reset {type} Downtime Moves",
                 "resetItemFeaturesTitle": "Reset {type}",
                 "resetMovesText": "Are you sure you want to reset?",
+                "deleteItemTitle": "Delete Homebrew Item",
+                "deleteItemText": "Are you sure you want to delete the item?",
                 "FIELDS": {
                     "maxFear": { "label": "Max Fear" },
                     "maxHope": { "label": "Max Hope" },
@@ -2790,6 +2857,7 @@
             "ItemBrowser": {
                 "title": "Daggerheart Compendium Browser",
                 "hint": "Select a Folder in sidebar to start browsing through the compendium",
+                "browserSettings": "Browser Settings",
                 "searchPlaceholder": "Search...",
                 "columnName": "Name",
                 "tooltipFilters": "Filters",
@@ -2946,7 +3014,7 @@
                 "rulesOn": "Rules On",
                 "rulesOff": "Rules Off",
                 "remainingUses": "Uses refresh on {type}",
-                "rightClickExtand": "Right-Click to extand",
+                "rightClickExtend": "Right-Click to extend",
                 "companionPartnerLevelBlock": "The companion needs an assigned partner to level up.",
                 "configureAttribution": "Configure Attribution",
                 "deleteItem": "Delete Item",

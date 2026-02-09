@@ -1,7 +1,6 @@
 export default function ItemAttachmentSheet(Base) {
     return class extends Base {
         static DEFAULT_OPTIONS = {
-            ...super.DEFAULT_OPTIONS,
             dragDrop: [
                 ...(super.DEFAULT_OPTIONS.dragDrop || []),
                 { dragSelector: null, dropSelector: '.attachments-section' }

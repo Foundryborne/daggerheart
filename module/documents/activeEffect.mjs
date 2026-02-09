@@ -92,14 +92,15 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
             update.img = 'icons/magic/life/heart-cross-blue.webp';
         }
 
+        const statuses = Object.keys(data.statuses ?? {});
         const immuneStatuses =
-            data.statuses?.filter(
+            statuses.filter(
                 status =>
                     this.parent.system.rules?.conditionImmunities &&
                     this.parent.system.rules.conditionImmunities[status]
             ) ?? [];
         if (immuneStatuses.length > 0) {
-            update.statuses = data.statuses.filter(x => !immuneStatuses.includes(x));
+            update.statuses = statuses.filter(x => !immuneStatuses.includes(x));
             const conditions = CONFIG.DH.GENERAL.conditions();
             const scrollingTexts = immuneStatuses.map(status => ({
                 text: game.i18n.format('DAGGERHEART.ACTIVEEFFECT.immuneStatusText', {
@@ -147,6 +148,11 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
             ? change.value
             : DhActiveEffect.getChangeValue(model, change, change.effect);
         super.applyChangeField(model, change, field);
+    }
+
+    _applyLegacy(actor, change, changes) {
+        change.value = DhActiveEffect.getChangeValue(actor, change, change.effect);
+        super._applyLegacy(actor, change, changes);
     }
 
     static getChangeValue(model, change, effect) {

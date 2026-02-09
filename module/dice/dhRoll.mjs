@@ -96,6 +96,19 @@ export default class DHRoll extends Roll {
     }
 
     static async toMessage(roll, config) {
+        const item = config.data.parent?.items?.get?.(config.source.item) ?? null;
+        const action = item ? item.system.actions.get(config.source.action) : null;
+        let actionDescription = null;
+        if (action?.chatDisplay) {
+            actionDescription = action
+                ? await foundry.applications.ux.TextEditor.implementation.enrichHTML(action.description, {
+                      relativeTo: config.data,
+                      rollData: config.data.getRollData?.() ?? {}
+                  })
+                : null;
+            config.actionChatMessageHandled = true;
+        }
+
         const cls = getDocumentClass('ChatMessage'),
             msgData = {
                 type: this.messageType,
@@ -103,7 +116,7 @@ export default class DHRoll extends Roll {
                 title: roll.title,
                 speaker: cls.getSpeaker({ actor: roll.data?.parent }),
                 sound: config.mute ? null : CONFIG.sounds.dice,
-                system: config,
+                system: { ...config, actionDescription },
                 rolls: [roll]
             };
 

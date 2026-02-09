@@ -3,6 +3,7 @@ export { default as DhCombatant } from './combatant.mjs';
 export { default as DhTagTeamRoll } from './tagTeamRoll.mjs';
 export { default as DhRollTable } from './rollTable.mjs';
 export { default as RegisteredTriggers } from './registeredTriggers.mjs';
+export { default as CompendiumBrowserSettings } from './compendiumBrowserSettings.mjs';
 
 export * as countdowns from './countdowns.mjs';
 export * as actions from './action/_module.mjs';

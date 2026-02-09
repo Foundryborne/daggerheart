@@ -37,7 +37,7 @@ export default class DhAppearance extends foundry.abstract.DataModel {
             extendEnvironmentDescriptions: new BooleanField(),
             extendItemDescriptions: new BooleanField(),
             expandRollMessage: new SchemaField({
-                desc: new BooleanField(),
+                desc: new BooleanField({ initial: true }),
                 roll: new BooleanField(),
                 damage: new BooleanField(),
                 target: new BooleanField()

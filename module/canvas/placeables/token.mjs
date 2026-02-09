@@ -64,7 +64,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
             const originRadius = (this.bounds.width * boundsCorrection) / 2;
             const targetRadius = (target.bounds.width * boundsCorrection) / 2;
             const distance = canvas.grid.measurePath([originPoint, destinationPoint]).distance;
-            return distance - originRadius - targetRadius + canvas.grid.distance;
+            return Math.floor(distance - originRadius - targetRadius + canvas.grid.distance);
         }
 
         // Compute what the closest grid space of each token is, then compute that distance
