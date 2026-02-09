@@ -11,3 +11,7 @@ export const config = {
     horde: HordeEffect,
     armor: ArmorEffect
 };
+
+export const changeTypes = {
+    armor: ArmorEffect.armorChangeEffect
+};

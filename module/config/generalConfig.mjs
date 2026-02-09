@@ -854,6 +854,11 @@ export const sceneRangeMeasurementSetting = {
 };
 
 export const activeEffectModes = {
+    armor: {
+        id: 'armor',
+        priority: 20,
+        label: 'TYPES.ActiveEffect.armor'
+    },
     custom: {
         id: 'custom',
         priority: 0,

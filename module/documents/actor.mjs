@@ -992,4 +992,8 @@ export default class DhpActor extends Actor {
 
         return allTokens;
     }
+
+    applyActiveEffects(phase) {
+        super.applyActiveEffects(phase);
+    }
 }

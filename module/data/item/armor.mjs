@@ -19,7 +19,6 @@ export default class DHArmor extends AttachableItem {
             ...super.defineSchema(),
             tier: new fields.NumberField({ required: true, integer: true, initial: 1, min: 1 }),
             equipped: new fields.BooleanField({ initial: false }),
-            baseScore: new fields.NumberField({ integer: true, initial: 0 }),
             armorFeatures: new fields.ArrayField(
                 new fields.SchemaField({
                     value: new fields.StringField({
@@ -52,6 +51,11 @@ export default class DHArmor extends AttachableItem {
         return this.actions.filter(
             action => !this.armorFeatures.some(feature => feature.actionIds.includes(action.id))
         );
+    }
+
+    get armorEffect() {
+        /* TODO: make armors only able to have on armor effect, or handle in some other way */
+        return this.parent.effects.find(x => x.type === 'armor');
     }
 
     /**@inheritdoc */
@@ -159,8 +163,9 @@ export default class DHArmor extends AttachableItem {
      * @returns {string[]} An array of localized tag strings.
      */
     _getTags() {
+        const baseScore = this.armorEffect?.system.armorData?.value;
         const tags = [
-            `${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.baseScore}`,
+            `${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${baseScore}`,
             `${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseThresholds.base')}: ${this.baseThresholds.major} / ${this.baseThresholds.severe}`
         ];
 
@@ -173,8 +178,10 @@ export default class DHArmor extends AttachableItem {
      */
     _getLabels() {
         const labels = [];
-        if (this.baseScore)
-            labels.push(`${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.baseScore}`);
+        if (this.armorEffect)
+            labels.push(
+                `${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.armorEffect.system.armorData?.value}`
+            );
         return labels;
     }
 

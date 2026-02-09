@@ -7,8 +7,12 @@
         <legend>{{localize tabs.settings.label}}</legend>
         <span>{{localize "DAGGERHEART.GENERAL.Tiers.singular"}}</span>
         {{formField systemFields.tier value=source.system.tier}}
-        <span>{{localize "DAGGERHEART.ITEMS.Armor.baseScore"}}</span>
-        {{formField systemFields.baseScore value=source.system.baseScore}}
+        {{#if this.armorScore includeZero=true}}
+            <span>{{localize "DAGGERHEART.ITEMS.Armor.baseScore"}}</span>
+            <div class="form-fields">
+                <input type="text" data-dtype="Number" class="base-score-input" value="{{this.armorScore}}" />
+            </div>
+        {{/if}}
 
         <span>{{localize "TYPES.Item.feature"}}</span>
         <input type="text" class="features-input" value="{{features}}" />

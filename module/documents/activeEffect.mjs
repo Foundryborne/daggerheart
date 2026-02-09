@@ -15,7 +15,7 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         }
 
         // Then apply the standard suppression rules
-        if (['weapon', 'armor'].includes(this.parent?.type)) {
+        if (['weapon', 'armor'].includes(this.parent?.type) && this.transfer) {
             return !this.parent.system.equipped;
         }
 

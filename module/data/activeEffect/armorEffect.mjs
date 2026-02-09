@@ -9,12 +9,11 @@ export default class ArmorEffect extends foundry.data.ActiveEffectTypeDataModel 
                     type: new fields.StringField({
                         required: true,
                         blank: false,
-                        choices: CONFIG.DH.GENERAL.activeEffectModes,
-                        initial: CONFIG.DH.GENERAL.activeEffectModes.add.id,
+                        initial: CONFIG.DH.GENERAL.activeEffectModes.armor.id,
                         validate: ArmorEffect.#validateType
                     }),
                     phase: new fields.StringField({ required: true, blank: false, initial: 'initial' }),
-                    priority: new fields.NumberField(),
+                    priority: new fields.NumberField({ integer: true, initial: 20 }),
                     marked: new fields.NumberField({
                         required: true,
                         integer: true,
@@ -34,13 +33,57 @@ export default class ArmorEffect extends foundry.data.ActiveEffectTypeDataModel 
         };
     }
 
+    get armorData() {
+        if (this.changes.length !== 1) return { value: 0, max: 0 };
+        return { value: this.changes[0].value, max: this.changes[0].max };
+    }
+
+    async updateArmorMax(newMax) {
+        if (this.changes.length !== 1) return;
+        const newChanges = this.changes.map(change => ({
+            ...change,
+            max: newMax,
+            marked: Math.min(change.marked, newMax)
+        }));
+        await this.parent.update({ 'system.changes': newChanges });
+    }
+
     static applyChangeField(model, change, field) {
         return [model, change, field];
     }
 
+    static armorChangeEffect = {
+        label: 'Armor',
+        defaultPriortiy: 20,
+        handler: (actor, change, _options, _field, replacementData) => {
+            game.system.api.documents.DhActiveEffect.applyChange(
+                actor,
+                {
+                    ...change,
+                    key: 'system.armorScore.value',
+                    type: CONFIG.DH.GENERAL.activeEffectModes.add.id,
+                    value: change.value
+                },
+                replacementData
+            );
+            game.system.api.documents.DhActiveEffect.applyChange(
+                actor,
+                {
+                    ...change,
+                    key: 'system.armorScore.max',
+                    type: CONFIG.DH.GENERAL.activeEffectModes.add.id,
+                    value: change.max
+                },
+                replacementData
+            );
+            return {};
+        },
+        render: null
+    };
+
     prepareBaseData() {
         for (const change of this.changes) {
-            change.key = 'system.armorScore.value';
+            change.key = 'system.armorScore';
             change.value = Math.min(change.max - change.marked, change.max);
         }
     }
@@ -52,13 +95,9 @@ export default class ArmorEffect extends foundry.data.ActiveEffectTypeDataModel 
      * @throws {Error} An error if the type string is malformed
      */
     static #validateType(type) {
-        if (type.length < 3) throw new Error('must be at least three characters long');
-        if (!/^custom\.-?\d+$/.test(type) && !type.split('.').every(s => /^[a-z0-9]+$/i.test(s))) {
-            throw new Error(
-                'A change type must either be a sequence of dot-delimited, alpha-numeric substrings or of the form' +
-                    ' "custom.{number}"'
-            );
-        }
+        if (type !== CONFIG.DH.GENERAL.activeEffectModes.armor.id)
+            throw new Error('An armor effect must have change.type "armor"');
+
         return true;
     }
 }
