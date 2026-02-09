@@ -29,17 +29,40 @@ const resistanceField = (resistanceLabel, immunityLabel, reductionLabel) =>
 /* Common rules applying to Characters and Adversaries */
 export const commonActorRules = (extendedData = { damageReduction: {}, attack: { damage: {} } }) => ({
     conditionImmunities: new fields.SchemaField({
-        hidden: new fields.BooleanField({ initial: false }),
-        restrained: new fields.BooleanField({ initial: false }),
-        vulnerable: new fields.BooleanField({ initial: false })
+        hidden: new fields.BooleanField({
+            initial: false,
+            label: 'DAGGERHEART.GENERAL.Rules.conditionImmunities.hidden'
+        }),
+        restrained: new fields.BooleanField({
+            initial: false,
+            label: 'DAGGERHEART.GENERAL.Rules.conditionImmunities.restrained'
+        }),
+        vulnerable: new fields.BooleanField({
+            initial: false,
+            label: 'DAGGERHEART.GENERAL.Rules.conditionImmunities.vulnerable'
+        })
     }),
     damageReduction: new fields.SchemaField({
         thresholdImmunities: new fields.SchemaField({
-            minor: new fields.BooleanField({ initial: false })
+            minor: new fields.BooleanField({
+                initial: false,
+                label: 'DAGGERHEART.GENERAL.Rules.damageReduction.thresholdImmunities.minor.label',
+                hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.thresholdImmunities.minor.hint'
+            })
         }),
         reduceSeverity: new fields.SchemaField({
-            magical: new fields.NumberField({ initial: 0, min: 0 }),
-            physical: new fields.NumberField({ initial: 0, min: 0 })
+            magical: new fields.NumberField({
+                initial: 0,
+                min: 0,
+                label: 'DAGGERHEART.GENERAL.Rules.damageReduction.reduceSeverity.magical.label',
+                hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.reduceSeverity.magical.hint'
+            }),
+            physical: new fields.NumberField({
+                initial: 0,
+                min: 0,
+                label: 'DAGGERHEART.GENERAL.Rules.damageReduction.reduceSeverity.physical.label',
+                hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.reduceSeverity.physical.hint'
+            })
         }),
         ...(extendedData.damageReduction ?? {})
     }),
@@ -49,12 +72,16 @@ export const commonActorRules = (extendedData = { damageReduction: {}, attack: {
             hpDamageMultiplier: new fields.NumberField({
                 required: true,
                 nullable: false,
-                initial: 1
+                initial: 1,
+                label: 'DAGGERHEART.GENERAL.Attack.hpDamageMultiplier.label',
+                hint: 'DAGGERHEART.GENERAL.Attack.hpDamageMultiplier.hint'
             }),
             hpDamageTakenMultiplier: new fields.NumberField({
                 required: true,
                 nullable: false,
-                initial: 1
+                initial: 1,
+                label: 'DAGGERHEART.GENERAL.Attack.hpDamageTakenMultiplier.label',
+                hint: 'DAGGERHEART.GENERAL.Attack.hpDamageTakenMultiplier.hint'
             }),
             ...(extendedData.attack?.damage ?? {})
         })

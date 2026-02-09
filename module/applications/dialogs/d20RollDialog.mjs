@@ -165,9 +165,10 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         }
         if (rest.hasOwnProperty('trait')) {
             this.config.roll.trait = rest.trait;
-            this.config.title = game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
-                ability: game.i18n.localize(abilities[this.config.roll.trait]?.label)
-            });
+            if (!this.config.source.item)
+                this.config.title = game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
+                    ability: game.i18n.localize(abilities[this.config.roll.trait]?.label)
+                });
         }
         this.config.extraFormula = rest.extraFormula;
         this.render();

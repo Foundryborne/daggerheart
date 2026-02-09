@@ -118,7 +118,7 @@
                                 {{#if name}}
                                     <div class="experience-chip {{#if (includes ../selectedExperiences id)}}selected{{/if}}" data-action="selectExperience" data-key="{{id}}" data-tooltip="{{this.description}}">
                                         <span><i class="{{ifThen (includes ../selectedExperiences id) "fa-solid" "fa-regular"}} fa-circle"></i></span>
-                                        <span class="label">{{name}} +{{value}}</span>
+                                        <span class="label">{{name}} {{numberFormat value sign=true}}</span>
                                     </div>
                                 {{/if}}
                             {{/each}}

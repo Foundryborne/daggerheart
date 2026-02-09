@@ -52,6 +52,14 @@
         }
     }
 
+    input[type='checkbox'] {
+        &:indeterminate {
+            &::before {
+                content: '\f0fe';
+            }
+        }
+    }
+
     input[type='checkbox'],
     input[type='radio'] {
         height: 20px;

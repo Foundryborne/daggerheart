@@ -40,7 +40,14 @@ export default class DhpAdversary extends BaseDataActor {
                 integer: true,
                 label: 'DAGGERHEART.GENERAL.hordeHp'
             }),
-            criticalThreshold: new fields.NumberField({ required: true, integer: true, min: 1, max: 20, initial: 20 }),
+            criticalThreshold: new fields.NumberField({
+                required: true,
+                integer: true,
+                min: 1,
+                max: 20,
+                initial: 20,
+                label: 'DAGGERHEART.ACTIONS.Settings.criticalThreshold'
+            }),
             damageThresholds: new fields.SchemaField({
                 major: new fields.NumberField({
                     required: true,

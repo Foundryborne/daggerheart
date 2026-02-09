@@ -1,0 +1,36 @@
+<div>
+    <div class="types-container">
+        {{#each typePackCollections as |type|}}
+            <div class="type-container">
+                <label>{{type.label}}</label>
+
+                <div class="sources-container">
+                    {{#each type.sources as |source|}}
+                        <div class="source-container">
+                            <div class="source-inner-container">
+                                <div class="source-inner-label-container">
+                                    <a 
+                                        data-action="toggleSource" data-source="{{@key}}" data-type="{{@../key}}" 
+                                        data-tooltip="{{#if source.checked}}{{localize "DAGGERHEART.APPLICATIONS.CompendiumBrowserSettings.disableSource"}}{{else}}{{localize "DAGGERHEART.APPLICATIONS.CompendiumBrowserSettings.enableSource"}}{{/if}}"
+                                    >
+                                        <i class="fa-solid {{#if source.checked}}fa-toggle-on{{else}}fa-toggle-off{{/if}}"></i>
+                                    </a>
+                                    <label>{{source.label}}</label>
+                                </div>
+                            </div>
+
+                            <div class="checks-container {{#unless source.checked}}collapsed{{/unless}}">
+                                {{#each source.packs as |pack|}}
+                                    <div class="check-container">
+                                        <input type="checkbox" class="pack-checkbox" data-type="{{pack.type}}" data-pack="{{pack.pack}}" {{checked pack.checked}} />
+                                        <label>{{pack.label}}</label>
+                                    </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>

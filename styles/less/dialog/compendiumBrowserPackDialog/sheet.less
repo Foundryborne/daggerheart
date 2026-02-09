@@ -1,0 +1,105 @@
+.daggerheart.dialog.dh-style.views.compendium-brower-settings {
+    --text-color: light-dark(@dark-blue, @beige);
+    color: var(--text-color);
+
+    .window-content {
+        justify-content: space-between;
+
+        > div {
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            max-height: 440px;
+        }
+    }
+
+    .types-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .type-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            > label {
+                display: flex;
+                align-items: center;
+                font-size: var(--font-size-16);
+                font-family: @font-subtitle;
+                font-weight: bold;
+
+                &::before {
+                    content: '';
+                    flex: 1;
+                    height: 2px;
+                    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, light-dark(@dark-blue, @golden) 100%);
+                    margin-right: 8px;
+                }
+                &::after {
+                    content: '';
+                    flex: 1;
+                    height: 2px;
+                    background: linear-gradient(90deg, light-dark(@dark-blue, @golden) 0%, rgba(0, 0, 0, 0) 100%);
+                    margin-left: 8px;
+                }
+            }
+
+            .sources-container {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                .source-container {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 2px;
+
+                    .source-inner-container {
+                        display: flex;
+                        justify-content: space-between;
+
+                        .source-inner-label-container {
+                            width: 100%;
+                            display: flex;
+                            gap: 8px;
+
+                            i {
+                                font-size: 18px;
+                                // color: light-dark(@dark-blue, @golden);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .checks-container {
+        padding-left: 24px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px;
+        transition: height 0.4s ease-in-out;
+        overflow: hidden;
+
+        &.collapsed {
+            height: 0px;
+        }
+
+        .check-container {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    footer {
+        margin-top: 8px;
+        display: flex;
+
+        button {
+            flex: 1;
+        }
+    }
+}

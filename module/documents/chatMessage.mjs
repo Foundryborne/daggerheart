@@ -110,6 +110,8 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                 } else if (s.classList.contains('damage-section'))
                     s.classList.toggle('expanded', autoExpandRoll.damage);
                 else if (s.classList.contains('target-section')) s.classList.toggle('expanded', autoExpandRoll.target);
+                else if (s.classList.contains('description-section'))
+                    s.classList.toggle('expanded', autoExpandRoll.desc);
             });
             if (itemDesc && autoExpandRoll.desc) itemDesc.setAttribute('open', '');
         }

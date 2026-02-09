@@ -103,6 +103,12 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
                     ? { id: this.selected.adversaryType, ...this.settings.adversaryTypes[this.selected.adversaryType] }
                     : null;
                 break;
+            case 'downtime':
+                context.restOptions = {
+                    shortRest: CONFIG.DH.GENERAL.defaultRestOptions.shortRest(),
+                    longRest: CONFIG.DH.GENERAL.defaultRestOptions.longRest()
+                };
+                break;
         }
 
         return context;
@@ -225,6 +231,15 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
     }
 
     static async removeItem(_, target) {
+        const confirmed = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: game.i18n.localize(`DAGGERHEART.SETTINGS.Homebrew.deleteItemTitle`)
+            },
+            content: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.deleteItemText')
+        });
+
+        if (!confirmed) return;
+
         const { type, id } = target.dataset;
         const isDowntime = ['shortRest', 'longRest'].includes(type);
         const path = isDowntime ? `restMoves.${type}.moves` : `itemFeatures.${type}`;
