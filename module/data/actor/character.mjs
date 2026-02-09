@@ -507,8 +507,8 @@ export default class DhCharacter extends BaseDataActor {
         }
     }
 
-    async updateArmorValue(armorChange) {
-        if (armorChange === 0) return;
+    async updateArmorValue({ value: armorChange = 0, clear = false }) {
+        if (armorChange === 0 && !clear) return;
 
         const increasing = armorChange >= 0;
         let remainingChange = Math.abs(armorChange);
@@ -521,14 +521,18 @@ export default class DhCharacter extends BaseDataActor {
         const embeddedUpdates = [];
         for (const armorEffect of orderedEffects) {
             let usedArmorChange = 0;
-            if (increasing) {
-                const remainingArmor = armorEffect.system.armorChange.max - armorEffect.system.armorChange.value;
-                usedArmorChange = Math.min(remainingChange, remainingArmor);
-                remainingChange -= usedArmorChange;
+            if (clear) {
+                usedArmorChange -= armorEffect.system.armorChange.value;
             } else {
-                const changeChange = Math.min(armorEffect.system.armorChange.value, remainingChange);
-                usedArmorChange -= changeChange;
-                remainingChange -= changeChange;
+                if (increasing) {
+                    const remainingArmor = armorEffect.system.armorChange.max - armorEffect.system.armorChange.value;
+                    usedArmorChange = Math.min(remainingChange, remainingArmor);
+                    remainingChange -= usedArmorChange;
+                } else {
+                    const changeChange = Math.min(armorEffect.system.armorChange.value, remainingChange);
+                    usedArmorChange -= changeChange;
+                    remainingChange -= changeChange;
+                }
             }
 
             if (!usedArmorChange) continue;
@@ -547,11 +551,12 @@ export default class DhCharacter extends BaseDataActor {
                 });
             }
 
-            if (remainingChange === 0) break;
+            if (remainingChange === 0 && !clear) break;
         }
 
-        for (const { doc, updates } of Object.values(embeddedUpdates))
-            doc.updateEmbeddedDocuments('ActiveEffect', updates);
+        const updateValues = Object.values(embeddedUpdates);
+        for (const [index, { doc, updates }] of updateValues.entries())
+            doc.updateEmbeddedDocuments('ActiveEffect', updates, { render: index === updateValues.length - 1 });
     }
 
     get sheetLists() {

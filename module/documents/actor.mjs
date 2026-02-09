@@ -784,12 +784,7 @@ export default class DhpActor extends Actor {
                         );
                         break;
                     case 'armor':
-                        if (this.system.armor?.system?.marks) {
-                            updates.armor.resources['system.marks.value'] = Math.max(
-                                Math.min(valueFunc(this.system.armor.system.marks, r), this.system.armorScore),
-                                0
-                            );
-                        }
+                        this.system.updateArmorValue(r);
                         break;
                     default:
                         if (this.system.resources?.[r.key]) {
@@ -993,7 +988,15 @@ export default class DhpActor extends Actor {
         return allTokens;
     }
 
-    applyActiveEffects(phase) {
-        super.applyActiveEffects(phase);
+    /**@inheritdoc */
+    *allApplicableEffects({ noArmor } = {}) {
+        for (const effect of this.effects) {
+            yield effect;
+        }
+        for (const item of this.items) {
+            for (const effect of item.effects) {
+                if (effect.transfer && (!noArmor || effect.type !== 'armor')) yield effect;
+            }
+        }
     }
 }

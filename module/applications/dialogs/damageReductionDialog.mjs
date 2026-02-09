@@ -21,7 +21,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         );
 
         const canApplyArmor = damageType.every(t => actor.system.armorApplicableDamageTypes[t] === true);
-        const availableArmor = actor.system.armorScore - actor.system.armor.system.marks.value;
+        const availableArmor = actor.system.armorScore.max - actor.system.armorScore.value;
         const maxArmorMarks = canApplyArmor ? availableArmor : 0;
 
         const armor = [...Array(maxArmorMarks).keys()].reduce((acc, _) => {
@@ -124,7 +124,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         const { selectedArmorMarks, selectedStressMarks, stressReductions, currentMarks, currentDamage } =
             this.getDamageInfo();
 
-        context.armorScore = this.actor.system.armorScore;
+        context.armorScore = this.actor.system.armorScore.max;
         context.armorMarks = currentMarks;
         context.basicMarksUsed =
             selectedArmorMarks.length === this.actor.system.rules.damageReduction.maxArmorMarked.value;
@@ -218,7 +218,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         }
 
         if (this.rulesOn) {
-            if (!currentMark.selected && currentMarks === this.actor.system.armorScore) {
+            if (!currentMark.selected && currentMarks === this.actor.system.armorScore.max) {
                 ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noAvailableArmorMarks'));
                 return;
             }

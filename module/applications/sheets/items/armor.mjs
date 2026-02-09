@@ -50,6 +50,10 @@ export default class ArmorSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
                 context.features = this.document.system.armorFeatures.map(x => x.value);
                 context.armorScore = this.document.system.armorData.max;
                 break;
+            case 'effects':
+                context.effects.actives = context.effects.actives.filter(x => x.type !== 'armor');
+                context.effects.inactives = context.effects.actives.filter(x => x.type !== 'armor');
+                break;
         }
 
         return context;
