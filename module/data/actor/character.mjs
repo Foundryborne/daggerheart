@@ -458,6 +458,11 @@ export default class DhCharacter extends BaseDataActor {
         return this.parent.items.find(x => x.type === 'armor' && x.system.equipped);
     }
 
+    /* TODO: Prep datastructure to be useful when applying automatic armor damage order */
+    get armorEffects() {
+        return Array.from(this.parent.allApplicableEffects());
+    }
+
     get activeBeastform() {
         return this.parent.effects.find(x => x.type === 'beastform');
     }

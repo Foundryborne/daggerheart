@@ -1849,6 +1849,9 @@
             "Attachments": {
                 "attachHint": "Drop items here to attach them",
                 "transferHint": "If checked, this effect will be applied to any actor that owns this Effect's parent Item. The effect is always applied if this Item is attached to another one."
+            },
+            "Armor": {
+                "newArmorEffect": "Armor Effect"
             }
         },
         "GENERAL": {
@@ -2975,7 +2978,9 @@
                 "tokenActorMissing": "{name} is missing an Actor",
                 "tokenActorsMissing": "[{names}] missing Actors",
                 "domainTouchRequirement": "This domain card requires {nr} {domain} cards in the loadout to be used",
-                "knowTheTide": "Know The Tide gained a token"
+                "knowTheTide": "Know The Tide gained a token",
+                "cannotAlterArmorEffectChanges": "You cannot alter the changes length of an armor effect",
+                "cannotAlterArmorEffectType": "You cannot alter the type of armor effect changes"
             },
             "Sidebar": {
                 "actorDirectory": {

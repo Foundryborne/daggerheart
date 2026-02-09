@@ -48,7 +48,7 @@ export default class ArmorSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
         switch (partId) {
             case 'settings':
                 context.features = this.document.system.armorFeatures.map(x => x.value);
-                context.armorScore = this.document.system.armorEffect?.system.armorData?.max;
+                context.armorScore = this.document.system.armorData.max;
                 break;
         }
 

@@ -10,7 +10,6 @@ export default class ArmorActiveEffectConfig extends HandlebarsApplicationMixin(
             closeOnSubmit: false
         },
         actions: {
-            addEffect: ArmorActiveEffectConfig.#addEffect,
             finish: ArmorActiveEffectConfig.#finish
         }
     };
@@ -51,11 +50,6 @@ export default class ArmorActiveEffectConfig extends HandlebarsApplicationMixin(
 
     static async updateForm(_event, _form, formData) {
         await this.document.update(formData.object);
-        this.render();
-    }
-
-    static #addEffect() {
-        this.document.update({ 'system.changes': [...this.document.system.changes, {}] });
         this.render();
     }
 

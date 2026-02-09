@@ -54,8 +54,14 @@ export default class DHArmor extends AttachableItem {
     }
 
     get armorEffect() {
-        /* TODO: make armors only able to have on armor effect, or handle in some other way */
         return this.parent.effects.find(x => x.type === 'armor');
+    }
+
+    get armorData() {
+        const armorEffect = this.armorEffect;
+        if (!armorEffect) return { value: 0, max: 0 };
+
+        return armorEffect.system.armorData;
     }
 
     /**@inheritdoc */
@@ -71,6 +77,17 @@ export default class DHArmor extends AttachableItem {
         );
 
         return { prefix, value: baseDescription, suffix: null };
+    }
+
+    /**@inheritdoc */
+    async _onCreate(_data, _options, userId) {
+        if (userId !== game.user.id) return;
+
+        if (!this.parent.effects.some(x => x.type === 'armor')) {
+            this.parent.createEmbeddedDocuments('ActiveEffect', [
+                game.system.api.data.activeEffects.ArmorEffect.getDefaultEffectData()
+            ]);
+        }
     }
 
     /**@inheritdoc */
@@ -163,9 +180,8 @@ export default class DHArmor extends AttachableItem {
      * @returns {string[]} An array of localized tag strings.
      */
     _getTags() {
-        const baseScore = this.armorEffect?.system.armorData?.value;
         const tags = [
-            `${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${baseScore}`,
+            `${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.armorData.value}`,
             `${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseThresholds.base')}: ${this.baseThresholds.major} / ${this.baseThresholds.severe}`
         ];
 
@@ -177,11 +193,7 @@ export default class DHArmor extends AttachableItem {
      * @returns {(string | { value: string, icons: string[] })[]} An array of localized strings and damage label objects.
      */
     _getLabels() {
-        const labels = [];
-        if (this.armorEffect)
-            labels.push(
-                `${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.armorEffect.system.armorData?.value}`
-            );
+        const labels = [`${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.armorData.value}`];
         return labels;
     }
 

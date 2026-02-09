@@ -146,18 +146,15 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
 
     /**@inheritdoc*/
     static applyChangeField(model, change, field) {
-        if (this.system?.applyChangeField)
-            super.applyChangeField(...this.system.applyChangeField(model, change, field));
-
         change.value = Number.isNumeric(change.value)
             ? change.value
             : DhActiveEffect.getChangeValue(model, change, change.effect);
         super.applyChangeField(model, change, field);
     }
 
-    _applyLegacy(actor, change, changes) {
+    _applyChangeUnguided(actor, change, changes, options) {
         change.value = DhActiveEffect.getChangeValue(actor, change, change.effect);
-        super._applyLegacy(actor, change, changes);
+        super._applyChangeUnguided(actor, change, changes, options);
     }
 
     static getChangeValue(model, change, effect) {
