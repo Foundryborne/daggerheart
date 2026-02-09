@@ -1,7 +1,7 @@
 <div class="daggerheart chat downtime">
     <ul class="downtime-moves-list">
         {{#each moves as | move index |}}
-            <details class="downtime-move">
+            <details class="downtime-move" {{@root.open}}>
                 <summary class="downtime-label">
                     <img class="downtime-image" src="{{move.img}}" />
                     <div class="header-label">
