@@ -70,7 +70,11 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
                     element.appendChild(img);
 
                     const label = document.createElement('span');
-                    label.innerHTML = `${beforeText}${matchText ? `<strong>${matchText}</strong>` : ''}${after}`;
+                    label.innerHTML =
+                        `${beforeText}${matchText ? `<strong>${matchText}</strong>` : ''}${after}`.replaceAll(
+                            ' ',
+                            '&nbsp;'
+                        );
                     element.appendChild(label);
 
                     return element;
@@ -119,7 +123,11 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
                     element.appendChild(img);
 
                     const label = document.createElement('span');
-                    label.innerHTML = `${beforeText}${matchText ? `<strong>${matchText}</strong>` : ''}${after}`;
+                    label.innerHTML =
+                        `${beforeText}${matchText ? `<strong>${matchText}</strong>` : ''}${after}`.replaceAll(
+                            ' ',
+                            '&nbsp;'
+                        );
                     element.appendChild(label);
 
                     return element;

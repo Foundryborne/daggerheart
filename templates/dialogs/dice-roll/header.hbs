@@ -1,17 +1,12 @@
 <header class="dialog-header">
     <div class="dialog-header-inner">
-        <h1>
-            {{#if reactionOverride}}
-                {{localize "DAGGERHEART.CONFIG.FeatureForm.reaction"}}
-            {{else}}
-                {{ifThen rollConfig.headerTitle rollConfig.headerTitle rollConfig.title}}
-            {{/if}}
-            {{#if showReaction}}
-                <button class="reaction-roll-controller {{#if reactionOverride}}active{{/if}}" data-action="toggleReaction" data-tooltip-text="{{localize "DAGGERHEART.GENERAL.reactionRoll"}}">
-                    <i class="fa-solid fa-reply"></i>
-                </button>
-            {{/if}}
-        </h1>
+        <h1>{{ifThen rollConfig.headerTitle rollConfig.headerTitle rollConfig.title}}</h1>
+        {{#if showReaction}}
+            <div class="reaction-chip {{#if reactionOverride}}selected{{/if}}" data-action="toggleReaction">
+                <span><i class="{{ifThen reactionOverride "fa-solid" "fa-regular"}} fa-circle"></i></span>
+                <span class="label">{{localize "DAGGERHEART.GENERAL.reactionRoll"}}</span>
+            </div>
+        {{/if}}
     </div>
     {{#if (and @root.hasRoll @root.activeTagTeamRoll)}}
         <div class="tag-team-controller {{#if @root.tagTeamSelected}}selected{{/if}}" data-action="toggleTagTeamRoll">

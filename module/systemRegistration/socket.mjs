@@ -38,7 +38,8 @@ export const RefreshType = {
     Countdown: 'DhCoundownRefresh',
     TagTeamRoll: 'DhTagTeamRollRefresh',
     EffectsDisplay: 'DhEffectsDisplayRefresh',
-    Scene: 'DhSceneRefresh'
+    Scene: 'DhSceneRefresh',
+    CompendiumBrowser: 'DhCompendiumBrowserRefresh'
 };
 
 export const registerSocketHooks = () => {

@@ -433,7 +433,7 @@ export default function DHApplicationMixin(Base) {
                     icon: 'fa-solid fa-lightbulb',
                     condition: target => {
                         const doc = getDocFromElementSync(target);
-                        return doc && !doc.disabled;
+                        return doc && !doc.disabled && doc.type !== 'beastform';
                     },
                     callback: async target => (await getDocFromElement(target)).update({ disabled: true })
                 },
@@ -442,7 +442,7 @@ export default function DHApplicationMixin(Base) {
                     icon: 'fa-regular fa-lightbulb',
                     condition: target => {
                         const doc = getDocFromElementSync(target);
-                        return doc && doc.disabled;
+                        return doc && doc.disabled && doc.type !== 'beastform';
                     },
                     callback: async target => (await getDocFromElement(target)).update({ disabled: false })
                 }
@@ -536,6 +536,10 @@ export default function DHApplicationMixin(Base) {
                 options.push({
                     name: 'CONTROLS.CommonDelete',
                     icon: 'fa-solid fa-trash',
+                    condition: target => {
+                        const doc = getDocFromElementSync(target);
+                        return doc && doc.type !== 'beastform';
+                    },
                     callback: async (target, event) => {
                         const doc = await getDocFromElement(target);
                         if (event.shiftKey) return doc.delete();

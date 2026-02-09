@@ -1,4 +1,4 @@
-import DhMeasuredTemplate from "./measuredTemplate.mjs";
+import DhMeasuredTemplate from './measuredTemplate.mjs';
 
 export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
     /** @inheritdoc */
@@ -63,7 +63,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
             const originRadius = (this.bounds.width * boundsCorrection) / 2;
             const targetRadius = (target.bounds.width * boundsCorrection) / 2;
             const distance = canvas.grid.measurePath([originPoint, destinationPoint]).distance;
-            return distance - originRadius - targetRadius + canvas.grid.distance;
+            return Math.floor(distance - originRadius - targetRadius + canvas.grid.distance);
         }
 
         // Compute what the closest grid space of each token is, then compute that distance
@@ -85,7 +85,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
 
         // Check if the setting is enabled
         const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).showTokenDistance;
-        if (setting === "never" || (setting === "encounters" && !game.combat?.started)) return;
+        if (setting === 'never' || (setting === 'encounters' && !game.combat?.started)) return;
 
         // Check if this token isn't invisible and is actually being hovered
         const isTokenValid =

@@ -16,3 +16,4 @@ export { default as ActionSelectionDialog } from './actionSelectionDialog.mjs';
 export { default as GroupRollDialog } from './group-roll-dialog.mjs';
 export { default as TagTeamDialog } from './tagTeamDialog.mjs';
 export { default as RiskItAllDialog } from './riskItAllDialog.mjs';
+export { default as CompendiumBrowserSettingsDialog } from './CompendiumBrowserSettings.mjs';

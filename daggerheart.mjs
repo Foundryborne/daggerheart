@@ -242,6 +242,38 @@ Hooks.on('setup', () => {
             systemEffect: true
         }))
     ];
+
+    const actorCommon = {
+        bar: ['resources.stress'],
+        value: []
+    };
+    const damageThresholds = ['damageThresholds.major', 'damageThresholds.severe'];
+    const traits = Object.keys(game.system.api.data.actors.DhCharacter.schema.fields.traits.fields).map(
+        trait => `traits.${trait}.value`
+    );
+    CONFIG.Actor.trackableAttributes = {
+        character: {
+            bar: [...actorCommon.bar, 'resources.hitPoints', 'resources.hope'],
+            value: [
+                ...actorCommon.value,
+                ...traits,
+                ...damageThresholds,
+                'proficiency',
+                'evasion',
+                'armorScore',
+                'scars',
+                'levelData.level.current'
+            ]
+        },
+        adversary: {
+            bar: [...actorCommon.bar, 'resources.hitPoints'],
+            value: [...actorCommon.value, ...damageThresholds, 'criticalThreshold']
+        },
+        companion: {
+            bar: [...actorCommon.bar],
+            value: [...actorCommon.value, 'evasion', 'levelData.level.current']
+        }
+    };
 });
 
 Hooks.on('ready', async () => {

@@ -53,9 +53,18 @@ export default class DhCompanion extends BaseDataActor {
             ),
             rules: new fields.SchemaField({
                 conditionImmunities: new fields.SchemaField({
-                    hidden: new fields.BooleanField({ initial: false }),
-                    restrained: new fields.BooleanField({ initial: false }),
-                    vulnerable: new fields.BooleanField({ initial: false })
+                    hidden: new fields.BooleanField({
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.Rules.conditionImmunities.hidden'
+                    }),
+                    restrained: new fields.BooleanField({
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.Rules.conditionImmunities.restrained'
+                    }),
+                    vulnerable: new fields.BooleanField({
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.Rules.conditionImmunities.vulnerable'
+                    })
                 })
             }),
             attack: new ActionField({

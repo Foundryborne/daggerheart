@@ -145,7 +145,7 @@
                 {{#each document.system.experiences as |experience id|}}
                     <div class="experience-row" data-tooltip-text="{{experience.description}}">
                         <span class="experience-value">
-                            +{{experience.value}}
+                            {{numberFormat experience.value sign=true}}
                         </span>
                         <span class="experience-name">{{experience.name}}</span>
                         <div class="controls">
