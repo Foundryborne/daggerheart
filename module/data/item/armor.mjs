@@ -85,7 +85,7 @@ export default class DHArmor extends AttachableItem {
 
         if (!this.parent.effects.some(x => x.type === 'armor')) {
             this.parent.createEmbeddedDocuments('ActiveEffect', [
-                game.system.api.data.activeEffects.ArmorEffect.getDefaultEffectData()
+                game.system.api.data.activeEffects.ArmorEffect.getDefaultObject()
             ]);
         }
     }
@@ -172,6 +172,25 @@ export default class DHArmor extends AttachableItem {
             for (const party of this.actor.parties) {
                 party.render();
             }
+        }
+    }
+
+    /** @inheritDoc */
+    static migrateDocumentData(source) {
+        if (source.system.baseScore !== undefined && !source.effects.some(x => x.type === 'armor')) {
+            // source.effects.push({
+            //     ...game.system.api.data.activeEffects.ArmorEffect.getDefaultObject(),
+            //     changes: [{
+            //         type: CONFIG.DH.GENERAL.activeEffectModes.armor.id,
+            //         phase: 'initial',
+            //         priority: 20,
+            //         value: 0,
+            //         max: source.system.baseScore
+            //     }],
+            // });
+            if (!source.flags) source.flags = {};
+            if (!source.flags.daggerheart) source.flags.daggerheart = {};
+            source.flags.daggerheart.baseScoreMigrationValue = source.system.baseScore;
         }
     }
 

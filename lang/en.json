@@ -2982,6 +2982,9 @@
                 "cannotAlterArmorEffectChanges": "You cannot alter the changes length of an armor effect",
                 "cannotAlterArmorEffectType": "You cannot alter the type of armor effect changes"
             },
+            "Progress": {
+                "migrationLabel": "Performing system migration. Please wait and do not close Foundry."
+            },
             "Sidebar": {
                 "actorDirectory": {
                     "tier": "Tier {tier} {type}",

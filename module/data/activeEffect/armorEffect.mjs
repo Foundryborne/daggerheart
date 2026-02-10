@@ -107,9 +107,10 @@ export default class ArmorEffect extends foundry.data.ActiveEffectTypeDataModel 
     }
 
     async updateArmorMax(newMax) {
+        const { effect, ...baseChange } = this.armorChange;
         const newChanges = [
             {
-                ...this.armorChange,
+                ...baseChange,
                 max: newMax,
                 value: Math.min(this.armorChange.value, newMax)
             }
@@ -152,19 +153,12 @@ export default class ArmorEffect extends foundry.data.ActiveEffectTypeDataModel 
         armorChange.key = 'system.armorScore';
     }
 
-    static getDefaultEffectData() {
+    static getDefaultObject() {
         return {
             type: 'armor',
             name: game.i18n.localize('DAGGERHEART.EFFECTS.Armor.newArmorEffect'),
             img: 'icons/equipment/chest/breastplate-helmet-metal.webp'
         };
-    }
-
-    async _preCreate(data, options, user) {
-        const allowed = await super._preCreate(data, options, user);
-        if (allowed === false) return;
-
-        await this.updateSource({ ...ArmorEffect.getDefaultEffectData(), data });
     }
 
     async _preUpdate(changes, options, user) {

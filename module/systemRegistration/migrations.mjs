@@ -246,6 +246,106 @@ export async function runMigrations() {
 
         lastMigrationVersion = '1.6.0';
     }
+
+    if (foundry.utils.isNewerVersion('2.0.0', lastMigrationVersion)) {
+        /* Migrate existing armors to the new Armor Effects */
+        const progress = game.system.api.applications.ui.DhProgress.createMigrationProgress(0);
+
+        const lockedPacks = [];
+        const itemPacks = game.packs.filter(x => x.metadata.type === 'Item');
+        const actorPacks = game.packs.filter(x => x.metadata.type === 'Actor');
+
+        const getIndexes = async (packs, type) => {
+            const indexes = [];
+            for (const pack of packs) {
+                const indexValues = pack.index.values().reduce((acc, index) => {
+                    if (index.type === type) acc.push(index.uuid);
+                    return acc;
+                }, []);
+
+                if (indexValues.length && pack.locked) {
+                    lockedPacks.push(pack.collection);
+                    await pack.configure({ locked: false });
+                }
+
+                indexes.push(...indexValues);
+            }
+
+            return indexes;
+        };
+
+        const armorEntries = await getIndexes(itemPacks, 'armor');
+        const actorEntries = await getIndexes(actorPacks, 'actor');
+
+        const worldArmors = game.items.filter(x => x instanceof game.system.api.documents.DHItem && x.type === 'armor');
+
+        for (const character of game.actors.filter(x => x.type === 'character')) {
+            worldArmors.push(...character.items.filter(x => x.type === 'armor'));
+        }
+
+        /* The async fetches are the mainstay of time. Leaving 1 progress for the sync logic */
+        const newMax = armorEntries.length + actorEntries.length + 1;
+        progress.updateMax(newMax);
+
+        const compendiumArmors = [];
+        for (const entry of armorEntries) {
+            const armor = await foundry.utils.fromUuid(entry);
+            compendiumArmors.push(armor);
+            progress.advance();
+        }
+
+        for (const entry of actorEntries) {
+            const actor = await foundry.utils.fromUuid(entry);
+            compendiumArmors.push(...actor.items.filter(x => x.type === 'armor'));
+            progress.advance();
+        }
+
+        // const lockedPacks = [];
+        // const compendiumArmors = [];
+        // const compendiumCharacters = [];
+        // for (let pack of game.packs.filter(x => x.metadata.type === 'Item')) {
+        //     if (pack.locked) {
+        //         lockedPacks.push(pack.collection);
+        //         await pack.configure({ locked: false });
+        //     }
+
+        //     const documents = await pack.getDocuments({ type: 'armor' });
+        //     compendiumArmors.push(...documents.filter(x => x instanceof game.system.api.documents.DHItem && x.type === 'armor'));
+        //     compendiumCharacters.push(...documents.filter(x => x.type === 'character'));
+        // }
+
+        for (const armor of [...compendiumArmors, ...worldArmors]) {
+            const hasArmorEffect = armor.effects.some(x => x.type === 'armor');
+            const migrationArmorScore = armor.flags.daggerheart?.baseScoreMigrationValue;
+            if (migrationArmorScore !== undefined && !hasArmorEffect) {
+                await armor.createEmbeddedDocuments('ActiveEffect', [
+                    {
+                        ...game.system.api.data.activeEffects.ArmorEffect.getDefaultObject(),
+                        changes: [
+                            {
+                                type: CONFIG.DH.GENERAL.activeEffectModes.armor.id,
+                                phase: 'initial',
+                                priority: 20,
+                                value: 0,
+                                max: migrationArmorScore
+                            }
+                        ]
+                    }
+                ]);
+            }
+        }
+
+        progress.advance();
+
+        for (let packId of lockedPacks) {
+            const pack = game.packs.get(packId);
+            await pack.configure({ locked: true });
+        }
+
+        progress.close();
+
+        // lastMigrationVersion = '2.0.0';
+    }
     //#endregion
 
     await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion, lastMigrationVersion);
