@@ -8,7 +8,7 @@
  * @property {boolean} isInventoryItem- Indicates whether items of this type is a Inventory Item
  */
 
-import { addLinkedItemsDiff, getScrollTextData, updateLinkedItemApps } from '../../helpers/utils.mjs';
+import { addLinkedItemsDiff, getResourceScrollTextData, updateLinkedItemApps } from '../../helpers/utils.mjs';
 import { ActionsField } from '../fields/actionField.mjs';
 import FormulaField from '../fields/formulaField.mjs';
 
@@ -224,7 +224,11 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         const armorChanged =
             changed.system?.marks?.value !== undefined && changed.system.marks.value !== this.marks.value;
         if (armorChanged && autoSettings.resourceScrollTexts && this.parent.parent?.type === 'character') {
-            const armorData = getScrollTextData(this.parent.parent.system.resources, changed.system.marks, 'armor');
+            const armorData = getResourceScrollTextData(
+                this.parent.parent.system.resources,
+                changed.system.marks,
+                'armor'
+            );
             options.scrollingTextData = [armorData];
         }
 

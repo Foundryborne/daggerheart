@@ -1,3 +1,5 @@
+import { getScrollTextData } from '../../helpers/utils.mjs';
+
 /**
  * ArmorEffects are ActiveEffects that have a static changes field of length 1. It includes current and maximum armor.
  * When applied to a character, it adds to their currently marked and maximum armor.
@@ -185,6 +187,19 @@ export default class ArmorEffect extends foundry.data.ActiveEffectTypeDataModel 
                 ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.cannotAlterArmorEffectType'));
                 return false;
             }
+
+            if (changes.system.changes[0].value !== this.armorChange.value && this.parent.actor?.type === 'character') {
+                const increased = changes.system.changes[0].value > this.armorChange.value;
+                const value = -1 * (this.armorChange.value - changes.system.changes[0].value);
+                options.scrollingTextData = [getScrollTextData(increased, value, 'armor')];
+            }
         }
+    }
+
+    _onUpdate(changes, options, userId) {
+        super._onUpdate(changes, options, userId);
+
+        if (options.scrollingTextData && this.parent.actor?.type === 'character')
+            this.parent.actor.queueScrollText(options.scrollingTextData);
     }
 }

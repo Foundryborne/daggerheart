@@ -573,8 +573,7 @@ export default class DhpActor extends Actor {
         const availableStress = this.system.resources.stress.max - this.system.resources.stress.value;
 
         const canUseArmor =
-            this.system.armor &&
-            this.system.armor.system.marks.value < this.system.armorScore &&
+            this.system.armorScore.value < this.system.armorScore.max &&
             type.every(t => this.system.armorApplicableDamageTypes[t] === true);
         const canUseStress = Object.keys(stressDamageReduction).reduce((acc, x) => {
             const rule = stressDamageReduction[x];
@@ -614,12 +613,7 @@ export default class DhpActor extends Actor {
         const hpDamage = updates.find(u => u.key === CONFIG.DH.GENERAL.healingTypes.hitPoints.id);
         if (hpDamage?.value) {
             hpDamage.value = this.convertDamageToThreshold(hpDamage.value);
-            if (
-                this.type === 'character' &&
-                !isDirect &&
-                this.system.armor &&
-                this.#canReduceDamage(hpDamage.value, hpDamage.damageTypes)
-            ) {
+            if (this.type === 'character' && !isDirect && this.#canReduceDamage(hpDamage.value, hpDamage.damageTypes)) {
                 const armorSlotResult = await this.owner.query(
                     'armorSlot',
                     {
@@ -989,13 +983,13 @@ export default class DhpActor extends Actor {
     }
 
     /**@inheritdoc */
-    *allApplicableEffects({ noArmor } = {}) {
+    *allApplicableEffects({ noSelfArmor, noTransferArmor } = {}) {
         for (const effect of this.effects) {
-            yield effect;
+            if (!noSelfArmor || effect.type !== 'armor') yield effect;
         }
         for (const item of this.items) {
             for (const effect of item.effects) {
-                if (effect.transfer && (!noArmor || effect.type !== 'armor')) yield effect;
+                if (effect.transfer && (!noTransferArmor || effect.type !== 'armor')) yield effect;
             }
         }
     }
