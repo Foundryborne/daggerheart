@@ -492,14 +492,21 @@ export const weaponFeatures = {
                 img: 'icons/skills/melee/shield-block-bash-blue.webp',
                 changes: [
                     {
-                        key: 'system.armorScore',
-                        mode: 2,
-                        value: 'ITEM.@system.tier + 1'
-                    },
-                    {
                         key: 'system.evasion',
                         mode: 2,
                         value: '-1'
+                    }
+                ]
+            },
+            {
+                type: 'armor',
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.barrier.effects.barrier.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.barrier.effects.barrier.description',
+                img: 'icons/skills/melee/shield-block-bash-blue.webp',
+                changes: [
+                    {
+                        type: 'armor',
+                        max: 'ITEM.@system.tier + 1'
                     }
                 ]
             }
@@ -792,14 +799,29 @@ export const weaponFeatures = {
                 img: 'icons/skills/melee/sword-shield-stylized-white.webp',
                 changes: [
                     {
-                        key: 'system.armorScore',
-                        mode: 2,
-                        value: '1'
-                    },
-                    {
                         key: 'system.bonuses.damage.primaryWeapon.bonus',
                         mode: 2,
                         value: '1'
+                    }
+                ],
+                system: {
+                    rangeDependence: {
+                        enabled: true,
+                        range: 'melee',
+                        target: 'hostile',
+                        type: 'withinRange'
+                    }
+                }
+            },
+            {
+                type: 'armor',
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.doubleDuty.effects.doubleDuty.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.doubleDuty.effects.doubleDuty.description',
+                img: 'icons/skills/melee/sword-shield-stylized-white.webp',
+                changes: [
+                    {
+                        type: 'armor',
+                        max: 1
                     }
                 ],
                 system: {
@@ -1188,14 +1210,14 @@ export const weaponFeatures = {
         description: 'DAGGERHEART.CONFIG.WeaponFeature.protective.description',
         effects: [
             {
+                type: 'armor',
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.protective.effects.protective.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.protective.effects.protective.description',
                 img: 'icons/skills/melee/shield-block-gray-orange.webp',
                 changes: [
                     {
-                        key: 'system.armorScore',
-                        mode: 2,
-                        value: 'ITEM.@system.tier'
+                        type: 'armor',
+                        max: 'ITEM.@system.tier'
                     }
                 ]
             }
