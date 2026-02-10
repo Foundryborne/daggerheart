@@ -300,20 +300,6 @@ export async function runMigrations() {
             progress.advance();
         }
 
-        // const lockedPacks = [];
-        // const compendiumArmors = [];
-        // const compendiumCharacters = [];
-        // for (let pack of game.packs.filter(x => x.metadata.type === 'Item')) {
-        //     if (pack.locked) {
-        //         lockedPacks.push(pack.collection);
-        //         await pack.configure({ locked: false });
-        //     }
-
-        //     const documents = await pack.getDocuments({ type: 'armor' });
-        //     compendiumArmors.push(...documents.filter(x => x instanceof game.system.api.documents.DHItem && x.type === 'armor'));
-        //     compendiumCharacters.push(...documents.filter(x => x.type === 'character'));
-        // }
-
         for (const armor of [...compendiumArmors, ...worldArmors]) {
             const hasArmorEffect = armor.effects.some(x => x.type === 'armor');
             const migrationArmorScore = armor.flags.daggerheart?.baseScoreMigrationValue;

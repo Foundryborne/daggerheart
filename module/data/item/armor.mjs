@@ -178,16 +178,6 @@ export default class DHArmor extends AttachableItem {
     /** @inheritDoc */
     static migrateDocumentData(source) {
         if (source.system.baseScore !== undefined && !source.effects.some(x => x.type === 'armor')) {
-            // source.effects.push({
-            //     ...game.system.api.data.activeEffects.ArmorEffect.getDefaultObject(),
-            //     changes: [{
-            //         type: CONFIG.DH.GENERAL.activeEffectModes.armor.id,
-            //         phase: 'initial',
-            //         priority: 20,
-            //         value: 0,
-            //         max: source.system.baseScore
-            //     }],
-            // });
             if (!source.flags) source.flags = {};
             if (!source.flags.daggerheart) source.flags.daggerheart = {};
             source.flags.daggerheart.baseScoreMigrationValue = source.system.baseScore;
@@ -200,7 +190,7 @@ export default class DHArmor extends AttachableItem {
      */
     _getTags() {
         const tags = [
-            `${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.armorData.value}`,
+            `${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.armorData.max}`,
             `${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseThresholds.base')}: ${this.baseThresholds.major} / ${this.baseThresholds.severe}`
         ];
 
@@ -212,7 +202,7 @@ export default class DHArmor extends AttachableItem {
      * @returns {(string | { value: string, icons: string[] })[]} An array of localized strings and damage label objects.
      */
     _getLabels() {
-        const labels = [`${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.armorData.value}`];
+        const labels = [`${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.armorData.max}`];
         return labels;
     }
 
