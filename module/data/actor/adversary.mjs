@@ -2,7 +2,7 @@ import DHAdversarySettings from '../../applications/sheets-configs/adversary-set
 import { ActionField } from '../fields/actionField.mjs';
 import BaseDataActor, { commonActorRules } from './base.mjs';
 import { resourceField, bonusField } from '../fields/actorField.mjs';
-import { parseTermsFromSimpleFormula } from '../../helpers/utils.mjs';
+import { calculateExpectedValue, parseTermsFromSimpleFormula } from '../../helpers/utils.mjs';
 import { adversaryExpectedDamage, adversaryScalingData } from '../../config/actorConfig.mjs';
 
 export default class DhpAdversary extends BaseDataActor {
@@ -191,6 +191,7 @@ export default class DhpAdversary extends BaseDataActor {
         return tags;
     }
 
+    /** Returns source data for this actor adjusted to a new tier, which can be used to create a new actor. */
     adjustForTier(tier) {
         const source = this.parent.toObject(true);
 
@@ -214,26 +215,64 @@ export default class DhpAdversary extends BaseDataActor {
         }
 
         // Get the mean and standard deviation of expected damage in the previous and new tier
+        // The data we have is for attack scaling, but we reuse this for action scaling later
         const expectedDamageData = adversaryExpectedDamage[source.system.type] ?? adversaryExpectedDamage.basic;
-        const currentDamageRange = { tier: source.system.tier, ...expectedDamageData[source.system.tier] };
-        const newDamageRange = { tier, ...expectedDamageData[tier] };
+        const damageMeta = {
+            currentDamageRange: { tier: source.system.tier, ...expectedDamageData[source.system.tier] },
+            newDamageRange: { tier, ...expectedDamageData[tier] },
+            type: 'attack'
+        };
 
         // Update damage of base attack
-        this.#convertDamage(source.system.attack.damage, "attack", currentDamageRange, newDamageRange);
+        try {
+            this.#adjustActionDamage(source.system.attack, damageMeta);
+        } catch (err) {
+            ui.notifications.warn('Failed to convert attack damage of adversary');
+            console.error(err);
+        }
 
         // Update damage of each item action, making sure to also update the description if possible
+        const damageRegex = /@Damage\[([^\[\]]*)\]({[^}]*})?/g;
         for (const item of source.items) {
-            // todo: damage inlines (must be done before other changes so that it doesn't get incorrectly applied)
+            // Replace damage inlines with new formulas
+            for (const withDescription of [item.system, ...Object.values(item.system.actions)]) {
+                withDescription.description = withDescription.description.replace(damageRegex, (match, inner) => {
+                    const { value: formula } = parseInlineParams(inner);
+                    if (!formula || !type) return match;
 
+                    try {
+                        const adjusted = this.#calculateAdjustedDamage(formula, { ...damageMeta, type: 'action' });
+                        const newFormula = [
+                            adjusted.diceQuantity ? `${adjusted.diceQuantity}d${adjusted.faces}` : null,
+                            adjusted.bonus
+                        ]
+                            .filter(p => !!p)
+                            .join(' + ');
+                        return match.replace(formula, newFormula);
+                    } catch {
+                        return match;
+                    }
+                });
+            }
+
+            // Update damage in item actions
             for (const action of Object.values(item.system.actions)) {
                 if (!action.damage) continue;
-                const formula = this.#parseDamage(action.damage).formula;
-                this.#convertDamage(action.damage, "action", currentDamageRange, newDamageRange);
 
-                const oldFormulaRegexp = new RegExp(formula.replace('+', '(?:\\s)?\\+(?:\\s)?'));
-                const newFormula = this.#parseDamage(action.damage).formula;
-                item.system.description = item.system.description.replace(oldFormulaRegexp, newFormula);
-                action.description = action.description.replace(oldFormulaRegexp, newFormula);
+                // Parse damage, and convert all formula matches in the descriptions to the new damage
+                try {
+                    const result = this.#adjustActionDamage(action, { ...damageMeta, type: 'action' });
+                    for (const { previousFormula, formula } of Object.values(result)) {
+                        const oldFormulaRegexp = new RegExp(
+                            previousFormula.replace(' ', '').replace('+', '(?:\\s)?\\+(?:\\s)?')
+                        );
+                        item.system.description = item.system.description.replace(oldFormulaRegexp, formula);
+                        action.description = action.description.replace(oldFormulaRegexp, formula);
+                    }
+                } catch (err) {
+                    ui.notifications.warn(`Failed to convert action damage for item ${item.name}`);
+                    console.error(err);
+                }
             }
         }
 
@@ -242,55 +281,51 @@ export default class DhpAdversary extends BaseDataActor {
         return source;
     }
 
-    #parseDamage(damage) {
-        const formula = damage.parts
-            .filter(p => p.applyTo === 'hitPoints')
-            .map(p =>
-                p.value.custom.enabled
-                    ? p.value.custom.formula
-                    : [p.value.flatMultiplier ? `${p.value.flatMultiplier}${p.value.dice}` : 0, p.value.bonus ?? 0]
-                            .filter(p => !!p)
-                            .join('+')
-            )
-            .join('+');
-        const terms = parseTermsFromSimpleFormula(formula);
-        const expected = terms.reduce((r, t) => r + (t.modifier ?? 0) + (t.dice ? (t.dice * (t.faces + 1)) / 2 : 0), 0);
-        return { formula, terms, expected };
-    }
-
-    /** 
+    /**
      * Converts a damage object to a new damage range
-     * @param type whether this is a basic "attack" or a regular "action" 
+     * @returns {{ diceQuantity: number; faces: number; bonus: number }} the adjusted result as a combined term
+     * @throws error if the formula is the wrong type
      */
-    #convertDamage(damage, type, currentDamageRange, newDamageRange) {
-        const hitPointParts = damage.parts.filter(d => d.applyTo === 'hitPoints');
-        if (hitPointParts.length === 0) return; // nothing to do
-        const previousExpected = this.#parseDamage(damage).expected;
-        if (previousExpected === 0) return; // nothing to do
-        // others are not supported yet. Later on we should convert to terms, then convert from terms back to real data
-        if (!(hitPointParts.length === 1 && !hitPointParts[0].value.custom.enabled)) return; 
+    #calculateAdjustedDamage(formula, { currentDamageRange, newDamageRange, type }) {
+        const terms = parseTermsFromSimpleFormula(formula);
+        const flatTerms = terms.filter(t => t.diceQuantity === 0);
+        const diceTerms = terms.filter(t => t.diceQuantity > 0);
+        if (flatTerms.length > 1 || diceTerms.length > 1) {
+            throw new Error('invalid formula for conversion');
+        }
+        const value = {
+            ...(diceTerms[0] ?? { diceQuantity: 0, faces: 1 }),
+            bonus: flatTerms[0]?.bonus ?? 0
+        };
+        const previousExpected = calculateExpectedValue(value);
+        if (previousExpected === 0) return value; // nothing to do
 
-        const dieSizes = ['d4', 'd6', 'd8', 'd10', 'd12', 'd20'];
+        const dieSizes = [4, 6, 8, 10, 12, 20];
         const steps = newDamageRange.tier - currentDamageRange.tier;
         const increasing = steps > 0;
         const deviation = (previousExpected - currentDamageRange.mean) / currentDamageRange.deviation;
-        const expected = newDamageRange.mean + newDamageRange.deviation * deviation;
+        const expected = Math.max(1, newDamageRange.mean + newDamageRange.deviation * deviation);
 
-        const value = hitPointParts[0].value;
-        const getExpectedDie = () => Number(value.dice.replace('d', '')) / 2;
-        const getBaseAverage = () => value.flatMultiplier * getExpectedDie();
+        // If this was just a flat number, convert to the expected damage and exit
+        if (value.diceQuantity === 0) {
+            value.bonus = Math.round(expected);
+            return value;
+        }
+
+        const getExpectedDie = () => calculateExpectedValue({ diceQuantity: 1, faces: value.faces }) || 1;
+        const getBaseAverage = () => calculateExpectedValue({ ...value, bonus: 0 });
 
         // Check the number of base overages over the expected die. In the end, if the bonus inflates too much, we add a die
         const baseOverages = Math.floor(value.bonus / getExpectedDie());
 
         // Prestep. Change number of dice for attacks, bump up/down for actions
         // We never bump up to d20, though we might bump down from it
-        if (type === "attack") {
-            const minimum = increasing ? value.flatMultiplier : 0;
-            value.flatMultiplier = Math.max(minimum, newDamageRange.tier);
+        if (type === 'attack') {
+            const minimum = increasing ? value.diceQuantity : 0;
+            value.diceQuantity = Math.max(minimum, newDamageRange.tier);
         } else {
-            const currentIdx = dieSizes.indexOf(value.dice);
-            value.dice = dieSizes[Math.clamp(currentIdx + steps, 0, 4)]
+            const currentIdx = dieSizes.indexOf(value.faces);
+            value.faces = dieSizes[Math.clamp(currentIdx + steps, 0, 4)];
         }
 
         value.bonus = Math.round(expected - getBaseAverage());
@@ -298,28 +333,68 @@ export default class DhpAdversary extends BaseDataActor {
         // Attempt to handle negative values.
         // If we can do it with only step downs, do so. Otherwise remove tier dice, and try again
         if (value.bonus < 0) {
-            let stepsRequired = Math.ceil(Math.abs(value.bonus) / value.flatMultiplier);
-            const currentIdx = dieSizes.indexOf(value.dice);
+            let stepsRequired = Math.ceil(Math.abs(value.bonus) / value.diceQuantity);
+            const currentIdx = dieSizes.indexOf(value.faces);
 
             // If step downs alone don't suffice, change the flat modifier, then calculate steps required again
             // If this isn't sufficient, the result will be slightly off. This is unlikely to happen
-            if (type !== "attack" && stepsRequired > currentIdx && value.flatMultiplier > 0) {
-                value.flatMultiplier -= increasing ? 1 : Math.abs(steps);
+            if (type !== 'attack' && stepsRequired > currentIdx && value.diceQuantity > 0) {
+                value.diceQuantity -= increasing ? 1 : Math.abs(steps);
                 value.bonus = Math.round(expected - getBaseAverage());
-                if (value.bonus >= 0) return; // complete
+                if (value.bonus >= 0) return value; // complete
             }
 
-            stepsRequired = Math.ceil(Math.abs(value.bonus) / value.flatMultiplier);
-            value.dice = dieSizes[Math.max(0, currentIdx - stepsRequired)];
+            stepsRequired = Math.ceil(Math.abs(value.bonus) / value.diceQuantity);
+            value.faces = dieSizes[Math.max(0, currentIdx - stepsRequired)];
             value.bonus = Math.max(0, Math.round(expected - getBaseAverage()));
         }
 
         // If value is really high, we add a number of dice based on the number of overages
         // This attempts to preserve a similar amount of variance when increasing an action
         const overagesToRemove = Math.floor(value.bonus / getExpectedDie()) - baseOverages;
-        if (type !== "attack" && increasing && overagesToRemove > 0) {
-            value.flatMultiplier += overagesToRemove;
+        if (type !== 'attack' && increasing && overagesToRemove > 0) {
+            value.diceQuantity += overagesToRemove;
             value.bonus = Math.round(expected - getBaseAverage());
         }
+
+        return value;
+    }
+
+    /**
+     * Updates damage to reflect a specific value.
+     * @throws if damage structure is invalid for conversion
+     * @returns the converted formula and value as a simplified term
+     */
+    #adjustActionDamage(action, damageMeta) {
+        // The current algorithm only returns a value if there is a single damage part
+        const hpDamageParts = action.damage.parts.filter(d => d.applyTo === 'hitPoints');
+        if (hpDamageParts.length !== 1) throw new Error('incorrect number of hp parts');
+
+        const result = {};
+        for (const property of ['value', 'valueAlt']) {
+            const data = hpDamageParts[0][property];
+            const previousFormula = data.custom.enabled
+                ? data.custom.formula
+                : [data.flatMultiplier ? `${data.flatMultiplier}${data.dice}` : 0, data.bonus ?? 0]
+                      .filter(p => !!p)
+                      .join('+');
+            const value = this.#calculateAdjustedDamage(previousFormula, damageMeta);
+            const formula = [value.diceQuantity ? `${value.diceQuantity}d${value.faces}` : null, value.bonus]
+                .filter(p => !!p)
+                .join(' + ');
+            if (value.diceQuantity) {
+                data.custom.enabled = false;
+                data.bonus = value.bonus;
+                data.dice = `d${value.faces}`;
+                data.flatMultiplier = value.diceQuantity;
+            } else if (!value.diceQuantity) {
+                data.custom.enabled = true;
+                data.custom.formula = formula;
+            }
+
+            result[property] = { previousFormula, formula, value };
+        }
+
+        return result;
     }
 }
