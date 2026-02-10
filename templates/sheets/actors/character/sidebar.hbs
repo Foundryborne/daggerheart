@@ -35,9 +35,9 @@
                     {{#if useResourcePips}}
                     <div class='slot-value'>
                         <div class="slot-bar">
-                        {{#times document.system.armorScore}}
-                            <a class='armor-slot' data-action='toggleArmor'  data-value="{{add this 1}}">
-                                {{#if (gte ../document.system.armor.system.marks.value (add this 1))}}
+                        {{#times document.system.armorScore.max}}
+                            <a class='armor-slot' data-action='toggleArmor' data-value="{{add this 1}}">
+                                {{#if (gte ../document.system.armorScore.value (add this 1))}}
                                     <i class="fa-solid fa-shield"></i>
                                 {{else}}
                                     <i class="fa-solid fa-shield-halved"></i>
@@ -47,7 +47,7 @@
                         </div>
                         <div class="slot-label">
                             <span class="label">{{localize "DAGGERHEART.GENERAL.armorSlots"}}</span>
-                            <span class="value">{{document.system.armor.system.marks.value}} / {{document.system.armorScore}}</span>
+                            <span class="value">{{document.system.armorScore.value}} / {{document.system.armorScore.max}}</span>
                         </div> 
                     </div>
                     {{else}}

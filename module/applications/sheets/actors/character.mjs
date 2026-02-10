@@ -629,12 +629,12 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     async updateArmorMarks(event) {
-        const armor = this.document.system.armor;
-        if (!armor) return;
+        const inputValue = Number(event.currentTarget.value);
+        const { value, max } = this.document.system.armorScore;
+        const changeValue = Math.min(inputValue - value, max - value);
 
-        const maxMarks = this.document.system.armorScore;
-        const value = Math.min(Math.max(Number(event.currentTarget.value), 0), maxMarks);
-        await armor.update({ 'system.marks.value': value });
+        event.currentTarget.value = inputValue < 0 ? 0 : value + changeValue;
+        this.document.system.updateArmorValue({ value: changeValue });
     }
 
     /* -------------------------------------------- */
@@ -813,10 +813,13 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * Toggles ArmorScore resource value.
      * @type {ApplicationClickAction}
      */
-    static async #toggleArmor(_, button, element) {
-        const ArmorValue = Number.parseInt(button.dataset.value);
-        const newValue = this.document.system.armor.system.marks.value >= ArmorValue ? ArmorValue - 1 : ArmorValue;
-        await this.document.system.armor.update({ 'system.marks.value': newValue });
+    static async #toggleArmor(_, button, _element) {
+        const { value, max } = this.document.system.armorScore;
+        const inputValue = Number.parseInt(button.dataset.value);
+        const newValue = value >= inputValue ? inputValue - 1 : inputValue;
+        const changeValue = Math.min(newValue - value, max - value);
+
+        this.document.system.updateArmorValue({ value: changeValue });
     }
 
     /**
