@@ -2111,7 +2111,7 @@
                     "thresholdImmunities": {
                         "minor": {
                             "label": "Threshold Immunities: Minor",
-                            "hint": "Automatically ignores minor damage"
+                            "hint": "Automatically ignores minor damage when set to 1"
                         }
                     }
                 },

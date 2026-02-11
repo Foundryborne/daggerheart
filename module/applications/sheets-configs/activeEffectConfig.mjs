@@ -30,22 +30,27 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             const group = game.i18n.localize(model.metadata.label);
             const attributes = CONFIG.Token.documentClass.getTrackedAttributes(model.metadata.type);
 
-            const getLabel = path => {
-                const label = model.schema.getField(path)?.label;
-                return label ? game.i18n.localize(label) : path;
+            const getTranslations = path => {
+                if (path === 'resources.hope.max')
+                    return {
+                        label: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.FIELDS.maxHope.label'),
+                        hint: ''
+                    };
+
+                const field = model.schema.getField(path);
+                return {
+                    label: field ? game.i18n.localize(field.label) : path,
+                    hint: field ? game.i18n.localize(field.hint) : ''
+                };
             };
 
             const bars = attributes.bar.flatMap(x => {
                 const joined = `${x.join('.')}.max`;
-                const label =
-                    joined === 'resources.hope.max'
-                        ? 'DAGGERHEART.SETTINGS.Homebrew.FIELDS.maxHope.label'
-                        : getLabel(joined);
-                return { value: joined, label, group };
+                return { value: joined, ...getTranslations(joined), group };
             });
             const values = attributes.value.flatMap(x => {
                 const joined = x.join('.');
-                return { value: joined, label: getLabel(joined), group };
+                return { value: joined, ...getTranslations(joined), group };
             });
 
             const bonuses = getAllLeaves(model.schema.fields.bonuses, group);
