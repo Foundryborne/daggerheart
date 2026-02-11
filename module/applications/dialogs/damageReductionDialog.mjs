@@ -173,7 +173,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             ? Object.values(this.availableStressReductions).filter(red => red.selected)
             : [];
         const currentMarks =
-            this.actor.system.armor.system.marks.value + selectedArmorMarks.length + selectedStressMarks.length;
+            this.actor.system.armorScore.value + selectedArmorMarks.length + selectedStressMarks.length;
 
         const armorMarkReduction =
             selectedArmorMarks.length * this.actor.system.rules.damageReduction.increasePerArmorMark;

@@ -42,11 +42,12 @@ export default class ArmorEffect extends foundry.data.ActiveEffectTypeDataModel 
                 {
                     initial: [
                         {
+                            key: 'system.armorScore',
                             type: CONFIG.DH.GENERAL.activeEffectModes.armor.id,
                             phase: 'initial',
                             priority: 20,
                             value: 0,
-                            max: 1
+                            max: '1'
                         }
                     ]
                 }
@@ -161,6 +162,7 @@ export default class ArmorEffect extends foundry.data.ActiveEffectTypeDataModel 
 
     static getDefaultObject() {
         return {
+            key: 'system.armorScore',
             type: 'armor',
             name: game.i18n.localize('DAGGERHEART.EFFECTS.Armor.newArmorEffect'),
             img: 'icons/equipment/chest/breastplate-helmet-metal.webp'

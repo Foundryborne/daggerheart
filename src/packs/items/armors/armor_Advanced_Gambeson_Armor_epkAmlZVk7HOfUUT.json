@@ -75,11 +75,12 @@
             "phase": "initial",
             "priority": 20,
             "value": 0,
-            "max": 5
+            "max": "5",
+            "key": "system.armorScore"
           }
         ]
       },
-      "_id": "lJBLFQHDjmgLsLL8",
+      "_id": "HxZEKljAth8b5Wcv",
       "disabled": false,
       "start": null,
       "duration": {
@@ -100,7 +101,7 @@
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!items.effects!epkAmlZVk7HOfUUT.lJBLFQHDjmgLsLL8"
+      "_key": "!items.effects!epkAmlZVk7HOfUUT.HxZEKljAth8b5Wcv"
     }
   ],
   "sort": 0,
