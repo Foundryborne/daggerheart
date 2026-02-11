@@ -105,7 +105,7 @@
         },
         "effects": [
           {
-            "_id": "OKf8Kjr6Px8A3ubJ",
+            "_id": "ptYT10JZ2WJHvFMd",
             "onSave": false
           }
         ],
@@ -252,8 +252,8 @@
       "img": "icons/magic/defensive/shield-barrier-glowing-triangle-blue.webp",
       "origin": "Compendium.daggerheart.domains.Item.YtZzYBtR0yLPPA93",
       "transfer": false,
+      "_id": "ptYT10JZ2WJHvFMd",
       "type": "armor",
-      "_id": "OKf8Kjr6Px8A3ubJ",
       "system": {
         "changes": [
           {
@@ -267,24 +267,24 @@
         ]
       },
       "disabled": false,
-      "start": null,
       "duration": {
         "value": null,
         "units": "seconds",
         "expiry": null,
         "expired": false
       },
-      "description": "<p><strong>Spend a Hope</strong> to give a target you can touch a +1 bonus to their Armor Score until their next rest or you cast Tava’s Armor again.</p>",
+      "description": "<p>+1 bonus to your Armor Score until your next rest, or the caster cast's Tava’s Armor again.</p>",
       "tint": "#ffffff",
       "statuses": [],
-      "showIcon": 1,
-      "folder": null,
       "sort": 0,
       "flags": {},
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!items.effects!YtZzYBtR0yLPPA93.OKf8Kjr6Px8A3ubJ"
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
+      "_key": "!items.effects!YtZzYBtR0yLPPA93.ptYT10JZ2WJHvFMd"
     }
   ],
   "ownership": {

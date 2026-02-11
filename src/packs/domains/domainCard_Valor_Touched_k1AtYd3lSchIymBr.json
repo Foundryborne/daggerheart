@@ -104,29 +104,29 @@
           }
         ]
       },
-      "_id": "JLw50ONfq1KJh1iM",
+      "_id": "Ma8Zp005QYKPWIEN",
       "img": "icons/magic/control/control-influence-rally-purple.webp",
       "disabled": false,
-      "start": null,
       "duration": {
         "value": null,
         "units": "seconds",
         "expiry": null,
         "expired": false
       },
-      "description": "<p>+1 bonus to your Armor Score</p>",
+      "description": "<ul><li class=\"vertical-card-list-found\"><p>+1 bonus to your Armor Score</p></li><li class=\"vertical-card-list-found\"><p>When you mark 1 or more Hit Points without marking an Armor Slot, clear an Armor Slot.</p></li></ul>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
-      "showIcon": 1,
-      "folder": null,
       "sort": 0,
       "flags": {},
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!items.effects!k1AtYd3lSchIymBr.JLw50ONfq1KJh1iM"
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
+      "_key": "!items.effects!k1AtYd3lSchIymBr.Ma8Zp005QYKPWIEN"
     }
   ],
   "ownership": {

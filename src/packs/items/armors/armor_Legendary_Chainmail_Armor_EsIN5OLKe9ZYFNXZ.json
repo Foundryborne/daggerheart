@@ -71,16 +71,16 @@
       "system": {
         "changes": [
           {
+            "key": "system.armorScore",
             "type": "armor",
             "phase": "initial",
             "priority": 20,
             "value": 0,
-            "max": "7",
-            "key": "system.armorScore"
+            "max": "7"
           }
         ]
       },
-      "_id": "PZsaURELHOaRJK28",
+      "_id": "kqNdkD1d4FOQloMV",
       "disabled": false,
       "start": null,
       "duration": {
@@ -101,7 +101,7 @@
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!items.effects!EsIN5OLKe9ZYFNXZ.PZsaURELHOaRJK28"
+      "_key": "!items.effects!EsIN5OLKe9ZYFNXZ.kqNdkD1d4FOQloMV"
     }
   ],
   "sort": 0,
