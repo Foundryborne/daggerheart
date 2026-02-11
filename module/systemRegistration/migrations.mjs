@@ -313,7 +313,7 @@ export async function runMigrations() {
                                 phase: 'initial',
                                 priority: 20,
                                 value: 0,
-                                max: migrationArmorScore
+                                max: migrationArmorScore.toString()
                             }
                         ]
                     }

@@ -993,4 +993,8 @@ export default class DhpActor extends Actor {
             }
         }
     }
+
+    applyActiveEffects(phase) {
+        super.applyActiveEffects(phase);
+    }
 }
