@@ -107,9 +107,13 @@ export default class ArmorEffect extends foundry.data.ActiveEffectTypeDataModel 
 
         const actor = this.parent.actor?.type === 'character' ? this.parent.actor : null;
         const changeData = this.changes[0];
+        const maxParse = actor ? itemAbleRollParse(changeData.max, actor, this.parent.parent) : null;
+        const maxRoll = maxParse ? new Roll(maxParse).evaluateSync() : null;
+        const maxEvaluated = maxRoll ? (maxRoll.isDeterministic ? maxRoll.total : null) : null;
+
         return {
             ...changeData,
-            max: actor ? itemAbleRollParse(changeData.max, actor, this.parent.parent) : changeData.max
+            max: maxEvaluated ?? changeData.max
         };
     }
 
@@ -153,9 +157,11 @@ export default class ArmorEffect extends foundry.data.ActiveEffectTypeDataModel 
             }
         };
 
-        return armorEffects.sort((a, b) =>
-            increasing ? getEffectWeight(b) - getEffectWeight(a) : getEffectWeight(a) - getEffectWeight(b)
-        );
+        return armorEffects
+            .filter(x => !x.disabled && !x.isSuppressed)
+            .sort((a, b) =>
+                increasing ? getEffectWeight(b) - getEffectWeight(a) : getEffectWeight(a) - getEffectWeight(b)
+            );
     }
 
     /* Overrides */
