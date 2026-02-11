@@ -45,6 +45,13 @@ export default class ArmorActiveEffectConfig extends HandlebarsApplicationMixin(
         const partContext = await super._preparePartContext(partId, context);
         if (partId in partContext.tabs) partContext.tab = partContext.tabs[partId];
 
+        switch (partId) {
+            case 'details':
+                partContext.isActorEffect = this.document.parent?.documentName === 'Actor';
+                partContext.isItemEffect = this.document.parent?.documentName === 'Item';
+                break;
+        }
+
         return partContext;
     }
 

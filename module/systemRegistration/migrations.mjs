@@ -248,9 +248,10 @@ export async function runMigrations() {
     }
 
     if (foundry.utils.isNewerVersion('2.0.0', lastMigrationVersion)) {
-        /* Migrate existing armors to the new Armor Effects */
         const progress = game.system.api.applications.ui.DhProgress.createMigrationProgress(0);
+        const progressBuffer = 50;
 
+        //#region Data Setup
         const lockedPacks = [];
         const itemPacks = game.packs.filter(x => x.metadata.type === 'Item');
         const actorPacks = game.packs.filter(x => x.metadata.type === 'Actor');
@@ -259,7 +260,7 @@ export async function runMigrations() {
             const indexes = [];
             for (const pack of packs) {
                 const indexValues = pack.index.values().reduce((acc, index) => {
-                    if (index.type === type) acc.push(index.uuid);
+                    if (!type || index.type === type) acc.push(index.uuid);
                     return acc;
                 }, []);
 
@@ -274,54 +275,132 @@ export async function runMigrations() {
             return indexes;
         };
 
-        const armorEntries = await getIndexes(itemPacks, 'armor');
-        const actorEntries = await getIndexes(actorPacks, 'actor');
+        const itemEntries = await getIndexes(itemPacks);
+        const characterEntries = await getIndexes(actorPacks, 'character');
 
-        const worldArmors = game.items.filter(x => x instanceof game.system.api.documents.DHItem && x.type === 'armor');
-
-        for (const character of game.actors.filter(x => x.type === 'character')) {
-            worldArmors.push(...character.items.filter(x => x.type === 'armor'));
-        }
+        const worldItems = game.items;
+        const worldCharacters = game.actors.filter(x => x.type === 'character');
 
         /* The async fetches are the mainstay of time. Leaving 1 progress for the sync logic */
-        const newMax = armorEntries.length + actorEntries.length + 1;
+        const newMax = itemEntries.length + characterEntries.length + progressBuffer;
         progress.updateMax(newMax);
 
-        const compendiumArmors = [];
-        for (const entry of armorEntries) {
-            const armor = await foundry.utils.fromUuid(entry);
-            compendiumArmors.push(armor);
+        const compendiumItems = [];
+        for (const entry of itemEntries) {
+            const item = await foundry.utils.fromUuid(entry);
+            compendiumItems.push(item);
             progress.advance();
         }
 
-        for (const entry of actorEntries) {
-            const actor = await foundry.utils.fromUuid(entry);
-            compendiumArmors.push(...actor.items.filter(x => x.type === 'armor'));
+        const compendiumCharacters = [];
+        for (const entry of characterEntries) {
+            const character = await foundry.utils.fromUuid(entry);
+            compendiumCharacters.push(character);
             progress.advance();
         }
+        //#endregion
 
-        for (const armor of [...compendiumArmors, ...worldArmors]) {
-            const hasArmorEffect = armor.effects.some(x => x.type === 'armor');
-            const migrationArmorScore = armor.flags.daggerheart?.baseScoreMigrationValue;
-            if (migrationArmorScore !== undefined && !hasArmorEffect) {
-                await armor.createEmbeddedDocuments('ActiveEffect', [
+        /* Migrate existing effects modifying armor, creating new Armor Effects instead */
+        const migrateEffects = async entity => {
+            const effectChangeData = [];
+            for (const effect of entity.effects) {
+                const oldArmorChanges = effect.system.changes.filter(x => x.key === 'system.armorScore');
+                if (!oldArmorChanges.length) continue;
+
+                const changeData = {};
+                const newChanges = effect.system.changes.filter(x => x.key !== 'system.armorScore');
+                if (newChanges.length) {
+                    await effect.update({ 'system.changes': newChanges });
+                } else {
+                    changeData.deleteId = effect.id;
+                }
+
+                const oldEffectData = effect.toObject();
+                changeData.createData = {
+                    ...oldEffectData,
+                    type: 'armor',
+                    system: {
+                        ...oldEffectData.sytem,
+                        changes: oldArmorChanges.map(change => ({
+                            key: 'system.armorScore',
+                            type: CONFIG.DH.GENERAL.activeEffectModes.armor.id,
+                            phase: 'initial',
+                            priority: 20,
+                            value: 0,
+                            max: change.value
+                        }))
+                    }
+                };
+                effectChangeData.push(changeData);
+            }
+
+            for (const changeData of effectChangeData) {
+                const relatedActions = Array.from(entity.system.actions ?? []).filter(x =>
+                    x.effects.some(effect => effect._id === changeData.deleteId)
+                );
+                const [newEffect] = await entity.createEmbeddedDocuments('ActiveEffect', [
                     {
-                        ...game.system.api.data.activeEffects.ArmorEffect.getDefaultObject(),
-                        changes: [
-                            {
-                                type: CONFIG.DH.GENERAL.activeEffectModes.armor.id,
-                                phase: 'initial',
-                                priority: 20,
-                                value: 0,
-                                max: migrationArmorScore.toString()
-                            }
-                        ]
+                        ...changeData.createData,
+                        transfer: relatedActions.length ? false : true
                     }
                 ]);
+                for (const action of relatedActions) {
+                    await action.update({
+                        effects: action.effects.map(effect => ({
+                            ...effect,
+                            _id: effect._id === changeData.deleteId ? newEffect.id : effect._id
+                        }))
+                    });
+                }
             }
+
+            await entity.deleteEmbeddedDocuments(
+                'ActiveEffect',
+                effectChangeData.reduce((acc, data) => {
+                    if (data.deleteId) acc.push(data.deleteId);
+                    return acc;
+                }, [])
+            );
+        };
+
+        /* Migrate existing armors to the new Armor Effects */
+        const migrateItems = async items => {
+            for (const item of items) {
+                await migrateEffects(item);
+
+                if (item instanceof game.system.api.documents.DHItem && item.type === 'armor') {
+                    const hasArmorEffect = item.effects.some(x => x.type === 'armor');
+                    const migrationArmorScore = item.flags.daggerheart?.baseScoreMigrationValue;
+                    if (migrationArmorScore !== undefined && !hasArmorEffect) {
+                        await item.createEmbeddedDocuments('ActiveEffect', [
+                            {
+                                ...game.system.api.data.activeEffects.ArmorEffect.getDefaultObject(),
+                                changes: [
+                                    {
+                                        key: 'system.armorScore',
+                                        type: CONFIG.DH.GENERAL.activeEffectModes.armor.id,
+                                        phase: 'initial',
+                                        priority: 20,
+                                        value: 0,
+                                        max: migrationArmorScore.toString()
+                                    }
+                                ]
+                            }
+                        ]);
+                    }
+                }
+            }
+        };
+
+        await migrateItems([...compendiumItems, ...worldItems]);
+        progress.advance({ by: progressBuffer / 2 });
+
+        for (const actor of [...compendiumCharacters, ...worldCharacters]) {
+            await migrateEffects(actor);
+            await migrateItems(actor.items);
         }
 
-        progress.advance();
+        progress.advance({ by: progressBuffer / 2 });
 
         for (let packId of lockedPacks) {
             const pack = game.packs.get(packId);
@@ -330,7 +409,7 @@ export async function runMigrations() {
 
         progress.close();
 
-        // lastMigrationVersion = '2.0.0';
+        lastMigrationVersion = '2.0.0';
     }
     //#endregion
 

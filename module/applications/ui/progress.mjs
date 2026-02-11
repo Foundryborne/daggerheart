@@ -13,7 +13,7 @@ export default class DhProgress {
 
     advance({ by = 1, label = this.label } = {}) {
         if (this.value === this.max) return;
-        this.value += Math.abs(by);
+        this.value = (this.value ?? 0) + Math.abs(by);
         this.#notification.update({ message: label, pct: this.value / this.max });
     }
 
