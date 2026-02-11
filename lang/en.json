@@ -751,6 +751,11 @@
                 "bruiser": "for each Bruiser adversary.",
                 "solo": "for each Solo adversary."
             },
+            "ArmorInteraction": {
+                "none": { "label": "Ignores Armor" },
+                "active": { "label": "Only Active With Armor" },
+                "inactive": { "label": "Only Active Without Armor" }
+            },
             "ArmorFeature": {
                 "burning": {
                     "name": "Burning",
@@ -1851,7 +1856,13 @@
                 "transferHint": "If checked, this effect will be applied to any actor that owns this Effect's parent Item. The effect is always applied if this Item is attached to another one."
             },
             "Armor": {
-                "newArmorEffect": "Armor Effect"
+                "newArmorEffect": "Armor Effect",
+                "FIELDS": {
+                    "armorInteraction": {
+                        "label": "Armor Interaction",
+                        "hint": "Does the character wearing armor suppress this effect?"
+                    }
+                }
             }
         },
         "GENERAL": {

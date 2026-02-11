@@ -51,8 +51,28 @@ export default class ArmorEffect extends foundry.data.ActiveEffectTypeDataModel 
                         }
                     ]
                 }
-            )
+            ),
+            armorInteraction: new fields.StringField({
+                required: true,
+                choices: CONFIG.DH.GENERAL.activeEffectArmorInteraction,
+                initial: CONFIG.DH.GENERAL.activeEffectArmorInteraction.none.id,
+                label: 'DAGGERHEART.EFFECTS.Armor.FIELDS.armorInteraction.label',
+                hint: 'DAGGERHEART.EFFECTS.Armor.FIELDS.armorInteraction.hint'
+            })
         };
+    }
+
+    get isSuppressed() {
+        if (this.parent.actor?.type !== 'character') return false;
+
+        switch (this.armorInteraction) {
+            case CONFIG.DH.GENERAL.activeEffectArmorInteraction.active.id:
+                return !this.parent.actor.system.armor;
+            case CONFIG.DH.GENERAL.activeEffectArmorInteraction.inactive.id:
+                return Boolean(this.parent.actor.system.armor);
+            default:
+                return false;
+        }
     }
 
     /* Type Functions */

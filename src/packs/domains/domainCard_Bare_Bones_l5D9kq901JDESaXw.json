@@ -33,7 +33,8 @@
             "phase": "initial",
             "priority": 20
           }
-        ]
+        ],
+        "armorInteraction": "inactive"
       },
       "_id": "FCsgz7Tdsw6QUzBs",
       "img": "icons/magic/control/buff-strength-muscle-damage-orange.webp",

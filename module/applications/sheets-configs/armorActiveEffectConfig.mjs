@@ -9,6 +9,7 @@ export default class ArmorActiveEffectConfig extends HandlebarsApplicationMixin(
             submitOnChange: true,
             closeOnSubmit: false
         },
+        position: { width: 560 },
         actions: {
             finish: ArmorActiveEffectConfig.#finish
         }

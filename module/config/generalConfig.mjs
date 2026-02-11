@@ -890,3 +890,9 @@ export const activeEffectModes = {
         label: 'EFFECT.CHANGES.TYPES.override'
     }
 };
+
+export const activeEffectArmorInteraction = {
+    none: { id: 'none', label: 'DAGGERHEART.CONFIG.ArmorInteraction.none.label' },
+    active: { id: 'active', label: 'DAGGERHEART.CONFIG.ArmorInteraction.active.label' },
+    inactive: { id: 'inactive', label: 'DAGGERHEART.CONFIG.ArmorInteraction.inactive.label' }
+};
