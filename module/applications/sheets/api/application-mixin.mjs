@@ -511,7 +511,7 @@ export default function DHApplicationMixin(Base) {
                     icon: 'fa-solid fa-trash',
                     condition: target => {
                         const doc = getDocFromElementSync(target);
-                        return doc && doc.type !== 'beastform';
+                        return !doc || doc.type !== 'beastform';
                     },
                     callback: async (target, event) => {
                         const doc = await getDocFromElement(target);

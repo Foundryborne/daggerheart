@@ -1,4 +1,4 @@
-import { getScrollTextData } from '../../helpers/utils.mjs';
+import { getScrollTextData, itemAbleRollParse } from '../../helpers/utils.mjs';
 
 /**
  * ArmorEffects are ActiveEffects that have a static changes field of length 1. It includes current and maximum armor.
@@ -12,6 +12,11 @@ export default class ArmorEffect extends foundry.data.ActiveEffectTypeDataModel 
             ...super.defineSchema(),
             changes: new fields.ArrayField(
                 new fields.SchemaField({
+                    key: new fields.StringField({
+                        required: true,
+                        nullable: false,
+                        initial: 'system.armorScore'
+                    }),
                     type: new fields.StringField({
                         required: true,
                         blank: false,
@@ -27,11 +32,10 @@ export default class ArmorEffect extends foundry.data.ActiveEffectTypeDataModel 
                         min: 0,
                         label: 'DAGGERHEART.GENERAL.value'
                     }),
-                    max: new fields.NumberField({
+                    max: new fields.StringField({
                         required: true,
-                        integer: true,
-                        initial: 1,
-                        min: 1,
+                        nullable: false,
+                        initial: '1',
                         label: 'DAGGERHEART.GENERAL.max'
                     })
                 }),
@@ -99,7 +103,13 @@ export default class ArmorEffect extends foundry.data.ActiveEffectTypeDataModel 
     get armorChange() {
         if (this.changes.length !== 1)
             throw new Error('Unexpected error. An armor effect should have a changes field of length 1.');
-        return this.changes[0];
+
+        const actor = this.parent.actor?.type === 'character' ? this.parent.actor : null;
+        const changeData = this.changes[0];
+        return {
+            ...changeData,
+            max: actor ? itemAbleRollParse(changeData.max, actor, this.parent.parent) : changeData.max
+        };
     }
 
     get armorData() {
@@ -121,21 +131,22 @@ export default class ArmorEffect extends foundry.data.ActiveEffectTypeDataModel 
     static orderEffectsForAutoChange(armorEffects, increasing) {
         const getEffectWeight = effect => {
             switch (effect.parent.type) {
-                case 'loot':
-                case 'consumable':
-                    return 2;
                 case 'class':
                 case 'subclass':
                 case 'ancestry':
                 case 'community':
                 case 'feature':
                 case 'domainCard':
-                    return 3;
-                case 'weapon':
+                    return 2;
                 case 'armor':
+                    return 3;
+                case 'loot':
+                case 'consumable':
                     return 4;
-                case 'character':
+                case 'weapon':
                     return 5;
+                case 'character':
+                    return 6;
                 default:
                     return 1;
             }
@@ -147,11 +158,6 @@ export default class ArmorEffect extends foundry.data.ActiveEffectTypeDataModel 
     }
 
     /* Overrides */
-
-    prepareBaseData() {
-        const armorChange = this.armorChange;
-        armorChange.key = 'system.armorScore';
-    }
 
     static getDefaultObject() {
         return {
@@ -174,18 +180,29 @@ export default class ArmorEffect extends foundry.data.ActiveEffectTypeDataModel 
                 return false;
             }
 
-            if (
-                changes.system.changes.length === 1 &&
-                changes.system.changes[0].type !== CONFIG.DH.GENERAL.activeEffectModes.armor.id
-            ) {
-                ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.cannotAlterArmorEffectType'));
-                return false;
-            }
+            if (changes.system.changes.length === 1) {
+                if (changes.system.changes[0].type !== CONFIG.DH.GENERAL.activeEffectModes.armor.id) {
+                    ui.notifications.error(
+                        game.i18n.localize('DAGGERHEART.UI.Notifications.cannotAlterArmorEffectType')
+                    );
+                    return false;
+                }
 
-            if (changes.system.changes[0].value !== this.armorChange.value && this.parent.actor?.type === 'character') {
-                const increased = changes.system.changes[0].value > this.armorChange.value;
-                const value = -1 * (this.armorChange.value - changes.system.changes[0].value);
-                options.scrollingTextData = [getScrollTextData(increased, value, 'armor')];
+                if (changes.system.changes[0].key !== 'system.armorScore') {
+                    ui.notifications.error(
+                        game.i18n.localize('DAGGERHEART.UI.Notifications.cannotAlterArmorEffectKey')
+                    );
+                    return false;
+                }
+
+                if (
+                    changes.system.changes[0].value !== this.armorChange.value &&
+                    this.parent.actor?.type === 'character'
+                ) {
+                    const increased = changes.system.changes[0].value > this.armorChange.value;
+                    const value = -1 * (this.armorChange.value - changes.system.changes[0].value);
+                    options.scrollingTextData = [getScrollTextData(increased, value, 'armor')];
+                }
             }
         }
     }
