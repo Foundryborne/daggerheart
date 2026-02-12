@@ -495,3 +495,49 @@ export function htmlToText(html) {
 
     return tempDivElement.textContent || tempDivElement.innerText || '';
 }
+
+/**
+ * Given a simple flavor-less formula with only +/- operators, returns a list of damage partial terms.
+ * All subtracted terms become negative terms.
+ * If there are no dice, it returns 0d1 for that term.
+ */
+export function parseTermsFromSimpleFormula(formula) {
+    const roll = formula instanceof Roll ? formula : new Roll(formula);
+
+    // Parse from right to left so that when we hit an operator, we already have the term.
+    return roll.terms.reduceRight((result, term) => {
+        // Ignore + terms, we assume + by default
+        if (term.expression === ' + ') return result;
+
+        // - terms modify the last term we parsed
+        if (term.expression === ' - ') {
+            const termToModify = result[0];
+            if (termToModify) {
+                if (termToModify.bonus) termToModify.bonus *= -1;
+                if (termToModify.dice) termToModify.dice *= -1;
+            }
+            return result;
+        }
+
+        result.unshift({
+            bonus: term instanceof foundry.dice.terms.NumericTerm ? term.number : 0,
+            diceQuantity: term instanceof foundry.dice.terms.Die ? term.number : 0,
+            faces: term.faces ?? 1
+        });
+
+        return result;
+    }, []);
+}
+
+/**
+ * Calculates the expectede value from a formula or the results of parseTermsFromSimpleFormula.
+ * @returns {number} the average result of rolling the given dice
+ */
+export function calculateExpectedValue(formulaOrTerms) {
+    const terms = Array.isArray(formulaOrTerms)
+        ? formulaOrTerms
+        : typeof formulaOrTerms === 'string'
+          ? parseTermsFromSimpleFormula(formulaOrTerms)
+          : [formulaOrTerms];
+    return terms.reduce((r, t) => r + (t.bonus ?? 0) + (t.diceQuantity ? (t.diceQuantity * (t.faces + 1)) / 2 : 0), 0);
+}

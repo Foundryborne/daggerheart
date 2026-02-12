@@ -200,7 +200,6 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
                     description: game.i18n.localize(this.selectedMove.description),
                     result: result,
                     open: autoExpandDescription ? 'open' : '',
-                    chevron: autoExpandDescription ? 'fa-chevron-up' : 'fa-chevron-down',
                     showRiskItAllButton: this.showRiskItAllButton,
                     riskItAllButtonLabel: this.riskItAllButtonLabel,
                     riskItAllHope: this.riskItAllHope

@@ -196,6 +196,9 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
             .filter(x => x.testUserPermission(game.user, 'LIMITED'))
             .filter(x => x.uuid !== this.actor.uuid);
 
+        const autoExpandDescription = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
+            .expandRollMessage?.desc;
+
         const cls = getDocumentClass('ChatMessage');
         const msg = {
             user: game.user.id,
@@ -216,7 +219,8 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
                     actor: { name: this.actor.name, img: this.actor.img },
                     moves: moves,
                     characters: characters,
-                    selfId: this.actor.uuid
+                    selfId: this.actor.uuid,
+                    open: autoExpandDescription ? 'open' : ''
                 }
             ),
             flags: {

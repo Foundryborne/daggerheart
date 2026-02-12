@@ -243,14 +243,17 @@ Hooks.on('setup', () => {
         }))
     ];
 
-    const actorCommon = {
-        bar: ['resources.stress'],
-        value: []
-    };
     const damageThresholds = ['damageThresholds.major', 'damageThresholds.severe'];
     const traits = Object.keys(game.system.api.data.actors.DhCharacter.schema.fields.traits.fields).map(
         trait => `traits.${trait}.value`
     );
+    const resistance = Object.values(game.system.api.data.actors.DhCharacter.schema.fields.resistance.fields).flatMap(
+        type => Object.keys(type.fields).map(x => `resistance.${type.name}.${x}`)
+    );
+    const actorCommon = {
+        bar: ['resources.stress'],
+        value: [...resistance]
+    };
     CONFIG.Actor.trackableAttributes = {
         character: {
             bar: [...actorCommon.bar, 'resources.hitPoints', 'resources.hope'],

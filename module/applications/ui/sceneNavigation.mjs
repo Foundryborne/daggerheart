@@ -63,7 +63,8 @@ export default class DhSceneNavigation extends foundry.applications.ui.SceneNavi
                         if (scene.flags.daggerheart.sceneEnvironments[0] !== environment.uuid) {
                             const newEnvironments = scene.flags.daggerheart.sceneEnvironments;
                             const newFirst = newEnvironments.splice(
-                                newEnvironments.findIndex(x => x === environment.uuid)
+                                newEnvironments.findIndex(x => x === environment.uuid),
+                                1
                             )[0];
                             newEnvironments.unshift(newFirst);
                             emitAsGM(

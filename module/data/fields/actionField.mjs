@@ -262,6 +262,9 @@ export function ActionMixin(Base) {
         }
 
         async toChat(origin) {
+            const autoExpandDescription = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
+                .expandRollMessage?.desc;
+
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
                 title: game.i18n.localize('DAGGERHEART.CONFIG.FeatureForm.action'),
@@ -290,7 +293,7 @@ export function ActionMixin(Base) {
                 system: systemData,
                 content: await foundry.applications.handlebars.renderTemplate(
                     'systems/daggerheart/templates/ui/chat/action.hbs',
-                    systemData
+                    { ...systemData, open: autoExpandDescription ? 'open' : '' }
                 ),
                 flags: {
                     daggerheart: {

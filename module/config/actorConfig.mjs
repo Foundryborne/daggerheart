@@ -494,3 +494,275 @@ export const subclassFeatureLabels = {
     2: 'DAGGERHEART.ITEMS.DomainCard.specializationTitle',
     3: 'DAGGERHEART.ITEMS.DomainCard.masteryTitle'
 };
+
+/**
+ * @typedef {Object} TierData
+ * @property {number} difficulty
+ * @property {number} majorThreshold
+ * @property {number} severeThreshold
+ * @property {number} hp
+ * @property {number} stress
+ * @property {number} attack
+ * @property {number[]} damage
+ */
+
+/** 
+ * @type {Record<string, Record<2 | 3 | 4, TierData>} 
+ * Scaling data used to change an adversary's tier. Each rank is applied incrementally.
+ */
+export const adversaryScalingData = {
+    bruiser: {
+        2: {
+            difficulty: 2,
+            majorThreshold: 5,
+            severeThreshold: 10,
+            hp: 1,
+            stress: 2,
+            attack: 2,
+        },
+        3: {
+            difficulty: 2,
+            majorThreshold: 7,
+            severeThreshold: 15,
+            hp: 1,
+            stress: 0,
+            attack: 2,
+        },
+        4: {
+            difficulty: 2,
+            majorThreshold: 12,
+            severeThreshold: 25,
+            hp: 1,
+            stress: 0,
+            attack: 2,
+        }
+    },
+    horde: {
+        2: {
+            difficulty: 2,
+            majorThreshold: 5,
+            severeThreshold: 8,
+            hp: 2,
+            stress: 0,
+            attack: 0,
+        },
+        3: {
+            difficulty: 2,
+            majorThreshold: 5,
+            severeThreshold: 12,
+            hp: 0,
+            stress: 1,
+            attack: 1,
+        },
+        4: {
+            difficulty: 2,
+            majorThreshold: 10,
+            severeThreshold: 15,
+            hp: 2,
+            stress: 0,
+            attack: 0,
+        }
+    },
+    leader: {
+        2: {
+            difficulty: 2,
+            majorThreshold: 6,
+            severeThreshold: 10,
+            hp: 0,
+            stress: 0,
+            attack: 1,
+        },
+        3: {
+            difficulty: 2,
+            majorThreshold: 6,
+            severeThreshold: 15,
+            hp: 1,
+            stress: 0,
+            attack: 2,
+        },
+        4: {
+            difficulty: 2,
+            majorThreshold: 12,
+            severeThreshold: 25,
+            hp: 1,
+            stress: 1,
+            attack: 3,
+        }
+    },
+    minion: {
+        2: {
+            difficulty: 2,
+            majorThreshold: 0,
+            severeThreshold: 0,
+            hp: 0,
+            stress: 0,
+            attack: 1,
+        },
+        3: {
+            difficulty: 2,
+            majorThreshold: 0,
+            severeThreshold: 0,
+            hp: 0,
+            stress: 1,
+            attack: 1,
+        },
+        4: {
+            difficulty: 2,
+            majorThreshold: 0,
+            severeThreshold: 0,
+            hp: 0,
+            stress: 0,
+            attack: 1,
+        }
+    },
+    ranged: {
+        2: {
+            difficulty: 2,
+            majorThreshold: 3,
+            severeThreshold: 6,
+            hp: 1,
+            stress: 0,
+            attack: 1,
+        },
+        3: {
+            difficulty: 2,
+            majorThreshold: 7,
+            severeThreshold: 14,
+            hp: 1,
+            stress: 1,
+            attack: 2,
+        },
+        4: {
+            difficulty: 2,
+            majorThreshold: 5,
+            severeThreshold: 10,
+            hp: 1,
+            stress: 1,
+            attack: 1,
+        }
+    },
+    skulk: {
+        2: {
+            difficulty: 2,
+            majorThreshold: 3,
+            severeThreshold: 8,
+            hp: 1,
+            stress: 1,
+            attack: 1,
+        },
+        3: {
+            difficulty: 2,
+            majorThreshold: 8,
+            severeThreshold: 12,
+            hp: 1,
+            stress: 1,
+            attack: 1,
+        },
+        4: {
+            difficulty: 2,
+            majorThreshold: 8,
+            severeThreshold: 10,
+            hp: 1,
+            stress: 1,
+            attack: 1,
+        }
+    },
+    solo: {
+        2: {
+            difficulty: 2,
+            majorThreshold: 5,
+            severeThreshold: 10,
+            hp: 0,
+            stress: 1,
+            attack: 2,
+        },
+        3: {
+            difficulty: 2,
+            majorThreshold: 7,
+            severeThreshold: 15,
+            hp: 2,
+            stress: 1,
+            attack: 2,
+        },
+        4: {
+            difficulty: 2,
+            majorThreshold: 12,
+            severeThreshold: 25,
+            hp: 0,
+            stress: 1,
+            attack: 3,
+        }
+    },
+    standard: {
+        2: {
+            difficulty: 2,
+            majorThreshold: 3,
+            severeThreshold: 8,
+            hp: 0,
+            stress: 0,
+            attack: 1,
+        },
+        3: {
+            difficulty: 2,
+            majorThreshold: 7,
+            severeThreshold: 15,
+            hp: 1,
+            stress: 1,
+            attack: 1,
+        },
+        4: {
+            difficulty: 2,
+            majorThreshold: 10,
+            severeThreshold: 15,
+            hp: 0,
+            stress: 1,
+            attack: 1,
+        }
+    },
+    support: {
+        2: {
+            difficulty: 2,
+            majorThreshold: 3,
+            severeThreshold: 8,
+            hp: 1,
+            stress: 1,
+            attack: 1,
+        },
+        3: {
+            difficulty: 2,
+            majorThreshold: 7,
+            severeThreshold: 12,
+            hp: 0,
+            stress: 0,
+            attack: 1,
+        },
+        4: {
+            difficulty: 2,
+            majorThreshold: 8,
+            severeThreshold: 10,
+            hp: 1,
+            stress: 1,
+            attack: 1,
+        }
+    }
+};
+
+/** 
+ * Scaling data used for an adversary's damage.
+ * Tier 4 is missing certain adversary types and therefore skews upwards.
+ * We manually set tier 4 data to hopefully lead to better results
+ */
+export const adversaryExpectedDamage = {
+  basic: {
+    1: { mean: 7.321428571428571, deviation: 1.962519002770912 },
+    2: { mean: 12.444444444444445, deviation: 2.0631069425529676 },
+    3: { mean: 15.722222222222221, deviation: 2.486565208464823 },
+    4: { mean: 26, deviation: 5.2 }
+  },
+  minion: {
+    1: { mean: 2.142857142857143, deviation: 1.0690449676496976 },
+    2: { mean: 5, deviation: 0.816496580927726 },
+    3: { mean: 6.5, deviation: 2.1213203435596424 },
+    4: { mean: 11, deviation: 1 }
+  }
+};

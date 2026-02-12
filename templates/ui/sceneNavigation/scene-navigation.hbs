@@ -7,17 +7,19 @@
     <menu id="scene-navigation-active" class="scene-navigation-menu flexcol">
         {{#each scenes.active as |scene|}}
             <li class="scene-wrapper">
-                <div class="ui-control scene {{scene.cssClass}}" data-scene-id="{{scene.id}}" data-action="viewScene" {{#if scene.tooltip}}data-tooltip-text="{{scene.tooltip}}"{{/if}}>
-                    <span class="scene-name ellipsis">{{scene.name}}</span>
-                    {{#if scene.users}}
-                    <ul class="scene-players">
-                        {{#each scene.users as |user|}}
-                        <li class="scene-player" style="--color-bg:{{user.color}}; --color-border:{{user.border}}"
-                            data-tooltip aria-label="{{user.name}}">{{user.letter}}</li>
-                        {{/each}}
-                    </ul>
-                    {{/if}}
-                </div>
+                <ul>
+                    <li class="ui-control scene {{scene.cssClass}}" data-scene-id="{{scene.id}}" data-action="viewScene" {{#if scene.tooltip}}data-tooltip-text="{{scene.tooltip}}"{{/if}}>
+                        <span class="scene-name ellipsis">{{scene.name}}</span>
+                        {{#if scene.users}}
+                        <ul class="scene-players">
+                            {{#each scene.users as |user|}}
+                            <li class="scene-player" style="--color-bg:{{user.color}}; --color-border:{{user.border}}"
+                                data-tooltip aria-label="{{user.name}}">{{user.letter}}</li>
+                            {{/each}}
+                        </ul>
+                        {{/if}}
+                    </li>
+                </ul>
                 {{#if scene.hasEnvironments}}
                     <button class="ui-control scene-environment {{#if (gt scene.environments.length 1)}}many-environments{{/if}}" data-action="openSceneEnvironment" data-scene-id="{{scene.id}}"><img src="{{scene.environmentImage}}" /> </button>
                 {{/if}}
@@ -27,9 +29,11 @@
     <menu id="scene-navigation-inactive" class="scene-navigation-menu flexcol">
         {{#each scenes.inactive as |scene|}}
             <li class="scene-wrapper">
-                <div class="ui-control scene {{scene.cssClass}}" data-scene-id="{{scene.id}}" data-action="viewScene" {{#if scene.tooltip}}data-tooltip-text="{{scene.tooltip}}"{{/if}}>
+                <ul>
+                <li class="ui-control scene {{scene.cssClass}}" data-scene-id="{{scene.id}}" data-action="viewScene" {{#if scene.tooltip}}data-tooltip-text="{{scene.tooltip}}"{{/if}}>
                     <span class="scene-name ellipsis">{{scene.name}}</span>
-                </div>
+                </li>
+                </ul>
             </li>
         {{/each}}
     </menu>

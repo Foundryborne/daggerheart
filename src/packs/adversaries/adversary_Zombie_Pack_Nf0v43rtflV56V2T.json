@@ -218,12 +218,12 @@
   },
   "items": [
     {
-      "name": "Horde (1d4+2)",
+      "name": "Horde",
       "type": "feature",
       "_id": "nNJGAhWu0IuS2ybn",
       "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
       "system": {
-        "description": "<p>When the @Lookup[@name] have marked half or more of their HP, their standard attack deals <strong>1d4+2</strong> physical damage instead.</p>",
+        "description": "<p>When the @Lookup[@name] have marked half or more of their HP, their standard attack deals <strong>@Lookup[@system.attack.altDamageFormula]</strong> physical damage instead.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
