@@ -247,7 +247,7 @@ export default class DhpAdversary extends BaseDataActor {
                             adjusted.bonus
                         ]
                             .filter(p => !!p)
-                            .join(' + ');
+                            .join('+');
                         return match.replace(formula, newFormula);
                     } catch {
                         return match;
@@ -381,7 +381,7 @@ export default class DhpAdversary extends BaseDataActor {
             const value = this.#calculateAdjustedDamage(previousFormula, damageMeta);
             const formula = [value.diceQuantity ? `${value.diceQuantity}d${value.faces}` : null, value.bonus]
                 .filter(p => !!p)
-                .join(' + ');
+                .join('+');
             if (value.diceQuantity) {
                 data.custom.enabled = false;
                 data.bonus = value.bonus;
