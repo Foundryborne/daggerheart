@@ -252,7 +252,7 @@ Hooks.on('setup', () => {
     );
     const actorCommon = {
         bar: ['resources.stress'],
-        value: [...resistance]
+        value: [...resistance, 'advantageSources', 'disadvantageSources']
     };
     CONFIG.Actor.trackableAttributes = {
         character: {
@@ -270,7 +270,7 @@ Hooks.on('setup', () => {
         },
         adversary: {
             bar: [...actorCommon.bar, 'resources.hitPoints'],
-            value: [...actorCommon.value, ...damageThresholds, 'criticalThreshold']
+            value: [...actorCommon.value, ...damageThresholds, 'criticalThreshold', 'difficulty']
         },
         companion: {
             bar: [...actorCommon.bar],

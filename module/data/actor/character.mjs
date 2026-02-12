@@ -1,12 +1,13 @@
 import { burden } from '../../config/generalConfig.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import DhLevelData from '../levelData.mjs';
-import BaseDataActor, { commonActorRules } from './base.mjs';
+import { commonActorRules } from './base.mjs';
+import DhCreature from './creature.mjs';
 import { attributeField, resourceField, stressDamageReductionRule, bonusField } from '../fields/actorField.mjs';
 import { ActionField } from '../fields/actionField.mjs';
 import DHCharacterSettings from '../../applications/sheets-configs/character-settings.mjs';
 
-export default class DhCharacter extends BaseDataActor {
+export default class DhCharacter extends DhCreature {
     /**@override */
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Character'];
 
@@ -130,14 +131,6 @@ export default class DhCharacter extends BaseDataActor {
                         ]
                     }
                 }
-            }),
-            advantageSources: new fields.ArrayField(new fields.StringField(), {
-                label: 'DAGGERHEART.ACTORS.Character.advantageSources.label',
-                hint: 'DAGGERHEART.ACTORS.Character.advantageSources.hint'
-            }),
-            disadvantageSources: new fields.ArrayField(new fields.StringField(), {
-                label: 'DAGGERHEART.ACTORS.Character.disadvantageSources.label',
-                hint: 'DAGGERHEART.ACTORS.Character.disadvantageSources.hint'
             }),
             levelData: new fields.EmbeddedDataField(DhLevelData),
             bonuses: new fields.SchemaField({

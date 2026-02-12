@@ -1,11 +1,12 @@
 import DHAdversarySettings from '../../applications/sheets-configs/adversary-settings.mjs';
 import { ActionField } from '../fields/actionField.mjs';
-import BaseDataActor, { commonActorRules } from './base.mjs';
+import { commonActorRules } from './base.mjs';
+import DhCreature from './creature.mjs';
 import { resourceField, bonusField } from '../fields/actorField.mjs';
 import { calculateExpectedValue, parseTermsFromSimpleFormula } from '../../helpers/utils.mjs';
 import { adversaryExpectedDamage, adversaryScalingData } from '../../config/actorConfig.mjs';
 
-export default class DhpAdversary extends BaseDataActor {
+export default class DhpAdversary extends DhCreature {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Adversary'];
 
     static get metadata() {
