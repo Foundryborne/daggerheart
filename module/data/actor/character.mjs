@@ -559,6 +559,18 @@ export default class DhCharacter extends BaseDataActor {
             doc.updateEmbeddedDocuments('ActiveEffect', updates, { render: index === updateValues.length - 1 });
     }
 
+    async updateArmorEffectValue({ uuid, value }) {
+        const effect = await foundry.utils.fromUuid(uuid);
+        await effect.update({
+            'system.changes': [
+                {
+                    ...effect.system.armorChange,
+                    value: effect.system.armorChange.value + value
+                }
+            ]
+        });
+    }
+
     get sheetLists() {
         const ancestryFeatures = [],
             communityFeatures = [],

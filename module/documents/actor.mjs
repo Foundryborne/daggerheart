@@ -626,12 +626,10 @@ export default class DhpActor extends Actor {
                     }
                 );
                 if (armorSlotResult) {
-                    const { modifiedDamage, armorSpent, stressSpent } = armorSlotResult;
+                    const { modifiedDamage, armorChanges, stressSpent } = armorSlotResult;
                     updates.find(u => u.key === 'hitPoints').value = modifiedDamage;
-                    if (armorSpent) {
-                        const armorUpdate = updates.find(u => u.key === 'armor');
-                        if (armorUpdate) armorUpdate.value += armorSpent;
-                        else updates.push({ value: armorSpent, key: 'armor' });
+                    for (const armorChange of armorChanges) {
+                        updates.push({ value: armorChange.amount, key: 'armor', uuid: armorChange.uuid });
                     }
                     if (stressSpent) {
                         const stressUpdate = updates.find(u => u.key === 'stress');
@@ -778,7 +776,8 @@ export default class DhpActor extends Actor {
                         );
                         break;
                     case 'armor':
-                        this.system.updateArmorValue(r);
+                        if (!r.uuid) this.system.updateArmorValue(r);
+                        else this.system.updateArmorEffectValue(r);
                         break;
                     default:
                         if (this.system.resources?.[r.key]) {

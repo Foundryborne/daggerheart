@@ -437,7 +437,7 @@
                 "text": "Are you sure you want to delete {name}?"
             },
             "DamageReduction": {
-                "armorMarks": "Armor Marks",
+                "maxUseableArmor": "Useable Armor Slots",
                 "armorWithStress": "Spend 1 stress to use an extra mark",
                 "thresholdImmunities": "Threshold Immunities",
                 "stress": "Stress",
