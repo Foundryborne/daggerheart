@@ -34,7 +34,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
             advanceResourceDie: CharacterSheet.#advanceResourceDie,
             cancelBeastform: CharacterSheet.#cancelBeastform,
             useDowntime: this.useDowntime,
-            viewParty: CharacterSheet.#viewParty
+            viewParty: CharacterSheet.#viewParty,
+            toggleArmorMangement: CharacterSheet.#toggleArmorManagement
         },
         window: {
             resizable: true,
@@ -943,6 +944,77 @@ export default class CharacterSheet extends DHBaseActorSheet {
             html,
             locked: true
         });
+    }
+
+    static async #toggleArmorManagement(_event, target) {
+        const existingTooltip = document.body.querySelector('.locked-tooltip .armor-management-container');
+        if (existingTooltip) {
+            game.tooltip.dismissLockedTooltips();
+            return;
+        }
+
+        const armorSources = [];
+        for (var effect of Array.from(this.document.allApplicableEffects())) {
+            const origin = effect.origin ? await foundry.utils.fromUuid(effect.origin) : effect.parent;
+            if (effect.type !== 'armor' || effect.disabled || effect.isSuppressed) continue;
+            armorSources.push({
+                uuid: effect.uuid,
+                name: origin.name,
+                ...effect.system.armorData
+            });
+        }
+
+        if (armorSources.length <= 1) return;
+
+        const html = document.createElement('div');
+        html.innerHTML = await foundry.applications.handlebars.renderTemplate(
+            `systems/daggerheart/templates/ui/tooltip/armorManagement.hbs`,
+            {
+                sources: armorSources
+            }
+        );
+
+        game.tooltip.dismissLockedTooltips();
+        game.tooltip.activate(target, {
+            html,
+            locked: true,
+            cssClass: 'bordered-tooltip',
+            direction: 'DOWN'
+        });
+
+        html.querySelectorAll('.armor-marks-input').forEach(element => {
+            element.addEventListener('blur', CharacterSheet.armorSourceUpdate);
+            element.addEventListener('input', CharacterSheet.armorSourceInput);
+        });
+    }
+
+    static async armorSourceInput(event) {
+        const effect = await foundry.utils.fromUuid(event.target.dataset.uuid);
+        const value = Math.max(Math.min(Number.parseInt(event.target.value), effect.system.armorData.max), 0);
+        event.target.value = value;
+        const progressBar = event.target.closest('.status-bar.armor-slots').querySelector('progress');
+        progressBar.value = value;
+    }
+
+    /** Update specific armor source */
+    static async armorSourceUpdate(event) {
+        const effect = await foundry.utils.fromUuid(event.target.dataset.uuid);
+        if (effect.system.changes.length !== 1) return;
+        const armorEffect = effect.system.changes[0];
+        const value = Math.max(Math.min(Number.parseInt(event.target.value), effect.system.armorData.max), 0);
+
+        const newChanges = [
+            {
+                ...armorEffect,
+                value
+            }
+        ];
+
+        event.target.value = value;
+        const progressBar = event.target.closest('.status-bar.armor-slots').querySelector('progress');
+        progressBar.value = value;
+
+        await effect.update({ 'system.changes': newChanges });
     }
 
     /**

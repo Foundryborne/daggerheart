@@ -298,6 +298,10 @@
                     border-radius: 3px;
                     background: light-dark(@dark-blue, @golden);
                     clip-path: none;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
 
                     h4 {
                         font-weight: bold;
@@ -305,6 +309,11 @@
                         line-height: 18px;
                         color: light-dark(@beige, @dark-blue);
                         font-size: var(--font-size-12);
+                    }
+
+                    i {
+                        font-size: 12px;
+                        color: light-dark(@beige, @dark-blue);
                     }
                 }
                 .slot-value {
