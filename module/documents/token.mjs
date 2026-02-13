@@ -6,7 +6,7 @@ export default class DHToken extends CONFIG.Token.documentClass {
         const valueGroup = game.i18n.localize('TOKEN.BarValues');
         const actorModel = typeKey ? game.system.api.data.actors[`Dh${typeKey.capitalize()}`] : null;
         const getLabel = path => {
-            const label = actorModel.schema.getField(path)?.label;
+            const label = actorModel?.schema.getField(path)?.label;
             return label ? game.i18n.localize(label) : path;
         };
 

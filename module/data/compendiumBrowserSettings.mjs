@@ -24,7 +24,8 @@ export default class CompendiumBrowserSettings extends foundry.abstract.DataMode
         const pack = game.packs.get(item.pack);
         if (!pack) return false;
 
-        const excludedSourceData = this.excludedSources[pack.metadata.packageName];
+        const packageName = pack.metadata.packageType === 'world' ? 'world' : pack.metadata.packageName;
+        const excludedSourceData = this.excludedSources[packageName];
         if (excludedSourceData && excludedSourceData.excludedDocumentTypes.includes(pack.metadata.type)) return true;
 
         const excludedPackData = this.excludedPacks[item.pack];

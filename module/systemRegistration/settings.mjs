@@ -126,7 +126,7 @@ const registerNonConfigSettings = () => {
         type: Number,
         default: 0,
         onChange: () => {
-            if (ui.resources) ui.resources.render({ force: true });
+            if (ui.resources) ui.resources.render();
             ui.combat.render({ force: true });
         }
     });

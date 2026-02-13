@@ -218,10 +218,10 @@
   },
   "items": [
     {
-      "name": "Horde (1d6+3)",
+      "name": "Horde",
       "type": "feature",
       "system": {
-        "description": "<p>When the @Lookup[@name] has marked half or more of their HP, their standard attack deals <strong>1d6+3</strong> physical damage instead.</p>",
+        "description": "<p>When the @Lookup[@name] has marked half or more of their HP, their standard attack deals <strong>@Lookup[@system.attack.altDamageFormula]</strong> physical damage instead.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,

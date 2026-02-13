@@ -1,0 +1,19 @@
+<div class="daggerheart armor-management-container">
+    {{#each sources as |source|}}
+        <div class="armor-source-container">
+            <label class="armor-source-label">{{source.name}}</label>
+            <div class="status-bar armor-slots">
+                <div class='status-value'>
+                    <input class="bar-input armor-marks-input" value="{{source.value}}" data-uuid="{{source.uuid}}" type="number">
+                    <span>/</span>
+                    <span class="bar-label">{{source.max}}</span>
+                </div>
+                <progress
+                    class='progress-bar stress-color'
+                    value='{{source.value}}'
+                    max='{{source.max}}'
+                ></progress>
+            </div>
+        </div>
+    {{/each}}
+</div>

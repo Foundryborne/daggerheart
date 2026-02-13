@@ -50,13 +50,20 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
         const excludedSourceData = this.browserSettings.excludedSources;
         const excludedPackData = this.browserSettings.excludedPacks;
         context.typePackCollections = game.packs.reduce((acc, pack) => {
-            const { type, label, packageType, packageName, id } = pack.metadata;
-            if (packageType === 'world' || !CompendiumBrowserSettings.#browserPackTypes.includes(type)) return acc;
+            const { type, label, packageType, packageName: basePackageName, id } = pack.metadata;
+            if (!CompendiumBrowserSettings.#browserPackTypes.includes(type)) return acc;
 
+            const isWorldPack = packageType === 'world';
+            const packageName = isWorldPack ? 'world' : basePackageName;
             const sourceChecked =
                 !excludedSourceData[packageName] ||
                 !excludedSourceData[packageName].excludedDocumentTypes.includes(type);
-            const sourceLabel = game.modules.get(packageName)?.title ?? game.system.title;
+
+            const sourceLabel =
+                game.modules.get(packageName)?.title ??
+                (isWorldPack
+                    ? game.i18n.localize('DAGGERHEART.APPLICATIONS.CompendiumBrowserSettings.worldCompendiums')
+                    : game.system.title);
             if (!acc[type]) acc[type] = { label: game.i18n.localize(`DOCUMENT.${type}s`), sources: {} };
             if (!acc[type].sources[packageName])
                 acc[type].sources[packageName] = { label: sourceLabel, checked: sourceChecked, packs: [] };
