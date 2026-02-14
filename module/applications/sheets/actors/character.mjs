@@ -966,11 +966,16 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
         if (armorSources.length <= 1) return;
 
+        const useResourcePips = game.settings.get(
+            CONFIG.DH.id,
+            CONFIG.DH.SETTINGS.gameSettings.appearance
+        ).useResourcePips;
         const html = document.createElement('div');
         html.innerHTML = await foundry.applications.handlebars.renderTemplate(
             `systems/daggerheart/templates/ui/tooltip/armorManagement.hbs`,
             {
-                sources: armorSources
+                sources: armorSources,
+                useResourcePips
             }
         );
 
@@ -986,6 +991,10 @@ export default class CharacterSheet extends DHBaseActorSheet {
             element.addEventListener('blur', CharacterSheet.armorSourceUpdate);
             element.addEventListener('input', CharacterSheet.armorSourceInput);
         });
+
+        html.querySelectorAll('.armor-slot').forEach(element => {
+            element.addEventListener('click', CharacterSheet.armorSourcePipUpdate);
+        });
     }
 
     static async armorSourceInput(event) {
@@ -1000,12 +1009,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
     static async armorSourceUpdate(event) {
         const effect = await foundry.utils.fromUuid(event.target.dataset.uuid);
         if (effect.system.changes.length !== 1) return;
-        const armorEffect = effect.system.changes[0];
         const value = Math.max(Math.min(Number.parseInt(event.target.value), effect.system.armorData.max), 0);
 
         const newChanges = [
             {
-                ...armorEffect,
+                ...effect.system.changes[0],
                 value
             }
         ];
@@ -1013,6 +1021,38 @@ export default class CharacterSheet extends DHBaseActorSheet {
         event.target.value = value;
         const progressBar = event.target.closest('.status-bar.armor-slots').querySelector('progress');
         progressBar.value = value;
+
+        await effect.update({ 'system.changes': newChanges });
+    }
+
+    static async armorSourcePipUpdate(event) {
+        const target = event.target.closest('.armor-slot');
+        const effect = await foundry.utils.fromUuid(target.dataset.uuid);
+        if (effect.system.changes.length !== 1) return;
+        const { value, max } = effect.system.armorData;
+
+        const inputValue = Number.parseInt(target.dataset.value);
+        const decreasing = value >= inputValue;
+        const newValue = decreasing ? inputValue - 1 : inputValue;
+
+        const newChanges = [
+            {
+                ...effect.system.changes[0],
+                value: newValue
+            }
+        ];
+
+        const container = target.closest('.slot-bar');
+        for (const armorSlot of container.querySelectorAll('.armor-slot i')) {
+            const index = Number.parseInt(armorSlot.dataset.index);
+            if (decreasing && index >= newValue) {
+                armorSlot.classList.remove('fa-shield');
+                armorSlot.classList.add('fa-shield-halved');
+            } else if (!decreasing && index < newValue) {
+                armorSlot.classList.add('fa-shield');
+                armorSlot.classList.remove('fa-shield-halved');
+            }
+        }
 
         await effect.update({ 'system.changes': newChanges });
     }

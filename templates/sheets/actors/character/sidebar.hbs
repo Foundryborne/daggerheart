@@ -45,10 +45,13 @@
                             </a>
                         {{/times}}
                         </div>
-                        <div class="slot-label">
+                        <a class="slot-label" data-action="toggleArmorMangement">
                             <span class="label">{{localize "DAGGERHEART.GENERAL.armorSlots"}}</span>
-                            <span class="value">{{document.system.armorScore.value}} / {{document.system.armorScore.max}}</span>
-                        </div> 
+                            <div class="slot-value-container">
+                                <span class="value">{{document.system.armorScore.value}} / {{document.system.armorScore.max}}</span>
+                                <i class="fa-solid fa-gear"></i>
+                            </div>
+                        </a> 
                     </div>
                     {{else}}
                     <div class='status-value'>
@@ -61,10 +64,10 @@
                         value='{{document.system.armorScore.value}}'
                         max='{{document.system.armorScore.max}}'
                     ></progress>
-                    <div class="status-label" data-action="toggleArmorMangement">
+                    <a class="status-label" data-action="toggleArmorMangement">
                         <h4>{{localize "DAGGERHEART.GENERAL.armorSlots"}}</h4>
                         <i class="fa-solid fa-gear"></i>
-                    </div>
+                    </a>
                     {{/if}}
                 </div>
             {{else}}

@@ -97,4 +97,27 @@
             }
         }
     }
+
+    .slot-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        padding: 5px;
+        border: 1px solid light-dark(@dark-blue, @golden);
+        border-radius: 6px;
+        z-index: 1;
+        background: @dark-blue;
+        justify-content: center;
+        color: light-dark(@dark-blue, @golden);
+
+        .armor-slot {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: var(--font-size-12);
+
+            .fa-shield-halved {
+                color: light-dark(@dark-blue-40, @golden-40);
+            }
+        }
+    }
 }
