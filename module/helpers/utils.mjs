@@ -496,6 +496,22 @@ export function htmlToText(html) {
     return tempDivElement.textContent || tempDivElement.innerText || '';
 }
 
+export async function getFeaturesHTMLData(features) {
+    const result = [];
+    for (const feature of features) {
+        if (feature) {
+            const base = feature.item ?? feature;
+            const item = base.system ? base : await foundry.utils.fromUuid(base.uuid);
+            const itemDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+                item.system.description
+            );
+            result.push({ label: item.name, description: itemDescription });
+        }
+    }
+
+    return result;
+}
+
 /**
  * Given a simple flavor-less formula with only +/- operators, returns a list of damage partial terms.
  * All subtracted terms become negative terms.

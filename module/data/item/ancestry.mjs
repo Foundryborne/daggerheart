@@ -1,5 +1,6 @@
 import BaseDataItem from './base.mjs';
 import ItemLinkFields from '../../data/fields/itemLinkFields.mjs';
+import { getFeaturesHTMLData } from '../../helpers/utils.mjs';
 
 export default class DHAncestry extends BaseDataItem {
     /** @inheritDoc */
@@ -45,16 +46,7 @@ export default class DHAncestry extends BaseDataItem {
     /**@inheritdoc */
     async getDescriptionData() {
         const baseDescription = this.description;
-        const features = [];
-        for (const feature of this.features) {
-            if (feature.item) {
-                const item = feature.item.system ? feature.item : await foundry.utils.fromUuid(feature.item.uuid);
-                const itemDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
-                    item.system.description
-                );
-                features.push({ label: item.name, description: itemDescription });
-            }
-        }
+        const features = await getFeaturesHTMLData(this.features);
 
         if (!features.length) return { prefix: null, value: baseDescription, suffix: null };
         const suffix = await foundry.applications.handlebars.renderTemplate(

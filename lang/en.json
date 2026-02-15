@@ -2323,6 +2323,7 @@
                 "single": "Target",
                 "plural": "Targets"
             },
+            "thingsAndThing": "{things} and {thing}",
             "title": "Title",
             "tokenSize": "Token Size",
             "total": "Total",
@@ -2415,7 +2416,12 @@
                 "evolvedImagePlaceholder": "The image for the form selected for evolution will be used"
             },
             "Class": {
+                "startingEvasionScore": "Starting Evasion Score",
+                "startingHitPoints": "Starting Hit Points",
+                "classItems": "Class Items",
+                "hopeFeatureLabel": "{class}'s Hope Feature",
                 "hopeFeatures": "Hope Features",
+                "classFeature": "Class Feature",
                 "classFeatures": "Class Features",
                 "guide": {
                     "suggestedEquipment": "Suggested Equipments",
@@ -2446,7 +2452,11 @@
                 "masteryTitle": "Mastery"
             },
             "Subclass": {
-                "spellcastingTrait": "Spellcasting Trait"
+                "spellcastingTrait": "Spellcasting Trait",
+                "spellcastTrait": "Spellcast Trait",
+                "foundationFeatures": "Foundation Features",
+                "specializationFeature": "Specialization Feature",
+                "masteryFeature": "Mastery Feature"
             },
             "Weapon": {
                 "weaponType": "Weapon Type",

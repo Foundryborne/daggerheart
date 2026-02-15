@@ -1,3 +1,4 @@
+import { getFeaturesHTMLData } from '../../helpers/utils.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 import BaseDataItem from './base.mjs';
 
@@ -27,16 +28,7 @@ export default class DHCommunity extends BaseDataItem {
     /**@inheritdoc */
     async getDescriptionData() {
         const baseDescription = this.description;
-        const features = [];
-        for (const feature of this.features) {
-            if (feature) {
-                const item = feature.system ? feature : await foundry.utils.fromUuid(feature.uuid);
-                const itemDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
-                    item.system.description
-                );
-                features.push({ label: item.name, description: itemDescription });
-            }
-        }
+        const features = await getFeaturesHTMLData(this.features);
 
         if (!features.length) return { prefix: null, value: baseDescription, suffix: null };
         const suffix = await foundry.applications.handlebars.renderTemplate(
