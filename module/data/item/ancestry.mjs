@@ -19,7 +19,6 @@ export default class DHAncestry extends BaseDataItem {
         };
     }
 
-
     /* -------------------------------------------- */
 
     /**@override */
@@ -41,5 +40,28 @@ export default class DHAncestry extends BaseDataItem {
      */
     get secondaryFeature() {
         return this.features.find(x => x.type === CONFIG.DH.ITEM.featureSubTypes.secondary)?.item;
+    }
+
+    /**@inheritdoc */
+    async getDescriptionData() {
+        const baseDescription = this.description;
+        const features = [];
+        for (const feature of this.features) {
+            if (feature.item) {
+                const item = feature.item.system ? feature.item : await foundry.utils.fromUuid(feature.item.uuid);
+                const itemDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+                    item.system.description
+                );
+                features.push({ label: item.name, description: itemDescription });
+            }
+        }
+
+        if (!features.length) return { prefix: null, value: baseDescription, suffix: null };
+        const suffix = await foundry.applications.handlebars.renderTemplate(
+            'systems/daggerheart/templates/sheets/items/description.hbs',
+            { label: 'DAGGERHEART.ITEMS.Ancestry.featuresLabel', features }
+        );
+
+        return { prefix: null, value: baseDescription, suffix };
     }
 }

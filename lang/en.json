@@ -2361,7 +2361,8 @@
             },
             "Ancestry": {
                 "primaryFeature": "Primary Feature",
-                "secondaryFeature": "Secondary Feature"
+                "secondaryFeature": "Secondary Feature",
+                "featuresLabel": "Ancestry Features"
             },
             "Armor": {
                 "baseScore": "Base Score",
@@ -2426,6 +2427,9 @@
                         "andEither": "And Either"
                     }
                 }
+            },
+            "Community": {
+                "featuresLabel": "Community Feature"
             },
             "Consumable": {
                 "consumeOnUse": "Consume On Use",
