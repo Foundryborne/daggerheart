@@ -44,6 +44,35 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         this.renderFlags.set({ refreshEffects: true });
     }
 
+    _refreshEffects() {
+        const s = canvas.dimensions.uiScale;
+        let i = 0;
+        const size = Math.min(this.document.width, this.document.height) * 20 * s;
+        const rows = Math.floor(this.document.getSize().height / size + 1e-6);
+        const bg = this.effects.bg.clear().beginFill(0x000000, 0.4).lineStyle(s, 0x000000);
+        for (const effect of this.effects.children) {
+            if (effect === bg) continue;
+
+            // Overlay effect
+            if (effect === this.effects.overlay) {
+                const { width, height } = this.document.getSize();
+                const size = Math.min(width * 0.6, height * 0.6);
+                effect.width = effect.height = size;
+                effect.position = this.document.getCenterPoint({ x: 0, y: 0 });
+                effect.anchor.set(0.5, 0.5);
+            }
+
+            // Status effect
+            else {
+                effect.width = effect.height = size;
+                effect.x = Math.floor(i / rows) * size;
+                effect.y = (i % rows) * size;
+                bg.drawRoundedRect(effect.x + s, effect.y + s, size - 2 * s, size - 2 * s, 2 * s);
+                i++;
+            }
+        }
+    }
+
     /**
      * Returns the distance from this token to another token object.
      * This value is corrected to handle alternate token sizes and other grid types
