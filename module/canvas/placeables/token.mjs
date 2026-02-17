@@ -59,9 +59,10 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
                 fontSize: 96,
                 strokeThickness: 4
             });
-            const nrDigits = Math.floor(effect.system.stacking.value / 10) + 1;
-            stackOverlay.x = icon.width - 56 * nrDigits;
-            stackOverlay.y = 4;
+            const nrDigits = Math.floor(Math.log10(effect.system.stacking.value)) + 1;
+            stackOverlay.y = -8;
+            /* This does not account for 1:s being much less wide than other digits. I don't think it's desired however as it makes it look jumpy */
+            stackOverlay.x = icon.width - 8 - nrDigits * 56 + (lastDigitIsOne ? 16 : 0);
             stackOverlay.anchor.set(0, 0);
 
             icon.addChild(stackOverlay);
