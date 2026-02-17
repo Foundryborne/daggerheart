@@ -1,5 +1,5 @@
 import { itemAbleRollParse } from '../helpers/utils.mjs';
-import { RefreshType, socketEvent } from '../systemRegistration/socket.mjs';
+import { RefreshType } from '../systemRegistration/socket.mjs';
 
 export default class DhActiveEffect extends foundry.documents.ActiveEffect {
     /* -------------------------------------------- */
@@ -182,8 +182,15 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
             } catch (_) {}
         }
 
-        const evalValue = this.effectSafeEval(itemAbleRollParse(key, parseModel, effect.parent));
+        const evalValue = this.effectSafeEval(this.effectRollParse(key, parseModel, effect.parent, effect));
         return evalValue ?? key;
+    }
+
+    static effectRollParse(value, actor, item, effect) {
+        const stackingParsedValue = effect.system.stacking?.enabled
+            ? Roll.replaceFormulaData(value, { stacks: effect.system.stacking.value })
+            : value;
+        return itemAbleRollParse(stackingParsedValue, actor, item);
     }
 
     /**

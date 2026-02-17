@@ -6,6 +6,7 @@
     .daggerheart.dh-style.tooltip {
         display: flex;
         flex-direction: column;
+        align-items: start;
         text-align: start;
         width: 100%;
         gap: 5px;
@@ -13,6 +14,7 @@
         border-radius: 3px;
 
         .tooltip-header {
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -35,12 +37,48 @@
             }
         }
 
-        .close-hint {
-            border-radius: 3px;
-            padding: 3px;
-            background: @rustic-brown-80;
-            color: @golden;
-            font-size: 12px;
+        .effect-stacks-outer-container {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            width: 100%;
+
+            .effect-stacks-title {
+                font-size: var(--font-size-20);
+                font-weight: bold;
+                text-align: center;
+            }
+
+            .effect-stacks-container {
+                display: flex;
+                justify-content: space-between;
+
+                .effect-stacks-inner-container {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 2px;
+
+                    .effect-stack-title {
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+
+        .close-hints {
+            margin-top: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            .close-hint {
+                border-radius: 3px;
+                padding: 3px;
+                background: @rustic-brown-80;
+                color: @golden;
+                font-size: 12px;
+                margin: 0;
+            }
         }
 
         .duration-container {

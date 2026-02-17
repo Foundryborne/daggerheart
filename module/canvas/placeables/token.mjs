@@ -30,8 +30,8 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
             if (!effect.img) continue;
             const promise =
                 effect === overlayEffect
-                    ? this._drawOverlay(effect.img, effect.tint)
-                    : this._drawEffect(effect.img, effect.tint);
+                    ? this._drawOverlay(effect.img, effect.tint, effect)
+                    : this._drawEffect(effect.img, effect.tint, effect);
             promises.push(
                 promise.then(e => {
                     if (e) e.zIndex = i;
@@ -43,6 +43,38 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         this.effects.sortChildren();
         this.effects.renderable = true;
         this.renderFlags.set({ refreshEffects: true });
+    }
+
+    /**@inheritdoc */
+    async _drawEffect(src, tint, effect) {
+        if (!src) return;
+        const tex = await loadTexture(src, { fallback: 'icons/svg/hazard.svg' });
+        const icon = new PIXI.Sprite(tex);
+        icon.tint = tint ?? 0xffffff;
+
+        if (effect?.system?.stacking?.enabled) {
+            const stackOverlay = new PIXI.Text(effect.system.stacking.value, {
+                fill: '#f3c267',
+                stroke: '#000000',
+                fontSize: 96,
+                strokeThickness: 4
+            });
+            const nrDigits = Math.floor(effect.system.stacking.value / 10) + 1;
+            stackOverlay.x = icon.width - 56 * nrDigits;
+            stackOverlay.y = 4;
+            stackOverlay.anchor.set(0, 0);
+
+            icon.addChild(stackOverlay);
+        }
+
+        return this.effects.addChild(icon);
+    }
+
+    async _drawOverlay(src, tint, effect) {
+        const icon = await this._drawEffect(src, tint, effect);
+        if (icon) icon.alpha = 0.8;
+        this.effects.overlay = icon ?? null;
+        return icon;
     }
 
     /**

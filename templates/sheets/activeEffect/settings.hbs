@@ -1,5 +1,16 @@
 <section class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
     <fieldset class="one-column">
+        <legend>{{localize "DAGGERHEART.ACTIVEEFFECT.Config.stacking.title"}}</legend>
+
+        {{formGroup systemFields.stacking.fields.enabled value=source.system.stacking.enabled localize=true }}
+
+        <div class="two-columns even full-width">
+            {{formGroup systemFields.stacking.fields.value value=source.system.stacking.value localize=true }}
+            {{formGroup systemFields.stacking.fields.max value=source.system.stacking.max localize=true }}
+        </div>
+    </fieldset>
+
+    <fieldset class="one-column">
         <legend>{{localize "DAGGERHEART.ACTIVEEFFECT.Config.rangeDependence.title"}}</legend>
 
         {{formGroup systemFields.rangeDependence.fields.enabled value=source.system.rangeDependence.enabled localize=true }}

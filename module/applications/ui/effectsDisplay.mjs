@@ -52,7 +52,8 @@ export default class DhEffectsDisplay extends HandlebarsApplicationMixin(Applica
 
         if (this.element) {
             this.element.querySelectorAll('.effect-container a').forEach(element => {
-                element.addEventListener('contextmenu', this.removeEffect.bind(this));
+                element.addEventListener('click', this.effectLeftclick.bind(this));
+                element.addEventListener('contextmenu', this.effectRightclick.bind(this));
             });
         }
     }
@@ -87,11 +88,28 @@ export default class DhEffectsDisplay extends HandlebarsApplicationMixin(Applica
         this.render();
     }
 
-    async removeEffect(event) {
+    async effectLeftclick(event) {
         const element = event.target.closest('.effect-container');
         const effects = DhEffectsDisplay.getTokenEffects();
         const effect = effects.find(x => x.id === element.dataset.effectId);
-        await effect.delete();
+
+        if (!effect.system.stacking?.enabled) return;
+
+        const newValue = Math.min(effect.system.stacking.value + 1, effect.system.stacking.max);
+        await effect.update({ 'system.stacking.value': newValue });
+        this.render();
+    }
+
+    async effectRightclick(event) {
+        const element = event.target.closest('.effect-container');
+        const effects = DhEffectsDisplay.getTokenEffects();
+        const effect = effects.find(x => x.id === element.dataset.effectId);
+        if (effect.system.stacking?.enabled && effect.system.stacking.value > 1) {
+            await effect.update({ 'system.stacking.value': effect.system.stacking.value - 1 });
+        } else {
+            await effect.delete();
+        }
+
         this.render();
     }
 

@@ -138,7 +138,8 @@
             "Config": {
                 "rangeDependence": {
                     "title": "Range Dependence"
-                }
+                },
+                "stacking": { "title": "Stacking" }
             },
             "RangeDependance": {
                 "hint": "Settings for an optional distance at which this effect should activate",
@@ -2864,6 +2865,8 @@
             },
             "EffectsDisplay": {
                 "removeThing": "[Right Click] Remove {thing}",
+                "increaseStacks": "[Left Click] Increment Stacks",
+                "decreaseStacks": "[Right Click] Decrement Stacks",
                 "appliedBy": "Applied By: {by}"
             },
             "ItemBrowser": {
