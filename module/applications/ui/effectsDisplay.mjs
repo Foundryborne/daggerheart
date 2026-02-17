@@ -95,7 +95,10 @@ export default class DhEffectsDisplay extends HandlebarsApplicationMixin(Applica
 
         if (!effect.system.stacking?.enabled) return;
 
-        const newValue = Math.min(effect.system.stacking.value + 1, effect.system.stacking.max);
+        const incrementedValue = effect.system.stacking.value + 1;
+        const newValue = effect.system.stacking.max
+            ? Math.min(incrementedValue, effect.system.stacking.max)
+            : incrementedValue;
         await effect.update({ 'system.stacking.value': newValue });
         this.render();
     }

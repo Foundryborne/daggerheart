@@ -75,8 +75,7 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
                     nullable: false,
                     label: 'DAGGERHEART.GENERAL.value'
                 }),
-                max: new fields.NumberField({ label: 'DAGGERHEART.GENERAL.max' })
-                // max: new fields.StringField({ required: true, nullable: false }),
+                max: new fields.NumberField({ integer: true, label: 'DAGGERHEART.GENERAL.max' })
             })
         };
     }

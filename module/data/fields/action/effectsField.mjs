@@ -106,22 +106,11 @@ export default class EffectsField extends fields.ArrayField {
     }
 
     /**
-     * Apply an Effect to a target or enable it if already on it
+     * Apply an Effect to a target
      * @param {object} effect   Effect object containing ActiveEffect UUID
      * @param {object} actor    Actor Document
      */
     static async applyEffect(effect, actor) {
-        const existingEffect = actor.effects.find(e => e.origin === effect.uuid);
-        if (existingEffect) {
-            return effect.update(
-                foundry.utils.mergeObject({
-                    ...effect.constructor.getInitialDuration(),
-                    disabled: false
-                })
-            );
-        }
-
-        // Otherwise, create a new effect on the target
         const effectData = foundry.utils.mergeObject({
             ...(effect.toObject?.() ?? effect),
             disabled: false,

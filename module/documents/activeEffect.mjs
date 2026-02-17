@@ -106,6 +106,20 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
             update.img = 'icons/magic/life/heart-cross-blue.webp';
         }
 
+        const existingEffect = this.actor.effects.find(x => x.origin === data.origin);
+        const stacks = data.system?.stacking?.enabled;
+        if (existingEffect && !stacks) return false;
+
+        if (existingEffect && stacks) {
+            const incrementedValue = existingEffect.system.stacking.value + 1;
+            await existingEffect.update({
+                'system.stacking.value': existingEffect.system.stacking.max
+                    ? Math.min(incrementedValue, existingEffect.system.stacking.max)
+                    : incrementedValue
+            });
+            return false;
+        }
+
         const statuses = Object.keys(data.statuses ?? {});
         const immuneStatuses =
             statuses.filter(
