@@ -26,6 +26,9 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
             return isVaultSupressed || domainTouchedSupressed;
         }
 
+        const conditionalSuspended = game.system.api.data.activeEffects.EffectConditionals.isConditionalSuspended(this);
+        if (conditionalSuspended) return true;
+
         return super.isSuppressed;
     }
 

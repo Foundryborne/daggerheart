@@ -138,6 +138,9 @@
             "Config": {
                 "rangeDependence": {
                     "title": "Range Dependence"
+                },
+                "conditional": {
+                    "title": "Conditional Application"
                 }
             },
             "RangeDependance": {
@@ -684,6 +687,9 @@
             }
         },
         "CONFIG": {
+            "ActiveEffectConditionalTarget": {
+                "self": "Self"
+            },
             "ActiveEffectDuration": {
                 "temporary": "Temporary",
                 "act": "Next Spotlight",
@@ -1014,6 +1020,13 @@
             "RangeInclusion": {
                 "withinRange": "Within Range",
                 "outsideRange": "Outside Range"
+            },
+            "Comparator": {
+                "eq": "Equals",
+                "gt": "Greater Than",
+                "gte": "Greater Or Equals",
+                "lt": "Lesser Than",
+                "lte": "Lesser Or Equals"
             },
             "Condition": {
                 "deathMove": {
@@ -2196,7 +2209,8 @@
                 "triggers": "Triggers",
                 "deathMoves": "Deathmoves",
                 "sources": "Sources",
-                "packs": "Packs"
+                "packs": "Packs",
+                "conditionals": "Conditionals"
             },
             "Tiers": {
                 "singular": "Tier",
@@ -2224,6 +2238,7 @@
             "basics": "Basics",
             "bonus": "Bonus",
             "burden": "Burden",
+            "comparator": "Comparator",
             "condition": "Condition",
             "continue": "Continue",
             "criticalSuccess": "Critical Success",

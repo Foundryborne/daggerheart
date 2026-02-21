@@ -538,7 +538,7 @@ export function getIconVisibleActiveEffects(effects) {
         const alwaysShown = effect.showIcon === CONST.ACTIVE_EFFECT_SHOW_ICON.ALWAYS;
         const conditionalShown = effect.showIcon === CONST.ACTIVE_EFFECT_SHOW_ICON.CONDITIONAL && !effect.transfer; // TODO: system specific logic
 
-        return !effect.disabled && (alwaysShown || conditionalShown);
+        return !effect.active && (alwaysShown || conditionalShown);
     });
 }
 
@@ -586,4 +586,26 @@ export function calculateExpectedValue(formulaOrTerms) {
           ? parseTermsFromSimpleFormula(formulaOrTerms)
           : [formulaOrTerms];
     return terms.reduce((r, t) => r + (t.bonus ?? 0) + (t.diceQuantity ? (t.diceQuantity * (t.faces + 1)) / 2 : 0), 0);
+}
+
+/**
+ *
+ * @param {Number} valA The number being compared to a second one
+ * @param {Number} valB The number the first is being compared to
+ * @param {Comparator} comparator The type of comparison
+ * @returns { Boolean } Whether valA passes the comparison
+ */
+export function compareValues(valA, valB, comparator) {
+    switch (comparator) {
+        case CONFIG.DH.GENERAL.comparator.eq.id:
+            return valA === valB;
+        case CONFIG.DH.GENERAL.comparator.gt.id:
+            return valA > valB;
+        case CONFIG.DH.GENERAL.comparator.gte.id:
+            return valA >= valB;
+        case CONFIG.DH.GENERAL.comparator.lt.id:
+            return valA < valB;
+        case CONFIG.DH.GENERAL.comparator.lte.id:
+            return valA <= valB;
+    }
 }

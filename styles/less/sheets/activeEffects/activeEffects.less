@@ -23,6 +23,18 @@
         }
     }
 
+    .conditionals-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .conditional-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px;
+        }
+    }
+
     .tab.changes {
         gap: 0;
 
@@ -31,5 +43,9 @@
                 text-align: center;
             }
         }
+    }
+
+    .form-group.not-visible {
+        display: none;
     }
 }

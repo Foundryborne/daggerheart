@@ -63,7 +63,11 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
     }
 
     static DEFAULT_OPTIONS = {
-        classes: ['daggerheart', 'sheet', 'dh-style']
+        classes: ['daggerheart', 'sheet', 'dh-style'],
+        actions: {
+            addConditional: DhActiveEffectConfig.#addConditional,
+            removeConditional: DhActiveEffectConfig.#removeConditional
+        }
     };
 
     static PARTS = {
@@ -71,6 +75,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         tabs: { template: 'templates/generic/tab-navigation.hbs' },
         details: { template: 'systems/daggerheart/templates/sheets/activeEffect/details.hbs', scrollable: [''] },
         settings: { template: 'systems/daggerheart/templates/sheets/activeEffect/settings.hbs' },
+        conditionals: { template: 'systems/daggerheart/templates/sheets/activeEffect/conditionals.hbs' },
         changes: {
             template: 'systems/daggerheart/templates/sheets/activeEffect/changes.hbs',
             templates: ['systems/daggerheart/templates/sheets/activeEffect/change.hbs'],
@@ -84,6 +89,11 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             tabs: [
                 { id: 'details', icon: 'fa-solid fa-book' },
                 { id: 'settings', icon: 'fa-solid fa-bars', label: 'DAGGERHEART.GENERAL.Tabs.settings' },
+                {
+                    id: 'conditionals',
+                    icon: 'fa-solid fa-person-circle-question',
+                    label: 'DAGGERHEART.GENERAL.Tabs.conditionals'
+                },
                 { id: 'changes', icon: 'fa-solid fa-gears' }
             ],
             initial: 'details',
@@ -177,6 +187,12 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                     group: CONST.ACTIVE_EFFECT_TIME_DURATION_UNITS.includes(value) ? groups.time : groups.combat
                 }));
                 break;
+            case 'conditionals':
+                partContext.conditionals = this.document.system.conditionals.map(conditional => ({
+                    ...conditional,
+                    ...game.system.api.data.activeEffects.EffectConditional.getConditionalFieldUseage(conditional.type)
+                }));
+                break;
             case 'changes':
                 const fields = this.document.system.schema.fields.changes.element.fields;
                 partContext.changes = await Promise.all(
@@ -218,6 +234,21 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         );
     }
 
+    static #addConditional() {
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        const conditionals = Object.values(submitData.system?.conditionals ?? {});
+        conditionals.push(this.document.system.schema.fields.conditionals.element.getInitialValue());
+        return this.submit({ updateData: { system: { conditionals } } });
+    }
+
+    static async #removeConditional(_event, button) {
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        const conditionals = Object.values(submitData.system.conditionals);
+        const index = Number(button.dataset.index) || 0;
+        conditionals.splice(index, 1);
+        return this.submit({ updateData: { system: { conditionals: conditionals } } });
+    }
+
     /** @inheritDoc */
     _onChangeForm(_formConfig, event) {
         if (foundry.utils.isElementInstanceOf(event.target, 'select') && event.target.name === 'system.duration.type') {
@@ -228,6 +259,22 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             const durationDescription = this.element.querySelector('.duration-description');
             if (event.target.value === 'temporary') durationDescription.classList.add('visible');
             else durationDescription.classList.remove('visible');
+        }
+
+        if (
+            foundry.utils.isElementInstanceOf(event.target, 'select') &&
+            event.target.name.startsWith('system.conditionals') &&
+            event.target.name.endsWith('type')
+        ) {
+            const container = event.target.closest('.conditional-container');
+            const { usesValue, usesComparator } =
+                game.system.api.data.activeEffects.EffectConditional.getConditionalFieldUseage(event.target.value);
+
+            if (usesValue) container.querySelector('.form-group.value').classList.remove('not-visible');
+            else container.querySelector('.form-group.value').classList.add('not-visible');
+
+            if (usesComparator) container.querySelector('.form-group.comparator').classList.remove('not-visible');
+            else container.querySelector('.form-group.comparator').classList.add('not-visible');
         }
     }
 

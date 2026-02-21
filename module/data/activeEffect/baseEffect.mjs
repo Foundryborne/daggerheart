@@ -1,3 +1,5 @@
+import { EffectConditionals } from './effectConditional.mjs';
+
 /** -- Changes Type Priorities --
  *  - Base Number -
  *  Custom: 0
@@ -33,6 +35,7 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
                     priority: new fields.NumberField()
                 })
             ),
+            conditionals: new EffectConditionals(),
             duration: new fields.SchemaField({
                 type: new fields.StringField({
                     choices: CONFIG.DH.GENERAL.activeEffectDurations,

@@ -916,3 +916,48 @@ export const activeEffectDurations = {
         label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.custom'
     }
 };
+
+export const activeEffectConditionalTarget = {
+    self: {
+        id: 'self',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectConditionalTarget.self'
+    }
+    // target: {
+    //     id: 'target',
+    //     label: 'DAGGERHEART.CONFIG.ActiveEffectConditionalTarget.target'
+    // }
+};
+
+export const activeEffectConditionalType = {
+    attribute: {
+        id: 'attribute',
+        label: 'Attribute'
+    },
+    status: {
+        id: 'status',
+        label: 'Status'
+    }
+};
+
+export const comparator = {
+    eq: {
+        id: 'eq',
+        label: 'DAGGERHEART.CONFIG.Comparator.eq'
+    },
+    gt: {
+        id: 'gt',
+        label: 'DAGGERHEART.CONFIG.Comparator.gt'
+    },
+    gte: {
+        id: 'gte',
+        label: 'DAGGERHEART.CONFIG.Comparator.gte'
+    },
+    lt: {
+        id: 'lt',
+        label: 'DAGGERHEART.CONFIG.Comparator.lt'
+    },
+    lte: {
+        id: 'lte',
+        label: 'DAGGERHEART.CONFIG.Comparator.lte'
+    }
+};

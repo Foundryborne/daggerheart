@@ -1,0 +1,33 @@
+<section class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    <button type="button" data-action="addConditional">{{localize "Add Conditional"}}<i class="fa-solid fa-plus"></i></button>
+
+    {{#each conditionals as |conditional index|}}
+        <fieldset class="one-column">
+            <legend><a data-action="removeConditional" data-index="{{index}}"><i class="fa-solid fa-trash"></i></a></legend>
+
+            <div class="conditionals-container">
+                <div class="conditional-container">
+                    {{!-- {{formGroup ../systemFields.conditionals.element.fields.target value=conditional.target name=(concat "system.conditionals." index ".target") localize=true }} --}}
+                    {{formGroup ../systemFields.conditionals.element.fields.type value=conditional.type name=(concat "system.conditionals." index ".type") localize=true }}
+                    {{formGroup ../systemFields.conditionals.element.fields.key value=conditional.key name=(concat "system.conditionals." index ".key") localize=true }}
+
+                    <div class="form-group value {{#unless conditional.usesValue}}not-visible{{/unless}}">
+                        <label>{{localize "EFFECT.FIELDS.changes.element.value.label"}}</label>
+
+                        <div class="form-fields">
+                            {{formInput ../systemFields.conditionals.element.fields.value value=conditional.value name=(concat "system.conditionals." index ".value") localize=true }}
+                        </div>
+                    </div>
+
+                    <div class="form-group comparator {{#unless conditional.usesComparator}}not-visible{{/unless}}">
+                        <label>{{localize "DAGGERHEART.GENERAL.comparator"}}</label>
+                        
+                        <div class="form-fields">
+                            {{formInput ../systemFields.conditionals.element.fields.comparator value=conditional.comparator name=(concat "system.conditionals." index ".comparator") localize=true }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    {{/each}}
+</section>
