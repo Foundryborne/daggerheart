@@ -166,6 +166,17 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                     }));
                 }
                 break;
+            case 'settings':
+                const groups = {
+                    time: _loc('EFFECT.DURATION.UNITS.GROUPS.time'),
+                    combat: _loc('EFFECT.DURATION.UNITS.GROUPS.combat')
+                };
+                partContext.durationUnits = CONST.ACTIVE_EFFECT_DURATION_UNITS.map(value => ({
+                    value,
+                    label: _loc(`EFFECT.DURATION.UNITS.${value}`),
+                    group: CONST.ACTIVE_EFFECT_TIME_DURATION_UNITS.includes(value) ? groups.time : groups.combat
+                }));
+                break;
             case 'changes':
                 const fields = this.document.system.schema.fields.changes.element.fields;
                 partContext.changes = await Promise.all(
@@ -205,5 +216,27 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                 }
             )
         );
+    }
+
+    /** @inheritDoc */
+    _onChangeForm(_formConfig, event) {
+        if (foundry.utils.isElementInstanceOf(event.target, 'select') && event.target.name === 'system.duration.type') {
+            const durationSection = this.element.querySelector('.custom-duration-section');
+            if (event.target.value === 'custom') durationSection.classList.add('visible');
+            else durationSection.classList.remove('visible');
+
+            const durationDescription = this.element.querySelector('.duration-description');
+            if (event.target.value === 'temporary') durationDescription.classList.add('visible');
+            else durationDescription.classList.remove('visible');
+        }
+    }
+
+    /** @inheritDoc */
+    _processFormData(event, form, formData) {
+        const submitData = super._processFormData(event, form, formData);
+        if (submitData.start && !submitData.start.time) submitData.start.time = '0';
+        else if (!submitData) submitData.start = null;
+
+        return submitData;
     }
 }

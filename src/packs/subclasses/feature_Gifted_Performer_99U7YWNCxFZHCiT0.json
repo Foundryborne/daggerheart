@@ -180,7 +180,7 @@
   "effects": [
     {
       "name": "Epic Song",
-      "img": "icons/svg/ice-aura.svg",
+      "img": "icons/tools/instruments/harp-yellow-teal.webp",
       "origin": "Compendium.daggerheart.subclasses.Item.6j1RP4fz3BwSfoli",
       "transfer": false,
       "_id": "FK4IdbxluRErfYor",
@@ -191,18 +191,18 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "close"
+        },
+        "changes": [],
+        "duration": {
+          "type": "temporary"
         }
       },
-      "changes": [],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>Make a target within Close range temporarily Vulnerable.</p>",
       "tint": "#ffffff",
@@ -214,6 +214,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!99U7YWNCxFZHCiT0.FK4IdbxluRErfYor"
     }
   ],

@@ -271,30 +271,41 @@
               "type": "withinRange",
               "target": "hostile",
               "range": "melee"
+            },
+            "changes": [],
+            "duration": {
+              "type": "temporary",
+              "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">Until you break free with a successful Finesse or Strength Roll or by dealing 10 damage to the vines.</span></p>"
             }
           },
-          "changes": [],
           "disabled": false,
           "duration": {
-            "startTime": null,
-            "combat": null,
-            "seconds": null,
-            "rounds": null,
-            "turns": null,
-            "startRound": null,
-            "startTurn": null
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
           },
-          "description": "<p><em>Restrained</em> and <em>Vulnerable</em> until you break free, clearing both conditions, with a successful Finesse or Strength Roll or by dealing 10 damage to the vines. When the target makes a roll to escape, they take <strong>1d8+4</strong> physical damage and lose a Hope.</p><section class=\"secret\" id=\"secret-Eui1zx8GKoUhEXq6\"><p><em>What painful memories do the vines bring to the surface as they pierce flesh?</em></p></section>",
+          "description": "<p><em>Restrained</em> and <em>Vulnerable</em> until you break free, clearing both conditions, with a successful Finesse or Strength Roll or by dealing 10 damage to the vines. When the target makes a roll to escape, they take <strong>1d8+4</strong> physical damage and lose a Hope.</p><section id=\"secret-Eui1zx8GKoUhEXq6\" class=\"secret\"><p><em>What painful memories do the vines bring to the surface as they pierce flesh?</em></p></section>",
           "tint": "#ffffff",
           "statuses": [
-            "restrained",
-            "vulnerable"
+            "vulnerable",
+            "restrained"
           ],
           "sort": 0,
           "flags": {},
           "_stats": {
             "compendiumSource": null
           },
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "showIcon": 1,
+          "folder": null,
           "_key": "!actors.items.effects!oY69NN4rYxoRE4hl.1aOeMMX0XuDtZbbB.gCkqvBUljsOsYacB"
         }
       ],

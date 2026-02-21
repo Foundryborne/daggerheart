@@ -62,43 +62,44 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.damage.physical.bonus",
+            "value": 10,
+            "priority": null,
+            "type": "add"
+          },
+          {
+            "key": "system.bonuses.damage.magical.bonus",
+            "value": 10,
+            "priority": null,
+            "type": "add"
+          },
+          {
+            "key": "system.damageThresholds.severe",
+            "value": 8,
+            "priority": null,
+            "type": "add"
+          },
+          {
+            "key": "system.rules.damageReduction.disabledArmor",
+            "value": 1,
+            "priority": null,
+            "type": "override"
+          }
+        ],
+        "duration": {
+          "type": "temporary",
+          "description": "<p>Until there are no more adversaries within sight.</p>"
         }
       },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.physical.bonus",
-          "mode": 2,
-          "value": "10",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.magical.bonus",
-          "mode": 2,
-          "value": "10",
-          "priority": null
-        },
-        {
-          "key": "system.damageThresholds.severe",
-          "mode": 2,
-          "value": "8",
-          "priority": null
-        },
-        {
-          "key": "system.rules.damageReduction.disabledArmor",
-          "mode": 5,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p class=\"Body-Foundation\">Once per long rest, you can go into a <em>Frenzy</em> until there are no more adversaries within sight.</p><p class=\"Body-Foundation\">While <em>Frenzied</em>, you can’t use Armor Slots, and you gain a +10 bonus to your damage rolls and a +8 bonus to your Severe damage threshold.</p>",
       "tint": "#ffffff",
@@ -108,6 +109,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!MMl7abdGRLl7TJLO.1POoAgObPOWDpUco"
     }
   ],

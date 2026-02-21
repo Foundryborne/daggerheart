@@ -685,6 +685,15 @@
             }
         },
         "CONFIG": {
+            "ActiveEffectDuration": {
+                "temporary": "Temporary",
+                "act": "Next Spotlight",
+                "scene": "Next Scene",
+                "shortRest": "Next Rest",
+                "longRest": "Next Long Rest",
+                "session": "Next Session",
+                "custom": "Custom"
+            },
             "AdversaryTrait": {
                 "relentless": {
                     "name": "Relentless",
@@ -2539,6 +2548,10 @@
                     "hint": "Automatically increase the GM's fear pool on a fear duality roll result."
                 },
                 "FIELDS": {
+                    "autoExpireActiveEffects": {
+                        "label": "Auto Expire Active Effects",
+                        "hint": "Active Effects with set durations will automatically be removed when their durations are up"
+                    },
                     "damageReductionRulesDefault": {
                         "label": "Damage Reduction Rules Default",
                         "hint": "Wether using armor and reductions has rules on by default"

@@ -255,6 +255,12 @@
       "_id": "ptYT10JZ2WJHvFMd",
       "type": "armor",
       "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        },
         "changes": [
           {
             "key": "system.armorScore",
@@ -264,7 +270,10 @@
             "value": 0,
             "max": "1"
           }
-        ]
+        ],
+        "duration": {
+          "type": "shortRest"
+        }
       },
       "disabled": false,
       "duration": {
@@ -281,7 +290,14 @@
       "_stats": {
         "compendiumSource": null
       },
-      "start": null,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
       "showIcon": 1,
       "folder": null,
       "_key": "!items.effects!YtZzYBtR0yLPPA93.ptYT10JZ2WJHvFMd"

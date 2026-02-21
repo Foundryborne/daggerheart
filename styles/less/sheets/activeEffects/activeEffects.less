@@ -1,4 +1,28 @@
 .application.sheet.daggerheart.dh-style.active-effect-config {
+    .custom-duration-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        overflow: hidden;
+        height: 0;
+        transition: height ease-in-out 0.3s;
+
+        &.visible {
+            height: auto;
+        }
+    }
+
+    .duration-description {
+        height: 0;
+        overflow: hidden;
+        transition: height ease-in-out 0.3s;
+
+        &.visible {
+            height: 100px;
+        }
+    }
+
     .tab.changes {
         gap: 0;
 

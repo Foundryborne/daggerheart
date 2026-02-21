@@ -477,6 +477,8 @@ export async function waitForDiceSoNice(message) {
 }
 
 export function refreshIsAllowed(allowedTypes, typeToCheck) {
+    if (!allowedTypes) return true;
+
     switch (typeToCheck) {
         case CONFIG.DH.GENERAL.refreshTypes.scene.id:
         case CONFIG.DH.GENERAL.refreshTypes.session.id:
@@ -493,6 +495,34 @@ export function refreshIsAllowed(allowedTypes, typeToCheck) {
     }
 }
 
+function expireActiveEffectIsAllowed(allowedTypes, typeToCheck) {
+    if (typeToCheck === CONFIG.DH.GENERAL.activeEffectDurations.act.id) return true;
+
+    return refreshIsAllowed(allowedTypes, typeToCheck);
+}
+
+export function expireActiveEffects(actor, allowedTypes = null) {
+    const shouldExpireEffects = game.settings.get(
+        CONFIG.DH.id,
+        CONFIG.DH.SETTINGS.gameSettings.Automation
+    ).autoExpireActiveEffects;
+    if (!shouldExpireEffects) return;
+
+    const effectsToExpire = actor
+        .getActiveEffects()
+        .filter(effect => {
+            if (!effect.system?.duration.type) return false;
+
+            const { temporary, custom } = CONFIG.DH.GENERAL.activeEffectDurations;
+            if ([temporary.id, custom.id].includes(effect.system.duration.type)) return false;
+
+            return expireActiveEffectIsAllowed(allowedTypes, effect.system.duration.type);
+        })
+        .map(x => x.id);
+
+    actor.deleteEmbeddedDocuments('ActiveEffect', effectsToExpire);
+}
+
 export async function getCritDamageBonus(formula) {
     const critRoll = new Roll(formula);
     return critRoll.dice.reduce((acc, dice) => acc + dice.faces * dice.number, 0);
@@ -507,6 +537,8 @@ export function htmlToText(html) {
 
 export function getIconVisibleActiveEffects(effects) {
     return effects.filter(effect => {
+        if (!(effect instanceof game.system.api.documents.DhActiveEffect)) return true;
+
         const alwaysShown = effect.showIcon === CONST.ACTIVE_EFFECT_SHOW_ICON.ALWAYS;
         const conditionalShown = effect.showIcon === CONST.ACTIVE_EFFECT_SHOW_ICON.CONDITIONAL && !effect.transfer; // TODO: system specific logic
 

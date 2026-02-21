@@ -33,6 +33,14 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
                     priority: new fields.NumberField()
                 })
             ),
+            duration: new fields.SchemaField({
+                type: new fields.StringField({
+                    choices: CONFIG.DH.GENERAL.activeEffectDurations,
+                    blank: true,
+                    label: 'DAGGERHEART.GENERAL.type'
+                }),
+                description: new fields.HTMLField({ label: 'DAGGERHEART.GENERAL.description' })
+            }),
             rangeDependence: new fields.SchemaField({
                 enabled: new fields.BooleanField({
                     required: true,

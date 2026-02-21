@@ -94,25 +94,25 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
+        },
+        "changes": [
+          {
+            "key": "system.traits.presence.value",
+            "value": "@cast",
+            "priority": 51,
+            "type": "override"
+          }
+        ],
+        "duration": {
+          "type": "longRest"
         }
       },
-      "changes": [
-        {
-          "key": "system.traits.presence.value",
-          "mode": 5,
-          "value": "@cast",
-          "priority": 51
-        }
-      ],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>Your Presence is equal to your Spellcast trait until your next long rest.<br />While this spell is active, an adversary must mark a Stress when they target you with an attack.</p>",
       "tint": "#ffffff",
@@ -122,6 +122,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!iEBLySZD9z8CLdz7.ba9GO4NtQHYkaRR9"
     }
   ],

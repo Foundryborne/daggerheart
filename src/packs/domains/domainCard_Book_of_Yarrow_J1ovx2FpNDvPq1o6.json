@@ -114,25 +114,25 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
+        },
+        "changes": [
+          {
+            "key": "system.resistance.magical.immunity",
+            "value": 1,
+            "priority": null,
+            "type": "override"
+          }
+        ],
+        "duration": {
+          "type": "shortRest"
         }
       },
-      "changes": [
-        {
-          "key": "system.resistance.magical.immunity",
-          "mode": 5,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p class=\"Card-Feature\"><strong>I</strong>mmune to magic damage until your next rest.</p>",
       "tint": "#ffffff",
@@ -142,6 +142,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!J1ovx2FpNDvPq1o6.HWJYhSegVLeAa3dE"
     }
   ],

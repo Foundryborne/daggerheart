@@ -1,4 +1,4 @@
-import { refreshIsAllowed } from '../../../helpers/utils.mjs';
+import { expireActiveEffects, refreshIsAllowed } from '../../../helpers/utils.mjs';
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { AbstractSidebarTab } = foundry.applications.sidebar;
@@ -58,6 +58,8 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
         const refreshedActors = {};
         for (let actor of game.actors) {
             if (['character', 'adversary'].includes(actor.type) && actor.prototypeToken.actorLink) {
+                expireActiveEffects(actor, types);
+
                 const updates = {};
                 for (let item of actor.items) {
                     if (item.system.metadata?.hasResource && refreshIsAllowed(types, item.system.resource?.recovery)) {
