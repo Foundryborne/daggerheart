@@ -83,7 +83,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
             return Math.floor(distance - originRadius - targetRadius + canvas.grid.distance);
         }
 
-        // Compute what the closest grid space of each token is
+        // Compute what the closest grid space of each token is, then compute that distance
         const originEdge = this.#getEdgeBoundary(thisBounds, originPoint, destinationPoint);
         const targetEdge = this.#getEdgeBoundary(targetBounds, originPoint, destinationPoint);
         const adjustedOriginPoint = canvas.grid.getTopLeftPoint({
@@ -94,7 +94,6 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
             x: targetEdge.x + Math.sign(destinationPoint.x - targetEdge.x),
             y: targetEdge.y + Math.sign(destinationPoint.y - targetEdge.y)
         });
-
         return canvas.grid.measurePath([
             { ...adjustedOriginPoint, elevation: 0 },
             { ...adjustDestinationPoint, elevation }
