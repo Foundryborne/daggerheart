@@ -86,7 +86,8 @@ export default class DhpAdversary extends DhCreature {
                         amount: 1
                     },
                     roll: {
-                        type: 'attack'
+                        type: 'attack',
+                        isStandardAttack: true
                     },
                     damage: {
                         parts: [
@@ -404,5 +405,11 @@ export default class DhpAdversary extends DhCreature {
         }
 
         return result;
+    }
+
+    static migrateData(source) {
+        if (!source.attack.roll.isStandardAttack) source.attack.roll.isStandardAttack = true;
+
+        return super.migrateData(source);
     }
 }

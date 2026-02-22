@@ -165,7 +165,8 @@ export default class DamageField extends fields.SchemaField {
         if (data.hasRoll && part.resultBased && data.roll.result.duality === -1) return part.valueAlt;
 
         const isAdversary = this.actor.type === 'adversary';
-        if (isAdversary && this.actor.system.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {
+        const isHorde = this.actor.system.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id;
+        if (isAdversary && isHorde && this.roll?.isStandardAttack) {
             const hasHordeDamage = this.actor.effects.find(x => x.type === 'horde');
             if (hasHordeDamage && !hasHordeDamage.disabled) return part.valueAlt;
         }
