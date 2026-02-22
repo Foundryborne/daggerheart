@@ -55,20 +55,37 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
 
         const originPoint = this.center;
         const destinationPoint = target.center;
+        const thisBounds = this.bounds;
+        const targetBounds = target.bounds;
+
+        // Figure out the elevation difference
+        const sizePerUnit = canvas.grid.size / canvas.grid.distance;
+        const thisHeight = Math.max(thisBounds.width, thisBounds.height) / sizePerUnit;
+        const targetHeight = Math.max(targetBounds.width, targetBounds.height) / sizePerUnit;
+        const thisElevation = [this.document.elevation, this.document.elevation + thisHeight];
+        const targetElevation = [target.document.elevation, target.document.elevation + targetHeight];
+        const isSameAltitude =
+            thisElevation[0] <= targetElevation[1] && // bottom of this must be at or below the top of target
+            thisElevation[1] >= targetElevation[0]; // top of this must be at or above the bottom of target
+        const [lower, higher] = [targetElevation, thisElevation].sort((a, b) => a[1] - b[1]);
+        const elevation = isSameAltitude ? 0 : higher[0] - lower[1];
 
         // Compute for gridless. This version returns circular edge to edge + grid distance,
         // so that tokens that are touching return 5.
         if (canvas.grid.type === CONST.GRID_TYPES.GRIDLESS) {
             const boundsCorrection = canvas.grid.distance / canvas.grid.size;
-            const originRadius = (this.bounds.width * boundsCorrection) / 2;
-            const targetRadius = (target.bounds.width * boundsCorrection) / 2;
-            const distance = canvas.grid.measurePath([originPoint, destinationPoint]).distance;
+            const originRadius = (thisBounds.width * boundsCorrection) / 2;
+            const targetRadius = (targetBounds.width * boundsCorrection) / 2;
+            const distance = canvas.grid.measurePath([
+                { ...originPoint, elevation: 0 },
+                { ...destinationPoint, elevation }
+            ]).distance;
             return Math.floor(distance - originRadius - targetRadius + canvas.grid.distance);
         }
 
-        // Compute what the closest grid space of each token is, then compute that distance
-        const originEdge = this.#getEdgeBoundary(this.bounds, originPoint, destinationPoint);
-        const targetEdge = this.#getEdgeBoundary(target.bounds, originPoint, destinationPoint);
+        // Compute what the closest grid space of each token is
+        const originEdge = this.#getEdgeBoundary(thisBounds, originPoint, destinationPoint);
+        const targetEdge = this.#getEdgeBoundary(targetBounds, originPoint, destinationPoint);
         const adjustedOriginPoint = canvas.grid.getTopLeftPoint({
             x: originEdge.x + Math.sign(originPoint.x - originEdge.x),
             y: originEdge.y + Math.sign(originPoint.y - originEdge.y)
@@ -77,7 +94,11 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
             x: targetEdge.x + Math.sign(destinationPoint.x - targetEdge.x),
             y: targetEdge.y + Math.sign(destinationPoint.y - targetEdge.y)
         });
-        return canvas.grid.measurePath([adjustedOriginPoint, adjustDestinationPoint]).distance;
+
+        return canvas.grid.measurePath([
+            { ...adjustedOriginPoint, elevation: 0 },
+            { ...adjustDestinationPoint, elevation }
+        ]).distance;
     }
 
     _onHoverIn(event, options) {
