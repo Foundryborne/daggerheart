@@ -596,7 +596,7 @@ export default class DhpActor extends Actor {
         const updates = [];
 
         Object.entries(damages).forEach(([key, damage]) => {
-            damage.parts.forEach(part => {
+            Object.values(damage.parts).forEach(part => {
                 if (part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id)
                     part.total = this.calculateDamage(part.total, part.damageTypes);
                 const update = updates.find(u => u.key === key);

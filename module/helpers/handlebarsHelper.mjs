@@ -36,7 +36,7 @@ export default class RegisterHandlebarsHelpers {
     }
 
     static damageFormula(attack) {
-        return attack.getDamageFormula();
+        return attack.damage.hitPoints?.value?.getFormula?.();
     }
 
     static formulaValue(formula, item) {
@@ -49,7 +49,7 @@ export default class RegisterHandlebarsHelpers {
     }
 
     static damageSymbols(damageParts) {
-        const symbols = [...new Set(damageParts.reduce((a, c) => a.concat([...c.type]), []))].map(
+        const symbols = [...new Set(Object.values(damageParts).reduce((a, c) => a.concat([...c.type]), []))].map(
             p => CONFIG.DH.GENERAL.damageTypes[p].icon
         );
         return new Handlebars.SafeString(Array.from(symbols).map(symbol => `<i class="fa-solid ${symbol}"></i>`));

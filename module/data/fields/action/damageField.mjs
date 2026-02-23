@@ -12,7 +12,7 @@ export default class DamageField extends fields.SchemaField {
     /** @inheritDoc */
     constructor(options, context = {}) {
         const damageFields = {
-            parts: new fields.ArrayField(new fields.EmbeddedDataField(DHDamageData)),
+            parts: new DHDamageField(new fields.EmbeddedDataField(DHDamageData)),
             includeBase: new fields.BooleanField({
                 initial: false,
                 label: 'DAGGERHEART.ACTIONS.Settings.includeBase.label'
@@ -38,7 +38,7 @@ export default class DamageField extends fields.SchemaField {
         )
             return;
 
-        let formulas = this.damage.parts.map(p => ({
+        let formulas = Object.values(this.damage.parts).map(p => ({
             formula: DamageField.getFormulaValue.call(this, p, config).getFormula(this.actor),
             damageTypes: p.applyTo === 'hitPoints' && !p.type.size ? new Set(['physical']) : p.type,
             applyTo: p.applyTo
@@ -300,3 +300,6 @@ export class DHDamageData extends DHResourceData {
         };
     }
 }
+
+/* Could be expanded to constrain the object keys to only correct ones */
+class DHDamageField extends fields.TypedObjectField {}

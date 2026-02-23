@@ -13,7 +13,7 @@ export default class DHAttackAction extends DHDamageAction {
         if (!!this.item?.system?.attack) {
             if (this.damage.includeBase) {
                 const baseDamage = this.getParentDamage();
-                this.damage.parts.unshift(new DHDamageData(baseDamage));
+                this.damage.hitPoints = new DHDamageData(baseDamage);
             }
             if (this.roll.useDefault) {
                 this.roll.trait = this.item.system.attack.roll.trait;
@@ -26,23 +26,16 @@ export default class DHAttackAction extends DHDamageAction {
         return {
             value: {
                 multiplier: 'prof',
-                dice: this.item?.system?.attack.damage.parts[0].value.dice,
-                bonus: this.item?.system?.attack.damage.parts[0].value.bonus ?? 0
+                dice: this.item?.system?.attack.damage.parts.hitPoints.value.dice,
+                bonus: this.item?.system?.attack.damage.parts.hitPoints.value.bonus ?? 0
             },
-            type: this.item?.system?.attack.damage.parts[0].type,
+            type: this.item?.system?.attack.damage.parts.hitPoints.type,
             base: true
         };
     }
 
-    get damageFormula() {
-        const hitPointsPart = this.damage.parts.find(x => x.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id);
-        if (!hitPointsPart) return '0';
-
-        return hitPointsPart.value.getFormula();
-    }
-
     get altDamageFormula() {
-        const hitPointsPart = this.damage.parts.find(x => x.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id);
+        const hitPointsPart = this.damage.parts.hitPoints;
         if (!hitPointsPart) return '0';
 
         return hitPointsPart.valueAlt.getFormula();
@@ -72,7 +65,7 @@ export default class DHAttackAction extends DHDamageAction {
         if (range) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.short`));
 
         const useAltDamage = this.actor?.effects?.find(x => x.type === 'horde')?.active;
-        for (const { value, valueAlt, type } of damage.parts) {
+        for (const { value, valueAlt, type } of Object.values(damage.parts)) {
             const usedValue = useAltDamage ? valueAlt : value;
             const str = Roll.replaceFormulaData(usedValue.getFormula(), this.actor?.getRollData() ?? {});
 

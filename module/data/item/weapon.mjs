@@ -65,15 +65,15 @@ export default class DHWeapon extends AttachableItem {
                         type: 'attack'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            hitPoints: {
                                 type: ['physical'],
                                 value: {
                                     multiplier: 'prof',
                                     dice: 'd8'
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             }),
@@ -117,7 +117,10 @@ export default class DHWeapon extends AttachableItem {
         const tier = game.i18n.localize(`DAGGERHEART.GENERAL.Tiers.${this.tier}`);
         const trait = game.i18n.localize(CONFIG.DH.ACTOR.abilities[this.attack.roll.trait].label);
         const range = game.i18n.localize(`DAGGERHEART.CONFIG.Range.${this.attack.range}.name`);
-        const damage = Roll.replaceFormulaData(this.attack.damageFormula, this.parent.parent ?? this.parent);
+        const damage = Roll.replaceFormulaData(
+            this.attack.damage.parts.hitPoints.value.getFormula(),
+            this.parent.parent ?? this.parent
+        );
         const burden = game.i18n.localize(CONFIG.DH.GENERAL.burden[this.burden].label);
 
         const allFeatures = CONFIG.DH.ITEM.allWeaponFeatures();
@@ -232,7 +235,7 @@ export default class DHWeapon extends AttachableItem {
             game.i18n.localize(`DAGGERHEART.CONFIG.Burden.${burden}`)
         ];
 
-        for (const { value, type } of attack.damage.parts) {
+        for (const { value, type } of Object.values(attack.damage.parts)) {
             const parts = value.custom.enabled ? [game.i18n.localize('DAGGERHEART.GENERAL.custom')] : [value.dice];
             if (!value.custom.enabled && value.bonus) parts.push(value.bonus.signedString());
 
@@ -260,7 +263,7 @@ export default class DHWeapon extends AttachableItem {
         if (roll.trait) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${roll.trait}.short`));
         if (range) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.short`));
 
-        for (const { value, type } of damage.parts) {
+        for (const { value, type } of Object.values(damage.parts)) {
             const str = Roll.replaceFormulaData(value.getFormula(), this.actor?.getRollData() ?? {});
 
             const icons = Array.from(type)
