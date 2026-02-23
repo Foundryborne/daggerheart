@@ -82,7 +82,7 @@
                 "enabled": false
               },
               "flatMultiplier": 3,
-              "dice": "d10",
+              "dice": "d20",
               "bonus": null,
               "multiplier": "flat"
             },

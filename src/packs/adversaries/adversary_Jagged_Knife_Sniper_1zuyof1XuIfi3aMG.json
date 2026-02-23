@@ -33,7 +33,7 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "ranged",
     "notes": "",
     "hordeHp": 1,
     "experiences": {

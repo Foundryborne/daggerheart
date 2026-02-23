@@ -97,8 +97,8 @@
         ]
       },
       "type": "attack",
-      "chatDisplay": false,
-      "range": ""
+      "range": "melee",
+      "chatDisplay": false
     },
     "attribution": {
       "source": "Daggerheart SRD",
