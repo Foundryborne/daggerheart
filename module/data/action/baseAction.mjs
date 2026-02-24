@@ -376,6 +376,15 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         return tags;
     }
+
+    static migrateData(source) {
+        if (source.damage?.parts && Array.isArray(source.damage.parts)) {
+            source.damage.parts = source.damage.parts.reduce((acc, part) => {
+                acc[part.applyTo] = part;
+                return acc;
+            }, {});
+        }
+    }
 }
 
 export class ResourceUpdateMap extends Map {
