@@ -65,10 +65,10 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         const thisElevation = [this.document.elevation, this.document.elevation + thisHeight];
         const targetElevation = [target.document.elevation, target.document.elevation + targetHeight];
         const isSameAltitude =
-            thisElevation[0] <= targetElevation[1] && // bottom of this must be at or below the top of target
-            thisElevation[1] >= targetElevation[0]; // top of this must be at or above the bottom of target
+            thisElevation[0] < targetElevation[1] && // bottom of this must be at or below the top of target
+            thisElevation[1] > targetElevation[0]; // top of this must be at or above the bottom of target
         const [lower, higher] = [targetElevation, thisElevation].sort((a, b) => a[1] - b[1]);
-        const elevation = isSameAltitude ? 0 : higher[0] - lower[1];
+        const elevation = isSameAltitude ? 0 : higher[0] - lower[1] + 5;
 
         // Compute for gridless. This version returns circular edge to edge + grid distance,
         // so that tokens that are touching return 5.
