@@ -54,11 +54,12 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         if (this === target) return 0;
 
         const originPoint = this.center;
-        const destinationPoint = target.center;
+        const targetPoint = target.center;
         const thisBounds = this.bounds;
         const targetBounds = target.bounds;
 
-        // Figure out the elevation difference
+        // Figure out the elevation difference.
+        // This intends to return "grid distance" for adjacent ones, so we add that number if not overlapping.
         const sizePerUnit = canvas.grid.size / canvas.grid.distance;
         const thisHeight = Math.max(thisBounds.width, thisBounds.height) / sizePerUnit;
         const targetHeight = Math.max(targetBounds.width, targetBounds.height) / sizePerUnit;
@@ -68,7 +69,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
             thisElevation[0] < targetElevation[1] && // bottom of this must be at or below the top of target
             thisElevation[1] > targetElevation[0]; // top of this must be at or above the bottom of target
         const [lower, higher] = [targetElevation, thisElevation].sort((a, b) => a[1] - b[1]);
-        const elevation = isSameAltitude ? 0 : higher[0] - lower[1] + 5;
+        const elevation = isSameAltitude ? 0 : higher[0] - lower[1] + canvas.grid.distance;
 
         // Compute for gridless. This version returns circular edge to edge + grid distance,
         // so that tokens that are touching return 5.
@@ -78,22 +79,26 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
             const targetRadius = (targetBounds.width * boundsCorrection) / 2;
             const distance = canvas.grid.measurePath([
                 { ...originPoint, elevation: 0 },
-                { ...destinationPoint, elevation }
+                { ...targetPoint, elevation }
             ]).distance;
             return Math.floor(distance - originRadius - targetRadius + canvas.grid.distance);
         }
 
         // Compute what the closest grid space of each token is, then compute that distance
-        const originEdge = this.#getEdgeBoundary(thisBounds, originPoint, destinationPoint);
-        const targetEdge = this.#getEdgeBoundary(targetBounds, originPoint, destinationPoint);
-        const adjustedOriginPoint = canvas.grid.getTopLeftPoint({
-            x: originEdge.x + Math.sign(originPoint.x - originEdge.x),
-            y: originEdge.y + Math.sign(originPoint.y - originEdge.y)
-        });
-        const adjustDestinationPoint = canvas.grid.getTopLeftPoint({
-            x: targetEdge.x + Math.sign(destinationPoint.x - targetEdge.x),
-            y: targetEdge.y + Math.sign(destinationPoint.y - targetEdge.y)
-        });
+        const originEdge = this.#getEdgeBoundary(thisBounds, originPoint, targetPoint);
+        const targetEdge = this.#getEdgeBoundary(targetBounds, originPoint, targetPoint);
+        const adjustedOriginPoint = originEdge
+            ? canvas.grid.getTopLeftPoint({
+                  x: originEdge.x + Math.sign(originPoint.x - originEdge.x),
+                  y: originEdge.y + Math.sign(originPoint.y - originEdge.y)
+              })
+            : originPoint;
+        const adjustDestinationPoint = targetEdge
+            ? canvas.grid.getTopLeftPoint({
+                  x: targetEdge.x + Math.sign(targetPoint.x - targetEdge.x),
+                  y: targetEdge.y + Math.sign(targetPoint.y - targetEdge.y)
+              })
+            : targetPoint;
         return canvas.grid.measurePath([
             { ...adjustedOriginPoint, elevation: 0 },
             { ...adjustDestinationPoint, elevation }
