@@ -420,10 +420,7 @@ const updateActorsRangeDependentEffects = async token => {
             // Get required distance and special case 5 feet to test adjacency
             const required = rangeMeasurement[range];
             const reverse = type === CONFIG.DH.GENERAL.rangeInclusion.outsideRange.id;
-            const inRange =
-                required === 5
-                    ? userTarget.isAdjacentWith(token.object)
-                    : userTarget.distanceTo(token.object) <= required;
+            const inRange = userTarget.distanceTo(token.object) <= required;
             if (reverse ? inRange : !inRange) {
                 enabledEffect = false;
                 break;

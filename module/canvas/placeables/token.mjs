@@ -57,6 +57,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         const targetPoint = target.center;
         const thisBounds = this.bounds;
         const targetBounds = target.bounds;
+        const adjacencyBuffer = canvas.grid.distance * 1.75; // handles diagonals with one square elevation difference
 
         // Figure out the elevation difference.
         // This intends to return "grid distance" for adjacent ones, so we add that number if not overlapping.
@@ -77,11 +78,12 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
             const boundsCorrection = canvas.grid.distance / canvas.grid.size;
             const originRadius = (thisBounds.width * boundsCorrection) / 2;
             const targetRadius = (targetBounds.width * boundsCorrection) / 2;
-            const distance = canvas.grid.measurePath([
+            const measuredDistance = canvas.grid.measurePath([
                 { ...originPoint, elevation: 0 },
                 { ...targetPoint, elevation }
             ]).distance;
-            return Math.floor(distance - originRadius - targetRadius + canvas.grid.distance);
+            const distance = Math.floor(measuredDistance - originRadius - targetRadius + canvas.grid.distance);
+            return Math.min(distance, distance > adjacencyBuffer ? Infinity : canvas.grid.distance);
         }
 
         // Compute what the closest grid space of each token is, then compute that distance
@@ -99,10 +101,11 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
                   y: targetEdge.y + Math.sign(targetPoint.y - targetEdge.y)
               })
             : targetPoint;
-        return canvas.grid.measurePath([
+        const distance = canvas.grid.measurePath([
             { ...adjustedOriginPoint, elevation: 0 },
             { ...adjustDestinationPoint, elevation }
         ]).distance;
+        return Math.min(distance, distance > adjacencyBuffer ? Infinity : canvas.grid.distance);
     }
 
     _onHoverIn(event, options) {
@@ -128,8 +131,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
 
         // Determine the actual range
         const ranges = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).rangeMeasurement;
-        const distanceNum = originToken.distanceTo(this);
-        const distanceResult = DhMeasuredTemplate.getRangeLabels(distanceNum, ranges);
+        const distanceResult = DhMeasuredTemplate.getRangeLabels(originToken.distanceTo(this), ranges);
         const distanceLabel = `${distanceResult.distance} ${distanceResult.units}`.trim();
 
         // Create the element
@@ -179,11 +181,6 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         }
 
         return null;
-    }
-
-    /** Tests if the token is at least adjacent with another, with some leeway for diagonals */
-    isAdjacentWith(token) {
-        return this.distanceTo(token) <= canvas.grid.distance * 1.5;
     }
 
     /** @inheritDoc */
