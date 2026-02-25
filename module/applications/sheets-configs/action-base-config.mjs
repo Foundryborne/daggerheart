@@ -104,7 +104,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         }
     };
 
-    static CLEAN_ARRAYS = ['damage.parts', 'cost', 'effects', 'summon'];
+    static CLEAN_ARRAYS = ['cost', 'effects', 'summon'];
 
     _getTabs(tabs) {
         for (const v of Object.values(tabs)) {
@@ -279,9 +279,10 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
 
     static removeDamage(_event, button) {
         if (!this.action.damage.parts) return;
-        const data = this.action.toObject(),
-            index = button.dataset.index;
-        data.damage.parts.splice(index, 1);
+        const data = this.action.toObject();
+        const key = button.dataset.key;
+        delete data.damage.parts[key];
+        data.damage.parts[`-=${key}`] = null;
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
