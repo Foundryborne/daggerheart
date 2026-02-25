@@ -6,7 +6,7 @@
         {{else}}
             {{localize "DAGGERHEART.GENERAL.damage"}}
         {{/if}}
-        {{#unless (eq path 'system.attack.')}}<a><i class="fa-solid fa-plus icon-button" data-action="addDamage"></i></a>{{/unless}}
+        {{#unless (eq path 'system.attack.')}}<a data-action="addDamage" {{#if @root.allDamageTypesUsed}}disabled{{/if}}><i class="fa-solid fa-plus icon-button"></i></a>{{/unless}}
     </legend>
     <div class="nest-inputs space-between">
         {{#if @root.hasBaseDamage}}
@@ -19,7 +19,12 @@
     {{#each source.parts as |dmg key|}}
         <div class="nest-inputs">
             <fieldset{{#if dmg.base}} disabled{{/if}} class="one-column{{#if ../path}} no-style{{/if}}">
-                <legend class="with-icon">{{localize (concat "DAGGERHEART.CONFIG.HealingType." key ".name")}}{{#unless (or dmg.base ../path)}}<a data-action="removeDamage" data-key="{{key}}"><i class="fas fa-trash"></i></a>{{/unless}}</legend>
+                <legend class="with-icon">
+                    {{localize (concat "DAGGERHEART.CONFIG.HealingType." key ".name")}}
+                    {{#unless (or dmg.base ../path)}}
+                        <a data-action="removeDamage" data-key="{{key}}"><i class="fas fa-trash"></i></a>
+                    {{/unless}}
+                </legend>
 
                 {{#if (and (not @root.isNPC) @root.hasRoll (not dmg.base))}}
                     {{formField ../fields.resultBased value=dmg.resultBased name=(concat "damage.parts." key ".resultBased") localize=true classes="checkbox"}}

@@ -156,6 +156,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
                 revealed: this.openTrigger === index
             };
         });
+        context.allDamageTypesUsed = !getUnusedDamageTypes(this.action.damage.parts).length;
 
         const settingsTiers = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers;
         context.tierOptions = [
