@@ -1,3 +1,4 @@
+import { getNextUnusedDamageType } from '../../helpers/utils.mjs';
 import DaggerheartSheet from '../sheets/daggerheart-sheet.mjs';
 
 const { ApplicationV2 } = foundry.applications.api;
@@ -268,10 +269,11 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
 
     static addDamage(_event) {
         if (!this.action.damage.parts) return;
-        const data = this.action.toObject(),
-            part = {};
+        const data = this.action.toObject();
+        const type = getNextUnusedDamageType(this.action.damage.parts);
+        const part = { applyTo: type };
         if (this.action.actor?.isNPC) part.value = { multiplier: 'flat' };
-        data.damage.parts.push(part);
+        data.damage.parts[type] = part;
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 

@@ -557,3 +557,12 @@ export function calculateExpectedValue(formulaOrTerms) {
           : [formulaOrTerms];
     return terms.reduce((r, t) => r + (t.bonus ?? 0) + (t.diceQuantity ? (t.diceQuantity * (t.faces + 1)) / 2 : 0), 0);
 }
+
+export function getNextUnusedDamageType(parts) {
+    const usedKeys = Object.keys(parts);
+    for (const key of Object.keys(CONFIG.DH.GENERAL.healingTypes)) {
+        if (!usedKeys.includes(key)) return key;
+    }
+
+    return null;
+}

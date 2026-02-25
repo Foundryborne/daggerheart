@@ -89,14 +89,14 @@ export default class DhpAdversary extends DhCreature {
                         type: 'attack'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            hitPoints: {
                                 type: ['physical'],
                                 value: {
                                     multiplier: 'flat'
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             }),
@@ -374,13 +374,9 @@ export default class DhpAdversary extends DhCreature {
      * @returns the converted formula and value as a simplified term
      */
     #adjustActionDamage(action, damageMeta) {
-        // The current algorithm only returns a value if there is a single damage part
-        const hpDamageParts = action.damage.parts.filter(d => d.applyTo === 'hitPoints');
-        if (hpDamageParts.length !== 1) throw new Error('incorrect number of hp parts');
-
         const result = {};
         for (const property of ['value', 'valueAlt']) {
-            const data = hpDamageParts[0][property];
+            const data = action.damage.parts.hitPoints[property];
             const previousFormula = data.custom.enabled
                 ? data.custom.formula
                 : [data.flatMultiplier ? `${data.flatMultiplier}${data.dice}` : 0, data.bonus ?? 0]
