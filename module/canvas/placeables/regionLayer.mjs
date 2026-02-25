@@ -45,4 +45,42 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
 
         return super._createDragShapeData(event);
     }
+
+    async placeRegion(data, options = {}) {
+        const preConfirm = ({ _event, document, _create, _options }) => {
+            const shape = document.shapes[0];
+            const isEmanation = shape.type === 'emanation';
+            if (isEmanation) {
+                const { x, y } = shape.base.origin;
+
+                const gridSize = canvas.grid.size;
+                const inBounds = canvas.scene.tokens.filter(t => {
+                    return x.between(t.x, t.x + t.width * gridSize) && y.between(t.y, t.y + t.height * gridSize);
+                });
+
+                if (inBounds.length !== 1) return options.basePreConfirm?.() ?? true;
+
+                const shapeData = shape.toObject();
+                const token = inBounds[0];
+                document.updateSource({
+                    shapes: [
+                        {
+                            ...shapeData,
+                            base: {
+                                ...shapeData.base,
+                                height: token.height,
+                                width: token.width,
+                                x: token.x,
+                                y: token.y
+                            }
+                        }
+                    ]
+                });
+            }
+
+            return options?.basePreConfirm?.() ?? true;
+        };
+
+        super.placeRegion(data, { ...options, preConfirm });
+    }
 }
