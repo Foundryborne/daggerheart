@@ -287,6 +287,7 @@ export class DHDamageData extends DHResourceData {
         return {
             ...super.defineSchema(),
             base: new fields.BooleanField({ initial: false, readonly: true, label: 'Base' }),
+            // direct: new fields.BooleanField({ initial: false, label: 'DAGGERHEART.CONFIG.DamageType.direct.name' }),
             type: new fields.SetField(
                 new fields.StringField({
                     choices: CONFIG.DH.GENERAL.damageTypes,

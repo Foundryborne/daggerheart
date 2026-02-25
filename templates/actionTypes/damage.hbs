@@ -1,6 +1,6 @@
 
 <fieldset class="one-column">
-    <legend>
+    <legend class="with-icon">
         {{#if (eq @root.source.type 'healing')}}
             {{localize "DAGGERHEART.GENERAL.healing"}}
         {{else}}
@@ -19,6 +19,8 @@
     {{#each source.parts as |dmg key|}}
         <div class="nest-inputs">
             <fieldset{{#if dmg.base}} disabled{{/if}} class="one-column{{#if ../path}} no-style{{/if}}">
+                <legend class="with-icon">{{localize (concat "DAGGERHEART.CONFIG.HealingType." key ".name")}}{{#unless (or dmg.base ../path)}}<a data-action="removeDamage" data-key="{{key}}"><i class="fas fa-trash"></i></a>{{/unless}}</legend>
+
                 {{#if (and (not @root.isNPC) @root.hasRoll (not dmg.base))}}
                     {{formField ../fields.resultBased value=dmg.resultBased name=(concat "damage.parts." key ".resultBased") localize=true classes="checkbox"}}
                 {{/if}}
@@ -34,17 +36,13 @@
                         </fieldset>
                     </div>
                 {{else}}
-                    <fieldset{{#if dmg.base}} disabled{{/if}} class="one-column">
-                        <legend>{{localize "DAGGERHEART.GENERAL.formula"}}</legend>
-                        {{> formula fields=../fields.value.fields type=../fields.type dmg=dmg source=dmg.value target="value" key=key path=../path}}
-                    </fieldset>
+                    {{> formula fields=../fields.value.fields type=../fields.type dmg=dmg source=dmg.value target="value" key=key path=../path}}
                 {{/if}}
-                <div class="nest-inputs">
-                    {{formField ../fields.applyTo value=dmg.applyTo name=(concat ../path "damage.parts." key ".applyTo") localize=true}}
-                    {{#if (and (eq dmg.applyTo 'hitPoints') (ne @root.source.type 'healing'))}}
-                        {{formField ../fields.type value=dmg.type name=(concat ../path "damage.parts." key ".type") localize=true}}
-                    {{/if}}
-                </div>
+
+                {{#if (and (eq dmg.applyTo 'hitPoints') (ne @root.source.type 'healing'))}}
+                    {{formField ../fields.type value=dmg.type name=(concat ../path "damage.parts." key ".type") localize=true}}
+                {{/if}}
+
                 {{#if ../horde}}
                     <fieldset class="one-column">
                         <legend>{{localize "DAGGERHEART.ACTORS.Adversary.hordeDamage"}}</legend>
@@ -58,7 +56,6 @@
                 {{/if}}
                 <input type="hidden" name="damage.parts.{{key}}.base" value="{{dmg.base}}">
             </fieldset>
-            {{#unless (or dmg.base ../path)}}<div class="fas fa-trash" data-action="removeDamage" data-key="{{key}}"></div>{{/unless}}
         </div>
     {{/each}}
 </fieldset>
