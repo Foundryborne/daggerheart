@@ -58,7 +58,7 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
                     return x.between(t.x, t.x + t.width * gridSize) && y.between(t.y, t.y + t.height * gridSize);
                 });
 
-                if (inBounds.length !== 1) return options.basePreConfirm?.() ?? true;
+                if (inBounds.length !== 1) return options.preConfirm?.() ?? true;
 
                 const shapeData = shape.toObject();
                 const token = inBounds[0];
@@ -78,7 +78,7 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
                 });
             }
 
-            return options?.basePreConfirm?.() ?? true;
+            return options?.preConfirm?.() ?? true;
         };
 
         super.placeRegion(data, { ...options, preConfirm });
