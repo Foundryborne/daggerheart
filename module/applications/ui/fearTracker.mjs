@@ -34,8 +34,6 @@ export default class FearTracker extends HandlebarsApplicationMixin(ApplicationV
         position: {
             width: 222,
             height: 222
-            // top: "200px",
-            // left: "120px"
         }
     };
 
@@ -66,7 +64,7 @@ export default class FearTracker extends HandlebarsApplicationMixin(ApplicationV
             max = this.maxFear,
             percent = (current / max) * 100,
             isGM = game.user.isGM;
-        // Return the data for rendering
+
         return { display, current, max, percent, isGM };
     }
 

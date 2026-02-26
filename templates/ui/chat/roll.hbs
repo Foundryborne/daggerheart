@@ -1,6 +1,10 @@
 <div class="chat-roll">
-    <div class="roll-part-header"><span>{{title}}</span></div>
-    {{#if hasRoll}}{{> 'systems/daggerheart/templates/ui/chat/parts/roll-part.hbs'}}{{/if}}
+    <div class="roll-part-title"><span>{{title}}</span></div>
+    {{#if actionDescription}}{{> 'systems/daggerheart/templates/ui/chat/parts/description-part.hbs'}}{{/if}}
+    {{#if hasRoll}}
+        <div class="roll-part-header"><span>{{localize "Result"}}</span></div>
+        {{> 'systems/daggerheart/templates/ui/chat/parts/roll-part.hbs'}}
+    {{/if}}
     {{#if (or hasDamage hasHealing)}}{{> 'systems/daggerheart/templates/ui/chat/parts/damage-part.hbs'}}{{/if}}
     {{#if hasTarget}}{{> 'systems/daggerheart/templates/ui/chat/parts/target-part.hbs'}}{{/if}}
     <div class="roll-part-header"><div></div></div>

@@ -55,6 +55,23 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                 initial: true,
                 label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.resourceScrollTexts.label'
             }),
+            deathMoveAutomation: new fields.SchemaField({
+                avoidDeath: new fields.BooleanField({
+                    required: true,
+                    initial: true,
+                    label: 'DAGGERHEART.CONFIG.DeathMoves.avoidDeath.name'
+                }),
+                riskItAll: new fields.BooleanField({
+                    required: true,
+                    initial: true,
+                    label: 'DAGGERHEART.CONFIG.DeathMoves.riskItAll.name'
+                }),
+                blazeOfGlory: new fields.BooleanField({
+                    required: true,
+                    initial: true,
+                    label: 'DAGGERHEART.CONFIG.DeathMoves.blazeOfGlory.name'
+                })
+            }),
             defeated: new fields.SchemaField({
                 enabled: new fields.BooleanField({
                     required: true,

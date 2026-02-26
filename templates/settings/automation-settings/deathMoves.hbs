@@ -1,8 +1,17 @@
 <section
-    class="tab {{tabs.rules.cssClass}} {{tabs.rules.id}}"
-    data-tab="{{tabs.rules.id}}"
-    data-group="{{tabs.rules.group}}"
+    class="tab {{tabs.deathMoves.cssClass}} {{tabs.deathMoves.id}}"
+    data-tab="{{tabs.deathMoves.id}}"
+    data-group="{{tabs.deathMoves.group}}"
 >
+    <fieldset>
+        <legend>
+            {{localize "DAGGERHEART.GENERAL.automation"}} 
+        </legend>
+        
+        {{formGroup settingFields.schema.fields.deathMoveAutomation.fields.avoidDeath value=settingFields._source.deathMoveAutomation.avoidDeath localize=true}}
+        {{formGroup settingFields.schema.fields.deathMoveAutomation.fields.riskItAll value=settingFields._source.deathMoveAutomation.riskItAll localize=true}}
+        {{formGroup settingFields.schema.fields.deathMoveAutomation.fields.blazeOfGlory value=settingFields._source.deathMoveAutomation.blazeOfGlory localize=true}} 
+    </fieldset>
     <fieldset>
         <legend>
             {{localize "DAGGERHEART.SETTINGS.Automation.defeated.title"}} 

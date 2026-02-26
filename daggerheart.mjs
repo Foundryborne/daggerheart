@@ -242,6 +242,41 @@ Hooks.on('setup', () => {
             systemEffect: true
         }))
     ];
+
+    const damageThresholds = ['damageThresholds.major', 'damageThresholds.severe'];
+    const traits = Object.keys(game.system.api.data.actors.DhCharacter.schema.fields.traits.fields).map(
+        trait => `traits.${trait}.value`
+    );
+    const resistance = Object.values(game.system.api.data.actors.DhCharacter.schema.fields.resistance.fields).flatMap(
+        type => Object.keys(type.fields).map(x => `resistance.${type.name}.${x}`)
+    );
+    const actorCommon = {
+        bar: ['resources.stress'],
+        value: [...resistance, 'advantageSources', 'disadvantageSources']
+    };
+    CONFIG.Actor.trackableAttributes = {
+        character: {
+            bar: [...actorCommon.bar, 'resources.hitPoints', 'resources.hope'],
+            value: [
+                ...actorCommon.value,
+                ...traits,
+                ...damageThresholds,
+                'proficiency',
+                'evasion',
+                'armorScore',
+                'scars',
+                'levelData.level.current'
+            ]
+        },
+        adversary: {
+            bar: [...actorCommon.bar, 'resources.hitPoints'],
+            value: [...actorCommon.value, ...damageThresholds, 'criticalThreshold', 'difficulty']
+        },
+        companion: {
+            bar: [...actorCommon.bar],
+            value: [...actorCommon.value, 'evasion', 'levelData.level.current']
+        }
+    };
 });
 
 Hooks.on('ready', async () => {
@@ -309,7 +344,7 @@ Hooks.on('chatMessage', (_, message) => {
               ? CONFIG.DH.ACTIONS.advantageState.disadvantage.value
               : undefined;
         const difficulty = rollCommand.difficulty;
-        const grantResources = Boolean(rollCommand.grantResources);
+        const grantResources = rollCommand.grantResources;
 
         const target = getCommandTarget({ allowNull: true });
         const title =
@@ -385,10 +420,7 @@ const updateActorsRangeDependentEffects = async token => {
             // Get required distance and special case 5 feet to test adjacency
             const required = rangeMeasurement[range];
             const reverse = type === CONFIG.DH.GENERAL.rangeInclusion.outsideRange.id;
-            const inRange =
-                required === 5
-                    ? userTarget.isAdjacentWith(token.object)
-                    : userTarget.distanceTo(token.object) <= required;
+            const inRange = userTarget.distanceTo(token.object) <= required;
             if (reverse ? inRange : !inRange) {
                 enabledEffect = false;
                 break;

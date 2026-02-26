@@ -103,7 +103,11 @@ export default class SettingActiveEffectConfig extends HandlebarsApplicationMixi
                     const after = label.slice(matchIndex + search.length, label.length);
 
                     const element = document.createElement('li');
-                    element.innerHTML = `${beforeText}${matchText ? `<strong>${matchText}</strong>` : ''}${after}`;
+                    element.innerHTML =
+                        `${beforeText}${matchText ? `<strong>${matchText}</strong>` : ''}${after}`.replaceAll(
+                            ' ',
+                            '&nbsp;'
+                        );
                     if (item.hint) {
                         element.dataset.tooltip = game.i18n.localize(item.hint);
                     }

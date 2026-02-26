@@ -12,6 +12,20 @@ const currencyField = (initial, label, icon) =>
         icon: new foundry.data.fields.StringField({ required: true, nullable: false, blank: true, initial: icon })
     });
 
+const restMoveField = () =>
+    new foundry.data.fields.SchemaField({
+        name: new foundry.data.fields.StringField({ required: true }),
+        icon: new foundry.data.fields.StringField({ required: true }),
+        img: new foundry.data.fields.FilePathField({
+            initial: 'icons/magic/life/cross-worn-green.webp',
+            categories: ['IMAGE'],
+            base64: false
+        }),
+        description: new foundry.data.fields.HTMLField(),
+        actions: new ActionsField(),
+        effects: new foundry.data.fields.ArrayField(new foundry.data.fields.ObjectField())
+    });
+
 export default class DhHomebrew extends foundry.abstract.DataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
@@ -105,37 +119,11 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
             restMoves: new fields.SchemaField({
                 longRest: new fields.SchemaField({
                     nrChoices: new fields.NumberField({ required: true, integer: true, min: 1, initial: 2 }),
-                    moves: new fields.TypedObjectField(
-                        new fields.SchemaField({
-                            name: new fields.StringField({ required: true }),
-                            icon: new fields.StringField({ required: true }),
-                            img: new fields.FilePathField({
-                                initial: 'icons/magic/life/cross-worn-green.webp',
-                                categories: ['IMAGE'],
-                                base64: false
-                            }),
-                            description: new fields.HTMLField(),
-                            actions: new ActionsField()
-                        }),
-                        { initial: defaultRestOptions.longRest() }
-                    )
+                    moves: new fields.TypedObjectField(restMoveField(), { initial: defaultRestOptions.longRest() })
                 }),
                 shortRest: new fields.SchemaField({
                     nrChoices: new fields.NumberField({ required: true, integer: true, min: 1, initial: 2 }),
-                    moves: new fields.TypedObjectField(
-                        new fields.SchemaField({
-                            name: new fields.StringField({ required: true }),
-                            icon: new fields.StringField({ required: true }),
-                            img: new fields.FilePathField({
-                                initial: 'icons/magic/life/cross-worn-green.webp',
-                                categories: ['IMAGE'],
-                                base64: false
-                            }),
-                            description: new fields.HTMLField(),
-                            actions: new ActionsField()
-                        }),
-                        { initial: defaultRestOptions.shortRest() }
-                    )
+                    moves: new fields.TypedObjectField(restMoveField(), { initial: defaultRestOptions.shortRest() })
                 })
             }),
             domains: new fields.TypedObjectField(

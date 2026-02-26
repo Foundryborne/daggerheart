@@ -1,0 +1,24 @@
+<div class="item-description-outer-container">
+    <div class="item-description-container">
+        <h4>{{localize "DAGGERHEART.ITEMS.Subclass.spellcastTrait"}}</h4>
+        <span>{{spellcastTrait}}</span>
+    </div>
+    <div class="item-description-container">
+        <h4>{{localize "DAGGERHEART.ITEMS.Subclass.foundationFeatures"}}</h4>
+        {{#each foundationFeatures as | feature |}}
+            <div class="item-description-inner-container"><strong>{{localize feature.label}}</strong>: {{{localize feature.description}}}</div>
+        {{/each}}
+    </div>
+    <div class="item-description-container">
+        <h4>{{localize "DAGGERHEART.ITEMS.Subclass.specializationFeature"}}</h4>
+        {{#each specializationFeatures as | feature |}}
+            <div class="item-description-inner-container"><strong>{{localize feature.label}}</strong>: {{{localize feature.description}}}</div>
+        {{/each}}
+    </div>
+    <div class="item-description-container">
+        <h4>{{localize "DAGGERHEART.ITEMS.Subclass.masteryFeature"}}</h4>
+        {{#each masteryFeatures as | feature |}}
+            <div class="item-description-inner-container"><strong>{{localize feature.label}}</strong>: {{{localize feature.description}}}</div>
+        {{/each}}
+    </div>
+</div>

@@ -253,4 +253,20 @@ export default class DHBeastform extends BaseDataItem {
 
         return false;
     }
+
+    _onCreate(_data, _options, userId) {
+        if (!this.actor && game.user.id === userId) {
+            const hasBeastformEffect = this.parent.effects.some(x => x.type === 'beastform');
+            if (!hasBeastformEffect)
+                this.parent.createEmbeddedDocuments('ActiveEffect', [
+                    {
+                        type: 'beastform',
+                        name: game.i18n.localize('DAGGERHEART.ITEMS.Beastform.beastformEffect'),
+                        img: 'icons/creatures/abilities/paw-print-pair-purple.webp'
+                    }
+                ]);
+
+            return;
+        }
+    }
 }

@@ -3,67 +3,69 @@
 
 .daggerheart.chat-sidebar.theme-light,
 #interface.theme-light {
-    .chat-message:not(.duality) .message-content {
-        color: @dark;
+    .chat-message:not(.duality):not(.fate) {
+        .message-content {
+            color: @dark;
 
-        blockquote {
-            border-left: 5px solid @dark-blue-40;
-        }
+            blockquote {
+                border-left: 5px solid @dark-blue-40;
+            }
 
-        a[href] {
-            color: @dark-blue;
-        }
-
-        a[href]:hover,
-        a[href].active {
-            font-weight: bold;
-            text-shadow: 0 0 8px @dark-blue;
-        }
-
-        button {
-            background: transparent;
-            border: 1px solid @dark-blue;
-            color: @dark-blue;
-
-            &:hover {
-                background: @light-black;
+            a[href] {
                 color: @dark-blue;
             }
 
-            &:disabled {
+            a[href]:hover,
+            a[href].active {
+                font-weight: bold;
+                text-shadow: 0 0 8px @dark-blue;
+            }
+
+            button {
                 background: transparent;
+                border: 1px solid @dark-blue;
                 color: @dark-blue;
 
                 &:hover {
+                    background: @light-black;
+                    color: @dark-blue;
+                }
+
+                &:disabled {
                     background: transparent;
                     color: @dark-blue;
+
+                    &:hover {
+                        background: transparent;
+                        color: @dark-blue;
+                    }
+                }
+
+                &.reverted {
+                    background: @dark-blue-10;
+                    color: @dark-blue;
+                    border: 1px solid @dark;
+                    &:hover {
+                        background: transparent;
+                        color: @dark-blue;
+                    }
+                    img {
+                        border-radius: 3px;
+                    }
                 }
             }
 
-            &.reverted {
-                background: @dark-blue-10;
+            .roll-buttons button {
+                height: 40px;
+                font-family: @font-body;
+                font-weight: bold;
+            }
+
+            .dice-roll .dice-formula,
+            .dice-roll .dice-total {
+                background: @dark-blue-40;
                 color: @dark-blue;
-                border: 1px solid @dark;
-                &:hover {
-                    background: transparent;
-                    color: @dark-blue;
-                }
-                img {
-                    border-radius: 3px;
-                }
             }
-        }
-
-        .roll-buttons button {
-            height: 40px;
-            font-family: @font-body;
-            font-weight: bold;
-        }
-
-        .dice-roll .dice-formula,
-        .dice-roll .dice-total {
-            background: @dark-blue-40;
-            color: @dark-blue;
         }
     }
 }

@@ -1,3 +1,5 @@
+import { RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 /**
@@ -17,6 +19,15 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         this.config = CONFIG.DH.ITEMBROWSER.compendiumConfig;
         this.presets = {};
         this.compendiumBrowserTypeKey = 'compendiumBrowserDefault';
+
+        this.setupHooks = Hooks.on(socketEvent.Refresh, ({ refreshType }) => {
+            if (refreshType === RefreshType.CompendiumBrowser) {
+                if (this.rendered) {
+                    this.render();
+                    this.loadItems();
+                }
+            }
+        });
     }
 
     /** @inheritDoc */
@@ -35,7 +46,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             selectFolder: this.selectFolder,
             expandContent: this.expandContent,
             resetFilters: this.resetFilters,
-            sortList: this.sortList
+            sortList: this.sortList,
+            openSettings: this.openSettings
         },
         position: {
             left: 100,
@@ -157,6 +169,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         context.formatChoices = this.formatChoices;
         context.items = this.items;
         context.presets = this.presets;
+        context.isGM = game.user.isGM;
+
         return context;
     }
 
@@ -214,6 +228,10 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     loadItems() {
         let loadTimeout = this.toggleLoader(true);
 
+        const browserSettings = game.settings.get(
+            CONFIG.DH.id,
+            CONFIG.DH.SETTINGS.gameSettings.CompendiumBrowserSettings
+        );
         const promises = [];
 
         game.packs.forEach(pack => {
@@ -227,7 +245,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
         Promise.all(promises).then(async result => {
             this.items = ItemBrowser.sortBy(
-                result.flatMap(r => r),
+                result.flatMap(r => r).filter(r => !browserSettings.isEntryExcluded.bind(browserSettings)(r)),
                 'name'
             );
 
@@ -512,6 +530,22 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         itemListContainer.replaceChildren(...newOrder);
     }
 
+    static async openSettings() {
+        const settingsUpdated = await game.system.api.applications.dialogs.CompendiumBrowserSettingsDialog.configure();
+        if (settingsUpdated) {
+            if (this.rendered) {
+                this.render();
+                this.loadItems();
+            }
+            await game.socket.emit(`system.${CONFIG.DH.id}`, {
+                action: socketEvent.Refresh,
+                data: {
+                    refreshType: RefreshType.CompendiumBrowser
+                }
+            });
+        }
+    }
+
     _createDragProcess() {
         new foundry.applications.ux.DragDrop.implementation({
             dragSelector: '.item-container',
@@ -570,5 +604,10 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
             headerActions.append(button);
         }
+    }
+
+    async close(options = {}) {
+        Hooks.off(socketEvent.Refresh, this.setupHooks);
+        await super.close(options);
     }
 }

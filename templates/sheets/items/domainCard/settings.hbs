@@ -7,19 +7,19 @@
         <legend>{{localize tabs.settings.label}}</legend>
 
         <span>{{localize "DAGGERHEART.GENERAL.type"}}</span>
-        {{formField systemFields.type value=source.system.type localize=true}}
+        {{formInput systemFields.type value=source.system.type localize=true}}
         <span>{{localize "DAGGERHEART.GENERAL.Domain.single"}}</span>
-        {{formField systemFields.domain value=source.system.domain choices=domainChoices valueAttr="id" labelAttr="label" localize=true}}
+        {{formInput systemFields.domain value=source.system.domain choices=domainChoices valueAttr="id" labelAttr="label" localize=true}}
         <span>{{localize "DAGGERHEART.GENERAL.level"}}</span>
-        {{formField systemFields.level value=source.system.level data-dtype="Number"}}
+        {{formInput systemFields.level value=source.system.level data-dtype="Number"}}
         <span>{{localize "DAGGERHEART.ITEMS.DomainCard.recallCost"}}</span>
-        {{formField systemFields.recallCost value=source.system.recallCost data-dtype="Number"}}
+        {{formInput systemFields.recallCost value=source.system.recallCost data-dtype="Number"}}
         <span>{{localize "DAGGERHEART.ITEMS.DomainCard.vaultActive"}}</span>
-        {{formField systemFields.vaultActive value=source.system.vaultActive}}
+        {{formInput systemFields.vaultActive value=source.system.vaultActive}}
         <span>{{localize "DAGGERHEART.ITEMS.DomainCard.loadoutIgnore"}}</span>
-        {{formField systemFields.loadoutIgnore value=source.system.loadoutIgnore}}
+        {{formInput systemFields.loadoutIgnore value=source.system.loadoutIgnore}}
         <span>{{localize "DAGGERHEART.ITEMS.DomainCard.domainTouched"}}</span>
-        {{formField systemFields.domainTouched value=source.system.domainTouched placeholder=0 }}
+        {{formInput systemFields.domainTouched value=source.system.domainTouched placeholder=0 }}
     </fieldset>
 
     {{> "systems/daggerheart/templates/sheets/global/partials/resource-section/resource-section.hbs" }}

@@ -68,6 +68,8 @@ export default class DamageField extends fields.SchemaField {
 
         const damageResult = await CONFIG.Dice.daggerheart.DamageRoll.build(damageConfig);
         if (!damageResult) return false;
+        if (damageResult.actionChatMessageHandled) config.actionChatMessageHandled = true;
+
         config.damage = damageResult.damage;
         config.message ??= damageConfig.message;
     }
@@ -107,8 +109,8 @@ export default class DamageField extends fields.SchemaField {
                 );
             else {
                 const configDamage = foundry.utils.deepClone(config.damage);
-                const hpDamageMultiplier = config.actionActor?.system.rules.attack.damage.hpDamageMultiplier ?? 1;
-                const hpDamageTakenMultiplier = actor.system.rules.attack.damage.hpDamageTakenMultiplier;
+                const hpDamageMultiplier = config.actionActor?.system.rules?.attack?.damage?.hpDamageMultiplier ?? 1;
+                const hpDamageTakenMultiplier = actor.system.rules?.attack?.damage?.hpDamageTakenMultiplier;
                 if (configDamage.hitPoints) {
                     for (const part of configDamage.hitPoints.parts) {
                         part.total = Math.ceil(part.total * hpDamageMultiplier * hpDamageTakenMultiplier);
@@ -163,7 +165,8 @@ export default class DamageField extends fields.SchemaField {
         if (data.hasRoll && part.resultBased && data.roll.result.duality === -1) return part.valueAlt;
 
         const isAdversary = this.actor.type === 'adversary';
-        if (isAdversary && this.actor.system.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {
+        const isHorde = this.actor.system.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id;
+        if (isAdversary && isHorde && this.roll?.isStandardAttack) {
             const hasHordeDamage = this.actor.effects.find(x => x.type === 'horde');
             if (hasHordeDamage && !hasHordeDamage.disabled) return part.valueAlt;
         }

@@ -1,3 +1,4 @@
+import { getFeaturesHTMLData } from '../../helpers/utils.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import ItemLinkFields from '../fields/itemLinkFields.mjs';
 import BaseDataItem from './base.mjs';
@@ -88,5 +89,29 @@ export default class DHSubclass extends BaseDataItem {
 
         const allowed = await super._preCreate(data, options, user);
         if (allowed === false) return;
+    }
+
+    /**@inheritdoc */
+    async getDescriptionData() {
+        const baseDescription = this.description;
+
+        const spellcastTrait = this.spellcastingTrait
+            ? game.i18n.localize(CONFIG.DH.ACTOR.abilities[this.spellcastingTrait].label)
+            : null;
+        const foundationFeatures = await getFeaturesHTMLData(this.foundationFeatures);
+        const specializationFeatures = await getFeaturesHTMLData(this.specializationFeatures);
+        const masteryFeatures = await getFeaturesHTMLData(this.masteryFeatures);
+
+        const suffix = await foundry.applications.handlebars.renderTemplate(
+            'systems/daggerheart/templates/sheets/items/subclass/description.hbs',
+            {
+                spellcastTrait,
+                foundationFeatures,
+                specializationFeatures,
+                masteryFeatures
+            }
+        );
+
+        return { prefix: null, value: baseDescription, suffix };
     }
 }

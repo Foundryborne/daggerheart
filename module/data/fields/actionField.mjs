@@ -152,7 +152,9 @@ export function ActionMixin(Base) {
         }
 
         get uuid() {
-            return `${this.item.uuid}.${this.documentName}.${this.id}`;
+            const isItem = this.item instanceof game.system.api.documents.DHItem;
+            const isActor = this.item instanceof game.system.api.documents.DhpActor;
+            return isItem || isActor ? `${this.item.uuid}.${this.documentName}.${this.id}` : null;
         }
 
         get sheet() {
@@ -260,6 +262,9 @@ export function ActionMixin(Base) {
         }
 
         async toChat(origin) {
+            const autoExpandDescription = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
+                .expandRollMessage?.desc;
+
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
                 title: game.i18n.localize('DAGGERHEART.CONFIG.FeatureForm.action'),
@@ -288,7 +293,7 @@ export function ActionMixin(Base) {
                 system: systemData,
                 content: await foundry.applications.handlebars.renderTemplate(
                     'systems/daggerheart/templates/ui/chat/action.hbs',
-                    systemData
+                    { ...systemData, open: autoExpandDescription ? 'open' : '' }
                 ),
                 flags: {
                     daggerheart: {

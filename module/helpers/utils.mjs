@@ -12,7 +12,7 @@ export function rollCommandToJSON(text) {
     const flavor = flavorMatch ? flavorMatch[1] : null;
 
     // Match key="quoted string"  OR  key=unquotedValue
-    const PAIR_RE = /(\w+)=("(?:[^"\\]|\\.)*"|\S+)/g;
+    const PAIR_RE = /(\w+)\s*=\s*("(?:[^"\\]|\\.)*"|[^\]\}\s]+)/g; //updated regex to allow escaped quotes in quoted strings and avoid matching closing brackets/braces
     const result = {};
     for (const [, key, raw] of text.matchAll(PAIR_RE)) {
         let value;
@@ -494,4 +494,66 @@ export function htmlToText(html) {
     tempDivElement.innerHTML = html;
 
     return tempDivElement.textContent || tempDivElement.innerText || '';
+}
+
+export async function getFeaturesHTMLData(features) {
+    const result = [];
+    for (const feature of features) {
+        if (feature) {
+            const base = feature.item ?? feature;
+            const item = base.system ? base : await foundry.utils.fromUuid(base.uuid);
+            const itemDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+                item.system.description
+            );
+            result.push({ label: item.name, description: itemDescription });
+        }
+    }
+
+    return result;
+}
+
+/**
+ * Given a simple flavor-less formula with only +/- operators, returns a list of damage partial terms.
+ * All subtracted terms become negative terms.
+ * If there are no dice, it returns 0d1 for that term.
+ */
+export function parseTermsFromSimpleFormula(formula) {
+    const roll = formula instanceof Roll ? formula : new Roll(formula);
+
+    // Parse from right to left so that when we hit an operator, we already have the term.
+    return roll.terms.reduceRight((result, term) => {
+        // Ignore + terms, we assume + by default
+        if (term.expression === ' + ') return result;
+
+        // - terms modify the last term we parsed
+        if (term.expression === ' - ') {
+            const termToModify = result[0];
+            if (termToModify) {
+                if (termToModify.bonus) termToModify.bonus *= -1;
+                if (termToModify.dice) termToModify.dice *= -1;
+            }
+            return result;
+        }
+
+        result.unshift({
+            bonus: term instanceof foundry.dice.terms.NumericTerm ? term.number : 0,
+            diceQuantity: term instanceof foundry.dice.terms.Die ? term.number : 0,
+            faces: term.faces ?? 1
+        });
+
+        return result;
+    }, []);
+}
+
+/**
+ * Calculates the expectede value from a formula or the results of parseTermsFromSimpleFormula.
+ * @returns {number} the average result of rolling the given dice
+ */
+export function calculateExpectedValue(formulaOrTerms) {
+    const terms = Array.isArray(formulaOrTerms)
+        ? formulaOrTerms
+        : typeof formulaOrTerms === 'string'
+          ? parseTermsFromSimpleFormula(formulaOrTerms)
+          : [formulaOrTerms];
+    return terms.reduce((r, t) => r + (t.bonus ?? 0) + (t.diceQuantity ? (t.diceQuantity * (t.faces + 1)) / 2 : 0), 0);
 }

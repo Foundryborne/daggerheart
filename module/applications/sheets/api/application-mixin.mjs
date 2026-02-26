@@ -431,18 +431,18 @@ export default function DHApplicationMixin(Base) {
                 {
                     name: 'disableEffect',
                     icon: 'fa-solid fa-lightbulb',
-                    condition: target => {
-                        const doc = getDocFromElementSync(target);
-                        return doc && !doc.disabled;
+                    condition: element => {
+                        const target = element.closest('[data-item-uuid]');
+                        return !target.dataset.disabled && target.dataset.itemType !== 'beastform';
                     },
                     callback: async target => (await getDocFromElement(target)).update({ disabled: true })
                 },
                 {
                     name: 'enableEffect',
                     icon: 'fa-regular fa-lightbulb',
-                    condition: target => {
-                        const doc = getDocFromElementSync(target);
-                        return doc && doc.disabled;
+                    condition: element => {
+                        const target = element.closest('[data-item-uuid]');
+                        return target.dataset.disabled && target.dataset.itemType !== 'beastform';
                     },
                     callback: async target => (await getDocFromElement(target)).update({ disabled: false })
                 }
@@ -570,6 +570,10 @@ export default function DHApplicationMixin(Base) {
                 options.push({
                     name: 'CONTROLS.CommonDelete',
                     icon: 'fa-solid fa-trash',
+                    condition: element => {
+                        const target = element.closest('[data-item-uuid]');
+                        return target.dataset.itemType !== 'beastform';
+                    },
                     callback: async (target, event) => {
                         const doc = await getDocFromElement(target);
                         if (event.shiftKey) return doc.delete();

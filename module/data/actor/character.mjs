@@ -1,13 +1,14 @@
 import { burden } from '../../config/generalConfig.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import DhLevelData from '../levelData.mjs';
-import BaseDataActor, { commonActorRules } from './base.mjs';
+import { commonActorRules } from './base.mjs';
+import DhCreature from './creature.mjs';
 import { attributeField, resourceField, stressDamageReductionRule, bonusField } from '../fields/actorField.mjs';
 import { ActionField } from '../fields/actionField.mjs';
 import DHCharacterSettings from '../../applications/sheets-configs/character-settings.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 
-export default class DhCharacter extends BaseDataActor {
+export default class DhCharacter extends DhCreature {
     /**@override */
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Character'];
 
@@ -36,14 +37,18 @@ export default class DhCharacter extends BaseDataActor {
                     'DAGGERHEART.ACTORS.Character.maxHPBonus'
                 ),
                 stress: resourceField(6, 0, 'DAGGERHEART.GENERAL.stress', true),
-                hope: new fields.SchemaField({
-                    value: new fields.NumberField({
-                        initial: 2,
-                        min: 0,
-                        integer: true,
-                        label: 'DAGGERHEART.GENERAL.hope'
-                    })
-                })
+                hope: new fields.SchemaField(
+                    {
+                        value: new fields.NumberField({
+                            initial: 2,
+                            min: 0,
+                            integer: true,
+                            label: 'DAGGERHEART.GENERAL.hope'
+                        }),
+                        isReversed: new fields.BooleanField({ initial: false })
+                    },
+                    { label: 'DAGGERHEART.GENERAL.hope' }
+                )
             }),
             traits: new fields.SchemaField({
                 agility: attributeField('DAGGERHEART.CONFIG.Traits.agility.name'),
@@ -127,14 +132,6 @@ export default class DhCharacter extends BaseDataActor {
                         ]
                     }
                 }
-            }),
-            advantageSources: new fields.ArrayField(new fields.StringField(), {
-                label: 'DAGGERHEART.ACTORS.Character.advantageSources.label',
-                hint: 'DAGGERHEART.ACTORS.Character.advantageSources.hint'
-            }),
-            disadvantageSources: new fields.ArrayField(new fields.StringField(), {
-                label: 'DAGGERHEART.ACTORS.Character.disadvantageSources.label',
-                hint: 'DAGGERHEART.ACTORS.Character.disadvantageSources.hint'
             }),
             levelData: new fields.EmbeddedDataField(DhLevelData),
             bonuses: new fields.SchemaField({
@@ -222,8 +219,16 @@ export default class DhCharacter extends BaseDataActor {
             rules: new fields.SchemaField({
                 ...commonActorRules({
                     damageReduction: {
-                        magical: new fields.BooleanField({ initial: false }),
-                        physical: new fields.BooleanField({ initial: false }),
+                        magical: new fields.BooleanField({
+                            initial: false,
+                            label: 'DAGGERHEART.GENERAL.Rules.damageReduction.magical.label',
+                            hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.magical.hint'
+                        }),
+                        physical: new fields.BooleanField({
+                            initial: false,
+                            label: 'DAGGERHEART.GENERAL.Rules.damageReduction.physical.label',
+                            hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.physical.hint'
+                        }),
                         maxArmorMarked: new fields.SchemaField({
                             value: new fields.NumberField({
                                 required: true,
@@ -253,7 +258,10 @@ export default class DhCharacter extends BaseDataActor {
                             label: 'DAGGERHEART.GENERAL.Rules.damageReduction.increasePerArmorMark.label',
                             hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.increasePerArmorMark.hint'
                         }),
-                        disabledArmor: new fields.BooleanField({ intial: false })
+                        disabledArmor: new fields.BooleanField({
+                            intial: false,
+                            label: 'DAGGERHEART.GENERAL.Rules.damageReduction.disabledArmor.label'
+                        })
                     },
                     attack: {
                         damage: {
@@ -301,12 +309,14 @@ export default class DhCharacter extends BaseDataActor {
                         label: 'DAGGERHEART.ACTORS.Character.defaultFearDice'
                     })
                 }),
-                runeWard: new fields.BooleanField({ initial: false }),
                 burden: new fields.SchemaField({
-                    ignore: new fields.BooleanField()
+                    ignore: new fields.BooleanField({ label: 'DAGGERHEART.ACTORS.Character.burden.ignore.label' })
                 }),
                 roll: new fields.SchemaField({
-                    guaranteedCritical: new fields.BooleanField()
+                    guaranteedCritical: new fields.BooleanField({
+                        label: 'DAGGERHEART.ACTORS.Character.roll.guaranteedCritical.label',
+                        hint: 'DAGGERHEART.ACTORS.Character.roll.guaranteedCritical.hint'
+                    })
                 })
             }),
             sidebarFavorites: new ForeignDocumentUUIDArrayField({ type: 'Item' })
@@ -640,7 +650,7 @@ export default class DhCharacter extends BaseDataActor {
         };
 
         const globalHopeMax = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxHope;
-        this.resources.hope.max = globalHopeMax - this.scars;
+        this.resources.hope.max = globalHopeMax;
         this.resources.hitPoints.max += this.class.value?.system?.hitPoints ?? 0;
 
         /* Companion Related Data */
@@ -664,6 +674,7 @@ export default class DhCharacter extends BaseDataActor {
             }
         }
 
+        this.resources.hope.max -= this.scars;
         this.resources.hope.value = Math.min(baseHope, this.resources.hope.max);
         this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
 

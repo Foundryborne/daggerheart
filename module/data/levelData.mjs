@@ -6,7 +6,12 @@ export default class DhLevelData extends foundry.abstract.DataModel {
 
         return {
             level: new fields.SchemaField({
-                current: new fields.NumberField({ required: true, integer: true, initial: 1 }),
+                current: new fields.NumberField({
+                    required: true,
+                    integer: true,
+                    initial: 1,
+                    label: 'DAGGERHEART.GENERAL.currentLevel'
+                }),
                 changed: new fields.NumberField({ required: true, integer: true, initial: 1 }),
                 bonuses: new fields.TypedObjectField(new fields.NumberField({ integer: true, nullable: false }))
             }),

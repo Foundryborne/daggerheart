@@ -94,8 +94,10 @@ export default class DHDomainCard extends BaseDataItem {
                 return false;
             }
 
-            if (!this.actor.system.loadoutSlot.available) {
+            if (!this.actor.system.loadoutSlot.available && !this.loadoutIgnore) {
                 data.system.inVault = true;
+                await this.updateSource({ inVault: true });
+                ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.loadoutMaxReached'));
             }
         }
     }

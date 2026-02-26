@@ -7,7 +7,7 @@ import {
     DhHomebrewSettings,
     DhVariantRuleSettings
 } from '../applications/settings/_module.mjs';
-import { DhTagTeamRoll } from '../data/_module.mjs';
+import { CompendiumBrowserSettings, DhTagTeamRoll } from '../data/_module.mjs';
 
 export const registerDHSettings = () => {
     registerMenuSettings();
@@ -126,7 +126,7 @@ const registerNonConfigSettings = () => {
         type: Number,
         default: 0,
         onChange: () => {
-            if (ui.resources) ui.resources.render({ force: true });
+            if (ui.resources) ui.resources.render();
             ui.combat.render({ force: true });
         }
     });
@@ -141,6 +141,12 @@ const registerNonConfigSettings = () => {
         scope: 'world',
         config: false,
         type: DhTagTeamRoll
+    });
+
+    game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.CompendiumBrowserSettings, {
+        scope: 'client',
+        config: false,
+        type: CompendiumBrowserSettings
     });
 };
 

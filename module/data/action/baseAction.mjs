@@ -114,7 +114,22 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * Return Item the action is attached too.
      */
     get item() {
+        if (!this.parent.parent && this.systemPath)
+            return foundry.utils.getProperty(this.parent, this.systemPath).get(this.id);
+
         return this.parent.parent;
+    }
+
+    get applyEffects() {
+        if (this.item.systemPath) {
+            const itemEffectIds = this.item.effects.map(x => x._id);
+            const movePathSplit = this.item.systemPath.split('.');
+            movePathSplit.pop();
+            const move = foundry.utils.getProperty(this.parent, movePathSplit.join('.'));
+            return new Collection(itemEffectIds.map(id => [id, move.effects.find(x => x.id === id)]));
+        }
+
+        return this.item.effects;
     }
 
     /**
@@ -125,7 +140,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             ? this.item
             : this.item?.parent instanceof DhpActor
               ? this.item.parent
-              : this.item?.actor;
+              : null;
     }
 
     static getRollType(parent) {
@@ -214,7 +229,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         if (Hooks.call(`${CONFIG.DH.id}.postUseAction`, this, config) === false) return;
 
-        if (this.chatDisplay) await this.toChat();
+        if (this.chatDisplay && !config.actionChatMessageHandled) await this.toChat();
 
         return config;
     }
@@ -225,9 +240,13 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @returns {object}
      */
     prepareBaseConfig(event) {
+        const isActor = this.item instanceof CONFIG.Actor.documentClass;
+        const actionTitle = game.i18n.localize(this.name);
+        const itemTitle = isActor || this.item.name === actionTitle ? '' : `${this.item.name} - `;
+
         const config = {
             event,
-            title: `${this.item instanceof CONFIG.Actor.documentClass ? '' : `${this.item.name}: `}${game.i18n.localize(this.name)}`,
+            title: `${itemTitle}${actionTitle}`,
             source: {
                 item: this.item._id,
                 originItem: this.originItem,

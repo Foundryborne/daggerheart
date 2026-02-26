@@ -52,8 +52,19 @@
         }
     }
 
+    input[type='checkbox'] {
+        &:indeterminate {
+            &::before {
+                content: '\f0fe';
+            }
+        }
+    }
+
     input[type='checkbox'],
     input[type='radio'] {
+        height: 20px;
+        width: 20px;
+
         &:checked::after {
             color: light-dark(@dark, @golden);
         }
@@ -449,6 +460,12 @@
         &.even {
             grid-template-columns: 1fr 1fr;
         }
+    }
+
+    .three-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
     }
 
     line-div {

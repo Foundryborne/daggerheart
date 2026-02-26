@@ -34,6 +34,20 @@ export default class DHAttackAction extends DHDamageAction {
         };
     }
 
+    get damageFormula() {
+        const hitPointsPart = this.damage.parts.find(x => x.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id);
+        if (!hitPointsPart) return '0';
+
+        return hitPointsPart.value.getFormula();
+    }
+
+    get altDamageFormula() {
+        const hitPointsPart = this.damage.parts.find(x => x.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id);
+        if (!hitPointsPart) return '0';
+
+        return hitPointsPart.valueAlt.getFormula();
+    }
+
     async use(event, options) {
         const result = await super.use(event, options);
         if (!result.message) return;
