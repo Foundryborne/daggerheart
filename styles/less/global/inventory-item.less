@@ -174,9 +174,12 @@
             &.extensible {
                 display: grid;
                 grid-template-rows: 0fr;
-                transition: grid-template-rows 0.3s ease-in-out;
+                transition:
+                    grid-template-rows 0.3s ease-in-out,
+                    padding-top 0.3s ease-in-out;
                 &.extended {
                     grid-template-rows: 1fr;
+                    padding-top: 4px;
                 }
                 .invetory-description {
                     overflow: hidden;

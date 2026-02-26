@@ -110,7 +110,7 @@
       },
       "img": "icons/creatures/claws/claw-scaled-red.webp",
       "type": "attack",
-      "range": "melee",
+      "range": "close",
       "chatDisplay": false
     },
     "attribution": {

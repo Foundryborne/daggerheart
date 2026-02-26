@@ -49,6 +49,8 @@ export default function DhTemplateEnricher(match, _options) {
 }
 
 export const renderMeasuredTemplate = async event => {
+    const { LINE, RECTANGLE, INFRONT, CONE } = CONFIG.DH.GENERAL.templateTypes;
+
     const button = event.currentTarget,
         type = button.dataset.type,
         range = button.dataset.range,
@@ -57,13 +59,9 @@ export const renderMeasuredTemplate = async event => {
 
     if (!type || !range || !game.canvas.scene) return;
 
-    const usedType = type === 'inFront' ? 'cone' : type === 'emanation' ? 'circle' : type;
+    const usedType = type === 'inFront' ? 'cone' : type;
     const usedAngle =
-        type === CONFIG.DH.GENERAL.templateTypes.CONE
-            ? (angle ?? CONFIG.MeasuredTemplate.defaults.angle)
-            : type === CONFIG.DH.GENERAL.templateTypes.INFRONT
-              ? '180'
-              : undefined;
+        type === CONE ? (angle ?? CONFIG.MeasuredTemplate.defaults.angle) : type === INFRONT ? '180' : undefined;
 
     let baseDistance = range;
     if (Number.isNaN(Number(range))) {
@@ -71,16 +69,32 @@ export const renderMeasuredTemplate = async event => {
             range
         ];
     }
-    const distance = type === CONFIG.DH.GENERAL.templateTypes.EMANATION ? baseDistance + 2.5 : baseDistance;
-    const radius = (distance / game.scenes.active.grid.distance) * game.scenes.active.grid.size;
+
+    const dimensionConstant = game.scenes.active.grid.size / game.scenes.active.grid.distance;
+
+    baseDistance *= dimensionConstant;
+
+    const length = baseDistance;
+    const radius = length;
+
+    const shapeWidth = type === LINE ? 5 * dimensionConstant : type === RECTANGLE ? length : undefined;
 
     const { width, height } = game.canvas.scene.dimensions;
     const shapeData = {
         x: width / 2,
         y: height / 2,
+        base: {
+            type: 'token',
+            x: 0,
+            y: 0,
+            width: 1,
+            height: 1,
+            shape: game.canvas.grid.isHexagonal ? CONST.TOKEN_SHAPES.ELLIPSE_1 : CONST.TOKEN_SHAPES.RECTANGLE_1
+        },
         t: usedType,
-        distance: distance,
-        width: type === CONFIG.DH.GENERAL.templateTypes.RAY ? 5 : undefined,
+        length: length,
+        width: shapeWidth,
+        height: length,
         angle: usedAngle,
         radius: radius,
         direction: direction,

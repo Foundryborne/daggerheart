@@ -68,9 +68,9 @@ export default class DHEnvironmentSettings extends DHBaseActorSettings {
      */
     static async #addCategory() {
         await this.actor.update({
-            [`system.potentialAdversaries.${foundry.utils.randomID()}.label`]: game.i18n.localize(
-                'DAGGERHEART.ACTORS.Environment.newAdversary'
-            )
+            [`system.potentialAdversaries.${foundry.utils.randomID()}`]: {
+                label: game.i18n.localize('DAGGERHEART.ACTORS.Environment.newAdversary')
+            }
         });
     }
 
@@ -137,5 +137,9 @@ export default class DHEnvironmentSettings extends DHBaseActorSettings {
             await this.actor.createEmbeddedDocuments('Item', [item]);
             this.render();
         }
+    }
+
+    async _onDropItem(event, item) {
+        console.log(item);
     }
 }

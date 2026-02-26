@@ -2,7 +2,7 @@ import BaseDataItem from './base.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 import ItemLinkFields from '../fields/itemLinkFields.mjs';
-import { addLinkedItemsDiff, updateLinkedItemApps } from '../../helpers/utils.mjs';
+import { addLinkedItemsDiff, getFeaturesHTMLData, updateLinkedItemApps } from '../../helpers/utils.mjs';
 
 export default class DHClass extends BaseDataItem {
     /** @inheritDoc */
@@ -162,5 +162,57 @@ export default class DHClass extends BaseDataItem {
         super._onUpdate(changed, options, userId);
 
         updateLinkedItemApps(options, this.parent.sheet);
+    }
+
+    /**@inheritdoc */
+    async getDescriptionData() {
+        const baseDescription = this.description;
+
+        const getDomainLabel = domain => {
+            const data = CONFIG.DH.DOMAIN.allDomains()[domain];
+            return data ? game.i18n.localize(data.label) : '';
+        };
+        let domainsLabel = '';
+        if (this.domains.length) {
+            if (this.domains.length === 1) domainsLabel = getDomainLabel(this.domains[0]);
+            else {
+                const firstDomains = this.domains
+                    .slice(0, this.domains.length - 1)
+                    .map(getDomainLabel)
+                    .join(', ');
+                const lastDomain = getDomainLabel(this.domains[this.domains.length - 1]);
+                domainsLabel = game.i18n.format('DAGGERHEART.GENERAL.thingsAndThing', {
+                    things: firstDomains,
+                    thing: lastDomain
+                });
+            }
+        }
+
+        const classItems = [];
+        for (const itemData of this.inventory.choiceB) {
+            const linkData = [
+                undefined,
+                'UUID', // type
+                itemData.uuid // target
+            ];
+            const contentLink = await foundry.applications.ux.TextEditor.implementation._createContentLink(linkData);
+            classItems.push(contentLink.outerHTML);
+        }
+
+        const hopeFeatures = await getFeaturesHTMLData(this.hopeFeatures);
+        const classFeatures = await getFeaturesHTMLData(this.classFeatures);
+
+        const suffix = await foundry.applications.handlebars.renderTemplate(
+            'systems/daggerheart/templates/sheets/items/class/description.hbs',
+            {
+                class: this.parent,
+                domains: domainsLabel,
+                classItems,
+                hopeFeatures,
+                classFeatures
+            }
+        );
+
+        return { prefix: null, value: baseDescription, suffix };
     }
 }

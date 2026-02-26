@@ -33,7 +33,7 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "bruiser",
     "notes": "",
     "hordeHp": 1,
     "experiences": {},
@@ -66,12 +66,12 @@
     "tier": 3,
     "description": "<p>A sturdy animate old-growth tree.</p>",
     "attack": {
-      "name": "Attack",
+      "name": "Branch",
       "roll": {
         "type": "attack",
         "bonus": 2
       },
-      "range": "close",
+      "range": "veryClose",
       "damage": {
         "parts": [
           {

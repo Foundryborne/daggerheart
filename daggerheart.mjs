@@ -59,6 +59,8 @@ CONFIG.Canvas.layers.tokens.layerClass = DhTokenLayer;
 
 CONFIG.MeasuredTemplate.objectClass = placeables.DhMeasuredTemplate;
 
+CONFIG.Region.objectClass = placeables.DhRegion;
+
 CONFIG.RollTable.documentClass = documents.DhRollTable;
 CONFIG.RollTable.resultTemplate = 'systems/daggerheart/templates/ui/chat/table-result.hbs';
 
@@ -418,10 +420,7 @@ const updateActorsRangeDependentEffects = async token => {
             // Get required distance and special case 5 feet to test adjacency
             const required = rangeMeasurement[range];
             const reverse = type === CONFIG.DH.GENERAL.rangeInclusion.outsideRange.id;
-            const inRange =
-                required === 5
-                    ? userTarget.isAdjacentWith(token.object)
-                    : userTarget.distanceTo(token.object) <= required;
+            const inRange = userTarget.distanceTo(token.object) <= required;
             if (reverse ? inRange : !inRange) {
                 enabledEffect = false;
                 break;
