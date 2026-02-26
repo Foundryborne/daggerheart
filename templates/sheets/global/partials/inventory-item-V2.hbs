@@ -17,8 +17,12 @@ Parameters:
 - showActions {boolean} : If true show feature's actions.
 --}}
 
-<li class="inventory-item" data-item-id="{{item.id}}" {{#if (or (eq type 'action' ) (eq type 'attack' ))}}
-  data-action-id="{{item.id}}" {{/if}} data-item-uuid="{{item.uuid}}" data-type="{{type}}" data-no-compendium-edit="{{noCompendiumEdit}}">
+<li class="inventory-item" data-item-id="{{item.id}}" 
+    {{#if (or (eq type 'action' ) (eq type 'attack' ))}}data-action-id="{{item.id}}" {{/if}} 
+    {{#if disabledEffect}}data-disabled="true"{{/if}}
+    data-type="{{type}}" data-item-type="{{item.type}}"
+    data-item-uuid="{{item.uuid}}" data-no-compendium-edit="{{noCompendiumEdit}}"
+>
   <div class="inventory-item-header {{#if hideContextMenu}}padded{{/if}}" {{#unless noExtensible}}data-action="toggleExtended" {{/unless}}>
     {{!-- Image --}}
     <div class="img-portait" data-action='{{ifThen (or (hasProperty item "use") (eq type "attack")) "useItem" (ifThen

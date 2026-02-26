@@ -745,7 +745,7 @@ export default class DhCharacter extends DhCreature {
         };
 
         const globalHopeMax = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxHope;
-        this.resources.hope.max = globalHopeMax - this.scars;
+        this.resources.hope.max = globalHopeMax;
         this.resources.hitPoints.max += this.class.value?.system?.hitPoints ?? 0;
 
         /* Companion Related Data */
@@ -769,6 +769,7 @@ export default class DhCharacter extends DhCreature {
             }
         }
 
+        this.resources.hope.max -= this.scars;
         this.resources.hope.value = Math.min(baseHope, this.resources.hope.max);
         this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
 
