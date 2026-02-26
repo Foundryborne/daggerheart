@@ -192,6 +192,10 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                     ...conditional,
                     ...game.system.api.data.activeEffects.EffectConditional.getConditionalFieldUseage(conditional.type)
                 }));
+                partContext.statusChoices = Object.values(CONFIG.statusEffects).map(x => ({
+                    id: x.id,
+                    label: x.name
+                }));
                 break;
             case 'changes':
                 const fields = this.document.system.schema.fields.changes.element.fields;
@@ -267,6 +271,19 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             event.target.name.endsWith('type')
         ) {
             const container = event.target.closest('.conditional-container');
+
+            const statusSelect = container.querySelector('.form-group.status-select');
+            const attributeAuto = container.querySelector('.form-group.attribute-auto');
+            if (event.target.value === CONFIG.DH.GENERAL.activeEffectConditionalType.status.id) {
+                statusSelect.classList.remove('not-visible');
+                attributeAuto.classList.add('not-visible');
+            } else {
+                statusSelect.classList.add('not-visible');
+                attributeAuto.classList.remove('not-visible');
+            }
+            statusSelect.querySelector('select').selectedIndex = '-1';
+            attributeAuto.querySelector('input').value = '';
+
             const { usesValue, usesComparator } =
                 game.system.api.data.activeEffects.EffectConditional.getConditionalFieldUseage(event.target.value);
 

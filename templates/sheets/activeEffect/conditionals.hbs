@@ -9,7 +9,24 @@
                 <div class="conditional-container">
                     {{!-- {{formGroup ../systemFields.conditionals.element.fields.target value=conditional.target name=(concat "system.conditionals." index ".target") localize=true }} --}}
                     {{formGroup ../systemFields.conditionals.element.fields.type value=conditional.type name=(concat "system.conditionals." index ".type") localize=true }}
-                    {{formGroup ../systemFields.conditionals.element.fields.key value=conditional.key name=(concat "system.conditionals." index ".key") localize=true }}
+
+                    <div class="form-group status-select {{#unless (eq conditional.type 'status')}}not-visible{{/unless}}">
+                        <label>{{localize "EFFECT.FIELDS.changes.element.key.label"}}</label>
+
+                        <div class="form-fields">
+                            <select name="{{concat "system.conditionals." index ".key"}}">
+                                {{selectOptions ../statusChoices selected=conditional.key labelAttr="label" valueAttr="id" blank="" localize=true}}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group attribute-auto {{#unless (eq conditional.type 'attribute')}}not-visible{{/unless}}">
+                        <label>{{localize "EFFECT.FIELDS.changes.element.key.label"}}</label>
+
+                        <div class="form-fields">
+                            <input type="text" class="effect-change-input" name="{{concat "system.conditionals." index ".key"}}" value="{{conditional.key}}" />
+                        </div>
+                    </div>
 
                     <div class="form-group value {{#unless conditional.usesValue}}not-visible{{/unless}}">
                         <label>{{localize "EFFECT.FIELDS.changes.element.value.label"}}</label>
