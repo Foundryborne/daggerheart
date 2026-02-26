@@ -86,8 +86,7 @@ export default class DhpAdversary extends DhCreature {
                         amount: 1
                     },
                     roll: {
-                        type: 'attack',
-                        isStandardAttack: true
+                        type: 'attack'
                     },
                     damage: {
                         parts: [
