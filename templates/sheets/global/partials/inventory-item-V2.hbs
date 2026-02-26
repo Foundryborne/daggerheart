@@ -20,7 +20,7 @@ Parameters:
 <li class="inventory-item" data-item-id="{{item.id}}" 
     {{#if (or (eq type 'action' ) (eq type 'attack' ))}}data-action-id="{{item.id}}" {{/if}} 
     {{#if disabledEffect}}data-disabled="true"{{/if}}
-    data-type="{{type}}" data-sub-type="{{item.type}}"
+    data-type="{{type}}" data-item-type="{{item.type}}"
     data-item-uuid="{{item.uuid}}" data-no-compendium-edit="{{noCompendiumEdit}}"
 >
   <div class="inventory-item-header {{#if hideContextMenu}}padded{{/if}}" {{#unless noExtensible}}data-action="toggleExtended" {{/unless}}>

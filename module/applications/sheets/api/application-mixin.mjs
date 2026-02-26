@@ -433,7 +433,7 @@ export default function DHApplicationMixin(Base) {
                     icon: 'fa-solid fa-lightbulb',
                     condition: element => {
                         const target = element.closest('[data-item-uuid]');
-                        return !target.dataset.disabled && target.dataset.subType !== 'beastform';
+                        return !target.dataset.disabled && target.dataset.itemType !== 'beastform';
                     },
                     callback: async target => (await getDocFromElement(target)).update({ disabled: true })
                 },
@@ -442,7 +442,7 @@ export default function DHApplicationMixin(Base) {
                     icon: 'fa-regular fa-lightbulb',
                     condition: element => {
                         const target = element.closest('[data-item-uuid]');
-                        return target.dataset.disabled && target.dataset.subType !== 'beastform';
+                        return target.dataset.disabled && target.dataset.itemType !== 'beastform';
                     },
                     callback: async target => (await getDocFromElement(target)).update({ disabled: false })
                 }
@@ -538,7 +538,7 @@ export default function DHApplicationMixin(Base) {
                     icon: 'fa-solid fa-trash',
                     condition: element => {
                         const target = element.closest('[data-item-uuid]');
-                        return target.dataset.subType !== 'beastform';
+                        return target.dataset.itemType !== 'beastform';
                     },
                     callback: async (target, event) => {
                         const doc = await getDocFromElement(target);
