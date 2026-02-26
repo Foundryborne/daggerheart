@@ -21,12 +21,14 @@ export class EffectConditionals extends foundry.data.fields.ArrayField {
                         x => !x.disabled && x.statuses.has(conditional.key)
                     );
                     if (!hasStatus) return true;
+                    break;
                 case CONFIG.DH.GENERAL.activeEffectConditionalType.attribute.id:
                     const actorValue = foundry.utils.getProperty(actor, conditional.key);
                     const conditionalValue = game.system.api.documents.DhActiveEffect.effectSafeEval(
                         itemAbleRollParse(conditional.value, actor)
                     );
                     if (!compareValues(actorValue, conditionalValue, conditional.comparator)) return true;
+                    break;
             }
         }
 

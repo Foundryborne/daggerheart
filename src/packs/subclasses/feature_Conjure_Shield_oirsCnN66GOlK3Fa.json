@@ -26,27 +26,36 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
-        }
+        },
+        "changes": [
+          {
+            "key": "system.evasion",
+            "value": "@system.proficiency",
+            "priority": 21,
+            "type": "add"
+          }
+        ],
+        "duration": {
+          "type": ""
+        },
+        "conditionals": [
+          {
+            "type": "attribute",
+            "key": "system.resources.hope.value",
+            "value": "2",
+            "comparator": "gte",
+            "target": "self"
+          }
+        ]
       },
       "_id": "0i7GVOvjH6bK5AUM",
       "img": "icons/magic/defensive/barrier-shield-dome-blue-purple.webp",
-      "changes": [
-        {
-          "key": "system.evasion",
-          "mode": 2,
-          "value": "@system.proficiency",
-          "priority": 21
-        }
-      ],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>While you have at least 2 Hope, you add your Proficiency to your Evasion.</p>",
       "origin": null,
@@ -58,6 +67,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!oirsCnN66GOlK3Fa.0i7GVOvjH6bK5AUM"
     }
   ],

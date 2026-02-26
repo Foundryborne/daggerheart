@@ -28,27 +28,36 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
-        }
+        },
+        "changes": [
+          {
+            "key": "system.rules.damageReduction.thresholdImmunities.minor",
+            "value": 1,
+            "priority": null,
+            "type": "override"
+          }
+        ],
+        "duration": {
+          "type": ""
+        },
+        "conditionals": [
+          {
+            "type": "attribute",
+            "key": "system.resources.hitPoints.value",
+            "value": "@system.resources.hitPoints.max - 2",
+            "comparator": "gte",
+            "target": "self"
+          }
+        ]
       },
       "_id": "UJTsJlnhi5Zi0XQ2",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/bone.png",
-      "changes": [
-        {
-          "key": "system.rules.damageReduction.thresholdImmunities.minor",
-          "mode": 5,
-          "value": "1",
-          "priority": null
-        }
-      ],
-      "disabled": true,
+      "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p class=\"Body\">When you have 2 or fewer Hit Points unmarked, you don’t take Minor damage.</p>",
       "origin": null,
@@ -60,6 +69,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!zbxPl81kbWEegKQN.UJTsJlnhi5Zi0XQ2"
     }
   ],

@@ -8,6 +8,9 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
 
     /**@override */
     get isSuppressed() {
+        const conditionalSuspended = game.system.api.data.activeEffects.EffectConditionals.isConditionalSuspended(this);
+        if (conditionalSuspended) return true;
+
         // If this is a copied effect from an attachment, never suppress it
         // (These effects have attachmentSource metadata)
         if (this.flags?.daggerheart?.attachmentSource) {
@@ -25,9 +28,6 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
 
             return isVaultSupressed || domainTouchedSupressed;
         }
-
-        const conditionalSuspended = game.system.api.data.activeEffects.EffectConditionals.isConditionalSuspended(this);
-        if (conditionalSuspended) return true;
 
         return super.isSuppressed;
     }
