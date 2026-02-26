@@ -76,8 +76,8 @@
       "name": "Longbow",
       "img": "icons/weapons/bows/longbow-recurve-skull-brown.webp",
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -103,7 +103,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "roll": {
         "bonus": 3,
@@ -456,8 +456,8 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "fear": {
                   "value": {
                     "custom": {
                       "enabled": true,
@@ -483,7 +483,7 @@
                   },
                   "type": []
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {

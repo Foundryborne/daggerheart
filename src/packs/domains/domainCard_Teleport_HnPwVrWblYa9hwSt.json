@@ -24,7 +24,7 @@
           "recovery": "longRest"
         },
         "damage": {
-          "parts": [],
+          "parts": {},
           "includeBase": false
         },
         "target": {
