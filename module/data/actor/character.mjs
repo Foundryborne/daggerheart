@@ -1,12 +1,13 @@
 import { burden } from '../../config/generalConfig.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import DhLevelData from '../levelData.mjs';
-import BaseDataActor, { commonActorRules } from './base.mjs';
+import { commonActorRules } from './base.mjs';
+import DhCreature from './creature.mjs';
 import { attributeField, resourceField, stressDamageReductionRule, bonusField } from '../fields/actorField.mjs';
 import { ActionField } from '../fields/actionField.mjs';
 import DHCharacterSettings from '../../applications/sheets-configs/character-settings.mjs';
 
-export default class DhCharacter extends BaseDataActor {
+export default class DhCharacter extends DhCreature {
     /**@override */
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Character'];
 
@@ -130,14 +131,6 @@ export default class DhCharacter extends BaseDataActor {
                         ]
                     }
                 }
-            }),
-            advantageSources: new fields.ArrayField(new fields.StringField(), {
-                label: 'DAGGERHEART.ACTORS.Character.advantageSources.label',
-                hint: 'DAGGERHEART.ACTORS.Character.advantageSources.hint'
-            }),
-            disadvantageSources: new fields.ArrayField(new fields.StringField(), {
-                label: 'DAGGERHEART.ACTORS.Character.disadvantageSources.label',
-                hint: 'DAGGERHEART.ACTORS.Character.disadvantageSources.hint'
             }),
             levelData: new fields.EmbeddedDataField(DhLevelData),
             bonuses: new fields.SchemaField({
@@ -677,7 +670,7 @@ export default class DhCharacter extends BaseDataActor {
         };
 
         const globalHopeMax = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxHope;
-        this.resources.hope.max = globalHopeMax - this.scars;
+        this.resources.hope.max = globalHopeMax;
         this.resources.hitPoints.max += this.class.value?.system?.hitPoints ?? 0;
 
         /* Companion Related Data */
@@ -701,6 +694,7 @@ export default class DhCharacter extends BaseDataActor {
             }
         }
 
+        this.resources.hope.max -= this.scars;
         this.resources.hope.value = Math.min(baseHope, this.resources.hope.max);
         this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
 

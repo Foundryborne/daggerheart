@@ -4,7 +4,7 @@
   "type": "ancestry",
   "folder": null,
   "system": {
-    "description": "<p>Humans are most easily recognized by their dexterous hands, rounded ears, and bodies built for endurance. Their average height ranges from just under 5 feet to about 6 ½ feet. They have a wide variety of builds, with some being quite broad, others lithe, and many inhabiting the spectrum in between. Humans are physically adaptable and adjust to harsh climates with relative ease. In general, humans live to an age of about 100, with their bodies changing dramatically between their youngest and oldest years.</p><p></p><h4>ANCESTRY FEATURES</h4><p><em><strong>High Stamina:</strong></em> Gain an additional Stress slot at character creation.</p><p><em><strong>Adaptability:</strong></em> When you fail a roll that utilized one of your Experiences, you can <strong>mark a Stress</strong> to reroll.</p>",
+    "description": "<p>Humans are most easily recognized by their dexterous hands, rounded ears, and bodies built for endurance. Their average height ranges from just under 5 feet to about 6 ½ feet. They have a wide variety of builds, with some being quite broad, others lithe, and many inhabiting the spectrum in between. Humans are physically adaptable and adjust to harsh climates with relative ease. In general, humans live to an age of about 100, with their bodies changing dramatically between their youngest and oldest years.</p>",
     "features": [
       {
         "type": "primary",

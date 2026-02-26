@@ -409,7 +409,9 @@ export default class DualityRoll extends D20Roll {
                 difficulty: message.system.roll.difficulty ? Number(message.system.roll.difficulty) : null
             }
         });
-        newRoll.extra = newRoll.extra.slice(2);
+
+        const extraIndex = newRoll.advantage ? 3 : 2;
+        newRoll.extra = newRoll.extra.slice(extraIndex);
 
         const tagTeamSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
 
