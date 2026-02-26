@@ -1,3 +1,4 @@
+import { getFeaturesHTMLData } from '../../helpers/utils.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 import BaseDataItem from './base.mjs';
 
@@ -24,4 +25,17 @@ export default class DHCommunity extends BaseDataItem {
     /**@override */
     static DEFAULT_ICON = 'systems/daggerheart/assets/icons/documents/items/village.svg';
 
+    /**@inheritdoc */
+    async getDescriptionData() {
+        const baseDescription = this.description;
+        const features = await getFeaturesHTMLData(this.features);
+
+        if (!features.length) return { prefix: null, value: baseDescription, suffix: null };
+        const suffix = await foundry.applications.handlebars.renderTemplate(
+            'systems/daggerheart/templates/sheets/items/description.hbs',
+            { label: 'DAGGERHEART.ITEMS.Community.featuresLabel', features }
+        );
+
+        return { prefix: null, value: baseDescription, suffix };
+    }
 }

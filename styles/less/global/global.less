@@ -50,6 +50,29 @@
             transform: rotate(360deg);
         }
     }
+
+    .item-description-outer-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .item-description-container {
+            h4 {
+                margin-bottom: 4px;
+            }
+
+            .item-description-inner-container {
+                p {
+                    display: inline;
+                }
+            }
+
+            .item-links {
+                display: flex;
+                gap: 4px;
+            }
+        }
+    }
 }
 
 /* TODO: Remove me when this issue is resolved https://github.com/foundryvtt/foundryvtt/issues/13734 */

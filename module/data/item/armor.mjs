@@ -59,11 +59,10 @@ export default class DHArmor extends AttachableItem {
         const baseDescription = this.description;
         const allFeatures = CONFIG.DH.ITEM.allArmorFeatures();
         const features = this.armorFeatures.map(x => allFeatures[x.value]);
-        if (!features.length) return { prefix: null, value: baseDescription, suffix: null };
 
         const prefix = await foundry.applications.handlebars.renderTemplate(
             'systems/daggerheart/templates/sheets/items/armor/description.hbs',
-            { features }
+            { item: this.parent, features }
         );
 
         return { prefix, value: baseDescription, suffix: null };

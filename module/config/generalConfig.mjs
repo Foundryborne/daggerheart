@@ -74,8 +74,8 @@ export const range = {
 export const templateTypes = {
     CIRCLE: 'circle',
     CONE: 'cone',
-    RECTANGLE: 'rect',
-    RAY: 'ray',
+    RECTANGLE: 'rectangle',
+    LINE: 'line',
     EMANATION: 'emanation',
     INFRONT: 'inFront'
 };

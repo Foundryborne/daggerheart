@@ -1,0 +1,34 @@
+<div class="item-description-outer-container">
+    <div class="item-description-container">
+        <h4>{{localize "DAGGERHEART.GENERAL.Domain.plural"}}</h4>
+        <span>{{domains}}</span>
+    </div>
+    <div class="item-description-container">
+        <h4>{{localize "DAGGERHEART.ITEMS.Class.startingEvasionScore"}}</h4>
+        <span>{{class.system.evasion}}</span>
+    </div>
+    <div class="item-description-container">
+        <h4>{{localize "DAGGERHEART.ITEMS.Class.startingHitPoints"}}</h4>
+        <span>{{class.system.hitPoints}}</span>
+    </div>
+    <div class="item-description-container">
+        <h4>{{localize "DAGGERHEART.ITEMS.Class.classItems"}}</h4>
+        <div class="item-links">
+            {{#each classItems}}
+                {{{this}}}
+            {{/each}}
+        </div>
+    </div>
+    <div class="item-description-container">
+        <h4>{{localize "DAGGERHEART.ITEMS.Class.hopeFeatureLabel" class=class.name}}</h4>
+        {{#each hopeFeatures as | feature |}}
+            <div class="item-description-inner-container"><strong>{{localize feature.label}}</strong>: {{{localize feature.description}}}</div>
+        {{/each}}
+    </div>
+    <div class="item-description-container">
+        <h4>{{localize "DAGGERHEART.ITEMS.Class.classFeature"}}</h4>
+        {{#each classFeatures as | feature |}}
+            <div class="item-description-inner-container"><strong>{{localize feature.label}}</strong>: {{{localize feature.description}}}</div>
+        {{/each}}
+    </div>
+</div>
