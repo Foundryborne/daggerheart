@@ -48,7 +48,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
     /**@inheritdoc */
     async _drawEffect(src, tint, effect) {
         if (!src) return;
-        const tex = await loadTexture(src, { fallback: 'icons/svg/hazard.svg' });
+        const tex = await foundry.canvas.loadTexture(src, { fallback: 'icons/svg/hazard.svg' });
         const icon = new PIXI.Sprite(tex);
         icon.tint = tint ?? 0xffffff;
 
@@ -62,7 +62,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
             const nrDigits = Math.floor(Math.log10(effect.system.stacking.value)) + 1;
             stackOverlay.y = -8;
             /* This does not account for 1:s being much less wide than other digits. I don't think it's desired however as it makes it look jumpy */
-            stackOverlay.x = icon.width - 8 - nrDigits * 56 + (lastDigitIsOne ? 16 : 0);
+            stackOverlay.x = icon.width - 8 - nrDigits * 56;
             stackOverlay.anchor.set(0, 0);
 
             icon.addChild(stackOverlay);

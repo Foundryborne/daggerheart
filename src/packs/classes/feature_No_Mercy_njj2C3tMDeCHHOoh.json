@@ -71,13 +71,18 @@
         "changes": [
           {
             "key": "system.bonuses.roll.attack.bonus",
-            "value": 1,
+            "type": "add",
+            "value": "@stacks",
             "priority": null,
-            "type": "add"
+            "phase": "initial"
           }
         ],
         "duration": {
           "type": "shortRest"
+        },
+        "stacking": {
+          "enabled": true,
+          "max": null
         }
       },
       "disabled": false,
