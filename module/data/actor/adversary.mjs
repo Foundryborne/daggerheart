@@ -191,6 +191,10 @@ export default class DhpAdversary extends DhCreature {
         }
     }
 
+    prepareDerivedData() {
+        this.attack.roll.isStandardAttack = true;
+    }
+
     _getTags() {
         const tags = [
             game.i18n.localize(`DAGGERHEART.GENERAL.Tiers.${this.tier}`),
@@ -405,11 +409,5 @@ export default class DhpAdversary extends DhCreature {
         }
 
         return result;
-    }
-
-    static migrateData(source) {
-        if (!source.attack.roll.isStandardAttack) source.attack.roll.isStandardAttack = true;
-
-        return super.migrateData(source);
     }
 }

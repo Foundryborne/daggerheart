@@ -11,11 +11,6 @@ export class DHActionRollData extends foundry.abstract.DataModel {
                 choices: CONFIG.DH.ACTOR.abilities,
                 label: 'DAGGERHEART.GENERAL.Trait.single'
             }),
-            isStandardAttack: new fields.BooleanField({
-                required: true,
-                nullable: false,
-                initial: false
-            }),
             difficulty: new fields.NumberField({ nullable: true, initial: null, integer: true, min: 0 }),
             bonus: new fields.NumberField({ nullable: true, initial: null, integer: true }),
             advState: new fields.StringField({
