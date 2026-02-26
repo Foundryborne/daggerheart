@@ -29,8 +29,8 @@
           "recovery": null
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "armor": {
               "value": {
                 "custom": {
                   "enabled": true,
@@ -55,7 +55,7 @@
               },
               "type": []
             }
-          ],
+          },
           "includeBase": false
         },
         "target": {
