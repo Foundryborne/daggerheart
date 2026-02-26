@@ -19,8 +19,8 @@
           "amount": null
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "hitPoints": {
               "applyTo": "hitPoints",
               "value": {
                 "custom": {
@@ -45,7 +45,7 @@
               "base": false,
               "type": []
             }
-          ],
+          },
           "includeBase": false
         },
         "_id": "o18UvqLPWLe1A8XJ",
@@ -117,8 +117,8 @@
         "useDefault": false
       },
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "dice": "d10",
               "bonus": 6,
@@ -144,7 +144,7 @@
             },
             "base": false
           }
-        ],
+        },
         "includeBase": false
       },
       "description": "",
