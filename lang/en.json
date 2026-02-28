@@ -2986,7 +2986,8 @@
                 "tokenActorMissing": "{name} is missing an Actor",
                 "tokenActorsMissing": "[{names}] missing Actors",
                 "domainTouchRequirement": "This domain card requires {nr} {domain} cards in the loadout to be used",
-                "knowTheTide": "Know The Tide gained a token"
+                "knowTheTide": "Know The Tide gained a token",
+                "lackingItemTransferPermission": "User {user} lacks owner permission needed to transfer items to {target}"
             },
             "Sidebar": {
                 "actorDirectory": {
