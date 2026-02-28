@@ -1294,6 +1294,7 @@
                 "triggerTexts": {
                     "strangePatternsContentTitle": "Matched {nr} times.",
                     "strangePatternsContentSubTitle": "Increase hope and stress to a total of {nr}.",
+                    "strangePatternsActionExplanation": "Left click to increase, rightclick to decrease",
                     "ferocityContent": "Spend 2 Hope to gain {bonus} bonus Evasion until after the next attack against you?",
                     "ferocityEffectDescription": "Your evasion is increased by {bonus}. This bonus lasts until after the next attack made against you."
                 },
