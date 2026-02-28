@@ -467,9 +467,7 @@ export const allArmorFeatures = () => {
 };
 
 export const orderedArmorFeatures = () => {
-    const homebrewFeatures = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).itemFeatures
-        .armorFeatures;
-    const allFeatures = { ...armorFeatures, ...homebrewFeatures };
+    const allFeatures = allArmorFeatures();
     const all = Object.keys(allFeatures).map(key => {
         const feature = allFeatures[key];
         return {
