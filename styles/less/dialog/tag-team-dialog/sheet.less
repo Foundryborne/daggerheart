@@ -1,178 +1,136 @@
 .daggerheart.dialog.dh-style.views.tag-team-dialog {
-    .tag-team-container {
+    .tag-team-roll-container {
         display: flex;
         flex-direction: column;
         gap: 16px;
 
-        .tag-team-data-container {
+        .team-container {
             display: flex;
-            align-items: center;
-            gap: 8px;
+            gap: 16px;
 
-            .form-group {
-                flex: 0;
-
-                label {
-                    white-space: nowrap;
-                }
-
-                &.flex-group {
-                    flex: 1;
-                }
-            }
-        }
-
-        .title-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-
-            h2 {
-                text-align: start;
-            }
-
-            select {
-                flex: 1;
-            }
-        }
-
-        .participants-container {
-            margin-top: 8px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-
-            .participant-outer-container {
-                padding: 8px;
+            .member-container {
                 display: flex;
                 flex-direction: column;
-                gap: 4px;
-                cursor: pointer;
-                border-radius: 6px;
+                gap: 8px;
+                flex: 1;
 
-                &.selected,
-                &:hover {
-                    background-color: light-dark(@golden-40, @golden-40);
-                }
-
-                .participant-container {
+                .member-info {
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
-                    gap: 8px;
+                    width: 100%;
 
-                    .participant-inner-container {
+                    img {
+                        height: 64px;
+                        border-radius: 6px;
+                        border: 1px solid light-dark(@dark-blue, @golden);
+                    }
+
+                    .member-name {
                         flex: 1;
+                        text-align: center;
+                        font-size: var(--font-size-18);
+                    }
+                }
+
+                .roll-tools {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-evenly;
+
+                    .roll-button {
+                        position: relative;
                         display: flex;
-                        align-items: center;
-                        gap: 4px;
+                        justify-content: center;
+
+                        .roll-label {
+                            position: absolute;
+                            top: 8px;
+                            width: 60px;
+                            text-align: center;
+                            padding: 2px;
+                            background: light-dark(darkblue, gold);
+                            color: light-dark(white, black);
+                            border-radius: 6px;
+                            border: 1px solid light-dark(white, black);
+                        }
 
                         img {
-                            height: 48px;
-                            width: 48px;
-                            border-radius: 50%;
+                            height: 80px;
                         }
+                    }
 
-                        .participant-labels {
-                            display: flex;
-                            flex-direction: column;
-                            gap: 2px;
-
-                            .participant-label-title {
-                                font-size: 18px;
-                            }
-
-                            .participant-label-info {
-                                display: flex;
-                                gap: 4px;
-
-                                .participant-label-info-part {
-                                    border: 1px solid light-dark(white, white);
-                                    border-radius: 4px;
-                                    padding: 2px 4px;
-                                    background-color: light-dark(@beige-80, @soft-white-shadow);
-                                    color: white;
-                                }
-                            }
-                        }
+                    .delete-button i {
+                        font-size: 40px;
                     }
                 }
 
-                .participant-empty-roll-container {
-                    border: 1px dashed white;
-                    padding: 8px 2px;
-                    text-align: center;
-                    font-style: italic;
-                }
-
-                .participant-roll-outer-container {
+                .roll-data {
                     display: flex;
                     flex-direction: column;
-                    gap: 2px;
-                    color: light-dark(@dark-blue, @golden);
+                    gap: 4px;
 
-                    h4 {
-                        text-align: center;
-                        color: light-dark(@dark-blue, @golden);
+                    &.hope {
+                        --text-color: @golden;
+                        --bg-color: @golden-40;
                     }
 
-                    .participant-roll-container {
+                    &.fear {
+                        --text-color: @chat-blue;
+                        --bg-color: @chat-blue-40;
+                    }
+
+                    &.critical {
+                        --text-color: @chat-purple;
+                        --bg-color: @chat-purple-40;
+                    }
+
+                    .duality-label {
+                        color: var(--text-color);
+                        font-size: var(--font-size-24);
+                        font-weight: bold;
+                        text-align: center;
+                    }
+
+                    .roll-dice-container {
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        white-space: nowrap;
-
-                        .participant-roll-text-container {
-                            padding: 0 8px;
-                            white-space: nowrap;
-                            display: flex;
-                        }
-                    }
-
-                    .damage-values-container {
-                        display: flex;
-                        justify-content: space-around;
                         gap: 8px;
 
-                        .damage-container {
-                            border: 1px solid light-dark(white, white);
-                            border-radius: 6px;
-                            padding: 0 4px;
+                        .roll-dice {
+                            position: relative;
                             display: flex;
-                            gap: 4px;
+                            align-items: center;
+                            justify-content: center;
+
+                            .dice-label {
+                                position: absolute;
+                                color: white;
+                                font-size: 1rem;
+                                paint-order: stroke fill;
+                                -webkit-text-stroke: 2px black;
+                            }
+
+                            img {
+                                height: 32px;
+                            }
                         }
+
+                        .roll-operator {
+                            font-size: var(--font-size-24);
+                        }
+                    }
+
+                    .roll-total {
+                        background: var(--bg-color);
+                        color: var(--text-color);
+                        border-radius: 4px;
+                        padding: 3px;
                     }
                 }
             }
-        }
-
-        h2 {
-            text-align: center;
-        }
-
-        .result-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            gap: 8px;
-
-            .result-damages-container {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 4px;
-
-                .result-damage-container {
-                    border: 1px solid light-dark(white, white);
-                    border-radius: 6px;
-                    padding: 0 4px;
-                }
-            }
-        }
-
-        .roll-leader-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
         }
     }
 }

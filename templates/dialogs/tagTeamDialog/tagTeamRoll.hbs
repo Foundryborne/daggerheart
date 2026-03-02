@@ -1,0 +1,74 @@
+<section class="tag-team-roll tab {{#if tabs.tagTeamRoll.active}} active{{/if}}" data-group="{{tabs.tagTeamRoll.group}}" data-tab="{{tabs.tagTeamRoll.id}}">
+    <div class="tag-team-roll-container">
+        <div class="team-container">
+            {{#each members as |member key|}}
+                <fieldset class="member-container">
+                    <div class="member-info">
+                        <img src="{{member.img}}" />
+                        <span class="member-name">{{member.name}}</span>
+                    </div>
+                    <div class="roll-setup">
+                        <div class="form-group">
+                            <div class="form-fields">
+                                <label>{{localize "Roll Type"}}</label>
+                                <select class="roll-type-select" data-member="{{key}}" {{#if member.hasRolled}}disabled{{/if}}>
+                                    {{selectOptions ../rollTypes selected=member.rollType localize=true}}
+                                </select>
+                            </div>
+                        </div>
+                        
+                        {{#if (eq member.rollType 'trait')}}
+                            <div class="form-group">
+                                <div class="form-fields">
+                                    <label>{{localize "Trait"}}</label>
+                                    <select name="{{concat "system.tagTeam.members." key ".rollChoice"}}" {{#if member.hasRolled}}disabled{{/if}}>
+                                        {{selectOptions ../traitOptions selected=member.rollChoice localize=true blank=""}}
+                                    </select>
+                                </div>
+                            </div>
+                        {{else}}
+                            <div class="form-group">
+                                <div class="form-fields">
+                                    <label>{{localize "Ability"}}</label>
+                                    <select name="{{concat "system.tagTeam.members." key ".rollChoice"}}" {{#if member.hasRolled}}disabled{{/if}}>
+                                        {{selectOptions member.rollOptions selected=member.rollChoice localize=true blank=""}}
+                                    </select>
+                                </div>
+                            </div>
+                        {{/if}}
+                    </div>
+
+                    <div class="roll-tools">
+                        <a class="roll-button" data-action="makeRoll" data-member="{{key}}" {{#unless member.readyToRoll}}disabled{{/unless}}>
+                            <span class="roll-label">{{#if member.hasRolled}}{{localize "DAGGERHEART.GENERAL.reroll"}}{{else}}{{localize "DAGGERHEART.GENERAL.roll"}}{{/if}}</span>
+                            <img src="systems/daggerheart/assets/icons/dice/duality/Daggerheart%20Foundry_g519.png" />
+                        </a>
+                        <a class="delete-button" data-action="removeRoll" data-member="{{key}}" {{#unless member.hasRolled}}disabled{{/unless}}><i class="fa-solid fa-trash"></i></a>
+                    </div>
+
+                    {{#if member.rollData}}
+                        {{#with member.rollData.options.roll}}
+                        <div class="roll-data 
+                            {{#if this.isCritical}}critical{{else}}{{#if (eq this.result.duality 1)}}hope{{else}}fear{{/if}}{{/if}}"
+                        >
+                            <div class="duality-label">{{localize "DAGGERHEART.GENERAL.withThing" thing=this.result.label}}</div>
+                            <div class="roll-dice-container">
+                                <div class="roll-dice">
+                                    <span class="dice-label">{{this.hope.value}}</span>
+                                    <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/" this.hope.dice ".svg"}}" />
+                                </div>
+                                <span class="roll-operator">+</span>
+                                <div class="roll-dice">
+                                    <span class="dice-label">{{this.fear.value}}</span>
+                                    <img src="{{concat "systems/daggerheart/assets/icons/dice/fear/" this.fear.dice ".svg"}}" />
+                                </div>
+                            </div>
+                            <div class="roll-total">{{../rollData.formula}}</div>
+                        </div>
+                        {{/with}}
+                    {{/if}}
+                </fieldset>
+            {{/each}}
+        </div>
+    </div>
+</section>

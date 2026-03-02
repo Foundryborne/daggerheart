@@ -848,3 +848,14 @@ export const sceneRangeMeasurementSetting = {
         label: 'Custom'
     }
 };
+
+export const tagTeamRollTypes = {
+    trait: {
+        id: 'trait',
+        label: 'DAGGERHEART.GENERAL.Trait.single'
+    },
+    ability: {
+        id: 'ability',
+        label: 'DAGGERHEART.GENERAL.Ability.single'
+    }
+};

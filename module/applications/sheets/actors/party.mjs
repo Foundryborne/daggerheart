@@ -6,7 +6,6 @@ import DaggerheartMenu from '../../sidebar/tabs/daggerheartMenu.mjs';
 import { socketEvent } from '../../../systemRegistration/socket.mjs';
 import GroupRollDialog from '../../dialogs/group-roll-dialog.mjs';
 import DhpActor from '../../../documents/actor.mjs';
-import DHItem from '../../../documents/item.mjs';
 
 export default class Party extends DHBaseActorSheet {
     constructor(options) {
@@ -256,11 +255,7 @@ export default class Party extends DHBaseActorSheet {
     }
 
     static async #tagTeamRoll() {
-        new game.system.api.applications.dialogs.TagTeamDialog(
-            this.document.system.partyMembers.filter(x => Party.DICE_ROLL_ACTOR_TYPES.includes(x.type))
-        ).render({
-            force: true
-        });
+        new game.system.api.applications.dialogs.TagTeamDialog(this.document).render({ force: true });
     }
 
     static async #groupRoll(_params) {

@@ -1,0 +1,32 @@
+.daggerheart.dialog.dh-style.views.tag-team-dialog {
+    .initialization-container {
+        .members-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 8px;
+
+            .member-container {
+                position: relative;
+                display: flex;
+                justify-content: center;
+
+                &.inactive {
+                    opacity: 0.4;
+                }
+
+                .member-name {
+                    position: absolute;
+                }
+            }
+        }
+
+        footer {
+            margin-top: 8px;
+            display: flex;
+
+            > * {
+                flex: 1;
+            }
+        }
+    }
+}

@@ -21,6 +21,8 @@ export default class DHRoll extends Roll {
     static async build(config = {}, message = {}) {
         const roll = await this.buildConfigure(config, message);
         if (!roll) return;
+
+        config.messageRoll = roll;
         await this.buildEvaluate(roll, config, (message = {}));
         await this.buildPost(roll, config, (message = {}));
         return config;
