@@ -22,7 +22,8 @@ export default class DHRoll extends Roll {
         const roll = await this.buildConfigure(config, message);
         if (!roll) return;
 
-        config.messageRoll = roll;
+        if (config.skips?.createMessage) config.messageRoll = roll;
+
         await this.buildEvaluate(roll, config, (message = {}));
         await this.buildPost(roll, config, (message = {}));
         return config;

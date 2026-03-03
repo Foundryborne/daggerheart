@@ -204,7 +204,11 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
 
             if (!game.modules.get('dice-so-nice')?.active) foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
 
-            const { newRoll, parsedRoll } = await rollClass.reroll(originalRoll_parsed, target, message);
+            const { newRoll, parsedRoll } = await rollClass.reroll(
+                originalRoll_parsed,
+                target.dataset.dieIndex,
+                target.dataset.type
+            );
 
             await game.messages.get(message._id).update({
                 'system.roll': newRoll,

@@ -51,19 +51,19 @@
                         <div class="roll-data 
                             {{#if this.isCritical}}critical{{else}}{{#if (eq this.result.duality 1)}}hope{{else}}fear{{/if}}{{/if}}"
                         >
-                            <div class="duality-label">{{localize "DAGGERHEART.GENERAL.withThing" thing=this.result.label}}</div>
+                            <div class="duality-label">{{this.total}} {{localize "DAGGERHEART.GENERAL.withThing" thing=this.result.label}}</div>
                             <div class="roll-dice-container">
-                                <div class="roll-dice">
+                                <a class="roll-dice" data-action="rerollDice" data-member="{{../key}}" data-dice-type="hope">
                                     <span class="dice-label">{{this.hope.value}}</span>
                                     <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/" this.hope.dice ".svg"}}" />
-                                </div>
+                                </a>
                                 <span class="roll-operator">+</span>
-                                <div class="roll-dice">
+                                <a class="roll-dice" data-action="rerollDice" data-member="{{../key}}" data-dice-type="fear">
                                     <span class="dice-label">{{this.fear.value}}</span>
                                     <img src="{{concat "systems/daggerheart/assets/icons/dice/fear/" this.fear.dice ".svg"}}" />
-                                </div>
+                                </a>
                             </div>
-                            <div class="roll-total">{{../rollData.formula}}</div>
+                            <div class="roll-total">{{this.formula}}</div>
                         </div>
                         {{/with}}
                     {{/if}}

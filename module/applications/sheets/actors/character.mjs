@@ -717,8 +717,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const costResources =
             result.costs?.filter(x => x.enabled).map(cost => ({ ...cost, value: -cost.value, total: -cost.total })) ||
             {};
-        config.resourceUpdates.addResources(costResources);
-        await config.resourceUpdates.updateResources();
+        result.resourceUpdates.addResources(costResources);
+        await result.resourceUpdates.updateResources();
     }
 
     //TODO: redo toggleEquipItem method

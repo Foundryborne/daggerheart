@@ -33,7 +33,8 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             toggleSelectMember: TagTeamDialog.#toggleSelectMember,
             startTagTeamRoll: TagTeamDialog.#startTagTeamRoll,
             makeRoll: TagTeamDialog.#makeRoll,
-            removeRoll: TagTeamDialog.#removeRoll
+            removeRoll: TagTeamDialog.#removeRoll,
+            rerollDice: TagTeamDialog.#rerollDice
         },
         form: { handler: this.updateData, submitOnChange: true, closeOnSubmit: false }
     };
@@ -105,6 +106,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
                     acc[actorId] = {
                         ...data,
+                        key: actorId,
                         readyToRoll: Boolean(data.rollChoice),
                         hasRolled: Boolean(data.rollData),
                         rollOptions
@@ -192,6 +194,8 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         if (!result) return;
 
+        if (!game.modules.get('dice-so-nice')?.active) foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
+
         const rollData = result.messageRoll.toJSON();
         delete rollData.options.messageRoll;
         await this.party.update({
@@ -228,6 +232,30 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 triggers: true
             }
         });
+    }
+
+    static async #rerollDice(_, button) {
+        const { member, diceType } = button.dataset;
+        const memberData = this.party.system.tagTeam.members[member];
+
+        const dieIndex = diceType === 'hope' ? 0 : diceType === 'fear' ? 2 : 4;
+
+        const { parsedRoll, newRoll } = await game.system.api.dice.DualityRoll.reroll(
+            memberData.rollData,
+            dieIndex,
+            diceType
+        );
+        const rollData = parsedRoll.toJSON();
+        await this.party.update({
+            [`system.tagTeam.members.${member}.rollData`]: {
+                ...rollData,
+                options: {
+                    ...rollData.options,
+                    roll: newRoll
+                }
+            }
+        });
+        this.render();
     }
 
     //#endregion
