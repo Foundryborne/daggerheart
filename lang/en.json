@@ -1031,7 +1031,8 @@
                 },
                 "vulnerable": {
                     "name": "Vulnerable",
-                    "description": "While a creature is Vulnerable, all rolls targeting them have advantage.\nA creature who is already Vulnerable can’t be made to take the condition again."
+                    "description": "While a creature is Vulnerable, all rolls targeting them have advantage.\nA creature who is already Vulnerable can’t be made to take the condition again.",
+                    "autoAppliedByLabel": "Max Stress"
                 }
             },
             "CountdownType": {
@@ -2555,6 +2556,10 @@
                         "label": "Hope & Fear",
                         "gm": { "label": "GM" },
                         "players": { "label": "Players" }
+                    },
+                    "vulnerableAutomation": {
+                        "label": "Vulnerable Automation",
+                        "hint": "Automatically apply the Vulnerable condition when a actor reaches max stress"
                     },
                     "countdownAutomation": {
                         "label": "Countdown Automation",
