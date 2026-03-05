@@ -1166,12 +1166,12 @@
                 },
                 "far": {
                     "name": "Far",
-                    "description": "means a distance where one can see the appearance of a person or object, but probably not in great detail-- across a small battlefield or down a large corridor. This is usually about 30-100 feet away. While under danger, a PC will likely have to make an Agility check to get here safely. Anything on a battle map that is within the length of a standard piece of paper (~10-11 inches) can usually be considered far.",
+                    "description": "means a distance where one can see the appearance of a person or object, but probably not in great detail-- across a small battlefield or down a large corridor. This is usually about 30-100 feet away. While under danger, a PC will likely have to make an Agility roll to get here safely. Anything on a battle map that is within the length of a standard piece of paper (~10-11 inches) can usually be considered far.",
                     "short": "Far"
                 },
                 "veryFar": {
                     "name": "Very Far",
-                    "description": "means a distance where you can see the shape of a person or object, but probably not make outany details-- across a large battlefield or down a long street, generally about 100-300 feet away. While under danger, a PC likely has to make an Agility check to get here safely. Anything on a battle map that is beyond far distance, but still within sight of the characters can usually be considered very far.",
+                    "description": "means a distance where you can see the shape of a person or object, but probably not make outany details-- across a large battlefield or down a long street, generally about 100-300 feet away. While under danger, a PC likely has to make an Agility roll to get here safely. Anything on a battle map that is beyond far distance, but still within sight of the characters can usually be considered very far.",
                     "short": "V. Far"
                 }
             },
@@ -2806,7 +2806,7 @@
                     "title": "Domain Card"
                 },
                 "dualityRoll": {
-                    "abilityCheckTitle": "{ability} Check"
+                    "abilityCheckTitle": "{ability} Roll"
                 },
                 "effectSummary": {
                     "title": "Effects Applied",
@@ -2821,7 +2821,7 @@
                     "selectLeader": "Select a Leader",
                     "selectMember": "Select a Member",
                     "rerollTitle": "Reroll Group Roll",
-                    "rerollContent": "Are you sure you want to reroll your {trait} check?",
+                    "rerollContent": "Are you sure you want to reroll your {trait} roll?",
                     "rerollTooltip": "Reroll",
                     "wholePartySelected": "The whole party is selected"
                 },
