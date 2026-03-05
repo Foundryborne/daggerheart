@@ -248,6 +248,8 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         await this.settings.updateSource({
             [`${path}.-=${id}`]: null
         });
+
+        game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew, this.settings.toObject());
         this.render();
     }
 
