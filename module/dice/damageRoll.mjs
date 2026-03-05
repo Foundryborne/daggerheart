@@ -49,7 +49,10 @@ export default class DamageRoll extends DHRoll {
             config.mute = true;
         }
         await super.buildPost(roll, config, message);
-        if (config.source?.message) chatMessage.update({ 'system.damage': config.damage });
+        if (config.source?.message) {
+            chatMessage.update({ 'system.damage': config.damage });
+            foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
+        }
     }
 
     static unifyDamageRoll(rolls) {
