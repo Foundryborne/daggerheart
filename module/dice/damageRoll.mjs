@@ -33,7 +33,7 @@ export default class DamageRoll extends DHRoll {
     static async buildPost(roll, config, message) {
         const chatMessage = config.source?.message
             ? ui.chat.collection.get(config.source.message)
-            : getDocumentClass('ChatMessage').applyRollMode({}, config.rollMode);
+            : getDocumentClass('ChatMessage').applyRollMode({}, config.rollMode ?? CONST.DICE_ROLL_MODES.PUBLIC);
         if (game.modules.get('dice-so-nice')?.active) {
             const pool = foundry.dice.terms.PoolTerm.fromRolls(
                     Object.values(config.damage).flatMap(r => r.parts.map(p => p.roll))
@@ -46,6 +46,7 @@ export default class DamageRoll extends DHRoll {
                 chatMessage.whisper?.length > 0 ? chatMessage.whisper : null,
                 chatMessage.blind
             );
+            config.mute = true;
         }
         await super.buildPost(roll, config, message);
         if (config.source?.message) chatMessage.update({ 'system.damage': config.damage });
