@@ -76,6 +76,9 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
     static async updateData(event, element, formData) {
         const data = foundry.utils.expandObject(formData.object);
         foundry.utils.mergeObject(this.move, data);
+        await this.settings.updateSource({
+            [`${this.movePath}`]: this.move
+        });
 
         this.render();
     }
@@ -213,7 +216,7 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
         this.render();
     }
 
-    static async addEffect(_, target) {
+    static async addEffect() {
         const currentEffects = foundry.utils.getProperty(this.settings, `${this.movePath}.effects`);
         await this.settings.updateSource({
             [`${this.movePath}.effects`]: [
