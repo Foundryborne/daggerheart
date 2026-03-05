@@ -1,5 +1,9 @@
 <li class="card-item" data-item-uuid="{{item.uuid}}" data-type="domainCard">
     <img src="{{item.img}}" data-action="useItem" class="card-img" />
+    <span class="item-icon recall-cost">
+        <span class="recall-value">{{item.system.recallCost}}</span>
+        <i class="fa-solid fa-bolt"></i>
+    </span>
     <div class="card-label">
         <div
             class="menu {{#if item.system.resource}}resource-menu{{/if}} {{#if (eq item.system.resource.type 'diceValue')}}dice-menu{{/if}}">
