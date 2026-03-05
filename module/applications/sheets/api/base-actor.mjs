@@ -294,13 +294,14 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
 
         /* Handling transfer of inventoryItems */
         if (item.system.metadata.isInventoryItem) {
-            if (!this.document.testUserPermission(game.user, 'OWNER', { exact: true }))
+            if (!this.document.testUserPermission(game.user, 'OWNER', { exact: true })) {
                 return ui.notifications.error(
                     game.i18n.format('DAGGERHEART.UI.Notifications.lackingItemTransferPermission', {
                         user: game.user.name,
                         target: this.document.name
                     })
                 );
+            }
 
             if (item.system.metadata.isQuantifiable) {
                 const actorItem = originActor.items.get(data.originId);
