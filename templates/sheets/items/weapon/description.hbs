@@ -1,32 +1,34 @@
 <div class="item-description-outer-container">
-    <div class="three-columns">
-        <div class="item-description-container">
-            <h4>{{localize "DAGGERHEART.GENERAL.Tiers.singular"}}</h4>
-            <span>{{tier}}</span>
+    {{#if inCompendiumBrowser}}
+        <div class="three-columns">
+            <div class="item-description-container">
+                <h4>{{localize "DAGGERHEART.GENERAL.Tiers.singular"}}</h4>
+                <span>{{tier}}</span>
+            </div>
+
+            <div class="item-description-container">
+                <h4>{{localize "DAGGERHEART.GENERAL.Trait.single"}}</h4>
+                <span>{{trait}}</span>
+            </div>
+
+            <div class="item-description-container">
+                <h4>{{localize "DAGGERHEART.GENERAL.range"}}</h4>
+                <span>{{range}}</span>
+            </div>
         </div>
 
-        <div class="item-description-container">
-            <h4>{{localize "DAGGERHEART.GENERAL.Trait.single"}}</h4>
-            <span>{{trait}}</span>
-        </div>
+        <div class="three-columns">
+            <div class="item-description-container">
+                <h4>{{localize "DAGGERHEART.GENERAL.damage"}}</h4>
+                <span>{{damage}}</span>
+            </div>
 
-        <div class="item-description-container">
-            <h4>{{localize "DAGGERHEART.GENERAL.range"}}</h4>
-            <span>{{range}}</span>
+            <div class="item-description-container">
+                <h4>{{localize "DAGGERHEART.GENERAL.burden"}}</h4>
+                <span>{{burden}}</span>
+            </div>
         </div>
-    </div>
-
-    <div class="three-columns">
-        <div class="item-description-container">
-            <h4>{{localize "DAGGERHEART.GENERAL.damage"}}</h4>
-            <span>{{damage}}</span>
-        </div>
-
-        <div class="item-description-container">
-            <h4>{{localize "DAGGERHEART.GENERAL.burden"}}</h4>
-            <span>{{burden}}</span>
-        </div>
-    </div>
+    {{/if}}
 
     {{#if features.length}}
         <div class="item-description-container">

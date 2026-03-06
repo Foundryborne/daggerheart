@@ -109,7 +109,7 @@ export default class DHWeapon extends AttachableItem {
     }
 
     /**@inheritdoc */
-    async getDescriptionData() {
+    async getDescriptionData({ inCompendiumBrowser }) {
         const baseDescription = this.description;
 
         const tier = game.i18n.localize(`DAGGERHEART.GENERAL.Tiers.${this.tier}`);
@@ -129,7 +129,8 @@ export default class DHWeapon extends AttachableItem {
                 trait,
                 range,
                 damage,
-                burden
+                burden,
+                inCompendiumBrowser
             }
         );
 
