@@ -125,4 +125,14 @@ export default class MappingField extends foundry.data.fields.ObjectField {
         path.shift();
         return this.model._getField(path);
     }
+
+    /* -------------------------------------------- */
+
+    migrateSource(sourceData, fieldData) {
+        for (const key of Object.keys(fieldData)) {
+            const isDeletion = foundry.utils.isDeletionKey(key);
+            if (isDeletion && key[0] === '-') continue;
+            this.model.migrateSource(sourceData, fieldData[key]);
+        }
+    }
 }
