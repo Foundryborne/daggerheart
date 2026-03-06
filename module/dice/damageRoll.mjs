@@ -51,7 +51,8 @@ export default class DamageRoll extends DHRoll {
         await super.buildPost(roll, config, message);
         if (config.source?.message) {
             chatMessage.update({ 'system.damage': config.damage });
-            foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
+
+            if (!game.modules.get('dice-so-nice')?.active) foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
         }
     }
 
