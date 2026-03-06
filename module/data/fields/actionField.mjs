@@ -1,6 +1,5 @@
 import DHActionConfig from '../../applications/sheets-configs/action-config.mjs';
 import { itemAbleRollParse } from '../../helpers/utils.mjs';
-import MappingField from './mappingField.mjs';
 
 /**
  * Specialized collection type for stored actions.
@@ -61,7 +60,7 @@ export class ActionCollection extends Collection {
 /**
  * Field that stores actions.
  */
-export class ActionsField extends MappingField {
+export class ActionsField extends foundry.data.fields.TypedObjectField {
     constructor(options) {
         super(new ActionField(), options);
     }
