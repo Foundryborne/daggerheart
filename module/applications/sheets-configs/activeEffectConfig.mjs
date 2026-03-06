@@ -35,6 +35,10 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         }
     };
 
+    /**
+     * Get ChangeChoices for the changes autocomplete. Static for use in this class aswell as in settings-active-effect-config.mjs
+     * @returns {ChangeChoice { value: string, label: string, hint: string, group: string }[]}
+     */
     static getChangeChoices() {
         const ignoredActorKeys = ['config', 'DhEnvironment', 'DhParty'];
 
