@@ -264,12 +264,12 @@ export default class DhpAdversary extends DhCreature {
             }
 
             // Update damage in item actions
+            // Parse damage, and convert all formula matches in the descriptions to the new damage
             for (const action of Object.values(item.system.actions)) {
-                if (!action.damage) continue;
-
-                // Parse damage, and convert all formula matches in the descriptions to the new damage
                 try {
                     const result = this.#adjustActionDamage(action, { ...damageMeta, type: 'action' });
+                    if (!result) continue;
+
                     for (const { previousFormula, formula } of Object.values(result)) {
                         const oldFormulaRegexp = new RegExp(
                             previousFormula.replace(' ', '').replace('+', '(?:\\s)?\\+(?:\\s)?')
@@ -371,9 +371,11 @@ export default class DhpAdversary extends DhCreature {
     /**
      * Updates damage to reflect a specific value.
      * @throws if damage structure is invalid for conversion
-     * @returns the converted formula and value as a simplified term
+     * @returns the converted formula and value as a simplified term, or null if it doesn't deal HP damage
      */
     #adjustActionDamage(action, damageMeta) {
+        if (!action.damage?.parts.hitPoints) return null;
+
         const result = {};
         for (const property of ['value', 'valueAlt']) {
             const data = action.damage.parts.hitPoints[property];
