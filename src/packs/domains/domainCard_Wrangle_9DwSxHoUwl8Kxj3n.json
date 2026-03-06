@@ -53,7 +53,7 @@
           "difficulty": null,
           "damageMod": "none"
         },
-        "name": "Agility Check",
+        "name": "Agility Roll",
         "img": "icons/skills/melee/sword-engraved-glow-purple.webp",
         "range": "close"
       }

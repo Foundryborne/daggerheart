@@ -38,9 +38,7 @@ export default class DHWeapon extends AttachableItem {
             weaponFeatures: new fields.ArrayField(
                 new fields.SchemaField({
                     value: new fields.StringField({
-                        required: true,
-                        choices: CONFIG.DH.ITEM.allWeaponFeatures,
-                        blank: true
+                        required: true
                     }),
                     effectIds: new fields.ArrayField(new fields.StringField({ required: true })),
                     actionIds: new fields.ArrayField(new fields.StringField({ required: true }))
@@ -121,7 +119,7 @@ export default class DHWeapon extends AttachableItem {
         const burden = game.i18n.localize(CONFIG.DH.GENERAL.burden[this.burden].label);
 
         const allFeatures = CONFIG.DH.ITEM.allWeaponFeatures();
-        const features = this.weaponFeatures.map(x => allFeatures[x.value]);
+        const features = this.weaponFeatures.map(x => allFeatures[x.value]).filter(x => x);
 
         const prefix = await foundry.applications.handlebars.renderTemplate(
             'systems/daggerheart/templates/sheets/items/weapon/description.hbs',

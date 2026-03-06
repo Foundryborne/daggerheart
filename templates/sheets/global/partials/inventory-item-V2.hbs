@@ -17,8 +17,12 @@ Parameters:
 - showActions {boolean} : If true show feature's actions.
 --}}
 
-<li class="inventory-item" data-item-id="{{item.id}}" {{#if (or (eq type 'action' ) (eq type 'attack' ))}}
-  data-action-id="{{item.id}}" {{/if}} data-item-uuid="{{item.uuid}}" data-type="{{type}}" data-no-compendium-edit="{{noCompendiumEdit}}">
+<li class="inventory-item" data-item-id="{{item.id}}" 
+    {{#if (or (eq type 'action' ) (eq type 'attack' ))}}data-action-id="{{item.id}}" {{/if}} 
+    {{#if disabledEffect}}data-disabled="true"{{/if}}
+    data-type="{{type}}" data-item-type="{{item.type}}"
+    data-item-uuid="{{item.uuid}}" data-no-compendium-edit="{{noCompendiumEdit}}"
+>
   <div class="inventory-item-header {{#if hideContextMenu}}padded{{/if}}" {{#unless noExtensible}}data-action="toggleExtended" {{/unless}}>
     {{!-- Image --}}
     <div class="img-portait" data-action='{{ifThen (or (hasProperty item "use") (eq type "attack")) "useItem" (ifThen
@@ -105,7 +109,7 @@ Parameters:
         {{else if (eq type 'armor')}}
         <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem"
           data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.equipped 'unequip' 'equip' }}">
-          <i class="fa-solid fa-shield"></i>
+          <i class="fa-solid fa-fw fa-shield"></i>
         </a>
         {{/if}}
         {{#if (eq type 'domainCard')}}
@@ -121,7 +125,7 @@ Parameters:
         {{/if}}
         {{#if (hasProperty item "toChat")}}
           <a data-action="toChat" data-tooltip="DAGGERHEART.UI.Tooltip.sendToChat">
-            <i class="fa-regular fa-message"></i>
+            <i class="fa-regular fa-fw fa-message"></i>
           </a>
         {{/if}}
       {{else}}
@@ -134,7 +138,7 @@ Parameters:
       {{/unless}}
       {{#unless hideContextMenu}}
       <a data-action="triggerContextMenu" data-tooltip="DAGGERHEART.UI.Tooltip.moreOptions">
-        <i class="fa-solid fa-ellipsis-vertical"></i>
+        <i class="fa-solid fa-fw fa-ellipsis-vertical"></i>
       </a>
       {{/unless}}
       {{/if}}

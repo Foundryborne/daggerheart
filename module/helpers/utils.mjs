@@ -119,8 +119,8 @@ export const tagifyElement = (element, baseOptions, onChange, tagifyOptions = {}
         }),
         maxTags: typeof maxTags === 'function' ? maxTags() : maxTags,
         dropdown: {
+            searchKeys: ['value', 'name'],
             mapValueTo: 'name',
-            searchKeys: ['value'],
             enabled: 0,
             maxItems: 100,
             closeOnSelect: true,
