@@ -21,6 +21,17 @@ export default class DHSummonField extends fields.SchemaField {
     }
 
     static async execute() {
+        if (!this.transform.actorUUID) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.transform.noTransformActor'));
+            return false;
+        }
+
+        const baseActor = await foundry.utils.fromUuid(this.transform.actorUUID);
+        if (!baseActor) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.transform.transformActorMissing'));
+            return false;
+        }
+
         if (!canvas.scene) {
             ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.transform.canvasError'));
             return false;
@@ -31,7 +42,7 @@ export default class DHSummonField extends fields.SchemaField {
             return false;
         }
 
-        const actor = await DHSummonField.getWorldActor(await foundry.utils.fromUuid(this.transform.actorUUID));
+        const actor = await DHSummonField.getWorldActor(baseActor);
         const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
         const tokenSize = actor?.system.metadata.usesSize ? tokenSizes[actor.system.size] : actor.prototypeToken.width;
 

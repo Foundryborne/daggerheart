@@ -139,9 +139,14 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         }
 
         if (context.source.transform) {
+            const actor = await foundry.utils.fromUuid(context.source.transform.actorUUID);
             context.transform = {
                 ...context.source.transform,
-                actor: await foundry.utils.fromUuid(context.source.transform.actorUUID)
+                actor:
+                    actor ??
+                    (context.source.transform.actorUUID && !actor
+                        ? { error: game.i18n.localize('DAGGERHEART.ACTIONS.Settings.transform.actorIsMissing') }
+                        : null)
             };
         }
 
