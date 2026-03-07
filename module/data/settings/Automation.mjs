@@ -27,9 +27,9 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                 initial: true,
                 label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.countdownAutomation.label'
             }),
-            hideHitMissForPlayers: new fields.BooleanField({
+            hideObserverPermissionInChat: new fields.BooleanField({
                 initial: false,
-                label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.hideHitMissForPlayers.label'
+                label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.hideObserverPermissionInChat.label'
             }),
             levelupAuto: new fields.BooleanField({
                 required: true,
