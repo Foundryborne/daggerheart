@@ -103,10 +103,9 @@
                 display: flex;
                 align-items: center;
                 justify-content: end;
-                gap: 8px;
 
                 a {
-                    width: 15px;
+                    width: 20px;
                     text-align: center;
                 }
 
@@ -275,8 +274,10 @@
                 grid-area: controls;
                 align-self: start;
                 padding-top: 0.3125rem;
-                gap: 4px;
                 margin-bottom: -1px;
+                a {
+                    width: 18px;
+                }
             }
             > .item-labels {
                 align-self: start;
@@ -332,6 +333,27 @@
             width: 100%;
             object-fit: cover;
             border-radius: 6px;
+        }
+
+        .recall-cost {
+            position: absolute;
+            right: 4px;
+            top: 4px;
+            width: 1.75em;
+            height: 1.75em;
+
+            align-items: center;
+            background: @dark-blue;
+            border-radius: 50%;
+            border: 1px solid @golden;
+            color: @golden;
+            display: flex;
+            justify-content: center;
+            padding-top: 0.1em; // compensate for font
+
+            i {
+                font-size: 0.68em;
+            }
         }
 
         .card-label {

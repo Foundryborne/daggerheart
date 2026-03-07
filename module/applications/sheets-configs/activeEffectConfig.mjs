@@ -4,62 +4,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
     constructor(options) {
         super(options);
 
-        const ignoredActorKeys = ['config', 'DhEnvironment', 'DhParty'];
-
-        const getAllLeaves = (root, group, parentPath = '') => {
-            const leaves = [];
-            const rootKey = `${parentPath ? `${parentPath}.` : ''}${root.name}`;
-            for (const field of Object.values(root.fields)) {
-                if (field instanceof foundry.data.fields.SchemaField)
-                    leaves.push(...getAllLeaves(field, group, rootKey));
-                else
-                    leaves.push({
-                        value: `${rootKey}.${field.name}`,
-                        label: game.i18n.localize(field.label),
-                        hint: game.i18n.localize(field.hint),
-                        group
-                    });
-            }
-
-            return leaves;
-        };
-        this.changeChoices = Object.keys(game.system.api.models.actors).reduce((acc, key) => {
-            if (ignoredActorKeys.includes(key)) return acc;
-
-            const model = game.system.api.models.actors[key];
-            const group = game.i18n.localize(model.metadata.label);
-            const attributes = CONFIG.Token.documentClass.getTrackedAttributes(model.metadata.type);
-
-            const getTranslations = path => {
-                if (path === 'resources.hope.max')
-                    return {
-                        label: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.FIELDS.maxHope.label'),
-                        hint: ''
-                    };
-
-                const field = model.schema.getField(path);
-                return {
-                    label: field ? game.i18n.localize(field.label) : path,
-                    hint: field ? game.i18n.localize(field.hint) : ''
-                };
-            };
-
-            const bars = attributes.bar.flatMap(x => {
-                const joined = `${x.join('.')}.max`;
-                return { value: joined, ...getTranslations(joined), group };
-            });
-            const values = attributes.value.flatMap(x => {
-                const joined = x.join('.');
-                return { value: joined, ...getTranslations(joined), group };
-            });
-
-            const bonuses = getAllLeaves(model.schema.fields.bonuses, group);
-            const rules = getAllLeaves(model.schema.fields.rules, group);
-
-            acc.push(...bars, ...values, ...rules, ...bonuses);
-
-            return acc;
-        }, []);
+        this.changeChoices = DhActiveEffectConfig.getChangeChoices();
     }
 
     static DEFAULT_OPTIONS = {
@@ -100,6 +45,69 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             labelPrefix: 'EFFECT.TABS'
         }
     };
+
+    /**
+     * Get ChangeChoices for the changes autocomplete. Static for use in this class aswell as in settings-active-effect-config.mjs
+     * @returns {ChangeChoice { value: string, label: string, hint: string, group: string }[]}
+     */
+    static getChangeChoices() {
+        const ignoredActorKeys = ['config', 'DhEnvironment', 'DhParty'];
+
+        const getAllLeaves = (root, group, parentPath = '') => {
+            const leaves = [];
+            const rootKey = `${parentPath ? `${parentPath}.` : ''}${root.name}`;
+            for (const field of Object.values(root.fields)) {
+                if (field instanceof foundry.data.fields.SchemaField)
+                    leaves.push(...getAllLeaves(field, group, rootKey));
+                else
+                    leaves.push({
+                        value: `${rootKey}.${field.name}`,
+                        label: game.i18n.localize(field.label),
+                        hint: game.i18n.localize(field.hint),
+                        group
+                    });
+            }
+
+            return leaves;
+        };
+        return Object.keys(game.system.api.models.actors).reduce((acc, key) => {
+            if (ignoredActorKeys.includes(key)) return acc;
+
+            const model = game.system.api.models.actors[key];
+            const group = game.i18n.localize(model.metadata.label);
+            const attributes = CONFIG.Token.documentClass.getTrackedAttributes(model.metadata.type);
+
+            const getTranslations = path => {
+                if (path === 'resources.hope.max')
+                    return {
+                        label: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.FIELDS.maxHope.label'),
+                        hint: ''
+                    };
+
+                const field = model.schema.getField(path);
+                return {
+                    label: field ? game.i18n.localize(field.label) : path,
+                    hint: field ? game.i18n.localize(field.hint) : ''
+                };
+            };
+
+            const bars = attributes.bar.flatMap(x => {
+                const joined = `${x.join('.')}.max`;
+                return { value: joined, ...getTranslations(joined), group };
+            });
+            const values = attributes.value.flatMap(x => {
+                const joined = x.join('.');
+                return { value: joined, ...getTranslations(joined), group };
+            });
+
+            const bonuses = getAllLeaves(model.schema.fields.bonuses, group);
+            const rules = getAllLeaves(model.schema.fields.rules, group);
+
+            acc.push(...bars, ...values, ...rules, ...bonuses);
+
+            return acc;
+        }, []);
+    }
 
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);

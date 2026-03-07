@@ -23,9 +23,7 @@ export default class DHArmor extends AttachableItem {
             armorFeatures: new fields.ArrayField(
                 new fields.SchemaField({
                     value: new fields.StringField({
-                        required: true,
-                        choices: CONFIG.DH.ITEM.allArmorFeatures,
-                        blank: true
+                        required: true
                     }),
                     effectIds: new fields.ArrayField(new fields.StringField({ required: true })),
                     actionIds: new fields.ArrayField(new fields.StringField({ required: true }))
@@ -58,7 +56,7 @@ export default class DHArmor extends AttachableItem {
     async getDescriptionData() {
         const baseDescription = this.description;
         const allFeatures = CONFIG.DH.ITEM.allArmorFeatures();
-        const features = this.armorFeatures.map(x => allFeatures[x.value]);
+        const features = this.armorFeatures.map(x => allFeatures[x.value]).filter(x => x);
 
         const prefix = await foundry.applications.handlebars.renderTemplate(
             'systems/daggerheart/templates/sheets/items/armor/description.hbs',

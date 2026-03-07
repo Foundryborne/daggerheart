@@ -206,7 +206,8 @@ export const conditions = () => ({
         id: 'vulnerable',
         name: 'DAGGERHEART.CONFIG.Condition.vulnerable.name',
         img: 'icons/magic/control/silhouette-fall-slip-prone.webp',
-        description: 'DAGGERHEART.CONFIG.Condition.vulnerable.description'
+        description: 'DAGGERHEART.CONFIG.Condition.vulnerable.description',
+        autoApplyFlagId: 'auto-vulnerable'
     },
     hidden: {
         id: 'hidden',

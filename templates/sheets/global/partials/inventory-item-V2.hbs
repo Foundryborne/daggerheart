@@ -109,7 +109,7 @@ Parameters:
         {{else if (eq type 'armor')}}
         <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem"
           data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.equipped 'unequip' 'equip' }}">
-          <i class="fa-solid fa-shield"></i>
+          <i class="fa-solid fa-fw fa-shield"></i>
         </a>
         {{/if}}
         {{#if (eq type 'domainCard')}}
@@ -125,7 +125,7 @@ Parameters:
         {{/if}}
         {{#if (hasProperty item "toChat")}}
           <a data-action="toChat" data-tooltip="DAGGERHEART.UI.Tooltip.sendToChat">
-            <i class="fa-regular fa-message"></i>
+            <i class="fa-regular fa-fw fa-message"></i>
           </a>
         {{/if}}
       {{else}}
@@ -138,7 +138,7 @@ Parameters:
       {{/unless}}
       {{#unless hideContextMenu}}
       <a data-action="triggerContextMenu" data-tooltip="DAGGERHEART.UI.Tooltip.moreOptions">
-        <i class="fa-solid fa-ellipsis-vertical"></i>
+        <i class="fa-solid fa-fw fa-ellipsis-vertical"></i>
       </a>
       {{/unless}}
       {{/if}}
