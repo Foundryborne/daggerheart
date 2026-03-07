@@ -137,7 +137,9 @@
                     "dropSummonsHere": "Drop Summons Here"
                 },
                 "transform": {
-                    "dropTransformHere": "Drop Transform Here"
+                    "dropTransformHere": "Drop Transform Here",
+                    "clearHitPoints": "Clear Hitpoints",
+                    "clearStress": "Clear Stress"
                 }
             }
         },

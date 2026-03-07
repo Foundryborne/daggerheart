@@ -11,26 +11,60 @@ export default class DHSummonField extends fields.SchemaField {
             actorUUID: new fields.DocumentUUIDField({
                 type: 'Actor',
                 required: true
+            }),
+            resourceRefresh: new fields.SchemaField({
+                hitPoints: new fields.BooleanField({ initial: true }),
+                stress: new fields.BooleanField({ initial: true })
             })
         };
         super(transformFields, options, context);
     }
 
     static async execute() {
-        if (!canvas.scene)
-            return ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.transform.canvasError'));
+        if (!canvas.scene) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.transform.canvasError'));
+            return false;
+        }
 
-        if (!this.actor.token)
-            return ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.transform.prototypeError'));
+        if (!this.actor.token) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.transform.prototypeError'));
+            return false;
+        }
 
         const actor = await DHSummonField.getWorldActor(await foundry.utils.fromUuid(this.transform.actorUUID));
+        const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
+        const tokenSize = actor?.system.metadata.usesSize ? tokenSizes[actor.system.size] : actor.prototypeToken.width;
 
         await this.actor.token.update(
-            { ...actor.prototypeToken.toJSON(), actorId: actor.id },
+            { ...actor.prototypeToken.toJSON(), actorId: actor.id, width: tokenSize, height: tokenSize },
             { diff: false, recursive: false, noHook: true }
         );
+
+        const marks = { hitPoints: 0, stress: 0 };
+        if (!this.transform.resourceRefresh.hitPoints) {
+            marks.hitPoints = Math.min(
+                this.actor.system.resources.hitPoints.value,
+                this.actor.token.actor.system.resources.hitPoints.max - 1
+            );
+        }
+        if (!this.transform.resourceRefresh.stress) {
+            marks.stress = Math.min(
+                this.actor.system.resources.stress.value,
+                this.actor.token.actor.system.resources.stress.max - 1
+            );
+        }
+        if (marks.hitPoints || marks.stress) {
+            this.actor.token.actor.update({
+                'system.resources': {
+                    hitPoints: { value: marks.hitPoints },
+                    stress: { value: marks.stress }
+                }
+            });
+        }
+
+        const prevPosition = { ...this.actor.sheet.position };
         this.actor.sheet.close();
-        actor.sheet.render({ force: true });
+        this.actor.token.actor.sheet.render({ force: true, position: prevPosition });
     }
 
     /* Check for any available instances of the actor present in the world, or create a world actor based on compendium */

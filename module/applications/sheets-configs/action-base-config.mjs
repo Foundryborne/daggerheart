@@ -121,6 +121,10 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         htmlElement.querySelectorAll('.summon-count-wrapper input').forEach(element => {
             element.addEventListener('change', this.updateSummonCount.bind(this));
         });
+
+        htmlElement.querySelectorAll('.transform-resource input').forEach(element => {
+            element.addEventListener('change', this.updateTransformResource.bind(this));
+        });
     }
 
     async _prepareContext(_options) {
@@ -136,6 +140,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
 
         if (context.source.transform) {
             context.transform = {
+                ...context.source.transform,
                 actor: await foundry.utils.fromUuid(context.source.transform.actorUUID)
             };
         }
@@ -356,6 +361,14 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         const index = wrapper.dataset.index;
         const data = this.action.toObject();
         data.summon[index].count = event.target.value;
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
+    updateTransformResource(event) {
+        event.stopPropagation();
+
+        const data = this.action.toObject();
+        data.transform.resourceRefresh[event.target.dataset.resource] = event.target.checked;
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 

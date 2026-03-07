@@ -40,5 +40,16 @@
                 <span>{{localize "DAGGERHEART.ACTIONS.Settings.transform.dropTransformHere"}}</span>
             </div>
         {{/unless}}
+
+        <div class="transform-resources">
+            <div class="transform-resource">
+                <span class="resource-title">{{localize "DAGGERHEART.ACTIONS.Settings.transform.clearHitPoints"}}</span>
+                <input type="checkbox" data-resource="hitPoints" {{checked transform.resourceRefresh.hitPoints}}/>
+            </div>
+            <div class="transform-resource">
+                <span>{{localize "DAGGERHEART.ACTIONS.Settings.transform.clearStress"}}</span>
+                <input type="checkbox" data-resource="stress" {{checked transform.resourceRefresh.stress}}/>
+            </div>
+        </div>
     </div>
 </fieldset>
