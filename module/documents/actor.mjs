@@ -934,10 +934,23 @@ export default class DhpActor extends Actor {
 
     /** Get active effects */
     getActiveEffects() {
+        const conditions = CONFIG.DH.GENERAL.conditions();
         const statusMap = new Map(foundry.CONFIG.statusEffects.map(status => [status.id, status]));
+        const autoVulnerableActive = this.system.isAutoVulnerableActive;
         return this.effects
             .filter(x => !x.disabled)
             .reduce((acc, effect) => {
+                /* Could be generalized if needed. Currently just related to Vulnerable */
+                const isAutoVulnerableEffect =
+                    effect.flags.daggerheart?.autoApplyFlagId === conditions.vulnerable.autoApplyFlagId;
+                if (isAutoVulnerableEffect) {
+                    if (!autoVulnerableActive) return acc;
+
+                    effect.appliedBy = game.i18n.localize('DAGGERHEART.CONFIG.Condition.vulnerable.autoAppliedByLabel');
+                    effect.isLockedCondition = true;
+                    effect.condition = 'vulnerable';
+                }
+
                 acc.push(effect);
 
                 const currentStatusActiveEffects = acc.filter(

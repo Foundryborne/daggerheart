@@ -75,7 +75,7 @@ export default class RegisteredTriggers extends Map {
     unregisterSceneEnvironmentTriggers(flagSystemData) {
         const sceneData = new game.system.api.data.scenes.DHScene(flagSystemData);
         for (const environment of sceneData.sceneEnvironments) {
-            if (environment.pack) continue;
+            if (!environment || environment.pack) continue;
             this.unregisterItemTriggers(environment.system.features);
         }
     }
