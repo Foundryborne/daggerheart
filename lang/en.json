@@ -2565,6 +2565,7 @@
                         "label": "Countdown Automation",
                         "hint": "Automatically progress countdowns based on their progression settings"
                     },
+                    "hideHitMissForPlayers": { "label": "Hide Hit/Miss On Adversaries In Chat For Players" },
                     "levelupAuto": {
                         "label": "Levelup Automation",
                         "hint": "When you've made your choices and finish levelup, the numerical changes are automatically applied to your character."
