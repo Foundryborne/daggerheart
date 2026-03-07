@@ -81,7 +81,8 @@
                     "noTransformActor": "There is no assigned actor to transform into",
                     "transformActorMissing": "The assigned actor to transform into does not exist. It was probably deleted or moved in/out of a compendium",
                     "canvasError": "There is no active scene.",
-                    "prototypeError": "You can only use a transform action from a Token"
+                    "prototypeError": "You can only use a transform action from a Token",
+                    "actorLinkError": "You cannot transform a token with Actor Link set to true"
                 }
             },
             "Config": {

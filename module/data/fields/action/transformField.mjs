@@ -37,6 +37,11 @@ export default class DHSummonField extends fields.SchemaField {
             return false;
         }
 
+        if (this.actor.prototypeToken.actorLink) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.transform.actorLinkError'));
+            return false;
+        }
+
         if (!this.actor.token) {
             ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.transform.prototypeError'));
             return false;
@@ -50,6 +55,10 @@ export default class DHSummonField extends fields.SchemaField {
             { ...actor.prototypeToken.toJSON(), actorId: actor.id, width: tokenSize, height: tokenSize },
             { diff: false, recursive: false, noHook: true }
         );
+
+        if (this.actor.token.combatant) {
+            this.actor.token.combatant.update({ actorId: actor.id, img: actor.prototypeToken.texture.src });
+        }
 
         const marks = { hitPoints: 0, stress: 0 };
         if (!this.transform.resourceRefresh.hitPoints) {
