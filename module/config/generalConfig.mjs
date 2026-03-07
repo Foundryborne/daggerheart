@@ -875,6 +875,11 @@ export const activeEffectModes = {
         priority: 20,
         label: 'EFFECT.CHANGES.TYPES.add'
     },
+    subtract: {
+        id: 'subtract',
+        priority: 20,
+        label: 'EFFECT.CHANGES.TYPES.subtract'
+    },
     downgrade: {
         id: 'downgrade',
         priority: 30,

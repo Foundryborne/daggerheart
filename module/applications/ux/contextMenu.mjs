@@ -86,7 +86,7 @@ export default class DHContextMenu extends foundry.applications.ux.ContextMenu {
         const element = event.target.closest('.context-item');
         if (!element) return;
         const item = this.menuItems.find(i => i.element === element);
-        item?.callback(this.#jQuery ? $(this.target) : this.target, event);
+        item?.onClick(event, this.#jQuery ? $(this.target) : this.target);
         this.close();
     }
 
