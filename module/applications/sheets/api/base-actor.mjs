@@ -294,6 +294,15 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
 
         /* Handling transfer of inventoryItems */
         if (item.system.metadata.isInventoryItem) {
+            if (!this.document.testUserPermission(game.user, 'OWNER', { exact: true })) {
+                return ui.notifications.error(
+                    game.i18n.format('DAGGERHEART.UI.Notifications.lackingItemTransferPermission', {
+                        user: game.user.name,
+                        target: this.document.name
+                    })
+                );
+            }
+
             if (item.system.metadata.isQuantifiable) {
                 const actorItem = originActor.items.get(data.originId);
                 const quantityTransfered = await game.system.api.applications.dialogs.ItemTransferDialog.configure({
@@ -302,14 +311,6 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                 });
 
                 if (quantityTransfered) {
-                    if (quantityTransfered === actorItem.system.quantity) {
-                        await originActor.deleteEmbeddedDocuments('Item', [data.originId]);
-                    } else {
-                        await actorItem.update({
-                            'system.quantity': actorItem.system.quantity - quantityTransfered
-                        });
-                    }
-
                     const existingItem = this.document.items.find(x => itemIsIdentical(x, item));
                     if (existingItem) {
                         await existingItem.update({
@@ -327,10 +328,18 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                             }
                         ]);
                     }
+
+                    if (quantityTransfered === actorItem.system.quantity) {
+                        await originActor.deleteEmbeddedDocuments('Item', [data.originId]);
+                    } else {
+                        await actorItem.update({
+                            'system.quantity': actorItem.system.quantity - quantityTransfered
+                        });
+                    }
                 }
             } else {
-                await originActor.deleteEmbeddedDocuments('Item', [data.originId]);
                 await this.document.createEmbeddedDocuments('Item', [item.toObject()]);
+                await originActor.deleteEmbeddedDocuments('Item', [data.originId]);
             }
         }
     }

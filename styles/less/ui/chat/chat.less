@@ -158,7 +158,7 @@
 .daggerheart,
 #chat-notifications {
     .chat-message {
-        --text-color: @golden;
+        --text-color: light-dark(@dark-blue, @golden);
         --bg-color: @golden-40;
 
         [data-use-perm='false'] {
@@ -233,7 +233,7 @@
                 font-family: @font-subtitle;
                 font-size: var(--font-size-18);
                 font-weight: bold;
-                color: light-dark(@dark-blue, var(--text-color));
+                color: var(--text-color);
                 margin-bottom: -2px;
             }
 

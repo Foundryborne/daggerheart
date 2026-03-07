@@ -7,19 +7,7 @@ export default class SettingActiveEffectConfig extends HandlebarsApplicationMixi
         super({});
 
         this.effect = foundry.utils.deepClone(effect);
-        const ignoredActorKeys = ['config', 'DhEnvironment'];
-        this.changeChoices = Object.keys(game.system.api.models.actors).reduce((acc, key) => {
-            if (!ignoredActorKeys.includes(key)) {
-                const model = game.system.api.models.actors[key];
-                const attributes = CONFIG.Token.documentClass.getTrackedAttributes(model);
-                const group = game.i18n.localize(model.metadata.label);
-                const choices = CONFIG.Token.documentClass
-                    .getTrackedAttributeChoices(attributes, model)
-                    .map(x => ({ ...x, group: group }));
-                acc.push(...choices);
-            }
-            return acc;
-        }, []);
+        this.changeChoices = game.system.api.applications.sheetConfigs.ActiveEffectConfig.getChangeChoices();
     }
 
     static DEFAULT_OPTIONS = {
