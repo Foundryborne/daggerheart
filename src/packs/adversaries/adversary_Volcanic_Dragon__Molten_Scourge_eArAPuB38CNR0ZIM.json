@@ -846,7 +846,37 @@
       "system": {
         "description": "<p>When the @Lookup[@name] marks their last HP, replace them with the @UUID[Compendium.daggerheart.adversaries.Actor.pMuXGCSOQaxpi5tb]{Ashen Tyrant} and immediately spotlight them.</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "cFqFjemAfAjB0OB0": {
+            "type": "transform",
+            "_id": "cFqFjemAfAjB0OB0",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "transform": {
+              "actorUUID": "Compendium.daggerheart.adversaries.Actor.pMuXGCSOQaxpi5tb",
+              "resourceRefresh": {
+                "hitPoints": true,
+                "stress": true
+              }
+            },
+            "name": "Transform",
+            "range": ""
+          }
+        },
         "originItemType": null,
         "originId": null,
         "featureForm": "reaction"
