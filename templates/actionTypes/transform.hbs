@@ -1,0 +1,44 @@
+<fieldset class="one-column" id="transform-drop-zone" data-is-drop-zone="true" data-key="transform">
+    <legend>
+        {{localize "DAGGERHEART.ACTIONS.TYPES.transform.name"}}
+    </legend>
+
+    <div class="transform-container">
+        {{#if transform.actor}}
+            <div class="actor-drop-line">
+                <div class="actor-drop-name">
+                    <img class="image" src="{{transform.actor.img}}" />
+                    <h4 class="h4">
+                        {{transform.actor.name}}
+                    </h4>
+                </div>
+
+                <div class="actor-drop-controls transform">
+                    <div class="controls">
+                        <a
+                                class='effect-control'
+                                data-action='editDoc'
+                                data-item-uuid="{{transform.actor.uuid}}"
+                                data-tooltip='{{localize "DAGGERHEART.UI.Tooltip.openItemWorld"}}'
+                            >
+                                <i class="fa-solid fa-globe"></i>
+                            </a>
+                            <a
+                                class='effect-control'
+                                data-action='removeTransformActor'
+                                data-tooltip='{{localize "CONTROLS.CommonDelete"}}'
+                            >
+                                <i class='fas fa-trash'></i>
+                            </a>
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+
+        {{#unless transform.actor}}
+            <div class="drop-dragger">
+                <span>{{localize "DAGGERHEART.ACTIONS.Settings.transform.dropTransformHere"}}</span>
+            </div>
+        {{/unless}}
+    </div>
+</fieldset>

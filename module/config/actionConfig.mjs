@@ -35,6 +35,12 @@ export const actionTypes = {
         icon: 'fa-ghost',
         tooltip: 'DAGGERHEART.ACTIONS.TYPES.summon.tooltip'
     },
+    transform: {
+        id: 'transform',
+        name: 'DAGGERHEART.ACTIONS.TYPES.transform.name',
+        icon: 'fa-dragon',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.transform.tooltip'
+    },
     effect: {
         id: 'effect',
         name: 'DAGGERHEART.ACTIONS.TYPES.effect.name',

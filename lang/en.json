@@ -74,6 +74,12 @@
                     "invalidDrop": "You can only drop Actor entities to summon.",
                     "chatMessageTitle": "Test2",
                     "chatMessageHeaderTitle": "Summoning"
+                },
+                "transform": {
+                    "name": "Transform",
+                    "tooltip": "Transform one actor into another",
+                    "canvasError": "There is no active scene.",
+                    "prototypeError": "You can only use a transform action from a Token"
                 }
             },
             "Config": {
@@ -129,6 +135,9 @@
                 },
                 "summon": {
                     "dropSummonsHere": "Drop Summons Here"
+                },
+                "transform": {
+                    "dropTransformHere": "Drop Transform Here"
                 }
             }
         },
