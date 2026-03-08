@@ -43,7 +43,14 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
         const hole = ui.controls.controls[this.options.name].tools.hole?.active ?? false;
         if (game.activeTool === 'inFront') return { type: 'cone', x: 0, y: 0, radius: 0, angle: 180, hole };
 
-        return super._createDragShapeData(event);
+        const shape = super._createDragShapeData(event);
+        const token = shape?.type === 'emanation' && shape.base?.type === 'token' ? this.#findTokenInBounds(event.interactionData.origin) : null;
+        if (token) {
+            shape.base.width = token.width;
+            shape.base.height = token.height;
+            event.interactionData.origin = token.getCenterPoint();
+        }
+        return shape;
     }
 
     async placeRegion(data, options = {}) {
@@ -51,17 +58,9 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
             const shape = document.shapes[0];
             const isEmanation = shape.type === 'emanation';
             if (isEmanation) {
-                const { x, y } = shape.base.origin;
-
-                const gridSize = canvas.grid.size;
-                const inBounds = canvas.scene.tokens.filter(t => {
-                    return x.between(t.x, t.x + t.width * gridSize) && y.between(t.y, t.y + t.height * gridSize);
-                });
-
-                if (inBounds.length !== 1) return options.preConfirm?.() ?? true;
-
+                const token = this.#findTokenInBounds(shape.base.origin);
+                if (!token) return options.preConfirm?.() ?? true;
                 const shapeData = shape.toObject();
-                const token = inBounds[0];
                 document.updateSource({
                     shapes: [
                         {
@@ -82,5 +81,15 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
         };
 
         super.placeRegion(data, { ...options, preConfirm });
+    }
+
+    /** Searches for token at origin point, returning null if there are no tokens or multiple overlapping tokens */
+    #findTokenInBounds(origin) {
+        const { x, y } = origin;
+        const gridSize = canvas.grid.size;
+        const inBounds = canvas.scene.tokens.filter(t => {
+            return x.between(t.x, t.x + t.width * gridSize) && y.between(t.y, t.y + t.height * gridSize);
+        });
+        return inBounds.length === 1 ? inBounds[0] : null;
     }
 }
