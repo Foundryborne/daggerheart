@@ -943,7 +943,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
         });
     }
 
-    static async #toggleResourceManagement(_event, button) {
+    static async #toggleResourceManagement(event, button) {
+        event.stopPropagation();
         const existingTooltip = document.body.querySelector('.locked-tooltip .resource-management-container');
         if (existingTooltip) {
             game.tooltip.dismissLockedTooltips();
@@ -976,12 +977,13 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
         const target = button.closest('.resource-section');
 
-        game.tooltip.dismissLockedTooltips();
+        // game.tooltip.dismissLockedTooltips();
         game.tooltip.activate(target, {
             html,
             locked: true,
             cssClass: 'bordered-tooltip',
-            direction: 'DOWN'
+            direction: 'DOWN',
+            noOffset: true
         });
 
         for (const element of html.querySelectorAll('.resource-value'))
