@@ -4,7 +4,7 @@ import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import { ActionField } from '../fields/actionField.mjs';
 import { adjustDice, adjustRange } from '../../helpers/utils.mjs';
 import DHCompanionSettings from '../../applications/sheets-configs/companion-settings.mjs';
-import { resourceField, bonusField } from '../fields/actorField.mjs';
+import { bonusField } from '../fields/actorField.mjs';
 
 export default class DhCompanion extends DhCreature {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Companion'];
@@ -26,10 +26,6 @@ export default class DhCompanion extends DhCreature {
         return {
             ...super.defineSchema(),
             partner: new ForeignDocumentUUIDField({ type: 'Actor' }),
-            resources: new fields.SchemaField({
-                stress: resourceField(3, 0, 'DAGGERHEART.GENERAL.stress', true),
-                hope: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.hope' })
-            }),
             evasion: new fields.NumberField({
                 required: true,
                 min: 1,

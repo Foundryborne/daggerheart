@@ -958,7 +958,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 id: resource.id,
                 label: game.i18n.localize(resource.label),
                 value: resourceData.value,
-                max: resourceData.max
+                max: resourceData.max,
+                fullIcon: resource.images?.full ?? { value: 'fa-solid fa-circle' },
+                emptyIcon: resource.images?.empty ?? { value: 'fa-regular fa-circle' }
             };
 
             return acc;
@@ -999,11 +1001,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const section = target.closest('.resource-section');
         for (const element of section.querySelectorAll('.resource-value')) {
             if (Number.parseInt(element.dataset.value) <= value) {
-                element.querySelector('.fa-diamond').classList.remove('hidden');
-                element.querySelector('.fa-circle').classList.add('hidden');
+                element.querySelector('.full').classList.remove('hidden');
+                element.querySelector('.empty').classList.add('hidden');
             } else {
-                element.querySelector('.fa-diamond').classList.add('hidden');
-                element.querySelector('.fa-circle').classList.remove('hidden');
+                element.querySelector('.full').classList.add('hidden');
+                element.querySelector('.empty').classList.remove('hidden');
             }
         }
     }

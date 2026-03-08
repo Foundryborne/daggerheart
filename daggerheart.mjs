@@ -102,7 +102,19 @@ Hooks.once('init', () => {
         initial: 0,
         max: 4,
         reverse: false,
-        label: 'Corruption'
+        label: 'Corruption',
+        images: {
+            full: {
+                value: 'icons/magic/fire/barrier-wall-explosion-orange.webp',
+                isPath: true,
+                isNotTransparent: true
+            },
+            empty: {
+                value: 'icons/magic/fire/barrier-wall-flame-ring-blue.webp',
+                isPath: true,
+                isNotTransparent: true
+            }
+        }
     };
 
     CONFIG.DH.ACTOR.characterResources.hunger = {
@@ -110,7 +122,15 @@ Hooks.once('init', () => {
         initial: 0,
         max: 6,
         reverse: false,
-        label: 'Hunger'
+        label: 'Hunger',
+        images: {
+            full: {
+                value: 'fa-solid fa-burger'
+            },
+            empty: {
+                value: 'fa-regular fa-burger'
+            }
+        }
     };
 
     CONFIG.DH.ACTOR.characterResources.glitched = {
@@ -118,7 +138,15 @@ Hooks.once('init', () => {
         initial: 0,
         max: 6,
         reverse: false,
-        label: 'Glitched'
+        label: 'Glitched',
+        images: {
+            full: {
+                value: 'fa-solid fa-robot'
+            },
+            empty: {
+                value: 'fa-regular fa-robot'
+            }
+        }
     };
 
     game.system.registeredTriggers = new game.system.api.data.RegisteredTriggers();

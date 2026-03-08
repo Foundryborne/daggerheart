@@ -32,6 +32,24 @@
             .hidden {
                 display: none;
             }
+
+            img {
+                width: 18px;
+                height: 18px;
+
+                &.empty {
+                    opacity: 0.4;
+                }
+
+                &.filter {
+                    filter: @golden-filter;
+                }
+
+                &.non-transparent {
+                    border-radius: 50%;
+                    border: 1px solid @golden;
+                }
+            }
         }
     }
 }

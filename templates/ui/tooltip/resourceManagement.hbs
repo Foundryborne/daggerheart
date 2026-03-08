@@ -1,11 +1,19 @@
 <div class="daggerheart resource-management-container">
     {{#each resources as |resource|}}
-        <div class="resource-section">
+        <div class="resource-section {{resource.resourceClass}}">
             <h4>{{resource.label}}</h4>
             {{#times resource.max}}
                 <span class='resource-value' data-action='toggleResource' data-value="{{add this 1}}" data-resource="{{resource.id}}">
-                    <i class='fa-solid fa-diamond {{#unless (gte ../value (add this 1))}}hidden{{/unless}}'></i>
-                    <i class='fa-regular fa-circle {{#if (gte ../value (add this 1))}}hidden{{/if}}'></i>
+                    {{#unless resource.fullIcon.isPath}}
+                        <i class='{{resource.fullIcon.value}} full {{#unless (gte ../value (add this 1))}}hidden{{/unless}}'></i>
+                    {{else}}
+                        <img src="{{resource.fullIcon.value}}" class="full {{#unless resource.fullIcon.isNotTransparent}}filter{{else}}non-transparent{{/unless}} {{#unless (gte ../value (add this 1))}}hidden{{/unless}}" />
+                    {{/unless}}
+                    {{#unless resource.emptyIcon.isPath}}
+                        <i class='{{resource.emptyIcon.value}} empty {{#if (gte ../value (add this 1))}}hidden{{/if}}'></i>
+                    {{else}}
+                        <img src="{{resource.emptyIcon.value}}" class="empty {{#unless resource.fullIcon.isNotTransparent}}filter{{else}}non-transparent{{/unless}} {{#if (gte ../value (add this 1))}}hidden{{/if}}" />
+                    {{/unless}}
                 </span>
             {{/times}}
         </div>

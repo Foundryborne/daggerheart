@@ -3,7 +3,7 @@ import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import DhLevelData from '../levelData.mjs';
 import { commonActorRules } from './base.mjs';
 import DhCreature from './creature.mjs';
-import { attributeField, resourceField, stressDamageReductionRule, bonusField } from '../fields/actorField.mjs';
+import { attributeField, stressDamageReductionRule, bonusField } from '../fields/actorField.mjs';
 import { ActionField } from '../fields/actionField.mjs';
 import DHCharacterSettings from '../../applications/sheets-configs/character-settings.mjs';
 
@@ -27,34 +27,6 @@ export default class DhCharacter extends DhCreature {
 
         return {
             ...super.defineSchema(),
-            resources: new fields.SchemaField({
-                ...Object.values(CONFIG.DH.ACTOR.characterResources).reduce((acc, resource) => {
-                    if (resource.max !== undefined) {
-                        acc[resource.id] = resourceField(
-                            resource.max,
-                            resource.initial,
-                            resource.label,
-                            resource.reverse,
-                            resource.maxLabel
-                        );
-                    } else {
-                        acc[resource.id] = new fields.SchemaField(
-                            {
-                                value: new fields.NumberField({
-                                    initial: resource.initial,
-                                    min: resource.min,
-                                    integer: true,
-                                    label: resource.label
-                                }),
-                                isReversed: new fields.BooleanField({ initial: resource.reverse })
-                            },
-                            { label: resource.label }
-                        );
-                    }
-
-                    return acc;
-                }, {})
-            }),
             traits: new fields.SchemaField({
                 agility: attributeField('DAGGERHEART.CONFIG.Traits.agility.name'),
                 strength: attributeField('DAGGERHEART.CONFIG.Traits.strength.name'),
