@@ -63,7 +63,7 @@
         {
           "key": "system.bonuses.rally",
           "mode": 2,
-          "value": "d6",
+          "value": "6 + min((floor(@system.levelData.level.current / 5)*2), 2)",
           "priority": null
         }
       ],

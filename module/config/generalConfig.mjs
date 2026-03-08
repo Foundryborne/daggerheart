@@ -206,7 +206,8 @@ export const conditions = () => ({
         id: 'vulnerable',
         name: 'DAGGERHEART.CONFIG.Condition.vulnerable.name',
         img: 'icons/magic/control/silhouette-fall-slip-prone.webp',
-        description: 'DAGGERHEART.CONFIG.Condition.vulnerable.description'
+        description: 'DAGGERHEART.CONFIG.Condition.vulnerable.description',
+        autoApplyFlagId: 'auto-vulnerable'
     },
     hidden: {
         id: 'hidden',
@@ -868,6 +869,11 @@ export const activeEffectModes = {
         id: 'add',
         priority: 20,
         label: 'EFFECT.CHANGES.TYPES.add'
+    },
+    subtract: {
+        id: 'subtract',
+        priority: 20,
+        label: 'EFFECT.CHANGES.TYPES.subtract'
     },
     downgrade: {
         id: 'downgrade',

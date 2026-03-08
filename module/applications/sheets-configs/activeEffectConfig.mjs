@@ -4,6 +4,43 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
     constructor(options) {
         super(options);
 
+        this.changeChoices = DhActiveEffectConfig.getChangeChoices();
+    }
+
+    static DEFAULT_OPTIONS = {
+        classes: ['daggerheart', 'sheet', 'dh-style']
+    };
+
+    static PARTS = {
+        header: { template: 'systems/daggerheart/templates/sheets/activeEffect/header.hbs' },
+        tabs: { template: 'templates/generic/tab-navigation.hbs' },
+        details: { template: 'systems/daggerheart/templates/sheets/activeEffect/details.hbs', scrollable: [''] },
+        settings: { template: 'systems/daggerheart/templates/sheets/activeEffect/settings.hbs' },
+        changes: {
+            template: 'systems/daggerheart/templates/sheets/activeEffect/changes.hbs',
+            templates: ['systems/daggerheart/templates/sheets/activeEffect/change.hbs'],
+            scrollable: ['ol[data-changes]']
+        },
+        footer: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-form-footer.hbs' }
+    };
+
+    static TABS = {
+        sheet: {
+            tabs: [
+                { id: 'details', icon: 'fa-solid fa-book' },
+                { id: 'settings', icon: 'fa-solid fa-bars', label: 'DAGGERHEART.GENERAL.Tabs.settings' },
+                { id: 'changes', icon: 'fa-solid fa-gears' }
+            ],
+            initial: 'details',
+            labelPrefix: 'EFFECT.TABS'
+        }
+    };
+
+    /**
+     * Get ChangeChoices for the changes autocomplete. Static for use in this class aswell as in settings-active-effect-config.mjs
+     * @returns {ChangeChoice { value: string, label: string, hint: string, group: string }[]}
+     */
+    static getChangeChoices() {
         const ignoredActorKeys = ['config', 'DhEnvironment', 'DhParty'];
 
         const getAllLeaves = (root, group, parentPath = '') => {
@@ -23,7 +60,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
 
             return leaves;
         };
-        this.changeChoices = Object.keys(game.system.api.models.actors).reduce((acc, key) => {
+        return Object.keys(game.system.api.models.actors).reduce((acc, key) => {
             if (ignoredActorKeys.includes(key)) return acc;
 
             const model = game.system.api.models.actors[key];
@@ -61,35 +98,6 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             return acc;
         }, []);
     }
-
-    static DEFAULT_OPTIONS = {
-        classes: ['daggerheart', 'sheet', 'dh-style']
-    };
-
-    static PARTS = {
-        header: { template: 'systems/daggerheart/templates/sheets/activeEffect/header.hbs' },
-        tabs: { template: 'templates/generic/tab-navigation.hbs' },
-        details: { template: 'systems/daggerheart/templates/sheets/activeEffect/details.hbs', scrollable: [''] },
-        settings: { template: 'systems/daggerheart/templates/sheets/activeEffect/settings.hbs' },
-        changes: {
-            template: 'systems/daggerheart/templates/sheets/activeEffect/changes.hbs',
-            templates: ['systems/daggerheart/templates/sheets/activeEffect/change.hbs'],
-            scrollable: ['ol[data-changes]']
-        },
-        footer: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-form-footer.hbs' }
-    };
-
-    static TABS = {
-        sheet: {
-            tabs: [
-                { id: 'details', icon: 'fa-solid fa-book' },
-                { id: 'settings', icon: 'fa-solid fa-bars', label: 'DAGGERHEART.GENERAL.Tabs.settings' },
-                { id: 'changes', icon: 'fa-solid fa-gears' }
-            ],
-            initial: 'details',
-            labelPrefix: 'EFFECT.TABS'
-        }
-    };
 
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);

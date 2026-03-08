@@ -73,9 +73,11 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
         return context;
     }
 
-    static async updateData(event, element, formData) {
+    static async updateData(_event, _element, formData) {
         const data = foundry.utils.expandObject(formData.object);
-        foundry.utils.mergeObject(this.move, data);
+        await this.updateMove({
+            [`${this.movePath}`]: data
+        });
 
         this.render();
     }
@@ -135,9 +137,7 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
                 }
             );
 
-        await this.settings.updateSource({ [`${this.actionsPath}.${action.id}`]: action });
-        this.move = foundry.utils.getProperty(this.settings, this.movePath);
-
+        await this.updateMove({ [`${this.actionsPath}.${action.id}`]: action });
         this.render();
     }
 
@@ -150,13 +150,12 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
                 await game.system.api.applications.sheetConfigs.SettingActiveEffectConfig.configure(effect);
             if (!updatedEffect) return;
 
-            await this.settings.updateSource({
+            await this.updateMove({
                 [`${this.movePath}.effects`]: this.move.effects.reduce((acc, effect, index) => {
                     acc.push(index === effectIndex ? { ...updatedEffect, id: effect.id } : effect);
                     return acc;
                 }, [])
             });
-            this.move = foundry.utils.getProperty(this.settings, this.movePath);
             this.render();
         } else {
             const action = this.move.actions.get(id);
@@ -171,13 +170,13 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
                         : existingEffectIndex === -1
                           ? [...currentEffects, effectData]
                           : currentEffects.with(existingEffectIndex, effectData);
-                    await this.settings.updateSource({
+                    await this.updateMove({
                         [`${this.movePath}.effects`]: updatedEffects
                     });
                 }
 
-                await this.settings.updateSource({ [`${this.actionsPath}.${id}`]: updatedMove });
-                this.move = foundry.utils.getProperty(this.settings, this.movePath);
+                await this.updateMove({ [`${this.actionsPath}.${id}`]: updatedMove });
+
                 this.render();
                 return updatedEffects;
             }).render(true);
@@ -199,31 +198,34 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
                     });
                 }
             }
-            await this.settings.updateSource({
+            await this.updateMove({
                 [this.movePath]: {
                     effects: move.effects.filter(x => x.id !== id),
                     actions: move.actions
                 }
             });
         } else {
-            await this.settings.updateSource({ [`${this.actionsPath}.${target.dataset.id}`]: _del });
+            await this.updateMove({ [`${this.actionsPath}.${target.dataset.id}`]: _del });
         }
 
-        this.move = foundry.utils.getProperty(this.settings, this.movePath);
         this.render();
     }
 
-    static async addEffect(_, target) {
+    static async addEffect() {
         const currentEffects = foundry.utils.getProperty(this.settings, `${this.movePath}.effects`);
-        await this.settings.updateSource({
+
+        await this.updateMove({
             [`${this.movePath}.effects`]: [
                 ...currentEffects,
                 game.system.api.data.activeEffects.BaseEffect.getDefaultObject()
             ]
         });
-
-        this.move = foundry.utils.getProperty(this.settings, this.movePath);
         this.render();
+    }
+
+    async updateMove(update) {
+        await this.settings.updateSource(update);
+        this.move = foundry.utils.getProperty(this.settings, this.movePath);
     }
 
     static resetMoves() {}

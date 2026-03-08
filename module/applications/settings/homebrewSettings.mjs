@@ -187,6 +187,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             });
         }
 
+        game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew, this.settings.toObject());
         this.render();
     }
 
@@ -227,6 +228,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             }
         });
 
+        game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew, this.settings.toObject());
         this.render();
     }
 
@@ -246,6 +248,8 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         await this.settings.updateSource({
             [`${path}.${id}`]: _del
         });
+
+        game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew, this.settings.toObject());
         this.render();
     }
 

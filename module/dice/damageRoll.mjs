@@ -1,4 +1,5 @@
 import DamageDialog from '../applications/dialogs/damageDialog.mjs';
+import { parseRallyDice } from '../helpers/utils.mjs';
 import { RefreshType, socketEvent } from '../systemRegistration/socket.mjs';
 import DHRoll from './dhRoll.mjs';
 
@@ -33,7 +34,7 @@ export default class DamageRoll extends DHRoll {
     static async buildPost(roll, config, message) {
         const chatMessage = config.source?.message
             ? ui.chat.collection.get(config.source.message)
-            : getDocumentClass('ChatMessage').applyRollMode({}, config.rollMode);
+            : getDocumentClass('ChatMessage').applyRollMode({}, config.rollMode ?? CONST.DICE_ROLL_MODES.PUBLIC);
         if (game.modules.get('dice-so-nice')?.active) {
             const pool = foundry.dice.terms.PoolTerm.fromRolls(
                     Object.values(config.damage).flatMap(r => r.parts.map(p => p.roll))
@@ -46,9 +47,14 @@ export default class DamageRoll extends DHRoll {
                 chatMessage.whisper?.length > 0 ? chatMessage.whisper : null,
                 chatMessage.blind
             );
+            config.mute = true;
         }
         await super.buildPost(roll, config, message);
-        if (config.source?.message) chatMessage.update({ 'system.damage': config.damage });
+        if (config.source?.message) {
+            chatMessage.update({ 'system.damage': config.damage });
+
+            if (!game.modules.get('dice-so-nice')?.active) foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
+        }
     }
 
     static unifyDamageRoll(rolls) {
@@ -192,7 +198,7 @@ export default class DamageRoll extends DHRoll {
                 // Bardic Rally
                 const rallyChoices = config.data?.parent?.appliedEffects.reduce((a, c) => {
                     const change = c.system.changes.find(ch => ch.key === 'system.bonuses.rally');
-                    if (change) a.push({ value: c.id, label: change.value });
+                    if (change) a.push({ value: c.id, label: parseRallyDice(change.value, c) });
                     return a;
                 }, []);
                 if (rallyChoices.length) {
