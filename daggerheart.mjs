@@ -97,12 +97,38 @@ Hooks.once('init', () => {
         fields
     };
 
+    CONFIG.DH.ACTOR.characterResources.basic = {
+        id: 'basic',
+        initial: 0,
+        max: 4,
+        reverse: false,
+        label: 'Basic'
+    };
+
     CONFIG.DH.ACTOR.characterResources.corruption = {
         id: 'corruption',
         initial: 0,
         max: 4,
         reverse: false,
         label: 'Corruption',
+        images: {
+            full: {
+                value: 'systems/daggerheart/assets/icons/domains/sage.svg',
+                isPath: true
+            },
+            empty: {
+                value: 'systems/daggerheart/assets/icons/domains/sage.svg',
+                isPath: true
+            }
+        }
+    };
+
+    CONFIG.DH.ACTOR.characterResources.fire = {
+        id: 'fire',
+        initial: 0,
+        max: 6,
+        reverse: false,
+        label: 'On Fire',
         images: {
             full: {
                 value: 'icons/magic/fire/barrier-wall-explosion-orange.webp',
@@ -129,22 +155,6 @@ Hooks.once('init', () => {
             },
             empty: {
                 value: 'fa-regular fa-burger'
-            }
-        }
-    };
-
-    CONFIG.DH.ACTOR.characterResources.glitched = {
-        id: 'glitched',
-        initial: 0,
-        max: 6,
-        reverse: false,
-        label: 'Glitched',
-        images: {
-            full: {
-                value: 'fa-solid fa-robot'
-            },
-            empty: {
-                value: 'fa-regular fa-robot'
             }
         }
     };
