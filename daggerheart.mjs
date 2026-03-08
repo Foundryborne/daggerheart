@@ -97,6 +97,30 @@ Hooks.once('init', () => {
         fields
     };
 
+    CONFIG.DH.ACTOR.characterResources.corruption = {
+        id: 'corruption',
+        initial: 0,
+        max: 4,
+        reverse: false,
+        label: 'Corruption'
+    };
+
+    CONFIG.DH.ACTOR.characterResources.hunger = {
+        id: 'hunger',
+        initial: 0,
+        max: 6,
+        reverse: false,
+        label: 'Hunger'
+    };
+
+    CONFIG.DH.ACTOR.characterResources.glitched = {
+        id: 'glitched',
+        initial: 0,
+        max: 6,
+        reverse: false,
+        label: 'Glitched'
+    };
+
     game.system.registeredTriggers = new game.system.api.data.RegisteredTriggers();
 
     const { DocumentSheetConfig } = foundry.applications.apps;

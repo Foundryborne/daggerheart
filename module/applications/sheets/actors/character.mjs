@@ -33,6 +33,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             handleResourceDice: CharacterSheet.#handleResourceDice,
             advanceResourceDie: CharacterSheet.#advanceResourceDie,
             cancelBeastform: CharacterSheet.#cancelBeastform,
+            toggleResourceManagement: CharacterSheet.#toggleResourceManagement,
             useDowntime: this.useDowntime,
             viewParty: CharacterSheet.#viewParty
         },
@@ -940,6 +941,71 @@ export default class CharacterSheet extends DHBaseActorSheet {
             html,
             locked: true
         });
+    }
+
+    static async #toggleResourceManagement(_event, button) {
+        const existingTooltip = document.body.querySelector('.locked-tooltip .resource-management-container');
+        if (existingTooltip) {
+            game.tooltip.dismissLockedTooltips();
+            return;
+        }
+
+        const extraResources = Object.values(CONFIG.DH.ACTOR.characterResources).reduce((acc, resource) => {
+            if (CONFIG.DH.ACTOR.characterBaseResources[resource.id]) return acc;
+
+            const resourceData = this.document.system.resources[resource.id];
+            acc[resource.id] = {
+                id: resource.id,
+                label: game.i18n.localize(resource.label),
+                value: resourceData.value,
+                max: resourceData.max
+            };
+
+            return acc;
+        }, {});
+
+        const html = document.createElement('div');
+        html.innerHTML = await foundry.applications.handlebars.renderTemplate(
+            `systems/daggerheart/templates/ui/tooltip/resourceManagement.hbs`,
+            {
+                resources: extraResources
+            }
+        );
+
+        const target = button.closest('.resource-section');
+
+        game.tooltip.dismissLockedTooltips();
+        game.tooltip.activate(target, {
+            html,
+            locked: true,
+            cssClass: 'bordered-tooltip',
+            direction: 'DOWN'
+        });
+
+        for (const element of html.querySelectorAll('.resource-value'))
+            element.addEventListener('click', CharacterSheet.resourceUpdate.bind(this));
+    }
+
+    static async resourceUpdate(event) {
+        const target = event.target.closest('.resource-value');
+        const { resource, value: textValue } = target.dataset;
+
+        const inputValue = Number.parseInt(textValue);
+        const decreasing = inputValue <= this.document.system.resources[resource].value;
+        const value = decreasing ? inputValue - 1 : inputValue;
+        await this.document.update({ [`system.resources.${resource}.value`]: value });
+
+        /* Update resource symbols */
+        const section = target.closest('.resource-section');
+        for (const element of section.querySelectorAll('.resource-value')) {
+            if (Number.parseInt(element.dataset.value) <= value) {
+                element.querySelector('.fa-diamond').classList.remove('hidden');
+                element.querySelector('.fa-circle').classList.add('hidden');
+            } else {
+                element.querySelector('.fa-diamond').classList.add('hidden');
+                element.querySelector('.fa-circle').classList.remove('hidden');
+            }
+        }
     }
 
     /**

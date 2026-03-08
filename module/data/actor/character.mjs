@@ -28,26 +28,32 @@ export default class DhCharacter extends DhCreature {
         return {
             ...super.defineSchema(),
             resources: new fields.SchemaField({
-                hitPoints: resourceField(
-                    0,
-                    0,
-                    'DAGGERHEART.GENERAL.HitPoints.plural',
-                    true,
-                    'DAGGERHEART.ACTORS.Character.maxHPBonus'
-                ),
-                stress: resourceField(6, 0, 'DAGGERHEART.GENERAL.stress', true),
-                hope: new fields.SchemaField(
-                    {
-                        value: new fields.NumberField({
-                            initial: 2,
-                            min: 0,
-                            integer: true,
-                            label: 'DAGGERHEART.GENERAL.hope'
-                        }),
-                        isReversed: new fields.BooleanField({ initial: false })
-                    },
-                    { label: 'DAGGERHEART.GENERAL.hope' }
-                )
+                ...Object.values(CONFIG.DH.ACTOR.characterResources).reduce((acc, resource) => {
+                    if (resource.max !== undefined) {
+                        acc[resource.id] = resourceField(
+                            resource.max,
+                            resource.initial,
+                            resource.label,
+                            resource.reverse,
+                            resource.maxLabel
+                        );
+                    } else {
+                        acc[resource.id] = new fields.SchemaField(
+                            {
+                                value: new fields.NumberField({
+                                    initial: resource.initial,
+                                    min: resource.min,
+                                    integer: true,
+                                    label: resource.label
+                                }),
+                                isReversed: new fields.BooleanField({ initial: resource.reverse })
+                            },
+                            { label: resource.label }
+                        );
+                    }
+
+                    return acc;
+                }, {})
             }),
             traits: new fields.SchemaField({
                 agility: attributeField('DAGGERHEART.CONFIG.Traits.agility.name'),

@@ -1,0 +1,13 @@
+<div class="daggerheart resource-management-container">
+    {{#each resources as |resource|}}
+        <div class="resource-section">
+            <h4>{{resource.label}}</h4>
+            {{#times resource.max}}
+                <span class='resource-value' data-action='toggleResource' data-value="{{add this 1}}" data-resource="{{resource.id}}">
+                    <i class='fa-solid fa-diamond {{#unless (gte ../value (add this 1))}}hidden{{/unless}}'></i>
+                    <i class='fa-regular fa-circle {{#if (gte ../value (add this 1))}}hidden{{/if}}'></i>
+                </span>
+            {{/times}}
+        </div>
+    {{/each}}
+</div>

@@ -378,17 +378,17 @@ export const arraysEqual = (a, b) =>
 
 export const setsEqual = (a, b) => a.size === b.size && [...a].every(value => b.has(value));
 
-export function getScrollTextData(resources, resource, key) {
-    const { reversed, label } = CONFIG.DH.ACTOR.scrollingTextResource[key];
+export function getScrollTextData(resources, resource, key, actorType) {
+    const { reverse, label } = CONFIG.DH.ACTOR.getScrollingTextResources(actorType)[key];
     const { BOTTOM, TOP } = CONST.TEXT_ANCHOR_POINTS;
     const increased = resources[key].value < resource.value;
     const value = -1 * (resources[key].value - resource.value);
 
     const text = `${game.i18n.localize(label)} ${value.signedString()}`;
 
-    const stroke = increased ? (reversed ? 0xffffff : 0x000000) : reversed ? 0x000000 : 0xffffff;
-    const fill = increased ? (reversed ? 0x0032b1 : 0xffe760) : reversed ? 0xffe760 : 0x0032b1;
-    const direction = increased ? (reversed ? BOTTOM : TOP) : reversed ? TOP : BOTTOM;
+    const stroke = increased ? (reverse ? 0xffffff : 0x000000) : reverse ? 0x000000 : 0xffffff;
+    const fill = increased ? (reverse ? 0x0032b1 : 0xffe760) : reverse ? 0xffe760 : 0x0032b1;
+    const direction = increased ? (reverse ? BOTTOM : TOP) : reverse ? TOP : BOTTOM;
 
     return { text, stroke, fill, direction };
 }
