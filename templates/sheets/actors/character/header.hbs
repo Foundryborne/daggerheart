@@ -83,7 +83,7 @@
                     </span>
                 {{/times}}
             </div>
-            <button type="button" class="resource-manager" data-action="toggleResourceManagement"><i class="fa-solid fa-bars"></i></button>
+            {{#if hasExtraResources}}<button type="button" class="resource-manager" data-action="toggleResourceManagement"><i class="fa-solid fa-bars"></i></button>{{/if}}
         </div>
         {{#if document.system.class.value}}
             <div class="domains-section">

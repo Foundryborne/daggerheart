@@ -227,6 +227,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
     async _preparePartContext(partId, context, options) {
         context = await super._preparePartContext(partId, context, options);
         switch (partId) {
+            case 'header':
+                await this._prepareHeaderContext(context, options);
+                break;
             case 'loadout':
                 await this._prepareLoadoutContext(context, options);
                 break;
@@ -239,6 +242,12 @@ export default class CharacterSheet extends DHBaseActorSheet {
         }
 
         return context;
+    }
+
+    async _prepareHeaderContext(context, _options) {
+        context.hasExtraResources = Object.keys(CONFIG.DH.ACTOR.characterResources).some(
+            key => !CONFIG.DH.ACTOR.characterBaseResources[key]
+        );
     }
 
     /**
