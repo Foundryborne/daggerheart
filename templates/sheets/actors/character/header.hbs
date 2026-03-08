@@ -82,8 +82,8 @@
                         <i class='fa-regular fa-ban'></i>
                     </span>
                 {{/times}}
+                {{#if hasExtraResources}}<a type="button" class="resource-manager" data-action="toggleResourceManagement"><i class="fa-solid fa-angle-down"></i></a>{{/if}}
             </div>
-            {{#if hasExtraResources}}<button type="button" class="resource-manager" data-action="toggleResourceManagement"><i class="fa-solid fa-bars"></i></button>{{/if}}
         </div>
         {{#if document.system.class.value}}
             <div class="domains-section">

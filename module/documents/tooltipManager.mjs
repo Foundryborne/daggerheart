@@ -364,6 +364,12 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         return clone;
     }
 
+    /**@inheritdoc */
+    dismissLockedTooltips() {
+        super.dismissLockedTooltips();
+        Hooks.callAll(CONFIG.DH.HOOKS.hooksConfig.lockedTooltipDismissed);
+    }
+
     /** Get HTML for Battlepoints tooltip */
     async getBattlepointHTML(combatId) {
         const combat = game.combats.get(combatId);

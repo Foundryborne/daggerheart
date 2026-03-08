@@ -986,13 +986,20 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
         const target = button.closest('.resource-section');
 
-        // game.tooltip.dismissLockedTooltips();
+        game.tooltip.dismissLockedTooltips();
         game.tooltip.activate(target, {
             html,
             locked: true,
             cssClass: 'bordered-tooltip',
             direction: 'DOWN',
             noOffset: true
+        });
+
+        const resourceManager = target.querySelector('.resource-manager');
+        resourceManager.classList.toggle('inverted');
+
+        Hooks.once(CONFIG.DH.HOOKS.hooksConfig.lockedTooltipDismissed, () => {
+            resourceManager.classList.toggle('inverted');
         });
 
         for (const element of html.querySelectorAll('.resource-value'))
