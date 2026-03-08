@@ -183,6 +183,24 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
             const initial = this.schema.fields.currency.fields[type].getInitialValue();
             source.currency[type] = foundry.utils.mergeObject(initial, source.currency[type], { inplace: false });
         }
+
+        /* Migrate to v14 setup */
+        const migrateEffects = features => {
+            for (const featureKey of Object.keys(features)) {
+                const feature = features[featureKey];
+                for (const effect of feature.effects) {
+                    if (effect.changes) effect.system.changes = effect.changes;
+                    if (!effect.system.changes) effect.system.changes = [];
+                    if (!effect.system.conditionals) effect.system.conditionals = [];
+                }
+            }
+        };
+
+        migrateEffects(source.restMoves.longRest.moves);
+        migrateEffects(source.restMoves.shortRest.moves);
+        migrateEffects(source.itemFeatures.weaponFeatures);
+        migrateEffects(source.itemFeatures.armorFeatures);
+
         return source;
     }
 }
