@@ -97,8 +97,10 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
             img: 'icons/magic/life/heart-cross-blue.webp',
             description: '',
             statuses: [],
-            changes: [],
             system: {
+                changes: [],
+                conditionals: [],
+                duration: { type: '', description: '' },
                 rangeDependence: {
                     enabled: false,
                     type: CONFIG.DH.GENERAL.rangeInclusion.withinRange.id,

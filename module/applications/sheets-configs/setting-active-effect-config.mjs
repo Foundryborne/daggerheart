@@ -24,7 +24,9 @@ export default class SettingActiveEffectConfig extends HandlebarsApplicationMixi
         actions: {
             editImage: SettingActiveEffectConfig.#editImage,
             addChange: SettingActiveEffectConfig.#addChange,
-            deleteChange: SettingActiveEffectConfig.#deleteChange
+            deleteChange: SettingActiveEffectConfig.#deleteChange,
+            addConditional: SettingActiveEffectConfig.#addConditional,
+            removeConditional: SettingActiveEffectConfig.#removeConditional
         }
     };
 
@@ -33,8 +35,10 @@ export default class SettingActiveEffectConfig extends HandlebarsApplicationMixi
         tabs: { template: 'templates/generic/tab-navigation.hbs' },
         details: { template: 'systems/daggerheart/templates/sheets/activeEffect/details.hbs', scrollable: [''] },
         settings: { template: 'systems/daggerheart/templates/sheets/activeEffect/settings.hbs' },
+        conditionals: { template: 'systems/daggerheart/templates/sheets/activeEffect/conditionals.hbs' },
         changes: {
             template: 'systems/daggerheart/templates/sheets/activeEffect/changes.hbs',
+            templates: ['systems/daggerheart/templates/sheets/activeEffect/change.hbs'],
             scrollable: ['ol[data-changes]']
         },
         footer: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-form-footer.hbs' }
@@ -45,6 +49,11 @@ export default class SettingActiveEffectConfig extends HandlebarsApplicationMixi
             tabs: [
                 { id: 'details', icon: 'fa-solid fa-book' },
                 { id: 'settings', icon: 'fa-solid fa-bars', label: 'DAGGERHEART.GENERAL.Tabs.settings' },
+                {
+                    id: 'conditionals',
+                    icon: 'fa-solid fa-person-circle-question',
+                    label: 'DAGGERHEART.GENERAL.Tabs.conditionals'
+                },
                 { id: 'changes', icon: 'fa-solid fa-gears' }
             ],
             initial: 'details',
@@ -140,6 +149,20 @@ export default class SettingActiveEffectConfig extends HandlebarsApplicationMixi
                     ];
                 }
                 break;
+            case 'conditionals':
+                context.conditionals = this.effect.system.conditionals.map(conditional => ({
+                    ...conditional,
+                    ...game.system.api.data.activeEffects.EffectConditional.getConditionalFieldUseage(conditional.type)
+                }));
+                context.statusChoices = Object.values(CONFIG.statusEffects).map(x => ({
+                    id: x.id,
+                    label: x.name
+                }));
+                context.conditionalTypes = Object.values(CONFIG.DH.GENERAL.activeEffectConditionalType).map(x => ({
+                    id: x.id,
+                    label: game.i18n.localize(x.label)
+                }));
+                break;
             case 'changes':
                 context.modes = Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((modes, [key, value]) => {
                     modes[value] = game.i18n.localize(`EFFECT.MODE_${key}`);
@@ -155,6 +178,11 @@ export default class SettingActiveEffectConfig extends HandlebarsApplicationMixi
 
     static async #onSubmit(_event, _form, formData) {
         this.data = foundry.utils.expandObject(formData.object);
+        this.data.system.conditionals = Object.values(this.data.system.conditionals).map(x => ({
+            ...x,
+            key: x.key.find(key => key) ?? ''
+        }));
+
         this.close();
     }
 
@@ -181,6 +209,38 @@ export default class SettingActiveEffectConfig extends HandlebarsApplicationMixi
         });
 
         await fp.browse();
+    }
+
+    /** @inheritDoc */
+    _onChangeForm(_formConfig, event) {
+        if (
+            foundry.utils.isElementInstanceOf(event.target, 'select') &&
+            event.target.name.startsWith('system.conditionals') &&
+            event.target.name.endsWith('type')
+        ) {
+            const container = event.target.closest('.conditional-container');
+
+            const statusSelect = container.querySelector('.form-group.status-select');
+            const attributeAuto = container.querySelector('.form-group.attribute-auto');
+            if (event.target.value === CONFIG.DH.GENERAL.activeEffectConditionalType.status.id) {
+                statusSelect.classList.remove('not-visible');
+                attributeAuto.classList.add('not-visible');
+            } else {
+                statusSelect.classList.add('not-visible');
+                attributeAuto.classList.remove('not-visible');
+            }
+            statusSelect.querySelector('select').selectedIndex = '-1';
+            attributeAuto.querySelector('input').value = '';
+
+            const { usesValue, usesComparator } =
+                game.system.api.data.activeEffects.EffectConditional.getConditionalFieldUseage(event.target.value);
+
+            if (usesValue) container.querySelector('.form-group.value').classList.remove('not-visible');
+            else container.querySelector('.form-group.value').classList.add('not-visible');
+
+            if (usesComparator) container.querySelector('.form-group.comparator').classList.remove('not-visible');
+            else container.querySelector('.form-group.comparator').classList.add('not-visible');
+        }
     }
 
     /**
@@ -210,6 +270,27 @@ export default class SettingActiveEffectConfig extends HandlebarsApplicationMixi
         updatedChanges.splice(index, 1);
 
         this.effect = { ...submitData, changes: updatedChanges };
+        this.render();
+    }
+
+    static #addConditional() {
+        const formData = foundry.utils.expandObject(new FormDataExtended(this.form).object);
+        const updatedConditionals = Object.values(formData.system.conditionals ?? {});
+        updatedConditionals.push(
+            game.system.api.data.activeEffects.BaseEffect._schema.fields.conditionals.element.getInitialValue()
+        );
+
+        this.effect = { ...formData, system: { ...formData.system, conditionals: updatedConditionals } };
+        this.render();
+    }
+
+    static async #removeConditional(_event, button) {
+        const submitData = foundry.utils.expandObject(new FormDataExtended(this.form).object);
+        const conditionals = Object.values(submitData.system.conditionals);
+        const index = Number(button.dataset.index) || 0;
+        conditionals.splice(index, 1);
+
+        this.effect = { ...submitData, system: { ...submitData.system, conditionals } };
         this.render();
     }
 

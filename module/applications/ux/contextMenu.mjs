@@ -53,46 +53,6 @@
  */
 export default class DHContextMenu extends foundry.applications.ux.ContextMenu {
     /**
-     * @param {HTMLElement|jQuery} container - The HTML element that contains the context menu targets.
-     * @param {string} selector - A CSS selector which activates the context menu.
-     * @param {ContextMenuEntry[]} menuItems - An Array of entries to display in the menu
-     * @param {ContextMenuOptions} [options] - Additional options to configure the context menu.
-     */
-    constructor(container, selector, menuItems, options) {
-        super(container, selector, menuItems, options);
-
-        /** @deprecated since v13 until v15 */
-        this.#jQuery = options.jQuery;
-    }
-
-    /**
-     * Whether to pass jQuery objects or HTMLElement instances to callback.
-     * @type {boolean}
-     */
-    #jQuery;
-
-    /**@inheritdoc */
-    activateListeners(menu) {
-        menu.addEventListener('click', this.#onClickItem.bind(this));
-    }
-
-    /**
-     * Handle click events on context menu items.
-     * @param {PointerEvent} event      The click event
-     */
-    #onClickItem(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        const element = event.target.closest('.context-item');
-        if (!element) return;
-        const item = this.menuItems.find(i => i.element === element);
-        item?.onClick(event, this.#jQuery ? $(this.target) : this.target);
-        this.close();
-    }
-
-    /* -------------------------------------------- */
-
-    /**
      * Trigger a context menu event in response to a normal click on a additional options button.
      * @param {PointerEvent} event
      */

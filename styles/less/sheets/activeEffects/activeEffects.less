@@ -27,6 +27,7 @@
         display: flex;
         flex-direction: column;
         gap: 8px;
+        width: 100%;
 
         .conditional-container {
             display: grid;
@@ -45,7 +46,19 @@
         }
     }
 
-    .form-group.not-visible {
-        display: none;
+    .form-group {
+        &.vertical {
+            flex-direction: column;
+            gap: 0;
+            align-items: flex-start;
+
+            label {
+                line-height: 22px;
+            }
+        }
+
+        &.not-visible {
+            display: none;
+        }
     }
 }

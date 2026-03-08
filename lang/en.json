@@ -1899,6 +1899,10 @@
                     "hint": "Multiply any damage dealt to you by this number"
                 }
             },
+            "Attribute": {
+                "single": "Attribute",
+                "plural": "Attributes"
+            },
             "Bonuses": {
                 "rest": {
                     "downtimeAction": "Downtime Action",
@@ -2338,6 +2342,7 @@
             "scars": "Scars",
             "situationalBonus": "Situational Bonus",
             "spent": "Spent",
+            "status": "Status",
             "step": "Step",
             "stress": "Stress",
             "subclasses": "Subclasses",

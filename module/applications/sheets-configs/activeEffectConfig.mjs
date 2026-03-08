@@ -204,6 +204,10 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                     id: x.id,
                     label: x.name
                 }));
+                partContext.conditionalTypes = Object.values(CONFIG.DH.GENERAL.activeEffectConditionalType).map(x => ({
+                    id: x.id,
+                    label: game.i18n.localize(x.label)
+                }));
                 break;
             case 'changes':
                 const fields = this.document.system.schema.fields.changes.element.fields;
@@ -247,14 +251,22 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
     }
 
     static #addConditional() {
-        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        const submitData = this._processFormData(
+            null,
+            this.form,
+            new foundry.applications.ux.FormDataExtended(this.form)
+        );
         const conditionals = Object.values(submitData.system?.conditionals ?? {});
         conditionals.push(this.document.system.schema.fields.conditionals.element.getInitialValue());
         return this.submit({ updateData: { system: { conditionals } } });
     }
 
     static async #removeConditional(_event, button) {
-        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        const submitData = this._processFormData(
+            null,
+            this.form,
+            new foundry.applications.ux.FormDataExtended(this.form)
+        );
         const conditionals = Object.values(submitData.system.conditionals);
         const index = Number(button.dataset.index) || 0;
         conditionals.splice(index, 1);

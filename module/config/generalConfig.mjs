@@ -937,11 +937,11 @@ export const activeEffectConditionalTarget = {
 export const activeEffectConditionalType = {
     attribute: {
         id: 'attribute',
-        label: 'Attribute'
+        label: 'DAGGERHEART.GENERAL.Attribute.single'
     },
     status: {
         id: 'status',
-        label: 'Status'
+        label: 'DAGGERHEART.GENERAL.status'
     }
 };
 
