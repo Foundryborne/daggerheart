@@ -133,12 +133,12 @@ Hooks.once('init', () => {
             full: {
                 value: 'icons/magic/fire/barrier-wall-explosion-orange.webp',
                 isPath: true,
-                isNotTransparent: true
+                noColorFilter: true
             },
             empty: {
                 value: 'icons/magic/fire/barrier-wall-flame-ring-blue.webp',
                 isPath: true,
-                isNotTransparent: true
+                noColorFilter: true
             }
         }
     };

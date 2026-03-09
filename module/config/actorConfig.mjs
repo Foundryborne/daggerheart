@@ -63,8 +63,8 @@ export const abilities = {
  *  reverse
  *  label
  *  images {
- *    full { value, isPath, isNotTransparent }
- *    empty { value, isPath isNotTransparent }
+ *    full { value, isPath, noColorFilter }
+ *    empty { value, isPath noColorFilter }
  *  }
  */
 
