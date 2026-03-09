@@ -4,19 +4,21 @@
         {{#each document.system.sheetLists as |category|}}
         {{#if (eq category.type 'feature' )}}
         {{> 'daggerheart.inventory-items'
-        title=category.title
-        type='feature'
-        collection=category.values
-        canCreate=true
-        showActions=true
+            title=category.title
+            type='feature'
+            actorType='character'
+            collection=category.values
+            canCreate=true
+            showActions=true
         }}
         {{else if category.values}}
         {{> 'daggerheart.inventory-items'
-        title=category.title
-        type='feature'
-        collection=category.values
-        canCreate=false
-        showActions=true
+            title=category.title
+            type='feature'
+            actorType='character'
+            collection=category.values
+            canCreate=false
+            showActions=true
         }}
 
         {{/if}}
