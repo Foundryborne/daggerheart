@@ -114,11 +114,11 @@ Hooks.once('init', () => {
         images: {
             full: {
                 value: 'systems/daggerheart/assets/icons/domains/sage.svg',
-                isPath: true
+                isIcon: false
             },
             empty: {
                 value: 'systems/daggerheart/assets/icons/domains/sage.svg',
-                isPath: true
+                isIcon: false
             }
         }
     };
@@ -132,12 +132,12 @@ Hooks.once('init', () => {
         images: {
             full: {
                 value: 'icons/magic/fire/barrier-wall-explosion-orange.webp',
-                isPath: true,
+                isIcon: false,
                 noColorFilter: true
             },
             empty: {
                 value: 'icons/magic/fire/barrier-wall-flame-ring-blue.webp',
-                isPath: true,
+                isIcon: false,
                 noColorFilter: true
             }
         }
@@ -151,10 +151,12 @@ Hooks.once('init', () => {
         label: 'Hunger',
         images: {
             full: {
-                value: 'fa-solid fa-burger'
+                value: 'fa-solid fa-burger',
+                isIcon: true
             },
             empty: {
-                value: 'fa-regular fa-burger'
+                value: 'fa-regular fa-burger',
+                isIcon: true
             }
         }
     };

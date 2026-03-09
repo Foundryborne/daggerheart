@@ -969,8 +969,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 label: game.i18n.localize(resource.label),
                 value: resourceData.value,
                 max: resourceData.max,
-                fullIcon: resource.images?.full ?? { value: 'fa-solid fa-circle' },
-                emptyIcon: resource.images?.empty ?? { value: 'fa-regular fa-circle' }
+                fullIcon: resource.images?.full ?? { value: 'fa-solid fa-circle', isIcon: true },
+                emptyIcon: resource.images?.empty ?? { value: 'fa-regular fa-circle', isIcon: true }
             };
 
             return acc;

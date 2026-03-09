@@ -6,8 +6,8 @@
  *  reverse
  *  label
  *  images {
- *    full { value, isPath, noColorFilter }
- *    empty { value, isPath noColorFilter }
+ *    full { value, isIcon, noColorFilter }
+ *    empty { value, isIcon noColorFilter }
  *  }
  */
 

@@ -4,16 +4,16 @@
             <h4>{{resource.label}}</h4>
             {{#times resource.max}}
                 <span class='resource-value' data-action='toggleResource' data-value="{{add this 1}}" data-resource="{{resource.id}}">
-                    {{#unless resource.fullIcon.isPath}}
+                    {{#if resource.fullIcon.isIcon}}
                         <i class='{{resource.fullIcon.value}} full {{#unless (gte ../value (add this 1))}}hidden{{/unless}}'></i>
                     {{else}}
                         <img src="{{resource.fullIcon.value}}" class="full {{#unless resource.fullIcon.noColorFilter}}filter{{else}}non-transparent{{/unless}} {{#unless (gte ../value (add this 1))}}hidden{{/unless}}" />
-                    {{/unless}}
-                    {{#unless resource.emptyIcon.isPath}}
+                    {{/if}}
+                    {{#if resource.emptyIcon.isIcon}}
                         <i class='{{resource.emptyIcon.value}} empty {{#if (gte ../value (add this 1))}}hidden{{/if}}'></i>
                     {{else}}
                         <img src="{{resource.emptyIcon.value}}" class="empty {{#unless resource.fullIcon.noColorFilter}}filter{{else}}non-transparent{{/unless}} {{#if (gte ../value (add this 1))}}hidden{{/if}}" />
-                    {{/unless}}
+                    {{/if}}
                 </span>
             {{/times}}
         </div>

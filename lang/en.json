@@ -2657,7 +2657,7 @@
                     "resources": {
                         "resources": {
                             "value": { "label": "Icon" },
-                            "isPath": { "label": "Is Image" },
+                            "isIcon": { "label": "Font Awesome Icon" },
                             "noColorFilter": { "label": "Disable Color Filter" }
                         }
                     },

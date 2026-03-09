@@ -223,7 +223,7 @@ export class Resource extends foundry.abstract.DataModel {
     }
 
     static getDefaultResourceData = label => {
-        const images = Resource._schema.fields.images.getInitialValue();
+        const images = Resource.schema.fields.images.getInitialValue();
         return {
             initial: 0,
             max: 0,
@@ -233,7 +233,7 @@ export class Resource extends foundry.abstract.DataModel {
     };
 
     static getDefaultImageData = imageKey => {
-        return Resource._schema.fields.images.fields[imageKey].getInitialValue();
+        return Resource.schema.fields.images.fields[imageKey].getInitialValue();
     };
 }
 
@@ -244,10 +244,10 @@ const imageIconField = defaultValue =>
                 initial: defaultValue,
                 label: 'DAGGERHEART.SETTINGS.Homebrew.FIELDS.resources.resources.value.label'
             }),
-            isPath: new foundry.data.fields.BooleanField({
+            isIcon: new foundry.data.fields.BooleanField({
                 required: true,
-                initial: false,
-                label: 'DAGGERHEART.SETTINGS.Homebrew.FIELDS.resources.resources.isPath.label'
+                initial: true,
+                label: 'DAGGERHEART.SETTINGS.Homebrew.FIELDS.resources.resources.isIcon.label'
             }),
             noColorFilter: new foundry.data.fields.BooleanField({
                 required: true,

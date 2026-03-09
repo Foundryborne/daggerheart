@@ -96,7 +96,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         super._attachPartListeners(partId, htmlElement, options);
 
         for (const element of htmlElement.querySelectorAll('.path-field input'))
-            element.addEventListener('change', this.toggleResourceIsPath.bind(this));
+            element.addEventListener('change', this.toggleResourceIsIcon.bind(this));
     }
 
     async _prepareContext(_options) {
@@ -149,14 +149,14 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         this.render();
     }
 
-    async toggleResourceIsPath(event) {
+    async toggleResourceIsIcon(event) {
         const element = event.target.closest('.resource-icon-container');
         const { actorType, resourceKey, imageKey } = element.dataset;
 
         const current = this.settings.resources[actorType].resources[resourceKey].images[imageKey];
         await this.settings.updateSource({
             [`resources.${actorType}.resources.${resourceKey}.images.${imageKey}`]: {
-                isPath: !current.isPath,
+                isIcon: !current.isIcon,
                 value: ''
             }
         });

@@ -34,14 +34,14 @@
                                                 </div>
                                             </div>
                                             <div class="resource-icon-content">
-                                                {{#if ../images.full.isPath}}
+                                                {{#if ../images.full.isIcon}}
+                                                    {{formGroup this.value value=../images.full.value name=(concat "resources." @../key ".resources." key ".images.full.value") localize=true }}
+                                                {{else}}
                                                     <div class="form-fields">
                                                         <file-picker name="{{concat "resources." @../key ".resources." key ".images.full.value"}}" value="{{../images.full.value}}" type="image"></file-picker>
                                                     </div>
-                                                {{else}}
-                                                    {{formGroup this.value value=../images.full.value name=(concat "resources." @../key ".resources." key ".images.full.value") localize=true }}
                                                 {{/if}}
-                                                {{formGroup this.isPath value=../images.full.isPath name="" classes="path-field" localize=true }}
+                                                {{formGroup this.isIcon value=../images.full.isIcon name="" classes="path-field" localize=true }}
                                                 {{formGroup this.noColorFilter value=../images.full.noColorFilter name=(concat "resources." @../key ".resources." key ".images.full.noColorFilter") localize=true }}
                                             </div>
                                         {{/with}}
@@ -55,14 +55,14 @@
                                                 </div>
                                             </div>
                                             <div class="resource-icon-content">
-                                                {{#if ../images.empty.isPath}}
+                                                {{#if ../images.empty.isIcon}}
+                                                    {{formGroup this.value value=../images.empty.value name=(concat "resources." @../key ".resources." key ".images.empty.value") localize=true }}
+                                                {{else}}
                                                     <div class="form-fields">
                                                         <file-picker name="{{concat "resources." @../key ".resources." key ".images.empty.value"}}" value="{{../images.empty.value}}" type="image"></file-picker>
                                                     </div>
-                                                {{else}}
-                                                    {{formGroup this.value value=../images.empty.value name=(concat "resources." @../key ".resources." key ".images.empty.value") localize=true }}
                                                 {{/if}}
-                                                {{formGroup this.isPath value=resource.images.empty.isPath name="" classes="path-field" localize=true }}
+                                                {{formGroup this.isIcon value=resource.images.empty.isIcon name="" classes="path-field" localize=true }}
                                                 {{formGroup this.noColorFilter value=resource.images.empty.noColorFilter name=(concat "resources." @../key ".resources." key ".images.empty.noColorFilter") localize=true }}
                                             </div>
                                         {{/with}}
