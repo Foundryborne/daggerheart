@@ -5,7 +5,7 @@
             <i class="fa-solid fa-bolt"></i>
         </span>
         <span class="item-icon">
-            {{#with (lookup config.DOMAIN.domains item.system.domain) as | domain |}}
+            {{#with (lookup allDomains item.system.domain) as | domain |}}
                 <img src="{{domain.src}}" alt="">
             {{/with}}
         </span>
