@@ -109,7 +109,7 @@ export default class DHWeapon extends AttachableItem {
     }
 
     /**@inheritdoc */
-    async getDescriptionData({ inCompendium }) {
+    async getDescriptionData() {
         const baseDescription = this.description;
 
         const allFeatures = CONFIG.DH.ITEM.allWeaponFeatures();
@@ -119,7 +119,6 @@ export default class DHWeapon extends AttachableItem {
             'systems/daggerheart/templates/sheets/items/weapon/description.hbs',
             {
                 item: this,
-                inCompendium,
                 features
             }
         );

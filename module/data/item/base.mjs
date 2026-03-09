@@ -138,10 +138,10 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
      * @param {object} [options] - Options that modify the styling of the rendered template. { headerStyle: undefined|'none'|'large' }
      * @returns {string}
      */
-    async getEnrichedDescription(options = { inCompendium: false }) {
+    async getEnrichedDescription() {
         if (!this.metadata.hasDescription) return '';
 
-        const { prefix, value, suffix } = await this.getDescriptionData(options);
+        const { prefix, value, suffix } = await this.getDescriptionData();
         const fullDescription = [prefix, value, suffix].filter(p => !!p).join('\n<hr>\n');
 
         return await foundry.applications.ux.TextEditor.implementation.enrichHTML(fullDescription, {
