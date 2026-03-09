@@ -518,7 +518,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
     static async addResource(_, target) {
         const { actorType } = target.dataset;
         const content = new foundry.data.fields.StringField({
-            label: game.i18n.localize('Resource Identifier'),
+            label: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.resources.resourceIdentifier'),
             required: true
         }).toFormGroup({}, { name: 'identifier', localize: true }).outerHTML;
 
@@ -542,7 +542,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             modal: true,
             ok: { callback: callback.bind(this) },
             window: {
-                title: game.i18n.localize('Set Resource Identifier')
+                title: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.resources.setResourceIdentifier')
             },
             position: { width: 400 }
         });

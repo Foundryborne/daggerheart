@@ -2691,7 +2691,11 @@
                     "newType": "Adversary Type"
                 },
                 "resources": {
-                    "typeTitle": "{type} Resources"
+                    "typeTitle": "{type} Resources",
+                    "filledIcon": "Filled Icon",
+                    "emptyIcon": "Empty Icon",
+                    "resourceIdentifier": "Resource Identifier",
+                    "setResourceIdentifier": "Set Resource Identifier"
                 }
             },
             "Menu": {
