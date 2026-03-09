@@ -15,7 +15,7 @@
                     <div class="resources-container">
                         {{#each type.resources as |resource key|}}
                             <fieldset class="resource-container">
-                                <legend><a data-action="removeResource" data-actor-type="{{@../key}}" data-resource-key="{{key}}"><i class="fa-solid fa-trash"></i></a></legend>
+                                <legend>{{resource.label}}<a data-action="removeResource" data-actor-type="{{@../key}}" data-resource-key="{{key}}"><i class="fa-solid fa-trash"></i></a></legend>
 
                                 {{formField @root.schemaFields.resources.element.fields.resources.element.fields.label value=resource.label name=(concat "resources." @../key ".resources." key ".label") classes="vertical" localize=true }}
 

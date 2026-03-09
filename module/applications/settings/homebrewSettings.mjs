@@ -60,7 +60,10 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         settings: { template: 'systems/daggerheart/templates/settings/homebrew-settings/settings.hbs' },
         domains: { template: 'systems/daggerheart/templates/settings/homebrew-settings/domains.hbs' },
         types: { template: 'systems/daggerheart/templates/settings/homebrew-settings/types.hbs' },
-        resources: { template: 'systems/daggerheart/templates/settings/homebrew-settings/resources.hbs' },
+        resources: {
+            template: 'systems/daggerheart/templates/settings/homebrew-settings/resources.hbs',
+            scrollable: ['.resource-types-container']
+        },
         itemTypes: { template: 'systems/daggerheart/templates/settings/homebrew-settings/itemFeatures.hbs' },
         downtime: { template: 'systems/daggerheart/templates/settings/homebrew-settings/downtime.hbs' },
         footer: { template: 'systems/daggerheart/templates/settings/homebrew-settings/footer.hbs' }
