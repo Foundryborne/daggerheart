@@ -1003,28 +1003,24 @@ export default class CharacterSheet extends DHBaseActorSheet {
         });
 
         for (const element of html.querySelectorAll('.resource-value'))
-            element.addEventListener('click', CharacterSheet.resourceUpdate.bind(this));
+            element.addEventListener('click', this.updateResource.bind(this));
     }
 
-    static async resourceUpdate(event) {
+    async updateResource(event) {
         const target = event.target.closest('.resource-value');
         const { resource, value: textValue } = target.dataset;
 
         const inputValue = Number.parseInt(textValue);
         const decreasing = inputValue <= this.document.system.resources[resource].value;
         const value = decreasing ? inputValue - 1 : inputValue;
-        await this.document.update({ [`system.resources.${resource}.value`]: value });
+        await this.document.update({ [`system.resources.${resource}.value`]: value }, { render: false });
 
         /* Update resource symbols */
         const section = target.closest('.resource-section');
         for (const element of section.querySelectorAll('.resource-value')) {
-            if (Number.parseInt(element.dataset.value) <= value) {
-                element.querySelector('.full').classList.remove('hidden');
-                element.querySelector('.empty').classList.add('hidden');
-            } else {
-                element.querySelector('.full').classList.add('hidden');
-                element.querySelector('.empty').classList.remove('hidden');
-            }
+            const showFull = Number.parseInt(element.dataset.value) <= value;
+            element.querySelector('.full').classList.toggle('hidden', !showFull);
+            element.querySelector('.empty').classList.toggle('hidden', showFull);
         }
     }
 
