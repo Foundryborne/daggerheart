@@ -1,9 +1,6 @@
 <div class="item-description-outer-container">
-    {{#if inCompendium}}{{> "systems/daggerheart/templates/sheets/global/partials/item-tags.hbs" item }}{{/if}}
-    
     {{#if features.length}}
         <div class="item-description-container">
-            <h4>{{localize "DAGGERHEART.GENERAL.features"}}</h4>
             {{#each features as | feature |}}
                 <div><strong>{{localize feature.label}}</strong>: {{{localize feature.description}}}</div>
             {{/each}}
