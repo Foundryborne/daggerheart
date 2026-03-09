@@ -45,7 +45,7 @@
                             </a>
                         {{/times}}
                         </div>
-                        <a class="slot-label" data-action="toggleArmorMangement">
+                        <a class="slot-label" data-action="toggleArmorMangement" data-tooltip="{{localize 'DAGGERHEART.UI.Tooltip.clickManageArmor'}}">
                             <span class="label">{{localize "DAGGERHEART.GENERAL.armorSlots"}}</span>
                             <div class="slot-value-container">
                                 <span class="value">{{document.system.armorScore.value}} / {{document.system.armorScore.max}}</span>
@@ -64,7 +64,7 @@
                         value='{{document.system.armorScore.value}}'
                         max='{{document.system.armorScore.max}}'
                     ></progress>
-                    <a class="status-label" data-action="toggleArmorMangement">
+                    <a class="status-label" data-action="toggleArmorMangement" data-tooltip="{{localize 'DAGGERHEART.UI.Tooltip.clickManageArmor'}}">
                         <h4>{{localize "DAGGERHEART.GENERAL.armorSlots"}}</h4>
                         <i class="fa-solid fa-gear"></i>
                     </a>

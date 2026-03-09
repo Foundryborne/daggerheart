@@ -319,6 +319,8 @@
                     display: flex;
                     align-items: center;
                     gap: 4px;
+                    border: 1px solid transparent;
+                    transition: all 0.3s ease;
 
                     h4 {
                         font-weight: bold;
@@ -331,6 +333,15 @@
                     i {
                         font-size: 12px;
                         color: light-dark(@beige, @dark-blue);
+                    }
+
+                    &:hover {
+                        background: light-dark(@light-black, @dark-blue);
+                        border: 1px solid light-dark(@dark-blue, @golden);
+
+                        h4, i {
+                            color: light-dark(@dark-blue, @golden);
+                        }
                     }
                 }
                 .slot-value {
@@ -369,7 +380,7 @@
                             }
                         }
                     }
-                    .slot-label {
+                    .slot-label { 
                         display: flex;
                         align-items: center;
                         color: light-dark(@beige, @dark-blue);
@@ -381,6 +392,17 @@
                         font-size: var(--font-size-12);
                         flex-wrap: wrap;
                         justify-content: center;
+                        border: 1px solid transparent;
+                        transition: all 0.3s ease;
+
+                        &:hover {
+                            background: light-dark(@light-black, @dark-blue);
+                            border: 1px solid light-dark(@dark-blue, @golden);
+
+                            .label, .value, i {
+                                color: light-dark(@dark-blue, @golden);
+                            }
+                        }
 
                         .label {
                             padding-right: 1px;
