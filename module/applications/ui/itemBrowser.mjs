@@ -252,7 +252,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             /* If any noticeable slowdown occurs, consider replacing with enriching description on clicking to expand descriptions */
             for (const item of this.items) {
                 item.system.enrichedDescription =
-                    (await item.system.getEnrichedDescription?.()) ??
+                    (await item.system.getEnrichedDescription?.({ inCompendium: true })) ??
                     (await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.description));
             }
 

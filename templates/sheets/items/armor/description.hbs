@@ -1,16 +1,6 @@
 <div class="item-description-outer-container">
-    <div class="two-columns">
-        <div class="item-description-container">
-            <h4>{{localize "DAGGERHEART.ITEMS.Armor.baseThresholds.base"}}</h4>
-            <span>{{item.system.baseThresholds.major}}/{{item.system.baseThresholds.severe}}</span>
-        </div>
-
-        <div class="item-description-container">
-            <h4>{{localize "DAGGERHEART.ITEMS.Armor.baseScore"}}</h4>
-            <span>{{item.system.baseScore}}</span>
-        </div>
-    </div>
-
+    {{#if inCompendium}}{{> "systems/daggerheart/templates/sheets/global/partials/item-tags.hbs" item }}{{/if}}
+    
     {{#if features.length}}
         <div class="item-description-container">
             <h4>{{localize "DAGGERHEART.GENERAL.features"}}</h4>
