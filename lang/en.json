@@ -2565,9 +2565,6 @@
                         "label": "Countdown Automation",
                         "hint": "Automatically progress countdowns based on their progression settings"
                     },
-                    "hideObserverPermissionInChat": {
-                        "label": "Hide chat information such as hit/miss for Actors players lack permission on"
-                    },
                     "levelupAuto": {
                         "label": "Levelup Automation",
                         "hint": "When you've made your choices and finish levelup, the numerical changes are automatically applied to your character."
@@ -2632,6 +2629,14 @@
                     "title": "Triggers"
                 }
             },
+            "Metagaming": {
+                "FIELDS": {
+                    "hideObserverPermissionInChat": {
+                        "label": "Hide Chat Info From Players",
+                        "hint": "Information such as hit/miss on attack rolls against adversaries will be hidden"
+                    }
+                }
+            },
             "Homebrew": {
                 "newDowntimeMove": "Downtime Move",
                 "downtimeMove": "Downtime Move",
@@ -2690,6 +2695,11 @@
                     "name": "Automation Settings",
                     "label": "Configure Automation",
                     "hint": "Various settings automating resource management and more"
+                },
+                "metagaming": {
+                    "name": "Metagaming Settings",
+                    "label": "Configure Metagaming",
+                    "hint": "Various settings controlling the flow of information to players"
                 },
                 "homebrew": {
                     "name": "Homebrew Settings",

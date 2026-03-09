@@ -1,10 +1,11 @@
 import { defaultLevelTiers, DhLevelTiers } from '../data/levelTier.mjs';
 import DhCountdowns from '../data/countdowns.mjs';
-import { DhAppearance, DhAutomation, DhHomebrew, DhVariantRules } from '../data/settings/_module.mjs';
+import { DhAppearance, DhAutomation, DhHomebrew, DhMetagaming, DhVariantRules } from '../data/settings/_module.mjs';
 import {
     DhAppearanceSettings,
     DhAutomationSettings,
     DhHomebrewSettings,
+    DhMetagamingSettings,
     DhVariantRuleSettings
 } from '../applications/settings/_module.mjs';
 import { CompendiumBrowserSettings, DhTagTeamRoll } from '../data/_module.mjs';
@@ -36,6 +37,12 @@ const registerMenuSettings = () => {
         scope: 'world',
         config: false,
         type: DhAutomation
+    });
+
+    game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Metagaming, {
+        scope: 'world',
+        config: false,
+        type: DhMetagaming
     });
 
     game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew, {
@@ -76,6 +83,16 @@ const registerMenus = () => {
         type: DhAutomationSettings,
         restricted: true
     });
+
+    game.settings.registerMenu(CONFIG.DH.id, CONFIG.DH.SETTINGS.menu.Metagaming.Name, {
+        name: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.metagaming.name'),
+        label: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.metagaming.label'),
+        hint: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.metagaming.hint'),
+        icon: CONFIG.DH.SETTINGS.menu.Metagaming.Icon,
+        type: DhMetagamingSettings,
+        restricted: true
+    });
+
     game.settings.registerMenu(CONFIG.DH.id, CONFIG.DH.SETTINGS.menu.Homebrew.Name, {
         name: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.homebrew.name'),
         label: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.homebrew.label'),

@@ -70,7 +70,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
             e.setAttribute('data-use-perm', document.testUserPermission(game.user, 'OWNER'));
 
-            const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+            const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Metagaming);
             if (settings.hideObserverPermissionInChat)
                 e.setAttribute('data-view-perm', document.testUserPermission(game.user, 'OBSERVER'));
         });
