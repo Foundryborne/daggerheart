@@ -97,7 +97,7 @@ Hooks.once('init', () => {
         fields
     };
 
-    CONFIG.DH.ACTOR.characterResources.basic = {
+    CONFIG.DH.RESOURCE.characterResources.basic = {
         id: 'basic',
         initial: 0,
         max: 4,
@@ -105,7 +105,7 @@ Hooks.once('init', () => {
         label: 'Basic'
     };
 
-    CONFIG.DH.ACTOR.characterResources.corruption = {
+    CONFIG.DH.RESOURCE.characterResources.corruption = {
         id: 'corruption',
         initial: 0,
         max: 4,
@@ -123,7 +123,7 @@ Hooks.once('init', () => {
         }
     };
 
-    CONFIG.DH.ACTOR.characterResources.fire = {
+    CONFIG.DH.RESOURCE.characterResources.fire = {
         id: 'fire',
         initial: 0,
         max: 6,
@@ -143,7 +143,7 @@ Hooks.once('init', () => {
         }
     };
 
-    CONFIG.DH.ACTOR.characterResources.hunger = {
+    CONFIG.DH.RESOURCE.characterResources.hunger = {
         id: 'hunger',
         initial: 0,
         max: 6,

@@ -9,32 +9,35 @@ export default class DhCreature extends BaseDataActor {
         return {
             ...super.defineSchema(),
             resources: new fields.SchemaField({
-                ...Object.values(CONFIG.DH.ACTOR[`${this.metadata.type}Resources`]).reduce((acc, resource) => {
-                    if (resource.max !== undefined) {
-                        acc[resource.id] = resourceField(
-                            resource.max,
-                            resource.initial,
-                            resource.label,
-                            resource.reverse,
-                            resource.maxLabel
-                        );
-                    } else {
-                        acc[resource.id] = new fields.SchemaField(
-                            {
-                                value: new fields.NumberField({
-                                    initial: resource.initial,
-                                    min: resource.min,
-                                    integer: true,
-                                    label: resource.label
-                                }),
-                                isReversed: new fields.BooleanField({ initial: resource.reverse })
-                            },
-                            { label: resource.label }
-                        );
-                    }
+                ...Object.values(CONFIG.DH.RESOURCE[`all${this.metadata.type.capitalize()}Resources`]()).reduce(
+                    (acc, resource) => {
+                        if (resource.max !== undefined) {
+                            acc[resource.id] = resourceField(
+                                resource.max,
+                                resource.initial,
+                                resource.label,
+                                resource.reverse,
+                                resource.maxLabel
+                            );
+                        } else {
+                            acc[resource.id] = new fields.SchemaField(
+                                {
+                                    value: new fields.NumberField({
+                                        initial: resource.initial,
+                                        min: resource.min,
+                                        integer: true,
+                                        label: resource.label
+                                    }),
+                                    isReversed: new fields.BooleanField({ initial: resource.reverse })
+                                },
+                                { label: resource.label }
+                            );
+                        }
 
-                    return acc;
-                }, {})
+                        return acc;
+                    },
+                    {}
+                )
             }),
             advantageSources: new fields.ArrayField(new fields.StringField(), {
                 label: 'DAGGERHEART.ACTORS.Character.advantageSources.label',

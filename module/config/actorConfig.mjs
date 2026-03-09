@@ -1,3 +1,5 @@
+import { allAdversaryResources, allCharacterResources, allCompanionResources } from './resourceConfig.mjs';
+
 export const abilities = {
     agility: {
         id: 'agility',
@@ -55,101 +57,16 @@ export const abilities = {
     }
 };
 
-/**
- *  Full custom typing:
- *  id
- *  initial
- *  max
- *  reverse
- *  label
- *  images {
- *    full { value, isPath, noColorFilter }
- *    empty { value, isPath noColorFilter }
- *  }
- */
-
-export const characterBaseResources = {
-    hitPoints: {
-        id: 'hitPoints',
-        initial: 0,
-        max: 0,
-        reverse: true,
-        label: 'DAGGERHEART.GENERAL.HitPoints.plural',
-        maxLabel: 'DAGGERHEART.ACTORS.Character.maxHPBonus'
-    },
-    stress: {
-        id: 'stress',
-        initial: 0,
-        max: 6,
-        reverse: true,
-        label: 'DAGGERHEART.GENERAL.stress'
-    },
-    hope: {
-        id: 'hope',
-        initial: 2,
-        min: 0,
-        reverse: false,
-        label: 'DAGGERHEART.GENERAL.hope'
-    }
-};
-
-export const characterResources = {
-    ...characterBaseResources
-};
-
-export const adversaryBaseResources = {
-    hitPoints: {
-        id: 'hitPoints',
-        initial: 0,
-        max: 0,
-        reverse: true,
-        label: 'DAGGERHEART.GENERAL.HitPoints.plural',
-        maxLabel: 'DAGGERHEART.ACTORS.Character.maxHPBonus'
-    },
-    stress: {
-        id: 'stress',
-        initial: 0,
-        max: 0,
-        reverse: true,
-        label: 'DAGGERHEART.GENERAL.stress'
-    }
-};
-
-export const adversaryResources = {
-    ...adversaryBaseResources
-};
-
-export const companionBaseResources = {
-    stress: {
-        id: 'stress',
-        initial: 0,
-        max: 0,
-        reverse: true,
-        label: 'DAGGERHEART.GENERAL.stress'
-    },
-    hope: {
-        id: 'hope',
-        initial: 0,
-        min: 0,
-        reverse: false,
-        label: 'DAGGERHEART.GENERAL.hope'
-    }
-};
-
-export const companionResources = {
-    ...companionBaseResources
-};
-
 export const getScrollingTextResources = actorType => ({
     armor: {
         label: 'DAGGERHEART.GENERAL.armor',
         reverse: true
     },
     ...(actorType === 'character'
-        ? characterResources
+        ? allCharacterResources()
         : actorType === 'adversary'
-          ? adversaryResources
-          : companionResources)
+          ? allAdversaryResources
+          : allCompanionResources)
 });
 
 export const featureProperties = {
