@@ -1058,6 +1058,10 @@
                 "fear": "Fear",
                 "spotlight": "Spotlight"
             },
+            "DaggerheartDiceAnimationEvents": {
+                "critical": { "name": "Critical" },
+                "higher": { "name": "Highest Roll" }
+            },
             "DamageType": {
                 "physical": {
                     "name": "Physical",

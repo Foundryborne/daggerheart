@@ -4,6 +4,16 @@ export default class DhAppearance extends foundry.abstract.DataModel {
     static defineSchema() {
         const { StringField, ColorField, BooleanField, SchemaField } = foundry.data.fields;
 
+        const sfxSchema = () =>
+            new SchemaField({
+                class: new StringField({
+                    nullable: true,
+                    initial: null,
+                    blank: true,
+                    choices: CONFIG.DH.GENERAL.diceSoNiceSFXClasses
+                })
+            });
+
         // helper to create dice style schema
         const diceStyle = ({ fg, bg, outline, edge }) =>
             new SchemaField({
@@ -15,7 +25,10 @@ export default class DhAppearance extends foundry.abstract.DataModel {
                 colorset: new StringField({ initial: 'inspired', required: true, blank: false }),
                 material: new StringField({ initial: 'metal', required: true, blank: false }),
                 system: new StringField({ initial: 'standard', required: true, blank: false }),
-                font: new StringField({ initial: 'auto', required: true, blank: false })
+                font: new StringField({ initial: 'auto', required: true, blank: false }),
+                sfx: new SchemaField({
+                    higher: sfxSchema()
+                })
             });
 
         return {
@@ -30,7 +43,10 @@ export default class DhAppearance extends foundry.abstract.DataModel {
                 hope: diceStyle({ fg: '#ffffff', bg: '#ffe760', outline: '#000000', edge: '#ffffff' }),
                 fear: diceStyle({ fg: '#000000', bg: '#0032b1', outline: '#ffffff', edge: '#000000' }),
                 advantage: diceStyle({ fg: '#ffffff', bg: '#008000', outline: '#000000', edge: '#ffffff' }),
-                disadvantage: diceStyle({ fg: '#000000', bg: '#b30000', outline: '#ffffff', edge: '#000000' })
+                disadvantage: diceStyle({ fg: '#000000', bg: '#b30000', outline: '#ffffff', edge: '#000000' }),
+                sfx: new SchemaField({
+                    critical: sfxSchema()
+                })
             }),
             extendCharacterDescriptions: new BooleanField(),
             extendAdversaryDescriptions: new BooleanField(),

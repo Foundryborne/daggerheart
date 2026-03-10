@@ -12,7 +12,7 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
     static DEFAULT_OPTIONS = {
         tag: 'form',
         id: 'daggerheart-appearance-settings',
-        classes: ['daggerheart', 'dialog', 'dh-style', 'setting'],
+        classes: ['daggerheart', 'dialog', 'dh-style', 'setting', 'appearance-settings'],
         position: { width: '600', height: 'auto' },
         window: {
             title: 'DAGGERHEART.SETTINGS.Menu.title',
@@ -120,6 +120,9 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
      * @protected
      */
     async prepareDiceSoNiceContext(context) {
+        context.animationEvents = CONFIG.DH.GENERAL.daggerheartDiceAnimationEvents;
+        context.previewAnimation = this.previewAnimation;
+
         context.diceSoNiceTextures = Object.entries(game.dice3d.exports.TEXTURELIST).reduce(
             (acc, [k, v]) => ({
                 ...acc,
@@ -146,6 +149,13 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
         );
         context.diceSoNiceFonts = game.dice3d.exports.Utils.prepareFontList();
 
+        const getAnimationsOptions = key => {
+            const fields = context.fields.diceSoNice.fields[key].fields.sfx.fields;
+            return {
+                higher: fields.higher.fields.class.choices
+            };
+        };
+
         foundry.utils.mergeObject(
             context.dsnTabs,
             ['hope', 'fear', 'advantage', 'disadvantage'].reduce(
@@ -153,7 +163,8 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
                     ...acc,
                     [key]: {
                         values: this.setting.diceSoNice[key],
-                        fields: this.setting.schema.getField(`diceSoNice.${key}`).fields
+                        fields: this.setting.schema.getField(`diceSoNice.${key}`).fields,
+                        animations: ['hope', 'fear'].includes(key) ? getAnimationsOptions(key) : {}
                     }
                 }),
                 {}
@@ -169,8 +180,9 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
      * @param {foundry.applications.ux.FormDataExtended} formData
      * @returns {Promise<void>}
      */
-    static async #onSubmit(event, form, formData) {
+    static async #onSubmit(_event, _form, formData) {
         const data = this.setting.schema.clean(foundry.utils.expandObject(formData.object));
+
         await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance, data);
     }
 
@@ -183,13 +195,25 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
      */
     static async #onPreview(_, target) {
         const formData = new foundry.applications.ux.FormDataExtended(target.closest('form'));
-        const { diceSoNice } = foundry.utils.expandObject(formData.object);
+        const { diceSoNice, ...rest } = foundry.utils.expandObject(formData.object);
         const { key } = target.dataset;
         const faces = ['advantage', 'disadvantage'].includes(key) ? 'd6' : 'd12';
         const preset = await getDiceSoNicePreset(diceSoNice[key], faces);
         const diceSoNiceRoll = await new foundry.dice.Roll(`1${faces}`).evaluate();
         diceSoNiceRoll.dice[0].options.appearance = preset.appearance;
         diceSoNiceRoll.dice[0].options.modelFile = preset.modelFile;
+
+        const previewAnimation = rest[`${key}PreviewAnimation`];
+        const events = CONFIG.DH.GENERAL.daggerheartDiceAnimationEvents;
+        if (previewAnimation) {
+            if (previewAnimation === events.critical.id && diceSoNice.sfx.critical.class) {
+                diceSoNiceRoll.dice[0].options.sfx = { specialEffect: diceSoNice.sfx.critical.class };
+            }
+            if (previewAnimation === events.higher.id && diceSoNice[key].sfx.higher) {
+                diceSoNiceRoll.dice[0].options.sfx = { specialEffect: diceSoNice[key].sfx.higher.class };
+            }
+        }
+
         await game.dice3d.showForRoll(diceSoNiceRoll, game.user, false);
     }
 

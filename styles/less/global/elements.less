@@ -587,6 +587,13 @@
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 10px;
+
+                > label {
+                    grid-column: span 2;
+                    text-align: center;
+                    font-size: var(--font-size-18);
+                    font-weight: bold;
+                }
             }
         }
 
@@ -612,11 +619,8 @@
 
         .button-container {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
-            text-align: center;
-            display: flex;
-            justify-content: center;
+            align-items: center;
+            justify-content: space-between;
             width: 100%;
         }
     }
