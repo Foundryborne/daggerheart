@@ -964,7 +964,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             });
         }
 
-        if (armorSources.length <= 1) return;
+        if (!armorSources.length) return;
 
         const useResourcePips = game.settings.get(
             CONFIG.DH.id,
