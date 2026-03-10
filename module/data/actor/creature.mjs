@@ -15,7 +15,6 @@ export default class DhCreature extends BaseDataActor {
                             resource.max,
                             resource.initial,
                             resource.label,
-                            resource.reverse,
                             resource.maxLabel
                         );
                     } else {
@@ -52,6 +51,17 @@ export default class DhCreature extends BaseDataActor {
             x => x.statuses.has('vulnerable') && !x.flags.daggerheart?.autoApplyFlagId
         );
         return !vulnerableAppliedByOther;
+    }
+
+    prepareDerivedData() {
+        super.prepareDerivedData();
+        const resources = CONFIG.DH.ACTOR[`${this.parent.type}Resources`];
+        if (resources) {
+            for (const [key, value] of Object.entries(this.resources)) {
+                value.label = resources[key]?.label;
+                value.isReversed = resources[key]?.reverse;
+            }
+        }
     }
 
     async _preUpdate(changes, options, userId) {

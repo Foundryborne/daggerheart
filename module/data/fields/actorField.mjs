@@ -6,7 +6,7 @@ const attributeField = label =>
         tierMarked: new fields.BooleanField({ initial: false })
     });
 
-const resourceField = (max = 0, initial = 0, label, reverse = false, maxLabel) =>
+const resourceField = (max = 0, initial = 0, label, maxLabel) =>
     new fields.SchemaField(
         {
             value: new fields.NumberField({ initial: initial, min: 0, integer: true, label }),
@@ -17,7 +17,6 @@ const resourceField = (max = 0, initial = 0, label, reverse = false, maxLabel) =
                     maxLabel ??
                     game.i18n.format('DAGGERHEART.GENERAL.maxWithThing', { thing: game.i18n.localize(label) })
             }),
-            isReversed: new fields.BooleanField({ initial: reverse })
         },
         { label }
     );
