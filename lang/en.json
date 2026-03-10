@@ -2312,6 +2312,7 @@
                 "plurial": "Players"
             },
             "portrait": "Portrait",
+            "preview": "Preview",
             "proficiency": "Proficiency",
             "quantity": "Quantity",
             "range": "Range",
@@ -2734,6 +2735,10 @@
                     "label": "Appearance Settings",
                     "hint": "Modify the look of various parts of the system",
                     "duality": "Duality Rolls",
+                    "globalAnimations": "Global Animations",
+                    "diceAppearance": "Dice Appearance",
+                    "animations": "Animations",
+                    "previewAnimation": "Preview Animation",
                     "diceSoNice": {
                         "title": "Dice So Nice",
                         "hint": "Coloration of Duality dice if the Dice So Nice module is used.",
