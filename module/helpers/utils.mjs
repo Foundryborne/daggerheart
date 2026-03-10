@@ -1,4 +1,3 @@
-import { adversaryResources, characterResources, companionResources } from '../config/actorConfig.mjs';
 import { diceTypes, getDiceSoNicePresets, getDiceSoNicePreset, range } from '../config/generalConfig.mjs';
 import Tagify from '@yaireo/tagify';
 
