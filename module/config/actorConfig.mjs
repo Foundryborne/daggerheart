@@ -57,18 +57,6 @@ export const abilities = {
     }
 };
 
-export const getScrollingTextResources = actorType => ({
-    armor: {
-        label: 'DAGGERHEART.GENERAL.armor',
-        reverse: true
-    },
-    ...(actorType === 'character'
-        ? allCharacterResources()
-        : actorType === 'adversary'
-          ? allAdversaryResources
-          : allCompanionResources)
-});
-
 export const featureProperties = {
     agility: {
         name: 'DAGGERHEART.CONFIG.Traits.agility.name',

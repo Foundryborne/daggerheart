@@ -658,6 +658,7 @@ export default class DhCharacter extends DhCreature {
     }
 
     prepareDerivedData() {
+        super.prepareDerivedData();
         let baseHope = this.resources.hope.value;
         if (this.companion) {
             for (let levelKey in this.companion.system.levelData.levelups) {
@@ -677,6 +678,7 @@ export default class DhCharacter extends DhCreature {
         this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
 
         this.resources.armor = {
+            label: 'DAGGERHEART.GENERAL.armor',
             value: this.armor?.system?.marks?.value ?? 0,
             max: this.armorScore,
             isReversed: true

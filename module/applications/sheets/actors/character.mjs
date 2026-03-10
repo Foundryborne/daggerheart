@@ -1003,10 +1003,10 @@ export default class CharacterSheet extends DHBaseActorSheet {
         });
 
         for (const element of html.querySelectorAll('.resource-value'))
-            element.addEventListener('click', this.updateResource.bind(this));
+            element.addEventListener('click', this.onUpdateResource.bind(this));
     }
 
-    async updateResource(event) {
+    async onUpdateResource(event) {
         const target = event.target.closest('.resource-value');
         const { resource, value: textValue } = target.dataset;
 
