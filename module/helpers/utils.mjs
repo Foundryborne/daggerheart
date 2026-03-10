@@ -1,3 +1,4 @@
+import { adversaryResources, characterResources, companionResources } from '../config/actorConfig.mjs';
 import { diceTypes, getDiceSoNicePresets, getDiceSoNicePreset, range } from '../config/generalConfig.mjs';
 import Tagify from '@yaireo/tagify';
 
@@ -378,8 +379,21 @@ export const arraysEqual = (a, b) =>
 
 export const setsEqual = (a, b) => a.size === b.size && [...a].every(value => b.has(value));
 
-export function getScrollTextData(resources, resource, key, actorType) {
-    const { reverse, label } = CONFIG.DH.ACTOR.getScrollingTextResources(actorType)[key];
+export function getScrollTextData(actor, resource, key) {
+    const actorType = actor.type;
+    const resources = actor.system.resources;
+    const { reverse, label } = {
+        armor: {
+            label: 'DAGGERHEART.GENERAL.armor',
+            reverse: true
+        },
+        ...(actorType === 'character'
+            ? characterResources
+            : actorType === 'adversary'
+              ? adversaryResources
+              : companionResources)
+    }[key];
+
     const { BOTTOM, TOP } = CONST.TEXT_ANCHOR_POINTS;
     const increased = resources[key].value < resource.value;
     const value = -1 * (resources[key].value - resource.value);

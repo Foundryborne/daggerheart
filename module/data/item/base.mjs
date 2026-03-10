@@ -225,10 +225,9 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             changed.system?.marks?.value !== undefined && changed.system.marks.value !== this.marks.value;
         if (armorChanged && autoSettings.resourceScrollTexts && this.parent.parent?.type === 'character') {
             const armorData = getScrollTextData(
-                this.parent.parent.system.resources,
+                this.parent.parent,
                 changed.system.marks,
                 'armor',
-                this.parent.parent.type
             );
             options.scrollingTextData = [armorData];
         }
