@@ -157,6 +157,7 @@ export default class DhCompanion extends DhCreature {
     }
 
     prepareDerivedData() {
+        super.prepareDerivedData();
         /* Partner Related Setup */
         if (this.partner) {
             this.levelData.level.changed = this.partner.system.levelData.level.current;

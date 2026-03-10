@@ -187,6 +187,7 @@ export default class DhpAdversary extends DhCreature {
     }
 
     prepareDerivedData() {
+        super.prepareDerivedData();
         this.attack.roll.isStandardAttack = true;
     }
 
