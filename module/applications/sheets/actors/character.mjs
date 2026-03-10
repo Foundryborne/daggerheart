@@ -245,8 +245,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     async _prepareHeaderContext(context, _options) {
-        context.hasExtraResources = Object.keys(CONFIG.DH.ACTOR.characterResources).some(
-            key => !CONFIG.DH.ACTOR.characterBaseResources[key]
+        context.hasExtraResources = Object.keys(CONFIG.DH.RESOURCE.allCharacterResources()).some(
+            key => !CONFIG.DH.RESOURCE.characterBaseResources[key]
         );
     }
 
@@ -960,8 +960,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
             return;
         }
 
-        const extraResources = Object.values(CONFIG.DH.ACTOR.characterResources).reduce((acc, resource) => {
-            if (CONFIG.DH.ACTOR.characterBaseResources[resource.id]) return acc;
+        const extraResources = Object.values(CONFIG.DH.RESOURCE.allCharacterResources()).reduce((acc, resource) => {
+            if (CONFIG.DH.RESOURCE.characterBaseResources[resource.id]) return acc;
 
             const resourceData = this.document.system.resources[resource.id];
             acc[resource.id] = {
@@ -969,8 +969,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 label: game.i18n.localize(resource.label),
                 value: resourceData.value,
                 max: resourceData.max,
-                fullIcon: resource.images?.full ?? { value: 'fa-solid fa-circle' },
-                emptyIcon: resource.images?.empty ?? { value: 'fa-regular fa-circle' }
+                fullIcon: resource.images?.full ?? { value: 'fa-solid fa-circle', isIcon: true },
+                emptyIcon: resource.images?.empty ?? { value: 'fa-regular fa-circle', isIcon: true }
             };
 
             return acc;

@@ -16,7 +16,7 @@ const resourceField = (max = 0, initial = 0, label, maxLabel) =>
                 label:
                     maxLabel ??
                     game.i18n.format('DAGGERHEART.GENERAL.maxWithThing', { thing: game.i18n.localize(label) })
-            }),
+            })
         },
         { label }
     );

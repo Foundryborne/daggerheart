@@ -97,7 +97,7 @@ Hooks.once('init', () => {
         fields
     };
 
-    CONFIG.DH.ACTOR.characterResources.basic = {
+    CONFIG.DH.RESOURCE.characterResources.basic = {
         id: 'basic',
         initial: 0,
         max: 4,
@@ -105,7 +105,7 @@ Hooks.once('init', () => {
         label: 'Basic'
     };
 
-    CONFIG.DH.ACTOR.characterResources.corruption = {
+    CONFIG.DH.RESOURCE.characterResources.corruption = {
         id: 'corruption',
         initial: 0,
         max: 4,
@@ -114,16 +114,16 @@ Hooks.once('init', () => {
         images: {
             full: {
                 value: 'systems/daggerheart/assets/icons/domains/sage.svg',
-                isPath: true
+                isIcon: false
             },
             empty: {
                 value: 'systems/daggerheart/assets/icons/domains/sage.svg',
-                isPath: true
+                isIcon: false
             }
         }
     };
 
-    CONFIG.DH.ACTOR.characterResources.fire = {
+    CONFIG.DH.RESOURCE.characterResources.fire = {
         id: 'fire',
         initial: 0,
         max: 6,
@@ -132,18 +132,18 @@ Hooks.once('init', () => {
         images: {
             full: {
                 value: 'icons/magic/fire/barrier-wall-explosion-orange.webp',
-                isPath: true,
+                isIcon: false,
                 noColorFilter: true
             },
             empty: {
                 value: 'icons/magic/fire/barrier-wall-flame-ring-blue.webp',
-                isPath: true,
+                isIcon: false,
                 noColorFilter: true
             }
         }
     };
 
-    CONFIG.DH.ACTOR.characterResources.hunger = {
+    CONFIG.DH.RESOURCE.characterResources.hunger = {
         id: 'hunger',
         initial: 0,
         max: 6,
@@ -151,10 +151,12 @@ Hooks.once('init', () => {
         label: 'Hunger',
         images: {
             full: {
-                value: 'fa-solid fa-burger'
+                value: 'fa-solid fa-burger',
+                isIcon: true
             },
             empty: {
-                value: 'fa-regular fa-burger'
+                value: 'fa-regular fa-burger',
+                isIcon: true
             }
         }
     };

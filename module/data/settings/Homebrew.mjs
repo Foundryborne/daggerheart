@@ -145,6 +145,16 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                     description: new fields.StringField()
                 })
             ),
+            resources: new fields.TypedObjectField(
+                new fields.SchemaField({
+                    resources: new fields.TypedObjectField(new fields.EmbeddedDataField(Resource))
+                }),
+                {
+                    initial: {
+                        character: { resources: {} }
+                    }
+                }
+            ),
             itemFeatures: new fields.SchemaField({
                 weaponFeatures: new fields.TypedObjectField(
                     new fields.SchemaField({
@@ -186,3 +196,64 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
         return source;
     }
 }
+
+export class Resource extends foundry.abstract.DataModel {
+    static defineSchema() {
+        const fields = foundry.data.fields;
+        return {
+            initial: new fields.NumberField({
+                required: true,
+                integer: true,
+                initial: 0,
+                min: 0,
+                label: 'DAGGERHEART.GENERAL.initial'
+            }),
+            max: new fields.NumberField({
+                nullable: true,
+                initial: null,
+                min: 0,
+                label: 'DAGGERHEART.GENERAL.max'
+            }),
+            label: new fields.StringField({ label: 'DAGGERHEART.GENERAL.label' }),
+            images: new fields.SchemaField({
+                full: imageIconField('fa solid fa-circle'),
+                empty: imageIconField('fa-regular fa-circle')
+            })
+        };
+    }
+
+    static getDefaultResourceData = label => {
+        const images = Resource.schema.fields.images.getInitialValue();
+        return {
+            initial: 0,
+            max: 0,
+            label: label ?? '',
+            images
+        };
+    };
+
+    static getDefaultImageData = imageKey => {
+        return Resource.schema.fields.images.fields[imageKey].getInitialValue();
+    };
+}
+
+const imageIconField = defaultValue =>
+    new foundry.data.fields.SchemaField(
+        {
+            value: new foundry.data.fields.StringField({
+                initial: defaultValue,
+                label: 'DAGGERHEART.SETTINGS.Homebrew.FIELDS.resources.resources.value.label'
+            }),
+            isIcon: new foundry.data.fields.BooleanField({
+                required: true,
+                initial: true,
+                label: 'DAGGERHEART.SETTINGS.Homebrew.FIELDS.resources.resources.isIcon.label'
+            }),
+            noColorFilter: new foundry.data.fields.BooleanField({
+                required: true,
+                initial: false,
+                label: 'DAGGERHEART.SETTINGS.Homebrew.FIELDS.resources.resources.noColorFilter.label'
+            })
+        },
+        { required: true }
+    );
