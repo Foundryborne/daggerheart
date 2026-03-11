@@ -71,15 +71,18 @@ const companionBaseResources = Object.freeze({
 
 export const character = {
     base: characterBaseResources,
+    custom: {}, // module stuff goes here
     all: { ...characterBaseResources },
 };
 
 export const adversary = {
     base: adversaryBaseResources,
+    custom: {}, // module stuff goes here
     all: { ...adversaryBaseResources },
 };
 
 export const companion = {
     base: companionBaseResources,
+    custom: {}, // module stuff goes here
     all: { ...companionBaseResources },
 };
