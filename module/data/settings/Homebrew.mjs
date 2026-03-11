@@ -192,9 +192,6 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
      */
     static originalResources = null;
 
-    /** Backed up settings used to detect diffs */
-    static originalSettings = null;
-
     /** @inheritDoc */
     _initializeSource(source, options = {}) {
         source = super._initializeSource(source, options);
@@ -213,7 +210,6 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
 
         this.refreshConfig();
         this.#resetActors();
-        DhHomebrew.previous
     }
 
     /** Update config values based on homebrew data */
