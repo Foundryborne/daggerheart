@@ -119,8 +119,8 @@ export const tagifyElement = (element, baseOptions, onChange, tagifyOptions = {}
         }),
         maxTags: typeof maxTags === 'function' ? maxTags() : maxTags,
         dropdown: {
+            searchKeys: ['value', 'name'],
             mapValueTo: 'name',
-            searchKeys: ['value'],
             enabled: 0,
             maxItems: 100,
             closeOnSelect: true,
@@ -378,17 +378,18 @@ export const arraysEqual = (a, b) =>
 
 export const setsEqual = (a, b) => a.size === b.size && [...a].every(value => b.has(value));
 
-export function getScrollTextData(resources, resource, key) {
-    const { reversed, label } = CONFIG.DH.ACTOR.scrollingTextResource[key];
+export function getScrollTextData(actor, resource, key) {
     const { BOTTOM, TOP } = CONST.TEXT_ANCHOR_POINTS;
+
+    const resources = actor.system.resources;
     const increased = resources[key].value < resource.value;
     const value = -1 * (resources[key].value - resource.value);
+    const { label, isReversed } = resources[key];
 
     const text = `${game.i18n.localize(label)} ${value.signedString()}`;
-
-    const stroke = increased ? (reversed ? 0xffffff : 0x000000) : reversed ? 0x000000 : 0xffffff;
-    const fill = increased ? (reversed ? 0x0032b1 : 0xffe760) : reversed ? 0xffe760 : 0x0032b1;
-    const direction = increased ? (reversed ? BOTTOM : TOP) : reversed ? TOP : BOTTOM;
+    const stroke = increased ? (isReversed ? 0xffffff : 0x000000) : isReversed ? 0x000000 : 0xffffff;
+    const fill = increased ? (isReversed ? 0x0032b1 : 0xffe760) : isReversed ? 0xffe760 : 0x0032b1;
+    const direction = increased ? (isReversed ? BOTTOM : TOP) : isReversed ? TOP : BOTTOM;
 
     return { text, stroke, fill, direction };
 }
@@ -472,7 +473,7 @@ export function refreshIsAllowed(allowedTypes, typeToCheck) {
         case CONFIG.DH.GENERAL.refreshTypes.scene.id:
         case CONFIG.DH.GENERAL.refreshTypes.session.id:
         case CONFIG.DH.GENERAL.refreshTypes.longRest.id:
-            return allowedTypes.includes(typeToCheck);
+            return allowedTypes.includes?.(typeToCheck) ?? allowedTypes.has(typeToCheck);
         case CONFIG.DH.GENERAL.refreshTypes.shortRest.id:
             return allowedTypes.some(
                 x =>
@@ -556,4 +557,122 @@ export function calculateExpectedValue(formulaOrTerms) {
           ? parseTermsFromSimpleFormula(formulaOrTerms)
           : [formulaOrTerms];
     return terms.reduce((r, t) => r + (t.bonus ?? 0) + (t.diceQuantity ? (t.diceQuantity * (t.faces + 1)) / 2 : 0), 0);
+}
+
+export function parseRallyDice(value, effect) {
+    const legacyStartsWithPrefix = value.toLowerCase().startsWith('d');
+    const workingValue = legacyStartsWithPrefix ? value.slice(1) : value;
+    const dataParsedValue = itemAbleRollParse(workingValue, effect.parent);
+
+    return `d${game.system.api.documents.DhActiveEffect.effectSafeEval(dataParsedValue)}`;
+}
+/**
+ * Refreshes character and/or adversary resources.
+ * @param { string[] } refreshTypes Which type of features to refresh using IDs from CONFIG.DH.GENERAL.refreshTypes
+ * @param { string[] = ['character', 'adversary'] } actorTypes Which actor types should refresh their features. Defaults to character and adversary.
+ * @param { boolean = true } sendRefreshMessage If a chat message should be created detailing the refresh
+ * @return { Actor[] } The actors that had their features refreshed
+ */
+export async function RefreshFeatures(
+    refreshTypes = [],
+    actorTypes = ['character', 'adversary'],
+    sendNotificationMessage = true,
+    sendRefreshMessage = true
+) {
+    const refreshedActors = {};
+    for (let actor of game.actors) {
+        if (actorTypes.includes(actor.type) && actor.prototypeToken.actorLink) {
+            const updates = {};
+            for (let item of actor.items) {
+                if (
+                    item.system.metadata?.hasResource &&
+                    refreshIsAllowed(refreshTypes, item.system.resource?.recovery)
+                ) {
+                    if (!refreshedActors[actor.id])
+                        refreshedActors[actor.id] = { name: actor.name, img: actor.img, refreshed: new Set() };
+                    refreshedActors[actor.id].refreshed.add(
+                        game.i18n.localize(CONFIG.DH.GENERAL.refreshTypes[item.system.resource.recovery].label)
+                    );
+
+                    if (!updates[item.id]?.system) updates[item.id] = { system: {} };
+
+                    const increasing =
+                        item.system.resource.progression === CONFIG.DH.ITEM.itemResourceProgression.increasing.id;
+                    updates[item.id].system = {
+                        ...updates[item.id].system,
+                        'resource.value': increasing
+                            ? 0
+                            : game.system.api.documents.DhActiveEffect.effectSafeEval(
+                                  Roll.replaceFormulaData(item.system.resource.max, actor.getRollData())
+                              )
+                    };
+                }
+                if (item.system.metadata?.hasActions) {
+                    const usedTypes = new Set();
+                    const actions = item.system.actions.filter(action => {
+                        if (refreshIsAllowed(refreshTypes, action.uses.recovery)) {
+                            usedTypes.add(action.uses.recovery);
+                            return true;
+                        }
+
+                        return false;
+                    });
+                    if (actions.length === 0) continue;
+
+                    if (!refreshedActors[actor.id])
+                        refreshedActors[actor.id] = { name: actor.name, img: actor.img, refreshed: new Set() };
+                    refreshedActors[actor.id].refreshed.add(
+                        ...usedTypes.map(type => game.i18n.localize(CONFIG.DH.GENERAL.refreshTypes[type].label))
+                    );
+
+                    if (!updates[item.id]?.system) updates[item.id] = { system: {} };
+
+                    updates[item.id].system = {
+                        ...updates[item.id].system,
+                        ...actions.reduce(
+                            (acc, action) => {
+                                acc.actions[action.id] = { 'uses.value': 0 };
+                                return acc;
+                            },
+                            { actions: updates[item.id].system.actions ?? {} }
+                        )
+                    };
+                }
+            }
+
+            for (let key in updates) {
+                const update = updates[key];
+                await actor.items.get(key).update(update);
+            }
+        }
+    }
+
+    const types = refreshTypes.map(x => game.i18n.localize(CONFIG.DH.GENERAL.refreshTypes[x].label)).join(', ');
+
+    if (sendNotificationMessage) {
+        ui.notifications.info(
+            game.i18n.format('DAGGERHEART.UI.Notifications.gmMenuRefresh', {
+                types: `[${types}]`
+            })
+        );
+    }
+
+    if (sendRefreshMessage) {
+        const cls = getDocumentClass('ChatMessage');
+        const msg = {
+            user: game.user.id,
+            content: await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/ui/chat/refreshMessage.hbs',
+                {
+                    types: types
+                }
+            ),
+            title: game.i18n.localize('DAGGERHEART.UI.Chat.refreshMessage.title'),
+            speaker: cls.getSpeaker()
+        };
+
+        cls.create(msg);
+    }
+
+    return refreshedActors;
 }

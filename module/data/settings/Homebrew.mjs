@@ -145,6 +145,16 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                     description: new fields.StringField()
                 })
             ),
+            resources: new fields.TypedObjectField(
+                new fields.SchemaField({
+                    resources: new fields.TypedObjectField(new fields.EmbeddedDataField(Resource))
+                }),
+                {
+                    initial: {
+                        character: { resources: {} }
+                    }
+                }
+            ),
             itemFeatures: new fields.SchemaField({
                 weaponFeatures: new fields.TypedObjectField(
                     new fields.SchemaField({
@@ -185,4 +195,117 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
         }
         return source;
     }
+
+    /** Invoked by the setting when data changes */
+    handleChange() {
+        if (this.maxFear) {
+            if (ui.resources) ui.resources.render({ force: true });
+        }
+
+        this.refreshConfig();
+        this.#resetActors();
+    }
+
+    /** Update config values based on homebrew data. Make sure the references don't change */
+    refreshConfig() {
+        for (const [actorType, actorData] of Object.entries(this.resources)) {
+            const config = CONFIG.DH.RESOURCE[actorType];
+            for (const key of Object.keys(config.all)) {
+                delete config.all[key];
+            }
+            Object.assign(config.all, {
+                ...Object.entries(actorData.resources).reduce((result, [key, value]) => {
+                    result[key] = value.toObject();
+                    result[key].id = key;
+                    return result;
+                }, {}),
+                ...config.custom,
+                ...config.base,
+            });
+        }
+    }
+
+    /**
+     * Triggers a reset and non-forced re-render on all given actors (if given)
+     * or all world actors and actors in all scenes to show immediate results for a changed setting.
+     */
+    #resetActors() {
+        const actors = new Set(
+            [
+                game.actors.contents,
+                game.scenes.contents.flatMap(s => s.tokens.contents).flatMap(t => t.actor ?? [])
+            ].flat()
+        );
+        for (const actor of actors) {
+            for (const app of Object.values(actor.apps)) {
+                for (const element of app.element?.querySelectorAll('prose-mirror.active')) {
+                    element.open = false; // This triggers a save
+                }
+            }
+
+            actor.reset();
+            actor.render();
+        }
+    }
 }
+
+export class Resource extends foundry.abstract.DataModel {
+    static defineSchema() {
+        const fields = foundry.data.fields;
+        return {
+            initial: new fields.NumberField({
+                required: true,
+                integer: true,
+                initial: 0,
+                min: 0,
+                label: 'DAGGERHEART.GENERAL.initial'
+            }),
+            max: new fields.NumberField({
+                nullable: true,
+                initial: null,
+                min: 0,
+                label: 'DAGGERHEART.GENERAL.max'
+            }),
+            label: new fields.StringField({ label: 'DAGGERHEART.GENERAL.label' }),
+            images: new fields.SchemaField({
+                full: imageIconField('fa solid fa-circle'),
+                empty: imageIconField('fa-regular fa-circle')
+            })
+        };
+    }
+
+    static getDefaultResourceData = label => {
+        const images = Resource.schema.fields.images.getInitialValue();
+        return {
+            initial: 0,
+            max: 0,
+            label: label ?? '',
+            images
+        };
+    };
+
+    static getDefaultImageData = imageKey => {
+        return Resource.schema.fields.images.fields[imageKey].getInitialValue();
+    };
+}
+
+const imageIconField = defaultValue =>
+    new foundry.data.fields.SchemaField(
+        {
+            value: new foundry.data.fields.StringField({
+                initial: defaultValue,
+                label: 'DAGGERHEART.SETTINGS.Homebrew.FIELDS.resources.resources.value.label'
+            }),
+            isIcon: new foundry.data.fields.BooleanField({
+                required: true,
+                initial: true,
+                label: 'DAGGERHEART.SETTINGS.Homebrew.FIELDS.resources.resources.isIcon.label'
+            }),
+            noColorFilter: new foundry.data.fields.BooleanField({
+                required: true,
+                initial: false,
+                label: 'DAGGERHEART.SETTINGS.Homebrew.FIELDS.resources.resources.noColorFilter.label'
+            })
+        },
+        { required: true }
+    );

@@ -1,0 +1,21 @@
+<div class="daggerheart resource-management-container">
+    {{#each resources as |resource|}}
+        <div class="resource-section {{resource.resourceClass}}">
+            <h4>{{resource.label}}</h4>
+            {{#times resource.max}}
+                <span class='resource-value' data-action='toggleResource' data-value="{{add this 1}}" data-resource="{{resource.id}}">
+                    {{#if resource.fullIcon.isIcon}}
+                        <i class='{{resource.fullIcon.value}} full {{#unless (gte ../value (add this 1))}}hidden{{/unless}}'></i>
+                    {{else}}
+                        <img src="{{resource.fullIcon.value}}" class="full {{#unless resource.fullIcon.noColorFilter}}filter{{else}}non-transparent{{/unless}} {{#unless (gte ../value (add this 1))}}hidden{{/unless}}" />
+                    {{/if}}
+                    {{#if resource.emptyIcon.isIcon}}
+                        <i class='{{resource.emptyIcon.value}} empty {{#if (gte ../value (add this 1))}}hidden{{/if}}'></i>
+                    {{else}}
+                        <img src="{{resource.emptyIcon.value}}" class="empty {{#unless resource.fullIcon.noColorFilter}}filter{{else}}non-transparent{{/unless}} {{#if (gte ../value (add this 1))}}hidden{{/if}}" />
+                    {{/if}}
+                </span>
+            {{/times}}
+        </div>
+    {{/each}}
+</div>

@@ -36,7 +36,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         ],
         dragDrop: [
             { dragSelector: '.inventory-item[data-type="attack"]', dropSelector: null },
-            { dragSelector: ".currency[data-currency] .drag-handle", dropSelector: null }
+            { dragSelector: '.currency[data-currency] .drag-handle', dropSelector: null }
         ]
     };
 
@@ -92,7 +92,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                     value: context.source.system.gold[key]
                 };
             }
-            context.inventory.hasCurrency = Object.values(context.inventory.currencies).some((c) => c.enabled);
+            context.inventory.hasCurrency = Object.values(context.inventory.currencies).some(c => c.enabled);
         }
 
         return context;
@@ -270,7 +270,9 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                 currency
             });
             if (quantity) {
-                originActor.update({ [`system.gold.${currency}`]: Math.max(0, originActor.system.gold[currency] - quantity) });
+                originActor.update({
+                    [`system.gold.${currency}`]: Math.max(0, originActor.system.gold[currency] - quantity)
+                });
                 this.document.update({ [`system.gold.${currency}`]: this.document.system.gold[currency] + quantity });
             }
             return;
@@ -292,6 +294,15 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
 
         /* Handling transfer of inventoryItems */
         if (item.system.metadata.isInventoryItem) {
+            if (!this.document.testUserPermission(game.user, 'OWNER', { exact: true })) {
+                return ui.notifications.error(
+                    game.i18n.format('DAGGERHEART.UI.Notifications.lackingItemTransferPermission', {
+                        user: game.user.name,
+                        target: this.document.name
+                    })
+                );
+            }
+
             if (item.system.metadata.isQuantifiable) {
                 const actorItem = originActor.items.get(data.originId);
                 const quantityTransfered = await game.system.api.applications.dialogs.ItemTransferDialog.configure({
@@ -300,14 +311,6 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                 });
 
                 if (quantityTransfered) {
-                    if (quantityTransfered === actorItem.system.quantity) {
-                        await originActor.deleteEmbeddedDocuments('Item', [data.originId]);
-                    } else {
-                        await actorItem.update({
-                            'system.quantity': actorItem.system.quantity - quantityTransfered
-                        });
-                    }
-
                     const existingItem = this.document.items.find(x => itemIsIdentical(x, item));
                     if (existingItem) {
                         await existingItem.update({
@@ -325,10 +328,18 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                             }
                         ]);
                     }
+
+                    if (quantityTransfered === actorItem.system.quantity) {
+                        await originActor.deleteEmbeddedDocuments('Item', [data.originId]);
+                    } else {
+                        await actorItem.update({
+                            'system.quantity': actorItem.system.quantity - quantityTransfered
+                        });
+                    }
                 }
             } else {
-                await originActor.deleteEmbeddedDocuments('Item', [data.originId]);
                 await this.document.createEmbeddedDocuments('Item', [item.toObject()]);
+                await originActor.deleteEmbeddedDocuments('Item', [data.originId]);
             }
         }
     }
@@ -339,7 +350,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
      */
     async _onDragStart(event) {
         // Handle drag/dropping currencies
-        const currencyEl = event.currentTarget.closest(".currency[data-currency]");
+        const currencyEl = event.currentTarget.closest('.currency[data-currency]');
         if (currencyEl) {
             const currency = currencyEl.dataset.currency;
             const data = { type: 'Currency', currency, originActor: this.document.uuid };
@@ -359,8 +370,8 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
             event.dataTransfer.setData('text/plain', JSON.stringify(attackData));
             event.dataTransfer.setDragImage(attackItem.querySelector('img'), 60, 0);
             return;
-        } 
-        
+        }
+
         const item = await getDocFromElement(event.target);
         if (item) {
             const dragData = {

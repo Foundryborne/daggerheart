@@ -1,6 +1,6 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 import D20Roll from './d20Roll.mjs';
-import { setDiceSoNiceForDualityRoll } from '../helpers/utils.mjs';
+import { parseRallyDice, setDiceSoNiceForDualityRoll } from '../helpers/utils.mjs';
 import { getDiceSoNicePresets } from '../config/generalConfig.mjs';
 import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
 
@@ -68,7 +68,7 @@ export default class DualityRoll extends D20Roll {
     setRallyChoices() {
         return this.data?.parent?.appliedEffects.reduce((a, c) => {
             const change = c.changes.find(ch => ch.key === 'system.bonuses.rally');
-            if (change) a.push({ value: c.id, label: change.value });
+            if (change) a.push({ value: c.id, label: parseRallyDice(change.value, c) });
             return a;
         }, []);
     }

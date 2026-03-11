@@ -74,6 +74,15 @@
                     "invalidDrop": "You can only drop Actor entities to summon.",
                     "chatMessageTitle": "Test2",
                     "chatMessageHeaderTitle": "Summoning"
+                },
+                "transform": {
+                    "name": "Transform",
+                    "tooltip": "Transform one actor into another",
+                    "noTransformActor": "There is no assigned actor to transform into",
+                    "transformActorMissing": "The assigned actor to transform into does not exist. It was probably deleted or moved in/out of a compendium",
+                    "canvasError": "There is no active scene.",
+                    "prototypeError": "You can only use a transform action from a Token",
+                    "actorLinkError": "You cannot transform a token with Actor Link set to true"
                 }
             },
             "Config": {
@@ -129,6 +138,12 @@
                 },
                 "summon": {
                     "dropSummonsHere": "Drop Summons Here"
+                },
+                "transform": {
+                    "dropTransformHere": "Drop Transform Here",
+                    "actorIsMissing": "The linked actor is missing. You should delete this link.",
+                    "clearHitPoints": "Clear Hitpoints",
+                    "clearStress": "Clear Stress"
                 }
             }
         },
@@ -1031,7 +1046,8 @@
                 },
                 "vulnerable": {
                     "name": "Vulnerable",
-                    "description": "While a creature is Vulnerable, all rolls targeting them have advantage.\nA creature who is already Vulnerable can’t be made to take the condition again."
+                    "description": "While a creature is Vulnerable, all rolls targeting them have advantage.\nA creature who is already Vulnerable can’t be made to take the condition again.",
+                    "autoAppliedByLabel": "Max Stress"
                 }
             },
             "CountdownType": {
@@ -1166,12 +1182,12 @@
                 },
                 "far": {
                     "name": "Far",
-                    "description": "means a distance where one can see the appearance of a person or object, but probably not in great detail-- across a small battlefield or down a large corridor. This is usually about 30-100 feet away. While under danger, a PC will likely have to make an Agility check to get here safely. Anything on a battle map that is within the length of a standard piece of paper (~10-11 inches) can usually be considered far.",
+                    "description": "means a distance where one can see the appearance of a person or object, but probably not in great detail-- across a small battlefield or down a large corridor. This is usually about 30-100 feet away. While under danger, a PC will likely have to make an Agility roll to get here safely. Anything on a battle map that is within the length of a standard piece of paper (~10-11 inches) can usually be considered far.",
                     "short": "Far"
                 },
                 "veryFar": {
                     "name": "Very Far",
-                    "description": "means a distance where you can see the shape of a person or object, but probably not make outany details-- across a large battlefield or down a long street, generally about 100-300 feet away. While under danger, a PC likely has to make an Agility check to get here safely. Anything on a battle map that is beyond far distance, but still within sight of the characters can usually be considered very far.",
+                    "description": "means a distance where you can see the shape of a person or object, but probably not make outany details-- across a large battlefield or down a long street, generally about 100-300 feet away. While under danger, a PC likely has to make an Agility roll to get here safely. Anything on a battle map that is beyond far distance, but still within sight of the characters can usually be considered very far.",
                     "short": "V. Far"
                 }
             },
@@ -1294,6 +1310,7 @@
                 "triggerTexts": {
                     "strangePatternsContentTitle": "Matched {nr} times.",
                     "strangePatternsContentSubTitle": "Increase hope and stress to a total of {nr}.",
+                    "strangePatternsActionExplanation": "Left click to increase, right click to decrease",
                     "ferocityContent": "Spend 2 Hope to gain {bonus} bonus Evasion until after the next attack against you?",
                     "ferocityEffectDescription": "Your evasion is increased by {bonus}. This bonus lasts until after the next attack made against you."
                 },
@@ -2268,6 +2285,7 @@
             "identify": "Identity",
             "imagePath": "Image Path",
             "inactiveEffects": "Inactive Effects",
+            "initial": "Initial",
             "inventory": "Inventory",
             "itemResource": "Item Resource",
             "itemQuantity": "Item Quantity",
@@ -2559,6 +2577,10 @@
                         "gm": { "label": "GM" },
                         "players": { "label": "Players" }
                     },
+                    "vulnerableAutomation": {
+                        "label": "Vulnerable Automation",
+                        "hint": "Automatically apply the Vulnerable condition when a actor reaches max stress"
+                    },
                     "countdownAutomation": {
                         "label": "Countdown Automation",
                         "hint": "Automatically progress countdowns based on their progression settings"
@@ -2627,6 +2649,14 @@
                     "title": "Triggers"
                 }
             },
+            "Metagaming": {
+                "FIELDS": {
+                    "hideObserverPermissionInChat": {
+                        "label": "Hide Chat Info From Players",
+                        "hint": "Information such as hit/miss on attack rolls against adversaries will be hidden"
+                    }
+                }
+            },
             "Homebrew": {
                 "newDowntimeMove": "Downtime Move",
                 "downtimeMove": "Downtime Move",
@@ -2641,6 +2671,8 @@
                 "resetMovesText": "Are you sure you want to reset?",
                 "deleteItemTitle": "Delete Homebrew Item",
                 "deleteItemText": "Are you sure you want to delete the item?",
+                "deleteResourceTitle": "Delete Homebrew Resource",
+                "deleteResourceText": "Are you sure you want to delete the resource?",
                 "FIELDS": {
                     "maxFear": { "label": "Max Fear" },
                     "maxHope": { "label": "Max Hope" },
@@ -2648,6 +2680,13 @@
                     "maxLoadout": {
                         "label": "Max Cards in Loadout",
                         "hint": "Set to blank or 0 for unlimited maximum"
+                    },
+                    "resources": {
+                        "resources": {
+                            "value": { "label": "Icon" },
+                            "isIcon": { "label": "Font Awesome Icon" },
+                            "noColorFilter": { "label": "Disable Color Filter" }
+                        }
                     },
                     "maxDomains": { "label": "Max Class Domains", "hint": "Max domains you can set on a class" }
                 },
@@ -2677,6 +2716,13 @@
                 "adversaryType": {
                     "title": "Custom Adversary Types",
                     "newType": "Adversary Type"
+                },
+                "resources": {
+                    "typeTitle": "{type} Resources",
+                    "filledIcon": "Filled Icon",
+                    "emptyIcon": "Empty Icon",
+                    "resourceIdentifier": "Resource Identifier",
+                    "setResourceIdentifier": "Set Resource Identifier"
                 }
             },
             "Menu": {
@@ -2685,6 +2731,11 @@
                     "name": "Automation Settings",
                     "label": "Configure Automation",
                     "hint": "Various settings automating resource management and more"
+                },
+                "metagaming": {
+                    "name": "Metagaming Settings",
+                    "label": "Configure Metagaming",
+                    "hint": "Various settings controlling the flow of information to players"
                 },
                 "homebrew": {
                     "name": "Homebrew Settings",
@@ -2809,7 +2860,7 @@
                     "title": "Domain Card"
                 },
                 "dualityRoll": {
-                    "abilityCheckTitle": "{ability} Check"
+                    "abilityCheckTitle": "{ability} Roll"
                 },
                 "effectSummary": {
                     "title": "Effects Applied",
@@ -2824,7 +2875,7 @@
                     "selectLeader": "Select a Leader",
                     "selectMember": "Select a Member",
                     "rerollTitle": "Reroll Group Roll",
-                    "rerollContent": "Are you sure you want to reroll your {trait} check?",
+                    "rerollContent": "Are you sure you want to reroll your {trait} roll?",
                     "rerollTooltip": "Reroll",
                     "wholePartySelected": "The whole party is selected"
                 },
@@ -2990,7 +3041,8 @@
                 "tokenActorMissing": "{name} is missing an Actor",
                 "tokenActorsMissing": "[{names}] missing Actors",
                 "domainTouchRequirement": "This domain card requires {nr} {domain} cards in the loadout to be used",
-                "knowTheTide": "Know The Tide gained a token"
+                "knowTheTide": "Know The Tide gained a token",
+                "lackingItemTransferPermission": "User {user} lacks owner permission needed to transfer items to {target}"
             },
             "Sidebar": {
                 "actorDirectory": {

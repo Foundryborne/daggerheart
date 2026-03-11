@@ -45,30 +45,20 @@ Parameters:
       <span class="item-name">{{localize item.name}} {{#unless (or noExtensible (not item.system.description))}}<span class="expanded-icon"><i class="fa-solid fa-expand"></i></span>{{/unless}}</span>
 
       {{!-- Tags Start --}}
-      {{#with item}}
-      {{#if (not ../hideTags)}}
-      <div class="item-tags">
-        {{#each this._getTags as |tag|}}
-        <div class="tag">
-          {{tag}}
-        </div>
-        {{/each}}
-
-        {{!-- Feature Form Tag Start --}}
-        {{#if (eq ../type 'feature')}}
-            {{#if (or (eq @root.document.type 'adversary') (eq @root.document.type 'environment'))}}
-                {{#if system.featureForm}}
-                    <div class="tag feature-form">
-                        <span class="recall-value">{{localize (concat "DAGGERHEART.CONFIG.FeatureForm." system.featureForm)}}</span>
-                    </div>
+        {{#if (not ../hideTags)}}
+          {{#> "systems/daggerheart/templates/sheets/global/partials/item-tags.hbs" item  }}
+            {{#if (eq ../type 'feature')}}
+                {{#if (or (eq @root.document.type 'adversary') (eq @root.document.type 'environment'))}}
+                    {{#if system.featureForm}}
+                        <div class="tag feature-form">
+                            <span class="recall-value">{{localize (concat "DAGGERHEART.CONFIG.FeatureForm." system.featureForm)}}</span>
+                        </div>
+                    {{/if}}
                 {{/if}}
             {{/if}}
+          {{/ "systems/daggerheart/templates/sheets/global/partials/item-tags.hbs"}}
         {{/if}}
-        {{!-- Feature Form Tag End --}}
 
-      </div>
-      {{/if}}
-      {{/with}}
       {{!--Tags End --}}
     </div>
 
@@ -109,7 +99,7 @@ Parameters:
         {{else if (eq type 'armor')}}
         <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem"
           data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.equipped 'unequip' 'equip' }}">
-          <i class="fa-solid fa-shield"></i>
+          <i class="fa-solid fa-fw fa-shield"></i>
         </a>
         {{/if}}
         {{#if (eq type 'domainCard')}}
@@ -125,7 +115,7 @@ Parameters:
         {{/if}}
         {{#if (hasProperty item "toChat")}}
           <a data-action="toChat" data-tooltip="DAGGERHEART.UI.Tooltip.sendToChat">
-            <i class="fa-regular fa-message"></i>
+            <i class="fa-regular fa-fw fa-message"></i>
           </a>
         {{/if}}
       {{else}}
@@ -138,7 +128,7 @@ Parameters:
       {{/unless}}
       {{#unless hideContextMenu}}
       <a data-action="triggerContextMenu" data-tooltip="DAGGERHEART.UI.Tooltip.moreOptions">
-        <i class="fa-solid fa-ellipsis-vertical"></i>
+        <i class="fa-solid fa-fw fa-ellipsis-vertical"></i>
       </a>
       {{/unless}}
       {{/if}}

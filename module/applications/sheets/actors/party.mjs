@@ -264,15 +264,6 @@ export default class Party extends DHBaseActorSheet {
         ).render({ force: true });
     }
 
-    /**
-     * Get the set of ContextMenu options for Consumable and Loot.
-     * @returns {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} - The Array of context options passed to the ContextMenu instance
-     * @this {CharacterSheet}
-     * @protected
-     */
-    static #getItemContextOptions() {
-        return this._getContextMenuCommonOptions.call(this, { usable: true, toChat: true });
-    }
     /* -------------------------------------------- */
     /*  Filter Tracking                             */
     /* -------------------------------------------- */

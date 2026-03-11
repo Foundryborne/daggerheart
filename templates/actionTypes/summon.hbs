@@ -1,19 +1,19 @@
-<fieldset class="one-column" id="summon-drop-zone" data-key="summon">
+<fieldset class="one-column" id="summon-drop-zone" data-is-drop-zone="true" data-key="summon">
     <legend>
         {{localize "DAGGERHEART.ACTIONS.TYPES.summon.name"}}
     </legend>
 
     <ul class="actor-summon-items">   
         {{#each @root.summons as |summon index|}} 
-            <li class="actor-summon-line">
-                <div class="actor-summon-name">
+            <li class="actor-drop-line">
+                <div class="actor-drop-name">
                     <img class="image" src="{{summon.actor.img}}" />
                     <h4 class="h4">
                         {{summon.actor.name}}
                     </h4>
                 </div>
 
-                <div class="actor-summon-controls">
+                <div class="actor-drop-controls">
                     <div class="form-group summon-count-wrapper" data-index="{{index}}">
                         <div class="form-fields">
                             <input type="text" value="{{summon.count}}" />
@@ -43,7 +43,7 @@
                 </div>
             </li>
         {{/each}}
-        <div class="summon-dragger">
+        <div class="drop-dragger">
             <span>{{localize "DAGGERHEART.ACTIONS.Settings.summon.dropSummonsHere"}}</span>
         </div>
     </ul>
