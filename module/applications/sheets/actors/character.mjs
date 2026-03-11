@@ -245,8 +245,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     async _prepareHeaderContext(context, _options) {
-        context.hasExtraResources = Object.keys(CONFIG.DH.RESOURCE.allCharacterResources()).some(
-            key => !CONFIG.DH.RESOURCE.characterBaseResources[key]
+        context.hasExtraResources = Object.keys(CONFIG.DH.RESOURCE.character.all).some(
+            key => !CONFIG.DH.RESOURCE.character.base[key]
         );
     }
 
@@ -960,8 +960,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
             return;
         }
 
-        const extraResources = Object.values(CONFIG.DH.RESOURCE.allCharacterResources()).reduce((acc, resource) => {
-            if (CONFIG.DH.RESOURCE.characterBaseResources[resource.id]) return acc;
+        const extraResources = Object.values(CONFIG.DH.RESOURCE.character.all).reduce((acc, resource) => {
+            if (CONFIG.DH.RESOURCE.character.base[resource.id]) return acc;
 
             const resourceData = this.document.system.resources[resource.id];
             acc[resource.id] = {

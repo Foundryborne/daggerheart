@@ -11,7 +11,7 @@
  *  }
  */
 
-export const characterBaseResources = {
+const characterBaseResources = Object.freeze({
     hitPoints: {
         id: 'hitPoints',
         initial: 0,
@@ -34,25 +34,9 @@ export const characterBaseResources = {
         reverse: false,
         label: 'DAGGERHEART.GENERAL.hope'
     }
-};
+});
 
-export const characterResources = {
-    ...characterBaseResources
-};
-
-export const allCharacterResources = () => {
-    const resources = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).resources.character
-        .resources;
-    return {
-        ...Object.keys(resources).reduce((acc, key) => {
-            acc[key] = { ...resources[key].toObject(), id: key };
-            return acc;
-        }, {}),
-        ...characterResources
-    };
-};
-
-export const adversaryBaseResources = {
+const adversaryBaseResources = Object.freeze({
     hitPoints: {
         id: 'hitPoints',
         initial: 0,
@@ -68,15 +52,9 @@ export const adversaryBaseResources = {
         reverse: true,
         label: 'DAGGERHEART.GENERAL.stress'
     }
-};
+});
 
-export const adversaryResources = {
-    ...adversaryBaseResources
-};
-
-export const allAdversaryResources = () => adversaryResources;
-
-export const companionBaseResources = {
+const companionBaseResources = Object.freeze({
     stress: {
         id: 'stress',
         initial: 0,
@@ -91,10 +69,19 @@ export const companionBaseResources = {
         reverse: false,
         label: 'DAGGERHEART.GENERAL.hope'
     }
+});
+
+export const character = {
+    base: characterBaseResources,
+    all: { ...characterBaseResources },
 };
 
-export const companionResources = {
-    ...companionBaseResources
+export const adversary = {
+    base: adversaryBaseResources,
+    all: { ...adversaryBaseResources },
 };
 
-export const allCompanionResources = () => companionResources;
+export const companion = {
+    base: companionBaseResources,
+    all: { ...companionBaseResources },
+};

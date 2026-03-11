@@ -1,5 +1,3 @@
-import { allAdversaryResources, allCharacterResources, allCompanionResources } from './resourceConfig.mjs';
-
 export const abilities = {
     agility: {
         id: 'agility',
