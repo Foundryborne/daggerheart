@@ -9,7 +9,7 @@ export default class DhCreature extends BaseDataActor {
         return {
             ...super.defineSchema(),
             resources: new fields.SchemaField({
-                ...Object.values(CONFIG.DH.RESOURCE[`all${this.metadata.type.capitalize()}Resources`]()).reduce(
+                ...Object.values(CONFIG.DH.RESOURCE[this.metadata.type].all).reduce(
                     (acc, resource) => {
                         if (resource.max !== undefined) {
                             acc[resource.id] = resourceField(
@@ -58,7 +58,7 @@ export default class DhCreature extends BaseDataActor {
 
     prepareDerivedData() {
         super.prepareDerivedData();
-        const resources = CONFIG.DH.RESOURCE[`all${this.parent.type.capitalize()}Resources`]();
+        const resources = CONFIG.DH.RESOURCE[this.metadata.type].all;
         if (resources) {
             for (const [key, value] of Object.entries(this.resources)) {
                 value.label = resources[key]?.label;

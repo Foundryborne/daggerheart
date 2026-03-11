@@ -186,6 +186,12 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
         };
     }
 
+    /** 
+     * Backed up configured resources stored to prevent overwriting module settings.
+     * As of V13, setting objects are not preserved between reprepares.
+     */
+    static originalResources = null;
+
     /** @inheritDoc */
     _initializeSource(source, options = {}) {
         source = super._initializeSource(source, options);
@@ -194,6 +200,53 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
             source.currency[type] = foundry.utils.mergeObject(initial, source.currency[type], { inplace: false });
         }
         return source;
+    }
+
+    /** Invoked by the setting when data changes */
+    handleChange() {
+        if (this.maxFear) {
+            if (ui.resources) ui.resources.render({ force: true });
+        }
+
+        this.refreshConfig();
+        this.#resetActors();
+    }
+
+    /** Update config values based on homebrew data */
+    refreshConfig() {
+        DhHomebrew.originalResources ??= foundry.utils.duplicate(CONFIG.DH.RESOURCE);
+        for (const [actorType, actorData] of Object.entries(this.resources)) {
+            for (const [resourceKey, resourceData] of Object.entries(actorData.resources)) {
+                if (resourceKey in DhHomebrew.originalResources[actorType].all) {
+                    continue;
+                }
+                CONFIG.DH.RESOURCE[actorType].all[resourceKey] = resourceData.toObject();
+                CONFIG.DH.RESOURCE[actorType].all[resourceKey].id = resourceKey;
+            }
+        }
+    }
+
+    /**
+     * Triggers a reset and non-forced re-render on all given actors (if given)
+     * or all world actors and actors in all scenes to show immediate results for a changed setting.
+     */
+    #resetActors() {
+        const actors = new Set(
+            [
+                game.actors.contents,
+                game.scenes.contents.flatMap(s => s.tokens.contents).flatMap(t => t.actor ?? [])
+            ].flat()
+        );
+        for (const actor of actors) {
+            for (const app of Object.values(actor.apps)) {
+                for (const element of app.element?.querySelectorAll('prose-mirror.active')) {
+                    element.open = false; // This triggers a save
+                }
+            }
+
+            actor.reset();
+            actor.render();
+        }
     }
 }
 
