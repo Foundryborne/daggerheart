@@ -186,12 +186,6 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
         };
     }
 
-    /** 
-     * Backed up configured resources stored to prevent overwriting module settings.
-     * As of V13, setting objects are not preserved between reprepares.
-     */
-    static originalResources = null;
-
     /** @inheritDoc */
     _initializeSource(source, options = {}) {
         source = super._initializeSource(source, options);
@@ -212,24 +206,22 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
         this.#resetActors();
     }
 
-    /** Update config values based on homebrew data */
+    /** Update config values based on homebrew data. Make sure the references don't change */
     refreshConfig() {
-        DhHomebrew.originalResources ??= foundry.utils.duplicate(CONFIG.DH.RESOURCE);
         for (const [actorType, actorData] of Object.entries(this.resources)) {
-            const config = CONFIG.DH.RESOURCE[actorType].all;
-
-            // Remove anything in config that was not in original first
-            const removal = Object.keys(config).filter(k => !(k in DhHomebrew.originalResources[actorType].all));
-            for (const key of removal) delete config[key];
-
-            // Add homebrew settings
-            for (const [resourceKey, resourceData] of Object.entries(actorData.resources)) {
-                if (resourceKey in DhHomebrew.originalResources[actorType].all) {
-                    continue;
-                }
-                config[resourceKey] = resourceData.toObject();
-                config[resourceKey].id = resourceKey;
+            const config = CONFIG.DH.RESOURCE[actorType];
+            for (const key of Object.keys(config.all)) {
+                delete config.all[key];
             }
+            Object.assign(config.all, {
+                ...Object.entries(actorData.resources).reduce((result, [key, value]) => {
+                    result[key] = value.toObject();
+                    result[key].id = key;
+                    return result;
+                }, {}),
+                ...CONFIG.DH.RESOURCE[actorType].base,
+                ...CONFIG.DH.RESOURCE[actorType].custom,
+            });
         }
     }
 
