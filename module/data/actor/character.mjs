@@ -587,6 +587,7 @@ export default class DhCharacter extends DhCreature {
     }
 
     prepareBaseData() {
+        super.prepareBaseData();
         this.evasion += this.class.value?.system?.evasion ?? 0;
 
         const currentLevel = this.levelData.level.current;

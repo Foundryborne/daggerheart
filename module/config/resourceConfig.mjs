@@ -30,7 +30,6 @@ const characterBaseResources = Object.freeze({
     hope: {
         id: 'hope',
         initial: 2,
-        min: 0,
         reverse: false,
         label: 'DAGGERHEART.GENERAL.hope'
     }
@@ -65,7 +64,6 @@ const companionBaseResources = Object.freeze({
     hope: {
         id: 'hope',
         initial: 0,
-        min: 0,
         reverse: false,
         label: 'DAGGERHEART.GENERAL.hope'
     }

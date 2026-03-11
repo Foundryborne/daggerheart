@@ -1,4 +1,4 @@
-import { resourceField } from '../fields/actorField.mjs';
+import { ResourcesField } from '../fields/actorField.mjs';
 import BaseDataActor from './base.mjs';
 
 export default class DhCreature extends BaseDataActor {
@@ -8,36 +8,7 @@ export default class DhCreature extends BaseDataActor {
 
         return {
             ...super.defineSchema(),
-            resources: new fields.SchemaField({
-                ...Object.values(CONFIG.DH.RESOURCE[this.metadata.type].all).reduce(
-                    (acc, resource) => {
-                        if (resource.max !== undefined) {
-                            acc[resource.id] = resourceField(
-                                resource.max,
-                                resource.initial,
-                                resource.label,
-                                resource.maxLabel
-                            );
-                        } else {
-                            acc[resource.id] = new fields.SchemaField(
-                                {
-                                    value: new fields.NumberField({
-                                        initial: resource.initial,
-                                        min: resource.min,
-                                        integer: true,
-                                        label: resource.label
-                                    }),
-                                    isReversed: new fields.BooleanField({ initial: resource.reverse })
-                                },
-                                { label: resource.label }
-                            );
-                        }
-
-                        return acc;
-                    },
-                    {}
-                )
-            }),
+            resources: new ResourcesField(this.metadata.type),
             advantageSources: new fields.ArrayField(new fields.StringField(), {
                 label: 'DAGGERHEART.ACTORS.Character.advantageSources.label',
                 hint: 'DAGGERHEART.ACTORS.Character.advantageSources.hint'
@@ -54,17 +25,6 @@ export default class DhCreature extends BaseDataActor {
             x => x.statuses.has('vulnerable') && !x.flags.daggerheart?.autoApplyFlagId
         );
         return !vulnerableAppliedByOther;
-    }
-
-    prepareDerivedData() {
-        super.prepareDerivedData();
-        const resources = CONFIG.DH.RESOURCE[this.metadata.type].all;
-        if (resources) {
-            for (const [key, value] of Object.entries(this.resources)) {
-                value.label = resources[key]?.label;
-                value.isReversed = resources[key]?.reverse;
-            }
-        }
     }
 
     async _preUpdate(changes, options, userId) {

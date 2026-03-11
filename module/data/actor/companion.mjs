@@ -123,6 +123,7 @@ export default class DhCompanion extends DhCreature {
     }
 
     prepareBaseData() {
+        super.prepareBaseData();
         this.attack.roll.bonus = this.partner?.system?.spellcastModifier ?? 0;
 
         for (let levelKey in this.levelData.levelups) {
