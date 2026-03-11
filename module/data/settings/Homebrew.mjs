@@ -192,6 +192,9 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
      */
     static originalResources = null;
 
+    /** Backed up settings used to detect diffs */
+    static originalSettings = null;
+
     /** @inheritDoc */
     _initializeSource(source, options = {}) {
         source = super._initializeSource(source, options);
@@ -210,18 +213,26 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
 
         this.refreshConfig();
         this.#resetActors();
+        DhHomebrew.previous
     }
 
     /** Update config values based on homebrew data */
     refreshConfig() {
         DhHomebrew.originalResources ??= foundry.utils.duplicate(CONFIG.DH.RESOURCE);
         for (const [actorType, actorData] of Object.entries(this.resources)) {
+            const config = CONFIG.DH.RESOURCE[actorType].all;
+
+            // Remove anything in config that was not in original first
+            const removal = Object.keys(config).filter(k => !(k in DhHomebrew.originalResources[actorType].all));
+            for (const key of removal) delete config[key];
+
+            // Add homebrew settings
             for (const [resourceKey, resourceData] of Object.entries(actorData.resources)) {
                 if (resourceKey in DhHomebrew.originalResources[actorType].all) {
                     continue;
                 }
-                CONFIG.DH.RESOURCE[actorType].all[resourceKey] = resourceData.toObject();
-                CONFIG.DH.RESOURCE[actorType].all[resourceKey].id = resourceKey;
+                config[resourceKey] = resourceData.toObject();
+                config[resourceKey].id = resourceKey;
             }
         }
     }
