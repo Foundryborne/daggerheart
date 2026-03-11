@@ -33,6 +33,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             handleResourceDice: CharacterSheet.#handleResourceDice,
             advanceResourceDie: CharacterSheet.#advanceResourceDie,
             cancelBeastform: CharacterSheet.#cancelBeastform,
+            toggleResourceManagement: CharacterSheet.#toggleResourceManagement,
             useDowntime: this.useDowntime,
             viewParty: CharacterSheet.#viewParty
         },
@@ -226,6 +227,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
     async _preparePartContext(partId, context, options) {
         context = await super._preparePartContext(partId, context, options);
         switch (partId) {
+            case 'header':
+                await this._prepareHeaderContext(context, options);
+                break;
             case 'loadout':
                 await this._prepareLoadoutContext(context, options);
                 break;
@@ -238,6 +242,12 @@ export default class CharacterSheet extends DHBaseActorSheet {
         }
 
         return context;
+    }
+
+    async _prepareHeaderContext(context, _options) {
+        context.hasExtraResources = Object.keys(CONFIG.DH.RESOURCE.character.all).some(
+            key => !CONFIG.DH.RESOURCE.character.base[key]
+        );
     }
 
     /**
@@ -940,6 +950,78 @@ export default class CharacterSheet extends DHBaseActorSheet {
             html,
             locked: true
         });
+    }
+
+    static async #toggleResourceManagement(event, button) {
+        event.stopPropagation();
+        const existingTooltip = document.body.querySelector('.locked-tooltip .resource-management-container');
+        if (existingTooltip) {
+            game.tooltip.dismissLockedTooltips();
+            return;
+        }
+
+        const extraResources = Object.values(CONFIG.DH.RESOURCE.character.all).reduce((acc, resource) => {
+            if (CONFIG.DH.RESOURCE.character.base[resource.id]) return acc;
+
+            const resourceData = this.document.system.resources[resource.id];
+            acc[resource.id] = {
+                id: resource.id,
+                label: game.i18n.localize(resource.label),
+                value: resourceData.value,
+                max: resourceData.max,
+                fullIcon: resource.images?.full ?? { value: 'fa-solid fa-circle', isIcon: true },
+                emptyIcon: resource.images?.empty ?? { value: 'fa-regular fa-circle', isIcon: true }
+            };
+
+            return acc;
+        }, {});
+
+        const html = document.createElement('div');
+        html.innerHTML = await foundry.applications.handlebars.renderTemplate(
+            `systems/daggerheart/templates/ui/tooltip/resourceManagement.hbs`,
+            {
+                resources: extraResources
+            }
+        );
+
+        const target = button.closest('.resource-section');
+
+        game.tooltip.dismissLockedTooltips();
+        game.tooltip.activate(target, {
+            html,
+            locked: true,
+            cssClass: 'bordered-tooltip',
+            direction: 'DOWN',
+            noOffset: true
+        });
+
+        const resourceManager = target.querySelector('.resource-manager');
+        resourceManager.classList.toggle('inverted');
+
+        Hooks.once(CONFIG.DH.HOOKS.hooksConfig.lockedTooltipDismissed, () => {
+            resourceManager.classList.toggle('inverted');
+        });
+
+        for (const element of html.querySelectorAll('.resource-value'))
+            element.addEventListener('click', this.onUpdateResource.bind(this));
+    }
+
+    async onUpdateResource(event) {
+        const target = event.target.closest('.resource-value');
+        const { resource, value: textValue } = target.dataset;
+
+        const inputValue = Number.parseInt(textValue);
+        const decreasing = inputValue <= this.document.system.resources[resource].value;
+        const value = decreasing ? inputValue - 1 : inputValue;
+        await this.document.update({ [`system.resources.${resource}.value`]: value }, { render: false });
+
+        /* Update resource symbols */
+        const section = target.closest('.resource-section');
+        for (const element of section.querySelectorAll('.resource-value')) {
+            const showFull = Number.parseInt(element.dataset.value) <= value;
+            element.querySelector('.full').classList.toggle('hidden', !showFull);
+            element.querySelector('.empty').classList.toggle('hidden', showFull);
+        }
     }
 
     /**

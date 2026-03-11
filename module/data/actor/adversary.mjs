@@ -2,7 +2,7 @@ import DHAdversarySettings from '../../applications/sheets-configs/adversary-set
 import { ActionField } from '../fields/actionField.mjs';
 import { commonActorRules } from './base.mjs';
 import DhCreature from './creature.mjs';
-import { resourceField, bonusField } from '../fields/actorField.mjs';
+import { bonusField } from '../fields/actorField.mjs';
 import { calculateExpectedValue, parseTermsFromSimpleFormula } from '../../helpers/utils.mjs';
 import { adversaryExpectedDamage, adversaryScalingData } from '../../config/actorConfig.mjs';
 
@@ -64,10 +64,6 @@ export default class DhpAdversary extends DhCreature {
                     integer: true,
                     label: 'DAGGERHEART.GENERAL.DamageThresholds.severeThreshold'
                 })
-            }),
-            resources: new fields.SchemaField({
-                hitPoints: resourceField(0, 0, 'DAGGERHEART.GENERAL.HitPoints.plural', true),
-                stress: resourceField(0, 0, 'DAGGERHEART.GENERAL.stress', true)
             }),
             rules: new fields.SchemaField({
                 ...commonActorRules()
@@ -191,6 +187,7 @@ export default class DhpAdversary extends DhCreature {
     }
 
     prepareDerivedData() {
+        super.prepareDerivedData();
         this.attack.roll.isStandardAttack = true;
     }
 

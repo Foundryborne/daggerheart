@@ -1,0 +1,78 @@
+<section
+    class="tab {{tabs.resources.cssClass}} {{tabs.resources.id}} scrollable"
+    data-tab="{{tabs.resources.id}}"
+    data-group="{{tabs.resources.group}}"
+>
+    <div class="resource-types-container">
+        {{#each settingFields.resources as |type key|}}
+            <fieldset>
+                <legend>
+                    {{localize "DAGGERHEART.SETTINGS.Homebrew.resources.typeTitle" type=(localize (concat "TYPES.Actor." key))}}
+                    <a data-action="addResource" data-actor-type="{{key}}"><i class="fa-solid fa-plus"></i></a>
+                </legend>
+
+                <div class="resource-type-container">
+                    <div class="resources-container">
+                        {{#each type.resources as |resource key|}}
+                            <fieldset class="resource-container">
+                                <legend>{{resource.label}}<a data-action="removeResource" data-actor-type="{{@../key}}" data-resource-key="{{key}}"><i class="fa-solid fa-trash"></i></a></legend>
+
+                                {{formField @root.schemaFields.resources.element.fields.resources.element.fields.label value=resource.label name=(concat "resources." @../key ".resources." key ".label") classes="vertical" localize=true }}
+
+                                <div class="two-columns even">
+                                    {{formField @root.schemaFields.resources.element.fields.resources.element.fields.initial value=resource.initial name=(concat "resources." @../key ".resources." key ".initial") classes="vertical" localize=true }}
+                                    {{formField @root.schemaFields.resources.element.fields.resources.element.fields.max value=resource.max name=(concat "resources." @../key ".resources." key ".max") classes="vertical" localize=true }}
+                                </div>
+
+                                <div class="resource-icons-container">
+                                    <div class="resource-icon-container" data-actor-type="{{@../key}}" data-resource-key="{{key}}" data-image-key="full">
+                                        {{#with @root.schemaFields.resources.element.fields.resources.element.fields.images.fields.full.fields}}
+                                            <div class="resource-icon-title-container">
+                                                <div class="resource-icon-title">
+                                                    <span>{{localize "DAGGERHEART.SETTINGS.Homebrew.resources.filledIcon"}}</span>
+                                                    <a data-action="resetResourceImage"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="resource-icon-content">
+                                                {{#if ../images.full.isIcon}}
+                                                    {{formGroup this.value value=../images.full.value name=(concat "resources." @../key ".resources." key ".images.full.value") localize=true }}
+                                                {{else}}
+                                                    <div class="form-fields">
+                                                        <file-picker name="{{concat "resources." @../key ".resources." key ".images.full.value"}}" value="{{../images.full.value}}" type="image"></file-picker>
+                                                    </div>
+                                                {{/if}}
+                                                {{formGroup this.isIcon value=../images.full.isIcon name="" classes="path-field" localize=true }}
+                                                {{formGroup this.noColorFilter value=../images.full.noColorFilter name=(concat "resources." @../key ".resources." key ".images.full.noColorFilter") localize=true }}
+                                            </div>
+                                        {{/with}}
+                                    </div>
+                                    <div class="resource-icon-container" data-actor-type="{{@../key}}" data-resource-key="{{key}}" data-image-key="empty">
+                                        {{#with @root.schemaFields.resources.element.fields.resources.element.fields.images.fields.empty.fields}}
+                                            <div class="resource-icon-title-container">
+                                                <div class="resource-icon-title">
+                                                    <span>{{localize "DAGGERHEART.SETTINGS.Homebrew.resources.emptyIcon"}}</span>
+                                                    <a data-action="resetResourceImage"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="resource-icon-content">
+                                                {{#if ../images.empty.isIcon}}
+                                                    {{formGroup this.value value=../images.empty.value name=(concat "resources." @../key ".resources." key ".images.empty.value") localize=true }}
+                                                {{else}}
+                                                    <div class="form-fields">
+                                                        <file-picker name="{{concat "resources." @../key ".resources." key ".images.empty.value"}}" value="{{../images.empty.value}}" type="image"></file-picker>
+                                                    </div>
+                                                {{/if}}
+                                                {{formGroup this.isIcon value=resource.images.empty.isIcon name="" classes="path-field" localize=true }}
+                                                {{formGroup this.noColorFilter value=resource.images.empty.noColorFilter name=(concat "resources." @../key ".resources." key ".images.empty.noColorFilter") localize=true }}
+                                            </div>
+                                        {{/with}}
+                                    </div>
+                                </div>
+                            </fieldset>
+                        {{/each}}
+                    </div>
+                </div>
+            </fieldset>
+        {{/each}}
+    </div>
+</section>

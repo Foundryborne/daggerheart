@@ -1,4 +1,5 @@
 import { DhHomebrew } from '../../data/settings/_module.mjs';
+import { Resource } from '../../data/settings/Homebrew.mjs';
 import { slugify } from '../../helpers/utils.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -44,6 +45,9 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             addAdversaryType: this.addAdversaryType,
             deleteAdversaryType: this.deleteAdversaryType,
             selectAdversaryType: this.selectAdversaryType,
+            addResource: this.addResource,
+            removeResource: this.removeResource,
+            resetResourceImage: this.resetResourceImage,
             save: this.save,
             resetTokenSizes: this.resetTokenSizes,
             reset: this.reset
@@ -56,6 +60,10 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         settings: { template: 'systems/daggerheart/templates/settings/homebrew-settings/settings.hbs' },
         domains: { template: 'systems/daggerheart/templates/settings/homebrew-settings/domains.hbs' },
         types: { template: 'systems/daggerheart/templates/settings/homebrew-settings/types.hbs' },
+        resources: {
+            template: 'systems/daggerheart/templates/settings/homebrew-settings/resources.hbs',
+            scrollable: ['.resource-types-container']
+        },
         itemTypes: { template: 'systems/daggerheart/templates/settings/homebrew-settings/itemFeatures.hbs' },
         downtime: { template: 'systems/daggerheart/templates/settings/homebrew-settings/downtime.hbs' },
         footer: { template: 'systems/daggerheart/templates/settings/homebrew-settings/footer.hbs' }
@@ -64,7 +72,14 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
     /** @inheritdoc */
     static TABS = {
         main: {
-            tabs: [{ id: 'settings' }, { id: 'domains' }, { id: 'types' }, { id: 'itemFeatures' }, { id: 'downtime' }],
+            tabs: [
+                { id: 'settings' },
+                { id: 'domains' },
+                { id: 'types' },
+                { id: 'resources' },
+                { id: 'itemFeatures' },
+                { id: 'downtime' }
+            ],
             initial: 'settings',
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
@@ -77,9 +92,17 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         this.render();
     }
 
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        for (const element of htmlElement.querySelectorAll('.path-field input'))
+            element.addEventListener('change', this.toggleResourceIsIcon.bind(this));
+    }
+
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.settingFields = this.settings;
+        context.schemaFields = context.settingFields.schema.fields;
 
         return context;
     }
@@ -103,6 +126,8 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
                     ? { id: this.selected.adversaryType, ...this.settings.adversaryTypes[this.selected.adversaryType] }
                     : null;
                 break;
+            case 'resources':
+                break;
             case 'downtime':
                 context.restOptions = {
                     shortRest: CONFIG.DH.GENERAL.defaultRestOptions.shortRest(),
@@ -121,6 +146,33 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             ...updatedSettings,
             traitArray: Object.values(updatedSettings.traitArray)
         });
+        this.render();
+    }
+
+    async toggleResourceIsIcon(event) {
+        const element = event.target.closest('.resource-icon-container');
+        const { actorType, resourceKey, imageKey } = element.dataset;
+
+        const current = this.settings.resources[actorType].resources[resourceKey].images[imageKey];
+        await this.settings.updateSource({
+            [`resources.${actorType}.resources.${resourceKey}.images.${imageKey}`]: {
+                isIcon: !current.isIcon,
+                value: ''
+            }
+        });
+
+        this.render();
+    }
+
+    static async resetResourceImage(_event, button) {
+        const element = button.closest('.resource-icon-container');
+        const { actorType, resourceKey, imageKey } = element.dataset;
+
+        await this.settings.updateSource({
+            [`resources.${actorType}.resources.${resourceKey}.images.${imageKey}`]:
+                Resource.getDefaultImageData(imageKey)
+        });
+
         this.render();
     }
 
@@ -463,6 +515,58 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
 
     static async selectAdversaryType(_, target) {
         this.selected.adversaryType = this.selected.adversaryType === target.dataset.type ? null : target.dataset.type;
+        this.render();
+    }
+
+    static async addResource(_, target) {
+        const { actorType } = target.dataset;
+        const content = new foundry.data.fields.StringField({
+            label: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.resources.resourceIdentifier'),
+            required: true
+        }).toFormGroup({}, { name: 'identifier', localize: true }).outerHTML;
+
+        async function callback(_, button) {
+            const identifier = button.form.elements.identifier.value;
+            if (!identifier) return;
+
+            const sluggedIdentifier = slugify(identifier);
+
+            await this.settings.updateSource({
+                [`resources.${actorType}.resources.${sluggedIdentifier}`]: Resource.getDefaultResourceData(identifier)
+            });
+
+            game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew, this.settings.toObject());
+            this.render();
+        }
+
+        await foundry.applications.api.DialogV2.prompt({
+            content: content,
+            rejectClose: false,
+            modal: true,
+            ok: { callback: callback.bind(this) },
+            window: {
+                title: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.resources.setResourceIdentifier')
+            },
+            position: { width: 400 }
+        });
+    }
+
+    static async removeResource(_, target) {
+        const confirmed = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: game.i18n.localize(`DAGGERHEART.SETTINGS.Homebrew.deleteResourceTitle`)
+            },
+            content: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.deleteResourceText')
+        });
+
+        if (!confirmed) return;
+
+        const { actorType, resourceKey } = target.dataset;
+        await this.settings.updateSource({
+            [`resources.${actorType}.resources.-=${resourceKey}`]: null
+        });
+
+        game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew, this.settings.toObject());
         this.render();
     }
 

@@ -2285,6 +2285,7 @@
             "identify": "Identity",
             "imagePath": "Image Path",
             "inactiveEffects": "Inactive Effects",
+            "initial": "Initial",
             "inventory": "Inventory",
             "itemResource": "Item Resource",
             "itemQuantity": "Item Quantity",
@@ -2671,6 +2672,8 @@
                 "resetMovesText": "Are you sure you want to reset?",
                 "deleteItemTitle": "Delete Homebrew Item",
                 "deleteItemText": "Are you sure you want to delete the item?",
+                "deleteResourceTitle": "Delete Homebrew Resource",
+                "deleteResourceText": "Are you sure you want to delete the resource?",
                 "FIELDS": {
                     "maxFear": { "label": "Max Fear" },
                     "maxHope": { "label": "Max Hope" },
@@ -2678,6 +2681,13 @@
                     "maxLoadout": {
                         "label": "Max Cards in Loadout",
                         "hint": "Set to blank or 0 for unlimited maximum"
+                    },
+                    "resources": {
+                        "resources": {
+                            "value": { "label": "Icon" },
+                            "isIcon": { "label": "Font Awesome Icon" },
+                            "noColorFilter": { "label": "Disable Color Filter" }
+                        }
                     },
                     "maxDomains": { "label": "Max Class Domains", "hint": "Max domains you can set on a class" }
                 },
@@ -2707,6 +2717,13 @@
                 "adversaryType": {
                     "title": "Custom Adversary Types",
                     "newType": "Adversary Type"
+                },
+                "resources": {
+                    "typeTitle": "{type} Resources",
+                    "filledIcon": "Filled Icon",
+                    "emptyIcon": "Empty Icon",
+                    "resourceIdentifier": "Resource Identifier",
+                    "setResourceIdentifier": "Set Resource Identifier"
                 }
             },
             "Menu": {

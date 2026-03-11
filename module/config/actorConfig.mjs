@@ -55,24 +55,6 @@ export const abilities = {
     }
 };
 
-export const scrollingTextResource = {
-    hitPoints: {
-        label: 'DAGGERHEART.GENERAL.HitPoints.plural',
-        reversed: true
-    },
-    stress: {
-        label: 'DAGGERHEART.GENERAL.stress',
-        reversed: true
-    },
-    hope: {
-        label: 'DAGGERHEART.GENERAL.hope'
-    },
-    armor: {
-        label: 'DAGGERHEART.GENERAL.armor',
-        reversed: true
-    }
-};
-
 export const featureProperties = {
     agility: {
         name: 'DAGGERHEART.CONFIG.Traits.agility.name',
@@ -506,8 +488,8 @@ export const subclassFeatureLabels = {
  * @property {number[]} damage
  */
 
-/** 
- * @type {Record<string, Record<2 | 3 | 4, TierData>} 
+/**
+ * @type {Record<string, Record<2 | 3 | 4, TierData>}
  * Scaling data used to change an adversary's tier. Each rank is applied incrementally.
  */
 export const adversaryScalingData = {
@@ -518,7 +500,7 @@ export const adversaryScalingData = {
             severeThreshold: 10,
             hp: 1,
             stress: 2,
-            attack: 2,
+            attack: 2
         },
         3: {
             difficulty: 2,
@@ -526,7 +508,7 @@ export const adversaryScalingData = {
             severeThreshold: 15,
             hp: 1,
             stress: 0,
-            attack: 2,
+            attack: 2
         },
         4: {
             difficulty: 2,
@@ -534,7 +516,7 @@ export const adversaryScalingData = {
             severeThreshold: 25,
             hp: 1,
             stress: 0,
-            attack: 2,
+            attack: 2
         }
     },
     horde: {
@@ -544,7 +526,7 @@ export const adversaryScalingData = {
             severeThreshold: 8,
             hp: 2,
             stress: 0,
-            attack: 0,
+            attack: 0
         },
         3: {
             difficulty: 2,
@@ -552,7 +534,7 @@ export const adversaryScalingData = {
             severeThreshold: 12,
             hp: 0,
             stress: 1,
-            attack: 1,
+            attack: 1
         },
         4: {
             difficulty: 2,
@@ -560,7 +542,7 @@ export const adversaryScalingData = {
             severeThreshold: 15,
             hp: 2,
             stress: 0,
-            attack: 0,
+            attack: 0
         }
     },
     leader: {
@@ -570,7 +552,7 @@ export const adversaryScalingData = {
             severeThreshold: 10,
             hp: 0,
             stress: 0,
-            attack: 1,
+            attack: 1
         },
         3: {
             difficulty: 2,
@@ -578,7 +560,7 @@ export const adversaryScalingData = {
             severeThreshold: 15,
             hp: 1,
             stress: 0,
-            attack: 2,
+            attack: 2
         },
         4: {
             difficulty: 2,
@@ -586,7 +568,7 @@ export const adversaryScalingData = {
             severeThreshold: 25,
             hp: 1,
             stress: 1,
-            attack: 3,
+            attack: 3
         }
     },
     minion: {
@@ -596,7 +578,7 @@ export const adversaryScalingData = {
             severeThreshold: 0,
             hp: 0,
             stress: 0,
-            attack: 1,
+            attack: 1
         },
         3: {
             difficulty: 2,
@@ -604,7 +586,7 @@ export const adversaryScalingData = {
             severeThreshold: 0,
             hp: 0,
             stress: 1,
-            attack: 1,
+            attack: 1
         },
         4: {
             difficulty: 2,
@@ -612,7 +594,7 @@ export const adversaryScalingData = {
             severeThreshold: 0,
             hp: 0,
             stress: 0,
-            attack: 1,
+            attack: 1
         }
     },
     ranged: {
@@ -622,7 +604,7 @@ export const adversaryScalingData = {
             severeThreshold: 6,
             hp: 1,
             stress: 0,
-            attack: 1,
+            attack: 1
         },
         3: {
             difficulty: 2,
@@ -630,7 +612,7 @@ export const adversaryScalingData = {
             severeThreshold: 14,
             hp: 1,
             stress: 1,
-            attack: 2,
+            attack: 2
         },
         4: {
             difficulty: 2,
@@ -638,7 +620,7 @@ export const adversaryScalingData = {
             severeThreshold: 10,
             hp: 1,
             stress: 1,
-            attack: 1,
+            attack: 1
         }
     },
     skulk: {
@@ -648,7 +630,7 @@ export const adversaryScalingData = {
             severeThreshold: 8,
             hp: 1,
             stress: 1,
-            attack: 1,
+            attack: 1
         },
         3: {
             difficulty: 2,
@@ -656,7 +638,7 @@ export const adversaryScalingData = {
             severeThreshold: 12,
             hp: 1,
             stress: 1,
-            attack: 1,
+            attack: 1
         },
         4: {
             difficulty: 2,
@@ -664,7 +646,7 @@ export const adversaryScalingData = {
             severeThreshold: 10,
             hp: 1,
             stress: 1,
-            attack: 1,
+            attack: 1
         }
     },
     solo: {
@@ -674,7 +656,7 @@ export const adversaryScalingData = {
             severeThreshold: 10,
             hp: 0,
             stress: 1,
-            attack: 2,
+            attack: 2
         },
         3: {
             difficulty: 2,
@@ -682,7 +664,7 @@ export const adversaryScalingData = {
             severeThreshold: 15,
             hp: 2,
             stress: 1,
-            attack: 2,
+            attack: 2
         },
         4: {
             difficulty: 2,
@@ -690,7 +672,7 @@ export const adversaryScalingData = {
             severeThreshold: 25,
             hp: 0,
             stress: 1,
-            attack: 3,
+            attack: 3
         }
     },
     standard: {
@@ -700,7 +682,7 @@ export const adversaryScalingData = {
             severeThreshold: 8,
             hp: 0,
             stress: 0,
-            attack: 1,
+            attack: 1
         },
         3: {
             difficulty: 2,
@@ -708,7 +690,7 @@ export const adversaryScalingData = {
             severeThreshold: 15,
             hp: 1,
             stress: 1,
-            attack: 1,
+            attack: 1
         },
         4: {
             difficulty: 2,
@@ -716,7 +698,7 @@ export const adversaryScalingData = {
             severeThreshold: 15,
             hp: 0,
             stress: 1,
-            attack: 1,
+            attack: 1
         }
     },
     support: {
@@ -726,7 +708,7 @@ export const adversaryScalingData = {
             severeThreshold: 8,
             hp: 1,
             stress: 1,
-            attack: 1,
+            attack: 1
         },
         3: {
             difficulty: 2,
@@ -734,7 +716,7 @@ export const adversaryScalingData = {
             severeThreshold: 12,
             hp: 0,
             stress: 0,
-            attack: 1,
+            attack: 1
         },
         4: {
             difficulty: 2,
@@ -742,27 +724,27 @@ export const adversaryScalingData = {
             severeThreshold: 10,
             hp: 1,
             stress: 1,
-            attack: 1,
+            attack: 1
         }
     }
 };
 
-/** 
+/**
  * Scaling data used for an adversary's damage.
  * Tier 4 is missing certain adversary types and therefore skews upwards.
  * We manually set tier 4 data to hopefully lead to better results
  */
 export const adversaryExpectedDamage = {
-  basic: {
-    1: { mean: 7.321428571428571, deviation: 1.962519002770912 },
-    2: { mean: 12.444444444444445, deviation: 2.0631069425529676 },
-    3: { mean: 15.722222222222221, deviation: 2.486565208464823 },
-    4: { mean: 26, deviation: 5.2 }
-  },
-  minion: {
-    1: { mean: 2.142857142857143, deviation: 1.0690449676496976 },
-    2: { mean: 5, deviation: 0.816496580927726 },
-    3: { mean: 6.5, deviation: 2.1213203435596424 },
-    4: { mean: 11, deviation: 1 }
-  }
+    basic: {
+        1: { mean: 7.321428571428571, deviation: 1.962519002770912 },
+        2: { mean: 12.444444444444445, deviation: 2.0631069425529676 },
+        3: { mean: 15.722222222222221, deviation: 2.486565208464823 },
+        4: { mean: 26, deviation: 5.2 }
+    },
+    minion: {
+        1: { mean: 2.142857142857143, deviation: 1.0690449676496976 },
+        2: { mean: 5, deviation: 0.816496580927726 },
+        3: { mean: 6.5, deviation: 2.1213203435596424 },
+        4: { mean: 11, deviation: 1 }
+    }
 };

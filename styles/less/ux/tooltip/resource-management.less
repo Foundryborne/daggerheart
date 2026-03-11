@@ -1,0 +1,56 @@
+.bordered-tooltip.locked-tooltip .daggerheart.resource-management-container,
+#tooltip .daggerheart.resource-management-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .resource-section {
+        position: relative;
+        display: flex;
+        gap: 10px;
+        background-color: light-dark(transparent, @dark-blue);
+        color: light-dark(@dark-blue, @golden);
+        padding: 5px 10px;
+        border: 1px solid light-dark(@dark-blue, @golden);
+        border-radius: 6px;
+        align-items: center;
+        width: fit-content;
+        height: 30px;
+
+        h4 {
+            font-family: var(--dh-font-body, 'Montserrat'), sans-serif;
+            font-size: var(--font-size-14);
+            font-weight: bold;
+            text-transform: uppercase;
+            color: light-dark(@dark-blue, @golden);
+            margin: 0;
+        }
+
+        .resource-value {
+            display: flex;
+            cursor: pointer;
+
+            .hidden {
+                display: none;
+            }
+
+            img {
+                width: 14px;
+                height: 14px;
+
+                &.empty {
+                    opacity: 0.4;
+                }
+
+                &.filter {
+                    filter: @golden-filter;
+                }
+
+                &.non-transparent {
+                    border-radius: 50%;
+                    border: 1px solid @golden;
+                }
+            }
+        }
+    }
+}
