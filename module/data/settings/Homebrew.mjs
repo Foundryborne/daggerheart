@@ -219,8 +219,8 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                     result[key].id = key;
                     return result;
                 }, {}),
-                ...CONFIG.DH.RESOURCE[actorType].base,
-                ...CONFIG.DH.RESOURCE[actorType].custom,
+                ...config.base,
+                ...config.custom,
             });
         }
     }
