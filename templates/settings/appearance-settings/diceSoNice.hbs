@@ -1,21 +1,20 @@
 <section class="tab {{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
-  <fieldset>
     <div class="title-hint">{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.hint"}}</div>
 
     <section class='tab-navigation'>
-      <div class='navigation-container'>
-        <div class="navigation-inner-container">
-          <line-div></line-div>
-          <nav class='feature-tab sheet-tabs tabs' data-group='diceSoNice'>
-            {{#each dsnTabs as |tab|}}
-            <a class='{{tab.id}} {{tab.cssClass}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}'>
-              {{localize tab.label}}
-            </a>
-            {{/each}}
-          </nav>
-          <line-div></line-div>
+        <div class='navigation-container'>
+            <div class="navigation-inner-container">
+                <line-div></line-div>
+                <nav class='feature-tab sheet-tabs tabs' data-group='diceSoNice'>
+                    {{#each dsnTabs as |tab|}}
+                        <a class='{{tab.id}} {{tab.cssClass}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}'>
+                        {{localize tab.label}}
+                    </a>
+                    {{/each}}
+                </nav>
+                <line-div></line-div>
+            </div>
         </div>
-      </div>
     </section>
     {{#each dsnTabs as |dsnTab|}}
       <section class="tab {{#if dsnTab.active}} active{{/if}}" data-group="{{dsnTab.group}}" data-tab="{{dsnTab.id}}">
@@ -41,5 +40,4 @@
         {{/if}}
       </section>
     {{/each}}
-  </fieldset>
 </section>
