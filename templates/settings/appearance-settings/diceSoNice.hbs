@@ -8,6 +8,12 @@
         <label>{{localize "DAGGERHEART.CONFIG.DaggerheartDiceAnimationEvents.critical.name"}}</label>
         {{formInput fields.diceSoNice.fields.sfx.fields.critical.fields.class value=setting.diceSoNice.sfx.critical.class blank="" localize=true}}
       </div>
+      {{#if isGM}}
+        <div class="label-container">
+            <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.defaultAnimations"}}</label>
+            <input type="checkbox" class="default-animations-input" {{checked globalOverrides.diceSoNice.sfx.overrideEnabled}} />
+        </div>
+      {{/if}}
     </div>  
 
     <section class='tab-navigation'>

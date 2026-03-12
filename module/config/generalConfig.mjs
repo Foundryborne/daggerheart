@@ -699,7 +699,7 @@ export const daggerheartDiceAnimationEvents = {
 };
 
 const getDiceSoNiceSFX = sfxOptions => {
-    const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
+    const diceSoNice = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).diceSoNiceData;
     const criticalAnimationData = diceSoNice.sfx.critical;
     if (sfxOptions.critical && criticalAnimationData.class) {
         return {
@@ -753,7 +753,7 @@ export const getDiceSoNicePresets = async (
     advantageFaces = 'd6',
     disadvantageFaces = 'd6'
 ) => {
-    const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
+    const diceSoNice = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).diceSoNiceData;
 
     const { isCritical, withHope, withFear } = result;
 

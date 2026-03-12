@@ -2755,6 +2755,7 @@
                     "globalAnimations": "Global Animations",
                     "diceAppearance": "Dice Appearance",
                     "animations": "Animations",
+                    "defaultAnimations": "Set Animations As Player Defaults",
                     "previewAnimation": "Preview Animation",
                     "diceSoNice": {
                         "title": "Dice So Nice",
