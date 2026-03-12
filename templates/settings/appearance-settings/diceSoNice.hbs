@@ -17,27 +17,27 @@
         </div>
     </section>
     {{#each dsnTabs as |dsnTab|}}
-      <section class="tab {{#if dsnTab.active}} active{{/if}}" data-group="{{dsnTab.group}}" data-tab="{{dsnTab.id}}">
-        {{#if dsnTab.diceTab}}
-          {{> "systems/daggerheart/templates/settings/appearance-settings/diceSoNiceTab.hbs" dsnTab }}
-        {{else}}
-          <div class="field-section">
-            {{#if ../isGM}}
-              <h3>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.globalSettings"}}</h3>  
-              <div class="label-container">
-                  <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.defaultAnimations"}}</label>
-                  <input type="checkbox" class="default-animations-input" {{checked ../globalOverrides.diceSoNice.sfx.overrideEnabled}} />
-              </div>
+        <section class="tab {{#if dsnTab.active}} active{{/if}}" data-group="{{dsnTab.group}}" data-tab="{{dsnTab.id}}">
+            {{#if dsnTab.diceTab}}
+                {{> "systems/daggerheart/templates/settings/appearance-settings/diceSoNiceTab.hbs" dsnTab }}
+            {{else}}
+                <div class="field-section">
+                    {{#if ../isGM}}
+                        <h3>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.globalSettings"}}</h3>  
+                        <div class="form-group">
+                            <label for="dsn-overrideEnabled">{{localize "DAGGERHEART.SETTINGS.Menu.appearance.defaultAnimations"}}</label>
+                            <input id="dsn-overrideEnabled" type="checkbox" class="default-animations-input" {{checked ../globalOverrides.diceSoNice.sfx.overrideEnabled}} />
+                        </div>
+                    {{/if}}
+                    <h3>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.globalAnimations"}}</h3>  
+                    <div class="form-group"> 
+                        <label>{{localize "DAGGERHEART.CONFIG.DaggerheartDiceAnimationEvents.critical.name"}}</label>
+                        <div class="form-fields">
+                            {{formInput ../fields.diceSoNice.fields.sfx.fields.critical.fields.class value=../setting.diceSoNice.sfx.critical.class blank="" localize=true}}
+                        </div>       
+                    </div>
+                </div>
             {{/if}}
-            <h3>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.globalAnimations"}}</h3>  
-            <div class="split-section"> 
-              <div class="label-container full-width">
-                <label>{{localize "DAGGERHEART.CONFIG.DaggerheartDiceAnimationEvents.critical.name"}}</label>
-                {{formInput ../fields.diceSoNice.fields.sfx.fields.critical.fields.class value=../setting.diceSoNice.sfx.critical.class blank="" localize=true}}
-              </div>
-            </div>  
-          </div>
-        {{/if}}
-      </section>
+        </section>
     {{/each}}
 </section>
