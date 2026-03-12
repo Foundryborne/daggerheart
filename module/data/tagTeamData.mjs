@@ -22,7 +22,8 @@ class MemberData extends foundry.abstract.DataModel {
                 label: 'Roll Type'
             }),
             rollChoice: new fields.StringField({ nullable: true, initial: null }),
-            rollData: new fields.JSONField({ nullable: true, initial: null })
+            rollData: new fields.JSONField({ nullable: true, initial: null }),
+            selected: new fields.BooleanField({ initial: false })
         };
     }
 

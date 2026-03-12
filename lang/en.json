@@ -684,7 +684,12 @@
                 "damageNotRolled": "Damage not rolled in chat message yet",
                 "insufficientHope": "The initiating character doesn't have enough hope",
                 "createTagTeam": "Create TagTeam Roll",
-                "chatMessageRollTitle": "Roll"
+                "chatMessageRollTitle": "Roll",
+                "hints": {
+                    "completeRolls": "Set up and complete the rolls for the characters",
+                    "selectRoll": "Select which roll value to be used for the Tagteam",
+                    "totalDamage": "Total Damage: {damage}"
+                }
             },
             "TokenConfig": {
                 "actorSizeUsed": "Actor size is set, determining the dimensions"
