@@ -50,7 +50,8 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
                 { id: 'hope', label: 'DAGGERHEART.GENERAL.hope' },
                 { id: 'fear', label: 'DAGGERHEART.GENERAL.fear' },
                 { id: 'advantage', label: 'DAGGERHEART.GENERAL.Advantage.full' },
-                { id: 'disadvantage', label: 'DAGGERHEART.GENERAL.Disadvantage.full' }
+                { id: 'disadvantage', label: 'DAGGERHEART.GENERAL.Disadvantage.full' },
+                { id: 'general', label: 'DAGGERHEART.GENERAL.general' }
             ],
             initial: 'hope'
         }
@@ -102,6 +103,7 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
 
         context.tabs = this._prepareTabs('general');
         context.dsnTabs = this._prepareTabs('diceSoNice');
+
         context.isGM = game.user.isGM;
 
         return context;
@@ -174,6 +176,7 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
                 (acc, key) => ({
                     ...acc,
                     [key]: {
+                        diceTab: key !== 'general',
                         values: this.setting.diceSoNice[key],
                         fields: this.setting.schema.getField(`diceSoNice.${key}`).fields,
                         animations: ['hope', 'fear'].includes(key) ? getAnimationsOptions(key) : {}
