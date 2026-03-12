@@ -1,5 +1,5 @@
 <div class="field-section">
-    <h3>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceAppearance"}}</h3>
+    <h3>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.diceAppearance"}}</h3>
 
     <div class="label-container full-width">
         <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.system"}}</label>
@@ -41,7 +41,7 @@
     </div>
 
     {{#if animations}}
-        <h3>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.animations"}}</h3>      
+        <h3>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.animations"}}</h3>      
         <div class="label-container full-width">
             <label>{{localize "DAGGERHEART.CONFIG.DaggerheartDiceAnimationEvents.higher.name"}}</label>
             {{formInput fields.sfx.fields.higher.fields.class value=values.sfx.higher.class blank="" localize=true}}
@@ -49,7 +49,7 @@
     {{/if}}
 
     <div class="diceSoNice-footer">
-        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.previewAnimation"}}</label>
+        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.previewAnimation"}}</label>
         <select name="{{concat id "PreviewAnimation"}}">
             {{selectOptions @root.animationEvents selected=@root.previewAnimation blank="" localize=true }}
         </select>

@@ -2752,12 +2752,6 @@
                     "label": "Appearance Settings",
                     "hint": "Modify the look of various parts of the system",
                     "duality": "Duality Rolls",
-                    "globalSettings": "GM Settings",
-                    "globalAnimations": "Global Animations",
-                    "diceAppearance": "Dice Appearance",
-                    "animations": "Animations",
-                    "defaultAnimations": "Set Animations As Player Defaults",
-                    "previewAnimation": "Preview Animation",
                     "diceSoNice": {
                         "title": "Dice So Nice",
                         "hint": "Coloration of Duality dice if the Dice So Nice module is used.",
@@ -2770,7 +2764,11 @@
                         "material": "Material",
                         "system": "Dice Preset",
                         "font": "Font",
-                        "critical": "Duality Critical Animation"
+                        "critical": "Duality Critical Animation",
+                        "diceAppearance": "Dice Appearance",
+                        "animations": "Animations",
+                        "defaultAnimations": "Set Animations As Player Defaults",
+                        "previewAnimation": "Preview Animation"
                     }
                 },
                 "variantRules": {
