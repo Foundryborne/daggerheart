@@ -2769,7 +2769,8 @@
                         "colorset": "Theme",
                         "material": "Material",
                         "system": "Dice Preset",
-                        "font": "Font"
+                        "font": "Font",
+                        "critical": "Duality Critical Animation"
                     }
                 },
                 "variantRules": {
