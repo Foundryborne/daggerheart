@@ -46,6 +46,7 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/ui/chat/parts/target-part.hbs',
         'systems/daggerheart/templates/ui/chat/parts/button-part.hbs',
         'systems/daggerheart/templates/ui/itemBrowser/itemContainer.hbs',
-        'systems/daggerheart/templates/scene/dh-config.hbs'
+        'systems/daggerheart/templates/scene/dh-config.hbs',
+        'systems/daggerheart/templates/settings/appearance-settings/diceSoNiceTab.hbs'
     ]);
 };
