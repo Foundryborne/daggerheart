@@ -60,7 +60,13 @@ export const getCommandTarget = (options = {}) => {
 
 export const setDiceSoNiceForDualityRoll = async (rollResult, advantageState, hopeFaces, fearFaces, advantageFaces) => {
     if (!game.modules.get('dice-so-nice')?.active) return;
-    const diceSoNicePresets = await getDiceSoNicePresets(hopeFaces, fearFaces, advantageFaces, advantageFaces);
+    const diceSoNicePresets = await getDiceSoNicePresets(
+        rollResult,
+        hopeFaces,
+        fearFaces,
+        advantageFaces,
+        advantageFaces
+    );
     rollResult.dice[0].options = diceSoNicePresets.hope;
     rollResult.dice[1].options = diceSoNicePresets.fear;
     if (rollResult.dice[2] && advantageState) {
@@ -378,17 +384,18 @@ export const arraysEqual = (a, b) =>
 
 export const setsEqual = (a, b) => a.size === b.size && [...a].every(value => b.has(value));
 
-export function getScrollTextData(resources, resource, key) {
-    const { reversed, label } = CONFIG.DH.ACTOR.scrollingTextResource[key];
+export function getScrollTextData(actor, resource, key) {
     const { BOTTOM, TOP } = CONST.TEXT_ANCHOR_POINTS;
+
+    const resources = actor.system.resources;
     const increased = resources[key].value < resource.value;
     const value = -1 * (resources[key].value - resource.value);
+    const { label, isReversed } = resources[key];
 
     const text = `${game.i18n.localize(label)} ${value.signedString()}`;
-
-    const stroke = increased ? (reversed ? 0xffffff : 0x000000) : reversed ? 0x000000 : 0xffffff;
-    const fill = increased ? (reversed ? 0x0032b1 : 0xffe760) : reversed ? 0xffe760 : 0x0032b1;
-    const direction = increased ? (reversed ? BOTTOM : TOP) : reversed ? TOP : BOTTOM;
+    const stroke = increased ? (isReversed ? 0xffffff : 0x000000) : isReversed ? 0x000000 : 0xffffff;
+    const fill = increased ? (isReversed ? 0x0032b1 : 0xffe760) : isReversed ? 0xffe760 : 0x0032b1;
+    const direction = increased ? (isReversed ? BOTTOM : TOP) : isReversed ? TOP : BOTTOM;
 
     return { text, stroke, fill, direction };
 }

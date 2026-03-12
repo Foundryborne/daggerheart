@@ -7,6 +7,7 @@ import EffectAction from './effectAction.mjs';
 import HealingAction from './healingAction.mjs';
 import MacroAction from './macroAction.mjs';
 import SummonAction from './summonAction.mjs';
+import TransformAction from './transformAction.mjs';
 
 export const actionsTypes = {
     base: BaseAction,
@@ -17,5 +18,6 @@ export const actionsTypes = {
     summon: SummonAction,
     effect: EffectAction,
     macro: MacroAction,
-    beastform: BeastformAction
+    beastform: BeastformAction,
+    transform: TransformAction
 };

@@ -3,6 +3,10 @@ export const menu = {
         Name: 'GameSettingsAutomation',
         Icon: 'fa-solid fa-robot'
     },
+    Metagaming: {
+        Name: 'GameSettingsMetagaming',
+        Icon: 'fa-solid fa-eye-low-vision'
+    },
     Homebrew: {
         Name: 'GameSettingsHomebrew',
         Icon: 'fa-solid fa-flask-vial'
@@ -19,8 +23,10 @@ export const menu = {
 
 export const gameSettings = {
     Automation: 'Automation',
+    Metagaming: 'Metagaming',
     Homebrew: 'Homebrew',
     appearance: 'Appearance',
+    GlobalOverrides: 'GlobalOverrides',
     variantRules: 'VariantRules',
     Resources: {
         Fear: 'ResourcesFear'

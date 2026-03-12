@@ -1,6 +1,6 @@
 <div class="roll-part target-section dice-roll" data-action="expandRoll">
     <div class="roll-part-header"><div><span>{{pluralize currentTargets.length "DAGGERHEART.GENERAL.Target"}}</span></div></div>
-    {{#if isGM}}
+    {{#if (or isGM (not metagamingSettings.hideObserverPermissionInChat))}}
         <div class="roll-part-extra on-reduced">
             <div class="wrapper">
                 {{#if (or (gt targetShort.hit 0) (gt targetShort.miss 0))}}

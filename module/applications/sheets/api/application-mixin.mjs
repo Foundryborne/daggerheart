@@ -691,6 +691,9 @@ export default function DHApplicationMixin(Base) {
                 case 'weapon':
                     presets.folder = 'equipments.folders.weapons';
                     break;
+                case 'feature':
+                    presets.folder = 'features';
+                    break;
                 case 'domainCard':
                     presets.folder = 'domains';
                     presets.filter = {

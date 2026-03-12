@@ -717,7 +717,35 @@
       "system": {
         "description": "<p>When the @Lookup[@name] marks their last HP, replace them with the @UUID[Compendium.daggerheart.adversaries.Actor.RXkZTwBRi4dJ3JE5]{Fallen Warlord: Undefeated Champion} and immediately spotlight them.</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "gP426WmWbtrZEWCD": {
+            "type": "transform",
+            "_id": "gP426WmWbtrZEWCD",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": null,
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "transform": {
+              "actorUUID": "Compendium.daggerheart.adversaries.Actor.RXkZTwBRi4dJ3JE5",
+              "resourceRefresh": {
+                "hitPoints": true,
+                "stress": true
+              }
+            }
+          }
+        },
         "originItemType": null,
         "originId": null,
         "featureForm": "reaction"

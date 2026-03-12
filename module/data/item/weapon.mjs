@@ -112,24 +112,14 @@ export default class DHWeapon extends AttachableItem {
     async getDescriptionData() {
         const baseDescription = this.description;
 
-        const tier = game.i18n.localize(`DAGGERHEART.GENERAL.Tiers.${this.tier}`);
-        const trait = game.i18n.localize(CONFIG.DH.ACTOR.abilities[this.attack.roll.trait].label);
-        const range = game.i18n.localize(`DAGGERHEART.CONFIG.Range.${this.attack.range}.name`);
-        const damage = Roll.replaceFormulaData(this.attack.damageFormula, this.parent.parent ?? this.parent);
-        const burden = game.i18n.localize(CONFIG.DH.GENERAL.burden[this.burden].label);
-
         const allFeatures = CONFIG.DH.ITEM.allWeaponFeatures();
         const features = this.weaponFeatures.map(x => allFeatures[x.value]).filter(x => x);
 
         const prefix = await foundry.applications.handlebars.renderTemplate(
             'systems/daggerheart/templates/sheets/items/weapon/description.hbs',
             {
-                features,
-                tier,
-                trait,
-                range,
-                damage,
-                burden
+                item: this,
+                features
             }
         );
 

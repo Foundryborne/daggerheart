@@ -153,9 +153,9 @@
         },
         "effects": [],
         "roll": {
-          "type": null,
+          "type": "spellcast",
           "trait": null,
-          "difficulty": null,
+          "difficulty": 13,
           "bonus": null,
           "advState": "neutral",
           "diceRolling": {

@@ -304,7 +304,15 @@
                 padding: 0 0 0 50px;
                 display: flex;
                 flex-direction: column;
-                gap: 5px;
+
+                .item-description-outer-container:has(div, p) {
+                    margin-top: 8px;
+                }
+
+                /* Some items don't include an outer container, so we attempt a catch-all */
+                > *:last-child {
+                    padding-bottom: 6px;
+                }
 
                 h1 {
                     font-size: var(--font-size-32);
@@ -350,6 +358,7 @@
         .filter-content,
         .item-desc {
             display: grid;
+            opacity: 0;
             grid-template-rows: 0fr;
             transition: all 0.3s ease-in-out;
             width: 100%;
@@ -378,8 +387,8 @@
         }
 
         .expanded + .extensible {
+            opacity: 1;
             grid-template-rows: 1fr;
-            padding-top: 10px;
         }
 
         .welcome-message {

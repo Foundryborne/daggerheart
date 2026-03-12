@@ -1,0 +1,8 @@
+<div class="item-tags">
+    {{#each _getTags as |tag|}}
+         <div class="tag">
+            {{tag}}
+        </div>
+    {{/each}}
+    {{#if @partial-block}}{{> @partial-block}}{{/if}}
+</div>
