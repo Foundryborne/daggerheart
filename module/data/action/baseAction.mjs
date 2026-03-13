@@ -354,11 +354,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     get hasDamage() {
-        return !foundry.utils.isEmpty(this.damage.parts) && this.type !== 'healing';
+        return !foundry.utils.isEmpty(this.damage?.parts) && this.type !== 'healing';
     }
 
     get hasHealing() {
-        return !foundry.utils.isEmpty(this.damage.parts) && this.type === 'healing';
+        return !foundry.utils.isEmpty(this.damage?.parts) && this.type === 'healing';
     }
 
     get hasSave() {
