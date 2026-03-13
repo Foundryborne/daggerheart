@@ -81,8 +81,8 @@
       },
       "range": "far",
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -108,7 +108,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "type": "attack",
       "chatDisplay": false
@@ -251,7 +251,7 @@
               "recovery": null
             },
             "damage": {
-              "parts": [],
+              "parts": {},
               "includeBase": false
             },
             "target": {
@@ -297,8 +297,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -324,7 +324,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {
@@ -438,8 +438,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": true,
@@ -464,7 +464,7 @@
                   },
                   "type": []
                 },
-                {
+                "stress": {
                   "value": {
                     "custom": {
                       "enabled": true,
@@ -489,7 +489,7 @@
                   },
                   "type": []
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {

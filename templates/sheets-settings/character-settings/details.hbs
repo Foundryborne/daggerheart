@@ -22,15 +22,12 @@
         <legend>{{localize 'DAGGERHEART.GENERAL.basics'}}</legend>
 
         <div class="two-columns even">
-            {{formGroup systemFields.resources.fields.hitPoints.fields.value value=document._source.system.resources.hitPoints.value localize=true}}
-            <span data-tooltip-text="{{localize "DAGGERHEART.UI.Tooltip.maxHPClassBound"}}">
-                {{formGroup systemFields.resources.fields.hitPoints.fields.max value=document._source.system.resources.hitPoints.max localize=true}}
-            </span>
+            {{#each resources as |resource|}}
+                <span {{#if resource.tooltip}}data-tooltip-text="{{resource.tooltip}}"{{/if}}>
+                    {{formGroup resource.field value=resource.value name=resource.name}}
+                </span>
+            {{/each}}
 
-            {{formGroup systemFields.resources.fields.stress.fields.value value=document._source.system.resources.stress.value localize=true}}
-            {{formGroup systemFields.resources.fields.stress.fields.max value=document._source.system.resources.stress.max localize=true}}
-
-            {{formGroup systemFields.resources.fields.hope.fields.value value=document._source.system.resources.hope.value localize=true}}
             {{formGroup systemFields.scars value=document._source.system.scars localize=true}}
 
             {{formGroup systemFields.proficiency value=document._source.system.proficiency localize=true}}

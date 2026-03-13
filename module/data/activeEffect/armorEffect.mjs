@@ -227,9 +227,9 @@ export default class ArmorEffect extends foundry.data.ActiveEffectTypeDataModel 
                     changes.system.changes[0].value !== this.armorChange.value &&
                     this.parent.actor?.type === 'character'
                 ) {
-                    const increased = changes.system.changes[0].value > this.armorChange.value;
-                    const value = -1 * (this.armorChange.value - changes.system.changes[0].value);
-                    options.scrollingTextData = [getScrollTextData(increased, value, 'armor')];
+                    options.scrollingTextData = [
+                        getScrollTextData(this.parent.actor, changes.system.changes[0], 'armor')
+                    ];
                 }
             }
         }

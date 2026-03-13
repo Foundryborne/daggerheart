@@ -68,8 +68,11 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                 document = fromUuidSync(uuid);
             if (!document) return;
 
-            e.setAttribute('data-view-perm', document.testUserPermission(game.user, 'OBSERVER'));
             e.setAttribute('data-use-perm', document.testUserPermission(game.user, 'OWNER'));
+
+            const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Metagaming);
+            if (settings.hideObserverPermissionInChat)
+                e.setAttribute('data-view-perm', document.testUserPermission(game.user, 'OBSERVER'));
         });
 
         if (this.isContentVisible) {

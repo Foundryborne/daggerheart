@@ -55,24 +55,6 @@ export const abilities = {
     }
 };
 
-export const scrollingTextResource = {
-    hitPoints: {
-        label: 'DAGGERHEART.GENERAL.HitPoints.plural',
-        reversed: true
-    },
-    stress: {
-        label: 'DAGGERHEART.GENERAL.stress',
-        reversed: true
-    },
-    hope: {
-        label: 'DAGGERHEART.GENERAL.hope'
-    },
-    armor: {
-        label: 'DAGGERHEART.GENERAL.armor',
-        reversed: true
-    }
-};
-
 export const featureProperties = {
     agility: {
         name: 'DAGGERHEART.CONFIG.Traits.agility.name',

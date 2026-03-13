@@ -33,7 +33,7 @@
           "consumeOnSuccess": true
         },
         "damage": {
-          "parts": [],
+          "parts": {},
           "includeBase": false
         },
         "target": {

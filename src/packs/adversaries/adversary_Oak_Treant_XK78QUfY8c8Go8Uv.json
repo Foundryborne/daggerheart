@@ -73,8 +73,8 @@
       },
       "range": "veryClose",
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "multiplier": "flat",
               "flatMultiplier": 3,
@@ -100,7 +100,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
       "type": "attack",
@@ -273,8 +273,8 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false,
@@ -302,7 +302,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {

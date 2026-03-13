@@ -80,8 +80,8 @@
       },
       "range": "veryClose",
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -107,7 +107,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "img": "icons/skills/melee/strike-blade-hooked-orange-blue.webp",
       "type": "attack",
@@ -466,8 +466,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -493,7 +493,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {

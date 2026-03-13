@@ -1,0 +1,72 @@
+.daggerheart.dh-style.setting.appearance-settings {
+    .tab.active[data-tab='diceSoNice'] {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .diceSoNice-footer {
+        display: grid;
+        align-items: center;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 8px;
+        margin-top: 32px;
+
+        label {
+            text-align: center;
+        }
+
+        select {
+            grid-column: span 2;
+        }
+    }
+
+    .title-hint {
+        font-size: var(--font-size-14);
+        font-variant: small-caps;
+        text-align: center;
+    }
+
+    .split-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+
+        > label {
+            grid-column: span 2;
+            text-align: center;
+            font-size: var(--font-size-18);
+            font-weight: bold;
+        }
+    }
+
+    .field-section {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 4px;
+        width: 100%;
+        padding: 0 8px;
+    }
+
+    .label-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+
+        &.full-width {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+
+            select {
+                grid-column: span 3;
+            }
+        }
+
+        label {
+            align-self: center;
+            text-align: center;
+            white-space: nowrap;
+        }
+    }
+}

@@ -3,7 +3,7 @@ import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import DhLevelData from '../levelData.mjs';
 import { commonActorRules } from './base.mjs';
 import DhCreature from './creature.mjs';
-import { attributeField, resourceField, stressDamageReductionRule, bonusField } from '../fields/actorField.mjs';
+import { attributeField, stressDamageReductionRule, bonusField } from '../fields/actorField.mjs';
 import { ActionField } from '../fields/actionField.mjs';
 import DHCharacterSettings from '../../applications/sheets-configs/character-settings.mjs';
 
@@ -27,28 +27,6 @@ export default class DhCharacter extends DhCreature {
 
         return {
             ...super.defineSchema(),
-            resources: new fields.SchemaField({
-                hitPoints: resourceField(
-                    0,
-                    0,
-                    'DAGGERHEART.GENERAL.HitPoints.plural',
-                    true,
-                    'DAGGERHEART.ACTORS.Character.maxHPBonus'
-                ),
-                stress: resourceField(6, 0, 'DAGGERHEART.GENERAL.stress', true),
-                hope: new fields.SchemaField(
-                    {
-                        value: new fields.NumberField({
-                            initial: 2,
-                            min: 0,
-                            integer: true,
-                            label: 'DAGGERHEART.GENERAL.hope'
-                        }),
-                        isReversed: new fields.BooleanField({ initial: false })
-                    },
-                    { label: 'DAGGERHEART.GENERAL.hope' }
-                )
-            }),
             traits: new fields.SchemaField({
                 agility: attributeField('DAGGERHEART.CONFIG.Traits.agility.name'),
                 strength: attributeField('DAGGERHEART.CONFIG.Traits.strength.name'),
@@ -131,8 +109,8 @@ export default class DhCharacter extends DhCreature {
                         trait: 'strength'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            hitPoints: {
                                 type: ['physical'],
                                 value: {
                                     custom: {
@@ -141,7 +119,7 @@ export default class DhCharacter extends DhCreature {
                                     }
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             }),
@@ -686,6 +664,7 @@ export default class DhCharacter extends DhCreature {
     }
 
     prepareBaseData() {
+        super.prepareBaseData();
         this.evasion += this.class.value?.system?.evasion ?? 0;
 
         const currentLevel = this.levelData.level.current;
@@ -755,6 +734,7 @@ export default class DhCharacter extends DhCreature {
     }
 
     prepareDerivedData() {
+        super.prepareDerivedData();
         let baseHope = this.resources.hope.value;
         if (this.companion) {
             for (let levelKey in this.companion.system.levelData.levelups) {
@@ -775,10 +755,11 @@ export default class DhCharacter extends DhCreature {
 
         this.resources.armor = {
             ...this.armorScore,
+            label: 'DAGGERHEART.GENERAL.armor',
             isReversed: true
         };
 
-        this.attack.damage.parts[0].value.custom.formula = `@prof${this.basicAttackDamageDice}${this.rules.attack.damage.bonus ? ` + ${this.rules.attack.damage.bonus}` : ''}`;
+        this.attack.damage.parts.hitPoints.value.custom.formula = `@prof${this.basicAttackDamageDice}${this.rules.attack.damage.bonus ? ` + ${this.rules.attack.damage.bonus}` : ''}`;
     }
 
     getRollData() {
@@ -814,7 +795,8 @@ export default class DhCharacter extends DhCreature {
             const newHopeMax = this.system.resources.hope.max + diff;
             const newHopeValue = Math.min(newHopeMax, this.system.resources.hope.value);
             if (newHopeValue != this.system.resources.hope.value) {
-                if (!changes.system.resources) changes.system.resources = { hope: { value: 0 } };
+                if (!changes.system.resources.hope) changes.system.resources.hope = { value: 0 };
+
                 changes.system.resources.hope = {
                     ...changes.system.resources.hope,
                     value: changes.system.resources.hope.value + newHopeValue

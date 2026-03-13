@@ -25,8 +25,8 @@
           "consumeOnSuccess": true
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "stress": {
               "resultBased": false,
               "value": {
                 "custom": {
@@ -51,7 +51,7 @@
               },
               "type": []
             }
-          ],
+          },
           "includeBase": false
         },
         "target": {

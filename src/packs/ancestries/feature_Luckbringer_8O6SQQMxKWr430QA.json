@@ -22,8 +22,8 @@
           "recovery": "session"
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "hope": {
               "value": {
                 "custom": {
                   "enabled": true,
@@ -48,7 +48,7 @@
               },
               "type": []
             }
-          ],
+          },
           "includeBase": false
         },
         "target": {

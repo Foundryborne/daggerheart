@@ -1,0 +1,62 @@
+<fieldset class="one-column" id="transform-drop-zone" data-is-drop-zone="true" data-key="transform">
+    <legend>
+        {{localize "DAGGERHEART.ACTIONS.TYPES.transform.name"}}
+    </legend>
+
+    <div class="transform-container">
+        {{#if transform.actor}}
+            <div class="actor-drop-line">
+                {{#if transform.actor.error}} 
+                    <div class="hint actor-drop-hint">{{transform.actor.error}}</div>
+                {{else}}
+                     <div class="actor-drop-name">
+                        <img class="image" src="{{transform.actor.img}}" />
+                        <h4 class="h4">
+                            {{transform.actor.name}}
+                        </h4>
+                    </div>
+                {{/if}}
+
+                 <div class="actor-drop-controls transform">
+                    <div class="controls">
+                        {{#unless transform.actor.error}} 
+                        <a
+                                class='effect-control'
+                                data-action='editDoc'
+                                data-item-uuid="{{transform.actor.uuid}}"
+                                data-tooltip='{{localize "DAGGERHEART.UI.Tooltip.openItemWorld"}}'
+                            >
+                                <i class="fa-solid fa-globe"></i>
+                        </a>
+                        {{/unless}}
+                        <a
+                            class='effect-control'
+                            data-action='removeTransformActor'
+                            data-tooltip='{{localize "CONTROLS.CommonDelete"}}'
+                        >
+                            <i class='fas fa-trash'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <line-div></line-div>
+        {{/if}}
+
+        {{#unless transform.actor}}
+            <div class="drop-dragger">
+                <span>{{localize "DAGGERHEART.ACTIONS.Settings.transform.dropTransformHere"}}</span>
+            </div>
+        {{/unless}}
+
+        <div class="transform-resources">
+            <div class="transform-resource">
+                <input type="checkbox" data-resource="hitPoints" {{checked transform.resourceRefresh.hitPoints}}/>
+                <span class="resource-title">{{localize "DAGGERHEART.ACTIONS.Settings.transform.clearHitPoints"}}</span>
+            </div>
+            <div class="transform-resource">
+                <input type="checkbox" data-resource="stress" {{checked transform.resourceRefresh.stress}}/>
+                <span class="resource-title">{{localize "DAGGERHEART.ACTIONS.Settings.transform.clearStress"}}</span>
+            </div>
+        </div>
+    </div>
+</fieldset>

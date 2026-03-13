@@ -67,8 +67,8 @@
         "useDefault": false
       },
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -94,7 +94,7 @@
             },
             "base": false
           }
-        ],
+        },
         "includeBase": false
       },
       "description": "",
@@ -465,8 +465,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -490,7 +490,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {
@@ -607,8 +607,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -634,7 +634,7 @@
                     }
                   }
                 },
-                {
+                "stress": {
                   "value": {
                     "custom": {
                       "enabled": true,
@@ -659,7 +659,7 @@
                   },
                   "type": []
                 },
-                {
+                "hope": {
                   "value": {
                     "custom": {
                       "enabled": true,
@@ -684,7 +684,7 @@
                   },
                   "type": []
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {
@@ -742,7 +742,37 @@
       "system": {
         "description": "<p>When the @Lookup[@name] marks their last HP, replace them with the @UUID[Compendium.daggerheart.adversaries.Actor.eArAPuB38CNR0ZIM]{Molten Scourge} and immediately spotlight them.</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "OxGkCGgIl4vGFufD": {
+            "type": "transform",
+            "_id": "OxGkCGgIl4vGFufD",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "transform": {
+              "actorUUID": "Compendium.daggerheart.adversaries.Actor.eArAPuB38CNR0ZIM",
+              "resourceRefresh": {
+                "hitPoints": true,
+                "stress": true
+              }
+            },
+            "name": "Transform",
+            "range": ""
+          }
+        },
         "originItemType": null,
         "originId": null,
         "featureForm": "reaction"

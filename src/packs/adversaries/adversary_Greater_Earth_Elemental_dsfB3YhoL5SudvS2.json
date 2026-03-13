@@ -75,8 +75,8 @@
       },
       "range": "veryClose",
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -102,7 +102,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "type": "attack",
       "chatDisplay": false
@@ -268,8 +268,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "armor": {
                   "value": {
                     "custom": {
                       "enabled": true,
@@ -294,7 +294,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {
@@ -422,8 +422,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -449,7 +449,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {
@@ -578,8 +578,8 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "fear": {
                   "value": {
                     "custom": {
                       "enabled": true,
@@ -605,7 +605,7 @@
                   },
                   "type": []
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {

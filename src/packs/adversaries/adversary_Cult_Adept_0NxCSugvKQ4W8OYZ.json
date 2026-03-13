@@ -84,8 +84,8 @@
         "type": "attack"
       },
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -111,7 +111,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "range": "far",
       "img": "icons/weapons/staves/staff-ornate-purple.webp",
@@ -256,8 +256,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -283,7 +283,7 @@
                     }
                   }
                 },
-                {
+                "stress": {
                   "value": {
                     "custom": {
                       "enabled": true,
@@ -308,7 +308,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {
@@ -614,8 +614,8 @@
               "recovery": "scene"
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "stress": {
                   "value": {
                     "custom": {
                       "enabled": true,
@@ -640,7 +640,7 @@
                   },
                   "type": []
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {

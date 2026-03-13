@@ -1,6 +1,6 @@
 import DHBaseActorSettings from '../../applications/sheets/api/actor-setting.mjs';
 import DHItem from '../../documents/item.mjs';
-import { getResourceScrollTextData } from '../../helpers/utils.mjs';
+import { getScrollTextData } from '../../helpers/utils.mjs';
 
 const fields = foundry.data.fields;
 
@@ -211,7 +211,7 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
             const textData = Object.keys(changes.system.resources).reduce((acc, key) => {
                 const resource = changes.system.resources[key];
                 if (resource.value !== undefined && resource.value !== this.resources[key].value) {
-                    acc.push(getResourceScrollTextData(this.resources, resource, key));
+                    acc.push(getScrollTextData(this.parent, resource, key));
                 }
 
                 return acc;

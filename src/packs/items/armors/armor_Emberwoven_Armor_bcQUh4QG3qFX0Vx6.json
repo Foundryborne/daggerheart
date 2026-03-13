@@ -20,8 +20,8 @@
           "amount": null
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "stress": {
               "applyTo": "stress",
               "value": {
                 "custom": {
@@ -46,7 +46,7 @@
               "base": false,
               "type": []
             }
-          ],
+          },
           "includeBase": false
         },
         "_id": "L8mHf4A8SylyxsMH",

@@ -75,6 +75,15 @@ export default function DHApplicationMixin(Base) {
         #nonHeaderAttribution = ['environment', 'ancestry', 'community', 'domainCard'];
 
         /**
+         * @param {DHSheetV2Configuration} [options={}]
+         */
+        constructor(options = {}) {
+            super(options);
+
+            this._setupDragDrop();
+        }
+
+        /**
          * The default options for the sheet.
          * @type {DHSheetV2Configuration}
          */
@@ -165,7 +174,9 @@ export default function DHApplicationMixin(Base) {
         /**@inheritdoc */
         _attachPartListeners(partId, htmlElement, options) {
             super._attachPartListeners(partId, htmlElement, options);
-            // this._dragDrop.forEach(d => d.bind(htmlElement));
+
+            /* Core dragDrop from ActorDocument is always only 1. Possible we could refactor our own */
+            if (Array.isArray(this._dragDrop)) this._dragDrop.forEach(d => d.bind(htmlElement));
 
             // Handle delta inputs
             for (const deltaInput of htmlElement.querySelectorAll('input[data-allow-delta]')) {
@@ -339,6 +350,26 @@ export default function DHApplicationMixin(Base) {
         /* -------------------------------------------- */
 
         /**
+         * Creates drag-drop handlers from the configured options.
+         * @returns {foundry.applications.ux.DragDrop[]}
+         * @private
+         */
+        _setupDragDrop() {
+            if (this._dragDrop) {
+                this._dragDrop.callbacks.dragStart = this._onDragStart;
+                this._dragDrop.callback.drop = this._onDrop;
+            } else {
+                this._dragDrop = this.options.dragDrop.map(d => {
+                    d.callbacks = {
+                        dragstart: this._onDragStart.bind(this),
+                        drop: this._onDrop.bind(this)
+                    };
+                    return new foundry.applications.ux.DragDrop.implementation(d);
+                });
+            }
+        }
+
+        /**
          * Handle dragStart event.
          * @param {DragEvent} event
          * @protected
@@ -472,7 +503,10 @@ export default function DHApplicationMixin(Base) {
                     icon: 'fa-solid fa-explosion',
                     condition: target => {
                         const doc = getDocFromElementSync(target);
-                        return doc?.system?.attack?.damage.parts.length || doc?.damage?.parts.length;
+                        return (
+                            !foundry.utils.isEmpty(doc?.system?.attack?.damage.parts) ||
+                            !foundry.utils.isEmpty(doc?.damage?.parts)
+                        );
                     },
                     callback: async (target, event) => {
                         const doc = await getDocFromElement(target),
@@ -663,6 +697,9 @@ export default function DHApplicationMixin(Base) {
                     break;
                 case 'weapon':
                     presets.folder = 'equipments.folders.weapons';
+                    break;
+                case 'feature':
+                    presets.folder = 'features';
                     break;
                 case 'domainCard':
                     presets.folder = 'domains';

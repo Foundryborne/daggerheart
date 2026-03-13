@@ -4,48 +4,78 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
+    }
 
-        .actor-summon-line {
+    .transform-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .transform-resources {
+            display: flex;
+            flex-direction: column;
+
+            .transform-resource {
+                display: flex;
+                align-items: center;
+                gap: 2px;
+
+                .resource-title {
+                    font-size: var(--font-size-18);
+                }
+            }
+        }
+    }
+
+    .actor-drop-line {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        border-radius: 3px;
+
+        .actor-drop-name {
+            flex: 2;
             display: flex;
             align-items: center;
             gap: 5px;
-            border-radius: 3px;
 
-            .actor-summon-name {
-                flex: 2;
-                display: flex;
-                align-items: center;
-                gap: 5px;
-
-                img {
-                    height: 40px;
-                }
-            }
-
-            .actor-summon-controls {
-                flex: 1;
-                display: flex;
-                align-items: center;
-                gap: 5px;
-
-                .controls {
-                    display: flex;
-                    gap: 5px;
-                }
+            img {
+                height: 40px;
             }
         }
 
-        .summon-dragger {
+        .actor-drop-controls {
+            flex: 1;
             display: flex;
             align-items: center;
-            justify-content: center;
-            box-sizing: border-box;
-            height: 40px;
-            margin-top: 10px;
-            border: 1px dashed light-dark(@dark-blue-50, @beige-50);
-            border-radius: 3px;
-            color: light-dark(@dark-blue-50, @beige-50);
+            gap: 5px;
+
+            &.transform {
+                justify-content: flex-end;
+            }
+
+            .controls {
+                display: flex;
+                gap: 5px;
+            }
         }
+
+        .actor-drop-hint {
+            flex: none;
+        }
+    }
+
+    .drop-dragger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        height: 40px;
+        margin-top: 10px;
+        border: 1px dashed light-dark(@dark-blue-50, @beige-50);
+        border-radius: 3px;
+        color: light-dark(@dark-blue-50, @beige-50);
     }
 
     .trigger-data {

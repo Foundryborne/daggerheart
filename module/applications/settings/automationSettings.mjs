@@ -31,8 +31,8 @@ export default class DhAutomationSettings extends HandlebarsApplicationMixin(App
     };
 
     static PARTS = {
-        tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         header: { template: 'systems/daggerheart/templates/settings/automation-settings/header.hbs' },
+        tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         general: { template: 'systems/daggerheart/templates/settings/automation-settings/general.hbs' },
         rules: { template: 'systems/daggerheart/templates/settings/automation-settings/deathMoves.hbs' },
         roll: { template: 'systems/daggerheart/templates/settings/automation-settings/roll.hbs' },

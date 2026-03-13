@@ -81,8 +81,8 @@
       },
       "range": "close",
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -108,7 +108,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "type": "attack",
       "chatDisplay": false
