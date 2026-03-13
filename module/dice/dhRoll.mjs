@@ -143,7 +143,11 @@ export default class DHRoll extends Roll {
 
         const metagamingSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Metagaming);
         const chatData = await this._prepareChatRenderContext({ flavor, isPrivate, ...options });
-        return foundry.applications.handlebars.renderTemplate(template, { ...chatData, metagamingSettings });
+        return foundry.applications.handlebars.renderTemplate(template, {
+            ...chatData,
+            parent: chatData.parent,
+            metagamingSettings
+        });
     }
 
     /** @inheritDoc */
