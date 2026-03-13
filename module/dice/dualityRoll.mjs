@@ -378,6 +378,8 @@ export default class DualityRoll extends D20Roll {
         let parsedRoll = game.system.api.dice.DualityRoll.fromData({ ...rollString, evaluated: false });
         const term = parsedRoll.terms[target.dataset.dieIndex];
         await term.reroll(`/r1=${term.total}`);
+        const result = await parsedRoll.evaluate();
+
         if (game.modules.get('dice-so-nice')?.active) {
             const diceSoNiceRoll = {
                 _evaluated: true,
@@ -391,7 +393,7 @@ export default class DualityRoll extends D20Roll {
                 options: { appearance: {} }
             };
 
-            const diceSoNicePresets = await getDiceSoNicePresets(`d${term._faces}`, `d${term._faces}`);
+            const diceSoNicePresets = await getDiceSoNicePresets(result, `d${term._faces}`, `d${term._faces}`);
             const type = target.dataset.type;
             if (diceSoNicePresets[type]) {
                 diceSoNiceRoll.dice[0].options = diceSoNicePresets[type];
@@ -399,8 +401,6 @@ export default class DualityRoll extends D20Roll {
 
             await game.dice3d.showForRoll(diceSoNiceRoll, game.user, true);
         }
-
-        await parsedRoll.evaluate();
 
         const newRoll = game.system.api.dice.DualityRoll.postEvaluate(parsedRoll, {
             targets: message.system.targets,

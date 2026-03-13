@@ -1,3 +1,4 @@
 export const hooksConfig = {
-    effectDisplayToggle: 'DHEffectDisplayToggle'
+    effectDisplayToggle: 'DHEffectDisplayToggle',
+    lockedTooltipDismissed: 'DHLockedTooltipDismissed'
 };

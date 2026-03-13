@@ -21,8 +21,8 @@
           "recovery": "longRest"
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "hitPoints": {
               "value": {
                 "custom": {
                   "enabled": true,
@@ -47,7 +47,7 @@
               },
               "type": []
             }
-          ],
+          },
           "includeBase": false
         },
         "target": {
@@ -115,8 +115,8 @@
           "recovery": "longRest"
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "hope": {
               "value": {
                 "custom": {
                   "enabled": true,
@@ -141,7 +141,7 @@
               },
               "type": []
             }
-          ],
+          },
           "includeBase": false
         },
         "target": {

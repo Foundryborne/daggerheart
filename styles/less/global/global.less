@@ -73,6 +73,24 @@
             }
         }
     }
+
+    .item-tags {
+        display: flex;
+        gap: 10px;
+
+        .tag {
+            align-items: center;
+            background: light-dark(@dark-15, @beige-15);
+            border-radius: 3px;
+            border: 1px solid light-dark(@dark, @beige);
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            font-size: var(--font-size-12);
+            justify-content: start;
+            padding: 3px 5px;
+        }
+    }
 }
 
 /* TODO: Remove me when this issue is resolved https://github.com/foundryvtt/foundryvtt/issues/13734 */

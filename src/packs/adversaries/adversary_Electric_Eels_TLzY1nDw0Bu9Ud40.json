@@ -68,8 +68,8 @@
     "motivesAndTactics": "Avoid larger predators, shock prey, tear apart",
     "attack": {
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -95,7 +95,7 @@
             "resultBased": false,
             "base": false
           }
-        ]
+        }
       },
       "name": "Shocking Bite",
       "img": "icons/creatures/abilities/mouth-teeth-sharp.webp",
@@ -270,8 +270,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -297,7 +297,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {

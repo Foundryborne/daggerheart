@@ -84,8 +84,8 @@
         "type": "attack"
       },
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -111,7 +111,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "img": "icons/weapons/daggers/dagger-straight-cracked.webp",
       "type": "attack",
@@ -256,8 +256,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "stress": {
                   "value": {
                     "custom": {
                       "enabled": true,
@@ -282,7 +282,7 @@
                   },
                   "type": []
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {

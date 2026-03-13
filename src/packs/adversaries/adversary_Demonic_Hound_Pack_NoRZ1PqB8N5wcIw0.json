@@ -74,8 +74,8 @@
     "motivesAndTactics": "Cause fear, consume fl esh, please masters",
     "attack": {
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -101,7 +101,7 @@
             "resultBased": false,
             "base": false
           }
-        ]
+        }
       },
       "name": "Claws and Fangs",
       "img": "icons/creatures/abilities/mouth-teeth-rows-red.webp",
@@ -269,8 +269,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hope": {
                   "value": {
                     "custom": {
                       "enabled": true,
@@ -295,7 +295,7 @@
                   },
                   "type": []
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {
@@ -349,8 +349,8 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "fear": {
                   "value": {
                     "custom": {
                       "enabled": true,
@@ -376,7 +376,7 @@
                   },
                   "type": []
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {

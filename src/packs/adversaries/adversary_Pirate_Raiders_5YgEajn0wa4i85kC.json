@@ -74,8 +74,8 @@
     "description": "<p>Seafaring scoundrels moving in a ravaging pack.</p>",
     "attack": {
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -101,7 +101,7 @@
             "resultBased": false,
             "base": false
           }
-        ]
+        }
       },
       "name": "Cutlass",
       "img": "icons/weapons/swords/scimitar-worn-blue.webp",
@@ -272,8 +272,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "stress": {
                   "value": {
                     "custom": {
                       "enabled": true,
@@ -298,7 +298,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {

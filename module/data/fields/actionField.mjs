@@ -87,10 +87,10 @@ export class ActionField extends foundry.data.fields.ObjectField {
     /* -------------------------------------------- */
 
     /** @override */
-    _cleanType(value, options) {
+    _cleanType(value, options, _state) {
         if (!(typeof value === 'object')) value = {};
         const cls = this.getModel(value);
-        if (cls) return cls.cleanData(value, options);
+        if (cls) return cls.cleanData(value, options, _state);
         return value;
     }
 

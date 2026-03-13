@@ -79,8 +79,8 @@
         "type": "attack"
       },
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -106,7 +106,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "img": "icons/creatures/slimes/slime-movement-dripping-pseudopods-green.webp",
       "type": "attack",
@@ -277,8 +277,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "armor": {
                   "value": {
                     "custom": {
                       "enabled": true,
@@ -303,7 +303,7 @@
                   },
                   "type": []
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {
@@ -356,8 +356,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -383,7 +383,7 @@
                     }
                   }
                 },
-                {
+                "stress": {
                   "value": {
                     "custom": {
                       "enabled": true,
@@ -408,7 +408,7 @@
                   },
                   "type": []
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {

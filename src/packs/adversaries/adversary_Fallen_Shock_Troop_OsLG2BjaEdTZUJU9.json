@@ -67,8 +67,8 @@
       "img": "icons/weapons/axes/axe-battle-skull-black.webp",
       "range": "veryClose",
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": true,
@@ -95,7 +95,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "type": "attack",
       "chatDisplay": false
@@ -256,8 +256,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hope": {
                   "value": {
                     "custom": {
                       "enabled": true,
@@ -282,7 +282,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {

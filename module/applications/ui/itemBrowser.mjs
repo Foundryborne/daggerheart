@@ -251,6 +251,12 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
             /* If any noticeable slowdown occurs, consider replacing with enriching description on clicking to expand descriptions */
             for (const item of this.items) {
+                if (['weapon', 'armor'].includes(item.type)) {
+                    item.system.enrichedTags = await foundry.applications.handlebars.renderTemplate(
+                        'systems/daggerheart/templates/sheets/global/partials/item-tags.hbs',
+                        item.system
+                    );
+                }
                 item.system.enrichedDescription =
                     (await item.system.getEnrichedDescription?.()) ??
                     (await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.description));

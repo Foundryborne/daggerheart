@@ -2,7 +2,7 @@ import DHAdversarySettings from '../../applications/sheets-configs/adversary-set
 import { ActionField } from '../fields/actionField.mjs';
 import { commonActorRules } from './base.mjs';
 import DhCreature from './creature.mjs';
-import { resourceField, bonusField } from '../fields/actorField.mjs';
+import { bonusField } from '../fields/actorField.mjs';
 import { calculateExpectedValue, parseTermsFromSimpleFormula } from '../../helpers/utils.mjs';
 import { adversaryExpectedDamage, adversaryScalingData } from '../../config/actorConfig.mjs';
 
@@ -65,10 +65,6 @@ export default class DhpAdversary extends DhCreature {
                     label: 'DAGGERHEART.GENERAL.DamageThresholds.severeThreshold'
                 })
             }),
-            resources: new fields.SchemaField({
-                hitPoints: resourceField(0, 0, 'DAGGERHEART.GENERAL.HitPoints.plural', true),
-                stress: resourceField(0, 0, 'DAGGERHEART.GENERAL.stress', true)
-            }),
             rules: new fields.SchemaField({
                 ...commonActorRules()
             }),
@@ -89,14 +85,14 @@ export default class DhpAdversary extends DhCreature {
                         type: 'attack'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            hitPoints: {
                                 type: ['physical'],
                                 value: {
                                     multiplier: 'flat'
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             }),
@@ -191,6 +187,7 @@ export default class DhpAdversary extends DhCreature {
     }
 
     prepareDerivedData() {
+        super.prepareDerivedData();
         this.attack.roll.isStandardAttack = true;
     }
 
@@ -268,12 +265,12 @@ export default class DhpAdversary extends DhCreature {
             }
 
             // Update damage in item actions
+            // Parse damage, and convert all formula matches in the descriptions to the new damage
             for (const action of Object.values(item.system.actions)) {
-                if (!action.damage) continue;
-
-                // Parse damage, and convert all formula matches in the descriptions to the new damage
                 try {
                     const result = this.#adjustActionDamage(action, { ...damageMeta, type: 'action' });
+                    if (!result) continue;
+
                     for (const { previousFormula, formula } of Object.values(result)) {
                         const oldFormulaRegexp = new RegExp(
                             previousFormula.replace(' ', '').replace('+', '(?:\\s)?\\+(?:\\s)?')
@@ -375,16 +372,14 @@ export default class DhpAdversary extends DhCreature {
     /**
      * Updates damage to reflect a specific value.
      * @throws if damage structure is invalid for conversion
-     * @returns the converted formula and value as a simplified term
+     * @returns the converted formula and value as a simplified term, or null if it doesn't deal HP damage
      */
     #adjustActionDamage(action, damageMeta) {
-        // The current algorithm only returns a value if there is a single damage part
-        const hpDamageParts = action.damage.parts.filter(d => d.applyTo === 'hitPoints');
-        if (hpDamageParts.length !== 1) throw new Error('incorrect number of hp parts');
+        if (!action.damage?.parts.hitPoints) return null;
 
         const result = {};
         for (const property of ['value', 'valueAlt']) {
-            const data = hpDamageParts[0][property];
+            const data = action.damage.parts.hitPoints[property];
             const previousFormula = data.custom.enabled
                 ? data.custom.formula
                 : [data.flatMultiplier ? `${data.flatMultiplier}${data.dice}` : 0, data.bonus ?? 0]

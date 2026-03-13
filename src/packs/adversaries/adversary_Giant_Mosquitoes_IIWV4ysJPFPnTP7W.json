@@ -74,8 +74,8 @@
     "motivesAndTactics": "Fly away, harass, steal blood",
     "attack": {
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -101,7 +101,7 @@
             "resultBased": false,
             "base": false
           }
-        ]
+        }
       },
       "name": "Proboscis",
       "img": "icons/skills/wounds/blood-cells-vessel-red.webp",

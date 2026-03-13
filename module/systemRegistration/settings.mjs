@@ -1,10 +1,18 @@
 import { defaultLevelTiers, DhLevelTiers } from '../data/levelTier.mjs';
 import DhCountdowns from '../data/countdowns.mjs';
-import { DhAppearance, DhAutomation, DhHomebrew, DhVariantRules } from '../data/settings/_module.mjs';
+import {
+    DhAppearance,
+    DhAutomation,
+    DhGlobalOverrides,
+    DhHomebrew,
+    DhMetagaming,
+    DhVariantRules
+} from '../data/settings/_module.mjs';
 import {
     DhAppearanceSettings,
     DhAutomationSettings,
     DhHomebrewSettings,
+    DhMetagamingSettings,
     DhVariantRuleSettings
 } from '../applications/settings/_module.mjs';
 import { CompendiumBrowserSettings, DhTagTeamRoll } from '../data/_module.mjs';
@@ -38,18 +46,25 @@ const registerMenuSettings = () => {
         type: DhAutomation
     });
 
+    game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Metagaming, {
+        scope: 'world',
+        config: false,
+        type: DhMetagaming
+    });
+
     game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew, {
         scope: 'world',
         config: false,
         type: DhHomebrew,
         onChange: value => {
-            if (value.maxFear) {
-                if (ui.resources) ui.resources.render({ force: true });
-            }
-
-            // Some homebrew settings may change sheets in various ways, so trigger a re-render
-            resetActors();
+            value.handleChange();
         }
+    });
+
+    game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.GlobalOverrides, {
+        scope: 'world',
+        config: false,
+        type: DhGlobalOverrides
     });
 
     game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance, {
@@ -57,12 +72,7 @@ const registerMenuSettings = () => {
         config: false,
         type: DhAppearance,
         onChange: value => {
-            if (value.displayFear) {
-                if (ui.resources) {
-                    if (value.displayFear === 'hide') ui.resources.close({ allowed: true });
-                    else ui.resources.render({ force: true });
-                }
-            }
+            value.handleChange();
         }
     });
 };
@@ -76,6 +86,16 @@ const registerMenus = () => {
         type: DhAutomationSettings,
         restricted: true
     });
+
+    game.settings.registerMenu(CONFIG.DH.id, CONFIG.DH.SETTINGS.menu.Metagaming.Name, {
+        name: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.metagaming.name'),
+        label: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.metagaming.label'),
+        hint: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.metagaming.hint'),
+        icon: CONFIG.DH.SETTINGS.menu.Metagaming.Icon,
+        type: DhMetagamingSettings,
+        restricted: true
+    });
+
     game.settings.registerMenu(CONFIG.DH.id, CONFIG.DH.SETTINGS.menu.Homebrew.Name, {
         name: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.homebrew.name'),
         label: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.homebrew.label'),
@@ -144,30 +164,8 @@ const registerNonConfigSettings = () => {
     });
 
     game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.CompendiumBrowserSettings, {
-        scope: 'client',
+        scope: 'world',
         config: false,
         type: CompendiumBrowserSettings
     });
 };
-
-/**
- * Triggers a reset and non-forced re-render on all given actors (if given)
- * or all world actors and actors in all scenes to show immediate results for a changed setting.
- */
-function resetActors(actors) {
-    actors ??= [
-        game.actors.contents,
-        game.scenes.contents.flatMap(s => s.tokens.contents).flatMap(t => t.actor ?? [])
-    ].flat();
-    actors = new Set(actors);
-    for (const actor of actors) {
-        for (const app of Object.values(actor.apps)) {
-            for (const element of app.element?.querySelectorAll('prose-mirror.active')) {
-                element.open = false; // This triggers a save
-            }
-        }
-
-        actor.reset();
-        actor.render();
-    }
-}

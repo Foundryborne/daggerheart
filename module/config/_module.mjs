@@ -11,3 +11,4 @@ export * as settingsConfig from './settingsConfig.mjs';
 export * as systemConfig from './system.mjs';
 export * as itemBrowserConfig from './itemBrowserConfig.mjs';
 export * as triggerConfig from './triggerConfig.mjs';
+export * as resourceConfig from './resourceConfig.mjs';
