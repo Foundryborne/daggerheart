@@ -17,9 +17,10 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/sheets/global/partials/resource-section/dice-value.hbs',
         'systems/daggerheart/templates/sheets/global/partials/resource-section/die.hbs',
         'systems/daggerheart/templates/sheets/global/partials/resource-bar.hbs',
+        'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs',
+        'systems/daggerheart/templates/sheets/global/partials/item-tags.hbs',
         'systems/daggerheart/templates/components/card-preview.hbs',
         'systems/daggerheart/templates/levelup/parts/selectable-card-preview.hbs',
-        'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs',
         'systems/daggerheart/templates/ui/combatTracker/combatTrackerSection.hbs',
         'systems/daggerheart/templates/actionTypes/damage.hbs',
         'systems/daggerheart/templates/actionTypes/resource.hbs',
@@ -33,6 +34,7 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/actionTypes/beastform.hbs',
         'systems/daggerheart/templates/actionTypes/countdown.hbs',
         'systems/daggerheart/templates/actionTypes/summon.hbs',
+        'systems/daggerheart/templates/actionTypes/transform.hbs',
         'systems/daggerheart/templates/settings/components/settings-item-line.hbs',
         'systems/daggerheart/templates/ui/tooltip/parts/tooltipChips.hbs',
         'systems/daggerheart/templates/ui/tooltip/parts/tooltipTags.hbs',
@@ -44,6 +46,7 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/ui/chat/parts/target-part.hbs',
         'systems/daggerheart/templates/ui/chat/parts/button-part.hbs',
         'systems/daggerheart/templates/ui/itemBrowser/itemContainer.hbs',
-        'systems/daggerheart/templates/scene/dh-config.hbs'
+        'systems/daggerheart/templates/scene/dh-config.hbs',
+        'systems/daggerheart/templates/settings/appearance-settings/diceSoNiceTab.hbs'
     ]);
 };

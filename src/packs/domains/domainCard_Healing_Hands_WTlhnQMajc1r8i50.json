@@ -25,7 +25,7 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": [],
+          "parts": {},
           "includeBase": false
         },
         "target": {
@@ -85,8 +85,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "hitPoints": {
               "resultBased": false,
               "value": {
                 "custom": {
@@ -111,7 +111,7 @@
               },
               "type": []
             }
-          ],
+          },
           "includeBase": false
         },
         "target": {
@@ -161,8 +161,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "hitPoints": {
               "value": {
                 "custom": {
                   "enabled": true,
@@ -187,7 +187,7 @@
               },
               "type": []
             }
-          ],
+          },
           "includeBase": false
         },
         "target": {
@@ -237,8 +237,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "stress": {
               "value": {
                 "custom": {
                   "enabled": true,
@@ -263,7 +263,7 @@
               },
               "type": []
             }
-          ],
+          },
           "includeBase": false
         },
         "target": {
@@ -313,8 +313,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "stress": {
               "value": {
                 "custom": {
                   "enabled": true,
@@ -339,7 +339,7 @@
               },
               "type": []
             }
-          ],
+          },
           "includeBase": false
         },
         "target": {

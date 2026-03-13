@@ -73,8 +73,8 @@
         "type": "attack"
       },
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -100,7 +100,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "img": "icons/weapons/swords/sword-guard-brass-worn.webp",
       "type": "attack",
@@ -310,7 +310,7 @@
               "recovery": null
             },
             "damage": {
-              "parts": [],
+              "parts": {},
               "includeBase": false
             },
             "target": {

@@ -72,8 +72,8 @@
         "type": "attack"
       },
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": true,
@@ -100,7 +100,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "img": "icons/weapons/daggers/dagger-bone-black.webp",
       "type": "attack",

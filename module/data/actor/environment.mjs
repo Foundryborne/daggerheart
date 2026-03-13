@@ -37,7 +37,7 @@ export default class DhEnvironment extends BaseDataActor {
             potentialAdversaries: new fields.TypedObjectField(
                 new fields.SchemaField({
                     label: new fields.StringField(),
-                    adversaries: new ForeignDocumentUUIDArrayField({ type: 'Actor' }, { required: false, initial: [] })
+                    adversaries: new ForeignDocumentUUIDArrayField({ type: 'Actor' })
                 })
             ),
             notes: new fields.HTMLField()

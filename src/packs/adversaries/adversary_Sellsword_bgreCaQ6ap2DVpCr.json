@@ -61,8 +61,8 @@
     "attack": {
       "name": "Longsword",
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": true,
@@ -89,7 +89,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "roll": {
         "bonus": 3,

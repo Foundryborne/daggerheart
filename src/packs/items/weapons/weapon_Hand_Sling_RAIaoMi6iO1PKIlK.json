@@ -11,8 +11,8 @@
         "type": "attack",
         "damage": {
           "includeBase": false,
-          "parts": [
-            {
+          "parts": {
+            "hitPoints": {
               "resultBased": false,
               "value": {
                 "custom": {
@@ -36,7 +36,7 @@
                 }
               }
             }
-          ]
+          }
         },
         "range": "close",
         "roll": {
@@ -113,8 +113,8 @@
         "useDefault": false
       },
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "dice": "d6",
               "bonus": 4,
@@ -140,7 +140,7 @@
             },
             "base": false
           }
-        ],
+        },
         "includeBase": false
       },
       "description": "",

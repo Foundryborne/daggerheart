@@ -25,7 +25,7 @@
           "consumeOnSuccess": true
         },
         "damage": {
-          "parts": [],
+          "parts": {},
           "includeBase": false
         },
         "target": {
@@ -80,7 +80,7 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": [],
+          "parts": {},
           "includeBase": false
         },
         "target": {

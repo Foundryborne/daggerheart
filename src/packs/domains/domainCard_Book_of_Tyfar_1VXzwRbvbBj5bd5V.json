@@ -24,8 +24,8 @@
           "recovery": null
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "hitPoints": {
               "value": {
                 "custom": {
                   "enabled": false
@@ -51,7 +51,7 @@
                 }
               }
             },
-            {
+            "stress": {
               "value": {
                 "custom": {
                   "enabled": true,
@@ -76,7 +76,7 @@
               },
               "type": []
             }
-          ],
+          },
           "includeBase": false
         },
         "target": {
@@ -144,7 +144,7 @@
           "recovery": null
         },
         "damage": {
-          "parts": [],
+          "parts": {},
           "includeBase": false
         },
         "target": {
@@ -153,9 +153,9 @@
         },
         "effects": [],
         "roll": {
-          "type": null,
+          "type": "spellcast",
           "trait": null,
-          "difficulty": null,
+          "difficulty": 13,
           "bonus": null,
           "advState": "neutral",
           "diceRolling": {

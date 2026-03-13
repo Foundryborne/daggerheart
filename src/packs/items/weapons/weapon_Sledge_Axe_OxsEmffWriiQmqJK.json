@@ -20,8 +20,8 @@
           "amount": null
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "stress": {
               "applyTo": "stress",
               "value": {
                 "custom": {
@@ -46,7 +46,7 @@
               "base": false,
               "type": []
             }
-          ],
+          },
           "includeBase": false
         },
         "_id": "0qVTvNMfapVST3sQ",
@@ -104,8 +104,8 @@
         "useDefault": false
       },
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "dice": "d12",
               "bonus": 13,
@@ -131,7 +131,7 @@
             },
             "base": false
           }
-        ],
+        },
         "includeBase": false
       },
       "description": "",

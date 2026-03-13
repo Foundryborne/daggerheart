@@ -65,22 +65,25 @@
     </div>
 
     <div class="character-row">
-        <div class="hope-section">
-            <h4>{{localize "DAGGERHEART.GENERAL.hope"}}</h4>
-            {{#times document.system.resources.hope.max}}
-                <span class='hope-value' data-action='toggleHope' data-value="{{add this 1}}">
-                    {{#if (gte ../document.system.resources.hope.value (add this 1))}}
-                        <i class='fa-solid fa-diamond'></i>
-                    {{else}}
-                        <i class='fa-regular fa-circle'></i>
-                    {{/if}}
-                </span>
-            {{/times}}
-            {{#times document.system.scars}}
-                <span class='hope-value scar'>
-                    <i class='fa-regular fa-ban'></i>
-                </span>
-            {{/times}}
+        <div class="resource-section">
+            <div class="hope-section">
+                <h4>{{localize "DAGGERHEART.GENERAL.hope"}}</h4>
+                {{#times document.system.resources.hope.max}}
+                    <span class='hope-value' data-action='toggleHope' data-value="{{add this 1}}">
+                        {{#if (gte ../document.system.resources.hope.value (add this 1))}}
+                            <i class='fa-solid fa-diamond'></i>
+                        {{else}}
+                            <i class='fa-regular fa-circle'></i>
+                        {{/if}}
+                    </span>
+                {{/times}}
+                {{#times document.system.scars}}
+                    <span class='hope-value scar'>
+                        <i class='fa-regular fa-ban'></i>
+                    </span>
+                {{/times}}
+                {{#if hasExtraResources}}<a type="button" class="resource-manager" data-action="toggleResourceManagement"><i class="fa-solid fa-angle-down"></i></a>{{/if}}
+            </div>
         </div>
         {{#if document.system.class.value}}
             <div class="domains-section">

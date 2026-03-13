@@ -197,7 +197,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     async executeWorkflow(config) {
         for (const [key, part] of this.workflow) {
             if (Hooks.call(`${CONFIG.DH.id}.pre${key.capitalize()}Action`, this, config) === false) return;
-            if ((await part.execute(config)) === false) return;
+            if ((await part.execute(config)) === false) return false;
             if (Hooks.call(`${CONFIG.DH.id}.post${key.capitalize()}Action`, this, config) === false) return;
         }
     }
@@ -224,7 +224,9 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         }
 
         // Execute the Action Worflow in order based of schema fields
-        await this.executeWorkflow(config);
+        const result = await this.executeWorkflow(config);
+        if (result === false) return;
+
         await config.resourceUpdates.updateResources();
 
         if (Hooks.call(`${CONFIG.DH.id}.postUseAction`, this, config) === false) return;
@@ -352,11 +354,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     get hasDamage() {
-        return this.damage?.parts?.length && this.type !== 'healing';
+        return !foundry.utils.isEmpty(this.damage.parts) && this.type !== 'healing';
     }
 
     get hasHealing() {
-        return this.damage?.parts?.length && this.type === 'healing';
+        return !foundry.utils.isEmpty(this.damage.parts) && this.type === 'healing';
     }
 
     get hasSave() {
@@ -375,6 +377,15 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         const tags = [game.i18n.localize(`DAGGERHEART.ACTIONS.TYPES.${this.type}.name`)];
 
         return tags;
+    }
+
+    static migrateData(source) {
+        if (source.damage?.parts && Array.isArray(source.damage.parts)) {
+            source.damage.parts = source.damage.parts.reduce((acc, part) => {
+                acc[part.applyTo] = part;
+                return acc;
+            }, {});
+        }
     }
 }
 

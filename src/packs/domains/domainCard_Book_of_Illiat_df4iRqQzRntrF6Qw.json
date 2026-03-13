@@ -24,7 +24,7 @@
           "recovery": null
         },
         "damage": {
-          "parts": [],
+          "parts": {},
           "includeBase": false
         },
         "target": {
@@ -82,8 +82,8 @@
           "recovery": "shortRest"
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "hitPoints": {
               "value": {
                 "custom": {
                   "enabled": false
@@ -107,7 +107,7 @@
                 }
               }
             }
-          ],
+          },
           "includeBase": false
         },
         "target": {

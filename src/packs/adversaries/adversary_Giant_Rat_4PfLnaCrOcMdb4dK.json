@@ -72,8 +72,8 @@
       "name": "Claws",
       "img": "icons/creatures/claws/claw-straight-brown.webp",
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": true,
@@ -100,7 +100,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "type": "attack",
       "range": "melee",
@@ -272,7 +272,7 @@
               "recovery": null
             },
             "damage": {
-              "parts": [],
+              "parts": {},
               "includeBase": false
             },
             "target": {

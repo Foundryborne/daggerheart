@@ -74,8 +74,8 @@
       },
       "range": "far",
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -101,7 +101,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "img": "icons/weapons/bows/shortbow-leather.webp",
       "type": "attack",
@@ -310,8 +310,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -337,7 +337,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {

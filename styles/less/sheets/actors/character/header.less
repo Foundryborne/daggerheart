@@ -133,8 +133,19 @@
             padding: 0;
             margin-bottom: 15px;
 
-            .hope-section {
+            .resource-section {
+                display: flex;
+                align-items: center;
+                gap: 4px;
                 margin-right: 20px;
+
+                .resource-manager {
+                    transition: all 0.1s ease;
+
+                    &.inverted {
+                        transform: rotate(180deg);
+                    }
+                }
             }
 
             .downtime-section {

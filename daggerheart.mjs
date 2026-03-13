@@ -233,6 +233,11 @@ Hooks.once('init', () => {
     return handlebarsRegistration();
 });
 
+Hooks.on('i18nInit', () => {
+    // Setup homebrew resources
+    game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).refreshConfig();
+});
+
 Hooks.on('setup', () => {
     CONFIG.statusEffects = [
         ...CONFIG.statusEffects.filter(x => !['dead', 'unconscious'].includes(x.id)),

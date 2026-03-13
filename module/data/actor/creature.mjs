@@ -1,3 +1,4 @@
+import { ResourcesField } from '../fields/actorField.mjs';
 import BaseDataActor from './base.mjs';
 
 export default class DhCreature extends BaseDataActor {
@@ -7,6 +8,7 @@ export default class DhCreature extends BaseDataActor {
 
         return {
             ...super.defineSchema(),
+            resources: new ResourcesField(this.metadata.type),
             advantageSources: new fields.ArrayField(new fields.StringField(), {
                 label: 'DAGGERHEART.ACTORS.Character.advantageSources.label',
                 hint: 'DAGGERHEART.ACTORS.Character.advantageSources.hint'
