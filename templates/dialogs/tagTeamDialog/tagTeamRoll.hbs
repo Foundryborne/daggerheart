@@ -93,13 +93,38 @@
                 </fieldset>
             {{/each}}
         </div>
+
+        <div class="results-container">
+            <span class="result-container-label">{{localize "DAGGERHEART.GENERAL.result.plural"}}</span>
+            <div class="results-inner-container">
+                {{#if hintText}}
+                    <div class="hint">{{localize hintText}}</div>
+                {{else}}
+                    {{#if joinedRoll.rollData}}
+                        <div class="result-container">
+                            <span class="result-section-label">{{localize "DAGGERHEART.GENERAL.dualityRoll"}}</span>
+                            <div class="result-info">
+                                <div>{{localize "DAGGERHEART.GENERAL.withThing" thing=joinedRoll.rollData.options.roll.result.label}}</div>
+                                <div class="damage-info">{{joinedRoll.rollData.options.roll.total}}</div>
+                            </div>
+                        </div>
+                    {{/if}}
+                    {{#if hasDamage}}
+                        <div class="result-container">
+                            <span class="result-section-label">{{localize "DAGGERHEART.GENERAL.damage"}}</span>
+                            {{#each joinedRoll.rollData.options.damage as |damage key|}}
+                                <div class="result-info">
+                                    <div>{{localize (concat "DAGGERHEART.CONFIG.HealingType." key ".name")}}</div>
+                                    <div class="damage-info">{{damage.total}}</div>
+                                </div>
+                            {{/each}}
+                        </div>
+                    {{/if}}
+                {{/if}}
+            </div>
+        </div>
+
         <div class="finish-container">
-            {{#if joinedRoll}}
-                {{#each joinedRoll.rollData.options.damage as |damage key|}}
-                    <div class="damage-info">{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.hints.totalDamage" damage=damage.total}}</div>
-                {{/each}}
-            {{/if}}
-            <div class="hint">{{localize hintText}}</div>
             <button type="button" data-action="finishRoll" {{#if hintText}}disabled{{/if}}>{{localize "Finish Tagteam Roll"}}</button>
         </div>
     </div>

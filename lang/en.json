@@ -687,8 +687,7 @@
                 "chatMessageRollTitle": "Roll",
                 "hints": {
                     "completeRolls": "Set up and complete the rolls for the characters",
-                    "selectRoll": "Select which roll value to be used for the Tagteam",
-                    "totalDamage": "Total Damage: {damage}"
+                    "selectRoll": "Select which roll value to be used for the Tagteam"
                 }
             },
             "TokenConfig": {
@@ -2328,6 +2327,10 @@
             "rerolled": "Rerolled",
             "rerollThing": "Reroll {thing}",
             "resource": "Resource",
+            "result": {
+                "single": "Result",
+                "plural": "Results"
+            },
             "roll": "Roll",
             "rollAll": "Roll All",
             "rollDamage": "Roll Damage",

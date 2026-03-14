@@ -159,19 +159,53 @@
             }
         }
 
+        .results-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            border: 2px solid light-dark(@dark-blue, @golden);
+            border-radius: 6px;
+            padding: 8px 10px;
+
+            .result-container-label {
+                font-size: var(--font-size-24);
+                font-weight: bold;
+            }
+
+            .results-inner-container {
+                display: flex;
+                justify-content: space-between;
+                gap: 8px;
+                width: 100%;
+
+                .result-section-label {
+                    font-size: var(--font-size-20);
+                }
+
+                .hint {
+                    text-align: center;
+                }
+
+                .result-container {
+                    width: 100%;
+                    text-align: center;
+
+                    .result-info {
+                        display: flex;
+                        gap: 8px;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+            }
+        }
+
         .finish-container {
             display: flex;
             flex-direction: column;
             gap: 16px;
             text-align: center;
-
-            .damage-info {
-                font-size: var(--font-size-20);
-            }
-
-            .hint {
-                height: 18px;
-            }
 
             button {
                 flex: 1;

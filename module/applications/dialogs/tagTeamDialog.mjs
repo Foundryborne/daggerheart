@@ -115,6 +115,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                     }, []);
 
                     const damage = data.rollData?.options?.damage;
+                    partContext.hasDamage |= Boolean(damage);
                     const critHitPointsDamage = await this.getCriticalDamage(damage);
 
                     partContext.members[actorId] = {
