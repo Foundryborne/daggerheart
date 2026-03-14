@@ -8,7 +8,7 @@ export default class TagTeamData extends foundry.abstract.DataModel {
     }
 }
 
-class MemberData extends foundry.abstract.DataModel {
+export class MemberData extends foundry.abstract.DataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
 

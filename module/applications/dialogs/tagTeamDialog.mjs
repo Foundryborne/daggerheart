@@ -1,3 +1,4 @@
+import { MemberData } from '../../data/tagTeamData.mjs';
 import { getCritDamageBonus } from '../../helpers/utils.mjs';
 import Party from '../sheets/actors/party.mjs';
 
@@ -90,7 +91,9 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
                 const selectedRoll = Object.values(this.party.system.tagTeam.members).find(member => member.selected);
                 const critSelected = !selectedRoll ? undefined : (selectedRoll?.rollData?.options?.isCritical ?? false);
-                partContext.members = Object.keys(this.party.system.tagTeam.members).reduce((acc, actorId) => {
+
+                partContext.members = {};
+                for (const actorId in this.party.system.tagTeam.members) {
                     const data = this.party.system.tagTeam.members[actorId];
                     const actor = game.actors.get(actorId);
                     const rollOptions = actor.items.reduce((acc, item) => {
@@ -111,26 +114,27 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                         return acc;
                     }, []);
 
-                    const hitPointsDamage = data.rollData?.options?.damage?.hitPoints;
-                    const preCritHitPointsDamage = data.rollData?.options?.damage?.hitPoints?.preCritData?.hitPoints;
+                    const damage = data.rollData?.options?.damage;
+                    const critHitPointsDamage = await this.getCriticalDamage(damage);
 
-                    acc[actorId] = {
+                    partContext.members[actorId] = {
                         ...data,
                         key: actorId,
                         readyToRoll: Boolean(data.rollChoice),
                         hasRolled: Boolean(data.rollData),
                         rollOptions,
-                        damage: hitPointsDamage,
-                        preCritDamage: preCritHitPointsDamage,
-                        useCritFallback: selectedRoll !== data && critSelected === false
+                        damage: damage,
+                        critDamage: critHitPointsDamage,
+                        useCritDamage:
+                            critSelected || (critSelected === undefined && data.rollData?.options?.isCritical)
                     };
+                }
 
-                    return acc;
-                }, {});
-
-                const { hint, totalDamage } = await this.getInfoTexts(this.party.system.tagTeam.members, critSelected);
-                partContext.hintText = hint;
-                partContext.totalDamage = totalDamage;
+                partContext.hintText = await this.getInfoTexts(this.party.system.tagTeam.members);
+                partContext.joinedRoll = await this.getJoinedRoll({
+                    overrideIsCritical: critSelected,
+                    displayVersion: true
+                });
 
                 break;
         }
@@ -174,26 +178,13 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
     //#endregion
     //#region Tag Team Roll
 
-    async getInfoTexts(members, critSelected) {
+    async getInfoTexts(members) {
         let rollsAreFinished = true;
         let rollIsSelected = false;
-        let totalDamage = null;
         for (const member of Object.values(members)) {
             const rollFinished = Boolean(member.rollData);
-
-            const hasDamage = member.rollData?.options?.hasDamage;
             const damageFinished =
                 member.rollData?.options?.hasDamage !== undefined ? member.rollData.options.damage : true;
-
-            let hitPointDamage =
-                critSelected === false && member.rollData?.options?.isCritical
-                    ? member.rollData.options.damage?.hitPoints?.preCritData?.hitPoints?.total
-                    : member.rollData?.options?.damage?.hitPoints?.total;
-            if (critSelected && member.rollData?.options?.isCritical === false) {
-                hitPointDamage += await getCritDamageBonus(member.rollData.options.damage?.hitPoints?.formula ?? '');
-            }
-
-            if (hasDamage) totalDamage = (totalDamage ?? 0) + (hitPointDamage ?? 0);
 
             rollsAreFinished = rollsAreFinished && rollFinished && damageFinished;
             rollIsSelected = rollIsSelected || member.selected;
@@ -203,7 +194,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         if (!rollsAreFinished) hint = game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.hints.completeRolls');
         else if (!rollIsSelected) hint = game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.hints.selectRoll');
 
-        return { hint, totalDamage };
+        return hint;
     }
 
     async updateRollType(event) {
@@ -315,7 +306,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         const memberData = this.party.system.tagTeam.members[memberKey];
         const action = await foundry.utils.fromUuid(memberData.rollChoice);
         const config = {
-            source: {},
+            ...memberData.rollData.options,
             skips: {
                 createMessage: true,
                 resources: true,
@@ -326,16 +317,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         await action.workflow.get('damage').execute(config, null, true);
         if (!config.damage) return;
 
-        if (memberData.rollData.options.isCritical && config.damage.hitPoints) {
-            const critBonus = await getCritDamageBonus(config.damage.hitPoints.formula);
-            if (critBonus) {
-                config.damage.hitPoints.preCritData = foundry.utils.deepClone(config.damage);
-                config.damage.hitPoints.total += critBonus;
-                config.damage.hitPoints.formula = `${config.damage.hitPoints.formula} + ${critBonus}`;
-                config.damage.hitPoints.parts[0].total += critBonus;
-                config.damage.hitPoints.parts[0].formula = `${config.damage.hitPoints.parts[0].formula} + ${critBonus}`;
-            }
-        }
+        const damage = config.isCritical ? await this.getNonCriticalDamage(config, actor) : config.damage;
 
         const current = this.party.system.tagTeam.members[memberKey].rollData;
         await this.party.update({
@@ -343,7 +325,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 ...current,
                 options: {
                     ...current.options,
-                    damage: config.damage
+                    damage: damage
                 }
             }
         });
@@ -367,6 +349,52 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         this.render();
     }
 
+    async getCriticalDamage(damage) {
+        const newDamage = foundry.utils.deepClone(damage);
+        for (let key in newDamage) {
+            var damage = newDamage[key];
+            damage.formula = '';
+            damage.total = 0;
+
+            for (let part of damage.parts) {
+                const criticalDamage = await getCritDamageBonus(part.formula);
+                if (criticalDamage) {
+                    part.modifierTotal += criticalDamage;
+                    part.total += criticalDamage;
+                    part.formula = `${part.dice.map(x => x.formula).join(' + ')} + ${part.modifierTotal}`;
+                    part.roll = new Roll(part.formula);
+                }
+
+                damage.formula = [damage.formula, part.formula].filter(x => x).join(' + ');
+                damage.total += part.total;
+            }
+        }
+
+        return newDamage;
+    }
+
+    async getNonCriticalDamage(config) {
+        const newDamage = foundry.utils.deepClone(config.damage);
+        for (let key in newDamage) {
+            var damage = newDamage[key];
+            damage.formula = '';
+            damage.total = 0;
+
+            for (let part of damage.parts) {
+                const critDamageBonus = await getCritDamageBonus(part.formula);
+                part.modifierTotal -= critDamageBonus;
+                part.total -= critDamageBonus;
+                part.formula = `${part.dice.map(x => x.formula).join(' + ')} + ${part.modifierTotal}`;
+                part.roll = new Roll(part.formula);
+
+                damage.formula = [damage.formula, part.formula].filter(x => x).join(' + ');
+                damage.total += part.total;
+            }
+        }
+
+        return newDamage;
+    }
+
     static async #selectRoll(_, button) {
         const { memberKey } = button.dataset;
         await this.party.update({
@@ -381,6 +409,41 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         this.render();
     }
 
+    async getJoinedRoll({ overrideIsCritical, displayVersion } = {}) {
+        const memberValues = Object.values(this.party.system.tagTeam.members);
+        const selectedRoll = memberValues.find(x => x.selected);
+        let baseMainRoll = selectedRoll ?? memberValues[0];
+        let baseSecondaryRoll = selectedRoll
+            ? memberValues.find(x => !x.selected)
+            : memberValues.length > 1
+              ? memberValues[1]
+              : null;
+
+        if (!baseMainRoll && !baseSecondaryRoll) return null;
+
+        const mainRoll = new MemberData(baseMainRoll.toObject());
+        const secondaryRollData = new MemberData(baseSecondaryRoll.toObject()).rollData;
+        const systemData = mainRoll.rollData.options;
+        const isCritical = overrideIsCritical ?? systemData.roll.isCritical;
+        if (isCritical) systemData.damage = await this.getCriticalDamage(systemData.damage);
+
+        if (secondaryRollData?.options.hasDamage && systemData.hasDamage) {
+            const secondaryDamage = (displayVersion ? overrideIsCritical : isCritical)
+                ? await this.getCriticalDamage(secondaryRollData.options.damage)
+                : secondaryRollData.options.damage;
+            for (const key in secondaryDamage) {
+                const damage = secondaryDamage[key];
+                systemData.damage[key].formula = [systemData.damage[key].formula, damage.formula]
+                    .filter(x => x)
+                    .join(' + ');
+                systemData.damage[key].total += damage.total;
+                systemData.damage[key].parts.push(...damage.parts);
+            }
+        }
+
+        return mainRoll;
+    }
+
     static async #finishRoll() {
         // const mainRollId = Object.keys(this.data.members).find(key => this.data.members[key].selected);
         // const mainRoll = game.messages.get(this.data.members[mainRollId].messageId);
@@ -393,65 +456,17 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         //         );
         //     }
         // }
-        let mainRoll = null;
-        let secondaryRoll = null;
-        for (const member of Object.values(this.party.system.tagTeam.members)) {
-            if (member.selected) mainRoll = foundry.utils.deepClone(member.rollData);
-            else secondaryRoll = foundry.utils.deepClone(member.rollData);
-        }
-
-        if (!mainRoll || !secondaryRoll) return;
-
-        const systemData = mainRoll.options;
-
-        const criticalRoll = systemData.roll.isCritical;
-
-        if (secondaryRoll.options.hasDamage && systemData.hasDamage) {
-            for (let key in secondaryRoll.options.damage) {
-                var damage = secondaryRoll.options.damage[key];
-                const damageTotal =
-                    !secondaryRoll.options.isCritical && criticalRoll
-                        ? (await getCritDamageBonus(damage.formula)) + damage.total
-                        : damage.total;
-                const updatedDamageParts = damage.parts;
-                if (systemData.damage[key]) {
-                    if (!secondaryRoll.options.isCritical && criticalRoll) {
-                        for (let part of updatedDamageParts) {
-                            const criticalDamage = await getCritDamageBonus(part.formula);
-                            if (criticalDamage) {
-                                damage.formula = `${damage.formula} + ${criticalDamage}`;
-                                part.formula = `${part.formula} + ${criticalDamage}`;
-                                part.modifierTotal = part.modifierTotal + criticalDamage;
-                                part.total += criticalDamage;
-                                part.roll = new Roll(part.formula);
-                            }
-                        }
-                    } else if (
-                        secondaryRoll.options.isCritical &&
-                        !criticalRoll &&
-                        secondaryRoll.options.damage.hitPoints.preCritData
-                    ) {
-                        damage = secondaryRoll.options.damage.hitPoints.preCritData[key];
-                    }
-
-                    systemData.damage[key].formula = `${systemData.damage[key].formula} + ${damage.formula}`;
-                    systemData.damage[key].total += damageTotal;
-                    systemData.damage[key].parts = [...systemData.damage[key].parts, ...updatedDamageParts];
-                } else {
-                    systemData.damage[key] = { ...damage, total: damageTotal, parts: updatedDamageParts };
-                }
-            }
-        }
+        const mainRoll = (await this.getJoinedRoll()).rollData;
 
         const mainActor = this.party.system.partyMembers.find(x => x.uuid === mainRoll.options.source.actor);
-        systemData.title = game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.chatMessageRollTitle');
+        mainRoll.options.title = game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.chatMessageRollTitle');
         const cls = getDocumentClass('ChatMessage'),
             msgData = {
                 type: 'dualityRoll',
                 user: game.user.id,
                 title: game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.title'),
                 speaker: cls.getSpeaker({ actor: mainActor }),
-                system: systemData,
+                system: mainRoll.options,
                 rolls: [mainRoll],
                 sound: null,
                 flags: { core: { RollTable: true } }

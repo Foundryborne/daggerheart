@@ -49,9 +49,7 @@
 
                         {{#if member.rollData}}
                             {{#with member.rollData.options.roll}}
-                                <div class="roll-data 
-                                    {{#if this.isCritical}}critical{{else}}{{#if (eq this.result.duality 1)}}hope{{else}}fear{{/if}}{{/if}}"
-                                >
+                                <div class="roll-data {{#if this.isCritical}}critical{{else}}{{#if (eq this.result.duality 1)}}hope{{else}}fear{{/if}}{{/if}}">
                                     <div class="duality-label">{{this.total}} {{localize "DAGGERHEART.GENERAL.withThing" thing=this.result.label}}</div>
                                     <div class="roll-dice-container">
                                         <a class="roll-dice" data-action="rerollDice" data-member="{{../key}}" data-dice-type="hope">
@@ -78,17 +76,15 @@
                                 <a class="delete-button" data-action="removeDamageRoll" data-member-key="{{key}}" {{#unless member.rollData.options.damage}}disabled{{/unless}}><i class="fa-solid fa-trash"></i></a>
                             </div>
                         {{/if}}
-
-                        {{#if damage}}
-                            <div class="roll-data">
+                        {{#each damage as |damage key|}}
+                            <div class="roll-data {{#if ../useCritDamage}}critical{{/if}}">
                                 <div class="duality-label">
                                     {{localize "DAGGERHEART.GENERAL.damage"}} 
-                                    <span class="{{#if useCritFallback}}unused-damage{{/if}}">{{damage.total}}</span>
-                                    {{#if useCritFallback}}<span>{{preCritDamage.total}}</span>{{/if}}
+                                    <span>{{#if ../useCritDamage}}{{lookup (lookup ../critDamage key) 'total'}}{{else}}{{damage.total}}{{/if}}</span>
                                 </div>
-                                <div class="roll-total">{{damage.formula}}</div>
+                                <div class="roll-total">{{#if ../useCritDamage}}{{lookup (lookup ../critDamage key) 'formula'}}{{else}}{{damage.formula}}{{/if}}</div>
                             </div>
-                        {{/if}}
+                        {{/each}}
                     </div>
 
                     <a class="select-roll-button" data-action="selectRoll" data-member-key="{{key}}">
@@ -98,7 +94,11 @@
             {{/each}}
         </div>
         <div class="finish-container">
-            {{#if totalDamage includeZero=true}}<div class="damage-info">{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.hints.totalDamage" damage=totalDamage}}</div>{{/if}}
+            {{#if joinedRoll}}
+                {{#each joinedRoll.rollData.options.damage as |damage key|}}
+                    <div class="damage-info">{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.hints.totalDamage" damage=damage.total}}</div>
+                {{/each}}
+            {{/if}}
             <div class="hint">{{localize hintText}}</div>
             <button type="button" data-action="finishRoll" {{#if hintText}}disabled{{/if}}>{{localize "Finish Tagteam Roll"}}</button>
         </div>
