@@ -11,7 +11,7 @@
                         <div class="roll-setup">
                             <div class="form-group">
                                 <div class="form-fields">
-                                    <label>{{localize "Roll Type"}}</label>
+                                    <label>{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.rollType"}}</label>
                                     <select class="roll-type-select" data-member="{{key}}" {{#if member.hasRolled}}disabled{{/if}}>
                                         {{selectOptions ../rollTypes selected=member.rollType localize=true}}
                                     </select>
@@ -21,7 +21,7 @@
                             {{#if (eq member.rollType 'trait')}}
                                 <div class="form-group">
                                     <div class="form-fields">
-                                        <label>{{localize "Trait"}}</label>
+                                        <label>{{localize "DAGGERHEART.GENERAL.Trait.single"}}</label>
                                         <select name="{{concat "system.tagTeam.members." key ".rollChoice"}}" {{#if member.hasRolled}}disabled{{/if}}>
                                             {{selectOptions ../traitOptions selected=member.rollChoice localize=true blank=""}}
                                         </select>
@@ -30,7 +30,7 @@
                             {{else if (eq member.rollType 'abilityDamage')}}
                                 <div class="form-group">
                                     <div class="form-fields">
-                                        <label>{{localize "Damage Ability"}}</label>
+                                        <label>{{localize "DAGGERHEART.CONFIG.TagTeamRollTypes.damageAbility"}}</label>
                                         <select name="{{concat "system.tagTeam.members." key ".rollChoice"}}" {{#if member.hasRolled}}disabled{{/if}}>
                                             {{selectOptions member.damageRollOptions selected=member.rollChoice localize=true blank=""}}
                                         </select>
@@ -39,7 +39,7 @@
                             {{else}}
                                 <div class="form-group">
                                     <div class="form-fields">
-                                        <label>{{localize "Ability"}}</label>
+                                        <label>{{localize "DAGGERHEART.GENERAL.Ability.single"}}</label>
                                         <select name="{{concat "system.tagTeam.members." key ".rollChoice"}}" {{#if member.hasRolled}}disabled{{/if}}>
                                             {{selectOptions member.rollOptions selected=member.rollChoice localize=true blank=""}}
                                         </select>
@@ -85,7 +85,7 @@
                                         </div>
                                     {{/with}}
                                 {{else}}
-                                    <span class="hint">{{localize "Make your roll"}}</span>
+                                    <span class="hint">{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.makeYourRoll"}}</span>
                                 {{/if}}
                             </div>
                         {{/if}}
@@ -133,7 +133,7 @@
                                         </div>
                                     {{/each}}
                                 {{else}}
-                                    <span class="hint">{{localize "Make your roll"}}</span>
+                                    <span class="hint">{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.makeYourRoll"}}</span>
                                 {{/if}}
                             </div>
                         {{/if}}
@@ -179,8 +179,8 @@
         </div>
 
         <div class="finish-container">
-            <button type="button" data-action="cancelRoll">{{localize "Cancel TagTeam Roll"}}</button>
-            <button type="button" data-action="finishRoll" {{#if hintText}}disabled{{/if}} class="finish-button">{{localize "Finish Tagteam Roll"}}</button>
+            <button type="button" data-action="cancelRoll">{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.cancelTagTeamRoll"}}</button>
+            <button type="button" data-action="finishRoll" {{#if hintText}}disabled{{/if}} class="finish-button">{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.finishTagTeamRoll"}}</button>
         </div>
     </div>
 </section>

@@ -5,8 +5,15 @@ export default class TagTeamData extends foundry.abstract.DataModel {
         return {
             initiator: new fields.SchemaField(
                 {
-                    memberId: new fields.StringField({ required: true, label: 'Initiating Character' }),
-                    cost: new fields.NumberField({ integer: true, initial: 3, label: 'Initiation Cost' })
+                    memberId: new fields.StringField({
+                        required: true,
+                        label: 'DAGGERHEART.APPLICATIONS.TagTeamSelect.FIELDS.initiator.memberId.label'
+                    }),
+                    cost: new fields.NumberField({
+                        integer: true,
+                        initial: 3,
+                        label: 'DAGGERHEART.APPLICATIONS.TagTeamSelect.FIELDS.initiator.cost.label'
+                    })
                 },
                 { nullable: true, initial: null }
             ),
