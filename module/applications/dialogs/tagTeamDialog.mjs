@@ -108,7 +108,9 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 partContext.traitOptions = CONFIG.DH.ACTOR.abilities;
 
                 const selectedRoll = Object.values(this.party.system.tagTeam.members).find(member => member.selected);
-                const critSelected = !selectedRoll ? undefined : (selectedRoll?.rollData?.options?.isCritical ?? false);
+                const critSelected = !selectedRoll
+                    ? undefined
+                    : (selectedRoll?.rollData?.options?.roll?.isCritical ?? false);
 
                 partContext.members = {};
                 for (const actorId in this.party.system.tagTeam.members) {
@@ -153,7 +155,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                         damage: damage,
                         critDamage: critHitPointsDamage,
                         useCritDamage:
-                            critSelected || (critSelected === undefined && data.rollData?.options?.isCritical)
+                            critSelected || (critSelected === undefined && data.rollData?.options?.roll?.isCritical)
                     };
                 }
 
@@ -390,7 +392,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         });
     }
 
-    static async #makeDamageRoll(_, button) {
+    static async #makeDamageRoll(event, button) {
         const { memberKey } = button.dataset;
         const actor = game.actors.find(x => x.id === memberKey);
         if (!actor) return;
@@ -399,6 +401,9 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         const action = await foundry.utils.fromUuid(memberData.rollChoice);
         const config = {
             ...memberData.rollData.options,
+            dialog: {
+                configure: !event.shiftKey
+            },
             skips: {
                 createMessage: true,
                 resources: true,
@@ -409,7 +414,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         await action.workflow.get('damage').execute(config, null, true);
         if (!config.damage) return;
 
-        const damage = config.isCritical ? await this.getNonCriticalDamage(config, actor) : config.damage;
+        // const damage = config.roll.isCritical ? await this.getNonCriticalDamage(config, actor) : config.damage;
 
         const current = this.party.system.tagTeam.members[memberKey].rollData;
         await this.updatePartyData({
@@ -417,7 +422,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 ...current,
                 options: {
                     ...current.options,
-                    damage: damage
+                    damage: config.damage
                 }
             }
         });

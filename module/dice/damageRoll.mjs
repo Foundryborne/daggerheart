@@ -1,6 +1,5 @@
 import DamageDialog from '../applications/dialogs/damageDialog.mjs';
 import { parseRallyDice } from '../helpers/utils.mjs';
-import { RefreshType, socketEvent } from '../systemRegistration/socket.mjs';
 import DHRoll from './dhRoll.mjs';
 
 export default class DamageRoll extends DHRoll {
