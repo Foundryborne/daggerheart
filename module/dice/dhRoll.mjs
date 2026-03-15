@@ -33,12 +33,6 @@ export default class DHRoll extends Roll {
         config.hooks = [...this.getHooks(), ''];
         config.dialog ??= {};
 
-        const actorIdSplit = config.source?.actor?.split('.');
-        if (actorIdSplit) {
-            const tagTeamSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
-            config.tagTeamSelected = Boolean(tagTeamSettings.members[actorIdSplit[actorIdSplit.length - 1]]);
-        }
-
         for (const hook of config.hooks) {
             if (Hooks.call(`${CONFIG.DH.id}.preRoll${hook.capitalize()}`, config, message) === false) return null;
         }

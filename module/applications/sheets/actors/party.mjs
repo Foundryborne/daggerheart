@@ -35,9 +35,7 @@ export default class Party extends DHBaseActorSheet {
             refeshActions: Party.#refeshActions,
             triggerRest: Party.#triggerRest,
             tagTeamRoll: Party.#tagTeamRoll,
-            groupRoll: Party.#groupRoll,
-            selectRefreshable: DaggerheartMenu.selectRefreshable,
-            refreshActors: DaggerheartMenu.refreshActors
+            groupRoll: Party.#groupRoll
         },
         dragDrop: [{ dragSelector: '[data-item-id]', dropSelector: null }]
     };

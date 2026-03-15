@@ -214,14 +214,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 'system.roll': newRoll,
                 'rolls': [parsedRoll]
             });
-
-            Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.TagTeamRoll });
-            await game.socket.emit(`system.${CONFIG.DH.id}`, {
-                action: socketEvent.Refresh,
-                data: {
-                    refreshType: RefreshType.TagTeamRoll
-                }
-            });
         }
     }
 

@@ -8,7 +8,7 @@ import {
     DhMetagamingSettings,
     DhVariantRuleSettings
 } from '../applications/settings/_module.mjs';
-import { CompendiumBrowserSettings, DhTagTeamRoll } from '../data/_module.mjs';
+import { CompendiumBrowserSettings } from '../data/_module.mjs';
 
 export const registerDHSettings = () => {
     registerMenuSettings();
@@ -147,12 +147,6 @@ const registerNonConfigSettings = () => {
         scope: 'world',
         config: false,
         type: DhCountdowns
-    });
-
-    game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll, {
-        scope: 'world',
-        config: false,
-        type: DhTagTeamRoll
     });
 
     game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.CompendiumBrowserSettings, {

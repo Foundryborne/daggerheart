@@ -1,6 +1,5 @@
 export { default as DhCombat } from './combat.mjs';
 export { default as DhCombatant } from './combatant.mjs';
-export { default as DhTagTeamRoll } from './tagTeamRoll.mjs';
 export { default as DhRollTable } from './rollTable.mjs';
 export { default as RegisteredTriggers } from './registeredTriggers.mjs';
 export { default as CompendiumBrowserSettings } from './compendiumBrowserSettings.mjs';

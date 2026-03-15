@@ -369,13 +369,5 @@ export default class DamageRoll extends DHRoll {
                 parts: damageParts
             }
         });
-
-        Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.TagTeamRoll });
-        await game.socket.emit(`system.${CONFIG.DH.id}`, {
-            action: socketEvent.Refresh,
-            data: {
-                refreshType: RefreshType.TagTeamRoll
-            }
-        });
     }
 }

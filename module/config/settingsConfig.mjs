@@ -33,7 +33,6 @@ export const gameSettings = {
     LevelTiers: 'LevelTiers',
     Countdowns: 'Countdowns',
     LastMigrationVersion: 'LastMigrationVersion',
-    TagTeamRoll: 'TagTeamRoll',
     SpotlightRequestQueue: 'SpotlightRequestQueue',
     CompendiumBrowserSettings: 'CompendiumBrowserSettings'
 };

@@ -177,14 +177,6 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             config.effects = await game.system.api.data.actions.actionsTypes.base.getEffects(actor, item);
             await this.system.action.workflow.get('damage')?.execute(config, this._id, true);
         }
-
-        Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.TagTeamRoll });
-        await game.socket.emit(`system.${CONFIG.DH.id}`, {
-            action: socketEvent.Refresh,
-            data: {
-                refreshType: RefreshType.TagTeamRoll
-            }
-        });
     }
 
     async onApplyDamage(event) {

@@ -35,7 +35,6 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             updateIsAdvantage: this.updateIsAdvantage,
             selectExperience: this.selectExperience,
             toggleReaction: this.toggleReaction,
-            toggleTagTeamRoll: this.toggleTagTeamRoll,
             toggleSelectedEffect: this.toggleSelectedEffect,
             submitRoll: this.submitRoll
         },
@@ -133,12 +132,6 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             context.reactionOverride = this.reactionOverride;
         }
 
-        const tagTeamSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
-        if (this.actor && tagTeamSetting.members[this.actor.id] && !this.config.skips?.createMessage) {
-            context.activeTagTeamRoll = true;
-            context.tagTeamSelected = this.config.tagTeamSelected;
-        }
-
         return context;
     }
 
@@ -213,11 +206,6 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
                   : this.config.actionType;
             this.render();
         }
-    }
-
-    static toggleTagTeamRoll() {
-        this.config.tagTeamSelected = !this.config.tagTeamSelected;
-        this.render();
     }
 
     static toggleSelectedEffect(_event, button) {
