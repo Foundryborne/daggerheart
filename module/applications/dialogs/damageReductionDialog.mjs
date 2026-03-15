@@ -10,8 +10,8 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         this.reject = reject;
         this.actor = actor;
         this.damage = damage;
-        // this.damageType = damageType;
-        this.damageType = ['physical'];
+
+        this.damageType = damageType;
         this.rulesDefault = game.settings.get(
             CONFIG.DH.id,
             CONFIG.DH.SETTINGS.gameSettings.Automation
@@ -340,9 +340,8 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         const { selectedStressMarks, stressReductions, currentDamage } = this.getDamageInfo();
         const armorChanges = this.marks.armor.reduce((acc, source) => {
             const amount = Object.values(source.marks).filter(x => x.selected).length;
-            if (!amount) return acc;
+            if (amount) acc.push({ uuid: source.effect.uuid, amount });
 
-            acc.push({ uuid: source.effect.uuid, amount });
             return acc;
         }, []);
         const stressSpent =

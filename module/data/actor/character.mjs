@@ -527,7 +527,7 @@ export default class DhCharacter extends DhCreature {
 
         const updateValues = Object.values(embeddedUpdates);
         for (const [index, { doc, updates }] of updateValues.entries())
-            doc.updateEmbeddedDocuments('ActiveEffect', updates, { render: index === updateValues.length - 1 });
+            await doc.updateEmbeddedDocuments('ActiveEffect', updates, { render: index === updateValues.length - 1 });
     }
 
     async updateArmorEffectValue({ uuid, value }) {
