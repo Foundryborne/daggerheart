@@ -46,7 +46,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             makeDamageRoll: TagTeamDialog.#makeDamageRoll,
             removeDamageRoll: TagTeamDialog.#removeDamageRoll,
             selectRoll: TagTeamDialog.#selectRoll,
-            cancelRoll: TagTeamDialog.#cancelRoll,
+            cancelRoll: TagTeamDialog.#onCancelRoll,
             finishRoll: TagTeamDialog.#finishRoll
         },
         form: { handler: this.updateData, submitOnChange: true, closeOnSubmit: false }
@@ -219,6 +219,17 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         return super.close(options);
     }
 
+    checkInitiatorHopeError(initiator) {
+        if (initiator.cost && initiator.memberId) {
+            const actor = game.actors.get(initiator.memberId);
+            if (actor.system.resources.hope.value < initiator.cost) {
+                return ui.notifications.warn(
+                    game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.insufficientHope')
+                );
+            }
+        }
+    }
+
     //#region Initialization
     static #toggleSelectMember(_, button) {
         const member = this.partyMembers.find(x => x.id === button.dataset.id);
@@ -229,6 +240,9 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
     }
 
     static async #startTagTeamRoll() {
+        const error = this.checkInitiatorHopeError(this.initiator);
+        if (error) return error;
+
         await this.party.update({
             'system.==tagTeam': new game.system.api.data.TagTeamData({
                 ...this.party.system.tagTeam.toObject(),
@@ -244,15 +258,6 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 }, {})
             })
         });
-
-        this.tabGroups.application = 'tagTeamRoll';
-
-        // if (this.openForAllplayers) {
-        //     game.socket.emit(`system.${CONFIG.DH.id}`, {
-        //         action: socketEvent.Refresh,
-        //         data: { refreshType: RefreshType.TagTeamRoll, action: 'startTagTeamRoll' }
-        //     });
-        // }
 
         const hookData = { openForAllPlayers: this.openForAllPlayers, partyId: this.party.id };
         Hooks.callAll(CONFIG.DH.HOOKS.hooksConfig.tagTeamStart, hookData);
@@ -527,15 +532,21 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         return mainRoll;
     }
 
-    static async #cancelRoll() {
-        const confirmed = await foundry.applications.api.DialogV2.confirm({
-            window: {
-                title: game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.cancelConfirmTitle')
-            },
-            content: game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.cancelConfirmText')
-        });
+    static async #onCancelRoll(options = { confirm: true }) {
+        this.cancelRoll(options);
+    }
 
-        if (!confirmed) return;
+    async cancelRoll(options = { confirm: true }) {
+        if (options.confirm) {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.cancelConfirmTitle')
+                },
+                content: game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.cancelConfirmText')
+            });
+
+            if (!confirmed) return;
+        }
 
         await this.updatePartyData(
             {
@@ -555,17 +566,9 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
     }
 
     static async #finishRoll() {
-        // const mainRollId = Object.keys(this.data.members).find(key => this.data.members[key].selected);
-        // const mainRoll = game.messages.get(this.data.members[mainRollId].messageId);
+        const error = this.checkInitiatorHopeError(this.party.system.tagTeam.initiator);
+        if (error) return error;
 
-        // if (this.data.initiator.cost) {
-        //     const initiator = this.party.find(x => x.id === this.data.initiator.id);
-        //     if (initiator.system.resources.hope.value < this.data.initiator.cost) {
-        //         return ui.notifications.warn(
-        //             game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.insufficientHope')
-        //         );
-        //     }
-        // }
         const mainRoll = (await this.getJoinedRoll()).rollData;
 
         const mainActor = this.party.system.partyMembers.find(x => x.uuid === mainRoll.options.source.actor);
@@ -584,34 +587,38 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         await cls.create(msgData);
 
-        // const fearUpdate = { key: 'fear', value: null, total: null, enabled: true };
-        // for (let memberId of Object.keys(this.data.members)) {
-        //     const resourceUpdates = [];
-        //     const rollGivesHope = systemData.roll.isCritical || systemData.roll.result.duality === 1;
-        //     if (memberId === this.data.initiator.id) {
-        //         const value = this.data.initiator.cost
-        //             ? rollGivesHope
-        //                 ? 1 - this.data.initiator.cost
-        //                 : -this.data.initiator.cost
-        //             : 1;
-        //         resourceUpdates.push({ key: 'hope', value: value, total: -value, enabled: true });
-        //     } else if (rollGivesHope) {
-        //         resourceUpdates.push({ key: 'hope', value: 1, total: -1, enabled: true });
-        //     }
-        //     if (systemData.roll.isCritical) resourceUpdates.push({ key: 'stress', value: -1, total: 1, enabled: true });
-        //     if (systemData.roll.result.duality === -1) {
-        //         fearUpdate.value = fearUpdate.value === null ? 1 : fearUpdate.value + 1;
-        //         fearUpdate.total = fearUpdate.total === null ? -1 : fearUpdate.total - 1;
-        //     }
+        /* Handle resource updates from the finished TagTeamRoll */
+        const tagTeamData = this.party.system.tagTeam;
+        const fearUpdate = { key: 'fear', value: null, total: null, enabled: true };
+        for (let memberId in tagTeamData.members) {
+            const resourceUpdates = [];
+            const rollGivesHope = mainRoll.options.roll.isCritical || mainRoll.options.roll.result.duality === 1;
+            if (memberId === tagTeamData.initiator.memberId) {
+                const value = tagTeamData.initiator.cost
+                    ? rollGivesHope
+                        ? 1 - tagTeamData.initiator.cost
+                        : -tagTeamData.initiator.cost
+                    : 1;
+                resourceUpdates.push({ key: 'hope', value: value, total: -value, enabled: true });
+            } else if (rollGivesHope) {
+                resourceUpdates.push({ key: 'hope', value: 1, total: -1, enabled: true });
+            }
+            if (mainRoll.options.roll.isCritical)
+                resourceUpdates.push({ key: 'stress', value: -1, total: 1, enabled: true });
+            if (mainRoll.options.roll.result.duality === -1) {
+                fearUpdate.value = fearUpdate.value === null ? 1 : fearUpdate.value + 1;
+                fearUpdate.total = fearUpdate.total === null ? -1 : fearUpdate.total - 1;
+            }
 
-        //     this.party.find(x => x.id === memberId).modifyResource(resourceUpdates);
-        // }
+            game.actors.get(memberId).modifyResource(resourceUpdates);
+        }
 
-        // if (fearUpdate.value) {
-        //     this.party.find(x => x.id === mainRollId).modifyResource([fearUpdate]);
-        // }
+        if (fearUpdate.value) {
+            mainActor.modifyResource([fearUpdate]);
+        }
 
-        /* Clear Party tag Team Data here */
+        /* Fin */
+        this.cancelRoll({ confirm: false });
     }
 
     //#endregion

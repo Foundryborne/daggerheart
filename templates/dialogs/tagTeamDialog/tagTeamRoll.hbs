@@ -80,7 +80,7 @@
                                                     <img src="{{concat "systems/daggerheart/assets/icons/dice/fear/" this.fear.dice ".svg"}}" />
                                                 </a>
                                                 <span class="roll-operator">{{#if (gte this.modifierTotal 0)}}+{{else}}-{{/if}}</span>
-                                                <span class="roll-value">{{this.modifierTotal}}</span>
+                                                <span class="roll-value">{{positive this.modifierTotal}}</span>
                                             </div>
                                         </div>
                                     {{/with}}
@@ -126,7 +126,7 @@
                                                     {{/each}}
                                                     {{#if part.modifierTotal}}
                                                         <span class="roll-operator">{{#if (gte part.modifierTotal 0)}}+{{else}}-{{/if}}</span>
-                                                        <span class="roll-value">{{part.modifierTotal}}</span>
+                                                        <span class="roll-value">{{positive part.modifierTotal}}</span>
                                                     {{/if}}
                                                 </div>
                                             {{/each}}
