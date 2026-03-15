@@ -33,7 +33,7 @@
     "tier": 2,
     "equipped": false,
     "secondary": false,
-    "burden": "oneHanded",
+    "burden": "twoHanded",
     "weaponFeatures": [
       {
         "value": "brutal",
