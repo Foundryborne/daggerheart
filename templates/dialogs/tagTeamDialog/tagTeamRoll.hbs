@@ -27,6 +27,15 @@
                                         </select>
                                     </div>
                                 </div>
+                            {{else if (eq member.rollType 'abilityDamage')}}
+                                <div class="form-group">
+                                    <div class="form-fields">
+                                        <label>{{localize "Damage Ability"}}</label>
+                                        <select name="{{concat "system.tagTeam.members." key ".rollChoice"}}" {{#if member.hasRolled}}disabled{{/if}}>
+                                            {{selectOptions member.damageRollOptions selected=member.rollChoice localize=true blank=""}}
+                                        </select>
+                                    </div>
+                                </div>
                             {{else}}
                                 <div class="form-group">
                                     <div class="form-fields">

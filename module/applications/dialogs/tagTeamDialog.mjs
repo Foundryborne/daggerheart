@@ -97,23 +97,29 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 for (const actorId in this.party.system.tagTeam.members) {
                     const data = this.party.system.tagTeam.members[actorId];
                     const actor = game.actors.get(actorId);
-                    const rollOptions = actor.items.reduce((acc, item) => {
-                        if (item.system.metadata.hasActions)
-                            acc.push(
-                                ...item.system.actions.reduce((acc, action) => {
-                                    if (action.hasRoll)
-                                        acc.push({
-                                            value: action.uuid,
-                                            label: action.name,
-                                            group: item.name
-                                        });
 
-                                    return acc;
-                                }, [])
-                            );
-
-                        return acc;
-                    }, []);
+                    const rollOptions = [];
+                    const damageRollOptions = [];
+                    for (const item of actor.items) {
+                        if (item.system.metadata.hasActions) {
+                            const actions = [
+                                ...item.system.actions,
+                                ...(item.system.attack ? [item.system.attack] : [])
+                            ];
+                            for (const action of actions) {
+                                if (action.hasRoll) {
+                                    const actionItem = {
+                                        value: action.uuid,
+                                        label: action.name,
+                                        group: item.name,
+                                        baseAction: action.baseAction
+                                    };
+                                    rollOptions.push(actionItem);
+                                    if (action.hasDamage) damageRollOptions.push(actionItem);
+                                }
+                            }
+                        }
+                    }
 
                     const damage = data.rollData?.options?.damage;
                     partContext.hasDamage |= Boolean(damage);
@@ -125,6 +131,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                         readyToRoll: Boolean(data.rollChoice),
                         hasRolled: Boolean(data.rollData),
                         rollOptions,
+                        damageRollOptions,
                         damage: damage,
                         critDamage: critHitPointsDamage,
                         useCritDamage:
@@ -231,6 +238,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 result = await this.makeTraitRoll(member);
                 break;
             case CONFIG.DH.GENERAL.tagTeamRollTypes.ability.id:
+            case CONFIG.DH.GENERAL.tagTeamRollTypes.damageAbility.id:
                 result = await this.makeAbilityRoll(event, member);
                 break;
         }
@@ -430,17 +438,21 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         const isCritical = overrideIsCritical ?? systemData.roll.isCritical;
         if (isCritical) systemData.damage = await this.getCriticalDamage(systemData.damage);
 
-        if (secondaryRollData?.options.hasDamage && systemData.damage) {
+        if (secondaryRollData?.options.hasDamage) {
             const secondaryDamage = (displayVersion ? overrideIsCritical : isCritical)
                 ? await this.getCriticalDamage(secondaryRollData.options.damage)
                 : secondaryRollData.options.damage;
-            for (const key in secondaryDamage) {
-                const damage = secondaryDamage[key];
-                systemData.damage[key].formula = [systemData.damage[key].formula, damage.formula]
-                    .filter(x => x)
-                    .join(' + ');
-                systemData.damage[key].total += damage.total;
-                systemData.damage[key].parts.push(...damage.parts);
+            if (systemData.damage) {
+                for (const key in secondaryDamage) {
+                    const damage = secondaryDamage[key];
+                    systemData.damage[key].formula = [systemData.damage[key].formula, damage.formula]
+                        .filter(x => x)
+                        .join(' + ');
+                    systemData.damage[key].total += damage.total;
+                    systemData.damage[key].parts.push(...damage.parts);
+                }
+            } else {
+                systemData.damage = secondaryDamage;
             }
         }
 
