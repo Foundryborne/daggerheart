@@ -118,6 +118,7 @@ export default class Party extends DHBaseActorSheet {
             secrets: this.document.isOwner,
             relativeTo: this.document
         });
+        context.tagTeamActive = Boolean(this.document.system.tagTeam.initiator);
     }
 
     /**

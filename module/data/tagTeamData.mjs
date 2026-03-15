@@ -3,6 +3,13 @@ export default class TagTeamData extends foundry.abstract.DataModel {
         const fields = foundry.data.fields;
 
         return {
+            initiator: new fields.SchemaField(
+                {
+                    memberId: new fields.StringField({ required: true, label: 'Initiating Character' }),
+                    cost: new fields.NumberField({ integer: true, initial: 3, label: 'Initiation Cost' })
+                },
+                { nullable: true, initial: null }
+            ),
             members: new fields.TypedObjectField(new fields.EmbeddedDataField(MemberData))
         };
     }

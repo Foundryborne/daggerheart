@@ -2,14 +2,29 @@
     <h2>{{localize "Select the two participants"}}</h2>
     <div class="members-container">
         {{#each memberSelection as |member|}}
-            <a class="member-container {{#unless member.selected}}inactive {{#if ../allselected}}locked{{/if}}{{/unless}}" data-action="toggleSelectMember" data-id="{{member.id}}">
+            <a 
+                class="member-container {{#unless member.selected}}inactive {{#if ../allselected}}locked{{/if}}{{/unless}}" 
+                data-action="toggleSelectMember" data-id="{{member.id}}" {{#if (and (not member.selected) ../allSelected)}}disabled{{/if}}
+            >
                 <span class="member-name">{{member.name}}</span>
                 <img src="{{member.img}}" />
             </a>
-        {{/each}}
+        {{/each}} 
+    </div>
+
+    <div class="intiator-container {{#if initiatorDisabled}}inactive{{/if}}">
+        <div class="form-group">
+            <label>{{localize "Initiating Character"}}</label>
+            <div class="form-fields">
+                <select name="initiator.memberId" {{#if initiatorDisabled}}disabled{{/if}}>
+                    {{selectOptions initiatorOptions selected=initiator.memberId blank="" }}
+                </select>
+            </div>
+        </div>
+        {{formGroup tagTeamFields.initiator.fields.cost name="initiator.cost" value=initiator.cost disabled=initiatorDisabled localize=true }}
     </div>
 
     <footer>
-        <button type="button" data-action="startTagTeamRoll" {{#unless allSelected}}disabled{{/unless}}>{{localize "Start Tag Team Roll"}} <i class="fa-solid fa-arrow-right-long"></i></button>
+        <button type="button" data-action="startTagTeamRoll" {{#unless canStartTagTeam}}disabled{{/unless}}>{{localize "Start Tag Team Roll"}} <i class="fa-solid fa-arrow-right-long"></i></button>
     </footer>
 </section>

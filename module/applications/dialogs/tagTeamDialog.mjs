@@ -17,6 +17,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 id: member.id,
                 selected: false
             }));
+        this.intiator = null;
 
         this.tabGroups.application = Object.keys(party.system.tagTeam.members).length
             ? 'tagTeamRoll'
@@ -81,8 +82,16 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         const partContext = await super._preparePartContext(partId, context, options);
         switch (partId) {
             case 'initialization':
+                partContext.tagTeamFields = this.party.system.schema.fields.tagTeam.fields;
                 partContext.memberSelection = this.partyMembers;
-                partContext.allSelected = partContext.memberSelection.filter(x => x.selected).length >= 2;
+                const selectedMembers = partContext.memberSelection.filter(x => x.selected);
+
+                partContext.allSelected = selectedMembers.length === 2;
+                partContext.canStartTagTeam = partContext.allSelected && this.initiator;
+                partContext.initiator = this.initiator;
+                partContext.initiatorOptions = selectedMembers.map(x => ({ value: x.id, label: x.name }));
+                partContext.initiatorDisabled = !selectedMembers.length;
+
                 break;
             case 'tagTeamRoll':
                 partContext.fields = this.party.system.schema.fields.tagTeam.fields;
@@ -152,14 +161,17 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
     }
 
     static async updateData(_event, _, formData) {
-        const form = foundry.utils.expandObject(formData.object);
-        await this.party.update(form);
+        const { initiator, ...partyData } = foundry.utils.expandObject(formData.object);
+        this.initiator = initiator;
+        await this.party.update(partyData);
         this.render(true);
     }
 
     //#region Initialization
     static #toggleSelectMember(_, button) {
         const member = this.partyMembers.find(x => x.id === button.dataset.id);
+        if (member.selected && this.initiator?.memberId === member.id) this.initiator = null;
+
         member.selected = !member.selected;
         this.render();
     }
@@ -168,6 +180,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         await this.party.update({
             'system.==tagTeam': new game.system.api.data.TagTeamData({
                 ...this.party.system.tagTeam.toObject(),
+                initiator: this.initiator,
                 members: this.partyMembers.reduce((acc, member) => {
                     if (member.selected)
                         acc[member.id] = {
@@ -461,7 +474,10 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
     static async #cancelRoll() {
         await this.party.update({
-            'system.tagTeam.==members': {}
+            'system.==tagTeam': {
+                initiator: null,
+                members: {}
+            }
         });
         this.close();
     }

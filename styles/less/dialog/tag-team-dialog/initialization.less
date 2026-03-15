@@ -1,5 +1,9 @@
 .daggerheart.dialog.dh-style.views.tag-team-dialog {
     .initialization-container {
+        h2 {
+            text-align: center;
+        }
+
         .members-container {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -17,6 +21,17 @@
                 .member-name {
                     position: absolute;
                 }
+            }
+        }
+
+        .intiator-container {
+            margin-top: 8px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+
+            &.inactive {
+                opacity: 0.4;
             }
         }
 
