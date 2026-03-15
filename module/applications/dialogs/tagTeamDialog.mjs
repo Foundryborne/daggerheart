@@ -1,5 +1,6 @@
 import { MemberData } from '../../data/tagTeamData.mjs';
 import { getCritDamageBonus } from '../../helpers/utils.mjs';
+import { RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 import Party from '../sheets/actors/party.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -22,6 +23,8 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         this.tabGroups.application = Object.keys(party.system.tagTeam.members).length
             ? 'tagTeamRoll'
             : 'initialization';
+
+        Hooks.on(socketEvent.Refresh, this.tagTeamRefresh.bind());
     }
 
     get title() {
@@ -163,8 +166,40 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
     static async updateData(_event, _, formData) {
         const { initiator, ...partyData } = foundry.utils.expandObject(formData.object);
         this.initiator = initiator;
-        await this.party.update(partyData);
-        this.render(true);
+        this.updatePartyData(partyData);
+    }
+
+    async updatePartyData(updata, options = { render: true }) {
+        await this.party.update(updata);
+
+        if (options.render) {
+            this.render(true);
+            game.socket.emit(`system.${CONFIG.DH.id}`, {
+                action: socketEvent.Refresh,
+                data: { refreshType: RefreshType.TagTeamRoll, action: 'refresh' }
+            });
+        }
+    }
+
+    tagTeamRefresh = ({ refreshType, action }) => {
+        if (refreshType !== RefreshType.TagTeamRoll) return;
+
+        switch (action) {
+            case 'refresh':
+                this.render();
+                break;
+            case 'close':
+                this.close();
+                break;
+        }
+    };
+
+    async close(options = {}) {
+        /* Opt out of Foundry's standard behavior of closing all application windows marked as UI when Escape is pressed */
+        if (options.closeKey) return;
+
+        Hooks.off(socketEvent.Refresh, this.tagTeamRefresh);
+        return super.close(options);
     }
 
     //#region Initialization
@@ -220,26 +255,22 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
     }
 
     async updateRollType(event) {
-        await this.party.update({
+        this.updatePartyData({
             [`system.tagTeam.members.${event.target.dataset.member}`]: {
                 rollType: event.target.value,
                 rollChoice: null
             }
         });
-
-        this.render();
     }
 
     static async #removeRoll(_, button) {
-        await this.party.update({
+        this.updatePartyData({
             [`system.tagTeam.members.${button.dataset.member}`]: {
                 rollData: null,
                 rollChoice: null,
                 selected: false
             }
         });
-
-        this.render();
     }
 
     static async #makeRoll(event, button) {
@@ -262,10 +293,9 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         const rollData = result.messageRoll.toJSON();
         delete rollData.options.messageRoll;
-        await this.party.update({
+        this.updatePartyData({
             [`system.tagTeam.members.${member}.rollData`]: rollData
         });
-        this.render();
     }
 
     async makeTraitRoll(memberKey) {
@@ -310,7 +340,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             diceType
         );
         const rollData = parsedRoll.toJSON();
-        await this.party.update({
+        this.updatePartyData({
             [`system.tagTeam.members.${member}.rollData`]: {
                 ...rollData,
                 options: {
@@ -319,7 +349,6 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 }
             }
         });
-        this.render();
     }
 
     static async #makeDamageRoll(_, button) {
@@ -344,7 +373,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         const damage = config.isCritical ? await this.getNonCriticalDamage(config, actor) : config.damage;
 
         const current = this.party.system.tagTeam.members[memberKey].rollData;
-        await this.party.update({
+        await this.updatePartyData({
             [`system.tagTeam.members.${memberKey}.rollData`]: {
                 ...current,
                 options: {
@@ -353,14 +382,12 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 }
             }
         });
-
-        this.render();
     }
 
     static async #removeDamageRoll(_, button) {
         const { memberKey } = button.dataset;
         const current = this.party.system.tagTeam.members[memberKey].rollData;
-        await this.party.update({
+        this.updatePartyData({
             [`system.tagTeam.members.${memberKey}.rollData`]: {
                 ...current,
                 options: {
@@ -369,8 +396,6 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 }
             }
         });
-
-        this.render();
     }
 
     async getCriticalDamage(damage) {
@@ -421,7 +446,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
     static async #selectRoll(_, button) {
         const { memberKey } = button.dataset;
-        await this.party.update({
+        this.updatePartyData({
             [`system.tagTeam.members`]: Object.entries(this.party.system.tagTeam.members).reduce(
                 (acc, [key, member]) => {
                     acc[key] = { selected: key === memberKey ? !member.selected : false };
@@ -430,7 +455,6 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 {}
             )
         });
-        this.render();
     }
 
     async getJoinedRoll({ overrideIsCritical, displayVersion } = {}) {
@@ -473,13 +497,30 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
     }
 
     static async #cancelRoll() {
-        await this.party.update({
-            'system.==tagTeam': {
-                initiator: null,
-                members: {}
-            }
+        const confirmed = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.cancelConfirmTitle')
+            },
+            content: game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.cancelConfirmText')
         });
+
+        if (!confirmed) return;
+
+        await this.updatePartyData(
+            {
+                'system.==tagTeam': {
+                    initiator: null,
+                    members: {}
+                }
+            },
+            { render: false }
+        );
+
         this.close();
+        game.socket.emit(`system.${CONFIG.DH.id}`, {
+            action: socketEvent.Refresh,
+            data: { refreshType: RefreshType.TagTeamRoll, action: 'close' }
+        });
     }
 
     static async #finishRoll() {
