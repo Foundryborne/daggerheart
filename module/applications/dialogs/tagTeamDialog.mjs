@@ -45,6 +45,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             rerollDice: TagTeamDialog.#rerollDice,
             makeDamageRoll: TagTeamDialog.#makeDamageRoll,
             removeDamageRoll: TagTeamDialog.#removeDamageRoll,
+            rerollDamageDice: TagTeamDialog.#rerollDamageDice,
             selectRoll: TagTeamDialog.#selectRoll,
             cancelRoll: TagTeamDialog.#onCancelRoll,
             finishRoll: TagTeamDialog.#finishRoll
@@ -431,6 +432,39 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                     damage: null
                 }
             }
+        });
+    }
+
+    static async #rerollDamageDice(_, button) {
+        const { memberKey, damageKey, part, dice } = button.dataset;
+        const memberData = this.party.system.tagTeam.members[memberKey];
+        const partData = memberData.rollData.options.damage[damageKey].parts[part];
+        const activeDiceResultKey = Object.keys(partData.dice[dice].results).find(
+            index => partData.dice[dice].results[index].active
+        );
+        const { parsedRoll, rerolledDice } = await game.system.api.dice.DamageRoll.reroll(
+            partData,
+            dice,
+            activeDiceResultKey
+        );
+
+        const rollData = this.party.system.tagTeam.members[memberKey].rollData;
+        rollData.options.damage[damageKey].parts = rollData.options.damage[damageKey].parts.map((damagePart, index) => {
+            if (index !== Number.parseInt(part)) return damagePart;
+
+            return {
+                ...damagePart,
+                total: parsedRoll.total,
+                dice: rerolledDice
+            };
+        });
+        rollData.options.damage[damageKey].total = rollData.options.damage[damageKey].parts.reduce((acc, part) => {
+            acc += part.total;
+            return acc;
+        }, 0);
+
+        this.updatePartyData({
+            [`system.tagTeam.members.${memberKey}.rollData`]: rollData
         });
     }
 

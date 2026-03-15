@@ -281,10 +281,7 @@ export default class DamageRoll extends DHRoll {
         return mods;
     }
 
-    static async reroll(target, message) {
-        const { damageType, part, dice, result } = target.dataset;
-        const rollPart = message.system.damage[damageType].parts[part];
-
+    static async reroll(rollPart, dice, result) {
         let diceIndex = 0;
         let parsedRoll = game.system.api.dice.DamageRoll.fromData({
             ...rollPart.roll,
@@ -353,21 +350,6 @@ export default class DamageRoll extends DHRoll {
             };
         });
 
-        const updateMessage = game.messages.get(message._id);
-        const damageParts = updateMessage.system.damage[damageType].parts.map((damagePart, index) => {
-            if (index !== Number(part)) return damagePart;
-            return {
-                ...rollPart,
-                total: parsedRoll.total,
-                dice: rerolledDice
-            };
-        });
-        await updateMessage.update({
-            [`system.damage.${damageType}`]: {
-                ...updateMessage,
-                total: parsedRoll.total,
-                parts: damageParts
-            }
-        });
+        return { parsedRoll, rerolledDice };
     }
 }
