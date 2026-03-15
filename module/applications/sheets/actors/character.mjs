@@ -719,8 +719,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * Rolls an attribute check based on the clicked button's dataset attribute.
      * @type {ApplicationClickAction}
      */
-    static async #rollAttribute(event, button) {
-        const result = await this.document.traitDiceRoll(button.dataset.attribute);
+    static async #rollAttribute(_event, button) {
+        const result = await this.document.rollTrait(button.dataset.attribute);
         if (!result) return;
 
         /* This could be avoided by baking config.costs into config.resourceUpdates. Didn't feel like messing with it at the time */

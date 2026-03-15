@@ -344,7 +344,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         if (!actor) return;
 
         const memberData = this.party.system.tagTeam.members[memberKey];
-        return await actor.traitDiceRoll(memberData.rollChoice, {
+        return await actor.rollTrait(memberData.rollChoice, {
             skips: {
                 createMessage: true,
                 resources: true,

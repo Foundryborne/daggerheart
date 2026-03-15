@@ -510,7 +510,7 @@ export default class DhpActor extends Actor {
         return await rollClass.build(config);
     }
 
-    async traitDiceRoll(trait, options = {}) {
+    async rollTrait(trait, options = {}) {
         const abilityLabel = game.i18n.localize(abilities[trait].label);
         const config = {
             event: event,
