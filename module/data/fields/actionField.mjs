@@ -1,6 +1,5 @@
 import DHActionConfig from '../../applications/sheets-configs/action-config.mjs';
 import { itemAbleRollParse } from '../../helpers/utils.mjs';
-import MappingField from './mappingField.mjs';
 
 /**
  * Specialized collection type for stored actions.
@@ -11,9 +10,9 @@ export class ActionCollection extends Collection {
     constructor(model, entries) {
         super();
         this.#model = model;
-        for (const entry of entries) {
-            if (!(entry instanceof game.system.api.models.actions.actionsTypes.base)) continue;
-            this.set(entry._id, entry);
+        for (const [key, value] of entries) {
+            if (!(value instanceof game.system.api.models.actions.actionsTypes.base)) continue;
+            this.set(key, value);
         }
     }
 
@@ -61,7 +60,7 @@ export class ActionCollection extends Collection {
 /**
  * Field that stores actions.
  */
-export class ActionsField extends MappingField {
+export class ActionsField extends foundry.data.fields.TypedObjectField {
     constructor(options) {
         super(new ActionField(), options);
     }
@@ -70,7 +69,7 @@ export class ActionsField extends MappingField {
 
     /** @inheritDoc */
     initialize(value, model, options) {
-        const actions = Object.values(super.initialize(value, model, options));
+        const actions = Object.entries(super.initialize(value, model, options));
         return new ActionCollection(model, actions);
     }
 }
@@ -88,10 +87,10 @@ export class ActionField extends foundry.data.fields.ObjectField {
     /* -------------------------------------------- */
 
     /** @override */
-    _cleanType(value, options) {
+    _cleanType(value, options, _state) {
         if (!(typeof value === 'object')) value = {};
         const cls = this.getModel(value);
-        if (cls) return cls.cleanData(value, options);
+        if (cls) return cls.cleanData(value, options, _state);
         return value;
     }
 
@@ -111,9 +110,17 @@ export class ActionField extends foundry.data.fields.ObjectField {
      * @param {object} sourceData  Candidate source data of the root model.
      * @param {any} fieldData      The value of this field within the source data.
      */
-    migrateSource(sourceData, fieldData) {
-        const cls = this.getModel(fieldData);
-        if (cls) cls.migrateDataSafe(fieldData);
+    _migrate(sourceData, _fieldData) {
+        const source = sourceData ?? this.options.initial;
+        if (!source) return sourceData;
+
+        const cls = this.getModel(source);
+        if (cls) {
+            cls.migrateDataSafe(source);
+            return source;
+        }
+
+        return sourceData;
     }
 }
 
@@ -237,11 +244,11 @@ export function ActionMixin(Base) {
                 : foundry.utils.getProperty(result, basePath);
         }
 
-        delete() {
+        async delete() {
             if (!this.inCollection) return this.item;
             const action = foundry.utils.getProperty(this.item, `system.${this.systemPath}`)?.get(this.id);
             if (!action) return this.item;
-            this.item.update({ [`system.${this.systemPath}.-=${this.id}`]: null });
+            await this.item.update({ [`system.${this.systemPath}.${this.id}`]: _del }); // Does not work. Unsure why. It worked in v13 <_<'
             this.constructor._sheets.get(this.uuid)?.close();
         }
 

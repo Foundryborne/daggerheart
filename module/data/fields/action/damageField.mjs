@@ -1,5 +1,6 @@
 import FormulaField from '../formulaField.mjs';
 import { setsEqual } from '../../../helpers/utils.mjs';
+import IterableTypedObjectField from '../iterableTypedObjectField.mjs';
 
 const fields = foundry.data.fields;
 
@@ -12,7 +13,7 @@ export default class DamageField extends fields.SchemaField {
     /** @inheritDoc */
     constructor(options, context = {}) {
         const damageFields = {
-            parts: new fields.ArrayField(new fields.EmbeddedDataField(DHDamageData)),
+            parts: new IterableTypedObjectField(DHDamageData),
             includeBase: new fields.BooleanField({
                 initial: false,
                 label: 'DAGGERHEART.ACTIONS.Settings.includeBase.label'

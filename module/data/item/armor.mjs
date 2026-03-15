@@ -84,7 +84,7 @@ export default class DHArmor extends AttachableItem {
             }
             await this.parent.deleteEmbeddedDocuments('ActiveEffect', effectIds);
             changes.system.actions = actionIds.reduce((acc, id) => {
-                acc[`-=${id}`] = null;
+                acc[id] = _del;
                 return acc;
             }, {});
 

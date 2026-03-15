@@ -67,9 +67,9 @@ export default function DHTokenConfigMixin(Base) {
                 changes.height = tokenSize;
             }
 
-            const deletions = { '-=actorId': null, '-=actorLink': null };
+            const deletions = { actorId: _del, actorLink: _del };
             const mergeOptions = { inplace: false, performDeletions: true };
-            this._preview.updateSource(mergeObject(changes, deletions, mergeOptions));
+            this._preview.updateSource(foundry.utils.mergeObject(changes, deletions, mergeOptions));
 
             if (this._preview?.object?.destroyed === false) {
                 this._preview.object.initializeSources();

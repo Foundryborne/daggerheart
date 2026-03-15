@@ -67,7 +67,7 @@ export default class DualityRoll extends D20Roll {
 
     setRallyChoices() {
         return this.data?.parent?.appliedEffects.reduce((a, c) => {
-            const change = c.changes.find(ch => ch.key === 'system.bonuses.rally');
+            const change = c.system.changes.find(ch => ch.key === 'system.bonuses.rally');
             if (change) a.push({ value: c.id, label: parseRallyDice(change.value, c) });
             return a;
         }, []);
@@ -179,7 +179,7 @@ export default class DualityRoll extends D20Roll {
     static async buildConfigure(config = {}, message = {}) {
         config.dialog ??= {};
         config.guaranteedCritical = config.data?.parent?.appliedEffects.reduce((a, c) => {
-            const change = c.changes.find(ch => ch.key === 'system.rules.roll.guaranteedCritical');
+            const change = c.system.changes.find(ch => ch.key === 'system.rules.roll.guaranteedCritical');
             if (change) a = true;
             return a;
         }, false);
@@ -378,6 +378,8 @@ export default class DualityRoll extends D20Roll {
         let parsedRoll = game.system.api.dice.DualityRoll.fromData({ ...rollBase, evaluated: false });
         const term = parsedRoll.terms[dieIndex];
         await term.reroll(`/r1=${term.total}`);
+        const result = await parsedRoll.evaluate();
+
         if (game.modules.get('dice-so-nice')?.active) {
             const diceSoNiceRoll = {
                 _evaluated: true,
@@ -400,8 +402,6 @@ export default class DualityRoll extends D20Roll {
         } else {
             foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
         }
-
-        await parsedRoll.evaluate();
 
         const newRoll = game.system.api.dice.DualityRoll.postEvaluate(parsedRoll, {
             targets: parsedRoll.options.targets ?? [],

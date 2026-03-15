@@ -86,8 +86,8 @@
       },
       "range": "close",
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -113,7 +113,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "type": "attack",
       "chatDisplay": false
@@ -254,8 +254,8 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false,
@@ -283,7 +283,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false,
               "direct": true
             },
@@ -469,8 +469,8 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "fear": {
                   "value": {
                     "custom": {
                       "enabled": true,
@@ -496,7 +496,7 @@
                   },
                   "type": []
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {

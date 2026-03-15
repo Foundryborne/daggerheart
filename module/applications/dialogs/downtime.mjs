@@ -1,4 +1,4 @@
-import { refreshIsAllowed } from '../../helpers/utils.mjs';
+import { expireActiveEffects, refreshIsAllowed } from '../../helpers/utils.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -263,6 +263,8 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
                       : 0;
                 await feature.update({ 'system.resource.value': resetValue });
             }
+
+            expireActiveEffects(this.actor, [this.shortRest ? 'shortRest' : 'longRest']);
 
             this.close();
         } else {

@@ -81,8 +81,8 @@
       },
       "range": "veryClose",
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -108,7 +108,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "type": "attack",
       "chatDisplay": false
@@ -350,8 +350,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -377,7 +377,7 @@
                     }
                   }
                 },
-                {
+                "stress": {
                   "value": {
                     "custom": {
                       "enabled": true,
@@ -402,7 +402,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {

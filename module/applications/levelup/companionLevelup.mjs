@@ -67,7 +67,7 @@ export default class DhCompanionLevelUp extends BaseLevelUp {
                 break;
             case 'summary':
                 const levelKeys = Object.keys(this.levelup.levels);
-                const actorDamageDice = this.actor.system.attack.damage.parts[0].value.dice;
+                const actorDamageDice = this.actor.system.attack.damage.parts.hitPoints.value.dice;
                 const actorRange = this.actor.system.attack.range;
 
                 let achievementExperiences = [];

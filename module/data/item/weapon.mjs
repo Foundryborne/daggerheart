@@ -63,15 +63,15 @@ export default class DHWeapon extends AttachableItem {
                         type: 'attack'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            hitPoints: {
                                 type: ['physical'],
                                 value: {
                                     multiplier: 'prof',
                                     dice: 'd8'
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             }),
@@ -148,7 +148,7 @@ export default class DHWeapon extends AttachableItem {
 
             await this.parent.deleteEmbeddedDocuments('ActiveEffect', removedEffectsUpdate);
             changes.system.actions = removedActionsUpdate.reduce((acc, id) => {
-                acc[`-=${id}`] = null;
+                acc[id] = _del;
                 return acc;
             }, {});
 

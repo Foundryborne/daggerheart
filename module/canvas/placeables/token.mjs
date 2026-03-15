@@ -1,3 +1,4 @@
+import { getIconVisibleActiveEffects } from '../../helpers/utils.mjs';
 import DhMeasuredTemplate from './measuredTemplate.mjs';
 
 export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
@@ -20,7 +21,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         this.effects.overlay = null;
 
         // Categorize effects
-        const activeEffects = this.actor?.getActiveEffects() ?? [];
+        const activeEffects = getIconVisibleActiveEffects(Array.from(this.actor?.allApplicableEffects() ?? []));
         const overlayEffect = activeEffects.findLast(e => e.img && e.getFlag?.('core', 'overlay'));
 
         // Draw effects

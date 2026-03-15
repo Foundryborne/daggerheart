@@ -205,7 +205,7 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
                 }
             });
         } else {
-            await this.updateMove({ [`${this.actionsPath}.-=${target.dataset.id}`]: null });
+            await this.updateMove({ [`${this.actionsPath}.${target.dataset.id}`]: _del });
         }
 
         this.render();

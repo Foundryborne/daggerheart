@@ -1,6 +1,13 @@
 import { defaultLevelTiers, DhLevelTiers } from '../data/levelTier.mjs';
 import DhCountdowns from '../data/countdowns.mjs';
-import { DhAppearance, DhAutomation, DhHomebrew, DhMetagaming, DhVariantRules } from '../data/settings/_module.mjs';
+import {
+    DhAppearance,
+    DhAutomation,
+    DhGlobalOverrides,
+    DhHomebrew,
+    DhMetagaming,
+    DhVariantRules
+} from '../data/settings/_module.mjs';
 import {
     DhAppearanceSettings,
     DhAutomationSettings,
@@ -54,17 +61,18 @@ const registerMenuSettings = () => {
         }
     });
 
+    game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.GlobalOverrides, {
+        scope: 'world',
+        config: false,
+        type: DhGlobalOverrides
+    });
+
     game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance, {
         scope: 'client',
         config: false,
         type: DhAppearance,
         onChange: value => {
-            if (value.displayFear) {
-                if (ui.resources) {
-                    if (value.displayFear === 'hide') ui.resources.close({ allowed: true });
-                    else ui.resources.render({ force: true });
-                }
-            }
+            value.handleChange();
         }
     });
 };

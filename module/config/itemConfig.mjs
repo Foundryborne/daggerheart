@@ -14,8 +14,8 @@ export const armorFeatures = {
                     type: 'hostile'
                 },
                 damage: {
-                    parts: [
-                        {
+                    parts: {
+                        stress: {
                             applyTo: 'stress',
                             value: {
                                 custom: {
@@ -24,7 +24,7 @@ export const armorFeatures = {
                                 }
                             }
                         }
-                    ]
+                    }
                 }
             }
         ]
@@ -732,8 +732,8 @@ export const weaponFeatures = {
                     type: 'hostile'
                 },
                 damage: {
-                    parts: [
-                        {
+                    parts: {
+                        stress: {
                             applyTo: 'stress',
                             value: {
                                 custom: {
@@ -742,7 +742,7 @@ export const weaponFeatures = {
                                 }
                             }
                         }
-                    ]
+                    }
                 }
             }
         ],
@@ -914,8 +914,8 @@ export const weaponFeatures = {
                     type: 'self'
                 },
                 damage: {
-                    parts: [
-                        {
+                    parts: {
+                        hitPoints: {
                             applyTo: 'hitPoints',
                             value: {
                                 custom: {
@@ -924,7 +924,7 @@ export const weaponFeatures = {
                                 }
                             }
                         }
-                    ]
+                    }
                 }
             }
         ]

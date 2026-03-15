@@ -8,5 +8,4 @@ export { default as DhRollTable } from './rollTable.mjs';
 export { default as DhScene } from './scene.mjs';
 export { default as DhToken } from './token.mjs';
 export { default as DhTooltipManager } from './tooltipManager.mjs';
-export { default as DhTemplateManager } from './templateManager.mjs';
 export { default as DhTokenManager } from './tokenManager.mjs';

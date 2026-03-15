@@ -1,3 +1,4 @@
+import { getUnusedDamageTypes } from '../../helpers/utils.mjs';
 import DaggerheartSheet from '../sheets/daggerheart-sheet.mjs';
 
 const { ApplicationV2 } = foundry.applications.api;
@@ -104,7 +105,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         }
     };
 
-    static CLEAN_ARRAYS = ['damage.parts', 'cost', 'effects', 'summon'];
+    static CLEAN_ARRAYS = ['cost', 'effects', 'summon'];
 
     _getTabs(tabs) {
         for (const v of Object.values(tabs)) {
@@ -172,6 +173,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
                 revealed: this.openTrigger === index
             };
         });
+        context.allDamageTypesUsed = !getUnusedDamageTypes(this.action.damage.parts).length;
 
         const settingsTiers = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers;
         context.tierOptions = [
@@ -291,18 +293,61 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
 
     static addDamage(_event) {
         if (!this.action.damage.parts) return;
-        const data = this.action.toObject(),
-            part = {};
-        if (this.action.actor?.isNPC) part.value = { multiplier: 'flat' };
-        data.damage.parts.push(part);
-        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+
+        const choices = getUnusedDamageTypes(this.action.damage.parts);
+        const content = new foundry.data.fields.StringField({
+            label: game.i18n.localize('Damage Type'),
+            choices,
+            required: true
+        }).toFormGroup(
+            {},
+            {
+                name: 'type',
+                localize: true,
+                nameAttr: 'value',
+                labelAttr: 'label'
+            }
+        ).outerHTML;
+
+        const callback = (_, button) => {
+            const data = this.action.toObject();
+            const type = choices[button.form.elements.type.value].value;
+            const part = { applyTo: type };
+            if (this.action.actor?.isNPC) part.value = { multiplier: 'flat' };
+            data.damage.parts[type] = part;
+            this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+        };
+
+        const typeDialog = new foundry.applications.api.DialogV2({
+            buttons: [
+                foundry.utils.mergeObject(
+                    {
+                        action: 'ok',
+                        label: 'Confirm',
+                        icon: 'fas fa-check',
+                        default: true
+                    },
+                    { callback: callback }
+                )
+            ],
+            content: content,
+            rejectClose: false,
+            modal: false,
+            window: {
+                title: game.i18n.localize('Add Damage')
+            },
+            position: { width: 300 }
+        });
+
+        typeDialog.render(true);
     }
 
     static removeDamage(_event, button) {
         if (!this.action.damage.parts) return;
-        const data = this.action.toObject(),
-            index = button.dataset.index;
-        data.damage.parts.splice(index, 1);
+        const data = this.action.toObject();
+        const key = button.dataset.key;
+        delete data.damage.parts[key];
+        data.damage.parts[`${key}`] = _del;
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 

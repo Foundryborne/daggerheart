@@ -96,8 +96,8 @@ export default class DhCharacter extends DhCreature {
                         trait: 'strength'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            hitPoints: {
                                 type: ['physical'],
                                 value: {
                                     custom: {
@@ -106,7 +106,7 @@ export default class DhCharacter extends DhCreature {
                                     }
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             }),
@@ -685,7 +685,7 @@ export default class DhCharacter extends DhCreature {
             isReversed: true
         };
 
-        this.attack.damage.parts[0].value.custom.formula = `@prof${this.basicAttackDamageDice}${this.rules.attack.damage.bonus ? ` + ${this.rules.attack.damage.bonus}` : ''}`;
+        this.attack.damage.parts.hitPoints.value.custom.formula = `@prof${this.basicAttackDamageDice}${this.rules.attack.damage.bonus ? ` + ${this.rules.attack.damage.bonus}` : ''}`;
     }
 
     getRollData() {
@@ -721,7 +721,8 @@ export default class DhCharacter extends DhCreature {
             const newHopeMax = this.system.resources.hope.max + diff;
             const newHopeValue = Math.min(newHopeMax, this.system.resources.hope.value);
             if (newHopeValue != this.system.resources.hope.value) {
-                if (!changes.system.resources) changes.system.resources = { hope: { value: 0 } };
+                if (!changes.system.resources.hope) changes.system.resources.hope = { value: 0 };
+
                 changes.system.resources.hope = {
                     ...changes.system.resources.hope,
                     value: changes.system.resources.hope.value + newHopeValue

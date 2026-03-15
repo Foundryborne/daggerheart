@@ -33,8 +33,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "hitPoints": {
               "value": {
                 "custom": {
                   "enabled": true,
@@ -59,7 +59,7 @@
               },
               "type": []
             }
-          ],
+          },
           "includeBase": false
         },
         "target": {
@@ -109,8 +109,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "armor": {
               "value": {
                 "custom": {
                   "enabled": true,
@@ -135,7 +135,7 @@
               },
               "type": []
             }
-          ],
+          },
           "includeBase": false
         },
         "target": {
@@ -185,8 +185,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "hitPoints": {
               "value": {
                 "custom": {
                   "enabled": true,
@@ -213,7 +213,7 @@
                 }
               }
             }
-          ],
+          },
           "includeBase": false
         },
         "target": {

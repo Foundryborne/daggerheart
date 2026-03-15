@@ -70,8 +70,12 @@ export const range = {
     }
 };
 
+/* circle|cone|rect|ray used to be CONST.MEASURED_TEMPLATE_TYPES. Hardcoded for now */
 export const templateTypes = {
-    ...CONST.MEASURED_TEMPLATE_TYPES,
+    CIRCLE: 'circle',
+    CONE: 'cone',
+    RECTANGLE: 'rectangle',
+    LINE: 'line',
     EMANATION: 'emanation',
     INFRONT: 'inFront'
 };
@@ -241,8 +245,8 @@ export const defaultRestOptions = {
                         type: 'friendly'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            hitPoints: {
                                 applyTo: healingTypes.hitPoints.id,
                                 value: {
                                     custom: {
@@ -251,7 +255,7 @@ export const defaultRestOptions = {
                                     }
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             },
@@ -275,8 +279,8 @@ export const defaultRestOptions = {
                         type: 'self'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            stress: {
                                 applyTo: healingTypes.stress.id,
                                 value: {
                                     custom: {
@@ -285,7 +289,7 @@ export const defaultRestOptions = {
                                     }
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             },
@@ -310,8 +314,8 @@ export const defaultRestOptions = {
                         type: 'friendly'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            armor: {
                                 applyTo: healingTypes.armor.id,
                                 value: {
                                     custom: {
@@ -320,7 +324,7 @@ export const defaultRestOptions = {
                                     }
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             },
@@ -344,8 +348,8 @@ export const defaultRestOptions = {
                         type: 'self'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            hope: {
                                 applyTo: healingTypes.hope.id,
                                 value: {
                                     custom: {
@@ -354,7 +358,7 @@ export const defaultRestOptions = {
                                     }
                                 }
                             }
-                        ]
+                        }
                     }
                 },
                 prepareWithFriends: {
@@ -368,8 +372,8 @@ export const defaultRestOptions = {
                         type: 'self'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            hope: {
                                 applyTo: healingTypes.hope.id,
                                 value: {
                                     custom: {
@@ -378,7 +382,7 @@ export const defaultRestOptions = {
                                     }
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             },
@@ -405,8 +409,8 @@ export const defaultRestOptions = {
                         type: 'friendly'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            hitPoints: {
                                 applyTo: healingTypes.hitPoints.id,
                                 value: {
                                     custom: {
@@ -415,7 +419,7 @@ export const defaultRestOptions = {
                                     }
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             },
@@ -439,8 +443,8 @@ export const defaultRestOptions = {
                         type: 'self'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            stress: {
                                 applyTo: healingTypes.stress.id,
                                 value: {
                                     custom: {
@@ -449,7 +453,7 @@ export const defaultRestOptions = {
                                     }
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             },
@@ -474,8 +478,8 @@ export const defaultRestOptions = {
                         type: 'friendly'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            armor: {
                                 applyTo: healingTypes.armor.id,
                                 value: {
                                     custom: {
@@ -484,7 +488,7 @@ export const defaultRestOptions = {
                                     }
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             },
@@ -508,8 +512,8 @@ export const defaultRestOptions = {
                         type: 'self'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            hope: {
                                 applyTo: healingTypes.hope.id,
                                 value: {
                                     custom: {
@@ -518,7 +522,7 @@ export const defaultRestOptions = {
                                     }
                                 }
                             }
-                        ]
+                        }
                     }
                 },
                 prepareWithFriends: {
@@ -532,8 +536,8 @@ export const defaultRestOptions = {
                         type: 'self'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            hope: {
                                 applyTo: healingTypes.hope.id,
                                 value: {
                                     custom: {
@@ -542,7 +546,7 @@ export const defaultRestOptions = {
                                     }
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             },
@@ -630,7 +634,95 @@ export const diceSetNumbers = {
     flat: 'Flat'
 };
 
-export const getDiceSoNicePreset = async (type, faces) => {
+export const diceSoNiceSFXClasses = {
+    PlayAnimationBright: {
+        id: 'PlayAnimationBright',
+        label: 'DICESONICE.PlayAnimationBright'
+    },
+    PlayAnimationDark: {
+        id: 'PlayAnimationDark',
+        label: 'DICESONICE.PlayAnimationDark'
+    },
+    PlayAnimationOutline: {
+        id: 'PlayAnimationOutline',
+        label: 'DICESONICE.PlayAnimationOutline'
+    },
+    PlayAnimationImpact: {
+        id: 'PlayAnimationImpact',
+        label: 'DICESONICE.PlayAnimationImpact'
+    },
+    // PlayConfettiStrength1: {
+    //     id: 'PlayConfettiStrength1',
+    //     label: 'DICESONICE.PlayConfettiStrength1'
+    // },
+    // PlayConfettiStrength2: {
+    //     id: 'PlayConfettiStrength2',
+    //     label: 'DICESONICE.PlayConfettiStrength2'
+    // },
+    // PlayConfettiStrength3: {
+    //     id: 'PlayConfettiStrength3',
+    //     label: 'DICESONICE.PlayConfettiStrength3'
+    // },
+    PlayAnimationThormund: {
+        id: 'PlayAnimationThormund',
+        label: 'DICESONICE.PlayAnimationThormund'
+    },
+    PlayAnimationParticleSpiral: {
+        id: 'PlayAnimationParticleSpiral',
+        label: 'DICESONICE.PlayAnimationParticleSpiral'
+    },
+    PlayAnimationParticleSparkles: {
+        id: 'PlayAnimationParticleSparkles',
+        label: 'DICESONICE.PlayAnimationParticleSparkles'
+    },
+    PlayAnimationParticleVortex: {
+        id: 'PlayAnimationParticleVortex',
+        label: 'DICESONICE.PlayAnimationParticleVortex'
+    },
+    PlaySoundEpicWin: {
+        id: 'PlaySoundEpicWin',
+        label: 'DICESONICE.PlaySoundEpicWin'
+    },
+    PlaySoundEpicFail: {
+        id: 'PlaySoundEpicFail',
+        label: 'DICESONICE.PlaySoundEpicFail'
+    }
+    // "PlaySoundCustom",
+    // "PlayMacro"
+};
+
+export const daggerheartDiceAnimationEvents = {
+    critical: {
+        id: 'critical',
+        label: 'DAGGERHEART.CONFIG.DaggerheartDiceAnimationEvents.critical.name'
+    },
+    higher: {
+        id: 'higher',
+        label: 'DAGGERHEART.CONFIG.DaggerheartDiceAnimationEvents.higher.name'
+    }
+};
+
+const getDiceSoNiceSFX = sfxOptions => {
+    const diceSoNice = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).diceSoNiceData;
+    const criticalAnimationData = diceSoNice.sfx.critical;
+    if (sfxOptions.critical && criticalAnimationData.class) {
+        return {
+            specialEffect: criticalAnimationData.class,
+            options: {}
+        };
+    }
+
+    if (sfxOptions.higher && sfxOptions.data.higher) {
+        return {
+            specialEffect: sfxOptions.data.higher.class,
+            options: {}
+        };
+    }
+
+    return {};
+};
+
+export const getDiceSoNicePreset = async (type, faces, sfxOptions = {}) => {
     const system = game.dice3d.DiceFactory.systems.get(type.system).dice.get(faces);
     if (!system) {
         ui.notifications.error(
@@ -653,16 +745,33 @@ export const getDiceSoNicePreset = async (type, faces) => {
         appearance: {
             ...system.appearance,
             ...type
-        }
+        },
+        sfx: getDiceSoNiceSFX(sfxOptions)
     };
 };
 
-export const getDiceSoNicePresets = async (hopeFaces, fearFaces, advantageFaces = 'd6', disadvantageFaces = 'd6') => {
-    const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
+export const getDiceSoNicePresets = async (
+    result,
+    hopeFaces,
+    fearFaces,
+    advantageFaces = 'd6',
+    disadvantageFaces = 'd6'
+) => {
+    const diceSoNice = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).diceSoNiceData;
+
+    const { isCritical, withHope, withFear } = result;
 
     return {
-        hope: await getDiceSoNicePreset(diceSoNice.hope, hopeFaces),
-        fear: await getDiceSoNicePreset(diceSoNice.fear, fearFaces),
+        hope: await getDiceSoNicePreset(diceSoNice.hope, hopeFaces, {
+            critical: isCritical,
+            higher: withHope,
+            data: diceSoNice.hope.sfx
+        }),
+        fear: await getDiceSoNicePreset(diceSoNice.fear, fearFaces, {
+            critical: isCritical,
+            higher: withFear,
+            data: diceSoNice.fear.sfx
+        }),
         advantage: await getDiceSoNicePreset(diceSoNice.advantage, advantageFaces),
         disadvantage: await getDiceSoNicePreset(diceSoNice.disadvantage, disadvantageFaces)
     };
@@ -862,5 +971,74 @@ export const tagTeamRollTypes = {
     damageAbility: {
         id: 'damageAbility',
         label: 'DAGGERHEART.CONFIG.TagTeamRollTypes.damageAbility'
+    }
+};
+
+export const activeEffectModes = {
+    custom: {
+        id: 'custom',
+        priority: 0,
+        label: 'EFFECT.CHANGES.TYPES.custom'
+    },
+    multiply: {
+        id: 'multiply',
+        priority: 10,
+        label: 'EFFECT.CHANGES.TYPES.multiply'
+    },
+    add: {
+        id: 'add',
+        priority: 20,
+        label: 'EFFECT.CHANGES.TYPES.add'
+    },
+    subtract: {
+        id: 'subtract',
+        priority: 20,
+        label: 'EFFECT.CHANGES.TYPES.subtract'
+    },
+    downgrade: {
+        id: 'downgrade',
+        priority: 30,
+        label: 'EFFECT.CHANGES.TYPES.downgrade'
+    },
+    upgrade: {
+        id: 'upgrade',
+        priority: 40,
+        label: 'EFFECT.CHANGES.TYPES.upgrade'
+    },
+    override: {
+        id: 'override',
+        priority: 50,
+        label: 'EFFECT.CHANGES.TYPES.override'
+    }
+};
+
+export const activeEffectDurations = {
+    temporary: {
+        id: 'temporary',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.temporary'
+    },
+    act: {
+        id: 'act',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.act'
+    },
+    scene: {
+        id: 'scene',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.scene'
+    },
+    shortRest: {
+        id: 'shortRest',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.shortRest'
+    },
+    longRest: {
+        id: 'longRest',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.longRest'
+    },
+    session: {
+        id: 'session',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.session'
+    },
+    custom: {
+        id: 'custom',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.custom'
     }
 };

@@ -22,8 +22,8 @@
           "recovery": null
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "stress": {
               "value": {
                 "custom": {
                   "enabled": true,
@@ -48,7 +48,7 @@
               },
               "type": []
             }
-          ],
+          },
           "includeBase": false
         },
         "target": {
@@ -134,7 +134,7 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": [],
+          "parts": {},
           "includeBase": false
         },
         "target": {

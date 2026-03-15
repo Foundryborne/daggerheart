@@ -1,0 +1,17 @@
+<li data-index="{{index}}">
+    <div class="key">
+        <input type="text" class="effect-change-input" name="{{change.keyPath}}" value="{{change.key}}" />
+    </div>
+    <div class="type">
+        {{formInput fields.type name=change.typePath value=change.type localize=true}}
+    </div>
+    <div class="value">
+        {{formInput fields.value name=change.valuePath value=change.value elementType="input"}}
+    </div>
+    <div class="priority">
+        {{formInput fields.priority name=change.priorityPath value=change.priority placeholder=defaultPriority}}
+    </div>
+    <div class="controls">
+        <a class="inline-control icon" data-action="deleteChange"><i class="fa-solid fa-trash"></i></a>
+    </div>
+</li>

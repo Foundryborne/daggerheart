@@ -220,7 +220,7 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                     return result;
                 }, {}),
                 ...config.custom,
-                ...config.base,
+                ...config.base
             });
         }
     }

@@ -143,7 +143,7 @@ export default class DhpActor extends Actor {
             }
 
             const updatedLevelups = Object.keys(this.system.levelData.levelups).reduce((acc, level) => {
-                if (Number(level) > usedLevel) acc[`-=${level}`] = null;
+                if (Number(level) > usedLevel) acc[level] = _del;
 
                 return acc;
             }, {});
@@ -188,7 +188,7 @@ export default class DhpActor extends Actor {
                 if (experiences.length > 0) {
                     const getUpdate = () => ({
                         'system.experiences': experiences.reduce((acc, key) => {
-                            acc[`-=${key}`] = null;
+                            acc[key] = _del;
                             return acc;
                         }, {})
                     });

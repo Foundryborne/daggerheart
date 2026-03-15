@@ -554,7 +554,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                     experiences: {
                         ...this.setup.experiences,
                         ...Object.keys(this.character.system.experiences).reduce((acc, key) => {
-                            acc[`-=${key}`] = null;
+                            acc[`${key}`] = _del;
                             return acc;
                         }, {})
                     }

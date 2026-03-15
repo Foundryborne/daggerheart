@@ -26,6 +26,7 @@ export const gameSettings = {
     Metagaming: 'Metagaming',
     Homebrew: 'Homebrew',
     appearance: 'Appearance',
+    GlobalOverrides: 'GlobalOverrides',
     variantRules: 'VariantRules',
     Resources: {
         Fear: 'ResourcesFear'

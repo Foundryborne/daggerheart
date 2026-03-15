@@ -53,7 +53,7 @@
   "effects": [
     {
       "name": "Make a Scene",
-      "img": "icons/svg/daze.svg",
+      "img": "icons/magic/sonic/scream-wail-shout-teal.webp",
       "origin": "Compendium.daggerheart.classes.Item.OxmucTHHfuBSv2dn",
       "transfer": false,
       "_id": "8G9zDv1gac6dEHmS",
@@ -64,27 +64,27 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
+        },
+        "changes": [
+          {
+            "key": "system.difficulty",
+            "value": -2,
+            "priority": null,
+            "type": "add"
+          }
+        ],
+        "duration": {
+          "type": "temporary"
         }
       },
-      "changes": [
-        {
-          "key": "system.difficulty",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "",
+      "description": "<p>Giving them a -2 penalty to their Difficulty.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -92,6 +92,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!N9E5skDDK2VgvohR.8G9zDv1gac6dEHmS"
     }
   ],

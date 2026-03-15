@@ -60,7 +60,13 @@ export const getCommandTarget = (options = {}) => {
 
 export const setDiceSoNiceForDualityRoll = async (rollResult, advantageState, hopeFaces, fearFaces, advantageFaces) => {
     if (!game.modules.get('dice-so-nice')?.active) return;
-    const diceSoNicePresets = await getDiceSoNicePresets(hopeFaces, fearFaces, advantageFaces, advantageFaces);
+    const diceSoNicePresets = await getDiceSoNicePresets(
+        rollResult,
+        hopeFaces,
+        fearFaces,
+        advantageFaces,
+        advantageFaces
+    );
     rollResult.dice[0].options = diceSoNicePresets.hope;
     rollResult.dice[1].options = diceSoNicePresets.fear;
     if (rollResult.dice[2] && advantageState) {
@@ -171,10 +177,10 @@ export const getDeleteKeys = (property, innerProperty, innerPropertyDefaultValue
                     [innerProperty]: innerPropertyDefaultValue
                 };
             } else {
-                acc[`${key}.-=${innerProperty}`] = null;
+                acc[`${key}.${innerProperty}`] = _del;
             }
         } else {
-            acc[`-=${key}`] = null;
+            acc[`${key}`] = _del;
         }
 
         return acc;
@@ -416,7 +422,12 @@ export async function createEmbeddedItemWithEffects(actor, baseData, update) {
             ...baseData,
             id: data.id,
             uuid: data.uuid,
-            effects: data.effects?.map(effect => effect.toObject())
+            _uuid: data.uuid,
+            effects: data.effects?.map(effect => effect.toObject()),
+            _stats: {
+                ...data._stats,
+                compendiumSource: data.pack ? `Compendium.${data.pack}.Item.${data.id}` : null
+            }
         }
     ]);
 
@@ -469,6 +480,8 @@ export async function waitForDiceSoNice(message) {
 }
 
 export function refreshIsAllowed(allowedTypes, typeToCheck) {
+    if (!allowedTypes) return true;
+
     switch (typeToCheck) {
         case CONFIG.DH.GENERAL.refreshTypes.scene.id:
         case CONFIG.DH.GENERAL.refreshTypes.session.id:
@@ -485,6 +498,34 @@ export function refreshIsAllowed(allowedTypes, typeToCheck) {
     }
 }
 
+function expireActiveEffectIsAllowed(allowedTypes, typeToCheck) {
+    if (typeToCheck === CONFIG.DH.GENERAL.activeEffectDurations.act.id) return true;
+
+    return refreshIsAllowed(allowedTypes, typeToCheck);
+}
+
+export function expireActiveEffects(actor, allowedTypes = null) {
+    const shouldExpireEffects = game.settings.get(
+        CONFIG.DH.id,
+        CONFIG.DH.SETTINGS.gameSettings.Automation
+    ).autoExpireActiveEffects;
+    if (!shouldExpireEffects) return;
+
+    const effectsToExpire = actor
+        .getActiveEffects()
+        .filter(effect => {
+            if (!effect.system?.duration.type) return false;
+
+            const { temporary, custom } = CONFIG.DH.GENERAL.activeEffectDurations;
+            if ([temporary.id, custom.id].includes(effect.system.duration.type)) return false;
+
+            return expireActiveEffectIsAllowed(allowedTypes, effect.system.duration.type);
+        })
+        .map(x => x.id);
+
+    actor.deleteEmbeddedDocuments('ActiveEffect', effectsToExpire);
+}
+
 export async function getCritDamageBonus(formula) {
     const critRoll = new Roll(formula);
     return critRoll.dice.reduce((acc, dice) => acc + dice.faces * dice.number, 0);
@@ -497,6 +538,16 @@ export function htmlToText(html) {
     return tempDivElement.textContent || tempDivElement.innerText || '';
 }
 
+export function getIconVisibleActiveEffects(effects) {
+    return effects.filter(effect => {
+        if (!(effect instanceof game.system.api.documents.DhActiveEffect)) return true;
+
+        const alwaysShown = effect.showIcon === CONST.ACTIVE_EFFECT_SHOW_ICON.ALWAYS;
+        const conditionalShown = effect.showIcon === CONST.ACTIVE_EFFECT_SHOW_ICON.CONDITIONAL && !effect.transfer; // TODO: system specific logic
+
+        return !effect.disabled && (alwaysShown || conditionalShown);
+    });
+}
 export async function getFeaturesHTMLData(features) {
     const result = [];
     for (const feature of features) {
@@ -582,6 +633,8 @@ export async function RefreshFeatures(
     const refreshedActors = {};
     for (let actor of game.actors) {
         if (actorTypes.includes(actor.type) && actor.prototypeToken.actorLink) {
+            expireActiveEffects(actor, refreshTypes);
+
             const updates = {};
             for (let item of actor.items) {
                 if (
@@ -675,4 +728,17 @@ export async function RefreshFeatures(
     }
 
     return refreshedActors;
+}
+
+export function getUnusedDamageTypes(parts) {
+    const usedKeys = Object.keys(parts);
+    return Object.keys(CONFIG.DH.GENERAL.healingTypes).reduce((acc, key) => {
+        if (!usedKeys.includes(key))
+            acc.push({
+                value: key,
+                label: game.i18n.localize(CONFIG.DH.GENERAL.healingTypes[key].label)
+            });
+
+        return acc;
+    }, []);
 }

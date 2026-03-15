@@ -18,6 +18,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         settings: { template: 'systems/daggerheart/templates/sheets/activeEffect/settings.hbs' },
         changes: {
             template: 'systems/daggerheart/templates/sheets/activeEffect/changes.hbs',
+            templates: ['systems/daggerheart/templates/sheets/activeEffect/change.hbs'],
             scrollable: ['ol[data-changes]']
         },
         footer: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-form-footer.hbs' }
@@ -173,8 +174,77 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                     }));
                 }
                 break;
+            case 'settings':
+                const groups = {
+                    time: _loc('EFFECT.DURATION.UNITS.GROUPS.time'),
+                    combat: _loc('EFFECT.DURATION.UNITS.GROUPS.combat')
+                };
+                partContext.durationUnits = CONST.ACTIVE_EFFECT_DURATION_UNITS.map(value => ({
+                    value,
+                    label: _loc(`EFFECT.DURATION.UNITS.${value}`),
+                    group: CONST.ACTIVE_EFFECT_TIME_DURATION_UNITS.includes(value) ? groups.time : groups.combat
+                }));
+                break;
+            case 'changes':
+                const fields = this.document.system.schema.fields.changes.element.fields;
+                partContext.changes = await Promise.all(
+                    foundry.utils
+                        .deepClone(context.source.changes)
+                        .map((c, i) => this._prepareChangeContext(c, i, fields))
+                );
+                break;
         }
 
         return partContext;
+    }
+
+    _prepareChangeContext(change, index, fields) {
+        if (typeof change.value !== 'string') change.value = JSON.stringify(change.value);
+        const defaultPriority = game.system.api.documents.DhActiveEffect.CHANGE_TYPES[change.type]?.defaultPriority;
+        Object.assign(
+            change,
+            ['key', 'type', 'value', 'priority'].reduce((paths, fieldName) => {
+                paths[`${fieldName}Path`] = `system.changes.${index}.${fieldName}`;
+                return paths;
+            }, {})
+        );
+        return (
+            game.system.api.documents.DhActiveEffect.CHANGE_TYPES[change.type].render?.(
+                change,
+                index,
+                defaultPriority
+            ) ??
+            foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/sheets/activeEffect/change.hbs',
+                {
+                    change,
+                    index,
+                    defaultPriority,
+                    fields
+                }
+            )
+        );
+    }
+
+    /** @inheritDoc */
+    _onChangeForm(_formConfig, event) {
+        if (foundry.utils.isElementInstanceOf(event.target, 'select') && event.target.name === 'system.duration.type') {
+            const durationSection = this.element.querySelector('.custom-duration-section');
+            if (event.target.value === 'custom') durationSection.classList.add('visible');
+            else durationSection.classList.remove('visible');
+
+            const durationDescription = this.element.querySelector('.duration-description');
+            if (event.target.value === 'temporary') durationDescription.classList.add('visible');
+            else durationDescription.classList.remove('visible');
+        }
+    }
+
+    /** @inheritDoc */
+    _processFormData(event, form, formData) {
+        const submitData = super._processFormData(event, form, formData);
+        if (submitData.start && !submitData.start.time) submitData.start.time = '0';
+        else if (!submitData) submitData.start = null;
+
+        return submitData;
     }
 }

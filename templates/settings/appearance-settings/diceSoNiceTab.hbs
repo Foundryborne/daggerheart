@@ -1,0 +1,62 @@
+<div class="field-section">
+    <h3>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.diceAppearance"}}</h3>
+
+    <div class="label-container full-width">
+        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.system"}}</label>
+        {{formInput fields.system value=values.system localize=true choices=@root.diceSoNiceSystems}}
+    </div>
+    <div class="split-section">
+    <div class="label-container">
+        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.foreground"}}</label>
+        {{formInput fields.foreground value=values.foreground localize=true}}
+    </div>
+    <div class="label-container">
+        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.background"}}</label>
+        {{formInput fields.background value=values.background localize=true}}
+    </div>
+    <div class="label-container">
+        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.outline"}}</label>
+        {{formInput fields.outline value=values.outline localize=true}}
+    </div>
+    <div class="label-container">
+        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.edge"}}</label>
+        {{formInput fields.edge value=values.edge localize=true}}
+    </div>
+    <div class="label-container">
+        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.colorset"}}</label>
+        {{formInput fields.colorset value=values.colorset choices=@root.diceSoNiceColorsets localize=true}}
+    </div>
+    <div class="label-container">
+        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.texture"}}</label>
+        {{formInput fields.texture value=values.texture choices=@root.diceSoNiceTextures localize=true}}
+    </div>
+    <div class="label-container">
+        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.material"}}</label>
+        {{formInput fields.material value=values.material choices=@root.diceSoNiceMaterials localize=true}}
+    </div>
+    <div class="label-container">
+        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.font"}}</label>
+        {{formInput fields.font value=values.font choices=@root.diceSoNiceFonts localize=true}}
+    </div>
+    </div>
+
+    {{#if animations}}
+        <h3>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.animations"}}</h3>      
+        <div class="label-container full-width">
+            <label>{{localize "DAGGERHEART.CONFIG.DaggerheartDiceAnimationEvents.higher.name"}}</label>
+            {{formInput fields.sfx.fields.higher.fields.class value=values.sfx.higher.class blank="" localize=true}}
+        </div>
+    {{/if}}
+
+    <div class="diceSoNice-footer">
+        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.previewAnimation"}}</label>
+        <select name="{{concat id "PreviewAnimation"}}">
+            {{selectOptions @root.animationEvents selected=@root.previewAnimation blank="" localize=true }}
+        </select>
+        
+        <button type="button" data-action="preview" data-key="{{id}}">
+            <i class="fa-solid fa-dice"></i>
+            <span>{{localize "DAGGERHEART.GENERAL.preview"}}</span>
+        </button>
+    </div>
+</div>

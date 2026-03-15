@@ -21,7 +21,7 @@ const bonusField = label =>
         dice: new fields.ArrayField(new fields.StringField(), { label: `${game.i18n.localize(label)} Dice` })
     });
 
-/** 
+/**
  * Field used for actor resources. It is a resource that validates dynamically based on the config.
  * Because "max" may be defined during runtime, we don't attempt to clamp the maximum value.
  */
@@ -52,8 +52,8 @@ class ResourcesField extends fields.TypedObjectField {
         return key in CONFIG.DH.RESOURCE[this.actorType].all;
     }
 
-    _cleanType(value, options) {
-        value = super._cleanType(value, options);
+    _cleanType(value, options, _state) {
+        value = super._cleanType(value, options, _state);
 
         // If not partial, ensure all data exists
         if (!options.partial) {
@@ -78,9 +78,27 @@ class ResourcesField extends fields.TypedObjectField {
             const resource = resources[key];
             value.label = resource.label;
             value.isReversed = resources[key].reverse;
-            value.max = typeof resource.max === 'number' ? value.max ?? resource.max : null;
+            value.max = typeof resource.max === 'number' ? (value.max ?? resource.max) : null;
         }
         return data;
+    }
+
+    /**
+     * Foundry bar attributes are unable to handle finding the schema field nor the label normally.
+     * This returns the element if its a valid resource key and overwrites the element's label for that retrieval.
+     */
+    _getField(path) {
+        if (path.length === 0) return this;
+        const first = path.shift();
+        if (first === this.element.name) return this.element_getField(path);
+
+        const resources = CONFIG.DH.RESOURCE[this.actorType].all;
+        if (first in resources) {
+            this.element.label = resources[first].label;
+            return this.element._getField(path);
+        }
+
+        return undefined;
     }
 }
 

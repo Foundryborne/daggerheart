@@ -230,9 +230,9 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
         if (changed.system?.actions) {
             const triggersToRemove = Object.keys(changed.system.actions).reduce((acc, key) => {
-                if (!changed.system.actions[key]) {
-                    const strippedKey = key.replace('-=', '');
-                    acc.push(...this.actions.get(strippedKey).triggers.map(x => x.trigger));
+                const action = changed.system.actions[key];
+                if (action && Object.keys(action).length === 0) {
+                    acc.push(...this.actions.get(key).triggers.map(x => x.trigger));
                 }
 
                 return acc;

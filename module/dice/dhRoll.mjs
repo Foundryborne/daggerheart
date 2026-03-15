@@ -140,7 +140,11 @@ export default class DHRoll extends Roll {
 
         const metagamingSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Metagaming);
         const chatData = await this._prepareChatRenderContext({ flavor, isPrivate, ...options });
-        return foundry.applications.handlebars.renderTemplate(template, { ...chatData, metagamingSettings });
+        return foundry.applications.handlebars.renderTemplate(template, {
+            ...chatData,
+            parent: chatData.parent,
+            metagamingSettings
+        });
     }
 
     /** @inheritDoc */
@@ -261,12 +265,12 @@ export default class DHRoll extends Roll {
         const changeKeys = this.getActionChangeKeys();
         return (
             this.options.effects?.reduce((acc, effect) => {
-                if (effect.changes.some(x => changeKeys.some(key => x.key.includes(key)))) {
+                if (effect.system.changes.some(x => changeKeys.some(key => x.key.includes(key)))) {
                     acc[effect.id] = {
                         id: effect.id,
                         name: effect.name,
                         description: effect.description,
-                        changes: effect.changes,
+                        changes: effect.system.changes,
                         origEffect: effect,
                         selected: !effect.disabled
                     };

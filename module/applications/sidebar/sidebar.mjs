@@ -1,52 +1,19 @@
 export default class DhSidebar extends foundry.applications.sidebar.Sidebar {
+    static buildTabs() {
+        const { settings, ...tabs } = super.TABS;
+        return {
+            ...tabs,
+            daggerheartMenu: {
+                tooltip: 'DAGGERHEART.UI.Sidebar.daggerheartMenu.title',
+                img: 'systems/daggerheart/assets/logos/FoundryBorneLogoWhite.svg',
+                gmOnly: true
+            },
+            settings
+        };
+    }
+
     /** @override */
-    static TABS = {
-        chat: {
-            documentName: 'ChatMessage'
-        },
-        combat: {
-            documentName: 'Combat'
-        },
-        scenes: {
-            documentName: 'Scene',
-            gmOnly: true
-        },
-        actors: {
-            documentName: 'Actor'
-        },
-        items: {
-            documentName: 'Item'
-        },
-        journal: {
-            documentName: 'JournalEntry',
-            tooltip: 'SIDEBAR.TabJournal'
-        },
-        tables: {
-            documentName: 'RollTable'
-        },
-        cards: {
-            documentName: 'Cards'
-        },
-        macros: {
-            documentName: 'Macro'
-        },
-        playlists: {
-            documentName: 'Playlist'
-        },
-        compendium: {
-            tooltip: 'SIDEBAR.TabCompendium',
-            icon: 'fa-solid fa-book-atlas'
-        },
-        daggerheartMenu: {
-            tooltip: 'DAGGERHEART.UI.Sidebar.daggerheartMenu.title',
-            img: 'systems/daggerheart/assets/logos/FoundryBorneLogoWhite.svg',
-            gmOnly: true
-        },
-        settings: {
-            tooltip: 'SIDEBAR.TabSettings',
-            icon: 'fa-solid fa-gears'
-        }
-    };
+    static TABS = DhSidebar.buildTabs();
 
     /** @override */
     static PARTS = {

@@ -197,7 +197,7 @@ export default class DamageRoll extends DHRoll {
             if (config.data.parent.appliedEffects) {
                 // Bardic Rally
                 const rallyChoices = config.data?.parent?.appliedEffects.reduce((a, c) => {
-                    const change = c.changes.find(ch => ch.key === 'system.bonuses.rally');
+                    const change = c.system.changes.find(ch => ch.key === 'system.bonuses.rally');
                     if (change) a.push({ value: c.id, label: parseRallyDice(change.value, c) });
                     return a;
                 }, []);

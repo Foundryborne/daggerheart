@@ -64,8 +64,8 @@
         "type": "attack"
       },
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": true,
@@ -92,7 +92,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "type": "attack",
       "range": "melee",

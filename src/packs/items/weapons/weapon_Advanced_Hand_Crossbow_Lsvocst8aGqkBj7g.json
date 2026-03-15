@@ -41,8 +41,8 @@
         "useDefault": false
       },
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "dice": "d6",
               "bonus": 5,
@@ -70,7 +70,7 @@
             },
             "base": false
           }
-        ],
+        },
         "includeBase": false
       },
       "description": "",

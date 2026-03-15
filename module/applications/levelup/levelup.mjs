@@ -477,7 +477,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                 const secondaryData = Object.keys(
                     foundry.utils.getProperty(this.levelup, `${target.dataset.path}.secondaryData`)
                 ).reduce((acc, key) => {
-                    acc[`-=${key}`] = null;
+                    acc[key] = _del;
                     return acc;
                 }, {});
                 await this.levelup.updateSource({
@@ -511,9 +511,9 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
             const current = foundry.utils.getProperty(this.levelup, `${basePath}.${button.dataset.option}`);
             if (Number(button.dataset.cost) > 1 || Object.keys(current).length === 1) {
                 // Simple handling that doesn't cover potential Custom LevelTiers.
-                update[`${basePath}.-=${button.dataset.option}`] = null;
+                update[`${basePath}.${button.dataset.option}`] = _del;
             } else {
-                update[`${basePath}.${button.dataset.option}.-=${button.dataset.checkboxNr}`] = null;
+                update[`${basePath}.${button.dataset.option}.${button.dataset.checkboxNr}`] = _del;
             }
         } else {
             if (this.levelup.levels[this.levelup.currentLevel].nrSelections.available < Number(button.dataset.cost)) {

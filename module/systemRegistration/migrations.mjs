@@ -197,7 +197,7 @@ export async function runMigrations() {
         const initatorMissing = tagTeam.initiator && !game.actors.some(actor => actor.id === tagTeam.initiator);
         const missingMembers = Object.keys(tagTeam.members).reduce((acc, id) => {
             if (!game.actors.some(actor => actor.id === id)) {
-                acc[`-=${id}`] = null;
+                acc[id] = _del;
             }
             return acc;
         }, {});

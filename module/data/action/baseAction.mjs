@@ -355,11 +355,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     get hasDamage() {
-        return this.damage?.parts?.length && this.type !== 'healing';
+        return !foundry.utils.isEmpty(this.damage?.parts) && this.type !== 'healing';
     }
 
     get hasHealing() {
-        return this.damage?.parts?.length && this.type === 'healing';
+        return !foundry.utils.isEmpty(this.damage?.parts) && this.type === 'healing';
     }
 
     get hasSave() {
@@ -378,6 +378,15 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         const tags = [game.i18n.localize(`DAGGERHEART.ACTIONS.TYPES.${this.type}.name`)];
 
         return tags;
+    }
+
+    static migrateData(source) {
+        if (source.damage?.parts && Array.isArray(source.damage.parts)) {
+            source.damage.parts = source.damage.parts.reduce((acc, part) => {
+                acc[part.applyTo] = part;
+                return acc;
+            }, {});
+        }
     }
 }
 

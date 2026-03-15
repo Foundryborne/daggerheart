@@ -117,6 +117,6 @@ export default class DHCompanionSettings extends DHBaseActorSettings {
         });
         if (!confirmed) return;
 
-        await this.actor.update({ [`system.experiences.-=${target.dataset.experience}`]: null });
+        await this.actor.update({ [`system.experiences.${target.dataset.experience}`]: _del });
     }
 }

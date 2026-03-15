@@ -33,8 +33,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "hitPoints": {
               "resultBased": false,
               "value": {
                 "custom": {
@@ -60,7 +60,7 @@
                 }
               }
             }
-          ],
+          },
           "includeBase": false
         },
         "target": {
@@ -107,8 +107,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "hitPoints": {
               "value": {
                 "custom": {
                   "enabled": false
@@ -134,7 +134,7 @@
                 }
               }
             }
-          ],
+          },
           "includeBase": false
         },
         "target": {

@@ -1,3 +1,4 @@
+import { getIconVisibleActiveEffects } from '../../helpers/utils.mjs';
 import { RefreshType } from '../../systemRegistration/socket.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -72,7 +73,7 @@ export default class DhEffectsDisplay extends HandlebarsApplicationMixin(Applica
                   ? game.user.character
                   : null
               : canvas.tokens.controlled[0].actor;
-        return actor?.getActiveEffects() ?? [];
+        return getIconVisibleActiveEffects(actor?.getActiveEffects() ?? []);
     };
 
     toggleHidden(token, focused) {

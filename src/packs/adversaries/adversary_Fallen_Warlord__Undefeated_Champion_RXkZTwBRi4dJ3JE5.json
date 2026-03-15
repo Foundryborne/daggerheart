@@ -67,8 +67,8 @@
         "useDefault": false
       },
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -94,7 +94,7 @@
             },
             "base": false
           }
-        ],
+        },
         "includeBase": false
       },
       "description": "",
@@ -338,7 +338,7 @@
               "recovery": null
             },
             "damage": {
-              "parts": [],
+              "parts": {},
               "includeBase": false
             },
             "target": {
@@ -410,8 +410,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -437,7 +437,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {
@@ -697,8 +697,8 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "fear": {
                   "value": {
                     "custom": {
                       "enabled": true,
@@ -724,7 +724,7 @@
                   },
                   "type": []
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {
@@ -792,8 +792,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hope": {
                   "value": {
                     "custom": {
                       "enabled": true,
@@ -818,7 +818,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {

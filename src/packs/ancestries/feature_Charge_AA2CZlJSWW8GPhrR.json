@@ -29,8 +29,8 @@
           "recovery": null
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "hitPoints": {
               "value": {
                 "custom": {
                   "enabled": false
@@ -56,7 +56,7 @@
                 }
               }
             }
-          ],
+          },
           "includeBase": false
         },
         "target": {

@@ -14,7 +14,9 @@
             "beastform": "Beastform"
         },
         "ActiveEffect": {
-            "beastform": "Beastform"
+            "base": "Standard",
+            "beastform": "Beastform",
+            "horde": "Horde"
         },
         "Actor": {
             "character": "Character",
@@ -703,6 +705,15 @@
             }
         },
         "CONFIG": {
+            "ActiveEffectDuration": {
+                "temporary": "Temporary",
+                "act": "Next Spotlight",
+                "scene": "Next Scene",
+                "shortRest": "Next Rest",
+                "longRest": "Next Long Rest",
+                "session": "Next Session",
+                "custom": "Custom"
+            },
             "AdversaryTrait": {
                 "relentless": {
                     "name": "Relentless",
@@ -1064,6 +1075,10 @@
                 "fear": "Fear",
                 "spotlight": "Spotlight"
             },
+            "DaggerheartDiceAnimationEvents": {
+                "critical": { "name": "Critical" },
+                "higher": { "name": "Highest Roll" }
+            },
             "DamageType": {
                 "physical": {
                     "name": "Physical",
@@ -1238,8 +1253,8 @@
                 "cone": "Cone",
                 "emanation": "Emanation",
                 "inFront": "In Front",
-                "rect": "Rectangle",
-                "ray": "Ray"
+                "rectangle": "Rectangle",
+                "line": "Line"
             },
             "TokenSize": {
                 "tiny": "Tiny",
@@ -2324,6 +2339,7 @@
                 "plurial": "Players"
             },
             "portrait": "Portrait",
+            "preview": "Preview",
             "proficiency": "Proficiency",
             "quantity": "Quantity",
             "range": "Range",
@@ -2572,6 +2588,10 @@
                     "hint": "Automatically increase the GM's fear pool on a fear duality roll result."
                 },
                 "FIELDS": {
+                    "autoExpireActiveEffects": {
+                        "label": "Auto Expire Active Effects",
+                        "hint": "Active Effects with set durations will automatically be removed when their durations are up"
+                    },
                     "damageReductionRulesDefault": {
                         "label": "Damage Reduction Rules Default",
                         "hint": "Wether using armor and reductions has rules on by default"
@@ -2777,7 +2797,12 @@
                         "colorset": "Theme",
                         "material": "Material",
                         "system": "Dice Preset",
-                        "font": "Font"
+                        "font": "Font",
+                        "critical": "Duality Critical Animation",
+                        "diceAppearance": "Dice Appearance",
+                        "animations": "Animations",
+                        "defaultAnimations": "Set Animations As Player Defaults",
+                        "previewAnimation": "Preview Animation"
                     }
                 },
                 "variantRules": {

@@ -245,19 +245,21 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         if (error) return error;
 
         await this.party.update({
-            'system.==tagTeam': new game.system.api.data.TagTeamData({
-                ...this.party.system.tagTeam.toObject(),
-                initiator: this.initiator,
-                members: this.partyMembers.reduce((acc, member) => {
-                    if (member.selected)
-                        acc[member.id] = {
-                            name: member.name,
-                            img: member.img,
-                            rollType: CONFIG.DH.GENERAL.tagTeamRollTypes.trait.id
-                        };
-                    return acc;
-                }, {})
-            })
+            'system.tagTeam': _replace(
+                new game.system.api.data.TagTeamData({
+                    ...this.party.system.tagTeam.toObject(),
+                    initiator: this.initiator,
+                    members: this.partyMembers.reduce((acc, member) => {
+                        if (member.selected)
+                            acc[member.id] = {
+                                name: member.name,
+                                img: member.img,
+                                rollType: CONFIG.DH.GENERAL.tagTeamRollTypes.trait.id
+                            };
+                        return acc;
+                    }, {})
+                })
+            )
         });
 
         const hookData = { openForAllPlayers: this.openForAllPlayers, partyId: this.party.id };
@@ -566,7 +568,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         return mainRoll;
     }
 
-    static async #onCancelRoll(options = { confirm: true }) {
+    static async #onCancelRoll(_event, _button, options = { confirm: true }) {
         this.cancelRoll(options);
     }
 
@@ -584,9 +586,9 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         await this.updatePartyData(
             {
-                'system.==tagTeam': {
+                'system.tagTeam': {
                     initiator: null,
-                    members: {}
+                    members: _replace({})
                 }
             },
             { render: false }
