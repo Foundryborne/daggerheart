@@ -38,9 +38,21 @@
         footer {
             margin-top: 8px;
             display: flex;
+            gap: 8px;
 
-            > * {
+            button {
                 flex: 1;
+            }
+
+            .finish-tools {
+                flex: none;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+
+                &.inactive {
+                    opacity: 0.4;
+                }
             }
         }
     }

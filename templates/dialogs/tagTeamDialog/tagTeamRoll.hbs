@@ -1,8 +1,8 @@
 <section class="tag-team-roll tab {{#if tabs.tagTeamRoll.active}} active{{/if}}" data-group="{{tabs.tagTeamRoll.group}}" data-tab="{{tabs.tagTeamRoll.id}}">
-    <div class="tag-team-roll-container">
+    <div class="tag-team-roll-container {{#unless isEditable}}inactive{{/unless}}">
         <div class="team-container">
             {{#each members as |member key|}}
-                <fieldset class="member-container">
+                <fieldset class="member-container {{#unless member.isEditable}}inactive{{/unless}}">
                     <div class="data-container">
                         <div class="member-info">
                             <img src="{{member.img}}" />

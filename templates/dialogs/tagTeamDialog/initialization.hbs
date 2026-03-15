@@ -26,5 +26,9 @@
 
     <footer>
         <button type="button" data-action="startTagTeamRoll" {{#unless canStartTagTeam}}disabled{{/unless}}>{{localize "Start Tag Team Roll"}} <i class="fa-solid fa-arrow-right-long"></i></button>
+        <div class="finish-tools {{#unless canStartTagTeam}}inactive{{/unless}}">
+            <span>{{localize "Open Dialog For All"}}</span>
+            <input type="checkbox" name="openForAllPlayers" {{#unless canStartTagTeam}}disabled{{/unless}} {{checked openForAllPlayers}} />
+        </div>
     </footer>
 </section>

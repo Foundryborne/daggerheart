@@ -19,6 +19,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 selected: false
             }));
         this.intiator = null;
+        this.openForAllPlayers = true;
 
         this.tabGroups.application = Object.keys(party.system.tagTeam.members).length
             ? 'tagTeamRoll'
@@ -33,6 +34,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
+        id: 'TagTeamDialog',
         classes: ['daggerheart', 'views', 'dh-style', 'dialog', 'tag-team-dialog'],
         position: { width: 550, height: 'auto' },
         actions: {
@@ -77,6 +79,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
+        context.isEditable = this.getIsEditable();
 
         return context;
     }
@@ -94,6 +97,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 partContext.initiator = this.initiator;
                 partContext.initiatorOptions = selectedMembers.map(x => ({ value: x.id, label: x.name }));
                 partContext.initiatorDisabled = !selectedMembers.length;
+                partContext.openForAllPlayers = this.openForAllPlayers;
 
                 break;
             case 'tagTeamRoll':
@@ -139,6 +143,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
                     partContext.members[actorId] = {
                         ...data,
+                        isEditable: actor.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER),
                         key: actorId,
                         readyToRoll: Boolean(data.rollChoice),
                         hasRolled: Boolean(data.rollData),
@@ -164,8 +169,10 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
     }
 
     static async updateData(_event, _, formData) {
-        const { initiator, ...partyData } = foundry.utils.expandObject(formData.object);
+        const { initiator, openForAllPlayers, ...partyData } = foundry.utils.expandObject(formData.object);
         this.initiator = initiator;
+        this.openForAllPlayers = openForAllPlayers !== undefined ? openForAllPlayers : this.openForAllPlayers;
+
         this.updatePartyData(partyData);
     }
 
@@ -181,10 +188,20 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         }
     }
 
+    getIsEditable() {
+        return this.party.system.partyMembers.some(actor => {
+            const selected = Boolean(this.party.system.tagTeam.members[actor.id]);
+            return selected && actor.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
+        });
+    }
+
     tagTeamRefresh = ({ refreshType, action }) => {
         if (refreshType !== RefreshType.TagTeamRoll) return;
 
         switch (action) {
+            case 'startTagTeamRoll':
+                this.tabGroups.application = 'tagTeamRoll';
+                break;
             case 'refresh':
                 this.render();
                 break;
@@ -227,8 +244,22 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 }, {})
             })
         });
-        /* Update Party data and refresh all views */
+
         this.tabGroups.application = 'tagTeamRoll';
+
+        // if (this.openForAllplayers) {
+        //     game.socket.emit(`system.${CONFIG.DH.id}`, {
+        //         action: socketEvent.Refresh,
+        //         data: { refreshType: RefreshType.TagTeamRoll, action: 'startTagTeamRoll' }
+        //     });
+        // }
+
+        const hookData = { openForAllPlayers: this.openForAllPlayers, partyId: this.party.id };
+        Hooks.callAll(CONFIG.DH.HOOKS.hooksConfig.tagTeamStart, hookData);
+        game.socket.emit(`system.${CONFIG.DH.id}`, {
+            action: socketEvent.TagTeamStart,
+            data: hookData
+        });
 
         this.render();
     }
