@@ -45,37 +45,86 @@
                     width: 100%;
                 }
 
-                .roll-tools {
-                    width: 100%;
+                .roll-container {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .roll-title {
+                    font-size: var(--font-size-20);
+                    font-weight: bold;
+                    color: light-dark(@dark-blue, @golden);
+                    text-align: center;
                     display: flex;
                     align-items: center;
-                    justify-content: space-evenly;
+                    gap: 8px;
 
-                    .roll-button {
-                        position: relative;
+                    &::before,
+                    &::after {
+                        color: light-dark(@dark-blue, @golden);
+                        content: '';
+                        flex: 1;
+                        height: 2px;
+                    }
+
+                    &::before {
+                        background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, @golden 100%);
+                    }
+
+                    &::after {
+                        background: linear-gradient(90deg, @golden 0%, rgba(0, 0, 0, 0) 100%);
+                    }
+                }
+
+                .roll-tools {
+                    display: flex;
+                    gap: 4px;
+                    align-items: center;
+
+                    img {
+                        height: 16px;
+                    }
+
+                    a {
                         display: flex;
-                        justify-content: center;
+                        font-size: 16px;
 
-                        .roll-label {
-                            position: absolute;
-                            top: 8px;
-                            width: 60px;
-                            text-align: center;
-                            padding: 2px;
-                            background: light-dark(darkblue, gold);
-                            color: light-dark(white, black);
-                            border-radius: 6px;
-                            border: 1px solid light-dark(white, black);
-                        }
-
-                        img {
-                            height: 80px;
+                        &:hover {
+                            text-shadow: none;
+                            filter: drop-shadow(0 0 8px var(--golden));
                         }
                     }
 
-                    .delete-button i {
-                        font-size: 40px;
-                    }
+                    // width: 100%;
+                    // display: flex;
+                    // align-items: center;
+                    // justify-content: space-evenly;
+
+                    // .roll-button {
+                    //     position: relative;
+                    //     display: flex;
+                    //     justify-content: center;
+
+                    //     .roll-label {
+                    //         position: absolute;
+                    //         top: 8px;
+                    //         width: 60px;
+                    //         text-align: center;
+                    //         padding: 2px;
+                    //         background: light-dark(darkblue, gold);
+                    //         color: light-dark(white, black);
+                    //         border-radius: 6px;
+                    //         border: 1px solid light-dark(white, black);
+                    //     }
+
+                    //     img {
+                    //         height: 80px;
+                    //     }
+                    // }
+
+                    // .delete-button i {
+                    //     font-size: 40px;
+                    // }
                 }
 
                 .roll-data {
@@ -138,6 +187,10 @@
                         .roll-operator {
                             font-size: var(--font-size-24);
                         }
+
+                        .roll-value {
+                            font-size: 18px;
+                        }
                     }
 
                     .roll-total {
@@ -148,12 +201,16 @@
                     }
                 }
 
-                .select-roll-button i {
-                    color: light-dark(@dark-blue, @golden);
-                    font-size: 48px;
+                .select-roll-button {
+                    margin-top: 8px;
 
-                    &.inactive {
-                        opacity: 0.4;
+                    i {
+                        color: light-dark(@dark-blue, @golden);
+                        font-size: 48px;
+
+                        &.inactive {
+                            opacity: 0.4;
+                        }
                     }
                 }
             }
@@ -183,10 +240,6 @@
                     font-size: var(--font-size-20);
                 }
 
-                .hint {
-                    text-align: center;
-                }
-
                 .result-container {
                     width: 100%;
                     text-align: center;
@@ -202,14 +255,17 @@
         }
 
         .finish-container {
-            display: flex;
-            flex-direction: column;
             gap: 16px;
-            text-align: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
 
-            button {
-                flex: 1;
+            .finish-button {
+                grid-column: span 2;
             }
+        }
+
+        .hint {
+            text-align: center;
         }
     }
 }

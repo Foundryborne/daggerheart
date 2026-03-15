@@ -40,6 +40,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             makeDamageRoll: TagTeamDialog.#makeDamageRoll,
             removeDamageRoll: TagTeamDialog.#removeDamageRoll,
             selectRoll: TagTeamDialog.#selectRoll,
+            cancelRoll: TagTeamDialog.#cancelRoll,
             finishRoll: TagTeamDialog.#finishRoll
         },
         form: { handler: this.updateData, submitOnChange: true, closeOnSubmit: false }
@@ -213,7 +214,8 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         await this.party.update({
             [`system.tagTeam.members.${button.dataset.member}`]: {
                 rollData: null,
-                rollChoice: null
+                rollChoice: null,
+                selected: false
             }
         });
 
@@ -420,7 +422,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
               ? memberValues[1]
               : null;
 
-        if (!baseMainRoll && !baseSecondaryRoll) return null;
+        if (!baseMainRoll?.rollData || !baseSecondaryRoll) return null;
 
         const mainRoll = new MemberData(baseMainRoll.toObject());
         const secondaryRollData = new MemberData(baseSecondaryRoll.toObject()).rollData;
@@ -428,7 +430,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         const isCritical = overrideIsCritical ?? systemData.roll.isCritical;
         if (isCritical) systemData.damage = await this.getCriticalDamage(systemData.damage);
 
-        if (secondaryRollData?.options.hasDamage && systemData.hasDamage) {
+        if (secondaryRollData?.options.hasDamage && systemData.damage) {
             const secondaryDamage = (displayVersion ? overrideIsCritical : isCritical)
                 ? await this.getCriticalDamage(secondaryRollData.options.damage)
                 : secondaryRollData.options.damage;
@@ -443,6 +445,13 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         }
 
         return mainRoll;
+    }
+
+    static async #cancelRoll() {
+        await this.party.update({
+            'system.tagTeam.==members': {}
+        });
+        this.close();
     }
 
     static async #finishRoll() {

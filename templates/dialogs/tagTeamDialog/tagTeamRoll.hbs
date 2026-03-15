@@ -17,7 +17,7 @@
                                     </select>
                                 </div>
                             </div>
-                            
+
                             {{#if (eq member.rollType 'trait')}}
                                 <div class="form-group">
                                     <div class="form-fields">
@@ -39,57 +39,102 @@
                             {{/if}}
                         </div>
 
-                        <div class="roll-tools">
-                            <a class="roll-button" data-action="makeRoll" data-member="{{key}}" {{#unless member.readyToRoll}}disabled{{/unless}}>
-                                <span class="roll-label">{{#if member.hasRolled}}{{localize "DAGGERHEART.GENERAL.reroll"}}{{else}}{{localize "DAGGERHEART.GENERAL.roll"}}{{/if}}</span>
-                                <img src="systems/daggerheart/assets/icons/dice/duality/Daggerheart%20Foundry_g519.png" />
-                            </a>
-                            <a class="delete-button" data-action="removeRoll" data-member="{{key}}" {{#unless member.hasRolled}}disabled{{/unless}}><i class="fa-solid fa-trash"></i></a>
-                        </div>
+                        {{#if member.readyToRoll}}
+                            <div class="roll-container">
+                                <span class="roll-title">
+                                    {{localize "DAGGERHEART.GENERAL.roll"}}
+                                    <div class="roll-tools">
+                                        <a class="roll-button" data-action="makeRoll" data-member="{{key}}">
+                                            <img src="systems/daggerheart/assets/icons/dice/hope/d12.svg" />
+                                        </a>
 
-                        {{#if member.rollData}}
-                            {{#with member.rollData.options.roll}}
-                                <div class="roll-data {{#if this.isCritical}}critical{{else}}{{#if (eq this.result.duality 1)}}hope{{else}}fear{{/if}}{{/if}}">
-                                    <div class="duality-label">{{this.total}} {{localize "DAGGERHEART.GENERAL.withThing" thing=this.result.label}}</div>
-                                    <div class="roll-dice-container">
-                                        <a class="roll-dice" data-action="rerollDice" data-member="{{../key}}" data-dice-type="hope">
-                                            <span class="dice-label">{{this.hope.value}}</span>
-                                            <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/" this.hope.dice ".svg"}}" />
-                                        </a>
-                                        <span class="roll-operator">+</span>
-                                        <a class="roll-dice" data-action="rerollDice" data-member="{{../key}}" data-dice-type="fear">
-                                            <span class="dice-label">{{this.fear.value}}</span>
-                                            <img src="{{concat "systems/daggerheart/assets/icons/dice/fear/" this.fear.dice ".svg"}}" />
-                                        </a>
+                                        {{#if member.hasRolled}}
+                                            <a class="delete-button" data-action="removeRoll" data-member="{{key}}">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        {{/if}}
                                     </div>
-                                    <div class="roll-total">{{this.formula}}</div>
-                                </div>
-                            {{/with}}
+                                </span>
+
+                                {{#if member.rollData}}
+                                    {{#with member.rollData.options.roll}}
+                                        <div class="roll-data {{#if this.isCritical}}critical{{else}}{{#if (eq this.result.duality 1)}}hope{{else}}fear{{/if}}{{/if}}">
+                                            <div class="duality-label">{{this.total}} {{localize "DAGGERHEART.GENERAL.withThing" thing=this.result.label}}</div>
+                                            <div class="roll-dice-container">
+                                                <a class="roll-dice" data-action="rerollDice" data-member="{{../key}}" data-dice-type="hope">
+                                                    <span class="dice-label">{{this.hope.value}}</span>
+                                                    <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/" this.hope.dice ".svg"}}" />
+                                                </a>
+                                                <span class="roll-operator">+</span>
+                                                <a class="roll-dice" data-action="rerollDice" data-member="{{../key}}" data-dice-type="fear">
+                                                    <span class="dice-label">{{this.fear.value}}</span>
+                                                    <img src="{{concat "systems/daggerheart/assets/icons/dice/fear/" this.fear.dice ".svg"}}" />
+                                                </a>
+                                                <span class="roll-operator">{{#if (gte this.modifierTotal 0)}}+{{else}}-{{/if}}</span>
+                                                <span class="roll-value">{{this.modifierTotal}}</span>
+                                            </div>
+                                        </div>
+                                    {{/with}}
+                                {{else}}
+                                    <span class="hint">{{localize "Make your roll"}}</span>
+                                {{/if}}
+                            </div>
                         {{/if}}
 
                         {{#if member.rollData.options.hasDamage}}
-                            <div class="roll-tools">
-                                <a class="roll-button" data-action="makeDamageRoll" data-member-key="{{key}}" {{#unless member.readyToRoll}}disabled{{/unless}}>
-                                    <span class="roll-label">{{#if member.rollData.options.damage}}{{localize "DAGGERHEART.GENERAL.reroll"}}{{else}}{{localize "DAGGERHEART.GENERAL.roll"}}{{/if}}</span>
-                                    <img src="systems/daggerheart/assets/icons/dice/default/d20.svg" />
-                                </a>
-                                <a class="delete-button" data-action="removeDamageRoll" data-member-key="{{key}}" {{#unless member.rollData.options.damage}}disabled{{/unless}}><i class="fa-solid fa-trash"></i></a>
+                            <div class="roll-container">
+                                <span class="roll-title">
+                                    {{localize "DAGGERHEART.GENERAL.damage"}}
+                                    <div class="roll-tools">
+                                        <a class="roll-button" data-action="makeDamageRoll" data-member-key="{{key}}" {{#unless member.readyToRoll}}disabled{{/unless}}>
+                                            <img src="systems/daggerheart/assets/icons/dice/hope/d20.svg" />
+                                        </a>
+
+                                        {{#if damage}}
+                                            <a class="delete-button" data-action="removeDamageRoll" data-member-key="{{key}}" {{#unless member.rollData.options.damage}}disabled{{/unless}}>
+                                                <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        {{/if}}
+                                    </div>
+                                </span>
+                                {{#if damage}}
+                                    {{#each damage as |damage key|}}
+                                        <div class="roll-data {{#if ../useCritDamage}}critical{{/if}}">
+                                            <div class="duality-label">
+                                                <span>{{localize (concat "DAGGERHEART.CONFIG.HealingType." key ".name")}}:</span>
+                                                <span>{{#if ../useCritDamage}}{{lookup (lookup ../critDamage key) 'total'}}{{else}}{{damage.total}}{{/if}}</span>
+                                            </div>
+                                            {{#each damage.parts as |part|}}
+                                                <div class="roll-dice-container">
+                                                    {{#each part.dice as |dice|}}
+                                                        <a class="roll-dice" data-action="rerollDice" data-member="{{../key}}" data-dice-type="hope">
+                                                            <span class="dice-label">{{dice.total}}</span>
+                                                            <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/" dice.dice ".svg"}}" />
+                                                        </a>
+                                                        {{#unless @last}}
+                                                            <span class="roll-operator">+</span>
+                                                        {{/unless}}
+                                                    {{/each}}
+                                                    {{#if part.modifierTotal}}
+                                                        <span class="roll-operator">{{#if (gte part.modifierTotal 0)}}+{{else}}-{{/if}}</span>
+                                                        <span class="roll-value">{{part.modifierTotal}}</span>
+                                                    {{/if}}
+                                                </div>
+                                            {{/each}}
+                                        </div>
+                                    {{/each}}
+                                {{else}}
+                                    <span class="hint">{{localize "Make your roll"}}</span>
+                                {{/if}}
                             </div>
                         {{/if}}
-                        {{#each damage as |damage key|}}
-                            <div class="roll-data {{#if ../useCritDamage}}critical{{/if}}">
-                                <div class="duality-label">
-                                    {{localize "DAGGERHEART.GENERAL.damage"}} 
-                                    <span>{{#if ../useCritDamage}}{{lookup (lookup ../critDamage key) 'total'}}{{else}}{{damage.total}}{{/if}}</span>
-                                </div>
-                                <div class="roll-total">{{#if ../useCritDamage}}{{lookup (lookup ../critDamage key) 'formula'}}{{else}}{{damage.formula}}{{/if}}</div>
-                            </div>
-                        {{/each}}
                     </div>
 
-                    <a class="select-roll-button" data-action="selectRoll" data-member-key="{{key}}">
-                        <i class="{{#if member.selected}}fa-solid fa-circle-check{{else}}fa-regular fa-circle inactive{{/if}}"></i>
-                    </a>
+                    {{#if member.hasRolled}}
+                        <a class="select-roll-button" data-action="selectRoll" data-member-key="{{key}}">
+                            <i class="{{#if member.selected}}fa-solid fa-circle-check{{else}}fa-regular fa-circle inactive{{/if}}"></i>
+                        </a>
+                    {{/if}}
                 </fieldset>
             {{/each}}
         </div>
@@ -125,7 +170,8 @@
         </div>
 
         <div class="finish-container">
-            <button type="button" data-action="finishRoll" {{#if hintText}}disabled{{/if}}>{{localize "Finish Tagteam Roll"}}</button>
+            <button type="button" data-action="cancelRoll">{{localize "Cancel TagTeam Roll"}}</button>
+            <button type="button" data-action="finishRoll" {{#if hintText}}disabled{{/if}} class="finish-button">{{localize "Finish Tagteam Roll"}}</button>
         </div>
     </div>
 </section>

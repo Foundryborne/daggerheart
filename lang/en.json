@@ -1219,6 +1219,11 @@
                 "selectType": "Select Action Type",
                 "selectAction": "Action Selection"
             },
+            "TagTeamRollTypes": {
+                "trait": "Trait",
+                "ability": "Ability",
+                "damageAbility": "Damage Ability"
+            },
             "TargetTypes": {
                 "any": "Any",
                 "friendly": "Friendly",

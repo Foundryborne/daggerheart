@@ -853,10 +853,14 @@ export const sceneRangeMeasurementSetting = {
 export const tagTeamRollTypes = {
     trait: {
         id: 'trait',
-        label: 'DAGGERHEART.GENERAL.Trait.single'
+        label: 'DAGGERHEART.CONFIG.TagTeamRollTypes.trait'
     },
     ability: {
         id: 'ability',
-        label: 'DAGGERHEART.GENERAL.Ability.single'
+        label: 'DAGGERHEART.CONFIG.TagTeamRollTypes.ability'
+    },
+    damageAbility: {
+        id: 'damageAbility',
+        label: 'DAGGERHEART.CONFIG.TagTeamRollTypes.damageAbility'
     }
 };
