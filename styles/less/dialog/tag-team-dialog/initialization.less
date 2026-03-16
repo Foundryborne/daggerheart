@@ -1,0 +1,59 @@
+.daggerheart.dialog.dh-style.views.tag-team-dialog {
+    .initialization-container {
+        h2 {
+            text-align: center;
+        }
+
+        .members-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 8px;
+
+            .member-container {
+                position: relative;
+                display: flex;
+                justify-content: center;
+
+                &.inactive {
+                    opacity: 0.4;
+                }
+
+                .member-name {
+                    position: absolute;
+                }
+            }
+        }
+
+        .initiator-container {
+            margin-top: 8px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+
+            &.inactive {
+                opacity: 0.4;
+            }
+        }
+
+        footer {
+            margin-top: 8px;
+            display: flex;
+            gap: 8px;
+
+            button {
+                flex: 1;
+            }
+
+            .finish-tools {
+                flex: none;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+
+                &.inactive {
+                    opacity: 0.4;
+                }
+            }
+        }
+    }
+}

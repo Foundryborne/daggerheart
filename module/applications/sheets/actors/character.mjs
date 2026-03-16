@@ -1,6 +1,5 @@
 import DHBaseActorSheet from '../api/base-actor.mjs';
 import DhDeathMove from '../../dialogs/deathMove.mjs';
-import { abilities } from '../../../config/actorConfig.mjs';
 import { CharacterLevelup, LevelupViewMode } from '../../levelup/_module.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
@@ -720,35 +719,16 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * Rolls an attribute check based on the clicked button's dataset attribute.
      * @type {ApplicationClickAction}
      */
-    static async #rollAttribute(event, button) {
-        const abilityLabel = game.i18n.localize(abilities[button.dataset.attribute].label);
-        const config = {
-            event: event,
-            title: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.actor.name}`,
-            headerTitle: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
-                ability: abilityLabel
-            }),
-            effects: await game.system.api.data.actions.actionsTypes.base.getEffects(this.document),
-            roll: {
-                trait: button.dataset.attribute,
-                type: 'trait'
-            },
-            hasRoll: true,
-            actionType: 'action',
-            headerTitle: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.actor.name}`,
-            title: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
-                ability: abilityLabel
-            })
-        };
-        const result = await this.document.diceRoll(config);
+    static async #rollAttribute(_event, button) {
+        const result = await this.document.rollTrait(button.dataset.attribute);
         if (!result) return;
 
         /* This could be avoided by baking config.costs into config.resourceUpdates. Didn't feel like messing with it at the time */
         const costResources =
             result.costs?.filter(x => x.enabled).map(cost => ({ ...cost, value: -cost.value, total: -cost.total })) ||
             {};
-        config.resourceUpdates.addResources(costResources);
-        await config.resourceUpdates.updateResources();
+        result.resourceUpdates.addResources(costResources);
+        await result.resourceUpdates.updateResources();
     }
 
     //TODO: redo toggleEquipItem method

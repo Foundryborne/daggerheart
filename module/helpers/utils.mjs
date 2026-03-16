@@ -528,7 +528,8 @@ export function expireActiveEffects(actor, allowedTypes = null) {
 
 export async function getCritDamageBonus(formula) {
     const critRoll = new Roll(formula);
-    return critRoll.dice.reduce((acc, dice) => acc + dice.faces * dice.number, 0);
+    await critRoll.evaluate();
+    return critRoll.dice.reduce((acc, dice) => acc + dice.faces * dice.results.filter(r => r.active).length, 0);
 }
 
 export function htmlToText(html) {

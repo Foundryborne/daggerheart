@@ -207,10 +207,10 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @param {Event} event Event from the button used to trigger the Action
      * @returns {object}
      */
-    async use(event) {
+    async use(event, configOptions = {}) {
         if (!this.actor) throw new Error("An Action can't be used outside of an Actor context.");
 
-        let config = this.prepareConfig(event);
+        let config = this.prepareConfig(event, configOptions);
         if (!config) return;
 
         config.effects = await game.system.api.data.actions.actionsTypes.base.getEffects(this.actor, this.item);
@@ -231,7 +231,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         if (Hooks.call(`${CONFIG.DH.id}.postUseAction`, this, config) === false) return;
 
-        if (this.chatDisplay && !config.actionChatMessageHandled) await this.toChat();
+        if (this.chatDisplay && !config.skips.createMessage && !config.actionChatMessageHandled) await this.toChat();
 
         return config;
     }
@@ -241,7 +241,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @param {Event} event Event from the button used to trigger the Action
      * @returns {object}
      */
-    prepareBaseConfig(event) {
+    prepareBaseConfig(event, configOptions = {}) {
         const isActor = this.item instanceof CONFIG.Actor.documentClass;
         const actionTitle = game.i18n.localize(this.name);
         const itemTitle = isActor || this.item.name === actionTitle ? '' : `${this.item.name} - `;
@@ -268,7 +268,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             data: this.getRollData(),
             evaluate: this.hasRoll,
             resourceUpdates: new ResourceUpdateMap(this.actor),
-            targetUuid: this.targetUuid
+            targetUuid: this.targetUuid,
+            ...configOptions
         };
 
         DHBaseAction.applyKeybindings(config);
@@ -280,8 +281,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @param {Event} event Event from the button used to trigger the Action
      * @returns {object}
      */
-    prepareConfig(event) {
-        const config = this.prepareBaseConfig(event);
+    prepareConfig(event, configOptions = {}) {
+        const config = this.prepareBaseConfig(event, configOptions);
         for (const clsField of Object.values(this.schema.fields)) {
             if (clsField?.prepareConfig) if (clsField.prepareConfig.call(this, config) === false) return false;
         }

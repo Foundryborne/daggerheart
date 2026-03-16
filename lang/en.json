@@ -680,16 +680,35 @@
             },
             "TagTeamSelect": {
                 "title": "Tag Team Roll",
+                "FIELDS": {
+                    "initiator": {
+                        "memberId": { "label": "Initiating Character" },
+                        "cost": { "label": "Initiation Cost" }
+                    }
+                },
                 "leaderTitle": "Initiating Character",
                 "membersTitle": "Participants",
                 "partyTeam": "Party Team",
                 "hopeCost": "Hope Cost",
                 "initiatingCharacter": "Initiating Character",
+                "selectParticipants": "Select the two participants",
+                "startTagTeamRoll": "Start Tag Team Roll",
+                "openDialogForAll": "Open Dialog For All",
+                "rollType": "Roll Type",
+                "makeYourRoll": "Make your roll",
+                "cancelTagTeamRoll": "Cancel Tag Team Roll",
+                "finishTagTeamRoll": "Finish Tag Team Roll",
                 "linkMessageHint": "Make a roll from your character sheet to link it to the Tag Team Roll",
                 "damageNotRolled": "Damage not rolled in chat message yet",
                 "insufficientHope": "The initiating character doesn't have enough hope",
-                "createTagTeam": "Create TagTeam Roll",
-                "chatMessageRollTitle": "Roll"
+                "createTagTeam": "Create Tag Team Roll",
+                "chatMessageRollTitle": "Roll",
+                "cancelConfirmTitle": "Cancel Tag Team Roll",
+                "cancelConfirmText": "Are you sure you want to cancel the Tag Team Roll? This will close it for all other players too.",
+                "hints": {
+                    "completeRolls": "Set up and complete the rolls for the characters",
+                    "selectRoll": "Select which roll value to be used for the Tag Team"
+                }
             },
             "TokenConfig": {
                 "actorSizeUsed": "Actor size is set, determining the dimensions"
@@ -1242,6 +1261,11 @@
             "SelectAction": {
                 "selectType": "Select Action Type",
                 "selectAction": "Action Selection"
+            },
+            "TagTeamRollTypes": {
+                "trait": "Trait",
+                "ability": "Ability",
+                "damageAbility": "Damage Ability"
             },
             "TargetTypes": {
                 "any": "Any",
@@ -1895,6 +1919,10 @@
             }
         },
         "GENERAL": {
+            "Ability": {
+                "single": "Ability",
+                "plural": "Abilities"
+            },
             "Action": {
                 "single": "Action",
                 "plural": "Actions"
@@ -2354,6 +2382,10 @@
             "rerolled": "Rerolled",
             "rerollThing": "Reroll {thing}",
             "resource": "Resource",
+            "result": {
+                "single": "Result",
+                "plural": "Results"
+            },
             "roll": "Roll",
             "rollAll": "Roll All",
             "rollDamage": "Roll Damage",

@@ -4,6 +4,7 @@ import DHFeature from '../data/item/feature.mjs';
 import { createScrollText, damageKeyToNumber, getDamageKey } from '../helpers/utils.mjs';
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
 import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
+import { abilities } from '../config/actorConfig.mjs';
 
 export default class DhpActor extends Actor {
     parties = new Set();
@@ -507,6 +508,30 @@ export default class DhpActor extends Actor {
         config.resourceUpdates = new ResourceUpdateMap(this);
         const rollClass = config.roll.lite ? CONFIG.Dice.daggerheart['DHRoll'] : this.rollClass;
         return await rollClass.build(config);
+    }
+
+    async rollTrait(trait, options = {}) {
+        const abilityLabel = game.i18n.localize(abilities[trait].label);
+        const config = {
+            event: event,
+            title: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.name}`,
+            headerTitle: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
+                ability: abilityLabel
+            }),
+            effects: await game.system.api.data.actions.actionsTypes.base.getEffects(this),
+            roll: {
+                trait: trait,
+                type: 'trait'
+            },
+            hasRoll: true,
+            actionType: 'action',
+            headerTitle: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.name}`,
+            title: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
+                ability: abilityLabel
+            }),
+            ...options
+        };
+        return await this.diceRoll(config);
     }
 
     get rollClass() {

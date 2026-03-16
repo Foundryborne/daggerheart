@@ -75,10 +75,6 @@ export default class DhEnvironment extends BaseDataActor {
                 );
                 scene.update({ 'flags.daggerheart.sceneEnvironments': newSceneEnvironments }).then(() => {
                     Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Scene });
-                    game.socket.emit(`system.${CONFIG.DH.id}`, {
-                        action: socketEvent.Refresh,
-                        data: { refreshType: RefreshType.TagTeamRoll }
-                    });
                 });
             }
         }

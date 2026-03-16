@@ -224,7 +224,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         if (locked || element.dataset.hasOwnProperty('locked')) this.lockTooltip();
     }
 
-    _setAnchor(direction, options) {
+    _setAnchor(direction, options = {}) {
         const directions = this.constructor.TOOLTIP_DIRECTIONS;
         const pad = this.constructor.TOOLTIP_MARGIN_PX;
         const pos = this.element.getBoundingClientRect();

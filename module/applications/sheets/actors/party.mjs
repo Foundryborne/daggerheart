@@ -35,9 +35,7 @@ export default class Party extends DHBaseActorSheet {
             refeshActions: Party.#refeshActions,
             triggerRest: Party.#triggerRest,
             tagTeamRoll: Party.#tagTeamRoll,
-            groupRoll: Party.#groupRoll,
-            selectRefreshable: DaggerheartMenu.selectRefreshable,
-            refreshActors: DaggerheartMenu.refreshActors
+            groupRoll: Party.#groupRoll
         },
         dragDrop: [{ dragSelector: '[data-item-id]', dropSelector: null }]
     };
@@ -120,6 +118,7 @@ export default class Party extends DHBaseActorSheet {
             secrets: this.document.isOwner,
             relativeTo: this.document
         });
+        context.tagTeamActive = Boolean(this.document.system.tagTeam.initiator);
     }
 
     /**
@@ -255,11 +254,7 @@ export default class Party extends DHBaseActorSheet {
     }
 
     static async #tagTeamRoll() {
-        new game.system.api.applications.dialogs.TagTeamDialog(
-            this.document.system.partyMembers.filter(x => Party.DICE_ROLL_ACTOR_TYPES.includes(x.type))
-        ).render({
-            force: true
-        });
+        new game.system.api.applications.dialogs.TagTeamDialog(this.document).render({ force: true });
     }
 
     static async #groupRoll(_params) {

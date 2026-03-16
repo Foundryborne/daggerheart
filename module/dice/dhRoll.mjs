@@ -21,6 +21,9 @@ export default class DHRoll extends Roll {
     static async build(config = {}, message = {}) {
         const roll = await this.buildConfigure(config, message);
         if (!roll) return;
+
+        if (config.skips?.createMessage) config.messageRoll = roll;
+
         await this.buildEvaluate(roll, config, (message = {}));
         await this.buildPost(roll, config, (message = {}));
         return config;
@@ -29,12 +32,6 @@ export default class DHRoll extends Roll {
     static async buildConfigure(config = {}, message = {}) {
         config.hooks = [...this.getHooks(), ''];
         config.dialog ??= {};
-
-        const actorIdSplit = config.source?.actor?.split('.');
-        if (actorIdSplit) {
-            const tagTeamSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
-            config.tagTeamSelected = Boolean(tagTeamSettings.members[actorIdSplit[actorIdSplit.length - 1]]);
-        }
 
         for (const hook of config.hooks) {
             if (Hooks.call(`${CONFIG.DH.id}.preRoll${hook.capitalize()}`, config, message) === false) return null;
