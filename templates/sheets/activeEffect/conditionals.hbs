@@ -22,7 +22,7 @@
                         <label>{{localize "EFFECT.FIELDS.changes.element.key.label"}}</label>
 
                         <div class="form-fields">
-                            <select name="{{concat "system.conditionals." index ".key"}}">
+                            <select {{#if (eq conditional.type 'status')}}name="{{concat "system.conditionals." index ".key"}}"{{/if}}>
                                 {{selectOptions ../statusChoices selected=conditional.key labelAttr="label" valueAttr="id" blank="" localize=true}}
                             </select>
                         </div>
@@ -32,7 +32,7 @@
                         <label>{{localize "EFFECT.FIELDS.changes.element.key.label"}}</label>
 
                         <div class="form-fields">
-                            <input type="text" class="effect-change-input" name="{{concat "system.conditionals." index ".key"}}" value="{{conditional.key}}" />
+                            <input type="text" class="effect-change-input" {{#if (eq conditional.type 'attribute')}}name="{{concat "system.conditionals." index ".key"}}"{{/if}} value="{{conditional.key}}" />
                         </div>
                     </div>
 

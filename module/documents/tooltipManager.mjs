@@ -182,7 +182,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             );
             html = content;
         }
-        if (text && html) throw new Error('Cannot provide both text and html options to TooltipManager#activate.');
+
         // Deactivate currently active element
         this.deactivate();
         // Check if the element still exists in the DOM.

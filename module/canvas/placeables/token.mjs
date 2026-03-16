@@ -21,7 +21,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         this.effects.overlay = null;
 
         // Categorize effects
-        const activeEffects = getIconVisibleActiveEffects(Array.from(this.actor?.allApplicableEffects() ?? []));
+        const activeEffects = getIconVisibleActiveEffects(Array.from(this.actor?.getActiveEffects() ?? []));
         const overlayEffect = activeEffects.findLast(e => e.img && e.getFlag?.('core', 'overlay'));
 
         // Draw effects

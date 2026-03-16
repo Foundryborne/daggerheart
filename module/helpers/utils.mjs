@@ -542,10 +542,7 @@ export function getIconVisibleActiveEffects(effects) {
     return effects.filter(effect => {
         if (!(effect instanceof game.system.api.documents.DhActiveEffect)) return true;
 
-        const alwaysShown = effect.showIcon === CONST.ACTIVE_EFFECT_SHOW_ICON.ALWAYS;
-        const conditionalShown = effect.showIcon === CONST.ACTIVE_EFFECT_SHOW_ICON.CONDITIONAL && !effect.transfer; // TODO: system specific logic
-
-        return !effect.active && (alwaysShown || conditionalShown);
+        return effect.active && effect.showIcon >= CONST.ACTIVE_EFFECT_SHOW_ICON.CONDITIONAL;
     });
 }
 export async function getFeaturesHTMLData(features) {
