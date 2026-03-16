@@ -41,20 +41,6 @@ export default class DhCharacter extends DhCreature {
                 label: 'DAGGERHEART.GENERAL.proficiency'
             }),
             evasion: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.evasion' }),
-            armorScore: new fields.SchemaField({
-                value: new fields.NumberField({
-                    integer: true,
-                    initial: 0,
-                    min: 0,
-                    label: 'DAGGERHEART.GENERAL.armorScore'
-                }),
-                max: new fields.NumberField({
-                    integer: true,
-                    initial: 0,
-                    min: 0,
-                    label: 'DAGGERHEART.GENERAL.armorScore'
-                })
-            }),
             damageThresholds: new fields.SchemaField({
                 severe: new fields.NumberField({
                     integer: true,
@@ -665,6 +651,10 @@ export default class DhCharacter extends DhCreature {
 
     prepareBaseData() {
         super.prepareBaseData();
+        this.armorScore = {
+            max: 0,
+            value: 0
+        };
         this.evasion += this.class.value?.system?.evasion ?? 0;
 
         const currentLevel = this.levelData.level.current;
