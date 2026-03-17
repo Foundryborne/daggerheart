@@ -40,7 +40,7 @@ export default class Armor extends foundry.abstract.DataModel {
                     ...change,
                     key: 'system.armorScore.max',
                     type: CONFIG.DH.GENERAL.activeEffectModes.add.id,
-                    value: change.max
+                    value: change.typeData.max
                 },
                 replacementData
             );
