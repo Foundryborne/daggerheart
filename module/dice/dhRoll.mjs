@@ -146,6 +146,7 @@ export default class DHRoll extends Roll {
         return foundry.applications.handlebars.renderTemplate(template, {
             ...chatData,
             parent: chatData.parent,
+            targetMode: chatData.targetMode,
             metagamingSettings
         });
     }
