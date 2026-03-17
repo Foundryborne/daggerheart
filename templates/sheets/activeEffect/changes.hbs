@@ -13,4 +13,21 @@
             {{{change}}}
         {{/each}}
     </ol>
+
+    <fieldset class="armor-change-container">
+        <legend>{{localize "DAGGERHEART.GENERAL.armor"}} <a data-action="addTypedChange"><i class="fa-solid fa-plus"></i></a></legend>
+
+        <header>
+            <div>{{localize "EFFECT.FIELDS.changes.element.value.label"}}</div>
+            <div>{{localize "DAGGERHEART.GENERAL.max"}}</div>
+            <div>{{localize "DAGGERHEART.EFFECTS.Armor.FIELDS.armorInteraction.label"}}</div>
+            <div>{{localize "EFFECT.FIELDS.changes.element.priority.label"}}</div>
+        </header>
+        <ol class="scrollable">
+            {{#each typedChanges.armor as |armor|}}
+                {{> "systems/daggerheart/templates/sheets/activeEffect/typeChanges/armorChange.hbs" armor fields=@root.systemFields.changes.element.fields}}
+            {{/each}}
+        </ol>
+
+    </fieldset>
 </section>

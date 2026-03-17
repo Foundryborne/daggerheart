@@ -778,8 +778,8 @@
             },
             "ArmorInteraction": {
                 "none": { "label": "Ignores Armor" },
-                "active": { "label": "Only Active With Armor" },
-                "inactive": { "label": "Only Active Without Armor" }
+                "active": { "label": "Active w/ Armor" },
+                "inactive": { "label": "Inactive w/ Armor" }
             },
             "ArmorFeature": {
                 "burning": {

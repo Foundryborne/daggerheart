@@ -12,6 +12,8 @@
  *  "Anything that uses another data model value as its value": +1 - Effects that increase traits have to be calculated first at Base priority. (EX: Raise evasion by half your agility)
  */
 
+import { changeTypes } from './_module.mjs';
+
 export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
@@ -30,7 +32,8 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
                     }),
                     value: new fields.AnyField({ required: true, nullable: true, serializable: true, initial: '' }),
                     phase: new fields.StringField({ required: true, blank: false, initial: 'initial' }),
-                    priority: new fields.NumberField()
+                    priority: new fields.NumberField(),
+                    typeData: new fields.TypedSchemaField(changeTypes, { nullable: true, initial: null })
                 })
             ),
             duration: new fields.SchemaField({

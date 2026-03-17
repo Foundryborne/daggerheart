@@ -959,12 +959,7 @@ export const sceneRangeMeasurementSetting = {
     }
 };
 
-export const activeEffectModes = {
-    armor: {
-        id: 'armor',
-        priority: 20,
-        label: 'TYPES.ActiveEffect.armor'
-    },
+export const baseActiveEffectModes = {
     custom: {
         id: 'custom',
         priority: 0,
@@ -1000,6 +995,15 @@ export const activeEffectModes = {
         priority: 50,
         label: 'EFFECT.CHANGES.TYPES.override'
     }
+};
+
+export const activeEffectModes = {
+    armor: {
+        id: 'armor',
+        priority: 20,
+        label: 'TYPES.ActiveEffect.armor'
+    },
+    ...baseActiveEffectModes
 };
 
 export const activeEffectArmorInteraction = {

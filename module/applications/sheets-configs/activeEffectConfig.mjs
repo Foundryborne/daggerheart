@@ -8,7 +8,10 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
     }
 
     static DEFAULT_OPTIONS = {
-        classes: ['daggerheart', 'sheet', 'dh-style']
+        classes: ['daggerheart', 'sheet', 'dh-style'],
+        actions: {
+            addTypedChange: DhActiveEffectConfig.#addTypedChange
+        }
     };
 
     static PARTS = {
@@ -187,38 +190,51 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                 break;
             case 'changes':
                 const fields = this.document.system.schema.fields.changes.element.fields;
+                const { base, ...typedChanges } = context.source.changes.reduce((acc, change, index) => {
+                    const type = CONFIG.DH.GENERAL.baseActiveEffectModes[change.type] ? 'base' : change.type;
+                    if (!acc[type]) acc[type] = [];
+                    acc[type].push({ ...change, index });
+                    return acc;
+                }, {});
                 partContext.changes = await Promise.all(
-                    foundry.utils
-                        .deepClone(context.source.changes)
-                        .map((c, i) => this._prepareChangeContext(c, i, fields))
+                    foundry.utils.deepClone(base ?? []).map(c => this._prepareChangeContext(c, fields))
                 );
+                partContext.typedChanges = typedChanges;
                 break;
         }
 
         return partContext;
     }
 
-    _prepareChangeContext(change, index, fields) {
+    /* Could be generalised if needed later */
+    static #addTypedChange() {
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        const changes = Object.values(submitData.system?.changes ?? {});
+        changes.push(game.system.api.data.activeEffects.changeTypes.armor.getInitialValue());
+        return this.submit({ updateData: { system: { changes } } });
+    }
+
+    _prepareChangeContext(change, fields) {
         if (typeof change.value !== 'string') change.value = JSON.stringify(change.value);
         const defaultPriority = game.system.api.documents.DhActiveEffect.CHANGE_TYPES[change.type]?.defaultPriority;
         Object.assign(
             change,
             ['key', 'type', 'value', 'priority'].reduce((paths, fieldName) => {
-                paths[`${fieldName}Path`] = `system.changes.${index}.${fieldName}`;
+                paths[`${fieldName}Path`] = `system.changes.${change.index}.${fieldName}`;
                 return paths;
             }, {})
         );
         return (
             game.system.api.documents.DhActiveEffect.CHANGE_TYPES[change.type].render?.(
                 change,
-                index,
+                change.index,
                 defaultPriority
             ) ??
             foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/sheets/activeEffect/change.hbs',
                 {
                     change,
-                    index,
+                    index: change.index,
                     defaultPriority,
                     fields
                 }
