@@ -757,7 +757,6 @@ export default class DhCharacter extends DhCreature {
 
     static migrateData(source) {
         if (typeof source.scars === 'object') source.scars = 0;
-        if (source.resources?.hope?.max) source.scars = Math.max(6 - source.resources.hope.max, 0);
 
         return super.migrateData(source);
     }

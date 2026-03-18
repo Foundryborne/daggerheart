@@ -27,7 +27,7 @@
                                         </select>
                                     </div>
                                 </div>
-                            {{else if (eq member.rollType 'abilityDamage')}}
+                            {{else if (eq member.rollType 'damageAbility')}}
                                 <div class="form-group">
                                     <div class="form-fields">
                                         <label>{{localize "DAGGERHEART.CONFIG.TagTeamRollTypes.damageAbility"}}</label>
@@ -79,7 +79,7 @@
                                                     <span class="dice-label">{{this.fear.value}}</span>
                                                     <img src="{{concat "systems/daggerheart/assets/icons/dice/fear/" this.fear.dice ".svg"}}" />
                                                 </a>
-                                                {{#if this.advantage}}
+                                                {{#if this.advantage.type}}
                                                     <span class="roll-operator">{{#if (eq this.advantage.type 1)}}+{{else}}-{{/if}}</span>
                                                     <span class="roll-dice">
                                                         <span class="dice-label">{{this.advantage.value}}</span>

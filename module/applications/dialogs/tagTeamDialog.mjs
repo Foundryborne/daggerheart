@@ -1,6 +1,6 @@
 import { MemberData } from '../../data/tagTeamData.mjs';
 import { getCritDamageBonus } from '../../helpers/utils.mjs';
-import { RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+import { emitAsGM, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 import Party from '../sheets/actors/party.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -133,8 +133,9 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                                         group: item.name,
                                         baseAction: action.baseAction
                                     };
-                                    rollOptions.push(actionItem);
+
                                     if (action.hasDamage) damageRollOptions.push(actionItem);
+                                    else rollOptions.push(actionItem);
                                 }
                             }
                         }
@@ -179,16 +180,23 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         this.updatePartyData(partyData);
     }
 
-    async updatePartyData(updata, options = { render: true }) {
-        await this.party.update(updata);
-
-        if (options.render) {
-            this.render(true);
+    async updatePartyData(update, options = { render: true }) {
+        const gmUpdate = async update => {
+            await this.party.update(update);
+            this.render();
             game.socket.emit(`system.${CONFIG.DH.id}`, {
                 action: socketEvent.Refresh,
                 data: { refreshType: RefreshType.TagTeamRoll, action: 'refresh' }
             });
-        }
+        };
+
+        await emitAsGM(
+            GMUpdateEvent.UpdateDocument,
+            gmUpdate,
+            update,
+            this.party.uuid,
+            options.render ? { refreshType: RefreshType.TagTeamRoll, action: 'refresh' } : undefined
+        );
     }
 
     getIsEditable() {
@@ -413,8 +421,6 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         await action.workflow.get('damage').execute(config, null, true);
         if (!config.damage) return;
-
-        // const damage = config.roll.isCritical ? await this.getNonCriticalDamage(config, actor) : config.damage;
 
         const current = this.party.system.tagTeam.members[memberKey].rollData;
         await this.updatePartyData({
