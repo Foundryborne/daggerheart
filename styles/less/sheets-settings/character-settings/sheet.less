@@ -20,15 +20,22 @@
             display: flex;
             align-items: center;
             justify-content: space-evenly;
-            gap: 8px;
+            gap: 2px; //gap reduced to accomadate new font size and keep the same overall spacing between trait containers
 
             .trait-container {
-                width: 60px;
-                height: 60px;
+                width: 65px; //width and height increased to accomadate font size
+                height: 65px;
                 background: url(../assets/svg/trait-shield.svg) no-repeat;
+                background-size: 100%; //scaling the shield to fit the container
+                padding-right: 2px; //to fix the trait-shield not being centered
+                padding-top: 4px; //aligning the text properly
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+
+                span{
+                    font-size: var(--font-size-10); // font size decreased to fit inside the shield and maintain readability
+                }
 
                 div {
                     filter: drop-shadow(0 0 3px black);

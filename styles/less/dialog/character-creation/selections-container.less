@@ -240,12 +240,17 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-evenly;
-                gap: 8px;
+                gap: 2px; //gap reduced to accomadate new font size and keep the same overall spacing between trait containers
 
                 .trait-container {
-                    width: 60px;
-                    height: 60px;
+                    span {
+                        font-size: var(--font-size-10); // reduced font size to fit inside the smaller shield and maintain readability
+                    }
+                    width: 65px; //width and height increased to accomadate font size
+                    height: 65px;
                     background: url(../assets/svg/trait-shield.svg) no-repeat;
+                    background-size: 100%; //scaling the shield to fit the container
+                    padding-right:2px; // trait-shield is not centered so a quick padding fix for centered text
 
                     div {
                         filter: drop-shadow(0 0 3px black);
