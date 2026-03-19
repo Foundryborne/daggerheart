@@ -1,3 +1,5 @@
+import { itemAbleRollParse } from '../../../helpers/utils.mjs';
+
 const fields = foundry.data.fields;
 
 export default class Armor extends foundry.abstract.DataModel {
@@ -76,14 +78,14 @@ export default class Armor extends foundry.abstract.DataModel {
 
     /* Helpers */
 
-    get armorData() {
+    getArmorData(parentChange) {
         const actor = this.parent.parent?.actor?.type === 'character' ? this.parent.parent.actor : null;
         const maxParse = actor ? itemAbleRollParse(this.max, actor, this.parent.parent.parent) : null;
         const maxRoll = maxParse ? new Roll(maxParse).evaluateSync() : null;
         const maxEvaluated = maxRoll ? (maxRoll.isDeterministic ? maxRoll.total : null) : null;
 
         return {
-            value: this.value,
+            value: parentChange.value,
             max: maxEvaluated ?? this.max
         };
     }

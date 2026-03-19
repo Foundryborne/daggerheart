@@ -469,8 +469,8 @@ export default class DhCharacter extends DhCreature {
 
         const increasing = armorChange >= 0;
         let remainingChange = Math.abs(armorChange);
-        const armorEffects = Array.from(this.parent.allApplicableEffects()).filter(x => x.type === 'armor');
-        const orderedEffects = game.system.api.data.activeEffects.ArmorEffect.orderEffectsForAutoChange(
+        const armorEffects = Array.from(this.parent.allApplicableEffects()).filter(x => x.system.armorData);
+        const orderedEffects = game.system.api.data.activeEffects.changeTypes.armor.orderEffectsForAutoChange(
             armorEffects,
             increasing
         );
@@ -482,11 +482,11 @@ export default class DhCharacter extends DhCreature {
                 usedArmorChange -= armorEffect.system.armorChange.value;
             } else {
                 if (increasing) {
-                    const remainingArmor = armorEffect.system.armorChange.max - armorEffect.system.armorChange.value;
+                    const remainingArmor = armorEffect.system.armorData.max - armorEffect.system.armorData.value;
                     usedArmorChange = Math.min(remainingChange, remainingArmor);
                     remainingChange -= usedArmorChange;
                 } else {
-                    const changeChange = Math.min(armorEffect.system.armorChange.value, remainingChange);
+                    const changeChange = Math.min(armorEffect.system.armorData.value, remainingChange);
                     usedArmorChange -= changeChange;
                     remainingChange -= changeChange;
                 }
@@ -499,12 +499,13 @@ export default class DhCharacter extends DhCreature {
 
                 embeddedUpdates[armorEffect.parent.id].updates.push({
                     '_id': armorEffect.id,
-                    'system.changes': [
-                        {
-                            ...armorEffect.system.armorChange,
-                            value: armorEffect.system.armorChange.value + usedArmorChange
-                        }
-                    ]
+                    'system.changes': armorEffect.system.changes.map(change => ({
+                        ...change,
+                        value:
+                            change.type === 'armor'
+                                ? armorEffect.system.armorChange.value + usedArmorChange
+                                : change.value
+                    }))
                 });
             }
 

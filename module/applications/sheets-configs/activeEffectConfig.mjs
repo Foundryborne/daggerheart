@@ -8,10 +8,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
     }
 
     static DEFAULT_OPTIONS = {
-        classes: ['daggerheart', 'sheet', 'dh-style'],
-        actions: {
-            addTypedChange: DhActiveEffectConfig.#addTypedChange
-        }
+        classes: ['daggerheart', 'sheet', 'dh-style']
     };
 
     static PARTS = {
