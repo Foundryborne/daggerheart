@@ -64,7 +64,7 @@ export default class ArmorSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
         const armorEffect = this.document.system.armorEffect;
         if (Number.isNaN(value) || !armorEffect) return;
 
-        await armorEffect.system.updateArmorMax(value);
+        await armorEffect.system.armorChange.typeData.updateArmorMax(value);
         this.render();
     }
 

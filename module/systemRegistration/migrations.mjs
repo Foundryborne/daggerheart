@@ -374,15 +374,18 @@ export async function runMigrations() {
                     if (migrationArmorScore !== undefined && !hasArmorEffect) {
                         await item.createEmbeddedDocuments('ActiveEffect', [
                             {
-                                ...game.system.api.data.activeEffects.ArmorEffect.getDefaultObject(),
+                                ...game.system.api.data.activeEffects.changeTypes.armor.getDefaultArmorEffect(),
                                 changes: [
                                     {
-                                        key: 'system.armorScore',
-                                        type: CONFIG.DH.GENERAL.activeEffectModes.armor.id,
+                                        key: 'Armor',
+                                        type: CONFIG.DH.GENERAL.activeEffectModes.armor,
                                         phase: 'initial',
                                         priority: 20,
                                         value: 0,
-                                        max: migrationArmorScore.toString()
+                                        typeData: {
+                                            type: 'armor',
+                                            max: migrationArmorScore.toString()
+                                        }
                                     }
                                 ]
                             }

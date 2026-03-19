@@ -16,8 +16,8 @@ export default class Armor extends foundry.abstract.DataModel {
                 required: true,
                 choices: CONFIG.DH.GENERAL.activeEffectArmorInteraction,
                 initial: CONFIG.DH.GENERAL.activeEffectArmorInteraction.none.id,
-                label: 'DAGGERHEART.EFFECTS.Armor.FIELDS.armorInteraction.label',
-                hint: 'DAGGERHEART.EFFECTS.Armor.FIELDS.armorInteraction.hint'
+                label: 'DAGGERHEART.EFFECTS.ChangeTypes.armor.FIELDS.armorInteraction.label',
+                hint: 'DAGGERHEART.EFFECTS.ChangeTypes.armor.FIELDS.armorInteraction.hint'
             })
         };
     }
@@ -62,17 +62,28 @@ export default class Armor extends foundry.abstract.DataModel {
         }
     }
 
-    static getInitialValue() {
+    static getInitialValue(locked) {
         return {
             key: 'Armor',
             type: CONFIG.DH.GENERAL.activeEffectModes.armor.id,
             value: 0,
             typeData: {
                 type: 'armor',
-                max: 0
+                max: 0,
+                locked
             },
             phase: 'initial',
             priority: 20
+        };
+    }
+
+    static getDefaultArmorEffect() {
+        return {
+            name: game.i18n.localize('DAGGERHEART.EFFECTS.ChangeTypes.armor.newArmorEffect'),
+            img: 'icons/equipment/chest/breastplate-helmet-metal.webp',
+            system: {
+                changes: [Armor.getInitialValue(true)]
+            }
         };
     }
 
@@ -94,7 +105,7 @@ export default class Armor extends foundry.abstract.DataModel {
         const newChanges = [
             ...this.parent.changes.map(change => ({
                 ...change,
-                value: change.type === 'armor' ? Math.min(this.parent.value, newMax) : change.value,
+                value: change.type === 'armor' ? Math.min(change.value, newMax) : change.value,
                 typeData: change.type === 'armor' ? { ...change.typeData, max: newMax } : change.typeData
             }))
         ];

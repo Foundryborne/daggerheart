@@ -52,7 +52,7 @@ export default class DHArmor extends AttachableItem {
     }
 
     get armorEffect() {
-        return this.parent.effects.find(x => x.type === 'armor');
+        return this.parent.effects.find(x => x.system.armorData);
     }
 
     get armorData() {
@@ -80,9 +80,9 @@ export default class DHArmor extends AttachableItem {
     async _onCreate(_data, _options, userId) {
         if (userId !== game.user.id) return;
 
-        if (!this.parent.effects.some(x => x.type === 'armor')) {
+        if (!this.parent.effects.some(x => x.system.armorData)) {
             this.parent.createEmbeddedDocuments('ActiveEffect', [
-                game.system.api.data.activeEffects.ArmorEffect.getDefaultObject()
+                game.system.api.data.activeEffects.changeTypes.armor.getDefaultArmorEffect()
             ]);
         }
     }
