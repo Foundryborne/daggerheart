@@ -217,17 +217,6 @@ Hooks.once('init', () => {
             label: sheetLabel('DOCUMENT.ActiveEffect')
         }
     );
-    DocumentSheetConfig.registerSheet(
-        CONFIG.ActiveEffect.documentClass,
-        SYSTEM.id,
-        applications.sheetConfigs.ArmorActiveEffectConfig,
-        {
-            types: ['armor'],
-            makeDefault: true,
-            label: () =>
-                `${game.i18n.localize('TYPES.ActiveEffect.armor')} ${game.i18n.localize('DAGGERHEART.GENERAL.effect')}`
-        }
-    );
 
     game.socket.on(`system.${SYSTEM.id}`, socketRegistration.handleSocketEvent);
 
