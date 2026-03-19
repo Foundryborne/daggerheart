@@ -76,36 +76,27 @@ export default class Armor extends foundry.abstract.DataModel {
 
     /* Helpers */
 
-    get armorChange() {
-        if (this.changes.length !== 1)
-            throw new Error('Unexpected error. An armor effect should have a changes field of length 1.');
-
-        const actor = this.parent.actor?.type === 'character' ? this.parent.actor : null;
-        const changeData = this.changes[0];
-        const maxParse = actor ? itemAbleRollParse(changeData.max, actor, this.parent.parent) : null;
+    get armorData() {
+        const actor = this.parent.parent?.actor?.type === 'character' ? this.parent.parent.actor : null;
+        const maxParse = actor ? itemAbleRollParse(this.max, actor, this.parent.parent.parent) : null;
         const maxRoll = maxParse ? new Roll(maxParse).evaluateSync() : null;
         const maxEvaluated = maxRoll ? (maxRoll.isDeterministic ? maxRoll.total : null) : null;
 
         return {
-            ...changeData,
-            max: maxEvaluated ?? changeData.max
+            value: this.value,
+            max: maxEvaluated ?? this.max
         };
     }
 
-    get armorData() {
-        return { value: this.armorChange.value, max: this.armorChange.max };
-    }
-
     async updateArmorMax(newMax) {
-        const { effect, ...baseChange } = this.armorChange;
         const newChanges = [
-            {
-                ...baseChange,
-                max: newMax,
-                value: Math.min(this.armorChange.value, newMax)
-            }
+            ...this.parent.changes.map(change => ({
+                ...change,
+                value: change.type === 'armor' ? Math.min(this.parent.value, newMax) : change.value,
+                typeData: change.type === 'armor' ? { ...change.typeData, max: newMax } : change.typeData
+            }))
         ];
-        await this.parent.update({ 'system.changes': newChanges });
+        await this.parent.parent.update({ 'system.changes': newChanges });
     }
 
     static orderEffectsForAutoChange(armorEffects, increasing) {

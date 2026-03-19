@@ -153,6 +153,10 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                 minLength: 0
             });
         });
+
+        htmlElement
+            .querySelector('.armor-change-checkbox')
+            ?.addEventListener('change', this.armorChangeToggle.bind(this));
     }
 
     async _prepareContext(options) {
@@ -190,10 +194,17 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                 break;
             case 'changes':
                 const fields = this.document.system.schema.fields.changes.element.fields;
+
+                const singleTypes = ['armor'];
                 const { base, ...typedChanges } = context.source.changes.reduce((acc, change, index) => {
                     const type = CONFIG.DH.GENERAL.baseActiveEffectModes[change.type] ? 'base' : change.type;
-                    if (!acc[type]) acc[type] = [];
-                    acc[type].push({ ...change, index });
+                    if (singleTypes.includes(type)) {
+                        acc[type] = { ...change, index };
+                    } else {
+                        if (!acc[type]) acc[type] = [];
+                        acc[type].push({ ...change, index });
+                    }
+
                     return acc;
                 }, {});
                 partContext.changes = await Promise.all(
@@ -206,11 +217,27 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         return partContext;
     }
 
+    armorChangeToggle(event) {
+        if (event.target.checked) {
+            this.addArmorChange();
+        } else {
+            this.removeTypedChange(event.target.dataset.index);
+        }
+    }
+
     /* Could be generalised if needed later */
-    static #addTypedChange() {
+    addArmorChange() {
         const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
         const changes = Object.values(submitData.system?.changes ?? {});
         changes.push(game.system.api.data.activeEffects.changeTypes.armor.getInitialValue());
+        return this.submit({ updateData: { system: { changes } } });
+    }
+
+    removeTypedChange(indexString) {
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        const changes = Object.values(submitData.system.changes);
+        const index = Number(indexString);
+        changes.splice(index, 1);
         return this.submit({ updateData: { system: { changes } } });
     }
 

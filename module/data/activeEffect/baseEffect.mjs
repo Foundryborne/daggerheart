@@ -89,6 +89,13 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
         return true;
     }
 
+    get armorData() {
+        const armorChange = this.changes.find(x => x.type === CONFIG.DH.GENERAL.activeEffectModes.armor.id);
+        if (!armorChange) return null;
+
+        return armorChange.armorData;
+    }
+
     static getDefaultObject() {
         return {
             name: 'New Effect',
