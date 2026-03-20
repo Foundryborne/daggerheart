@@ -193,7 +193,7 @@ export async function runMigrations() {
     }
 
     if (foundry.utils.isNewerVersion('1.2.7', lastMigrationVersion)) {
-        const tagTeam = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
+        const tagTeam = game.settings.get(CONFIG.DH.id, 'TagTeamRoll');
         const initatorMissing = tagTeam.initiator && !game.actors.some(actor => actor.id === tagTeam.initiator);
         const missingMembers = Object.keys(tagTeam.members).reduce((acc, id) => {
             if (!game.actors.some(actor => actor.id === id)) {
@@ -206,7 +206,7 @@ export async function runMigrations() {
             initiator: initatorMissing ? null : tagTeam.initiator,
             members: missingMembers
         });
-        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll, tagTeam);
+        await game.settings.set(CONFIG.DH.id, 'TagTeamRoll', tagTeam);
 
         lastMigrationVersion = '1.2.7';
     }

@@ -1,0 +1,34 @@
+<section class="initialization-container tab {{#if tabs.initialization.active}} active{{/if}}" data-group="{{tabs.initialization.group}}" data-tab="{{tabs.initialization.id}}">
+    <h2>{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.selectParticipants"}}</h2>
+    <div class="members-container">
+        {{#each memberSelection as |member|}}
+            <a 
+                class="member-container {{#unless member.selected}}inactive {{#if ../allselected}}locked{{/if}}{{/unless}}" 
+                data-action="toggleSelectMember" data-id="{{member.id}}" {{#if (and (not member.selected) ../allSelected)}}disabled{{/if}}
+            >
+                <span class="member-name">{{member.name}}</span>
+                <img src="{{member.img}}" />
+            </a>
+        {{/each}} 
+    </div>
+
+    <div class="initiator-container {{#if initiatorDisabled}}inactive{{/if}}">
+        <div class="form-group">
+            <label>{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.FIELDS.initiator.memberId.label"}}</label>
+            <div class="form-fields">
+                <select name="initiator.memberId" {{#if initiatorDisabled}}disabled{{/if}}>
+                    {{selectOptions initiatorOptions selected=initiator.memberId blank="" }}
+                </select>
+            </div>
+        </div>
+        {{formGroup tagTeamFields.initiator.fields.cost name="initiator.cost" value=initiator.cost disabled=initiatorDisabled localize=true }}
+    </div>
+
+    <footer>
+        <button type="button" data-action="startTagTeamRoll" {{#unless canStartTagTeam}}disabled{{/unless}}>{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.startTagTeamRoll"}} <i class="fa-solid fa-arrow-right-long"></i></button>
+        <div class="finish-tools {{#unless canStartTagTeam}}inactive{{/unless}}">
+            <span>{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.openDialogForAll"}}</span>
+            <input type="checkbox" name="openForAllPlayers" {{#unless canStartTagTeam}}disabled{{/unless}} {{checked openForAllPlayers}} />
+        </div>
+    </footer>
+</section>
