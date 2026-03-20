@@ -147,7 +147,7 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
             const effectIndex = this.move.effects.findIndex(x => x.id === id);
             const effect = this.move.effects[effectIndex];
             const updatedEffect =
-                await game.system.api.applications.sheetConfigs.SettingActiveEffectConfig.configure(effect);
+                await game.system.api.applications.sheetConfigs.ActiveEffectConfig.configureSetting(effect);
             if (!updatedEffect) return;
 
             await this.updateMove({

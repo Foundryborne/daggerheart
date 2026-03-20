@@ -247,4 +247,30 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
 
         return submitData;
     }
+
+    /** @inheritDoc */
+    _processSubmitData(event, form, submitData, options) {
+        if (this.options.isSetting) {
+            // Settings should update source instead
+            this.document.updateSource(submitData);
+            this.render();
+        } else {
+            return super._processSubmitData(event, form, submitData, options);
+        }
+    }
+
+    /** Creates an active effect config for a setting */
+    static async configureSetting(effect, options = {}) {
+        const document = new CONFIG.ActiveEffect.documentClass({ ...foundry.utils.duplicate(effect), _id: effect.id });
+        return new Promise(resolve => {
+            const app = new this({ document, ...options, isSetting: true });
+            app.addEventListener('close', () => {
+                const newEffect = app.document.toObject(true);
+                newEffect.id = newEffect._id;
+                delete newEffect._id;
+                resolve(newEffect);
+            }, { once: true });
+            app.render({ force: true });
+        });
+    }
 }
