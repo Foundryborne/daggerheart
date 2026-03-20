@@ -966,10 +966,13 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const armorSources = [];
         for (var effect of Array.from(this.document.allApplicableEffects())) {
             const origin = effect.origin ? await foundry.utils.fromUuid(effect.origin) : effect.parent;
-            if (effect.type !== 'armor' || effect.disabled || effect.isSuppressed) continue;
+            if (!effect.system.armorData || effect.disabled || effect.isSuppressed) continue;
+
+            const originIsActor = origin instanceof Actor;
+            const name = originIsActor ? effect.name : origin.name;
             armorSources.push({
                 uuid: effect.uuid,
-                name: origin.name,
+                name,
                 ...effect.system.armorData
             });
         }
@@ -1018,15 +1021,14 @@ export default class CharacterSheet extends DHBaseActorSheet {
     /** Update specific armor source */
     static async armorSourceUpdate(event) {
         const effect = await foundry.utils.fromUuid(event.target.dataset.uuid);
-        if (effect.system.changes.length !== 1) return;
+        const armorChange = effect.system.armorChange;
+        if (!armorChange) return;
         const value = Math.max(Math.min(Number.parseInt(event.target.value), effect.system.armorData.max), 0);
 
-        const newChanges = [
-            {
-                ...effect.system.changes[0],
-                value
-            }
-        ];
+        const newChanges = effect.system.changes.map(change => ({
+            ...change,
+            value: change.type === 'armor' ? value : change.value
+        }));
 
         event.target.value = value;
         const progressBar = event.target.closest('.status-bar.armor-slots').querySelector('progress');
@@ -1038,19 +1040,19 @@ export default class CharacterSheet extends DHBaseActorSheet {
     static async armorSourcePipUpdate(event) {
         const target = event.target.closest('.armor-slot');
         const effect = await foundry.utils.fromUuid(target.dataset.uuid);
-        if (effect.system.changes.length !== 1) return;
-        const { value, max } = effect.system.armorData;
+        const armorChange = effect.system.armorChange;
+        if (!armorChange) return;
+
+        const { value } = effect.system.armorData;
 
         const inputValue = Number.parseInt(target.dataset.value);
         const decreasing = value >= inputValue;
         const newValue = decreasing ? inputValue - 1 : inputValue;
 
-        const newChanges = [
-            {
-                ...effect.system.changes[0],
-                value: newValue
-            }
-        ];
+        const newChanges = effect.system.changes.map(change => ({
+            ...change,
+            value: change.type === 'armor' ? newValue : change.value
+        }));
 
         const container = target.closest('.slot-bar');
         for (const armorSlot of container.querySelectorAll('.armor-slot i')) {

@@ -150,6 +150,10 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                 minLength: 0
             });
         });
+
+        htmlElement
+            .querySelector('.armor-change-checkbox')
+            ?.addEventListener('change', this.armorChangeToggle.bind(this));
     }
 
     async _prepareContext(options) {
@@ -187,38 +191,74 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                 break;
             case 'changes':
                 const fields = this.document.system.schema.fields.changes.element.fields;
+
+                const singleTypes = ['armor'];
+                const { base, ...typedChanges } = context.source.changes.reduce((acc, change, index) => {
+                    const type = CONFIG.DH.GENERAL.baseActiveEffectModes[change.type] ? 'base' : change.type;
+                    if (singleTypes.includes(type)) {
+                        acc[type] = { ...change, index };
+                    } else {
+                        if (!acc[type]) acc[type] = [];
+                        acc[type].push({ ...change, index });
+                    }
+
+                    return acc;
+                }, {});
                 partContext.changes = await Promise.all(
-                    foundry.utils
-                        .deepClone(context.source.changes)
-                        .map((c, i) => this._prepareChangeContext(c, i, fields))
+                    foundry.utils.deepClone(base ?? []).map(c => this._prepareChangeContext(c, fields))
                 );
+                partContext.typedChanges = typedChanges;
                 break;
         }
 
         return partContext;
     }
 
-    _prepareChangeContext(change, index, fields) {
+    armorChangeToggle(event) {
+        if (event.target.checked) {
+            this.addArmorChange();
+        } else {
+            this.removeTypedChange(event.target.dataset.index);
+        }
+    }
+
+    /* Could be generalised if needed later */
+    addArmorChange() {
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        const changes = Object.values(submitData.system?.changes ?? {});
+        changes.push(game.system.api.data.activeEffects.changeTypes.armor.getInitialValue());
+        return this.submit({ updateData: { system: { changes } } });
+    }
+
+    removeTypedChange(indexString) {
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        const changes = Object.values(submitData.system.changes);
+        const index = Number(indexString);
+        changes.splice(index, 1);
+        return this.submit({ updateData: { system: { changes } } });
+    }
+
+    _prepareChangeContext(change, fields) {
         if (typeof change.value !== 'string') change.value = JSON.stringify(change.value);
         const defaultPriority = game.system.api.documents.DhActiveEffect.CHANGE_TYPES[change.type]?.defaultPriority;
         Object.assign(
             change,
             ['key', 'type', 'value', 'priority'].reduce((paths, fieldName) => {
-                paths[`${fieldName}Path`] = `system.changes.${index}.${fieldName}`;
+                paths[`${fieldName}Path`] = `system.changes.${change.index}.${fieldName}`;
                 return paths;
             }, {})
         );
         return (
             game.system.api.documents.DhActiveEffect.CHANGE_TYPES[change.type].render?.(
                 change,
-                index,
+                change.index,
                 defaultPriority
             ) ??
             foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/sheets/activeEffect/change.hbs',
                 {
                     change,
-                    index,
+                    index: change.index,
                     defaultPriority,
                     fields
                 }

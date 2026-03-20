@@ -762,10 +762,6 @@ export default function DHApplicationMixin(Base) {
                 data.system.domain = parent.system.domains[0];
             }
 
-            if (documentClass === 'ActiveEffect') {
-                return cls.createDialog(data, { parent: this.document });
-            }
-
             const doc = await cls.create(data, { parent, renderSheet: !event.shiftKey });
             if (parentIsItem && type === 'feature') {
                 await this.document.update({

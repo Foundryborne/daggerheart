@@ -16,8 +16,7 @@
         "ActiveEffect": {
             "base": "Standard",
             "beastform": "Beastform",
-            "horde": "Horde",
-            "armor": "Armor"
+            "horde": "Horde"
         },
         "Actor": {
             "character": "Character",
@@ -778,8 +777,8 @@
             },
             "ArmorInteraction": {
                 "none": { "label": "Ignores Armor" },
-                "active": { "label": "Only Active With Armor" },
-                "inactive": { "label": "Only Active Without Armor" }
+                "active": { "label": "Active w/ Armor" },
+                "inactive": { "label": "Inactive w/ Armor" }
             },
             "ArmorFeature": {
                 "burning": {
@@ -1864,6 +1863,17 @@
                     "name": "Healing Roll"
                 }
             },
+            "ChangeTypes": {
+                "armor": {
+                    "newArmorEffect": "Armor Effect",
+                    "FIELDS": {
+                        "armorInteraction": {
+                            "label": "Armor Interaction",
+                            "hint": "Does the character wearing armor suppress this effect?"
+                        }
+                    }
+                }
+            },
             "Duration": {
                 "passive": "Passive",
                 "temporary": "Temporary"
@@ -1885,15 +1895,6 @@
             "Attachments": {
                 "attachHint": "Drop items here to attach them",
                 "transferHint": "If checked, this effect will be applied to any actor that owns this Effect's parent Item. The effect is always applied if this Item is attached to another one."
-            },
-            "Armor": {
-                "newArmorEffect": "Armor Effect",
-                "FIELDS": {
-                    "armorInteraction": {
-                        "label": "Armor Interaction",
-                        "hint": "Does the character wearing armor suppress this effect?"
-                    }
-                }
             }
         },
         "GENERAL": {
@@ -3079,10 +3080,7 @@
                 "tokenActorsMissing": "[{names}] missing Actors",
                 "domainTouchRequirement": "This domain card requires {nr} {domain} cards in the loadout to be used",
                 "knowTheTide": "Know The Tide gained a token",
-                "lackingItemTransferPermission": "User {user} lacks owner permission needed to transfer items to {target}",
-                "cannotAlterArmorEffectChanges": "You cannot alter the changes length of an armor effect",
-                "cannotAlterArmorEffectType": "You cannot alter the type of armor effect changes",
-                "cannotAlterArmorEffectKey": "You cannot alter they key of armor effect changes"
+                "lackingItemTransferPermission": "User {user} lacks owner permission needed to transfer items to {target}"
             },
             "Progress": {
                 "migrationLabel": "Performing system migration. Please wait and do not close Foundry."

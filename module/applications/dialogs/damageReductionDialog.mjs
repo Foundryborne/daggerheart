@@ -21,13 +21,12 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             this.rulesDefault
         );
 
-        const allArmorEffects = Array.from(actor.allApplicableEffects()).filter(x => x.type === 'armor');
-        const orderedArmorEffects = game.system.api.data.activeEffects.ArmorEffect.orderEffectsForAutoChange(
+        const allArmorEffects = Array.from(actor.allApplicableEffects()).filter(x => x.system.armorData);
+        const orderedArmorEffects = game.system.api.data.activeEffects.changeTypes.armor.orderEffectsForAutoChange(
             allArmorEffects,
             true
         );
         const armor = orderedArmorEffects.reduce((acc, effect) => {
-            if (effect.type !== 'armor') return acc;
             const { value, max } = effect.system.armorData;
             acc.push({
                 effect: effect,

@@ -78,7 +78,7 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
             throw new Error('The array of sub-types to restrict to must not be empty.');
         }
 
-        const creatableEffects = types || ['base', 'armor'];
+        const creatableEffects = types || ['base'];
         const documentTypes = this.TYPES.filter(type => creatableEffects.includes(type)).map(type => {
             const labelKey = `TYPES.ActiveEffect.${type}`;
             const label = game.i18n.has(labelKey) ? game.i18n.localize(labelKey) : type;

@@ -43,7 +43,7 @@ CONFIG.Item.dataModels = models.items.config;
 
 CONFIG.ActiveEffect.documentClass = documents.DhActiveEffect;
 CONFIG.ActiveEffect.dataModels = models.activeEffects.config;
-CONFIG.ActiveEffect.changeTypes = { ...CONFIG.ActiveEffect.changeTypes, ...models.activeEffects.changeTypes };
+CONFIG.ActiveEffect.changeTypes = { ...CONFIG.ActiveEffect.changeTypes, ...models.activeEffects.changeEffects };
 
 CONFIG.Combat.documentClass = documents.DhpCombat;
 CONFIG.Combat.dataModels = { base: models.DhCombat };
@@ -217,17 +217,6 @@ Hooks.once('init', () => {
             label: sheetLabel('DOCUMENT.ActiveEffect')
         }
     );
-    DocumentSheetConfig.registerSheet(
-        CONFIG.ActiveEffect.documentClass,
-        SYSTEM.id,
-        applications.sheetConfigs.ArmorActiveEffectConfig,
-        {
-            types: ['armor'],
-            makeDefault: true,
-            label: () =>
-                `${game.i18n.localize('TYPES.ActiveEffect.armor')} ${game.i18n.localize('DAGGERHEART.GENERAL.effect')}`
-        }
-    );
 
     game.socket.on(`system.${SYSTEM.id}`, socketRegistration.handleSocketEvent);
 
@@ -281,7 +270,6 @@ Hooks.on('setup', () => {
                 ...damageThresholds,
                 'proficiency',
                 'evasion',
-                'armorScore',
                 'scars',
                 'levelData.level.current'
             ]
