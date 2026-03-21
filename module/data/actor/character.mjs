@@ -42,15 +42,15 @@ export default class DhCharacter extends DhCreature {
             }),
             evasion: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.evasion' }),
             damageThresholds: new fields.SchemaField({
-                severe: new fields.NumberField({
-                    integer: true,
-                    initial: 0,
-                    label: 'DAGGERHEART.GENERAL.DamageThresholds.severeThreshold'
-                }),
                 major: new fields.NumberField({
                     integer: true,
                     initial: 0,
                     label: 'DAGGERHEART.GENERAL.DamageThresholds.majorThreshold'
+                }),
+                severe: new fields.NumberField({
+                    integer: true,
+                    initial: 0,
+                    label: 'DAGGERHEART.GENERAL.DamageThresholds.severeThreshold'
                 })
             }),
             experiences: new fields.TypedObjectField(

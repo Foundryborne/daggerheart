@@ -16,6 +16,19 @@ export default class ArmorChange extends foundry.abstract.DataModel {
                     initial: '1',
                     label: 'DAGGERHEART.GENERAL.max'
                 }),
+                damageThresholds: new fields.SchemaField(
+                    {
+                        major: new fields.StringField({
+                            initial: '0',
+                            label: 'DAGGERHEART.GENERAL.DamageThresholds.majorThreshold'
+                        }),
+                        severe: new fields.StringField({
+                            initial: '0',
+                            label: 'DAGGERHEART.GENERAL.DamageThresholds.severeThreshold'
+                        })
+                    },
+                    { nullable: true, initial: null }
+                ),
                 interaction: new fields.StringField({
                     required: true,
                     choices: CONFIG.DH.GENERAL.activeEffectArmorInteraction,
@@ -52,6 +65,45 @@ export default class ArmorChange extends foundry.abstract.DataModel {
                 },
                 replacementData
             );
+
+            if (change.value.damageThresholds) {
+                const getThresholdValue = value => {
+                    const parsed = itemAbleRollParse(value, actor, change.effect.parent);
+                    const roll = new Roll(parsed).evaluateSync();
+                    return roll ? (roll.isDeterministic ? roll.total : null) : null;
+                };
+                const major = getThresholdValue(change.value.damageThresholds.major);
+                const severe = getThresholdValue(change.value.damageThresholds.severe);
+
+                if (major) {
+                    game.system.api.documents.DhActiveEffect.applyChange(
+                        actor,
+                        {
+                            ...change,
+                            key: 'system.damageThresholds.major',
+                            type: CONFIG.DH.GENERAL.activeEffectModes.override.id,
+                            priority: 50,
+                            value: major
+                        },
+                        replacementData
+                    );
+                }
+
+                if (severe) {
+                    game.system.api.documents.DhActiveEffect.applyChange(
+                        actor,
+                        {
+                            ...change,
+                            key: 'system.damageThresholds.severe',
+                            type: CONFIG.DH.GENERAL.activeEffectModes.override.id,
+                            priority: 50,
+                            value: severe
+                        },
+                        replacementData
+                    );
+                }
+            }
+
             return {};
         },
         render: null

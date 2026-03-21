@@ -154,6 +154,10 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         htmlElement
             .querySelector('.armor-change-checkbox')
             ?.addEventListener('change', this.armorChangeToggle.bind(this));
+
+        htmlElement
+            .querySelector('.armor-damage-thresholds-checkbox')
+            ?.addEventListener('change', this.armorDamageThresholdToggle.bind(this));
     }
 
     async _prepareContext(options) {
@@ -226,6 +230,19 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         const changes = Object.values(submitData.system.changes);
         const index = Number(indexString);
         changes.splice(index, 1);
+        return this.submit({ updateData: { system: { changes } } });
+    }
+
+    armorDamageThresholdToggle(event) {
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        const changes = Object.values(submitData.system?.changes ?? {});
+        const index = Number(event.target.dataset.index);
+        if (event.target.checked) {
+            changes[index].value.damageThresholds = { major: 0, severe: 0 };
+        } else {
+            changes[index].value.damageThresholds = null;
+        }
+
         return this.submit({ updateData: { system: { changes } } });
     }
 

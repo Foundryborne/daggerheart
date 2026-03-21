@@ -101,6 +101,12 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
         return true;
     }
 
+    get isSuppressed() {
+        for (const change of this.changes) {
+            if (change.isSuppressed) return true;
+        }
+    }
+
     get armorChange() {
         return this.changes.find(x => x.type === CONFIG.DH.GENERAL.activeEffectModes.armor.id);
     }
@@ -137,7 +143,11 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
         if (allowed === false) return false;
 
         const autoSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
-        if (autoSettings.resourceScrollTexts && this.parent.actor?.type === 'character') {
+        if (
+            autoSettings.resourceScrollTexts &&
+            this.parent.actor?.type === 'character' &&
+            this.parent.actor.system.resources.armor
+        ) {
             const newArmorTotal = (changed.system?.changes ?? []).reduce((acc, change) => {
                 if (change.type === 'armor') acc += change.value.current;
                 return acc;
