@@ -470,7 +470,7 @@ export default class DhCharacter extends DhCreature {
 
         const increasing = armorChange >= 0;
         let remainingChange = Math.abs(armorChange);
-        const orderedSources = getArmorSources(this.parent);
+        const orderedSources = getArmorSources(this.parent).filter(s => !s.disabled);
 
         const handleArmorData = (embeddedUpdates, doc, armorData) => {
             let usedArmorChange = 0;
