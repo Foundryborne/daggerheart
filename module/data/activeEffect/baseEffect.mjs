@@ -12,6 +12,7 @@
  *  "Anything that uses another data model value as its value": +1 - Effects that increase traits have to be calculated first at Base priority. (EX: Raise evasion by half your agility)
  */
 
+import { getScrollTextData } from '../../helpers/utils.mjs';
 import { changeTypes } from './_module.mjs';
 
 export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
@@ -129,5 +130,28 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
                 }
             }
         };
+    }
+
+    async _preUpdate(changed, options, userId) {
+        const allowed = await super._preUpdate(changed, options, userId);
+        if (allowed === false) return false;
+
+        const autoSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+        if (autoSettings.resourceScrollTexts && this.parent.actor?.type === 'character') {
+            const newArmorTotal = (changed.system?.changes ?? []).reduce((acc, change) => {
+                if (change.type === 'armor') acc += change.value.current;
+                return acc;
+            }, 0);
+
+            const armorData = getScrollTextData(this.parent.actor, { value: newArmorTotal }, 'armor');
+            options.scrollingTextData = [armorData];
+        }
+    }
+
+    _onUpdate(changed, options, userId) {
+        super._onUpdate(changed, options, userId);
+
+        if (this.parent.actor && options.scrollingTextData)
+            this.parent.actor.queueScrollText(options.scrollingTextData);
     }
 }

@@ -68,14 +68,12 @@ export default class ArmorChange extends foundry.abstract.DataModel {
         }
     }
 
-    static getInitialValue(locked) {
+    static getInitialValue() {
         return {
-            key: 'Armor',
             type: CONFIG.DH.GENERAL.activeEffectModes.armor.id,
             value: {
                 current: 0,
-                max: 0,
-                locked
+                max: 0
             },
             phase: 'initial',
             priority: 20
@@ -87,7 +85,7 @@ export default class ArmorChange extends foundry.abstract.DataModel {
             name: game.i18n.localize('DAGGERHEART.EFFECTS.ChangeTypes.armor.newArmorEffect'),
             img: 'icons/equipment/chest/breastplate-helmet-metal.webp',
             system: {
-                changes: [ArmorChange.getInitialValue(true)]
+                changes: [ArmorChange.getInitialValue()]
             }
         };
     }
