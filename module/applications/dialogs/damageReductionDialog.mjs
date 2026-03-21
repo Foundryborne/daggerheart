@@ -21,15 +21,17 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             this.rulesDefault
         );
 
-        const allArmorEffects = Array.from(actor.allApplicableEffects()).filter(x => x.system.armorData);
-        const orderedArmorEffects = game.system.api.data.activeEffects.changeTypes.armor.orderEffectsForAutoChange(
-            allArmorEffects,
+        const allArmorSources = Array.from(actor.allApplicableEffects()).filter(x => x.system.armorData);
+        if (actor.system.armor) allArmorSources.push(actor.system.armor);
+
+        const orderedArmorSources = game.system.api.data.activeEffects.changeTypes.armor.orderEffectsForAutoChange(
+            allArmorSources,
             true
         );
-        const armor = orderedArmorEffects.reduce((acc, effect) => {
-            const { current, max } = effect.system.armorData;
+        const armor = orderedArmorSources.reduce((acc, source) => {
+            const { current, max } = source.type === 'armor' ? source.system.armor : source.system.armorData;
             acc.push({
-                effect: effect,
+                effect: source,
                 marks: [...Array(max).keys()].reduce((acc, _, index) => {
                     const spent = index < current;
                     acc[foundry.utils.randomID()] = { selected: false, disabled: spent, spent };
@@ -159,8 +161,11 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             const parent = source.effect.origin
                 ? await foundry.utils.fromUuid(source.effect.origin)
                 : source.effect.parent;
+
+            const useEffectName = parent.type === 'armor' || parent instanceof Actor;
+            const label = useEffectName ? source.effect.name : parent.name;
             armorSources.push({
-                label: parent.name,
+                label: label,
                 uuid: source.effect.uuid,
                 marks: source.marks
             });

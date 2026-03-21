@@ -6,13 +6,9 @@
     <fieldset class="two-columns">
         <legend>{{localize tabs.settings.label}}</legend>
         <span>{{localize "DAGGERHEART.GENERAL.Tiers.singular"}}</span>
-        {{formField systemFields.tier value=source.system.tier}}
-        {{#if this.armorScore includeZero=true}}
-            <span>{{localize "DAGGERHEART.ITEMS.Armor.baseScore"}}</span>
-            <div class="form-fields">
-                <input type="text" data-dtype="Number" class="base-score-input" value="{{this.armorScore}}" />
-            </div>
-        {{/if}}
+        {{ formField systemFields.tier value=source.system.tier }}
+        <span>{{localize "DAGGERHEART.ITEMS.Armor.baseScore"}}</span>
+        {{ formField systemFields.armor.fields.max value=source.system.armor.max }}
 
         <span>{{localize "TYPES.Item.feature"}}</span>
         <input type="text" class="features-input" value="{{features}}" />

@@ -1,37 +1,19 @@
 <div class="daggerheart armor-management-container">
     <h3>{{localize "DAGGERHEART.GENERAL.armorSlots"}}</h3>
     {{#each sources as |source|}}
-        {{#if ../useResourcePips}}
-            <div class="armor-source-container">
-                <p class="armor-source-label">{{source.name}}</p>
-                <div class="slot-bar">
-                    {{#times source.max}}
-                        <a class='armor-slot' data-value="{{add this 1}}" data-uuid="{{source.uuid}}">
-                            {{#if (gte ../current (add this 1))}}
-                                <i class="fa-solid fa-shield" data-index="{{this}}"></i>
-                            {{else}}
-                                <i class="fa-solid fa-shield-halved" data-index="{{this}}"></i>
-                            {{/if}}
-                        </a>
-                    {{/times}}
-                </div>
+        <div class="armor-source-container">
+            <p class="armor-source-label">{{source.name}}</p>
+            <div class="slot-bar">
+                {{#times source.max}}
+                    <a class='armor-slot' data-value="{{add this 1}}" data-uuid="{{source.uuid}}" data-is-armor-item="{{source.isArmorItem}}">
+                        {{#if (gte ../current (add this 1))}}
+                            <i class="fa-solid fa-shield" data-index="{{this}}"></i>
+                        {{else}}
+                            <i class="fa-solid fa-shield-halved" data-index="{{this}}"></i>
+                        {{/if}}
+                    </a>
+                {{/times}}
             </div>
-        {{else}}
-            <div class="armor-source-container">
-                <p class="armor-source-label">{{source.name}}</p>
-                <div class="status-bar armor-slots">
-                    <div class='status-value'>
-                        <input class="bar-input armor-marks-input" value="{{source.current}}" data-uuid="{{source.uuid}}" type="number">
-                        <span>/</span>
-                        <span class="bar-label">{{source.max}}</span>
-                    </div>
-                    <progress
-                        class='progress-bar stress-color'
-                        value='{{source.current}}'
-                        max='{{source.max}}'
-                    ></progress>
-                </div>
-            </div>
-        {{/if}}
+        </div>
     {{/each}}
 </div>

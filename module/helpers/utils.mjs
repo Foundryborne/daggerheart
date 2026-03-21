@@ -743,3 +743,40 @@ export function getUnusedDamageTypes(parts) {
         return acc;
     }, []);
 }
+
+/**
+ *
+ * @param {{ type: string, parent: Object, disabled: boolean, isSuppressed: boolean }} sources
+ * @param { boolean } increasing
+ * @returns
+ */
+export function orderSourcesForArmorAutoChange(sources, increasing) {
+    const getSourceWeight = source => {
+        switch (source.type) {
+            case 'class':
+            case 'subclass':
+            case 'ancestry':
+            case 'community':
+            case 'feature':
+            case 'domainCard':
+                return 2;
+            case 'armor':
+                return 3;
+            case 'loot':
+            case 'consumable':
+                return 4;
+            case 'weapon':
+                return 5;
+            case 'character':
+                return 6;
+            default:
+                return 1;
+        }
+    };
+
+    return sources
+        .filter(x => !x.disabled && !x.isSuppressed)
+        .sort((a, b) =>
+            increasing ? getSourceWeight(b) - getSourceWeight(a) : getSourceWeight(a) - getSourceWeight(b)
+        );
+}

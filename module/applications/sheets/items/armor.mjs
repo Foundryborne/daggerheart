@@ -34,13 +34,6 @@ export default class ArmorSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
         ...super.PARTS
     };
 
-    _attachPartListeners(partId, htmlElement, options) {
-        super._attachPartListeners(partId, htmlElement, options);
-
-        for (const element of htmlElement.querySelectorAll('.base-score-input'))
-            element.addEventListener('change', this.updateArmorEffect.bind(this));
-    }
-
     /**@inheritdoc */
     async _preparePartContext(partId, context) {
         await super._preparePartContext(partId, context);
@@ -48,11 +41,6 @@ export default class ArmorSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
         switch (partId) {
             case 'settings':
                 context.features = this.document.system.armorFeatures.map(x => x.value);
-                context.armorScore = this.document.system.armorData.max;
-                break;
-            case 'effects':
-                context.effects.actives = context.effects.actives.filter(x => !x.system.armorData);
-                context.effects.inactives = context.effects.inactives.filter(x => !x.system.armorData);
                 break;
         }
 
