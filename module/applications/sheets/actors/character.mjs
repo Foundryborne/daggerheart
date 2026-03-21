@@ -1001,10 +1001,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             decreasing = document.system.armor.current >= inputValue;
             newCurrent = decreasing ? inputValue - 1 : inputValue;
             await document.update({ 'system.armor.current': newCurrent });
-        } else {
-            const armorChange = document.system.armorChange;
-            if (!armorChange) return;
-
+        } else if (document.system.armorData) {
             const { current } = document.system.armorData;
             decreasing = current >= inputValue;
             newCurrent = decreasing ? inputValue - 1 : inputValue;
@@ -1015,6 +1012,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
             }));
 
             await document.update({ 'system.changes': newChanges });
+        } else {
+            return;
         }
 
         const container = target.closest('.slot-bar');
