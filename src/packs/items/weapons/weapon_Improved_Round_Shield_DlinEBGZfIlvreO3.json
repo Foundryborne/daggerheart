@@ -114,16 +114,19 @@
       "description": "<p>Add the item's Tier to your Armor Score</p>",
       "img": "icons/skills/melee/shield-block-gray-orange.webp",
       "_id": "pZCrWd7zLTarvEQK",
-      "type": "armor",
+      "type": "base",
       "system": {
         "changes": [
           {
-            "key": "system.armorScore",
+            "key": "Armor",
             "type": "armor",
             "phase": "initial",
             "priority": 20,
             "value": 0,
-            "max": "ITEM.@system.tier"
+            "typeData": {
+              "type": "armor",
+              "max": "ITEM.@system.tier"
+            }
           }
         ]
       },

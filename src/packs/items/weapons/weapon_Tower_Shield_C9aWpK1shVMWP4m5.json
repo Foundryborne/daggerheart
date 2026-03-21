@@ -152,16 +152,19 @@
       "description": "Gain Weapon Tier + 1 to Armor Score; -1 to Evasion",
       "img": "icons/skills/melee/shield-block-bash-blue.webp",
       "_id": "tLRc4UAnGuIq7er3",
-      "type": "armor",
+      "type": "base",
       "system": {
         "changes": [
           {
-            "key": "system.armorScore",
+            "key": "Armor",
             "type": "armor",
             "phase": "initial",
             "priority": 20,
             "value": 0,
-            "max": "ITEM.@system.tier + 1"
+            "typeData": {
+              "type": "armor",
+              "max": "ITEM.@system.tier + 1"
+            }
           }
         ]
       },

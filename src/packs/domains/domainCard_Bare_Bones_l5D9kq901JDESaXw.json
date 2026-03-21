@@ -22,19 +22,22 @@
   "effects": [
     {
       "name": "Bare Bones Armor",
-      "type": "armor",
+      "type": "base",
       "system": {
         "changes": [
           {
             "value": 0,
-            "max": "3 + @system.traits.strength.value",
-            "key": "system.armorScore",
+            "key": "Armor",
             "type": "armor",
             "phase": "initial",
-            "priority": 20
+            "priority": 20,
+            "typeData": {
+              "type": "armor",
+              "max": "3 + @system.traits.strength.value",
+              "armorInteraction": "inactive"
+            }
           }
-        ],
-        "armorInteraction": "inactive"
+        ]
       },
       "_id": "FCsgz7Tdsw6QUzBs",
       "img": "icons/magic/control/buff-strength-muscle-damage-orange.webp",

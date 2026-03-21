@@ -95,18 +95,21 @@
       "_key": "!items.effects!8X16lJQ3xltTwynm.rkrqlwqtR9REgRx7"
     },
     {
-      "type": "armor",
+      "type": "base",
       "name": "Armor Effect",
       "img": "icons/equipment/chest/breastplate-helmet-metal.webp",
       "system": {
         "changes": [
           {
-            "key": "system.armorScore",
+            "key": "Armor",
             "type": "armor",
             "phase": "initial",
             "priority": 20,
             "value": 0,
-            "max": "8"
+            "typeData": {
+              "type": "armor",
+              "max": "8"
+            }
           }
         ]
       },
