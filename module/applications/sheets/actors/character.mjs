@@ -1036,14 +1036,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
         const container = target.closest('.slot-bar');
         for (const armorSlot of container.querySelectorAll('.armor-slot i')) {
-            const index = Number.parseInt(armorSlot.dataset.index);
-            if (decreasing && index >= newCurrent) {
-                armorSlot.classList.remove('fa-shield');
-                armorSlot.classList.add('fa-shield-halved');
-            } else if (!decreasing && index < newCurrent) {
-                armorSlot.classList.add('fa-shield');
-                armorSlot.classList.remove('fa-shield-halved');
-            }
+            const marked = !decreasing && Number.parseInt(armorSlot.dataset.index) < newCurrent;
+            armorSlot.classList.toggle('fa-shield', marked);
+            armorSlot.classList.toggle('fa-shield-halved', !marked);
         }
 
         await effect.update({ 'system.changes': newChanges });
