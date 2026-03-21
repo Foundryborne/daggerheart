@@ -5,7 +5,7 @@
             <p class="armor-source-label">{{source.name}}</p>
             <div class="slot-bar">
                 {{#times source.max}}
-                    <a class='armor-slot' data-value="{{add this 1}}" data-uuid="{{source.uuid}}" data-is-armor-item="{{source.isArmorItem}}">
+                    <a class='armor-slot' data-value="{{add this 1}}" data-uuid="{{source.uuid}}">
                         {{#if (gte ../current (add this 1))}}
                             <i class="fa-solid fa-shield" data-index="{{this}}"></i>
                         {{else}}

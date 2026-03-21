@@ -6,7 +6,7 @@ import DhCreature from './creature.mjs';
 import { attributeField, stressDamageReductionRule, bonusField } from '../fields/actorField.mjs';
 import { ActionField } from '../fields/actionField.mjs';
 import DHCharacterSettings from '../../applications/sheets-configs/character-settings.mjs';
-import { orderSourcesForArmorAutoChange } from '../../helpers/utils.mjs';
+import { getArmorSources } from '../../helpers/utils.mjs';
 
 export default class DhCharacter extends DhCreature {
     /**@override */
@@ -470,10 +470,7 @@ export default class DhCharacter extends DhCreature {
 
         const increasing = armorChange >= 0;
         let remainingChange = Math.abs(armorChange);
-        const armorSources = Array.from(this.parent.allApplicableEffects()).filter(x => x.system.armorData);
-        if (this.armor) armorSources.push(this.armor);
-
-        const orderedSources = orderSourcesForArmorAutoChange(armorSources, increasing);
+        const orderedSources = getArmorSources(this.parent);
 
         const handleArmorData = (embeddedUpdates, doc, armorData) => {
             let usedArmorChange = 0;
@@ -501,7 +498,7 @@ export default class DhCharacter extends DhCreature {
 
         const armorUpdates = [];
         const effectUpdates = [];
-        for (const armorSource of orderedSources) {
+        for (const { document: armorSource } of orderedSources) {
             const usedArmorChange = handleArmorData(
                 armorSource.type === 'armor' ? armorUpdates : effectUpdates,
                 armorSource.parent,

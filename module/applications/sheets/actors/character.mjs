@@ -3,7 +3,7 @@ import DhDeathMove from '../../dialogs/deathMove.mjs';
 import { CharacterLevelup, LevelupViewMode } from '../../levelup/_module.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
-import { getDocFromElement, getDocFromElementSync } from '../../../helpers/utils.mjs';
+import { getArmorSources, getDocFromElement, getDocFromElementSync } from '../../../helpers/utils.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
@@ -943,29 +943,14 @@ export default class CharacterSheet extends DHBaseActorSheet {
             return;
         }
 
-        const armorSources = [];
-        for (var effect of Array.from(this.document.allApplicableEffects())) {
-            const origin = effect.origin ? await foundry.utils.fromUuid(effect.origin) : effect.parent;
-            if (!effect.system.armorData || effect.disabled || effect.isSuppressed) continue;
-
-            const useEffectName = origin.type === 'armor' || origin instanceof Actor;
-            const name = useEffectName ? effect.name : origin.name;
-            armorSources.push({
-                uuid: effect.uuid,
-                name,
-                ...effect.system.armorData
-            });
-        }
-
-        if (this.document.system.armor) {
-            armorSources.push({
-                ...this.document.system.armor.system.armor,
-                uuid: this.document.system.armor.uuid,
-                name: this.document.system.armor.name,
-                isArmorItem: true
-            });
-        }
-
+        const armorSources = getArmorSources(this.document)
+            .filter(s => !s.disabled)
+            .toReversed()
+            .map(({ name, document, data }) => ({
+                ...data,
+                uuid: document.uuid,
+                name
+            }));
         if (!armorSources.length) return;
 
         const useResourcePips = game.settings.get(
@@ -1005,34 +990,31 @@ export default class CharacterSheet extends DHBaseActorSheet {
     /** Update specific armor source */
     static async armorSourcePipUpdate(event) {
         const target = event.target.closest('.armor-slot');
-        const { uuid, value, isArmorItem: isArmorItemString } = target.dataset;
-        const isArmorItem = Boolean(isArmorItemString);
+        const { uuid, value } = target.dataset;
+        const document = await foundry.utils.fromUuid(uuid);
 
         let inputValue = Number.parseInt(value);
         let decreasing = false;
         let newCurrent = 0;
 
-        if (isArmorItem) {
-            const armor = await foundry.utils.fromUuid(uuid);
-            decreasing = armor.system.armor.current >= inputValue;
+        if (document.type === 'armor') {
+            decreasing = document.system.armor.current >= inputValue;
             newCurrent = decreasing ? inputValue - 1 : inputValue;
-
-            await armor.update({ 'system.armor.current': newCurrent });
+            await document.update({ 'system.armor.current': newCurrent });
         } else {
-            const effect = await foundry.utils.fromUuid(uuid);
-            const armorChange = effect.system.armorChange;
+            const armorChange = document.system.armorChange;
             if (!armorChange) return;
 
-            const { current } = effect.system.armorData;
+            const { current } = document.system.armorData;
             decreasing = current >= inputValue;
             newCurrent = decreasing ? inputValue - 1 : inputValue;
 
-            const newChanges = effect.system.changes.map(change => ({
+            const newChanges = document.system.changes.map(change => ({
                 ...change,
                 value: change.type === 'armor' ? { ...change.value, current: newCurrent } : change.value
             }));
 
-            await effect.update({ 'system.changes': newChanges });
+            await document.update({ 'system.changes': newChanges });
         }
 
         const container = target.closest('.slot-bar');
