@@ -28,9 +28,6 @@ export default class DHArmor extends AttachableItem {
                     actionIds: new fields.ArrayField(new fields.StringField({ required: true }))
                 })
             ),
-            marks: new fields.SchemaField({
-                value: new fields.NumberField({ initial: 0, integer: true })
-            }),
             baseThresholds: new fields.SchemaField({
                 major: new fields.NumberField({ integer: true, initial: 0 }),
                 severe: new fields.NumberField({ integer: true, initial: 0 })
