@@ -18,23 +18,34 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
 
+        const baseChanges = Object.keys(CONFIG.DH.GENERAL.baseActiveEffectModes).reduce((r, type) => {
+            r[type] = new fields.SchemaField({
+                key: new fields.StringField({ required: true }),
+                type: new fields.StringField({
+                    required: true,
+                    choices: [type],
+                    initial: type,
+                    validate: BaseEffect.#validateType
+                }),
+                value: new fields.AnyField({
+                    required: true,
+                    nullable: true,
+                    serializable: true,
+                    initial: ''
+                }),
+                phase: new fields.StringField({ required: true, blank: false, initial: 'initial' }),
+                priority: new fields.NumberField()
+            });
+            return r;
+        }, {});
+
         return {
             ...super.defineSchema(),
             changes: new fields.ArrayField(
-                new fields.SchemaField({
-                    key: new fields.StringField({ required: true }),
-                    type: new fields.StringField({
-                        required: true,
-                        blank: false,
-                        choices: CONFIG.DH.GENERAL.activeEffectModes,
-                        initial: CONFIG.DH.GENERAL.activeEffectModes.add.id,
-                        validate: BaseEffect.#validateType
-                    }),
-                    value: new fields.AnyField({ required: true, nullable: true, serializable: true, initial: '' }),
-                    phase: new fields.StringField({ required: true, blank: false, initial: 'initial' }),
-                    priority: new fields.NumberField(),
-                    typeData: new fields.TypedSchemaField(changeTypes, { nullable: true, initial: null })
-                })
+                new fields.TypedSchemaField(
+                    { ...changeTypes, ...baseChanges },
+                    { initial: baseChanges.add.getInitialValue() }
+                )
             ),
             duration: new fields.SchemaField({
                 type: new fields.StringField({
@@ -97,7 +108,7 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
         const armorChange = this.armorChange;
         if (!armorChange) return null;
 
-        return armorChange.typeData.getArmorData(armorChange);
+        return armorChange.getArmorData(armorChange);
     }
 
     static getDefaultObject() {

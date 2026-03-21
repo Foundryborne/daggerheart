@@ -1,10 +1,7 @@
 <li data-index="{{index}}">
-    <input type="hidden" name="{{concat "system.changes." index ".key"}}" value="{{key}}" />
     <input type="hidden" name="{{concat "system.changes." index ".type"}}" value="{{type}}" />
     <input type="hidden" name="{{concat "system.changes." index ".phase"}}" value="{{phase}}" />
-    <input type="hidden" name="{{concat "system.changes." index ".typeData.type"}}" value="{{typeData.type}}" />
-    {{formInput fields.value name=(concat "system.changes." index ".value") value=value elementType="input" data-dtype="Number"}}
-    {{formInput fields.typeData.types.armor.fields.max name=(concat "system.changes." index ".typeData.max") value=typeData.max data-dtype="Number"}}
-    {{formInput fields.typeData.types.armor.fields.armorInteraction name=(concat "system.changes." index ".typeData.armorInteraction") value=typeData.armorInteraction localize=true}}
+    {{formInput fields.value.fields.max name=(concat "system.changes." index ".value.max") value=value.max data-dtype="Number"}}
+    {{formInput fields.value.fields.interaction name=(concat "system.changes." index ".value.interaction") value=value.interaction localize=true}}
     {{formInput fields.priority name=(concat "system.changes." index ".priority") value=priority}}
 </li>

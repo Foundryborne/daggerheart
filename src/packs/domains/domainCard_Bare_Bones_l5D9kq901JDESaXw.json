@@ -26,15 +26,12 @@
       "system": {
         "changes": [
           {
-            "value": 0,
-            "key": "Armor",
             "type": "armor",
             "phase": "initial",
             "priority": 20,
-            "typeData": {
-              "type": "armor",
+            "value": {
               "max": "3 + @system.traits.strength.value",
-              "armorInteraction": "inactive"
+              "interaction": "inactive"
             }
           }
         ]

@@ -94,13 +94,10 @@
       "system": {
         "changes": [
           {
-            "key": "Armor",
             "type": "armor",
             "phase": "initial",
             "priority": 20,
-            "value": 0,
-            "typeData": {
-              "type": "armor",
+            "value": {
               "max": "6"
             }
           }
