@@ -108,7 +108,7 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
         const armorChange = this.armorChange;
         if (!armorChange) return null;
 
-        return armorChange.getArmorData(armorChange);
+        return armorChange.getArmorData();
     }
 
     static getDefaultObject() {

@@ -51,8 +51,8 @@ export default class ArmorSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
                 context.armorScore = this.document.system.armorData.max;
                 break;
             case 'effects':
-                context.effects.actives = context.effects.actives.filter(x => x.type !== 'armor');
-                context.effects.inactives = context.effects.actives.filter(x => x.type !== 'armor');
+                context.effects.actives = context.effects.actives.filter(x => !x.system.armorData);
+                context.effects.inactives = context.effects.inactives.filter(x => !x.system.armorData);
                 break;
         }
 
@@ -64,7 +64,7 @@ export default class ArmorSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
         const armorEffect = this.document.system.armorEffect;
         if (Number.isNaN(value) || !armorEffect) return;
 
-        await armorEffect.system.armorChange.typeData.updateArmorMax(value);
+        await armorEffect.system.armorChange.updateArmorMax(value);
         this.render();
     }
 

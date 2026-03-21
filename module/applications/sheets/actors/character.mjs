@@ -1003,16 +1003,16 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const effect = await foundry.utils.fromUuid(event.target.dataset.uuid);
         const armorChange = effect.system.armorChange;
         if (!armorChange) return;
-        const value = Math.max(Math.min(Number.parseInt(event.target.value), effect.system.armorData.max), 0);
+        const current = Math.max(Math.min(Number.parseInt(event.target.value), effect.system.armorData.max), 0);
 
         const newChanges = effect.system.changes.map(change => ({
             ...change,
-            value: change.type === 'armor' ? value : change.value
+            value: change.type === 'armor' ? { ...change.value, current } : change.value
         }));
 
-        event.target.value = value;
+        event.target.value = current;
         const progressBar = event.target.closest('.status-bar.armor-slots').querySelector('progress');
-        progressBar.value = value;
+        progressBar.value = current;
 
         await effect.update({ 'system.changes': newChanges });
     }
@@ -1023,24 +1023,24 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const armorChange = effect.system.armorChange;
         if (!armorChange) return;
 
-        const { value } = effect.system.armorData;
+        const { current } = effect.system.armorData;
 
         const inputValue = Number.parseInt(target.dataset.value);
-        const decreasing = value >= inputValue;
-        const newValue = decreasing ? inputValue - 1 : inputValue;
+        const decreasing = current >= inputValue;
+        const newCurrent = decreasing ? inputValue - 1 : inputValue;
 
         const newChanges = effect.system.changes.map(change => ({
             ...change,
-            value: change.type === 'armor' ? newValue : change.value
+            value: change.type === 'armor' ? { ...change.value, current: newCurrent } : change.value
         }));
 
         const container = target.closest('.slot-bar');
         for (const armorSlot of container.querySelectorAll('.armor-slot i')) {
             const index = Number.parseInt(armorSlot.dataset.index);
-            if (decreasing && index >= newValue) {
+            if (decreasing && index >= newCurrent) {
                 armorSlot.classList.remove('fa-shield');
                 armorSlot.classList.add('fa-shield-halved');
-            } else if (!decreasing && index < newValue) {
+            } else if (!decreasing && index < newCurrent) {
                 armorSlot.classList.add('fa-shield');
                 armorSlot.classList.remove('fa-shield-halved');
             }

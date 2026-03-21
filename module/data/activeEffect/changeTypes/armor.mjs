@@ -23,7 +23,7 @@ export default class ArmorChange extends foundry.abstract.DataModel {
                     label: 'DAGGERHEART.EFFECTS.ChangeTypes.armor.FIELDS.interaction.label',
                     hint: 'DAGGERHEART.EFFECTS.ChangeTypes.armor.FIELDS.interaction.hint'
                 })
-            }),
+            })
         };
     }
 
@@ -94,15 +94,15 @@ export default class ArmorChange extends foundry.abstract.DataModel {
 
     /* Helpers */
 
-    getArmorData(parentChange) {
+    getArmorData() {
         const actor = this.parent.parent?.actor?.type === 'character' ? this.parent.parent.actor : null;
-        const maxParse = actor ? itemAbleRollParse(this.max, actor, this.parent.parent.parent) : null;
+        const maxParse = actor ? itemAbleRollParse(this.value.max, actor, this.parent.parent.parent) : null;
         const maxRoll = maxParse ? new Roll(maxParse).evaluateSync() : null;
         const maxEvaluated = maxRoll ? (maxRoll.isDeterministic ? maxRoll.total : null) : null;
 
         return {
-            value: parentChange.value,
-            max: maxEvaluated ?? this.max
+            current: this.value.current,
+            max: maxEvaluated ?? this.value.max
         };
     }
 
@@ -110,8 +110,14 @@ export default class ArmorChange extends foundry.abstract.DataModel {
         const newChanges = [
             ...this.parent.changes.map(change => ({
                 ...change,
-                value: change.type === 'armor' ? Math.min(change.value, newMax) : change.value,
-                typeData: change.type === 'armor' ? { ...change.typeData, max: newMax } : change.typeData
+                value:
+                    change.type === 'armor'
+                        ? {
+                              ...change.value,
+                              current: Math.min(change.value.current, newMax),
+                              max: newMax
+                          }
+                        : change.value
             }))
         ];
         await this.parent.parent.update({ 'system.changes': newChanges });

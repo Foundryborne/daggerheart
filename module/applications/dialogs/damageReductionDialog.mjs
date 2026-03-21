@@ -27,11 +27,11 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             true
         );
         const armor = orderedArmorEffects.reduce((acc, effect) => {
-            const { value, max } = effect.system.armorData;
+            const { current, max } = effect.system.armorData;
             acc.push({
                 effect: effect,
                 marks: [...Array(max).keys()].reduce((acc, _, index) => {
-                    const spent = index < value;
+                    const spent = index < current;
                     acc[foundry.utils.randomID()] = { selected: false, disabled: spent, spent };
                     return acc;
                 }, {})
@@ -192,7 +192,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         const stressReductions = this.availableStressReductions
             ? Object.values(this.availableStressReductions).filter(red => red.selected)
             : [];
-        const currentMarks = this.actor.system.armorScore.value + selectedArmorMarks.length;
+        const currentMarks = this.actor.system.armorScore.current + selectedArmorMarks.length;
 
         const maxArmorUsed = this.actor.system.rules.damageReduction.maxArmorMarked.value + selectedStressMarks.length;
         const availableArmor =

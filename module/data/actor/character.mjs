@@ -479,14 +479,14 @@ export default class DhCharacter extends DhCreature {
         for (const armorEffect of orderedEffects) {
             let usedArmorChange = 0;
             if (clear) {
-                usedArmorChange -= armorEffect.system.armorChange.value;
+                usedArmorChange -= armorEffect.system.armorChange.value.current;
             } else {
                 if (increasing) {
-                    const remainingArmor = armorEffect.system.armorData.max - armorEffect.system.armorData.value;
+                    const remainingArmor = armorEffect.system.armorData.max - armorEffect.system.armorData.current;
                     usedArmorChange = Math.min(remainingChange, remainingArmor);
                     remainingChange -= usedArmorChange;
                 } else {
-                    const changeChange = Math.min(armorEffect.system.armorData.value, remainingChange);
+                    const changeChange = Math.min(armorEffect.system.armorData.current, remainingChange);
                     usedArmorChange -= changeChange;
                     remainingChange -= changeChange;
                 }
@@ -503,7 +503,10 @@ export default class DhCharacter extends DhCreature {
                         ...change,
                         value:
                             change.type === 'armor'
-                                ? armorEffect.system.armorChange.value + usedArmorChange
+                                ? {
+                                      ...change.value,
+                                      current: armorEffect.system.armorChange.value.current + usedArmorChange
+                                  }
                                 : change.value
                     }))
                 });
@@ -519,11 +522,12 @@ export default class DhCharacter extends DhCreature {
 
     async updateArmorEffectValue({ uuid, value }) {
         const effect = await foundry.utils.fromUuid(uuid);
+        const effectValue = effect.system.armorChange.value;
         await effect.update({
             'system.changes': [
                 {
                     ...effect.system.armorChange,
-                    value: effect.system.armorChange.value + value
+                    value: { ...effectValue, current: effectValue.current + value }
                 }
             ]
         });
