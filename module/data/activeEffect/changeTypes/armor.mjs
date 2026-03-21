@@ -9,6 +9,7 @@ export default class ArmorChange extends foundry.abstract.DataModel {
             priority: new fields.NumberField(),
             phase: new fields.StringField({ required: true, blank: false, initial: 'initial' }),
             value: new fields.SchemaField({
+                current: new fields.NumberField({ integer: true, min: 0, initial: 0 }),
                 max: new fields.StringField({
                     required: true,
                     nullable: false,
@@ -31,6 +32,16 @@ export default class ArmorChange extends foundry.abstract.DataModel {
         defaultPriority: 20,
         handler: (actor, change, _options, _field, replacementData) => {
             const parsedMax = itemAbleRollParse(change.value.max, actor, change.effect.parent);
+            game.system.api.documents.DhActiveEffect.applyChange(
+                actor,
+                {
+                    ...change,
+                    key: 'system.armorScore.value',
+                    type: CONFIG.DH.GENERAL.activeEffectModes.add.id,
+                    value: change.value.current
+                },
+                replacementData
+            );
             game.system.api.documents.DhActiveEffect.applyChange(
                 actor,
                 {
@@ -62,6 +73,7 @@ export default class ArmorChange extends foundry.abstract.DataModel {
             key: 'Armor',
             type: CONFIG.DH.GENERAL.activeEffectModes.armor.id,
             value: {
+                current: 0,
                 max: 0,
                 locked
             },

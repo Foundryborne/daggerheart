@@ -1,6 +1,7 @@
 <li data-index="{{index}}">
     <input type="hidden" name="{{concat "system.changes." index ".type"}}" value="{{type}}" />
     <input type="hidden" name="{{concat "system.changes." index ".phase"}}" value="{{phase}}" />
+    {{formInput fields.value.fields.current name=(concat "system.changes." index ".value.current") value=value.current data-dtype="Number"}}
     {{formInput fields.value.fields.max name=(concat "system.changes." index ".value.max") value=value.max data-dtype="Number"}}
     {{formInput fields.value.fields.interaction name=(concat "system.changes." index ".value.interaction") value=value.interaction localize=true}}
     {{formInput fields.priority name=(concat "system.changes." index ".priority") value=priority}}
