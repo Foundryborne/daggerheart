@@ -1,4 +1,4 @@
-import { damageKeyToNumber, getDamageLabel } from '../../helpers/utils.mjs';
+import { damageKeyToNumber, getArmorSources, getDamageLabel } from '../../helpers/utils.mjs';
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -21,17 +21,11 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             this.rulesDefault
         );
 
-        const allArmorSources = Array.from(actor.allApplicableEffects()).filter(x => x.system.armorData);
-        if (actor.system.armor) allArmorSources.push(actor.system.armor);
-
-        const orderedArmorSources = game.system.api.data.activeEffects.changeTypes.armor.orderEffectsForAutoChange(
-            allArmorSources,
-            true
-        );
-        const armor = orderedArmorSources.reduce((acc, source) => {
-            const { current, max } = source.type === 'armor' ? source.system.armor : source.system.armorData;
+        const orderedArmorSources = getArmorSources(actor).filter(s => !s.disabled);
+        const armor = orderedArmorSources.reduce((acc, { document }) => {
+            const { current, max } = document.type === 'armor' ? document.system.armor : document.system.armorData;
             acc.push({
-                effect: source,
+                effect: document,
                 marks: [...Array(max).keys()].reduce((acc, _, index) => {
                     const spent = index < current;
                     acc[foundry.utils.randomID()] = { selected: false, disabled: spent, spent };
