@@ -27,11 +27,11 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             true
         );
         const armor = orderedArmorEffects.reduce((acc, effect) => {
-            const { value, max } = effect.system.armorData;
+            const { current, max } = effect.system.armorData;
             acc.push({
                 effect: effect,
                 marks: [...Array(max).keys()].reduce((acc, _, index) => {
-                    const spent = index < value;
+                    const spent = index < current;
                     acc[foundry.utils.randomID()] = { selected: false, disabled: spent, spent };
                     return acc;
                 }, {})

@@ -1891,7 +1891,7 @@
                 "armor": {
                     "newArmorEffect": "Armor Effect",
                     "FIELDS": {
-                        "armorInteraction": {
+                        "interaction": {
                             "label": "Armor Interaction",
                             "hint": "Does the character wearing armor suppress this effect?"
                         }

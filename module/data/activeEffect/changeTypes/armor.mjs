@@ -2,39 +2,56 @@ import { itemAbleRollParse } from '../../../helpers/utils.mjs';
 
 const fields = foundry.data.fields;
 
-export default class Armor extends foundry.abstract.DataModel {
+export default class ArmorChange extends foundry.abstract.DataModel {
     static defineSchema() {
         return {
-            type: new fields.StringField({ required: true, initial: 'armor', blank: false }),
-            max: new fields.StringField({
-                required: true,
-                nullable: false,
-                initial: '1',
-                label: 'DAGGERHEART.GENERAL.max'
-            }),
-            armorInteraction: new fields.StringField({
-                required: true,
-                choices: CONFIG.DH.GENERAL.activeEffectArmorInteraction,
-                initial: CONFIG.DH.GENERAL.activeEffectArmorInteraction.none.id,
-                label: 'DAGGERHEART.EFFECTS.ChangeTypes.armor.FIELDS.armorInteraction.label',
-                hint: 'DAGGERHEART.EFFECTS.ChangeTypes.armor.FIELDS.armorInteraction.hint'
+            type: new fields.StringField({ required: true, choices: ['armor'], initial: 'armor' }),
+            priority: new fields.NumberField(),
+            phase: new fields.StringField({ required: true, blank: false, initial: 'initial' }),
+            value: new fields.SchemaField({
+                current: new fields.NumberField({ integer: true, min: 0, initial: 0 }),
+                max: new fields.StringField({
+                    required: true,
+                    nullable: false,
+                    initial: '1',
+                    label: 'DAGGERHEART.GENERAL.max'
+                }),
+                damageThresholds: new fields.SchemaField(
+                    {
+                        major: new fields.StringField({
+                            initial: '0',
+                            label: 'DAGGERHEART.GENERAL.DamageThresholds.majorThreshold'
+                        }),
+                        severe: new fields.StringField({
+                            initial: '0',
+                            label: 'DAGGERHEART.GENERAL.DamageThresholds.severeThreshold'
+                        })
+                    },
+                    { nullable: true, initial: null }
+                ),
+                interaction: new fields.StringField({
+                    required: true,
+                    choices: CONFIG.DH.GENERAL.activeEffectArmorInteraction,
+                    initial: CONFIG.DH.GENERAL.activeEffectArmorInteraction.none.id,
+                    label: 'DAGGERHEART.EFFECTS.ChangeTypes.armor.FIELDS.interaction.label',
+                    hint: 'DAGGERHEART.EFFECTS.ChangeTypes.armor.FIELDS.interaction.hint'
+                })
             })
         };
     }
 
     static changeEffect = {
         label: 'Armor',
-        defaultPriortiy: 20,
+        defaultPriority: 20,
         handler: (actor, change, _options, _field, replacementData) => {
-            const parsedMax = itemAbleRollParse(change.typeData.max, actor, change.effect.parent);
-
+            const parsedMax = itemAbleRollParse(change.value.max, actor, change.effect.parent);
             game.system.api.documents.DhActiveEffect.applyChange(
                 actor,
                 {
                     ...change,
                     key: 'system.armorScore.value',
                     type: CONFIG.DH.GENERAL.activeEffectModes.add.id,
-                    value: change.value
+                    value: change.value.current
                 },
                 replacementData
             );
@@ -48,13 +65,52 @@ export default class Armor extends foundry.abstract.DataModel {
                 },
                 replacementData
             );
+
+            if (change.value.damageThresholds) {
+                const getThresholdValue = value => {
+                    const parsed = itemAbleRollParse(value, actor, change.effect.parent);
+                    const roll = new Roll(parsed).evaluateSync();
+                    return roll ? (roll.isDeterministic ? roll.total : null) : null;
+                };
+                const major = getThresholdValue(change.value.damageThresholds.major);
+                const severe = getThresholdValue(change.value.damageThresholds.severe);
+
+                if (major) {
+                    game.system.api.documents.DhActiveEffect.applyChange(
+                        actor,
+                        {
+                            ...change,
+                            key: 'system.damageThresholds.major',
+                            type: CONFIG.DH.GENERAL.activeEffectModes.override.id,
+                            priority: 50,
+                            value: major
+                        },
+                        replacementData
+                    );
+                }
+
+                if (severe) {
+                    game.system.api.documents.DhActiveEffect.applyChange(
+                        actor,
+                        {
+                            ...change,
+                            key: 'system.damageThresholds.severe',
+                            type: CONFIG.DH.GENERAL.activeEffectModes.override.id,
+                            priority: 50,
+                            value: severe
+                        },
+                        replacementData
+                    );
+                }
+            }
+
             return {};
         },
         render: null
     };
 
     get isSuppressed() {
-        switch (this.armorInteraction) {
+        switch (this.value.interaction) {
             case CONFIG.DH.GENERAL.activeEffectArmorInteraction.active.id:
                 return !this.parent.parent?.actor.system.armor;
             case CONFIG.DH.GENERAL.activeEffectArmorInteraction.inactive.id:
@@ -64,15 +120,12 @@ export default class Armor extends foundry.abstract.DataModel {
         }
     }
 
-    static getInitialValue(locked) {
+    static getInitialValue() {
         return {
-            key: 'Armor',
             type: CONFIG.DH.GENERAL.activeEffectModes.armor.id,
-            value: 0,
-            typeData: {
-                type: 'armor',
-                max: 0,
-                locked
+            value: {
+                current: 0,
+                max: 0
             },
             phase: 'initial',
             priority: 20
@@ -84,22 +137,22 @@ export default class Armor extends foundry.abstract.DataModel {
             name: game.i18n.localize('DAGGERHEART.EFFECTS.ChangeTypes.armor.newArmorEffect'),
             img: 'icons/equipment/chest/breastplate-helmet-metal.webp',
             system: {
-                changes: [Armor.getInitialValue(true)]
+                changes: [ArmorChange.getInitialValue()]
             }
         };
     }
 
     /* Helpers */
 
-    getArmorData(parentChange) {
+    getArmorData() {
         const actor = this.parent.parent?.actor?.type === 'character' ? this.parent.parent.actor : null;
-        const maxParse = actor ? itemAbleRollParse(this.max, actor, this.parent.parent.parent) : null;
+        const maxParse = actor ? itemAbleRollParse(this.value.max, actor, this.parent.parent.parent) : null;
         const maxRoll = maxParse ? new Roll(maxParse).evaluateSync() : null;
         const maxEvaluated = maxRoll ? (maxRoll.isDeterministic ? maxRoll.total : null) : null;
 
         return {
-            value: parentChange.value,
-            max: maxEvaluated ?? this.max
+            current: this.value.current,
+            max: maxEvaluated ?? this.value.max
         };
     }
 
@@ -107,8 +160,14 @@ export default class Armor extends foundry.abstract.DataModel {
         const newChanges = [
             ...this.parent.changes.map(change => ({
                 ...change,
-                value: change.type === 'armor' ? Math.min(change.value, newMax) : change.value,
-                typeData: change.type === 'armor' ? { ...change.typeData, max: newMax } : change.typeData
+                value:
+                    change.type === 'armor'
+                        ? {
+                              ...change.value,
+                              current: Math.min(change.value.current, newMax),
+                              max: newMax
+                          }
+                        : change.value
             }))
         ];
         await this.parent.parent.update({ 'system.changes': newChanges });

@@ -3,7 +3,9 @@
         <input type="text" class="effect-change-input" name="{{change.keyPath}}" value="{{change.key}}" />
     </div>
     <div class="type">
-        {{formInput fields.type name=change.typePath value=change.type localize=true}}
+        <select name="{{change.typePath}}">
+            {{selectOptions types selected=change.type localize=true}}
+        </select>
     </div>
     <div class="value">
         {{formInput fields.value name=change.valuePath value=change.value elementType="input"}}

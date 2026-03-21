@@ -1,5 +1,5 @@
 import { itemAbleRollParse } from '../helpers/utils.mjs';
-import { RefreshType, socketEvent } from '../systemRegistration/socket.mjs';
+import { RefreshType } from '../systemRegistration/socket.mjs';
 
 export default class DhActiveEffect extends foundry.documents.ActiveEffect {
     /* -------------------------------------------- */
@@ -155,11 +155,6 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
     /*  Methods                                     */
     /* -------------------------------------------- */
 
-    /**@inheritdoc */
-    static applyChange(actor, change, options) {
-        super.applyChange(actor, change, options);
-    }
-
     /**@inheritdoc*/
     static applyChangeField(model, change, field) {
         change.value = Number.isNumeric(change.value)
@@ -168,7 +163,7 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         super.applyChangeField(model, change, field);
     }
 
-    _applyChangeUnguided(actor, change, changes, options) {
+    static _applyChangeUnguided(actor, change, changes, options) {
         change.value = DhActiveEffect.getChangeValue(actor, change, change.effect);
         super._applyChangeUnguided(actor, change, changes, options);
     }
