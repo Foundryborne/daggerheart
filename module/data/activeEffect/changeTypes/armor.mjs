@@ -5,7 +5,7 @@ const fields = foundry.data.fields;
 export default class ArmorChange extends foundry.abstract.DataModel {
     static defineSchema() {
         return {
-            type: new fields.StringField({ required: true, initial: 'armor', blank: false }),
+            type: new fields.StringField({ required: true, choices: ['armor'], initial: 'armor' }),
             priority: new fields.NumberField(),
             phase: new fields.StringField({ required: true, blank: false, initial: 'initial' }),
             value: new fields.SchemaField({
