@@ -598,8 +598,7 @@ export default class DhpActor extends Actor {
         const availableStress = this.system.resources.stress.max - this.system.resources.stress.value;
 
         const canUseArmor =
-            this.system.armor &&
-            this.system.armor.system.marks.value < this.system.armorScore &&
+            this.system.armorScore.value < this.system.armorScore.max &&
             type.every(t => this.system.armorApplicableDamageTypes[t] === true);
         const canUseStress = Object.keys(stressDamageReduction).reduce((acc, x) => {
             const rule = stressDamageReduction[x];
@@ -639,12 +638,7 @@ export default class DhpActor extends Actor {
         const hpDamage = updates.find(u => u.key === CONFIG.DH.GENERAL.healingTypes.hitPoints.id);
         if (hpDamage?.value) {
             hpDamage.value = this.convertDamageToThreshold(hpDamage.value);
-            if (
-                this.type === 'character' &&
-                !isDirect &&
-                this.system.armor &&
-                this.#canReduceDamage(hpDamage.value, hpDamage.damageTypes)
-            ) {
+            if (this.type === 'character' && !isDirect && this.#canReduceDamage(hpDamage.value, hpDamage.damageTypes)) {
                 const armorSlotResult = await this.owner.query(
                     'armorSlot',
                     {
@@ -657,12 +651,10 @@ export default class DhpActor extends Actor {
                     }
                 );
                 if (armorSlotResult) {
-                    const { modifiedDamage, armorSpent, stressSpent } = armorSlotResult;
+                    const { modifiedDamage, armorChanges, stressSpent } = armorSlotResult;
                     updates.find(u => u.key === 'hitPoints').value = modifiedDamage;
-                    if (armorSpent) {
-                        const armorUpdate = updates.find(u => u.key === 'armor');
-                        if (armorUpdate) armorUpdate.value += armorSpent;
-                        else updates.push({ value: armorSpent, key: 'armor' });
+                    for (const armorChange of armorChanges) {
+                        updates.push({ value: armorChange.amount, key: 'armor', uuid: armorChange.uuid });
                     }
                     if (stressSpent) {
                         const stressUpdate = updates.find(u => u.key === 'stress');
@@ -809,12 +801,8 @@ export default class DhpActor extends Actor {
                         );
                         break;
                     case 'armor':
-                        if (this.system.armor?.system?.marks) {
-                            updates.armor.resources['system.marks.value'] = Math.max(
-                                Math.min(valueFunc(this.system.armor.system.marks, r), this.system.armorScore),
-                                0
-                            );
-                        }
+                        if (!r.uuid) this.system.updateArmorValue(r);
+                        else this.system.updateArmorEffectValue(r);
                         break;
                     default:
                         if (this.system.resources?.[r.key]) {
@@ -1029,5 +1017,21 @@ export default class DhpActor extends Actor {
         }
 
         return allTokens;
+    }
+
+    /**@inheritdoc */
+    *allApplicableEffects({ noSelfArmor, noTransferArmor } = {}) {
+        for (const effect of this.effects) {
+            if (!noSelfArmor || effect.type !== 'armor') yield effect;
+        }
+        for (const item of this.items) {
+            for (const effect of item.effects) {
+                if (effect.transfer && (!noTransferArmor || effect.type !== 'armor')) yield effect;
+            }
+        }
+    }
+
+    applyActiveEffects(phase) {
+        super.applyActiveEffects(phase);
     }
 }

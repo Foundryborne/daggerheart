@@ -5,6 +5,10 @@
   "_id": "epkAmlZVk7HOfUUT",
   "img": "icons/equipment/chest/breastplate-purple.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 5
+    },
     "description": "",
     "actions": {},
     "attached": [],

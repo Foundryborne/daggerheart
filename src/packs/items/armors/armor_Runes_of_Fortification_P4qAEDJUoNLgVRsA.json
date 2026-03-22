@@ -5,6 +5,10 @@
   "_id": "P4qAEDJUoNLgVRsA",
   "img": "icons/magic/symbols/rune-sigil-red-orange.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 6
+    },
     "description": "",
     "actions": {
       "37KLF2bim9nRdPTU": {

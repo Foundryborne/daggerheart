@@ -6,9 +6,9 @@
     <fieldset class="two-columns">
         <legend>{{localize tabs.settings.label}}</legend>
         <span>{{localize "DAGGERHEART.GENERAL.Tiers.singular"}}</span>
-        {{formField systemFields.tier value=source.system.tier}}
+        {{ formField systemFields.tier value=source.system.tier }}
         <span>{{localize "DAGGERHEART.ITEMS.Armor.baseScore"}}</span>
-        {{formField systemFields.baseScore value=source.system.baseScore}}
+        {{ formField systemFields.armor.fields.max value=source.system.armor.max }}
 
         <span>{{localize "TYPES.Item.feature"}}</span>
         <input type="text" class="features-input" value="{{features}}" />

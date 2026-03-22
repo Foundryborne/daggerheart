@@ -113,26 +113,26 @@
       "name": "Protective",
       "description": "<p>Add the item's Tier to your Armor Score</p>",
       "img": "icons/skills/melee/shield-block-gray-orange.webp",
-      "changes": [
-        {
-          "key": "system.armorScore",
-          "mode": 2,
-          "value": "ITEM.@system.tier",
-          "priority": null
-        }
-      ],
-      "_id": "cXWSV50apzaNQkdA",
+      "_id": "pZCrWd7zLTarvEQK",
       "type": "base",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "type": "armor",
+            "phase": "initial",
+            "priority": 20,
+            "value": {
+              "max": "ITEM.@system.tier"
+            }
+          }
+        ]
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "tint": "#ffffff",
@@ -143,7 +143,10 @@
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!items.effects!DlinEBGZfIlvreO3.cXWSV50apzaNQkdA"
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
+      "_key": "!items.effects!DlinEBGZfIlvreO3.pZCrWd7zLTarvEQK"
     }
   ],
   "sort": 0,

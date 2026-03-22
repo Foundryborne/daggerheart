@@ -203,7 +203,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
         const msg = {
             user: game.user.id,
             system: {
-                moves: moves,
+                moves: moves.map(move => ({ ...move, actions: Array.from(move.actions) })),
                 actor: this.actor.uuid
             },
             speaker: cls.getSpeaker(),

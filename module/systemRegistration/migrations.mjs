@@ -246,6 +246,101 @@ export async function runMigrations() {
 
         lastMigrationVersion = '1.6.0';
     }
+
+    if (foundry.utils.isNewerVersion('2.0.0', lastMigrationVersion)) {
+        const progress = game.system.api.applications.ui.DhProgress.createMigrationProgress(0);
+        const progressBuffer = 50;
+
+        //#region Data Setup
+        const lockedPacks = [];
+        const itemPacks = game.packs.filter(x => x.metadata.type === 'Item');
+        const actorPacks = game.packs.filter(x => x.metadata.type === 'Actor');
+
+        const getIndexes = async (packs, type) => {
+            const indexes = [];
+            for (const pack of packs) {
+                const indexValues = pack.index.values().reduce((acc, index) => {
+                    if (!type || index.type === type) acc.push(index.uuid);
+                    return acc;
+                }, []);
+
+                if (indexValues.length && pack.locked) {
+                    lockedPacks.push(pack.collection);
+                    await pack.configure({ locked: false });
+                }
+
+                indexes.push(...indexValues);
+            }
+
+            return indexes;
+        };
+
+        const itemEntries = await getIndexes(itemPacks);
+        const characterEntries = await getIndexes(actorPacks, 'character');
+
+        const worldItems = game.items;
+        const worldCharacters = game.actors.filter(x => x.type === 'character');
+
+        /* The async fetches are the mainstay of time. Leaving 1 progress for the sync logic */
+        const newMax = itemEntries.length + characterEntries.length + progressBuffer;
+        progress.updateMax(newMax);
+
+        const compendiumItems = [];
+        for (const entry of itemEntries) {
+            const item = await foundry.utils.fromUuid(entry);
+            compendiumItems.push(item);
+            progress.advance();
+        }
+
+        const compendiumCharacters = [];
+        for (const entry of characterEntries) {
+            const character = await foundry.utils.fromUuid(entry);
+            compendiumCharacters.push(character);
+            progress.advance();
+        }
+        //#endregion
+
+        /* Migrate existing effects modifying armor, creating new Armor Effects instead */
+        const migrateEffects = async entity => {
+            for (const effect of entity.effects) {
+                if (effect.system.changes.every(x => x.key !== 'system.armorScore')) continue;
+
+                effect.update({
+                    'system.changes': effect.system.changes.map(change => ({
+                        ...change,
+                        type: change.key === 'system.armorScore' ? 'armor' : change.type,
+                        value: change.key === 'system.armorScore' ? { current: 0, max: change.value } : change.value
+                    }))
+                });
+            }
+        };
+
+        /* Migrate existing armors effects */
+        const migrateItems = async items => {
+            for (const item of items) {
+                await migrateEffects(item);
+            }
+        };
+
+        await migrateItems([...compendiumItems, ...worldItems]);
+        progress.advance({ by: progressBuffer / 2 });
+
+        for (const actor of [...compendiumCharacters, ...worldCharacters]) {
+            await migrateEffects(actor);
+            await migrateItems(actor.items);
+        }
+
+        progress.advance({ by: progressBuffer / 2 });
+
+        for (let packId of lockedPacks) {
+            const pack = game.packs.get(packId);
+            await pack.configure({ locked: true });
+        }
+
+        progress.close();
+
+        lastMigrationVersion = '2.0.0';
+    }
     //#endregion
 
     await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion, lastMigrationVersion);

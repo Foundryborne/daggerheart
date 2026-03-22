@@ -5,6 +5,10 @@
   "_id": "SXWjUR2aUR6bYvdl",
   "img": "icons/equipment/chest/breastplate-layered-steel-blue-gold.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 7
+    },
     "description": "",
     "actions": {},
     "attached": [],

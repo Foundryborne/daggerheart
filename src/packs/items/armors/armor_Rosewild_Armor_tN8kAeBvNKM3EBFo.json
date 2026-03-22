@@ -5,6 +5,10 @@
   "_id": "tN8kAeBvNKM3EBFo",
   "img": "icons/equipment/chest/breastplate-banded-leather-purple.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 5
+    },
     "description": "",
     "actions": {
       "QRTnCYxJfuJHdnyV": {

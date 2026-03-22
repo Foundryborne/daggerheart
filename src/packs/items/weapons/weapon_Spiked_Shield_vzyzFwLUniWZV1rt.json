@@ -113,32 +113,31 @@
       "name": "Double Duty",
       "description": "+1 to Armor Score; +1 to primary weapon damage within Melee range",
       "img": "icons/skills/melee/sword-shield-stylized-white.webp",
-      "changes": [
-        {
-          "key": "system.armorScore",
-          "mode": 2,
-          "value": "1"
-        },
-        {
-          "key": "system.bonuses.damage.primaryWeapon.bonus",
-          "mode": 2,
-          "value": "1"
-        }
-      ],
       "system": {
         "rangeDependence": {
           "enabled": true,
           "range": "melee",
           "target": "hostile",
           "type": "withinRange"
-        }
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.damage.primaryWeapon.bonus",
+            "type": "add",
+            "value": 1,
+            "phase": "initial",
+            "priority": 0
+          }
+        ]
       },
       "_id": "d3TJtlpoHBCztbom",
       "type": "base",
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "tint": "#ffffff",
@@ -149,7 +148,49 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!vzyzFwLUniWZV1rt.d3TJtlpoHBCztbom"
+    },
+    {
+      "name": "Double Duty",
+      "description": "+1 to Armor Score; +1 to primary weapon damage within Melee range",
+      "img": "icons/skills/melee/sword-shield-stylized-white.webp",
+      "system": {
+        "changes": [
+          {
+            "type": "armor",
+            "phase": "initial",
+            "priority": 20,
+            "value": {
+              "max": "1"
+            }
+          }
+        ]
+      },
+      "_id": "mvUY9LGfwICak7cE",
+      "type": "base",
+      "disabled": false,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
+      "_key": "!items.effects!vzyzFwLUniWZV1rt.mvUY9LGfwICak7cE"
     }
   ],
   "sort": 0,

@@ -6,6 +6,7 @@ import DhCreature from './creature.mjs';
 import { attributeField, stressDamageReductionRule, bonusField } from '../fields/actorField.mjs';
 import { ActionField } from '../fields/actionField.mjs';
 import DHCharacterSettings from '../../applications/sheets-configs/character-settings.mjs';
+import { getArmorSources } from '../../helpers/utils.mjs';
 
 export default class DhCharacter extends DhCreature {
     /**@override */
@@ -41,17 +42,16 @@ export default class DhCharacter extends DhCreature {
                 label: 'DAGGERHEART.GENERAL.proficiency'
             }),
             evasion: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.evasion' }),
-            armorScore: new fields.NumberField({ integer: true, initial: 0, label: 'DAGGERHEART.GENERAL.armorScore' }),
             damageThresholds: new fields.SchemaField({
-                severe: new fields.NumberField({
-                    integer: true,
-                    initial: 0,
-                    label: 'DAGGERHEART.GENERAL.DamageThresholds.severeThreshold'
-                }),
                 major: new fields.NumberField({
                     integer: true,
                     initial: 0,
                     label: 'DAGGERHEART.GENERAL.DamageThresholds.majorThreshold'
+                }),
+                severe: new fields.NumberField({
+                    integer: true,
+                    initial: 0,
+                    label: 'DAGGERHEART.GENERAL.DamageThresholds.severeThreshold'
                 })
             }),
             experiences: new fields.TypedObjectField(
@@ -465,6 +465,101 @@ export default class DhCharacter extends DhCreature {
         }
     }
 
+    async updateArmorValue({ value: armorChange = 0, clear = false }) {
+        if (armorChange === 0 && !clear) return;
+
+        const increasing = armorChange >= 0;
+        let remainingChange = Math.abs(armorChange);
+        const orderedSources = getArmorSources(this.parent).filter(s => !s.disabled);
+
+        const handleArmorData = (embeddedUpdates, doc, armorData) => {
+            let usedArmorChange = 0;
+            if (clear) {
+                usedArmorChange -= armorData.current;
+            } else {
+                if (increasing) {
+                    const remainingArmor = armorData.max - armorData.current;
+                    usedArmorChange = Math.min(remainingChange, remainingArmor);
+                    remainingChange -= usedArmorChange;
+                } else {
+                    const changeChange = Math.min(armorData.current, remainingChange);
+                    usedArmorChange -= changeChange;
+                    remainingChange -= changeChange;
+                }
+            }
+
+            if (!usedArmorChange) return usedArmorChange;
+            else {
+                if (!embeddedUpdates[doc.id]) embeddedUpdates[doc.id] = { doc: doc, updates: [] };
+
+                return usedArmorChange;
+            }
+        };
+
+        const armorUpdates = [];
+        const effectUpdates = [];
+        for (const { document: armorSource } of orderedSources) {
+            const usedArmorChange = handleArmorData(
+                armorSource.type === 'armor' ? armorUpdates : effectUpdates,
+                armorSource.parent,
+                armorSource.type === 'armor' ? armorSource.system.armor : armorSource.system.armorData
+            );
+            if (!usedArmorChange) continue;
+
+            if (armorSource.type === 'armor') {
+                armorUpdates[armorSource.parent.id].updates.push({
+                    '_id': armorSource.id,
+                    'system.armor.current': armorSource.system.armor.current + usedArmorChange
+                });
+            } else {
+                effectUpdates[armorSource.parent.id].updates.push({
+                    '_id': armorSource.id,
+                    'system.changes': armorSource.system.changes.map(change => ({
+                        ...change,
+                        value:
+                            change.type === 'armor'
+                                ? {
+                                      ...change.value,
+                                      current: armorSource.system.armorChange.value.current + usedArmorChange
+                                  }
+                                : change.value
+                    }))
+                });
+            }
+
+            if (remainingChange === 0 && !clear) break;
+        }
+
+        const armorUpdateValues = Object.values(armorUpdates);
+        for (const [index, { doc, updates }] of armorUpdateValues.entries())
+            await doc.updateEmbeddedDocuments('Item', updates, { render: index === armorUpdateValues.length - 1 });
+
+        const effectUpdateValues = Object.values(effectUpdates);
+        for (const [index, { doc, updates }] of effectUpdateValues.entries())
+            await doc.updateEmbeddedDocuments('ActiveEffect', updates, {
+                render: index === effectUpdateValues.length - 1
+            });
+    }
+
+    async updateArmorEffectValue({ uuid, value }) {
+        const source = await foundry.utils.fromUuid(uuid);
+        if (source.type === 'armor') {
+            await source.update({
+                'system.armor.current': source.system.armor.current + value
+            });
+        } else {
+            const effectValue = source.system.armorChange.value;
+            await source.update({
+                'system.changes': [
+                    {
+                        ...source.system.armorChange,
+                        value: { ...effectValue, current: effectValue.current + value }
+                    }
+                ]
+            });
+        }
+    }
+
     get sheetLists() {
         const ancestryFeatures = [],
             communityFeatures = [],
@@ -588,6 +683,10 @@ export default class DhCharacter extends DhCreature {
 
     prepareBaseData() {
         super.prepareBaseData();
+        this.armorScore = {
+            max: this.armor?.system.armor.max ?? 0,
+            value: this.armor?.system.armor.current ?? 0
+        };
         this.evasion += this.class.value?.system?.evasion ?? 0;
 
         const currentLevel = this.levelData.level.current;
@@ -637,14 +736,12 @@ export default class DhCharacter extends DhCreature {
             }
         }
 
-        const armor = this.armor;
-        this.armorScore = armor ? armor.system.baseScore : 0;
         this.damageThresholds = {
-            major: armor
-                ? armor.system.baseThresholds.major + this.levelData.level.current
+            major: this.armor
+                ? this.armor.system.baseThresholds.major + this.levelData.level.current
                 : this.levelData.level.current,
-            severe: armor
-                ? armor.system.baseThresholds.severe + this.levelData.level.current
+            severe: this.armor
+                ? this.armor.system.baseThresholds.severe + this.levelData.level.current
                 : this.levelData.level.current * 2
         };
 
@@ -679,9 +776,8 @@ export default class DhCharacter extends DhCreature {
         this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
 
         this.resources.armor = {
+            ...this.armorScore,
             label: 'DAGGERHEART.GENERAL.armor',
-            value: this.armor?.system?.marks?.value ?? 0,
-            max: this.armorScore,
             isReversed: true
         };
 

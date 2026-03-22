@@ -5,6 +5,10 @@
   "_id": "Tptgl5WOj76TyFn7",
   "img": "icons/equipment/chest/breastplate-layered-gilded-black.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 6
+    },
     "description": "",
     "actions": {},
     "attached": [],
