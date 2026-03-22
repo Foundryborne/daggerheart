@@ -318,16 +318,16 @@ export async function runMigrations() {
                 const oldEffectData = effect.toObject();
                 changeData.createData = {
                     ...oldEffectData,
-                    type: 'armor',
                     system: {
-                        ...oldEffectData.sytem,
+                        ...oldEffectData.system,
                         changes: oldArmorChanges.map(change => ({
-                            key: 'system.armorScore',
                             type: CONFIG.DH.GENERAL.activeEffectModes.armor.id,
                             phase: 'initial',
                             priority: 20,
-                            value: 0,
-                            max: change.value
+                            value: {
+                                current: 0,
+                                max: change.value
+                            }
                         }))
                     }
                 };
@@ -363,35 +363,10 @@ export async function runMigrations() {
             );
         };
 
-        /* Migrate existing armors to the new Armor Effects */
+        /* Migrate existing armors effects */
         const migrateItems = async items => {
             for (const item of items) {
                 await migrateEffects(item);
-
-                if (item instanceof game.system.api.documents.DHItem && item.type === 'armor') {
-                    const hasArmorEffect = item.effects.some(x => x.type === 'armor');
-                    const migrationArmorScore = item.flags.daggerheart?.baseScoreMigrationValue;
-                    if (migrationArmorScore !== undefined && !hasArmorEffect) {
-                        await item.createEmbeddedDocuments('ActiveEffect', [
-                            {
-                                ...game.system.api.data.activeEffects.changeTypes.armor.getDefaultArmorEffect(),
-                                changes: [
-                                    {
-                                        key: 'Armor',
-                                        type: CONFIG.DH.GENERAL.activeEffectModes.armor,
-                                        phase: 'initial',
-                                        priority: 20,
-                                        value: 0,
-                                        typeData: {
-                                            type: 'armor',
-                                            max: migrationArmorScore.toString()
-                                        }
-                                    }
-                                ]
-                            }
-                        ]);
-                    }
-                }
             }
         };
 

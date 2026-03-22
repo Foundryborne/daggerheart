@@ -153,10 +153,8 @@ export default class DHArmor extends AttachableItem {
 
     /** @inheritDoc */
     static migrateDocumentData(source) {
-        if (source.system.baseScore !== undefined && !source.effects.some(x => x.type === 'armor')) {
-            if (!source.flags) source.flags = {};
-            if (!source.flags.daggerheart) source.flags.daggerheart = {};
-            source.flags.daggerheart.baseScoreMigrationValue = source.system.baseScore;
+        if (!source.system.armor) {
+            source.system.armor = { current: source.system.marks ?? 0, max: source.system.baseScore ?? 0 };
         }
     }
 
