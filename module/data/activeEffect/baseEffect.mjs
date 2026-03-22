@@ -151,7 +151,7 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
             const newArmorTotal = (changed.system?.changes ?? []).reduce((acc, change) => {
                 if (change.type === 'armor') acc += change.value.current;
                 return acc;
-            }, 0);
+            }, this.parent.actor.system.armor?.system?.armor?.current ?? 0);
 
             const armorData = getScrollTextData(this.parent.actor, { value: newArmorTotal }, 'armor');
             options.scrollingTextData = [armorData];

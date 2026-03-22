@@ -5,6 +5,10 @@
   "_id": "tN8kAeBvNKM3EBFo",
   "img": "icons/equipment/chest/breastplate-banded-leather-purple.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 5
+    },
     "description": "",
     "actions": {
       "QRTnCYxJfuJHdnyV": {
@@ -55,47 +59,7 @@
       "artist": ""
     }
   },
-  "effects": [
-    {
-      "type": "base",
-      "name": "Armor Effect",
-      "img": "icons/equipment/chest/breastplate-helmet-metal.webp",
-      "system": {
-        "changes": [
-          {
-            "type": "armor",
-            "phase": "initial",
-            "priority": 20,
-            "value": {
-              "max": "5"
-            }
-          }
-        ]
-      },
-      "_id": "ebhSsuWrFYUVkGXC",
-      "disabled": false,
-      "start": null,
-      "duration": {
-        "value": null,
-        "units": "seconds",
-        "expiry": null,
-        "expired": false
-      },
-      "description": "",
-      "origin": null,
-      "tint": "#ffffff",
-      "transfer": true,
-      "statuses": [],
-      "showIcon": 1,
-      "folder": null,
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "_key": "!items.effects!tN8kAeBvNKM3EBFo.ebhSsuWrFYUVkGXC"
-    }
-  ],
+  "effects": [],
   "sort": 0,
   "ownership": {
     "default": 0,

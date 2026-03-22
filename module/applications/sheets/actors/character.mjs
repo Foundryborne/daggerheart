@@ -3,7 +3,7 @@ import DhDeathMove from '../../dialogs/deathMove.mjs';
 import { CharacterLevelup, LevelupViewMode } from '../../levelup/_module.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
-import { getDocFromElement, getDocFromElementSync } from '../../../helpers/utils.mjs';
+import { getArmorSources, getDocFromElement, getDocFromElementSync } from '../../../helpers/utils.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
@@ -943,20 +943,14 @@ export default class CharacterSheet extends DHBaseActorSheet {
             return;
         }
 
-        const armorSources = [];
-        for (var effect of Array.from(this.document.allApplicableEffects())) {
-            const origin = effect.origin ? await foundry.utils.fromUuid(effect.origin) : effect.parent;
-            if (!effect.system.armorData || effect.disabled || effect.isSuppressed) continue;
-
-            const originIsActor = origin instanceof Actor;
-            const name = originIsActor ? effect.name : origin.name;
-            armorSources.push({
-                uuid: effect.uuid,
-                name,
-                ...effect.system.armorData
-            });
-        }
-
+        const armorSources = getArmorSources(this.document)
+            .filter(s => !s.disabled)
+            .toReversed()
+            .map(({ name, document, data }) => ({
+                ...data,
+                uuid: document.uuid,
+                name
+            }));
         if (!armorSources.length) return;
 
         const useResourcePips = game.settings.get(
@@ -980,11 +974,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
             direction: 'DOWN'
         });
 
-        html.querySelectorAll('.armor-marks-input').forEach(element => {
-            element.addEventListener('blur', CharacterSheet.armorSourceUpdate);
-            element.addEventListener('input', CharacterSheet.armorSourceInput);
-        });
-
         html.querySelectorAll('.armor-slot').forEach(element => {
             element.addEventListener('click', CharacterSheet.armorSourcePipUpdate);
         });
@@ -999,49 +988,45 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     /** Update specific armor source */
-    static async armorSourceUpdate(event) {
-        const effect = await foundry.utils.fromUuid(event.target.dataset.uuid);
-        const armorChange = effect.system.armorChange;
-        if (!armorChange) return;
-        const current = Math.max(Math.min(Number.parseInt(event.target.value), effect.system.armorData.max), 0);
-
-        const newChanges = effect.system.changes.map(change => ({
-            ...change,
-            value: change.type === 'armor' ? { ...change.value, current } : change.value
-        }));
-
-        event.target.value = current;
-        const progressBar = event.target.closest('.status-bar.armor-slots').querySelector('progress');
-        progressBar.value = current;
-
-        await effect.update({ 'system.changes': newChanges });
-    }
-
     static async armorSourcePipUpdate(event) {
         const target = event.target.closest('.armor-slot');
-        const effect = await foundry.utils.fromUuid(target.dataset.uuid);
-        const armorChange = effect.system.armorChange;
-        if (!armorChange) return;
+        const { uuid, value } = target.dataset;
+        const document = await foundry.utils.fromUuid(uuid);
 
-        const { current } = effect.system.armorData;
+        let inputValue = Number.parseInt(value);
+        let decreasing = false;
+        let newCurrent = 0;
 
-        const inputValue = Number.parseInt(target.dataset.value);
-        const decreasing = current >= inputValue;
-        const newCurrent = decreasing ? inputValue - 1 : inputValue;
+        if (document.type === 'armor') {
+            decreasing = document.system.armor.current >= inputValue;
+            newCurrent = decreasing ? inputValue - 1 : inputValue;
+            await document.update({ 'system.armor.current': newCurrent });
+        } else if (document.system.armorData) {
+            const { current } = document.system.armorData;
+            decreasing = current >= inputValue;
+            newCurrent = decreasing ? inputValue - 1 : inputValue;
 
-        const newChanges = effect.system.changes.map(change => ({
-            ...change,
-            value: change.type === 'armor' ? { ...change.value, current: newCurrent } : change.value
-        }));
+            const newChanges = document.system.changes.map(change => ({
+                ...change,
+                value: change.type === 'armor' ? { ...change.value, current: newCurrent } : change.value
+            }));
+
+            await document.update({ 'system.changes': newChanges });
+        } else {
+            return;
+        }
 
         const container = target.closest('.slot-bar');
         for (const armorSlot of container.querySelectorAll('.armor-slot i')) {
-            const marked = !decreasing && Number.parseInt(armorSlot.dataset.index) < newCurrent;
-            armorSlot.classList.toggle('fa-shield', marked);
-            armorSlot.classList.toggle('fa-shield-halved', !marked);
+            const index = Number.parseInt(armorSlot.dataset.index);
+            if (decreasing && index >= newCurrent) {
+                armorSlot.classList.remove('fa-shield');
+                armorSlot.classList.add('fa-shield-halved');
+            } else if (!decreasing && index < newCurrent) {
+                armorSlot.classList.add('fa-shield');
+                armorSlot.classList.remove('fa-shield-halved');
+            }
         }
-
-        await effect.update({ 'system.changes': newChanges });
     }
 
     static async #toggleResourceManagement(event, button) {

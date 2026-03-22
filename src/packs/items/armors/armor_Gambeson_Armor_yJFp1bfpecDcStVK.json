@@ -5,6 +5,10 @@
   "_id": "yJFp1bfpecDcStVK",
   "img": "icons/equipment/chest/vest-leather-tattered-white.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 3
+    },
     "description": "",
     "actions": {},
     "attached": [],
@@ -63,45 +67,6 @@
         "compendiumSource": null
       },
       "_key": "!items.effects!yJFp1bfpecDcStVK.v1FNEsypRF5W6vVc"
-    },
-    {
-      "type": "base",
-      "name": "Armor Effect",
-      "img": "icons/equipment/chest/breastplate-helmet-metal.webp",
-      "system": {
-        "changes": [
-          {
-            "type": "armor",
-            "phase": "initial",
-            "priority": 20,
-            "value": {
-              "max": "3"
-            }
-          }
-        ]
-      },
-      "_id": "ySw8mkws8rxzxsg4",
-      "disabled": false,
-      "start": null,
-      "duration": {
-        "value": null,
-        "units": "seconds",
-        "expiry": null,
-        "expired": false
-      },
-      "description": "",
-      "origin": null,
-      "tint": "#ffffff",
-      "transfer": true,
-      "statuses": [],
-      "showIcon": 1,
-      "folder": null,
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "_key": "!items.effects!yJFp1bfpecDcStVK.ySw8mkws8rxzxsg4"
     }
   ],
   "sort": 0,

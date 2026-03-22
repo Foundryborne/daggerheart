@@ -19,6 +19,14 @@ export default class DHArmor extends AttachableItem {
             ...super.defineSchema(),
             tier: new fields.NumberField({ required: true, integer: true, initial: 1, min: 1 }),
             equipped: new fields.BooleanField({ initial: false }),
+            armor: new fields.SchemaField({
+                current: new fields.NumberField({ integer: true, min: 0, initial: 0 }),
+                max: new fields.NumberField({ required: true, integer: true, initial: 0 })
+            }),
+            baseThresholds: new fields.SchemaField({
+                major: new fields.NumberField({ integer: true, initial: 0 }),
+                severe: new fields.NumberField({ integer: true, initial: 0 })
+            }),
             armorFeatures: new fields.ArrayField(
                 new fields.SchemaField({
                     value: new fields.StringField({
@@ -27,11 +35,7 @@ export default class DHArmor extends AttachableItem {
                     effectIds: new fields.ArrayField(new fields.StringField({ required: true })),
                     actionIds: new fields.ArrayField(new fields.StringField({ required: true }))
                 })
-            ),
-            baseThresholds: new fields.SchemaField({
-                major: new fields.NumberField({ integer: true, initial: 0 }),
-                severe: new fields.NumberField({ integer: true, initial: 0 })
-            })
+            )
         };
     }
 
@@ -48,17 +52,6 @@ export default class DHArmor extends AttachableItem {
         );
     }
 
-    get armorEffect() {
-        return this.parent.effects.find(x => x.system.armorData);
-    }
-
-    get armorData() {
-        const armorEffect = this.armorEffect;
-        if (!armorEffect) return { value: 0, max: 0 };
-
-        return armorEffect.system.armorData;
-    }
-
     /**@inheritdoc */
     async getDescriptionData() {
         const baseDescription = this.description;
@@ -71,17 +64,6 @@ export default class DHArmor extends AttachableItem {
         );
 
         return { prefix, value: baseDescription, suffix: null };
-    }
-
-    /**@inheritdoc */
-    async _onCreate(_data, _options, userId) {
-        if (userId !== game.user.id) return;
-
-        if (!this.parent.effects.some(x => x.system.armorData)) {
-            this.parent.createEmbeddedDocuments('ActiveEffect', [
-                game.system.api.data.activeEffects.changeTypes.armor.getDefaultArmorEffect()
-            ]);
-        }
     }
 
     /**@inheritdoc */
@@ -184,7 +166,7 @@ export default class DHArmor extends AttachableItem {
      */
     _getTags() {
         const tags = [
-            `${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.armorData.max}`,
+            `${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.armor.max}`,
             `${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseThresholds.base')}: ${this.baseThresholds.major} / ${this.baseThresholds.severe}`
         ];
 
@@ -196,7 +178,7 @@ export default class DHArmor extends AttachableItem {
      * @returns {(string | { value: string, icons: string[] })[]} An array of localized strings and damage label objects.
      */
     _getLabels() {
-        const labels = [`${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.armorData.max}`];
+        const labels = [`${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.armor.max}`];
         return labels;
     }
 

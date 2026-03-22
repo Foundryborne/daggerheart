@@ -220,6 +220,19 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
         addLinkedItemsDiff(changed.system?.features, this.features, options);
 
+        const autoSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+        const armorChanged =
+            changed.system?.armor?.current !== undefined && changed.system.armor.current !== this.armor.current;
+        if (armorChanged && autoSettings.resourceScrollTexts && this.parent.parent?.type === 'character') {
+            const armorChangeValue = changed.system.armor.current - this.armor.current;
+            const armorData = getScrollTextData(
+                this.parent.parent,
+                { value: armorChangeValue + this.parent.parent.system.armorScore.value },
+                'armor'
+            );
+            options.scrollingTextData = [armorData];
+        }
+
         if (changed.system?.actions) {
             const triggersToRemove = Object.keys(changed.system.actions).reduce((acc, key) => {
                 const action = changed.system.actions[key];

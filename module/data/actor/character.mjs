@@ -6,6 +6,7 @@ import DhCreature from './creature.mjs';
 import { attributeField, stressDamageReductionRule, bonusField } from '../fields/actorField.mjs';
 import { ActionField } from '../fields/actionField.mjs';
 import DHCharacterSettings from '../../applications/sheets-configs/character-settings.mjs';
+import { getArmorSources } from '../../helpers/utils.mjs';
 
 export default class DhCharacter extends DhCreature {
     /**@override */
@@ -469,43 +470,57 @@ export default class DhCharacter extends DhCreature {
 
         const increasing = armorChange >= 0;
         let remainingChange = Math.abs(armorChange);
-        const armorEffects = Array.from(this.parent.allApplicableEffects()).filter(x => x.system.armorData);
-        const orderedEffects = game.system.api.data.activeEffects.changeTypes.armor.orderEffectsForAutoChange(
-            armorEffects,
-            increasing
-        );
+        const orderedSources = getArmorSources(this.parent).filter(s => !s.disabled);
 
-        const embeddedUpdates = [];
-        for (const armorEffect of orderedEffects) {
+        const handleArmorData = (embeddedUpdates, doc, armorData) => {
             let usedArmorChange = 0;
             if (clear) {
-                usedArmorChange -= armorEffect.system.armorChange.value.current;
+                usedArmorChange -= armorData.current;
             } else {
                 if (increasing) {
-                    const remainingArmor = armorEffect.system.armorData.max - armorEffect.system.armorData.current;
+                    const remainingArmor = armorData.max - armorData.current;
                     usedArmorChange = Math.min(remainingChange, remainingArmor);
                     remainingChange -= usedArmorChange;
                 } else {
-                    const changeChange = Math.min(armorEffect.system.armorData.current, remainingChange);
+                    const changeChange = Math.min(armorData.current, remainingChange);
                     usedArmorChange -= changeChange;
                     remainingChange -= changeChange;
                 }
             }
 
-            if (!usedArmorChange) continue;
+            if (!usedArmorChange) return usedArmorChange;
             else {
-                if (!embeddedUpdates[armorEffect.parent.id])
-                    embeddedUpdates[armorEffect.parent.id] = { doc: armorEffect.parent, updates: [] };
+                if (!embeddedUpdates[doc.id]) embeddedUpdates[doc.id] = { doc: doc, updates: [] };
 
-                embeddedUpdates[armorEffect.parent.id].updates.push({
-                    '_id': armorEffect.id,
-                    'system.changes': armorEffect.system.changes.map(change => ({
+                return usedArmorChange;
+            }
+        };
+
+        const armorUpdates = [];
+        const effectUpdates = [];
+        for (const { document: armorSource } of orderedSources) {
+            const usedArmorChange = handleArmorData(
+                armorSource.type === 'armor' ? armorUpdates : effectUpdates,
+                armorSource.parent,
+                armorSource.type === 'armor' ? armorSource.system.armor : armorSource.system.armorData
+            );
+            if (!usedArmorChange) continue;
+
+            if (armorSource.type === 'armor') {
+                armorUpdates[armorSource.parent.id].updates.push({
+                    '_id': armorSource.id,
+                    'system.armor.current': armorSource.system.armor.current + usedArmorChange
+                });
+            } else {
+                effectUpdates[armorSource.parent.id].updates.push({
+                    '_id': armorSource.id,
+                    'system.changes': armorSource.system.changes.map(change => ({
                         ...change,
                         value:
                             change.type === 'armor'
                                 ? {
                                       ...change.value,
-                                      current: armorEffect.system.armorChange.value.current + usedArmorChange
+                                      current: armorSource.system.armorChange.value.current + usedArmorChange
                                   }
                                 : change.value
                     }))
@@ -515,22 +530,34 @@ export default class DhCharacter extends DhCreature {
             if (remainingChange === 0 && !clear) break;
         }
 
-        const updateValues = Object.values(embeddedUpdates);
-        for (const [index, { doc, updates }] of updateValues.entries())
-            await doc.updateEmbeddedDocuments('ActiveEffect', updates, { render: index === updateValues.length - 1 });
+        const armorUpdateValues = Object.values(armorUpdates);
+        for (const [index, { doc, updates }] of armorUpdateValues.entries())
+            await doc.updateEmbeddedDocuments('Item', updates, { render: index === armorUpdateValues.length - 1 });
+
+        const effectUpdateValues = Object.values(effectUpdates);
+        for (const [index, { doc, updates }] of effectUpdateValues.entries())
+            await doc.updateEmbeddedDocuments('ActiveEffect', updates, {
+                render: index === effectUpdateValues.length - 1
+            });
     }
 
     async updateArmorEffectValue({ uuid, value }) {
-        const effect = await foundry.utils.fromUuid(uuid);
-        const effectValue = effect.system.armorChange.value;
-        await effect.update({
-            'system.changes': [
-                {
-                    ...effect.system.armorChange,
-                    value: { ...effectValue, current: effectValue.current + value }
-                }
-            ]
-        });
+        const source = await foundry.utils.fromUuid(uuid);
+        if (source.type === 'armor') {
+            await source.update({
+                'system.armor.current': source.system.armor.current + value
+            });
+        } else {
+            const effectValue = source.system.armorChange.value;
+            await source.update({
+                'system.changes': [
+                    {
+                        ...source.system.armorChange,
+                        value: { ...effectValue, current: effectValue.current + value }
+                    }
+                ]
+            });
+        }
     }
 
     get sheetLists() {
@@ -657,8 +684,8 @@ export default class DhCharacter extends DhCreature {
     prepareBaseData() {
         super.prepareBaseData();
         this.armorScore = {
-            max: 0,
-            value: 0
+            max: this.armor?.system.armor.max ?? 0,
+            value: this.armor?.system.armor.current ?? 0
         };
         this.evasion += this.class.value?.system?.evasion ?? 0;
 
