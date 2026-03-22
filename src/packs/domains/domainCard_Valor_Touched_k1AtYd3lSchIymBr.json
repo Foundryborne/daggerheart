@@ -93,32 +93,25 @@
       "name": "Valor-Touched",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "type": "armor",
+            "phase": "initial",
+            "priority": 20,
+            "value": {
+              "max": "1"
+            }
+          }
+        ]
       },
-      "_id": "H9lgIqqp1imSNOv9",
+      "_id": "Ma8Zp005QYKPWIEN",
       "img": "icons/magic/control/control-influence-rally-purple.webp",
-      "changes": [
-        {
-          "key": "system.armorScore",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<ul><li class=\"vertical-card-list-found\"><p>+1 bonus to your Armor Score</p></li><li class=\"vertical-card-list-found\"><p>When you mark 1 or more Hit Points without marking an Armor Slot, clear an Armor Slot.</p></li></ul>",
       "origin": null,
@@ -130,7 +123,10 @@
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!items.effects!k1AtYd3lSchIymBr.H9lgIqqp1imSNOv9"
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
+      "_key": "!items.effects!k1AtYd3lSchIymBr.Ma8Zp005QYKPWIEN"
     }
   ],
   "ownership": {

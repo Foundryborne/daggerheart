@@ -1,4 +1,5 @@
 export const hooksConfig = {
     effectDisplayToggle: 'DHEffectDisplayToggle',
-    lockedTooltipDismissed: 'DHLockedTooltipDismissed'
+    lockedTooltipDismissed: 'DHLockedTooltipDismissed',
+    tagTeamStart: 'DHTagTeamRollStart'
 };

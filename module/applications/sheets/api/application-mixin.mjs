@@ -749,11 +749,13 @@ export default function DHApplicationMixin(Base) {
 
             const cls =
                 type === 'action' ? game.system.api.models.actions.actionsTypes.base : getDocumentClass(documentClass);
+
             const data = {
                 name: cls.defaultName({ type, parent }),
                 type,
                 system: systemData
             };
+
             if (inVault) data['system.inVault'] = true;
             if (disabled) data.disabled = true;
             if (type === 'domainCard' && parent?.system.domains?.length) {

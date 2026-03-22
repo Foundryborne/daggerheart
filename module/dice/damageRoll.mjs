@@ -1,6 +1,5 @@
 import DamageDialog from '../applications/dialogs/damageDialog.mjs';
 import { parseRallyDice } from '../helpers/utils.mjs';
-import { RefreshType, socketEvent } from '../systemRegistration/socket.mjs';
 import DHRoll from './dhRoll.mjs';
 
 export default class DamageRoll extends DHRoll {
@@ -281,10 +280,7 @@ export default class DamageRoll extends DHRoll {
         return mods;
     }
 
-    static async reroll(target, message) {
-        const { damageType, part, dice, result } = target.dataset;
-        const rollPart = message.system.damage[damageType].parts[part];
-
+    static async reroll(rollPart, dice, result) {
         let diceIndex = 0;
         let parsedRoll = game.system.api.dice.DamageRoll.fromData({
             ...rollPart.roll,
@@ -353,29 +349,6 @@ export default class DamageRoll extends DHRoll {
             };
         });
 
-        const updateMessage = game.messages.get(message._id);
-        const damageParts = updateMessage.system.damage[damageType].parts.map((damagePart, index) => {
-            if (index !== Number(part)) return damagePart;
-            return {
-                ...rollPart,
-                total: parsedRoll.total,
-                dice: rerolledDice
-            };
-        });
-        await updateMessage.update({
-            [`system.damage.${damageType}`]: {
-                ...updateMessage,
-                total: parsedRoll.total,
-                parts: damageParts
-            }
-        });
-
-        Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.TagTeamRoll });
-        await game.socket.emit(`system.${CONFIG.DH.id}`, {
-            action: socketEvent.Refresh,
-            data: {
-                refreshType: RefreshType.TagTeamRoll
-            }
-        });
+        return { parsedRoll, rerolledDice };
     }
 }

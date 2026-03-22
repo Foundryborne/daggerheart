@@ -253,8 +253,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             for (const item of this.items) {
                 if (['weapon', 'armor'].includes(item.type)) {
                     item.system.enrichedTags = await foundry.applications.handlebars.renderTemplate(
-                        'systems/daggerheart/templates/sheets/global/partials/item-tags.hbs',
-                        item.system
+                        'systems/daggerheart/templates/ui/itemBrowser/item-tags.hbs',
+                        { item: item.system }
                     );
                 }
                 item.system.enrichedDescription =

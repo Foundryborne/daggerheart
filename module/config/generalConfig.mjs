@@ -959,7 +959,22 @@ export const sceneRangeMeasurementSetting = {
     }
 };
 
-export const activeEffectModes = {
+export const tagTeamRollTypes = {
+    trait: {
+        id: 'trait',
+        label: 'DAGGERHEART.CONFIG.TagTeamRollTypes.trait'
+    },
+    ability: {
+        id: 'ability',
+        label: 'DAGGERHEART.CONFIG.TagTeamRollTypes.ability'
+    },
+    damageAbility: {
+        id: 'damageAbility',
+        label: 'DAGGERHEART.CONFIG.TagTeamRollTypes.damageAbility'
+    }
+};
+
+export const baseActiveEffectModes = {
     custom: {
         id: 'custom',
         priority: 0,
@@ -995,6 +1010,21 @@ export const activeEffectModes = {
         priority: 50,
         label: 'EFFECT.CHANGES.TYPES.override'
     }
+};
+
+export const activeEffectModes = {
+    armor: {
+        id: 'armor',
+        priority: 20,
+        label: 'TYPES.ActiveEffect.armor'
+    },
+    ...baseActiveEffectModes
+};
+
+export const activeEffectArmorInteraction = {
+    none: { id: 'none', label: 'DAGGERHEART.CONFIG.ArmorInteraction.none.label' },
+    active: { id: 'active', label: 'DAGGERHEART.CONFIG.ArmorInteraction.active.label' },
+    inactive: { id: 'inactive', label: 'DAGGERHEART.CONFIG.ArmorInteraction.inactive.label' }
 };
 
 export const activeEffectDurations = {

@@ -160,7 +160,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
             inactives: []
         };
 
-        for (const effect of this.actor.allApplicableEffects()) {
+        for (const effect of this.actor.allApplicableEffects({ noTransferArmor: true })) {
             const list = effect.active ? context.effects.actives : context.effects.inactives;
             list.push(effect);
         }

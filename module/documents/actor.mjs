@@ -4,6 +4,7 @@ import DHFeature from '../data/item/feature.mjs';
 import { createScrollText, damageKeyToNumber, getDamageKey } from '../helpers/utils.mjs';
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
 import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
+import { abilities } from '../config/actorConfig.mjs';
 
 export default class DhpActor extends Actor {
     parties = new Set();
@@ -509,6 +510,30 @@ export default class DhpActor extends Actor {
         return await rollClass.build(config);
     }
 
+    async rollTrait(trait, options = {}) {
+        const abilityLabel = game.i18n.localize(abilities[trait].label);
+        const config = {
+            event: event,
+            title: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.name}`,
+            headerTitle: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
+                ability: abilityLabel
+            }),
+            effects: await game.system.api.data.actions.actionsTypes.base.getEffects(this),
+            roll: {
+                trait: trait,
+                type: 'trait'
+            },
+            hasRoll: true,
+            actionType: 'action',
+            headerTitle: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.name}`,
+            title: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
+                ability: abilityLabel
+            }),
+            ...options
+        };
+        return await this.diceRoll(config);
+    }
+
     get rollClass() {
         return CONFIG.Dice.daggerheart[['character', 'companion'].includes(this.type) ? 'DualityRoll' : 'D20Roll'];
     }
@@ -573,8 +598,7 @@ export default class DhpActor extends Actor {
         const availableStress = this.system.resources.stress.max - this.system.resources.stress.value;
 
         const canUseArmor =
-            this.system.armor &&
-            this.system.armor.system.marks.value < this.system.armorScore &&
+            this.system.armorScore.value < this.system.armorScore.max &&
             type.every(t => this.system.armorApplicableDamageTypes[t] === true);
         const canUseStress = Object.keys(stressDamageReduction).reduce((acc, x) => {
             const rule = stressDamageReduction[x];
@@ -614,12 +638,7 @@ export default class DhpActor extends Actor {
         const hpDamage = updates.find(u => u.key === CONFIG.DH.GENERAL.healingTypes.hitPoints.id);
         if (hpDamage?.value) {
             hpDamage.value = this.convertDamageToThreshold(hpDamage.value);
-            if (
-                this.type === 'character' &&
-                !isDirect &&
-                this.system.armor &&
-                this.#canReduceDamage(hpDamage.value, hpDamage.damageTypes)
-            ) {
+            if (this.type === 'character' && !isDirect && this.#canReduceDamage(hpDamage.value, hpDamage.damageTypes)) {
                 const armorSlotResult = await this.owner.query(
                     'armorSlot',
                     {
@@ -632,12 +651,10 @@ export default class DhpActor extends Actor {
                     }
                 );
                 if (armorSlotResult) {
-                    const { modifiedDamage, armorSpent, stressSpent } = armorSlotResult;
+                    const { modifiedDamage, armorChanges, stressSpent } = armorSlotResult;
                     updates.find(u => u.key === 'hitPoints').value = modifiedDamage;
-                    if (armorSpent) {
-                        const armorUpdate = updates.find(u => u.key === 'armor');
-                        if (armorUpdate) armorUpdate.value += armorSpent;
-                        else updates.push({ value: armorSpent, key: 'armor' });
+                    for (const armorChange of armorChanges) {
+                        updates.push({ value: armorChange.amount, key: 'armor', uuid: armorChange.uuid });
                     }
                     if (stressSpent) {
                         const stressUpdate = updates.find(u => u.key === 'stress');
@@ -784,12 +801,8 @@ export default class DhpActor extends Actor {
                         );
                         break;
                     case 'armor':
-                        if (this.system.armor?.system?.marks) {
-                            updates.armor.resources['system.marks.value'] = Math.max(
-                                Math.min(valueFunc(this.system.armor.system.marks, r), this.system.armorScore),
-                                0
-                            );
-                        }
+                        if (!r.uuid) this.system.updateArmorValue(r);
+                        else this.system.updateArmorEffectValue(r);
                         break;
                     default:
                         if (this.system.resources?.[r.key]) {
@@ -1004,5 +1017,21 @@ export default class DhpActor extends Actor {
         }
 
         return allTokens;
+    }
+
+    /**@inheritdoc */
+    *allApplicableEffects({ noSelfArmor, noTransferArmor } = {}) {
+        for (const effect of this.effects) {
+            if (!noSelfArmor || effect.type !== 'armor') yield effect;
+        }
+        for (const item of this.items) {
+            for (const effect of item.effects) {
+                if (effect.transfer && (!noTransferArmor || effect.type !== 'armor')) yield effect;
+            }
+        }
+    }
+
+    applyActiveEffects(phase) {
+        super.applyActiveEffects(phase);
     }
 }

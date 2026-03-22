@@ -374,9 +374,9 @@ export default class DualityRoll extends D20Roll {
         }
     }
 
-    static async reroll(rollString, target, message) {
-        let parsedRoll = game.system.api.dice.DualityRoll.fromData({ ...rollString, evaluated: false });
-        const term = parsedRoll.terms[target.dataset.dieIndex];
+    static async reroll(rollBase, dieIndex, diceType) {
+        let parsedRoll = game.system.api.dice.DualityRoll.fromData({ ...rollBase, evaluated: false });
+        const term = parsedRoll.terms[dieIndex];
         await term.reroll(`/r1=${term.total}`);
         const result = await parsedRoll.evaluate();
 
@@ -393,35 +393,35 @@ export default class DualityRoll extends D20Roll {
                 options: { appearance: {} }
             };
 
-            const diceSoNicePresets = await getDiceSoNicePresets(result, `d${term._faces}`, `d${term._faces}`);
-            const type = target.dataset.type;
-            if (diceSoNicePresets[type]) {
-                diceSoNiceRoll.dice[0].options = diceSoNicePresets[type];
+            const diceSoNicePresets = await getDiceSoNicePresets(`d${term._faces}`, `d${term._faces}`);
+            if (diceSoNicePresets[diceType]) {
+                diceSoNiceRoll.dice[0].options = diceSoNicePresets[diceType];
             }
 
             await game.dice3d.showForRoll(diceSoNiceRoll, game.user, true);
+        } else {
+            foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
         }
 
         const newRoll = game.system.api.dice.DualityRoll.postEvaluate(parsedRoll, {
-            targets: message.system.targets,
+            targets: parsedRoll.options.targets ?? [],
             roll: {
-                advantage: message.system.roll.advantage?.type,
-                difficulty: message.system.roll.difficulty ? Number(message.system.roll.difficulty) : null
+                advantage: parsedRoll.options.roll.advantage?.type,
+                difficulty: parsedRoll.options.roll.difficulty ? Number(parsedRoll.options.roll.difficulty) : null
             }
         });
 
         const extraIndex = newRoll.advantage ? 3 : 2;
         newRoll.extra = newRoll.extra.slice(extraIndex);
 
-        const tagTeamSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
-
-        const actor = message.system.source.actor ? await foundry.utils.fromUuid(message.system.source.actor) : null;
+        const actor = parsedRoll.options.source.actor
+            ? await foundry.utils.fromUuid(parsedRoll.options.source.actor)
+            : null;
         const config = {
-            source: { actor: message.system.source.actor ?? '' },
-            targets: message.system.targets,
-            tagTeamSelected: Object.values(tagTeamSettings.members).some(x => x.messageId === message._id),
+            source: { actor: parsedRoll.options.source.actor ?? '' },
+            targets: parsedRoll.targets,
             roll: newRoll,
-            rerolledRoll: message.system.roll,
+            rerolledRoll: parsedRoll.roll,
             resourceUpdates: new ResourceUpdateMap(actor)
         };
 

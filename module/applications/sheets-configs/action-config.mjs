@@ -24,9 +24,12 @@ export default class DHActionConfig extends DHActionBaseConfig {
         const effectData = this._addEffectData.bind(this)();
         const data = this.action.toObject();
 
-        const [created] = await this.action.item.createEmbeddedDocuments('ActiveEffect', [effectData], {
+        const created = await game.system.api.documents.DhActiveEffect.createDialog(effectData, {
+            parent: this.action.item,
             render: false
         });
+        if (!created) return;
+
         data.effects.push({ _id: created._id });
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
         this.action.item.effects.get(created._id).sheet.render(true);

@@ -113,25 +113,25 @@
       "name": "Barrier",
       "description": "Gain Weapon Tier + 1 to Armor Score; -1 to Evasion",
       "img": "icons/skills/melee/shield-block-bash-blue.webp",
-      "changes": [
-        {
-          "key": "system.armorScore",
-          "mode": 2,
-          "value": "ITEM.@system.tier + 1"
-        },
-        {
-          "key": "system.evasion",
-          "mode": 2,
-          "value": "-1"
-        }
-      ],
       "_id": "87gedjJZGdFY81Mt",
       "type": "base",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.evasion",
+            "type": "add",
+            "value": -1,
+            "phase": "initial",
+            "priority": 0
+          }
+        ]
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "tint": "#ffffff",
@@ -142,7 +142,49 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!OfOzQbs4hg6QbfTG.87gedjJZGdFY81Mt"
+    },
+    {
+      "name": "Barrier",
+      "description": "Gain Weapon Tier + 1 to Armor Score; -1 to Evasion",
+      "img": "icons/skills/melee/shield-block-bash-blue.webp",
+      "_id": "J0f7zqqOr61ADpdy",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "type": "armor",
+            "phase": "initial",
+            "priority": 20,
+            "value": {
+              "max": "ITEM.@system.tier + 1"
+            }
+          }
+        ]
+      },
+      "disabled": false,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
+      "_key": "!items.effects!OfOzQbs4hg6QbfTG.J0f7zqqOr61ADpdy"
     }
   ],
   "sort": 0,

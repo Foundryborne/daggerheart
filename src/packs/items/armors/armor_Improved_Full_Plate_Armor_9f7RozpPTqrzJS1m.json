@@ -5,6 +5,10 @@
   "_id": "9f7RozpPTqrzJS1m",
   "img": "icons/equipment/chest/breastplate-cuirass-steel-grey.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 5
+    },
     "description": "",
     "actions": {},
     "attached": [],

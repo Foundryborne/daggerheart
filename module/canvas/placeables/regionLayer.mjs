@@ -44,7 +44,10 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
         if (game.activeTool === 'inFront') return { type: 'cone', x: 0, y: 0, radius: 0, angle: 180, hole };
 
         const shape = super._createDragShapeData(event);
-        const token = shape?.type === 'emanation' && shape.base?.type === 'token' ? this.#findTokenInBounds(event.interactionData.origin) : null;
+        const token =
+            shape?.type === 'emanation' && shape.base?.type === 'token'
+                ? this.#findTokenInBounds(event.interactionData.origin)
+                : null;
         if (token) {
             shape.base.width = token.width;
             shape.base.height = token.height;

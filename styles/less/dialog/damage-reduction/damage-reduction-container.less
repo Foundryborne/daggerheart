@@ -35,7 +35,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 100%;
+
+            &.full-width {
+                width: 100%;
+            }
         }
 
         .padded {
@@ -45,6 +48,7 @@
         .armor-title {
             margin: 0;
             white-space: nowrap;
+            width: 100%;
         }
 
         .resources-container {
@@ -62,12 +66,17 @@
 
         .mark-selection {
             display: flex;
-            align-items: center;
+            flex-direction: column;
             width: 100%;
             margin: 0;
 
+            h4 {
+                margin: 0;
+            }
+
             .mark-selection-inner {
                 display: flex;
+                justify-content: center;
                 gap: 8px;
 
                 .mark-container {
@@ -89,6 +98,19 @@
                     &.inactive {
                         cursor: initial;
                         opacity: 0.2;
+                    }
+
+                    &.spent {
+                        ::after {
+                            position: absolute;
+                            content: '/';
+                            color: red;
+                            font-weight: 700;
+                            font-size: 1.8em;
+                            left: -1px;
+                            top: -7px;
+                            rotate: 13deg;
+                        }
                     }
 
                     .fa-shield {

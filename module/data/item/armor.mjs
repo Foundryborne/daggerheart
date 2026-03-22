@@ -19,7 +19,14 @@ export default class DHArmor extends AttachableItem {
             ...super.defineSchema(),
             tier: new fields.NumberField({ required: true, integer: true, initial: 1, min: 1 }),
             equipped: new fields.BooleanField({ initial: false }),
-            baseScore: new fields.NumberField({ integer: true, initial: 0 }),
+            armor: new fields.SchemaField({
+                current: new fields.NumberField({ integer: true, min: 0, initial: 0 }),
+                max: new fields.NumberField({ required: true, integer: true, initial: 0 })
+            }),
+            baseThresholds: new fields.SchemaField({
+                major: new fields.NumberField({ integer: true, initial: 0 }),
+                severe: new fields.NumberField({ integer: true, initial: 0 })
+            }),
             armorFeatures: new fields.ArrayField(
                 new fields.SchemaField({
                     value: new fields.StringField({
@@ -28,14 +35,7 @@ export default class DHArmor extends AttachableItem {
                     effectIds: new fields.ArrayField(new fields.StringField({ required: true })),
                     actionIds: new fields.ArrayField(new fields.StringField({ required: true }))
                 })
-            ),
-            marks: new fields.SchemaField({
-                value: new fields.NumberField({ initial: 0, integer: true })
-            }),
-            baseThresholds: new fields.SchemaField({
-                major: new fields.NumberField({ integer: true, initial: 0 }),
-                severe: new fields.NumberField({ integer: true, initial: 0 })
-            })
+            )
         };
     }
 
@@ -151,13 +151,20 @@ export default class DHArmor extends AttachableItem {
         }
     }
 
+    /** @inheritDoc */
+    static migrateDocumentData(source) {
+        if (!source.system.armor) {
+            source.system.armor = { current: source.system.marks?.value ?? 0, max: source.system.baseScore ?? 0 };
+        }
+    }
+
     /**
      * Generates a list of localized tags based on this item's type-specific properties.
      * @returns {string[]} An array of localized tag strings.
      */
     _getTags() {
         const tags = [
-            `${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.baseScore}`,
+            `${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.armor.max}`,
             `${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseThresholds.base')}: ${this.baseThresholds.major} / ${this.baseThresholds.severe}`
         ];
 
@@ -169,9 +176,7 @@ export default class DHArmor extends AttachableItem {
      * @returns {(string | { value: string, icons: string[] })[]} An array of localized strings and damage label objects.
      */
     _getLabels() {
-        const labels = [];
-        if (this.baseScore)
-            labels.push(`${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.baseScore}`);
+        const labels = [`${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.armor.max}`];
         return labels;
     }
 

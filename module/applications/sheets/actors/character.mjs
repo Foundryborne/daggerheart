@@ -1,10 +1,9 @@
 import DHBaseActorSheet from '../api/base-actor.mjs';
 import DhDeathMove from '../../dialogs/deathMove.mjs';
-import { abilities } from '../../../config/actorConfig.mjs';
 import { CharacterLevelup, LevelupViewMode } from '../../levelup/_module.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
-import { getDocFromElement, getDocFromElementSync } from '../../../helpers/utils.mjs';
+import { getArmorSources, getDocFromElement, getDocFromElementSync } from '../../../helpers/utils.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
@@ -35,7 +34,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
             cancelBeastform: CharacterSheet.#cancelBeastform,
             toggleResourceManagement: CharacterSheet.#toggleResourceManagement,
             useDowntime: this.useDowntime,
-            viewParty: CharacterSheet.#viewParty
+            viewParty: CharacterSheet.#viewParty,
+            toggleArmorMangement: CharacterSheet.#toggleArmorManagement
         },
         window: {
             resizable: true,
@@ -639,12 +639,12 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     async updateArmorMarks(event) {
-        const armor = this.document.system.armor;
-        if (!armor) return;
+        const inputValue = Number(event.currentTarget.value);
+        const { value, max } = this.document.system.armorScore;
+        const changeValue = Math.min(inputValue - value, max - value);
 
-        const maxMarks = this.document.system.armorScore;
-        const value = Math.min(Math.max(Number(event.currentTarget.value), 0), maxMarks);
-        await armor.update({ 'system.marks.value': value });
+        event.currentTarget.value = inputValue < 0 ? 0 : value + changeValue;
+        this.document.system.updateArmorValue({ value: changeValue });
     }
 
     /* -------------------------------------------- */
@@ -720,35 +720,16 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * Rolls an attribute check based on the clicked button's dataset attribute.
      * @type {ApplicationClickAction}
      */
-    static async #rollAttribute(event, button) {
-        const abilityLabel = game.i18n.localize(abilities[button.dataset.attribute].label);
-        const config = {
-            event: event,
-            title: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.actor.name}`,
-            headerTitle: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
-                ability: abilityLabel
-            }),
-            effects: await game.system.api.data.actions.actionsTypes.base.getEffects(this.document),
-            roll: {
-                trait: button.dataset.attribute,
-                type: 'trait'
-            },
-            hasRoll: true,
-            actionType: 'action',
-            headerTitle: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.actor.name}`,
-            title: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
-                ability: abilityLabel
-            })
-        };
-        const result = await this.document.diceRoll(config);
+    static async #rollAttribute(_event, button) {
+        const result = await this.document.rollTrait(button.dataset.attribute);
         if (!result) return;
 
         /* This could be avoided by baking config.costs into config.resourceUpdates. Didn't feel like messing with it at the time */
         const costResources =
             result.costs?.filter(x => x.enabled).map(cost => ({ ...cost, value: -cost.value, total: -cost.total })) ||
             {};
-        config.resourceUpdates.addResources(costResources);
-        await config.resourceUpdates.updateResources();
+        result.resourceUpdates.addResources(costResources);
+        await result.resourceUpdates.updateResources();
     }
 
     //TODO: redo toggleEquipItem method
@@ -823,10 +804,13 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * Toggles ArmorScore resource value.
      * @type {ApplicationClickAction}
      */
-    static async #toggleArmor(_, button, element) {
-        const ArmorValue = Number.parseInt(button.dataset.value);
-        const newValue = this.document.system.armor.system.marks.value >= ArmorValue ? ArmorValue - 1 : ArmorValue;
-        await this.document.system.armor.update({ 'system.marks.value': newValue });
+    static async #toggleArmor(_, button, _element) {
+        const { value, max } = this.document.system.armorScore;
+        const inputValue = Number.parseInt(button.dataset.value);
+        const newValue = value >= inputValue ? inputValue - 1 : inputValue;
+        const changeValue = Math.min(newValue - value, max - value);
+
+        this.document.system.updateArmorValue({ value: changeValue });
     }
 
     /**
@@ -952,6 +936,99 @@ export default class CharacterSheet extends DHBaseActorSheet {
         });
     }
 
+    static async #toggleArmorManagement(_event, target) {
+        const existingTooltip = document.body.querySelector('.locked-tooltip .armor-management-container');
+        if (existingTooltip) {
+            game.tooltip.dismissLockedTooltips();
+            return;
+        }
+
+        const armorSources = getArmorSources(this.document)
+            .filter(s => !s.disabled)
+            .toReversed()
+            .map(({ name, document, data }) => ({
+                ...data,
+                uuid: document.uuid,
+                name
+            }));
+        if (!armorSources.length) return;
+
+        const useResourcePips = game.settings.get(
+            CONFIG.DH.id,
+            CONFIG.DH.SETTINGS.gameSettings.appearance
+        ).useResourcePips;
+        const html = document.createElement('div');
+        html.innerHTML = await foundry.applications.handlebars.renderTemplate(
+            `systems/daggerheart/templates/ui/tooltip/armorManagement.hbs`,
+            {
+                sources: armorSources,
+                useResourcePips
+            }
+        );
+
+        game.tooltip.dismissLockedTooltips();
+        game.tooltip.activate(target, {
+            html,
+            locked: true,
+            cssClass: 'bordered-tooltip',
+            direction: 'DOWN'
+        });
+
+        html.querySelectorAll('.armor-slot').forEach(element => {
+            element.addEventListener('click', CharacterSheet.armorSourcePipUpdate);
+        });
+    }
+
+    static async armorSourceInput(event) {
+        const effect = await foundry.utils.fromUuid(event.target.dataset.uuid);
+        const value = Math.max(Math.min(Number.parseInt(event.target.value), effect.system.armorData.max), 0);
+        event.target.value = value;
+        const progressBar = event.target.closest('.status-bar.armor-slots').querySelector('progress');
+        progressBar.value = value;
+    }
+
+    /** Update specific armor source */
+    static async armorSourcePipUpdate(event) {
+        const target = event.target.closest('.armor-slot');
+        const { uuid, value } = target.dataset;
+        const document = await foundry.utils.fromUuid(uuid);
+
+        let inputValue = Number.parseInt(value);
+        let decreasing = false;
+        let newCurrent = 0;
+
+        if (document.type === 'armor') {
+            decreasing = document.system.armor.current >= inputValue;
+            newCurrent = decreasing ? inputValue - 1 : inputValue;
+            await document.update({ 'system.armor.current': newCurrent });
+        } else if (document.system.armorData) {
+            const { current } = document.system.armorData;
+            decreasing = current >= inputValue;
+            newCurrent = decreasing ? inputValue - 1 : inputValue;
+
+            const newChanges = document.system.changes.map(change => ({
+                ...change,
+                value: change.type === 'armor' ? { ...change.value, current: newCurrent } : change.value
+            }));
+
+            await document.update({ 'system.changes': newChanges });
+        } else {
+            return;
+        }
+
+        const container = target.closest('.slot-bar');
+        for (const armorSlot of container.querySelectorAll('.armor-slot i')) {
+            const index = Number.parseInt(armorSlot.dataset.index);
+            if (decreasing && index >= newCurrent) {
+                armorSlot.classList.remove('fa-shield');
+                armorSlot.classList.add('fa-shield-halved');
+            } else if (!decreasing && index < newCurrent) {
+                armorSlot.classList.add('fa-shield');
+                armorSlot.classList.remove('fa-shield-halved');
+            }
+        }
+    }
+
     static async #toggleResourceManagement(event, button) {
         event.stopPropagation();
         const existingTooltip = document.body.querySelector('.locked-tooltip .resource-management-container');
@@ -985,7 +1062,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
         );
 
         const target = button.closest('.resource-section');
-
         game.tooltip.dismissLockedTooltips();
         game.tooltip.activate(target, {
             html,

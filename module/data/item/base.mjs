@@ -222,9 +222,14 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
         const autoSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
         const armorChanged =
-            changed.system?.marks?.value !== undefined && changed.system.marks.value !== this.marks.value;
+            changed.system?.armor?.current !== undefined && changed.system.armor.current !== this.armor.current;
         if (armorChanged && autoSettings.resourceScrollTexts && this.parent.parent?.type === 'character') {
-            const armorData = getScrollTextData(this.parent.parent, changed.system.marks, 'armor');
+            const armorChangeValue = changed.system.armor.current - this.armor.current;
+            const armorData = getScrollTextData(
+                this.parent.parent,
+                { value: armorChangeValue + this.parent.parent.system.armorScore.value },
+                'armor'
+            );
             options.scrollingTextData = [armorData];
         }
 

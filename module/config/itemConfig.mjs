@@ -490,14 +490,17 @@ export const weaponFeatures = {
                 img: 'icons/skills/melee/shield-block-bash-blue.webp',
                 changes: [
                     {
-                        key: 'system.armorScore',
-                        mode: 2,
-                        value: 'ITEM.@system.tier + 1'
-                    },
-                    {
                         key: 'system.evasion',
                         mode: 2,
                         value: '-1'
+                    },
+                    {
+                        key: 'Armor',
+                        type: 'armor',
+                        typeData: {
+                            type: 'armor',
+                            max: 'ITEM.@system.tier + 1'
+                        }
                     }
                 ]
             }
@@ -790,11 +793,6 @@ export const weaponFeatures = {
                 img: 'icons/skills/melee/sword-shield-stylized-white.webp',
                 changes: [
                     {
-                        key: 'system.armorScore',
-                        mode: 2,
-                        value: '1'
-                    },
-                    {
                         key: 'system.bonuses.damage.primaryWeapon.bonus',
                         mode: 2,
                         value: '1'
@@ -808,6 +806,22 @@ export const weaponFeatures = {
                         type: 'withinRange'
                     }
                 }
+            },
+            {
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.doubleDuty.effects.doubleDuty.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.doubleDuty.effects.doubleDuty.description',
+                img: 'icons/skills/melee/sword-shield-stylized-white.webp',
+                changes: [
+                    {
+                        key: 'Armor',
+                        type: 'armor',
+                        value: 0,
+                        typeData: {
+                            type: 'armor',
+                            max: 1
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -1191,9 +1205,13 @@ export const weaponFeatures = {
                 img: 'icons/skills/melee/shield-block-gray-orange.webp',
                 changes: [
                     {
-                        key: 'system.armorScore',
-                        mode: 2,
-                        value: 'ITEM.@system.tier'
+                        key: 'Armor',
+                        type: 'armor',
+                        value: 0,
+                        typeData: {
+                            type: 'armor',
+                            max: 'ITEM.@system.tier'
+                        }
                     }
                 ]
             }

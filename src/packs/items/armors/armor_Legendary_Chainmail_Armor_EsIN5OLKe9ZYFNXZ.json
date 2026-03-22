@@ -5,6 +5,10 @@
   "_id": "EsIN5OLKe9ZYFNXZ",
   "img": "icons/equipment/chest/breastplate-banded-blue.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 7
+    },
     "description": "",
     "actions": {},
     "attached": [],

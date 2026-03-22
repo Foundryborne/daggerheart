@@ -5,6 +5,10 @@
   "_id": "t91M61pSCMKStTNt",
   "img": "icons/equipment/chest/breastplate-banded-simple-leather-brown.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 4
+    },
     "description": "",
     "actions": {},
     "attached": [],

@@ -1,5 +1,6 @@
 import BaseDataActor from './base.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
+import TagTeamData from '../tagTeamData.mjs';
 
 export default class DhParty extends BaseDataActor {
     /**@inheritdoc */
@@ -14,7 +15,8 @@ export default class DhParty extends BaseDataActor {
                 handfuls: new fields.NumberField({ initial: 1, integer: true }),
                 bags: new fields.NumberField({ initial: 0, integer: true }),
                 chests: new fields.NumberField({ initial: 0, integer: true })
-            })
+            }),
+            tagTeam: new fields.EmbeddedDataField(TagTeamData)
         };
     }
 
@@ -38,23 +40,6 @@ export default class DhParty extends BaseDataActor {
                 member.parties?.add(this.parent);
             }
         }
-    }
-
-    async _preDelete() {
-        /* Clear all partyMembers from tagTeam setting.*/
-        /* Revisit this when tagTeam is improved for many parties */
-        const tagTeam = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
-        await tagTeam.updateSource({
-            initiator: this.partyMembers.some(x => x.id === tagTeam.initiator) ? null : tagTeam.initiator,
-            members: Object.keys(tagTeam.members).reduce((acc, key) => {
-                if (this.partyMembers.find(x => x.id === key)) {
-                    acc[key] = _del;
-                }
-
-                return acc;
-            }, {})
-        });
-        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll, tagTeam);
     }
 
     _onDelete(options, userId) {

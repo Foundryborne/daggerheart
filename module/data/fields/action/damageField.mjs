@@ -50,9 +50,9 @@ export default class DamageField extends fields.SchemaField {
         formulas = DamageField.formatFormulas.call(this, formulas, config);
 
         const damageConfig = {
+            dialog: {},
             ...config,
             roll: formulas,
-            dialog: {},
             data: this.getRollData()
         };
         delete damageConfig.evaluate;

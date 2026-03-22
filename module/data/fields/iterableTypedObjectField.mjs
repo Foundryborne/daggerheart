@@ -16,12 +16,12 @@ export default class IterableTypedObjectField extends foundry.data.fields.TypedO
     }
 }
 
-/** 
- * The prototype of an iterable object. 
+/**
+ * The prototype of an iterable object.
  * This allows the functionality of a class but also allows foundry.utils.getType() to return "Object" instead of "Unknown".
  */
 const IterableObjectPrototype = {
-    [Symbol.iterator]: function*() {
+    [Symbol.iterator]: function* () {
         for (const value of Object.values(this)) {
             yield value;
         }
