@@ -1,4 +1,4 @@
-<section class="roll-selection {{#if allHaveRolled}}rendered{{/if}} tab {{#if tabs.tagTeamRoll.active}} active{{/if}}" data-group="{{tabs.tagTeamRoll.group}}">
+<section class="roll-selection {{#if (and allHaveRolled tabs.tagTeamRoll.active)}}rendered{{/if}} tab {{#if tabs.tagTeamRoll.active}} active{{/if}}" data-group="{{tabs.tagTeamRoll.group}}">
     {{#if allHaveRolled}}
         <div class="roll-selection-container">
             {{#each members as |member key|}}

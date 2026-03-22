@@ -242,7 +242,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             this.render({ parts: updatingParts });
             game.socket.emit(`system.${CONFIG.DH.id}`, {
                 action: socketEvent.Refresh,
-                data: { refreshType: RefreshType.TagTeamRoll, action: 'refresh' }
+                data: { refreshType: RefreshType.TagTeamRoll, action: 'refresh', parts: updatingParts }
             });
         };
 
