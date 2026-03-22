@@ -4,7 +4,8 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
     constructor(options) {
         super(options);
 
-        this.changeChoices = DhActiveEffectConfig.getChangeChoices();
+        this.changeChoices = this.#getChangeChoices();
+        this.conditionalChoices = this.#getChangeChoices({ resourceValuePaths: true });
     }
 
     static DEFAULT_OPTIONS = {
@@ -50,7 +51,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
      * Get ChangeChoices for the changes autocomplete. Static for use in this class aswell as in settings-active-effect-config.mjs
      * @returns {ChangeChoice { value: string, label: string, hint: string, group: string }[]}
      */
-    static getChangeChoices() {
+    #getChangeChoices(options = { resourceValuePaths: false }) {
         const ignoredActorKeys = ['config', 'DhEnvironment', 'DhParty'];
 
         const getAllLeaves = (root, group, parentPath = '') => {
@@ -70,6 +71,8 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
 
             return leaves;
         };
+
+        const resourcePathEnding = options.resourceValuePaths ? 'value' : 'max';
         return Object.keys(game.system.api.models.actors).reduce((acc, key) => {
             if (ignoredActorKeys.includes(key)) return acc;
 
@@ -78,11 +81,17 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             const attributes = CONFIG.Token.documentClass.getTrackedAttributes(model.metadata.type);
 
             const getTranslations = path => {
-                if (path === 'resources.hope.max')
+                if (path === 'resources.hope.max') {
                     return {
                         label: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.FIELDS.maxHope.label'),
                         hint: ''
                     };
+                } else if (path === 'resources.hope.value') {
+                    return {
+                        label: game.i18n.localize('DAGGERHEART.GENERAL.hope'),
+                        hint: ''
+                    };
+                }
 
                 const field = model.schema.getField(path);
                 return {
@@ -92,7 +101,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             };
 
             const bars = attributes.bar.flatMap(x => {
-                const joined = `${x.join('.')}.max`;
+                const joined = `${x.join('.')}.${resourcePathEnding}`;
                 return { value: joined, ...getTranslations(joined), group };
             });
             const values = attributes.value.flatMap(x => {
@@ -112,16 +121,18 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
         const changeChoices = this.changeChoices;
+        const conditionalChoices = this.conditionalChoices;
 
         htmlElement.querySelectorAll('.effect-change-input').forEach(element => {
+            const choices = element.classList.contains('conditional-key-input') ? conditionalChoices : changeChoices;
             autocomplete({
                 input: element,
                 fetch: function (text, update) {
                     if (!text) {
-                        update(changeChoices);
+                        update(choices);
                     } else {
                         text = text.toLowerCase();
-                        var suggestions = changeChoices.filter(n => n.label.toLowerCase().includes(text));
+                        var suggestions = choices.filter(n => n.label.toLowerCase().includes(text));
                         update(suggestions);
                     }
                 },

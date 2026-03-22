@@ -32,7 +32,7 @@
                         <label>{{localize "EFFECT.FIELDS.changes.element.key.label"}}</label>
 
                         <div class="form-fields">
-                            <input type="text" class="effect-change-input" {{#if (eq conditional.type 'attribute')}}name="{{concat "system.conditionals." index ".key"}}"{{/if}} value="{{conditional.key}}" />
+                            <input type="text" class="effect-change-input conditional-key-input" {{#if (eq conditional.type 'attribute')}}name="{{concat "system.conditionals." index ".key"}}"{{/if}} value="{{conditional.key}}" />
                         </div>
                     </div>
 

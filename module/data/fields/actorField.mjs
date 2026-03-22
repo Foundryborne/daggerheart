@@ -89,13 +89,17 @@ class ResourcesField extends fields.TypedObjectField {
      */
     _getField(path) {
         if (path.length === 0) return this;
-        const first = path.shift();
-        if (first === this.element.name) return this.element_getField(path);
+        const first = path.pop();
 
         const resources = CONFIG.DH.RESOURCE[this.actorType].all;
         if (first in resources) {
-            this.element.label = resources[first].label;
-            return this.element._getField(path);
+            const field = this.element._getField(path);
+            const resourceName = game.i18n.localize(resources[first].label);
+            field.label =
+                field.name === 'max'
+                    ? game.i18n.format('DAGGERHEART.GENERAL.maxWithThing', { thing: resourceName })
+                    : resources[first].label;
+            return field;
         }
 
         return undefined;
