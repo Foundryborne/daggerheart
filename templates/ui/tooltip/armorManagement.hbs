@@ -1,18 +1,18 @@
 <div class="daggerheart armor-management-container">
+    <h3>{{localize "DAGGERHEART.GENERAL.armorSlots"}}</h3>
     {{#each sources as |source|}}
         <div class="armor-source-container">
-            <label class="armor-source-label">{{source.name}}</label>
-            <div class="status-bar armor-slots">
-                <div class='status-value'>
-                    <input class="bar-input armor-marks-input" value="{{source.value}}" data-uuid="{{source.uuid}}" type="number">
-                    <span>/</span>
-                    <span class="bar-label">{{source.max}}</span>
-                </div>
-                <progress
-                    class='progress-bar stress-color'
-                    value='{{source.value}}'
-                    max='{{source.max}}'
-                ></progress>
+            <p class="armor-source-label">{{source.name}}</p>
+            <div class="slot-bar">
+                {{#times source.max}}
+                    <a class='armor-slot' data-value="{{add this 1}}" data-uuid="{{source.uuid}}">
+                        {{#if (gte ../current (add this 1))}}
+                            <i class="fa-solid fa-shield" data-index="{{this}}"></i>
+                        {{else}}
+                            <i class="fa-solid fa-shield-halved" data-index="{{this}}"></i>
+                        {{/if}}
+                    </a>
+                {{/times}}
             </div>
         </div>
     {{/each}}

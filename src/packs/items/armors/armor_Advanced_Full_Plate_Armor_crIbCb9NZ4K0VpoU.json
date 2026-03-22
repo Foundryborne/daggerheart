@@ -5,6 +5,10 @@
   "_id": "crIbCb9NZ4K0VpoU",
   "img": "icons/equipment/chest/breastplate-layered-steel-grey.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 6
+    },
     "description": "",
     "actions": {},
     "attached": [],

@@ -276,6 +276,23 @@
                         }
                     }
 
+                    .slot-label {
+                        .slot-value-container {
+                            position: relative;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 100%;
+
+                            i {
+                                position: absolute;
+                                right: 0;
+                                font-size: 12px;
+                                color: light-dark(@beige, @dark-blue);
+                            }
+                        }
+                    }
+
                     .status-value {
                         padding: 0 5px;
                     }
@@ -298,6 +315,12 @@
                     border-radius: 3px;
                     background: light-dark(@dark-blue, @golden);
                     clip-path: none;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+                    border: 1px solid transparent;
+                    transition: all 0.3s ease;
 
                     h4 {
                         font-weight: bold;
@@ -305,6 +328,20 @@
                         line-height: 18px;
                         color: light-dark(@beige, @dark-blue);
                         font-size: var(--font-size-12);
+                    }
+
+                    i {
+                        font-size: 12px;
+                        color: light-dark(@beige, @dark-blue);
+                    }
+
+                    &:hover {
+                        background: light-dark(@light-black, @dark-blue);
+                        border: 1px solid light-dark(@dark-blue, @golden);
+
+                        h4, i {
+                            color: light-dark(@dark-blue, @golden);
+                        }
                     }
                 }
                 .slot-value {
@@ -343,7 +380,7 @@
                             }
                         }
                     }
-                    .slot-label {
+                    .slot-label { 
                         display: flex;
                         align-items: center;
                         color: light-dark(@beige, @dark-blue);
@@ -355,6 +392,17 @@
                         font-size: var(--font-size-12);
                         flex-wrap: wrap;
                         justify-content: center;
+                        border: 1px solid transparent;
+                        transition: all 0.3s ease;
+
+                        &:hover {
+                            background: light-dark(@light-black, @dark-blue);
+                            border: 1px solid light-dark(@dark-blue, @golden);
+
+                            .label, .value, i {
+                                color: light-dark(@dark-blue, @golden);
+                            }
+                        }
 
                         .label {
                             padding-right: 1px;

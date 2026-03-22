@@ -5,6 +5,10 @@
   "_id": "dvyQeUVRLc9y6rnt",
   "img": "icons/equipment/chest/breastplate-gorget-steel.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 4
+    },
     "description": "",
     "actions": {
       "IzM88FIxQ35P5VB2": {

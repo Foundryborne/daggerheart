@@ -13,4 +13,11 @@
             {{{change}}}
         {{/each}}
     </ol>
+
+    <fieldset class="armor-change-container">
+        <legend>{{localize "DAGGERHEART.GENERAL.armor"}} <input type="checkbox" class="armor-change-checkbox" data-index="{{typedChanges.armor.index}}" {{checked typedChanges.armor}} /></legend>
+        {{#if typedChanges.armor}}
+            {{> "systems/daggerheart/templates/sheets/activeEffect/typeChanges/armorChange.hbs" typedChanges.armor fields=@root.systemFields.changes.element.types.armor.fields}}
+        {{/if}}
+    </fieldset>
 </section>

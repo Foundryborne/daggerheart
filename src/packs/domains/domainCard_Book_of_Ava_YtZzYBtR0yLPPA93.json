@@ -105,7 +105,7 @@
         },
         "effects": [
           {
-            "_id": "LdcT1nrkd5ORCU4n",
+            "_id": "ptYT10JZ2WJHvFMd",
             "onSave": false
           }
         ],
@@ -252,7 +252,7 @@
       "img": "icons/magic/defensive/shield-barrier-glowing-triangle-blue.webp",
       "origin": "Compendium.daggerheart.domains.Item.YtZzYBtR0yLPPA93",
       "transfer": false,
-      "_id": "LdcT1nrkd5ORCU4n",
+      "_id": "ptYT10JZ2WJHvFMd",
       "type": "base",
       "system": {
         "rangeDependence": {
@@ -263,10 +263,12 @@
         },
         "changes": [
           {
-            "key": "system.armorScore",
-            "value": 1,
-            "priority": null,
-            "type": "add"
+            "type": "armor",
+            "phase": "initial",
+            "priority": 20,
+            "value": {
+              "max": "1"
+            }
           }
         ],
         "duration": {
@@ -298,7 +300,7 @@
       },
       "showIcon": 1,
       "folder": null,
-      "_key": "!items.effects!YtZzYBtR0yLPPA93.LdcT1nrkd5ORCU4n"
+      "_key": "!items.effects!YtZzYBtR0yLPPA93.ptYT10JZ2WJHvFMd"
     }
   ],
   "ownership": {

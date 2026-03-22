@@ -12,26 +12,41 @@
  *  "Anything that uses another data model value as its value": +1 - Effects that increase traits have to be calculated first at Base priority. (EX: Raise evasion by half your agility)
  */
 
+import { getScrollTextData } from '../../helpers/utils.mjs';
+import { changeTypes } from './_module.mjs';
+
 export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
 
+        const baseChanges = Object.keys(CONFIG.DH.GENERAL.baseActiveEffectModes).reduce((r, type) => {
+            r[type] = new fields.SchemaField({
+                key: new fields.StringField({ required: true }),
+                type: new fields.StringField({
+                    required: true,
+                    choices: [type],
+                    initial: type,
+                    validate: BaseEffect.#validateType
+                }),
+                value: new fields.AnyField({
+                    required: true,
+                    nullable: true,
+                    serializable: true,
+                    initial: ''
+                }),
+                phase: new fields.StringField({ required: true, blank: false, initial: 'initial' }),
+                priority: new fields.NumberField()
+            });
+            return r;
+        }, {});
+
         return {
             ...super.defineSchema(),
             changes: new fields.ArrayField(
-                new fields.SchemaField({
-                    key: new fields.StringField({ required: true }),
-                    type: new fields.StringField({
-                        required: true,
-                        blank: false,
-                        choices: CONFIG.DH.GENERAL.activeEffectModes,
-                        initial: CONFIG.DH.GENERAL.activeEffectModes.add.id,
-                        validate: BaseEffect.#validateType
-                    }),
-                    value: new fields.AnyField({ required: true, nullable: true, serializable: true, initial: '' }),
-                    phase: new fields.StringField({ required: true, blank: false, initial: 'initial' }),
-                    priority: new fields.NumberField()
-                })
+                new fields.TypedSchemaField(
+                    { ...changeTypes, ...baseChanges },
+                    { initial: baseChanges.add.getInitialValue() }
+                )
             ),
             duration: new fields.SchemaField({
                 type: new fields.StringField({
@@ -86,6 +101,23 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
         return true;
     }
 
+    get isSuppressed() {
+        for (const change of this.changes) {
+            if (change.isSuppressed) return true;
+        }
+    }
+
+    get armorChange() {
+        return this.changes.find(x => x.type === CONFIG.DH.GENERAL.activeEffectModes.armor.id);
+    }
+
+    get armorData() {
+        const armorChange = this.armorChange;
+        if (!armorChange) return null;
+
+        return armorChange.getArmorData();
+    }
+
     static getDefaultObject() {
         return {
             name: 'New Effect',
@@ -104,5 +136,32 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
                 }
             }
         };
+    }
+
+    async _preUpdate(changed, options, userId) {
+        const allowed = await super._preUpdate(changed, options, userId);
+        if (allowed === false) return false;
+
+        const autoSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+        if (
+            autoSettings.resourceScrollTexts &&
+            this.parent.actor?.type === 'character' &&
+            this.parent.actor.system.resources.armor
+        ) {
+            const newArmorTotal = (changed.system?.changes ?? []).reduce((acc, change) => {
+                if (change.type === 'armor') acc += change.value.current;
+                return acc;
+            }, this.parent.actor.system.armor?.system?.armor?.current ?? 0);
+
+            const armorData = getScrollTextData(this.parent.actor, { value: newArmorTotal }, 'armor');
+            options.scrollingTextData = [armorData];
+        }
+    }
+
+    _onUpdate(changed, options, userId) {
+        super._onUpdate(changed, options, userId);
+
+        if (this.parent.actor && options.scrollingTextData)
+            this.parent.actor.queueScrollText(options.scrollingTextData);
     }
 }

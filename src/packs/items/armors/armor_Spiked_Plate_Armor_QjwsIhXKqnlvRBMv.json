@@ -5,6 +5,10 @@
   "_id": "QjwsIhXKqnlvRBMv",
   "img": "icons/equipment/chest/breastplate-banded-steel-studded.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 5
+    },
     "description": "",
     "actions": {},
     "attached": [],

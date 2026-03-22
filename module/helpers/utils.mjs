@@ -743,3 +743,67 @@ export function getUnusedDamageTypes(parts) {
         return acc;
     }, []);
 }
+
+/** Returns resolved armor sources ordered by application order */
+export function getArmorSources(actor) {
+    const rawArmorSources = Array.from(actor.allApplicableEffects()).filter(x => x.system.armorData);
+    if (actor.system.armor) rawArmorSources.push(actor.system.armor);
+
+    const data = rawArmorSources.map(doc => {
+        // Get the origin item. Since the actor is already loaded, it should already be cached
+        // Consider the relative function versions if this causes an issue
+        const isItem = doc instanceof Item;
+        const origin = isItem ? doc : doc.origin ? foundry.utils.fromUuidSync(doc.origin) : doc.parent;
+        return {
+            origin,
+            name: origin.name,
+            document: doc,
+            data: doc.system.armor ?? doc.system.armorData,
+            disabled: !!doc.disabled || !!doc.isSuppressed
+        };
+    });
+
+    return sortBy(data, ({ origin }) => {
+        switch (origin?.type) {
+            case 'class':
+            case 'subclass':
+            case 'ancestry':
+            case 'community':
+            case 'feature':
+            case 'domainCard':
+                return 2;
+            case 'loot':
+            case 'consumable':
+                return 3;
+            case 'character':
+                return 4;
+            case 'weapon':
+                return 5;
+            case 'armor':
+                return 6;
+            default:
+                return 1;
+        }
+    });
+}
+
+/**
+ * Returns an array sorted by a function that returns a thing to compare, or an array to compare in order
+ * Similar to lodash's sortBy function.
+ */
+export function sortBy(arr, fn) {
+    const directCompare = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
+    const cmp = (a, b) => {
+        const resultA = fn(a);
+        const resultB = fn(b);
+        if (Array.isArray(resultA) && Array.isArray(resultB)) {
+            for (let idx = 0; idx < Math.min(resultA.length, resultB.length); idx++) {
+                const result = directCompare(resultA[idx], resultB[idx]);
+                if (result !== 0) return result;
+            }
+            return 0;
+        }
+        return directCompare(resultA, resultB);
+    };
+    return arr.sort(cmp);
+}

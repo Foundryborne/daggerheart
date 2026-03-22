@@ -3,7 +3,6 @@ export { default as ActionSettingsConfig } from './action-settings-config.mjs';
 export { default as CharacterSettings } from './character-settings.mjs';
 export { default as AdversarySettings } from './adversary-settings.mjs';
 export { default as CompanionSettings } from './companion-settings.mjs';
-export { default as SettingActiveEffectConfig } from './setting-active-effect-config.mjs';
 export { default as SettingFeatureConfig } from './setting-feature-config.mjs';
 export { default as EnvironmentSettings } from './environment-settings.mjs';
 export { default as ActiveEffectConfig } from './activeEffectConfig.mjs';

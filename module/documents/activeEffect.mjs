@@ -1,5 +1,5 @@
 import { itemAbleRollParse } from '../helpers/utils.mjs';
-import { RefreshType, socketEvent } from '../systemRegistration/socket.mjs';
+import { RefreshType } from '../systemRegistration/socket.mjs';
 
 export default class DhActiveEffect extends foundry.documents.ActiveEffect {
     /* -------------------------------------------- */
@@ -8,6 +8,8 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
 
     /**@override */
     get isSuppressed() {
+        if (this.system.isSuppressed === true) return true;
+
         // If this is a copied effect from an attachment, never suppress it
         // (These effects have attachmentSource metadata)
         if (this.flags?.daggerheart?.attachmentSource) {
@@ -15,7 +17,7 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         }
 
         // Then apply the standard suppression rules
-        if (['weapon', 'armor'].includes(this.parent?.type)) {
+        if (['weapon', 'armor'].includes(this.parent?.type) && this.transfer) {
             return !this.parent.system.equipped;
         }
 
@@ -76,7 +78,7 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
             throw new Error('The array of sub-types to restrict to must not be empty.');
         }
 
-        const creatableEffects = ['base'];
+        const creatableEffects = types || ['base'];
         const documentTypes = this.TYPES.filter(type => creatableEffects.includes(type)).map(type => {
             const labelKey = `TYPES.ActiveEffect.${type}`;
             const label = game.i18n.has(labelKey) ? game.i18n.localize(labelKey) : type;
@@ -161,9 +163,9 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         super.applyChangeField(model, change, field);
     }
 
-    _applyLegacy(actor, change, changes) {
+    static _applyChangeUnguided(actor, change, changes, options) {
         change.value = DhActiveEffect.getChangeValue(actor, change, change.effect);
-        super._applyLegacy(actor, change, changes);
+        super._applyChangeUnguided(actor, change, changes, options);
     }
 
     static getChangeValue(model, change, effect) {

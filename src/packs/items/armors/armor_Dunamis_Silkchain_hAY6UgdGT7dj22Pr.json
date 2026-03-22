@@ -5,6 +5,10 @@
   "_id": "hAY6UgdGT7dj22Pr",
   "img": "icons/equipment/chest/robe-layered-red.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 7
+    },
     "description": "",
     "actions": {
       "8PD5JQuS05IA6HJT": {

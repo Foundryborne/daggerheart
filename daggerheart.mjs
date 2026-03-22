@@ -43,6 +43,7 @@ CONFIG.Item.dataModels = models.items.config;
 
 CONFIG.ActiveEffect.documentClass = documents.DhActiveEffect;
 CONFIG.ActiveEffect.dataModels = models.activeEffects.config;
+CONFIG.ActiveEffect.changeTypes = { ...CONFIG.ActiveEffect.changeTypes, ...models.activeEffects.changeEffects };
 
 CONFIG.Combat.documentClass = documents.DhpCombat;
 CONFIG.Combat.dataModels = { base: models.DhCombat };
@@ -211,6 +212,7 @@ Hooks.once('init', () => {
         SYSTEM.id,
         applications.sheetConfigs.ActiveEffectConfig,
         {
+            types: ['base', 'beastform', 'horde'],
             makeDefault: true,
             label: sheetLabel('DOCUMENT.ActiveEffect')
         }
@@ -268,7 +270,6 @@ Hooks.on('setup', () => {
                 ...damageThresholds,
                 'proficiency',
                 'evasion',
-                'armorScore',
                 'scars',
                 'levelData.level.current'
             ]

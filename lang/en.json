@@ -451,7 +451,7 @@
                 "text": "Are you sure you want to delete {name}?"
             },
             "DamageReduction": {
-                "armorMarks": "Armor Marks",
+                "maxUseableArmor": "Useable Armor Slots",
                 "armorWithStress": "Spend 1 stress to use an extra mark",
                 "thresholdImmunities": "Threshold Immunities",
                 "stress": "Stress",
@@ -793,6 +793,11 @@
                 "leader": "for each Leader adversary.",
                 "bruiser": "for each Bruiser adversary.",
                 "solo": "for each Solo adversary."
+            },
+            "ArmorInteraction": {
+                "none": { "label": "Ignores Armor" },
+                "active": { "label": "Active w/ Armor" },
+                "inactive": { "label": "Inactive w/ Armor" }
             },
             "ArmorFeature": {
                 "burning": {
@@ -1882,6 +1887,17 @@
                     "name": "Healing Roll"
                 }
             },
+            "ChangeTypes": {
+                "armor": {
+                    "newArmorEffect": "Armor Effect",
+                    "FIELDS": {
+                        "interaction": {
+                            "label": "Armor Interaction",
+                            "hint": "Does the character wearing armor suppress this effect?"
+                        }
+                    }
+                }
+            },
             "Duration": {
                 "passive": "Passive",
                 "temporary": "Temporary"
@@ -2291,6 +2307,7 @@
             "duality": "Duality",
             "dualityDice": "Duality Dice",
             "dualityRoll": "Duality Roll",
+            "effect": "Effect",
             "enabled": "Enabled",
             "evasion": "Evasion",
             "equipment": "Equipment",
@@ -3096,6 +3113,9 @@
                 "domainTouchRequirement": "This domain card requires {nr} {domain} cards in the loadout to be used",
                 "knowTheTide": "Know The Tide gained a token",
                 "lackingItemTransferPermission": "User {user} lacks owner permission needed to transfer items to {target}"
+            },
+            "Progress": {
+                "migrationLabel": "Performing system migration. Please wait and do not close Foundry."
             },
             "Sidebar": {
                 "actorDirectory": {

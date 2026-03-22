@@ -189,11 +189,14 @@ export default class Party extends DHBaseActorSheet {
      * Toggles a armor slot resource value.
      * @type {ApplicationClickAction}
      */
-    static async #toggleArmorSlot(_, target, element) {
-        const armorItem = await foundry.utils.fromUuid(target.dataset.itemUuid);
-        const armorValue = Number.parseInt(target.dataset.value);
-        const newValue = armorItem.system.marks.value >= armorValue ? armorValue - 1 : armorValue;
-        await armorItem.update({ 'system.marks.value': newValue });
+    static async #toggleArmorSlot(_, target) {
+        const actor = game.actors.get(target.dataset.actorId);
+        const { value, max } = actor.system.armorScore;
+        const inputValue = Number.parseInt(target.dataset.value);
+        const newValue = value >= inputValue ? inputValue - 1 : inputValue;
+        const changeValue = Math.min(newValue - value, max - value);
+
+        await actor.system.updateArmorValue({ value: changeValue });
         this.render();
     }
 

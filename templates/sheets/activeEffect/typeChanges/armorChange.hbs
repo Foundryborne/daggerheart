@@ -1,0 +1,28 @@
+<header>
+    <div>{{localize "EFFECT.FIELDS.changes.element.value.label"}}</div>
+    <div>{{localize "DAGGERHEART.GENERAL.max"}}</div>
+    <div>{{localize "DAGGERHEART.EFFECTS.ChangeTypes.armor.FIELDS.interaction.label"}}</div>
+    <div>{{localize "EFFECT.FIELDS.changes.element.priority.label"}}</div>
+</header>
+<ol class="scrollable">
+    <li data-index="{{index}}">
+        <input type="hidden" name="{{concat "system.changes." index ".type"}}" value="{{type}}" />
+        <input type="hidden" name="{{concat "system.changes." index ".phase"}}" value="{{phase}}" />
+        {{formInput fields.value.fields.current name=(concat "system.changes." index ".value.current") value=value.current data-dtype="Number"}}
+        {{formInput fields.value.fields.max name=(concat "system.changes." index ".value.max") value=value.max data-dtype="Number"}}
+        {{formInput fields.value.fields.interaction name=(concat "system.changes." index ".value.interaction") value=value.interaction localize=true}}
+        {{formInput fields.priority name=(concat "system.changes." index ".priority") value=priority}}
+    </li>
+</ol>
+<div class="damage-thresholds-container">
+    <div class="damage-threshold-title">
+        <span>{{localize "DAGGERHEART.GENERAL.DamageThresholds.title"}}</span>
+        <input type="checkbox" class="armor-damage-thresholds-checkbox" data-index="{{index}}" {{checked value.damageThresholds}} />
+    </div>
+    {{#if value.damageThresholds}}
+        <div class="flexrow">
+            {{formGroup fields.value.fields.damageThresholds.fields.major name=(concat "system.changes." index ".value.damageThresholds.major") value=value.damageThresholds.major localize=true }}
+            {{formGroup fields.value.fields.damageThresholds.fields.severe name=(concat "system.changes." index ".value.damageThresholds.severe") value=value.damageThresholds.severe localize=true }}
+        </div>
+    {{/if}}
+</div>
