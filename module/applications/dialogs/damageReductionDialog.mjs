@@ -218,13 +218,10 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
 
         const maxArmor = this.actor.system.rules.damageReduction.maxArmorMarked.value;
         this.marks = {
-            armor: Object.keys(this.marks.armor).reduce((acc, key, index) => {
-                const mark = this.marks.armor[key];
+            armor: this.marks.armor.map((mark, index) => {
                 const keepSelectValue = !this.rulesOn || index + 1 <= maxArmor;
-                acc[key] = { ...mark, selected: keepSelectValue ? mark.selected : false };
-
-                return acc;
-            }, {}),
+                return { ...mark, selected: keepSelectValue ? mark.selected : false };
+            }),
             stress: this.marks.stress
         };
 
