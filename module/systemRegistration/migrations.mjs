@@ -302,65 +302,17 @@ export async function runMigrations() {
 
         /* Migrate existing effects modifying armor, creating new Armor Effects instead */
         const migrateEffects = async entity => {
-            const effectChangeData = [];
             for (const effect of entity.effects) {
-                const oldArmorChanges = effect.system.changes.filter(x => x.key === 'system.armorScore');
-                if (!oldArmorChanges.length) continue;
+                if (effect.system.changes.every(x => x.key !== 'system.armorScore')) continue;
 
-                const changeData = {};
-                const newChanges = effect.system.changes.filter(x => x.key !== 'system.armorScore');
-                if (newChanges.length) {
-                    await effect.update({ 'system.changes': newChanges });
-                } else {
-                    changeData.deleteId = effect.id;
-                }
-
-                const oldEffectData = effect.toObject();
-                changeData.createData = {
-                    ...oldEffectData,
-                    system: {
-                        ...oldEffectData.system,
-                        changes: oldArmorChanges.map(change => ({
-                            type: CONFIG.DH.GENERAL.activeEffectModes.armor.id,
-                            phase: 'initial',
-                            priority: 20,
-                            value: {
-                                current: 0,
-                                max: change.value
-                            }
-                        }))
-                    }
-                };
-                effectChangeData.push(changeData);
+                effect.update({
+                    'system.changes': effect.system.changes.map(change => ({
+                        ...change,
+                        type: change.key === 'system.armorScore' ? 'armor' : change.type,
+                        value: change.key === 'system.armorScore' ? { current: 0, max: change.value } : change.value
+                    }))
+                });
             }
-
-            for (const changeData of effectChangeData) {
-                const relatedActions = Array.from(entity.system.actions ?? []).filter(x =>
-                    x.effects.some(effect => effect._id === changeData.deleteId)
-                );
-                const [newEffect] = await entity.createEmbeddedDocuments('ActiveEffect', [
-                    {
-                        ...changeData.createData,
-                        transfer: relatedActions.length ? false : true
-                    }
-                ]);
-                for (const action of relatedActions) {
-                    await action.update({
-                        effects: action.effects.map(effect => ({
-                            ...effect,
-                            _id: effect._id === changeData.deleteId ? newEffect.id : effect._id
-                        }))
-                    });
-                }
-            }
-
-            await entity.deleteEmbeddedDocuments(
-                'ActiveEffect',
-                effectChangeData.reduce((acc, data) => {
-                    if (data.deleteId) acc.push(data.deleteId);
-                    return acc;
-                }, [])
-            );
         };
 
         /* Migrate existing armors effects */

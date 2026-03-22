@@ -154,7 +154,7 @@ export default class DHArmor extends AttachableItem {
     /** @inheritDoc */
     static migrateDocumentData(source) {
         if (!source.system.armor) {
-            source.system.armor = { current: source.system.marks ?? 0, max: source.system.baseScore ?? 0 };
+            source.system.armor = { current: source.system.marks?.value ?? 0, max: source.system.baseScore ?? 0 };
         }
     }
 
