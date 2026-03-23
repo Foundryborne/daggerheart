@@ -2461,8 +2461,7 @@
                 "featuresLabel": "Community Feature"
             },
             "Consumable": {
-                "consumeOnUse": "Consume On Use",
-                "destroyOnEmpty": "Destroy On Empty"
+                "consumeOnUse": "Consume On Use"
             },
             "DomainCard": {
                 "type": "Type",

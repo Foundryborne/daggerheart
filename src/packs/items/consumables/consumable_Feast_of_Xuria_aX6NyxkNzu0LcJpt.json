@@ -134,7 +134,6 @@
       }
     },
     "consumeOnUse": true,
-    "destroyOnEmpty": true,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 62,
