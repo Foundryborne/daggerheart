@@ -23,6 +23,33 @@ export default class DamageField extends fields.SchemaField {
         super(damageFields, options, context);
     }
 
+    static getDefaultDamagePart(applyTo) {
+        return {
+            applyTo: applyTo,
+            base: false,
+            resultBased: false,
+            type: 'physical',
+            value: {
+                dice: 'd6',
+                multiplier: 'prof',
+                flatMultiplier: 1,
+                custom: {
+                    enabled: false,
+                    formula: ''
+                }
+            },
+            valueAlt: {
+                dice: 'd6',
+                multiplier: 'prof',
+                flatMultiplier: 1,
+                custom: {
+                    enabled: false,
+                    formula: ''
+                }
+            }
+        };
+    }
+
     /**
      * Roll Damage/Healing Action Workflow part.
      * Must be called within Action context or similar.

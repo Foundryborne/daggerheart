@@ -16,50 +16,52 @@
             {{formField directField value=source.direct name=(concat path "damage.direct") localize=true classes="checkbox"}}
         {{/unless}}
     </div>
-    {{#each source.parts as |dmg key|}}
+
+    {{!-- Handlebars uses Symbol.Iterator to produce index|key. This isn't compatible with our parts object, so we instead use applyTo, which is the same value --}}
+    {{#each source.parts as |dmg|}}
         <div class="nest-inputs">
             <fieldset{{#if dmg.base}} disabled{{/if}} class="one-column{{#if ../path}} no-style{{/if}}">
                 <legend class="with-icon">
-                    {{localize (concat "DAGGERHEART.CONFIG.HealingType." key ".name")}}
+                    {{localize (concat "DAGGERHEART.CONFIG.HealingType." dmg.applyTo ".name")}}
                     {{#unless (or dmg.base ../path)}}
-                        <a data-action="removeDamage" data-key="{{key}}"><i class="fas fa-trash"></i></a>
+                        <a data-action="removeDamage" data-key="{{dmg.applyTo}}"><i class="fas fa-trash"></i></a>
                     {{/unless}}
                 </legend>
 
                 {{#if (and (not @root.isNPC) @root.hasRoll (not dmg.base))}}
-                    {{formField ../fields.resultBased value=dmg.resultBased name=(concat "damage.parts." key ".resultBased") localize=true classes="checkbox"}}
+                    {{formField ../fields.resultBased value=dmg.resultBased name=(concat "damage.parts." dmg.applyTo ".resultBased") localize=true classes="checkbox"}}
                 {{/if}}
                 {{#if (and (not @root.isNPC) @root.hasRoll (not dmg.base) dmg.resultBased)}}
                     <div class="nest-inputs">
                         <fieldset class="one-column">
                             <legend>{{localize "DAGGERHEART.GENERAL.withThing" thing=(localize "DAGGERHEART.GENERAL.hope")}}</legend>
-                            {{> formula fields=../fields.value.fields type=../fields.type dmg=dmg source=dmg.value target="value" key=key path=../path}}
+                            {{> formula fields=../fields.value.fields type=../fields.type dmg=dmg source=dmg.value target="value" key=dmg.applyTo path=../path}}
                         </fieldset>
                         <fieldset class="one-column">
                             <legend>{{localize "DAGGERHEART.GENERAL.withThing" thing=(localize "DAGGERHEART.GENERAL.fear")}}</legend>
-                            {{> formula fields=../fields.valueAlt.fields type=../fields.type dmg=dmg source=dmg.valueAlt target="valueAlt" key=key path=../path}}
+                            {{> formula fields=../fields.valueAlt.fields type=../fields.type dmg=dmg source=dmg.valueAlt target="valueAlt" key=dmg.applyTo path=../path}}
                         </fieldset>
                     </div>
                 {{else}}
-                    {{> formula fields=../fields.value.fields type=../fields.type dmg=dmg source=dmg.value target="value" key=key path=../path}}
+                    {{> formula fields=../fields.value.fields type=../fields.type dmg=dmg source=dmg.value target="value" key=dmg.applyTo path=../path}}
                 {{/if}}
 
                 {{#if (and (eq dmg.applyTo 'hitPoints') (ne @root.source.type 'healing'))}}
-                    {{formField ../fields.type value=dmg.type name=(concat ../path "damage.parts." key ".type") localize=true}}
+                    {{formField ../fields.type value=dmg.type name=(concat ../path "damage.parts." dmg.applyTo ".type") localize=true}}
                 {{/if}}
 
                 {{#if ../horde}}
                     <fieldset class="one-column">
                         <legend>{{localize "DAGGERHEART.ACTORS.Adversary.hordeDamage"}}</legend>
                         <div class="nest-inputs">
-                            <input type="hidden" name="{{../path}}damage.parts.{{key}}.valueAlt.multiplier" value="flat">
-                            {{formField ../fields.valueAlt.fields.flatMultiplier value=dmg.valueAlt.flatMultiplier name=(concat ../path "damage.parts." key ".valueAlt.flatMultiplier") label="DAGGERHEART.ACTIONS.Settings.multiplier"  classes="inline-child" localize=true }}
-                            {{formField ../fields.valueAlt.fields.dice value=dmg.valueAlt.dice name=(concat ../path "damage.parts." key ".valueAlt.dice") classes="inline-child" localize=true}}
-                            {{formField ../fields.valueAlt.fields.bonus value=dmg.valueAlt.bonus name=(concat ../path "damage.parts." key ".valueAlt.bonus") localize=true classes="inline-child"}}
+                            <input type="hidden" name="{{../path}}damage.parts.{{dmg.applyTo}}.valueAlt.multiplier" value="flat">
+                            {{formField ../fields.valueAlt.fields.flatMultiplier value=dmg.valueAlt.flatMultiplier name=(concat ../path "damage.parts." dmg.applyTo ".valueAlt.flatMultiplier") label="DAGGERHEART.ACTIONS.Settings.multiplier"  classes="inline-child" localize=true }}
+                            {{formField ../fields.valueAlt.fields.dice value=dmg.valueAlt.dice name=(concat ../path "damage.parts." dmg.applyTo ".valueAlt.dice") classes="inline-child" localize=true}}
+                            {{formField ../fields.valueAlt.fields.bonus value=dmg.valueAlt.bonus name=(concat ../path "damage.parts." dmg.applyTo ".valueAlt.bonus") localize=true classes="inline-child"}}
                         </div>
                     </fieldset>
                 {{/if}}
-                <input type="hidden" name="damage.parts.{{key}}.base" value="{{dmg.base}}">
+                <input type="hidden" name="{{concat ../path "damage.parts." dmg.applyTo ".base"}}" value="{{dmg.base}}">
             </fieldset>
         </div>
     {{/each}}

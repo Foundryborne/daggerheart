@@ -312,8 +312,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         const callback = (_, button) => {
             const data = this.action.toObject();
             const type = choices[button.form.elements.type.value].value;
-            const part = { applyTo: type };
-            if (this.action.actor?.isNPC) part.value = { multiplier: 'flat' };
+            const part = game.system.api.fields.ActionFields.DamageField.getDefaultDamagePart(type);
             data.damage.parts[type] = part;
             this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
         };
