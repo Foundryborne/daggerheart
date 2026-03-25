@@ -58,6 +58,10 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             id: 'initialization',
             template: 'systems/daggerheart/templates/dialogs/tagTeamDialog/initialization.hbs'
         },
+        rollSelection: {
+            id: 'rollSelection',
+            template: 'systems/daggerheart/templates/dialogs/tagTeamDialog/rollSelection.hbs'
+        },
         tagTeamRoll: {
             id: 'tagTeamRoll',
             template: 'systems/daggerheart/templates/dialogs/tagTeamDialog/tagTeamRoll.hbs'
@@ -78,15 +82,52 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             element.addEventListener('change', this.updateRollType.bind(this));
     }
 
+    _configureRenderParts(options) {
+        const { initialization, rollSelection, tagTeamRoll } = super._configureRenderParts(options);
+        const augmentedParts = { initialization };
+        for (const memberKey of Object.keys(this.party.system.tagTeam.members)) {
+            augmentedParts[memberKey] = {
+                id: memberKey,
+                template: 'systems/daggerheart/templates/dialogs/tagTeamDialog/tagTeamMember.hbs'
+            };
+        }
+        augmentedParts.rollSelection = rollSelection;
+        augmentedParts.tagTeamRoll = tagTeamRoll;
+
+        return augmentedParts;
+    }
+
+    /**@inheritdoc */
+    async _onRender(context, options) {
+        await super._onRender(context, options);
+
+        if (this.element.querySelector('.team-container')) return;
+        const initializationPart = this.element.querySelector('.initialization-container');
+        initializationPart.insertAdjacentHTML('afterend', '<div class="team-container"></div>');
+        const teamContainer = this.element.querySelector('.team-container');
+        for (const memberContainer of this.element.querySelectorAll('.team-member-container'))
+            teamContainer.appendChild(memberContainer);
+    }
+
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.isEditable = this.getIsEditable();
+        context.fields = this.party.system.schema.fields.tagTeam.fields;
+        context.data = this.party.system.tagTeam;
+        context.rollTypes = CONFIG.DH.GENERAL.tagTeamRollTypes;
+        context.traitOptions = CONFIG.DH.ACTOR.abilities;
+        context.members = {};
+        context.allHaveRolled = Object.keys(this.party.system.tagTeam.members).every(key => {
+            const data = this.party.system.tagTeam.members[key];
+            return Boolean(data.rollData);
+        });
 
         return context;
     }
 
     async _preparePartContext(partId, context, options) {
         const partContext = await super._preparePartContext(partId, context, options);
+        partContext.partId = partId;
         switch (partId) {
             case 'initialization':
                 partContext.tagTeamFields = this.party.system.schema.fields.tagTeam.fields;
@@ -101,64 +142,18 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 partContext.openForAllPlayers = this.openForAllPlayers;
 
                 break;
+            case 'rollSelection':
+                partContext.members = Object.keys(this.party.system.tagTeam.members).reduce((acc, key) => {
+                    const member = this.party.system.tagTeam.members[key];
+                    acc[key] = { selected: member.selected };
+                    return acc;
+                }, {});
+                break;
             case 'tagTeamRoll':
-                partContext.fields = this.party.system.schema.fields.tagTeam.fields;
-                partContext.data = this.party.system.tagTeam;
-                partContext.rollTypes = CONFIG.DH.GENERAL.tagTeamRollTypes;
-                partContext.traitOptions = CONFIG.DH.ACTOR.abilities;
-
                 const selectedRoll = Object.values(this.party.system.tagTeam.members).find(member => member.selected);
                 const critSelected = !selectedRoll
                     ? undefined
                     : (selectedRoll?.rollData?.options?.roll?.isCritical ?? false);
-
-                partContext.members = {};
-                for (const actorId in this.party.system.tagTeam.members) {
-                    const data = this.party.system.tagTeam.members[actorId];
-                    const actor = game.actors.get(actorId);
-
-                    const rollOptions = [];
-                    const damageRollOptions = [];
-                    for (const item of actor.items) {
-                        if (item.system.metadata.hasActions) {
-                            const actions = [
-                                ...item.system.actions,
-                                ...(item.system.attack ? [item.system.attack] : [])
-                            ];
-                            for (const action of actions) {
-                                if (action.hasRoll) {
-                                    const actionItem = {
-                                        value: action.uuid,
-                                        label: action.name,
-                                        group: item.name,
-                                        baseAction: action.baseAction
-                                    };
-
-                                    if (action.hasDamage) damageRollOptions.push(actionItem);
-                                    else rollOptions.push(actionItem);
-                                }
-                            }
-                        }
-                    }
-
-                    const damage = data.rollData?.options?.damage;
-                    partContext.hasDamage |= Boolean(damage);
-                    const critHitPointsDamage = await this.getCriticalDamage(damage);
-
-                    partContext.members[actorId] = {
-                        ...data,
-                        isEditable: actor.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER),
-                        key: actorId,
-                        readyToRoll: Boolean(data.rollChoice),
-                        hasRolled: Boolean(data.rollData),
-                        rollOptions,
-                        damageRollOptions,
-                        damage: damage,
-                        critDamage: critHitPointsDamage,
-                        useCritDamage:
-                            critSelected || (critSelected === undefined && data.rollData?.options?.roll?.isCritical)
-                    };
-                }
 
                 partContext.hintText = await this.getInfoTexts(this.party.system.tagTeam.members);
                 partContext.joinedRoll = await this.getJoinedRoll({
@@ -169,24 +164,85 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 break;
         }
 
+        if (Object.keys(this.party.system.tagTeam.members).includes(partId)) {
+            const data = this.party.system.tagTeam.members[partId];
+            const actor = game.actors.get(partId);
+
+            const rollOptions = [];
+            const damageRollOptions = [];
+            for (const item of actor.items) {
+                if (item.system.metadata.hasActions) {
+                    const actions = [...item.system.actions, ...(item.system.attack ? [item.system.attack] : [])];
+                    for (const action of actions) {
+                        if (action.hasRoll) {
+                            const actionItem = {
+                                value: action.uuid,
+                                label: action.name,
+                                group: item.name,
+                                baseAction: action.baseAction
+                            };
+
+                            if (action.hasDamage) damageRollOptions.push(actionItem);
+                            else rollOptions.push(actionItem);
+                        }
+                    }
+                }
+            }
+
+            const selectedRoll = Object.values(this.party.system.tagTeam.members).find(member => member.selected);
+            const critSelected = !selectedRoll
+                ? undefined
+                : (selectedRoll?.rollData?.options?.roll?.isCritical ?? false);
+
+            const damage = data.rollData?.options?.damage;
+            partContext.hasDamage |= Boolean(damage);
+            const critHitPointsDamage = await this.getCriticalDamage(damage);
+
+            partContext.members[partId] = {
+                ...data,
+                isEditable: actor.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER),
+                key: partId,
+                readyToRoll: Boolean(data.rollChoice),
+                hasRolled: Boolean(data.rollData),
+                rollOptions,
+                damageRollOptions,
+                damage: damage,
+                critDamage: critHitPointsDamage,
+                useCritDamage: critSelected || (critSelected === undefined && data.rollData?.options?.roll?.isCritical)
+            };
+        }
+
         return partContext;
     }
 
-    static async updateData(_event, _, formData) {
+    getUpdatingParts(target) {
+        const { initialization, rollSelection, tagTeamRoll } = this.constructor.PARTS;
+        const isInitialization = this.tabGroups.application === initialization.id;
+        const updatingMember = target.closest('.team-member-container')?.dataset?.memberKey;
+
+        return [
+            ...(isInitialization ? [initialization.id] : []),
+            ...(updatingMember ? [updatingMember] : []),
+            ...(!isInitialization ? [rollSelection.id] : []),
+            ...(!isInitialization ? [tagTeamRoll.id] : [])
+        ];
+    }
+
+    static async updateData(event, _, formData) {
         const { initiator, openForAllPlayers, ...partyData } = foundry.utils.expandObject(formData.object);
         this.initiator = initiator;
         this.openForAllPlayers = openForAllPlayers !== undefined ? openForAllPlayers : this.openForAllPlayers;
 
-        this.updatePartyData(partyData);
+        this.updatePartyData(partyData, this.getUpdatingParts(event.target));
     }
 
-    async updatePartyData(update, options = { render: true }) {
+    async updatePartyData(update, updatingParts, options = { render: true }) {
         const gmUpdate = async update => {
             await this.party.update(update);
-            this.render();
+            this.render({ parts: updatingParts });
             game.socket.emit(`system.${CONFIG.DH.id}`, {
                 action: socketEvent.Refresh,
-                data: { refreshType: RefreshType.TagTeamRoll, action: 'refresh' }
+                data: { refreshType: RefreshType.TagTeamRoll, action: 'refresh', parts: updatingParts }
             });
         };
 
@@ -195,7 +251,9 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             gmUpdate,
             update,
             this.party.uuid,
-            options.render ? { refreshType: RefreshType.TagTeamRoll, action: 'refresh' } : undefined
+            options.render
+                ? { refreshType: RefreshType.TagTeamRoll, action: 'refresh', parts: updatingParts }
+                : undefined
         );
     }
 
@@ -206,7 +264,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         });
     }
 
-    tagTeamRefresh = ({ refreshType, action }) => {
+    tagTeamRefresh = ({ refreshType, action, parts }) => {
         if (refreshType !== RefreshType.TagTeamRoll) return;
 
         switch (action) {
@@ -214,7 +272,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 this.tabGroups.application = 'tagTeamRoll';
                 break;
             case 'refresh':
-                this.render();
+                this.render({ parts });
                 break;
             case 'close':
                 this.close();
@@ -304,22 +362,28 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
     }
 
     async updateRollType(event) {
-        this.updatePartyData({
-            [`system.tagTeam.members.${event.target.dataset.member}`]: {
-                rollType: event.target.value,
-                rollChoice: null
-            }
-        });
+        this.updatePartyData(
+            {
+                [`system.tagTeam.members.${event.target.dataset.member}`]: {
+                    rollType: event.target.value,
+                    rollChoice: null
+                }
+            },
+            this.getUpdatingParts(event.target)
+        );
     }
 
     static async #removeRoll(_, button) {
-        this.updatePartyData({
-            [`system.tagTeam.members.${button.dataset.member}`]: {
-                rollData: null,
-                rollChoice: null,
-                selected: false
-            }
-        });
+        this.updatePartyData(
+            {
+                [`system.tagTeam.members.${button.dataset.member}`]: {
+                    rollData: null,
+                    rollChoice: null,
+                    selected: false
+                }
+            },
+            this.getUpdatingParts(button)
+        );
     }
 
     static async #makeRoll(event, button) {
@@ -342,9 +406,12 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         const rollData = result.messageRoll.toJSON();
         delete rollData.options.messageRoll;
-        this.updatePartyData({
-            [`system.tagTeam.members.${member}.rollData`]: rollData
-        });
+        this.updatePartyData(
+            {
+                [`system.tagTeam.members.${member}.rollData`]: rollData
+            },
+            this.getUpdatingParts(button)
+        );
     }
 
     async makeTraitRoll(memberKey) {
@@ -389,15 +456,18 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             diceType
         );
         const rollData = parsedRoll.toJSON();
-        this.updatePartyData({
-            [`system.tagTeam.members.${member}.rollData`]: {
-                ...rollData,
-                options: {
-                    ...rollData.options,
-                    roll: newRoll
+        this.updatePartyData(
+            {
+                [`system.tagTeam.members.${member}.rollData`]: {
+                    ...rollData,
+                    options: {
+                        ...rollData.options,
+                        roll: newRoll
+                    }
                 }
-            }
-        });
+            },
+            this.getUpdatingParts(button)
+        );
     }
 
     static async #makeDamageRoll(event, button) {
@@ -423,29 +493,35 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         if (!config.damage) return;
 
         const current = this.party.system.tagTeam.members[memberKey].rollData;
-        await this.updatePartyData({
-            [`system.tagTeam.members.${memberKey}.rollData`]: {
-                ...current,
-                options: {
-                    ...current.options,
-                    damage: config.damage
+        await this.updatePartyData(
+            {
+                [`system.tagTeam.members.${memberKey}.rollData`]: {
+                    ...current,
+                    options: {
+                        ...current.options,
+                        damage: config.damage
+                    }
                 }
-            }
-        });
+            },
+            this.getUpdatingParts(button)
+        );
     }
 
     static async #removeDamageRoll(_, button) {
         const { memberKey } = button.dataset;
         const current = this.party.system.tagTeam.members[memberKey].rollData;
-        this.updatePartyData({
-            [`system.tagTeam.members.${memberKey}.rollData`]: {
-                ...current,
-                options: {
-                    ...current.options,
-                    damage: null
+        this.updatePartyData(
+            {
+                [`system.tagTeam.members.${memberKey}.rollData`]: {
+                    ...current,
+                    options: {
+                        ...current.options,
+                        damage: null
+                    }
                 }
-            }
-        });
+            },
+            this.getUpdatingParts(button)
+        );
     }
 
     static async #rerollDamageDice(_, button) {
@@ -476,9 +552,12 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             return acc;
         }, 0);
 
-        this.updatePartyData({
-            [`system.tagTeam.members.${memberKey}.rollData`]: rollData
-        });
+        this.updatePartyData(
+            {
+                [`system.tagTeam.members.${memberKey}.rollData`]: rollData
+            },
+            this.getUpdatingParts(button)
+        );
     }
 
     async getCriticalDamage(damage) {
@@ -529,15 +608,18 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
     static async #selectRoll(_, button) {
         const { memberKey } = button.dataset;
-        this.updatePartyData({
-            [`system.tagTeam.members`]: Object.entries(this.party.system.tagTeam.members).reduce(
-                (acc, [key, member]) => {
-                    acc[key] = { selected: key === memberKey ? !member.selected : false };
-                    return acc;
-                },
-                {}
-            )
-        });
+        this.updatePartyData(
+            {
+                [`system.tagTeam.members`]: Object.entries(this.party.system.tagTeam.members).reduce(
+                    (acc, [key, member]) => {
+                        acc[key] = { selected: key === memberKey ? !member.selected : false };
+                        return acc;
+                    },
+                    {}
+                )
+            },
+            this.getUpdatingParts(button)
+        );
     }
 
     async getJoinedRoll({ overrideIsCritical, displayVersion } = {}) {
@@ -602,6 +684,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                     members: _replace({})
                 }
             },
+            [],
             { render: false }
         );
 

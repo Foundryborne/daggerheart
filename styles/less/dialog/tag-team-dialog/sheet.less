@@ -1,4 +1,212 @@
 .daggerheart.dialog.dh-style.views.tag-team-dialog {
+    .team-container {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 16px;
+
+        .team-member-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 8px;
+            flex: 1;
+
+            &.select-padding {
+                padding-bottom: 64px;
+            }
+
+            &.inactive {
+                opacity: 0.4;
+                pointer-events: none;
+            }
+
+            .data-container {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                width: 100%;
+            }
+
+            .member-info {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+
+                img {
+                    height: 64px;
+                    border-radius: 6px;
+                    border: 1px solid light-dark(@dark-blue, @golden);
+                }
+
+                .member-name {
+                    flex: 1;
+                    text-align: center;
+                    font-size: var(--font-size-18);
+                }
+            }
+
+            .roll-setup {
+                width: 100%;
+            }
+
+            .roll-container {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .roll-title {
+                font-size: var(--font-size-20);
+                font-weight: bold;
+                color: light-dark(@dark-blue, @golden);
+                text-align: center;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+
+                &::before,
+                &::after {
+                    color: light-dark(@dark-blue, @golden);
+                    content: '';
+                    flex: 1;
+                    height: 2px;
+                }
+
+                &::before {
+                    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, light-dark(@dark-blue, @golden) 100%);
+                }
+
+                &::after {
+                    background: linear-gradient(90deg, light-dark(@dark-blue, @golden) 0%, rgba(0, 0, 0, 0) 100%);
+                }
+            }
+
+            .roll-tools {
+                display: flex;
+                gap: 4px;
+                align-items: center;
+
+                img {
+                    height: 16px;
+                }
+
+                a {
+                    display: flex;
+                    font-size: 16px;
+
+                    &:hover {
+                        text-shadow: none;
+                        filter: drop-shadow(0 0 8px var(--golden));
+                    }
+                }
+            }
+
+            .roll-data {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 4px;
+
+                &.hope {
+                    --text-color: @golden;
+                    --bg-color: @golden-40;
+                }
+
+                &.fear {
+                    --text-color: @chat-blue;
+                    --bg-color: @chat-blue-40;
+                }
+
+                &.critical {
+                    --text-color: @chat-purple;
+                    --bg-color: @chat-purple-40;
+                }
+
+                .duality-label {
+                    color: var(--text-color);
+                    font-size: var(--font-size-20);
+                    font-weight: bold;
+                    text-align: center;
+
+                    .unused-damage {
+                        text-decoration: line-through;
+                    }
+                }
+
+                .roll-dice-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    gap: 8px;
+
+                    .roll-dice {
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        .dice-label {
+                            position: absolute;
+                            color: white;
+                            font-size: 1rem;
+                            paint-order: stroke fill;
+                            -webkit-text-stroke: 2px black;
+                        }
+
+                        img {
+                            height: 32px;
+                        }
+                    }
+
+                    .roll-operator {
+                        font-size: var(--font-size-24);
+                    }
+
+                    .roll-value {
+                        font-size: 18px;
+                    }
+                }
+
+                .roll-total {
+                    background: var(--bg-color);
+                    color: var(--text-color);
+                    border-radius: 4px;
+                    padding: 3px;
+                }
+            }
+        }
+    }
+
+    .roll-selection {
+        position: relative;
+        top: -80px;
+
+        &.rendered {
+            margin-bottom: -56px;
+        }
+
+        .roll-selection-container {
+            display: flex;
+
+            .select-roll-button {
+                margin-top: 8px;
+                flex: 1;
+                display: flex;
+                justify-content: center;
+
+                i {
+                    color: light-dark(@dark-blue, @golden);
+                    font-size: 48px;
+
+                    &.inactive {
+                        opacity: 0.4;
+                    }
+                }
+            }
+        }
+    }
+
     .tag-team-roll-container {
         display: flex;
         flex-direction: column;
@@ -7,193 +215,6 @@
         &.inactive {
             opacity: 0.4;
             pointer-events: none;
-        }
-
-        .team-container {
-            display: flex;
-            gap: 16px;
-
-            .member-container {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                gap: 8px;
-                flex: 1;
-
-                &.inactive {
-                    opacity: 0.4;
-                    pointer-events: none;
-                }
-
-                .data-container {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 8px;
-                    width: 100%;
-                }
-
-                .member-info {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    width: 100%;
-
-                    img {
-                        height: 64px;
-                        border-radius: 6px;
-                        border: 1px solid light-dark(@dark-blue, @golden);
-                    }
-
-                    .member-name {
-                        flex: 1;
-                        text-align: center;
-                        font-size: var(--font-size-18);
-                    }
-                }
-
-                .roll-setup {
-                    width: 100%;
-                }
-
-                .roll-container {
-                    display: flex;
-                    flex-direction: column;
-                }
-
-                .roll-title {
-                    font-size: var(--font-size-20);
-                    font-weight: bold;
-                    color: light-dark(@dark-blue, @golden);
-                    text-align: center;
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
-
-                    &::before,
-                    &::after {
-                        color: light-dark(@dark-blue, @golden);
-                        content: '';
-                        flex: 1;
-                        height: 2px;
-                    }
-
-                    &::before {
-                        background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, light-dark(@dark-blue, @golden) 100%);
-                    }
-
-                    &::after {
-                        background: linear-gradient(90deg, light-dark(@dark-blue, @golden) 0%, rgba(0, 0, 0, 0) 100%);
-                    }
-                }
-
-                .roll-tools {
-                    display: flex;
-                    gap: 4px;
-                    align-items: center;
-
-                    img {
-                        height: 16px;
-                    }
-
-                    a {
-                        display: flex;
-                        font-size: 16px;
-
-                        &:hover {
-                            text-shadow: none;
-                            filter: drop-shadow(0 0 8px var(--golden));
-                        }
-                    }
-                }
-
-                .roll-data {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    gap: 4px;
-
-                    &.hope {
-                        --text-color: @golden;
-                        --bg-color: @golden-40;
-                    }
-
-                    &.fear {
-                        --text-color: @chat-blue;
-                        --bg-color: @chat-blue-40;
-                    }
-
-                    &.critical {
-                        --text-color: @chat-purple;
-                        --bg-color: @chat-purple-40;
-                    }
-
-                    .duality-label {
-                        color: var(--text-color);
-                        font-size: var(--font-size-20);
-                        font-weight: bold;
-                        text-align: center;
-
-                        .unused-damage {
-                            text-decoration: line-through;
-                        }
-                    }
-
-                    .roll-dice-container {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        flex-wrap: wrap;
-                        gap: 8px;
-
-                        .roll-dice {
-                            position: relative;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-
-                            .dice-label {
-                                position: absolute;
-                                color: white;
-                                font-size: 1rem;
-                                paint-order: stroke fill;
-                                -webkit-text-stroke: 2px black;
-                            }
-
-                            img {
-                                height: 32px;
-                            }
-                        }
-
-                        .roll-operator {
-                            font-size: var(--font-size-24);
-                        }
-
-                        .roll-value {
-                            font-size: 18px;
-                        }
-                    }
-
-                    .roll-total {
-                        background: var(--bg-color);
-                        color: var(--text-color);
-                        border-radius: 4px;
-                        padding: 3px;
-                    }
-                }
-
-                .select-roll-button {
-                    margin-top: 8px;
-
-                    i {
-                        color: light-dark(@dark-blue, @golden);
-                        font-size: 48px;
-
-                        &.inactive {
-                            opacity: 0.4;
-                        }
-                    }
-                }
-            }
         }
 
         .results-container {
@@ -243,9 +264,9 @@
                 grid-column: span 2;
             }
         }
+    }
 
-        .hint {
-            text-align: center;
-        }
+    .hint {
+        text-align: center;
     }
 }

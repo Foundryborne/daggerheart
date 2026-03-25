@@ -1,0 +1,11 @@
+<section class="roll-selection {{#if (and allHaveRolled tabs.tagTeamRoll.active)}}rendered{{/if}} tab {{#if tabs.tagTeamRoll.active}} active{{/if}}" data-group="{{tabs.tagTeamRoll.group}}">
+    {{#if allHaveRolled}}
+        <div class="roll-selection-container">
+            {{#each members as |member key|}}
+                <a class="select-roll-button" data-action="selectRoll" data-member-key="{{key}}">
+                    <i class="{{#if member.selected}}fa-solid fa-circle-check{{else}}fa-regular fa-circle inactive{{/if}}"></i>
+                </a>
+            {{/each}}
+        </div>
+    {{/if}}
+</section>

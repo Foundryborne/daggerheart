@@ -154,8 +154,13 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         context.openSection = this.openSection;
         context.tabs = this._getTabs(this.constructor.TABS);
         context.config = CONFIG.DH;
-        if (this.action.damage?.hasOwnProperty('includeBase') && this.action.type === 'attack')
-            context.hasBaseDamage = !!this.action.parent.attack;
+        if (this.action.hasDamage) {
+            context.allDamageTypesUsed = !getUnusedDamageTypes(this.action.damage.parts).length;
+
+            if (this.action.damage.hasOwnProperty('includeBase') && this.action.type === 'attack')
+                context.hasBaseDamage = !!this.action.parent.attack;
+        }
+
         context.costOptions = this.getCostOptions();
         context.getRollTypeOptions = this.getRollTypeOptions();
         context.disableOption = this.disableOption.bind(this);
@@ -173,7 +178,6 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
                 revealed: this.openTrigger === index
             };
         });
-        context.allDamageTypesUsed = !getUnusedDamageTypes(this.action.damage.parts).length;
 
         const settingsTiers = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers;
         context.tierOptions = [
@@ -312,8 +316,8 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         const callback = (_, button) => {
             const data = this.action.toObject();
             const type = choices[button.form.elements.type.value].value;
-            const part = { applyTo: type };
-            if (this.action.actor?.isNPC) part.value = { multiplier: 'flat' };
+            const part = this.action.schema.fields.damage.fields.parts.element.getInitialValue();
+            part.applyTo = type;
             data.damage.parts[type] = part;
             this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
         };

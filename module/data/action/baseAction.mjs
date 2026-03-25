@@ -264,12 +264,20 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             hasSave: this.hasSave,
             onSave: this.save?.damageMod,
             isDirect: !!this.damage?.direct,
-            selectedRollMode: game.settings.get('core', 'rollMode'),
+            selectedMessageMode: game.settings.get('core', 'messageMode'),
             data: this.getRollData(),
             evaluate: this.hasRoll,
             resourceUpdates: new ResourceUpdateMap(this.actor),
             targetUuid: this.targetUuid,
-            ...configOptions
+            ...configOptions,
+            skips: {
+                resources: false,
+                triggers: false,
+                createMessage: false,
+                updateCountdowns: false,
+                reaction: false,
+                ...(configOptions.skips ?? {})
+            }
         };
 
         DHBaseAction.applyKeybindings(config);
@@ -329,6 +337,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @param {boolean} successCost
      */
     async consume(config, successCost = false) {
+        config.resourceUpdates = new ResourceUpdateMap(config.actionActor);
         await this.workflow.get('cost')?.execute(config, successCost);
         await this.workflow.get('uses')?.execute(config, successCost);
 
