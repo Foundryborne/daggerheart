@@ -2486,6 +2486,14 @@
                 "secondaryWeapon": "Secondary Weapon"
             }
         },
+        "MACROS": {
+            "Spotlight": {
+                "errors": {
+                    "noActiveCombat": "There is no active encounter",
+                    "noCombatantSelected": "A combatant token must be either selected or hovered to spotlight it"
+                }
+            }
+        },
         "ROLLTABLES": {
             "FIELDS": {
                 "formulaName": { "label": "Formula Name" }
@@ -2723,6 +2731,12 @@
                     "emptyIcon": "Empty Icon",
                     "resourceIdentifier": "Resource Identifier",
                     "setResourceIdentifier": "Set Resource Identifier"
+                }
+            },
+            "Keybindings": {
+                "spotlight": {
+                    "name": "Spotlight Combatant",
+                    "hint": "Move the spotlight to a hovered or selected token that's present in an active encounter"
                 }
             },
             "Menu": {

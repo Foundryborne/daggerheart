@@ -1,3 +1,7 @@
+export const keybindings = {
+    spotlight: 'DHSpotlight'
+};
+
 export const menu = {
     Automation: {
         Name: 'GameSettingsAutomation',
