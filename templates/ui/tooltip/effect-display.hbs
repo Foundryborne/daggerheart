@@ -16,9 +16,16 @@
         </div>
     {{/if}}
 
-    {{#unless effect.isLockedCondition}}
-        <p class="close-hint">
-            <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.EffectsDisplay.removeThing" thing=(localize "DAGGERHEART.GENERAL.Effect.single")}}
-        </p>
-    {{/unless}}
+    <div class="close-hints">
+        {{#if (eq effect.type 'beastform')}}
+            <p class="close-hint">
+                <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.Tooltip.middleClick"}}
+            </p>
+        {{/if}}
+        {{#unless effect.isLockedCondition}}
+            <p class="close-hint">
+                <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.EffectsDisplay.removeThing" thing=(localize "DAGGERHEART.GENERAL.Effect.single")}}
+            </p>
+        {{/unless}}
+    </div>
 </div>

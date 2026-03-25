@@ -16,7 +16,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: start;
+            text-align: center;
             padding: 5px;
             gap: 0px;
 
@@ -35,12 +35,20 @@
             }
         }
 
-        .close-hint {
-            border-radius: 3px;
-            padding: 3px;
-            background: @rustic-brown-80;
-            color: @golden;
-            font-size: 12px;
+        .close-hints {
+            margin-top: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            .close-hint {
+                border-radius: 3px;
+                padding: 3px;
+                background: @rustic-brown-80;
+                color: @golden;
+                font-size: 12px;
+                margin: 0;
+            }
         }
     }
 }
