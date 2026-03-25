@@ -109,15 +109,13 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         }
 
         const existingEffect = this.actor.effects.find(x => x.origin === data.origin);
-        const stacks = data.system?.stacking?.enabled;
+        const stacks = Boolean(data.system?.stacking);
         if (existingEffect && !stacks) return false;
 
         if (existingEffect && stacks) {
             const incrementedValue = existingEffect.system.stacking.value + 1;
             await existingEffect.update({
-                'system.stacking.value': existingEffect.system.stacking.max
-                    ? Math.min(incrementedValue, existingEffect.system.stacking.max)
-                    : incrementedValue
+                'system.stacking.value': Math.min(incrementedValue, existingEffect.system.stacking.max ?? Infinity)
             });
             return false;
         }
@@ -198,15 +196,11 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
             } catch (_) {}
         }
 
-        const evalValue = this.effectSafeEval(this.effectRollParse(key, parseModel, effect.parent, effect));
+        const stackingParsedValue = effect.system.stacking
+            ? Roll.replaceFormulaData(key, { stacks: effect.system.stacking.value })
+            : key;
+        const evalValue = itemAbleRollParse(stackingParsedValue, parseModel, effect.parent);
         return evalValue ?? key;
-    }
-
-    static effectRollParse(value, actor, item, effect) {
-        const stackingParsedValue = effect.system.stacking?.enabled
-            ? Roll.replaceFormulaData(value, { stacks: effect.system.stacking.value })
-            : value;
-        return itemAbleRollParse(stackingParsedValue, actor, item);
     }
 
     /**

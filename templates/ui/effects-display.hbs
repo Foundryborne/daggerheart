@@ -8,7 +8,7 @@
                 <a {{#if effect.condition}}disabled{{/if}}>
                     <img src="{{effect.img}}" />
                 </a>
-                {{#if (and effect.system.stacking.enabled (gt effect.system.stacking.value 1))}}
+                {{#if (gt effect.system.stacking.value 1)}}
                     <span class="stacking-value">{{effect.system.stacking.value}}</span>
                 {{/if}}
                 {{#if effect.condition}}<i class="effect-locked fa-solid fa-lock"></i>{{/if}}

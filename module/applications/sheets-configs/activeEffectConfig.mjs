@@ -152,6 +152,10 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         });
 
         htmlElement
+            .querySelector('.stacking-change-checkbox')
+            ?.addEventListener('change', this.stackingChangeToggle.bind(this));
+
+        htmlElement
             .querySelector('.armor-change-checkbox')
             ?.addEventListener('change', this.armorChangeToggle.bind(this));
 
@@ -207,6 +211,16 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         }
 
         return partContext;
+    }
+
+    stackingChangeToggle(event) {
+        const stackingFields = this.document.system.schema.fields.stacking.fields;
+        const systemData = {
+            stacking: event.target.checked
+                ? { value: stackingFields.value.initial, max: stackingFields.max.initial }
+                : null
+        };
+        return this.submit({ updateData: { system: systemData } });
     }
 
     armorChangeToggle(event) {

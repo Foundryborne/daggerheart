@@ -81,17 +81,19 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
                     label: 'DAGGERHEART.GENERAL.range'
                 })
             }),
-            stacking: new fields.SchemaField({
-                enabled: new fields.BooleanField({ initial: false, label: 'DAGGERHEART.GENERAL.enabled' }),
-                value: new fields.NumberField({
-                    initial: 1,
-                    min: 1,
-                    integer: true,
-                    nullable: false,
-                    label: 'DAGGERHEART.GENERAL.value'
-                }),
-                max: new fields.NumberField({ integer: true, label: 'DAGGERHEART.GENERAL.max' })
-            })
+            stacking: new fields.SchemaField(
+                {
+                    value: new fields.NumberField({
+                        initial: 1,
+                        min: 1,
+                        integer: true,
+                        nullable: false,
+                        label: 'DAGGERHEART.GENERAL.value'
+                    }),
+                    max: new fields.NumberField({ integer: true, label: 'DAGGERHEART.GENERAL.max' })
+                },
+                { nullable: true, initial: null }
+            )
         };
     }
 

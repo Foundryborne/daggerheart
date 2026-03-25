@@ -25,7 +25,7 @@
         </div>
     {{/if}}
 
-    {{#if (and effect.system.stacking.enabled effect.system.stacking.max)}}
+    {{#if effect.system.stacking}}
         <div class="effect-stacks-outer-container">
             <div class="effect-stacks-title">{{localize "Stacks"}}</div>
             <div class="effect-stacks-container">
@@ -43,7 +43,7 @@
 
     {{#unless effect.isLockedCondition}}
         <div class="close-hints">
-            {{#if effect.system.stacking.enabled}}
+            {{#if effect.system.stacking}}
                 <p class="close-hint">
                     <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.EffectsDisplay.increaseStacks"}}
                 </p>

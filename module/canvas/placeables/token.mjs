@@ -52,7 +52,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         const icon = new PIXI.Sprite(tex);
         icon.tint = tint ?? 0xffffff;
 
-        if (effect?.system?.stacking?.enabled && effect.system.stacking.value > 1) {
+        if (effect.system.stacking?.value > 1) {
             const stackOverlay = new PIXI.Text(effect.system.stacking.value, {
                 fill: '#f3c267',
                 stroke: '#000000',

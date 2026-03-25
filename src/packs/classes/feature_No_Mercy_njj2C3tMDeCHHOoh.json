@@ -81,7 +81,6 @@
           "type": "shortRest"
         },
         "stacking": {
-          "enabled": true,
           "max": null
         }
       },

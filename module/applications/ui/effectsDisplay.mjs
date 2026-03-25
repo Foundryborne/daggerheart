@@ -89,12 +89,12 @@ export default class DhEffectsDisplay extends HandlebarsApplicationMixin(Applica
         const element = event.target.closest('.effect-container');
         const effects = DhEffectsDisplay.getTokenEffects();
         const effect = effects.find(x => x.id === element.dataset.effectId);
-        if (!effect || (delta >= 0 && !effect.system.stacking?.enabled)) {
+        if (!effect || (delta >= 0 && !effect.system.stacking)) {
             return;
         }
 
-        const maxValue = effect.system.stacking.max ?? Infinity;
-        const newValue = Math.clamp((effect.system.stacking.value ?? 1) + delta, 0, maxValue);
+        const maxValue = effect.system.stacking?.max ?? Infinity;
+        const newValue = Math.clamp((effect.system.stacking?.value ?? 1) + delta, 0, maxValue);
         if (newValue > 0) {
             await effect.update({ 'system.stacking.value': newValue });
         } else {

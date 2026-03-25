@@ -150,7 +150,6 @@
           }
         ],
         "stacking": {
-          "enabled": true,
           "max": null
         },
         "duration": {
