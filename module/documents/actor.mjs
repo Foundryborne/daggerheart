@@ -122,6 +122,14 @@ export default class DhpActor extends Actor {
         }
     }
 
+    _onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
+        if (collection === 'effects') {
+            ui.effectsDisplay.render();
+        }
+
+        super._onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId);
+    }
+
     async updateLevel(newLevel) {
         if (!['character', 'companion'].includes(this.type) || newLevel === this.system.levelData.level.changed) return;
 
