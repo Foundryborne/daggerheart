@@ -117,10 +117,10 @@ export default class DHRoll extends Roll {
                 rolls: [roll]
             };
 
-        config.selectedRollMode ??= game.settings.get('core', 'rollMode');
+        config.selectedMessageMode ??= game.settings.get('core', 'messageMode');
 
         if (roll._evaluated) {
-            const message = await cls.create(msgData, { rollMode: config.selectedRollMode });
+            const message = await cls.create(msgData, { messageMode: config.selectedMessageMode });
 
             if (config.tagTeamSelected) {
                 game.system.api.applications.dialogs.TagTeamDialog.assignRoll(message.speakerActor, message);

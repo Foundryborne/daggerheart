@@ -70,8 +70,8 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         context.rollConfig = this.config;
         context.hasRoll = !!this.config.roll;
         context.canRoll = true;
-        context.selectedRollMode = this.config.selectedRollMode ?? game.settings.get('core', 'rollMode');
-        context.rollModes = Object.entries(CONFIG.Dice.rollModes).map(([action, { label, icon }]) => ({
+        context.selectedMessageMode = this.config.selectedMessageMode ?? game.settings.get('core', 'messageMode');
+        context.rollModes = Object.entries(CONFIG.ChatMessage.modes).map(([action, { label, icon }]) => ({
             action,
             label,
             icon
@@ -142,10 +142,10 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         }));
     }
 
-    static updateRollConfiguration(event, _, formData) {
+    static updateRollConfiguration(_event, _, formData) {
         const { ...rest } = foundry.utils.expandObject(formData.object);
 
-        this.config.selectedRollMode = rest.selectedRollMode;
+        this.config.selectedMessageMode = rest.selectedMessageMode;
 
         if (this.config.costs) {
             this.config.costs = foundry.utils.mergeObject(this.config.costs, rest.costs);

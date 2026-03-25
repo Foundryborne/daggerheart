@@ -169,70 +169,19 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             }
         }
 
-        this.baseActivate(element, { ...options, html: html });
+        this.noOffset = options.noOffset;
+        super.activate(element, { ...options, html: html });
     }
 
-    /* Need to pass more options to _setAnchor, so have to copy whole foundry method >_< */
-    async baseActivate(element, options) {
-        let { text, direction, cssClass, locked = false, html, content } = options;
-        if (content && !html) {
-            foundry.utils.logCompatibilityWarning(
-                'The content option has been deprecated in favor of the html option',
-                { since: 13, until: 15, once: true }
-            );
-            html = content;
-        }
-        if (text && html) throw new Error('Cannot provide both text and html options to TooltipManager#activate.');
-        // Deactivate currently active element
-        this.deactivate();
-        // Check if the element still exists in the DOM.
-        if (!document.body.contains(element)) return;
-        // Mark the new element as active
-        this.#active = true;
-        this.element = element;
-        element.setAttribute('aria-describedby', 'tooltip');
-        html ||= element.dataset.tooltipHtml;
-        if (html) {
-            if (typeof html === 'string') this.tooltip.innerHTML = foundry.utils.cleanHTML(html);
-            else {
-                this.tooltip.innerHTML = ''; // Clear existing HTML
-                this.tooltip.appendChild(html);
-            }
-        } else {
-            text ||= element.dataset.tooltipText;
-            if (text) this.tooltip.textContent = text;
-            else {
-                text = element.dataset.tooltip;
-                // Localized message should be safe
-                if (game.i18n.has(text)) this.tooltip.innerHTML = game.i18n.localize(text);
-                else this.tooltip.innerHTML = foundry.utils.cleanHTML(text);
-            }
-        }
-
-        // Activate display of the tooltip
-        this.tooltip.removeAttribute('class');
-        this.tooltip.classList.add('active', 'themed', 'theme-dark');
-        this.tooltip.showPopover();
-        cssClass ??= element.closest('[data-tooltip-class]')?.dataset.tooltipClass;
-        if (cssClass) this.tooltip.classList.add(...cssClass.split(' '));
-
-        // Set tooltip position
-        direction ??= element.closest('[data-tooltip-direction]')?.dataset.tooltipDirection;
-        if (!direction) direction = this._determineDirection();
-        this._setAnchor(direction, options);
-
-        if (locked || element.dataset.hasOwnProperty('locked')) this.lockTooltip();
-    }
-
-    _setAnchor(direction, options = {}) {
+    _setAnchor(direction) {
         const directions = this.constructor.TOOLTIP_DIRECTIONS;
         const pad = this.constructor.TOOLTIP_MARGIN_PX;
         const pos = this.element.getBoundingClientRect();
 
         const { innerHeight, innerWidth } = this.tooltip.ownerDocument.defaultView;
         const tooltipPadding = 16;
-        const horizontalOffset = options.noOffset ? tooltipPadding : this.tooltip.offsetWidth / 2 - pos.width / 2;
-        const verticalOffset = options.noOffset ? tooltipPadding : this.tooltip.offsetHeight / 2 - pos.height / 2;
+        const horizontalOffset = this.noOffset ? tooltipPadding : this.tooltip.offsetWidth / 2 - pos.width / 2;
+        const verticalOffset = this.noOffset ? tooltipPadding : this.tooltip.offsetHeight / 2 - pos.height / 2;
 
         const style = {};
         switch (direction) {

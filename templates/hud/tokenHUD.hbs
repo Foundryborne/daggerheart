@@ -4,13 +4,22 @@
         <input type="text" name="elevation" value="{{elevation}}" {{disabled (or locked (and isGamePaused (not isGM)))}}>
     </div>
 
-    <button type="button" class="control-icon" data-action="sort" data-direction="up" data-tooltip="HUD.ToFront">
-        <img src="{{icons.up}}">
+    <button type="button" class="control-icon" data-action="sort" data-tooltip="HUD.ToFrontOrBack">
+        <i class="fa-solid fa-arrow-down-arrow-up" inert></i>
     </button>
 
-    <button type="button" class="control-icon" data-action="sort" data-direction="down" data-tooltip="HUD.ToBack">
-        <img src="{{icons.down}}">
+    {{#if canChangeLevel}}
+    <button type="button" class="control-icon" data-action="togglePalette" data-palette="levels"
+            aria-label="{{ localize "HUD.ChangeLevel" }}" data-tooltip>
+        <i class="fa-solid fa-stairs" inert></i>
     </button>
+    <div class="palette palette-list" data-palette="levels">
+        {{#each levels as |level|}}
+        <a class="palette-list-entry {{level.cssClass}}" data-action="level" data-level-id="{{level.id}}"><span>{{level.name}}</span></a>
+        {{/each}}
+    </div>
+    {{/if}}
+
     {{#if hasCompanion}}
         <button type="button" class="control-icon clown-car" data-action="toggleCompanions" data-tooltip="{{#if companionOnCanvas}}{{localize "DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrieveCompanionTokens"}}{{else}}{{localize "DAGGERHEART.APPLICATIONS.HUD.tokenHUD.depositCompanionTokens"}}{{/if}}">
             <img {{#if companionOnCanvas}}class="flipped"{{/if}} src="{{icons.toggleClowncar}}">
