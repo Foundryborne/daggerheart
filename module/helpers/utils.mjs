@@ -771,8 +771,7 @@ export function getArmorSources(actor) {
     const data = rawArmorSources.map(doc => {
         // Get the origin item. Since the actor is already loaded, it should already be cached
         // Consider the relative function versions if this causes an issue
-        const isItem = doc instanceof Item;
-        const origin = isItem ? doc : doc.origin ? foundry.utils.fromUuidSync(doc.origin) : doc.parent;
+        const origin = doc.origin ? foundry.utils.fromUuidSync(doc.origin) : doc;
         return {
             origin,
             name: origin.name,

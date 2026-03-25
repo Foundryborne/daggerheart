@@ -76,7 +76,7 @@ export default class DhRollTable extends foundry.documents.RollTable {
     }
 
     async toMessage(results, { roll, messageData = {}, messageOptions = {} } = {}) {
-        messageOptions.rollMode ??= game.settings.get('core', 'rollMode');
+        messageOptions.rollMode ??= game.settings.get('core', 'messageMode');
 
         // Construct chat data
         messageData = foundry.utils.mergeObject(

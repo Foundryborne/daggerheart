@@ -1,4 +1,18 @@
 <section class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    <fieldset class="one-column optional">
+        <legend>
+            {{localize "DAGGERHEART.ACTIVEEFFECT.Config.stacking.title"}} 
+            <input type="checkbox" class="stacking-change-checkbox" {{checked source.system.stacking}} />
+        </legend>
+
+        {{#if source.system.stacking}}
+            <div class="two-columns even full-width">
+                {{formGroup systemFields.stacking.fields.value value=source.system.stacking.value localize=true }}
+                {{formGroup systemFields.stacking.fields.max value=source.system.stacking.max localize=true }}
+            </div>
+        {{/if}}
+    </fieldset>
+
     <fieldset class="one-column">
         <legend>{{localize "DAGGERHEART.ACTIVEEFFECT.Config.rangeDependence.title"}}</legend>
 

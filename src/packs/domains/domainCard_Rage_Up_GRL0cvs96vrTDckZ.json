@@ -42,44 +42,8 @@
           "type": "self",
           "amount": null
         },
-        "name": "Mark 1 Stress",
-        "img": "icons/magic/control/silhouette-aura-energy.webp",
-        "range": "self"
-      },
-      "fKY9NcYBwCFwMsgV": {
-        "type": "effect",
-        "_id": "fKY9NcYBwCFwMsgV",
-        "systemPath": "actions",
-        "description": "<p>You can <strong>mark a Stress</strong> to gain a bonus to your damage roll equal to twice your Strength.</p>",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [
-          {
-            "scalable": false,
-            "key": "stress",
-            "value": 2,
-            "step": null,
-            "consumeOnSuccess": false
-          }
-        ],
-        "uses": {
-          "value": null,
-          "max": "",
-          "recovery": null,
-          "consumeOnSuccess": false
-        },
-        "effects": [
-          {
-            "_id": "t6SIjQxB6UBUJ98f",
-            "onSave": false
-          }
-        ],
-        "target": {
-          "type": "self",
-          "amount": null
-        },
-        "name": "Mark 2 Stress",
-        "img": "icons/magic/control/silhouette-aura-energy.webp",
+        "name": "Mark Stress",
+        "img": "icons/skills/wounds/injury-face-impact-orange.webp",
         "range": "self"
       }
     },
@@ -94,8 +58,8 @@
   "sort": 3400000,
   "effects": [
     {
-      "name": "Rage Up (1)",
-      "img": "systems/daggerheart/assets/icons/domains/domain-card/blade.png",
+      "name": "Rage Up",
+      "img": "icons/skills/wounds/injury-face-impact-orange.webp",
       "origin": "Compendium.daggerheart.domains.Item.GRL0cvs96vrTDckZ",
       "transfer": false,
       "_id": "bq1MhcmoP6Wo5CXF",
@@ -106,33 +70,38 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.damage.magical.bonus",
+            "type": "add",
+            "value": "2*@system.traits.strength.value*@stacks",
+            "priority": 21,
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.damage.physical.bonus",
+            "type": "add",
+            "value": "2*@system.traits.strength.value*@stacks",
+            "priority": 21,
+            "phase": "initial"
+          }
+        ],
+        "stacking": {
+          "max": 2
+        },
+        "duration": {
+          "type": ""
         }
       },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.magical.bonus",
-          "mode": 2,
-          "value": "2*@system.traits.strength.value",
-          "priority": 21
-        },
-        {
-          "key": "system.bonuses.damage.physical.bonus",
-          "mode": 2,
-          "value": "2*@system.traits.strength.value",
-          "priority": 21
-        }
-      ],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "",
+      "description": "<p>For your next attack you have a bonus to your damage roll equal to twice your Strength.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -140,6 +109,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!GRL0cvs96vrTDckZ.bq1MhcmoP6Wo5CXF"
     },
     {
@@ -155,31 +134,28 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
-        }
-      },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.magical.bonus",
-          "mode": 2,
-          "value": "4*@system.traits.strength.value",
-          "priority": 21
         },
-        {
-          "key": "system.bonuses.damage.physical.bonus",
-          "mode": 2,
-          "value": "4*@system.traits.strength.value",
-          "priority": 21
-        }
-      ],
+        "changes": [
+          {
+            "key": "system.bonuses.damage.magical.bonus",
+            "value": "4*@system.traits.strength.value",
+            "priority": 21,
+            "type": "add"
+          },
+          {
+            "key": "system.bonuses.damage.physical.bonus",
+            "value": "4*@system.traits.strength.value",
+            "priority": 21,
+            "type": "add"
+          }
+        ]
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "tint": "#ffffff",
@@ -189,6 +165,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!GRL0cvs96vrTDckZ.t6SIjQxB6UBUJ98f"
     }
   ],

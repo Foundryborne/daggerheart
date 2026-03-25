@@ -17,7 +17,6 @@
     {{/if}}
 
     {{#if effect.system.duration.type}}
-
         <div class="duration-container">
             <div class="duration-inner-container">
                 <span>{{localize "EFFECT.DURATION.Label"}}:</span>
@@ -26,9 +25,42 @@
         </div>
     {{/if}}
 
+    {{#if effect.system.stacking}}
+        <div class="effect-stacks-outer-container">
+            <div class="effect-stacks-title">{{localize "Stacks"}}</div>
+            <div class="effect-stacks-container">
+                <div class="effect-stacks-inner-container">
+                    <span class="effect-stack-title">{{localize "Current"}}</span>
+                    <span>{{effect.system.stacking.value}}</span>
+                </div>
+                <div class="effect-stacks-inner-container">
+                    <span class="effect-stack-title">{{localize "Max"}}</span>
+                    <span>{{effect.system.stacking.max}}</span>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+
     {{#unless effect.isLockedCondition}}
-        <p class="close-hint">
-            <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.EffectsDisplay.removeThing" thing=(localize "DAGGERHEART.GENERAL.Effect.single")}}
-        </p>
+        <div class="close-hints">
+            {{#if effect.system.stacking}}
+                <p class="close-hint">
+                    <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.EffectsDisplay.increaseStacks"}}
+                </p>
+                {{#if (gt effect.system.stacking.value 1)}}
+                    <p class="close-hint">
+                        <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.EffectsDisplay.decreaseStacks"}}
+                    </p>
+                {{else}}
+                    <p class="close-hint">
+                        <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.EffectsDisplay.removeThing" thing=(localize "DAGGERHEART.GENERAL.Effect.single")}}
+                    </p>
+                {{/if}}
+            {{else}}
+                <p class="close-hint">
+                    <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.EffectsDisplay.removeThing" thing=(localize "DAGGERHEART.GENERAL.Effect.single")}}
+                </p>
+            {{/if}}
+        </div>
     {{/unless}}
 </div>

@@ -83,7 +83,20 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
                     initial: CONFIG.DH.GENERAL.range.melee.id,
                     label: 'DAGGERHEART.GENERAL.range'
                 })
-            })
+            }),
+            stacking: new fields.SchemaField(
+                {
+                    value: new fields.NumberField({
+                        initial: 1,
+                        min: 1,
+                        integer: true,
+                        nullable: false,
+                        label: 'DAGGERHEART.GENERAL.value'
+                    }),
+                    max: new fields.NumberField({ integer: true, label: 'DAGGERHEART.GENERAL.max' })
+                },
+                { nullable: true, initial: null }
+            )
         };
     }
 
@@ -158,8 +171,10 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
                 return acc;
             }, this.parent.actor.system.armor?.system?.armor?.current ?? 0);
 
-            const armorData = getScrollTextData(this.parent.actor, { value: newArmorTotal }, 'armor');
-            options.scrollingTextData = [armorData];
+            if (newArmorTotal !== this.parent.actor.system.armorScore.value) {
+                const armorData = getScrollTextData(this.parent.actor, { value: newArmorTotal }, 'armor');
+                options.scrollingTextData = [armorData];
+            }
         }
     }
 
