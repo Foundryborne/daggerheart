@@ -49,12 +49,9 @@ export default class DhEffectsDisplay extends HandlebarsApplicationMixin(Applica
 
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
-
-        if (this.element) {
-            this.element.querySelectorAll('.effect-container a').forEach(element => {
-                element.addEventListener('click', this.effectLeftclick.bind(this));
-                element.addEventListener('contextmenu', this.effectRightclick.bind(this));
-            });
+        for (const element of this.element?.querySelectorAll('.effect-container a') ?? []) {
+            element.addEventListener('click', e => this.#onClickEffect(e));
+            element.addEventListener('contextmenu', e => this.#onClickEffect(e, -1));
         }
     }
 
@@ -88,31 +85,21 @@ export default class DhEffectsDisplay extends HandlebarsApplicationMixin(Applica
         this.render();
     }
 
-    async effectLeftclick(event) {
+    async #onClickEffect(event, delta = 1) {
         const element = event.target.closest('.effect-container');
         const effects = DhEffectsDisplay.getTokenEffects();
         const effect = effects.find(x => x.id === element.dataset.effectId);
+        if (!effect || (delta >= 0 && !effect.system.stacking?.enabled)) {
+            return;
+        }
 
-        if (!effect.system.stacking?.enabled) return;
-
-        const incrementedValue = effect.system.stacking.value + 1;
-        const newValue = effect.system.stacking.max
-            ? Math.min(incrementedValue, effect.system.stacking.max)
-            : incrementedValue;
-        await effect.update({ 'system.stacking.value': newValue });
-        this.render();
-    }
-
-    async effectRightclick(event) {
-        const element = event.target.closest('.effect-container');
-        const effects = DhEffectsDisplay.getTokenEffects();
-        const effect = effects.find(x => x.id === element.dataset.effectId);
-        if (effect.system.stacking?.enabled && effect.system.stacking.value > 1) {
-            await effect.update({ 'system.stacking.value': effect.system.stacking.value - 1 });
+        const maxValue = effect.system.stacking.max ?? Infinity;
+        const newValue = Math.clamp((effect.system.stacking.value ?? 1) + delta, 0, maxValue);
+        if (newValue > 0) {
+            await effect.update({ 'system.stacking.value': newValue });
         } else {
             await effect.delete();
         }
-
         this.render();
     }
 
