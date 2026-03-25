@@ -28,8 +28,21 @@ export default class BeastformField extends fields.SchemaField {
                             { 1: game.i18n.localize('DAGGERHEART.GENERAL.Tiers.1') }
                         );
                     },
-                    hint: 'DAGGERHEART.ACTIONS.Config.beastform.exactHint'
+                    label: 'DAGGERHEART.ACTIONS.Config.beastform.exact.label',
+                    hint: 'DAGGERHEART.ACTIONS.Config.beastform.exact.hint'
                 })
+            }),
+            modifications: new fields.SchemaField({
+                traitBonuses: new fields.ArrayField(
+                    new fields.SchemaField({
+                        bonus: new fields.NumberField({
+                            integer: true,
+                            initial: 1,
+                            min: 1,
+                            label: 'DAGGERHEART.ACTIONS.Config.beastform.modifications.traitBonuses.bonus'
+                        })
+                    })
+                )
             })
         };
         super(beastformFields, options, context);
@@ -66,15 +79,9 @@ export default class BeastformField extends fields.SchemaField {
             ) ?? 1;
 
         config.tierLimit = this.beastform.tierAccess.exact ?? actorTier;
+        config.modifications = this.beastform.modifications;
     }
 
-    /**
-     * TODO by Harry
-     * @param {*} selectedForm
-     * @param {*} evolvedData
-     * @param {*} hybridData
-     * @returns
-     */
     static async transform(selectedForm, evolvedData, hybridData) {
         const formData = evolvedData?.form ?? selectedForm;
         const beastformEffect = formData.effects.find(x => x.type === 'beastform');

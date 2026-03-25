@@ -10,6 +10,12 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
         this.selected = null;
         this.evolved = { form: null };
         this.hybrid = { forms: {}, advantages: {}, features: {} };
+        this.modifications = {
+            traitBonuses: configData.modifications.traitBonuses.map(x => ({
+                trait: null,
+                bonus: x.bonus
+            }))
+        };
 
         this._dragDrop = this._createDragDropHandlers();
     }
@@ -28,6 +34,7 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
             selectBeastform: this.selectBeastform,
             toggleHybridFeature: this.toggleHybridFeature,
             toggleHybridAdvantage: this.toggleHybridAdvantage,
+            toggleTraitBonus: this.toggleTraitBonus,
             submitBeastform: this.submitBeastform
         },
         form: {
@@ -48,6 +55,7 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
         tabs: { template: 'systems/daggerheart/templates/dialogs/beastform/tabs.hbs' },
         beastformTier: { template: 'systems/daggerheart/templates/dialogs/beastform/beastformTier.hbs' },
         advanced: { template: 'systems/daggerheart/templates/dialogs/beastform/advanced.hbs' },
+        modifications: { template: 'systems/daggerheart/templates/dialogs/beastform/modifications.hbs' },
         footer: { template: 'systems/daggerheart/templates/dialogs/beastform/footer.hbs' }
     };
 
@@ -146,6 +154,9 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
             {}
         );
 
+        context.modifications = this.modifications;
+        context.traits = CONFIG.DH.ACTOR.abilities;
+
         context.tier = beastformTiers[this.tabGroups.primary];
         context.tierKey = this.tabGroups.primary;
 
@@ -156,11 +167,14 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
 
     canSubmit() {
         if (this.selected) {
+            const modificationsFinished =
+                !this.modifications.traitBonuses.length || this.modifications.traitBonuses.every(x => x.trait);
+
             switch (this.selected.system.beastformType) {
                 case 'normal':
-                    return true;
+                    return modificationsFinished;
                 case 'evolved':
-                    return this.evolved.form;
+                    return modificationsFinished && this.evolved.form;
                 case 'hybrid':
                     const selectedAdvantages = Object.values(this.hybrid.advantages).reduce(
                         (acc, form) => acc + Object.values(form).length,
@@ -173,7 +187,7 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
 
                     const advantagesSelected = selectedAdvantages === this.selected.system.hybrid.advantages;
                     const featuresSelected = selectedFeatures === this.selected.system.hybrid.features;
-                    return advantagesSelected && featuresSelected;
+                    return modificationsFinished && advantagesSelected && featuresSelected;
             }
         }
 
@@ -261,6 +275,13 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
         this.render();
     }
 
+    static toggleTraitBonus(_, button) {
+        const { index, trait } = button.dataset;
+        this.modifications.traitBonuses[index].trait =
+            this.modifications.traitBonuses[index].trait === trait ? null : trait;
+        this.render();
+    }
+
     static async submitBeastform() {
         await this.close({ submitted: true });
     }
@@ -289,6 +310,24 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
                             const imageSource = evolved ?? selected;
                             if (imageSource.usesDynamicToken) imageSource.system.tokenRingImg = data.selectedImage;
                             else imageSource.system.tokenImg = data.selectedImage;
+                        }
+                    }
+
+                    const beastformEffect = selected.effects.find(x => x.type === 'beastform');
+                    while (app.modifications.traitBonuses.length) {
+                        const traitBonus = app.modifications.traitBonuses.pop();
+                        const existingChange = beastformEffect.changes.find(
+                            x => x.key === `system.traits.${traitBonus.trait}.value`
+                        );
+                        if (existingChange) {
+                            existingChange.value = Number.parseInt(existingChange.value) + traitBonus.bonus;
+                        } else {
+                            beastformEffect.changes.push({
+                                key: `system.traits.${traitBonus.trait}.value`,
+                                mode: 2,
+                                priority: null,
+                                value: traitBonus.bonus
+                            });
                         }
                     }
 

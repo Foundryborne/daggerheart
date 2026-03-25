@@ -1,0 +1,28 @@
+<div class="modifications-container">
+    {{#if modifications.traitBonuses.length}}
+        <fieldset>
+            <legend>
+                {{#if (gt modifications.traitBonuses.length 1)}}
+                    {{localize "DAGGERHEART.ACTIONS.Config.beastform.modifications.traitBonuses.label.plural"}}
+                {{else}}
+                    {{localize "DAGGERHEART.ACTIONS.Config.beastform.modifications.traitBonuses.label.single"}}
+                {{/if}}
+            </legend>
+
+            <div class="trait-bonuses-container">
+                {{#each modifications.traitBonuses as |traitBonus index|}}
+                    <div class="trait-bonus-container">
+                        {{#each @root.traits as |trait|}}
+                            <a class="trait-card {{#if (eq trait.id traitBonus.trait)}}selected{{/if}}"
+                               data-action="toggleTraitBonus" data-index="{{index}}" data-trait="{{trait.id}}"
+                            >
+                                {{localize trait.label}} +{{traitBonus.bonus}}
+                            </a>
+                        {{/each}}
+                    </div>
+                    {{#unless @last}}<div class="bonus-separator"></div>{{/unless}}
+                {{/each}}
+            </div>
+        </fieldset>
+    {{/if}}
+</div>

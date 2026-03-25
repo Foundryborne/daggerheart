@@ -1,4 +1,16 @@
+{{formGroup fields.tierAccess.fields.exact value=source.tierAccess.exact name="beastform.tierAccess.exact" labelAttr="label" valueAttr="key" localize=true blank=""}}
+
 <fieldset>
-    <legend>{{localize "DAGGERHEART.ACTIONS.Config.beastform.label"}}</legend>
-    {{formGroup fields.tierAccess.fields.exact value=source.tierAccess.exact name="beastform.tierAccess.exact" labelAttr="label" valueAttr="key" localize=true blank=""}}
+    <legend>{{localize "DAGGERHEART.ACTIONS.Config.beastform.modifications.traitBonuses.label.plural"}} <a data-action="addBeastformTraitBonus"><i class="fa-solid fa-plus"></i></a></legend>
+
+    {{#if source.modifications.traitBonuses.length}}
+        {{#each source.modifications.traitBonuses as |traitBonus index|}}
+            <div class="deletable-row">
+                {{formGroup ../fields.modifications.fields.traitBonuses.element.fields.bonus value=traitBonus.bonus name=(concat "beastform.modifications.traitBonuses." index ".bonus") localize=true}}
+                <a data-action="removeBeastformTraitBonus" data-index="{{index}}"><i class="fa-solid fa-trash"></i></a>
+            </div>
+        {{/each}}
+    {{else}}
+        <span class="hint">{{localize "DAGGERHEART.ACTIONS.Config.beastform.modifications.traitBonuses.hint"}}</span>
+    {{/if}}
 </fieldset>
