@@ -78,8 +78,8 @@
         "useDefault": false
       },
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "dice": "d8",
               "bonus": 6,
@@ -105,7 +105,7 @@
             },
             "base": false
           }
-        ],
+        },
         "includeBase": false
       },
       "description": "",

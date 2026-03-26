@@ -26,23 +26,23 @@ export default class DHAttackAction extends DHDamageAction {
         return {
             value: {
                 multiplier: 'prof',
-                dice: this.item?.system?.attack.damage.parts[0].value.dice,
-                bonus: this.item?.system?.attack.damage.parts[0].value.bonus ?? 0
+                dice: this.item?.system?.attack.damage.parts.hitPoints.value.dice,
+                bonus: this.item?.system?.attack.damage.parts.hitPoints.value.bonus ?? 0
             },
-            type: this.item?.system?.attack.damage.parts[0].type,
+            type: this.item?.system?.attack.damage.parts.hitPoints.type,
             base: true
         };
     }
 
     get damageFormula() {
-        const hitPointsPart = this.damage.parts.find(x => x.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id);
+        const hitPointsPart = this.damage.parts.hitPoints;
         if (!hitPointsPart) return '0';
 
         return hitPointsPart.value.getFormula();
     }
 
     get altDamageFormula() {
-        const hitPointsPart = this.damage.parts.find(x => x.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id);
+        const hitPointsPart = this.damage.parts.hitPoints;
         if (!hitPointsPart) return '0';
 
         return hitPointsPart.valueAlt.getFormula();
@@ -50,9 +50,8 @@ export default class DHAttackAction extends DHDamageAction {
 
     async use(event, options) {
         const result = await super.use(event, options);
-        if (!result.message) return;
 
-        if (result.message.system.action.roll?.type === 'attack') {
+        if (result.message?.system.action.roll?.type === 'attack') {
             const { updateCountdowns } = game.system.api.applications.ui.DhCountdowns;
             await updateCountdowns(CONFIG.DH.GENERAL.countdownProgressionTypes.characterAttack.id);
         }

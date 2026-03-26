@@ -15,9 +15,10 @@ import {
     DhMetagamingSettings,
     DhVariantRuleSettings
 } from '../applications/settings/_module.mjs';
-import { CompendiumBrowserSettings, DhTagTeamRoll } from '../data/_module.mjs';
+import { CompendiumBrowserSettings } from '../data/_module.mjs';
 
 export const registerDHSettings = () => {
+    registerKeyBindings();
     registerMenuSettings();
     registerMenus();
     registerNonConfigSettings();
@@ -30,6 +31,25 @@ export const registerDHSettings = () => {
         config: true,
         type: Boolean,
         onChange: () => ui.combat.render()
+    });
+};
+
+export const registerKeyBindings = () => {
+    game.keybindings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.keybindings.spotlight, {
+        name: game.i18n.localize('DAGGERHEART.SETTINGS.Keybindings.spotlight.name'),
+        hint: game.i18n.localize('DAGGERHEART.SETTINGS.Keybindings.spotlight.hint'),
+        uneditable: [],
+        editable: [
+            {
+                key: 's',
+                modifiers: []
+            }
+        ],
+        onDown: game.system.api.macros.spotlightCombatant,
+        onUp: () => {},
+        restricted: true,
+        reservedModifiers: [],
+        precedence: CONST.KEYBINDING_PRECEDENCE.NORMAL
     });
 };
 
@@ -155,12 +175,6 @@ const registerNonConfigSettings = () => {
         scope: 'world',
         config: false,
         type: DhCountdowns
-    });
-
-    game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll, {
-        scope: 'world',
-        config: false,
-        type: DhTagTeamRoll
     });
 
     game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.CompendiumBrowserSettings, {

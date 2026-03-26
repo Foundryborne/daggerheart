@@ -5,6 +5,10 @@
   "_id": "Q6LxmtFetDDkoZVZ",
   "img": "icons/equipment/chest/breastplate-sculpted-green.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 4
+    },
     "description": "",
     "actions": {},
     "attached": [],

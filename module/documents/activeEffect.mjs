@@ -1,5 +1,5 @@
 import { itemAbleRollParse } from '../helpers/utils.mjs';
-import { RefreshType, socketEvent } from '../systemRegistration/socket.mjs';
+import { RefreshType } from '../systemRegistration/socket.mjs';
 
 export default class DhActiveEffect extends foundry.documents.ActiveEffect {
     /* -------------------------------------------- */
@@ -8,6 +8,8 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
 
     /**@override */
     get isSuppressed() {
+        if (this.system.isSuppressed === true) return true;
+
         // If this is a copied effect from an attachment, never suppress it
         // (These effects have attachmentSource metadata)
         if (this.flags?.daggerheart?.attachmentSource) {
@@ -15,7 +17,7 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         }
 
         // Then apply the standard suppression rules
-        if (['weapon', 'armor'].includes(this.parent?.type)) {
+        if (['weapon', 'armor'].includes(this.parent?.type) && this.transfer) {
             return !this.parent.system.equipped;
         }
 
@@ -50,15 +52,72 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         });
     }
 
+    /**
+     * Whether this Active Effect is eligible to be registered with the {@link ActiveEffectRegistry}
+     */
+    get isExpiryTrackable() {
+        return (
+            this.persisted &&
+            !this.inCompendium &&
+            this.modifiesActor &&
+            this.start &&
+            this.isTemporary &&
+            !this.isExpired
+        );
+    }
+
     /* -------------------------------------------- */
     /*  Event Handlers                              */
     /* -------------------------------------------- */
+
+    /** @inheritdoc */
+    static async createDialog(data = {}, createOptions = {}, options = {}) {
+        const { folders, types, template, context = {}, ...dialogOptions } = options;
+
+        if (types?.length === 0) {
+            throw new Error('The array of sub-types to restrict to must not be empty.');
+        }
+
+        const creatableEffects = types || ['base'];
+        const documentTypes = this.TYPES.filter(type => creatableEffects.includes(type)).map(type => {
+            const labelKey = `TYPES.ActiveEffect.${type}`;
+            const label = game.i18n.has(labelKey) ? game.i18n.localize(labelKey) : type;
+
+            return { value: type, label };
+        });
+
+        if (!documentTypes.length) {
+            throw new Error('No document types were permitted to be created.');
+        }
+
+        const sortedTypes = documentTypes.sort((a, b) => a.label.localeCompare(b.label, game.i18n.lang));
+
+        return await super.createDialog(data, createOptions, {
+            folders,
+            types,
+            template,
+            context: { types: sortedTypes, ...context },
+            ...dialogOptions
+        });
+    }
 
     /**@inheritdoc*/
     async _preCreate(data, options, user) {
         const update = {};
         if (!data.img) {
             update.img = 'icons/magic/life/heart-cross-blue.webp';
+        }
+
+        const existingEffect = this.actor.effects.find(x => x.origin === data.origin);
+        const stacks = Boolean(data.system?.stacking);
+        if (existingEffect && !stacks) return false;
+
+        if (existingEffect && stacks) {
+            const incrementedValue = existingEffect.system.stacking.value + 1;
+            await existingEffect.update({
+                'system.stacking.value': Math.min(incrementedValue, existingEffect.system.stacking.max ?? Infinity)
+            });
+            return false;
         }
 
         const statuses = Object.keys(data.statuses ?? {});
@@ -109,23 +168,24 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
     /* -------------------------------------------- */
 
     /**@inheritdoc*/
-    static applyField(model, change, field) {
-        change.value = DhActiveEffect.getChangeValue(model, change, change.effect);
-        super.applyField(model, change, field);
+    static applyChangeField(model, change, field) {
+        change.value = Number.isNumeric(change.value)
+            ? change.value
+            : DhActiveEffect.getChangeValue(model, change, change.effect);
+        super.applyChangeField(model, change, field);
     }
 
-    _applyLegacy(actor, change, changes) {
+    static _applyChangeUnguided(actor, change, changes, options) {
         change.value = DhActiveEffect.getChangeValue(actor, change, change.effect);
-        super._applyLegacy(actor, change, changes);
+        super._applyChangeUnguided(actor, change, changes, options);
     }
 
-    /** */
     static getChangeValue(model, change, effect) {
-        let value = change.value;
-        const isOriginTarget = value.toLowerCase().includes('origin.@');
+        let key = change.value.toString();
+        const isOriginTarget = key.toLowerCase().includes('origin.@');
         let parseModel = model;
         if (isOriginTarget && effect.origin) {
-            value = change.value.replaceAll(/origin\.@/gi, '@');
+            key = change.key.replaceAll(/origin\.@/gi, '@');
             try {
                 const originEffect = foundry.utils.fromUuidSync(effect.origin);
                 const doc =
@@ -136,8 +196,11 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
             } catch (_) {}
         }
 
-        const evalValue = this.effectSafeEval(itemAbleRollParse(value, parseModel, effect.parent));
-        return evalValue ?? value;
+        const stackingParsedValue = effect.system.stacking
+            ? Roll.replaceFormulaData(key, { stacks: effect.system.stacking.value })
+            : key;
+        const evalValue = itemAbleRollParse(stackingParsedValue, parseModel, effect.parent);
+        return evalValue ?? key;
     }
 
     /**

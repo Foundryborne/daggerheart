@@ -70,18 +70,18 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
+        },
+        "changes": [],
+        "duration": {
+          "type": "longRest"
         }
       },
-      "changes": [],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>Marked with a glowing sigil of protection. When this ally would make a death move, they clear a Hit Point instead.</p><p class=\"Body-Foundation\">This effect ends when it saves the target from a death move, you cast Life Ward on another target, or you take a long rest.</p>",
       "tint": "#ffffff",
@@ -91,6 +91,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!OszbCj0jTqq2ADx9.E7Ou4OMEy3TeK1Gf"
     }
   ],

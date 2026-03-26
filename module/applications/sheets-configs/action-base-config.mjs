@@ -1,3 +1,4 @@
+import { getUnusedDamageTypes } from '../../helpers/utils.mjs';
 import DaggerheartSheet from '../sheets/daggerheart-sheet.mjs';
 
 const { ApplicationV2 } = foundry.applications.api;
@@ -104,7 +105,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         }
     };
 
-    static CLEAN_ARRAYS = ['damage.parts', 'cost', 'effects', 'summon'];
+    static CLEAN_ARRAYS = ['cost', 'effects', 'summon'];
 
     _getTabs(tabs) {
         for (const v of Object.values(tabs)) {
@@ -153,8 +154,13 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         context.openSection = this.openSection;
         context.tabs = this._getTabs(this.constructor.TABS);
         context.config = CONFIG.DH;
-        if (this.action.damage?.hasOwnProperty('includeBase') && this.action.type === 'attack')
-            context.hasBaseDamage = !!this.action.parent.attack;
+        if (this.action.hasDamage) {
+            context.allDamageTypesUsed = !getUnusedDamageTypes(this.action.damage.parts).length;
+
+            if (this.action.damage.hasOwnProperty('includeBase') && this.action.type === 'attack')
+                context.hasBaseDamage = !!this.action.parent.attack;
+        }
+
         context.costOptions = this.getCostOptions();
         context.getRollTypeOptions = this.getRollTypeOptions();
         context.disableOption = this.disableOption.bind(this);
@@ -291,18 +297,64 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
 
     static addDamage(_event) {
         if (!this.action.damage.parts) return;
-        const data = this.action.toObject(),
-            part = {};
-        if (this.action.actor?.isNPC) part.value = { multiplier: 'flat' };
-        data.damage.parts.push(part);
-        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+
+        const choices = getUnusedDamageTypes(this.action.damage.parts);
+        const content = new foundry.data.fields.StringField({
+            label: game.i18n.localize('Damage Type'),
+            choices,
+            required: true
+        }).toFormGroup(
+            {},
+            {
+                name: 'type',
+                localize: true,
+                nameAttr: 'value',
+                labelAttr: 'label'
+            }
+        ).outerHTML;
+
+        const callback = (_, button) => {
+            const data = this.action.toObject();
+            const type = choices[button.form.elements.type.value].value;
+            const part = this.action.schema.fields.damage.fields.parts.element.getInitialValue();
+            part.applyTo = type;
+            if (type === CONFIG.DH.GENERAL.healingTypes.hitPoints.id)
+                part.type = this.action.schema.fields.damage.fields.parts.element.fields.type.element.initial;
+
+            data.damage.parts[type] = part;
+            this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+        };
+
+        const typeDialog = new foundry.applications.api.DialogV2({
+            buttons: [
+                foundry.utils.mergeObject(
+                    {
+                        action: 'ok',
+                        label: 'Confirm',
+                        icon: 'fas fa-check',
+                        default: true
+                    },
+                    { callback: callback }
+                )
+            ],
+            content: content,
+            rejectClose: false,
+            modal: false,
+            window: {
+                title: game.i18n.localize('Add Damage')
+            },
+            position: { width: 300 }
+        });
+
+        typeDialog.render(true);
     }
 
     static removeDamage(_event, button) {
         if (!this.action.damage.parts) return;
-        const data = this.action.toObject(),
-            index = button.dataset.index;
-        data.damage.parts.splice(index, 1);
+        const data = this.action.toObject();
+        const key = button.dataset.key;
+        delete data.damage.parts[key];
+        data.damage.parts[`${key}`] = _del;
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 

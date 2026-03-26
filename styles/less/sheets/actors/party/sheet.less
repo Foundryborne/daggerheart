@@ -7,8 +7,12 @@
         background-image: url('../assets/parchments/dh-parchment-dark.png');
     }
 }, {
-    &.party {
+    &.sheet.actor.dh-style.party {
         background: url('../assets/parchments/dh-parchment-light.png');
+
+        .tab .actions-section .active-action {
+            animation: glow-dark 0.75s infinite alternate;
+        }
     }
 });
 
@@ -39,6 +43,10 @@
                 span {
                     font-size: 12px;
                 }
+            }
+
+            .active-action {
+                animation: glow 0.75s infinite alternate;
             }
         }
     }

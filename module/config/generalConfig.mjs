@@ -70,8 +70,12 @@ export const range = {
     }
 };
 
+/* circle|cone|rect|ray used to be CONST.MEASURED_TEMPLATE_TYPES. Hardcoded for now */
 export const templateTypes = {
-    ...CONST.MEASURED_TEMPLATE_TYPES,
+    CIRCLE: 'circle',
+    CONE: 'cone',
+    RECTANGLE: 'rectangle',
+    LINE: 'line',
     EMANATION: 'emanation',
     INFRONT: 'inFront'
 };
@@ -241,8 +245,8 @@ export const defaultRestOptions = {
                         type: 'friendly'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            hitPoints: {
                                 applyTo: healingTypes.hitPoints.id,
                                 value: {
                                     custom: {
@@ -251,7 +255,7 @@ export const defaultRestOptions = {
                                     }
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             },
@@ -275,8 +279,8 @@ export const defaultRestOptions = {
                         type: 'self'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            stress: {
                                 applyTo: healingTypes.stress.id,
                                 value: {
                                     custom: {
@@ -285,7 +289,7 @@ export const defaultRestOptions = {
                                     }
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             },
@@ -310,8 +314,8 @@ export const defaultRestOptions = {
                         type: 'friendly'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            armor: {
                                 applyTo: healingTypes.armor.id,
                                 value: {
                                     custom: {
@@ -320,7 +324,7 @@ export const defaultRestOptions = {
                                     }
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             },
@@ -344,8 +348,8 @@ export const defaultRestOptions = {
                         type: 'self'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            hope: {
                                 applyTo: healingTypes.hope.id,
                                 value: {
                                     custom: {
@@ -354,7 +358,7 @@ export const defaultRestOptions = {
                                     }
                                 }
                             }
-                        ]
+                        }
                     }
                 },
                 prepareWithFriends: {
@@ -368,8 +372,8 @@ export const defaultRestOptions = {
                         type: 'self'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            hope: {
                                 applyTo: healingTypes.hope.id,
                                 value: {
                                     custom: {
@@ -378,7 +382,7 @@ export const defaultRestOptions = {
                                     }
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             },
@@ -405,8 +409,8 @@ export const defaultRestOptions = {
                         type: 'friendly'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            hitPoints: {
                                 applyTo: healingTypes.hitPoints.id,
                                 value: {
                                     custom: {
@@ -415,7 +419,7 @@ export const defaultRestOptions = {
                                     }
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             },
@@ -439,8 +443,8 @@ export const defaultRestOptions = {
                         type: 'self'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            stress: {
                                 applyTo: healingTypes.stress.id,
                                 value: {
                                     custom: {
@@ -449,7 +453,7 @@ export const defaultRestOptions = {
                                     }
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             },
@@ -474,8 +478,8 @@ export const defaultRestOptions = {
                         type: 'friendly'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            armor: {
                                 applyTo: healingTypes.armor.id,
                                 value: {
                                     custom: {
@@ -484,7 +488,7 @@ export const defaultRestOptions = {
                                     }
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             },
@@ -508,8 +512,8 @@ export const defaultRestOptions = {
                         type: 'self'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            hope: {
                                 applyTo: healingTypes.hope.id,
                                 value: {
                                     custom: {
@@ -518,7 +522,7 @@ export const defaultRestOptions = {
                                     }
                                 }
                             }
-                        ]
+                        }
                     }
                 },
                 prepareWithFriends: {
@@ -532,8 +536,8 @@ export const defaultRestOptions = {
                         type: 'self'
                     },
                     damage: {
-                        parts: [
-                            {
+                        parts: {
+                            hope: {
                                 applyTo: healingTypes.hope.id,
                                 value: {
                                     custom: {
@@ -542,7 +546,7 @@ export const defaultRestOptions = {
                                     }
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             },
@@ -952,5 +956,104 @@ export const sceneRangeMeasurementSetting = {
     custom: {
         id: 'custom',
         label: 'Custom'
+    }
+};
+
+export const tagTeamRollTypes = {
+    trait: {
+        id: 'trait',
+        label: 'DAGGERHEART.CONFIG.TagTeamRollTypes.trait'
+    },
+    ability: {
+        id: 'ability',
+        label: 'DAGGERHEART.CONFIG.TagTeamRollTypes.ability'
+    },
+    damageAbility: {
+        id: 'damageAbility',
+        label: 'DAGGERHEART.CONFIG.TagTeamRollTypes.damageAbility'
+    }
+};
+
+export const baseActiveEffectModes = {
+    custom: {
+        id: 'custom',
+        priority: 0,
+        label: 'EFFECT.CHANGES.TYPES.custom'
+    },
+    multiply: {
+        id: 'multiply',
+        priority: 10,
+        label: 'EFFECT.CHANGES.TYPES.multiply'
+    },
+    add: {
+        id: 'add',
+        priority: 20,
+        label: 'EFFECT.CHANGES.TYPES.add'
+    },
+    subtract: {
+        id: 'subtract',
+        priority: 20,
+        label: 'EFFECT.CHANGES.TYPES.subtract'
+    },
+    downgrade: {
+        id: 'downgrade',
+        priority: 30,
+        label: 'EFFECT.CHANGES.TYPES.downgrade'
+    },
+    upgrade: {
+        id: 'upgrade',
+        priority: 40,
+        label: 'EFFECT.CHANGES.TYPES.upgrade'
+    },
+    override: {
+        id: 'override',
+        priority: 50,
+        label: 'EFFECT.CHANGES.TYPES.override'
+    }
+};
+
+export const activeEffectModes = {
+    armor: {
+        id: 'armor',
+        priority: 20,
+        label: 'TYPES.ActiveEffect.armor'
+    },
+    ...baseActiveEffectModes
+};
+
+export const activeEffectArmorInteraction = {
+    none: { id: 'none', label: 'DAGGERHEART.CONFIG.ArmorInteraction.none.label' },
+    active: { id: 'active', label: 'DAGGERHEART.CONFIG.ArmorInteraction.active.label' },
+    inactive: { id: 'inactive', label: 'DAGGERHEART.CONFIG.ArmorInteraction.inactive.label' }
+};
+
+export const activeEffectDurations = {
+    temporary: {
+        id: 'temporary',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.temporary'
+    },
+    act: {
+        id: 'act',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.act'
+    },
+    scene: {
+        id: 'scene',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.scene'
+    },
+    shortRest: {
+        id: 'shortRest',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.shortRest'
+    },
+    longRest: {
+        id: 'longRest',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.longRest'
+    },
+    session: {
+        id: 'session',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.session'
+    },
+    custom: {
+        id: 'custom',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.custom'
     }
 };

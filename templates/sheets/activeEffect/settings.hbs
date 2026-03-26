@@ -1,4 +1,18 @@
 <section class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    <fieldset class="one-column optional">
+        <legend>
+            {{localize "DAGGERHEART.ACTIVEEFFECT.Config.stacking.title"}} 
+            <input type="checkbox" class="stacking-change-checkbox" {{checked source.system.stacking}} />
+        </legend>
+
+        {{#if source.system.stacking}}
+            <div class="two-columns even full-width">
+                {{formGroup systemFields.stacking.fields.value value=source.system.stacking.value localize=true }}
+                {{formGroup systemFields.stacking.fields.max value=source.system.stacking.max localize=true }}
+            </div>
+        {{/if}}
+    </fieldset>
+
     <fieldset class="one-column">
         <legend>{{localize "DAGGERHEART.ACTIVEEFFECT.Config.rangeDependence.title"}}</legend>
 
@@ -7,33 +21,30 @@
         {{formGroup systemFields.rangeDependence.fields.target value=source.system.rangeDependence.target localize=true }}
         {{formGroup systemFields.rangeDependence.fields.range value=source.system.rangeDependence.range localize=true }}
     </fieldset>
-
     <fieldset class="one-column">
-        {{formGroup fields.duration.fields.seconds value=source.duration.seconds rootId=rootId}}
-        {{formGroup fields.duration.fields.startTime value=source.duration.startTime rootId=rootId}}
-    </fieldset>
+        <legend>{{localize "EFFECT.DURATION.Label"}}</legend>
 
-    <fieldset class="one-column">
-        <div class="form-group">
-            <label>{{localize "EFFECT.DurationTurns"}}</label>
-            <div class="form-fields">
-                <label for="{{rootId}}-duration.rounds">{{localize "EFFECT.FIELDS.duration.rounds.label"}}</label>
-                {{formInput fields.duration.fields.rounds value=source.duration.rounds
-                    id=(concat rootId "-duration.rounds")}}
-                <label for="{{rootId}}-duration.turns">{{localize "EFFECT.FIELDS.duration.turns.label"}}</label>
-                {{formInput fields.duration.fields.turns value=source.duration.turns
-                    id=(concat rootId "-duration.turns")}}
+        {{formGroup systemFields.duration.fields.type value=source.system.duration.type localize=true }}
+
+            <div class="form-group slim duration-description">
+                <div class="form-fields">
+                    {{formInput systemFields.duration.fields.description value=source.system.duration.description localize=true }}
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label>{{localize "EFFECT.StartTurns"}}</label>
-            <div class="form-fields">
-                <label for="{{rootId}}-duration.startRound">{{localize "EFFECT.FIELDS.duration.startRound.label"}}</label>
-                {{formInput fields.duration.fields.startRound value=source.duration.startRound
-                    id=(concat rootId "-duration.startRound")}}
-                <label for="{{rootId}}-duration.startTurn">{{localize "EFFECT.FIELDS.duration.startTurn.label"}}</label>
-                {{formInput fields.duration.fields.startTurn value=source.duration.startTurn
-                    id=(concat rootId "-duration.startTurn")}}
+
+        <div class="custom-duration-section">
+            {{formGroup fields.start.fields.time value=source.start.time localize=true }}
+            <div class="form-group slim duration" data-duration>
+                <label class="flexrow" for="{{rootId}}-duration.value">
+                    <span>{{localize "EFFECT.DURATION.Label"}}</span>
+                    <span class="warning" hidden><i class="fa-duotone fa-triangle-exclamation"></i></span>
+                </label>
+                <div class="form-fields">
+                    {{formInput fields.duration.fields.value value=source.duration.value id=(concat rootId "-duration.value")
+                                aria=(object label=(localize "EFFECT.FIELDS.duration.value.label"))}}
+                    {{formInput fields.duration.fields.units value=source.duration.units id=(concat rootId "-duration.units")
+                                options=durationUnits aria=(object label=(localize "EFFECT.FIELDS.duration.units.label")) localize=true }}
+                </div>
             </div>
         </div>
     </fieldset>

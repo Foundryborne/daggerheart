@@ -52,13 +52,12 @@
                             </div>
                         </div>
 
-                        {{#if actor.system.armor.system.marks}}
+                        {{#if actor.system.armorScore.max}}
                             <div class="slot-section">
                                 <div class="slot-bar">
-                                    {{#times actor.system.armorScore}}
-                                        <a class='armor-slot'
-                                        data-action='toggleArmorSlot' data-actor-id="{{actor.uuid}}" data-item-uuid="{{actor.system.armor.uuid}}" data-value="{{add this 1}}">
-                                        {{#if (gte actor.system.armor.system.marks.value (add this 1))}}
+                                    {{#times actor.system.armorScore.max}}
+                                        <a class='armor-slot' data-action='toggleArmorSlot' data-actor-id="{{actor.id}}" data-value="{{add this 1}}">
+                                        {{#if (gte actor.system.armorScore.value (add this 1))}}
                                             <i class="fa-solid fa-shield"></i>
                                         {{else}}
                                             <i class="fa-solid fa-shield-halved"></i>
@@ -68,7 +67,7 @@
                                 </div>
                                 <div class="slot-label">
                                     <span class="label">{{localize "DAGGERHEART.GENERAL.armorSlots"}}</span>
-                                    <span class="value">{{actor.system.armor.system.marks.value}} / {{actor.system.armorScore}}</span>
+                                    <span class="value">{{actor.system.armorScore.value}} / {{actor.system.armorScore.max}}</span>
                                 </div>
                             </div>
                         {{/if}}

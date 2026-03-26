@@ -108,14 +108,15 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
     getSystemFlagUpdate() {
         const deleteUpdate = Object.keys(this.document._source.flags.daggerheart?.altFormula ?? {}).reduce(
             (acc, formulaKey) => {
-                if (!this.daggerheartFlag.altFormula[formulaKey]) acc.altFormula[`-=${formulaKey}`] = null;
+                if (!this.daggerheartFlag.altFormula[formulaKey]) acc.altFormula[formulaKey] = _del;
 
                 return acc;
             },
             { altFormula: {} }
         );
 
-        return { ['flags.daggerheart']: foundry.utils.mergeObject(this.daggerheartFlag.toObject(), deleteUpdate) };
+        const flagData = this.daggerheartFlag.toObject();
+        return { ...flagData, altFormula: { ...flagData.altFormula, ...deleteUpdate.altFormula } };
     }
 
     static async #addFormula() {
@@ -127,7 +128,7 @@ export default class DhRollTableSheet extends foundry.applications.sheets.RollTa
 
     static async #removeFormula(_event, target) {
         await this.daggerheartFlag.updateSource({
-            [`altFormula.-=${target.dataset.key}`]: null
+            [`altFormula.${target.dataset.key}`]: _del
         });
         this.render({ internalRefresh: true });
     }

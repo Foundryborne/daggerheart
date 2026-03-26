@@ -80,8 +80,8 @@
       },
       "range": "far",
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -107,7 +107,7 @@
             },
             "base": false
           }
-        ],
+        },
         "direct": true
       },
       "img": "icons/magic/symbols/rune-sigil-rough-white-teal.webp",
@@ -352,7 +352,7 @@
               "recovery": null
             },
             "damage": {
-              "parts": [],
+              "parts": {},
               "includeBase": false
             },
             "target": {

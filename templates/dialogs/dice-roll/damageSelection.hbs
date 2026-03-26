@@ -56,8 +56,8 @@
     {{/unless}}
     <div class="damage-section-controls">
         {{#if directDamage}}
-            <select class="roll-mode-select" name="selectedRollMode">
-                {{selectOptions rollModes selected=selectedRollMode valueAttr="action" labelAttr="label" localize=true}}
+            <select class="roll-mode-select" name="selectedMessageMode">
+                {{selectOptions rollModes selected=selectedMessageMode valueAttr="action" labelAttr="label" localize=true}}
             </select>
         {{/if}}
         <button class="submit-btn" data-action="submitRoll">

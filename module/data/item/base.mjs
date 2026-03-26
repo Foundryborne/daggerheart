@@ -222,17 +222,22 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
         const autoSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
         const armorChanged =
-            changed.system?.marks?.value !== undefined && changed.system.marks.value !== this.marks.value;
+            changed.system?.armor?.current !== undefined && changed.system.armor.current !== this.armor.current;
         if (armorChanged && autoSettings.resourceScrollTexts && this.parent.parent?.type === 'character') {
-            const armorData = getScrollTextData(this.parent.parent, changed.system.marks, 'armor');
+            const armorChangeValue = changed.system.armor.current - this.armor.current;
+            const armorData = getScrollTextData(
+                this.parent.parent,
+                { value: armorChangeValue + this.parent.parent.system.armorScore.value },
+                'armor'
+            );
             options.scrollingTextData = [armorData];
         }
 
         if (changed.system?.actions) {
             const triggersToRemove = Object.keys(changed.system.actions).reduce((acc, key) => {
-                if (!changed.system.actions[key]) {
-                    const strippedKey = key.replace('-=', '');
-                    acc.push(...this.actions.get(strippedKey).triggers.map(x => x.trigger));
+                const action = changed.system.actions[key];
+                if (action && Object.keys(action).length === 0) {
+                    acc.push(...this.actions.get(key).triggers.map(x => x.trigger));
                 }
 
                 return acc;

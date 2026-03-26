@@ -35,7 +35,6 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             updateIsAdvantage: this.updateIsAdvantage,
             selectExperience: this.selectExperience,
             toggleReaction: this.toggleReaction,
-            toggleTagTeamRoll: this.toggleTagTeamRoll,
             toggleSelectedEffect: this.toggleSelectedEffect,
             submitRoll: this.submitRoll
         },
@@ -71,8 +70,8 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         context.rollConfig = this.config;
         context.hasRoll = !!this.config.roll;
         context.canRoll = true;
-        context.selectedRollMode = this.config.selectedRollMode ?? game.settings.get('core', 'rollMode');
-        context.rollModes = Object.entries(CONFIG.Dice.rollModes).map(([action, { label, icon }]) => ({
+        context.selectedMessageMode = this.config.selectedMessageMode ?? game.settings.get('core', 'messageMode');
+        context.rollModes = Object.entries(CONFIG.ChatMessage.modes).map(([action, { label, icon }]) => ({
             action,
             label,
             icon
@@ -133,12 +132,6 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             context.reactionOverride = this.reactionOverride;
         }
 
-        const tagTeamSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
-        if (this.actor && tagTeamSetting.members[this.actor.id] && !this.config.skips?.createMessage) {
-            context.activeTagTeamRoll = true;
-            context.tagTeamSelected = this.config.tagTeamSelected;
-        }
-
         return context;
     }
 
@@ -149,10 +142,10 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         }));
     }
 
-    static updateRollConfiguration(event, _, formData) {
+    static updateRollConfiguration(_event, _, formData) {
         const { ...rest } = foundry.utils.expandObject(formData.object);
 
-        this.config.selectedRollMode = rest.selectedRollMode;
+        this.config.selectedMessageMode = rest.selectedMessageMode;
 
         if (this.config.costs) {
             this.config.costs = foundry.utils.mergeObject(this.config.costs, rest.costs);
@@ -213,11 +206,6 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
                   : this.config.actionType;
             this.render();
         }
-    }
-
-    static toggleTagTeamRoll() {
-        this.config.tagTeamSelected = !this.config.tagTeamSelected;
-        this.render();
     }
 
     static toggleSelectedEffect(_event, button) {

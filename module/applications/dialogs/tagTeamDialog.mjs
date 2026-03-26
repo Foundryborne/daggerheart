@@ -1,5 +1,7 @@
+import { MemberData } from '../../data/tagTeamData.mjs';
 import { getCritDamageBonus } from '../../helpers/utils.mjs';
-import { GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+import { emitAsGM, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+import Party from '../sheets/actors/party.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -7,15 +9,23 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
     constructor(party) {
         super();
 
-        this.data = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
         this.party = party;
+        this.partyMembers = party.system.partyMembers
+            .filter(x => Party.DICE_ROLL_ACTOR_TYPES.includes(x.type))
+            .map(member => ({
+                ...member.toObject(),
+                uuid: member.uuid,
+                id: member.id,
+                selected: false
+            }));
+        this.intiator = null;
+        this.openForAllPlayers = true;
 
-        this.setupHooks = Hooks.on(socketEvent.Refresh, ({ refreshType }) => {
-            if (refreshType === RefreshType.TagTeamRoll) {
-                this.data = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
-                this.render();
-            }
-        });
+        this.tabGroups.application = Object.keys(party.system.tagTeam.members).length
+            ? 'tagTeamRoll'
+            : 'initialization';
+
+        Hooks.on(socketEvent.Refresh, this.tagTeamRefresh.bind());
     }
 
     get title() {
@@ -24,324 +34,722 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
+        id: 'TagTeamDialog',
         classes: ['daggerheart', 'views', 'dh-style', 'dialog', 'tag-team-dialog'],
         position: { width: 550, height: 'auto' },
         actions: {
-            removeMember: TagTeamDialog.#removeMember,
-            unlinkMessage: TagTeamDialog.#unlinkMessage,
-            selectMessage: TagTeamDialog.#selectMessage,
-            createTagTeam: TagTeamDialog.#createTagTeam
+            toggleSelectMember: TagTeamDialog.#toggleSelectMember,
+            startTagTeamRoll: TagTeamDialog.#startTagTeamRoll,
+            makeRoll: TagTeamDialog.#makeRoll,
+            removeRoll: TagTeamDialog.#removeRoll,
+            rerollDice: TagTeamDialog.#rerollDice,
+            makeDamageRoll: TagTeamDialog.#makeDamageRoll,
+            removeDamageRoll: TagTeamDialog.#removeDamageRoll,
+            rerollDamageDice: TagTeamDialog.#rerollDamageDice,
+            selectRoll: TagTeamDialog.#selectRoll,
+            cancelRoll: TagTeamDialog.#onCancelRoll,
+            finishRoll: TagTeamDialog.#finishRoll
         },
         form: { handler: this.updateData, submitOnChange: true, closeOnSubmit: false }
     };
 
     static PARTS = {
-        application: {
-            id: 'tag-team-dialog',
-            template: 'systems/daggerheart/templates/dialogs/tagTeamDialog.hbs'
+        initialization: {
+            id: 'initialization',
+            template: 'systems/daggerheart/templates/dialogs/tagTeamDialog/initialization.hbs'
+        },
+        rollSelection: {
+            id: 'rollSelection',
+            template: 'systems/daggerheart/templates/dialogs/tagTeamDialog/rollSelection.hbs'
+        },
+        tagTeamRoll: {
+            id: 'tagTeamRoll',
+            template: 'systems/daggerheart/templates/dialogs/tagTeamDialog/tagTeamRoll.hbs'
         }
     };
 
+    /** @inheritdoc */
+    static TABS = {
+        application: {
+            tabs: [{ id: 'initialization' }, { id: 'tagTeamRoll' }]
+        }
+    };
+
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        for (const element of htmlElement.querySelectorAll('.roll-type-select'))
+            element.addEventListener('change', this.updateRollType.bind(this));
+    }
+
+    _configureRenderParts(options) {
+        const { initialization, rollSelection, tagTeamRoll } = super._configureRenderParts(options);
+        const augmentedParts = { initialization };
+        for (const memberKey of Object.keys(this.party.system.tagTeam.members)) {
+            augmentedParts[memberKey] = {
+                id: memberKey,
+                template: 'systems/daggerheart/templates/dialogs/tagTeamDialog/tagTeamMember.hbs'
+            };
+        }
+        augmentedParts.rollSelection = rollSelection;
+        augmentedParts.tagTeamRoll = tagTeamRoll;
+
+        return augmentedParts;
+    }
+
+    /**@inheritdoc */
+    async _onRender(context, options) {
+        await super._onRender(context, options);
+
+        if (this.element.querySelector('.team-container')) return;
+        const initializationPart = this.element.querySelector('.initialization-container');
+        initializationPart.insertAdjacentHTML('afterend', '<div class="team-container"></div>');
+        const teamContainer = this.element.querySelector('.team-container');
+        for (const memberContainer of this.element.querySelectorAll('.team-member-container'))
+            teamContainer.appendChild(memberContainer);
+    }
+
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
-        context.hopeCost = this.hopeCost;
-        context.data = this.data;
-
-        context.memberOptions = this.party.filter(c => !this.data.members[c.id]);
-        context.selectedCharacterOptions = this.party.filter(c => this.data.members[c.id]);
-
-        context.members = Object.keys(this.data.members).map(id => {
-            const roll = this.data.members[id].messageId ? game.messages.get(this.data.members[id].messageId) : null;
-
-            context.usesDamage =
-                context.usesDamage === undefined
-                    ? roll?.system.hasDamage
-                    : context.usesDamage && roll?.system.hasDamage;
-            return {
-                character: this.party.find(x => x.id === id),
-                selected: this.data.members[id].selected,
-                roll: roll,
-                damageValues: roll
-                    ? Object.keys(roll.system.damage).map(key => ({
-                          key: key,
-                          name: game.i18n.localize(CONFIG.DH.GENERAL.healingTypes[key].label),
-                          total: roll.system.damage[key].total
-                      }))
-                    : null
-            };
+        context.isEditable = this.getIsEditable();
+        context.fields = this.party.system.schema.fields.tagTeam.fields;
+        context.data = this.party.system.tagTeam;
+        context.rollTypes = CONFIG.DH.GENERAL.tagTeamRollTypes;
+        context.traitOptions = CONFIG.DH.ACTOR.abilities;
+        context.members = {};
+        context.allHaveRolled = Object.keys(this.party.system.tagTeam.members).every(key => {
+            const data = this.party.system.tagTeam.members[key];
+            return Boolean(data.rollData);
         });
-
-        const initiatorChar = this.party.find(x => x.id === this.data.initiator.id);
-        context.initiator = {
-            character: initiatorChar,
-            cost: this.data.initiator.cost
-        };
-
-        const selectedMember = Object.values(context.members).find(x => x.selected && x.roll);
-        const selectedIsCritical = selectedMember?.roll?.system?.isCritical;
-        context.selectedData = {
-            result: selectedMember
-                ? `${selectedMember.roll.system.roll.total} ${selectedMember.roll.system.roll.result.label}`
-                : null,
-            damageValues: null
-        };
-
-        for (const member of Object.values(context.members)) {
-            if (!member.roll) continue;
-            if (context.usesDamage) {
-                if (!context.selectedData.damageValues) context.selectedData.damageValues = {};
-                for (let damage of member.damageValues) {
-                    const damageTotal = member.roll.system.isCritical
-                        ? damage.total
-                        : selectedIsCritical
-                          ? damage.total + (await getCritDamageBonus(member.roll.system.damage[damage.key].formula))
-                          : damage.total;
-                    if (context.selectedData.damageValues[damage.key]) {
-                        context.selectedData.damageValues[damage.key].total += damageTotal;
-                    } else {
-                        context.selectedData.damageValues[damage.key] = {
-                            ...foundry.utils.deepClone(damage),
-                            total: damageTotal
-                        };
-                    }
-                }
-            }
-        }
-
-        context.showResult = Object.values(context.members).reduce((enabled, member) => {
-            if (!member.roll) return enabled;
-            if (context.usesDamage) {
-                enabled = enabled === null ? member.damageValues.length > 0 : enabled && member.damageValues.length > 0;
-            } else {
-                enabled = enabled === null ? Boolean(member.roll) : enabled && Boolean(member.roll);
-            }
-
-            return enabled;
-        }, null);
-
-        context.createDisabled =
-            !context.selectedData.result ||
-            !this.data.initiator.id ||
-            Object.keys(this.data.members).length === 0 ||
-            Object.values(context.members).some(x =>
-                context.usesDamage ? !x.damageValues || x.damageValues.length === 0 : !x.roll
-            );
 
         return context;
     }
 
-    async updateSource(update) {
-        await this.data.updateSource(update);
+    async _preparePartContext(partId, context, options) {
+        const partContext = await super._preparePartContext(partId, context, options);
+        partContext.partId = partId;
+        switch (partId) {
+            case 'initialization':
+                partContext.tagTeamFields = this.party.system.schema.fields.tagTeam.fields;
+                partContext.memberSelection = this.partyMembers;
+                const selectedMembers = partContext.memberSelection.filter(x => x.selected);
 
-        if (game.user.isGM) {
-            await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll, this.data.toObject());
-            Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.TagTeamRoll });
-            await game.socket.emit(`system.${CONFIG.DH.id}`, {
-                action: socketEvent.Refresh,
-                data: {
-                    refreshType: RefreshType.TagTeamRoll
+                partContext.allSelected = selectedMembers.length === 2;
+                partContext.canStartTagTeam = partContext.allSelected && this.initiator;
+                partContext.initiator = this.initiator;
+                partContext.initiatorOptions = selectedMembers.map(x => ({ value: x.id, label: x.name }));
+                partContext.initiatorDisabled = !selectedMembers.length;
+                partContext.openForAllPlayers = this.openForAllPlayers;
+
+                break;
+            case 'rollSelection':
+                partContext.members = Object.keys(this.party.system.tagTeam.members).reduce((acc, key) => {
+                    const member = this.party.system.tagTeam.members[key];
+                    acc[key] = { selected: member.selected };
+                    return acc;
+                }, {});
+                break;
+            case 'tagTeamRoll':
+                const selectedRoll = Object.values(this.party.system.tagTeam.members).find(member => member.selected);
+                const critSelected = !selectedRoll
+                    ? undefined
+                    : (selectedRoll?.rollData?.options?.roll?.isCritical ?? false);
+
+                partContext.hintText = await this.getInfoTexts(this.party.system.tagTeam.members);
+                partContext.joinedRoll = await this.getJoinedRoll({
+                    overrideIsCritical: critSelected,
+                    displayVersion: true
+                });
+
+                break;
+        }
+
+        if (Object.keys(this.party.system.tagTeam.members).includes(partId)) {
+            const data = this.party.system.tagTeam.members[partId];
+            const actor = game.actors.get(partId);
+
+            const rollOptions = [];
+            const damageRollOptions = [];
+            for (const item of actor.items) {
+                if (item.system.metadata.hasActions) {
+                    const actions = [...item.system.actions, ...(item.system.attack ? [item.system.attack] : [])];
+                    for (const action of actions) {
+                        if (action.hasRoll) {
+                            const actionItem = {
+                                value: action.uuid,
+                                label: action.name,
+                                group: item.name,
+                                baseAction: action.baseAction
+                            };
+
+                            if (action.hasDamage) damageRollOptions.push(actionItem);
+                            else rollOptions.push(actionItem);
+                        }
+                    }
                 }
-            });
-        } else {
-            await game.socket.emit(`system.${CONFIG.DH.id}`, {
-                action: socketEvent.GMUpdate,
-                data: {
-                    action: GMUpdateEvent.UpdateSetting,
-                    uuid: CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll,
-                    update: this.data.toObject(),
-                    refresh: { refreshType: RefreshType.TagTeamRoll }
-                }
-            });
-        }
-    }
-
-    static async updateData(_event, _element, formData) {
-        const { selectedAddMember, initiator } = foundry.utils.expandObject(formData.object);
-        const update = { initiator: initiator };
-        if (selectedAddMember) {
-            const member = await foundry.utils.fromUuid(selectedAddMember);
-            update[`members.${member.id}`] = { messageId: null };
-        }
-
-        await this.updateSource(update);
-        this.render();
-    }
-
-    static async #removeMember(_, button) {
-        const update = { [`members.-=${button.dataset.characterId}`]: null };
-        if (this.data.initiator.id === button.dataset.characterId) {
-            update.iniator = { id: null };
-        }
-
-        await this.updateSource(update);
-    }
-
-    static async #unlinkMessage(_, button) {
-        await this.updateSource({ [`members.${button.id}.messageId`]: null });
-    }
-
-    static async #selectMessage(_, button) {
-        const member = this.data.members[button.id];
-        const currentSelected = Object.keys(this.data.members).find(key => this.data.members[key].selected);
-        const curretSelectedUpdate =
-            currentSelected && currentSelected !== button.id ? { [`${currentSelected}`]: { selected: false } } : {};
-        await this.updateSource({
-            members: {
-                [`${button.id}`]: { selected: !member.selected },
-                ...curretSelectedUpdate
             }
+
+            const selectedRoll = Object.values(this.party.system.tagTeam.members).find(member => member.selected);
+            const critSelected = !selectedRoll
+                ? undefined
+                : (selectedRoll?.rollData?.options?.roll?.isCritical ?? false);
+
+            const damage = data.rollData?.options?.damage;
+            partContext.hasDamage |= Boolean(damage);
+            const critHitPointsDamage = await this.getCriticalDamage(damage);
+
+            partContext.members[partId] = {
+                ...data,
+                isEditable: actor.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER),
+                key: partId,
+                readyToRoll: Boolean(data.rollChoice),
+                hasRolled: Boolean(data.rollData),
+                rollOptions,
+                damageRollOptions,
+                damage: damage,
+                critDamage: critHitPointsDamage,
+                useCritDamage: critSelected || (critSelected === undefined && data.rollData?.options?.roll?.isCritical)
+            };
+        }
+
+        return partContext;
+    }
+
+    getUpdatingParts(target) {
+        const { initialization, rollSelection, tagTeamRoll } = this.constructor.PARTS;
+        const isInitialization = this.tabGroups.application === initialization.id;
+        const updatingMember = target.closest('.team-member-container')?.dataset?.memberKey;
+
+        return [
+            ...(isInitialization ? [initialization.id] : []),
+            ...(updatingMember ? [updatingMember] : []),
+            ...(!isInitialization ? [rollSelection.id] : []),
+            ...(!isInitialization ? [tagTeamRoll.id] : [])
+        ];
+    }
+
+    static async updateData(event, _, formData) {
+        const { initiator, openForAllPlayers, ...partyData } = foundry.utils.expandObject(formData.object);
+        this.initiator = initiator;
+        this.openForAllPlayers = openForAllPlayers !== undefined ? openForAllPlayers : this.openForAllPlayers;
+
+        this.updatePartyData(partyData, this.getUpdatingParts(event.target));
+    }
+
+    async updatePartyData(update, updatingParts, options = { render: true }) {
+        const gmUpdate = async update => {
+            await this.party.update(update);
+            this.render({ parts: updatingParts });
+            game.socket.emit(`system.${CONFIG.DH.id}`, {
+                action: socketEvent.Refresh,
+                data: { refreshType: RefreshType.TagTeamRoll, action: 'refresh', parts: updatingParts }
+            });
+        };
+
+        await emitAsGM(
+            GMUpdateEvent.UpdateDocument,
+            gmUpdate,
+            update,
+            this.party.uuid,
+            options.render
+                ? { refreshType: RefreshType.TagTeamRoll, action: 'refresh', parts: updatingParts }
+                : undefined
+        );
+    }
+
+    getIsEditable() {
+        return this.party.system.partyMembers.some(actor => {
+            const selected = Boolean(this.party.system.tagTeam.members[actor.id]);
+            return selected && actor.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
         });
     }
 
-    static async #createTagTeam() {
-        const mainRollId = Object.keys(this.data.members).find(key => this.data.members[key].selected);
-        const mainRoll = game.messages.get(this.data.members[mainRollId].messageId);
+    tagTeamRefresh = ({ refreshType, action, parts }) => {
+        if (refreshType !== RefreshType.TagTeamRoll) return;
 
-        if (this.data.initiator.cost) {
-            const initiator = this.party.find(x => x.id === this.data.initiator.id);
-            if (initiator.system.resources.hope.value < this.data.initiator.cost) {
+        switch (action) {
+            case 'startTagTeamRoll':
+                this.tabGroups.application = 'tagTeamRoll';
+                break;
+            case 'refresh':
+                this.render({ parts });
+                break;
+            case 'close':
+                this.close();
+                break;
+        }
+    };
+
+    async close(options = {}) {
+        /* Opt out of Foundry's standard behavior of closing all application windows marked as UI when Escape is pressed */
+        if (options.closeKey) return;
+
+        Hooks.off(socketEvent.Refresh, this.tagTeamRefresh);
+        return super.close(options);
+    }
+
+    checkInitiatorHopeError(initiator) {
+        if (initiator.cost && initiator.memberId) {
+            const actor = game.actors.get(initiator.memberId);
+            if (actor.system.resources.hope.value < initiator.cost) {
                 return ui.notifications.warn(
                     game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.insufficientHope')
                 );
             }
         }
+    }
 
-        const secondaryRolls = Object.keys(this.data.members)
-            .filter(key => key !== mainRollId)
-            .map(key => game.messages.get(this.data.members[key].messageId));
+    //#region Initialization
+    static #toggleSelectMember(_, button) {
+        const member = this.partyMembers.find(x => x.id === button.dataset.id);
+        if (member.selected && this.initiator?.memberId === member.id) this.initiator = null;
 
-        const systemData = foundry.utils.deepClone(mainRoll).system.toObject();
-        const criticalRoll = systemData.roll.isCritical;
-        for (let roll of secondaryRolls) {
-            if (roll.system.hasDamage) {
-                for (let key in roll.system.damage) {
-                    var damage = roll.system.damage[key];
-                    const damageTotal =
-                        !roll.system.isCritical && criticalRoll
-                            ? (await getCritDamageBonus(damage.formula)) + damage.total
-                            : damage.total;
-                    const updatedDamageParts = damage.parts;
-                    if (systemData.damage[key]) {
-                        if (!roll.system.isCritical && criticalRoll) {
-                            for (let part of updatedDamageParts) {
-                                const criticalDamage = await getCritDamageBonus(part.formula);
-                                if (criticalDamage) {
-                                    damage.formula = `${damage.formula} + ${criticalDamage}`;
-                                    part.formula = `${part.formula} + ${criticalDamage}`;
-                                    part.modifierTotal = part.modifierTotal + criticalDamage;
-                                    part.total += criticalDamage;
-                                    part.roll = new Roll(part.formula);
-                                }
-                            }
-                        }
+        member.selected = !member.selected;
+        this.render();
+    }
 
-                        systemData.damage[key].formula = `${systemData.damage[key].formula} + ${damage.formula}`;
-                        systemData.damage[key].total += damageTotal;
-                        systemData.damage[key].parts = [...systemData.damage[key].parts, ...updatedDamageParts];
-                    } else {
-                        systemData.damage[key] = { ...damage, total: damageTotal, parts: updatedDamageParts };
+    static async #startTagTeamRoll() {
+        const error = this.checkInitiatorHopeError(this.initiator);
+        if (error) return error;
+
+        await this.party.update({
+            'system.tagTeam': _replace(
+                new game.system.api.data.TagTeamData({
+                    ...this.party.system.tagTeam.toObject(),
+                    initiator: this.initiator,
+                    members: this.partyMembers.reduce((acc, member) => {
+                        if (member.selected)
+                            acc[member.id] = {
+                                name: member.name,
+                                img: member.img,
+                                rollType: CONFIG.DH.GENERAL.tagTeamRollTypes.trait.id
+                            };
+                        return acc;
+                    }, {})
+                })
+            )
+        });
+
+        const hookData = { openForAllPlayers: this.openForAllPlayers, partyId: this.party.id };
+        Hooks.callAll(CONFIG.DH.HOOKS.hooksConfig.tagTeamStart, hookData);
+        game.socket.emit(`system.${CONFIG.DH.id}`, {
+            action: socketEvent.TagTeamStart,
+            data: hookData
+        });
+
+        this.render();
+    }
+    //#endregion
+    //#region Tag Team Roll
+
+    async getInfoTexts(members) {
+        let rollsAreFinished = true;
+        let rollIsSelected = false;
+        for (const member of Object.values(members)) {
+            const rollFinished = Boolean(member.rollData);
+            const damageFinished =
+                member.rollData?.options?.hasDamage !== undefined ? member.rollData.options.damage : true;
+
+            rollsAreFinished = rollsAreFinished && rollFinished && damageFinished;
+            rollIsSelected = rollIsSelected || member.selected;
+        }
+
+        let hint = null;
+        if (!rollsAreFinished) hint = game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.hints.completeRolls');
+        else if (!rollIsSelected) hint = game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.hints.selectRoll');
+
+        return hint;
+    }
+
+    async updateRollType(event) {
+        this.updatePartyData(
+            {
+                [`system.tagTeam.members.${event.target.dataset.member}`]: {
+                    rollType: event.target.value,
+                    rollChoice: null
+                }
+            },
+            this.getUpdatingParts(event.target)
+        );
+    }
+
+    static async #removeRoll(_, button) {
+        this.updatePartyData(
+            {
+                [`system.tagTeam.members.${button.dataset.member}`]: {
+                    rollData: null,
+                    rollChoice: null,
+                    selected: false
+                }
+            },
+            this.getUpdatingParts(button)
+        );
+    }
+
+    static async #makeRoll(event, button) {
+        const { member } = button.dataset;
+
+        let result = null;
+        switch (this.party.system.tagTeam.members[member].rollType) {
+            case CONFIG.DH.GENERAL.tagTeamRollTypes.trait.id:
+                result = await this.makeTraitRoll(member);
+                break;
+            case CONFIG.DH.GENERAL.tagTeamRollTypes.ability.id:
+            case CONFIG.DH.GENERAL.tagTeamRollTypes.damageAbility.id:
+                result = await this.makeAbilityRoll(event, member);
+                break;
+        }
+
+        if (!result) return;
+
+        if (!game.modules.get('dice-so-nice')?.active) foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
+
+        const rollData = result.messageRoll.toJSON();
+        delete rollData.options.messageRoll;
+        this.updatePartyData(
+            {
+                [`system.tagTeam.members.${member}.rollData`]: rollData
+            },
+            this.getUpdatingParts(button)
+        );
+    }
+
+    async makeTraitRoll(memberKey) {
+        const actor = game.actors.find(x => x.id === memberKey);
+        if (!actor) return;
+
+        const memberData = this.party.system.tagTeam.members[memberKey];
+        return await actor.rollTrait(memberData.rollChoice, {
+            skips: {
+                createMessage: true,
+                resources: true,
+                triggers: true
+            }
+        });
+    }
+
+    async makeAbilityRoll(event, memberKey) {
+        const actor = game.actors.find(x => x.id === memberKey);
+        if (!actor) return;
+
+        const memberData = this.party.system.tagTeam.members[memberKey];
+        const action = await foundry.utils.fromUuid(memberData.rollChoice);
+
+        return await action.use(event, {
+            skips: {
+                createMessage: true,
+                resources: true,
+                triggers: true
+            }
+        });
+    }
+
+    static async #rerollDice(_, button) {
+        const { member, diceType } = button.dataset;
+        const memberData = this.party.system.tagTeam.members[member];
+
+        const dieIndex = diceType === 'hope' ? 0 : diceType === 'fear' ? 2 : 4;
+
+        const { parsedRoll, newRoll } = await game.system.api.dice.DualityRoll.reroll(
+            memberData.rollData,
+            dieIndex,
+            diceType
+        );
+        const rollData = parsedRoll.toJSON();
+        this.updatePartyData(
+            {
+                [`system.tagTeam.members.${member}.rollData`]: {
+                    ...rollData,
+                    options: {
+                        ...rollData.options,
+                        roll: newRoll
                     }
                 }
+            },
+            this.getUpdatingParts(button)
+        );
+    }
+
+    static async #makeDamageRoll(event, button) {
+        const { memberKey } = button.dataset;
+        const actor = game.actors.find(x => x.id === memberKey);
+        if (!actor) return;
+
+        const memberData = this.party.system.tagTeam.members[memberKey];
+        const action = await foundry.utils.fromUuid(memberData.rollChoice);
+        const config = {
+            ...memberData.rollData.options,
+            dialog: {
+                configure: !event.shiftKey
+            },
+            skips: {
+                createMessage: true,
+                resources: true,
+                triggers: true
+            }
+        };
+
+        await action.workflow.get('damage').execute(config, null, true);
+        if (!config.damage) return;
+
+        const current = this.party.system.tagTeam.members[memberKey].rollData;
+        await this.updatePartyData(
+            {
+                [`system.tagTeam.members.${memberKey}.rollData`]: {
+                    ...current,
+                    options: {
+                        ...current.options,
+                        damage: config.damage
+                    }
+                }
+            },
+            this.getUpdatingParts(button)
+        );
+    }
+
+    static async #removeDamageRoll(_, button) {
+        const { memberKey } = button.dataset;
+        const current = this.party.system.tagTeam.members[memberKey].rollData;
+        this.updatePartyData(
+            {
+                [`system.tagTeam.members.${memberKey}.rollData`]: {
+                    ...current,
+                    options: {
+                        ...current.options,
+                        damage: null
+                    }
+                }
+            },
+            this.getUpdatingParts(button)
+        );
+    }
+
+    static async #rerollDamageDice(_, button) {
+        const { memberKey, damageKey, part, dice } = button.dataset;
+        const memberData = this.party.system.tagTeam.members[memberKey];
+        const partData = memberData.rollData.options.damage[damageKey].parts[part];
+        const activeDiceResultKey = Object.keys(partData.dice[dice].results).find(
+            index => partData.dice[dice].results[index].active
+        );
+        const { parsedRoll, rerolledDice } = await game.system.api.dice.DamageRoll.reroll(
+            partData,
+            dice,
+            activeDiceResultKey
+        );
+
+        const rollData = this.party.system.tagTeam.members[memberKey].rollData;
+        rollData.options.damage[damageKey].parts = rollData.options.damage[damageKey].parts.map((damagePart, index) => {
+            if (index !== Number.parseInt(part)) return damagePart;
+
+            return {
+                ...damagePart,
+                total: parsedRoll.total,
+                dice: rerolledDice
+            };
+        });
+        rollData.options.damage[damageKey].total = rollData.options.damage[damageKey].parts.reduce((acc, part) => {
+            acc += part.total;
+            return acc;
+        }, 0);
+
+        this.updatePartyData(
+            {
+                [`system.tagTeam.members.${memberKey}.rollData`]: rollData
+            },
+            this.getUpdatingParts(button)
+        );
+    }
+
+    async getCriticalDamage(damage) {
+        const newDamage = foundry.utils.deepClone(damage);
+        for (let key in newDamage) {
+            var damage = newDamage[key];
+            damage.formula = '';
+            damage.total = 0;
+
+            for (let part of damage.parts) {
+                const criticalDamage = await getCritDamageBonus(part.formula);
+                if (criticalDamage) {
+                    part.modifierTotal += criticalDamage;
+                    part.total += criticalDamage;
+                    part.formula = `${part.dice.map(x => x.formula).join(' + ')} + ${part.modifierTotal}`;
+                    part.roll = new Roll(part.formula);
+                }
+
+                damage.formula = [damage.formula, part.formula].filter(x => x).join(' + ');
+                damage.total += part.total;
             }
         }
 
-        systemData.title = game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.chatMessageRollTitle');
+        return newDamage;
+    }
+
+    async getNonCriticalDamage(config) {
+        const newDamage = foundry.utils.deepClone(config.damage);
+        for (let key in newDamage) {
+            var damage = newDamage[key];
+            damage.formula = '';
+            damage.total = 0;
+
+            for (let part of damage.parts) {
+                const critDamageBonus = await getCritDamageBonus(part.formula);
+                part.modifierTotal -= critDamageBonus;
+                part.total -= critDamageBonus;
+                part.formula = `${part.dice.map(x => x.formula).join(' + ')} + ${part.modifierTotal}`;
+                part.roll = new Roll(part.formula);
+
+                damage.formula = [damage.formula, part.formula].filter(x => x).join(' + ');
+                damage.total += part.total;
+            }
+        }
+
+        return newDamage;
+    }
+
+    static async #selectRoll(_, button) {
+        const { memberKey } = button.dataset;
+        this.updatePartyData(
+            {
+                [`system.tagTeam.members`]: Object.entries(this.party.system.tagTeam.members).reduce(
+                    (acc, [key, member]) => {
+                        acc[key] = { selected: key === memberKey ? !member.selected : false };
+                        return acc;
+                    },
+                    {}
+                )
+            },
+            this.getUpdatingParts(button)
+        );
+    }
+
+    async getJoinedRoll({ overrideIsCritical, displayVersion } = {}) {
+        const memberValues = Object.values(this.party.system.tagTeam.members);
+        const selectedRoll = memberValues.find(x => x.selected);
+        let baseMainRoll = selectedRoll ?? memberValues[0];
+        let baseSecondaryRoll = selectedRoll
+            ? memberValues.find(x => !x.selected)
+            : memberValues.length > 1
+              ? memberValues[1]
+              : null;
+
+        if (!baseMainRoll?.rollData || !baseSecondaryRoll) return null;
+
+        const mainRoll = new MemberData(baseMainRoll.toObject());
+        const secondaryRollData = new MemberData(baseSecondaryRoll.toObject()).rollData;
+        const systemData = mainRoll.rollData.options;
+        const isCritical = overrideIsCritical ?? systemData.roll.isCritical;
+        if (isCritical) systemData.damage = await this.getCriticalDamage(systemData.damage);
+
+        if (secondaryRollData?.options.hasDamage) {
+            const secondaryDamage = (displayVersion ? overrideIsCritical : isCritical)
+                ? await this.getCriticalDamage(secondaryRollData.options.damage)
+                : secondaryRollData.options.damage;
+            if (systemData.damage) {
+                for (const key in secondaryDamage) {
+                    const damage = secondaryDamage[key];
+                    systemData.damage[key].formula = [systemData.damage[key].formula, damage.formula]
+                        .filter(x => x)
+                        .join(' + ');
+                    systemData.damage[key].total += damage.total;
+                    systemData.damage[key].parts.push(...damage.parts);
+                }
+            } else {
+                systemData.damage = secondaryDamage;
+            }
+        }
+
+        return mainRoll;
+    }
+
+    static async #onCancelRoll(_event, _button, options = { confirm: true }) {
+        this.cancelRoll(options);
+    }
+
+    async cancelRoll(options = { confirm: true }) {
+        if (options.confirm) {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.cancelConfirmTitle')
+                },
+                content: game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.cancelConfirmText')
+            });
+
+            if (!confirmed) return;
+        }
+
+        await this.updatePartyData(
+            {
+                'system.tagTeam': {
+                    initiator: null,
+                    members: _replace({})
+                }
+            },
+            [],
+            { render: false }
+        );
+
+        this.close();
+        game.socket.emit(`system.${CONFIG.DH.id}`, {
+            action: socketEvent.Refresh,
+            data: { refreshType: RefreshType.TagTeamRoll, action: 'close' }
+        });
+    }
+
+    static async #finishRoll() {
+        const error = this.checkInitiatorHopeError(this.party.system.tagTeam.initiator);
+        if (error) return error;
+
+        const mainRoll = (await this.getJoinedRoll()).rollData;
+
+        const mainActor = this.party.system.partyMembers.find(x => x.uuid === mainRoll.options.source.actor);
+        mainRoll.options.title = game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.chatMessageRollTitle');
         const cls = getDocumentClass('ChatMessage'),
             msgData = {
                 type: 'dualityRoll',
                 user: game.user.id,
                 title: game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.title'),
-                speaker: cls.getSpeaker({ actor: this.party.find(x => x.id === mainRollId) }),
-                system: systemData,
-                rolls: mainRoll.rolls,
+                speaker: cls.getSpeaker({ actor: mainActor }),
+                system: mainRoll.options,
+                rolls: [mainRoll],
                 sound: null,
                 flags: { core: { RollTable: true } }
             };
 
         await cls.create(msgData);
 
+        /* Handle resource updates from the finished TagTeamRoll */
+        const tagTeamData = this.party.system.tagTeam;
         const fearUpdate = { key: 'fear', value: null, total: null, enabled: true };
-        for (let memberId of Object.keys(this.data.members)) {
+        for (let memberId in tagTeamData.members) {
             const resourceUpdates = [];
-            const rollGivesHope = systemData.roll.isCritical || systemData.roll.result.duality === 1;
-            if (memberId === this.data.initiator.id) {
-                const value = this.data.initiator.cost
+            const rollGivesHope = mainRoll.options.roll.isCritical || mainRoll.options.roll.result.duality === 1;
+            if (memberId === tagTeamData.initiator.memberId) {
+                const value = tagTeamData.initiator.cost
                     ? rollGivesHope
-                        ? 1 - this.data.initiator.cost
-                        : -this.data.initiator.cost
+                        ? 1 - tagTeamData.initiator.cost
+                        : -tagTeamData.initiator.cost
                     : 1;
                 resourceUpdates.push({ key: 'hope', value: value, total: -value, enabled: true });
             } else if (rollGivesHope) {
                 resourceUpdates.push({ key: 'hope', value: 1, total: -1, enabled: true });
             }
-            if (systemData.roll.isCritical) resourceUpdates.push({ key: 'stress', value: -1, total: 1, enabled: true });
-            if (systemData.roll.result.duality === -1) {
+            if (mainRoll.options.roll.isCritical)
+                resourceUpdates.push({ key: 'stress', value: -1, total: 1, enabled: true });
+            if (mainRoll.options.roll.result.duality === -1) {
                 fearUpdate.value = fearUpdate.value === null ? 1 : fearUpdate.value + 1;
                 fearUpdate.total = fearUpdate.total === null ? -1 : fearUpdate.total - 1;
             }
 
-            this.party.find(x => x.id === memberId).modifyResource(resourceUpdates);
+            game.actors.get(memberId).modifyResource(resourceUpdates);
         }
 
         if (fearUpdate.value) {
-            this.party.find(x => x.id === mainRollId).modifyResource([fearUpdate]);
+            mainActor.modifyResource([fearUpdate]);
         }
 
-        /* Improve by fetching default from schema */
-        const update = { members: [], initiator: { id: null, cost: 3 } };
-        if (game.user.isGM) {
-            await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll, update);
-            Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.TagTeamRoll });
-            await game.socket.emit(`system.${CONFIG.DH.id}`, {
-                action: socketEvent.Refresh,
-                data: {
-                    refreshType: RefreshType.TagTeamRoll
-                }
-            });
-        } else {
-            await game.socket.emit(`system.${CONFIG.DH.id}`, {
-                action: socketEvent.GMUpdate,
-                data: {
-                    action: GMUpdateEvent.UpdateSetting,
-                    uuid: CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll,
-                    update: update,
-                    refresh: { refreshType: RefreshType.TagTeamRoll }
-                }
-            });
-        }
+        /* Fin */
+        this.cancelRoll({ confirm: false });
     }
 
-    static async assignRoll(char, message) {
-        const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
-        const character = settings.members[char.id];
-        if (!character) return;
-
-        await settings.updateSource({ [`members.${char.id}.messageId`]: message.id });
-
-        if (game.user.isGM) {
-            await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll, settings);
-            Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.TagTeamRoll });
-            await game.socket.emit(`system.${CONFIG.DH.id}`, {
-                action: socketEvent.Refresh,
-                data: {
-                    refreshType: RefreshType.TagTeamRoll
-                }
-            });
-        } else {
-            await game.socket.emit(`system.${CONFIG.DH.id}`, {
-                action: socketEvent.GMUpdate,
-                data: {
-                    action: GMUpdateEvent.UpdateSetting,
-                    uuid: CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll,
-                    update: settings,
-                    refresh: { refreshType: RefreshType.TagTeamRoll }
-                }
-            });
-        }
-    }
-
-    async close(options = {}) {
-        Hooks.off(socketEvent.Refresh, this.setupHooks);
-        await super.close(options);
-    }
+    //#endregion
 }

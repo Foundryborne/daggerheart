@@ -52,10 +52,6 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         }
     };
 
-    get element() {
-        return document.body.querySelector('.daggerheart.dh-style.countdowns');
-    }
-
     /**@inheritdoc */
     async _renderFrame(options) {
         const frame = await super._renderFrame(options);
@@ -68,6 +64,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
 
         const header = frame.querySelector('.window-header');
         header.querySelector('button[data-action="close"]').remove();
+        header.querySelector('button[data-action="toggleControls"]').remove();
 
         if (game.user.isGM) {
             const editTooltip = game.i18n.localize('DAGGERHEART.APPLICATIONS.CountdownEdit.editTitle');
@@ -278,10 +275,8 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                 return acc;
             }, {})
         };
-        await emitAsGM(GMUpdateEvent.UpdateCountdowns,
-            DhCountdowns.gmSetSetting.bind(settings),
-            settings, null, {
-                refreshType: RefreshType.Countdown
+        await emitAsGM(GMUpdateEvent.UpdateCountdowns, DhCountdowns.gmSetSetting.bind(settings), settings, null, {
+            refreshType: RefreshType.Countdown
         });
     }
 

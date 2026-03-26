@@ -5,6 +5,10 @@
   "_id": "bcQUh4QG3qFX0Vx6",
   "img": "icons/equipment/chest/breastplate-layered-gilded-orange.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 6
+    },
     "description": "",
     "actions": {
       "L8mHf4A8SylyxsMH": {
@@ -20,8 +24,8 @@
           "amount": null
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "stress": {
               "applyTo": "stress",
               "value": {
                 "custom": {
@@ -46,7 +50,7 @@
               "base": false,
               "type": []
             }
-          ],
+          },
           "includeBase": false
         },
         "_id": "L8mHf4A8SylyxsMH",

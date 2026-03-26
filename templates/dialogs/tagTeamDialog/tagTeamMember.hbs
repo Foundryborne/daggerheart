@@ -1,0 +1,126 @@
+
+    {{#with (lookup members partId)}}
+         <fieldset class="team-member-container {{#if @root.allHaveRolled}}select-padding{{/if}} {{#unless isEditable}}inactive{{/unless}}" data-member-key="{{@root.partId}}">
+            <div class="data-container">
+                <div class="member-info">
+                    <img src="{{img}}" />
+                    <span class="member-name">{{name}}</span>
+                </div>
+                <div class="roll-setup">
+                    <div class="form-group">
+                        <div class="form-fields">
+                            <label>{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.rollType"}}</label>
+                            <select class="roll-type-select" data-member="{{@root.partId}}" {{#if hasRolled}}disabled{{/if}}>
+                                {{selectOptions ../rollTypes selected=rollType localize=true}}
+                            </select>
+                        </div>
+                    </div>
+                    {{#if (or (not rollType) (eq rollType 'trait'))}}
+                        <div class="form-group">
+                            <div class="form-fields">
+                                <label>{{localize "DAGGERHEART.GENERAL.Trait.single"}}</label>
+                                <select name="{{concat "system.tagTeam.members." @root.partId ".rollChoice"}}" {{#if hasRolled}}disabled{{/if}}>
+                                    {{selectOptions ../traitOptions selected=rollChoice localize=true blank=""}}
+                                </select>
+                            </div>
+                        </div>
+                    {{else if (eq rollType 'damageAbility')}}
+                        <div class="form-group">
+                            <div class="form-fields">
+                                <label>{{localize "DAGGERHEART.CONFIG.TagTeamRollTypes.damageAbility"}}</label>
+                                <select name="{{concat "system.tagTeam.members." @root.partId ".rollChoice"}}" {{#if hasRolled}}disabled{{/if}}>
+                                    {{selectOptions damageRollOptions selected=rollChoice localize=true blank=""}}
+                                </select>
+                            </div>
+                        </div>
+                    {{else}}
+                        <div class="form-group">
+                            <div class="form-fields">
+                                <label>{{localize "DAGGERHEART.GENERAL.Ability.single"}}</label>
+                                <select name="{{concat "system.tagTeam.members." @root.partId ".rollChoice"}}" {{#if hasRolled}}disabled{{/if}}>
+                                    {{selectOptions rollOptions selected=rollChoice localize=true blank=""}}
+                                </select>
+                            </div>
+                        </div>
+                    {{/if}}
+                </div>
+
+                {{#if readyToRoll}}
+                    <div class="roll-container">
+                        <span class="roll-title">
+                            {{localize "DAGGERHEART.GENERAL.roll"}}
+                            <div class="roll-tools">
+                                <a class="roll-button" data-action="makeRoll" data-member="{{@root.partId}}">
+                                    <img src="systems/daggerheart/assets/icons/dice/hope/d12.svg" />
+                                </a>
+
+                                {{#if hasRolled}}
+                                    <a class="delete-button" data-action="removeRoll" data-member="{{@root.partId}}">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                {{/if}}
+                            </div>
+                        </span>
+
+                        {{#if rollData}}
+                            {{#with rollData.options.roll}}
+                                <div class="roll-data {{#if this.isCritical}}critical{{else}}{{#if (eq this.result.duality 1)}}hope{{else}}fear{{/if}}{{/if}}">
+                                    <div class="duality-label">{{this.total}} {{localize "DAGGERHEART.GENERAL.withThing" thing=this.result.label}}</div>
+                                    <div class="roll-dice-container">
+                                        <a class="roll-dice" data-action="rerollDice" data-member="{{@root.partId}}" data-dice-type="hope">
+                                            <span class="dice-label">{{this.hope.value}}</span>
+                                            <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/" this.hope.dice ".svg"}}" />
+                                        </a>
+                                        <span class="roll-operator">+</span>
+                                        <a class="roll-dice" data-action="rerollDice" data-member="{{@root.partId}}" data-dice-type="fear">
+                                            <span class="dice-label">{{this.fear.value}}</span>
+                                            <img src="{{concat "systems/daggerheart/assets/icons/dice/fear/" this.fear.dice ".svg"}}" />
+                                        </a>
+                                        {{#if this.advantage.type}}
+                                            <span class="roll-operator">{{#if (eq this.advantage.type 1)}}+{{else}}-{{/if}}</span>
+                                            <span class="roll-dice">
+                                                <span class="dice-label">{{this.advantage.value}}</span>
+                                                <img src="{{concat "systems/daggerheart/assets/icons/dice/" (ifThen (eq this.advantage.type 1) "adv/" "disadv/") this.advantage.dice ".svg"}}" />
+                                            </span>
+                                        {{/if}}
+                                        <span class="roll-operator">{{#if (gte this.modifierTotal 0)}}+{{else}}-{{/if}}</span>
+                                        <span class="roll-value">{{positive this.modifierTotal}}</span>
+                                    </div>
+                                </div>
+                            {{/with}}
+                        {{else}}
+                            <span class="hint">{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.makeYourRoll"}}</span>
+                        {{/if}}
+                    </div>
+                {{/if}}
+
+                {{#if rollData.options.hasDamage}}
+                    <div class="roll-container">
+                        <span class="roll-title">
+                            {{localize "DAGGERHEART.GENERAL.damage"}}
+                            <div class="roll-tools">
+                                <a class="roll-button" data-action="makeDamageRoll" data-member-key="{{@root.partId}}" {{#unless readyToRoll}}disabled{{/unless}}>
+                                    <img src="systems/daggerheart/assets/icons/dice/hope/d20.svg" />
+                                </a>
+
+                                {{#if damage}}
+                                    <a class="delete-button" data-action="removeDamageRoll" data-member-key="{{@root.partId}}" {{#unless rollData.options.damage}}disabled{{/unless}}>
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                {{/if}}
+                            </div>
+                        </span>
+                        {{#if damage}}
+                            {{#if useCritDamage}}
+                                {{> "systems/daggerheart/templates/dialogs/tagTeamDialog/parts/tagTeamDamageParts.hbs" damage=critDamage isCritical=true }}
+                            {{else}}
+                                {{> "systems/daggerheart/templates/dialogs/tagTeamDialog/parts/tagTeamDamageParts.hbs" damage=damage }}
+                            {{/if}}
+                        {{else}}
+                            <span class="hint">{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.makeYourRoll"}}</span>
+                        {{/if}}
+                    </div>
+                {{/if}}
+            </div>
+        </fieldset>
+    {{/with}}

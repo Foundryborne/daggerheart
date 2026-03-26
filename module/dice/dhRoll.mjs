@@ -21,6 +21,9 @@ export default class DHRoll extends Roll {
     static async build(config = {}, message = {}) {
         const roll = await this.buildConfigure(config, message);
         if (!roll) return;
+
+        if (config.skips?.createMessage) config.messageRoll = roll;
+
         await this.buildEvaluate(roll, config, (message = {}));
         await this.buildPost(roll, config, (message = {}));
         return config;
@@ -29,12 +32,6 @@ export default class DHRoll extends Roll {
     static async buildConfigure(config = {}, message = {}) {
         config.hooks = [...this.getHooks(), ''];
         config.dialog ??= {};
-
-        const actorIdSplit = config.source?.actor?.split('.');
-        if (actorIdSplit) {
-            const tagTeamSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
-            config.tagTeamSelected = Boolean(tagTeamSettings.members[actorIdSplit[actorIdSplit.length - 1]]);
-        }
 
         for (const hook of config.hooks) {
             if (Hooks.call(`${CONFIG.DH.id}.preRoll${hook.capitalize()}`, config, message) === false) return null;
@@ -120,10 +117,10 @@ export default class DHRoll extends Roll {
                 rolls: [roll]
             };
 
-        config.selectedRollMode ??= game.settings.get('core', 'rollMode');
+        config.selectedMessageMode ??= game.settings.get('core', 'messageMode');
 
         if (roll._evaluated) {
-            const message = await cls.create(msgData, { rollMode: config.selectedRollMode });
+            const message = await cls.create(msgData, { messageMode: config.selectedMessageMode });
 
             if (config.tagTeamSelected) {
                 game.system.api.applications.dialogs.TagTeamDialog.assignRoll(message.speakerActor, message);
@@ -269,12 +266,12 @@ export default class DHRoll extends Roll {
         const changeKeys = this.getActionChangeKeys();
         return (
             this.options.effects?.reduce((acc, effect) => {
-                if (effect.changes.some(x => changeKeys.some(key => x.key.includes(key)))) {
+                if (effect.system.changes.some(x => changeKeys.some(key => x.key.includes(key)))) {
                     acc[effect.id] = {
                         id: effect.id,
                         name: effect.name,
                         description: effect.description,
-                        changes: effect.changes,
+                        changes: effect.system.changes,
                         origEffect: effect,
                         selected: !effect.disabled
                     };

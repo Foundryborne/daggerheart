@@ -77,8 +77,8 @@ export default class CharacterResetDialog extends HandlebarsApplicationMixin(App
 
         if (!this.data.optional.portrait.keep) {
             foundry.utils.setProperty(update, 'img', this.actor.schema.fields.img.initial(this.actor));
-            foundry.utils.setProperty(update, 'prototypeToken.==texture', {});
-            foundry.utils.setProperty(update, 'prototypeToken.==ring', {});
+            foundry.utils.setProperty(update, 'prototypeToken.texture', _replace({}));
+            foundry.utils.setProperty(update, 'prototypeToken.ring', _replace({}));
         }
 
         if (this.data.optional.biography.keep)
@@ -89,7 +89,7 @@ export default class CharacterResetDialog extends HandlebarsApplicationMixin(App
         const { system, ...rest } = update;
         await this.actor.update({
             ...rest,
-            '==system': system ?? {}
+            system: _replace(system ?? {})
         });
 
         const inventoryItemTypes = ['weapon', 'armor', 'consumable', 'loot'];

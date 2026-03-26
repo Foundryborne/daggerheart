@@ -80,8 +80,8 @@
         "type": "attack"
       },
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -107,7 +107,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "range": "melee",
       "type": "attack",
@@ -276,8 +276,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -301,7 +301,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {
@@ -359,18 +359,18 @@
               "type": "withinRange",
               "target": "hostile",
               "range": "melee"
+            },
+            "changes": [],
+            "duration": {
+              "type": "temporary"
             }
           },
-          "changes": [],
           "disabled": false,
           "duration": {
-            "startTime": null,
-            "combat": null,
-            "seconds": null,
-            "rounds": null,
-            "turns": null,
-            "startRound": null,
-            "startTurn": null
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
           },
           "description": "",
           "tint": "#ffffff",
@@ -382,6 +382,16 @@
           "_stats": {
             "compendiumSource": null
           },
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "showIcon": 1,
+          "folder": null,
           "_key": "!actors.items.effects!3aAS2Qm3R6cgaYfE.tQgxiSS48TJ3X1Dl.6UgMuuJ8ZygbCsDh"
         }
       ],
@@ -425,8 +435,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -452,7 +462,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {
@@ -563,8 +573,8 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "fear": {
                   "value": {
                     "custom": {
                       "enabled": true,
@@ -590,7 +600,7 @@
                   },
                   "type": []
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {

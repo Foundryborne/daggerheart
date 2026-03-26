@@ -24,8 +24,8 @@
           "recovery": null
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "hitPoints": {
               "resultBased": false,
               "value": {
                 "custom": {
@@ -51,7 +51,7 @@
                 }
               }
             }
-          ],
+          },
           "includeBase": false
         },
         "target": {
@@ -105,7 +105,7 @@
         },
         "effects": [
           {
-            "_id": "LdcT1nrkd5ORCU4n",
+            "_id": "ptYT10JZ2WJHvFMd",
             "onSave": false
           }
         ],
@@ -131,7 +131,7 @@
           "recovery": null
         },
         "damage": {
-          "parts": [],
+          "parts": {},
           "includeBase": false
         },
         "target": {
@@ -177,8 +177,8 @@
           "recovery": null
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "hitPoints": {
               "resultBased": false,
               "value": {
                 "custom": {
@@ -204,7 +204,7 @@
                 }
               }
             }
-          ],
+          },
           "includeBase": false
         },
         "target": {
@@ -252,7 +252,7 @@
       "img": "icons/magic/defensive/shield-barrier-glowing-triangle-blue.webp",
       "origin": "Compendium.daggerheart.domains.Item.YtZzYBtR0yLPPA93",
       "transfer": false,
-      "_id": "LdcT1nrkd5ORCU4n",
+      "_id": "ptYT10JZ2WJHvFMd",
       "type": "base",
       "system": {
         "rangeDependence": {
@@ -260,25 +260,27 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
+        },
+        "changes": [
+          {
+            "type": "armor",
+            "phase": "initial",
+            "priority": 20,
+            "value": {
+              "max": "1"
+            }
+          }
+        ],
+        "duration": {
+          "type": "shortRest"
         }
       },
-      "changes": [
-        {
-          "key": "system.armorScore",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>+1 bonus to your Armor Score until your next rest, or the caster cast's Tava’s Armor again.</p>",
       "tint": "#ffffff",
@@ -288,7 +290,17 @@
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!items.effects!YtZzYBtR0yLPPA93.LdcT1nrkd5ORCU4n"
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
+      "_key": "!items.effects!YtZzYBtR0yLPPA93.ptYT10JZ2WJHvFMd"
     }
   ],
   "ownership": {

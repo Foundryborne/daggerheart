@@ -74,8 +74,8 @@
       },
       "range": "close",
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -101,7 +101,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "img": "icons/magic/light/beam-rays-magenta.webp",
       "type": "attack",
@@ -383,8 +383,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -410,7 +410,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {
@@ -483,8 +483,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "stress": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -508,7 +508,7 @@
                   },
                   "type": []
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {

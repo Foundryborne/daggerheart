@@ -95,7 +95,7 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         });
         if (!confirmed) return;
 
-        await this.actor.update({ [`system.experiences.-=${target.dataset.experience}`]: null });
+        await this.actor.update({ [`system.experiences.${target.dataset.experience}`]: _del });
     }
 
     async _onDragStart(event) {

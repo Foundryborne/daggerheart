@@ -80,8 +80,8 @@
         "type": "attack"
       },
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -107,7 +107,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "range": "far",
       "type": "attack",
@@ -343,8 +343,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -370,7 +370,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {

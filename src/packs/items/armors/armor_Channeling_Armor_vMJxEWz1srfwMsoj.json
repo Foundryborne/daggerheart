@@ -5,6 +5,10 @@
   "_id": "vMJxEWz1srfwMsoj",
   "img": "icons/equipment/chest/robe-collared-blue.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 5
+    },
     "description": "",
     "actions": {},
     "attached": [],

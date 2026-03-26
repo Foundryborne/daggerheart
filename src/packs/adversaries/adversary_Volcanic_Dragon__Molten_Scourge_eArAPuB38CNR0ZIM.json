@@ -67,8 +67,8 @@
         "useDefault": false
       },
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -94,7 +94,7 @@
             },
             "base": false
           }
-        ],
+        },
         "includeBase": false
       },
       "description": "",
@@ -359,8 +359,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -386,7 +386,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {
@@ -459,8 +459,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -486,7 +486,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {
@@ -566,7 +566,7 @@
               "recovery": null
             },
             "damage": {
-              "parts": [],
+              "parts": {},
               "includeBase": false
             },
             "target": {
@@ -612,8 +612,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -639,7 +639,7 @@
                     }
                   }
                 },
-                {
+                "stress": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -663,7 +663,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {
@@ -721,18 +721,19 @@
               "type": "withinRange",
               "target": "hostile",
               "range": "melee"
+            },
+            "changes": [],
+            "duration": {
+              "type": "temporary",
+              "description": "<p>Until you clear a Stress.</p>"
             }
           },
-          "changes": [],
           "disabled": false,
           "duration": {
-            "startTime": null,
-            "combat": null,
-            "seconds": null,
-            "rounds": null,
-            "turns": null,
-            "startRound": null,
-            "startTurn": null
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
           },
           "description": "<p><em>Vulnerable</em> until you clear a Stress.</p>",
           "tint": "#ffffff",
@@ -744,6 +745,16 @@
           "_stats": {
             "compendiumSource": null
           },
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "showIcon": 1,
+          "folder": null,
           "_key": "!actors.items.effects!eArAPuB38CNR0ZIM.2mK8kxfp2WBUeBri.xmzA6NC9zrulhzQs"
         }
       ],
@@ -780,8 +791,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -807,7 +818,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false,
               "direct": true
             },

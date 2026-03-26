@@ -5,6 +5,10 @@
   "_id": "mdQ69eFHyAQUDmE7",
   "img": "icons/equipment/chest/breastplate-rivited-red.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 5
+    },
     "description": "",
     "actions": {
       "J1MCpcfXByKaSSgx": {

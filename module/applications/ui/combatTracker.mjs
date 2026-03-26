@@ -1,4 +1,5 @@
 import { AdversaryBPPerEncounter } from '../../config/encounterConfig.mjs';
+import { expireActiveEffects } from '../../helpers/utils.mjs';
 
 export default class DhCombatTracker extends foundry.applications.sidebar.tabs.CombatTracker {
     static DEFAULT_OPTIONS = {
@@ -177,6 +178,8 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
             if (autoPoints) {
                 update.system.actionTokens = Math.max(combatant.system.actionTokens - 1, 0);
             }
+
+            if (combatant.actor) expireActiveEffects(combatant.actor, [CONFIG.DH.GENERAL.activeEffectDurations.act.id]);
         }
 
         await this.viewed.update({

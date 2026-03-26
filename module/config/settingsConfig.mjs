@@ -1,3 +1,7 @@
+export const keybindings = {
+    spotlight: 'DHSpotlight'
+};
+
 export const menu = {
     Automation: {
         Name: 'GameSettingsAutomation',
@@ -34,7 +38,6 @@ export const gameSettings = {
     LevelTiers: 'LevelTiers',
     Countdowns: 'Countdowns',
     LastMigrationVersion: 'LastMigrationVersion',
-    TagTeamRoll: 'TagTeamRoll',
     SpotlightRequestQueue: 'SpotlightRequestQueue',
     CompendiumBrowserSettings: 'CompendiumBrowserSettings'
 };

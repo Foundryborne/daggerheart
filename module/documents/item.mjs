@@ -230,4 +230,14 @@ export default class DHItem extends foundry.documents.Item {
     async _preDelete() {
         this.deleteTriggers();
     }
+
+    /** @inheritDoc */
+    static migrateData(source) {
+        const documentClass = game.system.api.data.items[`DH${source.type?.capitalize()}`];
+        if (documentClass?.migrateDocumentData) {
+            documentClass.migrateDocumentData(source);
+        }
+
+        return super.migrateData(source);
+    }
 }

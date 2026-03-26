@@ -18,6 +18,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         settings: { template: 'systems/daggerheart/templates/sheets/activeEffect/settings.hbs' },
         changes: {
             template: 'systems/daggerheart/templates/sheets/activeEffect/changes.hbs',
+            templates: ['systems/daggerheart/templates/sheets/activeEffect/change.hbs'],
             scrollable: ['ol[data-changes]']
         },
         footer: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-form-footer.hbs' }
@@ -149,6 +150,18 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                 minLength: 0
             });
         });
+
+        htmlElement
+            .querySelector('.stacking-change-checkbox')
+            ?.addEventListener('change', this.stackingChangeToggle.bind(this));
+
+        htmlElement
+            .querySelector('.armor-change-checkbox')
+            ?.addEventListener('change', this.armorChangeToggle.bind(this));
+
+        htmlElement
+            .querySelector('.armor-damage-thresholds-checkbox')
+            ?.addEventListener('change', this.armorDamageThresholdToggle.bind(this));
     }
 
     async _prepareContext(options) {
@@ -173,8 +186,166 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                     }));
                 }
                 break;
+            case 'settings':
+                const groups = {
+                    time: _loc('EFFECT.DURATION.UNITS.GROUPS.time'),
+                    combat: _loc('EFFECT.DURATION.UNITS.GROUPS.combat')
+                };
+                partContext.durationUnits = CONST.ACTIVE_EFFECT_DURATION_UNITS.map(value => ({
+                    value,
+                    label: _loc(`EFFECT.DURATION.UNITS.${value}`),
+                    group: CONST.ACTIVE_EFFECT_TIME_DURATION_UNITS.includes(value) ? groups.time : groups.combat
+                }));
+                break;
+            case 'changes':
+                const singleTypes = ['armor'];
+                const typedChanges = context.source.changes.reduce((acc, change, index) => {
+                    if (singleTypes.includes(change.type)) {
+                        acc[change.type] = { ...change, index };
+                    }
+                    return acc;
+                }, {});
+                partContext.changes = partContext.changes.filter(c => !!c);
+                partContext.typedChanges = typedChanges;
+                break;
         }
 
         return partContext;
+    }
+
+    stackingChangeToggle(event) {
+        const stackingFields = this.document.system.schema.fields.stacking.fields;
+        const systemData = {
+            stacking: event.target.checked
+                ? { value: stackingFields.value.initial, max: stackingFields.max.initial }
+                : null
+        };
+        return this.submit({ updateData: { system: systemData } });
+    }
+
+    armorChangeToggle(event) {
+        if (event.target.checked) {
+            this.addArmorChange();
+        } else {
+            this.removeTypedChange(event.target.dataset.index);
+        }
+    }
+
+    /* Could be generalised if needed later */
+    addArmorChange() {
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        const changes = Object.values(submitData.system?.changes ?? {});
+        changes.push(game.system.api.data.activeEffects.changeTypes.armor.getInitialValue());
+        return this.submit({ updateData: { system: { changes } } });
+    }
+
+    removeTypedChange(indexString) {
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        const changes = Object.values(submitData.system.changes);
+        const index = Number(indexString);
+        changes.splice(index, 1);
+        return this.submit({ updateData: { system: { changes } } });
+    }
+
+    armorDamageThresholdToggle(event) {
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        const changes = Object.values(submitData.system?.changes ?? {});
+        const index = Number(event.target.dataset.index);
+        if (event.target.checked) {
+            changes[index].value.damageThresholds = { major: 0, severe: 0 };
+        } else {
+            changes[index].value.damageThresholds = null;
+        }
+
+        return this.submit({ updateData: { system: { changes } } });
+    }
+
+    /** @inheritdoc */
+    _renderChange(context) {
+        const { change, index, defaultPriority } = context;
+        if (!(change.type in CONFIG.DH.GENERAL.baseActiveEffectModes)) return null;
+
+        const changeTypesSchema = this.document.system.schema.fields.changes.element.types;
+        const fields = context.fields ?? (changeTypesSchema[change.type] ?? changeTypesSchema.add).fields;
+        if (typeof change.value !== 'string') change.value = JSON.stringify(change.value);
+        Object.assign(
+            change,
+            ['key', 'type', 'value', 'priority'].reduce((paths, fieldName) => {
+                paths[`${fieldName}Path`] = `system.changes.${index}.${fieldName}`;
+                return paths;
+            }, {})
+        );
+        return (
+            game.system.api.documents.DhActiveEffect.CHANGE_TYPES[change.type].render?.(
+                change,
+                index,
+                defaultPriority
+            ) ??
+            foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/sheets/activeEffect/change.hbs',
+                {
+                    change,
+                    index,
+                    defaultPriority,
+                    fields,
+                    types: Object.keys(CONFIG.DH.GENERAL.baseActiveEffectModes).reduce((r, key) => {
+                        r[key] = CONFIG.DH.GENERAL.baseActiveEffectModes[key].label;
+                        return r;
+                    }, {})
+                }
+            )
+        );
+    }
+
+    /** @inheritDoc */
+    _onChangeForm(_formConfig, event) {
+        if (foundry.utils.isElementInstanceOf(event.target, 'select') && event.target.name === 'system.duration.type') {
+            const durationSection = this.element.querySelector('.custom-duration-section');
+            if (event.target.value === 'custom') durationSection.classList.add('visible');
+            else durationSection.classList.remove('visible');
+
+            const durationDescription = this.element.querySelector('.duration-description');
+            if (event.target.value === 'temporary') durationDescription.classList.add('visible');
+            else durationDescription.classList.remove('visible');
+        }
+    }
+
+    /** @inheritDoc */
+    _processFormData(event, form, formData) {
+        const submitData = super._processFormData(event, form, formData);
+        if (submitData.start && !submitData.start.time) submitData.start.time = '0';
+        else if (!submitData) submitData.start = null;
+
+        return submitData;
+    }
+
+    /** @inheritDoc */
+    _processSubmitData(event, form, submitData, options) {
+        if (this.options.isSetting) {
+            // Settings should update source instead
+            this.document.updateSource(submitData);
+            this.render();
+        } else {
+            return super._processSubmitData(event, form, submitData, options);
+        }
+    }
+
+    /** Creates an active effect config for a setting */
+    static async configureSetting(effect, options = {}) {
+        const document = new CONFIG.ActiveEffect.documentClass({ ...foundry.utils.duplicate(effect), _id: effect.id });
+        return new Promise(resolve => {
+            const app = new this({ document, ...options, isSetting: true });
+            app.addEventListener(
+                'close',
+                () => {
+                    const newEffect = app.document.toObject(true);
+                    newEffect.id = newEffect._id;
+                    delete newEffect._id;
+                    resolve(newEffect);
+                },
+                { once: true }
+            );
+            app.render({ force: true });
+        });
     }
 }

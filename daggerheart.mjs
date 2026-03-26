@@ -3,6 +3,7 @@ import * as applications from './module/applications/_module.mjs';
 import * as data from './module/data/_module.mjs';
 import * as models from './module/data/_module.mjs';
 import * as documents from './module/documents/_module.mjs';
+import { macros } from './module/_module.mjs';
 import * as collections from './module/documents/collections/_module.mjs';
 import * as dice from './module/dice/_module.mjs';
 import * as fields from './module/data/fields/_module.mjs';
@@ -20,7 +21,6 @@ import {
 } from './module/systemRegistration/_module.mjs';
 import { placeables, DhTokenLayer } from './module/canvas/_module.mjs';
 import './node_modules/@yaireo/tagify/dist/tagify.css';
-import TemplateManager from './module/documents/templateManager.mjs';
 import TokenManager from './module/documents/tokenManager.mjs';
 
 CONFIG.DH = SYSTEM;
@@ -44,6 +44,7 @@ CONFIG.Item.dataModels = models.items.config;
 
 CONFIG.ActiveEffect.documentClass = documents.DhActiveEffect;
 CONFIG.ActiveEffect.dataModels = models.activeEffects.config;
+CONFIG.ActiveEffect.changeTypes = { ...CONFIG.ActiveEffect.changeTypes, ...models.activeEffects.changeEffects };
 
 CONFIG.Combat.documentClass = documents.DhpCombat;
 CONFIG.Combat.dataModels = { base: models.DhCombat };
@@ -55,10 +56,12 @@ CONFIG.ChatMessage.documentClass = documents.DhChatMessage;
 CONFIG.ChatMessage.template = 'systems/daggerheart/templates/ui/chat/chat-message.hbs';
 
 CONFIG.Canvas.rulerClass = placeables.DhRuler;
-CONFIG.Canvas.layers.templates.layerClass = placeables.DhTemplateLayer;
+CONFIG.Canvas.layers.regions.layerClass = placeables.DhRegionLayer;
 CONFIG.Canvas.layers.tokens.layerClass = DhTokenLayer;
 
 CONFIG.MeasuredTemplate.objectClass = placeables.DhMeasuredTemplate;
+
+CONFIG.Region.objectClass = placeables.DhRegion;
 
 CONFIG.RollTable.documentClass = documents.DhRollTable;
 CONFIG.RollTable.resultTemplate = 'systems/daggerheart/templates/ui/chat/table-result.hbs';
@@ -83,7 +86,6 @@ CONFIG.ui.resources = applications.ui.DhFearTracker;
 CONFIG.ui.countdowns = applications.ui.DhCountdowns;
 CONFIG.ux.ContextMenu = applications.ux.DHContextMenu;
 CONFIG.ux.TooltipManager = documents.DhTooltipManager;
-CONFIG.ux.TemplateManager = new TemplateManager();
 CONFIG.ux.TokenManager = new TokenManager();
 CONFIG.debug.triggers = false;
 
@@ -93,6 +95,7 @@ Hooks.once('init', () => {
         data,
         models,
         documents,
+        macros,
         dice,
         fields
     };
@@ -211,6 +214,7 @@ Hooks.once('init', () => {
         SYSTEM.id,
         applications.sheetConfigs.ActiveEffectConfig,
         {
+            types: ['base', 'beastform', 'horde'],
             makeDefault: true,
             label: sheetLabel('DOCUMENT.ActiveEffect')
         }
@@ -268,7 +272,6 @@ Hooks.on('setup', () => {
                 ...damageThresholds,
                 'proficiency',
                 'evasion',
-                'armorScore',
                 'scars',
                 'levelData.level.current'
             ]
@@ -399,6 +402,17 @@ Hooks.on('chatMessage', (_, message) => {
             fateType
         });
         return false;
+    }
+});
+
+Hooks.on(CONFIG.DH.HOOKS.hooksConfig.tagTeamStart, async data => {
+    if (data.openForAllPlayers && data.partyId) {
+        const party = game.actors.get(data.partyId);
+        if (!party) return;
+
+        const dialog = new game.system.api.applications.dialogs.TagTeamDialog(party);
+        dialog.tabGroups.application = 'tagTeamRoll';
+        await dialog.render({ force: true });
     }
 });
 

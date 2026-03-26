@@ -5,38 +5,41 @@
  * Maybe if future book monsters can be part of what we release, we can analyze those too.
  */
 
-import fs from "fs/promises";
-import path from "path";
+import fs from 'fs/promises';
+import path from 'path';
 
 const allData = [];
 
 // Read adversary pack data for average damage for attacks
-const adversariesDirectory = path.join("src/packs/adversaries");
+const adversariesDirectory = path.join('src/packs/adversaries');
 for (const basefile of await fs.readdir(adversariesDirectory)) {
-    if (!basefile.endsWith(".json")) continue;
+    if (!basefile.endsWith('.json')) continue;
     const filepath = path.join(adversariesDirectory, basefile);
-    const data = JSON.parse(await fs.readFile(filepath, "utf8"));
-    if (data?.type !== "adversary" || data.system.type === "social") continue;
+    const data = JSON.parse(await fs.readFile(filepath, 'utf8'));
+    if (data?.type !== 'adversary' || data.system.type === 'social') continue;
 
     allData.push({
         name: data.name,
         tier: data.system.tier,
         adversaryType: data.system.type,
-        damage: parseDamage(data.system.attack.damage),
+        damage: parseDamage(data.system.attack.damage)
     });
 }
 
 const adversaryTypes = new Set(allData.map(a => a.adversaryType));
 for (const type of [...adversaryTypes].toSorted()) {
-    const perTier = Object.groupBy(allData.filter(a => a.adversaryType === type), a => a.tier);
-    console.log(`${type} per Tier: ${[1, 2, 3, 4].map(t => perTier[t]?.length ?? 0).join(" ")}`)
+    const perTier = Object.groupBy(
+        allData.filter(a => a.adversaryType === type),
+        a => a.tier
+    );
+    console.log(`${type} per Tier: ${[1, 2, 3, 4].map(t => perTier[t]?.length ?? 0).join(' ')}`);
 }
 
 const result = {
-    basic: compileData(allData.filter(d => d.adversaryType !== "minion")),
-    solos_and_bruisers: compileData(allData.filter(d => ["solo", "bruiser"].includes(d.adversaryType))),
-    leader_and_ranged: compileData(allData.filter(d => ["leader", "ranged"].includes(d.adversaryType))),
-    minion: compileData(allData.filter(d => d.adversaryType === "minion")),
+    basic: compileData(allData.filter(d => d.adversaryType !== 'minion')),
+    solos_and_bruisers: compileData(allData.filter(d => ['solo', 'bruiser'].includes(d.adversaryType))),
+    leader_and_ranged: compileData(allData.filter(d => ['leader', 'ranged'].includes(d.adversaryType))),
+    minion: compileData(allData.filter(d => d.adversaryType === 'minion'))
 };
 
 console.log(result);
@@ -52,7 +55,7 @@ function compileData(entries) {
         if (tier === 4) console.log(allDamage);
         results[tier] = {
             mean,
-            deviation: getStandardDeviation(allDamage, { mean }),
+            deviation: getStandardDeviation(allDamage, { mean })
         };
     }
 
@@ -64,7 +67,7 @@ function removeOutliers(data) {
     const startIdx = Math.floor(data.length * 0.25);
     const endIdx = Math.ceil(data.length * 0.75);
     const iqrBound = (data[endIdx] - data[startIdx]) * 1.25;
-    return data.filter((d) => d >= data[startIdx] - iqrBound && d <= data[endIdx] + iqrBound);
+    return data.filter(d => d >= data[startIdx] - iqrBound && d <= data[endIdx] + iqrBound);
 }
 
 function getMedian(numbers) {
@@ -84,7 +87,7 @@ function getMedianAverageDeviation(numbers, { median }) {
 }
 
 function getStandardDeviation(numbers, { mean }) {
-    const deviations = numbers.map((r) => r - mean);
+    const deviations = numbers.map(r => r - mean);
     return Math.sqrt(deviations.reduce((r, d) => r + d * d, 0) / (numbers.length - 1));
 }
 
@@ -95,8 +98,8 @@ function parseDamage(damage) {
             p.value.custom.enabled
                 ? p.value.custom.formula
                 : [p.value.flatMultiplier ? `${p.value.flatMultiplier}${p.value.dice}` : 0, p.value.bonus ?? 0]
-                        .filter(p => !!p)
-                        .join('+')
+                      .filter(p => !!p)
+                      .join('+')
         )
         .join('+');
     return getExpectedDamage(formula);
@@ -107,19 +110,23 @@ function parseDamage(damage) {
  * All subtracted terms become negative terms.
  */
 function getExpectedDamage(formula) {
-    const terms = formula.replace("+", " + ").replace("-", " - ").split(" ").map(t => t.trim());
+    const terms = formula
+        .replace('+', ' + ')
+        .replace('-', ' - ')
+        .split(' ')
+        .map(t => t.trim());
     let multiplier = 1;
     return terms.reduce((total, term) => {
-        if (term === "-") {
+        if (term === '-') {
             multiplier = -1;
             return total;
-        } else if (term === "+") {
+        } else if (term === '+') {
             return total;
         }
 
         const currentMultiplier = multiplier;
         multiplier = 1;
-        
+
         const number = Number(term);
         if (!Number.isNaN(number)) {
             return total + currentMultiplier * number;

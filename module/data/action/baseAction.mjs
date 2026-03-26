@@ -207,10 +207,10 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @param {Event} event Event from the button used to trigger the Action
      * @returns {object}
      */
-    async use(event) {
+    async use(event, configOptions = {}) {
         if (!this.actor) throw new Error("An Action can't be used outside of an Actor context.");
 
-        let config = this.prepareConfig(event);
+        let config = this.prepareConfig(event, configOptions);
         if (!config) return;
 
         config.effects = await game.system.api.data.actions.actionsTypes.base.getEffects(this.actor, this.item);
@@ -231,7 +231,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         if (Hooks.call(`${CONFIG.DH.id}.postUseAction`, this, config) === false) return;
 
-        if (this.chatDisplay && !config.actionChatMessageHandled) await this.toChat();
+        if (this.chatDisplay && !config.skips.createMessage && !config.actionChatMessageHandled) await this.toChat();
 
         return config;
     }
@@ -241,7 +241,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @param {Event} event Event from the button used to trigger the Action
      * @returns {object}
      */
-    prepareBaseConfig(event) {
+    prepareBaseConfig(event, configOptions = {}) {
         const isActor = this.item instanceof CONFIG.Actor.documentClass;
         const actionTitle = game.i18n.localize(this.name);
         const itemTitle = isActor || this.item.name === actionTitle ? '' : `${this.item.name} - `;
@@ -264,11 +264,20 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             hasSave: this.hasSave,
             onSave: this.save?.damageMod,
             isDirect: !!this.damage?.direct,
-            selectedRollMode: game.settings.get('core', 'rollMode'),
+            selectedMessageMode: game.settings.get('core', 'messageMode'),
             data: this.getRollData(),
             evaluate: this.hasRoll,
             resourceUpdates: new ResourceUpdateMap(this.actor),
-            targetUuid: this.targetUuid
+            targetUuid: this.targetUuid,
+            ...configOptions,
+            skips: {
+                resources: false,
+                triggers: false,
+                createMessage: false,
+                updateCountdowns: false,
+                reaction: false,
+                ...(configOptions.skips ?? {})
+            }
         };
 
         DHBaseAction.applyKeybindings(config);
@@ -280,8 +289,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @param {Event} event Event from the button used to trigger the Action
      * @returns {object}
      */
-    prepareConfig(event) {
-        const config = this.prepareBaseConfig(event);
+    prepareConfig(event, configOptions = {}) {
+        const config = this.prepareBaseConfig(event, configOptions);
         for (const clsField of Object.values(this.schema.fields)) {
             if (clsField?.prepareConfig) if (clsField.prepareConfig.call(this, config) === false) return false;
         }
@@ -297,17 +306,19 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     static async getEffects(actor, effectParent) {
         if (!actor) return [];
 
-        return Array.from(await actor.allApplicableEffects()).filter(effect => {
-            /* Effects on weapons only ever apply for the weapon itself */
-            if (effect.parent.type === 'weapon') {
-                /* Unless they're secondary - then they apply only to other primary weapons */
-                if (effect.parent.system.secondary) {
-                    if (effectParent?.type !== 'weapon' || effectParent?.system.secondary) return false;
-                } else if (effectParent?.id !== effect.parent.id) return false;
-            }
+        return Array.from(await actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true })).filter(
+            effect => {
+                /* Effects on weapons only ever apply for the weapon itself */
+                if (effect.parent.type === 'weapon') {
+                    /* Unless they're secondary - then they apply only to other primary weapons */
+                    if (effect.parent.system.secondary) {
+                        if (effectParent?.type !== 'weapon' || effectParent?.system.secondary) return false;
+                    } else if (effectParent?.id !== effect.parent.id) return false;
+                }
 
-            return !effect.isSuppressed;
-        });
+                return !effect.isSuppressed;
+            }
+        );
     }
 
     /**
@@ -326,6 +337,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @param {boolean} successCost
      */
     async consume(config, successCost = false) {
+        config.resourceUpdates = new ResourceUpdateMap(config.actionActor);
         await this.workflow.get('cost')?.execute(config, successCost);
         await this.workflow.get('uses')?.execute(config, successCost);
 
@@ -354,11 +366,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     get hasDamage() {
-        return this.damage?.parts?.length && this.type !== 'healing';
+        return Boolean(Object.keys(this.damage?.parts ?? {}).length) && this.type !== 'healing';
     }
 
     get hasHealing() {
-        return this.damage?.parts?.length && this.type === 'healing';
+        return Boolean(Object.keys(this.damage?.parts ?? {}).length) && this.type === 'healing';
     }
 
     get hasSave() {
@@ -377,6 +389,15 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         const tags = [game.i18n.localize(`DAGGERHEART.ACTIONS.TYPES.${this.type}.name`)];
 
         return tags;
+    }
+
+    static migrateData(source) {
+        if (source.damage?.parts && Array.isArray(source.damage.parts)) {
+            source.damage.parts = source.damage.parts.reduce((acc, part) => {
+                acc[part.applyTo] = part;
+                return acc;
+            }, {});
+        }
     }
 }
 

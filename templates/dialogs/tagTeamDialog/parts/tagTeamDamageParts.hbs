@@ -1,0 +1,25 @@
+{{#each damage as |damage key|}}
+    <div class="roll-data {{#if isCritical}}critical{{/if}}">
+        <div class="duality-label">
+            <span>{{localize (concat "DAGGERHEART.CONFIG.HealingType." key ".name")}}:</span>
+            <span>{{damage.total}}</span>
+        </div>
+        {{#each damage.parts as |part|}}
+            <div class="roll-dice-container">
+                {{#each part.dice as |dice index|}}
+                    <a class="roll-dice" data-action="rerollDamageDice" data-member-key="{{@../../../key}}" data-damage-key="{{@../../key}}" data-part="{{@../index}}" data-dice="{{index}}">
+                        <span class="dice-label">{{dice.total}}</span>
+                        <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/" dice.dice ".svg"}}" />
+                    </a>
+                    {{#unless @last}}
+                        <span class="roll-operator">+</span>
+                    {{/unless}}
+                {{/each}}
+                {{#if part.modifierTotal}}
+                    <span class="roll-operator">{{#if (gte part.modifierTotal 0)}}+{{else}}-{{/if}}</span>
+                    <span class="roll-value">{{positive part.modifierTotal}}</span>
+                {{/if}}
+            </div>
+        {{/each}}
+    </div>
+{{/each}}

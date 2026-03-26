@@ -5,6 +5,10 @@
   "_id": "WuoVwZA53XRAIt6d",
   "img": "icons/equipment/chest/breastplate-layered-gold.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 5
+    },
     "description": "",
     "actions": {},
     "attached": [],

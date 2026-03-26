@@ -68,8 +68,8 @@
     "description": "<p>A group of shambling corpses instinctively moving together.</p>",
     "attack": {
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -95,7 +95,7 @@
             "resultBased": false,
             "base": false
           }
-        ]
+        }
       },
       "name": "Bite",
       "roll": {

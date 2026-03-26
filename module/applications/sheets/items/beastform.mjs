@@ -102,7 +102,7 @@ export default class BeastformSheet extends DHBaseItemSheet {
 
     async advantageOnRemove(event) {
         await this.document.update({
-            [`system.advantageOn.-=${event.detail.data.value}`]: null
+            [`system.advantageOn.${event.detail.data.value}`]: _del
         });
     }
 }

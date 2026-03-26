@@ -15,6 +15,9 @@ export function handleSocketEvent({ action = null, data = {} } = {}) {
         case socketEvent.DowntimeTrigger:
             Party.downtimeMoveQuery(data);
             break;
+        case socketEvent.TagTeamStart:
+            Hooks.callAll(CONFIG.DH.HOOKS.hooksConfig.tagTeamStart, data);
+            break;
     }
 }
 
@@ -22,7 +25,8 @@ export const socketEvent = {
     GMUpdate: 'DhGMUpdate',
     Refresh: 'DhRefresh',
     DhpFearUpdate: 'DhFearUpdate',
-    DowntimeTrigger: 'DowntimeTrigger'
+    DowntimeTrigger: 'DowntimeTrigger',
+    TagTeamStart: 'DhTagTeamStart'
 };
 
 export const GMUpdateEvent = {

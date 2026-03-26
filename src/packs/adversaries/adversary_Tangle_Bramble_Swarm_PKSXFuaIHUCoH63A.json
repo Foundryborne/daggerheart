@@ -99,8 +99,8 @@
         "useDefault": false
       },
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -126,7 +126,7 @@
             "resultBased": false,
             "base": false
           }
-        ],
+        },
         "includeBase": false
       },
       "description": "",
@@ -309,8 +309,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false,
@@ -338,7 +338,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false,
               "direct": true
             },

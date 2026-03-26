@@ -5,6 +5,10 @@
   "_id": "PSW3BxCGmtLeWOxM",
   "img": "icons/equipment/chest/robe-layered-purple.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 5
+    },
     "description": "",
     "actions": {
       "Ch6IhuPewBeseGez": {

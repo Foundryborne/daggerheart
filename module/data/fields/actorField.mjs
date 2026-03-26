@@ -52,8 +52,8 @@ class ResourcesField extends fields.TypedObjectField {
         return key in CONFIG.DH.RESOURCE[this.actorType].all;
     }
 
-    _cleanType(value, options) {
-        value = super._cleanType(value, options);
+    _cleanType(value, options, _state) {
+        value = super._cleanType(value, options, _state);
 
         // If not partial, ensure all data exists
         if (!options.partial) {

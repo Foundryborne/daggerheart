@@ -12,11 +12,50 @@
  *  "Anything that uses another data model value as its value": +1 - Effects that increase traits have to be calculated first at Base priority. (EX: Raise evasion by half your agility)
  */
 
-export default class BaseEffect extends foundry.abstract.TypeDataModel {
+import { getScrollTextData } from '../../helpers/utils.mjs';
+import { changeTypes } from './_module.mjs';
+
+export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
 
+        const baseChanges = Object.keys(CONFIG.DH.GENERAL.baseActiveEffectModes).reduce((r, type) => {
+            r[type] = new fields.SchemaField({
+                key: new fields.StringField({ required: true }),
+                type: new fields.StringField({
+                    required: true,
+                    choices: [type],
+                    initial: type,
+                    validate: BaseEffect.#validateType
+                }),
+                value: new fields.AnyField({
+                    required: true,
+                    nullable: true,
+                    serializable: true,
+                    initial: ''
+                }),
+                phase: new fields.StringField({ required: true, blank: false, initial: 'initial' }),
+                priority: new fields.NumberField()
+            });
+            return r;
+        }, {});
+
         return {
+            ...super.defineSchema(),
+            changes: new fields.ArrayField(
+                new fields.TypedSchemaField(
+                    { ...changeTypes, ...baseChanges },
+                    { initial: baseChanges.add.getInitialValue() }
+                )
+            ),
+            duration: new fields.SchemaField({
+                type: new fields.StringField({
+                    choices: CONFIG.DH.GENERAL.activeEffectDurations,
+                    blank: true,
+                    label: 'DAGGERHEART.GENERAL.type'
+                }),
+                description: new fields.HTMLField({ label: 'DAGGERHEART.GENERAL.description' })
+            }),
             rangeDependence: new fields.SchemaField({
                 enabled: new fields.BooleanField({
                     required: true,
@@ -41,8 +80,55 @@ export default class BaseEffect extends foundry.abstract.TypeDataModel {
                     initial: CONFIG.DH.GENERAL.range.melee.id,
                     label: 'DAGGERHEART.GENERAL.range'
                 })
-            })
+            }),
+            stacking: new fields.SchemaField(
+                {
+                    value: new fields.NumberField({
+                        initial: 1,
+                        min: 1,
+                        integer: true,
+                        nullable: false,
+                        label: 'DAGGERHEART.GENERAL.value'
+                    }),
+                    max: new fields.NumberField({ integer: true, label: 'DAGGERHEART.GENERAL.max' })
+                },
+                { nullable: true, initial: null }
+            )
         };
+    }
+
+    /**
+     * Validate that an {@link EffectChangeData#type} string is well-formed.
+     * @param {string} type The string to be validated
+     * @returns {true}
+     * @throws {Error} An error if the type string is malformed
+     */
+    static #validateType(type) {
+        if (type.length < 3) throw new Error('must be at least three characters long');
+        if (!/^custom\.-?\d+$/.test(type) && !type.split('.').every(s => /^[a-z0-9]+$/i.test(s))) {
+            throw new Error(
+                'A change type must either be a sequence of dot-delimited, alpha-numeric substrings or of the form' +
+                    ' "custom.{number}"'
+            );
+        }
+        return true;
+    }
+
+    get isSuppressed() {
+        for (const change of this.changes) {
+            if (change.isSuppressed) return true;
+        }
+    }
+
+    get armorChange() {
+        return this.changes.find(x => x.type === CONFIG.DH.GENERAL.activeEffectModes.armor.id);
+    }
+
+    get armorData() {
+        const armorChange = this.armorChange;
+        if (!armorChange) return null;
+
+        return armorChange.getArmorData();
     }
 
     static getDefaultObject() {
@@ -63,5 +149,33 @@ export default class BaseEffect extends foundry.abstract.TypeDataModel {
                 }
             }
         };
+    }
+
+    async _preUpdate(changed, options, userId) {
+        const allowed = await super._preUpdate(changed, options, userId);
+        if (allowed === false) return false;
+
+        const autoSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+        if (
+            autoSettings.resourceScrollTexts &&
+            this.parent.actor?.type === 'character' &&
+            this.parent.actor.system.resources.armor
+        ) {
+            const armorEffect = changed.system?.changes?.find(x => x.type === 'armor');
+            const newArmorTotal =
+                armorEffect?.value?.current + (this.parent.actor.system.armor?.system?.armor?.current ?? 0);
+
+            if (armorEffect && newArmorTotal !== this.parent.actor.system.armorScore.value) {
+                const armorData = getScrollTextData(this.parent.actor, { value: newArmorTotal }, 'armor');
+                options.scrollingTextData = [armorData];
+            }
+        }
+    }
+
+    _onUpdate(changed, options, userId) {
+        super._onUpdate(changed, options, userId);
+
+        if (this.parent.actor && options.scrollingTextData)
+            this.parent.actor.queueScrollText(options.scrollingTextData);
     }
 }
