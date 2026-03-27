@@ -40,7 +40,8 @@ export const gameSettings = {
     LastMigrationVersion: 'LastMigrationVersion',
     TagTeamRoll: 'TagTeamRoll',
     SpotlightRequestQueue: 'SpotlightRequestQueue',
-    CompendiumBrowserSettings: 'CompendiumBrowserSettings'
+    CompendiumBrowserSettings: 'CompendiumBrowserSettings',
+    SpotlightTracker: 'SpotlightTracker'
 };
 
 export const actionAutomationChoices = {

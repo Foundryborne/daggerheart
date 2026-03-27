@@ -16,6 +16,7 @@ import {
     DhVariantRuleSettings
 } from '../applications/settings/_module.mjs';
 import { CompendiumBrowserSettings, DhTagTeamRoll } from '../data/_module.mjs';
+import SpotlightTracker from '../data/spotlightTracker.mjs';
 
 export const registerDHSettings = () => {
     registerKeyBindings();
@@ -182,5 +183,11 @@ const registerNonConfigSettings = () => {
         scope: 'world',
         config: false,
         type: CompendiumBrowserSettings
+    });
+
+    game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.SpotlightTracker, {
+        scope: 'world',
+        config: false,
+        type: SpotlightTracker
     });
 };

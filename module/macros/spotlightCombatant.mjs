@@ -5,17 +5,33 @@
  * 2) HoveredCombatant
  */
 const spotlightCombatant = () => {
-    if (!game.combat)
-        return ui.notifications.error(game.i18n.localize('DAGGERHEART.MACROS.Spotlight.errors.noActiveCombat'));
+    const selectedTokens = canvas.tokens.controlled.length > 0 ? canvas.tokens.controlled : [];
+    const hoveredTokens = game.canvas.tokens.hover ? [game.canvas.tokens.hover] : [];
 
-    const selectedCombatant = canvas.tokens.controlled.length > 0 ? canvas.tokens.controlled[0].combatant : null;
-    const hoveredCombatant = game.canvas.tokens.hover?.combatant;
-
-    const combatant = selectedCombatant ?? hoveredCombatant;
-    if (!combatant)
+    const tokens = selectedTokens.length ? selectedTokens : hoveredTokens;
+    if (!tokens.length)
         return ui.notifications.error(game.i18n.localize('DAGGERHEART.MACROS.Spotlight.errors.noCombatantSelected'));
 
-    ui.combat.setCombatantSpotlight(combatant.id);
+    const spotlightTracker = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.SpotlightTracker);
+    spotlightTracker.updateSource();
+
+    for (const token of tokens) {
+        if (game.combat && token.combatant) {
+            ui.combat.setCombatantSpotlight(token.combatant.id);
+        } else {
+            const isSpotlighted = spotlightTracker.spotlightedTokens.has(token.document.uuid);
+            spotlightTracker.updateSource({
+                spotlightedTokens: isSpotlighted
+                    ? [...spotlightTracker.spotlightedTokens].filter(x => x !== token.document.uuid)
+                    : [...spotlightTracker.spotlightedTokens, token.document.uuid]
+            });
+        }
+    }
+
+    game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.SpotlightTracker, spotlightTracker);
+    for (const token of tokens) {
+        token.renderFlags.set({ refreshTurnMarker: true });
+    }
 };
 
 export default spotlightCombatant;
