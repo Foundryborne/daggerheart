@@ -89,9 +89,14 @@
             },
             "Config": {
                 "beastform": {
-                    "exact": "Beastform Max Tier",
-                    "exactHint": "The Character's Tier is used if empty",
-                    "label": "Beastform"
+                    "exact": { "label": "Beastform Max Tier", "hint": "The Character's Tier is used if empty" },
+                    "modifications": {
+                        "traitBonuses": {
+                            "label": { "single": "Trait Bonus", "plural": "Trait Bonuses" },
+                            "hint": "Pick bonuses you apply to freely chosen traits at the time of transforming",
+                            "bonus": "Bonus Amount"
+                        }
+                    }
                 },
                 "countdown": {
                     "defaultOwnership": "Default Ownership",
