@@ -3,6 +3,7 @@ import * as applications from './module/applications/_module.mjs';
 import * as data from './module/data/_module.mjs';
 import * as models from './module/data/_module.mjs';
 import * as documents from './module/documents/_module.mjs';
+import { macros } from './module/_module.mjs';
 import * as collections from './module/documents/collections/_module.mjs';
 import * as dice from './module/dice/_module.mjs';
 import * as fields from './module/data/fields/_module.mjs';
@@ -93,6 +94,7 @@ Hooks.once('init', () => {
         data,
         models,
         documents,
+        macros,
         dice,
         fields
     };

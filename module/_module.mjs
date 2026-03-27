@@ -7,3 +7,4 @@ export * as documents from './documents/_module.mjs';
 export * as enrichers from './enrichers/_module.mjs';
 export * as helpers from './helpers/_module.mjs';
 export * as systemRegistration from './systemRegistration/_module.mjs';
+export * as macros from './macros/_modules.mjs';

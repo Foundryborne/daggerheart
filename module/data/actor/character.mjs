@@ -660,7 +660,6 @@ export default class DhCharacter extends DhCreature {
 
     prepareDerivedData() {
         super.prepareDerivedData();
-        let baseHope = this.resources.hope.value;
         if (this.companion) {
             for (let levelKey in this.companion.system.levelData.levelups) {
                 const level = this.companion.system.levelData.levelups[levelKey];
@@ -675,7 +674,6 @@ export default class DhCharacter extends DhCreature {
         }
 
         this.resources.hope.max -= this.scars;
-        this.resources.hope.value = Math.min(baseHope, this.resources.hope.max);
         this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
 
         this.resources.armor = {

@@ -83,19 +83,20 @@ class ResourcesField extends fields.TypedObjectField {
         return data;
     }
 
-    /** 
+    /**
      * Foundry bar attributes are unable to handle finding the schema field nor the label normally.
      * This returns the element if its a valid resource key and overwrites the element's label for that retrieval.
      */
     _getField(path) {
-        if ( path.length === 0 ) return this;
+        if (path.length === 0) return this;
         const first = path.shift();
         if (first === this.element.name) return this.element_getField(path);
-        
+
         const resources = CONFIG.DH.RESOURCE[this.actorType].all;
         if (first in resources) {
-            this.element.label = resources[first].label;
-            return this.element._getField(path);
+            const field = this.element._getField(path);
+            field.label = resources[first].label;
+            return field;
         }
 
         return undefined;
