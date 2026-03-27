@@ -41,13 +41,18 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
 
                 if (effectData.type === 'beastform') {
                     const beastformData = {
-                        features: effectItem.parent.items.filter(x => effectItem.system.featureIds.includes(x.id)),
+                        features: [],
                         advantageOn: effectData.system.advantageOn,
                         beastformAttackData: game.system.api.data.items.DHBeastform.getBeastformAttackData(effectItem)
                     };
-                    for (const feature of beastformData.features) {
-                        feature.enrichedDescription = await feature.system.getEnrichedDescription();
+
+                    const features = effectItem.parent.items.filter(x => effectItem.system.featureIds.includes(x.id));
+                    for (const feature of features) {
+                        const featureData = feature.toObject();
+                        featureData.enrichedDescription = await feature.system.getEnrichedDescription();
+                        beastformData.features.push(featureData);
                     }
+
                     effect.description = await foundry.applications.handlebars.renderTemplate(
                         'systems/daggerheart/templates/ui/tooltip/parts/beastformData.hbs',
                         {

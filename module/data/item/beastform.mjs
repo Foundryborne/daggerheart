@@ -97,6 +97,11 @@ export default class DHBeastform extends BaseDataItem {
 
     /* -------------------------------------------- */
 
+    get beastformAttackData() {
+        const effect = this.parent.effects.find(x => x.type === 'beastform');
+        return DHBeastform.getBeastformAttackData(effect);
+    }
+
     static getBeastformAttackData(effect) {
         if (!effect) return null;
 
