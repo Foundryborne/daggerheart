@@ -36,6 +36,7 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/actionTypes/summon.hbs',
         'systems/daggerheart/templates/actionTypes/transform.hbs',
         'systems/daggerheart/templates/settings/components/settings-item-line.hbs',
+        'systems/daggerheart/templates/ui/tooltip/parts/beastformData.hbs',
         'systems/daggerheart/templates/ui/tooltip/parts/tooltipChips.hbs',
         'systems/daggerheart/templates/ui/tooltip/parts/tooltipTags.hbs',
         'systems/daggerheart/templates/dialogs/downtime/activities.hbs',
@@ -49,7 +50,6 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/ui/itemBrowser/itemContainer.hbs',
         'systems/daggerheart/templates/scene/dh-config.hbs',
         'systems/daggerheart/templates/settings/appearance-settings/diceSoNiceTab.hbs',
-        'systems/daggerheart/templates/ui/tooltip/parts/beastformData.hbs',
         'systems/daggerheart/templates/sheets/activeEffect/typeChanges/armorChange.hbs'
     ]);
 };
