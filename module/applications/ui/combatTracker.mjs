@@ -188,9 +188,7 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
             round: this.viewed.round + 1
         });
         await combatant.update(update);
-
-        if (!combatant.token) return;
-        clearPreviousSpotlight();
+        if (combatant.token) clearPreviousSpotlight();
     }
 
     async clearTurn() {
