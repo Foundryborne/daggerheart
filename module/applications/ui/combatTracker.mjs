@@ -1,6 +1,6 @@
 import { AdversaryBPPerEncounter } from '../../config/encounterConfig.mjs';
 import { expireActiveEffects } from '../../helpers/utils.mjs';
-import { spotlightToken } from '../../macros/spotlightCombatant.mjs';
+import { clearPreviousSpotlight } from '../../macros/spotlightCombatant.mjs';
 
 export default class DhCombatTracker extends foundry.applications.sidebar.tabs.CombatTracker {
     static DEFAULT_OPTIONS = {
@@ -190,7 +190,7 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
         await combatant.update(update);
 
         if (!combatant.token) return;
-        spotlightToken(combatant.token);
+        clearPreviousSpotlight();
     }
 
     async clearTurn() {
