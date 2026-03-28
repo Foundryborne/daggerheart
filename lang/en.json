@@ -2555,8 +2555,7 @@
         "MACROS": {
             "Spotlight": {
                 "errors": {
-                    "noActiveCombat": "There is no active encounter",
-                    "noCombatantSelected": "A combatant token must be either selected or hovered to spotlight it"
+                    "noTokenSelected": "A token on the canvas must either be selected or hovered to spotlight it"
                 }
             }
         },

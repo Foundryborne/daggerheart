@@ -10,6 +10,34 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
             this.previewHelp ||= this.addChild(this.#drawPreviewHelp());
     }
 
+    /**@inheritdoc */
+    _refreshTurnMarker() {
+        // Should a Turn Marker be active?
+        const { turnMarker } = this.document;
+        const markersEnabled =
+            CONFIG.Combat.settings.turnMarker.enabled && turnMarker.mode !== CONST.TOKEN_TURN_MARKER_MODES.DISABLED;
+        const spotlighted = game.settings
+            .get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.SpotlightTracker)
+            .spotlightedTokens.has(this.document.uuid);
+
+        const markerActive = markersEnabled && spotlighted;
+
+        // Activate a Turn Marker
+        if (markerActive) {
+            if (!this.turnMarker)
+                this.turnMarker = this.addChildAt(new foundry.canvas.placeables.tokens.TokenTurnMarker(this), 0);
+            canvas.tokens.turnMarkers.add(this);
+            this.turnMarker.draw();
+        }
+
+        // Remove a Turn Marker
+        else if (this.turnMarker) {
+            canvas.tokens.turnMarkers.delete(this);
+            this.turnMarker.destroy();
+            this.turnMarker = null;
+        }
+    }
+
     /** @inheritDoc */
     async _drawEffects() {
         this.effects.renderable = false;

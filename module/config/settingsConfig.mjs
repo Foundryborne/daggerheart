@@ -39,7 +39,8 @@ export const gameSettings = {
     Countdowns: 'Countdowns',
     LastMigrationVersion: 'LastMigrationVersion',
     SpotlightRequestQueue: 'SpotlightRequestQueue',
-    CompendiumBrowserSettings: 'CompendiumBrowserSettings'
+    CompendiumBrowserSettings: 'CompendiumBrowserSettings',
+    SpotlightTracker: 'SpotlightTracker'
 };
 
 export const actionAutomationChoices = {
