@@ -7,9 +7,9 @@ const spotlightCombatantMacro = async token => {
     if (!token)
         return ui.notifications.error(game.i18n.localize('DAGGERHEART.MACROS.Spotlight.errors.noTokenSelected'));
 
-    const combatantCombat = game.combats.find(combat =>
-        combat.combatants.some(x => x.token && x.token.id === token.document.id)
-    );
+    const combatantCombat = token.combatant
+        ? game.combat
+        : game.combats.find(combat => combat.combatants.some(x => x.token && x.token.id === token.document.id));
     if (combatantCombat) {
         const combatant = combatantCombat.combatants.find(x => x.token.id === token.document.id);
         if (!combatantCombat.active) {
