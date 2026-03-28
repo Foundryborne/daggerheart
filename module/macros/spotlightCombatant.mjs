@@ -12,8 +12,12 @@ const spotlightCombatantMacro = async token => {
     );
     if (combatantCombat) {
         const combatant = combatantCombat.combatants.find(x => x.token.id === token.document.id);
-        if (!combatantCombat.active) await combatantCombat.activate();
-        if (combatantCombat.combatant?.id !== combatant.id) ui.combat.setCombatantSpotlight(combatant.id);
+        if (!combatantCombat.active) {
+            await combatantCombat.activate();
+            if (combatantCombat.combatant?.id !== combatant.id) ui.combat.setCombatantSpotlight(combatant.id);
+        } else {
+            ui.combat.setCombatantSpotlight(combatant.id);
+        }
     } else {
         if (game.combat) await ui.combat.clearTurn();
 
