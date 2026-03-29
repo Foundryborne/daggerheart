@@ -1057,3 +1057,30 @@ export const activeEffectDurations = {
         label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.custom'
     }
 };
+
+export const fallAndCollisionDamage = {
+    veryClose: {
+        id: 'veryClose',
+        label: 'DAGGERHEART.CONFIG.fallAndCollision.veryClose.label',
+        chatTitle: 'DAGGERHEART.CONFIG.fallAndCollision.veryClose.chatTitle',
+        damageFormula: '1d10 + 3'
+    },
+    close: {
+        id: 'veryClose',
+        label: 'DAGGERHEART.CONFIG.fallAndCollision.close.label',
+        chatTitle: 'DAGGERHEART.CONFIG.fallAndCollision.close.chatTitle',
+        damageFormula: '1d20 + 5'
+    },
+    far: {
+        id: 'veryClose',
+        label: 'DAGGERHEART.CONFIG.fallAndCollision.far.label',
+        chatTitle: 'DAGGERHEART.CONFIG.fallAndCollision.far.chatTitle',
+        damageFormula: '1d100 + 15'
+    },
+    collision: {
+        id: 'veryClose',
+        label: 'DAGGERHEART.CONFIG.fallAndCollision.collision.label',
+        chatTitle: 'DAGGERHEART.CONFIG.fallAndCollision.collision.chatTitle',
+        damageFormula: '1d20 + 5'
+    }
+};

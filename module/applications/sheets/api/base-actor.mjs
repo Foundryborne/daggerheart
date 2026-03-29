@@ -228,7 +228,6 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                 'systems/daggerheart/templates/ui/chat/action.hbs',
                 systemData
             ),
-            title: game.i18n.localize('DAGGERHEART.ACTIONS.Config.displayInChat'),
             speaker: cls.getSpeaker(),
             flags: {
                 daggerheart: {

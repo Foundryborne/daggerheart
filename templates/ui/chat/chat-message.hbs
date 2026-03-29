@@ -4,17 +4,22 @@
         <div class="message-header-main">
             <img class="actor-img" src="{{actor.img}}" />
             <div class="message-sub-header-container">
-                {{#unless actor.name}}
-                    <h4>{{author.name}}</h4>
+                {{#if message.title}}
+                    <h4>{{message.title}}</h4>
+                    <div>{{actor.name}} {{#if author.isGM}}(GM){{/if}}</div>
                 {{else}}
-                    {{#if (eq message.type 'base')}}
-                        <h4>{{actor.name}}</h4>
-                        <div>{{author.name}}</div>
+                    {{#unless actor.name}}
+                        <h4>{{author.name}}</h4>
                     {{else}}
-                        <h4>{{ifThen message.title message.title alias}}</h4>
-                        <div>{{actor.name}} {{#if author.isGM}}(GM){{/if}}</div>
-                    {{/if}}
-                {{/unless}}
+                        {{#if (eq message.type 'base')}}
+                            <h4>{{actor.name}}</h4>
+                            <div>{{author.name}}</div>
+                        {{else}}
+                            <h4>{{alias}}</h4>
+                            <div>{{actor.name}} {{#if author.isGM}}(GM){{/if}}</div>
+                        {{/if}}
+                    {{/unless}}
+                {{/if}}
             </div>
         </div>
         <div class="message-header-metadata">

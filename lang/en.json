@@ -450,7 +450,8 @@
             },
             "DaggerheartMenu": {
                 "title": "GM Tools",
-                "refreshFeatures": "Refresh Features"
+                "refreshFeatures": "Refresh Features",
+                "fallingAndCollision": "Falling And Collision Damage"
             },
             "DeleteConfirmation": {
                 "title": "Delete {type} - {name}",
@@ -1154,6 +1155,12 @@
                     "label": "Event",
                     "description": ""
                 }
+            },
+            "fallAndCollision": {
+                "veryClose": { "label": "Very Close", "chatTitle": "Fall Damage: Very Close" },
+                "close": { "label": "Close", "chatTitle": "Fall Damage: Close" },
+                "far": { "label": "Far", "chatTitle": "Fall Damage: Far" },
+                "collision": { "label": "Collision", "chatTitle": "Dangerous Collision" }
             },
             "FeatureForm": {
                 "label": "Feature Form",
