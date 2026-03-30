@@ -1,7 +1,9 @@
 import DualityDie from './dualityDie.mjs';
-
-export const Dice = [DualityDie];
+import AdvantageDie from './advantageDie.mjs';
+import DisadvantageDie from './disadvantageDie.mjs';
 
 export const diceTypes = {
-    DualityDie
+    DualityDie,
+    AdvantageDie,
+    DisadvantageDie
 };

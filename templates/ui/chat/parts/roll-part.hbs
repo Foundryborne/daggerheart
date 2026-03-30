@@ -63,14 +63,14 @@
                                     </div>
                                 </div>
                                 {{#if roll.dAdvantage}}
-                                    <div class="roll-die {{#if roll.hasAdvantage}}has-plus{{else}}has-minus{{/if}}">
-                                        {{#if roll.hasAdvantage}}
-                                            <label>{{localize "DAGGERHEART.GENERAL.Advantage.short"}}</label>
-                                            <div class="dice {{roll.dAdavantage.denomination}} color-adv">{{roll.dAdvantage.total}}</div>
-                                        {{else}}
-                                            <label>{{localize "DAGGERHEART.GENERAL.Disadvantage.short"}}</label>
-                                            <div class="dice {{roll.dAdvantage.denomination}} color-dis">{{roll.dAdvantage.total}}</div>
-                                        {{/if}}
+                                    <div class="roll-die has-plus">
+                                        <label>{{localize "DAGGERHEART.GENERAL.Advantage.short"}}</label>
+                                        <div class="dice {{roll.dAdvantage.denomination}} color-adv">{{roll.dAdvantage.total}}</div>
+                                    </div>
+                                {{else if roll.dDisadvantage}}
+                                    <div class="roll-die has-minus">
+                                        <label>{{localize "DAGGERHEART.GENERAL.Disadvantage.short"}}</label>
+                                        <div class="dice {{roll.dDisadvantage.denomination}} color-dis">{{roll.dDisadvantage.total}}</div>
                                     </div>
                                 {{/if}}
                                 {{#if roll.rally.dice}}

@@ -17,22 +17,6 @@ export default class DualityRoll extends D20Roll {
 
     static DefaultDialog = D20RollDialog;
 
-    /**@inheritdoc */
-    static instantiateAST(ast) {
-        /* First two dice are always the DualityDice */
-        const nodes = CONFIG.Dice.parser.flattenTree(ast);
-        const dieNodes = nodes.filter(x => x.class === 'DiceTerm');
-        if (dieNodes.length > 1) {
-            dieNodes[0].class = 'DualityDie';
-            dieNodes[1].class = 'DualityDie';
-        }
-
-        return nodes.map(node => {
-            const cls = foundry.dice.terms[node.class] ?? foundry.dice.terms.RollTerm;
-            return cls.fromParseNode(node);
-        });
-    }
-
     get title() {
         return game.i18n.localize(
             `DAGGERHEART.GENERAL.${this.options?.actionType === 'reaction' ? 'reactionRoll' : 'dualityRoll'}`
@@ -40,27 +24,31 @@ export default class DualityRoll extends D20Roll {
     }
 
     get dHope() {
-        if (!(this.dice[0] instanceof foundry.dice.terms.Die)) this.createBaseDice();
+        if (!(this.dice[0] instanceof game.system.api.dice.diceTypes.DualityDie)) this.createBaseDice();
         return this.dice[0];
     }
 
     set dHope(faces) {
-        if (!(this.dice[0] instanceof foundry.dice.terms.Die)) this.createBaseDice();
+        if (!(this.dice[0] instanceof game.system.api.dice.diceTypes.DualityDie)) this.createBaseDice();
         this.dice[0].faces = this.getFaces(faces);
     }
 
     get dFear() {
-        if (!(this.dice[1] instanceof foundry.dice.terms.Die)) this.createBaseDice();
+        if (!(this.dice[1] instanceof game.system.api.dice.diceTypes.DualityDie)) this.createBaseDice();
         return this.dice[1];
     }
 
     set dFear(faces) {
-        if (!(this.dice[1] instanceof foundry.dice.terms.Die)) this.createBaseDice();
+        if (!(this.dice[1] instanceof game.system.api.dice.diceTypes.DualityDie)) this.createBaseDice();
         this.dice[1].faces = this.getFaces(faces);
     }
 
     get dAdvantage() {
-        return this.dice[2];
+        return this.dice[2] instanceof game.system.api.dice.diceTypes.AdvantageDie ? this.dice[2] : null;
+    }
+
+    get dDisadvantage() {
+        return this.dice[2] instanceof game.system.api.dice.diceTypes.DisadvantageDie ? this.dice[2] : null;
     }
 
     get advantageFaces() {
@@ -143,6 +131,16 @@ export default class DualityRoll extends D20Roll {
 
     static getHooks(hooks) {
         return [...(hooks ?? []), 'Duality'];
+    }
+
+    /** @inheritDoc */
+    static fromData(data) {
+        data.terms[0].class = 'DualityDie';
+        data.terms[2].class = 'DualityDie';
+
+        if (data.options.roll.advantage?.type === 1) data.terms[4].class = 'AdvantageDie';
+        else if (data.options.roll.advantage?.type === -1) data.terms[4].class = 'DisadvantageDie';
+        return super.fromData(data);
     }
 
     createBaseDice() {
