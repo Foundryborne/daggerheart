@@ -200,6 +200,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
             partContext.members[partId] = {
                 ...data,
+                roll: data.roll,
                 isEditable: actor.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER),
                 key: partId,
                 readyToRoll: Boolean(data.rollChoice),
@@ -448,24 +449,15 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         const { member, diceType } = button.dataset;
         const memberData = this.party.system.tagTeam.members[member];
 
-        const dieIndex = diceType === 'hope' ? 0 : diceType === 'fear' ? 2 : 4;
-
-        const { parsedRoll, newRoll } = await game.system.api.dice.DualityRoll.reroll(
-            memberData.rollData,
-            dieIndex,
-            diceType,
-            false
-        );
-        const rollData = parsedRoll.toJSON();
+        const dieIndex = diceType === 'hope' ? 0 : diceType === 'fear' ? 1 : 2;
+        const newRoll = game.system.api.dice.DualityRoll.fromData(memberData.rollData);
+        const dice = newRoll.dice[dieIndex];
+        await dice.reroll(`/r1=${dice.total}`, { liveRoll: true });
+        await newRoll._evaluate();
+        const rollData = newRoll.toJSON();
         this.updatePartyData(
             {
-                [`system.tagTeam.members.${member}.rollData`]: {
-                    ...rollData,
-                    options: {
-                        ...rollData.options,
-                        roll: newRoll
-                    }
-                }
+                [`system.tagTeam.members.${member}.rollData`]: rollData
             },
             this.getUpdatingParts(button)
         );
@@ -700,7 +692,8 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         const error = this.checkInitiatorHopeError(this.party.system.tagTeam.initiator);
         if (error) return error;
 
-        const mainRoll = (await this.getJoinedRoll()).rollData;
+        const joinedRoll = await this.getJoinedRoll();
+        const mainRoll = joinedRoll.rollData;
 
         const mainActor = this.party.system.partyMembers.find(x => x.uuid === mainRoll.options.source.actor);
         mainRoll.options.title = game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.chatMessageRollTitle');
@@ -711,7 +704,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 title: game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.title'),
                 speaker: cls.getSpeaker({ actor: mainActor }),
                 system: mainRoll.options,
-                rolls: [mainRoll],
+                rolls: [JSON.stringify(joinedRoll.roll)],
                 sound: null,
                 flags: { core: { RollTable: true } }
             };
@@ -719,34 +712,34 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         await cls.create(msgData);
 
         /* Handle resource updates from the finished TagTeamRoll */
-        const tagTeamData = this.party.system.tagTeam;
-        const fearUpdate = { key: 'fear', value: null, total: null, enabled: true };
-        for (let memberId in tagTeamData.members) {
-            const resourceUpdates = [];
-            const rollGivesHope = mainRoll.options.roll.isCritical || mainRoll.options.roll.result.duality === 1;
-            if (memberId === tagTeamData.initiator.memberId) {
-                const value = tagTeamData.initiator.cost
-                    ? rollGivesHope
-                        ? 1 - tagTeamData.initiator.cost
-                        : -tagTeamData.initiator.cost
-                    : 1;
-                resourceUpdates.push({ key: 'hope', value: value, total: -value, enabled: true });
-            } else if (rollGivesHope) {
-                resourceUpdates.push({ key: 'hope', value: 1, total: -1, enabled: true });
-            }
-            if (mainRoll.options.roll.isCritical)
-                resourceUpdates.push({ key: 'stress', value: -1, total: 1, enabled: true });
-            if (mainRoll.options.roll.result.duality === -1) {
-                fearUpdate.value = fearUpdate.value === null ? 1 : fearUpdate.value + 1;
-                fearUpdate.total = fearUpdate.total === null ? -1 : fearUpdate.total - 1;
-            }
+        // const tagTeamData = this.party.system.tagTeam;
+        // const fearUpdate = { key: 'fear', value: null, total: null, enabled: true };
+        // for (let memberId in tagTeamData.members) {
+        //     const resourceUpdates = [];
+        //     const rollGivesHope = mainRoll.options.roll.isCritical || mainRoll.options.roll.result.duality === 1;
+        //     if (memberId === tagTeamData.initiator.memberId) {
+        //         const value = tagTeamData.initiator.cost
+        //             ? rollGivesHope
+        //                 ? 1 - tagTeamData.initiator.cost
+        //                 : -tagTeamData.initiator.cost
+        //             : 1;
+        //         resourceUpdates.push({ key: 'hope', value: value, total: -value, enabled: true });
+        //     } else if (rollGivesHope) {
+        //         resourceUpdates.push({ key: 'hope', value: 1, total: -1, enabled: true });
+        //     }
+        //     if (mainRoll.options.roll.isCritical)
+        //         resourceUpdates.push({ key: 'stress', value: -1, total: 1, enabled: true });
+        //     if (mainRoll.options.roll.result.duality === -1) {
+        //         fearUpdate.value = fearUpdate.value === null ? 1 : fearUpdate.value + 1;
+        //         fearUpdate.total = fearUpdate.total === null ? -1 : fearUpdate.total - 1;
+        //     }
 
-            game.actors.get(memberId).modifyResource(resourceUpdates);
-        }
+        //     game.actors.get(memberId).modifyResource(resourceUpdates);
+        // }
 
-        if (fearUpdate.value) {
-            mainActor.modifyResource([fearUpdate]);
-        }
+        // if (fearUpdate.value) {
+        //     mainActor.modifyResource([fearUpdate]);
+        // }
 
         /* Fin */
         this.cancelRoll({ confirm: false });

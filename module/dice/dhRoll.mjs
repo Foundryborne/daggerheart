@@ -138,6 +138,7 @@ export default class DHRoll extends Roll {
         const chatData = await this._prepareChatRenderContext({ flavor, isPrivate, ...options });
         return foundry.applications.handlebars.renderTemplate(template, {
             ...chatData,
+            roll: this,
             parent: chatData.parent,
             targetMode: chatData.targetMode,
             metagamingSettings

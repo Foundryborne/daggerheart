@@ -35,6 +35,8 @@ CONFIG.Dice.daggerheart = {
     FateRoll: FateRoll
 };
 
+CONFIG.Dice.termTypes.DualityDie = dice.diceTypes.DualityDie;
+
 CONFIG.Actor.documentClass = documents.DhpActor;
 CONFIG.Actor.dataModels = models.actors.config;
 CONFIG.Actor.collection = collections.DhActorCollection;
