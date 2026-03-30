@@ -67,6 +67,11 @@ export default class DualityRoll extends D20Roll {
         this._advantageNumber = Number(value);
     }
 
+    get extraDice() {
+        const { DualityDie, AdvantageDie, DisadvantageDie } = game.system.api.dice.diceTypes;
+        return this.dice.filter(x => ![DualityDie, AdvantageDie, DisadvantageDie].some(die => x instanceof die));
+    }
+
     /* This isn't fullproof, but trying to cover parathetical situations is ridiculously complex */
     get modifierTotal() {
         let modifierTotal = 0;

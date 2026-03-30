@@ -79,15 +79,11 @@
                                         <div class="dice {{roll.rally.dice}}">{{roll.rally.value}}</div>
                                     </div>
                                 {{/if}}
-                                {{#each roll.extra}}
-                                    {{#each results}}
-                                        {{#unless discarded}}
-                                            <div class="roll-die has-plus">
-                                                <label></label>
-                                                <div class="dice {{../dice}}">{{result}}</div>
-                                            </div>
-                                        {{/unless}}
-                                    {{/each}}
+                                {{#each roll.extraDice}}
+                                    <div class="roll-die has-plus">
+                                        <label></label>
+                                        <div class="dice {{this.denomination}}">{{this.total}}</div>
+                                    </div>
                                 {{/each}}
                             {{else}}
                                 {{#each roll.dice}}
