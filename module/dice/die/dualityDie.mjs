@@ -35,8 +35,19 @@ export default class DualityDie extends foundry.dice.terms.Die {
         await super.reroll(modifier, options);
 
         if (options?.liveRoll) {
+            /* Can't currently test since DiceSoNice is not v14. Might need to set the appearance earlier if a roll is triggered by super.reroll */
             if (game.modules.get('dice-so-nice')?.active) {
-                /* Dice Customization for the roll */
+                const diceSoNiceRoll = {
+                    _evaluated: true,
+                    dice: [this],
+                    options: { appearance: {} }
+                };
+
+                const preset = await getDiceSoNicePreset(diceSoNice[key], faces);
+                diceSoNiceRoll.dice[0].options.appearance = preset.appearance;
+                diceSoNiceRoll.dice[0].options.modelFile = preset.modelFile;
+
+                await game.dice3d.showForRoll(diceSoNiceRoll, game.user, true);
             } else {
                 foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
             }
