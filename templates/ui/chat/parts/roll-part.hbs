@@ -29,20 +29,20 @@
             <div class="dice-tooltip">
                 <div class="wrapper">
                     <div class="roll-dice">
-                        {{#if roll.fate}}
-                            {{#if (eq roll.fate.fateDie "Hope")}}
+                        {{#if roll.fateDie}}
+                            {{#if (eq roll.fateDie "Hope")}}
                                 <div class="roll-die">
                                     <label>{{localize "DAGGERHEART.GENERAL.hope"}}</label>
-                                    <div class="dice {{roll.fate.dice}} color-hope" data-die-index="0" data-type="hope">
-                                         {{roll.fate.value}}
+                                    <div class="dice {{roll.dHope.denomination}} color-hope" data-die-index="0" data-type="hope">
+                                         {{roll.dHope.total}}
                                     </div>
                                 </div>
                             {{/if}}
-                            {{#if (eq roll.fate.fateDie "Fear")}}
+                            {{#if (eq roll.fateDie "Fear")}}
                                 <div class="roll-die">
                                     <label>{{localize "DAGGERHEART.GENERAL.fear"}}</label>
-                                    <div class="dice {{roll.fate.dice}} color-fear" data-die-index="0" data-type="fear">
-                                         {{roll.fate.value}}
+                                    <div class="dice {{roll.dFear.denomination}} color-fear" data-die-index="0" data-type="fear">
+                                         {{roll.dFear.total}}
                                     </div>
                                 </div>
                             {{/if}}

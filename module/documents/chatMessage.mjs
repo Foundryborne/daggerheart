@@ -84,10 +84,10 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             }
             if (this.type === 'fateRoll') {
                 html.classList.add('fate');
-                if (this.system.roll?.fate.fateDie == 'Hope') {
+                if (this.system.roll?.fateDie == 'Hope') {
                     html.classList.add('hope');
                 }
-                if (this.system.roll?.fate.fateDie == 'Fear') {
+                if (this.system.roll?.fateDie == 'Fear') {
                     html.classList.add('fear');
                 }
             }

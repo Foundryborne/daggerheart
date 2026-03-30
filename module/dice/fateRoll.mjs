@@ -43,6 +43,22 @@ export default class FateRoll extends D20Roll {
         return this.data.fateType;
     }
 
+    get withHope() {
+        if (!this._evaluatedl) return;
+        return this.dHope.total >= this.dFear.total;
+    }
+
+    get withFear() {
+        if (!this._evaluated) return;
+        return this.dHope.total < this.dFear.total;
+    }
+
+    get totalLabel() {
+        const label = this.withHope ? 'DAGGERHEART.GENERAL.hope' : 'DAGGERHEART.GENERAL.fear';
+
+        return game.i18n.localize(label);
+    }
+
     static getHooks(hooks) {
         return [...(hooks ?? []), 'Fate'];
     }
