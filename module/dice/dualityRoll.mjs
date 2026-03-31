@@ -29,8 +29,8 @@ export default class DualityRoll extends D20Roll {
     }
 
     set dHope(faces) {
-        if (!(this.dice[0] instanceof game.system.api.dice.diceTypes.DualityDie)) this.createBaseDice();
-        this.dice[0].faces = this.getFaces(faces);
+        // TODO this should not be asymmetrical with the getter. updateRollConfiguration() should use dHope.faces
+        this.dHope.faces = this.getFaces(faces);
     }
 
     get dFear() {
@@ -39,8 +39,8 @@ export default class DualityRoll extends D20Roll {
     }
 
     set dFear(faces) {
-        if (!(this.dice[1] instanceof game.system.api.dice.diceTypes.DualityDie)) this.createBaseDice();
-        this.dice[1].faces = this.getFaces(faces);
+        // TODO this should not be asymmetrical with the getter. updateRollConfiguration() should use dFear.faces
+        this.dFear.faces = this.getFaces(faces);
     }
 
     get dAdvantage() {
