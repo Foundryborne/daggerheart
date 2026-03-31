@@ -32,6 +32,8 @@ CONFIG.Dice.daggerheart = {
     FateRoll: FateRoll
 };
 
+Object.assign(CONFIG.Dice.termTypes, dice.diceTypes);
+
 CONFIG.Actor.documentClass = documents.DhpActor;
 CONFIG.Actor.dataModels = models.actors.config;
 CONFIG.Actor.collection = collections.DhActorCollection;

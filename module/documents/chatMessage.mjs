@@ -1,4 +1,4 @@
-import { emitAsGM, GMUpdateEvent, RefreshType, socketEvent } from '../systemRegistration/socket.mjs';
+import { emitAsGM, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 
 export default class DhpChatMessage extends foundry.documents.ChatMessage {
     targetHook = null;
@@ -78,25 +78,14 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         if (this.isContentVisible) {
             if (this.type === 'dualityRoll') {
                 html.classList.add('duality');
-                switch (this.system.roll?.result?.duality) {
-                    case 1:
-                        html.classList.add('hope');
-                        break;
-                    case -1:
-                        html.classList.add('fear');
-                        break;
-                    default:
-                        html.classList.add('critical');
-                        break;
-                }
+                if (this.system.roll.withHope) html.classList.add('hope');
+                else if (this.system.roll.withFear) html.classList.add('fear');
+                else html.classList.add('critical');
             }
             if (this.type === 'fateRoll') {
                 html.classList.add('fate');
-                if (this.system.roll?.fate.fateDie == 'Hope') {
-                    html.classList.add('hope');
-                }
-                if (this.system.roll?.fate.fateDie == 'Fear') {
-                    html.classList.add('fear');
+                if (this.system.roll?.fateDie) {
+                    html.classList.add(this.system.roll.fateDie.toLowerCase());
                 }
             }
 

@@ -256,7 +256,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         action.use(event);
     }
 
-    async rerollEvent(event, message) {
+    async rerollEvent(event, messageData) {
         event.stopPropagation();
         if (!event.shiftKey) {
             const confirmed = await foundry.applications.api.DialogV2.confirm({
@@ -268,6 +268,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             if (!confirmed) return;
         }
 
+        const message = game.messages.get(messageData._id);
         const target = event.target.closest('[data-die-index]');
 
         if (target.dataset.type === 'damage') {
@@ -290,27 +291,16 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 }
             });
         } else {
-            let originalRoll_parsed = message.rolls.map(roll => JSON.parse(roll))[0];
-            const rollClass =
-                game.system.api.dice[
-                    message.type === 'dualityRoll'
-                        ? 'DualityRoll'
-                        : target.dataset.type === 'damage'
-                          ? 'DHRoll'
-                          : 'D20Roll'
-                ];
-
-            if (!game.modules.get('dice-so-nice')?.active) foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
-
-            const { newRoll, parsedRoll } = await rollClass.reroll(
-                originalRoll_parsed,
-                target.dataset.dieIndex,
-                target.dataset.type
-            );
-
-            await game.messages.get(message._id).update({
-                'system.roll': newRoll,
-                'rolls': [parsedRoll]
+            const rerollDice = message.system.roll.dice[target.dataset.dieIndex];
+            await rerollDice.reroll(`/r1=${rerollDice.total}`, {
+                liveRoll: {
+                    roll: message.system.roll,
+                    actor: message.system.actionActor,
+                    isReaction: message.system.roll.options.actionType === 'reaction'
+                }
+            });
+            await message.update({
+                rolls: [message.system.roll.toJSON()]
             });
         }
     }

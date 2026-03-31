@@ -21,8 +21,8 @@ export default class FateRoll extends D20Roll {
     }
 
     set dHope(faces) {
-        if (!(this.dice[0] instanceof foundry.dice.terms.Die)) this.createBaseDice();
-        this.dice[0].faces = this.getFaces(faces);
+        // TODO this should not be asymmetrical with the getter. updateRollConfiguration() should use dHope.faces
+        this.dHope.faces = this.getFaces(faces);
     }
 
     get dFear() {
@@ -31,8 +31,8 @@ export default class FateRoll extends D20Roll {
     }
 
     set dFear(faces) {
-        if (!(this.dice[0] instanceof foundry.dice.terms.Die)) this.createBaseDice();
-        this.dice[0].faces = this.getFaces(faces);
+        // TODO this should not be asymmetrical with the getter. updateRollConfiguration() should use dFear.faces
+        this.dFear.faces = this.getFaces(faces);
     }
 
     get isCritical() {
@@ -41,6 +41,22 @@ export default class FateRoll extends D20Roll {
 
     get fateDie() {
         return this.data.fateType;
+    }
+
+    get withHope() {
+        if (!this._evaluatedl) return;
+        return this.dHope.total >= this.dFear.total;
+    }
+
+    get withFear() {
+        if (!this._evaluated) return;
+        return this.dHope.total < this.dFear.total;
+    }
+
+    get totalLabel() {
+        const label = this.withHope ? 'DAGGERHEART.GENERAL.hope' : 'DAGGERHEART.GENERAL.fear';
+
+        return game.i18n.localize(label);
     }
 
     static getHooks(hooks) {

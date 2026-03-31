@@ -1,8 +1,6 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 import D20Roll from './d20Roll.mjs';
 import { parseRallyDice, setDiceSoNiceForDualityRoll } from '../helpers/utils.mjs';
-import { getDiceSoNicePresets } from '../config/generalConfig.mjs';
-import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
 
 export default class DualityRoll extends D20Roll {
     _advantageFaces = 6;
@@ -26,27 +24,31 @@ export default class DualityRoll extends D20Roll {
     }
 
     get dHope() {
-        if (!(this.dice[0] instanceof foundry.dice.terms.Die)) this.createBaseDice();
+        if (!(this.dice[0] instanceof game.system.api.dice.diceTypes.DualityDie)) this.createBaseDice();
         return this.dice[0];
     }
 
     set dHope(faces) {
-        if (!(this.dice[0] instanceof foundry.dice.terms.Die)) this.createBaseDice();
-        this.dice[0].faces = this.getFaces(faces);
+        // TODO this should not be asymmetrical with the getter. updateRollConfiguration() should use dHope.faces
+        this.dHope.faces = this.getFaces(faces);
     }
 
     get dFear() {
-        if (!(this.dice[1] instanceof foundry.dice.terms.Die)) this.createBaseDice();
+        if (!(this.dice[1] instanceof game.system.api.dice.diceTypes.DualityDie)) this.createBaseDice();
         return this.dice[1];
     }
 
     set dFear(faces) {
-        if (!(this.dice[1] instanceof foundry.dice.terms.Die)) this.createBaseDice();
-        this.dice[1].faces = this.getFaces(faces);
+        // TODO this should not be asymmetrical with the getter. updateRollConfiguration() should use dFear.faces
+        this.dFear.faces = this.getFaces(faces);
     }
 
     get dAdvantage() {
-        return this.dice[2];
+        return this.dice[2] instanceof game.system.api.dice.diceTypes.AdvantageDie ? this.dice[2] : null;
+    }
+
+    get dDisadvantage() {
+        return this.dice[2] instanceof game.system.api.dice.diceTypes.DisadvantageDie ? this.dice[2] : null;
     }
 
     get advantageFaces() {
@@ -63,6 +65,11 @@ export default class DualityRoll extends D20Roll {
 
     set advantageNumber(value) {
         this._advantageNumber = Number(value);
+    }
+
+    get extraDice() {
+        const { DualityDie, AdvantageDie, DisadvantageDie } = game.system.api.dice.diceTypes;
+        return this.dice.filter(x => ![DualityDie, AdvantageDie, DisadvantageDie].some(die => x instanceof die));
     }
 
     setRallyChoices() {
@@ -118,22 +125,28 @@ export default class DualityRoll extends D20Roll {
 
     /** @inheritDoc */
     static fromData(data) {
-        data.terms[0].class = foundry.dice.terms.Die.name;
-        data.terms[2].class = foundry.dice.terms.Die.name;
+        data.terms[0].class = 'DualityDie';
+        data.terms[2].class = 'DualityDie';
+        if (data.options.roll.advantage?.type && data.terms[4]?.faces) {
+            data.terms[4].class = data.options.roll.advantage.type === 1 ? 'AdvantageDie' : 'DisadvantageDie';
+        }
         return super.fromData(data);
     }
 
     createBaseDice() {
-        if (this.dice[0] instanceof foundry.dice.terms.Die && this.dice[1] instanceof foundry.dice.terms.Die) {
+        if (
+            this.dice[0] instanceof game.system.api.dice.diceTypes.DualityDie &&
+            this.dice[1] instanceof game.system.api.dice.diceTypes.DualityDie
+        ) {
             this.terms = [this.terms[0], this.terms[1], this.terms[2]];
             return;
         }
 
-        this.terms[0] = new foundry.dice.terms.Die({
+        this.terms[0] = new game.system.api.dice.diceTypes.DualityDie({
             faces: this.data.rules.dualityRoll?.defaultHopeDice ?? 12
         });
         this.terms[1] = new foundry.dice.terms.OperatorTerm({ operator: '+' });
-        this.terms[2] = new foundry.dice.terms.Die({
+        this.terms[2] = new game.system.api.dice.diceTypes.DualityDie({
             faces: this.data.rules.dualityRoll?.defaultFearDice ?? 12
         });
     }
@@ -370,64 +383,5 @@ export default class DualityRoll extends D20Roll {
             const currentCombatant = game.combat.combatants.get(game.combat.current?.combatantId);
             if (currentCombatant?.actorId == config.data.id) ui.combat.setCombatantSpotlight(currentCombatant.id);
         }
-    }
-
-    static async reroll(rollBase, dieIndex, diceType, updateResources = true) {
-        let parsedRoll = game.system.api.dice.DualityRoll.fromData({ ...rollBase, evaluated: false });
-        const term = parsedRoll.terms[dieIndex];
-        await term.reroll(`/r1=${term.total}`);
-        const result = await parsedRoll.evaluate();
-
-        if (game.modules.get('dice-so-nice')?.active) {
-            const diceSoNiceRoll = {
-                _evaluated: true,
-                dice: [
-                    new foundry.dice.terms.Die({
-                        ...term,
-                        faces: term._faces,
-                        results: term.results.filter(x => !x.rerolled)
-                    })
-                ],
-                options: { appearance: {} }
-            };
-
-            const diceSoNicePresets = await getDiceSoNicePresets(`d${term._faces}`, `d${term._faces}`);
-            if (diceSoNicePresets[diceType]) {
-                diceSoNiceRoll.dice[0].options = diceSoNicePresets[diceType];
-            }
-
-            await game.dice3d.showForRoll(diceSoNiceRoll, game.user, true);
-        } else {
-            foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
-        }
-
-        const newRoll = game.system.api.dice.DualityRoll.postEvaluate(parsedRoll, {
-            targets: parsedRoll.options.targets ?? [],
-            roll: {
-                advantage: parsedRoll.options.roll.advantage?.type,
-                difficulty: parsedRoll.options.roll.difficulty ? Number(parsedRoll.options.roll.difficulty) : null
-            }
-        });
-
-        const extraIndex = newRoll.advantage ? 3 : 2;
-        newRoll.extra = newRoll.extra.slice(extraIndex);
-
-        const actor = parsedRoll.options.source.actor
-            ? await foundry.utils.fromUuid(parsedRoll.options.source.actor)
-            : null;
-        const config = {
-            source: { actor: parsedRoll.options.source.actor ?? '' },
-            targets: parsedRoll.targets,
-            roll: newRoll,
-            rerolledRoll: parsedRoll.options.roll,
-            resourceUpdates: new ResourceUpdateMap(actor)
-        };
-
-        if (updateResources) {
-            await DualityRoll.addDualityResourceUpdates(config);
-            await config.resourceUpdates.updateResources();
-        }
-
-        return { newRoll, parsedRoll };
     }
 }
