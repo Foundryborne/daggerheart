@@ -79,8 +79,6 @@ export default function DHApplicationMixin(Base) {
          */
         constructor(options = {}) {
             super(options);
-
-            this._setupDragDrop();
         }
 
         /**
@@ -174,9 +172,6 @@ export default function DHApplicationMixin(Base) {
         /**@inheritdoc */
         _attachPartListeners(partId, htmlElement, options) {
             super._attachPartListeners(partId, htmlElement, options);
-
-            /* Core dragDrop from ActorDocument is always only 1. Possible we could refactor our own */
-            if (Array.isArray(this._dragDrop)) this._dragDrop.forEach(d => d.bind(htmlElement));
 
             // Handle delta inputs
             for (const deltaInput of htmlElement.querySelectorAll('input[data-allow-delta]')) {
@@ -289,6 +284,16 @@ export default function DHApplicationMixin(Base) {
         async _onRender(context, options) {
             await super._onRender(context, options);
             this._createTagifyElements(this.options.tagifyConfigs);
+
+            for (const d of this.options.dragDrop) {
+                new foundry.applications.ux.DragDrop.implementation({
+                    ...d,
+                    callbacks: {
+                        dragstart: this._onDragStart.bind(this),
+                        drop: this._onDrop.bind(this)
+                    }
+                }).bind(this.element);
+            }
         }
 
         /* -------------------------------------------- */
@@ -348,26 +353,6 @@ export default function DHApplicationMixin(Base) {
         /* -------------------------------------------- */
         /*  Drag and Drop                               */
         /* -------------------------------------------- */
-
-        /**
-         * Creates drag-drop handlers from the configured options.
-         * @returns {foundry.applications.ux.DragDrop[]}
-         * @private
-         */
-        _setupDragDrop() {
-            if (this._dragDrop) {
-                this._dragDrop.callbacks.dragStart = this._onDragStart;
-                this._dragDrop.callback.drop = this._onDrop;
-            } else {
-                this._dragDrop = this.options.dragDrop.map(d => {
-                    d.callbacks = {
-                        dragstart: this._onDragStart.bind(this),
-                        drop: this._onDrop.bind(this)
-                    };
-                    return new foundry.applications.ux.DragDrop.implementation(d);
-                });
-            }
-        }
 
         /**
          * Handle dragStart event.

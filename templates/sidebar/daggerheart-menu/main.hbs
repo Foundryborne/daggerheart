@@ -4,10 +4,10 @@
     <fieldset>
         <legend>{{localize "DAGGERHEART.APPLICATIONS.DaggerheartMenu.refreshFeatures"}}</legend>
 
-        <div class="menu-refresh-container">
-            <div class="menu-refresh-inner-container">
+        <div class="menu-options-container">
+            <div class="menu-options-inner-container">
                 {{#each refreshables as |type key|}}
-                    <div class="experience-chip {{#if type.selected}}selected{{/if}}" data-action="selectRefreshable" data-type="{{key}}">
+                    <div class="option-chip {{#if type.selected}}selected{{/if}}" data-action="selectRefreshable" data-type="{{key}}">
                         {{#if type.selected}}
                             <span><i class="fa-solid fa-circle"></i></span>
                         {{else}}
@@ -19,6 +19,20 @@
                 {{/each}}
             </div>
             <button data-action="refreshActors" {{disabled disableRefresh}}>{{localize "DAGGERHEART.GENERAL.refresh"}}</button>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>{{localize "DAGGERHEART.APPLICATIONS.DaggerheartMenu.fallingAndCollision"}} <i class="fa-solid fa-explosion fa-fw"></i></legend>
+
+        <div class="menu-options-container">
+            <div class="menu-options-inner-container">
+                {{#each fallAndCollision as |data key|}}
+                    <button data-action="createFallCollisionDamage" data-key="{{key}}">
+                        {{localize data.label}}
+                    </button>
+                {{/each}}
+            </div>
         </div>
     </fieldset>
 </div>

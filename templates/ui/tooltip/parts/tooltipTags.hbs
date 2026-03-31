@@ -1,4 +1,5 @@
 {{#if (gt features.length 0)}}<h2 class="tooltip-title">{{label}}</h2>{{/if}}
+<div class="tooltip-separator"></div>
 <div class="tooltip-tags">
     {{#each features as | feature |}}
         {{#with (ifThen ../isAction feature (ifThen feature.item feature.item feature))}}

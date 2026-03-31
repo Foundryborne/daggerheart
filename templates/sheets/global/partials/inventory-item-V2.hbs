@@ -17,7 +17,7 @@ Parameters:
 - showActions {boolean} : If true show feature's actions.
 --}}
 
-<li class="inventory-item" data-item-id="{{item.id}}" 
+<li class="inventory-item" data-item-id="{{item.id}}"
     {{#if (or (eq type 'action' ) (eq type 'attack' ))}}data-action-id="{{item.id}}" {{/if}} 
     {{#if disabledEffect}}data-disabled="true"{{/if}}
     data-type="{{type}}" data-item-type="{{item.type}}"

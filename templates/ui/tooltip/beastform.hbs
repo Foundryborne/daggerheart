@@ -3,37 +3,7 @@
     <h2 class="tooltip-title">{{item.name}}</h2>
     <p class="tooltip-subtitle"><i>{{item.system.examples}}</i></p>
 
-    {{#if description}}
-        <div class="tooltip-description">{{{description}}}</div>
-    {{/if}}
-
-    <div class="tags">
-        {{#with item.system.beastformAttackData}} 
-            <div class="tag">
-                <span>{{localize "DAGGERHEART.ITEMS.Beastform.mainTrait"}} {{this.trait}}</span>
-            </div>
-            <div class="tag">
-                <span>{{localize "DAGGERHEART.ITEMS.Beastform.traitBonus"}} {{this.traitBonus}}</span>
-            </div>
-            <div class="tag">
-                <span>{{localize "DAGGERHEART.GENERAL.evasion"}} {{this.evasionBonus}}</span>
-            </div>
-            <div class="tag">
-                <span>{{localize "DAGGERHEART.GENERAL.damage"}} {{concat this.damageDice ' ' this.damageBonus}} <i class="fa-solid fa-hand-fist"></i></span>
-            </div>
-        {{/with}}
-    </div>
-
-    <h2 class="tooltip-title">{{localize "DAGGERHEART.ITEMS.Beastform.FIELDS.advantageOn.label"}}</h2>
-    <div class="tags advantages">
-        {{#each item.system.advantageOn as | chip |}}
-            <div class="tag">
-                <span>{{ifThen chip.value chip.value chip}}</span>
-            </div>
-        {{/each}}
-    </div>
-
-    {{> "systems/daggerheart/templates/ui/tooltip/parts/tooltipTags.hbs" features=item.system.features label=(localize "DAGGERHEART.GENERAL.features")}}
+    {{> "systems/daggerheart/templates/ui/tooltip/parts/beastformData.hbs" }}
 
     <p class="tooltip-hint">
         <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.Tooltip.middleClick"}}

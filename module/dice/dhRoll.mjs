@@ -12,6 +12,10 @@ export default class DHRoll extends Roll {
         return game.i18n.localize('DAGGERHEART.GENERAL.Roll.basic');
     }
 
+    get modifierTotal() {
+        return this.constructor.calculateTotalModifiers(this);
+    }
+
     static messageType = 'adversaryRoll';
 
     static CHAT_TEMPLATE = 'systems/daggerheart/templates/ui/chat/roll.hbs';
@@ -122,10 +126,6 @@ export default class DHRoll extends Roll {
         if (roll._evaluated) {
             const message = await cls.create(msgData, { messageMode: config.selectedMessageMode });
 
-            if (config.tagTeamSelected) {
-                game.system.api.applications.dialogs.TagTeamDialog.assignRoll(message.speakerActor, message);
-            }
-
             if (roll.formula !== '' && game.modules.get('dice-so-nice')?.active) {
                 await game.dice3d.waitFor3DAnimationByMessageID(message.id);
             }
@@ -142,6 +142,7 @@ export default class DHRoll extends Roll {
         const chatData = await this._prepareChatRenderContext({ flavor, isPrivate, ...options });
         return foundry.applications.handlebars.renderTemplate(template, {
             ...chatData,
+            roll: this,
             parent: chatData.parent,
             targetMode: chatData.targetMode,
             metagamingSettings
@@ -245,16 +246,21 @@ export default class DHRoll extends Roll {
         return (this._formula = this.constructor.getFormula(this.terms));
     }
 
+    /**
+     * Calculate total modifiers of any rolls, including non-dh rolls.
+     * This exists because damage rolls still may receive base roll classes
+     */
     static calculateTotalModifiers(roll) {
         let modifierTotal = 0;
         for (let i = 0; i < roll.terms.length; i++) {
-            if (
-                roll.terms[i] instanceof foundry.dice.terms.NumericTerm &&
-                !!roll.terms[i - 1] &&
-                roll.terms[i - 1] instanceof foundry.dice.terms.OperatorTerm
-            )
-                modifierTotal += Number(`${roll.terms[i - 1].operator}${roll.terms[i].total}`);
+            if (!roll.terms[i].isDeterministic) continue;
+            const termTotal = roll.terms[i].total;
+            if (typeof termTotal === 'number') {
+                const multiplier = roll.terms[i - 1]?.operator === ' - ' ? -1 : 1;
+                modifierTotal += multiplier * termTotal;
+            }
         }
+
         return modifierTotal;
     }
 

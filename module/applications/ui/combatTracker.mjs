@@ -1,5 +1,6 @@
 import { AdversaryBPPerEncounter } from '../../config/encounterConfig.mjs';
 import { expireActiveEffects } from '../../helpers/utils.mjs';
+import { clearPreviousSpotlight } from '../../macros/spotlightCombatant.mjs';
 
 export default class DhCombatTracker extends foundry.applications.sidebar.tabs.CombatTracker {
     static DEFAULT_OPTIONS = {
@@ -150,13 +151,13 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
     }
 
     async setCombatantSpotlight(combatantId) {
+        const combatant = this.viewed.combatants.get(combatantId);
         const update = {
             system: {
                 'spotlight.requesting': false,
                 'spotlight.requestOrderIndex': 0
             }
         };
-        const combatant = this.viewed.combatants.get(combatantId);
 
         const toggleTurn = this.viewed.combatants.contents
             .sort(this.viewed._sortCombatants)
@@ -187,6 +188,14 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
             round: this.viewed.round + 1
         });
         await combatant.update(update);
+        if (combatant.token) clearPreviousSpotlight();
+    }
+
+    async clearTurn() {
+        await this.viewed.update({
+            turn: null,
+            round: this.viewed.round + 1
+        });
     }
 
     static async requestSpotlight(_, target) {

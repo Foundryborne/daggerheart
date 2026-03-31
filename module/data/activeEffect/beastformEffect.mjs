@@ -25,7 +25,7 @@ export default class BeastformEffect extends BaseEffect {
                     width: new fields.NumberField({ integer: false, nullable: true })
                 })
             }),
-            advantageOn: new fields.ArrayField(new fields.StringField()),
+            advantageOn: new fields.TypedObjectField(new fields.SchemaField({ value: new fields.StringField() })),
             featureIds: new fields.ArrayField(new fields.StringField()),
             effectIds: new fields.ArrayField(new fields.StringField())
         };

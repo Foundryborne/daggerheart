@@ -36,7 +36,9 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             editDoc: this.editDoc,
             addTrigger: this.addTrigger,
             removeTrigger: this.removeTrigger,
-            expandTrigger: this.expandTrigger
+            expandTrigger: this.expandTrigger,
+            addBeastformTraitBonus: this.addBeastformTraitBonus,
+            removeBeastformTraitBonus: this.removeBeastformTraitBonus
         },
         form: {
             handler: this.updateForm,
@@ -410,6 +412,21 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         } else {
             this.openTrigger = index;
         }
+    }
+
+    static async addBeastformTraitBonus() {
+        const data = this.action.toObject();
+        data.beastform.modifications.traitBonuses = [
+            ...data.beastform.modifications.traitBonuses,
+            this.action.schema.fields.beastform.fields.modifications.fields.traitBonuses.element.getInitialValue()
+        ];
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
+    static async removeBeastformTraitBonus(_event, button) {
+        const data = this.action.toObject();
+        data.beastform.modifications.traitBonuses.splice(button.dataset.index, 1);
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
     updateSummonCount(event) {

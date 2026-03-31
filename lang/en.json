@@ -89,9 +89,14 @@
             },
             "Config": {
                 "beastform": {
-                    "exact": "Beastform Max Tier",
-                    "exactHint": "The Character's Tier is used if empty",
-                    "label": "Beastform"
+                    "exact": { "label": "Beastform Max Tier", "hint": "The Character's Tier is used if empty" },
+                    "modifications": {
+                        "traitBonuses": {
+                            "label": { "single": "Trait Bonus", "plural": "Trait Bonuses" },
+                            "hint": "Pick bonuses you apply to freely chosen traits at the time of transforming",
+                            "bonus": "Bonus Amount"
+                        }
+                    }
                 },
                 "countdown": {
                     "defaultOwnership": "Default Ownership",
@@ -448,7 +453,8 @@
             },
             "DaggerheartMenu": {
                 "title": "GM Tools",
-                "refreshFeatures": "Refresh Features"
+                "refreshFeatures": "Refresh Features",
+                "fallingAndCollision": "Falling And Collision Damage"
             },
             "DeleteConfirmation": {
                 "title": "Delete {type} - {name}",
@@ -1162,6 +1168,12 @@
                     "label": "Event",
                     "description": ""
                 }
+            },
+            "fallAndCollision": {
+                "veryClose": { "label": "Very Close", "chatTitle": "Fall Damage: Very Close" },
+                "close": { "label": "Close", "chatTitle": "Fall Damage: Close" },
+                "far": { "label": "Far", "chatTitle": "Fall Damage: Far" },
+                "collision": { "label": "Collision", "chatTitle": "Dangerous Collision" }
             },
             "FeatureForm": {
                 "label": "Feature Form",
@@ -2567,6 +2579,13 @@
                 "secondaryWeapon": "Secondary Weapon"
             }
         },
+        "MACROS": {
+            "Spotlight": {
+                "errors": {
+                    "noTokenSelected": "A token on the canvas must either be selected or hovered to spotlight it"
+                }
+            }
+        },
         "ROLLTABLES": {
             "FIELDS": {
                 "formulaName": { "label": "Formula Name" }
@@ -2808,6 +2827,12 @@
                     "emptyIcon": "Empty Icon",
                     "resourceIdentifier": "Resource Identifier",
                     "setResourceIdentifier": "Set Resource Identifier"
+                }
+            },
+            "Keybindings": {
+                "spotlight": {
+                    "name": "Spotlight Combatant",
+                    "hint": "Move the spotlight to a hovered or selected token that's present in an active encounter"
                 }
             },
             "Menu": {

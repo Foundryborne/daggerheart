@@ -7,7 +7,7 @@
         {{#each damage.parts as |part|}}
             <div class="roll-dice-container">
                 {{#each part.dice as |dice index|}}
-                    <a class="roll-dice" data-action="rerollDamageDice" data-member-key="{{@../../../key}}" data-damage-key="{{@../../key}}" data-part="{{@../index}}" data-dice="{{index}}">
+                    <a class="roll-dice" data-action="rerollDamageDice" data-member-key="{{../../../key}}" data-damage-key="{{@../../key}}" data-part="{{@../index}}" data-dice="{{index}}">
                         <span class="dice-label">{{dice.total}}</span>
                         <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/" dice.dice ".svg"}}" />
                     </a>

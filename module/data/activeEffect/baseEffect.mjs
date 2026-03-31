@@ -166,12 +166,11 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
             this.parent.actor?.type === 'character' &&
             this.parent.actor.system.resources.armor
         ) {
-            const newArmorTotal = (changed.system?.changes ?? []).reduce((acc, change) => {
-                if (change.type === 'armor') acc += change.value.current;
-                return acc;
-            }, this.parent.actor.system.armor?.system?.armor?.current ?? 0);
+            const armorEffect = changed.system?.changes?.find(x => x.type === 'armor');
+            const newArmorTotal =
+                armorEffect?.value?.current + (this.parent.actor.system.armor?.system?.armor?.current ?? 0);
 
-            if (newArmorTotal !== this.parent.actor.system.armorScore.value) {
+            if (armorEffect && newArmorTotal !== this.parent.actor.system.armorScore.value) {
                 const armorData = getScrollTextData(this.parent.actor, { value: newArmorTotal }, 'armor');
                 options.scrollingTextData = [armorData];
             }

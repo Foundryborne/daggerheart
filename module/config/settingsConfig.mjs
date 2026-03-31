@@ -1,3 +1,7 @@
+export const keybindings = {
+    spotlight: 'DHSpotlight'
+};
+
 export const menu = {
     Automation: {
         Name: 'GameSettingsAutomation',
@@ -35,7 +39,8 @@ export const gameSettings = {
     Countdowns: 'Countdowns',
     LastMigrationVersion: 'LastMigrationVersion',
     SpotlightRequestQueue: 'SpotlightRequestQueue',
-    CompendiumBrowserSettings: 'CompendiumBrowserSettings'
+    CompendiumBrowserSettings: 'CompendiumBrowserSettings',
+    SpotlightTracker: 'SpotlightTracker'
 };
 
 export const actionAutomationChoices = {

@@ -30,6 +30,18 @@ export default class DhpActor extends Actor {
         return this.system.metadata.isNPC;
     }
 
+    prepareData() {
+        super.prepareData();
+
+        // Update effects if it is the user's character or is controlled
+        if (canvas.ready) {
+            const controlled = canvas.tokens.controlled.some(t => t.actor === this);
+            if (game.user.character === this || controlled) {
+                ui.effectsDisplay.render();
+            }
+        }
+    }
+
     /* -------------------------------------------- */
 
     /** @inheritDoc */
@@ -120,14 +132,6 @@ export default class DhpActor extends Actor {
         for (const party of this.parties) {
             party.render();
         }
-    }
-
-    _onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
-        if (collection === 'effects') {
-            ui.effectsDisplay.render();
-        }
-
-        super._onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId);
     }
 
     async updateLevel(newLevel) {

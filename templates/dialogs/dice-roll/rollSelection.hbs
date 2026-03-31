@@ -53,14 +53,14 @@
                         {{#if @root.advantage}}
                             {{#if (eq @root.advantage 1)}}
                                 <div class="dice-option">
-                                    <img class="dice-icon" src="{{concat 'systems/daggerheart/assets/icons/dice/adv/' @root.roll.dAdvantage.denomination '.svg'}}" alt="">
+                                    <img class="dice-icon" src="{{concat 'systems/daggerheart/assets/icons/dice/adv/d' @root.roll.advantageFaces '.svg'}}" alt="">
                                     <div class="dice-select">
                                         <span class="label">{{localize "DAGGERHEART.GENERAL.Advantage.full"}}</span>
                                     </div>
                                 </div>
                             {{else if (eq @root.advantage -1)}}
                                 <div class="dice-option">
-                                    <img class="dice-icon" src="{{concat 'systems/daggerheart/assets/icons/dice/disadv/' @root.roll.dAdvantage.denomination '.svg'}}" alt="">
+                                    <img class="dice-icon" src="{{concat 'systems/daggerheart/assets/icons/dice/disadv/d' @root.roll.advantageFaces '.svg'}}" alt="">
                                     <div class="dice-select">
                                         <span class="label">{{localize "DAGGERHEART.GENERAL.Disadvantage.full"}}</span>
                                     </div>
@@ -158,7 +158,7 @@
                                     {{/times}}
                                 </select>
                                 <select name="roll.dice.advantageFaces"{{#unless advantage}} disabled{{/unless}}>
-                                    {{selectOptions diceOptions selected=@root.roll.dAdvantage.denomination}}
+                                    {{selectOptions diceOptions selected=(concat 'd' @root.roll.advantageFaces)}}
                                 </select>
                             </div>
                             {{#if abilities}}

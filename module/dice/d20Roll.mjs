@@ -217,49 +217,11 @@ export default class D20Roll extends DHRoll {
                     results: d.results
                 };
             });
-        data.modifierTotal = this.calculateTotalModifiers(roll);
+        data.modifierTotal = roll.modifierTotal;
         return data;
     }
 
     resetFormula() {
         return (this._formula = this.constructor.getFormula(this.terms));
-    }
-
-    static async reroll(rollString, _target, message) {
-        let parsedRoll = game.system.api.dice.D20Roll.fromData(rollString);
-        parsedRoll = await parsedRoll.reroll();
-        const newRoll = game.system.api.dice.D20Roll.postEvaluate(parsedRoll, {
-            targets: message.system.targets,
-            roll: {
-                advantage: message.system.roll.advantage?.type,
-                difficulty: message.system.roll.difficulty ? Number(message.system.roll.difficulty) : null
-            }
-        });
-
-        if (game.modules.get('dice-so-nice')?.active) {
-            await game.dice3d.showForRoll(parsedRoll, game.user, true);
-        }
-
-        const rerolled = {
-            any: true,
-            rerolls: [
-                ...(message.system.roll.dice[0].rerolled?.rerolls?.length > 0
-                    ? [message.system.roll.dice[0].rerolled?.rerolls]
-                    : []),
-                rollString.terms[0].results
-            ]
-        };
-        return {
-            newRoll: {
-                ...newRoll,
-                dice: [
-                    {
-                        ...newRoll.dice[0],
-                        rerolled: rerolled
-                    }
-                ]
-            },
-            parsedRoll
-        };
     }
 }

@@ -16,8 +16,10 @@ import {
     DhVariantRuleSettings
 } from '../applications/settings/_module.mjs';
 import { CompendiumBrowserSettings } from '../data/_module.mjs';
+import SpotlightTracker from '../data/spotlightTracker.mjs';
 
 export const registerDHSettings = () => {
+    registerKeyBindings();
     registerMenuSettings();
     registerMenus();
     registerNonConfigSettings();
@@ -30,6 +32,25 @@ export const registerDHSettings = () => {
         config: true,
         type: Boolean,
         onChange: () => ui.combat.render()
+    });
+};
+
+export const registerKeyBindings = () => {
+    game.keybindings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.keybindings.spotlight, {
+        name: game.i18n.localize('DAGGERHEART.SETTINGS.Keybindings.spotlight.name'),
+        hint: game.i18n.localize('DAGGERHEART.SETTINGS.Keybindings.spotlight.hint'),
+        uneditable: [],
+        editable: [],
+        onDown: () => {
+            const selectedTokens = canvas.tokens.controlled.length > 0 ? canvas.tokens.controlled[0] : null;
+            const hoveredTokens = game.canvas.tokens.hover ? game.canvas.tokens.hover : null;
+            const tokens = selectedTokens ?? hoveredTokens;
+            game.system.api.macros.spotlightCombatant(tokens);
+        },
+        onUp: () => {},
+        restricted: true,
+        reservedModifiers: [],
+        precedence: CONST.KEYBINDING_PRECEDENCE.NORMAL
     });
 };
 
@@ -161,5 +182,11 @@ const registerNonConfigSettings = () => {
         scope: 'world',
         config: false,
         type: CompendiumBrowserSettings
+    });
+
+    game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.SpotlightTracker, {
+        scope: 'world',
+        config: false,
+        type: SpotlightTracker
     });
 };

@@ -41,26 +41,32 @@
         </div>
     {{/if}}
 
-    {{#unless effect.isLockedCondition}}
+
         <div class="close-hints">
-            {{#if effect.system.stacking}}
+            {{#if (eq effect.type 'beastform')}}
                 <p class="close-hint">
-                    <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.EffectsDisplay.increaseStacks"}}
+                    <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.Tooltip.middleClick"}}
                 </p>
-                {{#if (gt effect.system.stacking.value 1)}}
+            {{/if}}
+            {{#unless effect.isLockedCondition}}
+                {{#if effect.system.stacking}}
                     <p class="close-hint">
-                        <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.EffectsDisplay.decreaseStacks"}}
+                        <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.EffectsDisplay.increaseStacks"}}
                     </p>
+                    {{#if (gt effect.system.stacking.value 1)}}
+                        <p class="close-hint">
+                            <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.EffectsDisplay.decreaseStacks"}}
+                        </p>
+                    {{else}}
+                        <p class="close-hint">
+                            <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.EffectsDisplay.removeThing" thing=(localize "DAGGERHEART.GENERAL.Effect.single")}}
+                        </p>
+                    {{/if}}
                 {{else}}
                     <p class="close-hint">
                         <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.EffectsDisplay.removeThing" thing=(localize "DAGGERHEART.GENERAL.Effect.single")}}
                     </p>
                 {{/if}}
-            {{else}}
-                <p class="close-hint">
-                    <i class="fa-solid fa-computer-mouse"></i> {{localize "DAGGERHEART.UI.EffectsDisplay.removeThing" thing=(localize "DAGGERHEART.GENERAL.Effect.single")}}
-                </p>
-            {{/if}}
+            {{/unless}}
         </div>
-    {{/unless}}
 </div>
