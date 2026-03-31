@@ -44,13 +44,11 @@ export default class FateRoll extends D20Roll {
     }
 
     get withHope() {
-        if (!this._evaluatedl) return;
-        return this.dHope.total >= this.dFear.total;
+        return this.data.fateType === 'Hope';
     }
 
     get withFear() {
-        if (!this._evaluated) return;
-        return this.dHope.total < this.dFear.total;
+        return this.data.fateType === 'Fear';
     }
 
     get totalLabel() {
