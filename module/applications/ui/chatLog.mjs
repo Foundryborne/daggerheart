@@ -1,5 +1,8 @@
 import { abilities } from '../../config/actorConfig.mjs';
-import { emitAsGM, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+import { enrichedDualityRoll } from '../../enrichers/DualityRollEnricher.mjs';
+import { enrichedFateRoll, getFateTypeData } from '../../enrichers/FateRollEnricher.mjs';
+import { getCommandTarget, rollCommandToJSON } from '../../helpers/utils.mjs';
+import { emitAsGM, GMUpdateEvent } from '../../systemRegistration/socket.mjs';
 
 export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLog {
     constructor(options) {
@@ -19,6 +22,84 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     /** @inheritDoc */
     static DEFAULT_OPTIONS = {
         classes: ['daggerheart']
+    };
+
+    static CHAT_COMMANDS = {
+        ...super.CHAT_COMMANDS,
+        dr: {
+            rgx: /^(?:\/dr)((?:\s)[^]*)?/,
+            fn: (_, match) => {
+                const argString = match[1]?.trim();
+                const result = argString ? rollCommandToJSON(argString) : { result: {} };
+                if (!result) {
+                    ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.dualityParsing'));
+                    return false;
+                }
+
+                const { result: rollCommand, flavor } = result;
+
+                const reaction = rollCommand.reaction;
+                const traitValue = rollCommand.trait?.toLowerCase();
+                const advantage = rollCommand.advantage
+                    ? CONFIG.DH.ACTIONS.advantageState.advantage.value
+                    : rollCommand.disadvantage
+                      ? CONFIG.DH.ACTIONS.advantageState.disadvantage.value
+                      : undefined;
+                const difficulty = rollCommand.difficulty;
+                const grantResources = rollCommand.grantResources;
+
+                const target = getCommandTarget({ allowNull: true });
+                const title =
+                    (flavor ?? traitValue)
+                        ? game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
+                              ability: game.i18n.localize(SYSTEM.ACTOR.abilities[traitValue].label)
+                          })
+                        : game.i18n.localize('DAGGERHEART.GENERAL.duality');
+
+                enrichedDualityRoll({
+                    reaction,
+                    traitValue,
+                    target,
+                    difficulty,
+                    title,
+                    label: game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll'),
+                    actionType: null,
+                    advantage,
+                    grantResources
+                });
+                return false;
+            }
+        },
+        fr: {
+            rgx: /^(?:\/fr)((?:\s)[^]*)?/,
+            fn: (_, match) => {
+                const argString = match[1]?.trim();
+                const result = argString ? rollCommandToJSON(argString) : { result: {} };
+
+                if (!result) {
+                    ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateParsing'));
+                    return false;
+                }
+
+                const { result: rollCommand, flavor } = result;
+                const fateTypeData = getFateTypeData(rollCommand?.type);
+
+                if (!fateTypeData)
+                    return ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateTypeParsing'));
+
+                const { value: fateType, label: fateTypeLabel } = fateTypeData;
+                const target = getCommandTarget({ allowNull: true });
+                const title = flavor ?? game.i18n.localize('DAGGERHEART.GENERAL.fateRoll');
+
+                enrichedFateRoll({
+                    target,
+                    title,
+                    label: fateTypeLabel,
+                    fateType
+                });
+                return false;
+            }
+        }
     };
 
     _getEntryContextOptions() {
