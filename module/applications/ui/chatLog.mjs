@@ -218,7 +218,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                     isReaction: message.system.roll.options.actionType === 'reaction'
                 }
             });
-            // await message.system.roll._evaluate();
             await message.update({
                 rolls: [message.system.roll.toJSON()]
             });
