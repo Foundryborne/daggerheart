@@ -72,21 +72,6 @@ export default class DualityRoll extends D20Roll {
         return this.dice.filter(x => ![DualityDie, AdvantageDie, DisadvantageDie].some(die => x instanceof die));
     }
 
-    /* This isn't fullproof, but trying to cover parathetical situations is ridiculously complex */
-    get modifierTotal() {
-        let modifierTotal = 0;
-        for (let i = 0; i < this.terms.length; i++) {
-            if (
-                this.terms[i] instanceof foundry.dice.terms.NumericTerm &&
-                !!this.terms[i - 1] &&
-                this.terms[i - 1] instanceof foundry.dice.terms.OperatorTerm
-            )
-                modifierTotal += Number(`${this.terms[i - 1].operator}${this.terms[i].total}`);
-        }
-
-        return modifierTotal;
-    }
-
     setRallyChoices() {
         return this.data?.parent?.appliedEffects.reduce((a, c) => {
             const change = c.system.changes.find(ch => ch.key === 'system.bonuses.rally');

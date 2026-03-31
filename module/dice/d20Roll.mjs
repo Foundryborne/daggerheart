@@ -217,7 +217,7 @@ export default class D20Roll extends DHRoll {
                     results: d.results
                 };
             });
-        data.modifierTotal = this.calculateTotalModifiers(roll);
+        data.modifierTotal = roll.modifierTotal;
         return data;
     }
 
