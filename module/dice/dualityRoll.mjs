@@ -142,9 +142,9 @@ export default class DualityRoll extends D20Roll {
     static fromData(data) {
         data.terms[0].class = 'DualityDie';
         data.terms[2].class = 'DualityDie';
-
-        if (data.options.roll.advantage?.type === 1) data.terms[4].class = 'AdvantageDie';
-        else if (data.options.roll.advantage?.type === -1) data.terms[4].class = 'DisadvantageDie';
+        if (data.options.roll.advantage?.type && data.terms[4]?.faces) {
+            data.terms[4].class = data.options.roll.advantage.type === 1 ? 'AdvantageDie' : 'DisadvantageDie';
+        }
         return super.fromData(data);
     }
 
