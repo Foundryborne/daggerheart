@@ -79,8 +79,8 @@
         "type": "attack"
       },
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -106,7 +106,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "img": "icons/weapons/daggers/dagger-curved-purple.webp",
       "range": "melee",
@@ -329,8 +329,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "fear": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -354,7 +354,7 @@
                   },
                   "type": []
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {

@@ -15,7 +15,8 @@ import {
     DhMetagamingSettings,
     DhVariantRuleSettings
 } from '../applications/settings/_module.mjs';
-import { CompendiumBrowserSettings, DhTagTeamRoll } from '../data/_module.mjs';
+import { CompendiumBrowserSettings } from '../data/_module.mjs';
+import SpotlightTracker from '../data/spotlightTracker.mjs';
 
 export const registerDHSettings = () => {
     registerKeyBindings();
@@ -40,7 +41,12 @@ export const registerKeyBindings = () => {
         hint: game.i18n.localize('DAGGERHEART.SETTINGS.Keybindings.spotlight.hint'),
         uneditable: [],
         editable: [],
-        onDown: game.system.api.macros.spotlightCombatant,
+        onDown: () => {
+            const selectedTokens = canvas.tokens.controlled.length > 0 ? canvas.tokens.controlled[0] : null;
+            const hoveredTokens = game.canvas.tokens.hover ? game.canvas.tokens.hover : null;
+            const tokens = selectedTokens ?? hoveredTokens;
+            game.system.api.macros.spotlightCombatant(tokens);
+        },
         onUp: () => {},
         restricted: true,
         reservedModifiers: [],
@@ -172,15 +178,15 @@ const registerNonConfigSettings = () => {
         type: DhCountdowns
     });
 
-    game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll, {
-        scope: 'world',
-        config: false,
-        type: DhTagTeamRoll
-    });
-
     game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.CompendiumBrowserSettings, {
         scope: 'world',
         config: false,
         type: CompendiumBrowserSettings
+    });
+
+    game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.SpotlightTracker, {
+        scope: 'world',
+        config: false,
+        type: SpotlightTracker
     });
 };

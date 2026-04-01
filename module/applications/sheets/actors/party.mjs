@@ -35,9 +35,7 @@ export default class Party extends DHBaseActorSheet {
             refeshActions: Party.#refeshActions,
             triggerRest: Party.#triggerRest,
             tagTeamRoll: Party.#tagTeamRoll,
-            groupRoll: Party.#groupRoll,
-            selectRefreshable: DaggerheartMenu.selectRefreshable,
-            refreshActors: DaggerheartMenu.refreshActors
+            groupRoll: Party.#groupRoll
         },
         dragDrop: [{ dragSelector: '[data-item-id]', dropSelector: null }]
     };
@@ -120,6 +118,7 @@ export default class Party extends DHBaseActorSheet {
             secrets: this.document.isOwner,
             relativeTo: this.document
         });
+        context.tagTeamActive = Boolean(this.document.system.tagTeam.initiator);
     }
 
     /**
@@ -190,11 +189,14 @@ export default class Party extends DHBaseActorSheet {
      * Toggles a armor slot resource value.
      * @type {ApplicationClickAction}
      */
-    static async #toggleArmorSlot(_, target, element) {
-        const armorItem = await foundry.utils.fromUuid(target.dataset.itemUuid);
-        const armorValue = Number.parseInt(target.dataset.value);
-        const newValue = armorItem.system.marks.value >= armorValue ? armorValue - 1 : armorValue;
-        await armorItem.update({ 'system.marks.value': newValue });
+    static async #toggleArmorSlot(_, target) {
+        const actor = game.actors.get(target.dataset.actorId);
+        const { value, max } = actor.system.armorScore;
+        const inputValue = Number.parseInt(target.dataset.value);
+        const newValue = value >= inputValue ? inputValue - 1 : inputValue;
+        const changeValue = Math.min(newValue - value, max - value);
+
+        await actor.system.updateArmorValue({ value: changeValue });
         this.render();
     }
 
@@ -255,11 +257,7 @@ export default class Party extends DHBaseActorSheet {
     }
 
     static async #tagTeamRoll() {
-        new game.system.api.applications.dialogs.TagTeamDialog(
-            this.document.system.partyMembers.filter(x => Party.DICE_ROLL_ACTOR_TYPES.includes(x.type))
-        ).render({
-            force: true
-        });
+        new game.system.api.applications.dialogs.TagTeamDialog(this.document).render({ force: true });
     }
 
     static async #groupRoll(_params) {

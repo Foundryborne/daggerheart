@@ -1,11 +1,14 @@
 import DamageDialog from '../applications/dialogs/damageDialog.mjs';
 import { parseRallyDice } from '../helpers/utils.mjs';
-import { RefreshType, socketEvent } from '../systemRegistration/socket.mjs';
 import DHRoll from './dhRoll.mjs';
 
 export default class DamageRoll extends DHRoll {
     constructor(formula, data = {}, options = {}) {
         super(formula, data, options);
+    }
+
+    get isCritical() {
+        return !!this.options.isCritical;
     }
 
     static DefaultDialog = DamageDialog;
@@ -34,7 +37,7 @@ export default class DamageRoll extends DHRoll {
     static async buildPost(roll, config, message) {
         const chatMessage = config.source?.message
             ? ui.chat.collection.get(config.source.message)
-            : getDocumentClass('ChatMessage').applyRollMode({}, config.rollMode ?? CONST.DICE_ROLL_MODES.PUBLIC);
+            : getDocumentClass('ChatMessage').applyMode({}, config.rollMode ?? 'public');
         if (game.modules.get('dice-so-nice')?.active) {
             const pool = foundry.dice.terms.PoolTerm.fromRolls(
                     Object.values(config.damage).flatMap(r => r.parts.map(p => p.roll))
@@ -139,55 +142,51 @@ export default class DamageRoll extends DHRoll {
     }
 
     constructFormula(config) {
-        this.options.roll.forEach((part, index) => {
+        this.options.isCritical = config.isCritical;
+        for (const [index, part] of this.options.roll.entries()) {
             part.roll = new Roll(Roll.replaceFormulaData(part.formula, config.data));
-            this.constructFormulaPart(config, part, index);
-        });
+            part.roll.terms = Roll.parse(part.roll.formula, config.data);
+            if (part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
+                part.modifiers = this.applyBaseBonus(part);
+                this.addModifiers(part);
+                part.modifiers?.forEach(m => {
+                    part.roll.terms.push(...this.formatModifier(m.value));
+                });
+            }
+
+            /* To Remove When Reaction System */
+            if (index === 0 && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
+                for (const mod in config.modifiers) {
+                    const modifier = config.modifiers[mod];
+                    if (modifier.beforeCrit === true && (modifier.enabled || modifier.value)) modifier.callback(part);
+                }
+            }
+
+            if (part.extraFormula) {
+                part.roll.terms.push(
+                    new foundry.dice.terms.OperatorTerm({ operator: '+' }),
+                    ...this.constructor.parse(part.extraFormula, this.options.data)
+                );
+            }
+
+            if (config.isCritical && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
+                const total = part.roll.dice.reduce((acc, term) => acc + term._faces * term._number, 0);
+                if (total > 0) {
+                    part.roll.terms.push(...this.formatModifier(total));
+                }
+            }
+
+            /* To Remove When Reaction System */
+            if (index === 0 && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
+                for (const mod in config.modifiers) {
+                    const modifier = config.modifiers[mod];
+                    if (!modifier.beforeCrit && (modifier.enabled || modifier.value)) modifier.callback(part);
+                }
+            }
+
+            part.roll._formula = this.constructor.getFormula(part.roll.terms);
+        }
         return this.options.roll;
-    }
-
-    constructFormulaPart(config, part, index) {
-        part.roll.terms = Roll.parse(part.roll.formula, config.data);
-
-        if (part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-            part.modifiers = this.applyBaseBonus(part);
-            this.addModifiers(part);
-            part.modifiers?.forEach(m => {
-                part.roll.terms.push(...this.formatModifier(m.value));
-            });
-        }
-
-        /* To Remove When Reaction System */
-        if (index === 0 && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-            for (const mod in config.modifiers) {
-                const modifier = config.modifiers[mod];
-                if (modifier.beforeCrit === true && (modifier.enabled || modifier.value)) modifier.callback(part);
-            }
-        }
-
-        if (part.extraFormula) {
-            part.roll.terms.push(
-                new foundry.dice.terms.OperatorTerm({ operator: '+' }),
-                ...this.constructor.parse(part.extraFormula, this.options.data)
-            );
-        }
-
-        if (config.isCritical && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-            const total = part.roll.dice.reduce((acc, term) => acc + term._faces * term._number, 0);
-            if (total > 0) {
-                part.roll.terms.push(...this.formatModifier(total));
-            }
-        }
-
-        /* To Remove When Reaction System */
-        if (index === 0 && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-            for (const mod in config.modifiers) {
-                const modifier = config.modifiers[mod];
-                if (!modifier.beforeCrit && (modifier.enabled || modifier.value)) modifier.callback(part);
-            }
-        }
-
-        return (part.roll._formula = this.constructor.getFormula(part.roll.terms));
     }
 
     /* To Remove When Reaction System */
@@ -197,7 +196,7 @@ export default class DamageRoll extends DHRoll {
             if (config.data.parent.appliedEffects) {
                 // Bardic Rally
                 const rallyChoices = config.data?.parent?.appliedEffects.reduce((a, c) => {
-                    const change = c.changes.find(ch => ch.key === 'system.bonuses.rally');
+                    const change = c.system.changes.find(ch => ch.key === 'system.bonuses.rally');
                     if (change) a.push({ value: c.id, label: parseRallyDice(change.value, c) });
                     return a;
                 }, []);
@@ -281,10 +280,7 @@ export default class DamageRoll extends DHRoll {
         return mods;
     }
 
-    static async reroll(target, message) {
-        const { damageType, part, dice, result } = target.dataset;
-        const rollPart = message.system.damage[damageType].parts[part];
-
+    static async reroll(rollPart, dice, result) {
         let diceIndex = 0;
         let parsedRoll = game.system.api.dice.DamageRoll.fromData({
             ...rollPart.roll,
@@ -353,29 +349,6 @@ export default class DamageRoll extends DHRoll {
             };
         });
 
-        const updateMessage = game.messages.get(message._id);
-        const damageParts = updateMessage.system.damage[damageType].parts.map((damagePart, index) => {
-            if (index !== Number(part)) return damagePart;
-            return {
-                ...rollPart,
-                total: parsedRoll.total,
-                dice: rerolledDice
-            };
-        });
-        await updateMessage.update({
-            [`system.damage.${damageType}`]: {
-                ...updateMessage,
-                total: parsedRoll.total,
-                parts: damageParts
-            }
-        });
-
-        Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.TagTeamRoll });
-        await game.socket.emit(`system.${CONFIG.DH.id}`, {
-            action: socketEvent.Refresh,
-            data: {
-                refreshType: RefreshType.TagTeamRoll
-            }
-        });
+        return { parsedRoll, rerolledDice };
     }
 }

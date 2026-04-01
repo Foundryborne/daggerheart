@@ -5,6 +5,10 @@
   "_id": "AQzU2RsqS5V5bd1v",
   "img": "icons/equipment/chest/coat-collared-red.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 6
+    },
     "description": "",
     "actions": {},
     "attached": [],

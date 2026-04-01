@@ -11,8 +11,8 @@
         "type": "attack",
         "damage": {
           "includeBase": false,
-          "parts": [
-            {
+          "parts": {
+            "hitPoints": {
               "resultBased": false,
               "value": {
                 "custom": {
@@ -38,7 +38,7 @@
                 }
               }
             }
-          ]
+          }
         },
         "range": "melee",
         "roll": {
@@ -115,8 +115,8 @@
         "useDefault": false
       },
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "dice": "d6",
               "bonus": 3,
@@ -142,7 +142,7 @@
             },
             "base": false
           }
-        ],
+        },
         "includeBase": false
       },
       "description": "",

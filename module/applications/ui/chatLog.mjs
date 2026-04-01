@@ -1,5 +1,8 @@
 import { abilities } from '../../config/actorConfig.mjs';
-import { emitAsGM, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+import { enrichedDualityRoll } from '../../enrichers/DualityRollEnricher.mjs';
+import { enrichedFateRoll, getFateTypeData } from '../../enrichers/FateRollEnricher.mjs';
+import { getCommandTarget, rollCommandToJSON } from '../../helpers/utils.mjs';
+import { emitAsGM, GMUpdateEvent } from '../../systemRegistration/socket.mjs';
 
 export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLog {
     constructor(options) {
@@ -19,6 +22,84 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     /** @inheritDoc */
     static DEFAULT_OPTIONS = {
         classes: ['daggerheart']
+    };
+
+    static CHAT_COMMANDS = {
+        ...super.CHAT_COMMANDS,
+        dr: {
+            rgx: /^(?:\/dr)((?:\s)[^]*)?/,
+            fn: (_, match) => {
+                const argString = match[1]?.trim();
+                const result = argString ? rollCommandToJSON(argString) : { result: {} };
+                if (!result) {
+                    ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.dualityParsing'));
+                    return false;
+                }
+
+                const { result: rollCommand, flavor } = result;
+
+                const reaction = rollCommand.reaction;
+                const traitValue = rollCommand.trait?.toLowerCase();
+                const advantage = rollCommand.advantage
+                    ? CONFIG.DH.ACTIONS.advantageState.advantage.value
+                    : rollCommand.disadvantage
+                      ? CONFIG.DH.ACTIONS.advantageState.disadvantage.value
+                      : undefined;
+                const difficulty = rollCommand.difficulty;
+                const grantResources = rollCommand.grantResources;
+
+                const target = getCommandTarget({ allowNull: true });
+                const title =
+                    (flavor ?? traitValue)
+                        ? game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
+                              ability: game.i18n.localize(SYSTEM.ACTOR.abilities[traitValue].label)
+                          })
+                        : game.i18n.localize('DAGGERHEART.GENERAL.duality');
+
+                enrichedDualityRoll({
+                    reaction,
+                    traitValue,
+                    target,
+                    difficulty,
+                    title,
+                    label: game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll'),
+                    actionType: null,
+                    advantage,
+                    grantResources
+                });
+                return false;
+            }
+        },
+        fr: {
+            rgx: /^(?:\/fr)((?:\s)[^]*)?/,
+            fn: (_, match) => {
+                const argString = match[1]?.trim();
+                const result = argString ? rollCommandToJSON(argString) : { result: {} };
+
+                if (!result) {
+                    ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateParsing'));
+                    return false;
+                }
+
+                const { result: rollCommand, flavor } = result;
+                const fateTypeData = getFateTypeData(rollCommand?.type);
+
+                if (!fateTypeData)
+                    return ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateTypeParsing'));
+
+                const { value: fateType, label: fateTypeLabel } = fateTypeData;
+                const target = getCommandTarget({ allowNull: true });
+                const title = flavor ?? game.i18n.localize('DAGGERHEART.GENERAL.fateRoll');
+
+                enrichedFateRoll({
+                    target,
+                    title,
+                    label: fateTypeLabel,
+                    fateType
+                });
+                return false;
+            }
+        }
     };
 
     _getEntryContextOptions() {
@@ -175,7 +256,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         action.use(event);
     }
 
-    async rerollEvent(event, message) {
+    async rerollEvent(event, messageData) {
         event.stopPropagation();
         if (!event.shiftKey) {
             const confirmed = await foundry.applications.api.DialogV2.confirm({
@@ -187,36 +268,39 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             if (!confirmed) return;
         }
 
+        const message = game.messages.get(messageData._id);
         const target = event.target.closest('[data-die-index]');
 
         if (target.dataset.type === 'damage') {
-            game.system.api.dice.DamageRoll.reroll(target, message);
-        } else {
-            let originalRoll_parsed = message.rolls.map(roll => JSON.parse(roll))[0];
-            const rollClass =
-                game.system.api.dice[
-                    message.type === 'dualityRoll'
-                        ? 'DualityRoll'
-                        : target.dataset.type === 'damage'
-                          ? 'DHRoll'
-                          : 'D20Roll'
-                ];
-
-            if (!game.modules.get('dice-so-nice')?.active) foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
-
-            const { newRoll, parsedRoll } = await rollClass.reroll(originalRoll_parsed, target, message);
-
-            await game.messages.get(message._id).update({
-                'system.roll': newRoll,
-                'rolls': [parsedRoll]
+            const { damageType, part, dice, result } = target.dataset;
+            const damagePart = message.system.damage[damageType].parts[part];
+            const { parsedRoll, rerolledDice } = await game.system.api.dice.DamageRoll.reroll(damagePart, dice, result);
+            const damageParts = message.system.damage[damageType].parts.map((damagePart, index) => {
+                if (index !== Number(part)) return damagePart;
+                return {
+                    ...damagePart,
+                    total: parsedRoll.total,
+                    dice: rerolledDice
+                };
             });
-
-            Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.TagTeamRoll });
-            await game.socket.emit(`system.${CONFIG.DH.id}`, {
-                action: socketEvent.Refresh,
-                data: {
-                    refreshType: RefreshType.TagTeamRoll
+            const updateMessage = game.messages.get(message._id);
+            await updateMessage.update({
+                [`system.damage.${damageType}`]: {
+                    total: parsedRoll.total,
+                    parts: damageParts
                 }
+            });
+        } else {
+            const rerollDice = message.system.roll.dice[target.dataset.dieIndex];
+            await rerollDice.reroll(`/r1=${rerollDice.total}`, {
+                liveRoll: {
+                    roll: message.system.roll,
+                    actor: message.system.actionActor,
+                    isReaction: message.system.roll.options.actionType === 'reaction'
+                }
+            });
+            await message.update({
+                rolls: [message.system.roll.toJSON()]
             });
         }
     }

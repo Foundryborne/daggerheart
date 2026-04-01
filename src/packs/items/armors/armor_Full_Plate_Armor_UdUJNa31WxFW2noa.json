@@ -5,6 +5,10 @@
   "_id": "UdUJNa31WxFW2noa",
   "img": "icons/equipment/chest/breastplate-collared-steel.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 4
+    },
     "description": "",
     "actions": {},
     "attached": [],

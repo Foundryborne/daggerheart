@@ -12,6 +12,10 @@ export default class DHRoll extends Roll {
         return game.i18n.localize('DAGGERHEART.GENERAL.Roll.basic');
     }
 
+    get modifierTotal() {
+        return this.constructor.calculateTotalModifiers(this);
+    }
+
     static messageType = 'adversaryRoll';
 
     static CHAT_TEMPLATE = 'systems/daggerheart/templates/ui/chat/roll.hbs';
@@ -21,6 +25,9 @@ export default class DHRoll extends Roll {
     static async build(config = {}, message = {}) {
         const roll = await this.buildConfigure(config, message);
         if (!roll) return;
+
+        if (config.skips?.createMessage) config.messageRoll = roll;
+
         await this.buildEvaluate(roll, config, (message = {}));
         await this.buildPost(roll, config, (message = {}));
         return config;
@@ -29,12 +36,6 @@ export default class DHRoll extends Roll {
     static async buildConfigure(config = {}, message = {}) {
         config.hooks = [...this.getHooks(), ''];
         config.dialog ??= {};
-
-        const actorIdSplit = config.source?.actor?.split('.');
-        if (actorIdSplit) {
-            const tagTeamSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.TagTeamRoll);
-            config.tagTeamSelected = Boolean(tagTeamSettings.members[actorIdSplit[actorIdSplit.length - 1]]);
-        }
 
         for (const hook of config.hooks) {
             if (Hooks.call(`${CONFIG.DH.id}.preRoll${hook.capitalize()}`, config, message) === false) return null;
@@ -120,14 +121,10 @@ export default class DHRoll extends Roll {
                 rolls: [roll]
             };
 
-        config.selectedRollMode ??= game.settings.get('core', 'rollMode');
+        config.selectedMessageMode ??= game.settings.get('core', 'messageMode');
 
         if (roll._evaluated) {
-            const message = await cls.create(msgData, { rollMode: config.selectedRollMode });
-
-            if (config.tagTeamSelected) {
-                game.system.api.applications.dialogs.TagTeamDialog.assignRoll(message.speakerActor, message);
-            }
+            const message = await cls.create(msgData, { messageMode: config.selectedMessageMode });
 
             if (roll.formula !== '' && game.modules.get('dice-so-nice')?.active) {
                 await game.dice3d.waitFor3DAnimationByMessageID(message.id);
@@ -145,6 +142,7 @@ export default class DHRoll extends Roll {
         const chatData = await this._prepareChatRenderContext({ flavor, isPrivate, ...options });
         return foundry.applications.handlebars.renderTemplate(template, {
             ...chatData,
+            roll: this,
             parent: chatData.parent,
             targetMode: chatData.targetMode,
             metagamingSettings
@@ -248,16 +246,21 @@ export default class DHRoll extends Roll {
         return (this._formula = this.constructor.getFormula(this.terms));
     }
 
+    /** 
+     * Calculate total modifiers of any rolls, including non-dh rolls.
+     * This exists because damage rolls still may receive base roll classes
+     */
     static calculateTotalModifiers(roll) {
         let modifierTotal = 0;
         for (let i = 0; i < roll.terms.length; i++) {
-            if (
-                roll.terms[i] instanceof foundry.dice.terms.NumericTerm &&
-                !!roll.terms[i - 1] &&
-                roll.terms[i - 1] instanceof foundry.dice.terms.OperatorTerm
-            )
-                modifierTotal += Number(`${roll.terms[i - 1].operator}${roll.terms[i].total}`);
+            if (!roll.terms[i].isDeterministic) continue;
+            const termTotal = roll.terms[i].total;
+            if (typeof termTotal === 'number') {
+                const multiplier = roll.terms[i - 1]?.operator === " - " ? -1 : 1;
+                modifierTotal += multiplier * termTotal;
+            }
         }
+
         return modifierTotal;
     }
 
@@ -269,12 +272,12 @@ export default class DHRoll extends Roll {
         const changeKeys = this.getActionChangeKeys();
         return (
             this.options.effects?.reduce((acc, effect) => {
-                if (effect.changes.some(x => changeKeys.some(key => x.key.includes(key)))) {
+                if (effect.system.changes.some(x => changeKeys.some(key => x.key.includes(key)))) {
                     acc[effect.id] = {
                         id: effect.id,
                         name: effect.name,
                         description: effect.description,
-                        changes: effect.changes,
+                        changes: effect.system.changes,
                         origEffect: effect,
                         selected: !effect.disabled
                     };

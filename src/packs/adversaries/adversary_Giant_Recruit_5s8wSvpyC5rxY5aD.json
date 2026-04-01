@@ -62,8 +62,8 @@
       "name": "Warhammer",
       "img": "icons/weapons/hammers/hammer-double-stone-worn.webp",
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": true,
@@ -90,7 +90,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "range": "veryClose",
       "roll": {

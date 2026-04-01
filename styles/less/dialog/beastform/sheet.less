@@ -204,6 +204,44 @@
         }
     }
 
+    .modifications-container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .trait-bonuses-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            .bonus-separator {
+                background: light-dark(@dark-blue, @golden);
+                mask-image: linear-gradient(270deg, transparent 0%, black 50%, transparent 100%);
+                height: 2px;
+                width: calc(100% - 10px);
+            }
+
+            .trait-bonus-container {
+                display: flex;
+                gap: 4px;
+
+                .trait-card {
+                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border-radius: 6px;
+                    padding: 2px;
+                    opacity: 0.4;
+                    flex: 1;
+                    white-space: nowrap;
+                    text-align: center;
+
+                    &.selected {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+
     footer {
         margin-top: 8px;
         display: flex;

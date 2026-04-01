@@ -1,3 +1,4 @@
+import { getIconVisibleActiveEffects } from '../../helpers/utils.mjs';
 import DhMeasuredTemplate from './measuredTemplate.mjs';
 
 export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
@@ -7,6 +8,36 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
 
         if (this.document.flags.daggerheart?.createPlacement)
             this.previewHelp ||= this.addChild(this.#drawPreviewHelp());
+    }
+
+    /**@inheritdoc */
+    _refreshTurnMarker() {
+        // Should a Turn Marker be active?
+        const { turnMarker } = this.document;
+        const markersEnabled =
+            CONFIG.Combat.settings.turnMarker.enabled && turnMarker.mode !== CONST.TOKEN_TURN_MARKER_MODES.DISABLED;
+        const spotlighted = game.settings
+            .get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.SpotlightTracker)
+            .spotlightedTokens.has(this.document.uuid);
+
+        const turnIsSet = typeof game.combat?.turn === 'number';
+        const isTurn = game.combat?.combatant?.tokenId === this.id;
+        const markerActive = markersEnabled && turnIsSet ? isTurn : spotlighted;
+
+        // Activate a Turn Marker
+        if (markerActive) {
+            if (!this.turnMarker)
+                this.turnMarker = this.addChildAt(new foundry.canvas.placeables.tokens.TokenTurnMarker(this), 0);
+            canvas.tokens.turnMarkers.add(this);
+            this.turnMarker.draw();
+        }
+
+        // Remove a Turn Marker
+        else if (this.turnMarker) {
+            canvas.tokens.turnMarkers.delete(this);
+            this.turnMarker.destroy();
+            this.turnMarker = null;
+        }
     }
 
     /** @inheritDoc */
@@ -20,7 +51,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         this.effects.overlay = null;
 
         // Categorize effects
-        const activeEffects = this.actor?.getActiveEffects() ?? [];
+        const activeEffects = getIconVisibleActiveEffects(Array.from(this.actor?.allApplicableEffects() ?? []));
         const overlayEffect = activeEffects.findLast(e => e.img && e.getFlag?.('core', 'overlay'));
 
         // Draw effects
@@ -29,8 +60,8 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
             if (!effect.img) continue;
             const promise =
                 effect === overlayEffect
-                    ? this._drawOverlay(effect.img, effect.tint)
-                    : this._drawEffect(effect.img, effect.tint);
+                    ? this._drawOverlay(effect.img, effect.tint, effect)
+                    : this._drawEffect(effect.img, effect.tint, effect);
             promises.push(
                 promise.then(e => {
                     if (e) e.zIndex = i;
@@ -42,6 +73,39 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         this.effects.sortChildren();
         this.effects.renderable = true;
         this.renderFlags.set({ refreshEffects: true });
+    }
+
+    /**@inheritdoc */
+    async _drawEffect(src, tint, effect) {
+        if (!src) return;
+        const tex = await foundry.canvas.loadTexture(src, { fallback: 'icons/svg/hazard.svg' });
+        const icon = new PIXI.Sprite(tex);
+        icon.tint = tint ?? 0xffffff;
+
+        if (effect.system.stacking?.value > 1) {
+            const stackOverlay = new PIXI.Text(effect.system.stacking.value, {
+                fill: '#f3c267',
+                stroke: '#000000',
+                fontSize: 96,
+                strokeThickness: 4
+            });
+            const nrDigits = Math.floor(Math.log10(effect.system.stacking.value)) + 1;
+            stackOverlay.y = -8;
+            /* This does not account for 1:s being much less wide than other digits. I don't think it's desired however as it makes it look jumpy */
+            stackOverlay.x = icon.width - 8 - nrDigits * 56;
+            stackOverlay.anchor.set(0, 0);
+
+            icon.addChild(stackOverlay);
+        }
+
+        return this.effects.addChild(icon);
+    }
+
+    async _drawOverlay(src, tint, effect) {
+        const icon = await this._drawEffect(src, tint, effect);
+        if (icon) icon.alpha = 0.8;
+        this.effects.overlay = icon ?? null;
+        return icon;
     }
 
     /**

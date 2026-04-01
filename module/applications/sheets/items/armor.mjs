@@ -47,6 +47,15 @@ export default class ArmorSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
         return context;
     }
 
+    async updateArmorEffect(event) {
+        const value = Number.parseInt(event.target.value);
+        const armorEffect = this.document.system.armorEffect;
+        if (Number.isNaN(value) || !armorEffect) return;
+
+        await armorEffect.system.armorChange.updateArmorMax(value);
+        this.render();
+    }
+
     /**
      * Callback function used by `tagifyElement`.
      * @param {Array<Object>} selectedOptions - The currently selected tag objects.

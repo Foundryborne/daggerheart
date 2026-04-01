@@ -1,5 +1,6 @@
 import FormulaField from '../formulaField.mjs';
 import { setsEqual } from '../../../helpers/utils.mjs';
+import IterableTypedObjectField from '../iterableTypedObjectField.mjs';
 
 const fields = foundry.data.fields;
 
@@ -12,7 +13,7 @@ export default class DamageField extends fields.SchemaField {
     /** @inheritDoc */
     constructor(options, context = {}) {
         const damageFields = {
-            parts: new fields.ArrayField(new fields.EmbeddedDataField(DHDamageData)),
+            parts: new IterableTypedObjectField(DHDamageData),
             includeBase: new fields.BooleanField({
                 initial: false,
                 label: 'DAGGERHEART.ACTIONS.Settings.includeBase.label'
@@ -48,11 +49,14 @@ export default class DamageField extends fields.SchemaField {
 
         formulas = DamageField.formatFormulas.call(this, formulas, config);
 
+        messageId = config.message?._id ?? messageId;
+        const message = game.messages.get(messageId);
         const damageConfig = {
+            dialog: {},
             ...config,
             roll: formulas,
-            dialog: {},
-            data: this.getRollData()
+            data: this.getRollData(),
+            isCritical: Boolean(message?.system.roll?.isCritical)
         };
         delete damageConfig.evaluate;
 
@@ -60,7 +64,7 @@ export default class DamageField extends fields.SchemaField {
             damageConfig.dialog.configure = false;
         if (config.hasSave) config.onSave = damageConfig.onSave = this.save.damageMod;
 
-        damageConfig.source.message = config.message?._id ?? messageId;
+        damageConfig.source.message = messageId;
         damageConfig.directDamage = !!damageConfig.source?.message;
 
         // if(damageConfig.source?.message && game.modules.get('dice-so-nice')?.active)

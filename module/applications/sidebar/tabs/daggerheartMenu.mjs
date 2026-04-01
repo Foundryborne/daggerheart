@@ -31,7 +31,8 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
         },
         actions: {
             selectRefreshable: DaggerheartMenu.#selectRefreshable,
-            refreshActors: DaggerheartMenu.#refreshActors
+            refreshActors: DaggerheartMenu.#refreshActors,
+            createFallCollisionDamage: DaggerheartMenu.#createFallCollisionDamage
         }
     };
 
@@ -50,6 +51,7 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
         const context = await super._prepareContext(options);
         context.refreshables = this.refreshSelections;
         context.disableRefresh = Object.values(this.refreshSelections).every(x => !x.selected);
+        context.fallAndCollision = CONFIG.DH.GENERAL.fallAndCollisionDamage;
 
         return context;
     }
@@ -70,5 +72,23 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
 
         this.refreshSelections = DaggerheartMenu.defaultRefreshSelections();
         this.render();
+    }
+
+    static async #createFallCollisionDamage(_event, button) {
+        const data = CONFIG.DH.GENERAL.fallAndCollisionDamage[button.dataset.key];
+        const roll = new Roll(data.damageFormula);
+        await roll.evaluate();
+
+        /* class BaseRoll needed to get rendered by foundryRoll.hbs */
+        const rollJSON = roll.toJSON();
+        rollJSON.class = 'BaseRoll';
+
+        foundry.documents.ChatMessage.implementation.create({
+            title: game.i18n.localize(data.chatTitle),
+            author: game.user.id,
+            speaker: foundry.documents.ChatMessage.implementation.getSpeaker(),
+            rolls: [rollJSON],
+            sound: CONFIG.sounds.dice
+        });
     }
 }

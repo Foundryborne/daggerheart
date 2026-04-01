@@ -7,53 +7,57 @@
     <div class="section-container padded">
         <div class="resources-container">
             <div class="resource-container">
-                <h4 class="armor-title">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.armorMarks"}}</h4>
-                <div class="markers-subtitle">{{armorMarks}}/{{armorScore}}</div>
+                <h4 class="armor-title">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.maxUseableArmor"}}</h4>
+                <div class="markers-subtitle">{{availableArmor}}</div>
             </div>
-            {{#if this.stress}}
-                <div class="resource-container">
-                    <h4 class="armor-title">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.stress"}}</h4>
-                    <div class="markers-subtitle">{{this.stress.value}}/{{this.stress.max}}</div>
-                </div>
-            {{/if}}
         </div>
     </div>
     
-    <div class="section-container">
-        <h4 class="mark-selection divider">
-            <div class="mark-selection-inner">
-                {{#each marks.armor}}
-                    <div 
-                        class="mark-container {{#if this.selected}}selected{{/if}}" 
-                        data-action="setMarks" data-key="{{@key}}" data-type="armor"
-                    >
-                        <i class="fa-solid fa-shield"></i>    
-                    </div>
-                {{/each}}
+    <div class="section-container full-width">
+        {{#each marks.armor as |source|}}
+            <div class="mark-selection">
+                <h4 class="divider">{{source.label}}</h4>
+                <div class="mark-selection-inner">
+                    {{#each source.marks}}
+                        <a
+                            class="mark-container {{#if this.selected}}selected{{/if}} {{#if this.spent}}spent{{/if}} {{#if this.disabled}}inactive{{/if}}" 
+                            data-action="setMarks" data-type="armor" data-path="{{concat "armor." @../key ".marks." @key}}" data-id="{{@key}}"
+                            {{#if this.disabled}}disabled{{/if}}
+                        >
+                            <i class="fa-solid fa-shield"></i>  
+                        </a>
+                    {{/each}}
+                </div>
+            </div>
+        {{/each}}
+        {{#if usesStressArmor}}
+            <div class="mark-selection">
+                <h4 class="divider">{{localize "Stress"}}</h4>
+                <div class="mark-selection-inner">
                 {{#each marks.stress}}
                     <div 
                         class="mark-container {{#if this.selected}}selected{{/if}} {{#if (not @root.basicMarksUsed)}}inactive{{/if}}" 
-                        {{#if @root.basicMarksUsed}}data-action="setMarks"{{/if}} data-key="{{@key}}" data-type="stress" data-tooltip="{{#if @root.basicMarksUsed}}{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.armorWithStress"}}{{else}}{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.unncessaryStress"}}{{/if}}"
+                        {{#if @root.basicMarksUsed}}data-action="setMarks"{{/if}} data-type="stress" data-path="{{concat "stress." @key}}" data-tooltip="{{#if @root.basicMarksUsed}}{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.armorWithStress"}}{{else}}{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.unncessaryStress"}}{{/if}}"
                     >
                         <i class="fa-solid fa-bolt"></i>
                     </div>
                 {{/each}}
+                </div>
             </div>
-        </h4>
-        <div class="markers-subtitle bold">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.usedMarks"}}</div>
+        {{/if}}
     </div>
 
     {{#if availableStressReductions}}
     <div class="resources-container">
         <div class="resource-container">
-            <h4 class="armor-title">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.stressReduction"}}</h4>
+            <h4 class="armor-title divider">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.stressReduction"}}</h4>
         </div>
     </div>
     {{/if}}
 
     {{#each availableStressReductions}}
         <div class="section-container">
-            <h4 class="chip-container divider">
+            <h4 class="chip-container">
                 <div class="chip-inner-container selectable {{#if (or this.any (eq this.from @root.currentDamage))}}active{{/if}} {{#if this.selected}}selected{{/if}}" data-action="useStressReduction" data-reduction="{{@key}}">
                     {{#if this.any}}
                         {{localize "DAGGERHEART.GENERAL.any"}}
@@ -74,7 +78,7 @@
     {{#if reduceSeverity}}
         <div class="resources-container">
             <div class="resource-container">
-                <h4 class="armor-title">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.reduceSeverity" nr=reduceSeverity}}</h4>
+                <h4 class="armor-title divider">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.reduceSeverity" nr=reduceSeverity}}</h4>
             </div>
         </div>
     {{/if}}
@@ -82,7 +86,7 @@
     {{#if thresholdImmunities}}
         <div class="resources-container">
             <div class="resource-container">
-                <h4 class="armor-title">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.thresholdImmunities"}}</h4>
+                <h4 class="armor-title divider">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.thresholdImmunities"}}</h4>
             </div>
         </div>
     {{/if}}

@@ -5,6 +5,10 @@
   "_id": "nibfdNtp2PtxvbVz",
   "img": "icons/equipment/chest/breastplate-layered-leather-brown.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 3
+    },
     "description": "",
     "actions": {},
     "attached": [],

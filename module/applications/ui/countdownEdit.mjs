@@ -233,6 +233,6 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         }
 
         if (this.editingCountdowns.has(countdownId)) this.editingCountdowns.delete(countdownId);
-        this.updateSetting({ [`countdowns.-=${countdownId}`]: null });
+        this.updateSetting({ [`countdowns.${countdownId}`]: _del });
     }
 }

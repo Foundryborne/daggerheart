@@ -55,7 +55,7 @@ export default class DHActionSettingsConfig extends DHActionBaseConfig {
 
     static async editEffect(event) {
         const id = event.target.closest('[data-effect-id]')?.dataset?.effectId;
-        const updatedEffect = await game.system.api.applications.sheetConfigs.SettingActiveEffectConfig.configure(
+        const updatedEffect = await game.system.api.applications.sheetConfigs.ActiveEffectConfig.configureSetting(
             this.getEffectDetails(id)
         );
         if (!updatedEffect) return;

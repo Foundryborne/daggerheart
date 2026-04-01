@@ -22,6 +22,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         },
         actions: {
             toggleSelectedEffect: this.toggleSelectedEffect,
+            toggleCritical: this.toggleCritical,
             submitRoll: this.submitRoll
         },
         form: {
@@ -52,8 +53,9 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         context.formula = this.roll.constructFormula(this.config);
         context.hasHealing = this.config.hasHealing;
         context.directDamage = this.config.directDamage;
-        context.selectedRollMode = this.config.selectedRollMode;
-        context.rollModes = Object.entries(CONFIG.Dice.rollModes).map(([action, { label, icon }]) => ({
+        context.selectedMessageMode = this.config.selectedMessageMode;
+        context.isCritical = this.config.isCritical;
+        context.rollModes = Object.entries(CONFIG.ChatMessage.modes).map(([action, { label, icon }]) => ({
             action,
             label,
             icon
@@ -69,8 +71,13 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         const { ...rest } = foundry.utils.expandObject(formData.object);
         foundry.utils.mergeObject(this.config.roll, rest.roll);
         foundry.utils.mergeObject(this.config.modifiers, rest.modifiers);
-        this.config.selectedRollMode = rest.selectedRollMode;
+        this.config.selectedMessageMode = rest.selectedMessageMode;
 
+        this.render();
+    }
+
+    static toggleCritical() {
+        this.config.isCritical = !this.config.isCritical;
         this.render();
     }
 

@@ -197,7 +197,6 @@ export default class DHItem extends foundry.documents.Item {
             actor: item.parent,
             speaker: cls.getSpeaker(),
             system: systemData,
-            title: game.i18n.localize('DAGGERHEART.ACTIONS.Config.displayInChat'),
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/chat/ability-use.hbs',
                 systemData
@@ -229,5 +228,15 @@ export default class DHItem extends foundry.documents.Item {
 
     async _preDelete() {
         this.deleteTriggers();
+    }
+
+    /** @inheritDoc */
+    static migrateData(source) {
+        const documentClass = game.system.api.data.items[`DH${source.type?.capitalize()}`];
+        if (documentClass?.migrateDocumentData) {
+            documentClass.migrateDocumentData(source);
+        }
+
+        return super.migrateData(source);
     }
 }

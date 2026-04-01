@@ -38,7 +38,7 @@ export default class SaveField extends fields.SchemaField {
         if (!config.hasSave) return;
         let message = config.message ?? ui.chat.collection.get(config.parent?._id);
 
-        if (!message) {
+        if (!message && !config.skips.createMessage) {
             const roll = new CONFIG.Dice.daggerheart.DHRoll('');
             roll._evaluated = true;
             message = config.message = await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);

@@ -31,12 +31,39 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             this.#bordered = true;
             let effect = {};
             if (element.dataset.uuid) {
-                const effectData = (await foundry.utils.fromUuid(element.dataset.uuid)).toObject();
+                const effectItem = await foundry.utils.fromUuid(element.dataset.uuid);
+                const effectData = effectItem.toObject();
+
                 effect = {
                     ...effectData,
-                    name: game.i18n.localize(effectData.name),
-                    description: game.i18n.localize(effectData.description ?? effectData.parent.system.description)
+                    name: game.i18n.localize(effectData.name)
                 };
+
+                if (effectData.type === 'beastform') {
+                    const beastformData = {
+                        features: [],
+                        advantageOn: effectData.system.advantageOn,
+                        beastformAttackData: game.system.api.data.items.DHBeastform.getBeastformAttackData(effectItem)
+                    };
+
+                    const features = effectItem.parent.items.filter(x => effectItem.system.featureIds.includes(x.id));
+                    for (const feature of features) {
+                        const featureData = feature.toObject();
+                        featureData.enrichedDescription = await feature.system.getEnrichedDescription();
+                        beastformData.features.push(featureData);
+                    }
+
+                    effect.description = await foundry.applications.handlebars.renderTemplate(
+                        'systems/daggerheart/templates/ui/tooltip/parts/beastformData.hbs',
+                        {
+                            item: { system: beastformData }
+                        }
+                    );
+                } else {
+                    effect.description = game.i18n.localize(
+                        effectData.description ?? effectData.parent.system.description
+                    );
+                }
             } else {
                 const conditions = CONFIG.DH.GENERAL.conditions();
                 const condition = conditions[element.dataset.condition];

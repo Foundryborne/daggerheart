@@ -32,7 +32,6 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         return {
             title: new fields.StringField(),
             actionDescription: new fields.HTMLField(),
-            roll: new fields.ObjectField(),
             targets: targetsField(),
             hasRoll: new fields.BooleanField({ initial: false }),
             hasDamage: new fields.BooleanField({ initial: false }),
@@ -41,7 +40,6 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             hasSave: new fields.BooleanField({ initial: false }),
             hasTarget: new fields.BooleanField({ initial: false }),
             isDirect: new fields.BooleanField({ initial: false }),
-            isCritical: new fields.BooleanField({ initial: false }),
             onSave: new fields.StringField(),
             source: new fields.SchemaField({
                 actor: new fields.StringField(),
@@ -53,6 +51,19 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             costs: new fields.ArrayField(new fields.ObjectField()),
             successConsumed: new fields.BooleanField({ initial: false })
         };
+    }
+
+    get roll() {
+        switch (this.parent.type) {
+            case 'adversaryRoll':
+                return this.parent.rolls.find(x => x instanceof game.system.api.dice.D20Roll);
+            case 'dualityRoll':
+                return this.parent.rolls.find(x => x instanceof game.system.api.dice.DualityRoll);
+            case 'fateRoll':
+                return this.parent.rolls.find(x => x instanceof game.system.api.dice.FateRoll);
+        }
+
+        return null;
     }
 
     get actionActor() {

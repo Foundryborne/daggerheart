@@ -5,6 +5,10 @@
   "_id": "c6tMXz4rPf9ioQrf",
   "img": "icons/equipment/chest/breastplate-layered-leather-blue-gold.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 6
+    },
     "description": "",
     "actions": {},
     "attached": [],

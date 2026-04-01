@@ -177,10 +177,10 @@ export const getDeleteKeys = (property, innerProperty, innerPropertyDefaultValue
                     [innerProperty]: innerPropertyDefaultValue
                 };
             } else {
-                acc[`${key}.-=${innerProperty}`] = null;
+                acc[`${key}.${innerProperty}`] = _del;
             }
         } else {
-            acc[`-=${key}`] = null;
+            acc[`${key}`] = _del;
         }
 
         return acc;
@@ -422,7 +422,12 @@ export async function createEmbeddedItemWithEffects(actor, baseData, update) {
             ...baseData,
             id: data.id,
             uuid: data.uuid,
-            effects: data.effects?.map(effect => effect.toObject())
+            _uuid: data.uuid,
+            effects: data.effects?.map(effect => effect.toObject()),
+            _stats: {
+                ...data._stats,
+                compendiumSource: data.pack ? `Compendium.${data.pack}.Item.${data.id}` : null
+            }
         }
     ]);
 
@@ -475,6 +480,8 @@ export async function waitForDiceSoNice(message) {
 }
 
 export function refreshIsAllowed(allowedTypes, typeToCheck) {
+    if (!allowedTypes) return true;
+
     switch (typeToCheck) {
         case CONFIG.DH.GENERAL.refreshTypes.scene.id:
         case CONFIG.DH.GENERAL.refreshTypes.session.id:
@@ -491,9 +498,38 @@ export function refreshIsAllowed(allowedTypes, typeToCheck) {
     }
 }
 
+function expireActiveEffectIsAllowed(allowedTypes, typeToCheck) {
+    if (typeToCheck === CONFIG.DH.GENERAL.activeEffectDurations.act.id) return true;
+
+    return refreshIsAllowed(allowedTypes, typeToCheck);
+}
+
+export function expireActiveEffects(actor, allowedTypes = null) {
+    const shouldExpireEffects = game.settings.get(
+        CONFIG.DH.id,
+        CONFIG.DH.SETTINGS.gameSettings.Automation
+    ).autoExpireActiveEffects;
+    if (!shouldExpireEffects) return;
+
+    const effectsToExpire = actor
+        .getActiveEffects()
+        .filter(effect => {
+            if (!effect.system?.duration.type) return false;
+
+            const { temporary, custom } = CONFIG.DH.GENERAL.activeEffectDurations;
+            if ([temporary.id, custom.id].includes(effect.system.duration.type)) return false;
+
+            return expireActiveEffectIsAllowed(allowedTypes, effect.system.duration.type);
+        })
+        .map(x => x.id);
+
+    actor.deleteEmbeddedDocuments('ActiveEffect', effectsToExpire);
+}
+
 export async function getCritDamageBonus(formula) {
     const critRoll = new Roll(formula);
-    return critRoll.dice.reduce((acc, dice) => acc + dice.faces * dice.number, 0);
+    await critRoll.evaluate();
+    return critRoll.dice.reduce((acc, dice) => acc + dice.faces * dice.results.filter(r => r.active).length, 0);
 }
 
 export function htmlToText(html) {
@@ -503,6 +539,16 @@ export function htmlToText(html) {
     return tempDivElement.textContent || tempDivElement.innerText || '';
 }
 
+export function getIconVisibleActiveEffects(effects) {
+    return effects.filter(effect => {
+        if (!(effect instanceof game.system.api.documents.DhActiveEffect)) return true;
+
+        const alwaysShown = effect.showIcon === CONST.ACTIVE_EFFECT_SHOW_ICON.ALWAYS;
+        const conditionalShown = effect.showIcon === CONST.ACTIVE_EFFECT_SHOW_ICON.CONDITIONAL && !effect.transfer; // TODO: system specific logic
+
+        return !effect.disabled && (alwaysShown || conditionalShown);
+    });
+}
 export async function getFeaturesHTMLData(features) {
     const result = [];
     for (const feature of features) {
@@ -588,6 +634,8 @@ export async function RefreshFeatures(
     const refreshedActors = {};
     for (let actor of game.actors) {
         if (actorTypes.includes(actor.type) && actor.prototypeToken.actorLink) {
+            expireActiveEffects(actor, refreshTypes);
+
             const updates = {};
             for (let item of actor.items) {
                 if (
@@ -681,4 +729,80 @@ export async function RefreshFeatures(
     }
 
     return refreshedActors;
+}
+
+export function getUnusedDamageTypes(parts) {
+    const usedKeys = Object.keys(parts);
+    return Object.keys(CONFIG.DH.GENERAL.healingTypes).reduce((acc, key) => {
+        if (!usedKeys.includes(key))
+            acc.push({
+                value: key,
+                label: game.i18n.localize(CONFIG.DH.GENERAL.healingTypes[key].label)
+            });
+
+        return acc;
+    }, []);
+}
+
+/** Returns resolved armor sources ordered by application order */
+export function getArmorSources(actor) {
+    const rawArmorSources = Array.from(actor.allApplicableEffects()).filter(x => x.system.armorData);
+    if (actor.system.armor) rawArmorSources.push(actor.system.armor);
+
+    const data = rawArmorSources.map(doc => {
+        // Get the origin item. Since the actor is already loaded, it should already be cached
+        // Consider the relative function versions if this causes an issue
+        const origin = doc.origin ? foundry.utils.fromUuidSync(doc.origin) : doc;
+        return {
+            origin,
+            name: origin.name,
+            document: doc,
+            data: doc.system.armor ?? doc.system.armorData,
+            disabled: !!doc.disabled || !!doc.isSuppressed
+        };
+    });
+
+    return sortBy(data, ({ origin }) => {
+        switch (origin?.type) {
+            case 'class':
+            case 'subclass':
+            case 'ancestry':
+            case 'community':
+            case 'feature':
+            case 'domainCard':
+                return 2;
+            case 'loot':
+            case 'consumable':
+                return 3;
+            case 'character':
+                return 4;
+            case 'weapon':
+                return 5;
+            case 'armor':
+                return 6;
+            default:
+                return 1;
+        }
+    });
+}
+
+/**
+ * Returns an array sorted by a function that returns a thing to compare, or an array to compare in order
+ * Similar to lodash's sortBy function.
+ */
+export function sortBy(arr, fn) {
+    const directCompare = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
+    const cmp = (a, b) => {
+        const resultA = fn(a);
+        const resultB = fn(b);
+        if (Array.isArray(resultA) && Array.isArray(resultB)) {
+            for (let idx = 0; idx < Math.min(resultA.length, resultB.length); idx++) {
+                const result = directCompare(resultA[idx], resultB[idx]);
+                if (result !== 0) return result;
+            }
+            return 0;
+        }
+        return directCompare(resultA, resultB);
+    };
+    return arr.sort(cmp);
 }

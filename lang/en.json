@@ -14,7 +14,9 @@
             "beastform": "Beastform"
         },
         "ActiveEffect": {
-            "beastform": "Beastform"
+            "base": "Standard",
+            "beastform": "Beastform",
+            "horde": "Horde"
         },
         "Actor": {
             "character": "Character",
@@ -53,6 +55,7 @@
                 },
                 "damage": {
                     "name": "Damage",
+                    "critical": "Damage (Critical)",
                     "tooltip": "Direct damage without a roll."
                 },
                 "effect": {
@@ -87,9 +90,14 @@
             },
             "Config": {
                 "beastform": {
-                    "exact": "Beastform Max Tier",
-                    "exactHint": "The Character's Tier is used if empty",
-                    "label": "Beastform"
+                    "exact": { "label": "Beastform Max Tier", "hint": "The Character's Tier is used if empty" },
+                    "modifications": {
+                        "traitBonuses": {
+                            "label": { "single": "Trait Bonus", "plural": "Trait Bonuses" },
+                            "hint": "Pick bonuses you apply to freely chosen traits at the time of transforming",
+                            "bonus": "Bonus Amount"
+                        }
+                    }
                 },
                 "countdown": {
                     "defaultOwnership": "Default Ownership",
@@ -151,7 +159,8 @@
             "Config": {
                 "rangeDependence": {
                     "title": "Range Dependence"
-                }
+                },
+                "stacking": { "title": "Stacking" }
             },
             "RangeDependance": {
                 "hint": "Settings for an optional distance at which this effect should activate",
@@ -442,14 +451,15 @@
             },
             "DaggerheartMenu": {
                 "title": "GM Tools",
-                "refreshFeatures": "Refresh Features"
+                "refreshFeatures": "Refresh Features",
+                "fallingAndCollision": "Falling And Collision Damage"
             },
             "DeleteConfirmation": {
                 "title": "Delete {type} - {name}",
                 "text": "Are you sure you want to delete {name}?"
             },
             "DamageReduction": {
-                "armorMarks": "Armor Marks",
+                "maxUseableArmor": "Useable Armor Slots",
                 "armorWithStress": "Spend 1 stress to use an extra mark",
                 "thresholdImmunities": "Threshold Immunities",
                 "stress": "Stress",
@@ -675,16 +685,35 @@
             },
             "TagTeamSelect": {
                 "title": "Tag Team Roll",
+                "FIELDS": {
+                    "initiator": {
+                        "memberId": { "label": "Initiating Character" },
+                        "cost": { "label": "Initiation Cost" }
+                    }
+                },
                 "leaderTitle": "Initiating Character",
                 "membersTitle": "Participants",
                 "partyTeam": "Party Team",
                 "hopeCost": "Hope Cost",
                 "initiatingCharacter": "Initiating Character",
+                "selectParticipants": "Select the two participants",
+                "startTagTeamRoll": "Start Tag Team Roll",
+                "openDialogForAll": "Open Dialog For All",
+                "rollType": "Roll Type",
+                "makeYourRoll": "Make your roll",
+                "cancelTagTeamRoll": "Cancel Tag Team Roll",
+                "finishTagTeamRoll": "Finish Tag Team Roll",
                 "linkMessageHint": "Make a roll from your character sheet to link it to the Tag Team Roll",
                 "damageNotRolled": "Damage not rolled in chat message yet",
                 "insufficientHope": "The initiating character doesn't have enough hope",
-                "createTagTeam": "Create TagTeam Roll",
-                "chatMessageRollTitle": "Roll"
+                "createTagTeam": "Create Tag Team Roll",
+                "chatMessageRollTitle": "Roll",
+                "cancelConfirmTitle": "Cancel Tag Team Roll",
+                "cancelConfirmText": "Are you sure you want to cancel the Tag Team Roll? This will close it for all other players too.",
+                "hints": {
+                    "completeRolls": "Set up and complete the rolls for the characters",
+                    "selectRoll": "Select which roll value to be used for the Tag Team"
+                }
             },
             "TokenConfig": {
                 "actorSizeUsed": "Actor size is set, determining the dimensions"
@@ -697,6 +726,15 @@
             }
         },
         "CONFIG": {
+            "ActiveEffectDuration": {
+                "temporary": "Temporary",
+                "act": "Next Spotlight",
+                "scene": "Next Scene",
+                "shortRest": "Next Rest",
+                "longRest": "Next Long Rest",
+                "session": "Next Session",
+                "custom": "Custom"
+            },
             "AdversaryTrait": {
                 "relentless": {
                     "name": "Relentless",
@@ -763,6 +801,11 @@
                 "leader": "for each Leader adversary.",
                 "bruiser": "for each Bruiser adversary.",
                 "solo": "for each Solo adversary."
+            },
+            "ArmorInteraction": {
+                "none": { "label": "Ignores Armor" },
+                "active": { "label": "Active w/ Armor" },
+                "inactive": { "label": "Inactive w/ Armor" }
             },
             "ArmorFeature": {
                 "burning": {
@@ -1114,6 +1157,12 @@
                     "description": ""
                 }
             },
+            "fallAndCollision": {
+                "veryClose": { "label": "Very Close", "chatTitle": "Fall Damage: Very Close" },
+                "close": { "label": "Close", "chatTitle": "Fall Damage: Close" },
+                "far": { "label": "Far", "chatTitle": "Fall Damage: Far" },
+                "collision": { "label": "Collision", "chatTitle": "Dangerous Collision" }
+            },
             "FeatureForm": {
                 "label": "Feature Form",
                 "passive": "Passive",
@@ -1219,6 +1268,11 @@
                 "selectType": "Select Action Type",
                 "selectAction": "Action Selection"
             },
+            "TagTeamRollTypes": {
+                "trait": "Trait",
+                "ability": "Ability",
+                "damageAbility": "Damage Ability"
+            },
             "TargetTypes": {
                 "any": "Any",
                 "friendly": "Friendly",
@@ -1231,8 +1285,8 @@
                 "cone": "Cone",
                 "emanation": "Emanation",
                 "inFront": "In Front",
-                "rect": "Rectangle",
-                "ray": "Ray"
+                "rectangle": "Rectangle",
+                "line": "Line"
             },
             "TokenSize": {
                 "tiny": "Tiny",
@@ -1847,6 +1901,17 @@
                     "name": "Healing Roll"
                 }
             },
+            "ChangeTypes": {
+                "armor": {
+                    "newArmorEffect": "Armor Effect",
+                    "FIELDS": {
+                        "interaction": {
+                            "label": "Armor Interaction",
+                            "hint": "Does the character wearing armor suppress this effect?"
+                        }
+                    }
+                }
+            },
             "Duration": {
                 "passive": "Passive",
                 "temporary": "Temporary"
@@ -1871,6 +1936,10 @@
             }
         },
         "GENERAL": {
+            "Ability": {
+                "single": "Ability",
+                "plural": "Abilities"
+            },
             "Action": {
                 "single": "Action",
                 "plural": "Actions"
@@ -2252,6 +2321,7 @@
             "duality": "Duality",
             "dualityDice": "Duality Dice",
             "dualityRoll": "Duality Roll",
+            "effect": "Effect",
             "enabled": "Enabled",
             "evasion": "Evasion",
             "equipment": "Equipment",
@@ -2324,6 +2394,10 @@
             "rerolled": "Rerolled",
             "rerollThing": "Reroll {thing}",
             "resource": "Resource",
+            "result": {
+                "single": "Result",
+                "plural": "Results"
+            },
             "roll": "Roll",
             "rollAll": "Roll All",
             "rollDamage": "Roll Damage",
@@ -2489,8 +2563,7 @@
         "MACROS": {
             "Spotlight": {
                 "errors": {
-                    "noActiveCombat": "There is no active encounter",
-                    "noCombatantSelected": "A combatant token must be either selected or hovered to spotlight it"
+                    "noTokenSelected": "A token on the canvas must either be selected or hovered to spotlight it"
                 }
             }
         },
@@ -2565,6 +2638,10 @@
                     "hint": "Automatically increase the GM's fear pool on a fear duality roll result."
                 },
                 "FIELDS": {
+                    "autoExpireActiveEffects": {
+                        "label": "Auto Expire Active Effects",
+                        "hint": "Active Effects with set durations will automatically be removed when their durations are up"
+                    },
                     "damageReductionRulesDefault": {
                         "label": "Damage Reduction Rules Default",
                         "hint": "Wether using armor and reductions has rules on by default"
@@ -2937,6 +3014,8 @@
             },
             "EffectsDisplay": {
                 "removeThing": "[Right Click] Remove {thing}",
+                "increaseStacks": "[Left Click] Increment Stacks",
+                "decreaseStacks": "[Right Click] Decrement Stacks",
                 "appliedBy": "Applied By: {by}"
             },
             "ItemBrowser": {
@@ -3062,6 +3141,9 @@
                 "domainTouchRequirement": "This domain card requires {nr} {domain} cards in the loadout to be used",
                 "knowTheTide": "Know The Tide gained a token",
                 "lackingItemTransferPermission": "User {user} lacks owner permission needed to transfer items to {target}"
+            },
+            "Progress": {
+                "migrationLabel": "Performing system migration. Please wait and do not close Foundry."
             },
             "Sidebar": {
                 "actorDirectory": {

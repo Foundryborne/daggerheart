@@ -79,8 +79,8 @@
         "type": "attack"
       },
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -106,7 +106,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "img": "icons/weapons/polearms/spear-hooked-rounded.webp",
       "type": "attack",
@@ -278,8 +278,8 @@
               "recovery": null
             },
             "damage": {
-              "parts": [
-                {
+              "parts": {
+                "hitPoints": {
                   "value": {
                     "custom": {
                       "enabled": false
@@ -305,7 +305,7 @@
                     }
                   }
                 }
-              ],
+              },
               "includeBase": false
             },
             "target": {

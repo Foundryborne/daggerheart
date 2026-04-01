@@ -38,9 +38,9 @@ export const gameSettings = {
     LevelTiers: 'LevelTiers',
     Countdowns: 'Countdowns',
     LastMigrationVersion: 'LastMigrationVersion',
-    TagTeamRoll: 'TagTeamRoll',
     SpotlightRequestQueue: 'SpotlightRequestQueue',
-    CompendiumBrowserSettings: 'CompendiumBrowserSettings'
+    CompendiumBrowserSettings: 'CompendiumBrowserSettings',
+    SpotlightTracker: 'SpotlightTracker'
 };
 
 export const actionAutomationChoices = {

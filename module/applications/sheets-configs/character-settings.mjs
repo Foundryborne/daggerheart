@@ -101,8 +101,8 @@ export default class DHCharacterSettings extends DHBaseActorSettings {
 
         if (relinkAchievementData.length > 0) {
             relinkAchievementData.forEach(data => {
-                updates[`system.levelData.levelups.${data.levelKey}.achievements.experiences.-=${data.experience}`] =
-                    null;
+                updates[`system.levelData.levelups.${data.levelKey}.achievements.experiences.${data.experience}`] =
+                    _del;
             });
         } else if (relinkSelectionData.length > 0) {
             relinkSelectionData.forEach(data => {
@@ -137,7 +137,7 @@ export default class DHCharacterSettings extends DHBaseActorSettings {
 
         await this.actor.update({
             ...updates,
-            [`system.experiences.-=${target.dataset.experience}`]: null
+            [`system.experiences.${target.dataset.experience}`]: _del
         });
     }
 }

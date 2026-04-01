@@ -5,6 +5,10 @@
   "_id": "yJFp1bfpecDcStVK",
   "img": "icons/equipment/chest/vest-leather-tattered-white.webp",
   "system": {
+    "armor": {
+      "current": 0,
+      "max": 3
+    },
     "description": "",
     "actions": {},
     "attached": [],

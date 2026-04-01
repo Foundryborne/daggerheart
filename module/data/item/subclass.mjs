@@ -52,6 +52,9 @@ export default class DHSubclass extends BaseDataItem {
     }
 
     async _preCreate(data, options, user) {
+        const allowed = await super._preCreate(data, options, user);
+        if (allowed === false) return;
+
         if (this.actor?.type === 'character') {
             const dataUuid = data.uuid ?? data._stats.compendiumSource ?? `Item.${data._id}`;
             if (this.actor.system.class.subclass) {
@@ -86,9 +89,6 @@ export default class DHSubclass extends BaseDataItem {
                 }
             }
         }
-
-        const allowed = await super._preCreate(data, options, user);
-        if (allowed === false) return;
     }
 
     /**@inheritdoc */

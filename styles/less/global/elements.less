@@ -293,6 +293,20 @@
             }
         }
 
+        &.optional,
+        &.one-column.optional {
+            padding-top: 0;
+            padding-bottom: 4px;
+            min-height: auto;
+            row-gap: 0;
+
+            legend {
+                display: flex;
+                align-items: center;
+                padding-left: 3px;
+            }
+        }
+
         .list-w-img {
             padding: 5px;
             label {
@@ -333,6 +347,15 @@
         legend {
             font-weight: bold;
             color: light-dark(@dark-blue, @golden);
+
+            &.with-icon {
+                display: flex;
+                align-items: center;
+
+                i {
+                    padding: 0 4px;
+                }
+            }
         }
 
         input[type='text'],
@@ -459,6 +482,10 @@
 
         &.even {
             grid-template-columns: 1fr 1fr;
+        }
+
+        &.full-width {
+            width: 100%;
         }
     }
 

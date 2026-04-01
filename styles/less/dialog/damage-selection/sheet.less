@@ -17,6 +17,30 @@
             }
         }
 
+        .bonuses {
+            gap: 4px;
+            .critical-chip {
+                flex: 0;
+                
+                display: flex;
+                align-items: center;
+                border-radius: 5px;
+                width: fit-content;
+                gap: 5px;
+                cursor: pointer;
+                padding: 5px;
+                transition: all 0.3s ease;
+
+                background: @green-10;
+                color: @green;
+
+                &.selected {
+                    color: @beige;
+                    background: @gradient-green;
+                }
+            }
+        }
+
         .damage-section-controls {
             display: flex;
             align-items: center;

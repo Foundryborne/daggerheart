@@ -79,8 +79,8 @@
         "type": "attack"
       },
       "damage": {
-        "parts": [
-          {
+        "parts": {
+          "hitPoints": {
             "value": {
               "custom": {
                 "enabled": false
@@ -106,7 +106,7 @@
             },
             "base": false
           }
-        ]
+        }
       },
       "img": "icons/creatures/claws/claw-hooked-barbed.webp",
       "range": "melee",

@@ -72,19 +72,14 @@ const typeSettingsMap = {
  */
 export default function DHApplicationMixin(Base) {
     class DHSheetV2 extends HandlebarsApplicationMixin(Base) {
+        #nonHeaderAttribution = ['environment', 'ancestry', 'community', 'domainCard'];
+
         /**
          * @param {DHSheetV2Configuration} [options={}]
          */
         constructor(options = {}) {
             super(options);
-            /**
-             * @type {foundry.applications.ux.DragDrop[]}
-             * @private
-             */
-            this._dragDrop = this._createDragDropHandlers();
         }
-
-        #nonHeaderAttribution = ['environment', 'ancestry', 'community', 'domainCard'];
 
         /**
          * The default options for the sheet.
@@ -177,7 +172,6 @@ export default function DHApplicationMixin(Base) {
         /**@inheritdoc */
         _attachPartListeners(partId, htmlElement, options) {
             super._attachPartListeners(partId, htmlElement, options);
-            this._dragDrop.forEach(d => d.bind(htmlElement));
 
             // Handle delta inputs
             for (const deltaInput of htmlElement.querySelectorAll('input[data-allow-delta]')) {
@@ -290,6 +284,16 @@ export default function DHApplicationMixin(Base) {
         async _onRender(context, options) {
             await super._onRender(context, options);
             this._createTagifyElements(this.options.tagifyConfigs);
+
+            for (const d of this.options.dragDrop) {
+                new foundry.applications.ux.DragDrop.implementation({
+                    ...d,
+                    callbacks: {
+                        dragstart: this._onDragStart.bind(this),
+                        drop: this._onDrop.bind(this)
+                    }
+                }).bind(this.element);
+            }
         }
 
         /* -------------------------------------------- */
@@ -349,21 +353,6 @@ export default function DHApplicationMixin(Base) {
         /* -------------------------------------------- */
         /*  Drag and Drop                               */
         /* -------------------------------------------- */
-
-        /**
-         * Creates drag-drop handlers from the configured options.
-         * @returns {foundry.applications.ux.DragDrop[]}
-         * @private
-         */
-        _createDragDropHandlers() {
-            return this.options.dragDrop.map(d => {
-                d.callbacks = {
-                    dragstart: this._onDragStart.bind(this),
-                    drop: this._onDrop.bind(this)
-                };
-                return new foundry.applications.ux.DragDrop.implementation(d);
-            });
-        }
 
         /**
          * Handle dragStart event.
@@ -499,7 +488,10 @@ export default function DHApplicationMixin(Base) {
                     icon: 'fa-solid fa-explosion',
                     condition: target => {
                         const doc = getDocFromElementSync(target);
-                        return doc?.system?.attack?.damage.parts.length || doc?.damage?.parts.length;
+                        return (
+                            !foundry.utils.isEmpty(doc?.system?.attack?.damage.parts) ||
+                            !foundry.utils.isEmpty(doc?.damage?.parts)
+                        );
                     },
                     callback: async (target, event) => {
                         const doc = await getDocFromElement(target),
@@ -742,11 +734,13 @@ export default function DHApplicationMixin(Base) {
 
             const cls =
                 type === 'action' ? game.system.api.models.actions.actionsTypes.base : getDocumentClass(documentClass);
+
             const data = {
                 name: cls.defaultName({ type, parent }),
                 type,
                 system: systemData
             };
+
             if (inVault) data['system.inVault'] = true;
             if (disabled) data.disabled = true;
             if (type === 'domainCard' && parent?.system.domains?.length) {

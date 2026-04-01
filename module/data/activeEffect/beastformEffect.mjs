@@ -5,6 +5,7 @@ export default class BeastformEffect extends BaseEffect {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
+            ...super.defineSchema(),
             characterTokenData: new fields.SchemaField({
                 usesDynamicToken: new fields.BooleanField({ initial: false }),
                 tokenImg: new fields.FilePathField({
@@ -24,7 +25,7 @@ export default class BeastformEffect extends BaseEffect {
                     width: new fields.NumberField({ integer: false, nullable: true })
                 })
             }),
-            advantageOn: new fields.ArrayField(new fields.StringField()),
+            advantageOn: new fields.TypedObjectField(new fields.SchemaField({ value: new fields.StringField() })),
             featureIds: new fields.ArrayField(new fields.StringField()),
             effectIds: new fields.ArrayField(new fields.StringField())
         };
@@ -99,7 +100,7 @@ export default class BeastformEffect extends BaseEffect {
                                 token.flags.daggerheart?.beastformSubjectTexture ?? this.characterTokenData.tokenRingImg
                         }
                     },
-                    'flags.daggerheart': { '-=beastformTokenImg': null, '-=beastformSubjectTexture': null }
+                    'flags.daggerheart': { beastformTokenImg: _del, beastformSubjectTexture: _del }
                 };
             };
 

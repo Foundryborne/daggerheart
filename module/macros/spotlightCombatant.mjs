@@ -1,21 +1,50 @@
 /**
- * Spotlights a combatant.
- * The combatant can be selected in a number of ways. If many are applied at the same time, the following order is used:
- * 1) SelectedCombatant
- * 2) HoveredCombatant
+ * Spotlight a token on the canvas. If it is a combatant, run it through combatTracker's spotlight logic.
+ * @param {TokenDocument} token - The token to spotlight
+ * @returns {void}
  */
-const spotlightCombatant = () => {
-    if (!game.combat)
-        return ui.notifications.error(game.i18n.localize('DAGGERHEART.MACROS.Spotlight.errors.noActiveCombat'));
+const spotlightCombatantMacro = async token => {
+    if (!token)
+        return ui.notifications.error(game.i18n.localize('DAGGERHEART.MACROS.Spotlight.errors.noTokenSelected'));
 
-    const selectedCombatant = canvas.tokens.controlled.length > 0 ? canvas.tokens.controlled[0].combatant : null;
-    const hoveredCombatant = game.canvas.tokens.hover?.combatant;
+    const combatantCombat = token.combatant
+        ? game.combat
+        : game.combats.find(combat => combat.combatants.some(x => x.token && x.token.id === token.document.id));
+    if (combatantCombat) {
+        const combatant = combatantCombat.combatants.find(x => x.token.id === token.document.id);
+        if (!combatantCombat.active) {
+            await combatantCombat.activate();
+            if (combatantCombat.combatant?.id !== combatant.id) ui.combat.setCombatantSpotlight(combatant.id);
+        } else {
+            ui.combat.setCombatantSpotlight(combatant.id);
+        }
+    } else {
+        if (game.combat) await ui.combat.clearTurn();
 
-    const combatant = selectedCombatant ?? hoveredCombatant;
-    if (!combatant)
-        return ui.notifications.error(game.i18n.localize('DAGGERHEART.MACROS.Spotlight.errors.noCombatantSelected'));
+        const spotlightTracker = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.SpotlightTracker);
+        const isSpotlighted = spotlightTracker.spotlightedTokens.has(token.document.uuid);
+        if (!isSpotlighted) await clearPreviousSpotlight();
 
-    ui.combat.setCombatantSpotlight(combatant.id);
+        spotlightTracker.updateSource({
+            spotlightedTokens: isSpotlighted ? [] : [token.document.uuid]
+        });
+
+        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.SpotlightTracker, spotlightTracker);
+        token.renderFlags.set({ refreshTurnMarker: true });
+    }
 };
 
-export default spotlightCombatant;
+export const clearPreviousSpotlight = async () => {
+    const spotlightTracker = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.SpotlightTracker);
+    const previouslySpotlightedUuid =
+        spotlightTracker.spotlightedTokens.size > 0 ? spotlightTracker.spotlightedTokens.first() : null;
+    if (!previouslySpotlightedUuid) return;
+
+    spotlightTracker.updateSource({ spotlightedTokens: [] });
+    await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.SpotlightTracker, spotlightTracker);
+
+    const previousToken = await foundry.utils.fromUuid(previouslySpotlightedUuid);
+    previousToken.object.renderFlags.set({ refreshTurnMarker: true });
+};
+
+export default spotlightCombatantMacro;

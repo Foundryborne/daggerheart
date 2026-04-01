@@ -160,7 +160,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
             inactives: []
         };
 
-        for (const effect of this.actor.allApplicableEffects()) {
+        for (const effect of this.actor.allApplicableEffects({ noTransferArmor: true })) {
             const list = effect.active ? context.effects.actives : context.effects.inactives;
             list.push(effect);
         }
@@ -228,7 +228,6 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                 'systems/daggerheart/templates/ui/chat/action.hbs',
                 systemData
             ),
-            title: game.i18n.localize('DAGGERHEART.ACTIONS.Config.displayInChat'),
             speaker: cls.getSpeaker(),
             flags: {
                 daggerheart: {

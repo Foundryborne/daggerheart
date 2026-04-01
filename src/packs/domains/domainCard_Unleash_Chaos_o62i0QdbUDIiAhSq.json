@@ -42,8 +42,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": [
-            {
+          "parts": {
+            "hitPoints": {
               "resultBased": false,
               "value": {
                 "custom": {
@@ -69,7 +69,7 @@
                 }
               }
             }
-          ],
+          },
           "includeBase": false
         },
         "target": {

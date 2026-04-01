@@ -20,15 +20,21 @@
             display: flex;
             align-items: center;
             justify-content: space-evenly;
-            gap: 8px;
+            gap: 2px;
 
             .trait-container {
-                width: 60px;
-                height: 60px;
+                width: 65px;
+                height: 65px;
                 background: url(../assets/svg/trait-shield.svg) no-repeat;
+                background-size: 100%;
+                padding-top: 4px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+
+                span {
+                    font-size: var(--font-size-10);
+                }
 
                 div {
                     filter: drop-shadow(0 0 3px black);
