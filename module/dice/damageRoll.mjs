@@ -138,55 +138,50 @@ export default class DamageRoll extends DHRoll {
     }
 
     constructFormula(config) {
-        this.options.roll.forEach((part, index) => {
+        for (const [index, part] of this.options.roll.entries()) {
             part.roll = new Roll(Roll.replaceFormulaData(part.formula, config.data));
-            this.constructFormulaPart(config, part, index);
-        });
+            part.roll.terms = Roll.parse(part.roll.formula, config.data);
+            if (part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
+                part.modifiers = this.applyBaseBonus(part);
+                this.addModifiers(part);
+                part.modifiers?.forEach(m => {
+                    part.roll.terms.push(...this.formatModifier(m.value));
+                });
+            }
+
+            /* To Remove When Reaction System */
+            if (index === 0 && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
+                for (const mod in config.modifiers) {
+                    const modifier = config.modifiers[mod];
+                    if (modifier.beforeCrit === true && (modifier.enabled || modifier.value)) modifier.callback(part);
+                }
+            }
+
+            if (part.extraFormula) {
+                part.roll.terms.push(
+                    new foundry.dice.terms.OperatorTerm({ operator: '+' }),
+                    ...this.constructor.parse(part.extraFormula, this.options.data)
+                );
+            }
+
+            if (config.isCritical && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
+                const total = part.roll.dice.reduce((acc, term) => acc + term._faces * term._number, 0);
+                if (total > 0) {
+                    part.roll.terms.push(...this.formatModifier(total));
+                }
+            }
+
+            /* To Remove When Reaction System */
+            if (index === 0 && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
+                for (const mod in config.modifiers) {
+                    const modifier = config.modifiers[mod];
+                    if (!modifier.beforeCrit && (modifier.enabled || modifier.value)) modifier.callback(part);
+                }
+            }
+
+            part.roll._formula = this.constructor.getFormula(part.roll.terms);
+        }
         return this.options.roll;
-    }
-
-    constructFormulaPart(config, part, index) {
-        part.roll.terms = Roll.parse(part.roll.formula, config.data);
-
-        if (part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-            part.modifiers = this.applyBaseBonus(part);
-            this.addModifiers(part);
-            part.modifiers?.forEach(m => {
-                part.roll.terms.push(...this.formatModifier(m.value));
-            });
-        }
-
-        /* To Remove When Reaction System */
-        if (index === 0 && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-            for (const mod in config.modifiers) {
-                const modifier = config.modifiers[mod];
-                if (modifier.beforeCrit === true && (modifier.enabled || modifier.value)) modifier.callback(part);
-            }
-        }
-
-        if (part.extraFormula) {
-            part.roll.terms.push(
-                new foundry.dice.terms.OperatorTerm({ operator: '+' }),
-                ...this.constructor.parse(part.extraFormula, this.options.data)
-            );
-        }
-
-        if (config.isCritical && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-            const total = part.roll.dice.reduce((acc, term) => acc + term._faces * term._number, 0);
-            if (total > 0) {
-                part.roll.terms.push(...this.formatModifier(total));
-            }
-        }
-
-        /* To Remove When Reaction System */
-        if (index === 0 && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-            for (const mod in config.modifiers) {
-                const modifier = config.modifiers[mod];
-                if (!modifier.beforeCrit && (modifier.enabled || modifier.value)) modifier.callback(part);
-            }
-        }
-
-        return (part.roll._formula = this.constructor.getFormula(part.roll.terms));
     }
 
     /* To Remove When Reaction System */

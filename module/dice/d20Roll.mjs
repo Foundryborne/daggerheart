@@ -207,7 +207,7 @@ export default class D20Roll extends DHRoll {
                 rerolls: dice.results.filter(x => x.rerolled)
             }
         }));
-        data.isCritical = config.isCritical = roll.isCritical;
+        data.isCritical = roll.isCritical;
         data.extra = roll.dice
             .filter(d => !roll.baseTerms.includes(d))
             .map(d => {

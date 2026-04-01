@@ -49,11 +49,14 @@ export default class DamageField extends fields.SchemaField {
 
         formulas = DamageField.formatFormulas.call(this, formulas, config);
 
+        messageId = config.message?._id ?? messageId;
+        const message = game.messages.get(messageId);
         const damageConfig = {
             dialog: {},
             ...config,
             roll: formulas,
-            data: this.getRollData()
+            data: this.getRollData(),
+            isCritical: message?.system.roll.isCritical
         };
         delete damageConfig.evaluate;
 
@@ -61,7 +64,7 @@ export default class DamageField extends fields.SchemaField {
             damageConfig.dialog.configure = false;
         if (config.hasSave) config.onSave = damageConfig.onSave = this.save.damageMod;
 
-        damageConfig.source.message = config.message?._id ?? messageId;
+        damageConfig.source.message = messageId;
         damageConfig.directDamage = !!damageConfig.source?.message;
 
         // if(damageConfig.source?.message && game.modules.get('dice-so-nice')?.active)
