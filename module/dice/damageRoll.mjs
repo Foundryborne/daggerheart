@@ -7,6 +7,10 @@ export default class DamageRoll extends DHRoll {
         super(formula, data, options);
     }
 
+    get isCritical() {
+        return !!this.options.isCritical;
+    }
+
     static DefaultDialog = DamageDialog;
 
     static async buildEvaluate(roll, config = {}, message = {}) {
@@ -138,6 +142,7 @@ export default class DamageRoll extends DHRoll {
     }
 
     constructFormula(config) {
+        this.options.isCritical = config.isCritical;
         for (const [index, part] of this.options.roll.entries()) {
             part.roll = new Roll(Roll.replaceFormulaData(part.formula, config.data));
             part.roll.terms = Roll.parse(part.roll.formula, config.data);

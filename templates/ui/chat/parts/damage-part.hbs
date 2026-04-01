@@ -1,5 +1,13 @@
 <div class="roll-part damage-section dice-roll" data-action="expandRoll"{{#if (empty damage)}} hidden{{/if}}>
-    <div class="roll-part-header"><div><span>{{localize (ifThen hasHealing "DAGGERHEART.ACTIONS.TYPES.healing.name" "DAGGERHEART.ACTIONS.TYPES.damage.name")}}</span></div></div>
+    <div class="roll-part-header">
+        <div>
+            {{#if hasHealing}}
+                <span>{{localize "DAGGERHEART.ACTIONS.TYPES.healing.name"}}</span>
+            {{else}}
+                <span>{{localize (ifThen roll.isCritical "DAGGERHEART.ACTIONS.TYPES.damage.critical" "DAGGERHEART.ACTIONS.TYPES.damage.name")}}</span>
+            {{/if}}
+        </div>
+    </div>
     <div class="roll-part-extra on-reduced">
         <div class="wrapper">
             {{#each damage as | roll index | }}

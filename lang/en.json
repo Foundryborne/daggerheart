@@ -55,6 +55,7 @@
                 },
                 "damage": {
                     "name": "Damage",
+                    "critical": "Damage (Critical)",
                     "tooltip": "Direct damage without a roll."
                 },
                 "effect": {

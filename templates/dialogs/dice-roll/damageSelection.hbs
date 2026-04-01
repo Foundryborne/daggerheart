@@ -34,8 +34,12 @@
                 {{/unless}}
             </span>
         </div>
-        <div class="form-group">
+        <div class="bonuses form-group flexrow">
             <input type="text" value="{{extraFormula}}" name="roll.{{ @index }}.extraFormula" placeholder="Situational Bonus">
+            <button class="critical-chip" data-action="toggleCritical">
+                <span><i class="{{#if @root.isCritical}}fa-solid{{else}}fa-regular{{/if}} fa-circle"></i></span>
+                <span class="label">{{localize "DAGGERHEART.GENERAL.criticalShort"}}</span>
+            </button>
         </div>
     {{/each}}
     {{#unless (empty @root.modifiers)}}
