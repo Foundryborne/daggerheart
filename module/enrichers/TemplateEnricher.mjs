@@ -65,13 +65,7 @@ export const renderMeasuredTemplate = async event => {
               ? '180'
               : undefined;
 
-    let baseDistance = range;
-    if (Number.isNaN(Number(range))) {
-        baseDistance = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).rangeMeasurement[
-            range
-        ];
-    }
-    const distance = type === CONFIG.DH.GENERAL.templateTypes.EMANATION ? baseDistance + 2.5 : baseDistance;
+    const distance = getTemplateDistance(range, type);
 
     const { width, height } = game.canvas.scene.dimensions;
     const data = {
@@ -85,4 +79,24 @@ export const renderMeasuredTemplate = async event => {
     };
 
     CONFIG.ux.TemplateManager.createPreview(data);
+};
+
+const getTemplateDistance = (range, type) => {
+    const rangeNumber = Number(range);
+    if (!Number.isNaN(rangeNumber)) return rangeNumber;
+
+    const { custom } = CONFIG.DH.GENERAL.sceneRangeMeasurementSetting;
+    const sceneMeasurements = canvas.scene?.flags.daggerheart?.rangeMeasurement;
+    const globalMeasurements = game.settings.get(
+        CONFIG.DH.id,
+        CONFIG.DH.SETTINGS.gameSettings.variantRules
+    ).rangeMeasurement;
+
+    const settings = sceneMeasurements?.setting === custom.id ? sceneMeasurements : globalMeasurements;
+    const baseDistance = settings[range];
+
+    if (type !== CONFIG.DH.GENERAL.templateTypes.EMANATION) return baseDistance;
+
+    const emanationAddDistance = settings.melee / 2;
+    return baseDistance + emanationAddDistance;
 };
