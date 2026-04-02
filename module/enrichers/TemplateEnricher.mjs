@@ -65,9 +65,9 @@ export const renderMeasuredTemplate = async event => {
 
     let baseDistance = getTemplateDistance(range);
 
-    const sceneGridSize = canvas.scene?.grid.size ?? CONFIG.Scene.documentClass.schema.fields.grid.fields.size.initial;
-    const sceneGridDistance =
-        canvas.scene?.grid.distance ?? CONFIG.Scene.documentClass.schema.fields.grid.fields.distance.getInitialValue();
+    const { grid, distance } = CONFIG.Scene.documentClass.schema.fields.grid.fields;
+    const sceneGridSize = canvas.scene?.grid.size ?? grid.size.initial;
+    const sceneGridDistance = canvas.scene?.grid.distance ?? distance.getInitialValue();
     const dimensionConstant = sceneGridSize / sceneGridDistance;
 
     baseDistance *= dimensionConstant;
