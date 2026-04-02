@@ -1,9 +1,9 @@
-<div class="item-description-outer-container">
-    {{#if features.length}}
+{{#if features.length}}
+    <div class="item-description-outer-container">
         <div class="item-description-container">
             {{#each features as | feature |}}
                 <div><strong>{{localize feature.label}}</strong>: {{{localize feature.description}}}</div>
             {{/each}}
         </div>
-    {{/if}}
-</div>
+    </div>
+{{/if}}

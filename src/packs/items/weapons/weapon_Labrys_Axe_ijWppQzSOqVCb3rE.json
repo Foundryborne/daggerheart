@@ -5,22 +5,14 @@
   "_id": "ijWppQzSOqVCb3rE",
   "img": "icons/weapons/axes/axe-battle-jagged.webp",
   "system": {
-    "description": "",
+    "description": "<strong>Protective</strong>: +1 to Armor Score",
     "actions": {},
     "attached": [],
     "tier": 3,
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [
-      {
-        "value": "protective",
-        "effectIds": [
-          "qTxADRsQnKiYfOiQ"
-        ],
-        "actionIds": []
-      }
-    ],
+    "weaponFeatures": [],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -111,13 +103,13 @@
   "effects": [
     {
       "name": "Protective",
-      "description": "Add your character's Tier to your Armor Score",
-      "img": "icons/skills/melee/shield-block-gray-orange.webp",
+      "description": "+1 to Armor Score",
+      "img": "icons/magic/defensive/shield-barrier-deflect-teal.webp",
       "changes": [
         {
           "key": "system.armorScore",
           "mode": 2,
-          "value": "ITEM.@system.tier"
+          "value": "1"
         }
       ],
       "_id": "qTxADRsQnKiYfOiQ",
