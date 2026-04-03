@@ -15,7 +15,7 @@
         {{#unless (eq @root.source.type 'healing')}}
             {{formField baseFields.direct value=source.direct name=(concat path "damage.direct") localize=true classes="checkbox"}}
         {{/unless}}
-        {{#if @root.isNPC}}
+        {{#if (and @root.isNPC (not (eq path 'system.attack.')))}}
             {{formField baseFields.groupAttack value=source.groupAttack name=(concat path "damage.groupAttack") localize=true classes="select"}}
         {{/if}}
     </div>
