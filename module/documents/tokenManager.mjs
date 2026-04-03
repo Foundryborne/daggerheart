@@ -95,7 +95,7 @@ export default class DhTokenManager {
             : this.#actor;
         const tokenData = await actor.getTokenDocument();
         const result = await canvas.scene.createEmbeddedDocuments('Token', [
-            { ...tokenData, x: this.#activePreview.document.x, y: this.#activePreview.document.y }
+            { ...tokenData.toObject(), x: this.#activePreview.document.x, y: this.#activePreview.document.y }
         ]);
 
         this.#activePreview = undefined;

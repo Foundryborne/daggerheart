@@ -18,7 +18,7 @@ export default class DhMeasuredTemplate extends foundry.canvas.placeables.Measur
 
     static getRangeLabels(distanceValue, settings) {
         let result = { distance: distanceValue, units: '' };
-        if (!settings.enabled) return result;
+        if (!settings.enabled || !canvas.scene) return result;
 
         const sceneRangeMeasurement = canvas.scene.flags.daggerheart?.rangeMeasurement;
         const { disable, custom } = CONFIG.DH.GENERAL.sceneRangeMeasurementSetting;

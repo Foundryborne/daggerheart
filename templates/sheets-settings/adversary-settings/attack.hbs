@@ -11,7 +11,7 @@
     <fieldset class="one-column">
         <legend>{{localize "DAGGERHEART.GENERAL.attack"}}</legend>
         <div class="nest-inputs">
-            {{formField systemFields.attack.fields.roll.fields.bonus value=document._source.system.attack.roll.bonus label="DAGGERHEART.ACTIONS.Settings.attackBonus" name="system.attack.roll.bonus" localize=true}}
+            {{formField systemFields.attack.fields.roll.fields.bonus value=document._source.system.attack.roll.bonus label="DAGGERHEART.ACTIONS.Settings.attackModifier" name="system.attack.roll.bonus" localize=true}}
             {{formField systemFields.attack.fields.range value=document._source.system.attack.range label="DAGGERHEART.GENERAL.range" name="system.attack.range" localize=true}}
             {{#if systemFields.attack.fields.target.fields}}
                 {{ formField systemFields.attack.fields.target.fields.type value=document._source.system.attack.target.type label="DAGGERHEART.GENERAL.Target.single" name="system.attack.target.type" localize=true }}

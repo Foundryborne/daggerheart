@@ -21,7 +21,6 @@ export default class DHActionConfig extends DHActionBaseConfig {
 
     static async addEffect(_event) {
         if (!this.action.effects) return;
-        const effectData = this._addEffectData.bind(this)();
         const data = this.action.toObject();
 
         const created = await this.action.item.createEmbeddedDocuments('ActiveEffect', [

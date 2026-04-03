@@ -17,19 +17,24 @@
         <div class="form-group">
             <label>{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.FIELDS.initiator.memberId.label"}}</label>
             <div class="form-fields">
-                <select name="initiator.memberId" {{#if initiatorDisabled}}disabled{{/if}}>
+                <select class="initiator-member-field" {{#if initiatorDisabled}}disabled{{/if}}>
                     {{selectOptions initiatorOptions selected=initiator.memberId blank="" }}
                 </select>
             </div>
         </div>
-        {{formGroup tagTeamFields.initiator.fields.cost name="initiator.cost" value=initiator.cost disabled=initiatorDisabled localize=true }}
+        <div class="form-group">
+            <label>{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.FIELDS.initiator.cost.label"}}</label>
+            <div class="form-fields">
+                <input type="text" data-dtype="Number" value="{{initiator.cost}}" class="initiator-cost-field" {{#if initiatorDisabled}}disabled{{/if}} />
+            </div>
+        </div>
     </div>
 
     <footer>
         <button type="button" data-action="startTagTeamRoll" {{#unless canStartTagTeam}}disabled{{/unless}}>{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.startTagTeamRoll"}} <i class="fa-solid fa-arrow-right-long"></i></button>
         <div class="finish-tools {{#unless canStartTagTeam}}inactive{{/unless}}">
             <span>{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.openDialogForAll"}}</span>
-            <input type="checkbox" name="openForAllPlayers" {{#unless canStartTagTeam}}disabled{{/unless}} {{checked openForAllPlayers}} />
+            <input type="checkbox" class="openforall-field" {{#unless canStartTagTeam}}disabled{{/unless}} {{checked openForAllPlayers}} />
         </div>
     </footer>
 </section>

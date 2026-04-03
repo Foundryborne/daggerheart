@@ -16,9 +16,11 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 ...member.toObject(),
                 uuid: member.uuid,
                 id: member.id,
-                selected: false
+                selected: false,
+                owned: member.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER)
             }));
-        this.intiator = null;
+
+        this.initiator = null;
         this.openForAllPlayers = true;
 
         this.tabGroups.application = Object.keys(party.system.tagTeam.members).length
@@ -80,6 +82,18 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         for (const element of htmlElement.querySelectorAll('.roll-type-select'))
             element.addEventListener('change', this.updateRollType.bind(this));
+
+        htmlElement
+            .querySelector('.initiator-member-field')
+            ?.addEventListener('input', this.updateInitiatorMemberField.bind(this));
+
+        htmlElement
+            .querySelector('.initiator-cost-field')
+            ?.addEventListener('input', this.updateInitiatorCostField.bind(this));
+
+        htmlElement
+            .querySelector('.openforall-field')
+            ?.addEventListener('change', this.updateOpenForAllField.bind(this));
     }
 
     _configureRenderParts(options) {
@@ -135,9 +149,12 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 const selectedMembers = partContext.memberSelection.filter(x => x.selected);
 
                 partContext.allSelected = selectedMembers.length === 2;
-                partContext.canStartTagTeam = partContext.allSelected && this.initiator;
+                partContext.canStartTagTeam =
+                    partContext.allSelected && this.initiator?.memberId && typeof this.initiator?.cost === 'number';
                 partContext.initiator = this.initiator;
-                partContext.initiatorOptions = selectedMembers.map(x => ({ value: x.id, label: x.name }));
+                partContext.initiatorOptions = selectedMembers
+                    .filter(actor => actor.owned)
+                    .map(x => ({ value: x.id, label: x.name }));
                 partContext.initiatorDisabled = !selectedMembers.length;
                 partContext.openForAllPlayers = this.openForAllPlayers;
 
@@ -230,14 +247,15 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
     }
 
     static async updateData(event, _, formData) {
-        const { initiator, openForAllPlayers, ...partyData } = foundry.utils.expandObject(formData.object);
-        this.initiator = initiator;
-        this.openForAllPlayers = openForAllPlayers !== undefined ? openForAllPlayers : this.openForAllPlayers;
+        const partyData = foundry.utils.expandObject(formData.object);
 
         this.updatePartyData(partyData, this.getUpdatingParts(event.target));
     }
 
     async updatePartyData(update, updatingParts, options = { render: true }) {
+        if (!game.users.activeGM)
+            return ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.gmRequired'));
+
         const gmUpdate = async update => {
             await this.party.update(update);
             this.render({ parts: updatingParts });
@@ -372,6 +390,23 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             },
             this.getUpdatingParts(event.target)
         );
+    }
+
+    updateInitiatorMemberField(event) {
+        if (!this.initiator) this.initiator = {};
+        this.initiator.memberId = event.target.value;
+        this.render();
+    }
+
+    updateInitiatorCostField(event) {
+        if (!this.initiator) this.initiator = {};
+        this.initiator.cost = event.target.value ? Number.parseInt(event.target.value) : null;
+        this.render();
+    }
+
+    updateOpenForAllField(event) {
+        this.openForAllPlayers = event.target.checked;
+        this.render();
     }
 
     static async #removeRoll(_, button) {

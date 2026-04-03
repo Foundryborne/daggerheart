@@ -63,14 +63,12 @@ export const renderMeasuredTemplate = async event => {
     const usedAngle =
         type === CONE ? (angle ?? CONFIG.MeasuredTemplate.defaults.angle) : type === INFRONT ? '180' : undefined;
 
-    let baseDistance = range;
-    if (Number.isNaN(Number(range))) {
-        baseDistance = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).rangeMeasurement[
-            range
-        ];
-    }
+    let baseDistance = getTemplateDistance(range);
 
-    const dimensionConstant = game.scenes.active.grid.size / game.scenes.active.grid.distance;
+    const { grid, distance } = CONFIG.Scene.documentClass.schema.fields.grid.fields;
+    const sceneGridSize = canvas.scene?.grid.size ?? grid.size.initial;
+    const sceneGridDistance = canvas.scene?.grid.distance ?? distance.getInitialValue();
+    const dimensionConstant = sceneGridSize / sceneGridDistance;
 
     baseDistance *= dimensionConstant;
 
@@ -114,4 +112,19 @@ export const renderMeasuredTemplate = async event => {
         },
         { create: true }
     );
+};
+
+const getTemplateDistance = range => {
+    const rangeNumber = Number(range);
+    if (!Number.isNaN(rangeNumber)) return rangeNumber;
+
+    const { custom } = CONFIG.DH.GENERAL.sceneRangeMeasurementSetting;
+    const sceneMeasurements = canvas.scene?.flags.daggerheart?.rangeMeasurement;
+    const globalMeasurements = game.settings.get(
+        CONFIG.DH.id,
+        CONFIG.DH.SETTINGS.gameSettings.variantRules
+    ).rangeMeasurement;
+
+    const settings = sceneMeasurements?.setting === custom.id ? sceneMeasurements : globalMeasurements;
+    return settings[range];
 };

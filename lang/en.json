@@ -113,7 +113,9 @@
                 },
                 "displayInChat": "Display in chat",
                 "deleteTriggerTitle": "Delete Trigger",
-                "deleteTriggerContent": "Are you sure you want to delete the {trigger} trigger?"
+                "deleteTriggerContent": "Are you sure you want to delete the {trigger} trigger?",
+                "advantageState": "Advantage State",
+                "damageOnSave": "Damage on Save"
             },
             "RollField": {
                 "diceRolling": {
@@ -125,7 +127,7 @@
                 }
             },
             "Settings": {
-                "attackBonus": "Attack Bonus",
+                "attackModifier": "Attack Modifier",
                 "attackName": "Attack Name",
                 "criticalThreshold": "Critical Threshold",
                 "includeBase": { "label": "Include Item Damage" },

@@ -44,7 +44,9 @@
                 "flatMultiplier": 1
               },
               "applyTo": "hitPoints",
-              "type": [],
+              "type": [
+                "magical"
+              ],
               "base": false,
               "valueAlt": {
                 "multiplier": "prof",
@@ -87,57 +89,6 @@
         "name": "Cast",
         "img": "icons/skills/melee/spear-tips-three-green.webp",
         "range": "veryClose"
-      },
-      "CUKoYyDxQhNc0pLs": {
-        "type": "damage",
-        "_id": "CUKoYyDxQhNc0pLs",
-        "systemPath": "actions",
-        "description": "<p>If a target you hit is <em>Vulnerable</em>, they take an extra <strong>1d8</strong> damage.</p>",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": "",
-          "recovery": null
-        },
-        "damage": {
-          "parts": {
-            "hitPoints": {
-              "value": {
-                "custom": {
-                  "enabled": false
-                },
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d8",
-                "bonus": null
-              },
-              "applyTo": "hitPoints",
-              "type": [],
-              "base": false,
-              "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
-              }
-            }
-          },
-          "includeBase": false
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        },
-        "effects": [],
-        "name": "Damage Against Vulnerable",
-        "img": "icons/skills/melee/spear-tips-three-purple.webp",
-        "range": ""
       }
     },
     "attribution": {

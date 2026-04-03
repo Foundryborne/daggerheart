@@ -2,8 +2,8 @@
     <legend>{{localize "DAGGERHEART.GENERAL.Roll.reaction"}}</legend>
     <p class="hint">{{localize "DAGGERHEART.ACTIONS.Settings.saveHint"}}</p>
     <div class="nest-inputs">
-        {{formField fields.trait label="Trait" name="save.trait" value=source.trait localize=true}}
-        {{formField fields.difficulty label="Difficulty" name="save.difficulty" value=source.difficulty disabled=(not source.trait) placeholder=@root.baseSaveDifficulty}}
-        {{formField fields.damageMod label="Damage on Save" name="save.damageMod" value=source.damageMod localize=true disabled=(not source.trait)}}
+        {{formField fields.trait label="DAGGERHEART.GENERAL.Trait.single" name="save.trait" value=source.trait localize=true}}
+        {{formField fields.difficulty label="DAGGERHEART.GENERAL.difficulty" name="save.difficulty" value=source.difficulty disabled=(not source.trait) placeholder=@root.baseSaveDifficulty localize=true}}
+        {{formField fields.damageMod label="DAGGERHEART.ACTIONS.Config.damageOnSave" name="save.damageMod" value=source.damageMod localize=true localize=true disabled=(not source.trait)}}
     </div>
 </fieldset>
