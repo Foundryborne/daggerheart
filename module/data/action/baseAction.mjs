@@ -264,6 +264,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             hasSave: this.hasSave,
             onSave: this.save?.damageMod,
             isDirect: !!this.damage?.direct,
+            damageOptions: this.damage?.groupAttack ? {} : null,
             selectedMessageMode: game.settings.get('core', 'messageMode'),
             data: this.getRollData(),
             evaluate: this.hasRoll,
@@ -279,6 +280,26 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                 ...(configOptions.skips ?? {})
             }
         };
+
+        if (this.damage) {
+            config.isDirect = this.damage.direct;
+
+            const groupAttackTokens = this.damage.groupAttack
+                ? game.system.api.fields.ActionFields.DamageField.getGroupAttackTokens(
+                      this.actor.id,
+                      this.damage.groupAttack
+                  )
+                : null;
+
+            config.damageOptions = {
+                groupAttack: this.damage.groupAttack
+                    ? {
+                          nr: Math.max(groupAttackTokens.length, 1),
+                          range: this.damage.groupAttack
+                      }
+                    : null
+            };
+        }
 
         DHBaseAction.applyKeybindings(config);
         return config;

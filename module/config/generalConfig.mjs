@@ -70,6 +70,14 @@ export const range = {
     }
 };
 
+export const groupAttackRange = {
+    melee: range.melee,
+    veryClose: range.veryClose,
+    close: range.close,
+    far: range.far,
+    veryFar: range.veryFar
+};
+
 /* circle|cone|rect|ray used to be CONST.MEASURED_TEMPLATE_TYPES. Hardcoded for now */
 export const templateTypes = {
     CIRCLE: 'circle',

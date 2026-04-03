@@ -131,6 +131,7 @@
                 "attackName": "Attack Name",
                 "criticalThreshold": "Critical Threshold",
                 "includeBase": { "label": "Include Item Damage" },
+                "groupAttack": { "label": "Group Attack" },
                 "multiplier": "Multiplier",
                 "saveHint": "Set a default Trait to enable Reaction Roll. It can be changed later in Reaction Roll Dialog.",
                 "resultBased": {
@@ -3142,7 +3143,8 @@
                 "tokenActorsMissing": "[{names}] missing Actors",
                 "domainTouchRequirement": "This domain card requires {nr} {domain} cards in the loadout to be used",
                 "knowTheTide": "Know The Tide gained a token",
-                "lackingItemTransferPermission": "User {user} lacks owner permission needed to transfer items to {target}"
+                "lackingItemTransferPermission": "User {user} lacks owner permission needed to transfer items to {target}",
+                "noTokenTargeted": "No token is targeted"
             },
             "Progress": {
                 "migrationLabel": "Performing system migration. Please wait and do not close Foundry."
