@@ -87,6 +87,12 @@
                             </div>
                         {{/unless}}
 
+                        {{#if (eq actor.type 'character')}}
+                            <div class="stat-section">
+                                <h4>{{localize "DAGGERHEART.GENERAL.evasion"}}: {{actor.system.evasion}}</h4>
+                            </div>
+                        {{/if}}
+
                         {{#unless (eq actor.type 'companion')}}
                             <div class="threshold-section">
                                 <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.minor"}}</h4>
