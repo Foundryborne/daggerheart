@@ -41,6 +41,7 @@ export const GMUpdateEvent = {
 export const RefreshType = {
     Countdown: 'DhCoundownRefresh',
     TagTeamRoll: 'DhTagTeamRollRefresh',
+    GroupRoll: 'DhGroupRollRefresh',
     EffectsDisplay: 'DhEffectsDisplayRefresh',
     Scene: 'DhSceneRefresh',
     CompendiumBrowser: 'DhCompendiumBrowserRefresh'

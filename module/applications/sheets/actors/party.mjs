@@ -4,7 +4,6 @@ import { ItemBrowser } from '../../ui/itemBrowser.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
 import DaggerheartMenu from '../../sidebar/tabs/daggerheartMenu.mjs';
 import { socketEvent } from '../../../systemRegistration/socket.mjs';
-import GroupRollDialog from '../../dialogs/group-roll-dialog.mjs';
 import DhpActor from '../../../documents/actor.mjs';
 
 export default class Party extends DHBaseActorSheet {
@@ -261,9 +260,7 @@ export default class Party extends DHBaseActorSheet {
     }
 
     static async #groupRoll(_params) {
-        new GroupRollDialog(
-            this.document.system.partyMembers.filter(x => Party.DICE_ROLL_ACTOR_TYPES.includes(x.type))
-        ).render({ force: true });
+        new game.system.api.applications.dialogs.GroupRollDialog(this.document).render({ force: true });
     }
 
     /* -------------------------------------------- */
