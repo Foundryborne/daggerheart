@@ -125,12 +125,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -181,7 +178,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -207,7 +204,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -245,33 +243,95 @@
         "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all @Lookup[@name]s within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal @Lookup[@system.attack.damageFormula] physical damage each. Combine this damage.</p>",
         "resource": null,
         "actions": {
-          "DJBNtd3hWjwsjPwq": {
-            "type": "effect",
-            "_id": "DJBNtd3hWjwsjPwq",
+          "8wRrAWHU0xHW4zuE": {
+            "type": "attack",
+            "_id": "8wRrAWHU0xHW4zuE",
             "systemPath": "actions",
+            "baseAction": false,
             "description": "",
             "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
             "actionType": "action",
+            "triggers": [],
             "cost": [
               {
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "step": null
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
-            "effects": [],
+            "damage": {
+              "parts": {
+                "hitPoints": {
+                  "applyTo": "hitPoints",
+                  "resultBased": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": true,
+                      "formula": "2"
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "base": false,
+                  "type": [
+                    "physical"
+                  ]
+                }
+              },
+              "includeBase": false,
+              "direct": false,
+              "groupAttack": "close"
+            },
             "target": {
-              "type": "self",
+              "type": "any",
               "amount": null
             },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
             "name": "Spend Fear",
-            "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
             "range": ""
           }
         },
