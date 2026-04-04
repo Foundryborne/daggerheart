@@ -1,3 +1,4 @@
+import { defaultRestOptions } from '../config/generalConfig.mjs';
 import { RefreshType, socketEvent } from './socket.mjs';
 
 export async function runMigrations() {
@@ -340,6 +341,18 @@ export async function runMigrations() {
         progress.close();
 
         lastMigrationVersion = '2.0.0';
+    }
+
+    if (foundry.utils.isNewerVersion('2.0.4', lastMigrationVersion)) {
+        const downtimeMoves = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew);
+        if (restMoves.longRest.moves.repairArmor) {
+            await downtimeMoves.updateSource({
+                'restMoves.longRest.moves.repairArmor': defaultRestOptions.longRest().repairArmor
+            });
+            game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew, downtimeMoves.toObject());
+        }
+
+        lastMigrationVersion = '2.0.4';
     }
     //#endregion
 
