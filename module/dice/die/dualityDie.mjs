@@ -43,9 +43,10 @@ export default class DualityDie extends foundry.dice.terms.Die {
                     options: { appearance: {} }
                 };
 
-                const preset = await getDiceSoNicePreset(diceSoNice[key], faces);
-                diceSoNiceRoll.dice[0].options.appearance = preset.appearance;
-                diceSoNiceRoll.dice[0].options.modelFile = preset.modelFile;
+                const diceAppearance = await this.getDiceSoNiceAppearance(options.liveRoll.roll);
+                diceSoNiceRoll.dice[0].options.appearance = diceAppearance.appearance;
+                diceSoNiceRoll.dice[0].options.modelFile = diceAppearance.modelFile;
+                diceSoNiceRoll.dice[0].results = diceSoNiceRoll.dice[0].results.filter(x => x.active);
 
                 await game.dice3d.showForRoll(diceSoNiceRoll, game.user, true);
             } else {
@@ -58,5 +59,12 @@ export default class DualityDie extends foundry.dice.terms.Die {
             const newDuality = this.#getDualityState(options.liveRoll.roll);
             this.#updateResources(oldDuality, newDuality, options.liveRoll.actor);
         }
+    }
+
+    /**
+     * Overridden by extending classes HopeDie and FearDie
+     */
+    async getDiceSoNiceAppearance() {
+        return {};
     }
 }

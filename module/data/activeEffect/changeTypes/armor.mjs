@@ -44,7 +44,8 @@ export default class ArmorChange extends foundry.abstract.DataModel {
         label: 'Armor',
         defaultPriority: 20,
         handler: (actor, change, _options, _field, replacementData) => {
-            const parsedMax = itemAbleRollParse(change.value.max, actor, change.effect.parent);
+            const baseParsedMax = itemAbleRollParse(change.value.max, actor, change.effect.parent);
+            const parsedMax = new Roll(baseParsedMax).evaluateSync().total;
             game.system.api.documents.DhActiveEffect.applyChange(
                 actor,
                 {
