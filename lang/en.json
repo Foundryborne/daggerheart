@@ -353,7 +353,7 @@
                 "selectSecondaryWeapon": "Select Secondary Weapon",
                 "selectSubclass": "Select Subclass",
                 "setupSkipTitle": "Skipping Character Setup",
-                "setupSkipContent": "You are skipping the Character Setup by adding this manually. The character setup is the blinking arrows in the top-right. Are you sure you want to continue?",
+                "setupSkipContent": "You are skipping the Character Setup by adding this manually. The character setup is the blinking button in the top-right. Are you sure you want to continue?",
                 "startingItems": "Starting Items",
                 "story": "Story",
                 "storyExplanation": "Select which background and connection prompts you want to copy into your character's background.",
