@@ -9,9 +9,16 @@
         {{/if}}
         <div class="form-group"> 
             <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.critical"}}</label>
+            
             <div class="form-fields">
-                {{formInput fields.diceSoNice.fields.sfx.fields.critical.fields.class value=setting.diceSoNice.sfx.critical.class blank="" localize=true}}
-            </div>       
+                <div class="form-fields">
+                    {{formInput fields.diceSoNice.fields.sfx.fields.critical.fields.class value=setting.diceSoNice.sfx.critical.class blank="" localize=true}}
+                </div>      
+                <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.muted"}}</label>
+                <div class="form-fields">
+                    {{formInput fields.diceSoNice.fields.sfx.fields.critical.fields.options.fields.muteSound value=setting.diceSoNice.sfx.critical.options.muteSound localize=true}}
+                </div>   
+            </div>
         </div>
     </div>
     <section class='tab-navigation'>

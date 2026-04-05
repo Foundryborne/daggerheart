@@ -8,6 +8,9 @@ export default class DhAppearance extends foundry.abstract.DataModel {
                 initial: null,
                 blank: true,
                 choices: CONFIG.DH.GENERAL.diceSoNiceSFXClasses
+            }),
+            options: new foundry.data.fields.SchemaField({
+                muteSound: new foundry.data.fields.BooleanField()
             })
         });
 

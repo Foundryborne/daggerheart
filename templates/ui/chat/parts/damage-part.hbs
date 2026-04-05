@@ -33,31 +33,32 @@
                                 <div class="roll-formula">{{total}}</div></span></label>
                             {{/if}}
                             <div class="roll-dice">
-                                {{#each dice}}
-                                    {{#each results}}
-                                        {{#unless discarded}}
-                                            <div class="roll-die{{#unless @../first}} has-plus{{/unless}}">
-                                                <div 
-                                                    class="dice reroll-button {{../dice}}" 
-                                                    data-die-index="0" data-type="damage" data-damage-type="{{@../../../key}}" data-part="{{@../../key}}" data-dice="{{@../key}}" data-result="{{@key}}"
-                                                >
-                                                    {{#if hasRerolls}}<i class="fa-solid fa-dice dice-rerolled" data-tooltip="{{localize "DAGGERHEART.GENERAL.rerolled"}}"></i>{{/if}}
-                                                    {{result}}
+                                {{#if dice.length}}
+                                    {{#each dice}}
+                                        {{#each results}}
+                                            {{#unless discarded}}
+                                                <div class="roll-die{{#unless @../first}} has-plus{{/unless}}">
+                                                    <div 
+                                                        class="dice reroll-button {{../dice}}" 
+                                                        data-die-index="0" data-type="damage" data-damage-type="{{@../../../key}}" data-part="{{@../../key}}" data-dice="{{@../key}}" data-result="{{@key}}"
+                                                    >
+                                                        {{#if hasRerolls}}<i class="fa-solid fa-dice dice-rerolled" data-tooltip="{{localize "DAGGERHEART.GENERAL.rerolled"}}"></i>{{/if}}
+                                                        {{result}}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        {{/unless}}
+                                            {{/unless}}
+                                        {{/each}}
                                     {{/each}}
-                                {{/each}}
-                                {{#if modifierTotal}}
-                                    <div class="roll-die{{#if (gt modifierTotal 0)}} has-plus{{/if}}">
-                                        <div class="font-20">{{modifierTotal}}</div>
-                                    </div>
-                                {{/if}}
-                                {{#unless dice.length}}
+                                    {{#if modifierTotal}}
+                                        <div class="roll-die{{#if (gt modifierTotal 0)}} has-plus{{/if}}">
+                                            <div class="font-20">{{modifierTotal}}</div>
+                                        </div>
+                                    {{/if}}
+                                {{else}}
                                     <div class="roll-die">
                                         <div class="font-20">{{total}}</div>
                                     </div>
-                                {{/unless}}
+                                {{/if}}
                             </div>
                         {{/each}}
                     </fieldset>

@@ -345,7 +345,7 @@ export async function runMigrations() {
 
     if (foundry.utils.isNewerVersion('2.0.4', lastMigrationVersion)) {
         const downtimeMoves = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew);
-        if (restMoves.longRest.moves.repairArmor) {
+        if (downtimeMoves.restMoves.longRest.moves.repairArmor) {
             await downtimeMoves.updateSource({
                 'restMoves.longRest.moves.repairArmor': defaultRestOptions.longRest().repairArmor
             });
