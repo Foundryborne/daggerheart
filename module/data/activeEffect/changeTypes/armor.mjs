@@ -44,7 +44,8 @@ export default class ArmorChange extends foundry.abstract.DataModel {
         label: 'Armor',
         defaultPriority: 20,
         handler: (actor, change, _options, _field, replacementData) => {
-            const parsedMax = itemAbleRollParse(change.value.max, actor, change.effect.parent);
+            const baseParsedMax = itemAbleRollParse(change.value.max, actor, change.effect.parent);
+            const parsedMax = new Roll(baseParsedMax).evaluateSync().total;
             game.system.api.documents.DhActiveEffect.applyChange(
                 actor,
                 {
@@ -110,6 +111,8 @@ export default class ArmorChange extends foundry.abstract.DataModel {
     };
 
     get isSuppressed() {
+        if (!this.parent.parent?.actor) return false;
+
         switch (this.value.interaction) {
             case CONFIG.DH.GENERAL.activeEffectArmorInteraction.active.id:
                 return !this.parent.parent?.actor.system.armor;

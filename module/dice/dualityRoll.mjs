@@ -24,7 +24,7 @@ export default class DualityRoll extends D20Roll {
     }
 
     get dHope() {
-        if (!(this.dice[0] instanceof game.system.api.dice.diceTypes.DualityDie)) this.createBaseDice();
+        if (!(this.dice[0] instanceof game.system.api.dice.diceTypes.HopeDie)) this.createBaseDice();
         return this.dice[0];
     }
 
@@ -34,7 +34,7 @@ export default class DualityRoll extends D20Roll {
     }
 
     get dFear() {
-        if (!(this.dice[1] instanceof game.system.api.dice.diceTypes.DualityDie)) this.createBaseDice();
+        if (!(this.dice[1] instanceof game.system.api.dice.diceTypes.FearDie)) this.createBaseDice();
         return this.dice[1];
     }
 
@@ -68,8 +68,8 @@ export default class DualityRoll extends D20Roll {
     }
 
     get extraDice() {
-        const { DualityDie, AdvantageDie, DisadvantageDie } = game.system.api.dice.diceTypes;
-        return this.dice.filter(x => ![DualityDie, AdvantageDie, DisadvantageDie].some(die => x instanceof die));
+        const { HopeDie, FearDie, AdvantageDie, DisadvantageDie } = game.system.api.dice.diceTypes;
+        return this.dice.filter(x => ![HopeDie, FearDie, AdvantageDie, DisadvantageDie].some(die => x instanceof die));
     }
 
     setRallyChoices() {
@@ -125,8 +125,8 @@ export default class DualityRoll extends D20Roll {
 
     /** @inheritDoc */
     static fromData(data) {
-        data.terms[0].class = 'DualityDie';
-        data.terms[2].class = 'DualityDie';
+        data.terms[0].class = 'HopeDie';
+        data.terms[2].class = 'FearDie';
         if (data.options.roll.advantage?.type && data.terms[4]?.faces) {
             data.terms[4].class = data.options.roll.advantage.type === 1 ? 'AdvantageDie' : 'DisadvantageDie';
         }
@@ -135,18 +135,18 @@ export default class DualityRoll extends D20Roll {
 
     createBaseDice() {
         if (
-            this.dice[0] instanceof game.system.api.dice.diceTypes.DualityDie &&
-            this.dice[1] instanceof game.system.api.dice.diceTypes.DualityDie
+            this.dice[0] instanceof game.system.api.dice.diceTypes.HopeDie &&
+            this.dice[1] instanceof game.system.api.dice.diceTypes.FearDie
         ) {
             this.terms = [this.terms[0], this.terms[1], this.terms[2]];
             return;
         }
 
-        this.terms[0] = new game.system.api.dice.diceTypes.DualityDie({
+        this.terms[0] = new game.system.api.dice.diceTypes.HopeDie({
             faces: this.data.rules.dualityRoll?.defaultHopeDice ?? 12
         });
         this.terms[1] = new foundry.dice.terms.OperatorTerm({ operator: '+' });
-        this.terms[2] = new game.system.api.dice.diceTypes.DualityDie({
+        this.terms[2] = new game.system.api.dice.diceTypes.FearDie({
             faces: this.data.rules.dualityRoll?.defaultFearDice ?? 12
         });
     }

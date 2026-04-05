@@ -35,7 +35,7 @@ jobs:
       env:
         version: ${{steps.get_version.outputs.version-without-v}}
         url: https://github.com/${{github.repository}}
-        manifest: https://raw.githubusercontent.com/{{github.repository}}/main/system.json
+        manifest: https://raw.githubusercontent.com/${{github.repository}}/main/system.json
         download: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/system.zip
 
     # Create a zip file with all files required by the module to add to the release

@@ -4,7 +4,7 @@
         {{#if @root.hasBaseDamage}}{{formInput fields.useDefault name="roll.useDefault" value=source.useDefault dataset=(object tooltip="Use default Item values" tooltipDirection="UP")}}{{/if}}
     </legend>
     
-    {{formField fields.type label="Type" name="roll.type" value=source.type localize=true choices=@root.getRollTypeOptions}}
+    {{formField fields.type label="DAGGERHEART.GENERAL.type" name="roll.type" value=source.type localize=true choices=@root.getRollTypeOptions localize=true}}
     {{#if (eq source.type "diceSet")}}
         <div class="nest-inputs">
             {{formField fields.diceRolling.fields.multiplier name="roll.diceRolling.multiplier" value=source.diceRolling.multiplier localize=true}}
@@ -17,13 +17,13 @@
         <div class="nest-inputs">
             {{#unless (eq source.type 'spellcast')}}
                 {{#if @root.isNPC}}
-                    {{formField fields.bonus label="DAGGERHEART.GENERAL.Modifier.single" name="roll.bonus" value=source.bonus placeholder=@root.baseAttackBonus disabled=(not source.type)}}
+                    {{formField fields.bonus label="DAGGERHEART.GENERAL.Modifier.single" name="roll.bonus" value=source.bonus placeholder=@root.baseAttackBonus disabled=(not source.type) localize=true}}
                 {{else}}
                     {{formField fields.trait label="DAGGERHEART.GENERAL.Trait.single" name="roll.trait" value=source.trait localize=true disabled=(not source.type)}}
                 {{/if}}
             {{/unless}}
-            {{formField fields.difficulty label="DAGGERHEART.GENERAL.difficulty" name="roll.difficulty" value=source.difficulty disabled=(not source.type)}}
-            {{formField fields.advState label="DAGGERHEART.ACTIONS.Config.advantageState" name="roll.advState" value=source.advState localize=true disabled=(not source.type)}}
+            {{formField fields.difficulty label="DAGGERHEART.GENERAL.difficulty" name="roll.difficulty" value=source.difficulty localize=true disabled=(not source.type)}}
+            {{formField fields.advState label="DAGGERHEART.ACTIONS.Config.advantageState" name="roll.advState" value=source.advState localize=true localize=true disabled=(not source.type)}}
         </div>
     {{/if}}
 </fieldset>

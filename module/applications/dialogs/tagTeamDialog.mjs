@@ -366,8 +366,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         let rollIsSelected = false;
         for (const member of Object.values(members)) {
             const rollFinished = Boolean(member.rollData);
-            const damageFinished =
-                member.rollData?.options?.hasDamage !== undefined ? member.rollData.options.damage : true;
+            const damageFinished = member.rollData?.options?.hasDamage ? Boolean(member.rollData.options.damage) : true;
 
             rollsAreFinished = rollsAreFinished && rollFinished && damageFinished;
             rollIsSelected = rollIsSelected || member.selected;

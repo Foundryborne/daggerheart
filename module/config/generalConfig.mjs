@@ -492,7 +492,7 @@ export const defaultRestOptions = {
                                 value: {
                                     custom: {
                                         enabled: true,
-                                        formula: '@system.armorScore'
+                                        formula: '@system.armorScore.max'
                                     }
                                 }
                             }
