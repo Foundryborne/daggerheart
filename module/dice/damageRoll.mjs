@@ -170,11 +170,11 @@ export default class DamageRoll extends DHRoll {
                 );
             }
 
-            if (config.damageOptions.groupAttack?.nr > 1 && isHitpointPart) {
+            if (config.damageOptions.groupAttack?.numAttackers > 1 && isHitpointPart) {
                 const damageTypes = [foundry.dice.terms.Die, foundry.dice.terms.NumericTerm];
                 for (const term of part.roll.terms) {
                     if (damageTypes.some(type => term instanceof type)) {
-                        term.number *= config.damageOptions.groupAttack.nr;
+                        term.number *= config.damageOptions.groupAttack.numAttackers;
                     }
                 }
             }

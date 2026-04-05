@@ -78,9 +78,9 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         this.config.selectedMessageMode = data.selectedMessageMode;
 
         if (data.damageOptions) {
-            const groupAttackNr = data.damageOptions.groupAttack?.nr;
-            if (typeof groupAttackNr !== 'number' || groupAttackNr % 1 !== 0) {
-                data.damageOptions.groupAttack.nr = null;
+            const numAttackers = data.damageOptions.groupAttack?.numAttackers;
+            if (typeof numAttackers !== 'number' || numAttackers % 1 !== 0) {
+                data.damageOptions.groupAttack.numAttackers = null;
             }
 
             foundry.utils.mergeObject(this.config.damageOptions, data.damageOptions);
@@ -98,7 +98,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         const range = this.config.damageOptions.groupAttack.range;
         const groupAttackTokens = game.system.api.fields.ActionFields.DamageField.getGroupAttackTokens(actorId, range);
 
-        this.config.damageOptions.groupAttack.nr = groupAttackTokens.length;
+        this.config.damageOptions.groupAttack.numAttackers = groupAttackTokens.length;
         this.render();
     }
 

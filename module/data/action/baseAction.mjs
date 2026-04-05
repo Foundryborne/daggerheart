@@ -294,7 +294,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             config.damageOptions = {
                 groupAttack: this.damage.groupAttack
                     ? {
-                          nr: Math.max(groupAttackTokens.length, 1),
+                          numAttackers: Math.max(groupAttackTokens.length, 1),
                           range: this.damage.groupAttack
                       }
                     : null
