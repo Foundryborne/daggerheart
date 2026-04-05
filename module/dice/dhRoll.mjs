@@ -246,7 +246,7 @@ export default class DHRoll extends Roll {
         return (this._formula = this.constructor.getFormula(this.terms));
     }
 
-    /** 
+    /**
      * Calculate total modifiers of any rolls, including non-dh rolls.
      * This exists because damage rolls still may receive base roll classes
      */
@@ -256,7 +256,7 @@ export default class DHRoll extends Roll {
             if (!roll.terms[i].isDeterministic) continue;
             const termTotal = roll.terms[i].total;
             if (typeof termTotal === 'number') {
-                const multiplier = roll.terms[i - 1]?.operator === " - " ? -1 : 1;
+                const multiplier = roll.terms[i - 1]?.operator === ' - ' ? -1 : 1;
                 modifierTotal += multiplier * termTotal;
             }
         }
@@ -272,7 +272,7 @@ export default class DHRoll extends Roll {
         const changeKeys = this.getActionChangeKeys();
         return (
             this.options.effects?.reduce((acc, effect) => {
-                if (effect.system.changes.some(x => changeKeys.some(key => x.key.includes(key)))) {
+                if (effect.system.changes.some(x => changeKeys.some(key => x.key?.includes(key)))) {
                     acc[effect.id] = {
                         id: effect.id,
                         name: effect.name,
