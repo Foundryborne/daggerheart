@@ -708,14 +708,14 @@ const getDiceSoNiceSFX = sfxOptions => {
     if (sfxOptions.critical && criticalAnimationData.class) {
         return {
             specialEffect: criticalAnimationData.class,
-            options: {}
+            options: { ...criticalAnimationData.options }
         };
     }
 
     if (sfxOptions.higher && sfxOptions.data.higher) {
         return {
             specialEffect: sfxOptions.data.higher.class,
-            options: {}
+            options: { ...sfxOptions.data.higher.options }
         };
     }
 

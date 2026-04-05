@@ -2857,6 +2857,7 @@
                         "system": "Dice Preset",
                         "font": "Font",
                         "critical": "Duality Critical Animation",
+                        "muted": "Muted",
                         "diceAppearance": "Dice Appearance",
                         "animations": "Animations",
                         "defaultAnimations": "Set Animations As Player Defaults",
