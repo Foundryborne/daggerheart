@@ -118,13 +118,6 @@ const getTemplateDistance = range => {
     const rangeNumber = Number(range);
     if (!Number.isNaN(rangeNumber)) return rangeNumber;
 
-    const { custom } = CONFIG.DH.GENERAL.sceneRangeMeasurementSetting;
-    const sceneMeasurements = canvas.scene?.flags.daggerheart?.rangeMeasurement;
-    const globalMeasurements = game.settings.get(
-        CONFIG.DH.id,
-        CONFIG.DH.SETTINGS.gameSettings.variantRules
-    ).rangeMeasurement;
-
-    const settings = sceneMeasurements?.setting === custom.id ? sceneMeasurements : globalMeasurements;
-    return settings[range];
+    const settings = canvas.scene?.rangeSettings;
+    return settings ? settings[range] : 0;
 };

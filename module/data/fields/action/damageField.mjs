@@ -234,13 +234,8 @@ export default class DamageField extends fields.SchemaField {
         if (!canvas.scene) return [];
 
         const targets = Array.from(game.user.targets);
-        const { custom } = CONFIG.DH.GENERAL.sceneRangeMeasurementSetting;
-        const sceneMeasurements = canvas.scene?.flags.daggerheart?.rangeMeasurement;
-        const globalMeasurements = game.settings.get(
-            CONFIG.DH.id,
-            CONFIG.DH.SETTINGS.gameSettings.variantRules
-        ).rangeMeasurement;
-        const rangeSettings = sceneMeasurements?.setting === custom.id ? sceneMeasurements : globalMeasurements;
+        const rangeSettings = canvas.scene?.rangeSettings;
+        if (!rangeSettings) return [];
 
         const maxDistance = rangeSettings[range];
         return canvas.scene.tokens.filter(x => {
