@@ -1,5 +1,5 @@
 import DHBaseActorSheet from '../api/base-actor.mjs';
-import { getDocFromElement } from '../../../helpers/utils.mjs';
+import { getDocFromElement, sortBy } from '../../../helpers/utils.mjs';
 import { ItemBrowser } from '../../ui/itemBrowser.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
 import DaggerheartMenu from '../../sidebar/tabs/daggerheartMenu.mjs';
@@ -18,13 +18,14 @@ export default class Party extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
         classes: ['party'],
         position: {
-            width: 550,
+            width: 600,
             height: 900
         },
         window: {
             resizable: true
         },
         actions: {
+            openDocument: Party.#openDocument,
             deletePartyMember: Party.#deletePartyMember,
             deleteItem: Party.#deleteItem,
             toggleHope: Party.#toggleHope,
@@ -45,10 +46,6 @@ export default class Party extends DHBaseActorSheet {
         header: { template: 'systems/daggerheart/templates/sheets/actors/party/header.hbs' },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         partyMembers: { template: 'systems/daggerheart/templates/sheets/actors/party/party-members.hbs' },
-        resources: {
-            template: 'systems/daggerheart/templates/sheets/actors/party/resources.hbs',
-            scrollable: ['']
-        },
         /* NOT YET IMPLEMENTED */
         // projects: {
         //     template: 'systems/daggerheart/templates/sheets/actors/party/projects.hbs',
@@ -66,7 +63,6 @@ export default class Party extends DHBaseActorSheet {
         primary: {
             tabs: [
                 { id: 'partyMembers' },
-                { id: 'resources' },
                 /* NOT YET IMPLEMENTED */
                 // { id: 'projects' },
                 { id: 'inventory' },
@@ -96,6 +92,8 @@ export default class Party extends DHBaseActorSheet {
             case 'header':
                 await this._prepareHeaderContext(context, options);
                 break;
+            case 'partyMembers':
+                await this._prepareMembersContext(context, options);
             case 'notes':
                 await this._prepareNotesContext(context, options);
                 break;
@@ -119,6 +117,59 @@ export default class Party extends DHBaseActorSheet {
             relativeTo: this.document
         });
         context.tagTeamActive = Boolean(this.document.system.tagTeam.initiator);
+    }
+
+    async _prepareMembersContext(context, _options) {
+        context.partyMembers = [];
+        const traits = ['agility', 'strength', 'finesse', 'instinct', 'presence', 'knowledge'];
+        for (const actor of this.document.system.partyMembers) {
+            const weapons = [];
+            if (actor.type === 'character') {
+                if (actor.system.usedUnarmed) {
+                    weapons.push(actor.system.usedUnarmed);
+                }
+                const equipped = actor.items.filter(i => i.system.equipped && i.type === 'weapon');
+                weapons.push(...sortBy(equipped, i => (i.system.secondary ? 1 : 0)));
+            }
+
+            context.partyMembers.push({
+                uuid: actor.uuid,
+                img: actor.img,
+                name: actor.name,
+                subtitle: (() => {
+                    if (!['character', 'companion'].includes(actor.type)) {
+                        return game.i18n.format(`TYPES.Actor.${actor.type}`);
+                    }
+
+                    const { value: classItem, subclass } = actor.system.class ?? {};
+                    const partner = actor.system.partner;
+                    const ancestry = actor.system.ancestry;
+                    const community = actor.system.community;
+                    if (partner || (classItem && subclass && ancestry && community)) {
+                        return game.i18n.format(`DAGGERHEART.ACTORS.Party.Subtitle.${actor.type}`, {
+                            class: classItem?.name,
+                            subclass: subclass?.name,
+                            partner: partner?.name,
+                            ancestry: ancestry?.name,
+                            community: community?.name
+                        });
+                    }
+                })(),
+                type: actor.type,
+                resources: actor.system.resources,
+                armorScore: actor.system.armorScore,
+                damageThresholds: actor.system.damageThresholds,
+                evasion: actor.system.evasion,
+                difficulty: actor.system.difficulty,
+                traits: actor.system.traits
+                    ? traits.map(t => ({
+                          label: game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${t}.short`),
+                          value: actor.system.traits[t].value
+                      }))
+                    : null,
+                weapons
+            });
+        }
     }
 
     /**
@@ -147,6 +198,12 @@ export default class Party extends DHBaseActorSheet {
                 })
             };
         }
+    }
+
+    static async #openDocument(_, target) {
+        const uuid = target.dataset.uuid;
+        const document = await foundry.utils.fromUuid(uuid);
+        document?.sheet?.render(true);
     }
 
     /**
@@ -190,7 +247,7 @@ export default class Party extends DHBaseActorSheet {
      * @type {ApplicationClickAction}
      */
     static async #toggleArmorSlot(_, target) {
-        const actor = game.actors.get(target.dataset.actorId);
+        const actor = await foundry.utils.fromUuid(target.dataset.actorId);
         const { value, max } = actor.system.armorScore;
         const inputValue = Number.parseInt(target.dataset.value);
         const newValue = value >= inputValue ? inputValue - 1 : inputValue;
@@ -425,25 +482,23 @@ export default class Party extends DHBaseActorSheet {
     }
 
     static async #deletePartyMember(event, target) {
-        const doc = await getDocFromElement(target.closest('.inventory-item'));
-
+        const doc = await foundry.utils.fromUuid(target.closest('[data-uuid]')?.dataset.uuid);
         if (!event.shiftKey) {
             const confirmed = await foundry.applications.api.DialogV2.confirm({
                 window: {
-                    title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
-                        type: game.i18n.localize('TYPES.Actor.adversary'),
+                    title: game.i18n.format('DAGGERHEART.ACTORS.Party.RemoveConfirmation.title', {
                         name: doc.name
                     })
                 },
-                content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', { name: doc.name })
+                content: game.i18n.format('DAGGERHEART.ACTORS.Party.RemoveConfirmation.text', { name: doc.name })
             });
 
             if (!confirmed) return;
         }
 
         const currentMembers = this.document.system.partyMembers.map(x => x.uuid);
-        const newMemberdList = currentMembers.filter(uuid => uuid !== doc.uuid);
-        await this.document.update({ 'system.partyMembers': newMemberdList });
+        const newMembersList = currentMembers.filter(uuid => uuid !== doc.uuid);
+        await this.document.update({ 'system.partyMembers': newMembersList });
     }
 
     static async #deleteItem(event, target) {
