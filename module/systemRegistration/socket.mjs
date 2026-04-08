@@ -18,6 +18,8 @@ export function handleSocketEvent({ action = null, data = {} } = {}) {
         case socketEvent.TagTeamStart:
             Hooks.callAll(CONFIG.DH.HOOKS.hooksConfig.tagTeamStart, data);
             break;
+        case socketEvent.GroupRollStart:
+            Hooks.callAll(CONFIG.DH.HOOKS.hooksConfig.groupRollStart, data);
     }
 }
 
@@ -26,7 +28,8 @@ export const socketEvent = {
     Refresh: 'DhRefresh',
     DhpFearUpdate: 'DhFearUpdate',
     DowntimeTrigger: 'DowntimeTrigger',
-    TagTeamStart: 'DhTagTeamStart'
+    TagTeamStart: 'DhTagTeamStart',
+    GroupRollStart: 'DhGroupRollStart'
 };
 
 export const GMUpdateEvent = {

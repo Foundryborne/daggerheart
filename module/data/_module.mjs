@@ -4,6 +4,7 @@ export { default as DhRollTable } from './rollTable.mjs';
 export { default as RegisteredTriggers } from './registeredTriggers.mjs';
 export { default as CompendiumBrowserSettings } from './compendiumBrowserSettings.mjs';
 export { default as TagTeamData } from './tagTeamData.mjs';
+export { default as GroupRollData } from './groupRollData.mjs';
 export { default as SpotlightTracker } from './spotlightTracker.mjs';
 
 export * as countdowns from './countdowns.mjs';

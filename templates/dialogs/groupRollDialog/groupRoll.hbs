@@ -1,3 +1,16 @@
-<div>
-    Test
-</div>
+<section class="tab {{#if tabs.groupRoll.active}} active{{/if}}" data-group="{{tabs.groupRoll.group}}" data-tab="{{tabs.groupRoll.id}}">
+    <fieldset>
+        <legend>{{localize "Result"}}</legend>
+
+        <div class="group-roll-results">
+            <span class="roll-title">{{groupRoll.total}} {{groupRoll.totalLabel}}</span>
+            <div class="group-roll-container">
+                <span>{{#if groupRoll.mainCharacterTotal includeZero=true}}{{groupRoll.mainCharacterTotal}}{{else}}{{localize "<Main Character Roll>"}}{{/if}}</span>
+                {{#each groupRoll.modifiers as |modifier|}}
+                    <span>{{#if (gte modifier 0)}}+{{else}}-{{/if}}</span>
+                    <span>{{positive modifier}}</span>
+                {{/each}}
+            </div>
+        </div>
+    </fieldset>
+</section>

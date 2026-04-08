@@ -1,0 +1,6 @@
+<section class="tab {{#if tabs.groupRoll.active}} active{{/if}}" data-group="{{tabs.groupRoll.group}}" data-tab="{{tabs.groupRoll.id}}">
+    <div class="finish-container">
+        <button type="button" data-action="cancelRoll">{{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.cancelGroupRoll"}}</button>
+        <button type="button" data-action="finishRoll" {{#unless canFinishRoll}}disabled{{/unless}} class="finish-button">{{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.finishGroupRoll"}}</button>
+    </div>
+</section>
