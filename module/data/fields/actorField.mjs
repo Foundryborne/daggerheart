@@ -89,13 +89,13 @@ class ResourcesField extends fields.TypedObjectField {
      */
     _getField(path) {
         if (path.length === 0) return this;
-        const first = path.shift();
-        if (first === this.element.name) return this.element_getField(path);
+        const name = path.pop();
+        if (name === this.element.name) return this.element_getField(path);
 
         const resources = CONFIG.DH.RESOURCE[this.actorType].all;
-        if (first in resources) {
+        if (name in resources) {
             const field = this.element._getField(path);
-            field.label = resources[first].label;
+            field.label = resources[name].label;
             return field;
         }
 
