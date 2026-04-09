@@ -327,9 +327,9 @@
                     "text": "Are you sure you want to remove {name} from the party?"
                 },
                 "Thresholds": {
-                    "minor": "1HP",
-                    "major": "2HP",
-                    "severe": "3HP"
+                    "minor": "MIN",
+                    "major": "MAJ",
+                    "severe": "SEV"
                 }
             }
         },
