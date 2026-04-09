@@ -264,7 +264,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             hasSave: this.hasSave,
             onSave: this.save?.damageMod,
             isDirect: !!this.damage?.direct,
-            damageOptions: this.damage?.groupAttack ? {} : null,
             selectedMessageMode: game.settings.get('core', 'messageMode'),
             data: this.getRollData(),
             evaluate: this.hasRoll,
