@@ -131,6 +131,7 @@
                 "attackName": "Attack Name",
                 "criticalThreshold": "Critical Threshold",
                 "includeBase": { "label": "Include Item Damage" },
+                "groupAttack": { "label": "Group Attack" },
                 "multiplier": "Multiplier",
                 "saveHint": "Set a default Trait to enable Reaction Roll. It can be changed later in Reaction Roll Dialog.",
                 "resultBased": {
@@ -353,7 +354,7 @@
                 "selectSecondaryWeapon": "Select Secondary Weapon",
                 "selectSubclass": "Select Subclass",
                 "setupSkipTitle": "Skipping Character Setup",
-                "setupSkipContent": "You are skipping the Character Setup by adding this manually. The character setup is the blinking arrows in the top-right. Are you sure you want to continue?",
+                "setupSkipContent": "You are skipping the Character Setup by adding this manually. The character setup is the blinking button in the top-right. Are you sure you want to continue?",
                 "startingItems": "Starting Items",
                 "story": "Story",
                 "storyExplanation": "Select which background and connection prompts you want to copy into your character's background.",
@@ -3154,7 +3155,8 @@
                 "tokenActorsMissing": "[{names}] missing Actors",
                 "domainTouchRequirement": "This domain card requires {nr} {domain} cards in the loadout to be used",
                 "knowTheTide": "Know The Tide gained a token",
-                "lackingItemTransferPermission": "User {user} lacks owner permission needed to transfer items to {target}"
+                "lackingItemTransferPermission": "User {user} lacks owner permission needed to transfer items to {target}",
+                "noTokenTargeted": "No token is targeted"
             },
             "Progress": {
                 "migrationLabel": "Performing system migration. Please wait and do not close Foundry."

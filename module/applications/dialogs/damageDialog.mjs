@@ -22,6 +22,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         },
         actions: {
             toggleSelectedEffect: this.toggleSelectedEffect,
+            updateGroupAttack: this.updateGroupAttack,
             toggleCritical: this.toggleCritical,
             submitRoll: this.submitRoll
         },
@@ -64,15 +65,40 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         context.hasSelectedEffects = Boolean(Object.keys(this.selectedEffects).length);
         context.selectedEffects = this.selectedEffects;
 
+        context.damageOptions = this.config.damageOptions;
+        context.rangeOptions = CONFIG.DH.GENERAL.groupAttackRange;
+
         return context;
     }
 
     static updateRollConfiguration(_event, _, formData) {
-        const { ...rest } = foundry.utils.expandObject(formData.object);
-        foundry.utils.mergeObject(this.config.roll, rest.roll);
-        foundry.utils.mergeObject(this.config.modifiers, rest.modifiers);
-        this.config.selectedMessageMode = rest.selectedMessageMode;
+        const data = foundry.utils.expandObject(formData.object);
+        foundry.utils.mergeObject(this.config.roll, data.roll);
+        foundry.utils.mergeObject(this.config.modifiers, data.modifiers);
+        this.config.selectedMessageMode = data.selectedMessageMode;
 
+        if (data.damageOptions) {
+            const numAttackers = data.damageOptions.groupAttack?.numAttackers;
+            if (typeof numAttackers !== 'number' || numAttackers % 1 !== 0) {
+                data.damageOptions.groupAttack.numAttackers = null;
+            }
+
+            foundry.utils.mergeObject(this.config.damageOptions, data.damageOptions);
+        }
+
+        this.render();
+    }
+
+    static updateGroupAttack() {
+        const targets = Array.from(game.user.targets);
+        if (targets.length === 0)
+            return ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.noTokenTargeted'));
+
+        const actorId = this.roll.data.parent.id;
+        const range = this.config.damageOptions.groupAttack.range;
+        const groupAttackTokens = game.system.api.fields.ActionFields.DamageField.getGroupAttackTokens(actorId, range);
+
+        this.config.damageOptions.groupAttack.numAttackers = groupAttackTokens.length;
         this.render();
     }
 

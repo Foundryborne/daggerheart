@@ -280,6 +280,26 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             }
         };
 
+        if (this.damage) {
+            config.isDirect = this.damage.direct;
+
+            const groupAttackTokens = this.damage.groupAttack
+                ? game.system.api.fields.ActionFields.DamageField.getGroupAttackTokens(
+                      this.actor.id,
+                      this.damage.groupAttack
+                  )
+                : null;
+
+            config.damageOptions = {
+                groupAttack: this.damage.groupAttack
+                    ? {
+                          numAttackers: Math.max(groupAttackTokens.length, 1),
+                          range: this.damage.groupAttack
+                      }
+                    : null
+            };
+        }
+
         DHBaseAction.applyKeybindings(config);
         return config;
     }
