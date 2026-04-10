@@ -319,6 +319,21 @@
                     }
                 },
                 "newAdversary": "New Adversary"
+            },
+            "Party": {
+                "Subtitle": {
+                    "character": "{community} {ancestry} | {subclass} {class}",
+                    "companion": "Companion of {partner}"
+                },
+                "RemoveConfirmation": {
+                    "title": "Remove member {name}",
+                    "text": "Are you sure you want to remove {name} from the party?"
+                },
+                "Thresholds": {
+                    "minor": "MIN",
+                    "major": "MAJ",
+                    "severe": "SEV"
+                }
             }
         },
         "APPLICATIONS": {
