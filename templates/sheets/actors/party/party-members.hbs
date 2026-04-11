@@ -9,15 +9,10 @@
             <i class="fa-solid fa-user-group"></i>
             <span>Tag Team Roll</span>
         </button>
-        <button data-action="groupRoll">
+        <button data-action="groupRoll" class="{{#if groupRollActive}}active-action{{/if}}">
             <i class="fa-solid fa-users"></i>
             <span>Group Roll</span>
         </button>
-        {{!-- NOT YET IMPLEMENTED --}}
-        {{!-- <button>
-            <i class="fa-solid fa-handshake-angle"></i>
-            <span>Help Action</span>
-        </button> --}}
         <button data-action="triggerRest"  data-action="triggerRest" data-type="shortRest">
             <i class="fa-solid fa-utensils"></i>
             <span>{{localize "DAGGERHEART.APPLICATIONS.Downtime.shortRest.title"}}</span>

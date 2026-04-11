@@ -12,6 +12,11 @@
             gap: 8px;
             flex: 1;
 
+            &.inactive {
+                opacity: 0.3;
+                pointer-events: none;
+            }
+
             .data-container {
                 display: flex;
                 flex-direction: column;
@@ -59,9 +64,27 @@
         align-items: center;
         gap: 8px;
 
+        &.hope,
+        &.fear,
+        &.critical {
+            color: var(--text-color);
+        }
+
+        &.hope {
+            --text-color: @golden;
+        }
+
+        &.fear {
+            --text-color: @chat-blue;
+        }
+
+        &.critical {
+            --text-color: @chat-purple;
+        }
+
         &::before,
         &::after {
-            color: light-dark(@dark-blue, @golden);
+            color: var(--text-color);
             content: '';
             flex: 1;
             height: 2px;

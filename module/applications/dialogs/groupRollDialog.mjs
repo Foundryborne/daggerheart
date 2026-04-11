@@ -1,3 +1,4 @@
+import { ResourceUpdateMap } from '../../data/action/baseAction.mjs';
 import { emitAsGM, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 import Party from '../sheets/actors/party.mjs';
 
@@ -109,15 +110,19 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         await super._onRender(context, options);
 
         if (this.element.querySelector('.team-container')) return;
-        const initializationPart = this.element.querySelector('.initialization-container');
-        initializationPart.insertAdjacentHTML('afterend', '<div class="team-container"></div>');
-        initializationPart.insertAdjacentHTML(
-            'afterend',
-            `<div class="section-title">${game.i18n.localize('Aiding Characters')}</div>`
-        );
-        const teamContainer = this.element.querySelector('.team-container');
-        for (const memberContainer of this.element.querySelectorAll('.team-member-container'))
-            teamContainer.appendChild(memberContainer);
+
+        if (this.tabGroups.application !== this.constructor.PARTS.initialization.id) {
+            const initializationPart = this.element.querySelector('.initialization-container');
+            initializationPart.insertAdjacentHTML('afterend', '<div class="team-container"></div>');
+            initializationPart.insertAdjacentHTML(
+                'afterend',
+                `<div class="section-title">${game.i18n.localize('Aiding Characters')}</div>`
+            );
+
+            const teamContainer = this.element.querySelector('.team-container');
+            for (const memberContainer of this.element.querySelectorAll('.team-member-container'))
+                teamContainer.appendChild(memberContainer);
+        }
     }
 
     async _prepareContext(_options) {
@@ -161,6 +166,12 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
                 partContext.mainCharacter = this.getRollCharacterData(this.party.system.groupRoll.mainCharacter);
                 break;
             case 'groupRoll':
+                const leader = this.party.system.groupRoll.mainCharacter;
+                partContext.hasRolled =
+                    leader?.rollData ||
+                    Object.values(this.party.system.groupRoll?.aidingCharacters ?? {}).some(
+                        x => x.successfull !== null
+                    );
                 const { modifierTotal, modifiers } = Object.values(this.party.system.groupRoll.aidingCharacters).reduce(
                     (acc, curr) => {
                         const modifier = curr.successfull === true ? 1 : curr.successfull === false ? -1 : null;
@@ -173,15 +184,14 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
                     },
                     { modifierTotal: 0, modifiers: [] }
                 );
-                const mainCharacterTotal = this.party.system.groupRoll.mainCharacter?.rollData
-                    ? this.party.system.groupRoll.mainCharacter.roll.total
-                    : null;
+                const mainCharacterTotal = leader?.rollData ? leader.roll.total : null;
                 partContext.groupRoll = {
-                    totalLabel: this.party.system.groupRoll.mainCharacter?.rollData
+                    totalLabel: leader?.rollData
                         ? game.i18n.format('DAGGERHEART.GENERAL.withThing', {
-                              thing: this.party.system.groupRoll.mainCharacter.roll.totalLabel
+                              thing: leader.roll.totalLabel
                           })
                         : null,
+                    totalDualityClass: leader?.roll?.isCritical ? 'critical' : leader?.roll?.withHope ? 'hope' : 'fear',
                     total: mainCharacterTotal + modifierTotal,
                     mainCharacterTotal,
                     modifiers
@@ -333,13 +343,10 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
     }
     //#endregion
 
-    static async #makeRoll(_event, button) {
-        const { member } = button.dataset;
-
-        const actor = game.actors.find(x => x.id === member);
+    async makeRoll(button, characterData, path) {
+        const actor = game.actors.find(x => x.id === characterData.id);
         if (!actor) return;
 
-        const characterData = this.party.system.groupRoll.aidingCharacters[member];
         const result = await actor.rollTrait(characterData.rollChoice, {
             skips: {
                 createMessage: true,
@@ -354,36 +361,43 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         delete rollData.options.messageRoll;
         this.updatePartyData(
             {
-                [`system.groupRoll.aidingCharacters.${member}.rollData`]: rollData
+                [path]: rollData
             },
             this.getUpdatingParts(button)
         );
     }
 
-    static async #removeRoll(_, button) {
+    static async #makeRoll(_event, button) {
+        const { member } = button.dataset;
+        const character = this.party.system.groupRoll.aidingCharacters[member];
+        this.makeRoll(button, character, `system.groupRoll.aidingCharacters.${member}.rollData`);
+    }
+
+    static async #makeMainCharacterRoll(_event, button) {
+        const character = this.party.system.groupRoll.mainCharacter;
+        this.makeRoll(button, character, 'system.groupRoll.mainCharacter.rollData');
+    }
+
+    async removeRoll(button, path) {
         this.updatePartyData(
             {
-                [`system.groupRoll.aidingCharacters.${button.dataset.member}`]: {
+                [path]: {
                     rollData: null,
                     rollChoice: null,
-                    selected: false
+                    selected: false,
+                    successfull: null
                 }
             },
             this.getUpdatingParts(button)
         );
     }
 
-    static async #rerollDice(_, button) {
-        const { member } = button.dataset;
-        this.rerollDice(
-            button,
-            this.party.system.groupRoll.aidingCharacters[member],
-            `system.groupRoll.aidingCharacters.${member}.rollData`
-        );
+    static async #removeRoll(_event, button) {
+        this.removeRoll(button, `system.groupRoll.aidingCharacters.${button.dataset.member}`);
     }
 
-    static async #rerollMainCharacterDice(_, button) {
-        this.rerollDice(button, this.party.system.groupRoll.mainCharacter, `system.groupRoll.mainCharacter.rollData`);
+    static async #removeMainCharacterRoll(_event, button) {
+        this.removeRoll(button, 'system.groupRoll.mainCharacter');
     }
 
     async rerollDice(button, data, path) {
@@ -407,42 +421,17 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         );
     }
 
-    static async #makeMainCharacterRoll(_event, button) {
-        const actor = game.actors.find(x => x.id === this.party.system.groupRoll.mainCharacter.id);
-        if (!actor) return;
-
-        const characterData = this.party.system.groupRoll.mainCharacter;
-        const result = await actor.rollTrait(characterData.rollChoice, {
-            skips: {
-                createMessage: true,
-                resources: true,
-                triggers: true
-            }
-        });
-
-        if (!game.modules.get('dice-so-nice')?.active) foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
-
-        const rollData = result.messageRoll.toJSON();
-        delete rollData.options.messageRoll;
-        this.updatePartyData(
-            {
-                [`system.groupRoll.mainCharacter.rollData`]: rollData
-            },
-            this.getUpdatingParts(button)
+    static async #rerollDice(_, button) {
+        const { member } = button.dataset;
+        this.rerollDice(
+            button,
+            this.party.system.groupRoll.aidingCharacters[member],
+            `system.groupRoll.aidingCharacters.${member}.rollData`
         );
     }
 
-    static async #removeMainCharacterRoll(_event, button) {
-        this.updatePartyData(
-            {
-                [`system.groupRoll.mainCharacter`]: {
-                    rollData: null,
-                    rollChoice: null,
-                    selected: false
-                }
-            },
-            this.getUpdatingParts(button)
-        );
+    static async #rerollMainCharacterDice(_, button) {
+        this.rerollDice(button, this.party.system.groupRoll.mainCharacter, `system.groupRoll.mainCharacter.rollData`);
     }
 
     static #markSuccessfull(_event, button) {
@@ -516,6 +505,20 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
             };
 
         await cls.create(msgData);
+
+        const resourceMap = new ResourceUpdateMap(actor);
+        if (totalRoll.isCritical) {
+            resourceMap.addResources([
+                { key: 'stress', value: -1, total: 1 },
+                { key: 'hope', value: 1, total: 1 }
+            ]);
+        } else if (totalRoll.withHope) {
+            resourceMap.addResources([{ key: 'hope', value: 1, total: 1 }]);
+        } else {
+            resourceMap.addResources([{ key: 'fear', value: 1, total: 1 }]);
+        }
+
+        resourceMap.updateResources();
 
         /* Fin */
         this.cancelRoll({ confirm: false });

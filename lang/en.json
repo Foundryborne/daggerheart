@@ -747,7 +747,8 @@
             },
             "GroupRollSelect": {
                 "title": "Group Roll",
-                "mainCharacter": "Main Character",
+                "leader": "Leader",
+                "leaderRoll": "Leader Roll",
                 "openDialogForAll": "Open Dialog For All",
                 "startGroupRoll": "Start Group Roll",
                 "cancelGroupRoll": "Cancel",
