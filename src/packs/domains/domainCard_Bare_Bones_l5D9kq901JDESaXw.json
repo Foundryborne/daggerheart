@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "QpOL7jPbMBzH96qR",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you choose not to equip armor, you have a base Armor Score of 3 + your Strength and use the following as your base damage thresholds:</p><ul><li class=\"vertical-card-list-found\"><em><strong>Tier 1:</strong></em> 9/19</li><li class=\"vertical-card-list-found\"><em><strong>Tier 2:</strong></em> 11/24</li><li class=\"vertical-card-list-found\"><em><strong>Tier 3:</strong></em> 13/31</li><li class=\"vertical-card-list-found\"><em><strong>Tier 4:</strong></em> 15/38</li></ul><p>Equip the below armor to use Bare Bones.</p><p>@UUID[Compendium.daggerheart.armors.Item.ITAjcigTcUw5pMCN]{Bare Bones}</p>",
+    "description": "<p class=\"Body-Foundation\">When you choose not to equip armor, you have a base Armor Score of 3 + your Strength and use the following as your base damage thresholds:</p><ul><li class=\"vertical-card-list-found\"><p><em><strong>Tier 1:</strong></em> 9/19</p></li><li class=\"vertical-card-list-found\"><p><em><strong>Tier 2:</strong></em> 11/24</p></li><li class=\"vertical-card-list-found\"><p><em><strong>Tier 3:</strong></em> 13/31</p></li><li class=\"vertical-card-list-found\"><p><em><strong>Tier 4:</strong></em> 15/38</p></li></ul>",
     "domain": "valor",
     "recallCost": 0,
     "level": 1,
@@ -28,22 +28,33 @@
           {
             "type": "armor",
             "phase": "initial",
-            "priority": 20,
             "value": {
+              "current": 0,
               "max": "3 + @system.traits.strength.value",
               "interaction": "inactive",
               "damageThresholds": {
-                "major": "9 + (@tier - 1) * 5 + max(0, (@tier -2) * 2 )",
+                "major": "9 + (@tier - 1) * 2",
                 "severe": "19 + (@tier - 1) * 5 + max(0, (@tier -2) * 2 )"
               }
-            }
+            },
+            "priority": 20
           }
-        ]
+        ],
+        "duration": {
+          "type": ""
+        }
       },
       "_id": "FCsgz7Tdsw6QUzBs",
       "img": "icons/magic/control/buff-strength-muscle-damage-orange.webp",
       "disabled": false,
-      "start": null,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
       "duration": {
         "value": null,
         "units": "seconds",

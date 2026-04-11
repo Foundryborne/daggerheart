@@ -82,7 +82,7 @@ export default class ArmorChange extends foundry.abstract.DataModel {
                         {
                             ...change,
                             key: 'system.damageThresholds.major',
-                            type: CONFIG.DH.GENERAL.activeEffectModes.override.id,
+                            type: CONFIG.DH.GENERAL.activeEffectModes.add.id,
                             priority: 50,
                             value: major
                         },
@@ -96,7 +96,7 @@ export default class ArmorChange extends foundry.abstract.DataModel {
                         {
                             ...change,
                             key: 'system.damageThresholds.severe',
-                            type: CONFIG.DH.GENERAL.activeEffectModes.override.id,
+                            type: CONFIG.DH.GENERAL.activeEffectModes.add.id,
                             priority: 50,
                             value: severe
                         },

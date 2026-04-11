@@ -2,7 +2,7 @@
     "id": "daggerheart",
     "title": "Daggerheart",
     "description": "An unofficial implementation of the Daggerheart system",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "compatibility": {
         "minimum": "14.359",
         "verified": "14.360",
@@ -298,5 +298,5 @@
     "secondaryTokenAttribute": "resources.stress",
     "url": "https://github.com/Foundryborne/daggerheart",
     "manifest": "https://raw.githubusercontent.com/Foundryborne/daggerheart/main/system.json",
-    "download": "https://github.com/Foundryborne/daggerheart/releases/download/2.1.0/system.zip"
+    "download": "https://github.com/Foundryborne/daggerheart/releases/download/2.1.1/system.zip"
 }
