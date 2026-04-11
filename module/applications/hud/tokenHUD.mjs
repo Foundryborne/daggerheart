@@ -140,11 +140,16 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
                 tokenData.push(data.toObject());
             }
 
+            const viewedLevel = game.scenes.get(game.user.viewedScene).levels.get(game.user.viewedLevel);
+            const elevation = this.actor.token?.elevation ?? viewedLevel.elevation.bottom;
+
             const newTokens = await activeScene.createEmbeddedDocuments(
                 'Token',
                 tokenData.map(tokenData => ({
                     ...tokenData,
                     alpha: 0,
+                    level: viewedLevel,
+                    elevation: elevation,
                     x: actorX,
                     y: actorY
                 }))
