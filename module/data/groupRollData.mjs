@@ -3,14 +3,14 @@ export default class GroupRollData extends foundry.abstract.DataModel {
         const fields = foundry.data.fields;
 
         return {
-            mainCharacter: new fields.EmbeddedDataField(CharacterData, { nullable: true, initial: null }),
+            leader: new fields.EmbeddedDataField(CharacterData, { nullable: true, initial: null }),
             aidingCharacters: new fields.TypedObjectField(new fields.EmbeddedDataField(CharacterData))
         };
     }
 
     get participants() {
         return {
-            ...(this.mainCharacter ? { [this.mainCharacter.id]: this.mainCharacter } : {}),
+            ...(this.leader ? { [this.leader.id]: this.leader } : {}),
             ...this.aidingCharacters
         };
     }

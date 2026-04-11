@@ -11,12 +11,12 @@
         {{/each}} 
     </div>
 
-    <div class="main-roll {{#if selectedMainCharacterDisabled}}inactive{{/if}}">
+    <div class="main-roll {{#if selectedLeaderDisabled}}inactive{{/if}}">
         <div class="form-group">
             <label>{{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.leader"}}</label>
             <div class="form-fields">
-                <select class="main-character-field" {{#if selectedMainCharacterDisabled}}disabled{{/if}}>
-                    {{selectOptions selectedMainCharacterOptions selected=selectedMainCharacter.memberId blank="" }}
+                <select class="main-character-field" {{#if selectedLeaderDisabled}}disabled{{/if}}>
+                    {{selectOptions selectedLeaderOptions selected=selectedLeader.memberId blank="" }}
                 </select>
             </div>
         </div>

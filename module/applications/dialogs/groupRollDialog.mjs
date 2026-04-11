@@ -19,7 +19,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
                 owned: member.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER)
             }));
 
-        this.mainCharacter = null;
+        this.leader = null;
         this.openForAllPlayers = true;
 
         this.tabGroups.application = Object.keys(party.system.groupRoll.participants).length
@@ -44,9 +44,9 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
             makeRoll: this.#makeRoll,
             removeRoll: this.#removeRoll,
             rerollDice: this.#rerollDice,
-            makeMainCharacterRoll: this.#makeMainCharacterRoll,
-            removeMainCharacterRoll: this.#removeMainCharacterRoll,
-            rerollMainCharacterDice: this.#rerollMainCharacterDice,
+            makeLeaderRoll: this.#makeLeaderRoll,
+            removeLeaderRoll: this.#removeLeaderRoll,
+            rerollLeaderDice: this.#rerollLeaderDice,
             markSuccessfull: this.#markSuccessfull,
             cancelRoll: this.#onCancelRoll,
             finishRoll: this.#finishRoll
@@ -59,9 +59,9 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
             id: 'initialization',
             template: 'systems/daggerheart/templates/dialogs/groupRollDialog/initialization.hbs'
         },
-        mainCharacter: {
-            id: 'mainCharacter',
-            template: 'systems/daggerheart/templates/dialogs/groupRollDialog/groupRollMainCharacter.hbs'
+        leader: {
+            id: 'leader',
+            template: 'systems/daggerheart/templates/dialogs/groupRollDialog/leader.hbs'
         },
         groupRoll: {
             id: 'groupRoll',
@@ -85,11 +85,11 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
 
         htmlElement
             .querySelector('.main-character-field')
-            ?.addEventListener('input', this.updateMainCharacterField.bind(this));
+            ?.addEventListener('input', this.updateLeaderField.bind(this));
     }
 
     _configureRenderParts(options) {
-        const { initialization, mainCharacter, groupRoll, footer } = super._configureRenderParts(options);
+        const { initialization, leader, groupRoll, footer } = super._configureRenderParts(options);
         const augmentedParts = { initialization };
         for (const memberKey of Object.keys(this.party.system.groupRoll.aidingCharacters)) {
             augmentedParts[memberKey] = {
@@ -98,7 +98,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
             };
         }
 
-        augmentedParts.mainCharacter = mainCharacter;
+        augmentedParts.leader = leader;
         augmentedParts.groupRoll = groupRoll;
         augmentedParts.footer = footer;
 
@@ -153,20 +153,20 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
 
                 const selectedMembers = partContext.memberSelection.filter(x => x.selected);
 
-                partContext.selectedMainCharacter = this.mainCharacter;
-                partContext.selectedMainCharacterOptions = selectedMembers
+                partContext.selectedLeader = this.leader;
+                partContext.selectedLeaderOptions = selectedMembers
                     .filter(actor => actor.owned)
                     .map(x => ({ value: x.id, label: x.name }));
-                partContext.selectedMainCharacterDisabled = !selectedMembers.length;
+                partContext.selectedLeaderDisabled = !selectedMembers.length;
 
-                partContext.canStartGroupRoll = selectedMembers.length > 1 && this.mainCharacter?.memberId;
+                partContext.canStartGroupRoll = selectedMembers.length > 1 && this.leader?.memberId;
                 partContext.openForAllPlayers = this.openForAllPlayers;
                 break;
-            case 'mainCharacter':
-                partContext.mainCharacter = this.getRollCharacterData(this.party.system.groupRoll.mainCharacter);
+            case 'leader':
+                partContext.leader = this.getRollCharacterData(this.party.system.groupRoll.leader);
                 break;
             case 'groupRoll':
-                const leader = this.party.system.groupRoll.mainCharacter;
+                const leader = this.party.system.groupRoll.leader;
                 partContext.hasRolled =
                     leader?.rollData ||
                     Object.values(this.party.system.groupRoll?.aidingCharacters ?? {}).some(
@@ -184,7 +184,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
                     },
                     { modifierTotal: 0, modifiers: [] }
                 );
-                const mainCharacterTotal = leader?.rollData ? leader.roll.total : null;
+                const leaderTotal = leader?.rollData ? leader.roll.total : null;
                 partContext.groupRoll = {
                     totalLabel: leader?.rollData
                         ? game.i18n.format('DAGGERHEART.GENERAL.withThing', {
@@ -192,14 +192,14 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
                           })
                         : null,
                     totalDualityClass: leader?.roll?.isCritical ? 'critical' : leader?.roll?.withHope ? 'hope' : 'fear',
-                    total: mainCharacterTotal + modifierTotal,
-                    mainCharacterTotal,
+                    total: leaderTotal + modifierTotal,
+                    leaderTotal: leaderTotal,
                     modifiers
                 };
                 break;
             case 'footer':
                 partContext.canFinishRoll =
-                    Boolean(this.party.system.groupRoll.mainCharacter?.rollData) &&
+                    Boolean(this.party.system.groupRoll.leader?.rollData) &&
                     Object.values(this.party.system.groupRoll.aidingCharacters).every(x => x.successfull !== null);
                 break;
         }
@@ -256,15 +256,15 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
     }
 
     getUpdatingParts(target) {
-        const { initialization, mainCharacter, groupRoll, footer } = this.constructor.PARTS;
+        const { initialization, leader, groupRoll, footer } = this.constructor.PARTS;
         const isInitialization = this.tabGroups.application === initialization.id;
         const updatingMember = target.closest('.team-member-container')?.dataset?.memberKey;
-        const updatingMainCharacter = target.closest('.main-character-outer-container');
+        const updatingLeader = target.closest('.main-character-outer-container');
 
         return [
             ...(isInitialization ? [initialization.id] : []),
             ...(updatingMember ? [updatingMember] : []),
-            ...(updatingMainCharacter ? [mainCharacter.id] : []),
+            ...(updatingLeader ? [leader.id] : []),
             ...(!isInitialization ? [groupRoll.id, footer.id] : [])
         ];
     }
@@ -307,16 +307,16 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         this.render();
     }
 
-    updateMainCharacterField(event) {
-        if (!this.mainCharacter) this.mainCharacter = {};
-        this.mainCharacter.memberId = event.target.value;
+    updateLeaderField(event) {
+        if (!this.leader) this.leader = {};
+        this.leader.memberId = event.target.value;
         this.render();
     }
 
     static async #startGroupRoll() {
-        const mainCharacter = this.partyMembers.find(x => x.id === this.mainCharacter.memberId);
+        const leader = this.partyMembers.find(x => x.id === this.leader.memberId);
         const aidingCharacters = this.partyMembers.reduce((acc, curr) => {
-            if (curr.selected && curr.id !== this.mainCharacter.memberId)
+            if (curr.selected && curr.id !== this.leader.memberId)
                 acc[curr.id] = { id: curr.id, name: curr.name, img: curr.img };
 
             return acc;
@@ -326,7 +326,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
             'system.groupRoll': _replace(
                 new game.system.api.data.GroupRollData({
                     ...this.party.system.groupRoll.toObject(),
-                    mainCharacter: { id: mainCharacter.id, name: mainCharacter.name, img: mainCharacter.img },
+                    leader: { id: leader.id, name: leader.name, img: leader.img },
                     aidingCharacters
                 })
             )
@@ -373,9 +373,9 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         this.makeRoll(button, character, `system.groupRoll.aidingCharacters.${member}.rollData`);
     }
 
-    static async #makeMainCharacterRoll(_event, button) {
-        const character = this.party.system.groupRoll.mainCharacter;
-        this.makeRoll(button, character, 'system.groupRoll.mainCharacter.rollData');
+    static async #makeLeaderRoll(_event, button) {
+        const character = this.party.system.groupRoll.leader;
+        this.makeRoll(button, character, 'system.groupRoll.leader.rollData');
     }
 
     async removeRoll(button, path) {
@@ -396,8 +396,8 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         this.removeRoll(button, `system.groupRoll.aidingCharacters.${button.dataset.member}`);
     }
 
-    static async #removeMainCharacterRoll(_event, button) {
-        this.removeRoll(button, 'system.groupRoll.mainCharacter');
+    static async #removeLeaderRoll(_event, button) {
+        this.removeRoll(button, 'system.groupRoll.leader');
     }
 
     async rerollDice(button, data, path) {
@@ -430,8 +430,8 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         );
     }
 
-    static async #rerollMainCharacterDice(_, button) {
-        this.rerollDice(button, this.party.system.groupRoll.mainCharacter, `system.groupRoll.mainCharacter.rollData`);
+    static async #rerollLeaderDice(_, button) {
+        this.rerollDice(button, this.party.system.groupRoll.leader, `system.groupRoll.leader.rollData`);
     }
 
     static #markSuccessfull(_event, button) {
@@ -465,7 +465,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         await this.updatePartyData(
             {
                 'system.groupRoll': {
-                    mainCharacter: null,
+                    leader: null,
                     aidingCharacters: _replace({})
                 }
             },
@@ -481,7 +481,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
     }
 
     static async #finishRoll() {
-        const totalRoll = this.party.system.groupRoll.mainCharacter.roll;
+        const totalRoll = this.party.system.groupRoll.leader.roll;
         for (const character of Object.values(this.party.system.groupRoll.aidingCharacters)) {
             totalRoll.terms.push(new foundry.dice.terms.OperatorTerm({ operator: character.successfull ? '+' : '-' }));
             totalRoll.terms.push(new foundry.dice.terms.NumericTerm({ number: 1 }));
@@ -490,7 +490,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         await totalRoll._evaluate();
 
         const systemData = totalRoll.options;
-        const actor = game.actors.get(this.party.system.groupRoll.mainCharacter.id);
+        const actor = game.actors.get(this.party.system.groupRoll.leader.id);
 
         const cls = getDocumentClass('ChatMessage'),
             msgData = {

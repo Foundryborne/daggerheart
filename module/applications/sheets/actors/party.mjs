@@ -116,7 +116,7 @@ export default class Party extends DHBaseActorSheet {
             relativeTo: this.document
         });
         context.tagTeamActive = Boolean(this.document.system.tagTeam.initiator);
-        context.groupRollActive = Boolean(this.document.system.groupRoll.mainCharacter);
+        context.groupRollActive = Boolean(this.document.system.groupRoll.leader);
     }
 
     async _prepareMembersContext(context, _options) {
