@@ -118,8 +118,13 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
                 break;
             case 'footer':
                 partContext.buttons = [
-                    { type: 'button', action: 'reset', icon: 'fa-solid fa-arrow-rotate-left', label: 'Reset' },
-                    { type: 'submit', icon: 'fa-solid fa-floppy-disk', label: 'Save Changes' }
+                    {
+                        type: 'button',
+                        action: 'reset',
+                        icon: 'fa-solid fa-arrow-rotate-left',
+                        label: game.i18n.localize('ACTIONS.Reset')
+                    },
+                    { type: 'submit', icon: 'fa-solid fa-floppy-disk', label: game.i18n.localize('EDITOR.Save') }
                 ];
                 break;
         }

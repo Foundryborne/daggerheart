@@ -35,7 +35,7 @@
             </span>
         </div>
         <div class="form-group">
-            <input type="text" value="{{extraFormula}}" name="roll.{{ @index }}.extraFormula" placeholder="Situational Bonus">
+            <input type="text" value="{{extraFormula}}" name="roll.{{ @index }}.extraFormula" placeholder="{{localize "DAGGERHEART.GENERAL.situationalBonus"}}">
         </div>
     {{/each}}
     {{#unless (empty @root.modifiers)}}

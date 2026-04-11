@@ -175,7 +175,7 @@
                             </select>
                         {{/if}}
                         {{#if (eq @root.rollType 'DualityRoll')}}<span class="formula-label">{{localize "DAGGERHEART.GENERAL.situationalBonus"}}</span>{{/if}}
-                        <input type="text" value="{{extraFormula}}" name="extraFormula" placeholder="{{#if (eq @root.rollType 'DualityRoll')}}Ex: 1d6 + 5{{else}}Situational Bonus{{/if}}">
+                        <input type="text" value="{{extraFormula}}" name="extraFormula" placeholder="{{#if (eq @root.rollType 'DualityRoll')}}Ex: 1d6 + 5{{else}}{{localize "DAGGERHEART.GENERAL.situationalBonus"}}{{/if}}">
                     </fieldset>
                 {{/if}}
             {{/unless}}
