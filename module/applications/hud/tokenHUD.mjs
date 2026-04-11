@@ -122,15 +122,14 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
 
     async toggleClowncar(actors) {
         const animationDuration = 500;
-        const activeTokens = actors.flatMap(member => member.getActiveTokens());
+        const scene = game.scenes.get(game.user.viewedScene);
+        /* getDependentTokens returns already removed tokens with id = null. Need to filter that until it's potentially fixed from Foundry */
+        const activeTokens = actors.flatMap(member => member.getDependentTokens({ scenes: scene }).filter(x => x._id));
         const { x: actorX, y: actorY } = this.document;
         if (activeTokens.length > 0) {
             for (let token of activeTokens) {
-                await token.document.update(
-                    { x: actorX, y: actorY, alpha: 0 },
-                    { animation: { duration: animationDuration } }
-                );
-                setTimeout(() => token.document.delete(), animationDuration);
+                await token.update({ x: actorX, y: actorY, alpha: 0 }, { animation: { duration: animationDuration } });
+                setTimeout(() => token.delete(), animationDuration);
             }
         } else {
             const activeScene = game.scenes.find(x => x.id === game.user.viewedScene);
@@ -140,11 +139,16 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
                 tokenData.push(data.toObject());
             }
 
+            const viewedLevel = game.scenes.get(game.user.viewedScene).levels.get(game.user.viewedLevel);
+            const elevation = this.actor.token?.elevation ?? viewedLevel.elevation.bottom;
+
             const newTokens = await activeScene.createEmbeddedDocuments(
                 'Token',
                 tokenData.map(tokenData => ({
                     ...tokenData,
                     alpha: 0,
+                    level: viewedLevel,
+                    elevation: elevation,
                     x: actorX,
                     y: actorY
                 }))
