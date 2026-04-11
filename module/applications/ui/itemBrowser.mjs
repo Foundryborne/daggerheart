@@ -207,8 +207,23 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             label: game.i18n.localize(col.label)
         }));
 
+        const splitPath = folderId?.split('.') ?? [];
+        const { pathLabels } = splitPath.reduce(
+            (acc, curr) => {
+                acc.currentPath = !acc.currentPath ? curr : [acc.currentPath, curr].join('.');
+                if (curr === 'folder') return acc;
+
+                const label = foundry.utils.getProperty(this.config, acc.currentPath)?.label;
+                if (label) acc.pathLabels.push(game.i18n.localize(label));
+
+                return acc;
+            },
+            { pathLabels: [], currentPath: '' }
+        );
+
         this.selectedMenu = {
-            path: folderId?.split('.') ?? [],
+            path: splitPath,
+            pathLabels: pathLabels,
             data: {
                 ...folderData,
                 columns: columns

@@ -644,12 +644,12 @@ export default function DHApplicationMixin(Base) {
                 buttons: [
                     {
                         action: 'create',
-                        label: 'Create Item',
+                        label: game.i18n.localize('DAGGERHEART.APPLICATIONS.CreateItemDialog.createItem'),
                         icon: 'fa-solid fa-plus'
                     },
                     {
                         action: 'browse',
-                        label: 'Browse Compendium',
+                        label: game.i18n.localize('DAGGERHEART.APPLICATIONS.CreateItemDialog.browseCompendium'),
                         icon: 'fa-solid fa-book'
                     }
                 ]

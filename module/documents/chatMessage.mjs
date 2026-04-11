@@ -178,8 +178,8 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             const pendingingSaves = targets.filter(t => t.saved.success === null);
             if (pendingingSaves.length) {
                 const confirm = await foundry.applications.api.DialogV2.confirm({
-                    window: { title: 'Pending Reaction Rolls found' },
-                    content: `<p>Some Tokens still need to roll their Reaction Roll.</p><p>Are you sure you want to continue ?</p><p><i>Undone reaction rolls will be considered as failed</i></p>`
+                    window: { title: game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.title') },
+                    content: `<p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p><p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p><p><i>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>`
                 });
                 if (!confirm) return;
             }

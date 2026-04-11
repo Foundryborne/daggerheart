@@ -210,7 +210,10 @@
                     "type": { "label": "Type" }
                 },
                 "hordeDamage": "Horde Damage",
-                "horderHp": "Horde/HP"
+                "horderHp": "Horde/HP",
+                "adversaryReactionRoll": {
+                    "headerTitle": "Adversary Reaction Roll"
+                }
             },
             "Character": {
                 "advantageSources": {
@@ -333,7 +336,8 @@
                     "minor": "MIN",
                     "major": "MAJ",
                     "severe": "SEV"
-                }
+                },
+                "triggerRestContent": "This will trigger a dialog to players make their downtime moves. Are you sure?"
             }
         },
         "APPLICATIONS": {
@@ -466,6 +470,10 @@
                 "looping": "Looping",
                 "defaultOwnershipTooltip": "The default player ownership of countdowns",
                 "hideNewCountdowns": "Hide New Countdowns"
+            },
+            "CreateItemDialog": {
+                "createItem": "Create Item",
+                "browseCompendium": "Browse Compendium"
             },
             "DaggerheartMenu": {
                 "title": "GM Tools",
@@ -681,6 +689,12 @@
                 "noPlayers": "No players to assign ownership to",
                 "default": "Default Ownership"
             },
+            "PendingReactionsDialog": {
+                "title": "Pending Reaction Rolls Found",
+                "unfinishedRolls": "Some Tokens still need to roll their Reaction Roll.",
+                "confirmation": "Are you sure you want to continue ?",
+                "warning": "Undone reaction rolls will be considered as failed"
+            },
             "ReactionRoll": {
                 "title": "Reaction Roll: {trait}"
             },
@@ -735,11 +749,11 @@
             },
             "GroupRollSelect": {
                 "title": "Group Roll",
+                "aidingCharacters": "Aiding Characters",
                 "leader": "Leader",
                 "leaderRoll": "Leader Roll",
                 "openDialogForAll": "Open Dialog For All",
                 "startGroupRoll": "Start Group Roll",
-                "cancelGroupRoll": "Cancel",
                 "finishGroupRoll": "Finish Group Roll",
                 "cancelConfirmTitle": "Cancel Group Roll",
                 "cancelConfirmText": "Are you sure you want to cancel the Group Roll? This will close it for all other players too."
@@ -763,6 +777,11 @@
                 "longRest": "Next Long Rest",
                 "session": "Next Session",
                 "custom": "Custom"
+            },
+            "ActionAutomationChoices": {
+                "never": "Never",
+                "showDialog": "Show Dialog Only",
+                "always": "Always"
             },
             "AdversaryTrait": {
                 "relentless": {
@@ -1292,6 +1311,11 @@
                 "offWithToggle": "Off With Toggle",
                 "on": "On",
                 "onWithToggle": "On With Toggle"
+            },
+            "SceneRangeMeasurementTypes": {
+                "disable": "Disable Daggerheart Range Measurement",
+                "default": "Default",
+                "custom": "Custom"
             },
             "SelectAction": {
                 "selectType": "Select Action Type",
@@ -2404,6 +2428,7 @@
             "multiclass": "Multiclass",
             "newCategory": "New Category",
             "newThing": "New {thing}",
+            "next": "Next",
             "none": "None",
             "noTarget": "No current target",
             "partner": "Partner",
@@ -2435,6 +2460,7 @@
             "scalable": "Scalable",
             "scars": "Scars",
             "situationalBonus": "Situational Bonus",
+            "searchPlaceholder": "Search...",
             "spent": "Spent",
             "step": "Step",
             "stress": "Stress",
@@ -3010,6 +3036,9 @@
                 "resourceRoll": {
                     "playerMessage": "{user} rerolled their {name}"
                 },
+                "saveRoll": {
+                    "reactionRollAllTargets": "Reaction Roll All Targets"
+                },
                 "tagTeam": {
                     "title": "Tag Team",
                     "membersTitle": "Members"
@@ -3040,7 +3069,6 @@
                 "title": "Daggerheart Compendium Browser",
                 "hint": "Select a Folder in sidebar to start browsing through the compendium",
                 "browserSettings": "Browser Settings",
-                "searchPlaceholder": "Search...",
                 "columnName": "Name",
                 "tooltipFilters": "Filters",
                 "tooltipErase": "Erase",
@@ -3076,7 +3104,7 @@
                     "weapons": "Weapons",
                     "armors": "Armors",
                     "consumables": "Consumables",
-                    "loots": "Loots"
+                    "loots": "Loot"
                 }
             },
             "Notifications": {
@@ -3171,6 +3199,7 @@
                     "companion": "Level {level} - {partner}",
                     "companionNoPartner": "No Partner",
                     "duplicateToNewTier": "Duplicate to New Tier",
+                    "createAdversary": "Create Adversary",
                     "pickTierTitle": "Pick a new tier for this adversary"
                 },
                 "daggerheartMenu": {

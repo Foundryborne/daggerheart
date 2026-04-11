@@ -1,14 +1,14 @@
 <div class="compendium-results">
     {{#if menu.path.length }}
         <div class="menu-path">
-            {{#each menu.path}}
-                {{#if (eq this "folders")}}
+            {{#each menu.pathLabels}}
+                {{#unless @first}}
                     <span class="path-link">
                         /
                     </span>
-                {{else}}
-                    <span class="item-path">{{this}}</span>
-                {{/if}}
+                {{/unless}}
+
+                <span class="item-path">{{this}}</span>
             {{/each}}
         </div>
         <div class="item-filter">
@@ -17,7 +17,7 @@
                     <div class="icon">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
-                    <input type="search" name="search" class="search-input" placeholder="{{localize 'DAGGERHEART.UI.ItemBrowser.searchPlaceholder'}}">
+                    <input type="search" name="search" class="search-input" placeholder="{{localize 'DAGGERHEART.GENERAL.searchPlaceholder'}}">
                 </div>
                 <a data-tooltip="{{localize 'DAGGERHEART.UI.ItemBrowser.tooltipFilters'}}" data-action="expandContent" disabled><i class="fa-solid fa-filter"></i></a>
                 <a data-tooltip="{{localize 'DAGGERHEART.UI.ItemBrowser.tooltipErase'}}" data-action="resetFilters"><i class="fa-solid fa-eraser"></i></a>

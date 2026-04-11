@@ -16,7 +16,7 @@
         {{#if (gt item.cost.length 0)}}
             {{#each item.cost as | cost |}}
                 <div class="tag">
-                  <span>{{localize "Type"}} {{#with (lookup @root.config.GENERAL.abilityCosts cost.type) as | type |}}{{localize type.label}}{{/with}}</span>
+                  <span>{{localize "DAGGERHEART.GENERAL.type"}} {{#with (lookup @root.config.GENERAL.abilityCosts cost.type) as | type |}}{{localize type.label}}{{/with}}</span>
                 </div>
                 <div class="tag">
                   <span>{{localize "DAGGERHEART.GENERAL.value"}} {{cost.value}}</span>

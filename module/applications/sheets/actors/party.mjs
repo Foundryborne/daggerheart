@@ -288,7 +288,7 @@ export default class Party extends DHBaseActorSheet {
                 title: game.i18n.localize(`DAGGERHEART.APPLICATIONS.Downtime.${button.dataset.type}.title`),
                 icon: button.dataset.type === 'shortRest' ? 'fa-solid fa-utensils' : 'fa-solid fa-bed'
             },
-            content: 'This will trigger a dialog to players make their downtime moves, are you sure?',
+            content: game.i18n.localize('DAGGERHEART.ACTORS.Party.triggerRestContent'),
             classes: ['daggerheart', 'dialog', 'dh-style']
         });
 

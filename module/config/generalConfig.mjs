@@ -955,15 +955,15 @@ export const countdownAppMode = {
 export const sceneRangeMeasurementSetting = {
     disable: {
         id: 'disable',
-        label: 'Disable Daggerheart Range Measurement'
+        label: 'DAGGERHEART.CONFIG.SceneRangeMeasurementTypes.disable'
     },
     default: {
         id: 'default',
-        label: 'Default'
+        label: 'DAGGERHEART.CONFIG.SceneRangeMeasurementTypes.default'
     },
     custom: {
         id: 'custom',
-        label: 'Custom'
+        label: 'DAGGERHEART.CONFIG.SceneRangeMeasurementTypes.custom'
     }
 };
 
