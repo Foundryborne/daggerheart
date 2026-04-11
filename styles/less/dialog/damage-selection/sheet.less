@@ -21,7 +21,7 @@
             gap: 4px;
             .critical-chip {
                 flex: 0;
-                
+
                 display: flex;
                 align-items: center;
                 border-radius: 5px;
@@ -37,6 +37,26 @@
                 &.selected {
                     color: @beige;
                     background: @gradient-green;
+                }
+            }
+        }
+
+        .group-attack-container {
+            margin: 0;
+
+            .group-attack-inner-container {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+
+                > * {
+                    flex: 1;
+                }
+
+                .group-attack-tools {
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
                 }
             }
         }

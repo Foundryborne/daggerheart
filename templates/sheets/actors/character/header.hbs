@@ -4,17 +4,27 @@
         <h1 class="actor-name input" contenteditable="plaintext-only" data-property="name" placeholder="{{localize "DAGGERHEART.GENERAL.actorName"}}">{{source.name}}</h1>
         <div class='level-div'>
             <h3 class='label'>
-                {{#if (or document.system.needsCharacterSetup document.system.levelData.canLevelUp)}}
+                {{#if document.system.needsCharacterSetup}}
                     <button
                         type="button"
-                        class="level-button glow" data-tooltip="{{#if document.system.needsCharacterSetup}}{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.buttonTitle"}}{{else}}{{localize "DAGGERHEART.ACTORS.Character.levelUp"}}{{/if}}"
+                        class="level-button glow"
+                        data-action="levelManagement"
+                    >
+                        {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.buttonTitle"}}
+                    </button>
+                {{else if document.system.levelData.canLevelUp}}
+                    <button
+                        type="button"
+                        class="level-button glow" data-tooltip="{{localize "DAGGERHEART.ACTORS.Character.levelUp"}}"
                         data-action="levelManagement"
                     >
                         <i class="fa-solid fa-angles-up"></i>
                     </button>
                 {{/if}}
-                {{localize 'DAGGERHEART.GENERAL.level'}}
-                <input type="text" data-dtype="Number" class="level-value" value={{#if document.system.needsCharacterSetup}}0{{else}}{{document.system.levelData.level.changed}}{{/if}} {{#if document.system.needsCharacterSetup}}disabled{{/if}} />
+                {{#unless document.system.needsCharacterSetup}}
+                    {{localize 'DAGGERHEART.GENERAL.level'}}
+                    <input type="text" data-dtype="Number" class="level-value" value={{#if document.system.needsCharacterSetup}}0{{else}}{{document.system.levelData.level.changed}}{{/if}} {{#if document.system.needsCharacterSetup}}disabled{{/if}} />
+                {{/unless}}
             </h3>
         </div>
     </div>

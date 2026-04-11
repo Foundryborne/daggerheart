@@ -57,6 +57,10 @@ export default class CountdownField extends fields.ArrayField {
 
             data.countdowns[foundry.utils.randomID()] = {
                 ...countdown,
+                ownership: game.users.reduce((acc, curr) => {
+                    if (!curr.isGM) acc[curr.id] = countdown.defaultOwnership;
+                    return acc;
+                }, {}),
                 progress: {
                     ...countdown.progress,
                     current: countdownStart,

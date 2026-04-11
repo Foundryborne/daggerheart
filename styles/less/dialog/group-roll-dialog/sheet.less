@@ -1,0 +1,266 @@
+.daggerheart.dialog.dh-style.views.group-roll-dialog {
+    .team-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 16px;
+
+        .team-member-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 8px;
+            flex: 1;
+
+            &.inactive {
+                opacity: 0.3;
+                pointer-events: none;
+            }
+
+            .data-container {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                width: 100%;
+            }
+
+            .member-info {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                height: 64px;
+
+                img {
+                    height: 64px;
+                    border-radius: 6px;
+                    border: 1px solid light-dark(@dark-blue, @golden);
+                }
+
+                .member-data {
+                    padding-left: 0.75rem;
+                    flex: 1;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    text-align: left;
+                    font-size: var(--font-size-18);
+                }
+            }
+        }
+    }
+
+    .roll-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .roll-title {
+        font-size: var(--font-size-20);
+        font-weight: bold;
+        color: light-dark(@dark-blue, @golden);
+        text-align: center;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        &.hope,
+        &.fear,
+        &.critical {
+            color: var(--text-color);
+        }
+
+        &.hope {
+            --text-color: @golden;
+        }
+
+        &.fear {
+            --text-color: @chat-blue;
+        }
+
+        &.critical {
+            --text-color: @chat-purple;
+        }
+
+        &::before,
+        &::after {
+            color: var(--text-color);
+            content: '';
+            flex: 1;
+            height: 2px;
+        }
+
+        &::before {
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, light-dark(@dark-blue, @golden) 100%);
+        }
+
+        &::after {
+            background: linear-gradient(90deg, light-dark(@dark-blue, @golden) 0%, rgba(0, 0, 0, 0) 100%);
+        }
+    }
+
+    .roll-tools {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+
+        img {
+            height: 16px;
+        }
+
+        a {
+            display: flex;
+            font-size: 16px;
+
+            &:hover {
+                text-shadow: none;
+                filter: drop-shadow(0 0 8px var(--golden));
+            }
+        }
+    }
+
+    .roll-data {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+
+        &.hope {
+            --text-color: @golden;
+            --bg-color: @golden-40;
+        }
+
+        &.fear {
+            --text-color: @chat-blue;
+            --bg-color: @chat-blue-40;
+        }
+
+        &.critical {
+            --text-color: @chat-purple;
+            --bg-color: @chat-purple-40;
+        }
+
+        .duality-label {
+            color: var(--text-color);
+            font-size: var(--font-size-20);
+            font-weight: bold;
+            text-align: center;
+
+            .unused-damage {
+                text-decoration: line-through;
+            }
+        }
+
+        .roll-dice-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            .roll-dice {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .dice-label {
+                    position: absolute;
+                    color: white;
+                    font-size: 1rem;
+                    paint-order: stroke fill;
+                    -webkit-text-stroke: 2px black;
+                }
+
+                img {
+                    height: 32px;
+                }
+            }
+
+            .roll-operator {
+                font-size: var(--font-size-24);
+            }
+
+            .roll-value {
+                font-size: 18px;
+            }
+        }
+
+        .roll-total {
+            background: var(--bg-color);
+            color: var(--text-color);
+            border-radius: 4px;
+            padding: 3px;
+        }
+    }
+
+    .roll-success-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        .roll-success-tools {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: light-dark(@dark-blue, @golden);
+
+            i {
+                font-size: 24px;
+            }
+        }
+
+        .roll-success-modifier {
+            display: flex;
+            align-items: center;
+            justify-content: right;
+            gap: 2px;
+            font-size: var(--font-size-20);
+            padding: 0px 4px;
+
+            &.success {
+                background: @green-10;
+                color: @green;
+            }
+
+            &.failure {
+                background: @red-10;
+                color: @red;
+            }
+        }
+    }
+
+    .section-title {
+        font-size: var(--font-size-18);
+        font-weight: bold;
+    }
+
+    .group-roll-results {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        font-size: var(--font-size-20);
+
+        .group-roll-container {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+    }
+
+    .finish-container {
+        margin-top: 16px;
+        gap: 16px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        .finish-button {
+            grid-column: span 2;
+        }
+    }
+
+    .hint {
+        text-align: center;
+    }
+}

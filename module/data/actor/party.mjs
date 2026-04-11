@@ -1,6 +1,7 @@
 import BaseDataActor from './base.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 import TagTeamData from '../tagTeamData.mjs';
+import GroupRollData from '../groupRollData.mjs';
 
 export default class DhParty extends BaseDataActor {
     /**@inheritdoc */
@@ -16,7 +17,8 @@ export default class DhParty extends BaseDataActor {
                 bags: new fields.NumberField({ initial: 0, integer: true }),
                 chests: new fields.NumberField({ initial: 0, integer: true })
             }),
-            tagTeam: new fields.EmbeddedDataField(TagTeamData)
+            tagTeam: new fields.EmbeddedDataField(TagTeamData),
+            groupRoll: new fields.EmbeddedDataField(GroupRollData)
         };
     }
 

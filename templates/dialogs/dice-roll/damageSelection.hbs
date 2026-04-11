@@ -42,6 +42,24 @@
             </button>
         </div>
     {{/each}}
+
+    {{#if damageOptions.groupAttack}}
+        <fieldset class="group-attack-container">
+            <legend>{{localize "DAGGERHEART.ACTIONS.Settings.groupAttack.label"}}</legend>
+
+            <div class="group-attack-inner-container">
+                <input type="text" data-dtype="Number" name="damageOptions.groupAttack.numAttackers" value="{{damageOptions.groupAttack.numAttackers}}" />
+
+                <div class="group-attack-tools">
+                    <select name="damageOptions.groupAttack.range">
+                        {{selectOptions rangeOptions selected=damageOptions.groupAttack.range localize=true}}
+                    </select>
+                    <button data-action="updateGroupAttack"><i class="fa-solid fa-crosshairs"></i></button>
+                </div>
+            </div>
+        </fieldset>
+    {{/if}}
+
     {{#unless (empty @root.modifiers)}}
         <fieldset class="modifier-container two-columns">
             <legend>{{localize "DAGGERHEART.GENERAL.Modifier.plural"}}</legend>

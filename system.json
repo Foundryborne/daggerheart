@@ -2,10 +2,10 @@
     "id": "daggerheart",
     "title": "Daggerheart",
     "description": "An unofficial implementation of the Daggerheart system",
-    "version": "2.0.3",
+    "version": "2.1.0",
     "compatibility": {
-        "minimum": "14.359",
-        "verified": "14.359",
+        "minimum": "14.360",
+        "verified": "14.360",
         "maximum": "14"
     },
     "authors": [
@@ -290,7 +290,6 @@
             "damageRoll": {},
             "abilityUse": {},
             "tagTeam": {},
-            "groupRoll": {},
             "systemMessage": {}
         }
     },
@@ -299,5 +298,5 @@
     "secondaryTokenAttribute": "resources.stress",
     "url": "https://github.com/Foundryborne/daggerheart",
     "manifest": "https://raw.githubusercontent.com/Foundryborne/daggerheart/main/system.json",
-    "download": "https://github.com/Foundryborne/daggerheart/releases/download/2.0.3/system.zip"
+    "download": "https://github.com/Foundryborne/daggerheart/releases/download/2.1.0/system.zip"
 }

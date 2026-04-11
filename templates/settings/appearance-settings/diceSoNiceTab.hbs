@@ -42,9 +42,15 @@
 
     {{#if animations}}
         <h3>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.animations"}}</h3>      
-        <div class="label-container full-width">
+        <div class="animation-container">
             <label>{{localize "DAGGERHEART.CONFIG.DaggerheartDiceAnimationEvents.higher.name"}}</label>
-            {{formInput fields.sfx.fields.higher.fields.class value=values.sfx.higher.class blank="" localize=true}}
+            <div class="animation-inner-container">
+                {{formInput fields.sfx.fields.higher.fields.class value=values.sfx.higher.class blank="" localize=true}}
+                <div class="animation-control">
+                    <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.muted"}}</label>
+                    {{formInput fields.sfx.fields.higher.fields.options.fields.muteSound value=values.sfx.higher.options.muteSound localize=true}}
+                </div>
+            </div>
         </div>
     {{/if}}
 

@@ -343,6 +343,17 @@ Hooks.on(CONFIG.DH.HOOKS.hooksConfig.tagTeamStart, async data => {
     }
 });
 
+Hooks.on(CONFIG.DH.HOOKS.hooksConfig.groupRollStart, async data => {
+    if (data.openForAllPlayers && data.partyId) {
+        const party = game.actors.get(data.partyId);
+        if (!party) return;
+
+        const dialog = new game.system.api.applications.dialogs.GroupRollDialog(party);
+        dialog.tabGroups.application = 'groupRoll';
+        await dialog.render({ force: true });
+    }
+});
+
 const updateActorsRangeDependentEffects = async token => {
     const rangeMeasurement = game.settings.get(
         CONFIG.DH.id,

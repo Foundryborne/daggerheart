@@ -137,6 +137,8 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     }
 
     static #getPlayerOwnership(user, setting, countdown) {
+        if (user.isGM) return CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
+
         const playerOwnership = countdown.ownership[user.id];
         return playerOwnership === undefined || playerOwnership === CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT
             ? setting.defaultOwnership

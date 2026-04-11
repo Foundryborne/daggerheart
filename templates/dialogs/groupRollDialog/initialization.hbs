@@ -1,0 +1,32 @@
+<section class="initialization-container tab {{#if tabs.initialization.active}} active{{/if}}" data-group="{{tabs.initialization.group}}" data-tab="{{tabs.initialization.id}}">
+    <div class="members-container">
+        {{#each memberSelection as |member|}}
+            <a 
+                class="member-container {{#unless member.selected}}inactive {{#if ../allselected}}locked{{/if}}{{/unless}}" 
+                data-action="toggleSelectMember" data-id="{{member.id}}" {{#if (and (not member.selected) ../allSelected)}}disabled{{/if}}
+            >
+                <span class="member-name">{{member.name}}</span>
+                <img src="{{member.img}}" />
+            </a>
+        {{/each}} 
+    </div>
+
+    <div class="main-roll {{#if selectedLeaderDisabled}}inactive{{/if}}">
+        <div class="form-group">
+            <label>{{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.leader"}}</label>
+            <div class="form-fields">
+                <select class="main-character-field" {{#if selectedLeaderDisabled}}disabled{{/if}}>
+                    {{selectOptions selectedLeaderOptions selected=selectedLeader.memberId blank="" }}
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <button type="button" data-action="startGroupRoll" {{#unless canStartGroupRoll}}disabled{{/unless}}>{{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.startGroupRoll"}} <i class="fa-solid fa-arrow-right-long"></i></button>
+        <div class="finish-tools {{#unless canStartGroupRoll}}inactive{{/unless}}">
+            <span>{{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.openDialogForAll"}}</span>
+            <input type="checkbox" class="openforall-field" {{#unless canStartGroupRoll}}disabled{{/unless}} {{checked openForAllPlayers}} />
+        </div>
+    </footer>
+</section>

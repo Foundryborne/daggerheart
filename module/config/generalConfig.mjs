@@ -70,6 +70,14 @@ export const range = {
     }
 };
 
+export const groupAttackRange = {
+    melee: range.melee,
+    veryClose: range.veryClose,
+    close: range.close,
+    far: range.far,
+    veryFar: range.veryFar
+};
+
 /* circle|cone|rect|ray used to be CONST.MEASURED_TEMPLATE_TYPES. Hardcoded for now */
 export const templateTypes = {
     CIRCLE: 'circle',
@@ -484,7 +492,7 @@ export const defaultRestOptions = {
                                 value: {
                                     custom: {
                                         enabled: true,
-                                        formula: '@system.armorScore'
+                                        formula: '@system.armorScore.max'
                                     }
                                 }
                             }
@@ -708,14 +716,14 @@ const getDiceSoNiceSFX = sfxOptions => {
     if (sfxOptions.critical && criticalAnimationData.class) {
         return {
             specialEffect: criticalAnimationData.class,
-            options: {}
+            options: { ...criticalAnimationData.options }
         };
     }
 
     if (sfxOptions.higher && sfxOptions.data.higher) {
         return {
             specialEffect: sfxOptions.data.higher.class,
-            options: {}
+            options: { ...sfxOptions.data.higher.options }
         };
     }
 

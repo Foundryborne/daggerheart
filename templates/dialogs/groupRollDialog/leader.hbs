@@ -1,0 +1,73 @@
+<section class="tab {{#if tabs.groupRoll.active}} active{{/if}}" data-group="{{tabs.groupRoll.group}}" data-tab="{{tabs.groupRoll.id}}">
+    {{#with leader}}
+        <div class="main-character-outer-container {{#unless isEditable}}inactive{{/unless}}">
+            <div class="section-title">{{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.leader"}}</div>
+            <fieldset>
+                <div class="main-character-container">
+                    <div class="character-info">
+                        <img src="{{img}}" />
+                        <div class="character-data">
+                            <span>{{name}}</span>
+                            <div class="roll-setup">
+                                <div class="form-group">
+                                    <div class="form-fields">
+                                        <select name="system.groupRoll.leader.rollChoice" {{#if hasRolled}}disabled{{/if}}>
+                                            {{selectOptions ../traitOptions selected=rollChoice localize=true}}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{#if readyToRoll}}
+                    <div class="roll-container">
+                        <span class="roll-title">
+                            {{localize "DAGGERHEART.GENERAL.roll"}}
+                            <div class="roll-tools">
+                                <a class="roll-button" data-action="makeLeaderRoll">
+                                    <img src="systems/daggerheart/assets/icons/dice/hope/d12.svg" />
+                                </a>
+
+                                {{#if hasRolled}}
+                                    <a class="delete-button" data-action="removeLeaderRoll">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                {{/if}}
+                            </div>
+                        </span>
+
+                        {{#if roll}}
+                            <div class="roll-data {{#if roll.withHope}}hope{{else if roll.withFear}}fear{{else}}critical{{/if}}">
+                                <div class="duality-label">{{roll.total}} {{localize "DAGGERHEART.GENERAL.withThing" thing=roll.totalLabel}}</div>
+                                <div class="roll-dice-container">
+                                    <a class="roll-dice" data-action="rerollLeaderDice" data-dice-type="hope">
+                                        <span class="dice-label">{{roll.dHope.total}}</span>
+                                        <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/" roll.dHope.denomination ".svg"}}" />
+                                    </a>
+                                    <span class="roll-operator">+</span>
+                                    <a class="roll-dice" data-action="rerollLeaderDice" data-dice-type="fear">
+                                        <span class="dice-label">{{roll.dFear.total}}</span>
+                                        <img src="{{concat "systems/daggerheart/assets/icons/dice/fear/" roll.dFear.denomination ".svg"}}" />
+                                    </a>
+                                    {{#if roll.advantage.type}}
+                                        <span class="roll-operator">{{#if (eq roll.advantage.type 1)}}+{{else}}-{{/if}}</span>
+                                        <span class="roll-dice">
+                                            <span class="dice-label">{{roll.advantage.value}}</span>
+                                            <img src="{{concat "systems/daggerheart/assets/icons/dice/" (ifThen (eq roll.advantage.type 1) "adv/" "disadv/") roll.advantage.dice ".svg"}}" />
+                                        </span>
+                                    {{/if}}
+                                    <span class="roll-operator">{{#if (gte roll.modifierTotal 0)}}+{{else}}-{{/if}}</span>
+                                    <span class="roll-value">{{positive roll.modifierTotal}}</span>
+                                </div>
+                            </div>
+                        {{else}}
+                            <span class="hint">{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.makeYourRoll"}}</span>
+                        {{/if}}
+                    </div>
+                {{/if}}
+            </fieldset>
+        </div>
+    {{/with}}
+</section>

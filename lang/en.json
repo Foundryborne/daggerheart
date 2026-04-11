@@ -131,6 +131,7 @@
                 "attackName": "Attack Name",
                 "criticalThreshold": "Critical Threshold",
                 "includeBase": { "label": "Include Item Damage" },
+                "groupAttack": { "label": "Group Attack" },
                 "multiplier": "Multiplier",
                 "saveHint": "Set a default Trait to enable Reaction Roll. It can be changed later in Reaction Roll Dialog.",
                 "resultBased": {
@@ -318,6 +319,21 @@
                     }
                 },
                 "newAdversary": "New Adversary"
+            },
+            "Party": {
+                "Subtitle": {
+                    "character": "{community} {ancestry} | {subclass} {class}",
+                    "companion": "Companion of {partner}"
+                },
+                "RemoveConfirmation": {
+                    "title": "Remove member {name}",
+                    "text": "Are you sure you want to remove {name} from the party?"
+                },
+                "Thresholds": {
+                    "minor": "MIN",
+                    "major": "MAJ",
+                    "severe": "SEV"
+                }
             }
         },
         "APPLICATIONS": {
@@ -353,7 +369,7 @@
                 "selectSecondaryWeapon": "Select Secondary Weapon",
                 "selectSubclass": "Select Subclass",
                 "setupSkipTitle": "Skipping Character Setup",
-                "setupSkipContent": "You are skipping the Character Setup by adding this manually. The character setup is the blinking arrows in the top-right. Are you sure you want to continue?",
+                "setupSkipContent": "You are skipping the Character Setup by adding this manually. The character setup is the blinking button in the top-right. Are you sure you want to continue?",
                 "startingItems": "Starting Items",
                 "story": "Story",
                 "storyExplanation": "Select which background and connection prompts you want to copy into your character's background.",
@@ -716,6 +732,17 @@
                     "completeRolls": "Set up and complete the rolls for the characters",
                     "selectRoll": "Select which roll value to be used for the Tag Team"
                 }
+            },
+            "GroupRollSelect": {
+                "title": "Group Roll",
+                "leader": "Leader",
+                "leaderRoll": "Leader Roll",
+                "openDialogForAll": "Open Dialog For All",
+                "startGroupRoll": "Start Group Roll",
+                "cancelGroupRoll": "Cancel",
+                "finishGroupRoll": "Finish Group Roll",
+                "cancelConfirmTitle": "Cancel Group Roll",
+                "cancelConfirmText": "Are you sure you want to cancel the Group Roll? This will close it for all other players too."
             },
             "TokenConfig": {
                 "actorSizeUsed": "Actor size is set, determining the dimensions"
@@ -2857,6 +2884,7 @@
                         "system": "Dice Preset",
                         "font": "Font",
                         "critical": "Duality Critical Animation",
+                        "muted": "Muted",
                         "diceAppearance": "Dice Appearance",
                         "animations": "Animations",
                         "defaultAnimations": "Set Animations As Player Defaults",
@@ -2965,18 +2993,6 @@
                     "immunityTo": "Immunity: {immunities}"
                 },
                 "featureTitle": "Class Feature",
-                "groupRoll": {
-                    "title": "Group Roll",
-                    "leader": "Leader",
-                    "partyTeam": "Party Team",
-                    "team": "Team",
-                    "selectLeader": "Select a Leader",
-                    "selectMember": "Select a Member",
-                    "rerollTitle": "Reroll Group Roll",
-                    "rerollContent": "Are you sure you want to reroll your {trait} roll?",
-                    "rerollTooltip": "Reroll",
-                    "wholePartySelected": "The whole party is selected"
-                },
                 "healingRoll": {
                     "title": "Heal - {damage}",
                     "heal": "Heal",
@@ -3142,7 +3158,8 @@
                 "tokenActorsMissing": "[{names}] missing Actors",
                 "domainTouchRequirement": "This domain card requires {nr} {domain} cards in the loadout to be used",
                 "knowTheTide": "Know The Tide gained a token",
-                "lackingItemTransferPermission": "User {user} lacks owner permission needed to transfer items to {target}"
+                "lackingItemTransferPermission": "User {user} lacks owner permission needed to transfer items to {target}",
+                "noTokenTargeted": "No token is targeted"
             },
             "Progress": {
                 "migrationLabel": "Performing system migration. Please wait and do not close Foundry."

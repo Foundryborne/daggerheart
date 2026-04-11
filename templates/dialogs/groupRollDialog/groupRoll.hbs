@@ -1,0 +1,20 @@
+<section class="tab {{#if tabs.groupRoll.active}} active{{/if}}" data-group="{{tabs.groupRoll.group}}" data-tab="{{tabs.groupRoll.id}}">
+    <fieldset>
+        <legend>{{localize "DAGGERHEART.GENERAL.result.single"}}</legend>
+
+        <div class="group-roll-results">
+            {{#if hasRolled}}<span class="roll-title {{groupRoll.totalDualityClass}}">{{groupRoll.total}} {{groupRoll.totalLabel}}</span>{{/if}}
+            <div class="group-roll-container">
+                <span>{{#if groupRoll.leaderTotal includeZero=true}}{{groupRoll.leaderTotal}}{{else}}{{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.leaderRoll"}}{{/if}}</span>
+                {{#each groupRoll.modifiers as |modifier|}}
+                    <span>{{#if (gte modifier 0)}}+{{else}}-{{/if}}</span>
+                    <span>{{positive modifier}}</span>
+                {{/each}}
+                {{#unless groupRoll.modifiers.length}}
+                    <span>+</span>
+                    <span>{{localize "DAGGERHEART.GENERAL.Modifier.plural"}}</span>
+                {{/unless}}
+            </div>
+        </div>
+    </fieldset>
+</section>

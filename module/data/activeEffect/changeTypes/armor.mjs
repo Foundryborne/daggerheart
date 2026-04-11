@@ -111,6 +111,8 @@ export default class ArmorChange extends foundry.abstract.DataModel {
     };
 
     get isSuppressed() {
+        if (!this.parent.parent?.actor) return false;
+
         switch (this.value.interaction) {
             case CONFIG.DH.GENERAL.activeEffectArmorInteraction.active.id:
                 return !this.parent.parent?.actor.system.armor;

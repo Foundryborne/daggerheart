@@ -144,6 +144,7 @@ export default class DamageRoll extends DHRoll {
     constructFormula(config) {
         this.options.isCritical = config.isCritical;
         for (const [index, part] of this.options.roll.entries()) {
+            const isHitpointPart = part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id;
             part.roll = new Roll(Roll.replaceFormulaData(part.formula, config.data));
             part.roll.terms = Roll.parse(part.roll.formula, config.data);
             if (part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
@@ -169,7 +170,16 @@ export default class DamageRoll extends DHRoll {
                 );
             }
 
-            if (config.isCritical && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
+            if (config.damageOptions.groupAttack?.numAttackers > 1 && isHitpointPart) {
+                const damageTypes = [foundry.dice.terms.Die, foundry.dice.terms.NumericTerm];
+                for (const term of part.roll.terms) {
+                    if (damageTypes.some(type => term instanceof type)) {
+                        term.number *= config.damageOptions.groupAttack.numAttackers;
+                    }
+                }
+            }
+
+            if (config.isCritical && isHitpointPart) {
                 const total = part.roll.dice.reduce((acc, term) => acc + term._faces * term._number, 0);
                 if (total > 0) {
                     part.roll.terms.push(...this.formatModifier(total));

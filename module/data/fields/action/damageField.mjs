@@ -18,7 +18,12 @@ export default class DamageField extends fields.SchemaField {
                 initial: false,
                 label: 'DAGGERHEART.ACTIONS.Settings.includeBase.label'
             }),
-            direct: new fields.BooleanField({ initial: false, label: 'DAGGERHEART.CONFIG.DamageType.direct.name' })
+            direct: new fields.BooleanField({ initial: false, label: 'DAGGERHEART.CONFIG.DamageType.direct.name' }),
+            groupAttack: new fields.StringField({
+                choices: CONFIG.DH.GENERAL.groupAttackRange,
+                blank: true,
+                label: 'DAGGERHEART.ACTIONS.Settings.groupAttack.label'
+            })
         };
         super(damageFields, options, context);
     }
@@ -223,6 +228,22 @@ export default class DamageField extends fields.SchemaField {
             (!game.user.isGM &&
                 game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damageApply.players)
         );
+    }
+
+    static getGroupAttackTokens(actorId, range) {
+        if (!canvas.scene) return [];
+
+        const targets = Array.from(game.user.targets);
+        const rangeSettings = canvas.scene?.rangeSettings;
+        if (!rangeSettings) return [];
+
+        const maxDistance = rangeSettings[range];
+        return canvas.scene.tokens.filter(x => {
+            if (x.actor?.id !== actorId) return false;
+            if (targets.every(target => x.object.distanceTo(target) > maxDistance)) return false;
+
+            return true;
+        });
     }
 }
 

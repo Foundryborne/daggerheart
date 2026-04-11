@@ -5,10 +5,6 @@ export default class DhCountdowns extends foundry.abstract.DataModel {
         const fields = foundry.data.fields;
 
         return {
-            /* Outdated and unused. Needed for migration. Remove in next minor version. (1.3) */
-            narrative: new fields.EmbeddedDataField(DhCountdownData),
-            encounter: new fields.EmbeddedDataField(DhCountdownData),
-            /**/
             countdowns: new fields.TypedObjectField(new fields.EmbeddedDataField(DhCountdown)),
             defaultOwnership: new fields.NumberField({
                 required: true,
@@ -16,122 +12,6 @@ export default class DhCountdowns extends foundry.abstract.DataModel {
                 initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER
             })
         };
-    }
-}
-
-/* Outdated and unused. Needed for migration. Remove in next minor version. (1.3) */
-class DhCountdownData extends foundry.abstract.DataModel {
-    static defineSchema() {
-        const fields = foundry.data.fields;
-        return {
-            countdowns: new fields.TypedObjectField(new fields.EmbeddedDataField(DhOldCountdown)),
-            ownership: new fields.SchemaField({
-                default: new fields.NumberField({
-                    required: true,
-                    choices: Object.values(CONST.DOCUMENT_OWNERSHIP_LEVELS),
-                    initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE
-                }),
-                players: new fields.TypedObjectField(
-                    new fields.SchemaField({
-                        type: new fields.NumberField({
-                            required: true,
-                            choices: Object.values(CONST.DOCUMENT_OWNERSHIP_LEVELS),
-                            initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT
-                        })
-                    })
-                )
-            }),
-            window: new fields.SchemaField({})
-        };
-    }
-
-    get playerOwnership() {
-        return Array.from(game.users).reduce((acc, user) => {
-            acc[user.id] = {
-                value: user.isGM
-                    ? CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER
-                    : this.ownership.players[user.id] && this.ownership.players[user.id].type !== -1
-                      ? this.ownership.players[user.id].type
-                      : this.ownership.default,
-                isGM: user.isGM
-            };
-
-            return acc;
-        }, {});
-    }
-}
-
-/* Outdated and unused. Needed for migration. Remove in next minor version. (1.3) */
-class DhOldCountdown extends foundry.abstract.DataModel {
-    static defineSchema() {
-        const fields = foundry.data.fields;
-        return {
-            name: new fields.StringField({
-                required: true,
-                label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.name.label'
-            }),
-            img: new fields.FilePathField({
-                categories: ['IMAGE'],
-                base64: false,
-                initial: 'icons/magic/time/hourglass-yellow-green.webp'
-            }),
-            ownership: new fields.SchemaField({
-                default: new fields.NumberField({
-                    required: true,
-                    choices: Object.values(CONST.DOCUMENT_OWNERSHIP_LEVELS),
-                    initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE
-                }),
-                players: new fields.TypedObjectField(
-                    new fields.SchemaField({
-                        type: new fields.NumberField({
-                            required: true,
-                            choices: Object.values(CONST.DOCUMENT_OWNERSHIP_LEVELS),
-                            initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT
-                        })
-                    })
-                )
-            }),
-            progress: new fields.SchemaField({
-                current: new fields.NumberField({
-                    required: true,
-                    integer: true,
-                    initial: 1,
-                    label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.progress.current.label'
-                }),
-                max: new fields.NumberField({
-                    required: true,
-                    integer: true,
-                    initial: 1,
-                    label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.progress.max.label'
-                }),
-                type: new fields.SchemaField({
-                    value: new fields.StringField({
-                        required: true,
-                        choices: CONFIG.DH.GENERAL.countdownProgressionTypes,
-                        initial: CONFIG.DH.GENERAL.countdownProgressionTypes.custom.id,
-                        label: 'DAGGERHEART.GENERAL.type'
-                    }),
-                    label: new fields.StringField({
-                        label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.progress.type.label.label'
-                    })
-                })
-            })
-        };
-    }
-
-    get playerOwnership() {
-        return Array.from(game.users).reduce((acc, user) => {
-            acc[user.id] = {
-                value: user.isGM
-                    ? CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER
-                    : this.ownership.players[user.id] && this.ownership.players[user.id].type !== -1
-                      ? this.ownership.players[user.id].type
-                      : this.ownership.default,
-                isGM: user.isGM
-            };
-
-            return acc;
-        }, {});
     }
 }
 
