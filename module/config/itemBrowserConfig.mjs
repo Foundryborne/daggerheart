@@ -7,7 +7,12 @@ export const typeConfig = {
             },
             {
                 key: 'system.type',
-                label: 'DAGGERHEART.GENERAL.type'
+                label: 'DAGGERHEART.GENERAL.type',
+                format: type => {
+                    if (!type) return '-';
+
+                    return CONFIG.DH.ACTOR.allAdversaryTypes()[type].label;
+                }
             }
         ],
         filters: [
@@ -318,7 +323,14 @@ export const typeConfig = {
             },
             {
                 key: 'system.domains',
-                label: 'DAGGERHEART.GENERAL.Domain.plural'
+                label: 'DAGGERHEART.GENERAL.Domain.plural',
+                format: domains => {
+                    const config = CONFIG.DH.DOMAIN.allDomains();
+                    return domains
+                        .map(x => (x ? game.i18n.localize(config[x].label) : null))
+                        .filter(x => x)
+                        .join(', ');
+                }
             }
         ],
         filters: [
@@ -367,7 +379,8 @@ export const typeConfig = {
             },
             {
                 key: 'system.spellcastingTrait',
-                label: 'DAGGERHEART.ITEMS.Subclass.spellcastingTrait'
+                label: 'DAGGERHEART.ITEMS.Subclass.spellcastingTrait',
+                format: trait => (trait ? `DAGGERHEART.CONFIG.Traits.${trait}.name` : '-')
             }
         ],
         filters: [

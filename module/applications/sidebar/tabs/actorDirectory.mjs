@@ -76,7 +76,7 @@ export default class DhActorDirectory extends foundry.applications.sidebar.tabs.
                     window: { title: 'DAGGERHEART.UI.Sidebar.actorDirectory.pickTierTitle' },
                     content,
                     ok: {
-                        label: 'Create Adversary',
+                        label: 'DAGGERHEART.UI.Sidebar.actorDirectory.createAdversary',
                         callback: (event, button, dialog) => Number(button.form.elements.tier.value)
                     }
                 });
