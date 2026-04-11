@@ -8,7 +8,11 @@ export const typeConfig = {
             {
                 key: 'system.type',
                 label: 'DAGGERHEART.GENERAL.type',
-                format: type => (type ? `DAGGERHEART.CONFIG.AdversaryType.${type}.label` : '-')
+                format: type => {
+                    if (!type) return '-';
+
+                    return CONFIG.DH.ACTOR.allAdversaryTypes()[type].label;
+                }
             }
         ],
         filters: [
@@ -320,11 +324,13 @@ export const typeConfig = {
             {
                 key: 'system.domains',
                 label: 'DAGGERHEART.GENERAL.Domain.plural',
-                format: domains =>
-                    domains
-                        .map(x => (!x ? null : game.i18n.localize(`DAGGERHEART.GENERAL.Domain.${x}.label`)))
+                format: domains => {
+                    const config = CONFIG.DH.DOMAIN.allDomains();
+                    return domains
+                        .map(x => (x ? game.i18n.localize(config[x].label) : null))
                         .filter(x => x)
-                        .join(', ')
+                        .join(', ');
+                }
             }
         ],
         filters: [
