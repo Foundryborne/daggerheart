@@ -24,7 +24,7 @@
                         <div class="roll-part-header"><div></div></div>
                     </div>
                 {{/if}}
-                {{#if (and hasSave currentTargets.length)}}<div class="roll-part-extra roll-all-save-button">Reaction Roll All Targets<i class="fa-solid fa-shield fa-lg"></i></div>{{/if}}
+                {{#if (and hasSave currentTargets.length)}}<div class="roll-part-extra roll-all-save-button">{{localize "DAGGERHEART.UI.Chat.saveRoll.reactionRollAllTargets"}}<i class="fa-solid fa-shield fa-lg"></i></div>{{/if}}
                 {{#each currentTargets}}
                     <div class="roll-target" data-token="{{id}}">
                         <img class="target-img" src="{{img}}">

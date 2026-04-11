@@ -198,7 +198,10 @@
                     "type": { "label": "Type" }
                 },
                 "hordeDamage": "Horde Damage",
-                "horderHp": "Horde/HP"
+                "horderHp": "Horde/HP",
+                "adversaryReactionRoll": {
+                    "headerTitle": "Adversary Reaction Roll"
+                }
             },
             "Character": {
                 "advantageSources": {
@@ -440,6 +443,10 @@
                 "defaultOwnershipTooltip": "The default player ownership of countdowns",
                 "hideNewCountdowns": "Hide New Countdowns"
             },
+            "CreateItemDialog": {
+                "createItem": "Create Item",
+                "browseCompendium": "Browse Compendium"
+            },
             "DaggerheartMenu": {
                 "title": "GM Tools",
                 "refreshFeatures": "Refresh Features"
@@ -653,6 +660,12 @@
                 "noPlayers": "No players to assign ownership to",
                 "default": "Default Ownership"
             },
+            "PendingReactionsDialog": {
+                "title": "Pending Reaction Rolls Found",
+                "unfinishedRolls": "Some Tokens still need to roll their Reaction Roll.",
+                "confirmation": "Are you sure you want to continue ?",
+                "warning": "Undone reaction rolls will be considered as failed"
+            },
             "ReactionRoll": {
                 "title": "Reaction Roll: {trait}"
             },
@@ -684,7 +697,13 @@
                 "damageNotRolled": "Damage not rolled in chat message yet",
                 "insufficientHope": "The initiating character doesn't have enough hope",
                 "createTagTeam": "Create TagTeam Roll",
-                "chatMessageRollTitle": "Roll"
+                "chatMessageRollTitle": "Roll",
+                "cancelConfirmTitle": "Cancel Tag Team Roll",
+                "cancelConfirmText": "Are you sure you want to cancel the Tag Team Roll? This will close it for all other players too.",
+                "hints": {
+                    "completeRolls": "Set up and complete the rolls for the characters",
+                    "selectRoll": "Select which roll value to be used for the Tag Team"
+                }
             },
             "TokenConfig": {
                 "actorSizeUsed": "Actor size is set, determining the dimensions"
@@ -1214,6 +1233,11 @@
                 "offWithToggle": "Off With Toggle",
                 "on": "On",
                 "onWithToggle": "On With Toggle"
+            },
+            "SceneRangeMeasurementTypes": {
+                "disable": "Disable Daggerheart Range Measurement",
+                "default": "Default",
+                "custom": "Custom"
             },
             "SelectAction": {
                 "selectType": "Select Action Type",
@@ -2305,6 +2329,7 @@
             "multiclass": "Multiclass",
             "newCategory": "New Category",
             "newThing": "New {thing}",
+            "next": "Next",
             "none": "None",
             "noTarget": "No current target",
             "partner": "Partner",
@@ -2332,6 +2357,7 @@
             "scalable": "Scalable",
             "scars": "Scars",
             "situationalBonus": "Situational Bonus",
+            "searchPlaceholder": "Search...",
             "spent": "Spent",
             "step": "Step",
             "stress": "Stress",
@@ -2915,6 +2941,9 @@
                 "resourceRoll": {
                     "playerMessage": "{user} rerolled their {name}"
                 },
+                "saveRoll": {
+                    "reactionRollAllTargets": "Reaction Roll All Targets"
+                },
                 "tagTeam": {
                     "title": "Tag Team",
                     "membersTitle": "Members"
@@ -2943,7 +2972,6 @@
                 "title": "Daggerheart Compendium Browser",
                 "hint": "Select a Folder in sidebar to start browsing through the compendium",
                 "browserSettings": "Browser Settings",
-                "searchPlaceholder": "Search...",
                 "columnName": "Name",
                 "tooltipFilters": "Filters",
                 "tooltipErase": "Erase",
@@ -2979,7 +3007,7 @@
                     "weapons": "Weapons",
                     "armors": "Armors",
                     "consumables": "Consumables",
-                    "loots": "Loots"
+                    "loots": "Loot"
                 }
             },
             "Notifications": {
@@ -3070,6 +3098,7 @@
                     "companion": "Level {level} - {partner}",
                     "companionNoPartner": "No Partner",
                     "duplicateToNewTier": "Duplicate to New Tier",
+                    "createAdversary": "Create Adversary",
                     "pickTierTitle": "Pick a new tier for this adversary"
                 },
                 "daggerheartMenu": {

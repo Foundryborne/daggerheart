@@ -188,7 +188,7 @@ export default class FilterMenu extends foundry.applications.ux.ContextMenu {
         }));
 
         const damageTypeFilter = Object.values(CONFIG.DH.GENERAL.damageTypes).map(({ id, abbreviation }) => ({
-            group: 'Damage Type', //TODO localize
+            group: game.i18n.localize('DAGGERHEART.GENERAL.damageType'),
             name: game.i18n.localize(abbreviation),
             filter: {
                 field: 'system.damage.type',

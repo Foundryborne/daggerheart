@@ -1,6 +1,6 @@
 <div class="daggerheart dh-style tooltip">
     
-    <div class="tooltip-header"><h2>{{localize "Adversaries"}} ({{currentBP}}/{{maxBP}})</h2></div>
+    <div class="tooltip-header"><h2>{{localize "DAGGERHEART.GENERAL.Adversary.plural"}} ({{currentBP}}/{{maxBP}})</h2></div>
     <div class="battlepoint-categories-container">
         <div class="battlepoint-categories-inner-container">
             {{#each categories as |category key|}}
@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <div class="tooltip-header"><h2>{{localize "Modifiers"}}</h2></div>
+    <div class="tooltip-header"><h2>{{localize "DAGGERHEART.GENERAL.Modifier.plural"}}</h2></div>
     <div class="battlepoint-toggles-container">
         {{#each toggles as |toggle|}}
             <div class="battlepoint-toggle-container {{#if (and toggle.disabled (not toggle.checked))}}inactive{{/if}}">
