@@ -550,18 +550,6 @@
                 },
                 "takeDowntime": "Take Downtime"
             },
-            "GroupRoll": {
-                "title": "Group Roll",
-                "leader": "Leader",
-                "partyTeam": "Party Team",
-                "team": "Team",
-                "selectLeader": "Select a Leader",
-                "selectMember": "Select a Member",
-                "rerollTitle": "Reroll Group Roll",
-                "rerollContent": "Are you sure you want to reroll your {trait} roll?",
-                "rerollTooltip": "Reroll",
-                "wholePartySelected": "The whole party is selected"
-            },
             "HUD": {
                 "tokenHUD": {
                     "genericEffects": "Foundry Effects",
@@ -2413,7 +2401,6 @@
             },
             "maxWithThing": "Max {thing}",
             "missingDragDropThing": "Drop {thing} here",
-            "modifier": "Modifier",
             "multiclass": "Multiclass",
             "newCategory": "New Category",
             "newThing": "New {thing}",

@@ -30,7 +30,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
     }
 
     get title() {
-        return game.i18n.localize('DAGGERHEART.APPLICATIONS.GroupRoll.title');
+        return game.i18n.localize('DAGGERHEART.APPLICATIONS.GroupRollSelect.title');
     }
 
     static DEFAULT_OPTIONS = {
