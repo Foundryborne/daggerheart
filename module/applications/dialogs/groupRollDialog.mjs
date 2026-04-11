@@ -159,7 +159,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
                     .map(x => ({ value: x.id, label: x.name }));
                 partContext.selectedMainCharacterDisabled = !selectedMembers.length;
 
-                partContext.canStartGroupRoll = selectedMembers.length > 1;
+                partContext.canStartGroupRoll = selectedMembers.length > 1 && this.mainCharacter?.memberId;
                 partContext.openForAllPlayers = this.openForAllPlayers;
                 break;
             case 'mainCharacter':
@@ -496,7 +496,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
             msgData = {
                 type: 'dualityRoll',
                 user: game.user.id,
-                title: game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.title'),
+                title: game.i18n.localize('DAGGERHEART.APPLICATIONS.GroupRollSelect.title'),
                 speaker: cls.getSpeaker({ actor }),
                 system: systemData,
                 rolls: [JSON.stringify(totalRoll)],
