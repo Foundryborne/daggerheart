@@ -1,6 +1,6 @@
 <section class="tab {{#if tabs.groupRoll.active}} active{{/if}}" data-group="{{tabs.groupRoll.group}}" data-tab="{{tabs.groupRoll.id}}">
     {{#with leader}}
-        <div class="main-character-outer-container">
+        <div class="main-character-outer-container {{#unless isEditable}}inactive{{/unless}}">
             <div class="section-title">{{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.leader"}}</div>
             <fieldset>
                 <div class="main-character-container">

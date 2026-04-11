@@ -355,6 +355,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
             }
         });
 
+        if (!result) return;
         if (!game.modules.get('dice-so-nice')?.active) foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
 
         const rollData = result.messageRoll.toJSON();
