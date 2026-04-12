@@ -7,9 +7,9 @@
                 {{#each category as |grouping index|}}
                     <div class="battlepoint-grouping-container">
                         {{#if grouping.nr}}
-                            <label>{{key}} BP: {{concat (localize grouping.description) ' ' '('grouping.nr 'x)'}}</label>
+                            <label>{{key}} {{localize "DAGGERHEART.GENERAL.Battlepoints.short"}} - {{concat (localize grouping.description) ' ' '('grouping.nr 'x)'}}</label>
                         {{else}}
-                            <label class="unselected-grouping">{{key}} BP - {{localize grouping.description}}</label>
+                            <label class="unselected-grouping">{{key}} {{localize "DAGGERHEART.GENERAL.Battlepoints.short"}} - {{localize grouping.description}}</label>
                         {{/if}}
                     </div>
                 {{/each}}
@@ -26,7 +26,7 @@
                 {{else}}
                     <input type="checkbox" data-combat-id="{{@root.combatId}}" data-category="{{toggle.categoryKey}}" data-grouping="{{toggle.toggleKey}}" {{checked toggle.checked}} />
                 {{/if}}
-                <label class="unselected-grouping">{{toggle.categoryKey}} BP: {{localize toggle.description}}</label>
+                <label class="unselected-grouping">{{toggle.categoryKey}} {{localize "DAGGERHEART.GENERAL.Battlepoints.short"}}: {{localize toggle.description}}</label>
             </div>
         {{/each}}
     </div>

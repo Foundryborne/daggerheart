@@ -37,7 +37,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         tag: 'div',
         window: {
             frame: true,
-            title: 'Compendium Browser',
+            title: 'DAGGERHEART.UI.ItemBrowser.windowTitle',
             icon: 'fa-solid fa-book-atlas',
             positioned: true,
             resizable: true

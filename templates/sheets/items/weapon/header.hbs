@@ -5,9 +5,9 @@
         <h1 class='item-name'><input type='text' name='name' value='{{source.name}}' /></h1>
         <div class='item-description'>
             {{#if source.system.secondary}}
-                <h3>{{localize "DAGGERHEART.ITEMS.Weapon.secondaryWeapon"}}</h3>
+                <h3>{{localize "DAGGERHEART.ITEMS.Weapon.secondaryWeapon.full"}}</h3>
             {{else}}
-                <h3>{{localize "DAGGERHEART.ITEMS.Weapon.primaryWeapon"}}</h3>
+                <h3>{{localize "DAGGERHEART.ITEMS.Weapon.primaryWeapon.full"}}</h3>
             {{/if}}
             <h3>
                 {{localize (concat 'DAGGERHEART.CONFIG.Traits.' source.system.attack.roll.trait '.short')}}
