@@ -28,7 +28,8 @@ export default class BeastformField extends fields.SchemaField {
                             { 1: game.i18n.localize('DAGGERHEART.GENERAL.Tiers.1') }
                         );
                     },
-                    hint: 'DAGGERHEART.ACTIONS.Config.beastform.exactHint'
+                    label: 'DAGGERHEART.ACTIONS.Config.beastform.exact.label',
+                    hint: 'DAGGERHEART.ACTIONS.Config.beastform.exact.hint'
                 })
             })
         };

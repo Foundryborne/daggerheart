@@ -87,9 +87,7 @@
             },
             "Config": {
                 "beastform": {
-                    "exact": "Beastform Max Tier",
-                    "exactHint": "The Character's Tier is used if empty",
-                    "label": "Beastform"
+                    "exact": { "label": "Beastform Max Tier", "hint": "The Character's Tier is used if empty" }
                 },
                 "countdown": {
                     "defaultOwnership": "Default Ownership",
