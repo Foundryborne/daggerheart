@@ -175,6 +175,11 @@
                 opacity: 0.2;
             }
 
+            &.no-horizontal-padding {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
             legend {
                 margin-left: auto;
                 margin-right: auto;
@@ -273,6 +278,15 @@
                 display: flex;
                 flex-direction: column;
                 gap: 5px;
+
+                &.separated {
+                    border-bottom: 2px solid;
+                    padding-bottom: 8px;
+                }
+
+                .form-group {
+                    padding: 0 0.75rem;
+                }
 
                 .experience-inner-container {
                     position: relative;

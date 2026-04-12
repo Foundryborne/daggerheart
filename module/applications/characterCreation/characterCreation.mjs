@@ -11,7 +11,10 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         this.character = character;
 
         this.setup = {
-            traits: this.character.system.traits,
+            traits: Object.keys(this.character.system.traits).reduce((acc, key) => {
+                acc[key] = { value: null };
+                return acc;
+            }, {}),
             ancestryName: {
                 primary: '',
                 secondary: ''
@@ -377,8 +380,10 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         ];
         return Object.values(this.setup.traits).reduce((acc, x) => {
             const index = traitCompareArray.indexOf(x.value);
+            if (index === -1) return acc;
+
             traitCompareArray.splice(index, 1);
-            acc += index !== -1;
+            acc += 1;
             return acc;
         }, 0);
     }

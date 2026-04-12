@@ -583,7 +583,9 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         const { itemUuid } = event.target.closest('[data-item-uuid]').dataset,
             item = await foundry.utils.fromUuid(itemUuid),
             dragData = item.toDragData();
+
         event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+        event.dataTransfer.setDragImage(event.target.querySelector('img'), 0, 0);
     }
 
     _canDragStart() {

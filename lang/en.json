@@ -2332,6 +2332,7 @@
             "next": "Next",
             "none": "None",
             "noTarget": "No current target",
+            "optionalThing": "Optional {thing}",
             "partner": "Partner",
             "player": {
                 "single": "Player",
