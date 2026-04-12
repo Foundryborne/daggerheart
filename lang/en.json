@@ -71,9 +71,7 @@
                     "name": "Summon",
                     "tooltip": "Create tokens in the scene.",
                     "error": "You do not have permission to summon tokens or there is no active scene.",
-                    "invalidDrop": "You can only drop Actor entities to summon.",
-                    "chatMessageTitle": "Test2",
-                    "chatMessageHeaderTitle": "Summoning"
+                    "invalidDrop": "You can only drop Actor entities to summon."
                 },
                 "transform": {
                     "name": "Transform",
@@ -1916,6 +1914,10 @@
                     "hint": "Multiply any damage dealt to you by this number"
                 }
             },
+            "Battlepoints": {
+                "full": "Battlepoints",
+                "short": "BP"
+            },
             "Bonuses": {
                 "rest": {
                     "downtimeAction": "Downtime Action",
@@ -2352,6 +2354,7 @@
             "rollDamage": "Roll Damage",
             "rollWith": "{roll} Roll",
             "save": "Save",
+            "saveSettings": "Save Settings",
             "scalable": "Scalable",
             "scars": "Scars",
             "situationalBonus": "Situational Bonus",
@@ -2506,8 +2509,14 @@
             },
             "Weapon": {
                 "weaponType": "Weapon Type",
-                "primaryWeapon": "Primary Weapon",
-                "secondaryWeapon": "Secondary Weapon"
+                "primaryWeapon": {
+                    "full": "Primary Weapon",
+                    "short": "Primary"
+                },
+                "secondaryWeapon": {
+                    "full": "Secondary Weapon",
+                    "short": "Secondary"
+                }
             }
         },
         "MACROS": {
@@ -2968,6 +2977,7 @@
             },
             "ItemBrowser": {
                 "title": "Daggerheart Compendium Browser",
+                "windowTitle": "Compendium Browser",
                 "hint": "Select a Folder in sidebar to start browsing through the compendium",
                 "browserSettings": "Browser Settings",
                 "columnName": "Name",

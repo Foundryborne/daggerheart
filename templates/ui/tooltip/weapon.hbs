@@ -3,7 +3,7 @@
     <h2 class="tooltip-title">{{item.name}}</h2>
     <div class="tags">
         <div class="tag">
-            <span>{{#if item.system.secondary}}{{localize "DAGGERHEART.ITEMS.Weapon.secondaryWeapon"}}{{else}}{{localize "DAGGERHEART.ITEMS.Weapon.primaryWeapon"}}{{/if}}</span>
+            <span>{{#if item.system.secondary}}{{localize "DAGGERHEART.ITEMS.Weapon.secondaryWeapon.full"}}{{else}}{{localize "DAGGERHEART.ITEMS.Weapon.primaryWeapon.full"}}{{/if}}</span>
         </div>
         <div class="tag">
             {{#with (lookup config.GENERAL.burden item.system.burden) as | burden |}}
