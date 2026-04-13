@@ -138,7 +138,7 @@
         {
           "key": "system.advantageSources",
           "mode": 2,
-          "value": "1",
+          "value": "Attack Rolls",
           "priority": null
         }
       ],
@@ -152,7 +152,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
+      "description": "<p>You gain advantage on attack rolls until you or an ally rolls a failure with Fear.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

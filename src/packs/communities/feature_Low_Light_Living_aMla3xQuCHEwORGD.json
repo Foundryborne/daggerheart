@@ -35,19 +35,7 @@
         {
           "key": "system.advantageSources",
           "mode": 2,
-          "value": "In an area with low light or heavy shadow: hide, investigate, or perceive",
-          "priority": null
-        },
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "",
-          "priority": null
-        },
-        {
-          "key": "",
-          "mode": 2,
-          "value": "",
+          "value": "Rolls to hide, investigate, or perceive details in low light",
           "priority": null
         }
       ],
@@ -61,7 +49,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
+      "description": "<p>When you’re in an area with low light or heavy shadow, you have advantage on rolls to hide, investigate, or perceive details within that area.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
