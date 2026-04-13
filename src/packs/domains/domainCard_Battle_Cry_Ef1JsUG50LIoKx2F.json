@@ -132,27 +132,29 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
+        },
+        "changes": [
+          {
+            "key": "system.advantageSources",
+            "type": "add",
+            "value": "On Attacks",
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "type": "temporary",
+          "description": "<p>Until you or an ally rolls a failure with Fear.</p>"
         }
       },
-      "changes": [
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "",
+      "description": "<p>You gain advantage on attack rolls until you or an ally rolls a failure with Fear.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -160,6 +162,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!Ef1JsUG50LIoKx2F.s7ma4TNgAvt0ZgEW"
     }
   ],
