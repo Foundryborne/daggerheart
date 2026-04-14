@@ -600,7 +600,6 @@ export default class DhpActor extends Actor {
         rollData.system = this.system.getRollData();
         rollData.prof = this.system.proficiency ?? 1;
         rollData.cast = this.system.spellcastModifier ?? 1;
-    
         return rollData;
     }
 
