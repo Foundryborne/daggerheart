@@ -14,6 +14,10 @@
             {{else}}
                 <span class="entry-subtitle">{{localize "DAGGERHEART.UI.Sidebar.actorDirectory.companionNoPartner"}}</span>
             {{/if}}
+        {{else if (eq type "party")}}
+            {{#if system.active}}
+                <span class="entry-subtitle">{{localize "DAGGERHEART.UI.Sidebar.actorDirectory.partyIsActive"}}</span>
+            {{/if}}
         {{/if}}
     </a>
 </li>

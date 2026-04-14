@@ -9,6 +9,7 @@ export default class DhParty extends BaseDataActor {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
+            active: new fields.BooleanField(),
             partyMembers: new ForeignDocumentUUIDArrayField({ type: 'Actor' }, { prune: true }),
             notes: new fields.HTMLField(),
             gold: new fields.SchemaField({
@@ -42,6 +43,15 @@ export default class DhParty extends BaseDataActor {
                 member.parties?.add(this.parent);
             }
         }
+    }
+
+    /**@inheritdoc */
+    async _preCreate(data, options, user) {
+        const allowed = await super._preCreate(data, options, user);
+        if (allowed === false) return;
+
+        if (!game.actors.some(x => x.type === 'party' && x.active)) 
+            await this.updateSource({ active: true });
     }
 
     _onDelete(options, userId) {

@@ -1,3 +1,4 @@
+import { itemAbleRollParse } from '../../../helpers/utils.mjs';
 import FormulaField from '../formulaField.mjs';
 
 const fields = foundry.data.fields;
@@ -36,13 +37,12 @@ export default class DHSummonField extends fields.ArrayField {
         const rolls = [];
         const summonData = [];
         for (const summon of this.summon) {
-            let count = summon.count;
-            const roll = new Roll(summon.count);
-            if (!roll.isDeterministic) {
-                await roll.evaluate();
-                if (game.modules.get('dice-so-nice')?.active) rolls.push(roll);
-                count = roll.total;
-            }
+            const roll = new Roll(itemAbleRollParse(summon.count, this.actor, this.item));
+            await roll.evaluate();
+            const count = roll.total;
+            if (!roll.isDeterministic && game.modules.get('dice-so-nice')?.active) 
+                rolls.push(roll);
+            
 
             const actor = await DHSummonField.getWorldActor(await foundry.utils.fromUuid(summon.actorUUID));
             /* Extending summon data in memory so it's available in actionField.toChat. Think it's harmless, but ugly. Could maybe find a better way. */
