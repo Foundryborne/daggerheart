@@ -123,6 +123,10 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             context.advantage = this.config.roll?.advantage;
             context.disadvantage = this.config.roll?.disadvantage;
             context.diceOptions = CONFIG.DH.GENERAL.diceTypes;
+            context.diceFaces = CONFIG.DH.GENERAL.dieFaces.reduce((acc, face) => {
+                acc[face] = `d${face}`;
+                return acc;
+            }, {});
             context.isLite = this.config.roll?.lite;
             context.extraFormula = this.config.extraFormula;
             context.formula = this.roll.constructFormula(this.config);
@@ -153,7 +157,10 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         if (this.config.uses) this.config.uses = foundry.utils.mergeObject(this.config.uses, rest.uses);
         if (rest.roll?.dice) {
             Object.entries(rest.roll.dice).forEach(([key, value]) => {
-                this.roll[key] = value;
+                if(key === 'advantageFaces')
+                    this.roll[key] = Number.parseInt(value);
+                else 
+                    this.roll[key] = value;
             });
         }
         if (rest.hasOwnProperty('trait')) {
@@ -173,6 +180,16 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         this.disadvantage = advantage === -1;
 
         this.config.roll.advantage = this.config.roll.advantage === advantage ? 0 : advantage;
+        
+        if(this.config.roll.advantage === 1 && this.config.data.rules.roll.defaultAdvantageDice) {
+            const faces = Number.parseInt(this.config.data.rules.roll.defaultAdvantageDice);
+            this.roll.advantageFaces = Number.isNaN(faces) ? this.roll.advantageFaces : faces;
+        }
+        else if(this.config.roll.advantage === -1 && this.config.data.rules.roll.defaultDisadvantageDice) {
+            const faces = Number.parseInt(this.config.data.rules.roll.defaultDisadvantageDice);
+            this.roll.advantageFaces = Number.isNaN(faces) ? this.roll.advantageFaces : faces;
+        }
+
         this.render();
     }
 

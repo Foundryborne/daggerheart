@@ -61,6 +61,24 @@ export default class DhCompanion extends DhCreature {
                         initial: false,
                         label: 'DAGGERHEART.GENERAL.Rules.conditionImmunities.vulnerable'
                     })
+                }),
+                roll: new fields.SchemaField({
+                    defaultAdvantageDice: new fields.NumberField({
+                        nullable: true,
+                        required: true,
+                        integer: true,
+                        choices: CONFIG.DH.GENERAL.dieFaces,
+                        initial: null,
+                        label: 'DAGGERHEART.ACTORS.Character.defaultAdvantageDice'
+                    }),
+                    defaultDisadvantageDice: new fields.NumberField({
+                        nullable: true,
+                        required: true,
+                        integer: true,
+                        choices: CONFIG.DH.GENERAL.dieFaces,
+                        initial: null,
+                        label: 'DAGGERHEART.ACTORS.Character.defaultDisadvantageDice'
+                    }),
                 })
             }),
             attack: new ActionField({

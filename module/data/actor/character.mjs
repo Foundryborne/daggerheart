@@ -289,7 +289,23 @@ export default class DhCharacter extends DhCreature {
                     guaranteedCritical: new fields.BooleanField({
                         label: 'DAGGERHEART.ACTORS.Character.roll.guaranteedCritical.label',
                         hint: 'DAGGERHEART.ACTORS.Character.roll.guaranteedCritical.hint'
-                    })
+                    }),
+                    defaultAdvantageDice: new fields.NumberField({
+                        nullable: true,
+                        required: true,
+                        integer: true,
+                        choices: CONFIG.DH.GENERAL.dieFaces,
+                        initial: null,
+                        label: 'DAGGERHEART.ACTORS.Character.defaultAdvantageDice'
+                    }),
+                    defaultDisadvantageDice: new fields.NumberField({
+                        nullable: true,
+                        required: true,
+                        integer: true,
+                        choices: CONFIG.DH.GENERAL.dieFaces,
+                        initial: null,
+                        label: 'DAGGERHEART.ACTORS.Character.defaultDisadvantageDice'
+                    }),
                 })
             })
         };

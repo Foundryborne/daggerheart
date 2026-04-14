@@ -3,7 +3,6 @@ import D20Roll from './d20Roll.mjs';
 import { parseRallyDice, setDiceSoNiceForDualityRoll } from '../helpers/utils.mjs';
 
 export default class DualityRoll extends D20Roll {
-    _advantageFaces = 6;
     _advantageNumber = 1;
     _rallyIndex;
 
@@ -11,6 +10,9 @@ export default class DualityRoll extends D20Roll {
         super(formula, data, options);
         this.rallyChoices = this.setRallyChoices();
         this.guaranteedCritical = options.guaranteedCritical;
+
+        const advantageFaces = data.rules?.roll?.defaultAdvantageDice ? Number.parseInt(data.rules.roll.defaultAdvantageDice) : 6
+        this.advantageFaces = Number.isNaN(advantageFaces) ? 6 : advantageFaces;
     }
 
     static messageType = 'dualityRoll';
@@ -49,14 +51,6 @@ export default class DualityRoll extends D20Roll {
 
     get dDisadvantage() {
         return this.dice[2] instanceof game.system.api.dice.diceTypes.DisadvantageDie ? this.dice[2] : null;
-    }
-
-    get advantageFaces() {
-        return this._advantageFaces;
-    }
-
-    set advantageFaces(faces) {
-        this._advantageFaces = this.getFaces(faces);
     }
 
     get advantageNumber() {
