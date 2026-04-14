@@ -16,7 +16,7 @@ export default class DamageField extends fields.SchemaField {
             parts: new IterableTypedObjectField(DHDamageData),
             includeBase: new fields.BooleanField({
                 initial: false,
-                label: 'DAGGERHEART.ACTIONS.Settings.includeBase.label'
+                label: 'DAGGERHEART.ACTIONS.Settings.useItemDamage.label'
             }),
             direct: new fields.BooleanField({ initial: false, label: 'DAGGERHEART.CONFIG.DamageType.direct.name' }),
             groupAttack: new fields.StringField({

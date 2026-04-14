@@ -11,9 +11,13 @@ export default class DHAttackAction extends DHDamageAction {
     prepareData() {
         super.prepareData();
         if (!!this.item?.system?.attack) {
+            // In v14, we only allow a single instance of damage
+            // If includeBase is checked, use the weapon's damage instead of the action's damage
             if (this.damage.includeBase) {
                 const baseDamage = this.getParentDamage();
-                this.damage.parts.unshift(new DHDamageData(baseDamage));
+                // Replace the action damage with the weapon's base damage
+                this.damage.parts = new Map();
+                this.damage.parts.set('hitPoints', new DHDamageData(baseDamage));
             }
             if (this.roll.useDefault) {
                 this.roll.trait = this.item.system.attack.roll.trait;
