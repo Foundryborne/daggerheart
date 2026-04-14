@@ -39,6 +39,11 @@
 
     "DAGGERHEART": {
         "CharacterSheet": "Character Sheet",
+        "ITEM_GROUPS": {
+            "INVENTORY": "Inventory Items",
+            "CHARACTER": "Character Items",
+            "OTHER": "Other"
+        },
         "ACTIONS": {
             "TYPES": {
                 "attack": {
@@ -1942,6 +1947,9 @@
                 }
             }
         },
+        "ACTIVE_EFFECT": {
+            "NEW_EFFECT": "New Effect"
+        },
         "EFFECTS": {
             "ApplyLocations": {
                 "attackRoll": {
@@ -2623,8 +2631,10 @@
             }
         },
         "ROLLTABLES": {
+            "DEFAULT_FORMULA_NAME": "Roll Formula",
             "FIELDS": {
-                "formulaName": { "label": "Formula Name" }
+                "formulaName": { "label": "Formula Name" },
+                "formula": { "label": "Formula Roll" }
             },
             "formula": "Formula"
         },

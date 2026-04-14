@@ -133,7 +133,7 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
 
     static getDefaultObject() {
         return {
-            name: 'New Effect',
+            name: game.i18n.localize('DAGGERHEART.ACTIVE_EFFECT.NEW_EFFECT'),
             id: foundry.utils.randomID(),
             disabled: false,
             img: 'icons/magic/life/heart-cross-blue.webp',

@@ -9,7 +9,7 @@ export default class DhRollTable extends foundry.abstract.TypeDataModel {
             formulaName: new fields.StringField({
                 required: true,
                 nullable: false,
-                initial: 'Roll Formula',
+                initial: () => game.i18n.localize('DAGGERHEART.ROLLTABLES.DEFAULT_FORMULA_NAME'),
                 label: 'DAGGERHEART.ROLLTABLES.FIELDS.formulaName.label'
             }),
             altFormula: new fields.TypedObjectField(
@@ -17,10 +17,10 @@ export default class DhRollTable extends foundry.abstract.TypeDataModel {
                     name: new fields.StringField({
                         required: true,
                         nullable: false,
-                        initial: 'Roll Formula',
+                        initial: () => game.i18n.localize('DAGGERHEART.ROLLTABLES.DEFAULT_FORMULA_NAME'),
                         label: 'DAGGERHEART.ROLLTABLES.FIELDS.formulaName.label'
                     }),
-                    formula: new FormulaField({ label: 'Formula Roll', initial: '1d20' })
+                    formula: new FormulaField({ label: 'DAGGERHEART.ROLLTABLES.FIELDS.formula.label', initial: '1d20' })
                 })
             ),
             activeAltFormula: new fields.StringField({ nullable: true, initial: null })

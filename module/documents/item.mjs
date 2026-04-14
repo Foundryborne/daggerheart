@@ -87,10 +87,10 @@ export default class DHItem extends foundry.documents.Item {
                 const isInventoryItem = CONFIG.Item.dataModels[type]?.metadata?.isInventoryItem;
                 const group =
                     isInventoryItem === true
-                        ? 'Inventory Items' //TODO localize
+                        ? game.i18n.localize('DAGGERHEART.ITEM_GROUPS.INVENTORY')
                         : isInventoryItem === false
-                          ? 'Character Items' //TODO localize
-                          : 'Other'; //TODO localize
+                          ? game.i18n.localize('DAGGERHEART.ITEM_GROUPS.CHARACTER')
+                          : game.i18n.localize('DAGGERHEART.ITEM_GROUPS.OTHER');
 
                 return { value: type, label, group };
             }
