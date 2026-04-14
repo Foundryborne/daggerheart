@@ -174,12 +174,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -230,7 +227,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -256,7 +253,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -496,34 +494,42 @@
         "description": "<p><strong>Spend a Fear</strong> to summon a number of @UUID[Compendium.daggerheart.adversaries.Actor.OsLG2BjaEdTZUJU9]{Fallen Shock Troops} equal to twice the number of PCs. The Shock Troops appear at Far range.</p>",
         "resource": null,
         "actions": {
-          "hGMzqw00JTlYfHYy": {
-            "type": "effect",
-            "_id": "hGMzqw00JTlYfHYy",
+          "SrU7qbh8LcOgfozT": {
+            "type": "summon",
+            "_id": "SrU7qbh8LcOgfozT",
             "systemPath": "actions",
+            "baseAction": false,
             "description": "",
             "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
             "actionType": "action",
+            "triggers": [],
             "cost": [
               {
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "step": null
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
-            "effects": [],
-            "target": {
-              "type": "self",
-              "amount": null
-            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.OsLG2BjaEdTZUJU9",
+                "count": "@partySize*2"
+              }
+            ],
             "name": "Spend Fear",
-            "img": "icons/magic/death/undead-skeleton-worn-blue.webp",
-            "range": ""
+            "range": "far"
           }
         },
         "originItemType": null,

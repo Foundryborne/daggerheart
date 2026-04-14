@@ -236,6 +236,8 @@
                 },
                 "defaultHopeDice": "Default Hope Dice",
                 "defaultFearDice": "Default Fear Dice",
+                "defaultAdvantageDice": "Default Advantage Dice",
+                "defaultDisadvantageDice": "Default Disadvantage Dice",
                 "disadvantageSources": {
                     "label": "Disadvantage Sources",
                     "hint": "Add single words or short text as reminders and hints of what a character has disadvantage on."
@@ -3210,6 +3212,8 @@
                     "companion": "Level {level} - {partner}",
                     "companionNoPartner": "No Partner",
                     "duplicateToNewTier": "Duplicate to New Tier",
+                    "activateParty": "Make Activate Party",
+                    "partyIsActive": "Active",
                     "createAdversary": "Create Adversary",
                     "pickTierTitle": "Pick a new tier for this adversary"
                 },

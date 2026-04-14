@@ -52,12 +52,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -108,7 +105,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -134,7 +131,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -323,7 +321,42 @@
       "system": {
         "description": "<p>A @UUID[Compendium.daggerheart.adversaries.Actor.8yUj2Mzvnifhxegm]{Young Dryad}, two @UUID[Compendium.daggerheart.adversaries.Actor.VtFBt9XBE0WrGGxP]{Sylvan Soldiers}, and a number of @UUID[Compendium.daggerheart.adversaries.Actor.G62k4oSkhkoXEs2D]{Minor Treants} equal to the number of PCs appear to confront the party for their intrusion.</p><section id=\"secret-01hkXuVJc5Kei4QW\" class=\"secret\"><p><em>What are the grove guardians concealing? What threat to the forest could the PCs confront to appease the Dryad?</em></p></section>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "TPm6rpKA4mbili82": {
+            "type": "summon",
+            "_id": "TPm6rpKA4mbili82",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": null,
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.8yUj2Mzvnifhxegm",
+                "count": "1"
+              },
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.VtFBt9XBE0WrGGxP",
+                "count": "2"
+              },
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.G62k4oSkhkoXEs2D",
+                "count": "@partySize"
+              }
+            ]
+          }
+        },
         "originItemType": null,
         "originId": null,
         "featureForm": "action"
