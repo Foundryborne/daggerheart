@@ -9,7 +9,6 @@ export default class DhParty extends BaseDataActor {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            active: new fields.BooleanField(),
             partyMembers: new ForeignDocumentUUIDArrayField({ type: 'Actor' }, { prune: true }),
             notes: new fields.HTMLField(),
             gold: new fields.SchemaField({
@@ -21,6 +20,10 @@ export default class DhParty extends BaseDataActor {
             tagTeam: new fields.EmbeddedDataField(TagTeamData),
             groupRoll: new fields.EmbeddedDataField(GroupRollData)
         };
+    }
+
+    get active() {
+        return game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.ActiveParty) === this.parent.id;
     }
 
     /* -------------------------------------------- */
@@ -50,8 +53,15 @@ export default class DhParty extends BaseDataActor {
         const allowed = await super._preCreate(data, options, user);
         if (allowed === false) return;
 
-        if (!game.actors.some(x => x.type === 'party' && x.active)) 
-            await this.updateSource({ active: true });
+        if (!game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.ActiveParty)) 
+            game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.ActiveParty, this.parent.id);
+    }
+
+    async _preDelete() {
+        super._preDelete();
+    
+        if (this.active) 
+            game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.ActiveParty, null);
     }
 
     _onDelete(options, userId) {

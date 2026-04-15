@@ -189,4 +189,11 @@ const registerNonConfigSettings = () => {
         config: false,
         type: SpotlightTracker
     });
+
+    game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.ActiveParty, {
+        scope: 'world',
+        config: false,
+        type: String,
+        default: null,
+    });
 };

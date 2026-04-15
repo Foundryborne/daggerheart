@@ -102,9 +102,7 @@ export default class DhActorDirectory extends foundry.applications.sidebar.tabs.
                     const actor = game.actors.get(li.dataset.entryId);
                     if (!actor) throw new Error('Unexpected missing actor');
 
-                    const currentActiveParty = game.actors.find(x => x.type === 'party' && x.system.active);
-                    await currentActiveParty?.update({ 'system.active': false });
-                    await actor.update({ 'system.active': true });
+                    await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.ActiveParty, actor.id);
                     ui.actors.render();
                 }
             }

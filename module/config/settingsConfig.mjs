@@ -40,7 +40,8 @@ export const gameSettings = {
     LastMigrationVersion: 'LastMigrationVersion',
     SpotlightRequestQueue: 'SpotlightRequestQueue',
     CompendiumBrowserSettings: 'CompendiumBrowserSettings',
-    SpotlightTracker: 'SpotlightTracker'
+    SpotlightTracker: 'SpotlightTracker',
+    ActiveParty: 'ActiveParty',
 };
 
 export const actionAutomationChoices = {
