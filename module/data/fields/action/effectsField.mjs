@@ -45,10 +45,18 @@ export default class EffectsField extends fields.ArrayField {
      * @param {object[]} targets Array of formatted targets
      */
     static async applyEffects(targets) {
-        if (!this.effects?.length || !targets?.length) return;
+        if (!this.effects?.length) return;
+
+        let effects = this.effects.map(e => (this.item.applyEffects ?? this.item.effects).get(e._id));
+        const targettingRequired = effects.some(x => x.system.area?.type !== CONFIG.DH.EFFECTS.areaTypes.placed.id);
+        if (targettingRequired && !targets?.length) 
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelectedOrPerm'));;
+        
+        for(const effect of effects.filter(effect => effect.system.area?.type === CONFIG.DH.EFFECTS.areaTypes.placed.id)) {
+            await EffectsField.placeEffectRegion(effect);
+        }
 
         const conditions = CONFIG.DH.GENERAL.conditions();
-        let effects = this.effects;
         const messageTargets = [];
         targets.forEach(async baseToken => {
             if (this.hasSave && baseToken.saved.success === true) effects = this.effects.filter(e => e.onSave === true);
@@ -72,20 +80,24 @@ export default class EffectsField extends fields.ArrayField {
                     : null
             });
 
-            effects.forEach(async e => {
-                const effect = (this.item.applyEffects ?? this.item.effects).get(e._id);
+            effects.forEach(async effect => {
                 if (!token.actor || !effect) return;
-                await EffectsField.applyEffect(effect, token.actor);
+                if (effect.system.area?.type !== CONFIG.DH.EFFECTS.areaTypes.placed.id) 
+                    await EffectsField.applyEffect(effect, token.actor);
             });
         });
 
-        if (messageTargets.length === 0) return;
+        if (targettingRequired && messageTargets.length === 0) 
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelectedOrPerm'));;
 
         const summaryMessageSettings = game.settings.get(
             CONFIG.DH.id,
             CONFIG.DH.SETTINGS.gameSettings.Automation
         ).summaryMessages;
-        if (!summaryMessageSettings.effects) return;
+        const appliedEffects = effects
+            .filter(e => e.system.area?.type !== CONFIG.DH.EFFECTS.areaTypes.placed.id);
+
+        if (!summaryMessageSettings.effects || !appliedEffects.length) return;
 
         const cls = getDocumentClass('ChatMessage');
         const msg = {
@@ -96,7 +108,7 @@ export default class EffectsField extends fields.ArrayField {
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/chat/effectSummary.hbs',
                 {
-                    effects: this.effects.map(e => (this.item.applyEffects ?? this.item.effects).get(e._id)),
+                    effects: appliedEffects,
                     targets: messageTargets
                 }
             )
@@ -118,6 +130,34 @@ export default class EffectsField extends fields.ArrayField {
             origin: effect.uuid
         });
         await ActiveEffect.implementation.create(effectData, { parent: actor });
+    }
+
+    /**
+     * 
+     */
+    static async placeEffectRegion(effect) {
+        const { shape: type, size: range } = effect.system.area;
+        const shapeData = CONFIG.Canvas.layers.regions.layerClass.getTemplateShape({ type, range });
+
+        await canvas.regions.placeRegion(
+            {
+                name: effect.name,
+                shapes: [shapeData],
+                restriction: { enabled: false, type: 'move', priority: 0 },
+                behaviors: [{
+                    name: game.i18n.localize('TYPES.RegionBehavior.applyActiveEffect'),
+                    type: 'applyActiveEffect',
+                    system: {
+                        effects: [effect.uuid]
+                    }
+                }],
+                displayMeasurements: true,
+                locked: false,
+                ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE },
+                visibility: CONST.REGION_VISIBILITY.ALWAYS
+            },
+            { create: true }
+        );
     }
 
     /**

@@ -243,8 +243,6 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         const targets = this.filterPermTargets(this.system.hitTargets),
             config = foundry.utils.deepClone(this.system);
         config.event = event;
-        if (targets.length === 0)
-            ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelectedOrPerm'));
         this.consumeOnSuccess();
         this.system.action?.workflow.get('effects')?.execute(config, targets, true);
     }

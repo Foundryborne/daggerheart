@@ -62,3 +62,10 @@ export const effectTypes = {
         }
     }
 };
+
+export const areaTypes = {
+    placed: {
+        id: 'placed',
+        label: 'DAGGERHEART.EFFECTS.AreaTypes.placed.name'
+    }
+};

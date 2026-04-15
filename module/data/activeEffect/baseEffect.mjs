@@ -93,7 +93,26 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
                     max: new fields.NumberField({ integer: true, label: 'DAGGERHEART.GENERAL.max' })
                 },
                 { nullable: true, initial: null }
-            )
+            ),
+            area: new fields.SchemaField({
+                type: new fields.StringField({
+                    nullable: false,
+                    choices: CONFIG.DH.EFFECTS.areaTypes,
+                    initial: CONFIG.DH.EFFECTS.areaTypes.placed.id,
+                    label: 'DAGGERHEART.GENERAL.type'
+                }),
+                shape: new fields.StringField({
+                    nullable: false,
+                    choices: CONFIG.DH.GENERAL.templateTypes,
+                    initial: CONFIG.DH.GENERAL.templateTypes.circle.id,
+                    label: 'DAGGERHEART.ACTIVEEFFECT.Config.area.shape'
+                }),
+                size: new fields.StringField({
+                    nullable: false,
+                    initial: CONFIG.DH.GENERAL.range.veryClose.id,
+                    label: 'DAGGERHEART.ACTIVEEFFECT.Config.area.size'
+                }),
+            }, { nullable: true, initial: null })
         };
     }
 

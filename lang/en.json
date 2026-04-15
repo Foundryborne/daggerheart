@@ -161,7 +161,12 @@
                 "rangeDependence": {
                     "title": "Range Dependence"
                 },
-                "stacking": { "title": "Stacking" }
+                "stacking": { "title": "Stacking" },
+                "area": { 
+                    "title": "Area",
+                    "shape": "Shape",
+                    "size": "Size"
+                }
             },
             "RangeDependance": {
                 "hint": "Settings for an optional distance at which this effect should activate",
@@ -1966,6 +1971,9 @@
             "Duration": {
                 "passive": "Passive",
                 "temporary": "Temporary"
+            },
+            "AreaTypes": {
+                "placed": { "name": "Placed Area" }
             },
             "Types": {
                 "damage": {

@@ -5,6 +5,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         super(options);
 
         this.changeChoices = DhActiveEffectConfig.getChangeChoices();
+        this.areaDaggerheartRange = true; 
     }
 
     static DEFAULT_OPTIONS = {
@@ -162,6 +163,14 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         htmlElement
             .querySelector('.armor-damage-thresholds-checkbox')
             ?.addEventListener('change', this.armorDamageThresholdToggle.bind(this));
+
+        htmlElement
+            .querySelector('.area-checkbox')
+            ?.addEventListener('change', this.areaToggle.bind(this));
+
+        htmlElement
+            .querySelector('.area-range-type-input')
+            ?.addEventListener('change', this.areaRangeTypeToggle.bind(this));
     }
 
     async _prepareContext(options) {
@@ -196,6 +205,8 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                     label: _loc(`EFFECT.DURATION.UNITS.${value}`),
                     group: CONST.ACTIVE_EFFECT_TIME_DURATION_UNITS.includes(value) ? groups.time : groups.combat
                 }));
+                partContext.areaDaggerheartRange = this.areaDaggerheartRange;
+                partContext.templateRanges = CONFIG.DH.GENERAL.templateRanges;
                 break;
             case 'changes':
                 const singleTypes = ['armor'];
@@ -258,6 +269,28 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         }
 
         return this.submit({ updateData: { system: { changes } } });
+    }
+
+    areaToggle(event) {
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        
+        if(event.target.checked) {
+            const fields = game.system.api.data.activeEffects.BaseEffect._schema.fields.area.fields;
+            submitData.system.area = {
+                type: fields.type.initial,
+                shape: fields.shape.initial,
+                size: CONFIG.DH.GENERAL.range.veryClose.id,
+            };
+        } else {
+            submitData.system.area = null;
+        }
+
+        return this.submit({ updateData: { system: { area: submitData.system.area } } });
+    }
+
+    areaRangeTypeToggle(_event) {
+        this.areaDaggerheartRange = !this.areaDaggerheartRange;
+        this.render();
     }
 
     /** @inheritdoc */
