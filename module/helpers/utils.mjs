@@ -191,13 +191,11 @@ export const getDeleteKeys = (property, innerProperty, innerPropertyDefaultValue
 const nativeReplaceFormulaData = Roll.replaceFormulaData;
 Roll.replaceFormulaData = function (formula, baseData = {}, { missing, warn = false } = {}) {
     /* Inserting global data */
-    const data = { 
-        ...baseData, 
-        partySize: 
-            !game.actors ? 0 : 
-            game.actors.find(x => x.type === 'party' && x.system.active)?.system.partyMembers.length ?? 0,
+    const data = {
+        ...baseData,
+        partySize: game.actors?.party?.system.partyMembers.length ?? 0
     };
-    
+
     const terms = Object.keys(CONFIG.DH.GENERAL.multiplierTypes).map(type => {
         return { term: type, default: 1 };
     });

@@ -117,7 +117,9 @@ export default class DhpActor extends Actor {
         }
     }
 
-    async _preDelete() {
+    async _preDelete(options, user) {
+        if ((await super._preDelete(options, user)) === false) return false;
+
         if (this.prototypeToken.actorLink) {
             game.system.registeredTriggers.unregisterItemTriggers(this.items);
         } else {
@@ -125,8 +127,6 @@ export default class DhpActor extends Actor {
                 game.system.registeredTriggers.unregisterItemTriggers(token.actor.items);
             }
         }
-
-        if(this.system._preDelete() === false) return false;
     }
 
     _onDelete(options, userId) {

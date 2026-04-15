@@ -51,18 +51,11 @@ export default class DhParty extends BaseDataActor {
     _onCreate(data, options, userId) {
         super._onCreate(data, options, userId);
 
-        if (game.user.isActiveGM && !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.ActiveParty)) {
+        if (game.user.isActiveGM && !game.actors.party) {
             game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.ActiveParty, this.parent.id).then(_ => {
                 ui.actors.render();
             });
         }
-    }
-
-    async _preDelete() {
-        super._preDelete();
-    
-        if (this.active) 
-            game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.ActiveParty, null);
     }
 
     _onDelete(options, userId) {
@@ -72,5 +65,11 @@ export default class DhParty extends BaseDataActor {
         for (const member of this.partyMembers) {
             member?.parties?.delete(this.parent);
         }
+
+        // If this *was* the active party, delete it. We can't use game.actors.party as this actor was already deleted
+        const isWorldActor = !this.parent?.parent && !this.parent.compendium;
+        const activePartyId = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.ActiveParty);
+        if (isWorldActor && this.id === activePartyId)
+            game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.ActiveParty, null);
     }
 }

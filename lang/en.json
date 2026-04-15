@@ -3212,7 +3212,7 @@
                     "companion": "Level {level} - {partner}",
                     "companionNoPartner": "No Partner",
                     "duplicateToNewTier": "Duplicate to New Tier",
-                    "activateParty": "Make Activate Party",
+                    "activateParty": "Make Active Party",
                     "partyIsActive": "Active",
                     "createAdversary": "Create Adversary",
                     "pickTierTitle": "Pick a new tier for this adversary"
