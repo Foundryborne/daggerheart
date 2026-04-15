@@ -48,13 +48,14 @@ export default class DhParty extends BaseDataActor {
         }
     }
 
-    /**@inheritdoc */
-    async _preCreate(data, options, user) {
-        const allowed = await super._preCreate(data, options, user);
-        if (allowed === false) return;
+    _onCreate(data, options, userId) {
+        super._onCreate(data, options, userId);
 
-        if (!game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.ActiveParty)) 
-            game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.ActiveParty, this.parent.id);
+        if (game.user.isActiveGM && !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.ActiveParty)) {
+            game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.ActiveParty, this.parent.id).then(_ => {
+                ui.actors.render();
+            });
+        }
     }
 
     async _preDelete() {

@@ -125,6 +125,8 @@ export default class DhpActor extends Actor {
                 game.system.registeredTriggers.unregisterItemTriggers(token.actor.items);
             }
         }
+
+        if(this.system._preDelete() === false) return false;
     }
 
     _onDelete(options, userId) {
