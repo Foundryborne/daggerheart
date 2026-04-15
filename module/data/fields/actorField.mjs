@@ -103,4 +103,15 @@ class ResourcesField extends fields.TypedObjectField {
     }
 }
 
-export { attributeField, ResourcesField, stressDamageReductionRule, bonusField };
+class GoldField extends fields.SchemaField {
+    constructor() {
+        super({
+            coins: new fields.NumberField({ initial: 0, integer: true }),
+            handfuls: new fields.NumberField({ initial: 1, integer: true }),
+            bags: new fields.NumberField({ initial: 0, integer: true }),
+            chests: new fields.NumberField({ initial: 0, integer: true })
+        });
+    }
+}
+
+export { attributeField, ResourcesField, GoldField, stressDamageReductionRule, bonusField };

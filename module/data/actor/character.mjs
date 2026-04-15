@@ -3,7 +3,7 @@ import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import DhLevelData from '../levelData.mjs';
 import { commonActorRules } from './base.mjs';
 import DhCreature from './creature.mjs';
-import { attributeField, stressDamageReductionRule, bonusField } from '../fields/actorField.mjs';
+import { attributeField, stressDamageReductionRule, bonusField, GoldField } from '../fields/actorField.mjs';
 import { ActionField } from '../fields/actionField.mjs';
 import DHCharacterSettings from '../../applications/sheets-configs/character-settings.mjs';
 import { getArmorSources } from '../../helpers/utils.mjs';
@@ -62,12 +62,7 @@ export default class DhCharacter extends DhCreature {
                     core: new fields.BooleanField({ initial: false })
                 })
             ),
-            gold: new fields.SchemaField({
-                coins: new fields.NumberField({ initial: 0, integer: true }),
-                handfuls: new fields.NumberField({ initial: 1, integer: true }),
-                bags: new fields.NumberField({ initial: 0, integer: true }),
-                chests: new fields.NumberField({ initial: 0, integer: true })
-            }),
+            gold: new GoldField(),
             scars: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.scars' }),
             biography: new fields.SchemaField({
                 background: new fields.HTMLField(),

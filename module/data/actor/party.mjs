@@ -2,6 +2,7 @@ import BaseDataActor from './base.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 import TagTeamData from '../tagTeamData.mjs';
 import GroupRollData from '../groupRollData.mjs';
+import { GoldField } from '../fields/actorField.mjs';
 
 export default class DhParty extends BaseDataActor {
     /**@inheritdoc */
@@ -11,12 +12,7 @@ export default class DhParty extends BaseDataActor {
             ...super.defineSchema(),
             partyMembers: new ForeignDocumentUUIDArrayField({ type: 'Actor' }, { prune: true }),
             notes: new fields.HTMLField(),
-            gold: new fields.SchemaField({
-                coins: new fields.NumberField({ initial: 0, integer: true }),
-                handfuls: new fields.NumberField({ initial: 1, integer: true }),
-                bags: new fields.NumberField({ initial: 0, integer: true }),
-                chests: new fields.NumberField({ initial: 0, integer: true })
-            }),
+            gold: new GoldField(),
             tagTeam: new fields.EmbeddedDataField(TagTeamData),
             groupRoll: new fields.EmbeddedDataField(GroupRollData)
         };
