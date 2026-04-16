@@ -113,7 +113,7 @@ export default class DhpActor extends Actor {
     _onUpdate(changes, options, userId) {
         super._onUpdate(changes, options, userId);
         for (const party of this.parties) {
-            party.render();
+            party.render({ parts: ['partyMembers'] });
         }
     }
 
@@ -132,7 +132,7 @@ export default class DhpActor extends Actor {
     _onDelete(options, userId) {
         super._onDelete(options, userId);
         for (const party of this.parties) {
-            party.render();
+            party.render({ parts: ['partyMembers'] });
         }
     }
 
