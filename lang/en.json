@@ -2878,6 +2878,10 @@
                 }
             },
             "Keybindings": {
+                "partySheet": {
+                    "name": "Toggle Party Sheet",
+                    "hint": "Open or close the active party's sheet"
+                },
                 "spotlight": {
                     "name": "Spotlight Combatant",
                     "hint": "Move the spotlight to a hovered or selected token that's present in an active encounter"

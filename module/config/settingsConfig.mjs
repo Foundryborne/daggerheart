@@ -1,5 +1,6 @@
 export const keybindings = {
-    spotlight: 'DHSpotlight'
+    spotlight: 'DHSpotlight',
+    partySheet: 'DHPartySheet'
 };
 
 export const menu = {
