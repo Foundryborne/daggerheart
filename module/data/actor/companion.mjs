@@ -118,10 +118,6 @@ export default class DhCompanion extends DhCreature {
         return this.levelupChoicesLeft > 0;
     }
 
-    isItemValid() {
-        return false;
-    }
-
     prepareBaseData() {
         super.prepareBaseData();
         this.attack.roll.bonus = this.partner?.system?.spellcastModifier ?? 0;

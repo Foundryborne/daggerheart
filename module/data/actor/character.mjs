@@ -18,7 +18,8 @@ export default class DhCharacter extends DhCreature {
             label: 'TYPES.Actor.character',
             type: 'character',
             settingSheet: DHCharacterSettings,
-            isNPC: false
+            isNPC: false,
+            hasInventory: true
         });
     }
 
@@ -427,6 +428,11 @@ export default class DhCharacter extends DhCreature {
             attack.img = 'icons/creatures/claws/claw-straight-brown.webp';
         }
         return attack;
+    }
+
+    /* All items are valid on characters */
+    isItemValid() {
+        return true; 
     }
 
     /** @inheritDoc */

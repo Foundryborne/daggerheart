@@ -73,7 +73,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
             .hideAttribution;
 
         // Prepare inventory data
-        if (['party', 'character'].includes(this.document.type)) {
+        if (this.document.system.metadata.hasInventory) {
             context.inventory = {
                 currencies: {},
                 weapons: this.document.itemTypes.weapon.sort((a, b) => a.sort - b.sort),
@@ -283,11 +283,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
     async _onDropItem(event, item) {
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
         const originActor = item.actor;
-        if (
-            item.actor?.uuid === this.document.uuid ||
-            !originActor ||
-            !['character', 'party'].includes(this.document.type)
-        ) {
+        if (!originActor || originActor.uuid === this.document.uuid || !this.document.system.metadata.hasInventory) {
             return super._onDropItem(event, item);
         }
 

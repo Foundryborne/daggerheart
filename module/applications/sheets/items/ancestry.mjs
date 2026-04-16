@@ -31,11 +31,12 @@ export default class AncestrySheet extends DHHeritageSheet {
         if (data.type === 'ActiveEffect') return super._onDrop(event);
 
         const target = event.target.closest('fieldset.drop-section');
-        const typeField =
-            this.document.system[target.dataset.type === 'primary' ? 'primaryFeature' : 'secondaryFeature'];
-
-        if (!typeField) {
-            super._onDrop(event);
+        if (target) {
+            const typeField =
+                this.document.system[target.dataset.type === 'primary' ? 'primaryFeature' : 'secondaryFeature'];
+            if (!typeField) {
+                super._onDrop(event);
+            }
         }
     }
 }

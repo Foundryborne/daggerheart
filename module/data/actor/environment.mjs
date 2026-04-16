@@ -56,7 +56,7 @@ export default class DhEnvironment extends BaseDataActor {
     }
 
     isItemValid(source) {
-        return source.type === 'feature';
+        return super.isItemValid(source) || source.type === 'feature';
     }
 
     _onUpdate(changes, options, userId) {

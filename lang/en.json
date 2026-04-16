@@ -213,6 +213,9 @@
                     "headerTitle": "Adversary Reaction Roll"
                 }
             },
+            "Base": {
+                "CannotAddType": "Cannot add {itemType} items to {actorType} actors."
+            },
             "Character": {
                 "advantageSources": {
                     "label": "Advantage Sources",

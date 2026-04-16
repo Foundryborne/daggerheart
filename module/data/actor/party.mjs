@@ -5,6 +5,13 @@ import GroupRollData from '../groupRollData.mjs';
 import { GoldField } from '../fields/actorField.mjs';
 
 export default class DhParty extends BaseDataActor {
+    /** @inheritdoc */
+    static get metadata() {
+        return foundry.utils.mergeObject(super.metadata, {
+            hasInventory: true
+        });
+    }
+
     /**@inheritdoc */
     static defineSchema() {
         const fields = foundry.data.fields;
@@ -28,10 +35,6 @@ export default class DhParty extends BaseDataActor {
     static DEFAULT_ICON = 'systems/daggerheart/assets/icons/documents/actors/dark-squad.svg';
 
     /* -------------------------------------------- */
-
-    isItemValid(source) {
-        return ['weapon', 'armor', 'consumable', 'loot'].includes(source.type);
-    }
 
     prepareBaseData() {
         super.prepareBaseData();
