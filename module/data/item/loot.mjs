@@ -15,7 +15,7 @@ export default class DHLoot extends BaseDataItem {
     /** @inheritDoc */
     static defineSchema() {
         return {
-            ...super.defineSchema(),
+            ...super.defineSchema()
         };
     }
 
