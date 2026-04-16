@@ -156,12 +156,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         }
         if (this.config.uses) this.config.uses = foundry.utils.mergeObject(this.config.uses, rest.uses);
         if (rest.roll?.dice) {
-            Object.entries(rest.roll.dice).forEach(([key, value]) => {
-                if(key === 'advantageFaces')
-                    this.roll[key] = Number.parseInt(value);
-                else 
-                    this.roll[key] = value;
-            });
+            this.roll = foundry.utils.mergeObject(this.roll, rest.roll.dice)
         }
         if (rest.hasOwnProperty('trait')) {
             this.config.roll.trait = rest.trait;

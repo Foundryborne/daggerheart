@@ -157,7 +157,7 @@
                                         <option value="{{add this 1}}" {{#if (eq @root.roll.advantageNumber (add this 1))}} selected{{/if}}>{{add this 1}}</option>
                                     {{/times}}
                                 </select>
-                                <select name="roll.dice.advantageFaces"{{#unless advantage}} disabled{{/unless}}>
+                                <select name="roll.dice.advantageFaces"{{#unless advantage}} disabled{{/unless}} data-dtype="Number">
                                     {{selectOptions diceFaces selected=@root.roll.advantageFaces}}
                                 </select>
                             </div>
