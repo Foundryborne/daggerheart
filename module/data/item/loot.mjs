@@ -7,7 +7,6 @@ export default class DHLoot extends BaseDataItem {
             label: 'TYPES.Item.loot',
             type: 'loot',
             hasDescription: true,
-            isQuantifiable: true,
             isInventoryItem: true,
             hasActions: true
         });
@@ -15,8 +14,10 @@ export default class DHLoot extends BaseDataItem {
 
     /** @inheritDoc */
     static defineSchema() {
+        const fields = foundry.data.fields;
         return {
-            ...super.defineSchema()
+            ...super.defineSchema(),
+            quantity: new fields.NumberField({ integer: true, initial: 1, min: 0, required: true }),
         };
     }
 

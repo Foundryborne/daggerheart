@@ -7,7 +7,6 @@ export default class DHConsumable extends BaseDataItem {
             label: 'TYPES.Item.consumable',
             type: 'consumable',
             hasDescription: true,
-            isQuantifiable: true,
             isInventoryItem: true,
             hasActions: true
         });
@@ -18,7 +17,8 @@ export default class DHConsumable extends BaseDataItem {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            consumeOnUse: new fields.BooleanField({ initial: true })
+            consumeOnUse: new fields.BooleanField({ initial: true }),
+            quantity: new fields.NumberField({ integer: true, initial: 1, min: 0, required: true })
         };
     }
 

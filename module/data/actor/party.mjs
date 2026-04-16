@@ -8,7 +8,8 @@ export default class DhParty extends BaseDataActor {
     /** @inheritdoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
-            hasInventory: true
+            hasInventory: true,
+            quantifiable: ["weapon", "armor", "loot", "consumable"]
         });
     }
 

@@ -298,45 +298,77 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                 );
             }
 
-            if (item.system.metadata.isQuantifiable) {
-                const actorItem = originActor.items.get(data.originId);
-                const quantityTransfered = await game.system.api.applications.dialogs.ItemTransferDialog.configure({
+            // Perform the actual transfer, showing a dialog when doing it
+            const availableQuantity = Math.max(1, item.system.quantity);
+            const actorItem = originActor.items.get(data.originId) ?? item;
+            if (availableQuantity > 1) {
+                const quantityTransferred = await game.system.api.applications.dialogs.ItemTransferDialog.configure({
                     item,
                     targetActor: this.document
                 });
-
-                if (quantityTransfered) {
-                    const existingItem = this.document.items.find(x => itemIsIdentical(x, item));
-                    if (existingItem) {
-                        await existingItem.update({
-                            'system.quantity': existingItem.system.quantity + quantityTransfered
-                        });
-                    } else {
-                        const createData = item.toObject();
-                        await this.document.createEmbeddedDocuments('Item', [
-                            {
-                                ...createData,
-                                system: {
-                                    ...createData.system,
-                                    quantity: quantityTransfered
-                                }
-                            }
-                        ]);
-                    }
-
-                    if (quantityTransfered === actorItem.system.quantity) {
-                        await originActor.deleteEmbeddedDocuments('Item', [data.originId]);
-                    } else {
-                        await actorItem.update({
-                            'system.quantity': actorItem.system.quantity - quantityTransfered
-                        });
-                    }
-                }
+                return this.#transferItem(actorItem, quantityTransferred);
             } else {
-                await this.document.createEmbeddedDocuments('Item', [item.toObject()]);
-                await originActor.deleteEmbeddedDocuments('Item', [data.originId]);
+                return this.#transferItem(actorItem, availableQuantity);
             }
         }
+    }
+
+    /**
+     * Helper to perform the actual transfer of an item to this actor, including stack/unstack logic based on target quantifiability.
+     * Make sure item is the actor item before calling this method or there will be issues
+     */
+    async #transferItem(item, quantity) {
+        const originActor = item.actor;
+        const targetActor = this.document;
+        const allowStacking = targetActor.system.metadata.quantifiable?.includes(item.type);
+
+        const batch = [];
+
+        // First add/update the item to the target actor
+        const existing = allowStacking ? targetActor.items.find(x => itemIsIdentical(x, item)) : null;
+        if (existing) {
+            batch.push({
+                action: 'update',
+                documentName: 'Item',
+                parent: targetActor,
+                updates: [{ '_id': existing.id, 'system.quantity': existing.system.quantity + quantity }]
+            });
+        } else {
+            const itemsToCreate = [];
+            if (allowStacking) {
+                itemsToCreate.push(foundry.utils.mergeObject(item.toObject(true), { system: { quantity } }));
+            } else {
+                const createData = new Array(Math.max(1, quantity))
+                    .fill(0)
+                    .map(() => foundry.utils.mergeObject(item.toObject(), { system: { quantity: 1 } }));
+                itemsToCreate.push(...createData);
+            }
+            batch.push({
+                action: 'create',
+                documentName: 'Item',
+                parent: targetActor,
+                data: itemsToCreate
+            });
+        }
+
+        // Remove the item from the original actor (by either deleting it, or updating its quantity)
+        if (quantity >= item.system.quantity) {
+            batch.push({
+                action: 'delete',
+                documentName: 'Item',
+                parent: originActor,
+                ids: [item.id]
+            });
+        } else {
+            batch.push({
+                action: 'update',
+                documentName: 'Item',
+                parent: originActor,
+                updates: [{ '_id': item.id, 'system.quantity': item.system.quantity - quantity }]
+            });
+        }
+
+        return foundry.documents.modifyBatch(batch);
     }
 
     /**

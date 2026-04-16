@@ -19,7 +19,8 @@ export default class DhCharacter extends DhCreature {
             type: 'character',
             settingSheet: DHCharacterSettings,
             isNPC: false,
-            hasInventory: true
+            hasInventory: true,
+            quantifiable: ["loot", "consumable"]
         });
     }
 

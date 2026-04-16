@@ -63,10 +63,10 @@ Parameters:
     {{#if (and (not hideResources) (not (eq item.system.resource.type 'diceValue')))}}
     {{> "systems/daggerheart/templates/sheets/global/partials/item-resource.hbs"}}
     {{/if}}
-    {{#if (and (not hideResources) (gte item.system.quantity 0))}}
-    <div class="item-resource">
-      <input type="number" id="{{item.uuid}}-quantity" class="inventory-item-quantity" value="{{item.system.quantity}}" min="0" />
-    </div>
+    {{#if (or isQuantifiable (or (eq item.system.quantity 0) (gt item.system.quantity 1)))}}
+        <div class="item-resource">
+            <input type="number" id="{{item.uuid}}-quantity" class="inventory-item-quantity" value="{{item.system.quantity}}" min="0" />
+        </div>
     {{/if}}
 
     {{!-- Controls --}}

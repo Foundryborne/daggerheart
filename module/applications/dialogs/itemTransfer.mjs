@@ -38,13 +38,15 @@ export default class ItemTransferDialog extends HandlebarsApplicationMixin(Appli
         originActor ??= item?.actor;
         const homebrewKey = CONFIG.DH.SETTINGS.gameSettings.Homebrew;
         const currencySetting = game.settings.get(CONFIG.DH.id, homebrewKey).currency?.[currency] ?? null;
+        const max = item?.system.quantity ?? originActor.system.gold[currency] ?? 0;
 
         return {
             originActor,
             targetActor,
             itemImage: item?.img,
             currencyIcon: currencySetting?.icon,
-            max: item?.system.quantity ?? originActor.system.gold[currency] ?? 0,
+            max,
+            initial: targetActor.system.metadata.quantifiable?.includes(item.type) ? max : 1,
             title: item?.name ?? currencySetting?.label
         };
     }
