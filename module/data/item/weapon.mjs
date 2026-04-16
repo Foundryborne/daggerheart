@@ -26,7 +26,6 @@ export default class DHWeapon extends AttachableItem {
                 label: 'DAGGERHEART.GENERAL.Tiers.singular'
             }),
             equipped: new fields.BooleanField({ initial: false }),
-            quantity: new fields.NumberField({ integer: true, initial: 1, min: 0, required: true }),
 
             //SETTINGS
             secondary: new fields.BooleanField({ initial: false, label: 'DAGGERHEART.ITEMS.Weapon.secondaryWeapon' }),

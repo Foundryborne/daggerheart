@@ -23,7 +23,6 @@ export default class DHArmor extends AttachableItem {
                 current: new fields.NumberField({ integer: true, min: 0, initial: 0 }),
                 max: new fields.NumberField({ required: true, integer: true, initial: 0 })
             }),
-            quantity: new fields.NumberField({ integer: true, initial: 1, min: 0, required: true }),
             baseThresholds: new fields.SchemaField({
                 major: new fields.NumberField({ integer: true, initial: 0 }),
                 severe: new fields.NumberField({ integer: true, initial: 0 })

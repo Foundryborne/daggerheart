@@ -81,6 +81,9 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             );
         }
 
+        if (this.metadata.isInventoryItem)
+            schema.quantity = new fields.NumberField({ integer: true, initial: 1, min: 0, required: true });
+
         if (this.metadata.hasActions) schema.actions = new ActionsField();
 
         return schema;
