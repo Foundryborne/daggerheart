@@ -156,7 +156,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         }
         if (this.config.uses) this.config.uses = foundry.utils.mergeObject(this.config.uses, rest.uses);
         if (rest.roll?.dice) {
-            this.roll = foundry.utils.mergeObject(this.roll, rest.roll.dice)
+            this.roll = foundry.utils.mergeObject(this.roll, rest.roll.dice);
         }
         if (rest.hasOwnProperty('trait')) {
             this.config.roll.trait = rest.trait;
@@ -175,12 +175,11 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         this.disadvantage = advantage === -1;
 
         this.config.roll.advantage = this.config.roll.advantage === advantage ? 0 : advantage;
-        
-        if(this.config.roll.advantage === 1 && this.config.data.rules.roll.defaultAdvantageDice) {
+
+        if (this.config.roll.advantage === 1 && this.config.data.rules.roll.defaultAdvantageDice) {
             const faces = Number.parseInt(this.config.data.rules.roll.defaultAdvantageDice);
             this.roll.advantageFaces = Number.isNaN(faces) ? this.roll.advantageFaces : faces;
-        }
-        else if(this.config.roll.advantage === -1 && this.config.data.rules.roll.defaultDisadvantageDice) {
+        } else if (this.config.roll.advantage === -1 && this.config.data.rules.roll.defaultDisadvantageDice) {
             const faces = Number.parseInt(this.config.data.rules.roll.defaultDisadvantageDice);
             this.roll.advantageFaces = Number.isNaN(faces) ? this.roll.advantageFaces : faces;
         }
