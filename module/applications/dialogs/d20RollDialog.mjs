@@ -123,7 +123,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             context.advantage = this.config.roll?.advantage;
             context.disadvantage = this.config.roll?.disadvantage;
             context.diceOptions = CONFIG.DH.GENERAL.diceTypes;
-            context.diceFaces = CONFIG.DH.GENERAL.dieFaces.reduce((acc, face) => {
+            context.dieFaces = CONFIG.DH.GENERAL.dieFaces.reduce((acc, face) => {
                 acc[face] = `d${face}`;
                 return acc;
             }, {});
