@@ -2,9 +2,8 @@
 var gulp = require('gulp');
 var less = require('gulp-less');
 
-gulp.task('less', function (cb) {
-    gulp.src('styles/daggerheart.less').pipe(less()).pipe(gulp.dest('styles'));
-    cb();
+gulp.task('less', function () {
+    return gulp.src('styles/daggerheart.less').pipe(less()).pipe(gulp.dest('styles'));
 });
 
 gulp.task(
