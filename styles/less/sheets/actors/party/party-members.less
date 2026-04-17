@@ -35,8 +35,8 @@ body.game:is(.performance-low, .noblur) {
 
             .actor-img-frame {
                 grid-area: img;
-                width: 7.5rem;
-                height: 7.5rem;
+                width: 7.375rem;
+                height: 7.375rem;
                 position: relative;
                 
                 .actor-img {
@@ -71,6 +71,7 @@ body.game:is(.performance-low, .noblur) {
                     height: 1.75rem;
                     background: url('../assets/svg/trait-shield.svg') no-repeat;
                     background-size: 100%;
+                    color: var(--color-light-1);
                     font-size: var(--font-size-14);
                     font-weight: 700;
                     display: flex;
@@ -87,7 +88,7 @@ body.game:is(.performance-low, .noblur) {
 
                     display: flex;
                     gap: 4px;
-                    background-color: light-dark(transparent, @dark-blue);
+                    background-color: light-dark(var(--color-light-1), @dark-blue);
                     color: light-dark(@dark-blue, @golden);
                     padding: 4px 6px;
                     border: 1px solid light-dark(@dark-blue, @golden);
@@ -125,7 +126,7 @@ body.game:is(.performance-low, .noblur) {
                     width: 100%;
                     z-index: 1;
                     font-size: var(--font-size-20);
-                    color: light-dark(@beige, @golden);
+                    color: light-dark(@dark-blue, @golden);
                     font-weight: bold;
                 }
 
