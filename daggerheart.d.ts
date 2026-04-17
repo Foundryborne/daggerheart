@@ -10,8 +10,8 @@ declare global {
      * This class manages the registration and execution of hooked callback functions.
      */
     class Hooks extends foundry.helpers.Hooks {}
-    const fromUuid = foundry.utils.fromUuid;
-    const fromUuidSync = foundry.utils.fromUuidSync;
+    const fromUuid: typeof foundry.utils.fromUuid;
+    const fromUuidSync: typeof foundry.utils.fromUuidSync;
 
     /**
      * The singleton game canvas
