@@ -1103,3 +1103,9 @@ export const fallAndCollisionDamage = {
         damageFormula: '1d20 + 5'
     }
 };
+
+export const simpleDispositions = {
+    HOSTILE: -1,
+    NEUTRAL: 0,
+    FRIENDLY: 1
+};

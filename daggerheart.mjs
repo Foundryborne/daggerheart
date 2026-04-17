@@ -3,6 +3,7 @@ import * as applications from './module/applications/_module.mjs';
 import * as data from './module/data/_module.mjs';
 import * as models from './module/data/_module.mjs';
 import * as documents from './module/documents/_module.mjs';
+import * as regionBehaviors from './module/data/regionBehavior/_module.mjs';
 import { macros } from './module/_module.mjs';
 import * as collections from './module/documents/collections/_module.mjs';
 import * as dice from './module/dice/_module.mjs';
@@ -44,6 +45,8 @@ CONFIG.Item.dataModels = models.items.config;
 CONFIG.ActiveEffect.documentClass = documents.DhActiveEffect;
 CONFIG.ActiveEffect.dataModels = models.activeEffects.config;
 CONFIG.ActiveEffect.changeTypes = { ...CONFIG.ActiveEffect.changeTypes, ...models.activeEffects.changeEffects };
+
+CONFIG.RegionBehavior.documentClass = documents.DhRegionBehavior;
 
 CONFIG.Combat.documentClass = documents.DhpCombat;
 CONFIG.Combat.dataModels = { base: models.DhCombat };

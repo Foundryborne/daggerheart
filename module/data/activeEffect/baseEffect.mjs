@@ -112,6 +112,9 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
                     initial: CONFIG.DH.GENERAL.range.veryClose.id,
                     label: 'DAGGERHEART.ACTIVEEFFECT.Config.area.size'
                 }),
+                targetDispositions: new fields.SetField(new fields.NumberField({
+
+                })),
             }, { nullable: true, initial: null })
         };
     }

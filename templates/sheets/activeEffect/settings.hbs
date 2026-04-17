@@ -55,21 +55,19 @@
         </legend>
 
         {{#if document.system.area}}
-            
-                {{formGroup systemFields.area.fields.type value=source.system.area.type localize=true blank=false }}
-                {{formGroup systemFields.area.fields.shape value=source.system.area.shape localize=true blank=false }}
-                <div class="form-group">
-                    <div class="form-fields">
-                        {{#if areaDaggerheartRange}}
-                            {{formGroup systemFields.area.fields.size value=source.system.area.size choices=templateRanges blank=false localize=true }}
-                        {{else}}
-                            {{formGroup systemFields.area.fields.size value=source.system.area.size localize=true }}
-                        {{/if}}
-                        <label>{{localize "Use Daggerheart Range"}}</label>
-                        <input type="checkbox" class="area-range-type-input" {{checked areaDaggerheartRange}} />
-                    </div>
+            {{formGroup systemFields.area.fields.type value=source.system.area.type localize=true blank=false }}
+            {{formGroup systemFields.area.fields.shape value=source.system.area.shape localize=true blank=false }}
+            <div class="form-group">
+                <div class="form-fields">
+                    {{#if areaDaggerheartRange}}
+                        {{formGroup systemFields.area.fields.size value=source.system.area.size choices=templateRanges blank=false localize=true }}
+                    {{else}}
+                        {{formGroup systemFields.area.fields.size value=source.system.area.size localize=true }}
+                    {{/if}}
+                    <label>{{localize "Use Daggerheart Range"}}</label>
+                    <input type="checkbox" class="area-range-type-input" {{checked areaDaggerheartRange}} />
                 </div>
-        
+            </div>
         {{/if}}
     </fieldset>
 </section>
