@@ -52,12 +52,11 @@ Parameters:
   {{else}}
   <ul class="items-list">
     {{#each collection as |item|}}
-
     {{> 'daggerheart.inventory-item'
     item=item
     type=../type
     disabledEffect=../disabledEffect
-    actorType=../actorType
+    actorType=(ifThen ../actorType ../actorType @root.document.type)
     hideControls=../hideControls
     hideContextMenu=../hideContextMenu
     isActor=../isActor

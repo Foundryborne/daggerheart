@@ -12,8 +12,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
         classes: ['character'],
         position: { width: 850, height: 800 },
-        /* Foundry adds disabled to all buttons and inputs if editPermission is missing. This is not desired. */
-        editPermission: CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER,
         actions: {
             toggleVault: CharacterSheet.#toggleVault,
             rollAttribute: CharacterSheet.#rollAttribute,
@@ -68,7 +66,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 }
             },
             {
-                handler: CharacterSheet.#getEquipamentContextOptions,
+                handler: CharacterSheet.#getEquipmentContextOptions,
                 selector: '[data-item-uuid][data-type="armor"], [data-item-uuid][data-type="weapon"]',
                 options: {
                     parentClassHooks: false,
@@ -168,6 +166,16 @@ export default class CharacterSheet extends DHBaseActorSheet {
         }
 
         return applicationOptions;
+    }
+
+    /** @inheritdoc */
+    _toggleDisabled(disabled) {
+        // Overriden to only disable text inputs by default.
+        // Everything else is done by checking @root.editable in the sheet
+        const form = this.form;
+        for (const input of form.querySelectorAll("input:not([type=search])")) {
+            input.disabled = disabled;
+        }
     }
 
     /** @inheritDoc */
@@ -391,14 +399,14 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * @this {CharacterSheet}
      * @protected
      */
-    static #getEquipamentContextOptions() {
+    static #getEquipmentContextOptions() {
         const options = [
             {
                 name: 'equip',
                 icon: 'fa-solid fa-hands',
                 condition: target => {
                     const doc = getDocFromElementSync(target);
-                    return doc && !doc.system.equipped;
+                    return doc.isOwner && doc && !doc.system.equipped;
                 },
                 callback: (target, event) => CharacterSheet.#toggleEquipItem.call(this, event, target)
             },
@@ -407,7 +415,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 icon: 'fa-solid fa-hands',
                 condition: target => {
                     const doc = getDocFromElementSync(target);
-                    return doc && doc.system.equipped;
+                    return doc.isOwner && doc && doc.system.equipped;
                 },
                 callback: (target, event) => CharacterSheet.#toggleEquipItem.call(this, event, target)
             }

@@ -3233,6 +3233,7 @@
             "Tooltip": {
                 "disableEffect": "Disable Effect",
                 "enableEffect": "Enable Effect",
+                "edit": "Edit",
                 "openItemWorld": "Open Item World",
                 "openActorWorld": "Open Actor World",
                 "sendToChat": "Send to Chat",

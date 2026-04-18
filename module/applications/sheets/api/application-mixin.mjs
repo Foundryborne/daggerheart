@@ -475,7 +475,7 @@ export default function DHApplicationMixin(Base) {
                         const doc = getDocFromElementSync(target);
                         return (
                             (!dataset.noCompendiumEdit && !doc) ||
-                            (doc && (!doc?.hasOwnProperty('systemPath') || doc?.inCollection))
+                            (doc?.isOwner && (!doc?.hasOwnProperty('systemPath') || doc?.inCollection))
                         );
                     },
                     callback: async target => (await getDocFromElement(target)).sheet.render({ force: true })
@@ -489,6 +489,7 @@ export default function DHApplicationMixin(Base) {
                     condition: target => {
                         const doc = getDocFromElementSync(target);
                         return (
+                            doc?.isOwner &&
                             !foundry.utils.isEmpty(doc?.system?.attack?.damage.parts) ||
                             !foundry.utils.isEmpty(doc?.damage?.parts)
                         );
@@ -511,7 +512,7 @@ export default function DHApplicationMixin(Base) {
                     icon: 'fa-solid fa-burst',
                     condition: target => {
                         const doc = getDocFromElementSync(target);
-                        return doc && !(doc.type === 'domainCard' && doc.system.inVault);
+                        return doc?.isOwner && !(doc.type === 'domainCard' && doc.system.inVault);
                     },
                     callback: async (target, event) => (await getDocFromElement(target)).use(event)
                 });
@@ -530,7 +531,8 @@ export default function DHApplicationMixin(Base) {
                     icon: 'fa-solid fa-trash',
                     condition: element => {
                         const target = element.closest('[data-item-uuid]');
-                        return target.dataset.itemType !== 'beastform';
+                        const doc = getDocFromElementSync(target);
+                        return doc?.isOwner && target.dataset.itemType !== 'beastform';
                     },
                     callback: async (target, event) => {
                         const doc = await getDocFromElement(target);
