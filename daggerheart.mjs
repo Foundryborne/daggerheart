@@ -32,6 +32,11 @@ CONFIG.Dice.daggerheart = {
     FateRoll: FateRoll
 };
 
+CONFIG.RegionBehavior.dataModels = {
+    ...CONFIG.RegionBehavior.dataModels,
+    ...data.regionBehaviors
+};
+
 Object.assign(CONFIG.Dice.termTypes, dice.diceTypes);
 
 CONFIG.Actor.documentClass = documents.DhpActor;

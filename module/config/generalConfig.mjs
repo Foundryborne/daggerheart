@@ -80,12 +80,30 @@ export const groupAttackRange = {
 
 /* circle|cone|rect|ray used to be CONST.MEASURED_TEMPLATE_TYPES. Hardcoded for now */
 export const templateTypes = {
-    CIRCLE: 'circle',
-    CONE: 'cone',
-    RECTANGLE: 'rectangle',
-    LINE: 'line',
-    EMANATION: 'emanation',
-    INFRONT: 'inFront'
+    circle: {
+        id: 'circle',
+        label: 'Circle'
+    },
+    cone: {
+        id: 'cone',
+        label: 'Cone'
+    },
+    rectangle: {
+        id: 'rectangle',
+        label: 'Rectangle'
+    },
+    line: {
+        id: 'line',
+        label: 'Line'
+    },
+    emanation: {
+        id: 'emanation',
+        label: 'Emanation'
+    },
+    inFront: {
+        id: 'inFront',
+        label: 'In Front'
+    }
 };
 
 export const rangeInclusion = {
@@ -1090,5 +1108,20 @@ export const fallAndCollisionDamage = {
         label: 'DAGGERHEART.CONFIG.fallAndCollision.collision.label',
         chatTitle: 'DAGGERHEART.CONFIG.fallAndCollision.collision.chatTitle',
         damageFormula: '1d20 + 5'
+    }
+};
+
+export const simpleDispositions = {
+    [-1]: {
+        id: -1,
+        label: 'TOKEN.DISPOSITION.HOSTILE'
+    },
+    [0]: {
+        id: 0,
+        label: 'TOKEN.DISPOSITION.NEUTRAL'
+    },
+    [1]: {
+        id: 1,
+        label: 'TOKEN.DISPOSITION.FRIENDLY'
     }
 };

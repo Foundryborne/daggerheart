@@ -15,7 +15,7 @@ const fields = foundry.data.fields;
 */
 
 export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel) {
-    static extraSchemas = ['cost', 'uses', 'range'];
+    static extraSchemas = ['area', 'cost', 'uses', 'range'];
 
     /** @inheritDoc */
     static defineSchema() {

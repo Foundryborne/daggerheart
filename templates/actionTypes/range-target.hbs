@@ -1,12 +1,14 @@
 <fieldset class="one-column">
     <legend>{{localize "DAGGERHEART.GENERAL.range"}}{{#if fields.target}} & {{localize "DAGGERHEART.GENERAL.Target.single"}}{{/if}}</legend>
-    {{formField fields.range value=source.range label=(localize "DAGGERHEART.GENERAL.range") name=(concat path "range") localize=true}}
     {{#if fields.target}}
-    <div class="nest-inputs">
-        {{#if (and source.target.type (not (eq source.target.type 'self')))}}
-            {{ formField fields.target.amount value=source.target.amount label=(localize "DAGGERHEART.GENERAL.amount") name=(concat path "target.amount")  localize=true}}
-        {{/if}}
-        {{ formField fields.target.type value=source.target.type label=(localize "DAGGERHEART.GENERAL.Target.single") name=(concat path "target.type") localize=true }}
-    </div>
+        <div class="nest-inputs">
+            {{formField fields.range value=source.range label=(localize "DAGGERHEART.GENERAL.range") name=(concat path "range") localize=true}}
+            {{#if (and source.target.type (not (eq source.target.type 'self')))}}
+                {{ formField fields.target.amount value=source.target.amount label=(localize "DAGGERHEART.GENERAL.amount") name=(concat path "target.amount")  localize=true}}
+            {{/if}}
+            {{ formField fields.target.type value=source.target.type label=(localize "DAGGERHEART.GENERAL.Target.single") name=(concat path "target.type") localize=true }}
+        </div>
+    {{else}}
+        {{formField fields.range value=source.range label=(localize "DAGGERHEART.GENERAL.range") name=(concat path "range") localize=true}}
     {{/if}}
 </fieldset>

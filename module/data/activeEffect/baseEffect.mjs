@@ -93,7 +93,10 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
                     max: new fields.NumberField({ integer: true, label: 'DAGGERHEART.GENERAL.max' })
                 },
                 { nullable: true, initial: null }
-            )
+            ),
+            targetDispositions: new fields.SetField(new fields.NumberField({
+                choices: CONFIG.DH.GENERAL.simpleDispositions,
+            }), { label: 'Affected Dispositions' }),
         };
     }
 

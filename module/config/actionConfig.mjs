@@ -115,3 +115,10 @@ export const advantageState = {
         value: 1
     }
 };
+
+export const areaTypes = {
+    placed: {
+        id: 'placed',
+        label: 'Placed Area'
+    }
+};

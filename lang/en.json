@@ -109,6 +109,12 @@
                     "customFormula": "Custom Formula",
                     "formula": "Formula"
                 },
+                "area": {
+                    "sectionTitle": "Areas",
+                    "shape": "Shape",
+                    "size": "Size"
+
+                },
                 "displayInChat": "Display in chat",
                 "deleteTriggerTitle": "Delete Trigger",
                 "deleteTriggerContent": "Are you sure you want to delete the {trigger} trigger?",
@@ -2433,6 +2439,7 @@
             "maxWithThing": "Max {thing}",
             "missingDragDropThing": "Drop {thing} here",
             "multiclass": "Multiclass",
+            "name": "Name",
             "newCategory": "New Category",
             "newThing": "New {thing}",
             "next": "Next",

@@ -95,4 +95,48 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
         });
         return inBounds.length === 1 ? inBounds[0] : null;
     }
+
+    static getTemplateShape({ type, angle, range, direction } = {}) {
+        const { line, rectangle, inFront, cone } = CONFIG.DH.GENERAL.templateTypes;
+
+        const usedAngle =
+            type === cone.id ? (angle ?? CONFIG.MeasuredTemplate.defaults.angle) : type === inFront.id ? '180' : undefined;
+
+        const { grid, distance } = CONFIG.Scene.documentClass.schema.fields.grid.fields;
+        const sceneGridSize = canvas.scene?.grid.size ?? grid.size.initial;
+        const sceneGridDistance = canvas.scene?.grid.distance ?? distance.getInitialValue();
+        const dimensionConstant = sceneGridSize / sceneGridDistance;
+
+        const rangeNumber = Number(range);
+        const settings = canvas.scene?.rangeSettings;
+        const baseDistance = (!Number.isNaN(rangeNumber) ? rangeNumber : (settings ? settings[range] : 0)) * dimensionConstant;
+
+        const length = baseDistance;
+        const radius = length;
+
+        const shapeWidth = type === line.id ? 5 * dimensionConstant : type === rectangle.id ? length : undefined;
+        const shapeType = type === inFront.id ? cone.id : type;
+
+        const { width, height } = game.canvas.scene.dimensions;
+        return {
+            x: width / 2,
+            y: height / 2,
+            base: {
+                type: 'token',
+                x: 0,
+                y: 0,
+                width: 1,
+                height: 1,
+                shape: game.canvas.grid.isHexagonal ? CONST.TOKEN_SHAPES.ELLIPSE_1 : CONST.TOKEN_SHAPES.RECTANGLE_1
+            },
+            t: shapeType,
+            length: length,
+            width: shapeWidth,
+            height: length,
+            angle: usedAngle,
+            radius: radius,
+            direction: direction ?? 0,
+            type: shapeType
+        };
+    }
 }

@@ -137,6 +137,10 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             element.addEventListener('click', this.onApplyEffect.bind(this))
         );
 
+        html.querySelectorAll('.action-areas').forEach(element => 
+            element.addEventListener('click', this.onCreateAreas.bind(this))
+        );
+
         html.querySelectorAll('.roll-target').forEach(element => {
             element.addEventListener('mouseenter', this.hoverTarget);
             element.addEventListener('mouseleave', this.unhoverTarget);
@@ -247,6 +251,73 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelectedOrPerm'));
         this.consumeOnSuccess();
         this.system.action?.workflow.get('effects')?.execute(config, targets, true);
+    }
+
+    async onCreateAreas(event) {
+        let selectedArea = null;
+        if (this.system.action.area.length === 1)
+            selectedArea = this.system.action.area[0];
+        else if(this.system.action.area.length > 1) {
+           /* Pop a selection. Possibly a context menu? */ 
+            new foundry.applications.ux.ContextMenu.implementation(
+                event.target,
+                '.scene-environment',
+                this.system.action.area.map((area, index) => ({
+                    name: index,
+                    callback: () => {
+                        if (scene.flags.daggerheart.sceneEnvironments[0] !== environment.uuid) {
+                            const newEnvironments = scene.flags.daggerheart.sceneEnvironments;
+                            const newFirst = newEnvironments.splice(
+                                newEnvironments.findIndex(x => x === environment.uuid),
+                                1
+                            )[0];
+                            newEnvironments.unshift(newFirst);
+                            emitAsGM(
+                                GMUpdateEvent.UpdateDocument,
+                                scene.update.bind(scene),
+                                { 'flags.daggerheart.sceneEnvironments': newEnvironments },
+                                scene.uuid
+                            );
+                        }
+
+                        environment.sheet.render({ force: true });
+                    }
+                })),
+                {
+                    jQuery: false,
+                    fixed: true
+                }
+            );
+
+            CONFIG.ux.ContextMenu.triggerContextMenu(event, '.scene-environment');
+
+
+        }
+
+        if(!selectedArea) return;
+        const effects = selectedArea.effects.map(effect => this.system.action.item.effects.get(effect).uuid);
+        const { shape: type, size: range } = this.system.action.area[0]; 
+        const shapeData = CONFIG.Canvas.layers.regions.layerClass.getTemplateShape({ type, range });
+
+        await canvas.regions.placeRegion(
+            {
+                name: 'Test',
+                shapes: [shapeData],
+                restriction: { enabled: false, type: 'move', priority: 0 },
+                behaviors: [{
+                    name: game.i18n.localize('TYPES.RegionBehavior.applyActiveEffect'),
+                    type: 'applyActiveEffect',
+                    system: {
+                        effects: effects
+                    }
+                }],
+                displayMeasurements: true,
+                locked: false,
+                ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE },
+                visibility: CONST.REGION_VISIBILITY.ALWAYS
+            },
+            { create: true }
+        );
     }
 
     filterPermTargets(targets) {
