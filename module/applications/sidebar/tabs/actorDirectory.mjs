@@ -48,9 +48,9 @@ export default class DhActorDirectory extends foundry.applications.sidebar.tabs.
         const options = super._getEntryContextOptions();
         options.push(
             {
-                name: 'DAGGERHEART.UI.Sidebar.actorDirectory.duplicateToNewTier',
+                label: 'DAGGERHEART.UI.Sidebar.actorDirectory.duplicateToNewTier',
                 icon: `<i class="fa-solid fa-arrow-trend-up" inert></i>`,
-                condition: li => {
+                visible: li => {
                     const actor = game.actors.get(li.dataset.entryId);
                     return actor?.type === 'adversary' && actor.system.type !== 'social';
                 },
@@ -92,9 +92,9 @@ export default class DhActorDirectory extends foundry.applications.sidebar.tabs.
                 }
             },
             {
-                name: 'DAGGERHEART.UI.Sidebar.actorDirectory.activateParty',
+                label: 'DAGGERHEART.UI.Sidebar.actorDirectory.activateParty',
                 icon: `<i class="fa-regular fa-square"></i>`,
-                condition: li => {
+                visible: li => {
                     const actor = game.actors.get(li.dataset.entryId);
                     return actor && actor.type === 'party' && !actor.system.active;
                 },

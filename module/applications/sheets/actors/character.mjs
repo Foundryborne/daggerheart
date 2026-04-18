@@ -323,11 +323,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
         /**@type {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} */
         const options = [
             {
-                name: 'toLoadout',
+                label: 'toLoadout',
                 icon: 'fa-solid fa-arrow-up',
-                condition: target => {
+                visible: target => {
                     const doc = getDocFromElementSync(target);
-                    return doc && doc.system.inVault;
+                    return doc?.isOwner && doc.system.inVault;
                 },
                 callback: async target => {
                     const doc = await getDocFromElement(target);
@@ -337,11 +337,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 }
             },
             {
-                name: 'recall',
+                label: 'recall',
                 icon: 'fa-solid fa-bolt-lightning',
-                condition: target => {
+                visible: target => {
                     const doc = getDocFromElementSync(target);
-                    return doc && doc.system.inVault;
+                    return doc?.isOwner && doc.system.inVault;
                 },
                 callback: async (target, event) => {
                     const doc = await getDocFromElement(target);
@@ -376,17 +376,17 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 }
             },
             {
-                name: 'toVault',
+                label: 'toVault',
                 icon: 'fa-solid fa-arrow-down',
-                condition: target => {
+                visible: target => {
                     const doc = getDocFromElementSync(target);
-                    return doc && !doc.system.inVault;
+                    return doc?.isOwner && !doc.system.inVault;
                 },
                 callback: async target => (await getDocFromElement(target)).update({ 'system.inVault': true })
             }
         ].map(option => ({
             ...option,
-            name: `DAGGERHEART.APPLICATIONS.ContextMenu.${option.name}`,
+            label: `DAGGERHEART.APPLICATIONS.ContextMenu.${option.label}`,
             icon: `<i class="${option.icon}"></i>`
         }));
 
@@ -402,18 +402,18 @@ export default class CharacterSheet extends DHBaseActorSheet {
     static #getEquipmentContextOptions() {
         const options = [
             {
-                name: 'equip',
+                label: 'equip',
                 icon: 'fa-solid fa-hands',
-                condition: target => {
+                visible: target => {
                     const doc = getDocFromElementSync(target);
                     return doc.isOwner && doc && !doc.system.equipped;
                 },
                 callback: (target, event) => CharacterSheet.#toggleEquipItem.call(this, event, target)
             },
             {
-                name: 'unequip',
+                label: 'unequip',
                 icon: 'fa-solid fa-hands',
-                condition: target => {
+                visible: target => {
                     const doc = getDocFromElementSync(target);
                     return doc.isOwner && doc && doc.system.equipped;
                 },
@@ -421,7 +421,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             }
         ].map(option => ({
             ...option,
-            name: `DAGGERHEART.APPLICATIONS.ContextMenu.${option.name}`,
+            label: `DAGGERHEART.APPLICATIONS.ContextMenu.${option.label}`,
             icon: `<i class="${option.icon}"></i>`
         }));
 

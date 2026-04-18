@@ -418,18 +418,18 @@ export default function DHApplicationMixin(Base) {
             /**@type {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} */
             const options = [
                 {
-                    name: 'disableEffect',
+                    label: 'disableEffect',
                     icon: 'fa-solid fa-lightbulb',
-                    condition: element => {
+                    visible: element => {
                         const target = element.closest('[data-item-uuid]');
                         return !target.dataset.disabled && target.dataset.itemType !== 'beastform';
                     },
                     callback: async target => (await getDocFromElement(target)).update({ disabled: true })
                 },
                 {
-                    name: 'enableEffect',
+                    label: 'enableEffect',
                     icon: 'fa-regular fa-lightbulb',
-                    condition: element => {
+                    visible: element => {
                         const target = element.closest('[data-item-uuid]');
                         return target.dataset.disabled && target.dataset.itemType !== 'beastform';
                     },
@@ -437,7 +437,7 @@ export default function DHApplicationMixin(Base) {
                 }
             ].map(option => ({
                 ...option,
-                name: `DAGGERHEART.APPLICATIONS.ContextMenu.${option.name}`,
+                label: `DAGGERHEART.APPLICATIONS.ContextMenu.${option.label}`,
                 icon: `<i class="${option.icon}"></i>`
             }));
 
@@ -468,9 +468,9 @@ export default function DHApplicationMixin(Base) {
         _getContextMenuCommonOptions({ usable = false, toChat = false, deletable = true }) {
             const options = [
                 {
-                    name: 'CONTROLS.CommonEdit',
+                    label: 'CONTROLS.CommonEdit',
                     icon: 'fa-solid fa-pen-to-square',
-                    condition: target => {
+                    visible: target => {
                         const { dataset } = target.closest('[data-item-uuid]');
                         const doc = getDocFromElementSync(target);
                         return (
@@ -484,9 +484,9 @@ export default function DHApplicationMixin(Base) {
 
             if (usable) {
                 options.unshift({
-                    name: 'DAGGERHEART.GENERAL.damage',
+                    label: 'DAGGERHEART.GENERAL.damage',
                     icon: 'fa-solid fa-explosion',
-                    condition: target => {
+                    visible: target => {
                         const doc = getDocFromElementSync(target);
                         return (
                             doc?.isOwner &&
@@ -508,9 +508,9 @@ export default function DHApplicationMixin(Base) {
                 });
 
                 options.unshift({
-                    name: 'DAGGERHEART.APPLICATIONS.ContextMenu.useItem',
+                    label: 'DAGGERHEART.APPLICATIONS.ContextMenu.useItem',
                     icon: 'fa-solid fa-burst',
-                    condition: target => {
+                    visible: target => {
                         const doc = getDocFromElementSync(target);
                         return doc?.isOwner && !(doc.type === 'domainCard' && doc.system.inVault);
                     },
@@ -520,16 +520,16 @@ export default function DHApplicationMixin(Base) {
 
             if (toChat)
                 options.push({
-                    name: 'DAGGERHEART.APPLICATIONS.ContextMenu.sendToChat',
+                    label: 'DAGGERHEART.APPLICATIONS.ContextMenu.sendToChat',
                     icon: 'fa-solid fa-message',
                     callback: async target => (await getDocFromElement(target)).toChat(this.document.uuid)
                 });
 
             if (deletable)
                 options.push({
-                    name: 'CONTROLS.CommonDelete',
+                    label: 'CONTROLS.CommonDelete',
                     icon: 'fa-solid fa-trash',
-                    condition: element => {
+                    visible: element => {
                         const target = element.closest('[data-item-uuid]');
                         const doc = getDocFromElementSync(target);
                         return doc?.isOwner && target.dataset.itemType !== 'beastform';
