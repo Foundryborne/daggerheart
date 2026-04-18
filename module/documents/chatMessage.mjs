@@ -259,39 +259,22 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             selectedArea = this.system.action.area[0];
         else if(this.system.action.area.length > 1) {
            /* Pop a selection. Possibly a context menu? */ 
-            new foundry.applications.ux.ContextMenu.implementation(
-                event.target,
-                '.scene-environment',
-                this.system.action.area.map((area, index) => ({
-                    name: index,
-                    callback: () => {
-                        if (scene.flags.daggerheart.sceneEnvironments[0] !== environment.uuid) {
-                            const newEnvironments = scene.flags.daggerheart.sceneEnvironments;
-                            const newFirst = newEnvironments.splice(
-                                newEnvironments.findIndex(x => x === environment.uuid),
-                                1
-                            )[0];
-                            newEnvironments.unshift(newFirst);
-                            emitAsGM(
-                                GMUpdateEvent.UpdateDocument,
-                                scene.update.bind(scene),
-                                { 'flags.daggerheart.sceneEnvironments': newEnvironments },
-                                scene.uuid
-                            );
-                        }
+            // new foundry.applications.ux.ContextMenu.implementation(
+            //     event.target,
+            //     '.scene-environment',
+            //     this.system.action.area.map((area, index) => ({
+            //         name: index,
+            //         callback: () => {
+                        
+            //         }
+            //     })),
+            //     {
+            //         jQuery: false,
+            //         fixed: true
+            //     }
+            // );
 
-                        environment.sheet.render({ force: true });
-                    }
-                })),
-                {
-                    jQuery: false,
-                    fixed: true
-                }
-            );
-
-            CONFIG.ux.ContextMenu.triggerContextMenu(event, '.scene-environment');
-
-
+            // CONFIG.ux.ContextMenu.triggerContextMenu(event, '.scene-environment');
         }
 
         if(!selectedArea) return;
