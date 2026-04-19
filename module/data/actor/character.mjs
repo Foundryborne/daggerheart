@@ -303,7 +303,13 @@ export default class DhCharacter extends DhCreature {
                         initial: null,
                         label: 'DAGGERHEART.ACTORS.Character.defaultDisadvantageDice'
                     }),
-                })
+                }),
+                comboDieIndex: new fields.NumberField({ 
+                    integer: true,  
+                    min: 0,
+                    max: 5,
+                    initial: 0,
+                }) 
             })
         };
     }
@@ -445,6 +451,19 @@ export default class DhCharacter extends DhCreature {
             attack.img = 'icons/creatures/claws/claw-straight-brown.webp';
         }
         return attack;
+    }
+
+    get levelupTiers() {
+        const tierData = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers);
+        for (const tierKey of Object.keys(this.class?.value?.system.levelupOptionTiers ?? {})) {
+            const tier = this.class.value.system.levelupOptionTiers[tierKey];
+            for (const optionKey of Object.keys(tier)) {
+                const option = tier[optionKey];
+                tierData.tiers[tierKey].options[optionKey] = option;
+            }
+        }
+
+        return tierData;
     }
 
     /* All items are valid on characters */
@@ -744,6 +763,9 @@ export default class DhCharacter extends DhCreature {
                                     experience.leveledUp = true;
                                 }
                             });
+                            break;
+                        case 'comboStrikes':
+                            this.rules.comboDieIndex += 1;
                             break;
                     }
                 }

@@ -682,6 +682,9 @@
                 "title": "{actor} Level Up",
                 "viewModeTitle": "{actor} Level Up (View Mode)"
             },
+            "LevelupOptionsDialog": {
+                "title": "Levelup Options: {name}"
+            },
             "MulticlassChoice": {
                 "title": "Multiclassing - {actor}",
                 "explanation": "You are adding {class} as your multiclass",
@@ -1262,6 +1265,10 @@
                 "simple": "Simple",
                 "diceValue": "Dice Value",
                 "die": "Die"
+            },
+            "LevelupData": {
+                "checkboxSelections": "Checkboxes",
+                "minCost": "Cost Per Checkbox"
             },
             "Range": {
                 "self": {
@@ -3257,6 +3264,7 @@
                 "rightClickExtend": "Right-Click to extend",
                 "companionPartnerLevelBlock": "The companion needs an assigned partner to level up.",
                 "configureAttribution": "Configure Attribution",
+                "configureLevelupOptions": "Configure Levelup Options",
                 "deleteItem": "Delete Item",
                 "immune": "Immune",
                 "middleClick": "[Middle Click] Keep tooltip view",

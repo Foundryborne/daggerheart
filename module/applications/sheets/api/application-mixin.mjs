@@ -99,7 +99,8 @@ export default function DHApplicationMixin(Base) {
                 toggleExtended: DHSheetV2.#toggleExtended,
                 addNewItem: DHSheetV2.#addNewItem,
                 browseItem: DHSheetV2.#browseItem,
-                editAttribution: DHSheetV2.#editAttribution
+                editAttribution: DHSheetV2.#editAttribution,
+                configureLevelUpOptions: DHSheetV2.#configureLevelUpOptions,
             },
             contextMenus: [
                 {
@@ -119,6 +120,16 @@ export default function DHApplicationMixin(Base) {
                     }
                 }
             ],
+            window: {
+                controls: [
+                    {
+                        icon: 'fa-solid fa-angles-up fa-fw',
+                        label: 'DAGGERHEART.UI.Tooltip.configureLevelupOptions',
+                        action: 'configureLevelUpOptions',
+                        visible: DHSheetV2.#hasLevelUpOptions,
+                    }
+                ],
+            },
             dragDrop: [{ dragSelector: '.inventory-item[data-type="effect"]', dropSelector: null }],
             tagifyConfigs: []
         };
@@ -141,6 +152,10 @@ export default function DHApplicationMixin(Base) {
 
             return frame;
         }
+
+        static #hasLevelUpOptions() {
+            return this.document.system.metadata.hasLevelUpOptions;
+        };
 
         /**
          *  Refresh the custom parts of the application frame
@@ -706,6 +721,10 @@ export default function DHApplicationMixin(Base) {
          */
         static async #editAttribution() {
             new game.system.api.applications.dialogs.AttributionDialog(this.document).render({ force: true });
+        }
+
+        static async #configureLevelUpOptions() {
+            new game.system.api.applications.dialogs.LevelupOptionsDialog(this.document).render({ force: true });
         }
 
         /**

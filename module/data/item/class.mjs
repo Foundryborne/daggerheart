@@ -3,6 +3,7 @@ import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 import ItemLinkFields from '../fields/itemLinkFields.mjs';
 import { addLinkedItemsDiff, getFeaturesHTMLData, updateLinkedItemApps } from '../../helpers/utils.mjs';
+import { DhLevelOption } from '../levelTier.mjs';
 
 export default class DHClass extends BaseDataItem {
     /** @inheritDoc */
@@ -10,7 +11,8 @@ export default class DHClass extends BaseDataItem {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Item.class',
             type: 'class',
-            hasDescription: true
+            hasDescription: true,
+            hasLevelUpOptions: true,
         });
     }
 
@@ -51,7 +53,10 @@ export default class DHClass extends BaseDataItem {
             }),
             backgroundQuestions: new fields.ArrayField(new fields.StringField(), { initial: ['', '', ''] }),
             connections: new fields.ArrayField(new fields.StringField(), { initial: ['', '', ''] }),
-            isMulticlass: new fields.BooleanField({ initial: false })
+            isMulticlass: new fields.BooleanField({ initial: false }),
+            levelupOptionTiers: new fields.TypedObjectField(new fields.TypedObjectField(new fields.EmbeddedDataField(DhLevelOption)), {
+                initial: { 2: {}, 3: {}, 4: {} }
+            }),
         };
     }
 

@@ -6,9 +6,7 @@ export default class DhCharacterLevelUp extends LevelUpBase {
     constructor(actor) {
         super(actor);
 
-        this.levelTiers = this.addBonusChoices(
-            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers)
-        );
+        this.levelTiers = this.addBonusChoices(actor.system.levelupTiers);
         const playerLevelupData = actor.system.levelData;
         this.levelup = new DhLevelup(DhLevelup.initializeData(this.levelTiers, playerLevelupData));
     }
@@ -366,7 +364,7 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                         advancement.experience?.flatMap(x => x.data.map(data => ({ name: data, modifier: x.value }))) ??
                         [],
                     multiclass: advancement.multiclass,
-                    subclass: advancement.subclass
+                    subclass: advancement.subclass,
                 };
 
                 context.advancements.statistics.proficiency.shown =
