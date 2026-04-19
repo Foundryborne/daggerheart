@@ -1,7 +1,7 @@
 export default class DhApplyActiveEffect extends CONFIG.RegionBehavior.dataModels.applyActiveEffect {
     static async #getApplicableEffects(token) {
-        const effects = await Promise.all(this.effects.map(fromUuid));
-        return (effects).filter(effect => !effect.system.targetDispositions.size || effect.system.targetDispositions.has(token.disposition));
+        const effects = await Promise.all(this.effects.map(foundry.utils.fromUuid));
+        return effects.filter(effect => !effect.system.targetDispositions.size || effect.system.targetDispositions.has(token.disposition));
     }
 
     static async #onTokenEnter(event) {

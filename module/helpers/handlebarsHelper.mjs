@@ -17,7 +17,6 @@ export default class RegisterHandlebarsHelpers {
             pluralize: this.pluralize,
             positive: this.positive,
             isNullish: this.isNullish,
-            debug: this.debug,
         });
     }
     static add(a, b) {
@@ -92,10 +91,5 @@ export default class RegisterHandlebarsHelpers {
 
     static isNullish(a) {
         return a === null || a === undefined;
-    }
-
-    static debug(a) {
-        console.log(a);
-        return a;
     }
 }

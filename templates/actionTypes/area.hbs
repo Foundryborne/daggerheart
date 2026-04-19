@@ -5,21 +5,23 @@
     </legend>
 
     {{#each source as |area index|}}
+        {{#unless @first}}<line-div></line-div>{{/unless}}
         <div class="nest-inputs">
             {{formField ../fields.type value=area.type name=(concat "area." index ".type") localize=true}}
             {{formField ../fields.shape value=area.shape name=(concat "area." index ".shape") localize=true}}
             {{formField ../fields.size value=area.size name=(concat "area." index ".size") localize=true}}
             <a class="btn" data-tooltip="{{localize "CONTROLS.CommonDelete"}}" data-action="removeElement" data-index="{{index}}"><i class="fas fa-trash"></i></a>
         </div>
-        <div class="flexcol">
-            <div class="flexrow">
-                <span>{{localize "DAGGERHEART.GENERAL.Effect.plural"}}</span>
-                <a><i class="fa-solid fa-plus icon-button" data-action="addEffect" data-area-index="{{index}}"></i></a>
-            </div>
-            {{#each area.effects as |effectId index|}}
-                <input type="hidden" name={{concat "area." @../key ".effects." index "._id"}} value="{{effect._id}}">
 
-                <div class="inventory-item single-img" data-effect-id="{{effectId}}" data-area-index="{{index}}" data-action="editEffect">
+        <div class="sub-section-header">
+            <span>{{localize "DAGGERHEART.GENERAL.Effect.plural"}}</span>
+            <a><i class="fa-solid fa-plus icon-button" data-action="addEffect" data-area-index="{{index}}"></i></a>
+        </div>
+        <div class="two-columns even" style="width: 100%;">
+            {{#each area.effects as |effectId index|}}
+                <input type="hidden" name={{concat "area." @../key ".effects." index}} value="{{effectId}}">
+
+                <div class="inventory-item single-img bordered" data-effect-id="{{effectId}}" data-area-index="{{index}}" data-action="editEffect">
                     <div class="inventory-item-header">
                         {{#with (@root.getEffectDetails effectId) as | details |}}
                             <div class="img-portait">
@@ -29,9 +31,8 @@
                                 <div class="item-name">{{name}}</div>
                             </div>
                         {{/with}}
-                        <input type="hidden" name="effects.{{index}}._id" value="{{effectId}}">
                         <div class="controls">
-                            <a data-tooltip="{{localize "CONTROLS.CommonDelete"}}" data-action="removeEffect" data-index="{{@../key}}" data-area-index="{{index}}"><i class="fas fa-trash"></i></a>
+                            <a data-tooltip="{{localize "CONTROLS.CommonDelete"}}" data-action="removeEffect" data-area-index="{{@../key}}" data-index="{{index}}"><i class="fas fa-trash"></i></a>
                         </div>
                     </div>
                 </div>

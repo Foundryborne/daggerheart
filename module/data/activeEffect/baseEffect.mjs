@@ -134,13 +134,14 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
         return armorChange.getArmorData();
     }
 
-    static getDefaultObject() {
+    static getDefaultObject(options = { transfer: true }) {
         return {
             name: 'New Effect',
             id: foundry.utils.randomID(),
             disabled: false,
             img: 'icons/magic/life/heart-cross-blue.webp',
             description: '',
+            transfer: options.transfer,
             statuses: [],
             changes: [],
             system: {
