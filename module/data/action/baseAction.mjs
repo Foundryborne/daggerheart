@@ -110,6 +110,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return this._id;
     }
 
+    /** Returns true if the current user is the owner of the containing item */
+    get isOwner() {
+        return this.item?.isOwner ?? true; 
+    }
+
     /**
      * Return Item the action is attached too.
      */
