@@ -7,10 +7,13 @@
     {{#each source as |area index|}}
         {{#unless @first}}<line-div></line-div>{{/unless}}
         <div class="nest-inputs">
+            {{formField ../fields.name value=area.name name=(concat "area." index ".name") localize=true}}
+            <a class="btn" data-tooltip="{{localize "CONTROLS.CommonDelete"}}" data-action="removeElement" data-index="{{index}}"><i class="fas fa-trash"></i></a>
+        </div>
+        <div class="nest-inputs">
             {{formField ../fields.type value=area.type name=(concat "area." index ".type") localize=true}}
             {{formField ../fields.shape value=area.shape name=(concat "area." index ".shape") localize=true}}
             {{formField ../fields.size value=area.size name=(concat "area." index ".size") localize=true}}
-            <a class="btn" data-tooltip="{{localize "CONTROLS.CommonDelete"}}" data-action="removeElement" data-index="{{index}}"><i class="fas fa-trash"></i></a>
         </div>
 
         <div class="sub-section-header">

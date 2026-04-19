@@ -9,6 +9,11 @@ export default class AreaField extends fields.ArrayField {
     /** @inheritDoc */
     constructor(options = {}, context = {}) {
         const element = new fields.SchemaField({
+            name: new fields.StringField({
+                nullable: false,
+                initial: 'Area',
+                label: 'DAGGERHEART.GENERAL.name'
+            }),
             type: new fields.StringField({
                 nullable: false,
                 choices: CONFIG.DH.ACTIONS.areaTypes,

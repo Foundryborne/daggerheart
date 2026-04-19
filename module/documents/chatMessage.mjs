@@ -254,53 +254,51 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     }
 
     async onCreateAreas(event) {
-        let selectedArea = null;
-        if (this.system.action.area.length === 1)
-            selectedArea = this.system.action.area[0];
-        else if(this.system.action.area.length > 1) {
-           /* Pop a selection. Possibly a context menu? */ 
-            // new foundry.applications.ux.ContextMenu.implementation(
-            //     event.target,
-            //     '.scene-environment',
-            //     this.system.action.area.map((area, index) => ({
-            //         name: index,
-            //         callback: () => {
-                        
-            //         }
-            //     })),
-            //     {
-            //         jQuery: false,
-            //         fixed: true
-            //     }
-            // );
+        const createArea = async (selectedArea) => {
+            const effects = selectedArea.effects.map(effect => this.system.action.item.effects.get(effect).uuid);
+            const { shape: type, size: range } = selectedArea; 
+            const shapeData = CONFIG.Canvas.layers.regions.layerClass.getTemplateShape({ type, range });
 
-            // CONFIG.ux.ContextMenu.triggerContextMenu(event, '.scene-environment');
+            await canvas.regions.placeRegion(
+                {
+                    name: selectedArea.name,
+                    shapes: [shapeData],
+                    restriction: { enabled: false, type: 'move', priority: 0 },
+                    behaviors: [{
+                        name: game.i18n.localize('TYPES.RegionBehavior.applyActiveEffect'),
+                        type: 'applyActiveEffect',
+                        system: {
+                            effects: effects
+                        }
+                    }],
+                    displayMeasurements: true,
+                    locked: false,
+                    ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE },
+                    visibility: CONST.REGION_VISIBILITY.ALWAYS
+                },
+                { create: true }
+            );
         }
 
-        if(!selectedArea) return;
-        const effects = selectedArea.effects.map(effect => this.system.action.item.effects.get(effect).uuid);
-        const { shape: type, size: range } = this.system.action.area[0]; 
-        const shapeData = CONFIG.Canvas.layers.regions.layerClass.getTemplateShape({ type, range });
+        if (this.system.action.area.length === 1)
+            createArea(this.system.action.area[0]);
+        else if(this.system.action.area.length > 1) {
+           /* Pop a selection. Possibly a context menu? */ 
+            new foundry.applications.ux.ContextMenu.implementation(
+                event.target,
+                '.action-areas',
+                this.system.action.area.map((area, index) => ({
+                    name: area.name,
+                    callback: () => createArea(this.system.action.area[index]),
+                })),
+                {
+                    jQuery: false,
+                    fixed: true
+                }
+            );
 
-        await canvas.regions.placeRegion(
-            {
-                name: 'Test',
-                shapes: [shapeData],
-                restriction: { enabled: false, type: 'move', priority: 0 },
-                behaviors: [{
-                    name: game.i18n.localize('TYPES.RegionBehavior.applyActiveEffect'),
-                    type: 'applyActiveEffect',
-                    system: {
-                        effects: effects
-                    }
-                }],
-                displayMeasurements: true,
-                locked: false,
-                ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE },
-                visibility: CONST.REGION_VISIBILITY.ALWAYS
-            },
-            { create: true }
-        );
+            CONFIG.ux.ContextMenu.triggerContextMenu(event, '.action-areas');
+        }
     }
 
     filterPermTargets(targets) {
