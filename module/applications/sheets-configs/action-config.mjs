@@ -64,8 +64,7 @@ export default class DHActionConfig extends DHActionBaseConfig {
             const data = this.action.toObject();
             data.area[areaIndex].effects.splice(index, 1);
             this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
-        }
-        else { 
+        } else { 
             effectId = this.action.effects[index]._id;
             this.constructor.removeElement.bind(this)(event, button);
         }
