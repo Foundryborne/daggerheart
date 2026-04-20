@@ -75,12 +75,17 @@ export const typeConfig = {
             {
                 key: 'type',
                 label: 'DAGGERHEART.GENERAL.type',
-                format: type => type ? `TYPES.Item.${type}` : '-'
+                format: type => (type ? `TYPES.Item.${type}` : '-')
             },
             {
                 key: 'system.secondary',
                 label: 'DAGGERHEART.UI.ItemBrowser.subtype',
-                format: isSecondary => (isSecondary ? 'DAGGERHEART.ITEMS.Weapon.secondaryWeapon.short' : isSecondary === false ? 'DAGGERHEART.ITEMS.Weapon.primaryWeapon.short' : '-')
+                format: isSecondary =>
+                    isSecondary
+                        ? 'DAGGERHEART.ITEMS.Weapon.secondaryWeapon.short'
+                        : isSecondary === false
+                          ? 'DAGGERHEART.ITEMS.Weapon.primaryWeapon.short'
+                          : '-'
             },
             {
                 key: 'system.tier',
@@ -260,12 +265,12 @@ export const typeConfig = {
             {
                 key: 'system.type',
                 label: 'DAGGERHEART.GENERAL.type',
-                format: type => type ? `DAGGERHEART.CONFIG.DomainCardTypes.${type}` : '-'
+                format: type => (type ? `DAGGERHEART.CONFIG.DomainCardTypes.${type}` : '-')
             },
             {
                 key: 'system.domain',
                 label: 'DAGGERHEART.GENERAL.Domain.single',
-                format: domain => domain ? CONFIG.DH.DOMAIN.allDomains()[domain].label : '-'
+                format: domain => (domain ? CONFIG.DH.DOMAIN.allDomains()[domain].label : '-')
             },
             {
                 key: 'system.level',

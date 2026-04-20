@@ -356,7 +356,7 @@ Hooks.on(CONFIG.DH.HOOKS.hooksConfig.groupRollStart, async data => {
 
 const updateActorsRangeDependentEffects = async token => {
     if (!token) return;
-    
+
     const rangeMeasurement = game.settings.get(
         CONFIG.DH.id,
         CONFIG.DH.SETTINGS.gameSettings.variantRules

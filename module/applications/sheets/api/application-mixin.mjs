@@ -488,11 +488,10 @@ export default function DHApplicationMixin(Base) {
                     icon: 'fa-solid fa-explosion',
                     visible: target => {
                         const doc = getDocFromElementSync(target);
-                        return (
-                            doc?.isOwner &&
+                        const hasDamage =
                             !foundry.utils.isEmpty(doc?.system?.attack?.damage.parts) ||
-                            !foundry.utils.isEmpty(doc?.damage?.parts)
-                        );
+                            !foundry.utils.isEmpty(doc?.damage?.parts);
+                        return doc?.isOwner && hasDamage;
                     },
                     callback: async (target, event) => {
                         const doc = await getDocFromElement(target),

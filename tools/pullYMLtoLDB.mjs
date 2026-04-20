@@ -1,12 +1,12 @@
 import { compilePack } from '@foundryvtt/foundryvtt-cli';
 import readline from 'node:readline/promises';
 import { promises as fs } from 'fs';
-import systemJSON from "../system.json" with { type: "json" };
+import systemJSON from '../system.json' with { type: 'json' };
 
 const MODULE_ID = process.cwd();
 
 const answer = await (async () => {
-    if (process.argv.includes("--build")) return "overwrite";
+    if (process.argv.includes('--build')) return 'overwrite';
 
     const rl = readline.createInterface({
         input: process.stdin,
@@ -42,8 +42,8 @@ async function pullToLDB() {
     function transformEntry(entry) {
         const stats = {
             coreVersion: systemJSON.compatibility.minimum,
-            systemId: "daggerheart",
-            systemVersion: systemJSON.version,
+            systemId: 'daggerheart',
+            systemVersion: systemJSON.version
         };
 
         entry._stats = { ...stats };

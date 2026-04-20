@@ -173,7 +173,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         // Overriden to only disable text inputs by default.
         // Everything else is done by checking @root.editable in the sheet
         const form = this.form;
-        for (const input of form.querySelectorAll("input:not([type=search]), .editor.prosemirror")) {
+        for (const input of form.querySelectorAll('input:not([type=search]), .editor.prosemirror')) {
             input.disabled = disabled;
         }
     }
