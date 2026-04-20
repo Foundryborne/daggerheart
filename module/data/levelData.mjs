@@ -41,6 +41,7 @@ export default class DhLevelData extends foundry.abstract.DataModel {
                             level: new fields.NumberField({ required: true, integer: true }),
                             optionKey: new fields.StringField({ required: true }),
                             type: new fields.StringField({ required: true, choices: LevelOptionType }),
+                            subType: new fields.StringField({ nullable: true }),
                             checkboxNr: new fields.NumberField({ required: true, integer: true }),
                             value: new fields.NumberField({ integer: true }),
                             minCost: new fields.NumberField({ integer: true }),

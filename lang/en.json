@@ -2487,6 +2487,7 @@
             "step": "Step",
             "stress": "Stress",
             "subclasses": "Subclasses",
+            "subType": "Subtype",
             "success": "Success",
             "summon": {
                 "single": "Summon",

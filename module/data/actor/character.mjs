@@ -766,8 +766,8 @@ export default class DhCharacter extends DhCreature {
                                 }
                             });
                             break;
-                        case 'comboStrikes':
-                            this.rules.roll.comboDieIndex += 1;
+                        case 'dice':
+                            this.rules.roll[selection.subType] += 1;
                             break;
                     }
                 }

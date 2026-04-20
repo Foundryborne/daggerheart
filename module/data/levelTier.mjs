@@ -69,6 +69,10 @@ export class DhLevelOption extends foundry.abstract.DataModel {
                 choices: LevelOptionType,
                 label: 'DAGGERHEART.GENERAL.type'
             }),
+            subType: new fields.StringField({
+                nullable: true,
+                label: 'DAGGERHEART.GENERAL.subType',
+            }),
             value: new fields.NumberField({ 
                 integer: true,
                 label: 'DAGGERHEART.GENERAL.value'
@@ -136,13 +140,6 @@ export const CompanionLevelOptionType = {
     }
 };
 
-export const ClassLevelOptionTypes = {
-    comboStrikes: {
-        id: 'comboStrikes',
-        label: 'Increase your Combo Die size',
-    },
-};
-
 export const LevelOptionType = {
     trait: {
         id: 'trait',
@@ -192,7 +189,16 @@ export const LevelOptionType = {
         id: 'multiclass',
         label: 'Multiclass'
     },
-    ...ClassLevelOptionTypes,
+    dice: {
+        id: 'dice',
+        label: 'Increase Dice Size',
+        subTypes: {            
+            hopeIndex: { key: 'hopeIndex', label: 'DAGGERHEART.GENERAL.hope' },
+            fearIndex: { key: 'fearIndex', label: 'DAGGERHEART.GENERAL.fear' },
+            advantageIndex: { key: 'advantageIndex', label: 'DAGGERHEART.GENERAL.Advantage.full' },
+            comboDieIndex:{ key: 'comboDieIndex', label: 'Combo Die' } // Translation pending actual useage
+        },
+    },
     ...CompanionLevelOptionType
 };
 
