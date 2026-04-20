@@ -1274,7 +1274,7 @@
             },
             "LevelupData": {
                 "checkboxSelections": "Checkboxes",
-                "minCost": "Cost Per Checkbox"
+                "minCost": "Minimum Boxes Picked"
             },
             "Range": {
                 "self": {
