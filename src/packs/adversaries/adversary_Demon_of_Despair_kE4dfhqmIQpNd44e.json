@@ -357,7 +357,7 @@
             },
             "changes": [
               {
-                "key": "system.rules.roll.hope",
+                "key": "system.rules.roll.hopeIndex",
                 "value": 2,
                 "priority": null,
                 "type": "override"

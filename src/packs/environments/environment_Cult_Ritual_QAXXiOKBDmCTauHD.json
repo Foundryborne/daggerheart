@@ -192,7 +192,7 @@
           },
           "changes": [
             {
-              "key": "system.rules.roll.hope",
+              "key": "system.rules.roll.hopeIndex",
               "mode": 5,
               "value": 3,
               "priority": null

@@ -269,7 +269,7 @@ export default class DhCharacter extends DhCreature {
                         label: 'DAGGERHEART.ACTORS.Character.roll.guaranteedCritical.label',
                         hint: 'DAGGERHEART.ACTORS.Character.roll.guaranteedCritical.hint'
                     }),
-                    hope: new fields.NumberField({
+                    hopeIndex: new fields.NumberField({
                         required: true,
                         integer: true,
                         min: 0,
@@ -278,7 +278,7 @@ export default class DhCharacter extends DhCreature {
                         label: 'DAGGERHEART.ACTORS.Creature.rules.roll.hope.label',
                         hint: 'DAGGERHEART.ACTORS.Creature.rules.roll.hope.hint'
                     }),
-                    fear: new fields.NumberField({
+                    fearIndex: new fields.NumberField({
                         required: true,
                         integer: true,
                         min: 0,
@@ -287,7 +287,7 @@ export default class DhCharacter extends DhCreature {
                         label: 'DAGGERHEART.ACTORS.Creature.rules.roll.fear.label',
                         hint: 'DAGGERHEART.ACTORS.Creature.rules.roll.fear.hint'
                     }),
-                    advantage: new fields.NumberField({
+                    advantageIndex: new fields.NumberField({
                         required: true,
                         integer: true,
                         min: 0,
@@ -296,7 +296,7 @@ export default class DhCharacter extends DhCreature {
                         label: 'DAGGERHEART.ACTORS.Creature.rules.roll.advantage.label',
                         hint: 'DAGGERHEART.ACTORS.Creature.rules.roll.advantage.hint'
                     }),
-                    disadvantage: new fields.NumberField({
+                    disadvantageIndex: new fields.NumberField({
                         required: true,
                         integer: true,
                         min: 0,
@@ -305,7 +305,7 @@ export default class DhCharacter extends DhCreature {
                         label: 'DAGGERHEART.ACTORS.Creature.rules.roll.disadvantage.label',
                         hint: 'DAGGERHEART.ACTORS.Creature.rules.roll.disadvantage.hint'
                     }),
-                    comboDie: new fields.NumberField({ 
+                    comboDieIndex: new fields.NumberField({ 
                         integer: true,  
                         min: 0,
                         max: 5,
@@ -767,7 +767,7 @@ export default class DhCharacter extends DhCreature {
                             });
                             break;
                         case 'comboStrikes':
-                            this.rules.roll.comboDie += 1;
+                            this.rules.roll.comboDieIndex += 1;
                             break;
                     }
                 }
@@ -827,10 +827,11 @@ export default class DhCharacter extends DhCreature {
         };
 
         /* Add convience <dice>Faces properties for all dice */
-        const { hope, fear, advantage, disadvantage } = this.rules.roll;
-        const dice = { hope, fear, advantage, disadvantage };
+        const { hopeIndex, fearIndex, advantageIndex, disadvantageIndex, comboDieIndex } = this.rules.roll;
+        const dice = { hopeIndex, fearIndex, advantageIndex, disadvantageIndex, comboDieIndex };
         for (const dieKey of Object.keys(dice)) {
-            this.rules.roll[`${dieKey}Faces`] = CONFIG.DH.GENERAL.dieFaces[dice[dieKey]];
+            const diceBaseKey = dieKey.replace('Index', '');
+            this.rules.roll[`${diceBaseKey}Faces`] = CONFIG.DH.GENERAL.dieFaces[dice[dieKey]];
         }
 
         this.attack.damage.parts.hitPoints.value.custom.formula = `@prof${this.basicAttackDamageDice}${this.rules.attack.damage.bonus ? ` + ${this.rules.attack.damage.bonus}` : ''}`;

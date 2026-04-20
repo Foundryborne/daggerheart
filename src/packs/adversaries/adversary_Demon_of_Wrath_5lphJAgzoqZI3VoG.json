@@ -320,7 +320,7 @@
             },
             "changes": [
               {
-                "key": "system.rules.roll.fear",
+                "key": "system.rules.roll.fearIndex",
                 "value": 5,
                 "priority": null,
                 "type": "override"
