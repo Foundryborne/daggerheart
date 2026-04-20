@@ -148,6 +148,12 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
               : null;
     }
 
+    /** Returns true if the action is usable */
+    get usable() {
+        const actor = this.actor;
+        return this.isOwner && actor?.type === 'character';
+    }
+
     static getRollType(parent) {
         return 'trait';
     }
