@@ -261,24 +261,6 @@ export default class DhCharacter extends DhCreature {
                         })
                     }
                 }),
-                dualityRoll: new fields.SchemaField({
-                    defaultHopeDice: new fields.NumberField({
-                        nullable: false,
-                        required: true,
-                        integer: true,
-                        choices: CONFIG.DH.GENERAL.dieFaces,
-                        initial: 12,
-                        label: 'DAGGERHEART.ACTORS.Character.defaultHopeDice'
-                    }),
-                    defaultFearDice: new fields.NumberField({
-                        nullable: false,
-                        required: true,
-                        integer: true,
-                        choices: CONFIG.DH.GENERAL.dieFaces,
-                        initial: 12,
-                        label: 'DAGGERHEART.ACTORS.Character.defaultFearDice'
-                    })
-                }),
                 burden: new fields.SchemaField({
                     ignore: new fields.BooleanField({ label: 'DAGGERHEART.ACTORS.Character.burden.ignore.label' })
                 }),
@@ -287,29 +269,49 @@ export default class DhCharacter extends DhCreature {
                         label: 'DAGGERHEART.ACTORS.Character.roll.guaranteedCritical.label',
                         hint: 'DAGGERHEART.ACTORS.Character.roll.guaranteedCritical.hint'
                     }),
-                    defaultAdvantageDice: new fields.NumberField({
-                        nullable: true,
+                    hopeIndex: new fields.NumberField({
                         required: true,
                         integer: true,
-                        choices: CONFIG.DH.GENERAL.dieFaces,
-                        initial: null,
-                        label: 'DAGGERHEART.ACTORS.Character.defaultAdvantageDice'
+                        min: 0,
+                        max: 5,
+                        initial: 4,
+                        label: 'DAGGERHEART.ACTORS.Creature.rules.roll.hope.label',
+                        hint: 'DAGGERHEART.ACTORS.Creature.rules.roll.hope.hint'
                     }),
-                    defaultDisadvantageDice: new fields.NumberField({
-                        nullable: true,
+                    fearIndex: new fields.NumberField({
                         required: true,
                         integer: true,
-                        choices: CONFIG.DH.GENERAL.dieFaces,
-                        initial: null,
-                        label: 'DAGGERHEART.ACTORS.Character.defaultDisadvantageDice'
+                        min: 0,
+                        max: 5,
+                        initial: 4,
+                        label: 'DAGGERHEART.ACTORS.Creature.rules.roll.fear.label',
+                        hint: 'DAGGERHEART.ACTORS.Creature.rules.roll.fear.hint'
                     }),
+                    advantageIndex: new fields.NumberField({
+                        required: true,
+                        integer: true,
+                        min: 0,
+                        max: 5,
+                        initial: 1,
+                        label: 'DAGGERHEART.ACTORS.Creature.rules.roll.advantage.label',
+                        hint: 'DAGGERHEART.ACTORS.Creature.rules.roll.advantage.hint'
+                    }),
+                    disadvantageIndex: new fields.NumberField({
+                        required: true,
+                        integer: true,
+                        min: 0,
+                        max: 5,
+                        initial: 1,
+                        label: 'DAGGERHEART.ACTORS.Creature.rules.roll.disadvantage.label',
+                        hint: 'DAGGERHEART.ACTORS.Creature.rules.roll.disadvantage.hint'
+                    }),
+                    comboDieIndex: new fields.NumberField({ 
+                        integer: true,  
+                        min: 0,
+                        max: 5,
+                        initial: 0,
+                    }) 
                 }),
-                comboDieIndex: new fields.NumberField({ 
-                    integer: true,  
-                    min: 0,
-                    max: 5,
-                    initial: 0,
-                }) 
             })
         };
     }
@@ -764,8 +766,8 @@ export default class DhCharacter extends DhCreature {
                                 }
                             });
                             break;
-                        case 'comboStrikes':
-                            this.rules.comboDieIndex += 1;
+                        case 'dice':
+                            this.rules.roll[selection.subType] += 1;
                             break;
                     }
                 }
@@ -823,6 +825,14 @@ export default class DhCharacter extends DhCreature {
             label: 'DAGGERHEART.GENERAL.armor',
             isReversed: true
         };
+
+        /* Add convience <dice>Faces properties for all dice */
+        const { hopeIndex, fearIndex, advantageIndex, disadvantageIndex, comboDieIndex } = this.rules.roll;
+        const dice = { hopeIndex, fearIndex, advantageIndex, disadvantageIndex, comboDieIndex };
+        for (const dieKey of Object.keys(dice)) {
+            const diceBaseKey = dieKey.replace('Index', '');
+            this.rules.roll[`${diceBaseKey}Faces`] = CONFIG.DH.GENERAL.dieFaces[dice[dieKey]];
+        }
 
         this.attack.damage.parts.hitPoints.value.custom.formula = `@prof${this.basicAttackDamageDice}${this.rules.attack.damage.bonus ? ` + ${this.rules.attack.damage.bonus}` : ''}`;
     }

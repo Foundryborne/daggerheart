@@ -237,10 +237,6 @@
                     "unequip": "Unequip",
                     "useItem": "Use Item"
                 },
-                "defaultHopeDice": "Default Hope Dice",
-                "defaultFearDice": "Default Fear Dice",
-                "defaultAdvantageDice": "Default Advantage Dice",
-                "defaultDisadvantageDice": "Default Disadvantage Dice",
                 "disadvantageSources": {
                     "label": "Disadvantage Sources",
                     "hint": "Add single words or short text as reminders and hints of what a character has disadvantage on."
@@ -306,6 +302,16 @@
                 },
                 "noPartner": "No Partner selected"
             },
+            "Creature": {
+                "rules": {
+                    "roll": {
+                        "hope": { "label": "Default Hope Dice Index", "hint": "Index for the default hope dice. 0=d4, 1=d6, 2=d8, 3=d10, 4=d12, 5=d20" },
+                        "fear": { "label": "Default Fear Dice Index", "hint": "Index for the default fear dice. 0=d4, 1=d6, 2=d8, 3=d10, 4=d12, 5=d20" },
+                        "advantage": { "label": "Default Advantage Dice Index", "hint": "Index for the default advantage dice. 0=d4, 1=d6, 2=d8, 3=d10, 4=d12, 5=d20" },
+                        "disadvantage": { "label": "Default Disadvantage Dice Index", "hint": "Index for the default disadvantage dice. 0=d4, 1=d6, 2=d8, 3=d10, 4=d12, 5=d20" }
+                    }
+                }
+            }, 
             "Environment": {
                 "FIELDS": {
                     "description": {
@@ -1268,7 +1274,7 @@
             },
             "LevelupData": {
                 "checkboxSelections": "Checkboxes",
-                "minCost": "Cost Per Checkbox"
+                "minCost": "Minimum Boxes Picked"
             },
             "Range": {
                 "self": {
@@ -2481,6 +2487,7 @@
             "step": "Step",
             "stress": "Stress",
             "subclasses": "Subclasses",
+            "subType": "Subtype",
             "success": "Success",
             "summon": {
                 "single": "Summon",

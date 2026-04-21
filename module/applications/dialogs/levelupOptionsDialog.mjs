@@ -53,8 +53,23 @@ export default class LevelupOptionsDialog extends HandlebarsApplicationMixin(App
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
-        context.item = this.item;
         context.fields = this.item.system.schema.fields.levelupOptionTiers.element.element.fields;
+        context.item = this.item;
+        context.levelupOptionTiers = Object.keys(this.item.system.levelupOptionTiers).reduce((acc, key) => {
+            const tier = this.item.system.levelupOptionTiers[key];
+            acc[key] = Object.keys(tier).reduce((acc, key) => {
+                const option = tier[key];
+                acc[key] = {
+                    ...option,
+                    typeData: option.type ? LevelOptionType[option.type] : null
+                };
+
+                return acc;
+            }, {});
+
+            return acc;
+        }, {})
+
         context.optionTypes = LevelOptionType;
         context.selectedOption = this.selectedOption;
 
@@ -63,6 +78,7 @@ export default class LevelupOptionsDialog extends HandlebarsApplicationMixin(App
 
     static async updateData(_event, _element, formData) {
         const data = foundry.utils.expandObject(formData.object);
+        await this.item.update(data)
 
         this.render();
     }

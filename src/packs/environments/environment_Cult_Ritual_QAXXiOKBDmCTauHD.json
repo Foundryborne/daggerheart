@@ -192,9 +192,9 @@
           },
           "changes": [
             {
-              "key": "system.rules.dualityRoll.defaultHopeDice",
+              "key": "system.rules.roll.hopeIndex",
               "mode": 5,
-              "value": "d10",
+              "value": 3,
               "priority": null
             }
           ],

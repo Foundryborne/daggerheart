@@ -63,21 +63,23 @@ export default class DhCompanion extends DhCreature {
                     })
                 }),
                 roll: new fields.SchemaField({
-                    defaultAdvantageDice: new fields.NumberField({
-                        nullable: true,
+                    advantage: new fields.NumberField({
                         required: true,
                         integer: true,
-                        choices: CONFIG.DH.GENERAL.dieFaces,
-                        initial: null,
-                        label: 'DAGGERHEART.ACTORS.Character.defaultAdvantageDice'
+                        min: 0,
+                        max: 5,
+                        initial: 1,
+                        label: 'DAGGERHEART.ACTORS.Creature.rules.roll.advantage.label',
+                        hint: 'DAGGERHEART.ACTORS.Creature.rules.roll.advantage.hint'
                     }),
-                    defaultDisadvantageDice: new fields.NumberField({
-                        nullable: true,
+                    disadvantage: new fields.NumberField({
                         required: true,
                         integer: true,
-                        choices: CONFIG.DH.GENERAL.dieFaces,
-                        initial: null,
-                        label: 'DAGGERHEART.ACTORS.Character.defaultDisadvantageDice'
+                        min: 0,
+                        max: 5,
+                        initial: 1,
+                        label: 'DAGGERHEART.ACTORS.Creature.rules.roll.disadvantage.label',
+                        hint: 'DAGGERHEART.ACTORS.Creature.rules.roll.disadvantage.hint'
                     }),
                 })
             }),
