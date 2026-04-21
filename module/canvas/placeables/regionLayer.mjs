@@ -97,15 +97,9 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
     }
 
     static getTemplateShape({ type, angle, range, direction } = {}) {
-        const { line, rectangle, inFront, cone } = CONFIG.DH.GENERAL.templateTypes;
+        const { line, rectangle, inFront, cone, circle, emanation } = CONFIG.DH.GENERAL.templateTypes;
 
-        const usedAngle =
-            type === cone.id
-                ? (angle ?? CONFIG.MeasuredTemplate.defaults.angle)
-                : type === inFront.id
-                  ? '180'
-                  : undefined;
-
+        /* Length calculation */
         const { grid, distance } = CONFIG.Scene.documentClass.schema.fields.grid.fields;
         const sceneGridSize = canvas.scene?.grid.size ?? grid.size.initial;
         const sceneGridDistance = canvas.scene?.grid.distance ?? distance.getInitialValue();
@@ -117,12 +111,9 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
             (!Number.isNaN(rangeNumber) ? rangeNumber : settings ? settings[range] : 0) * dimensionConstant;
 
         const length = baseDistance;
-        const radius = length;
+        /*----*/
 
-        const shapeWidth = type === line.id ? 5 * dimensionConstant : type === rectangle.id ? length : undefined;
-        const shapeType = type === inFront.id ? cone.id : type;
-
-        return {
+        const shapeData = {
             ...canvas.mousePosition,
             base: {
                 type: 'token',
@@ -132,13 +123,36 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
                 height: 1,
                 shape: game.canvas.grid.isHexagonal ? CONST.TOKEN_SHAPES.ELLIPSE_1 : CONST.TOKEN_SHAPES.RECTANGLE_1
             },
-            length: length,
-            width: shapeWidth,
-            height: length,
-            angle: usedAngle,
-            radius: radius,
+            type: type,
             direction: direction ?? 0,
-            type: shapeType
         };
+
+        switch(type) {
+            case cone.id:
+                shapeData.angle = angle ?? CONFIG.MeasuredTemplate.defaults.angle;
+                shapeData.radius = length;
+                break;
+            case inFront.id:
+                shapeData.angle = '180';
+                shapeData.radius = length;
+                shapeData.type = cone.id;
+                break;
+            case circle.id:
+                shapeData.radius = length;
+                break;
+            case emanation.id:
+                shapeData.radius = length;
+                break;
+            case rectangle.id:
+                shapeData.width = length;
+                shapeData.height = length;
+                break;
+            case line.id:
+                shapeData.length = length;
+                shapeData.width = 5 * dimensionConstant;
+                break;
+        }
+
+        return shapeData;
     }
 }
