@@ -134,7 +134,6 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
                 height: 1,
                 shape: game.canvas.grid.isHexagonal ? CONST.TOKEN_SHAPES.ELLIPSE_1 : CONST.TOKEN_SHAPES.RECTANGLE_1
             },
-            t: shapeType,
             length: length,
             width: shapeWidth,
             height: length,

@@ -98,7 +98,7 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
                 new fields.NumberField({
                     choices: CONFIG.DH.GENERAL.simpleDispositions
                 }),
-                { label: 'Affected Dispositions' }
+                { label: 'DAGGERHEART.ACTIVEEFFECT.Config.targetDispositions' }
             )
         };
     }
