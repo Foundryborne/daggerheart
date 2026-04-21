@@ -143,12 +143,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -199,7 +196,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -225,7 +222,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -317,9 +315,46 @@
       "_id": "0fn7rVLwBnyCyvTA",
       "img": "icons/skills/melee/strike-slashes-orange.webp",
       "system": {
-        "description": "<p>When the @Lookup[@name] makes a standard attack, they can attack all targets within Very Close range.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p>When the @Lookup[@name] makes a standard attack, they can attack all targets within Very Close range.</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "ngl1xlJT4IOh3bkJ": {
+            "type": "effect",
+            "_id": "ngl1xlJT4IOh3bkJ",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Flailing Limbs",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "veryClose",
+                "effects": []
+              }
+            ],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "",
+            "range": ""
+          }
+        },
         "originItemType": null,
         "subType": null,
         "originId": null
@@ -463,7 +498,7 @@
       "_id": "uTtQwNg46NAjgzuD",
       "img": "icons/magic/death/skeleton-skull-soul-blue.webp",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to cause all PCs within Far range to make a Presence Reaction Roll (13). Targets who fail lose a Hope and you gain a Fear for each. Targets who succeed must mark a Stress.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to cause all PCs within Far range to make a Presence Reaction Roll (13). Targets who fail lose a Hope and you gain a Fear for each. Targets who succeed must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "2NYC0D7wkBNrUAKl": {
@@ -514,7 +549,8 @@
                   "type": []
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -543,7 +579,16 @@
             },
             "name": "Mark Stress",
             "img": "icons/magic/death/skeleton-skull-soul-blue.webp",
-            "range": "far"
+            "range": "far",
+            "areas": [
+              {
+                "name": "Tormented Screams",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

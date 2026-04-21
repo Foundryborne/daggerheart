@@ -163,12 +163,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -219,7 +216,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -245,7 +242,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -478,7 +476,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -487,7 +486,16 @@
             "effects": [],
             "name": "Lose Hope",
             "img": "icons/magic/fire/flame-burning-skull-orange.webp",
-            "range": "close"
+            "range": "close",
+            "areas": [
+              {
+                "name": "Ashes to Ashes",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -512,7 +520,7 @@
       "name": "Desperate Rampage",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Close range. Targets the @Lookup[@name] succeeds against take <strong>2d20+2</strong> physical damage, are knocked back to Close range of where they were, and must mark a Stress.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Close range. Targets the @Lookup[@name] succeeds against take <strong>2d20+2</strong> physical damage, are knocked back to Close range of where they were, and must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "3glUQAcsLBcCumnS": {
@@ -582,7 +590,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -611,7 +620,16 @@
             },
             "name": "Attack",
             "img": "icons/creatures/abilities/tail-swipe-green.webp",
-            "range": "close"
+            "range": "close",
+            "areas": [
+              {
+                "name": "Desperate Rampage",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -637,7 +655,7 @@
       "name": "Ashen Cloud",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to smash the ground and kick up ash within Far range. While within the ash cloud, a target has disadvantage on action rolls. The ash cloud clears the next time an adversary is spotlighted.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to smash the ground and kick up ash within Far range. While within the ash cloud, a target has disadvantage on action rolls. The ash cloud clears the next time an adversary is spotlighted.</p>",
         "resource": null,
         "actions": {
           "UrD4A68IBJgyfvvt": {
@@ -667,7 +685,16 @@
             },
             "name": "Spend Fear",
             "img": "icons/magic/air/fog-gas-smoke-brown.webp",
-            "range": ""
+            "range": "",
+            "areas": [
+              {
+                "name": "Ashen Cloud",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -693,14 +720,14 @@
       "name": "Apocalyptic Thrasing",
       "type": "feature",
       "system": {
-        "description": "<p><em>Countdown (1d12)</em>. <strong>Spend a Fear</strong> to activate. It ticks down when a PC rolls with Fear. When it triggers, the @Lookup[@name] thrashes about, causing environmental damage (such as an earthquake, avalanche, or collapsing walls). All targets within Far range must make a Strength Reaction Roll. Targets who fail take 2d10+10 physical damage and are Restrained by the rubble until they break free with a successful Strength Roll. Targets who succeed take half damage. If the @Lookup[@name] is defeated while this countdown is active, trigger the countdown immediately as the destruction caused by their death throes.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p><em>Countdown (1d12)</em>. <strong>Spend a Fear</strong> to activate. It ticks down when a PC rolls with Fear. When it triggers, the @Lookup[@name] thrashes about, causing environmental damage (such as an earthquake, avalanche, or collapsing walls). All targets within Far range must make a Strength Reaction Roll. Targets who fail take 2d10+10 physical damage and are Restrained by the rubble until they break free with a successful Strength Roll. Targets who succeed take half damage. If the @Lookup[@name] is defeated while this countdown is active, trigger the countdown immediately as the destruction caused by their death throes.</p>",
         "resource": null,
         "actions": {
           "OznXxmwiPwzuFPQZ": {
             "type": "attack",
             "_id": "OznXxmwiPwzuFPQZ",
             "systemPath": "actions",
-            "description": "<p>When the countdown triggers, the @Lookup[@name] thrashes about, causing environmental damage (such as an earthquake, avalanche, or collapsing walls). All targets within Far range must make a Strength Reaction Roll. Targets who fail take 2d10+10 physical damage and are Restrained by the rubble until they break free with a successful Strength Roll. Targets who succeed take half damage. If the @Lookup[@name] is defeated while this countdown is active, trigger the countdown immediately as the destruction caused by their death throes.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "<p>When the countdown triggers, the @Lookup[@name] thrashes about, causing environmental damage (such as an earthquake, avalanche, or collapsing walls). All targets within Far range must make a Strength Reaction Roll. Targets who fail take 2d10+10 physical damage and are Restrained by the rubble until they break free with a successful Strength Roll. Targets who succeed take half damage. If the @Lookup[@name] is defeated while this countdown is active, trigger the countdown immediately as the destruction caused by their death throes.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -738,7 +765,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -772,7 +800,16 @@
             },
             "name": "Roll Save",
             "img": "icons/creatures/abilities/mouth-teeth-fire-orange.webp",
-            "range": ""
+            "range": "",
+            "areas": [
+              {
+                "name": "Apocalyptic Thrasing",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "effects": []
+              }
+            ]
           },
           "rZ7IwBnDzw7VmBT6": {
             "type": "countdown",

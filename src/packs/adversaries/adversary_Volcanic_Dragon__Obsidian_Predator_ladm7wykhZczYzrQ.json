@@ -163,12 +163,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -219,7 +216,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -245,7 +242,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -448,7 +446,7 @@
       "name": "Avalanche Tail",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Close range. Targets the @Lookup[@name] succeeds against take <strong>4d6+4</strong> physical damage and are knocked.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Close range. Targets the @Lookup[@name] succeeds against take <strong>4d6+4</strong> physical damage and are knocked.</p>",
         "resource": null,
         "actions": {
           "23y0BoufIgNq62j9": {
@@ -491,7 +489,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -525,7 +524,16 @@
             },
             "name": "Attack",
             "img": "icons/creatures/abilities/tail-swipe-green.webp",
-            "range": "close"
+            "range": "close",
+            "areas": [
+              {
+                "name": "Avalanche Tail",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -548,18 +556,15 @@
               "type": "withinRange",
               "target": "hostile",
               "range": "melee"
-            }
+            },
+            "changes": []
           },
-          "changes": [],
           "disabled": false,
           "duration": {
-            "startTime": null,
-            "combat": null,
-            "seconds": null,
-            "rounds": null,
-            "turns": null,
-            "startRound": null,
-            "startTurn": null
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
           },
           "description": "<p> <em>Vulnerable</em> until your next roll with Hope.</p>",
           "tint": "#ffffff",
@@ -571,6 +576,9 @@
           "_stats": {
             "compendiumSource": null
           },
+          "start": null,
+          "showIcon": 1,
+          "folder": null,
           "_key": "!actors.items.effects!ladm7wykhZczYzrQ.8bMOItTuL7PfAYcJ.qtIaAZDW8QsjILgb"
         }
       ],
@@ -590,7 +598,7 @@
       "name": "Dive-Bomb",
       "type": "feature",
       "system": {
-        "description": "<p>If the @Lookup[@name] is flying, mark a <strong>Stress</strong> to choose a point within Far range. Move to that point and make an attack against all targets within Very Close range. Targets the @Lookup[@name] succeeds against take <strong>2d10+6</strong> physical damage and must mark a Stress and lose a Hope.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p>If the @Lookup[@name] is flying, mark a <strong>Stress</strong> to choose a point within Far range. Move to that point and make an attack against all targets within Very Close range. Targets the @Lookup[@name] succeeds against take <strong>2d10+6</strong> physical damage and must mark a Stress and lose a Hope.</p>",
         "resource": null,
         "actions": {
           "OpAT9nxlbgvnhdBg": {
@@ -685,7 +693,8 @@
                   "type": []
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -714,7 +723,16 @@
             },
             "name": "Attack",
             "img": "icons/creatures/reptiles/dragon-winged-blue.webp",
-            "range": "far"
+            "range": "far",
+            "areas": [
+              {
+                "name": "Dive-Bomb",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "veryClose",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

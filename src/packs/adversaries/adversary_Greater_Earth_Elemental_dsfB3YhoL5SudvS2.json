@@ -132,12 +132,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -188,7 +185,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -214,7 +211,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -398,7 +396,7 @@
       "name": "Rockslide",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to create a rockslide that buries the land in front of @Lookup[@name] within Close range with rockfall. All targets in this area must make an Agility Reaction Roll (19). Targets who fail take <strong>2d12+5</strong> physical damage and become Vulnerable until their next roll with Hope. Targets who succeed take half damage.</p><p>@Template[type:inFront|range:c]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to create a rockslide that buries the land in front of @Lookup[@name] within Close range with rockfall. All targets in this area must make an Agility Reaction Roll (19). Targets who fail take <strong>2d12+5</strong> physical damage and become Vulnerable until their next roll with Hope. Targets who succeed take half damage.</p>",
         "resource": null,
         "actions": {
           "eLGIC3kVjLo8FEvy": {
@@ -450,7 +448,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -484,7 +483,16 @@
             },
             "name": "Roll Save",
             "img": "icons/magic/earth/barrier-stone-brown-green.webp",
-            "range": ""
+            "range": "",
+            "areas": [
+              {
+                "name": "Rockslide",
+                "type": "placed",
+                "shape": "inFront",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

@@ -139,12 +139,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -195,7 +192,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -221,7 +218,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -279,7 +277,7 @@
       "name": "Rivalry",
       "type": "feature",
       "system": {
-        "description": "<p>When a creature within Close range takes damage from a different adversary, you can <strong>mark a Stress</strong> to add a <strong>d4</strong> to the damage roll.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>When a creature within Close range takes damage from a different adversary, you can <strong>mark a Stress</strong> to add a <strong>d4</strong> to the damage roll.</p>",
         "resource": null,
         "actions": {
           "UU3H5aPQejOSoFZw": {
@@ -309,7 +307,16 @@
             },
             "name": "Mark Stress",
             "img": "icons/magic/perception/eye-ringed-glow-angry-small-teal.webp",
-            "range": ""
+            "range": "",
+            "areas": [
+              {
+                "name": "Rivalry",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -335,7 +342,7 @@
       "name": "What's Yours Is Mine",
       "type": "feature",
       "system": {
-        "description": "<p>When a PC takes Severe damage within Very Close range of the @Lookup[@name], you can <strong>spend a Fear</strong> to cause the target to make a Finesse Reaction Roll. On a failure, the @Lookup[@name] seizes one item or consumable of their choice from the target’s inventory.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p>When a PC takes Severe damage within Very Close range of the @Lookup[@name], you can <strong>spend a Fear</strong> to cause the target to make a Finesse Reaction Roll. On a failure, the @Lookup[@name] seizes one item or consumable of their choice from the target’s inventory.</p>",
         "resource": null,
         "actions": {
           "3cGZ2CofM9HUlELH": {
@@ -353,7 +360,8 @@
             },
             "damage": {
               "parts": {},
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -382,7 +390,16 @@
             },
             "name": "Roll Save",
             "img": "icons/magic/perception/hand-eye-black.webp",
-            "range": "veryClose"
+            "range": "veryClose",
+            "areas": [
+              {
+                "name": "What's Yours Is Mine",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "veryClose",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

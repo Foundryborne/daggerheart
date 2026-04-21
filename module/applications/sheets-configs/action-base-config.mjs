@@ -264,7 +264,9 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             key = event.target.closest('[data-key]').dataset.key;
         if (!this.action[key]) return;
 
-        data[key].push(this.action.defaultValues[key] ?? {});
+        const value = key === 'areas' ? { name: this.action.item.name } : {};
+
+        data[key].push(this.action.defaultValues[key] ?? value);
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 

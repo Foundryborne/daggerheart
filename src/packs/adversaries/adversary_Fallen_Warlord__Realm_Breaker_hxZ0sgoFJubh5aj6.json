@@ -173,12 +173,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -229,7 +226,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -255,7 +252,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -392,7 +390,7 @@
       "name": "Tormenting Lash",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to make a standard attack against all targets within Very Close range. When a target uses armor to reduce damage from this attack, they must mark 2 Armor Slots.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to make a standard attack against all targets within Very Close range. When a target uses armor to reduce damage from this attack, they must mark 2 Armor Slots.</p>",
         "resource": null,
         "actions": {
           "zMVhUekP8pcyQGFR": {
@@ -444,7 +442,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -473,7 +472,16 @@
             },
             "name": "Attack",
             "img": "icons/skills/melee/blood-slash-foam-red.webp",
-            "range": "veryClose"
+            "range": "veryClose",
+            "areas": [
+              {
+                "name": "Tormenting Lash",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "veryClose",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -499,14 +507,14 @@
       "name": "All-Consuming Rage",
       "type": "feature",
       "system": {
-        "description": "<p><em>Countdown (Decreasing 8)</em>. When the @Lookup[@name] is in the spotlight for the first time, activate the countdown. When it triggers, create a torrent of incarnate rage that rends flesh from bone. All targets within Far range must make a Presence Reaction Roll. Targets who fail take <strong>2d6+10</strong> direct magic damage. Targets who succeed take half damage. For each HP marked from this damage, summon a @UUID[Compendium.daggerheart.adversaries.Actor.OsLG2BjaEdTZUJU9]{Fallen Shock Troop} within Very Close range of the target who marked that HP. If the countdown ever decreases its maximum value to 0, the @Lookup[@name] marks their remaining HP and all targets within Far range must mark all remaining HP and make a death move.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p><em>Countdown (Decreasing 8)</em>. When the @Lookup[@name] is in the spotlight for the first time, activate the countdown. When it triggers, create a torrent of incarnate rage that rends flesh from bone. All targets within Far range must make a Presence Reaction Roll. Targets who fail take <strong>2d6+10</strong> direct magic damage. Targets who succeed take half damage. For each HP marked from this damage, summon a @UUID[Compendium.daggerheart.adversaries.Actor.OsLG2BjaEdTZUJU9]{Fallen Shock Troop} within Very Close range of the target who marked that HP. If the countdown ever decreases its maximum value to 0, the @Lookup[@name] marks their remaining HP and all targets within Far range must mark all remaining HP and make a death move.</p>",
         "resource": null,
         "actions": {
           "rgy5wXyXJWh6uWxC": {
             "type": "attack",
             "_id": "rgy5wXyXJWh6uWxC",
             "systemPath": "actions",
-            "description": "<p>When it triggers, create a torrent of incarnate rage that rends flesh from bone. All targets within Far range must make a Presence Reaction Roll. Targets who fail take <strong>2d6+10</strong> direct magic damage. Targets who succeed take half damage. For each HP marked from this damage, summon a @UUID[Compendium.daggerheart.adversaries.Actor.OsLG2BjaEdTZUJU9]{Fallen Shock Troop} within Very Close range of the target who marked that HP. If the countdown ever decreases its maximum value to 0, the @Lookup[@name] marks their remaining HP and all targets within Far range must mark all remaining HP and make a death move.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "<p>When it triggers, create a torrent of incarnate rage that rends flesh from bone. All targets within Far range must make a Presence Reaction Roll. Targets who fail take <strong>2d6+10</strong> direct magic damage. Targets who succeed take half damage. For each HP marked from this damage, summon a @UUID[Compendium.daggerheart.adversaries.Actor.OsLG2BjaEdTZUJU9]{Fallen Shock Troop} within Very Close range of the target who marked that HP. If the countdown ever decreases its maximum value to 0, the @Lookup[@name] marks their remaining HP and all targets within Far range must mark all remaining HP and make a death move.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -544,7 +552,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -573,7 +582,16 @@
             },
             "name": "Roll Save",
             "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
-            "range": "far"
+            "range": "far",
+            "areas": [
+              {
+                "name": "All-Consuming Rage",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "effects": []
+              }
+            ]
           },
           "8e3BHmOFLvRwPbTW": {
             "type": "countdown",
@@ -636,7 +654,7 @@
       "name": "Doombringer",
       "type": "feature",
       "system": {
-        "description": "<p>When a target marks HP from an attack by the @Lookup[@name], all PCs within Far range of the target must lose a Hope.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p>When a target marks HP from an attack by the @Lookup[@name], all PCs within Far range of the target must lose a Hope.</p>",
         "resource": null,
         "actions": {
           "WEBPJCbXfBeyHFJ4": {
@@ -680,7 +698,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -689,7 +708,16 @@
             "effects": [],
             "name": "Lose Hope",
             "img": "icons/magic/death/skull-energy-light-purple.webp",
-            "range": ""
+            "range": "",
+            "areas": [
+              {
+                "name": "Doombringer",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

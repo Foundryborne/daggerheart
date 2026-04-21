@@ -143,12 +143,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -199,7 +196,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -225,7 +222,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -312,7 +310,7 @@
       "name": "Beam Of Decay",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark 2 Stress</strong> to cause all targets within Far range to make a Strength Reaction Roll. Targets who fail take <strong>2d20+12</strong> magic damage and you gain a Fear. Targets who succeed take half damage. A target who marks 2 or more HP must also <strong>mark 2 Stress</strong> and becomes <em>Vulnerable</em> until they roll with Hope.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p><strong>Mark 2 Stress</strong> to cause all targets within Far range to make a Strength Reaction Roll. Targets who fail take <strong>2d20+12</strong> magic damage and you gain a Fear. Targets who succeed take half damage. A target who marks 2 or more HP must also <strong>mark 2 Stress</strong> and becomes <em>Vulnerable</em> until they roll with Hope.</p>",
         "resource": null,
         "actions": {
           "vaXLESD4sRkQ3Ahn": {
@@ -364,7 +362,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -398,7 +397,16 @@
             },
             "name": "Roll Save",
             "img": "icons/magic/unholy/projectile-missile-green.webp",
-            "range": "far"
+            "range": "far",
+            "areas": [
+              {
+                "name": "Beam Of Decay",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "effects": []
+              }
+            ]
           },
           "ME8AMAjgTAChHa3C": {
             "type": "healing",

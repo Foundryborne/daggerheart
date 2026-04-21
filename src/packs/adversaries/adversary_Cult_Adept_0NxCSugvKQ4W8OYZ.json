@@ -143,12 +143,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -199,7 +196,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -225,7 +222,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -486,7 +484,7 @@
       "name": "Shadow Shackles",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> and choose a point within Far range. All targets within Close range of that point are <em>Restrained</em> in smoky chains until they break free with a successful Strength or Instinct Roll. A target Restrained by this feature must spend a Hope to make an action roll.</p><p>@Template[type:circle|range:c]</p>",
+        "description": "<p><strong>Spend a Fear</strong> and choose a point within Far range. All targets within Close range of that point are <em>Restrained</em> in smoky chains until they break free with a successful Strength or Instinct Roll. A target Restrained by this feature must spend a Hope to make an action roll.</p>",
         "resource": null,
         "actions": {
           "g4RDHrY0AEYXjH52": {
@@ -521,7 +519,16 @@
             },
             "name": "Spend Fear",
             "img": "icons/magic/air/fog-gas-smoke-dense-pink.webp",
-            "range": "far"
+            "range": "far",
+            "areas": [
+              {
+                "name": "Shadow Shackles",
+                "type": "placed",
+                "shape": "circle",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
