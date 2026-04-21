@@ -61,7 +61,7 @@ export const renderMeasuredTemplate = async event => {
         type,
         angle,
         range,
-        direction,
+        direction
     });
 
     await canvas.regions.placeRegion(

@@ -100,7 +100,11 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
         const { line, rectangle, inFront, cone } = CONFIG.DH.GENERAL.templateTypes;
 
         const usedAngle =
-            type === cone.id ? (angle ?? CONFIG.MeasuredTemplate.defaults.angle) : type === inFront.id ? '180' : undefined;
+            type === cone.id
+                ? (angle ?? CONFIG.MeasuredTemplate.defaults.angle)
+                : type === inFront.id
+                  ? '180'
+                  : undefined;
 
         const { grid, distance } = CONFIG.Scene.documentClass.schema.fields.grid.fields;
         const sceneGridSize = canvas.scene?.grid.size ?? grid.size.initial;
@@ -109,7 +113,8 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
 
         const rangeNumber = Number(range);
         const settings = canvas.scene?.rangeSettings;
-        const baseDistance = (!Number.isNaN(rangeNumber) ? rangeNumber : (settings ? settings[range] : 0)) * dimensionConstant;
+        const baseDistance =
+            (!Number.isNaN(rangeNumber) ? rangeNumber : settings ? settings[range] : 0) * dimensionConstant;
 
         const length = baseDistance;
         const radius = length;
