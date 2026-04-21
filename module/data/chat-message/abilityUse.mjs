@@ -25,7 +25,7 @@ export default class DHAbilityUse extends foundry.abstract.TypeDataModel {
         if (!actionActor || !this.source.item) return null;
 
         const item = actionActor.items.get(this.source.item);
-        return item ? item.system.actionsList?.find(a => a.id === this.source.action) : null;
+        return item ? item.system.actions?.find(a => a.id === this.source.action) : null;
     }
 
     get action() {
