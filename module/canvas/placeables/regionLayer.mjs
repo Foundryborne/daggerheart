@@ -105,12 +105,10 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
         const sceneGridDistance = canvas.scene?.grid.distance ?? distance.getInitialValue();
         const dimensionConstant = sceneGridSize / sceneGridDistance;
 
-        const rangeNumber = Number(range);
         const settings = canvas.scene?.rangeSettings;
-        const baseDistance =
+        const rangeNumber = Number(range);
+        const length =
             (!Number.isNaN(rangeNumber) ? rangeNumber : settings ? settings[range] : 0) * dimensionConstant;
-
-        const length = baseDistance;
         /*----*/
 
         const shapeData = {
