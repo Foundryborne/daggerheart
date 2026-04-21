@@ -43,12 +43,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -99,7 +96,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -125,7 +122,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -235,14 +233,14 @@
       "name": "Skeletal Burst",
       "type": "feature",
       "system": {
-        "description": "<p>All targets within Close range of a point you choose in this environment must succeed on an Agility Reaction Roll or take <strong>4d8+8</strong> physical damage from skeletal shrapnel as part of the ossuary detonates around them. </p><p>@Template[type:circle|range:c]</p><section id=\"secret-b6zF5gClmMcrmeVT\" class=\"secret\"><p><em>What ancient skeletal architecture is destroyed? What bones stick in your armor?</em></p></section>",
+        "description": "<p>All targets within Close range of a point you choose in this environment must succeed on an Agility Reaction Roll or take <strong>4d8+8</strong> physical damage from skeletal shrapnel as part of the ossuary detonates around them.</p><section id=\"secret-b6zF5gClmMcrmeVT\" class=\"secret\"><p><em>What ancient skeletal architecture is destroyed? What bones stick in your armor?</em></p></section>",
         "resource": null,
         "actions": {
           "M1mOwi4Limw2hRwL": {
             "type": "attack",
             "_id": "M1mOwi4Limw2hRwL",
             "systemPath": "actions",
-            "description": "<p>All targets within Close range of a point you choose in this environment must succeed on an Agility Reaction Roll or take <strong>4d8+8</strong> physical damage from skeletal shrapnel as part of the ossuary detonates around them. </p><p>@Template[type:circle|range:c]</p><section class=\"secret\" id=\"secret-xjKFOtdFFWAgx2Cv\"><p><em>What ancient skeletal architecture is destroyed? What bones stick in your armor?</em></p></section>",
+            "description": "<p>All targets within Close range of a point you choose in this environment must succeed on an Agility Reaction Roll or take <strong>4d8+8</strong> physical damage from skeletal shrapnel as part of the ossuary detonates around them.</p><section id=\"secret-xjKFOtdFFWAgx2Cv\" class=\"secret\"><p><em>What ancient skeletal architecture is destroyed? What bones stick in your armor?</em></p></section>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -278,7 +276,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -307,7 +306,16 @@
             },
             "name": "Roll Save",
             "img": "icons/magic/death/bones-crossed-gray.webp",
-            "range": ""
+            "range": "",
+            "areas": [
+              {
+                "name": "Skeletal Burst",
+                "type": "placed",
+                "shape": "circle",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
