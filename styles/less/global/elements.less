@@ -100,7 +100,7 @@
         scrollbar-color: light-dark(@dark-blue, @golden) transparent;
     }
 
-    button {
+    button:where(:not(.plain)) {
         background: light-dark(transparent, @golden);
         border: 1px solid light-dark(@dark-blue, @dark-blue);
         color: light-dark(@dark-blue, @dark-blue);
