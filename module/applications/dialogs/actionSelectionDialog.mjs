@@ -57,7 +57,7 @@ export default class ActionSelectionDialog extends HandlebarsApplicationMixin(Ap
 
     /** @inheritDoc */
     async _prepareContext(options) {
-        const actions = this.#item.system.actions.map(action => ({
+        const actions = this.#item.system.actionsList.map(action => ({
                 ...action.toObject(),
                 id: action.id,
                 img: action.baseAction ? action.parent.parent.img : action.img
@@ -72,7 +72,7 @@ export default class ActionSelectionDialog extends HandlebarsApplicationMixin(Ap
 
     static async #onChooseAction(event, button) {
         const { actionId } = button.dataset;
-        this.action = this.item.system.actions.find(a => a._id === actionId);
+        this.action = this.item.system.actionsList.find(a => a._id === actionId);
         Object.defineProperty(this.event, 'shiftKey', {
             get() {
                 return event.shiftKey;
