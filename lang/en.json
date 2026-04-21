@@ -118,7 +118,9 @@
                 "deleteTriggerTitle": "Delete Trigger",
                 "deleteTriggerContent": "Are you sure you want to delete the {trigger} trigger?",
                 "advantageState": "Advantage State",
-                "damageOnSave": "Damage on Save"
+                "damageOnSave": "Damage on Save",
+                "useDefaultItemValues": "Use default Item values",
+                "itemDamageIsUsed": "Item Damage Is Used"
             },
             "RollField": {
                 "diceRolling": {
@@ -133,7 +135,7 @@
                 "attackModifier": "Attack Modifier",
                 "attackName": "Attack Name",
                 "criticalThreshold": "Critical Threshold",
-                "includeBase": { "label": "Include Item Damage" },
+                "includeBase": { "label": "Use Item Damage" },
                 "groupAttack": { "label": "Group Attack" },
                 "multiplier": "Multiplier",
                 "saveHint": "Set a default Trait to enable Reaction Roll. It can be changed later in Reaction Roll Dialog.",
@@ -3239,6 +3241,7 @@
             "Tooltip": {
                 "disableEffect": "Disable Effect",
                 "enableEffect": "Enable Effect",
+                "edit": "Edit",
                 "openItemWorld": "Open Item World",
                 "openActorWorld": "Open Actor World",
                 "sendToChat": "Send to Chat",

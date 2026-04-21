@@ -110,6 +110,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return this._id;
     }
 
+    /** Returns true if the current user is the owner of the containing item */
+    get isOwner() {
+        return this.item?.isOwner ?? true;
+    }
+
     /**
      * Return Item the action is attached too.
      */
@@ -141,6 +146,12 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             : this.item?.parent instanceof DhpActor
               ? this.item.parent
               : null;
+    }
+
+    /** Returns true if the action is usable */
+    get usable() {
+        const actor = this.actor;
+        return this.isOwner && actor?.type === 'character';
     }
 
     static getRollType(parent) {

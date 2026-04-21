@@ -99,7 +99,9 @@ export default class DHWeapon extends AttachableItem {
     /* -------------------------------------------- */
 
     get actionsList() {
-        return [this.attack, ...this.actions];
+        // No actions on non-characters
+        if (this.actor && this.actor.type !== 'character') return [];
+        return [this.attack, ...super.actionsList];
     }
 
     get customActions() {

@@ -78,7 +78,7 @@ export default class DhCompanion extends DhCreature {
                         choices: CONFIG.DH.GENERAL.dieFaces,
                         initial: null,
                         label: 'DAGGERHEART.ACTORS.Character.defaultDisadvantageDice'
-                    }),
+                    })
                 })
             }),
             attack: new ActionField({

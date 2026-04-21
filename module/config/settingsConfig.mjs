@@ -42,7 +42,7 @@ export const gameSettings = {
     SpotlightRequestQueue: 'SpotlightRequestQueue',
     CompendiumBrowserSettings: 'CompendiumBrowserSettings',
     SpotlightTracker: 'SpotlightTracker',
-    ActiveParty: 'ActiveParty',
+    ActiveParty: 'ActiveParty'
 };
 
 export const actionAutomationChoices = {

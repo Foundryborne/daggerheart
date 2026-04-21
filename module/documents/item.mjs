@@ -76,6 +76,13 @@ export default class DHItem extends foundry.documents.Item {
         return this.system.metadata.isInventoryItem ?? false;
     }
 
+    /** Returns true if the item can be used */
+    get usable() {
+        const actor = this.actor;
+        const actionsList = this.system.actionsList;
+        return this.isOwner && actor?.type === 'character' && (actionsList?.size || actionsList?.length);
+    }
+
     /** @inheritdoc */
     static async createDialog(data = {}, createOptions = {}, options = {}) {
         const { folders, types, template, context = {}, ...dialogOptions } = options;

@@ -4,22 +4,24 @@
         <h1 class="actor-name input" contenteditable="plaintext-only" data-property="name" placeholder="{{localize "DAGGERHEART.GENERAL.actorName"}}">{{source.name}}</h1>
         <div class='level-div'>
             <h3 class='label'>
-                {{#if document.system.needsCharacterSetup}}
-                    <button
-                        type="button"
-                        class="level-button glow"
-                        data-action="levelManagement"
-                    >
-                        {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.buttonTitle"}}
-                    </button>
-                {{else if document.system.levelData.canLevelUp}}
-                    <button
-                        type="button"
-                        class="level-button glow" data-tooltip="{{localize "DAGGERHEART.ACTORS.Character.levelUp"}}"
-                        data-action="levelManagement"
-                    >
-                        <i class="fa-solid fa-angles-up"></i>
-                    </button>
+                {{#if @root.editable}}
+                    {{#if document.system.needsCharacterSetup}}
+                        <button
+                            type="button"
+                            class="level-button glow"
+                            data-action="levelManagement"
+                        >
+                            {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.buttonTitle"}}
+                        </button>
+                    {{else if document.system.levelData.canLevelUp}}
+                        <button
+                            type="button"
+                            class="level-button glow" data-tooltip="{{localize "DAGGERHEART.ACTORS.Character.levelUp"}}"
+                            data-action="levelManagement"
+                        >
+                            <i class="fa-solid fa-angles-up"></i>
+                        </button>
+                    {{/if}}
                 {{/if}}
                 {{#unless document.system.needsCharacterSetup}}
                     {{localize 'DAGGERHEART.GENERAL.level'}}
@@ -110,12 +112,14 @@
                     <i class="fa-solid fa-fw fa-users"></i>
                 </button>
             {{/if}}
-            <button type="button" data-action="useDowntime" data-type="shortRest" data-tooltip="DAGGERHEART.APPLICATIONS.Downtime.shortRest.title">
-                <i class="fa-solid fa-fw fa-utensils"></i>
-            </button>
-            <button type="button" data-action="useDowntime" data-type="longRest" data-tooltip="DAGGERHEART.APPLICATIONS.Downtime.longRest.title">
-                <i class="fa-solid fa-fw fa-bed"></i>
-            </button>
+            {{#if @root.editable}}
+                <button type="button" data-action="useDowntime" data-type="shortRest" data-tooltip="DAGGERHEART.APPLICATIONS.Downtime.shortRest.title">
+                    <i class="fa-solid fa-fw fa-utensils"></i>
+                </button>
+                <button type="button" data-action="useDowntime" data-type="longRest" data-tooltip="DAGGERHEART.APPLICATIONS.Downtime.longRest.title">
+                    <i class="fa-solid fa-fw fa-bed"></i>
+                </button>
+            {{/if}}
         </div>
     </div>
 

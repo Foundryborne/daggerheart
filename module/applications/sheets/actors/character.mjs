@@ -12,8 +12,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
         classes: ['character'],
         position: { width: 850, height: 800 },
-        /* Foundry adds disabled to all buttons and inputs if editPermission is missing. This is not desired. */
-        editPermission: CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER,
         actions: {
             toggleVault: CharacterSheet.#toggleVault,
             rollAttribute: CharacterSheet.#rollAttribute,
@@ -68,7 +66,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 }
             },
             {
-                handler: CharacterSheet.#getEquipamentContextOptions,
+                handler: CharacterSheet.#getEquipmentContextOptions,
                 selector: '[data-item-uuid][data-type="armor"], [data-item-uuid][data-type="weapon"]',
                 options: {
                     parentClassHooks: false,
@@ -168,6 +166,16 @@ export default class CharacterSheet extends DHBaseActorSheet {
         }
 
         return applicationOptions;
+    }
+
+    /** @inheritdoc */
+    _toggleDisabled(disabled) {
+        // Overriden to only disable text inputs by default.
+        // Everything else is done by checking @root.editable in the sheet
+        const form = this.form;
+        for (const input of form.querySelectorAll('input:not([type=search]), .editor.prosemirror')) {
+            input.disabled = disabled;
+        }
     }
 
     /** @inheritDoc */
@@ -315,11 +323,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
         /**@type {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} */
         const options = [
             {
-                name: 'toLoadout',
+                label: 'toLoadout',
                 icon: 'fa-solid fa-arrow-up',
-                condition: target => {
+                visible: target => {
                     const doc = getDocFromElementSync(target);
-                    return doc && doc.system.inVault;
+                    return doc?.isOwner && doc.system.inVault;
                 },
                 callback: async target => {
                     const doc = await getDocFromElement(target);
@@ -329,11 +337,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 }
             },
             {
-                name: 'recall',
+                label: 'recall',
                 icon: 'fa-solid fa-bolt-lightning',
-                condition: target => {
+                visible: target => {
                     const doc = getDocFromElementSync(target);
-                    return doc && doc.system.inVault;
+                    return doc?.isOwner && doc.system.inVault;
                 },
                 callback: async (target, event) => {
                     const doc = await getDocFromElement(target);
@@ -368,17 +376,17 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 }
             },
             {
-                name: 'toVault',
+                label: 'toVault',
                 icon: 'fa-solid fa-arrow-down',
-                condition: target => {
+                visible: target => {
                     const doc = getDocFromElementSync(target);
-                    return doc && !doc.system.inVault;
+                    return doc?.isOwner && !doc.system.inVault;
                 },
                 callback: async target => (await getDocFromElement(target)).update({ 'system.inVault': true })
             }
         ].map(option => ({
             ...option,
-            name: `DAGGERHEART.APPLICATIONS.ContextMenu.${option.name}`,
+            label: `DAGGERHEART.APPLICATIONS.ContextMenu.${option.label}`,
             icon: `<i class="${option.icon}"></i>`
         }));
 
@@ -391,29 +399,29 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * @this {CharacterSheet}
      * @protected
      */
-    static #getEquipamentContextOptions() {
+    static #getEquipmentContextOptions() {
         const options = [
             {
-                name: 'equip',
+                label: 'equip',
                 icon: 'fa-solid fa-hands',
-                condition: target => {
+                visible: target => {
                     const doc = getDocFromElementSync(target);
-                    return doc && !doc.system.equipped;
+                    return doc.isOwner && doc && !doc.system.equipped;
                 },
                 callback: (target, event) => CharacterSheet.#toggleEquipItem.call(this, event, target)
             },
             {
-                name: 'unequip',
+                label: 'unequip',
                 icon: 'fa-solid fa-hands',
-                condition: target => {
+                visible: target => {
                     const doc = getDocFromElementSync(target);
-                    return doc && doc.system.equipped;
+                    return doc.isOwner && doc && doc.system.equipped;
                 },
                 callback: (target, event) => CharacterSheet.#toggleEquipItem.call(this, event, target)
             }
         ].map(option => ({
             ...option,
-            name: `DAGGERHEART.APPLICATIONS.ContextMenu.${option.name}`,
+            label: `DAGGERHEART.APPLICATIONS.ContextMenu.${option.label}`,
             icon: `<i class="${option.icon}"></i>`
         }));
 

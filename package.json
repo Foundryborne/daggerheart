@@ -17,13 +17,18 @@
     "pullYMLtoLDB": "node ./tools/pullYMLtoLDB.mjs",
     "pullYMLtoLDBBuild": "node ./tools/pullYMLtoLDB.mjs --build",
     "createSymlink": "node ./tools/create-symlink.mjs",
-    "setup:dev": "node ./tools/dev-setup.mjs"
+    "setup:dev": "node ./tools/dev-setup.mjs",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
   },
   "devDependencies": {
     "@foundryvtt/foundryvtt-cli": "^1.0.2",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "concurrently": "^8.2.2",
+    "eslint": "^10.2.1",
+    "eslint-plugin-prettier": "^5.5.5",
+    "globals": "^17.5.0",
     "husky": "^9.1.5",
     "lint-staged": "^15.2.10",
     "postcss": "^8.4.32",

@@ -13,7 +13,7 @@ export default class DHAttackAction extends DHDamageAction {
         if (!!this.item?.system?.attack) {
             if (this.damage.includeBase) {
                 const baseDamage = this.getParentDamage();
-                this.damage.parts.unshift(new DHDamageData(baseDamage));
+                this.damage.parts.hitPoints = new DHDamageData(baseDamage);
             }
             if (this.roll.useDefault) {
                 this.roll.trait = this.item.system.attack.roll.trait;

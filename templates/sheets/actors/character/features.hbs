@@ -8,8 +8,8 @@
             type='feature'
             actorType='character'
             collection=category.values
-            canCreate=true
-            showActions=true
+            canCreate=@root.editable
+            showActions=@root.editable
         }}
         {{else if category.values}}
         {{> 'daggerheart.inventory-items'
@@ -18,7 +18,7 @@
             actorType='character'
             collection=category.values
             canCreate=false
-            showActions=true
+            showActions=@root.editable
         }}
 
         {{/if}}
