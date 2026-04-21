@@ -94,9 +94,12 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
                 },
                 { nullable: true, initial: null }
             ),
-            targetDispositions: new fields.SetField(new fields.NumberField({
-                choices: CONFIG.DH.GENERAL.simpleDispositions,
-            }), { label: 'Affected Dispositions' }),
+            targetDispositions: new fields.SetField(
+                new fields.NumberField({
+                    choices: CONFIG.DH.GENERAL.simpleDispositions
+                }),
+                { label: 'Affected Dispositions' }
+            )
         };
     }
 

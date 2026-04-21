@@ -11,7 +11,7 @@ export default class DHAbilityUse extends foundry.abstract.TypeDataModel {
                 actor: new fields.StringField(),
                 item: new fields.StringField(),
                 action: new fields.StringField()
-            }),
+            })
         };
     }
 

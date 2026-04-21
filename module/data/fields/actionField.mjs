@@ -287,7 +287,7 @@ export function ActionMixin(Base) {
                 source: {
                     actor: this.actor.uuid,
                     item: this.item.id,
-                    action: this.id,
+                    action: this.id
                 },
                 itemOrigin: this.item,
                 description: this.description || (this.item instanceof Item ? this.item.system.description : '')

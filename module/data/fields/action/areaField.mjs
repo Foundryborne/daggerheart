@@ -33,7 +33,7 @@ export default class AreaField extends fields.ArrayField {
                 initial: CONFIG.DH.GENERAL.range.veryClose.id,
                 label: 'DAGGERHEART.ACTIONS.Config.area.size'
             }),
-            effects: new fields.ArrayField(new fields.DocumentIdField()),
+            effects: new fields.ArrayField(new fields.DocumentIdField())
         });
         super(element, options, context);
     }

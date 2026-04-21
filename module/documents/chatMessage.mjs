@@ -137,7 +137,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             element.addEventListener('click', this.onApplyEffect.bind(this))
         );
 
-        html.querySelectorAll('.action-areas').forEach(element => 
+        html.querySelectorAll('.action-areas').forEach(element =>
             element.addEventListener('click', this.onCreateAreas.bind(this))
         );
 
@@ -254,9 +254,9 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     }
 
     async onCreateAreas(event) {
-        const createArea = async (selectedArea) => {
+        const createArea = async selectedArea => {
             const effects = selectedArea.effects.map(effect => this.system.action.item.effects.get(effect).uuid);
-            const { shape: type, size: range } = selectedArea; 
+            const { shape: type, size: range } = selectedArea;
             const shapeData = CONFIG.Canvas.layers.regions.layerClass.getTemplateShape({ type, range });
 
             await canvas.regions.placeRegion(
@@ -264,13 +264,15 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                     name: selectedArea.name,
                     shapes: [shapeData],
                     restriction: { enabled: false, type: 'move', priority: 0 },
-                    behaviors: [{
-                        name: game.i18n.localize('TYPES.RegionBehavior.applyActiveEffect'),
-                        type: 'applyActiveEffect',
-                        system: {
-                            effects: effects
+                    behaviors: [
+                        {
+                            name: game.i18n.localize('TYPES.RegionBehavior.applyActiveEffect'),
+                            type: 'applyActiveEffect',
+                            system: {
+                                effects: effects
+                            }
                         }
-                    }],
+                    ],
                     displayMeasurements: true,
                     locked: false,
                     ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE },
@@ -278,18 +280,17 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                 },
                 { create: true }
             );
-        }
+        };
 
-        if (this.system.action.area.length === 1)
-            createArea(this.system.action.area[0]);
-        else if(this.system.action.area.length > 1) {
-           /* Pop a selection. Possibly a context menu? */ 
+        if (this.system.action.area.length === 1) createArea(this.system.action.area[0]);
+        else if (this.system.action.area.length > 1) {
+            /* Pop a selection. Possibly a context menu? */
             new foundry.applications.ux.ContextMenu.implementation(
                 event.target,
                 '.action-areas',
                 this.system.action.area.map((area, index) => ({
                     name: area.name,
-                    callback: () => createArea(this.system.action.area[index]),
+                    callback: () => createArea(this.system.action.area[index])
                 })),
                 {
                     jQuery: false,
