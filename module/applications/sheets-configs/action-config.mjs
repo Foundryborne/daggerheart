@@ -28,7 +28,7 @@ export default class DHActionConfig extends DHActionBaseConfig {
             game.system.api.data.activeEffects.BaseEffect.getDefaultObject({ transfer: false })
         ]);
 
-        if (areaIndex !== undefined) data.area[areaIndex].effects.push(created[0]._id);
+        if (areaIndex !== undefined) data.areas[areaIndex].effects.push(created[0]._id);
         else data.effects.push({ _id: created[0]._id });
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
         this.action.item.effects.get(created[0]._id).sheet.render(true);
@@ -58,9 +58,9 @@ export default class DHActionConfig extends DHActionBaseConfig {
         const { areaIndex, index } = button.dataset;
         let effectId = null;
         if (areaIndex !== undefined) {
-            effectId = this.action.area[areaIndex].effects[index];
+            effectId = this.action.areas[areaIndex].effects[index];
             const data = this.action.toObject();
-            data.area[areaIndex].effects.splice(index, 1);
+            data.areas[areaIndex].effects.splice(index, 1);
             this.constructor.updateForm.call(this, null, null, { object: foundry.utils.flattenObject(data) });
         } else {
             effectId = this.action.effects[index]._id;

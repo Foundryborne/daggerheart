@@ -107,17 +107,16 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
 
         const settings = canvas.scene?.rangeSettings;
         const rangeNumber = Number(range);
-        const length =
-            (!Number.isNaN(rangeNumber) ? rangeNumber : settings ? settings[range] : 0) * dimensionConstant;
+        const length = (!Number.isNaN(rangeNumber) ? rangeNumber : settings ? settings[range] : 0) * dimensionConstant;
         /*----*/
 
         const shapeData = {
             ...canvas.mousePosition,
             type: type,
-            direction: direction ?? 0,
+            direction: direction ?? 0
         };
 
-        switch(type) {
+        switch (type) {
             case rectangle.id:
                 shapeData.width = length;
                 shapeData.height = length;

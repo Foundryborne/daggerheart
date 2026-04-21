@@ -1,6 +1,6 @@
 const fields = foundry.data.fields;
 
-export default class AreaField extends fields.ArrayField {
+export default class AreasField extends fields.ArrayField {
     /**
      * Action Workflow order
      */

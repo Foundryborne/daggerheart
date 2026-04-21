@@ -40,7 +40,7 @@ export default class DHActionSettingsConfig extends DHActionBaseConfig {
         this.sheetUpdate(data, effectData);
         this.effects = [...this.effects, effectData];
 
-        if (areaIndex !== undefined) data.area[areaIndex].effects.push(effectData.id);
+        if (areaIndex !== undefined) data.areas[areaIndex].effects.push(effectData.id);
         else data.effects.push({ _id: effectData.id });
 
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
@@ -51,9 +51,9 @@ export default class DHActionSettingsConfig extends DHActionBaseConfig {
         const { areaIndex, index } = button.dataset;
         let effectId = null;
         if (areaIndex !== undefined) {
-            effectId = this.action.area[areaIndex].effects[index];
+            effectId = this.action.areas[areaIndex].effects[index];
             const data = this.action.toObject();
-            data.area[areaIndex].effects.splice(index, 1);
+            data.areas[areaIndex].effects.splice(index, 1);
             this.constructor.updateForm.call(this, null, null, { object: foundry.utils.flattenObject(data) });
         } else {
             effectId = this.action.effects[index]._id;

@@ -282,14 +282,14 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             );
         };
 
-        if (this.system.action.area.length === 1) createArea(this.system.action.area[0]);
-        else if (this.system.action.area.length > 1) {
+        if (this.system.action.areas.length === 1) createArea(this.system.action.areas[0]);
+        else if (this.system.action.areas.length > 1) {
             new foundry.applications.ux.ContextMenu.implementation(
                 event.target,
                 '.action-areas',
-                this.system.action.area.map((area, index) => ({
+                this.system.action.areas.map(area => ({
                     label: area.name,
-                    onClick: () => createArea(this.system.action.area[index])
+                    onClick: () => createArea(area)
                 })),
                 {
                     jQuery: false,

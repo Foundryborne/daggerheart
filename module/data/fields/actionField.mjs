@@ -281,7 +281,7 @@ export function ActionMixin(Base) {
                     name: this.name,
                     img: this.baseAction ? this.parent.parent.img : this.img,
                     tags: this.tags ? this.tags : ['Spell', 'Arcana', 'Lv 10'],
-                    area: this.area,
+                    areas: this.areas,
                     summon: this.summon
                 },
                 source: {
