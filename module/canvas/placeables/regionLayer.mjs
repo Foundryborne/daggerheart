@@ -115,19 +115,19 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
 
         const shapeData = {
             ...canvas.mousePosition,
-            base: {
-                type: 'token',
-                x: 0,
-                y: 0,
-                width: 1,
-                height: 1,
-                shape: game.canvas.grid.isHexagonal ? CONST.TOKEN_SHAPES.ELLIPSE_1 : CONST.TOKEN_SHAPES.RECTANGLE_1
-            },
             type: type,
             direction: direction ?? 0,
         };
 
         switch(type) {
+            case rectangle.id:
+                shapeData.width = length;
+                shapeData.height = length;
+                break;
+            case line.id:
+                shapeData.length = length;
+                shapeData.width = 5 * dimensionConstant;
+                break;
             case cone.id:
                 shapeData.angle = angle ?? CONFIG.MeasuredTemplate.defaults.angle;
                 shapeData.radius = length;
@@ -142,14 +142,14 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
                 break;
             case emanation.id:
                 shapeData.radius = length;
-                break;
-            case rectangle.id:
-                shapeData.width = length;
-                shapeData.height = length;
-                break;
-            case line.id:
-                shapeData.length = length;
-                shapeData.width = 5 * dimensionConstant;
+                shapeData.base = {
+                    type: 'token',
+                    x: 0,
+                    y: 0,
+                    width: 1,
+                    height: 1,
+                    shape: game.canvas.grid.isHexagonal ? CONST.TOKEN_SHAPES.ELLIPSE_1 : CONST.TOKEN_SHAPES.RECTANGLE_1
+                };
                 break;
         }
 
