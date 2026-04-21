@@ -4,15 +4,21 @@
         <summary class="domain-card-header">
             <div class="domain-label">
                 <h2 class="title">{{item.name}}</h2>
-                <ul class="tags">
-                    {{#each item.tags as |tag|}}
-                        <li class="tag"><span>{{tag}}</span></li>
-                    {{/each}}
-                </ul>
+                {{#if item.tags}}
+                    <ul class="tags">
+                        {{#each item.tags as |tag|}}
+                            <li class="tag"><span>{{tag}}</span></li>
+                        {{/each}}
+                    </ul>
+                {{/if}}
             </div>
-            <i class="fa-solid fa-chevron-down"></i>
+            {{#if description}}
+                <i class="fa-solid fa-chevron-down"></i>
+            {{/if}}
         </summary>
-        <div class="description">{{{description}}}</div>
+        {{#if description}}
+            <div class="description">{{{description}}}</div>
+        {{/if}}
     </details>
     <footer class="ability-card-footer">
         {{#each actions as |action|}}
