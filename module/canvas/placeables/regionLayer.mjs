@@ -122,10 +122,8 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
         const shapeWidth = type === line.id ? 5 * dimensionConstant : type === rectangle.id ? length : undefined;
         const shapeType = type === inFront.id ? cone.id : type;
 
-        const { width, height } = game.canvas.scene.dimensions;
         return {
-            x: width / 2,
-            y: height / 2,
+            ...canvas.mousePosition,
             base: {
                 type: 'token',
                 x: 0,

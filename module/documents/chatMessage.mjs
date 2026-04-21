@@ -284,13 +284,12 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
         if (this.system.action.area.length === 1) createArea(this.system.action.area[0]);
         else if (this.system.action.area.length > 1) {
-            /* Pop a selection. Possibly a context menu? */
             new foundry.applications.ux.ContextMenu.implementation(
                 event.target,
                 '.action-areas',
                 this.system.action.area.map((area, index) => ({
-                    name: area.name,
-                    callback: () => createArea(this.system.action.area[index])
+                    label: area.name,
+                    onClick: () => createArea(this.system.action.area[index])
                 })),
                 {
                     jQuery: false,
