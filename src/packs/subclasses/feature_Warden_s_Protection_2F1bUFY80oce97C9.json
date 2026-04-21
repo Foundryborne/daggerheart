@@ -74,7 +74,16 @@
         },
         "name": "Healing",
         "img": "icons/commodities/currency/coin-embossed-ruby-gold.webp",
-        "range": ""
+        "range": "",
+        "areas": [
+          {
+            "name": "Warden’s Protection",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "close",
+            "effects": []
+          }
+        ]
       }
     },
     "originItemType": null,

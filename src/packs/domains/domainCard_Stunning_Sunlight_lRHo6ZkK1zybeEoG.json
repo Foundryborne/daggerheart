@@ -95,7 +95,16 @@
         },
         "name": "Cast",
         "img": "icons/magic/light/beam-strike-village-yellow.webp",
-        "range": "far"
+        "range": "far",
+        "areas": [
+          {
+            "name": "Stunning Sunlight",
+            "type": "placed",
+            "shape": "inFront",
+            "size": "far",
+            "effects": []
+          }
+        ]
       },
       "AI8sGbUXLw4gG8mW": {
         "type": "damage",

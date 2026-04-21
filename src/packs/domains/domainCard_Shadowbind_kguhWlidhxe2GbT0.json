@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "Abn46nCQst6kpGeA",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against all adversaries within Very Close range. Targets you succeed against are temporarily <em>Restrained</em> as their shadow binds them in place.</p><p>@Template[type:emanation|range:vc]</p>",
+    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against all adversaries within Very Close range. Targets you succeed against are temporarily <em>Restrained</em> as their shadow binds them in place.</p>",
     "domain": "midnight",
     "recallCost": 0,
     "level": 2,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "Llr9uIDUCrfsiZNn",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against all adversaries within Very Close range. Targets you succeed against are temporarily <em>Restrained</em> as their shadow binds them in place.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -59,7 +59,16 @@
         },
         "name": "Cast",
         "img": "icons/magic/control/debuff-energy-snare-blue.webp",
-        "range": "veryClose"
+        "range": "veryClose",
+        "areas": [
+          {
+            "name": "Shadowbind",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "veryClose",
+            "effects": []
+          }
+        ]
       }
     },
     "attribution": {
