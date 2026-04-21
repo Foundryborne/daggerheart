@@ -109,7 +109,9 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
     get actionsList() {
         // No actions on non-characters
-        if (this.actor && this.actor.type !== 'character') return [];
+        if (this.metadata.isInventoryItem && this.actor && this.actor.type !== 'character') {
+            return [];
+        }
         return this.actions;
     }
 
