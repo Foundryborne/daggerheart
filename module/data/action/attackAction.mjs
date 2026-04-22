@@ -12,7 +12,7 @@ export default class DHAttackAction extends DHDamageAction {
         if (!!this.item?.system?.attack) {
             if (this.damage.includeBase) {
                 const baseDamage = this.getParentHitPointDamage();
-                if(baseDamage) {
+                if (baseDamage) {
                     if (!this.damage.parts.hitPoints) {
                         this.damage.parts.hitPoints = baseDamage;
                     } else {
