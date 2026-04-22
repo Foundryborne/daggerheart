@@ -364,7 +364,7 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                         advancement.experience?.flatMap(x => x.data.map(data => ({ name: data, modifier: x.value }))) ??
                         [],
                     multiclass: advancement.multiclass,
-                    subclass: advancement.subclass,
+                    subclass: advancement.subclass
                 };
 
                 context.advancements.statistics.proficiency.shown =

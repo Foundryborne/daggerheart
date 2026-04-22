@@ -80,7 +80,7 @@ export default class DhCompanion extends DhCreature {
                         initial: 1,
                         label: 'DAGGERHEART.ACTORS.Creature.rules.roll.disadvantage.label',
                         hint: 'DAGGERHEART.ACTORS.Creature.rules.roll.disadvantage.hint'
-                    }),
+                    })
                 })
             }),
             attack: new ActionField({

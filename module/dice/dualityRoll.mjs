@@ -11,7 +11,7 @@ export default class DualityRoll extends D20Roll {
         this.rallyChoices = this.setRallyChoices();
         this.guaranteedCritical = options.guaranteedCritical;
 
-        const advantageFaces = data.rules?.roll?.advantageFaces ? Number.parseInt(data.rules.roll.advantageFaces) : 6
+        const advantageFaces = data.rules?.roll?.advantageFaces ? Number.parseInt(data.rules.roll.advantageFaces) : 6;
         this.advantageFaces = Number.isNaN(advantageFaces) ? 6 : advantageFaces;
     }
 

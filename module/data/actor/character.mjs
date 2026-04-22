@@ -305,13 +305,13 @@ export default class DhCharacter extends DhCreature {
                         label: 'DAGGERHEART.ACTORS.Creature.rules.roll.disadvantage.label',
                         hint: 'DAGGERHEART.ACTORS.Creature.rules.roll.disadvantage.hint'
                     }),
-                    comboDieIndex: new fields.NumberField({ 
-                        integer: true,  
+                    comboDieIndex: new fields.NumberField({
+                        integer: true,
                         min: 0,
                         max: 5,
-                        initial: 0,
-                    }) 
-                }),
+                        initial: 0
+                    })
+                })
             })
         };
     }

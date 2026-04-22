@@ -48,36 +48,36 @@ export class DhLevelOption extends foundry.abstract.DataModel {
         const fields = foundry.data.fields;
 
         return {
-            label: new fields.StringField({ 
-                required: true, 
-                label: 'DAGGERHEART.GENERAL.label' 
+            label: new fields.StringField({
+                required: true,
+                label: 'DAGGERHEART.GENERAL.label'
             }),
-            checkboxSelections: new fields.NumberField({ 
-                required: true, 
-                integer: true, 
+            checkboxSelections: new fields.NumberField({
+                required: true,
+                integer: true,
                 initial: 1,
                 label: 'DAGGERHEART.CONFIG.LevelupData.checkboxSelections'
             }),
-            minCost: new fields.NumberField({ 
-                required: true, 
-                integer: true, 
+            minCost: new fields.NumberField({
+                required: true,
+                integer: true,
                 initial: 1,
                 label: 'DAGGERHEART.CONFIG.LevelupData.minCost'
             }),
-            type: new fields.StringField({ 
-                required: true, 
+            type: new fields.StringField({
+                required: true,
                 choices: LevelOptionType,
                 label: 'DAGGERHEART.GENERAL.type'
             }),
             subType: new fields.StringField({
                 nullable: true,
-                label: 'DAGGERHEART.GENERAL.subType',
+                label: 'DAGGERHEART.GENERAL.subType'
             }),
-            value: new fields.NumberField({ 
+            value: new fields.NumberField({
                 integer: true,
                 label: 'DAGGERHEART.GENERAL.value'
             }),
-            amount: new fields.NumberField({ 
+            amount: new fields.NumberField({
                 integer: true,
                 label: 'DAGGERHEART.GENERAL.amount'
             })
@@ -192,12 +192,12 @@ export const LevelOptionType = {
     dice: {
         id: 'dice',
         label: 'Increase Dice Size',
-        subTypes: {            
+        subTypes: {
             hopeIndex: { key: 'hopeIndex', label: 'DAGGERHEART.GENERAL.hope' },
             fearIndex: { key: 'fearIndex', label: 'DAGGERHEART.GENERAL.fear' },
             advantageIndex: { key: 'advantageIndex', label: 'DAGGERHEART.GENERAL.Advantage.full' },
-            comboDieIndex:{ key: 'comboDieIndex', label: 'Combo Die' } // Translation pending actual useage
-        },
+            comboDieIndex: { key: 'comboDieIndex', label: 'Combo Die' } // Translation pending actual useage
+        }
     },
     ...CompanionLevelOptionType
 };

@@ -100,7 +100,7 @@ export default function DHApplicationMixin(Base) {
                 addNewItem: DHSheetV2.#addNewItem,
                 browseItem: DHSheetV2.#browseItem,
                 editAttribution: DHSheetV2.#editAttribution,
-                configureLevelUpOptions: DHSheetV2.#configureLevelUpOptions,
+                configureLevelUpOptions: DHSheetV2.#configureLevelUpOptions
             },
             contextMenus: [
                 {
@@ -126,9 +126,9 @@ export default function DHApplicationMixin(Base) {
                         icon: 'fa-solid fa-angles-up fa-fw',
                         label: 'DAGGERHEART.UI.Tooltip.configureLevelupOptions',
                         action: 'configureLevelUpOptions',
-                        visible: DHSheetV2.#hasLevelUpOptions,
+                        visible: DHSheetV2.#hasLevelUpOptions
                     }
-                ],
+                ]
             },
             dragDrop: [{ dragSelector: '.inventory-item[data-type="effect"]', dropSelector: null }],
             tagifyConfigs: []
@@ -155,7 +155,7 @@ export default function DHApplicationMixin(Base) {
 
         static #hasLevelUpOptions() {
             return this.document.system.metadata.hasLevelUpOptions;
-        };
+        }
 
         /**
          *  Refresh the custom parts of the application frame

@@ -345,7 +345,7 @@ export class DhLevelupLevel extends foundry.abstract.DataModel {
                         data: new fields.ArrayField(new fields.StringField()),
                         secondaryData: new fields.TypedObjectField(new fields.StringField()),
                         type: new fields.StringField({ required: true }),
-                        subType: new fields.StringField({ nullable: true }),
+                        subType: new fields.StringField({ nullable: true })
                     })
                 )
             )

@@ -1,4 +1,4 @@
-import { LevelOptionType } from "../../data/levelTier.mjs";
+import { LevelOptionType } from '../../data/levelTier.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -21,7 +21,7 @@ export default class LevelupOptionsDialog extends HandlebarsApplicationMixin(App
         window: { icon: 'fa-solid fa-angles-up fa-fw' },
         actions: {
             addTierOption: LevelupOptionsDialog.#addTierOption,
-            removeTierOption: LevelupOptionsDialog.#removeTierOption,
+            removeTierOption: LevelupOptionsDialog.#removeTierOption
         },
         form: { handler: this.updateData, submitOnChange: true, closeOnSubmit: false }
     };
@@ -29,25 +29,25 @@ export default class LevelupOptionsDialog extends HandlebarsApplicationMixin(App
     static PARTS = {
         header: { template: 'systems/daggerheart/templates/dialogs/levelupOptionsDialog/header.hbs' },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
-        tiers: { template: 'systems/daggerheart/templates/dialogs/levelupOptionsDialog/tiers.hbs' },
+        tiers: { template: 'systems/daggerheart/templates/dialogs/levelupOptionsDialog/tiers.hbs' }
     };
 
     /** @inheritdoc */
     static TABS = {
         primary: {
             tabs: [
-                { id: 'tier2', label: 'DAGGERHEART.GENERAL.Tiers.2', tier: 2 }, 
-                { id: 'tier3', label: 'DAGGERHEART.GENERAL.Tiers.3', tier: 3 }, 
+                { id: 'tier2', label: 'DAGGERHEART.GENERAL.Tiers.2', tier: 2 },
+                { id: 'tier3', label: 'DAGGERHEART.GENERAL.Tiers.3', tier: 3 },
                 { id: 'tier4', label: 'DAGGERHEART.GENERAL.Tiers.4', tier: 4 }
             ],
-            initial: 'tier2',
+            initial: 'tier2'
         }
     };
 
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
 
-        for(const element of htmlElement.querySelectorAll('.option-type-select'))
+        for (const element of htmlElement.querySelectorAll('.option-type-select'))
             element.addEventListener('change', this.updateSelectedOption.bind(this));
     }
 
@@ -68,7 +68,7 @@ export default class LevelupOptionsDialog extends HandlebarsApplicationMixin(App
             }, {});
 
             return acc;
-        }, {})
+        }, {});
 
         context.optionTypes = LevelOptionType;
         context.selectedOption = this.selectedOption;
@@ -78,7 +78,7 @@ export default class LevelupOptionsDialog extends HandlebarsApplicationMixin(App
 
     static async updateData(_event, _element, formData) {
         const data = foundry.utils.expandObject(formData.object);
-        await this.item.update(data)
+        await this.item.update(data);
 
         this.render();
     }
@@ -90,10 +90,12 @@ export default class LevelupOptionsDialog extends HandlebarsApplicationMixin(App
 
     static async #addTierOption(_event, button) {
         const { tier } = button.dataset;
-        await this.item.update({ [`system.levelupOptionTiers.${tier}.${foundry.utils.randomID()}`]: {
-            label: LevelOptionType[this.selectedOption].label,
-            type: this.selectedOption
-        }});
+        await this.item.update({
+            [`system.levelupOptionTiers.${tier}.${foundry.utils.randomID()}`]: {
+                label: LevelOptionType[this.selectedOption].label,
+                type: this.selectedOption
+            }
+        });
 
         this.selectedOption = null;
         this.render();

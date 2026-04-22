@@ -12,7 +12,7 @@ export default class DHClass extends BaseDataItem {
             label: 'TYPES.Item.class',
             type: 'class',
             hasDescription: true,
-            hasLevelUpOptions: true,
+            hasLevelUpOptions: true
         });
     }
 
@@ -54,9 +54,12 @@ export default class DHClass extends BaseDataItem {
             backgroundQuestions: new fields.ArrayField(new fields.StringField(), { initial: ['', '', ''] }),
             connections: new fields.ArrayField(new fields.StringField(), { initial: ['', '', ''] }),
             isMulticlass: new fields.BooleanField({ initial: false }),
-            levelupOptionTiers: new fields.TypedObjectField(new fields.TypedObjectField(new fields.EmbeddedDataField(DhLevelOption)), {
-                initial: { 2: {}, 3: {}, 4: {} }
-            }),
+            levelupOptionTiers: new fields.TypedObjectField(
+                new fields.TypedObjectField(new fields.EmbeddedDataField(DhLevelOption)),
+                {
+                    initial: { 2: {}, 3: {}, 4: {} }
+                }
+            )
         };
     }
 
