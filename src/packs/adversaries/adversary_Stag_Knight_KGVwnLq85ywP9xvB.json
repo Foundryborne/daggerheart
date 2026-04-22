@@ -138,12 +138,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -194,7 +191,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -220,7 +217,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -306,7 +304,7 @@
       "name": "Blade of the Forest",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to make an attack against all targets within Very Close range. Targets the @Lookup[@name] succeeds against take physical damage equal to <strong>[[/r 3d4]]</strong> + the target’s Major threshold.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to make an attack against all targets within Very Close range. Targets the @Lookup[@name] succeeds against take physical damage equal to <strong>[[/r 3d4]]</strong> + the target’s Major threshold.</p>",
         "resource": null,
         "actions": {
           "xPSVwVVOC5gc2KTi": {
@@ -331,7 +329,8 @@
             },
             "damage": {
               "parts": {},
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -360,7 +359,16 @@
             },
             "name": "Attack",
             "img": "icons/skills/melee/strike-blade-hooked-green-purple.webp",
-            "range": "veryClose"
+            "range": "veryClose",
+            "areas": [
+              {
+                "name": "Blade of the Forest",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "veryClose",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

@@ -56,10 +56,10 @@ export const registerKeyBindings = () => {
     game.keybindings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.keybindings.partySheet, {
         name: _loc('DAGGERHEART.SETTINGS.Keybindings.partySheet.name'),
         hint: _loc('DAGGERHEART.SETTINGS.Keybindings.partySheet.hint'),
-        editable: [{ key: "KeyP" }],
+        editable: [{ key: 'KeyP' }],
         onDown: () => {
             const controlled = canvas.ready ? canvas.tokens.controlled : [];
-            const selectedParty = controlled.find((c) => c.actor?.type === 'party')?.actor;
+            const selectedParty = controlled.find(c => c.actor?.type === 'party')?.actor;
             const party = selectedParty ?? game.actors.party;
             if (!party) return;
 
@@ -215,6 +215,6 @@ const registerNonConfigSettings = () => {
         scope: 'world',
         config: false,
         type: String,
-        default: null,
+        default: null
     });
 };

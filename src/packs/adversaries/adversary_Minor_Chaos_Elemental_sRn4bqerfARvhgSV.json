@@ -132,12 +132,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -188,7 +185,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -214,7 +211,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -293,7 +291,7 @@
       "_id": "oAxhAawgcK7DAdpa",
       "img": "icons/magic/sonic/explosion-shock-sound-wave.webp",
       "system": {
-        "description": "<p><strong>Mark a HP</strong> to force all targets within Close range to mark a Stress and become <em>Vulnerable</em> until their next rest or they clear a HP.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p><strong>Mark a HP</strong> to force all targets within Close range to mark a Stress and become <em>Vulnerable</em> until their next rest or they clear a HP.</p>",
         "resource": null,
         "actions": {
           "g4CVwjDeJgTJ2oCw": {
@@ -344,7 +342,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -358,7 +357,16 @@
             ],
             "name": "Mark HP",
             "img": "icons/magic/sonic/explosion-shock-sound-wave.webp",
-            "range": "close"
+            "range": "close",
+            "areas": [
+              {
+                "name": "Sickening Flux",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -434,7 +442,7 @@
       "_id": "updQuIK8sybf4YmW",
       "img": "icons/magic/light/explosion-glow-spiral-teal.webp",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to transform the area within Very Close range into a different biome. All targets within this area take <strong>2d6+3</strong> direct magic damage.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to transform the area within Very Close range into a different biome. All targets within this area take <strong>2d6+3</strong> direct magic damage.</p>",
         "resource": null,
         "actions": {
           "QzuQIAtSrgz9Zd5V": {
@@ -486,7 +494,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -495,7 +504,16 @@
             "effects": [],
             "name": "Spend Fear",
             "img": "icons/magic/light/explosion-glow-spiral-teal.webp",
-            "range": "veryClose"
+            "range": "veryClose",
+            "areas": [
+              {
+                "name": "Remake Reality",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "veryClose",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

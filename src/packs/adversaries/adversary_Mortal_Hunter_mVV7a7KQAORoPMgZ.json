@@ -138,12 +138,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -194,7 +191,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -220,14 +217,15 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
       "name": "Terrifying",
       "type": "feature",
       "system": {
-        "description": "<p>When the @Lookup[@name] makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "9T1g3FH38cnCRG8k": {
@@ -271,7 +269,8 @@
                   "type": []
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -280,7 +279,16 @@
             "effects": [],
             "name": "Lose Hope",
             "img": "icons/magic/death/skull-energy-light-purple.webp",
-            "range": "far"
+            "range": "far",
+            "areas": [
+              {
+                "name": "Terrifying",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -574,7 +582,7 @@
       "name": "Rampage",
       "type": "feature",
       "system": {
-        "description": "<p><em>Countdown (Loop 1d6)</em>. When the @Lookup[@name] is in the spotlight for the first time, activate the countdown. When it triggers, move the @Lookup[@name] in a straight line to a point within Far range and make an attack against all targets in their path. Targets the @Lookup[@name] succeeds against take <strong>2d8+2</strong> physical damage.</p><p>@Template[type:ray|range:f]</p>",
+        "description": "<p><em>Countdown (Loop 1d6)</em>. When the @Lookup[@name] is in the spotlight for the first time, activate the countdown. When it triggers, move the @Lookup[@name] in a straight line to a point within Far range and make an attack against all targets in their path. Targets the @Lookup[@name] succeeds against take <strong>2d8+2</strong> physical damage.</p>",
         "resource": null,
         "actions": {
           "VjiFxuzfAaq5N1jy": {
@@ -619,7 +627,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -648,7 +657,16 @@
             },
             "name": "Attack",
             "img": "icons/magic/movement/trail-streak-zigzag-yellow.webp",
-            "range": "far"
+            "range": "far",
+            "areas": [
+              {
+                "name": "Rampage",
+                "type": "placed",
+                "shape": "line",
+                "size": "far",
+                "effects": []
+              }
+            ]
           },
           "BhA3vxCuMs4UbbQU": {
             "type": "countdown",

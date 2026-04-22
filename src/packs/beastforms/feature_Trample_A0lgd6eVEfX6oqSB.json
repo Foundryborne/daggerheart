@@ -3,7 +3,7 @@
   "type": "feature",
   "img": "icons/environment/people/charge.webp",
   "system": {
-    "description": "<p><strong>Mark a Stress</strong> to move up to Close range in a straight line and make an attack against all targets within Melee range of the line. Targets you succeed against take <strong>d8+1</strong> physical damage using your Proficiency and are temporarily <em>Vulnerable</em>.</p><p>@Template[type:ray|range:close]</p>",
+    "description": "<p><strong>Mark a Stress</strong> to move up to Close range in a straight line and make an attack against all targets within Melee range of the line. Targets you succeed against take <strong>d8+1</strong> physical damage using your Proficiency and are temporarily <em>Vulnerable</em>.</p>",
     "resource": null,
     "actions": {
       "YCOTIv9IVEKpumbJ": {
@@ -23,7 +23,7 @@
         ],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "damage": {
@@ -56,7 +56,7 @@
           "includeBase": false
         },
         "target": {
-          "type": null,
+          "type": "",
           "amount": null
         },
         "effects": [
@@ -87,7 +87,16 @@
         },
         "name": "Attack",
         "img": "icons/environment/people/charge.webp",
-        "range": "close"
+        "range": "close",
+        "areas": [
+          {
+            "name": "Trample",
+            "type": "placed",
+            "shape": "line",
+            "size": "close",
+            "effects": []
+          }
+        ]
       }
     },
     "originItemType": null,

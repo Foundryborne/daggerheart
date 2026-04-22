@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "n7pgTBYSItMzCX0s",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make an Agility Roll against all targets within Close range.<strong> Spend a Hope</strong> to move targets you succeed against, and any willing allies within Close range, to another point within Close range.</p><p>@Template[type:emanation|range:c]</p>",
+    "description": "<p class=\"Body-Foundation\">Make an Agility Roll against all targets within Close range.<strong> Spend a Hope</strong> to move targets you succeed against, and any willing allies within Close range, to another point within Close range.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 8,
@@ -55,7 +55,16 @@
         },
         "name": "Agility Roll",
         "img": "icons/skills/melee/sword-engraved-glow-purple.webp",
-        "range": "close"
+        "range": "close",
+        "areas": [
+          {
+            "name": "Wrangle",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "close",
+            "effects": []
+          }
+        ]
       }
     },
     "attribution": {

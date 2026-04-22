@@ -13,7 +13,7 @@ export default class DHAttackAction extends DHDamageAction {
         if (!!this.item?.system?.attack) {
             if (this.damage.includeBase) {
                 const baseDamage = this.getParentDamage();
-                this.damage.parts.unshift(new DHDamageData(baseDamage));
+                this.damage.parts.hitPoints = new DHDamageData(baseDamage);
             }
             if (this.roll.useDefault) {
                 this.roll.trait = this.item.system.attack.roll.trait;
@@ -51,7 +51,7 @@ export default class DHAttackAction extends DHDamageAction {
     async use(event, options) {
         const result = await super.use(event, options);
 
-        if (result?.message?.system.action.roll?.type === 'attack') {
+        if (result?.message?.system.action?.roll?.type === 'attack') {
             const { updateCountdowns } = game.system.api.applications.ui.DhCountdowns;
             await updateCountdowns(CONFIG.DH.GENERAL.countdownProgressionTypes.characterAttack.id);
         }

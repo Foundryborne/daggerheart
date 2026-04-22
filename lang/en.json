@@ -109,11 +109,18 @@
                     "customFormula": "Custom Formula",
                     "formula": "Formula"
                 },
+                "area": {
+                    "sectionTitle": "Areas",
+                    "shape": "Shape",
+                    "size": "Size"
+                },
                 "displayInChat": "Display in chat",
                 "deleteTriggerTitle": "Delete Trigger",
                 "deleteTriggerContent": "Are you sure you want to delete the {trigger} trigger?",
                 "advantageState": "Advantage State",
-                "damageOnSave": "Damage on Save"
+                "damageOnSave": "Damage on Save",
+                "useDefaultItemValues": "Use default Item values",
+                "itemDamageIsUsed": "Item Damage Is Used"
             },
             "RollField": {
                 "diceRolling": {
@@ -128,7 +135,7 @@
                 "attackModifier": "Attack Modifier",
                 "attackName": "Attack Name",
                 "criticalThreshold": "Critical Threshold",
-                "includeBase": { "label": "Include Item Damage" },
+                "includeBase": { "label": "Use Item Damage" },
                 "groupAttack": { "label": "Group Attack" },
                 "multiplier": "Multiplier",
                 "saveHint": "Set a default Trait to enable Reaction Roll. It can be changed later in Reaction Roll Dialog.",
@@ -161,7 +168,8 @@
                 "rangeDependence": {
                     "title": "Range Dependence"
                 },
-                "stacking": { "title": "Stacking" }
+                "stacking": { "title": "Stacking" },
+                "targetDispositions": "Affected Dispositions"
             },
             "RangeDependance": {
                 "hint": "Settings for an optional distance at which this effect should activate",
@@ -2446,6 +2454,7 @@
             "maxWithThing": "Max {thing}",
             "missingDragDropThing": "Drop {thing} here",
             "multiclass": "Multiclass",
+            "name": "Name",
             "newCategory": "New Category",
             "newThing": "New {thing}",
             "next": "Next",
@@ -3247,6 +3256,7 @@
             "Tooltip": {
                 "disableEffect": "Disable Effect",
                 "enableEffect": "Enable Effect",
+                "edit": "Edit",
                 "openItemWorld": "Open Item World",
                 "openActorWorld": "Open Actor World",
                 "sendToChat": "Send to Chat",

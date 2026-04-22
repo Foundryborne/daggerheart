@@ -391,7 +391,7 @@
       "name": "Shattering Strike",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to make a standard attack against all targets within Very Close range. PCs the @Lookup[@name] succeeds against lose a number of Hope equal to the HP they marked from this attack.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to make a standard attack against all targets within Very Close range. PCs the @Lookup[@name] succeeds against lose a number of Hope equal to the HP they marked from this attack.</p>",
         "resource": null,
         "actions": {
           "t1GhGnEhNYyJ7p2U": {
@@ -436,7 +436,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -465,7 +466,16 @@
             },
             "name": "Attack",
             "img": "icons/skills/melee/sword-stuck-glowing-pink.webp",
-            "range": "veryClose"
+            "range": "veryClose",
+            "areas": [
+              {
+                "name": "Shattering Strike",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "veryClose",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -571,19 +581,25 @@
               "max": "",
               "recovery": null
             },
-            "effects": [
-              {
-                "_id": "eZp1PSCHZzdb47oM",
-                "onSave": false
-              }
-            ],
+            "effects": [],
             "target": {
               "type": "any",
               "amount": null
             },
             "name": "Circle",
             "img": "icons/magic/unholy/barrier-fire-pink.webp",
-            "range": ""
+            "range": "",
+            "areas": [
+              {
+                "name": "Circle of Defilement",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "effects": [
+                  "KlTKlZXjdXQ9v6qB"
+                ]
+              }
+            ]
           },
           "4x13WyksHU0u0j20": {
             "type": "countdown",
@@ -631,42 +647,58 @@
       "img": "icons/magic/unholy/barrier-fire-pink.webp",
       "effects": [
         {
-          "name": "Circle of Defilement",
+          "name": "Circle Of Defilement",
+          "disabled": false,
           "img": "icons/magic/unholy/barrier-fire-pink.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.RXkZTwBRi4dJ3JE5.Item.55P7ZijSbQeVHCw4",
+          "description": "<p>You are <em>Vulnerable</em> until you leave the circle.</p>",
           "transfer": false,
-          "_id": "eZp1PSCHZzdb47oM",
-          "type": "base",
+          "statuses": [
+            "vulnerable"
+          ],
           "system": {
             "rangeDependence": {
               "enabled": false,
               "type": "withinRange",
               "target": "hostile",
               "range": "melee"
-            }
+            },
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "stacking": null,
+            "targetDispositions": [
+              1,
+              0
+            ]
           },
-          "changes": [],
-          "disabled": false,
-          "duration": {
-            "startTime": null,
+          "_id": "KlTKlZXjdXQ9v6qB",
+          "type": "base",
+          "start": {
+            "time": 0,
             "combat": null,
-            "seconds": null,
-            "rounds": null,
-            "turns": null,
-            "startRound": null,
-            "startTurn": null
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
           },
-          "description": "<p><em>Vulnerable</em> until you leave the circle. The circle can be removed by dealing Severe damage to the Undefeated Champion.</p>",
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "origin": null,
           "tint": "#ffffff",
-          "statuses": [
-            "vulnerable"
-          ],
+          "showIcon": 1,
+          "folder": null,
           "sort": 0,
           "flags": {},
           "_stats": {
             "compendiumSource": null
           },
-          "_key": "!actors.items.effects!RXkZTwBRi4dJ3JE5.55P7ZijSbQeVHCw4.eZp1PSCHZzdb47oM"
+          "_key": "!actors.items.effects!RXkZTwBRi4dJ3JE5.55P7ZijSbQeVHCw4.KlTKlZXjdXQ9v6qB"
         }
       ],
       "folder": null,
@@ -781,7 +813,7 @@
       "name": "Doombringer",
       "type": "feature",
       "system": {
-        "description": "<p>When a target marks HP from an attack by the @Lookup[@name], all PCs within Far range of the target lose a Hope.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p>When a target marks HP from an attack by the @Lookup[@name], all PCs within Far range of the target lose a Hope.</p>",
         "resource": null,
         "actions": {
           "liwKSCTmQqZasAf6": {
@@ -825,7 +857,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -834,7 +867,16 @@
             "effects": [],
             "name": "Lose Hope",
             "img": "icons/magic/death/skull-energy-light-purple.webp",
-            "range": "far"
+            "range": "far",
+            "areas": [
+              {
+                "name": "Doombringer",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

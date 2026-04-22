@@ -132,12 +132,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -188,7 +185,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -214,7 +211,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -412,7 +410,7 @@
       "name": "Detonation",
       "type": "feature",
       "system": {
-        "description": "<p>When the @Lookup[@name] is destroyed, they explode. All targets within Close range must make an Agility Reaction Roll. Targets who fail take <strong>3d20</strong> physical damage. Targets who succeed take half damage.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>When the @Lookup[@name] is destroyed, they explode. All targets within Close range must make an Agility Reaction Roll. Targets who fail take <strong>3d20</strong> physical damage. Targets who succeed take half damage.</p>",
         "resource": null,
         "actions": {
           "i1PZ9ddYdOOs2xSb": {
@@ -457,7 +455,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -486,7 +485,16 @@
             },
             "name": "Roll Save",
             "img": "icons/magic/sonic/explosion-shock-wave-teal.webp",
-            "range": "close"
+            "range": "close",
+            "areas": [
+              {
+                "name": "Detonation",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

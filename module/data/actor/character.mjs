@@ -20,7 +20,7 @@ export default class DhCharacter extends DhCreature {
             settingSheet: DHCharacterSettings,
             isNPC: false,
             hasInventory: true,
-            quantifiable: ["loot", "consumable"]
+            quantifiable: ['loot', 'consumable']
         });
     }
 
@@ -470,7 +470,7 @@ export default class DhCharacter extends DhCreature {
 
     /* All items are valid on characters */
     isItemValid() {
-        return true; 
+        return true;
     }
 
     /** @inheritDoc */

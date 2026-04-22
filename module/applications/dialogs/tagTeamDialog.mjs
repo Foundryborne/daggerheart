@@ -115,6 +115,12 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
     async _onRender(context, options) {
         await super._onRender(context, options);
 
+        // if (this.element.querySelector('.roll-selection')) {
+        //     for (const element of this.element.querySelectorAll('.team-member-container')) {
+        //         element.classList.add('select-padding');
+        //     }
+        // }
+
         if (this.element.querySelector('.team-container')) return;
         const initializationPart = this.element.querySelector('.initialization-container');
         initializationPart.insertAdjacentHTML('afterend', '<div class="team-container"></div>');
@@ -133,7 +139,10 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         context.members = {};
         context.allHaveRolled = Object.keys(this.party.system.tagTeam.members).every(key => {
             const data = this.party.system.tagTeam.members[key];
-            return Boolean(data.rollData);
+            const hasRolled = Boolean(data.rollData);
+            if (!hasRolled) return false;
+
+            return !data.rollData.options.hasDamage || Boolean(data.rollData.options.damage);
         });
 
         return context;

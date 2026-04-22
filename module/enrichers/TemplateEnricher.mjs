@@ -12,7 +12,7 @@ export default function DhTemplateEnricher(match, _options) {
               )?.id
             : params.range;
 
-    if (!Object.values(CONFIG.DH.GENERAL.templateTypes).find(x => x === type) || !range) return match[0];
+    if (!CONFIG.DH.GENERAL.templateTypes[type] || !range) return match[0];
 
     const label = game.i18n.localize(`DAGGERHEART.CONFIG.TemplateTypes.${type}`);
     const rangeDisplay = Number.isNaN(Number(range))
@@ -49,8 +49,6 @@ export default function DhTemplateEnricher(match, _options) {
 }
 
 export const renderMeasuredTemplate = async event => {
-    const { LINE, RECTANGLE, INFRONT, CONE } = CONFIG.DH.GENERAL.templateTypes;
-
     const button = event.currentTarget,
         type = button.dataset.type,
         range = button.dataset.range,
@@ -59,49 +57,16 @@ export const renderMeasuredTemplate = async event => {
 
     if (!type || !range || !game.canvas.scene) return;
 
-    const usedType = type === 'inFront' ? 'cone' : type;
-    const usedAngle =
-        type === CONE ? (angle ?? CONFIG.MeasuredTemplate.defaults.angle) : type === INFRONT ? '180' : undefined;
-
-    let baseDistance = getTemplateDistance(range);
-
-    const { grid, distance } = CONFIG.Scene.documentClass.schema.fields.grid.fields;
-    const sceneGridSize = canvas.scene?.grid.size ?? grid.size.initial;
-    const sceneGridDistance = canvas.scene?.grid.distance ?? distance.getInitialValue();
-    const dimensionConstant = sceneGridSize / sceneGridDistance;
-
-    baseDistance *= dimensionConstant;
-
-    const length = baseDistance;
-    const radius = length;
-
-    const shapeWidth = type === LINE ? 5 * dimensionConstant : type === RECTANGLE ? length : undefined;
-
-    const { width, height } = game.canvas.scene.dimensions;
-    const shapeData = {
-        x: width / 2,
-        y: height / 2,
-        base: {
-            type: 'token',
-            x: 0,
-            y: 0,
-            width: 1,
-            height: 1,
-            shape: game.canvas.grid.isHexagonal ? CONST.TOKEN_SHAPES.ELLIPSE_1 : CONST.TOKEN_SHAPES.RECTANGLE_1
-        },
-        t: usedType,
-        length: length,
-        width: shapeWidth,
-        height: length,
-        angle: usedAngle,
-        radius: radius,
-        direction: direction,
-        type: usedType
-    };
+    const shapeData = CONFIG.Canvas.layers.regions.layerClass.getTemplateShape({
+        type,
+        angle,
+        range,
+        direction
+    });
 
     await canvas.regions.placeRegion(
         {
-            name: usedType.capitalize(),
+            name: type.capitalize(),
             shapes: [shapeData],
             restriction: { enabled: false, type: 'move', priority: 0 },
             behaviors: [],
@@ -112,12 +77,4 @@ export const renderMeasuredTemplate = async event => {
         },
         { create: true }
     );
-};
-
-const getTemplateDistance = range => {
-    const rangeNumber = Number(range);
-    if (!Number.isNaN(rangeNumber)) return rangeNumber;
-
-    const settings = canvas.scene?.rangeSettings;
-    return settings ? settings[range] : 0;
 };

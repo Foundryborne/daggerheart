@@ -95,4 +95,61 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
         });
         return inBounds.length === 1 ? inBounds[0] : null;
     }
+
+    static getTemplateShape({ type, angle, range, direction } = {}) {
+        const { line, rectangle, inFront, cone, circle, emanation } = CONFIG.DH.GENERAL.templateTypes;
+
+        /* Length calculation */
+        const { grid, distance } = CONFIG.Scene.documentClass.schema.fields.grid.fields;
+        const sceneGridSize = canvas.scene?.grid.size ?? grid.size.initial;
+        const sceneGridDistance = canvas.scene?.grid.distance ?? distance.getInitialValue();
+        const dimensionConstant = sceneGridSize / sceneGridDistance;
+
+        const settings = canvas.scene?.rangeSettings;
+        const rangeNumber = Number(range);
+        const length = (!Number.isNaN(rangeNumber) ? rangeNumber : settings ? settings[range] : 0) * dimensionConstant;
+        /*----*/
+
+        const shapeData = {
+            ...canvas.mousePosition,
+            type: type,
+            direction: direction ?? 0
+        };
+
+        switch (type) {
+            case rectangle.id:
+                shapeData.width = length;
+                shapeData.height = length;
+                break;
+            case line.id:
+                shapeData.length = length;
+                shapeData.width = 5 * dimensionConstant;
+                break;
+            case cone.id:
+                shapeData.angle = angle ?? CONFIG.MeasuredTemplate.defaults.angle;
+                shapeData.radius = length;
+                break;
+            case inFront.id:
+                shapeData.angle = '180';
+                shapeData.radius = length;
+                shapeData.type = cone.id;
+                break;
+            case circle.id:
+                shapeData.radius = length;
+                break;
+            case emanation.id:
+                shapeData.radius = length;
+                shapeData.base = {
+                    type: 'token',
+                    x: 0,
+                    y: 0,
+                    width: 1,
+                    height: 1,
+                    shape: game.canvas.grid.isHexagonal ? CONST.TOKEN_SHAPES.ELLIPSE_1 : CONST.TOKEN_SHAPES.RECTANGLE_1
+                };
+                break;
+        }
+
+        return shapeData;
+    }
 }

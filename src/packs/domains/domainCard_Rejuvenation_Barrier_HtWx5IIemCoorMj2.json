@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "qY4Zqc1Ch6p317uK",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (15)</strong>. Once per rest on a success, create a temporary barrier of protective energy around you at Very Close range. You and all allies within the barrier when this spell is cast clear <strong>1d4</strong> Hit Points. While the barrier is up, you and all allies within have resistance to physical damage from outside the barrier.</p><p class=\"Body-Foundation\">When you move, the barrier follows you.</p><p>@Template[type:emanation|range:vc]</p>",
+    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (15)</strong>. Once per rest on a success, create a temporary barrier of protective energy around you at Very Close range. You and all allies within the barrier when this spell is cast clear <strong>1d4</strong> Hit Points. While the barrier is up, you and all allies within have resistance to physical damage from outside the barrier.</p><p class=\"Body-Foundation\">When you move, the barrier follows you.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 8,
@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "XdAwXl2uWNinInFe",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (15)</strong>. Once per rest on a success, create a temporary barrier of protective energy around you at Very Close range. You and all allies within the barrier when this spell is cast clear <strong>1d4</strong> Hit Points. While the barrier is up, you and all allies within have resistance to physical damage from outside the barrier.</p><p class=\"Body-Foundation\">When you move, the barrier follows you.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -80,7 +80,16 @@
         },
         "name": "Cast",
         "img": "icons/magic/nature/leaf-hand-green.webp",
-        "range": "veryClose"
+        "range": "veryClose",
+        "areas": [
+          {
+            "name": "Rejuvenation Barrier",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "veryClose",
+            "effects": []
+          }
+        ]
       }
     },
     "attribution": {
@@ -106,25 +115,22 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
-        }
+        },
+        "changes": [
+          {
+            "key": "system.resistance.physical.resistance",
+            "value": true,
+            "priority": null,
+            "type": "override"
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.resistance.physical.resistance",
-          "mode": 5,
-          "value": "true",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p><span class=\"Body-Foundation\" style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif;color:rgb(239, 230, 216);font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">While the barrier is up, the caster and all allies within have resistance to physical damage from outside the barrier. When the caster moves, the barrier follows them.</p>",
       "tint": "#ffffff",
@@ -134,6 +140,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!HtWx5IIemCoorMj2.obul9k0P4CjFuxJD"
     }
   ],

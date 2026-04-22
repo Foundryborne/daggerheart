@@ -138,12 +138,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -194,7 +191,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -220,14 +217,15 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
       "name": "Terrifying",
       "type": "feature",
       "system": {
-        "description": "<p>When the @Lookup[@name] makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "Rf2ZL3EjCzudonRb": {
@@ -271,7 +269,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -280,7 +279,16 @@
             "effects": [],
             "name": "Lose Hope",
             "img": "icons/magic/death/skull-energy-light-purple.webp",
-            "range": "far"
+            "range": "far",
+            "areas": [
+              {
+                "name": "Terrifying",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -525,7 +533,7 @@
       "name": "Lifesuck",
       "type": "feature",
       "system": {
-        "description": "<p>When the @Lookup[@name] is spotlighted, roll a <strong>d8</strong>. On a result of 6 or higher, all targets within Very Close range must mark a HP.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p>When the @Lookup[@name] is spotlighted, roll a <strong>d8</strong>. On a result of 6 or higher, all targets within Very Close range must mark a HP.</p>",
         "resource": null,
         "actions": {
           "DA8qT2omBcG4oryX": {
@@ -569,7 +577,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -598,7 +607,16 @@
             },
             "name": "Roll d8",
             "img": "icons/magic/unholy/strike-beam-blood-small-red-purple.webp",
-            "range": "veryClose"
+            "range": "veryClose",
+            "areas": [
+              {
+                "name": "Lifesuck",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "veryClose",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

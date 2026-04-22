@@ -132,12 +132,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -188,7 +185,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -214,7 +211,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -273,7 +271,7 @@
       "_id": "7AXE86WNd68OySkD",
       "img": "icons/magic/fire/explosion-flame-lightning-strike.webp",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to choose a point within Far range. The ground within Very Close range of that point immediately bursts into flames. All creatures within this area must make an Agility Reaction Roll. Targets who fail take <strong>2d8</strong> magic damage from the flames. Targets who succeed take half damage.</p><p>@Template[type:circle|range:vc]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to choose a point within Far range. The ground within Very Close range of that point immediately bursts into flames. All creatures within this area must make an Agility Reaction Roll. Targets who fail take <strong>2d8</strong> magic damage from the flames. Targets who succeed take half damage.</p>",
         "resource": null,
         "actions": {
           "x1VCkfcSYiPyg8fk": {
@@ -354,7 +352,16 @@
             },
             "name": "Attack",
             "img": "icons/magic/fire/explosion-flame-lightning-strike.webp",
-            "range": "far"
+            "range": "far",
+            "areas": [
+              {
+                "name": "Scorched Earth",
+                "type": "placed",
+                "shape": "circle",
+                "size": "veryClose",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -381,14 +388,14 @@
       "_id": "ESnu3I89BmUdBZEk",
       "img": "icons/magic/fire/explosion-fireball-large-red-orange.webp",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to erupt in a fi ery explosion. Make an attack against all targets within Close range. Targets the Elemental succeeds against take <strong>1d8</strong> magic damage and are knocked back to Far range.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to erupt in a fi ery explosion. Make an attack against all targets within Close range. Targets the Elemental succeeds against take <strong>1d8</strong> magic damage and are knocked back to Far range.</p>",
         "resource": null,
         "actions": {
           "JQgqyW8H7fugR7F0": {
             "type": "attack",
             "_id": "JQgqyW8H7fugR7F0",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to erupt in a fi ery explosion. Make an attack against all targets within Close range. Targets the Elemental succeeds against take <strong>1d8</strong> magic damage and are knocked back to Far range.</p><p>@Template[type:emanation|range:c]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -433,7 +440,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -462,7 +470,16 @@
             },
             "name": "Attack",
             "img": "icons/magic/fire/explosion-fireball-large-red-orange.webp",
-            "range": "close"
+            "range": "close",
+            "areas": [
+              {
+                "name": "Explosion",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -492,9 +509,11 @@
         "description": "<p>Three times per scene, when the @Lookup[@name] moves onto objects that are highly flammable, consume them to clear a HP or a Stress.</p>",
         "resource": {
           "type": "simple",
-          "value": 0,
+          "value": 3,
           "max": "3",
-          "icon": "fa-solid fa-fire"
+          "icon": "fa-solid fa-fire",
+          "progression": "decreasing",
+          "recovery": "scene"
         },
         "actions": {
           "CTWSVVisdgJgF7pd": {
@@ -504,7 +523,16 @@
             "description": "",
             "chatDisplay": true,
             "actionType": "action",
-            "cost": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "resource",
+                "value": 1,
+                "itemId": "3u6wvKPJAS2v5nWV",
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
             "uses": {
               "value": null,
               "max": "",
@@ -538,7 +566,8 @@
                   "type": []
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "self",
@@ -571,7 +600,16 @@
             "description": "",
             "chatDisplay": true,
             "actionType": "action",
-            "cost": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "resource",
+                "value": 1,
+                "itemId": "3u6wvKPJAS2v5nWV",
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
             "uses": {
               "value": null,
               "max": "",
@@ -605,7 +643,8 @@
                   "type": []
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "self",

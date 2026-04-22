@@ -29,6 +29,7 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/actionTypes/uses.hbs',
         'systems/daggerheart/templates/actionTypes/roll.hbs',
         'systems/daggerheart/templates/actionTypes/save.hbs',
+        'systems/daggerheart/templates/actionTypes/areas.hbs',
         'systems/daggerheart/templates/actionTypes/cost.hbs',
         'systems/daggerheart/templates/actionTypes/range-target.hbs',
         'systems/daggerheart/templates/actionTypes/effect.hbs',

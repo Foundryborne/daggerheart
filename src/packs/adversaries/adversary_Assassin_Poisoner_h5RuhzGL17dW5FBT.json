@@ -138,12 +138,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -194,7 +191,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -220,7 +217,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -399,7 +397,7 @@
       "name": "Fumigation",
       "type": "feature",
       "system": {
-        "description": "<p>Drop a smoke bomb that fills the air within Close range with smoke, Dizzying all targets in this area. Dizzied targets have disadvantage on their next action roll, then clear the condition.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>Drop a smoke bomb that fills the air within Close range with smoke, Dizzying all targets in this area. Dizzied targets have disadvantage on their next action roll, then clear the condition.</p>",
         "resource": null,
         "actions": {
           "sp7RfJRQJsEUm09m": {
@@ -427,7 +425,16 @@
             },
             "name": "Drop Bomb",
             "img": "icons/magic/air/fog-gas-smoke-green.webp",
-            "range": "close"
+            "range": "close",
+            "areas": [
+              {
+                "name": "Fumigation",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -450,18 +457,15 @@
               "type": "withinRange",
               "target": "hostile",
               "range": "melee"
-            }
+            },
+            "changes": []
           },
-          "changes": [],
           "disabled": false,
           "duration": {
-            "startTime": null,
-            "combat": null,
-            "seconds": null,
-            "rounds": null,
-            "turns": null,
-            "startRound": null,
-            "startTurn": null
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
           },
           "description": "<p>Dizzied targets have disadvantage on their next action roll, then clear the condition.</p>",
           "tint": "#ffffff",
@@ -471,6 +475,9 @@
           "_stats": {
             "compendiumSource": null
           },
+          "start": null,
+          "showIcon": 1,
+          "folder": null,
           "_key": "!actors.items.effects!h5RuhzGL17dW5FBT.lAmiK8wVxjyHwKlp.yP4ot8VqS56RnxnE"
         }
       ],

@@ -138,12 +138,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -194,7 +191,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -220,14 +217,15 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
       "name": "Bramble Patch",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to target a point within Far range. Create a patch of thorns that covers an area within Close range of that point. All targets within that area take <strong>2d6+2</strong> physical damage when they act. A target must succeed on a Finesse Roll or deal more than 20 damage to the @Lookup[@name] with an attack to leave the area.</p><p>@Template[type:circle|range:c]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to target a point within Far range. Create a patch of thorns that covers an area within Close range of that point. All targets within that area take <strong>2d6+2</strong> physical damage when they act. A target must succeed on a Finesse Roll or deal more than 20 damage to the @Lookup[@name] with an attack to leave the area.</p>",
         "resource": null,
         "actions": {
           "iCJdIs57hfh5Cb0u": {
@@ -252,7 +250,8 @@
             },
             "damage": {
               "parts": {},
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -281,7 +280,16 @@
             },
             "name": "Mark Stress",
             "img": "icons/magic/nature/root-vines-grow-brown.webp",
-            "range": ""
+            "range": "",
+            "areas": [
+              {
+                "name": "Bramble Patch",
+                "type": "placed",
+                "shape": "circle",
+                "size": "close",
+                "effects": []
+              }
+            ]
           },
           "cpZ5c9d3opSA4BN9": {
             "type": "damage",
@@ -414,7 +422,7 @@
       "name": "We Are All One",
       "type": "feature",
       "system": {
-        "description": "<p>When an ally dies within Close range, you can spend a Fear to clear 2 HP and 2 Stress as the fallen ally’s life force is returned to the forest.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>When an ally dies within Close range, you can spend a Fear to clear 2 HP and 2 Stress as the fallen ally’s life force is returned to the forest.</p>",
         "resource": null,
         "actions": {
           "SrhuW3mfOuqg1ys6": {
@@ -490,7 +498,8 @@
                   "type": []
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "self",
@@ -514,7 +523,16 @@
             },
             "name": "Spend Fear",
             "img": "icons/magic/unholy/orb-hands-pink.webp",
-            "range": "self"
+            "range": "self",
+            "areas": [
+              {
+                "name": "We Are All One",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

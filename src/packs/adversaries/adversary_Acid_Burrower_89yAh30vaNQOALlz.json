@@ -169,12 +169,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -225,7 +222,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -251,7 +248,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -319,7 +317,7 @@
       "_id": "ctXYwil2D1zfsekT",
       "img": "icons/magic/earth/barrier-stone-explosion-red.webp",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to have the @Lookup[@name] burst out of the ground. All creatures within Very Close range must succeed on an Agility Reaction Roll or be knocked over, making them Vulnerable until they next act.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to have the @Lookup[@name] burst out of the ground. All creatures within Very Close range must succeed on an Agility Reaction Roll or be knocked over, making them Vulnerable until they next act.</p>",
         "resource": null,
         "actions": {
           "4ppSeiTdbqnMzWAs": {
@@ -344,7 +342,8 @@
             },
             "damage": {
               "parts": {},
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -378,7 +377,16 @@
             },
             "name": "Roll Save",
             "img": "icons/magic/earth/barrier-stone-explosion-red.webp",
-            "range": "veryClose"
+            "range": "veryClose",
+            "areas": [
+              {
+                "name": "Earth Eruption",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "veryClose",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -581,7 +589,7 @@
       "_id": "aNIVT5LKhwLyjKpI",
       "img": "icons/magic/acid/dissolve-drip-droplet-smoke.webp",
       "system": {
-        "description": "<p>When the @Lookup[@name] takes Severe damage, all creatures within Close range are bathed in their acidic blood, taking <strong>1d10</strong> physical damage. This splash covers the ground within Very Close range with blood, and all creatures other than the @Lookup[@name] who move through it take <strong>1d6</strong> physical damage.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>When the @Lookup[@name] takes Severe damage, all creatures within Close range are bathed in their acidic blood, taking <strong>1d10</strong> physical damage. This splash covers the ground within Very Close range with blood, and all creatures other than the @Lookup[@name] who move through it take <strong>1d6</strong> physical damage.</p>",
         "resource": null,
         "actions": {
           "XbtTzOBvlTaxOKTy": {
@@ -627,7 +635,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -636,7 +645,23 @@
             "effects": [],
             "name": "Splash",
             "img": "icons/magic/acid/dissolve-drip-droplet-smoke.webp",
-            "range": "close"
+            "range": "close",
+            "areas": [
+              {
+                "name": "Acid Bath: Damage Area",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "effects": []
+              },
+              {
+                "name": "Acid Ground",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "veryClose",
+                "effects": []
+              }
+            ]
           },
           "xpcp1ECTWF20kxve": {
             "type": "damage",
@@ -690,7 +715,8 @@
             "effects": [],
             "name": "Acid Ground",
             "img": "icons/magic/acid/dissolve-pool-bubbles.webp",
-            "range": ""
+            "range": "",
+            "areas": []
           }
         },
         "originItemType": null,

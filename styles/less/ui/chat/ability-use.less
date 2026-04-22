@@ -6,12 +6,6 @@
 #interface.theme-light {
     .daggerheart.chat.domain-card {
         .domain-card-move .domain-card-header {
-            border-bottom: 1px solid @dark-blue;
-
-            &:hover {
-                background: @dark-blue-10;
-            }
-
             .domain-label {
                 .title {
                     color: @dark-blue;
@@ -29,6 +23,13 @@
             }
         }
 
+        &:has(.description) .domain-card-move .domain-card-header {
+            border-bottom: 1px solid @dark-blue;
+            &:hover {
+                background: @dark-blue-10;
+            }
+        }
+
         .description {
             color: @dark;
         }
@@ -43,7 +44,7 @@
 
         .card-img {
             width: 100%;
-            height: 200px;
+            height: 180px;
             mask-image: linear-gradient(0deg, transparent 0%, black 10%, black 90%, transparent 100%);
             object-fit: cover;
         }
@@ -68,23 +69,12 @@
                 flex-direction: row;
                 align-items: center;
                 margin: 8px;
-                padding-bottom: 5px;
-                width: -webkit-fill-available;
                 gap: 5px;
-                border-bottom: 1px solid @golden;
-
-                &:hover {
-                    background: @golden-10;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                }
 
                 .domain-label {
                     display: flex;
                     flex-direction: column;
                     width: 100%;
-                    padding-bottom: 5px;
-                    width: -webkit-fill-available;
                     gap: 5px;
 
                     .title {
@@ -95,7 +85,7 @@
 
                     .tags {
                         display: flex;
-                        gap: 10px;
+                        gap: 4px;
                         flex-wrap: wrap;
 
                         .tag {
@@ -113,6 +103,16 @@
                         }
                     }
                 }
+            }
+        }
+
+        &:has(.description) .domain-card-move .domain-card-header {
+            border-bottom: 1px solid @golden;
+            padding-bottom: 5px;
+            &:hover {
+                background: @golden-10;
+                cursor: pointer;
+                transition: all 0.3s ease;
             }
         }
 

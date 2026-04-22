@@ -138,12 +138,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -194,7 +191,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -220,14 +217,15 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
       "name": "Conflagration",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to unleash an all-consuming firestorm and make an attack against all targets within Close range. Targets the @Lookup[@name] succeeds against take <strong>2d10+6</strong> direct magic damage.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to unleash an all-consuming firestorm and make an attack against all targets within Close range. Targets the @Lookup[@name] succeeds against take <strong>2d10+6</strong> direct magic damage.</p>",
         "resource": null,
         "actions": {
           "v7zZo52Dnj1e1i2G": {
@@ -279,7 +277,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -308,7 +307,16 @@
             },
             "name": "Attack",
             "img": "icons/magic/fire/projectile-beams-salvo-red.webp",
-            "range": "close"
+            "range": "close",
+            "areas": [
+              {
+                "name": "Conflagration",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -465,14 +473,14 @@
       "name": "Shackles of Guilt",
       "type": "feature",
       "system": {
-        "description": "<p><em>Countdown (Loop 2d6)</em>. When the @Lookup[@name] is in the spotlight for the first time, activate the countdown. When it triggers, all targets within Far range become Vulnerable and must mark a Stress as they relive their greatest regrets. A target can break free from their regret with a successful Presence or Strength Roll. When a PC fails to break free, they lose a Hope.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p><em>Countdown (Loop 2d6)</em>. When the @Lookup[@name] is in the spotlight for the first time, activate the countdown. When it triggers, all targets within Far range become Vulnerable and must mark a Stress as they relive their greatest regrets. A target can break free from their regret with a successful Presence or Strength Roll. When a PC fails to break free, they lose a Hope.</p>",
         "resource": null,
         "actions": {
           "7b0FkpAnWz9a5EWx": {
             "type": "damage",
             "_id": "7b0FkpAnWz9a5EWx",
             "systemPath": "actions",
-            "description": "<p>When the countdown triggers, all targets within Far range become Vulnerable and must mark a Stress as they relive their greatest regrets. A target can break free from their regret with a successful Presence or Strength Roll. When a PC fails to break free, they lose a Hope.</p><p>@Template[type:emanation|range:f]</p>",
+            "description": "<p>When it triggers, all targets within Far range become Vulnerable and must mark a Stress as they relive their greatest regrets. A target can break free from their regret with a successful Presence or Strength Roll. When a PC fails to break free, they lose a Hope.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -509,7 +517,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -523,7 +532,16 @@
             ],
             "name": "Mark Stress",
             "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
-            "range": ""
+            "range": "",
+            "areas": [
+              {
+                "name": "Shackles of Guilt",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "effects": []
+              }
+            ]
           },
           "11PtfoxbgOXxNlkG": {
             "type": "countdown",

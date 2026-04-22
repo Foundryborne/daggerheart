@@ -137,6 +137,10 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             element.addEventListener('click', this.onApplyEffect.bind(this))
         );
 
+        for (const element of html.querySelectorAll('.action-areas')) {
+            element.addEventListener('click', this.onCreateAreas.bind(this));
+        }
+
         html.querySelectorAll('.roll-target').forEach(element => {
             element.addEventListener('mouseenter', this.hoverTarget);
             element.addEventListener('mouseleave', this.unhoverTarget);
@@ -247,6 +251,54 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelectedOrPerm'));
         this.consumeOnSuccess();
         this.system.action?.workflow.get('effects')?.execute(config, targets, true);
+    }
+
+    async onCreateAreas(event) {
+        const createArea = async selectedArea => {
+            const effects = selectedArea.effects.map(effect => this.system.action.item.effects.get(effect).uuid);
+            const { shape: type, size: range } = selectedArea;
+            const shapeData = CONFIG.Canvas.layers.regions.layerClass.getTemplateShape({ type, range });
+
+            await canvas.regions.placeRegion(
+                {
+                    name: selectedArea.name,
+                    shapes: [shapeData],
+                    restriction: { enabled: false, type: 'move', priority: 0 },
+                    behaviors: [
+                        {
+                            name: game.i18n.localize('TYPES.RegionBehavior.applyActiveEffect'),
+                            type: 'applyActiveEffect',
+                            system: {
+                                effects: effects
+                            }
+                        }
+                    ],
+                    displayMeasurements: true,
+                    locked: false,
+                    ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE },
+                    visibility: CONST.REGION_VISIBILITY.ALWAYS
+                },
+                { create: true }
+            );
+        };
+
+        if (this.system.action.areas.length === 1) createArea(this.system.action.areas[0]);
+        else if (this.system.action.areas.length > 1) {
+            new foundry.applications.ux.ContextMenu.implementation(
+                event.target,
+                '.action-areas',
+                this.system.action.areas.map(area => ({
+                    label: area.name,
+                    onClick: () => createArea(area)
+                })),
+                {
+                    jQuery: false,
+                    fixed: true
+                }
+            );
+
+            CONFIG.ux.ContextMenu.triggerContextMenu(event, '.action-areas');
+        }
     }
 
     filterPermTargets(targets) {

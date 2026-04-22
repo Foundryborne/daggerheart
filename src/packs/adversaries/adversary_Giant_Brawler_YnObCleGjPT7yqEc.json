@@ -138,12 +138,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -194,7 +191,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -220,14 +217,15 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
       "name": "Battering Ram",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to have the @Lookup[@name] charge at an inanimate object within Close range they could feasibly smash (such as a wall, cart, or market stand) and destroy it. All targets within Very Close range of the object must succeed on an Agility Reaction Roll or take <strong>2d4+3</strong> physical damage from the shrapnel.</p><p>@Template[type:circle|range:vc]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to have the @Lookup[@name] charge at an inanimate object within Close range they could feasibly smash (such as a wall, cart, or market stand) and destroy it. All targets within Very Close range of the object must succeed on an Agility Reaction Roll or take <strong>2d4+3</strong> physical damage from the shrapnel.</p>",
         "resource": null,
         "actions": {
           "zns57MqnZ6M1d4r0": {
@@ -308,7 +306,16 @@
             },
             "name": "Roll Save",
             "img": "icons/skills/melee/shield-damaged-broken-orange.webp",
-            "range": "close"
+            "range": "close",
+            "areas": [
+              {
+                "name": "Battering Ram",
+                "type": "placed",
+                "shape": "circle",
+                "size": "veryClose",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

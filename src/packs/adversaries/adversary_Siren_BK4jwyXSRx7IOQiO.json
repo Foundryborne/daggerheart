@@ -138,12 +138,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -194,7 +191,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -220,7 +217,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -326,7 +324,7 @@
       "name": "Enchanting Song",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to sing a song that affects all targets within Close range. Targets must succeed on an Instinct Reaction Roll or become Entranced until they mark 2 Stress. Other @Lookup[@name]s within Close range of the target can <strong>mark a Stress</strong> to each add a +1 bonus to the Difficulty of the reaction roll. While Entranced, a target can’t act and is <em>Vulnerable</em>.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to sing a song that affects all targets within Close range. Targets must succeed on an Instinct Reaction Roll or become Entranced until they mark 2 Stress. Other @Lookup[@name]s within Close range of the target can <strong>mark a Stress</strong> to each add a +1 bonus to the Difficulty of the reaction roll. While Entranced, a target can’t act and is <em>Vulnerable</em>.</p>",
         "resource": null,
         "actions": {
           "FY8K8Nsg0TKAWok8": {
@@ -351,7 +349,8 @@
             },
             "damage": {
               "parts": {},
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -385,7 +384,16 @@
             },
             "name": "Roll Save",
             "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
-            "range": "close"
+            "range": "close",
+            "areas": [
+              {
+                "name": "Enchanting Song",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

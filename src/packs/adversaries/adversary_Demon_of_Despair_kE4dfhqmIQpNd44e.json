@@ -138,12 +138,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -194,7 +191,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -220,7 +217,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -296,7 +294,7 @@
       "name": "Your Struggle is Pointless",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to weigh down the spirits of all PCs within Far range. All targets affected replace their Hope Die with a <strong>d8</strong> until they roll a success with Hope or their next rest.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to weigh down the spirits of all PCs within Far range. All targets affected replace their Hope Die with a <strong>d8</strong> until they roll a success with Hope or their next rest.</p>",
         "resource": null,
         "actions": {
           "n0RYO05pROFU6ov3": {
@@ -331,7 +329,16 @@
             },
             "name": "Spend Fear",
             "img": "icons/magic/death/skull-flames-white-blue.webp",
-            "range": "far"
+            "range": "far",
+            "areas": [
+              {
+                "name": "Your Struggle is Pointless",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -411,7 +418,7 @@
       "name": "Your Friends Will Fail You",
       "type": "feature",
       "system": {
-        "description": "<p>When a PC fails with Fear, you can <strong>mark a Stress</strong> to cause all other PCs within Close range to lose a Hope.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>When a PC fails with Fear, you can <strong>mark a Stress</strong> to cause all other PCs within Close range to lose a Hope.</p>",
         "resource": null,
         "actions": {
           "urrp8SCFgqbmSTvm": {
@@ -462,7 +469,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -471,7 +479,16 @@
             "effects": [],
             "name": "Lose Hope",
             "img": "icons/creatures/unholy/demon-fire-horned-mask.webp",
-            "range": ""
+            "range": "",
+            "areas": [
+              {
+                "name": "Your Friends Will Fail You",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

@@ -139,12 +139,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -195,7 +192,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -221,7 +218,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -253,7 +251,7 @@
       "name": "Battle Lust",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to boil the blood of all PCs within Far range. They use a d20 as their Fear Die until the end of the scene.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to boil the blood of all PCs within Far range. They use a d20 as their Fear Die until the end of the scene.</p>",
         "resource": null,
         "actions": {
           "jKvzbQT0vp66DDOH": {
@@ -294,7 +292,16 @@
               "amount": null
             },
             "name": "Spend Fear",
-            "range": "far"
+            "range": "far",
+            "areas": [
+              {
+                "name": "Battle Lust",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -374,7 +381,7 @@
       "name": "Retalliation",
       "type": "feature",
       "system": {
-        "description": "<p>When the @Lookup[@name] takes damage from an attack within Close range, you can <strong>mark a Stress</strong> to make a standard attack against the attacker.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>When the @Lookup[@name] takes damage from an attack within Close range, you can <strong>mark a Stress</strong> to make a standard attack against the attacker.</p>",
         "resource": null,
         "actions": {
           "hxrdtBm4dYN7KGZm": {
@@ -427,7 +434,8 @@
                 }
               },
               "includeBase": false,
-              "direct": true
+              "direct": true,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -456,7 +464,16 @@
             },
             "name": "Attack",
             "img": "icons/skills/melee/blood-slash-foam-red.webp",
-            "range": "veryClose"
+            "range": "veryClose",
+            "areas": [
+              {
+                "name": "Retalliation",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

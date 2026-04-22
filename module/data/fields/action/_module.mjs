@@ -1,3 +1,4 @@
+export { default as AreasField } from './areasField.mjs';
 export { default as CostField } from './costField.mjs';
 export { default as CountdownField } from './countdownField.mjs';
 export { default as UsesField } from './usesField.mjs';

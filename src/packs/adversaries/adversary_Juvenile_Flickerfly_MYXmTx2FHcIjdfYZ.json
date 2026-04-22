@@ -132,12 +132,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -188,7 +185,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -214,7 +211,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -400,7 +398,7 @@
       "name": "Mind Dance",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to create a magically dazzling display that grapples the minds of nearby foes. All targets within Close range must make an Instinct Reaction Roll. For each target who failed, you gain a Fear and the @Lookup[@name] learns one of the target’s fears.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to create a magically dazzling display that grapples the minds of nearby foes. All targets within Close range must make an Instinct Reaction Roll. For each target who failed, you gain a Fear and the @Lookup[@name] learns one of the target’s fears.</p>",
         "resource": null,
         "actions": {
           "0wL3ieMrXEb2gcxe": {
@@ -418,7 +416,8 @@
             },
             "damage": {
               "parts": {},
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -447,7 +446,16 @@
             },
             "name": "Roll Save",
             "img": "icons/magic/light/explosion-glow-spiral-yellow.webp",
-            "range": "close"
+            "range": "close",
+            "areas": [
+              {
+                "name": "Mind Dance",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -473,7 +481,7 @@
       "name": "Hallucinatory Breath",
       "type": "feature",
       "system": {
-        "description": "<p>Countdown (Loop 1d6). When the @Lookup[@name] takes damage for the first time, activate the countdown. When it triggers, the @Lookup[@name] breathes hallucinatory gas on all targets in front of them up to Far range. Targets must succeed on an Instinct Reaction Roll or be tormented by fearful hallucinations. Targets whose fears are known to the @Lookup[@name] have disadvantage on this roll. Targets who fail must mark a Stress and lose a Hope.</p><p>@Template[type:inFront|range:f]</p>",
+        "description": "<p>Countdown (Loop 1d6). When the @Lookup[@name] takes damage for the first time, activate the countdown. When it triggers, the @Lookup[@name] breathes hallucinatory gas on all targets in front of them up to Far range. Targets must succeed on an Instinct Reaction Roll or be tormented by fearful hallucinations. Targets whose fears are known to the @Lookup[@name] have disadvantage on this roll. Targets who fail must mark a Stress and lose a Hope.</p>",
         "resource": null,
         "actions": {
           "USEkCakSzYcZbBwY": {
@@ -542,7 +550,8 @@
                   "type": []
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -571,7 +580,16 @@
             },
             "name": "Roll Save",
             "img": "icons/magic/air/fog-gas-smoke-purple.webp",
-            "range": "far"
+            "range": "far",
+            "areas": [
+              {
+                "name": "Hallucinatory Breath",
+                "type": "placed",
+                "shape": "inFront",
+                "size": "far",
+                "effects": []
+              }
+            ]
           },
           "n8ZuLjwTf2FJ7V6n": {
             "type": "countdown",

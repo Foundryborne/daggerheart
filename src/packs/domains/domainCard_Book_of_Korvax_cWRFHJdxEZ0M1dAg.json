@@ -113,7 +113,7 @@
         "type": "damage",
         "_id": "fb2HYD9J759nHKhV",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\"><strong>Mark a Stress</strong> to create a temporary magical circle on the ground where you stand. All adversaries within Melee range, or who enter Melee range, take <strong>2d12+4</strong> magic damage and are knocked back to Very Close range.</p><p>@Template[type:emanation|range:m]</p>",
+        "description": "<p class=\"Card-Feature\"><strong>Mark a Stress</strong> to create a temporary magical circle on the ground where you stand. All adversaries within Melee range, or who enter Melee range, take <strong>2d12+4</strong> magic damage and are knocked back to Very Close range.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -167,7 +167,16 @@
         "effects": [],
         "name": "Rune Circle",
         "img": "icons/magic/symbols/runes-star-pentagon-blue.webp",
-        "range": ""
+        "range": "",
+        "areas": [
+          {
+            "name": "Book of Korvax",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "melee",
+            "effects": []
+          }
+        ]
       }
     },
     "attribution": {

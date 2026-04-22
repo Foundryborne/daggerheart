@@ -66,7 +66,7 @@
         "type": "attack",
         "_id": "K26kfjmTEH9zPMMO",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll (15)</strong>. On a success, create a temporary wall of magical flame between two points within Far range. All creatures in its path must choose a side to be on, and anything that subsequently passes through the wall takes <strong>4d10+3</strong> magic damage.</p><p>@Template[type:ray|range:f]</p>",
+        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll (15)</strong>. On a success, create a temporary wall of magical flame between two points within Far range. All creatures in its path must choose a side to be on, and anything that subsequently passes through the wall takes <strong>4d10+3</strong> magic damage.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -133,7 +133,16 @@
         },
         "name": "Wall Of Flame",
         "img": "icons/magic/fire/barrier-wall-flame-ring-yellow.webp",
-        "range": ""
+        "range": "",
+        "areas": [
+          {
+            "name": "Book of Grynn",
+            "type": "placed",
+            "shape": "line",
+            "size": "far",
+            "effects": []
+          }
+        ]
       }
     },
     "attribution": {

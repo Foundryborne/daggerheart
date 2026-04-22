@@ -54,12 +54,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -110,7 +107,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -136,7 +133,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -325,14 +323,14 @@
       "name": "Collateral Damage",
       "type": "feature",
       "system": {
-        "description": "<p>When an adversary is defeated, you can <strong>spend a Fear</strong> to have a stray attack from a siege weapon hit a point on the battlefield. All targets within Very Close range of that point must make an Agility Reaction Roll. </p><p>@Template[type:circle|range:vc]</p><ul><li><p>Targets who fail take <strong>3d8+3</strong> physical or magic damage and must mark a Stress. </p></li><li><p>Targets who succeed must mark a Stress.</p></li></ul><section id=\"secret-JdhetLsgL626ouo7\" class=\"secret\"><p><em>What debris is scattered by the attack? What is broken by the strike that can’t be easily mended?</em></p></section>",
+        "description": "<p>When an adversary is defeated, you can <strong>spend a Fear</strong> to have a stray attack from a siege weapon hit a point on the battlefield. All targets within Very Close range of that point must make an Agility Reaction Roll.</p><ul><li><p>Targets who fail take <strong>3d8+3</strong> physical or magic damage and must mark a Stress.</p></li><li><p>Targets who succeed must mark a Stress.</p></li></ul><section id=\"secret-JdhetLsgL626ouo7\" class=\"secret\"><p><em>What debris is scattered by the attack? What is broken by the strike that can’t be easily mended?</em></p></section>",
         "resource": null,
         "actions": {
           "r5JN5oFYL5DC6Qqw": {
             "type": "attack",
             "_id": "r5JN5oFYL5DC6Qqw",
             "systemPath": "actions",
-            "description": "<p>When an adversary is defeated, you can <strong>spend a Fear</strong> to have a stray attack from a siege weapon hit a point on the battlefield. All targets within Very Close range of that point must make an Agility Reaction Roll. </p><p>@Template[type:circle|range:vc]</p><ul><li><p>Targets who fail take <strong>3d8+3</strong> physical or magic damage and must mark a Stress. </p></li><li><p>Targets who succeed must mark a Stress.</p></li></ul><section class=\"secret\" id=\"secret-qe1DM7HUSefRAplk\"><p><em>What debris is scattered by the attack? What is broken by the strike that can’t be easily mended?</em></p></section>",
+            "description": "<p>When an adversary is defeated, you can <strong>spend a Fear</strong> to have a stray attack from a siege weapon hit a point on the battlefield. All targets within Very Close range of that point must make an Agility Reaction Roll.</p><ul><li><p>Targets who fail take <strong>3d8+3</strong> physical or magic damage and must mark a Stress.</p></li><li><p>Targets who succeed must mark a Stress.</p></li></ul><section id=\"secret-qe1DM7HUSefRAplk\" class=\"secret\"><p><em>What debris is scattered by the attack? What is broken by the strike that can’t be easily mended?</em></p></section>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -370,7 +368,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -399,7 +398,16 @@
             },
             "name": "Roll Save",
             "img": "icons/magic/earth/projectile-stone-boulder-brown.webp",
-            "range": ""
+            "range": "",
+            "areas": [
+              {
+                "name": "Collateral Damage",
+                "type": "placed",
+                "shape": "circle",
+                "size": "veryClose",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

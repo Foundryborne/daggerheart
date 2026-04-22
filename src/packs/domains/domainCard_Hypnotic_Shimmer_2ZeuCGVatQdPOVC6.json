@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "kLMAuyZktmohOSXa",
         "systemPath": "actions",
-        "description": "<p>Make a <strong>Spellcast Roll</strong> against all adversaries in front of you within Close range. Once per rest on a success, create an illusion of flashing colors and lights that temporarily <em>Stuns</em> targets you succeed against and forces them to mark a Stress. While <em>Stunned</em>, they can’t use reactions and can’t take any other actions until they clear this condition.</p><p>@Template[type:infront|range:c]</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against all adversaries in front of you within Close range. Once per rest on a success, create an illusion of flashing colors and lights that temporarily <em>Stuns</em> targets you succeed against and forces them to mark a Stress. While <em>Stunned</em>, they can’t use reactions and can’t take any other actions until they clear this condition.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -86,7 +86,16 @@
         },
         "name": "Cast",
         "img": "icons/magic/control/hypnosis-mesmerism-swirl.webp",
-        "range": "close"
+        "range": "close",
+        "areas": [
+          {
+            "name": "Hypnotic Shimmer",
+            "type": "placed",
+            "shape": "inFront",
+            "size": "close",
+            "effects": []
+          }
+        ]
       }
     },
     "attribution": {
