@@ -156,7 +156,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         context.openSection = this.openSection;
         context.tabs = this._getTabs(this.constructor.TABS);
         context.config = CONFIG.DH;
-        if (this.action.hasDamage) {
+        if (this.action.damage) {
             context.allDamageTypesUsed = !getUnusedDamageTypes(this.action.damage.parts).length;
 
             if (this.action.damage.hasOwnProperty('includeBase') && this.action.type === 'attack')
@@ -302,7 +302,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     static addDamage(_event) {
         if (!this.action.damage.parts) return;
 
-        const choices = getUnusedDamageTypes(this.action.damage.parts);
+        const choices = getUnusedDamageTypes(this.action._source.damage.parts);
         const content = new foundry.data.fields.StringField({
             label: game.i18n.localize('Damage Type'),
             choices,
