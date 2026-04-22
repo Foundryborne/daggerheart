@@ -1,4 +1,3 @@
-import { DHDamageData } from '../fields/action/damageField.mjs';
 import DHDamageAction from './damageAction.mjs';
 
 export default class DHAttackAction extends DHDamageAction {
@@ -17,12 +16,11 @@ export default class DHAttackAction extends DHDamageAction {
                     if (!this.damage.parts.hitPoints) {
                         this.damage.parts.hitPoints = baseDamage;
                     } else {
-                        for (const type of baseDamage.type) 
-                            this.damage.parts.hitPoints.type.add(type);
+                        for (const type of baseDamage.type) this.damage.parts.hitPoints.type.add(type);
 
                         this.damage.parts.hitPoints.value.custom = {
                             enabled: true,
-                            formula: `${baseDamage.value.getFormula()} + ${this.damage.parts.hitPoints.value.getFormula()}`,
+                            formula: `${baseDamage.value.getFormula()} + ${this.damage.parts.hitPoints.value.getFormula()}`
                         };
                     }
                 }
