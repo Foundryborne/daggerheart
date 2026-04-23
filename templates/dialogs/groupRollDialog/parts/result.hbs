@@ -12,7 +12,9 @@
             <span class="label">Modifiers</span>
             <div class="item-tags">
                 {{#each groupRoll.modifiers as |modifier|}}
-                    <span class="tag">{{#if (gte modifier 0)}}+{{else}}-{{/if}}{{positive modifier}}</span>
+                    <span class="tag {{#if (gte modifier 0)}}success{{else}}failure{{/if}}">
+                        {{numberFormat modifier sign=true}}
+                    </span>
                 {{/each}}
             </div>
         </div>

@@ -19,14 +19,30 @@
         }
 
         .item-tags {
+            gap: 6px;
+            .tag.failure,
             .tag.success {
+                font-weight: 600;
+                justify-content: center;
+                min-width: 3ch;
+            }
+
+            .tag.success {
+                border-color: @green;
                 background: @green-10;
                 color: @green;
             }
 
             .tag.failure {
+                border-color: @red;
                 background: @red-10;
                 color: @red;
+            }
+
+            .tag {
+                padding-top: 0;
+                padding-bottom: 0;
+                line-height: 1.1875rem;
             }
         }
 
@@ -48,10 +64,28 @@
                 .trait {
                     display: flex;
                     align-items: center;
-                    gap: var(--spacer-8);
+                    gap: 6px;
                     select {
                         --input-height: 2em;
                         width: auto;
+                    }
+                }
+                .item-tags {
+                    align-items: stretch;
+                    .buttons {
+                        align-items: stretch;
+                        display: flex;
+                        button {
+                            --button-size: auto;
+                            color: var(--medium-red);
+                            padding: 0 var(--spacer-4);
+                            &[data-success=true] {
+                                color: var(--green);
+                            }
+                            &.inactive {
+                                opacity: 0.5;
+                            }
+                        }
                     }
                 }
             }
@@ -176,6 +210,10 @@
             height: 1px;
             background-image: linear-gradient(90deg, transparent 0%, var(--duality-text-color) 50%, transparent 100%);
             margin-block: var(--spacer-4);
+        }
+
+        .modifiers .item-tags {
+            min-height: calc(2px + 1.1875rem);
         }
 
         .total {

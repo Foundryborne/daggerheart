@@ -37,7 +37,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         tag: 'form',
         id: 'GroupRollDialog',
         classes: ['daggerheart', 'views', 'dh-style', 'dialog', 'group-roll-dialog'],
-        position: { width: 380, height: 'auto' },
+        position: { width: 390, height: 'auto' },
         window: {
             icon: 'fa-solid fa-users'
         },
@@ -47,7 +47,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
             makeRoll: this.#makeRoll,
             removeRoll: this.#removeRoll,
             rerollDice: this.#rerollDice,
-            markSuccessfull: this.#markSuccessfull,
+            markSuccessful: this.#markSuccessful,
             cancelRoll: this.#onCancelRoll,
             finishRoll: this.#finishRoll
         },
@@ -204,7 +204,8 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
             isEditable: actor?.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER),
             key: partId,
             readyToRoll: Boolean(data.rollChoice),
-            hasRolled: Boolean(data.rollData)
+            hasRolled: Boolean(data.rollData),
+            modifier: data.successfull ? 1 : data.successfull === false ? -1 : 0
         };
     }
 
@@ -406,12 +407,13 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         );
     }
 
-    static #markSuccessfull(_event, button) {
-        const previousValue = this.party.system.groupRoll.aidingCharacters[button.dataset.member].successfull;
-        const newValue = Boolean(button.dataset.successfull === 'true');
+    static #markSuccessful(_event, button) {
+        const memberKey = button.closest('[data-member-key]').dataset.memberKey;
+        const previousValue = this.party.system.groupRoll.aidingCharacters[memberKey].successfull;
+        const newValue = Boolean(button.dataset.success === 'true');
         this.updatePartyData(
             {
-                [`system.groupRoll.aidingCharacters.${button.dataset.member}.successfull`]:
+                [`system.groupRoll.aidingCharacters.${memberKey}.successfull`]:
                     previousValue === newValue ? null : newValue
             },
             this.getUpdatingParts(button)

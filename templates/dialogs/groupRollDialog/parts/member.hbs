@@ -1,13 +1,23 @@
 {{#with (ifThen (eq partId "leader") leader (lookup members partId))}}
     <section class="member-roll-container {{type}} {{#if @root.allHaveRolled}}select-padding{{/if}} {{#unless isEditable}}inactive{{/unless}}" data-member-key="{{@root.partId}}">
         {{log this}}
-        {{log @root}}
         <img class="portrait" src="{{img}}" />
         <div class="name-area">
             <span class="name">{{name}}</span>
             {{#if hasRolled}}
                 <div class="trait item-tags">
                     <div class="tag">{{rollChoiceLabel}}</div>
+                    {{#if modifier}}
+                        <span class="tag {{#if (gte modifier 0)}}success{{else}}failure{{/if}}">
+                            {{numberFormat modifier sign=true}}
+                        </span>
+                    {{/if}}
+                    {{#if (and isEditable (ne ../partId "leader"))}}
+                        <div class="buttons">
+                            <button type="button" data-action="markSuccessful" data-success="true" class="plain icon fa-solid fa-check {{#if modifier}}{{#if successfull}}active{{else}}inactive{{/if}}{{/if}}"></button>
+                            <button type="button" data-action="markSuccessful" class="plain icon fa-solid fa-times {{#if modifier}}{{#if successfull}}inactive{{else}}active{{/if}}{{/if}}"></button>
+                        </div>
+                    {{/if}}
                 </div>
             {{else if readyToRoll}}
                 <div class="trait">
@@ -40,7 +50,7 @@
                             <img src="{{concat "systems/daggerheart/assets/icons/dice/" (ifThen (eq roll.advantage.type 1) "adv/" "disadv/") roll.advantage.dice ".svg"}}" />
                         </span>
                     {{/if}}
-                    <span class="roll-operator">{{#if (gte roll.modifierTotal 0)}}+{{else}}-{{/if}}</span>
+                    <span class="roll-operator ">{{#if (gte roll.modifierTotal 0)}}+{{else}}-{{/if}}</span>
                     <span class="roll-value">{{positive roll.modifierTotal}}</span>
                 </div>
             </div>
