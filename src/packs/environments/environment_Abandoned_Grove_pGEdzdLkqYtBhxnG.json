@@ -171,7 +171,7 @@
             "type": "attack",
             "_id": "47fcdhe1FDdm9rQU",
             "systemPath": "actions",
-            "description": "<p>Pick a point within the grove. All targets within Very Close range of that point must succeed on an Agility Reaction Roll or take 1d8+3 physical damage and become Restrained by barbed vines. Restrained lasts until they’re freed with a successful Finesse or Strength roll or by dealing at least 6 damage to the vines.</p><p>@Template[type:rect|range:vc]</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -209,7 +209,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -243,7 +244,16 @@
             },
             "name": "Roll Save",
             "img": "icons/magic/nature/root-vine-spiral-thorns-teal.webp",
-            "range": "veryClose"
+            "range": "veryClose",
+            "areas": [
+              {
+                "name": "Barbed Vines",
+                "type": "placed",
+                "shape": "circle",
+                "size": "veryClose",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

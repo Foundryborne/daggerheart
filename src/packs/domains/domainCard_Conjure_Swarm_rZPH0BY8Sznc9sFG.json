@@ -178,7 +178,16 @@
         },
         "name": "Fire Flies: Cast",
         "img": "icons/creatures/invertebrates/wasp-swarm-movement.webp",
-        "range": "close"
+        "range": "close",
+        "areas": [
+          {
+            "name": "Conjure Swarm",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "close",
+            "effects": []
+          }
+        ]
       }
     },
     "attribution": {
@@ -204,31 +213,28 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
-        }
-      },
-      "changes": [
-        {
-          "key": "system.rules.damageReduction.reduceSeverity.magical",
-          "mode": 2,
-          "value": "1",
-          "priority": null
         },
-        {
-          "key": "system.rules.damageReduction.reduceSeverity.physical",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
+        "changes": [
+          {
+            "key": "system.rules.damageReduction.reduceSeverity.magical",
+            "value": 1,
+            "priority": null,
+            "type": "add"
+          },
+          {
+            "key": "system.rules.damageReduction.reduceSeverity.physical",
+            "value": 1,
+            "priority": null,
+            "type": "add"
+          }
+        ]
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "tint": "#ffffff",
@@ -238,6 +244,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!rZPH0BY8Sznc9sFG.dImnF8ZT2rVybiIP"
     }
   ],

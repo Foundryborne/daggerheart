@@ -72,7 +72,16 @@
         },
         "name": "Talk to your allies!",
         "img": "icons/equipment/head/mask-plague-leather-brown.webp",
-        "range": "far"
+        "range": "far",
+        "areas": [
+          {
+            "name": "Rousing Speech",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "far",
+            "effects": []
+          }
+        ]
       }
     },
     "originItemType": null,

@@ -84,7 +84,16 @@
         },
         "name": "Heal 1 Hit Point",
         "img": "icons/commodities/gems/gem-faceted-diamond-green.webp",
-        "range": "close"
+        "range": "close",
+        "areas": [
+          {
+            "name": "Healing Field",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "close",
+            "effects": []
+          }
+        ]
       },
       "EqamWsxO86ZjY8WV": {
         "type": "healing",
@@ -168,7 +177,16 @@
         },
         "name": "Heal 2 Hit Points",
         "img": "icons/commodities/gems/gem-faceted-diamond-green.webp",
-        "range": "close"
+        "range": "close",
+        "areas": [
+          {
+            "name": "Healing Field",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "close",
+            "effects": []
+          }
+        ]
       }
     },
     "resource": {

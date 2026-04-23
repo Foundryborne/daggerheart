@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "dmnB4ZMSk8lsB8Lg",
         "systemPath": "actions",
-        "description": "<p>Make a <strong>Spellcast Roll (16)</strong>. On a success, <strong>mark any number of Stress</strong> to target a line of allies within Far range. You can clear Hit Points on the targets equal to the number of Stress marked, divided among them however you’d like.</p><p>@Template[type:ray|range:f]</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -84,7 +84,16 @@
         },
         "name": "Cast",
         "img": "icons/magic/light/beams-rays-orange-purple-large.webp",
-        "range": "far"
+        "range": "far",
+        "areas": [
+          {
+            "name": "Salvation Beam",
+            "type": "placed",
+            "shape": "line",
+            "size": "far",
+            "effects": []
+          }
+        ]
       }
     },
     "attribution": {

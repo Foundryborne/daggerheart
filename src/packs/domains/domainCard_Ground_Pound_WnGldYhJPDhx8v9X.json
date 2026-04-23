@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "FUzQxkv4gFc46SIs",
   "system": {
-    "description": "<p class=\"Body-Foundation\"><strong>Spend 2 Hope</strong> to strike the ground where you stand and make a <strong>Strength Roll</strong> against all targets within Very Close range. Targets you succeed against are thrown back to Far range and must make a Reaction Roll (17). Targets who fail take <strong>4d10+8</strong> damage. Targets who succeed take half damage.</p><p>@Template[type:emanation|range:vc]</p>",
+    "description": "<p class=\"Body-Foundation\"><strong>Spend 2 Hope</strong> to strike the ground where you stand and make a <strong>Strength Roll</strong> against all targets within Very Close range. Targets you succeed against are thrown back to Far range and must make a Reaction Roll (17). Targets who fail take <strong>4d10+8</strong> damage. Targets who succeed take half damage.</p>",
     "domain": "valor",
     "recallCost": 2,
     "level": 8,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "FOrohOCnzfdBl4sM",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\"><strong>Spend 2 Hope</strong> to strike the ground where you stand and make a <strong>Strength Roll</strong> against all targets within Very Close range. Targets you succeed against are thrown back to Far range and must make a Reaction Roll (17). Targets who fail take <strong>4d10+8</strong> damage. Targets who succeed take half damage.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -88,7 +88,16 @@
         },
         "name": "Strike Ground",
         "img": "icons/magic/earth/barrier-stone-brown-green.webp",
-        "range": "veryClose"
+        "range": "veryClose",
+        "areas": [
+          {
+            "name": "Ground Pound",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "veryClose",
+            "effects": []
+          }
+        ]
       }
     },
     "attribution": {

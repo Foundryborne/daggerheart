@@ -99,7 +99,7 @@ export default class DhpActor extends Actor {
         }
 
         // Configure prototype token settings
-        if (['character', 'companion', 'party'].includes(this.type))
+        if (['character', 'companion', 'party'].includes(this.type)) {
             Object.assign(update, {
                 prototypeToken: {
                     sight: { enabled: true },
@@ -107,6 +107,8 @@ export default class DhpActor extends Actor {
                     disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
                 }
             });
+        }
+
         this.updateSource(update);
     }
 

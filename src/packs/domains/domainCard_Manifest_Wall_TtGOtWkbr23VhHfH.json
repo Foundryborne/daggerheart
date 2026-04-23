@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "pDtffkb0SMv1O8pL",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (15)</strong>. Once per rest on a success, <strong>spend a Hope</strong> to create a temporary magical wall between two points within Far range. It can be up to 50 feet high and form at any angle. Creatures or objects in its path are shunted to a side of your choice. The wall stays up until your next rest or you cast Manifest Wall again.</p><p>@Template[type:ray|range:f]</p>",
+    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (15)</strong>. Once per rest on a success, <strong>spend a Hope</strong> to create a temporary magical wall between two points within Far range. It can be up to 50 feet high and form at any angle. Creatures or objects in its path are shunted to a side of your choice. The wall stays up until your next rest or you cast Manifest Wall again.</p>",
     "domain": "codex",
     "recallCost": 2,
     "level": 5,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "nFzMCrW7wuXCCmJW",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (15)</strong>. Once per rest on a success, <strong>spend a Hope</strong> to create a temporary magical wall between two points within Far range. It can be up to 50 feet high and form at any angle. Creatures or objects in its path are shunted to a side of your choice. The wall stays up until your next rest or you cast Manifest Wall again.</p><p>@Template[type:ray|range:f]</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -63,7 +63,16 @@
         },
         "name": "Spend Hope",
         "img": "icons/magic/symbols/ring-circle-smoke-blue.webp",
-        "range": ""
+        "range": "",
+        "areas": [
+          {
+            "name": "Manifest Wall",
+            "type": "placed",
+            "shape": "line",
+            "size": "far",
+            "effects": []
+          }
+        ]
       }
     },
     "attribution": {

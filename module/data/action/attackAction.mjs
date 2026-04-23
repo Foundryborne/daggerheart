@@ -1,4 +1,3 @@
-import { DHDamageData } from '../fields/action/damageField.mjs';
 import DHDamageAction from './damageAction.mjs';
 
 export default class DHAttackAction extends DHDamageAction {
@@ -12,8 +11,19 @@ export default class DHAttackAction extends DHDamageAction {
         super.prepareData();
         if (!!this.item?.system?.attack) {
             if (this.damage.includeBase) {
-                const baseDamage = this.getParentDamage();
-                this.damage.parts.hitPoints = new DHDamageData(baseDamage);
+                const baseDamage = this.getParentHitPointDamage();
+                if (baseDamage) {
+                    if (!this.damage.parts.hitPoints) {
+                        this.damage.parts.hitPoints = baseDamage;
+                    } else {
+                        for (const type of baseDamage.type) this.damage.parts.hitPoints.type.add(type);
+
+                        this.damage.parts.hitPoints.value.custom = {
+                            enabled: true,
+                            formula: `${baseDamage.value.getFormula()} + ${this.damage.parts.hitPoints.value.getFormula()}`
+                        };
+                    }
+                }
             }
             if (this.roll.useDefault) {
                 this.roll.trait = this.item.system.attack.roll.trait;
@@ -22,16 +32,8 @@ export default class DHAttackAction extends DHDamageAction {
         }
     }
 
-    getParentDamage() {
-        return {
-            value: {
-                multiplier: 'prof',
-                dice: this.item?.system?.attack.damage.parts.hitPoints.value.dice,
-                bonus: this.item?.system?.attack.damage.parts.hitPoints.value.bonus ?? 0
-            },
-            type: this.item?.system?.attack.damage.parts.hitPoints.type,
-            base: true
-        };
+    getParentHitPointDamage() {
+        return this.item?.system?.attack.damage.parts.hitPoints;
     }
 
     get damageFormula() {

@@ -77,7 +77,16 @@
         },
         "name": "Attack",
         "img": "icons/creatures/abilities/dragon-fire-breath-orange.webp",
-        "range": "veryClose"
+        "range": "veryClose",
+        "areas": [
+          {
+            "name": "Elemental Breath",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "veryClose",
+            "effects": []
+          }
+        ]
       }
     },
     "originItemType": null,
