@@ -12,12 +12,6 @@
                             {{numberFormat modifier sign=true}}
                         </span>
                     {{/if}}
-                    {{#if (and isEditable (ne ../partId "leader"))}}
-                        <div class="buttons">
-                            <button type="button" data-action="markSuccessful" data-success="true" class="plain icon fa-solid fa-check {{#if modifier}}{{#if successfull}}active{{else}}inactive{{/if}}{{/if}}"></button>
-                            <button type="button" data-action="markSuccessful" class="plain icon fa-solid fa-times {{#if modifier}}{{#if successfull}}inactive{{else}}active{{/if}}{{/if}}"></button>
-                        </div>
-                    {{/if}}
                 </div>
             {{else if readyToRoll}}
                 <div class="trait">
@@ -29,30 +23,38 @@
             {{/if}}
         </div>
         {{#if roll}}
-            <div class="roll-data with-result {{#if roll.withHope}}hope{{else if roll.withFear}}fear{{else}}critical{{/if}}">
-                <div class="duality-label">
-                    {{roll.total}} 
-                    <span class="with">{{localize "DAGGERHEART.GENERAL.withThing" thing=roll.totalLabel}}</span>
+            <div class="with-result {{#if roll.withHope}}hope{{else if roll.withFear}}fear{{else}}critical{{/if}}">
+                <div class="roll-data">
+                    <div class="duality-label">
+                        {{roll.total}} 
+                        <span class="with">{{localize "DAGGERHEART.GENERAL.withThing" thing=roll.totalLabel}}</span>
+                    </div>
+                    <div class="roll-dice-container">
+                        <a class="roll-dice" data-action="rerollDice" data-member="{{@root.partId}}" data-dice-type="hope">
+                            <span class="dice-label">{{roll.dHope.total}}</span>
+                            <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/" roll.dHope.denomination ".svg"}}" />
+                        </a>
+                        <a class="roll-dice" data-action="rerollDice" data-member="{{@root.partId}}" data-dice-type="fear">
+                            <span class="dice-label">{{roll.dFear.total}}</span>
+                            <img src="{{concat "systems/daggerheart/assets/icons/dice/fear/" roll.dFear.denomination ".svg"}}" />
+                        </a>
+                        {{#if roll.advantage.type}}
+                            <span class="roll-operator">{{#if (eq roll.advantage.type 1)}}+{{else}}-{{/if}}</span>
+                            <span class="roll-dice">
+                                <span class="dice-label">{{roll.advantage.value}}</span>
+                                <img src="{{concat "systems/daggerheart/assets/icons/dice/" (ifThen (eq roll.advantage.type 1) "adv/" "disadv/") roll.advantage.dice ".svg"}}" />
+                            </span>
+                        {{/if}}
+                        <span class="roll-operator ">{{#if (gte roll.modifierTotal 0)}}+{{else}}-{{/if}}</span>
+                        <span class="roll-value">{{positive roll.modifierTotal}}</span>
+                    </div>
                 </div>
-                <div class="roll-dice-container">
-                    <a class="roll-dice" data-action="rerollDice" data-member="{{@root.partId}}" data-dice-type="hope">
-                        <span class="dice-label">{{roll.dHope.total}}</span>
-                        <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/" roll.dHope.denomination ".svg"}}" />
-                    </a>
-                    <a class="roll-dice" data-action="rerollDice" data-member="{{@root.partId}}" data-dice-type="fear">
-                        <span class="dice-label">{{roll.dFear.total}}</span>
-                        <img src="{{concat "systems/daggerheart/assets/icons/dice/fear/" roll.dFear.denomination ".svg"}}" />
-                    </a>
-                    {{#if roll.advantage.type}}
-                        <span class="roll-operator">{{#if (eq roll.advantage.type 1)}}+{{else}}-{{/if}}</span>
-                        <span class="roll-dice">
-                            <span class="dice-label">{{roll.advantage.value}}</span>
-                            <img src="{{concat "systems/daggerheart/assets/icons/dice/" (ifThen (eq roll.advantage.type 1) "adv/" "disadv/") roll.advantage.dice ".svg"}}" />
-                        </span>
-                    {{/if}}
-                    <span class="roll-operator ">{{#if (gte roll.modifierTotal 0)}}+{{else}}-{{/if}}</span>
-                    <span class="roll-value">{{positive roll.modifierTotal}}</span>
-                </div>
+                {{#if (and isEditable (ne ../partId "leader"))}}
+                    <div class="buttons">
+                        <button type="button" data-action="markSuccessful" data-success="true" class="plain icon fa-solid fa-check {{#if modifier}}{{#if successfull}}active{{else}}inactive{{/if}}{{/if}}"></button>
+                        <button type="button" data-action="markSuccessful" class="plain icon fa-solid fa-times {{#if modifier}}{{#if successfull}}inactive{{else}}active{{/if}}{{/if}}"></button>
+                    </div>
+                {{/if}}
             </div>
         {{else if readyToRoll}}
             <a class="roll-button initial-roll" data-action="makeRoll" data-member="{{@root.partId}}">

@@ -46,12 +46,44 @@
             }
         }
 
+        .with-result {
+            border-radius: 5px;
+            background: var(--duality-bg);
+            color: var(--color-light-2);
+            
+            &.hope {
+                --duality-text-color: @golden;
+                --duality-bg: url(../assets/parchments/dh-parchment-hope.png);
+            }
+
+            &.fear {
+                --duality-text-color: @chat-blue;
+                --duality-bg: url(../assets/parchments/dh-parchment-fear.png);
+            }
+
+            &.critical {
+                --duality-text-color: @chat-purple;
+                --duality-bg: url(../assets/parchments/dh-parchment-critical.png);
+            }
+
+            .duality-label {
+                font-family: var(--dh-font-subtitle);
+                color: var(--duality-text-color);
+                font-weight: 700;
+            }
+        }
+
         .member-roll-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 8px;
             height: 3.375rem;
+
+            &.inactive {
+                opacity: 0.3;
+                pointer-events: none;
+            }
 
             .name-area {
                 display: flex;
@@ -72,27 +104,16 @@
                 }
                 .item-tags {
                     align-items: stretch;
-                    .buttons {
-                        align-items: stretch;
-                        display: flex;
-                        button {
-                            --button-size: auto;
-                            color: var(--medium-red);
-                            padding: 0 var(--spacer-4);
-                            &[data-success=true] {
-                                color: var(--green);
-                            }
-                            &.inactive {
-                                opacity: 0.5;
-                            }
-                        }
-                    }
                 }
             }
 
-            &.inactive {
-                opacity: 0.3;
-                pointer-events: none;
+            .buttons {
+                display: flex;
+                flex-direction: column;
+                button {
+                    --button-size: 1.5em;
+                    padding: 0 var(--spacer-4);
+                }
             }
 
             a.roll-button.initial-roll {
@@ -100,93 +121,81 @@
                 height: 1.875rem;
                 margin-right: 2px; /** makes hover look a bit nicer */
             }
-        }
-    }
 
-    .roll-container {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .with-result {
-        border-radius: 5px;
-        background: var(--duality-bg);
-        color: var(--color-light-2);
-        
-        &.hope {
-            --duality-text-color: @golden;
-            --duality-bg: url(../assets/parchments/dh-parchment-hope.png);
-        }
-
-        &.fear {
-            --duality-text-color: @chat-blue;
-            --duality-bg: url(../assets/parchments/dh-parchment-fear.png);
-        }
-
-        &.critical {
-            --duality-text-color: @chat-purple;
-            --duality-bg: url(../assets/parchments/dh-parchment-critical.png);
-        }
-
-        .duality-label {
-            font-family: var(--dh-font-subtitle);
-            color: var(--duality-text-color);
-            font-weight: 700;
-        }
-    }
-
-    .roll-data {
-        display: flex;
-        flex-direction: column;
-        align-items: end;
-        justify-content: center;
-        padding: 0 4px;
-        min-height: 3rem;
-
-        .duality-label {
-            font-size: var(--font-size-15);
-
-            .unused-damage {
-                text-decoration: line-through;
-            }
-
-            .with {
-                font-size: var(--font-size-10);
-            }
-        }
-
-        .roll-dice-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 4px;
-
-            .roll-dice {
-                position: relative;
+            .with-result {
                 display: flex;
+                justify-content: end;
                 align-items: center;
-                justify-content: center;
+                gap: 6px;
 
-                .dice-label {
-                    position: absolute;
-                    color: white;
-                    font-size: 1rem;
-                    paint-order: stroke fill;
-                    -webkit-text-stroke: 2px black;
+                .roll-data {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: end;
+                    justify-content: center;
+                    padding: 0 4px;
+                    min-height: 3rem;
+
+                    .duality-label {
+                        font-size: var(--font-size-15);
+
+                        .unused-damage {
+                            text-decoration: line-through;
+                        }
+
+                        .with {
+                            font-size: var(--font-size-10);
+                        }
+                    }
+
+                    .roll-dice-container {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-wrap: wrap;
+                        gap: 4px;
+
+                        .roll-dice {
+                            position: relative;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            .dice-label {
+                                position: absolute;
+                                color: white;
+                                font-size: 1rem;
+                                paint-order: stroke fill;
+                                -webkit-text-stroke: 2px black;
+                            }
+
+                            img {
+                                height: 1.25rem;
+                            }
+                        }
+
+                        .roll-operator {
+                            font-size: var(--font-size-18);
+                        }
+
+                        .roll-value {
+                            font-size: var(--font-size-16);
+                        }
+                    }
                 }
 
-                img {
-                    height: 1.25rem;
+                .buttons {
+                    gap: 2px;
+                    button {                    
+                        color: var(--medium-red);
+                        &[data-success=true] {
+                            color: var(--green);
+                        }
+                        &.inactive {
+                            opacity: 0.4;
+                        }
+                    }
                 }
-            }
-
-            .roll-operator {
-                font-size: var(--font-size-18);
-            }
-
-            .roll-value {
-                font-size: var(--font-size-16);
             }
         }
     }
