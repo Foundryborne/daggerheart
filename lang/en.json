@@ -759,15 +759,20 @@
                 }
             },
             "GroupRollSelect": {
-                "title": "Group Roll",
-                "aidingCharacters": "Aiding Characters",
+                "cancelConfirmText": "Are you sure you want to cancel the Group Roll? This will close it for all other players too.",
+                "cancelConfirmTitle": "Cancel Group Roll",
+                "initializationTitle": "Character Selection",
+                "finishGroupRoll": "Finish Group Roll",
                 "leader": "Leader",
                 "leaderRoll": "Leader Roll",
+                "members": "Members",
                 "openDialogForAll": "Open Dialog For All",
+                "removeRoll": "Remove Roll",
+                "resultsHint": "Results will appear when characters roll",
+                "selectLeaderHint": "Select one Character to be the leader",
+                "selectParticipantsHint": "Select one Character to be the leader",
                 "startGroupRoll": "Start Group Roll",
-                "finishGroupRoll": "Finish Group Roll",
-                "cancelConfirmTitle": "Cancel Group Roll",
-                "cancelConfirmText": "Are you sure you want to cancel the Group Roll? This will close it for all other players too."
+                "title": "Group Roll"
             },
             "TokenConfig": {
                 "actorSizeUsed": "Actor size is set, determining the dimensions"

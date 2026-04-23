@@ -146,12 +146,10 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
                 const leader = this.party.system.groupRoll.leader;
                 partContext.hasRolled =
                     leader?.rollData ||
-                    Object.values(this.party.system.groupRoll?.aidingCharacters ?? {}).some(
-                        x => x.successfull !== null
-                    );
+                    Object.values(this.party.system.groupRoll?.aidingCharacters ?? {}).some(x => x.successful !== null);
                 const { modifierTotal, modifiers } = Object.values(this.party.system.groupRoll.aidingCharacters).reduce(
                     (acc, curr) => {
-                        const modifier = curr.successfull === true ? 1 : curr.successfull === false ? -1 : null;
+                        const modifier = curr.successful === true ? 1 : curr.successful === false ? -1 : null;
                         if (modifier) {
                             acc.modifierTotal += modifier;
                             acc.modifiers.push(modifier);
@@ -177,7 +175,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
             case 'footer':
                 partContext.canFinishRoll =
                     Boolean(this.party.system.groupRoll.leader?.rollData) &&
-                    Object.values(this.party.system.groupRoll.aidingCharacters).every(x => x.successfull !== null);
+                    Object.values(this.party.system.groupRoll.aidingCharacters).every(x => x.successful !== null);
                 break;
         }
 
@@ -195,6 +193,10 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         const actor = game.actors.get(data.id);
         const isLeader = data === this.party.system.groupRoll.leader;
 
+        const roll = data.roll;
+        const withTypeSuffix = !roll ? null : roll.isCritical ? 'criticalShort' : roll.withHope ? 'hope' : 'fear';
+        const thing = withTypeSuffix ? _loc(`DAGGERHEART.GENERAL.${withTypeSuffix}`) : null;
+
         return {
             ...data,
             type: isLeader ? 'leader' : 'aid',
@@ -205,7 +207,8 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
             key: partId,
             readyToRoll: Boolean(data.rollChoice),
             hasRolled: Boolean(data.rollData),
-            modifier: data.successfull ? 1 : data.successfull === false ? -1 : 0
+            modifier: data.successful ? 1 : data.successful === false ? -1 : 0,
+            withLabelShort: thing ? _loc('DAGGERHEART.GENERAL.withThing', { thing }) : null
         };
     }
 
@@ -298,6 +301,9 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
     static #toggleSelectMember(_, button) {
         const member = this.partyMembers.find(x => x.id === button.dataset.id);
         member.selected = !member.selected;
+        if (this.leader?.memberId === member.id) {
+            this.leader = null;
+        }
         this.render();
     }
 
@@ -337,11 +343,14 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
     }
     //#endregion
 
-    async makeRoll(button, characterData, path) {
-        const actor = game.actors.find(x => x.id === characterData.id);
+    /** @this GroupRollDialog */
+    static async #makeRoll(_event, button) {
+        const member = button.closest('[data-member-key]').dataset.memberKey;
+        const { data, basePath } = this.#getCharacterDataById(member);
+        const actor = game.actors.find(x => x.id === data.id);
         if (!actor) return;
 
-        const result = await actor.rollTrait(characterData.rollChoice, {
+        const result = await actor.rollTrait(data.rollChoice, {
             skips: {
                 createMessage: true,
                 resources: true,
@@ -350,34 +359,30 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         });
 
         if (!result) return;
+        // todo: move logic to actor.rollTrait() or actor.diceRoll()
         if (!game.modules.get('dice-so-nice')?.active) foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
 
         const rollData = result.messageRoll.toJSON();
         delete rollData.options.messageRoll;
         this.updatePartyData(
             {
-                [path]: rollData
+                [basePath]: { rollData, successful: null }
             },
             this.getUpdatingParts(button)
         );
     }
 
-    /** @this GroupRollDialog */
-    static async #makeRoll(_event, button) {
-        const { data, basePath } = this.#getCharacterDataById(button.dataset.member);
-        this.makeRoll(button, data, `${basePath}.rollData`);
-    }
-
     /** @this GroupRollDialog  */
     static async #removeRoll(_event, button) {
-        const { basePath } = this.#getCharacterDataById(button.dataset.member);
+        const member = button.closest('[data-member-key]').dataset.memberKey;
+        const { basePath } = this.#getCharacterDataById(member);
         this.updatePartyData(
             {
                 [basePath]: {
                     rollData: null,
                     rollChoice: null,
                     selected: false,
-                    successfull: null
+                    successful: null
                 }
             },
             this.getUpdatingParts(button)
@@ -409,11 +414,11 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
 
     static #markSuccessful(_event, button) {
         const memberKey = button.closest('[data-member-key]').dataset.memberKey;
-        const previousValue = this.party.system.groupRoll.aidingCharacters[memberKey].successfull;
+        const previousValue = this.party.system.groupRoll.aidingCharacters[memberKey].successful;
         const newValue = Boolean(button.dataset.success === 'true');
         this.updatePartyData(
             {
-                [`system.groupRoll.aidingCharacters.${memberKey}.successfull`]:
+                [`system.groupRoll.aidingCharacters.${memberKey}.successful`]:
                     previousValue === newValue ? null : newValue
             },
             this.getUpdatingParts(button)
@@ -457,7 +462,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
     static async #finishRoll() {
         const totalRoll = this.party.system.groupRoll.leader.roll;
         for (const character of Object.values(this.party.system.groupRoll.aidingCharacters)) {
-            totalRoll.terms.push(new foundry.dice.terms.OperatorTerm({ operator: character.successfull ? '+' : '-' }));
+            totalRoll.terms.push(new foundry.dice.terms.OperatorTerm({ operator: character.successful ? '+' : '-' }));
             totalRoll.terms.push(new foundry.dice.terms.NumericTerm({ number: 1 }));
         }
 

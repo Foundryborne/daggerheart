@@ -78,10 +78,9 @@
             align-items: center;
             justify-content: space-between;
             gap: 8px;
-            height: 3.375rem;
+            min-height: 3.375rem;
 
             &.inactive {
-                opacity: 0.3;
                 pointer-events: none;
             }
 
@@ -109,10 +108,16 @@
 
             .buttons {
                 display: flex;
-                flex-direction: column;
+                flex-direction: row;
                 button {
+                    --button-text-color: var(--color-text-primary);
                     --button-size: 1.5em;
                     padding: 0 var(--spacer-4);
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                    }
                 }
             }
 
@@ -185,7 +190,7 @@
                 }
 
                 .buttons {
-                    gap: 2px;
+                    flex-direction: column;
                     button {                    
                         color: var(--medium-red);
                         &[data-success=true] {
@@ -208,6 +213,16 @@
         font-size: var(--font-size-12);
         padding: 6px 12px;
         margin-top: 8px;
+
+        &.empty {
+            color: light-dark(@dark-blue-80, @beige-80);
+            border-radius: 3px;
+            justify-content: center;
+            border: 1px dashed light-dark(@dark-blue-80, @beige-80);
+            text-align: center;
+            height: 3.25rem;
+            font-family: @font-body;
+        }
 
         .row {
             display: flex;
