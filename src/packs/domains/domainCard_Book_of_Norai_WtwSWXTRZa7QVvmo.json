@@ -91,7 +91,7 @@
         "type": "attack",
         "_id": "GI2VkIcGDOjFRxpT",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll</strong> against a target within Very Far range. On a success, hurl a sphere of fire toward them that explodes on impact. The target and all creatures within Very Close range of them must make a Reaction Roll (13). Targets who fail take<strong> d20+5</strong> magic damage using your Proficiency. Targets who succeed take half damage.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll</strong> against a target within Very Far range. On a success, hurl a sphere of fire toward them that explodes on impact.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -101,34 +101,7 @@
           "recovery": null
         },
         "damage": {
-          "parts": {
-            "hitPoints": {
-              "resultBased": false,
-              "value": {
-                "custom": {
-                  "enabled": false
-                },
-                "multiplier": "prof",
-                "dice": "d20",
-                "bonus": 5,
-                "flatMultiplier": 1
-              },
-              "applyTo": "hitPoints",
-              "type": [
-                "magical"
-              ],
-              "base": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
-              }
-            }
-          },
+          "parts": {},
           "includeBase": false
         },
         "target": {
@@ -152,13 +125,104 @@
           "useDefault": false
         },
         "save": {
+          "trait": null,
+          "difficulty": 13,
+          "damageMod": "half"
+        },
+        "name": "Fireball - Cast",
+        "img": "icons/magic/fire/explosion-fireball-large-red-orange.webp",
+        "range": "veryFar"
+      },
+      "HJ749c2a8WTjkSHY": {
+        "type": "attack",
+        "_id": "HJ749c2a8WTjkSHY",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "<p>The target and all creatures within Very Close range of them must make a Reaction Roll (13). Targets who fail take<strong> d20+5</strong> magic damage using your Proficiency. Targets who succeed take half damage.</p>",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [
+          {
+            "name": "Fireball",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "veryClose",
+            "effects": []
+          }
+        ],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "parts": {
+            "hitPoints": {
+              "applyTo": "hitPoints",
+              "resultBased": false,
+              "value": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d20",
+                "bonus": 5,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              },
+              "base": false,
+              "type": [
+                "magical"
+              ]
+            }
+          },
+          "includeBase": false,
+          "direct": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
           "trait": "agility",
           "difficulty": 13,
           "damageMod": "half"
         },
-        "name": "Fireball",
-        "img": "icons/magic/fire/explosion-fireball-large-red-orange.webp",
-        "range": "veryFar"
+        "name": "Fireball - Explosion",
+        "range": "",
+        "img": "icons/magic/fire/explosion-fireball-large-red-orange.webp"
       }
     },
     "attribution": {

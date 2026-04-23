@@ -5,7 +5,7 @@
             <div class="icon">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
-            <input type="search" name="search" class="search-inventory" placeholder="Search...">
+            <input type="search" name="search" class="search-inventory" placeholder="{{localize "DAGGERHEART.GENERAL.searchPlaceholder"}}">
         </div>
         <a class="filter-button">
             <i class="fa-solid fa-filter"></i>
@@ -13,18 +13,7 @@
     </div>
 
     {{#if this.inventory.hasCurrency}}
-        <div class="currency-section">
-            {{#each this.inventory.currencies as |currency key|}}
-                {{#if currency.enabled}}
-                    <div class="input currency" data-currency="{{key}}">
-                        <span class="drag-handle">
-                            <i class="{{currency.icon}}" inert></i> {{localize currency.label}}
-                        </span>
-                        <input type="text" name="{{currency.field.fieldPath}}" data-allow-delta value="{{currency.value}}" data-dtype="Number" min="0" step="1" />
-                    </div>
-                {{/if}}
-            {{/each}}
-        </div>
+        {{> "systems/daggerheart/templates/sheets/global/partials/gold.hbs" currencies=inventory.currencies}}
     {{/if}}
 
     <div class="items-section">
@@ -33,7 +22,7 @@
         type='weapon'
         collection=@root.inventory.weapons
         isGlassy=true
-        canCreate=true
+        canCreate=@root.editable
         hideResources=true
         }}
         {{> 'daggerheart.inventory-items'
@@ -41,7 +30,7 @@
         type='armor'
         collection=@root.inventory.armor
         isGlassy=true
-        canCreate=true
+        canCreate=@root.editable
         hideResources=true
         }}
         {{> 'daggerheart.inventory-items'
@@ -49,15 +38,17 @@
         type='consumable'
         collection=@root.inventory.consumables
         isGlassy=true
-        canCreate=true
+        canCreate=@root.editable
+        isQuantifiable=true
         }}
         {{> 'daggerheart.inventory-items'
         title='TYPES.Item.loot'
         type='loot'
         collection=@root.inventory.loot
         isGlassy=true
-        canCreate=true
-        showActions=true
+        canCreate=@root.editable
+        showActions=@root.editable
+        isQuantifiable=true
         }}
     </div>
 </section>

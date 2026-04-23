@@ -31,8 +31,13 @@ export default class DHItem extends foundry.documents.Item {
     static async createDocuments(sources, operation) {
         // Ensure that items being created are valid to the actor its being added to
         const actor = operation.parent;
-        sources = actor?.system?.isItemValid ? sources.filter(s => actor.system.isItemValid(s)) : sources;
-        return super.createDocuments(sources, operation);
+        const filtered = actor ? sources.filter(s => actor.system.isItemValid(s)) : sources;
+        if (actor && filtered.length === 0 && sources.length > 0) {
+            const itemType = _loc(`TYPES.Item.${sources[0].type}`);
+            const actorType = _loc(`TYPES.Actor.${actor.type}`);
+            ui.notifications.error('DAGGERHEART.ACTORS.Base.CannotAddType', { format: { itemType, actorType } });
+        }
+        return super.createDocuments(filtered, operation);
     }
 
     /* -------------------------------------------- */
@@ -69,6 +74,13 @@ export default class DHItem extends foundry.documents.Item {
      */
     get isInventoryItem() {
         return this.system.metadata.isInventoryItem ?? false;
+    }
+
+    /** Returns true if the item can be used */
+    get usable() {
+        const actor = this.actor;
+        const actionsList = this.system.actionsList;
+        return this.isOwner && actor?.type === 'character' && (actionsList?.size || actionsList?.length);
     }
 
     /** @inheritdoc */

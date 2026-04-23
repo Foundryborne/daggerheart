@@ -2,6 +2,7 @@
     {{formGroup fields.tint value=source.tint rootId=rootId placeholder="#ffffff"}}
     {{formGroup fields.description value=source.description rootId=rootId}}
     {{formGroup fields.disabled value=source.disabled rootId=rootId}}
+    {{formGroup systemFields.targetDispositions value=source.system.targetDispositions name=(concat "system.targetDispositions") localize=true}}
 
     {{#if isActorEffect}}
         <div class="form-group">

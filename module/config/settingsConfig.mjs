@@ -1,5 +1,6 @@
 export const keybindings = {
-    spotlight: 'DHSpotlight'
+    spotlight: 'DHSpotlight',
+    partySheet: 'DHPartySheet'
 };
 
 export const menu = {
@@ -40,24 +41,21 @@ export const gameSettings = {
     LastMigrationVersion: 'LastMigrationVersion',
     SpotlightRequestQueue: 'SpotlightRequestQueue',
     CompendiumBrowserSettings: 'CompendiumBrowserSettings',
-    SpotlightTracker: 'SpotlightTracker'
+    SpotlightTracker: 'SpotlightTracker',
+    ActiveParty: 'ActiveParty'
 };
 
 export const actionAutomationChoices = {
     never: {
         id: 'never',
-        label: 'Never'
+        label: 'DAGGERHEART.CONFIG.ActionAutomationChoices.never'
     },
     showDialog: {
         id: 'showDialog',
-        label: 'Show Dialog only'
+        label: 'DAGGERHEART.CONFIG.ActionAutomationChoices.showDialog'
     },
-    // npcOnly: {
-    // id: "npcOnly",
-    // label: "Always for non-characters"
-    // },
     always: {
         id: 'always',
-        label: 'Always'
+        label: 'DAGGERHEART.CONFIG.ActionAutomationChoices.always'
     }
 };

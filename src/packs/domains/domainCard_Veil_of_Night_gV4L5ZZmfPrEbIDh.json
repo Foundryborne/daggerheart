@@ -59,7 +59,16 @@
         },
         "name": "Cast",
         "img": "icons/magic/unholy/barrier-shield-glowing-pink.webp",
-        "range": "self"
+        "range": "self",
+        "areas": [
+          {
+            "name": "Veil of Night",
+            "type": "placed",
+            "shape": "line",
+            "size": "far",
+            "effects": []
+          }
+        ]
       }
     },
     "attribution": {
@@ -85,25 +94,22 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
-        }
+        },
+        "changes": [
+          {
+            "key": "system.advantageSources",
+            "value": "Attack rolls you make through the darkness",
+            "priority": null,
+            "type": "add"
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Attack rolls you make through the darkness",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "tint": "#ffffff",
@@ -115,6 +121,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!gV4L5ZZmfPrEbIDh.eSfBBZ7IP8qirLu7"
     }
   ],

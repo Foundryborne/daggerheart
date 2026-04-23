@@ -103,23 +103,10 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     _getEntryContextOptions() {
         return [
             ...super._getEntryContextOptions(),
-            // {
-            //     name: 'Reroll',
-            //     icon: '<i class="fa-solid fa-dice"></i>',
-            //     condition: li => {
-            //         const message = game.messages.get(li.dataset.messageId);
-
-            //         return (game.user.isGM || message.isAuthor) && message.rolls.length > 0;
-            //     },
-            //     callback: li => {
-            //         const message = game.messages.get(li.dataset.messageId);
-            //         new game.system.api.applications.dialogs.RerollDialog(message).render({ force: true });
-            //     }
-            // },
             {
-                name: game.i18n.localize('DAGGERHEART.UI.ChatLog.rerollDamage'),
+                label: 'DAGGERHEART.UI.ChatLog.rerollDamage',
                 icon: '<i class="fa-solid fa-dice"></i>',
-                condition: li => {
+                visible: li => {
                     const message = game.messages.get(li.dataset.messageId);
                     const hasRolledDamage = message.system.hasDamage
                         ? Object.keys(message.system.damage).length > 0

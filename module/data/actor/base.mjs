@@ -107,7 +107,8 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
             hasResistances: true,
             hasAttribution: false,
             hasLimitedView: true,
-            usesSize: false
+            usesSize: false,
+            hasInventory: false
         };
     }
 
@@ -167,6 +168,11 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
     }
 
     /* -------------------------------------------- */
+
+    isItemValid(source) {
+        const inventoryTypes = ['weapon', 'armor', 'consumable', 'loot'];
+        return this.metadata.hasInventory && inventoryTypes.includes(source.type);
+    }
 
     /**
      * Obtain a data object used to evaluate any dice rolls associated with this Item Type

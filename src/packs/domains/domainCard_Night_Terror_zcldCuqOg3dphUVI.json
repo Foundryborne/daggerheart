@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "2rqOUxEglhhPKk2j",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Once per long rest, choose any targets within Very Close range to perceive you as a nightmarish horror. The targets must succeed on a Reaction Roll (16) or become temporarily <em>Horrified</em>. While <em>Horrified</em>, they’re <em>Vulnerable</em>. Steal a number of Fear from the GM equal to the number of targets that are <em>Horrified</em> (up to the number of Fear in the GM’s pool). Roll a number of <strong>d6s</strong> equal to the number of stolen Fear and deal the total damage to each <em>Horrified</em> target. Discard the stolen Fear.</p><p>@Template[type:emanation|range:vc]</p>",
+    "description": "<p class=\"Body-Foundation\">Once per long rest, choose any targets within Very Close range to perceive you as a nightmarish horror. The targets must succeed on a Reaction Roll (16) or become temporarily <em>Horrified</em>. While <em>Horrified</em>, they’re <em>Vulnerable</em>. Steal a number of Fear from the GM equal to the number of targets that are <em>Horrified</em> (up to the number of Fear in the GM’s pool). Roll a number of <strong>d6s</strong> equal to the number of stolen Fear and deal the total damage to each <em>Horrified</em> target. Discard the stolen Fear.</p>",
     "domain": "midnight",
     "recallCost": 2,
     "level": 9,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "e4A6GQERsn08IBby",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Once per long rest, choose any targets within Very Close range to perceive you as a nightmarish horror. The targets must succeed on a Reaction Roll (16) or become temporarily <em>Horrified</em>. While <em>Horrified</em>, they’re <em>Vulnerable</em>. Steal a number of Fear from the GM equal to the number of targets that are <em>Horrified</em> (up to the number of Fear in the GM’s pool). Roll a number of <strong>d6s</strong> equal to the number of stolen Fear and deal the total damage to each <em>Horrified</em> target. Discard the stolen Fear.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -59,7 +59,16 @@
         },
         "name": "Horrify",
         "img": "icons/creatures/magical/spirit-fear-energy-pink.webp",
-        "range": "veryClose"
+        "range": "veryClose",
+        "areas": [
+          {
+            "name": "Night Terror",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "veryClose",
+            "effects": []
+          }
+        ]
       },
       "ELzQvftGxZigPkBH": {
         "type": "damage",

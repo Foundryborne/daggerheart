@@ -93,6 +93,12 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
                     max: new fields.NumberField({ integer: true, label: 'DAGGERHEART.GENERAL.max' })
                 },
                 { nullable: true, initial: null }
+            ),
+            targetDispositions: new fields.SetField(
+                new fields.NumberField({
+                    choices: CONFIG.DH.GENERAL.simpleDispositions
+                }),
+                { label: 'DAGGERHEART.ACTIVEEFFECT.Config.targetDispositions' }
             )
         };
     }
@@ -131,13 +137,14 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
         return armorChange.getArmorData();
     }
 
-    static getDefaultObject() {
+    static getDefaultObject(options = { transfer: true }) {
         return {
             name: 'New Effect',
             id: foundry.utils.randomID(),
             disabled: false,
             img: 'icons/magic/life/heart-cross-blue.webp',
             description: '',
+            transfer: options.transfer,
             statuses: [],
             changes: [],
             system: {

@@ -139,12 +139,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -195,7 +192,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -221,7 +218,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -312,7 +310,7 @@
       "_id": "zGvaBYJPOOnQVQEn",
       "img": "icons/magic/earth/projectile-stone-boulder-orange.webp",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to pick up heavy objects and throw them at all targets in front of the @Lookup[@name] within Far range. Make an attack against these targets. Targets the @Lookup[@name] succeeds against take <strong>1d10+2</strong> physical damage. If they succeed against more than one target, you gain a Fear.</p><p>@Template[type:inFront|range:f]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to pick up heavy objects and throw them at all targets in front of the @Lookup[@name] within Far range. Make an attack against these targets. Targets the @Lookup[@name] succeeds against take <strong>1d10+2</strong> physical damage. If they succeed against more than one target, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "3p1qfHy5uHe4H2hB": {
@@ -367,7 +365,8 @@
                 }
               },
               "includeBase": false,
-              "direct": true
+              "direct": true,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -396,7 +395,16 @@
             },
             "name": "Throw",
             "img": "icons/magic/earth/projectile-stone-boulder-orange.webp",
-            "range": "far"
+            "range": "far",
+            "areas": [
+              {
+                "name": "Hail of Boulders",
+                "type": "placed",
+                "shape": "inFront",
+                "size": "far",
+                "effects": []
+              }
+            ]
           },
           "pmeromzI4eQOilbp": {
             "type": "healing",

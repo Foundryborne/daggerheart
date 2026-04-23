@@ -145,6 +145,7 @@ export default class DHRoll extends Roll {
             roll: this,
             parent: chatData.parent,
             targetMode: chatData.targetMode,
+            areas: chatData.action?.areas,
             metagamingSettings
         });
     }

@@ -1,15 +1,15 @@
 <div class="daggerheart dh-style tooltip">
     
-    <div class="tooltip-header"><h2>{{localize "Adversaries"}} ({{currentBP}}/{{maxBP}})</h2></div>
+    <div class="tooltip-header"><h2>{{localize "DAGGERHEART.GENERAL.Adversary.plural"}} ({{currentBP}}/{{maxBP}})</h2></div>
     <div class="battlepoint-categories-container">
         <div class="battlepoint-categories-inner-container">
             {{#each categories as |category key|}}
                 {{#each category as |grouping index|}}
                     <div class="battlepoint-grouping-container">
                         {{#if grouping.nr}}
-                            <label>{{key}} BP: {{concat (localize grouping.description) ' ' '('grouping.nr 'x)'}}</label>
+                            <label>{{key}} {{localize "DAGGERHEART.GENERAL.Battlepoints.short"}} - {{concat (localize grouping.description) ' ' '('grouping.nr 'x)'}}</label>
                         {{else}}
-                            <label class="unselected-grouping">{{key}} BP - {{localize grouping.description}}</label>
+                            <label class="unselected-grouping">{{key}} {{localize "DAGGERHEART.GENERAL.Battlepoints.short"}} - {{localize grouping.description}}</label>
                         {{/if}}
                     </div>
                 {{/each}}
@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <div class="tooltip-header"><h2>{{localize "Modifiers"}}</h2></div>
+    <div class="tooltip-header"><h2>{{localize "DAGGERHEART.GENERAL.Modifier.plural"}}</h2></div>
     <div class="battlepoint-toggles-container">
         {{#each toggles as |toggle|}}
             <div class="battlepoint-toggle-container {{#if (and toggle.disabled (not toggle.checked))}}inactive{{/if}}">
@@ -26,7 +26,7 @@
                 {{else}}
                     <input type="checkbox" data-combat-id="{{@root.combatId}}" data-category="{{toggle.categoryKey}}" data-grouping="{{toggle.toggleKey}}" {{checked toggle.checked}} />
                 {{/if}}
-                <label class="unselected-grouping">{{toggle.categoryKey}} BP: {{localize toggle.description}}</label>
+                <label class="unselected-grouping">{{toggle.categoryKey}} {{localize "DAGGERHEART.GENERAL.Battlepoints.short"}}: {{localize toggle.description}}</label>
             </div>
         {{/each}}
     </div>

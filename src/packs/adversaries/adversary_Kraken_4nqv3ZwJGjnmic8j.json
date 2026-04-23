@@ -138,12 +138,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -194,7 +191,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -220,7 +217,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -439,7 +437,7 @@
       "name": "Boiling Blast",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to spew a line of boiling water at any number of targets in a line up to Far range. All targets must succeed on an Agility Reaction Roll or take <strong>4d6+9</strong> physical damage. If a target marks an Armor Slot to reduce the damage, they must also mark a Stress.</p><p>@Template[type:ray|range:f]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to spew a line of boiling water at any number of targets in a line up to Far range. All targets must succeed on an Agility Reaction Roll or take <strong>4d6+9</strong> physical damage. If a target marks an Armor Slot to reduce the damage, they must also mark a Stress.</p>",
         "resource": null,
         "actions": {
           "pHZUiZRSj4FuG0uK": {
@@ -484,7 +482,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -513,7 +512,16 @@
             },
             "name": "Attack",
             "img": "icons/magic/water/projectile-icecicle-glowing.webp",
-            "range": ""
+            "range": "",
+            "areas": [
+              {
+                "name": "Boiling Blast",
+                "type": "placed",
+                "shape": "line",
+                "size": "far",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

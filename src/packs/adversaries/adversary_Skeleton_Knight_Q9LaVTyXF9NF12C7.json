@@ -132,12 +132,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -188,7 +185,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -214,7 +211,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -302,7 +300,7 @@
       "_id": "WdVLwy9RNkVlZnCL",
       "img": "icons/skills/melee/strike-sword-steel-yellow.webp",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Very Close range. Targets the @Lookup[@name] succeeds against take <strong>1d8+2</strong> physical damage and must mark a Stress.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Very Close range. Targets the @Lookup[@name] succeeds against take <strong>1d8+2</strong> physical damage and must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "vMv4monku9LOSxUZ": {
@@ -379,7 +377,8 @@
                   "type": []
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -408,7 +407,16 @@
             },
             "name": "Attack",
             "img": "icons/skills/melee/strike-sword-steel-yellow.webp",
-            "range": "veryClose"
+            "range": "veryClose",
+            "areas": [
+              {
+                "name": "Cut to the Bone",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "veryClose",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

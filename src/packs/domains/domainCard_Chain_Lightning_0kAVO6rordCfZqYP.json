@@ -90,7 +90,16 @@
         },
         "name": "Cast",
         "img": "icons/magic/lightning/bolts-forked-large-blue-yellow.webp",
-        "range": "close"
+        "range": "close",
+        "areas": [
+          {
+            "name": "Chain Lightning",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "close",
+            "effects": []
+          }
+        ]
       },
       "tRJNO3DVvVYwW3tt": {
         "type": "damage",

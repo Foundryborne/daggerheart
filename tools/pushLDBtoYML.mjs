@@ -23,7 +23,7 @@ for (const pack of packs) {
     await extractPack(`${MODULE_ID}/${pack}`, `${MODULE_ID}/src/${pack}`, {
         yaml,
         transformName,
-        transformEntry,
+        transformEntry
     });
 }
 /**
@@ -45,12 +45,12 @@ function transformEntry(entry) {
 
     delete entry._stats;
     for (const effect of entry.effects ?? []) {
-        effect._stats = prune(effect._stats)
+        effect._stats = prune(effect._stats);
     }
     for (const item of entry.items ?? []) {
         item._stats = prune(item._stats);
         for (const effect of item.effects ?? []) {
-            effect._stats = prune(effect._stats)
+            effect._stats = prune(effect._stats);
         }
     }
 }

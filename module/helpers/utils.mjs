@@ -189,7 +189,13 @@ export const getDeleteKeys = (property, innerProperty, innerPropertyDefaultValue
 
 // Fix on Foundry native formula replacement for DH
 const nativeReplaceFormulaData = Roll.replaceFormulaData;
-Roll.replaceFormulaData = function (formula, data = {}, { missing, warn = false } = {}) {
+Roll.replaceFormulaData = function (formula, baseData = {}, { missing, warn = false } = {}) {
+    /* Inserting global data */
+    const data = {
+        ...baseData,
+        partySize: game.actors?.party?.system.partyMembers.length ?? 0
+    };
+
     const terms = Object.keys(CONFIG.DH.GENERAL.multiplierTypes).map(type => {
         return { term: type, default: 1 };
     });

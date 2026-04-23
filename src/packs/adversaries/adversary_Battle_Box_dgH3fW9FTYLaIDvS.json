@@ -138,12 +138,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -194,7 +191,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -220,7 +217,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -465,7 +463,7 @@
       "name": "Fire Jets",
       "type": "feature",
       "system": {
-        "description": "<p>The @Lookup[@name] shoots into the air, spinning and releasing jets of flame. Make an attack against all targets within Close range. Targets the @Lookup[@name] succeeds against take <strong>2d8</strong> physical damage.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>The @Lookup[@name] shoots into the air, spinning and releasing jets of flame. Make an attack against all targets within Close range. Targets the @Lookup[@name] succeeds against take <strong>2d8</strong> physical damage.</p>",
         "resource": null,
         "actions": {
           "hRAKaOdzQXLYBNVV": {
@@ -510,7 +508,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -539,7 +538,16 @@
             },
             "name": "Attack",
             "img": "icons/magic/fire/explosion-embers-orange.webp",
-            "range": "close"
+            "range": "close",
+            "areas": [
+              {
+                "name": "Fire Jets",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -565,7 +573,7 @@
       "name": "Trample",
       "type": "feature",
       "system": {
-        "description": "<p>The @Lookup[@name] rockets around erratically. Make an attack against all PCs within Close range. Targets the @Lookup[@name] succeeds against take <strong>1d6+5</strong> physical damage and are Vulnerable until their next roll with Hope.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>The @Lookup[@name] rockets around erratically. Make an attack against all PCs within Close range. Targets the @Lookup[@name] succeeds against take <strong>1d6+5</strong> physical damage and are Vulnerable until their next roll with Hope.</p>",
         "resource": null,
         "actions": {
           "IOgPMu12Xnn33TfG": {
@@ -610,7 +618,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -644,7 +653,16 @@
             },
             "name": "Attack",
             "img": "icons/skills/movement/arrow-upward-yellow.webp",
-            "range": "close"
+            "range": "close",
+            "areas": [
+              {
+                "name": "Trample",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -720,7 +738,7 @@
       "name": "Shocking Gas",
       "type": "feature",
       "system": {
-        "description": "<p>The @Lookup[@name] sprays out a silver gas sparking with lightning. All targets within Close range must succeed on a Finesse Reaction Roll or mark 3 Stress.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>The @Lookup[@name] sprays out a silver gas sparking with lightning. All targets within Close range must succeed on a Finesse Reaction Roll or mark 3 Stress.</p>",
         "resource": null,
         "actions": {
           "ky4OMl558J5wCbDp": {
@@ -764,7 +782,8 @@
                   "type": []
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -793,7 +812,16 @@
             },
             "name": "Roll Save",
             "img": "icons/magic/lightning/bolt-strike-embers-teal.webp",
-            "range": "close"
+            "range": "close",
+            "areas": [
+              {
+                "name": "Shocking Gas",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -819,7 +847,7 @@
       "name": "Stunning Clap",
       "type": "feature",
       "system": {
-        "description": "<p>The @Lookup[@name] leaps and their sides clap, creating a small sonic boom. All targets within Very Close range must succeed on a Strength Reaction Roll or become <em>Vulnerable</em> until the cube is defeated.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p>The @Lookup[@name] leaps and their sides clap, creating a small sonic boom. All targets within Very Close range must succeed on a Strength Reaction Roll or become <em>Vulnerable</em> until the cube is defeated.</p>",
         "resource": null,
         "actions": {
           "LQtopkrtSlCQ5MAr": {
@@ -837,7 +865,8 @@
             },
             "damage": {
               "parts": {},
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -871,7 +900,16 @@
             },
             "name": "Roll Save",
             "img": "icons/magic/sonic/explosion-impact-shock-wave.webp",
-            "range": "veryClose"
+            "range": "veryClose",
+            "areas": [
+              {
+                "name": "Stunning Clap",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "veryClose",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -947,7 +985,7 @@
       "name": "Psionic Whine",
       "type": "feature",
       "system": {
-        "description": "<p>The @Lookup[@name] releases a cluster of mechanical bees whose buzz rattles mortal minds. All targets within Close range must succeed on a Presence Reaction Roll or take <strong>2d4+9</strong> direct magic damage.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>The @Lookup[@name] releases a cluster of mechanical bees whose buzz rattles mortal minds. All targets within Close range must succeed on a Presence Reaction Roll or take <strong>2d4+9</strong> direct magic damage.</p>",
         "resource": null,
         "actions": {
           "3R3pGOUj4rHaUzPK": {
@@ -992,7 +1030,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -1021,7 +1060,16 @@
             },
             "name": "Bees!",
             "img": "icons/creatures/invertebrates/wasp-swarm-tan.webp",
-            "range": "close"
+            "range": "close",
+            "areas": [
+              {
+                "name": "Psionic Whine",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -1148,7 +1196,7 @@
       "name": "Death Quake",
       "type": "feature",
       "system": {
-        "description": "<p>When the @Lookup[@name] marks their last HP, the magic powering them ruptures in an explosion of force. All targets within Close range must succeed on an Instinct Reaction Roll or take <strong>2d8+1</strong> magic damage</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>When the @Lookup[@name] marks their last HP, the magic powering them ruptures in an explosion of force. All targets within Close range must succeed on an Instinct Reaction Roll or take <strong>2d8+1</strong> magic damage</p>",
         "resource": null,
         "actions": {
           "oCpv4zi9jtEpo0K1": {
@@ -1193,7 +1241,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -1222,7 +1271,16 @@
             },
             "name": "Roll Save",
             "img": "icons/magic/sonic/explosion-shock-wave-teal.webp",
-            "range": "close"
+            "range": "close",
+            "areas": [
+              {
+                "name": "Death Quake",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

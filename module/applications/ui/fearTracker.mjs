@@ -22,7 +22,7 @@ export default class FearTracker extends HandlebarsApplicationMixin(ApplicationV
         tag: 'div',
         window: {
             frame: true,
-            title: 'Fear',
+            title: 'DAGGERHEART.GENERAL.fear',
             positioned: true,
             resizable: true,
             minimizable: false

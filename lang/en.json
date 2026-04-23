@@ -74,9 +74,7 @@
                     "name": "Summon",
                     "tooltip": "Create tokens in the scene.",
                     "error": "You do not have permission to summon tokens or there is no active scene.",
-                    "invalidDrop": "You can only drop Actor entities to summon.",
-                    "chatMessageTitle": "Test2",
-                    "chatMessageHeaderTitle": "Summoning"
+                    "invalidDrop": "You can only drop Actor entities to summon."
                 },
                 "transform": {
                     "name": "Transform",
@@ -111,11 +109,17 @@
                     "customFormula": "Custom Formula",
                     "formula": "Formula"
                 },
+                "area": {
+                    "sectionTitle": "Areas",
+                    "shape": "Shape",
+                    "size": "Size"
+                },
                 "displayInChat": "Display in chat",
                 "deleteTriggerTitle": "Delete Trigger",
                 "deleteTriggerContent": "Are you sure you want to delete the {trigger} trigger?",
                 "advantageState": "Advantage State",
-                "damageOnSave": "Damage on Save"
+                "damageOnSave": "Damage on Save",
+                "useDefaultItemValues": "Use default Item values"
             },
             "RollField": {
                 "diceRolling": {
@@ -163,7 +167,8 @@
                 "rangeDependence": {
                     "title": "Range Dependence"
                 },
-                "stacking": { "title": "Stacking" }
+                "stacking": { "title": "Stacking" },
+                "targetDispositions": "Affected Dispositions"
             },
             "RangeDependance": {
                 "hint": "Settings for an optional distance at which this effect should activate",
@@ -210,7 +215,13 @@
                     "type": { "label": "Type" }
                 },
                 "hordeDamage": "Horde Damage",
-                "horderHp": "Horde/HP"
+                "horderHp": "Horde/HP",
+                "adversaryReactionRoll": {
+                    "headerTitle": "Adversary Reaction Roll"
+                }
+            },
+            "Base": {
+                "CannotAddType": "Cannot add {itemType} items to {actorType} actors."
             },
             "Character": {
                 "advantageSources": {
@@ -235,6 +246,8 @@
                 },
                 "defaultHopeDice": "Default Hope Dice",
                 "defaultFearDice": "Default Fear Dice",
+                "defaultAdvantageDice": "Default Advantage Dice",
+                "defaultDisadvantageDice": "Default Disadvantage Dice",
                 "disadvantageSources": {
                     "label": "Disadvantage Sources",
                     "hint": "Add single words or short text as reminders and hints of what a character has disadvantage on."
@@ -333,7 +346,8 @@
                     "minor": "MIN",
                     "major": "MAJ",
                     "severe": "SEV"
-                }
+                },
+                "triggerRestContent": "This will trigger a dialog to players make their downtime moves. Are you sure?"
             }
         },
         "APPLICATIONS": {
@@ -466,6 +480,10 @@
                 "looping": "Looping",
                 "defaultOwnershipTooltip": "The default player ownership of countdowns",
                 "hideNewCountdowns": "Hide New Countdowns"
+            },
+            "CreateItemDialog": {
+                "createItem": "Create Item",
+                "browseCompendium": "Browse Compendium"
             },
             "DaggerheartMenu": {
                 "title": "GM Tools",
@@ -681,6 +699,12 @@
                 "noPlayers": "No players to assign ownership to",
                 "default": "Default Ownership"
             },
+            "PendingReactionsDialog": {
+                "title": "Pending Reaction Rolls Found",
+                "unfinishedRolls": "Some Tokens still need to roll their Reaction Roll.",
+                "confirmation": "Are you sure you want to continue ?",
+                "warning": "Undone reaction rolls will be considered as failed"
+            },
             "ReactionRoll": {
                 "title": "Reaction Roll: {trait}"
             },
@@ -706,7 +730,7 @@
                 "FIELDS": {
                     "initiator": {
                         "memberId": { "label": "Initiating Character" },
-                        "cost": { "label": "Initiation Cost" }
+                        "cost": { "label": "Hope Cost" }
                     }
                 },
                 "leaderTitle": "Initiating Character",
@@ -735,11 +759,11 @@
             },
             "GroupRollSelect": {
                 "title": "Group Roll",
+                "aidingCharacters": "Aiding Characters",
                 "leader": "Leader",
                 "leaderRoll": "Leader Roll",
                 "openDialogForAll": "Open Dialog For All",
                 "startGroupRoll": "Start Group Roll",
-                "cancelGroupRoll": "Cancel",
                 "finishGroupRoll": "Finish Group Roll",
                 "cancelConfirmTitle": "Cancel Group Roll",
                 "cancelConfirmText": "Are you sure you want to cancel the Group Roll? This will close it for all other players too."
@@ -763,6 +787,11 @@
                 "longRest": "Next Long Rest",
                 "session": "Next Session",
                 "custom": "Custom"
+            },
+            "ActionAutomationChoices": {
+                "never": "Never",
+                "showDialog": "Show Dialog Only",
+                "always": "Always"
             },
             "AdversaryTrait": {
                 "relentless": {
@@ -1292,6 +1321,11 @@
                 "offWithToggle": "Off With Toggle",
                 "on": "On",
                 "onWithToggle": "On With Toggle"
+            },
+            "SceneRangeMeasurementTypes": {
+                "disable": "Disable Daggerheart Range Measurement",
+                "default": "Default",
+                "custom": "Custom"
             },
             "SelectAction": {
                 "selectType": "Select Action Type",
@@ -1992,6 +2026,10 @@
                     "hint": "Multiply any damage dealt to you by this number"
                 }
             },
+            "Battlepoints": {
+                "full": "Battlepoints",
+                "short": "BP"
+            },
             "Bonuses": {
                 "rest": {
                     "downtimeAction": "Downtime Action",
@@ -2402,10 +2440,13 @@
             "maxWithThing": "Max {thing}",
             "missingDragDropThing": "Drop {thing} here",
             "multiclass": "Multiclass",
+            "name": "Name",
             "newCategory": "New Category",
             "newThing": "New {thing}",
+            "next": "Next",
             "none": "None",
             "noTarget": "No current target",
+            "optionalThing": "Optional {thing}",
             "partner": "Partner",
             "player": {
                 "single": "Player",
@@ -2432,9 +2473,11 @@
             "rollDamage": "Roll Damage",
             "rollWith": "{roll} Roll",
             "save": "Save",
+            "saveSettings": "Save Settings",
             "scalable": "Scalable",
             "scars": "Scars",
             "situationalBonus": "Situational Bonus",
+            "searchPlaceholder": "Search...",
             "spent": "Spent",
             "step": "Step",
             "stress": "Stress",
@@ -2585,8 +2628,14 @@
             },
             "Weapon": {
                 "weaponType": "Weapon Type",
-                "primaryWeapon": "Primary Weapon",
-                "secondaryWeapon": "Secondary Weapon"
+                "primaryWeapon": {
+                    "full": "Primary Weapon",
+                    "short": "Primary"
+                },
+                "secondaryWeapon": {
+                    "full": "Secondary Weapon",
+                    "short": "Secondary"
+                }
             }
         },
         "MACROS": {
@@ -2840,6 +2889,10 @@
                 }
             },
             "Keybindings": {
+                "partySheet": {
+                    "name": "Toggle Party Sheet",
+                    "hint": "Open or close the active party's sheet"
+                },
                 "spotlight": {
                     "name": "Spotlight Combatant",
                     "hint": "Move the spotlight to a hovered or selected token that's present in an active encounter"
@@ -3010,6 +3063,9 @@
                 "resourceRoll": {
                     "playerMessage": "{user} rerolled their {name}"
                 },
+                "saveRoll": {
+                    "reactionRollAllTargets": "Reaction Roll All Targets"
+                },
                 "tagTeam": {
                     "title": "Tag Team",
                     "membersTitle": "Members"
@@ -3038,9 +3094,9 @@
             },
             "ItemBrowser": {
                 "title": "Daggerheart Compendium Browser",
+                "windowTitle": "Compendium Browser",
                 "hint": "Select a Folder in sidebar to start browsing through the compendium",
                 "browserSettings": "Browser Settings",
-                "searchPlaceholder": "Search...",
                 "columnName": "Name",
                 "tooltipFilters": "Filters",
                 "tooltipErase": "Erase",
@@ -3076,7 +3132,7 @@
                     "weapons": "Weapons",
                     "armors": "Armors",
                     "consumables": "Consumables",
-                    "loots": "Loots"
+                    "loots": "Loot"
                 }
             },
             "Notifications": {
@@ -3171,6 +3227,9 @@
                     "companion": "Level {level} - {partner}",
                     "companionNoPartner": "No Partner",
                     "duplicateToNewTier": "Duplicate to New Tier",
+                    "activateParty": "Make Active Party",
+                    "partyIsActive": "Active",
+                    "createAdversary": "Create Adversary",
                     "pickTierTitle": "Pick a new tier for this adversary"
                 },
                 "daggerheartMenu": {
@@ -3182,6 +3241,7 @@
             "Tooltip": {
                 "disableEffect": "Disable Effect",
                 "enableEffect": "Enable Effect",
+                "edit": "Edit",
                 "openItemWorld": "Open Item World",
                 "openActorWorld": "Open Actor World",
                 "sendToChat": "Send to Chat",

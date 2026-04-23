@@ -4,17 +4,25 @@
     data-group='{{tabs.experience.group}}'
 >
     <div class="main-selections-container">
-        <fieldset class="section-container">
+        <fieldset class="section-container no-horizontal-padding">
             <legend>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.initialExperiences"}} {{experience.nrSelected}}/{{experience.nrTotal}}</legend>
             <div class="experiences-inner-container">
                 {{#each experience.values as |experience id|}}
-                    <div class="experience-container">
-                        <div class="experience-inner-container">
-                            <input class="experience-description" type="text" name="{{concat "experiences." id ".name" }}" value="{{experience.name}}" placeholder="{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.newExperience"}}" />
-                            <span class="experience-value">{{numberFormat this.value sign=true}}</span>
+                    <div class="experience-container {{#unless @last}}separated{{/unless}}">
+                        <div class="form-group">
+                            <label>{{localize "DAGGERHEART.GENERAL.label"}}</label>
+                            <div class="experience-inner-container">
+                                <input class="experience-description" type="text" name="{{concat "experiences." id ".name" }}" value="{{experience.name}}" placeholder="{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.newExperience"}}" />
+                                <span class="experience-value">{{numberFormat this.value sign=true}}</span>
+                            </div>
                         </div>
 
-                        <textarea name="{{concat "experiences." id ".description"}}">{{experience.description}}</textarea>
+                        <div class="form-group">
+                            <label>{{localize "DAGGERHEART.GENERAL.optionalThing" thing=(localize "DAGGERHEART.GENERAL.description")}}</label>
+                            <div class="form-fields">
+                                <textarea name="{{concat "experiences." id ".description"}}">{{experience.description}}</textarea>
+                            </div>
+                        </div>
                     </div>
                 {{/each}}
             </div>

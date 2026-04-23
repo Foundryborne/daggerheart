@@ -3,7 +3,7 @@ import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import DhLevelData from '../levelData.mjs';
 import { commonActorRules } from './base.mjs';
 import DhCreature from './creature.mjs';
-import { attributeField, stressDamageReductionRule, bonusField } from '../fields/actorField.mjs';
+import { attributeField, stressDamageReductionRule, bonusField, GoldField } from '../fields/actorField.mjs';
 import { ActionField } from '../fields/actionField.mjs';
 import DHCharacterSettings from '../../applications/sheets-configs/character-settings.mjs';
 import { getArmorSources } from '../../helpers/utils.mjs';
@@ -18,7 +18,9 @@ export default class DhCharacter extends DhCreature {
             label: 'TYPES.Actor.character',
             type: 'character',
             settingSheet: DHCharacterSettings,
-            isNPC: false
+            isNPC: false,
+            hasInventory: true,
+            quantifiable: ['loot', 'consumable']
         });
     }
 
@@ -62,12 +64,7 @@ export default class DhCharacter extends DhCreature {
                     core: new fields.BooleanField({ initial: false })
                 })
             ),
-            gold: new fields.SchemaField({
-                coins: new fields.NumberField({ initial: 0, integer: true }),
-                handfuls: new fields.NumberField({ initial: 1, integer: true }),
-                bags: new fields.NumberField({ initial: 0, integer: true }),
-                chests: new fields.NumberField({ initial: 0, integer: true })
-            }),
+            gold: new GoldField(),
             scars: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.scars' }),
             biography: new fields.SchemaField({
                 background: new fields.HTMLField(),
@@ -153,7 +150,6 @@ export default class DhCharacter extends DhCreature {
                         shortMoves: new fields.NumberField({
                             required: true,
                             integer: true,
-                            min: 0,
                             initial: 0,
                             label: 'DAGGERHEART.GENERAL.Bonuses.rest.shortRest.shortRestMoves.label',
                             hint: 'DAGGERHEART.GENERAL.Bonuses.rest.shortRest.shortRestMoves.hint'
@@ -161,7 +157,6 @@ export default class DhCharacter extends DhCreature {
                         longMoves: new fields.NumberField({
                             required: true,
                             integer: true,
-                            min: 0,
                             initial: 0,
                             label: 'DAGGERHEART.GENERAL.Bonuses.rest.shortRest.longRestMoves.label',
                             hint: 'DAGGERHEART.GENERAL.Bonuses.rest.shortRest.longRestMoves.hint'
@@ -171,7 +166,6 @@ export default class DhCharacter extends DhCreature {
                         shortMoves: new fields.NumberField({
                             required: true,
                             integer: true,
-                            min: 0,
                             initial: 0,
                             label: 'DAGGERHEART.GENERAL.Bonuses.rest.longRest.shortRestMoves.label',
                             hint: 'DAGGERHEART.GENERAL.Bonuses.rest.longRest.shortRestMoves.hint'
@@ -179,7 +173,6 @@ export default class DhCharacter extends DhCreature {
                         longMoves: new fields.NumberField({
                             required: true,
                             integer: true,
-                            min: 0,
                             initial: 0,
                             label: 'DAGGERHEART.GENERAL.Bonuses.rest.longRest.longRestMoves.label',
                             hint: 'DAGGERHEART.GENERAL.Bonuses.rest.longRest.longRestMoves.hint'
@@ -293,6 +286,22 @@ export default class DhCharacter extends DhCreature {
                     guaranteedCritical: new fields.BooleanField({
                         label: 'DAGGERHEART.ACTORS.Character.roll.guaranteedCritical.label',
                         hint: 'DAGGERHEART.ACTORS.Character.roll.guaranteedCritical.hint'
+                    }),
+                    defaultAdvantageDice: new fields.NumberField({
+                        nullable: true,
+                        required: true,
+                        integer: true,
+                        choices: CONFIG.DH.GENERAL.dieFaces,
+                        initial: null,
+                        label: 'DAGGERHEART.ACTORS.Character.defaultAdvantageDice'
+                    }),
+                    defaultDisadvantageDice: new fields.NumberField({
+                        nullable: true,
+                        required: true,
+                        integer: true,
+                        choices: CONFIG.DH.GENERAL.dieFaces,
+                        initial: null,
+                        label: 'DAGGERHEART.ACTORS.Character.defaultDisadvantageDice'
                     })
                 })
             })
@@ -436,6 +445,11 @@ export default class DhCharacter extends DhCreature {
             attack.img = 'icons/creatures/claws/claw-straight-brown.webp';
         }
         return attack;
+    }
+
+    /* All items are valid on characters */
+    isItemValid() {
+        return true;
     }
 
     /** @inheritDoc */
@@ -736,13 +750,22 @@ export default class DhCharacter extends DhCreature {
             }
         }
 
+        /* Armor and ArmorEffects can set a Base Damage Threshold. Characters only gain level*2 bonus to severe if this is not present */
+        const severeThresholdMulitplier =
+            this.armor ||
+            this.parent.appliedEffects.some(x =>
+                x.system.changes.some(x => x.type === 'armor' && x.value.damageThresholds)
+            )
+                ? 1
+                : 2;
+
         this.damageThresholds = {
             major: this.armor
                 ? this.armor.system.baseThresholds.major + this.levelData.level.current
                 : this.levelData.level.current,
             severe: this.armor
                 ? this.armor.system.baseThresholds.severe + this.levelData.level.current
-                : this.levelData.level.current * 2
+                : this.levelData.level.current * severeThresholdMulitplier
         };
 
         const globalHopeMax = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxHope;

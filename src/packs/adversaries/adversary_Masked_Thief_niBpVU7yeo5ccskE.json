@@ -138,12 +138,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -194,7 +191,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -220,7 +217,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -325,7 +323,7 @@
       "name": "Escape Plan",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to reveal a snare trap set anywhere on the battlefield by the @Lookup[@name]. All targets within Very Close range of the trap must succeed on an Agility Reaction Roll (13) or be pulled off their feet and suspended upside down. A target is Restrained and Vulnerable until they break free, ending both conditions, with a successful Finesse or Strength Roll (13).</p><p>@Template[type:rect|range:c]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to reveal a snare trap set anywhere on the battlefield by the @Lookup[@name]. All targets within Very Close range of the trap must succeed on an Agility Reaction Roll (13) or be pulled off their feet and suspended upside down. A target is Restrained and Vulnerable until they break free, ending both conditions, with a successful Finesse or Strength Roll (13).</p>",
         "resource": null,
         "actions": {
           "sq0q1l2Go4GduR3B": {
@@ -377,7 +375,16 @@
             },
             "name": "Roll Save",
             "img": "icons/environment/traps/trap-jaw-tan.webp",
-            "range": ""
+            "range": "",
+            "areas": [
+              {
+                "name": "Escape Plan",
+                "type": "placed",
+                "shape": "circle",
+                "size": "veryClose",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

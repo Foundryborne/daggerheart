@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "IxoglRervMx9YdVn",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll (18)</strong>. On a success, time temporarily slows to a halt for everyone within Far range except for you. It resumes the next time you make an action roll that targets another creature.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll (18)</strong>. On a success, time temporarily slows to a halt for everyone within Far range except for you. It resumes the next time you make an action roll that targets another creature.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -54,7 +54,16 @@
         },
         "name": "Timejammer",
         "img": "icons/magic/time/hourglass-tilted-glowing-gold.webp",
-        "range": "far"
+        "range": "far",
+        "areas": [
+          {
+            "name": "Book of Yarrow",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "far",
+            "effects": []
+          }
+        ]
       },
       "ZcQfbtGet0KQWjWS": {
         "type": "effect",

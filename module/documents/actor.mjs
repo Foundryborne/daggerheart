@@ -113,11 +113,13 @@ export default class DhpActor extends Actor {
     _onUpdate(changes, options, userId) {
         super._onUpdate(changes, options, userId);
         for (const party of this.parties) {
-            party.render();
+            party.render({ parts: ['partyMembers'] });
         }
     }
 
-    async _preDelete() {
+    async _preDelete(options, user) {
+        if ((await super._preDelete(options, user)) === false) return false;
+
         if (this.prototypeToken.actorLink) {
             game.system.registeredTriggers.unregisterItemTriggers(this.items);
         } else {
@@ -130,7 +132,7 @@ export default class DhpActor extends Actor {
     _onDelete(options, userId) {
         super._onDelete(options, userId);
         for (const party of this.parties) {
-            party.render();
+            party.render({ parts: ['partyMembers'] });
         }
     }
 
@@ -600,6 +602,7 @@ export default class DhpActor extends Actor {
         rollData.system = this.system.getRollData();
         rollData.prof = this.system.proficiency ?? 1;
         rollData.cast = this.system.spellcastModifier ?? 1;
+
         return rollData;
     }
 

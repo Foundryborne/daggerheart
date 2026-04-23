@@ -98,7 +98,16 @@
         },
         "name": "Use as attack",
         "img": "icons/magic/nature/root-vine-entangled-humanoid.webp",
-        "range": "close"
+        "range": "close",
+        "areas": [
+          {
+            "name": "Towering Stalk",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "close",
+            "effects": []
+          }
+        ]
       },
       "I6eSBTpuYDU1nEgr": {
         "type": "effect",

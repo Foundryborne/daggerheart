@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "OwsbTSWzKq2WJmQN",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (16)</strong>. Once per long rest on a success, choose a point within Far range and create a visible zone of protection there for all allies within Very Close range of that point. When you do, place a <strong>d6</strong> on this card with the 1 value facing up. When an ally in this zone takes damage, they reduce it by the die’s value. You then increase the die’s value by one. When the die’s value would exceed 6, this effect ends.</p><p>@Template[type:emanation|range:vc]</p>",
+    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (16)</strong>. Once per long rest on a success, choose a point within Far range and create a visible zone of protection there for all allies within Very Close range of that point. When you do, place a <strong>d6</strong> on this card with the 1 value facing up. When an ally in this zone takes damage, they reduce it by the die’s value. You then increase the die’s value by one. When the die’s value would exceed 6, this effect ends.</p>",
     "domain": "splendor",
     "recallCost": 2,
     "level": 6,
@@ -55,7 +55,16 @@
         },
         "name": "Cast",
         "img": "icons/magic/control/buff-flight-wings-runes-purple-orange.webp",
-        "range": "far"
+        "range": "far",
+        "areas": [
+          {
+            "name": "Zone of Protection",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "veryClose",
+            "effects": []
+          }
+        ]
       }
     },
     "resource": null,

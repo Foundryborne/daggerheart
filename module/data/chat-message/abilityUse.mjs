@@ -7,26 +7,31 @@ export default class DHAbilityUse extends foundry.abstract.TypeDataModel {
             img: new fields.StringField({}),
             name: new fields.StringField({}),
             description: new fields.StringField({}),
-            actions: new fields.ArrayField(
-                new fields.ObjectField({
-                    name: new fields.StringField({}),
-                    damage: new fields.SchemaField({
-                        type: new fields.StringField({}),
-                        value: new fields.StringField({})
-                    }),
-                    healing: new fields.SchemaField({
-                        type: new fields.StringField({}),
-                        value: new fields.StringField({})
-                    }),
-                    cost: new fields.SchemaField({
-                        type: new fields.StringField({}),
-                        value: new fields.NumberField({})
-                    }),
-                    target: new fields.SchemaField({
-                        type: new fields.StringField({ nullable: true })
-                    })
-                })
-            )
+            source: new fields.SchemaField({
+                actor: new fields.StringField(),
+                item: new fields.StringField(),
+                action: new fields.StringField()
+            })
         };
+    }
+
+    get actionActor() {
+        if (!this.source.actor) return null;
+        return fromUuidSync(this.source.actor);
+    }
+
+    get actionItem() {
+        const actionActor = this.actionActor;
+        if (!actionActor || !this.source.item) return null;
+
+        const item = actionActor.items.get(this.source.item);
+        return item ? item.system.actions?.find(a => a.id === this.source.action) : null;
+    }
+
+    get action() {
+        const { actionItem: itemAction } = this;
+        if (!this.source.action) return null;
+        if (itemAction) return itemAction;
+        return null;
     }
 }

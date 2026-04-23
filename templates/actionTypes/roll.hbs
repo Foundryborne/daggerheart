@@ -1,7 +1,7 @@
 <fieldset class="one-column{{#if source.useDefault}} child-disabled{{/if}}">
     <legend>
-        Roll
-        {{#if @root.hasBaseDamage}}{{formInput fields.useDefault name="roll.useDefault" value=source.useDefault dataset=(object tooltip="Use default Item values" tooltipDirection="UP")}}{{/if}}
+        {{localize "DAGGERHEART.GENERAL.roll"}}
+        {{#if @root.hasBaseDamage}}{{formInput fields.useDefault name="roll.useDefault" value=source.useDefault dataset=(object tooltip=(localize "DAGGERHEART.ACTIONS.Config.useDefaultItemValues") tooltipDirection="UP")}}{{/if}}
     </legend>
     
     {{formField fields.type label="DAGGERHEART.GENERAL.type" name="roll.type" value=source.type localize=true choices=@root.getRollTypeOptions localize=true}}

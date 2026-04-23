@@ -7,7 +7,12 @@ export const typeConfig = {
             },
             {
                 key: 'system.type',
-                label: 'DAGGERHEART.GENERAL.type'
+                label: 'DAGGERHEART.GENERAL.type',
+                format: type => {
+                    if (!type) return '-';
+
+                    return CONFIG.DH.ACTOR.allAdversaryTypes()[type].label;
+                }
             }
         ],
         filters: [
@@ -69,12 +74,18 @@ export const typeConfig = {
         columns: [
             {
                 key: 'type',
-                label: 'DAGGERHEART.GENERAL.type'
+                label: 'DAGGERHEART.GENERAL.type',
+                format: type => (type ? `TYPES.Item.${type}` : '-')
             },
             {
                 key: 'system.secondary',
                 label: 'DAGGERHEART.UI.ItemBrowser.subtype',
-                format: isSecondary => (isSecondary ? 'secondary' : isSecondary === false ? 'primary' : '-')
+                format: isSecondary =>
+                    isSecondary
+                        ? 'DAGGERHEART.ITEMS.Weapon.secondaryWeapon.short'
+                        : isSecondary === false
+                          ? 'DAGGERHEART.ITEMS.Weapon.primaryWeapon.short'
+                          : '-'
             },
             {
                 key: 'system.tier',
@@ -94,8 +105,8 @@ export const typeConfig = {
                 key: 'system.secondary',
                 label: 'DAGGERHEART.UI.ItemBrowser.subtype',
                 choices: [
-                    { value: false, label: 'DAGGERHEART.ITEMS.Weapon.primaryWeapon' },
-                    { value: true, label: 'DAGGERHEART.ITEMS.Weapon.secondaryWeapon' }
+                    { value: false, label: 'DAGGERHEART.ITEMS.Weapon.primaryWeapon.full' },
+                    { value: true, label: 'DAGGERHEART.ITEMS.Weapon.secondaryWeapon.full' }
                 ]
             },
             {
@@ -253,11 +264,13 @@ export const typeConfig = {
         columns: [
             {
                 key: 'system.type',
-                label: 'DAGGERHEART.GENERAL.type'
+                label: 'DAGGERHEART.GENERAL.type',
+                format: type => (type ? `DAGGERHEART.CONFIG.DomainCardTypes.${type}` : '-')
             },
             {
                 key: 'system.domain',
-                label: 'DAGGERHEART.GENERAL.Domain.single'
+                label: 'DAGGERHEART.GENERAL.Domain.single',
+                format: domain => (domain ? CONFIG.DH.DOMAIN.allDomains()[domain].label : '-')
             },
             {
                 key: 'system.level',
@@ -318,7 +331,14 @@ export const typeConfig = {
             },
             {
                 key: 'system.domains',
-                label: 'DAGGERHEART.GENERAL.Domain.plural'
+                label: 'DAGGERHEART.GENERAL.Domain.plural',
+                format: domains => {
+                    const config = CONFIG.DH.DOMAIN.allDomains();
+                    return domains
+                        .map(x => (x ? game.i18n.localize(config[x].label) : null))
+                        .filter(x => x)
+                        .join(', ');
+                }
             }
         ],
         filters: [
@@ -362,18 +382,19 @@ export const typeConfig = {
         columns: [
             {
                 key: 'system.linkedClass',
-                label: 'Class',
+                label: 'TYPES.Item.class',
                 format: linkedClass => linkedClass?.name ?? 'DAGGERHEART.UI.ItemBrowser.missing'
             },
             {
                 key: 'system.spellcastingTrait',
-                label: 'DAGGERHEART.ITEMS.Subclass.spellcastingTrait'
+                label: 'DAGGERHEART.ITEMS.Subclass.spellcastingTrait',
+                format: trait => (trait ? `DAGGERHEART.CONFIG.Traits.${trait}.name` : '-')
             }
         ],
         filters: [
             {
                 key: 'system.linkedClass.uuid',
-                label: 'Class',
+                label: 'TYPES.Item.class',
                 choices: items => {
                     const list = items
                         .filter(item => item.system.linkedClass)
@@ -397,7 +418,8 @@ export const typeConfig = {
             },
             {
                 key: 'system.mainTrait',
-                label: 'DAGGERHEART.GENERAL.Trait.single'
+                label: 'DAGGERHEART.GENERAL.Trait.single',
+                format: trait => (trait ? `DAGGERHEART.CONFIG.Traits.${trait}.name` : '-')
             }
         ],
         filters: [

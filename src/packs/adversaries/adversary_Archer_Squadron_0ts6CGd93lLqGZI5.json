@@ -132,12 +132,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -188,7 +185,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -214,7 +211,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -246,7 +244,7 @@
       "name": "Focused Volley",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to target a point within Far range. Make an attack with advantage against all targets within Close range of that point. Targets the @Lookup[@name] succeeds against take <strong>1d10+4</strong> physical damage.</p><p>@Template[type:circle|range:c]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to target a point within Far range. Make an attack with advantage against all targets within Close range of that point. Targets the @Lookup[@name] succeeds against take <strong>1d10+4</strong> physical damage.</p>",
         "resource": null,
         "actions": {
           "uG7Hl2DqaT69aNs1": {
@@ -296,7 +294,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -325,7 +324,16 @@
             },
             "name": "Attack",
             "img": "icons/skills/ranged/arrows-flying-triple-brown.webp",
-            "range": "far"
+            "range": "far",
+            "areas": [
+              {
+                "name": "Focused Volley",
+                "type": "placed",
+                "shape": "circle",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -351,7 +359,7 @@
       "name": "Supressing Fire",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to target a point within Far range. Until the next roll with Fear, a creature who moves within Close range of that point must make an Agility Reaction Roll. On a failure, they take <strong>2d6+3</strong> physical damage. On a success, they take half damage.</p><p>@Template[type:circle|range:c]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to target a point within Far range. Until the next roll with Fear, a creature who moves within Close range of that point must make an Agility Reaction Roll. On a failure, they take <strong>2d6+3</strong> physical damage. On a success, they take half damage.</p>",
         "resource": null,
         "actions": {
           "mH6mmJIMM1fwzePt": {
@@ -394,7 +402,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -423,7 +432,16 @@
             },
             "name": "Agility Roll",
             "img": "icons/skills/ranged/arrows-flying-salvo-blue.webp",
-            "range": ""
+            "range": "",
+            "areas": [
+              {
+                "name": "Supressing Fire",
+                "type": "placed",
+                "shape": "circle",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

@@ -349,7 +349,7 @@
       "name": "Mana Bolt",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to lob explosive magic at a point within Far range. All targets within Very Close range of that point must make an Agility Reaction Roll. Targets who fail take <strong>2d8+20</strong> magic damage and are knocked back to Close range. Targets who succeed take half damage and aren’t knocked back.</p><p>@Template[type:circle|range:vc]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to lob explosive magic at a point within Far range. All targets within Very Close range of that point must make an Agility Reaction Roll. Targets who fail take <strong>2d8+20</strong> magic damage and are knocked back to Close range. Targets who succeed take half damage and aren’t knocked back.</p>",
         "resource": null,
         "actions": {
           "mI9i9iwrM48NjzeE": {
@@ -430,7 +430,16 @@
             },
             "name": "Roll Save",
             "img": "icons/magic/sonic/projectile-shock-wave-blue.webp",
-            "range": "far"
+            "range": "far",
+            "areas": [
+              {
+                "name": "Mana Bolt",
+                "type": "placed",
+                "shape": "circle",
+                "size": "veryClose",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

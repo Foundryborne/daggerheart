@@ -1,0 +1,46 @@
+<fieldset class="one-column" data-key="areas">
+    <legend>
+        {{localize "DAGGERHEART.ACTIONS.Config.area.sectionTitle"}}
+        <a><i class="fa-solid fa-plus icon-button" data-action="addElement"></i></a>
+    </legend>
+
+    {{#each source as |area index|}}
+        {{#unless @first}}<line-div></line-div>{{/unless}}
+        <div class="nest-inputs">
+            {{formField ../fields.name value=area.name name=(concat "areas." index ".name") localize=true}}
+            <a class="btn" data-tooltip="{{localize "CONTROLS.CommonDelete"}}" data-action="removeElement" data-index="{{index}}"><i class="fas fa-trash"></i></a>
+        </div>
+        <div class="nest-inputs">
+            {{formField ../fields.type value=area.type name=(concat "areas." index ".type") localize=true}}
+            {{formField ../fields.shape value=area.shape name=(concat "areas." index ".shape") localize=true}}
+            {{formField ../fields.size value=area.size name=(concat "areas." index ".size") localize=true}}
+        </div>
+
+        <div class="sub-section-header">
+            <span>{{localize "DAGGERHEART.GENERAL.Effect.plural"}}</span>
+            <a><i class="fa-solid fa-plus icon-button" data-action="addEffect" data-area-index="{{index}}"></i></a>
+        </div>
+        <div class="two-columns even" style="width: 100%;">
+            {{#each area.effects as |effectId index|}}
+                <input type="hidden" name={{concat "areas." @../key ".effects." index}} value="{{effectId}}">
+
+                <div class="inventory-item single-img bordered" data-effect-id="{{effectId}}" data-area-index="{{index}}" data-action="editEffect">
+                    <div class="inventory-item-header">
+                        {{#with (@root.getEffectDetails effectId) as | details |}}
+                            <div class="img-portait">
+                                <img class="item-img" src="{{img}}">
+                            </div>
+                            <div class="item-label">
+                                <div class="item-name">{{name}}</div>
+                            </div>
+                        {{/with}}
+                        <div class="controls">
+                            <a data-tooltip="{{localize "CONTROLS.CommonDelete"}}" data-action="removeEffect" data-area-index="{{@../key}}" data-index="{{index}}"><i class="fas fa-trash"></i></a>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    {{/each}}
+
+</fieldset>

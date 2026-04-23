@@ -132,12 +132,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -188,7 +185,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -214,14 +211,15 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
       "name": "Terrifying",
       "type": "feature",
       "system": {
-        "description": "<p>When the @Lookup[@name] makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "dquYnt5qiHZfnyD9": {
@@ -265,7 +263,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -274,7 +273,16 @@
             "effects": [],
             "name": "Lose Hope",
             "img": "icons/magic/death/skull-energy-light-purple.webp",
-            "range": "far"
+            "range": "far",
+            "areas": [
+              {
+                "name": "Terrifying",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -324,7 +332,7 @@
       "name": "Perfect Strike",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress </strong>to make a standard attack against all targets within Very Close range. Targets the @Lookup[@name] succeeds against are <em>Vulnerable</em> until their next rest.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p><strong>Mark a Stress </strong>to make a standard attack against all targets within Very Close range. Targets the @Lookup[@name] succeeds against are <em>Vulnerable</em> until their next rest.</p>",
         "resource": null,
         "actions": {
           "un9btM1mN53JHIgV": {
@@ -376,7 +384,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -410,7 +419,16 @@
             },
             "name": "Attack",
             "img": "icons/skills/melee/strike-axe-energy-pink.webp",
-            "range": "veryClose"
+            "range": "veryClose",
+            "areas": [
+              {
+                "name": "Perfect Strike",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "veryClose",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

@@ -33,7 +33,7 @@ export class MemberData extends foundry.abstract.DataModel {
                 required: true,
                 choices: CONFIG.DH.GENERAL.tagTeamRollTypes,
                 initial: CONFIG.DH.GENERAL.tagTeamRollTypes.trait.id,
-                label: 'Roll Type'
+                label: game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.rollType')
             }),
             rollChoice: new fields.StringField({ nullable: true, initial: null }),
             rollData: new fields.JSONField({ nullable: true, initial: null }),

@@ -116,7 +116,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
             initializationPart.insertAdjacentHTML('afterend', '<div class="team-container"></div>');
             initializationPart.insertAdjacentHTML(
                 'afterend',
-                `<div class="section-title">${game.i18n.localize('Aiding Characters')}</div>`
+                `<div class="section-title">${game.i18n.localize('DAGGERHEART.APPLICATIONS.GroupRollSelect.aidingCharacters')}</div>`
             );
 
             const teamContainer = this.element.querySelector('.team-container');

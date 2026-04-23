@@ -132,12 +132,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -188,7 +185,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -214,7 +211,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -282,7 +280,7 @@
       "_id": "kD9kO92V7t3IqZu8",
       "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
       "system": {
-        "description": "<p>When a PC rolls a failure with Fear while within Close range of the @Lookup[@name], they lose a Hope.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>When a PC rolls a failure with Fear while within Close range of the @Lookup[@name], they lose a Hope.</p>",
         "resource": null,
         "actions": {
           "XQ7QebA0iGvMti4A": {
@@ -326,7 +324,8 @@
                   "type": []
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -335,7 +334,16 @@
             "effects": [],
             "name": "Hope Damage",
             "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
-            "range": ""
+            "range": "",
+            "areas": [
+              {
+                "name": "All Must fall",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -361,7 +369,7 @@
       "_id": "lA7vcvS7oGT9NTSy",
       "img": "icons/magic/fire/projectile-beams-salvo-red.webp",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to rain down hellfire within Far range. All targets within the area must make an Agility Reaction Roll. Targets who fail take <strong>1d20+3</strong> magic damage. Targets who succeed take half damage.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to rain down hellfire within Far range. All targets within the area must make an Agility Reaction Roll. Targets who fail take <strong>1d20+3</strong> magic damage. Targets who succeed take half damage.</p>",
         "resource": null,
         "actions": {
           "nOzLQ0NJzeB3vKiV": {
@@ -413,7 +421,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -442,7 +451,16 @@
             },
             "name": "Spend Fear",
             "img": "icons/magic/fire/projectile-beams-salvo-red.webp",
-            "range": "far"
+            "range": "far",
+            "areas": [
+              {
+                "name": "Hellfire",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

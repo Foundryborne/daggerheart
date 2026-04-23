@@ -7,7 +7,6 @@ export default class DHLoot extends BaseDataItem {
             label: 'TYPES.Item.loot',
             type: 'loot',
             hasDescription: true,
-            isQuantifiable: true,
             isInventoryItem: true,
             hasActions: true
         });

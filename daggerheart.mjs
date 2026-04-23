@@ -32,6 +32,11 @@ CONFIG.Dice.daggerheart = {
     FateRoll: FateRoll
 };
 
+CONFIG.RegionBehavior.dataModels = {
+    ...CONFIG.RegionBehavior.dataModels,
+    ...data.regionBehaviors
+};
+
 Object.assign(CONFIG.Dice.termTypes, dice.diceTypes);
 
 CONFIG.Actor.documentClass = documents.DhpActor;
@@ -355,6 +360,8 @@ Hooks.on(CONFIG.DH.HOOKS.hooksConfig.groupRollStart, async data => {
 });
 
 const updateActorsRangeDependentEffects = async token => {
+    if (!token) return;
+
     const rangeMeasurement = game.settings.get(
         CONFIG.DH.id,
         CONFIG.DH.SETTINGS.gameSettings.variantRules

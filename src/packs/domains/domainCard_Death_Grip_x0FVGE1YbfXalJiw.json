@@ -214,7 +214,16 @@
         },
         "name": "Hit All Adversaries Between",
         "img": "icons/magic/nature/root-vine-beanstalk-moon.webp",
-        "range": ""
+        "range": "",
+        "areas": [
+          {
+            "name": "Line To Target",
+            "type": "placed",
+            "shape": "line",
+            "size": "close",
+            "effects": []
+          }
+        ]
       }
     },
     "attribution": {
@@ -240,18 +249,15 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
-        }
+        },
+        "changes": []
       },
-      "changes": [],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "tint": "#ffffff",
@@ -263,6 +269,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!x0FVGE1YbfXalJiw.wMXCIQxqLS9IbsEK"
     },
     {
@@ -278,18 +287,15 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
-        }
+        },
+        "changes": []
       },
-      "changes": [],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "tint": "#ffffff",
@@ -301,6 +307,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!x0FVGE1YbfXalJiw.bZ0xgZ6TT2099OYp"
     },
     {
@@ -316,18 +325,15 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
-        }
+        },
+        "changes": []
       },
-      "changes": [],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "tint": "#ffffff",
@@ -339,6 +345,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!x0FVGE1YbfXalJiw.Oe95zWWY41nH8y5l"
     }
   ],

@@ -138,12 +138,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -194,7 +191,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -220,14 +217,15 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
       "name": "Terrifying",
       "type": "feature",
       "system": {
-        "description": "<p>When the @Lookup[@name] makes a successful attack, all PCs within Far range must lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack, all PCs within Far range must lose a Hope and you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "v3XbljQeHEyfuSXz": {
@@ -278,7 +276,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -287,7 +286,16 @@
             "effects": [],
             "name": "Lose Hope",
             "img": "icons/magic/death/skull-energy-light-purple.webp",
-            "range": ""
+            "range": "",
+            "areas": [
+              {
+                "name": "Terrifying",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -533,7 +541,7 @@
       "name": "You Pale in Comparison",
       "type": "feature",
       "system": {
-        "description": "<p>When a PC fails a roll within Close range of the @Lookup[@name], they must mark a Stress.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>When a PC fails a roll within Close range of the @Lookup[@name], they must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "kuCPWb9cu3pZdAhh": {
@@ -577,7 +585,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -586,7 +595,16 @@
             "effects": [],
             "name": "Mark Stress",
             "img": "icons/magic/control/fear-fright-shadow-monster-red.webp",
-            "range": "close"
+            "range": "close",
+            "areas": [
+              {
+                "name": "You Pale in Comparison",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

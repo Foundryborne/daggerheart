@@ -217,8 +217,8 @@ export default class AdversarySheet extends DHBaseActorSheet {
     static #reactionRoll(event) {
         const config = {
             event,
-            title: `Reaction Roll: ${this.actor.name}`,
-            headerTitle: 'Adversary Reaction Roll',
+            title: game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll'),
+            headerTitle: game.i18n.localize('DAGGERHEART.ACTORS.Adversary.adversaryReactionRoll.headerTitle'),
             roll: {
                 type: 'trait'
             },

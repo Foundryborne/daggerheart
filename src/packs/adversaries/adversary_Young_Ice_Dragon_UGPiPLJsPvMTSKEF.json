@@ -138,12 +138,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -194,7 +191,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -220,7 +217,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -388,7 +386,7 @@
       "name": "Blizzard Breath",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend 2 Fear</strong> to release an icy whorl in front of the @Lookup[@name] within Close range. All targets in this area must make an Agility Reaction Roll. Targets who fail take <strong>4d6+5</strong> magic damage and are Restrained by ice until they break free with a successful Strength Roll. Targets who succeed must mark 2 Stress or take half damage.</p><p>@Template[type:inFront|range:c]</p>",
+        "description": "<p><strong>Spend 2 Fear</strong> to release an icy whorl in front of the @Lookup[@name] within Close range. All targets in this area must make an Agility Reaction Roll. Targets who fail take <strong>4d6+5</strong> magic damage and are Restrained by ice until they break free with a successful Strength Roll. Targets who succeed must mark 2 Stress or take half damage.</p>",
         "resource": null,
         "actions": {
           "CBecTlgyUBFxgoi5": {
@@ -440,7 +438,8 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -474,7 +473,16 @@
             },
             "name": "Roll Save",
             "img": "icons/magic/water/projectiles-ice-faceted-shard-salvo-blue.webp",
-            "range": "close"
+            "range": "close",
+            "areas": [
+              {
+                "name": "Blizzard Breath",
+                "type": "placed",
+                "shape": "inFront",
+                "size": "close",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,
@@ -497,18 +505,15 @@
               "type": "withinRange",
               "target": "hostile",
               "range": "melee"
-            }
+            },
+            "changes": []
           },
-          "changes": [],
           "disabled": false,
           "duration": {
-            "startTime": null,
-            "combat": null,
-            "seconds": null,
-            "rounds": null,
-            "turns": null,
-            "startRound": null,
-            "startTurn": null
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
           },
           "description": "<p><em>Restrained</em> by ice until you break free with a successful Strength Roll.</p>",
           "tint": "#ffffff",
@@ -520,6 +525,9 @@
           "_stats": {
             "compendiumSource": null
           },
+          "start": null,
+          "showIcon": 1,
+          "folder": null,
           "_key": "!actors.items.effects!UGPiPLJsPvMTSKEF.QV2ytK4b1VWF71OS.g9bUvmw3jet6T99e"
         }
       ],
@@ -539,7 +547,7 @@
       "name": "Avalanche",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to have the @Lookup[@name] unleash a huge downfall of snow and ice, covering all other creatures within Far range. All targets within this area must succeed on an Instinct Reaction Roll or be buried in snow and rocks, becoming <em>Vulnerable</em> until they dig themselves out from the debris. For each PC that fails the reaction roll, you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to have the @Lookup[@name] unleash a huge downfall of snow and ice, covering all other creatures within Far range. All targets within this area must succeed on an Instinct Reaction Roll or be buried in snow and rocks, becoming <em>Vulnerable</em> until they dig themselves out from the debris. For each PC that fails the reaction roll, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "G9LjoXShkCcgx8EC": {
@@ -564,7 +572,8 @@
             },
             "damage": {
               "parts": {},
-              "includeBase": false
+              "includeBase": false,
+              "groupAttack": ""
             },
             "target": {
               "type": "any",
@@ -598,7 +607,16 @@
             },
             "name": "Attack",
             "img": "icons/magic/water/barrier-ice-wall-snow.webp",
-            "range": "far"
+            "range": "far",
+            "areas": [
+              {
+                "name": "Avalanche",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "effects": []
+              }
+            ]
           }
         },
         "originItemType": null,

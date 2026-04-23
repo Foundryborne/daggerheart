@@ -72,7 +72,7 @@ export default class ActionSelectionDialog extends HandlebarsApplicationMixin(Ap
 
     static async #onChooseAction(event, button) {
         const { actionId } = button.dataset;
-        this.#action = this.#item.system.actionsList.find(a => a._id === actionId);
+        this.#action = this.item.system.actionsList.find(a => a._id === actionId);
         Object.defineProperty(this.#event, 'shiftKey', {
             get() {
                 return event.shiftKey;

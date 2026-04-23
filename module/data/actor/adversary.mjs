@@ -133,7 +133,7 @@ export default class DhpAdversary extends DhCreature {
     }
 
     isItemValid(source) {
-        return source.type === 'feature';
+        return super.isItemValid(source) || source.type === 'feature';
     }
 
     async _preUpdate(changes, options, user) {

@@ -21,7 +21,7 @@
     </div>
 
     {{!-- Handlebars uses Symbol.Iterator to produce index|key. This isn't compatible with our parts object, so we instead use applyTo, which is the same value --}}
-    {{#each source.parts as |dmg|}}
+    {{#each source.parts as |dmg key|}}
         <div class="nest-inputs">
             <fieldset{{#if dmg.base}} disabled{{/if}} class="one-column{{#if ../path}} no-style{{/if}}">
                 <legend class="with-icon">

@@ -1,4 +1,5 @@
 <div class="roll-buttons">
+    {{#if areas.length}}<button class="action-areas end-button"><i class="fa-solid fa-crosshairs"></i></button>{{/if}}
     {{#if hasDamage}}
         {{#unless (empty damage)}}
             <button class="duality-action damage-button">{{localize "DAGGERHEART.UI.Chat.damageRoll.dealDamage"}}</button>

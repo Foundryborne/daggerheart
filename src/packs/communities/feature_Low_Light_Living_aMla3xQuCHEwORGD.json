@@ -29,39 +29,28 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
+        },
+        "changes": [
+          {
+            "key": "system.advantageSources",
+            "type": "add",
+            "value": "Rolls to hide, investigate, or perceive details in low light",
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "type": ""
         }
       },
-      "changes": [
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "In an area with low light or heavy shadow: hide, investigate, or perceive",
-          "priority": null
-        },
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "",
-          "priority": null
-        },
-        {
-          "key": "",
-          "mode": 2,
-          "value": "",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "",
+      "description": "<p>When you’re in an area with low light or heavy shadow, you have advantage on rolls to hide, investigate, or perceive details within that area.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -71,6 +60,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!aMla3xQuCHEwORGD.pCp32u7UwqxCI4WW"
     }
   ],

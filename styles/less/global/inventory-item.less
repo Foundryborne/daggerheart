@@ -24,6 +24,15 @@
         width: 100%;
         list-style-type: none;
 
+        &.bordered {
+            border: 1px solid;
+            border-radius: 6px;
+
+            .inventory-item-header .img-portait img.item-img {
+                border-radius: 6px 0 0 6px;
+            }
+        }
+
         &:not(.single-img) {
             .img-portait:has(.roll-img):hover {
                 .roll-img {

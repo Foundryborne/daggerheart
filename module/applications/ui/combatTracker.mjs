@@ -84,15 +84,15 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
     _getCombatContextOptions() {
         return [
             {
-                name: 'COMBAT.ClearMovementHistories',
+                label: 'COMBAT.ClearMovementHistories',
                 icon: '<i class="fa-solid fa-shoe-prints"></i>',
-                condition: () => game.user.isGM && this.viewed?.combatants.size > 0,
+                visible: () => game.user.isGM && this.viewed?.combatants.size > 0,
                 callback: () => this.viewed.clearMovementHistories()
             },
             {
-                name: 'COMBAT.Delete',
+                label: 'COMBAT.Delete',
                 icon: '<i class="fa-solid fa-trash"></i>',
-                condition: () => game.user.isGM && !!this.viewed,
+                visible: () => game.user.isGM && !!this.viewed,
                 callback: () => this.viewed.endCombat()
             }
         ];

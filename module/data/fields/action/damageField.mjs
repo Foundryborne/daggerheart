@@ -320,7 +320,7 @@ export class DHDamageData extends DHResourceData {
                     required: true
                 }),
                 {
-                    label: 'Type'
+                    label: game.i18n.localize('DAGGERHEART.GENERAL.type')
                 }
             )
         };

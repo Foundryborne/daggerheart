@@ -4,7 +4,6 @@
  * @property {string} label - A localizable label used on application.
  * @property {string} type - The system type that this data model represents.
  * @property {boolean} hasDescription - Indicates whether items of this type have description field
- * @property {boolean} isQuantifiable - Indicates whether items of this type have quantity field
  * @property {boolean} isInventoryItem- Indicates whether items of this type is a Inventory Item
  */
 
@@ -24,7 +23,6 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             type: 'base',
             hasDescription: false,
             hasResource: false,
-            isQuantifiable: false,
             isInventoryItem: false,
             hasActions: false,
             hasAttribution: true
@@ -83,7 +81,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             );
         }
 
-        if (this.metadata.isQuantifiable)
+        if (this.metadata.isInventoryItem)
             schema.quantity = new fields.NumberField({ integer: true, initial: 1, min: 0, required: true });
 
         if (this.metadata.hasActions) schema.actions = new ActionsField();
@@ -110,6 +108,10 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
     }
 
     get actionsList() {
+        // No actions on non-characters
+        if (this.metadata.isInventoryItem && this.actor && this.actor.type !== 'character') {
+            return [];
+        }
         return this.actions;
     }
 

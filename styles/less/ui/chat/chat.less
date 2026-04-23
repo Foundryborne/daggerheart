@@ -624,9 +624,14 @@
             display: flex;
             gap: 5px;
             margin-top: 8px;
+
             button {
                 height: 32px;
                 flex: 1;
+
+                &.end-button {
+                    flex: 0;
+                }
             }
         }
 
@@ -696,6 +701,11 @@
                     }
                 }
             }
+        }
+
+        .action-roll-buttons {
+            width: 100%;
+            padding: 0 8px;
         }
 
         .description {
