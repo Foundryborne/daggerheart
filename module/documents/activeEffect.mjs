@@ -170,10 +170,10 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
     }
 
     static getChangeValue(model, change, effect) {
-        let key = change.value.toString();
+        let value = change.value.toString();
         let origin = null;
-        if (key.toLowerCase().includes('origin.@') && effect.origin) {
-            key = key.replaceAll(/origin\.@/gi, '@');
+        if (value.toLowerCase().includes('origin.@') && effect.origin) {
+            value = value.replaceAll(/origin\.@/gi, '@');
             try {
                 const originEffect = foundry.utils.fromUuidSync(effect.origin);
                 origin =
@@ -187,10 +187,10 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         const actor = model.parent instanceof Actor ? model.parent : model;
         const item = origin ?? null;
         const stackingParsedValue = effect.system.stacking
-            ? Roll.replaceFormulaData(key, { stacks: effect.system.stacking.value })
-            : key;
+            ? Roll.replaceFormulaData(value, { stacks: effect.system.stacking.value })
+            : value;
         const evalValue = itemAbleRollParse(stackingParsedValue, actor, item);
-        return evalValue ?? key;
+        return evalValue ?? value;
     }
 
     /**
