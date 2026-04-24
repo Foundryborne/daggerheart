@@ -391,8 +391,9 @@ export default class DhCharacter extends DhCreature {
         return this.domains.map(key => {
             const domain = allDomainData[key];
             return {
+                id: key,
                 ...domain,
-                label: game.i18n.localize(domain.label)
+                label: game.i18n.localize(domain?.label) ?? key
             };
         });
     }

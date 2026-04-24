@@ -18,7 +18,7 @@ export default class DhParty extends BaseDataActor {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            partyMembers: new ForeignDocumentUUIDArrayField({ type: 'Actor' }, { prune: true }),
+            partyMembers: new ForeignDocumentUUIDArrayField({ type: 'Actor' }),
             notes: new fields.HTMLField(),
             gold: new GoldField(),
             tagTeam: new fields.EmbeddedDataField(TagTeamData),
