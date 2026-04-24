@@ -10,6 +10,7 @@ export default class ForeignDocumentUUIDArrayField extends foundry.data.fields.A
      */
     constructor(fieldOption = {}, options = {}, context = {}) {
         super(new ForeignDocumentUUIDField(fieldOption), options, context);
+        this.options.prune ??= true;
     }
 
     /** @inheritdoc */

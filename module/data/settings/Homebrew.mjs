@@ -54,7 +54,7 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
             maxDomains: new fields.NumberField({
                 required: true,
                 integer: true,
-                min: 1,
+                min: 0,
                 initial: 2,
                 label: 'DAGGERHEART.SETTINGS.Homebrew.FIELDS.maxDomains.label'
             }),
@@ -194,6 +194,12 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
             source.currency[type] = foundry.utils.mergeObject(initial, source.currency[type], { inplace: false });
         }
         return source;
+    }
+
+    _initialize(options) {
+        super._initialize(options);
+        this.maxDomains ||= Infinity;
+        this.maxLoadout ||= Infinity;
     }
 
     /** Invoked by the setting when data changes */

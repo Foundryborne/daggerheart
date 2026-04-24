@@ -19,7 +19,7 @@ export default class DHScene extends foundry.abstract.DataModel {
                 close: new fields.NumberField({ integer: true, label: 'DAGGERHEART.CONFIG.Range.close.name' }),
                 far: new fields.NumberField({ integer: true, label: 'DAGGERHEART.CONFIG.Range.far.name' })
             }),
-            sceneEnvironments: new ForeignDocumentUUIDArrayField({ type: 'Actor', prune: true })
+            sceneEnvironments: new ForeignDocumentUUIDArrayField({ type: 'Actor' })
         };
     }
 }
