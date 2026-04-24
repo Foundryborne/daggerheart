@@ -199,6 +199,7 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
     _initialize(options) {
         super._initialize(options);
         this.maxDomains ||= Infinity;
+        this.maxLoadout ||= Infinity;
     }
 
     /** Invoked by the setting when data changes */

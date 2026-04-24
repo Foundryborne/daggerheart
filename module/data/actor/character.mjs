@@ -410,14 +410,11 @@ export default class DhCharacter extends DhCreature {
     }
 
     get loadoutSlot() {
-        const loadoutCount = this.domainCards.loadout?.length ?? 0,
-            worldSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxLoadout,
-            max = !worldSetting ? null : worldSetting + this.bonuses.maxLoadout;
-
+        const loadoutCount = this.domainCards.loadout?.length ?? 0;
+        const worldSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxLoadout;
         return {
             current: loadoutCount,
-            available: !max ? true : Math.max(max - loadoutCount, 0),
-            max
+            available: loadoutCount < worldSetting
         };
     }
 
