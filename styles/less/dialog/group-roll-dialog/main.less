@@ -7,7 +7,7 @@
         a.roll-button {
             &:hover {
                 text-shadow: none;
-                filter: drop-shadow(0 0 3px var(--golden-90));
+                filter: drop-shadow(0 0 3px @golden-90);
             }
         }
 
@@ -215,10 +215,10 @@
         margin-top: 8px;
 
         &.empty {
-            color: light-dark(@dark-blue-80, @beige-80);
+            color: light-dark(@dark-blue-90, @beige-80);
             border-radius: 3px;
             justify-content: center;
-            border: 1px dashed light-dark(@dark-blue-80, @beige-80);
+            border: 1px dashed light-dark(@dark-blue-90, @beige-80);
             text-align: center;
             height: 3.25rem;
             font-family: @font-body;
