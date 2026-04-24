@@ -198,7 +198,7 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
             ? Roll.replaceFormulaData(key, { stacks: effect.system.stacking.value })
             : key;
         const evalValue = this.effectSafeEval(itemAbleRollParse(stackingParsedValue, actorModel, itemModel));
-        return evalValue ? evalValue : key;
+        return evalValue ?? key;
     }
 
     /**
