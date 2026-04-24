@@ -189,7 +189,6 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
                         actorModel = doc;
                         key = key.replaceAll(/origin\.@/gi, '@');
                     }
-
                 }
             } catch (_) {}
         }
