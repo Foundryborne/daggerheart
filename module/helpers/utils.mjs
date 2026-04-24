@@ -375,7 +375,7 @@ export const itemAbleRollParse = (value, actor, item) => {
 
     const isItemTarget = value.toLowerCase().includes('item.@');
     const slicedValue = isItemTarget ? value.replaceAll(/item\.@/gi, '@') : value;
-    const model = isItemTarget ? item : actor;
+    const model = isItemTarget || item instanceof Item ? item : actor;
 
     try {
         return Roll.replaceFormulaData(slicedValue, isItemTarget || !model?.getRollData ? model : model.getRollData());

@@ -171,24 +171,25 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
 
     static getChangeValue(model, change, effect) {
         let key = change.value.toString();
-        const isOriginTarget = key.toLowerCase().includes('origin.@');
-        let parseModel = model;
-        if (isOriginTarget && effect.origin) {
-            key = change.key.replaceAll(/origin\.@/gi, '@');
+        let origin = null;
+        if (key.toLowerCase().includes('origin.@') && effect.origin) {
+            key = key.replaceAll(/origin\.@/gi, '@');
             try {
                 const originEffect = foundry.utils.fromUuidSync(effect.origin);
-                const doc =
+                origin =
                     originEffect.parent?.parent instanceof game.system.api.documents.DhpActor
                         ? originEffect.parent
                         : originEffect.parent.parent;
-                if (doc) parseModel = doc;
             } catch (_) {}
         }
 
+        // Get the actor and item documents. Note that actor roll data is inclusive of system roll data
+        const actor = model.parent instanceof Actor ? model.parent : model;
+        const item = origin ?? null;
         const stackingParsedValue = effect.system.stacking
             ? Roll.replaceFormulaData(key, { stacks: effect.system.stacking.value })
             : key;
-        const evalValue = itemAbleRollParse(stackingParsedValue, parseModel, effect.parent);
+        const evalValue = itemAbleRollParse(stackingParsedValue, actor, item);
         return evalValue ?? key;
     }
 
