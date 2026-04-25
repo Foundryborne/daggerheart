@@ -50,11 +50,18 @@
                             <span class="dice-label">{{roll.dFear.total}}</span>
                             <img src="{{concat "systems/daggerheart/assets/icons/dice/fear/" roll.dFear.denomination ".svg"}}" />
                         </a>
-                        {{#if roll.advantage.type}}
-                            <span class="roll-operator">{{#if (eq roll.advantage.type 1)}}+{{else}}-{{/if}}</span>
+                        {{#if roll.hasAdvantage}}
+                            <span class="roll-operator">+</span>
                             <span class="roll-dice">
-                                <span class="dice-label">{{roll.advantage.value}}</span>
-                                <img src="{{concat "systems/daggerheart/assets/icons/dice/" (ifThen (eq roll.advantage.type 1) "adv/" "disadv/") roll.advantage.dice ".svg"}}" />
+                                <span class="dice-label">{{roll.dAdvantage.total}}</span>
+                                <img src="{{concat "systems/daggerheart/assets/icons/dice/adv/d" roll.advantageFaces ".svg"}}" />
+                            </span>
+                        {{/if}}
+                        {{#if roll.hasDisadvantage}}
+                            <span class="roll-operator">-</span>
+                            <span class="roll-dice">
+                                <span class="dice-label">{{roll.dDisadvantage.total}}</span>
+                                <img src="{{concat "systems/daggerheart/assets/icons/dice/disadv/d" roll.advantageFaces ".svg"}}" />
                             </span>
                         {{/if}}
                         <span class="roll-operator ">{{#if (gte roll.modifierTotal 0)}}+{{else}}-{{/if}}</span>
