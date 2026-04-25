@@ -827,6 +827,10 @@ export function createShallowProxy(obj) {
         set(_target, prop, newValue) {
             overrides[prop] = newValue;
             return true;
+        },
+        deleteProperty(_target, prop) {
+            delete overrides[prop];
+            return true;
         }
     });
 }
