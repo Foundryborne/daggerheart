@@ -712,6 +712,11 @@
             }
         },
         "CONFIG": {
+            "ActionAutomationChoices": {
+                "never": "Never",
+                "showDialog": "Show Dialog Only",
+                "always": "Always"
+            },
             "AdversaryTrait": {
                 "relentless": {
                     "name": "Relentless",
