@@ -196,8 +196,11 @@
                         &[data-success=true] {
                             color: var(--green);
                         }
+                        &.active {
+                            text-shadow: 0 0 1px light-dark(@dark-80, @beige-80);
+                        }
                         &.inactive {
-                            opacity: 0.4;
+                            opacity: 0.35;
                         }
                     }
                 }
