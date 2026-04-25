@@ -1,7 +1,7 @@
 import { emitAsGM, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
-import { createScrollText, damageKeyToNumber, getDamageKey, shallowCopyWithGetters } from '../helpers/utils.mjs';
+import { createScrollText, damageKeyToNumber, getDamageKey, createShallowProxy } from '../helpers/utils.mjs';
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
 import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
 import { abilities } from '../config/actorConfig.mjs';
@@ -595,7 +595,7 @@ export default class DhpActor extends Actor {
 
     /**@inheritdoc */
     getRollData() {
-        const rollData = shallowCopyWithGetters(super.getRollData());
+        const rollData = createShallowProxy(super.getRollData());
         rollData.id = this.id;
         rollData.name = this.name;
         rollData.system = this.system.getRollData();

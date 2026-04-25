@@ -10,7 +10,7 @@
 import {
     addLinkedItemsDiff,
     getScrollTextData,
-    shallowCopyWithGetters,
+    createShallowProxy,
     updateLinkedItemApps
 } from '../../helpers/utils.mjs';
 import { ActionsField } from '../fields/actionField.mjs';
@@ -165,7 +165,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
      */
     getRollData(options = {}) {
         const data = this.actor?.getRollData() ?? {};
-        data.item = shallowCopyWithGetters(this);
+        data.item = createShallowProxy(this);
         return data;
     }
 

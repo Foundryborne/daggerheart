@@ -810,28 +810,23 @@ export function sortBy(arr, fn) {
     return arr.sort(cmp);
 }
 
-function getAllPropertyNames(obj, names = new Set()) {
-    if (!obj) return names;
-
-    for (const name of Object.getOwnPropertyNames(obj)) {
-        names.add(name);
-    }
-
-    return getAllPropertyNames(Object.getPrototypeOf(obj), names);
-}
-
 /**
- * Returns a shallow copy including getters of the given object.
- * Generally used for expanding roll data without side effects
+ * Creates a proxy that allows retrieval of top data but diverts updates to a different object.
+ * Generally used for roll data
  */
-export function shallowCopyWithGetters(obj) {
-    const props = getAllPropertyNames(obj);
-    const result = {};
-    for (const key of props) {
-        const value = obj[key];
-        if (key !== '__proto__' && typeof value !== 'function') {
-            result[key] = obj[key];
+export function createShallowProxy(obj) {
+    if (obj._isShallowProxy) return obj;
+
+    const overrides = {};
+    return new Proxy(obj, {
+        get(target, prop, receiver) {
+            if (prop === '_isShallowProxy') return true;
+            if (prop in overrides) return overrides[prop];
+            return Reflect.get(target, prop, receiver);
+        },
+        set(_target, prop, newValue) {
+            overrides[prop] = newValue;
+            return true;
         }
-    }
-    return result;
+    });
 }
