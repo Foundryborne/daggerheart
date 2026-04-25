@@ -169,23 +169,31 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         super._applyChangeUnguided(actor, change, changes, options);
     }
 
+    /** Recursively finds the first parent document of the given object */
+    static #resolveParentDocument(model, documentClass) {
+        return model instanceof documentClass
+            ? model
+            : model.parent
+              ? this.#resolveParentDocument(model.parent, documentClass)
+              : null;
+    }
+
     static getChangeValue(model, change, effect) {
         let value = change.value.toString();
+        const useOrigin = value.toLowerCase().includes('origin.@') && effect.origin;
         let origin = null;
-        if (value.toLowerCase().includes('origin.@') && effect.origin) {
-            value = value.replaceAll(/origin\.@/gi, '@');
-            try {
-                const originEffect = foundry.utils.fromUuidSync(effect.origin);
-                origin =
-                    originEffect.parent?.parent instanceof game.system.api.documents.DhpActor
-                        ? originEffect.parent
-                        : originEffect.parent.parent;
-            } catch (_) {}
+        if (effect.origin) {
+            if (useOrigin) value = value.replaceAll(/origin\.@/gi, '@');
+            const originEffect = foundry.utils.fromUuidSync(effect.origin);
+            origin = this.#resolveParentDocument(originEffect, Item);
         }
 
         // Get the actor and item documents. Note that actor roll data is inclusive of system roll data
-        const actor = model.parent instanceof Actor ? model.parent : model;
-        const item = origin ?? effect.parent;
+        const actor = this.#resolveParentDocument(model, Actor);
+        const item =
+            (useOrigin ? origin : null) ??
+            this.#resolveParentDocument(effect.parent, Item) ??
+            (origin?.actor === actor ? origin : null);
         const stackingParsedValue = effect.system.stacking
             ? Roll.replaceFormulaData(value, { stacks: effect.system.stacking.value })
             : value;
