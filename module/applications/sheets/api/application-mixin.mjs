@@ -725,7 +725,7 @@ export default function DHApplicationMixin(Base) {
                       : null
                   : this.document;
 
-            let systemData = {};
+            let systemData = null;
             if (featureOnCharacter) {
                 systemData = {
                     originItemType: this.document.type,
@@ -738,9 +738,10 @@ export default function DHApplicationMixin(Base) {
 
             const data = {
                 name: cls.defaultName({ type, parent }),
-                type,
-                system: systemData
+                type
             };
+
+            if (systemData) data.system = systemData;
 
             if (inVault) data['system.inVault'] = true;
             if (disabled) data.disabled = true;
