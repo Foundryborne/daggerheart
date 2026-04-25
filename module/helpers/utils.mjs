@@ -810,25 +810,24 @@ export function sortBy(arr, fn) {
     return arr.sort(cmp);
 }
 
+function getAllPropertyNames(obj, names = new Set()) {
+    if (!obj) return names;
+
+    for (const name of Object.getOwnPropertyNames(obj)) {
+        names.add(name);
+    }
+
+    return getAllPropertyNames(Object.getPrototypeOf(obj), names);
+}
+
 /**
  * Returns a shallow copy including getters of the given object.
  * Generally used for expanding roll data without side effects
  */
 export function shallowCopyWithGetters(obj) {
-    function getAllPropertyDescriptors(obj) {
-        if (!obj) {
-            return Object.create(null);
-        }
-
-        return {
-            ...getAllPropertyDescriptors(Object.getPrototypeOf(obj)),
-            ...Object.getOwnPropertyDescriptors(obj)
-        };
-    }
-
-    const props = getAllPropertyDescriptors(obj);
+    const props = getAllPropertyNames(obj);
     const result = {};
-    for (const key of Object.keys(props)) {
+    for (const key of props) {
         const value = obj[key];
         if (key !== '__proto__' && typeof value !== 'function') {
             result[key] = obj[key];
