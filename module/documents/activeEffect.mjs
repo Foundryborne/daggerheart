@@ -185,11 +185,11 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
 
         // Get the actor and item documents. Note that actor roll data is inclusive of system roll data
         const actor = model.parent instanceof Actor ? model.parent : model;
-        const item = origin ?? null;
+        const item = origin ?? effect.parent;
         const stackingParsedValue = effect.system.stacking
             ? Roll.replaceFormulaData(value, { stacks: effect.system.stacking.value })
             : value;
-        const evalValue = itemAbleRollParse(stackingParsedValue, actor, item);
+        const evalValue = this.effectSafeEval(itemAbleRollParse(stackingParsedValue, actor, item));
         return evalValue ?? value;
     }
 
