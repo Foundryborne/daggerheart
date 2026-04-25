@@ -54,13 +54,7 @@ export default class DHItem extends foundry.documents.Item {
      * @returns
      */
     getRollData(options = {}) {
-        let data;
-        if (this.system.getRollData) data = this.system.getRollData(options);
-        else {
-            const actorRollData = this.actor?.getRollData(options) ?? {};
-            data = { ...actorRollData, item: { ...this.system } };
-        }
-
+        let data = this.system.getRollData(options);
         if (data?.item) {
             data.item.flags = { ...this.flags };
             data.item.name = this.name;

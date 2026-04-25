@@ -165,7 +165,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
      */
     getRollData(options = {}) {
         const data = this.actor?.getRollData() ?? {};
-        data.item = this;
+        data.item = shallowCopyWithGetters(this);
         return data;
     }
 
