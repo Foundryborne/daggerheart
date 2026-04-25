@@ -809,3 +809,30 @@ export function sortBy(arr, fn) {
     };
     return arr.sort(cmp);
 }
+
+/**
+ * Returns a shallow copy including getters of the given object.
+ * Generally used for expanding roll data without side effects
+ */
+export function shallowCopyWithGetters(obj) {
+    function getAllPropertyDescriptors(obj) {
+        if (!obj) {
+            return Object.create(null);
+        }
+
+        return {
+            ...getAllPropertyDescriptors(Object.getPrototypeOf(obj)),
+            ...Object.getOwnPropertyDescriptors(obj)
+        };
+    }
+
+    const props = getAllPropertyDescriptors(obj);
+    const result = {};
+    for (const key of Object.keys(props)) {
+        const value = obj[key];
+        if (key !== '__proto__' && typeof value !== 'function') {
+            result[key] = obj[key];
+        }
+    }
+    return result;
+}

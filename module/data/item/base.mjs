@@ -7,7 +7,12 @@
  * @property {boolean} isInventoryItem- Indicates whether items of this type is a Inventory Item
  */
 
-import { addLinkedItemsDiff, getScrollTextData, updateLinkedItemApps } from '../../helpers/utils.mjs';
+import {
+    addLinkedItemsDiff,
+    getScrollTextData,
+    shallowCopyWithGetters,
+    updateLinkedItemApps
+} from '../../helpers/utils.mjs';
 import { ActionsField } from '../fields/actionField.mjs';
 import FormulaField from '../fields/formulaField.mjs';
 
@@ -159,9 +164,8 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
      * @returns {object}
      */
     getRollData(options = {}) {
-        const actorRollData = this.actor?.getRollData() ?? {};
-        const data = Object.assign(actorRollData, {});
-        data.item = Object.assign(this, {});
+        const data = this.actor?.getRollData() ?? {};
+        data.item = this;
         return data;
     }
 
