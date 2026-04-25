@@ -188,8 +188,9 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
         if (type === 'effect') {
             const move = foundry.utils.getProperty(this.settings, this.movePath);
             for (const action of move.actions) {
-                const remainingEffects = action.effects.filter(x => x._id !== id);
-                if (action.effects.length !== remainingEffects.length) {
+                const actionEffects = action.effects ?? [];
+                const remainingEffects = actionEffects.filter(x => x._id !== id);
+                if (actionEffects.length !== remainingEffects.length) {
                     await action.update({
                         effects: remainingEffects.map(x => {
                             const { _id, ...rest } = x;

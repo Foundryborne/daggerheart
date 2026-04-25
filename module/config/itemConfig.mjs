@@ -453,7 +453,7 @@ export const allArmorFeatures = () => {
             const feature = homebrewFeatures[key];
             const actions = feature.actions.map(action => ({
                 ...action,
-                effects: action.effects.map(effect => feature.effects.find(x => x.id === effect._id)),
+                effects: action.effects?.map(effect => feature.effects.find(x => x.id === effect._id))??[],
                 type: action.type
             }));
             const actionEffects = actions.flatMap(a => a.effects);
@@ -1389,7 +1389,7 @@ export const allWeaponFeatures = () => {
 
             const actions = feature.actions.map(action => ({
                 ...action,
-                effects: action.effects.map(effect => feature.effects.find(x => x.id === effect._id)),
+                effects: action.effects?.map(effect => feature.effects.find(x => x.id === effect._id))??[],
                 type: action.type
             }));
             const actionEffects = actions.flatMap(a => a.effects);

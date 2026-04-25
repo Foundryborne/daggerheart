@@ -28,7 +28,7 @@ export default class DHWeapon extends AttachableItem {
             equipped: new fields.BooleanField({ initial: false }),
 
             //SETTINGS
-            secondary: new fields.BooleanField({ initial: false, label: 'DAGGERHEART.ITEMS.Weapon.secondaryWeapon' }),
+            secondary: new fields.BooleanField({ initial: false, label: 'DAGGERHEART.ITEMS.Weapon.secondaryWeapon.full' }),
             burden: new fields.StringField({
                 required: true,
                 choices: CONFIG.DH.GENERAL.burden,

@@ -172,8 +172,8 @@ export const typeConfig = {
                 key: 'system.secondary',
                 label: 'DAGGERHEART.UI.ItemBrowser.subtype',
                 choices: [
-                    { value: false, label: 'DAGGERHEART.ITEMS.Weapon.primaryWeapon' },
-                    { value: true, label: 'DAGGERHEART.ITEMS.Weapon.secondaryWeapon' }
+                    { value: false, label: 'DAGGERHEART.ITEMS.Weapon.primaryWeapon.short' },
+                    { value: true, label: 'DAGGERHEART.ITEMS.Weapon.secondaryWeapon.short' }
                 ]
             },
             {
