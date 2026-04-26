@@ -189,6 +189,9 @@ export default class DhpAdversary extends DhCreature {
     prepareDerivedData() {
         super.prepareDerivedData();
         this.attack.roll.isStandardAttack = true;
+
+        // Clamp resources (must be done last to ensure all updates occur)
+        this.resources.clamp();
     }
 
     _getTags() {
