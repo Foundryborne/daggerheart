@@ -60,14 +60,4 @@ export default class DhCreature extends BaseDataActor {
             }
         }
     }
-
-    prepareDerivedData() {
-        const minLimitResource = resource => {
-            if (resource) resource.value = Math.min(resource.value, resource.max);
-        };
-
-        minLimitResource(this.resources.stress);
-        minLimitResource(this.resources.hitPoints);
-        minLimitResource(this.resources.hope);
-    }
 }

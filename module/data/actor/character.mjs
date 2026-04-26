@@ -660,6 +660,8 @@ export default class DhCharacter extends DhCreature {
 
     prepareDerivedData() {
         super.prepareDerivedData();
+
+        this.resources.hope.max -= this.scars;
         if (this.companion) {
             for (let levelKey in this.companion.system.levelData.levelups) {
                 const level = this.companion.system.levelData.levelups[levelKey];
@@ -673,7 +675,6 @@ export default class DhCharacter extends DhCreature {
             }
         }
 
-        this.resources.hope.max -= this.scars;
         this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
 
         this.resources.armor = {
@@ -684,6 +685,9 @@ export default class DhCharacter extends DhCreature {
         };
 
         this.attack.damage.parts[0].value.custom.formula = `@prof${this.basicAttackDamageDice}${this.rules.attack.damage.bonus ? ` + ${this.rules.attack.damage.bonus}` : ''}`;
+
+        // Clamp resources (must be done last to ensure all updates occur)
+        this.resources.clamp();
     }
 
     getRollData() {
