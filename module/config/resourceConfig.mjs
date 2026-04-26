@@ -60,12 +60,6 @@ const companionBaseResources = Object.freeze({
         max: 3,
         reverse: true,
         label: 'DAGGERHEART.GENERAL.stress'
-    },
-    hope: {
-        id: 'hope',
-        initial: 0,
-        reverse: false,
-        label: 'DAGGERHEART.GENERAL.hope'
     }
 });
 

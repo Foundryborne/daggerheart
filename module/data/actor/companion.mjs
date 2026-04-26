@@ -144,9 +144,6 @@ export default class DhCompanion extends DhCreature {
             const level = this.levelData.levelups[levelKey];
             for (let selection of level.selections) {
                 switch (selection.type) {
-                    case 'hope':
-                        this.resources.hope.max += selection.value;
-                        break;
                     case 'vicious':
                         if (selection.data[0] === 'damage') {
                             this.attack.damage.parts.hitPoints.value.dice = adjustDice(
