@@ -3,7 +3,7 @@ import DhDeathMove from '../../dialogs/deathMove.mjs';
 import { CharacterLevelup, LevelupViewMode } from '../../levelup/_module.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
-import { getArmorSources, getDocFromElement, getDocFromElementSync } from '../../../helpers/utils.mjs';
+import { getArmorSources, getDocFromElement, getDocFromElementSync, sortBy } from '../../../helpers/utils.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
@@ -225,6 +225,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
             context.resources.hitPoints.max < maxResource ? maxResource - context.resources.hitPoints.max : 0;
         context.resources.stress.emptyPips =
             context.resources.stress.max < maxResource ? maxResource - context.resources.stress.max : 0;
+
+        context.equippedItems = sortBy(
+            this.document.items.filter(i => i.system.equipped),
+            i => (i.type === 'weapon' ? (i.system.secondary ? 1 : 0) : 2)
+        );
 
         context.beastformActive = this.document.effects.find(x => x.type === 'beastform');
 

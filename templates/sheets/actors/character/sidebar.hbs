@@ -108,18 +108,16 @@
             </div>
             <ul class="items-sidebar-list">
                 {{#if document.system.usedUnarmed}}
-                {{> 'daggerheart.inventory-item-compact'
-                    item=document.system.usedUnarmed
-                    type='attack'
-                }}
+                    {{> 'daggerheart.inventory-item-compact'
+                        item=document.system.usedUnarmed
+                        type='attack'
+                    }}
                 {{/if}}
-                {{#each document.items as |item|}}
-                {{#if item.system.equipped}}
-                {{> 'daggerheart.inventory-item-compact'
-                    item=item
-                    type=item.type
-                }}
-                {{/if}}
+                {{#each equippedItems as |item|}}
+                    {{> 'daggerheart.inventory-item-compact'
+                        item=item
+                        type=item.type
+                    }}
                 {{/each}}
             </ul>
         </div>
