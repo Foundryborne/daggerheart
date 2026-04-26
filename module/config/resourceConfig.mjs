@@ -57,7 +57,7 @@ const companionBaseResources = Object.freeze({
     stress: {
         id: 'stress',
         initial: 0,
-        max: 0,
+        max: 3,
         reverse: true,
         label: 'DAGGERHEART.GENERAL.stress'
     },

@@ -145,7 +145,7 @@ export default class DhCompanion extends DhCreature {
             for (let selection of level.selections) {
                 switch (selection.type) {
                     case 'hope':
-                        this.resources.hope += selection.value;
+                        this.resources.hope.max += selection.value;
                         break;
                     case 'vicious':
                         if (selection.data[0] === 'damage') {
@@ -183,6 +183,9 @@ export default class DhCompanion extends DhCreature {
                 return acc;
             }, this.partner.system.companionData.levelupChoices);
         }
+
+        // Clamp resources (must be done last to ensure all updates occur)
+        this.resources.clamp();
     }
 
     async _preUpdate(changes, options, userId) {

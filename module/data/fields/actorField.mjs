@@ -80,6 +80,18 @@ class ResourcesField extends fields.TypedObjectField {
             value.isReversed = resources[key].reverse;
             value.max = typeof resource.max === 'number' ? (value.max ?? resource.max) : null;
         }
+        Object.defineProperty(data, 'clamp', {
+            value: function () {
+                for (const key of Object.keys(this)) {
+                    const resource = this[key];
+                    if (typeof resource?.max === 'number') {
+                        resource.value = Math.clamp(resource.value, 0, resource.max);
+                    }
+                }
+            },
+            enumerable: false
+        });
+
         return data;
     }
 
