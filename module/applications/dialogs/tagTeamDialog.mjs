@@ -7,7 +7,7 @@ const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 export default class TagTeamDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     constructor(party) {
-        super();
+        super({ id: `TagTeamDialog-${party.id}` });
 
         this.party = party;
         this.partyMembers = party.system.partyMembers
@@ -36,7 +36,6 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: 'TagTeamDialog',
         classes: ['daggerheart', 'views', 'dh-style', 'dialog', 'tag-team-dialog'],
         position: { width: 550, height: 'auto' },
         actions: {

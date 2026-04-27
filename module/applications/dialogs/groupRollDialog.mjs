@@ -6,7 +6,7 @@ const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 export default class GroupRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     constructor(party) {
-        super();
+        super({ id: `GroupRollDialog-${party.id}` });
 
         this.party = party;
         this.partyMembers = party.system.partyMembers
@@ -35,7 +35,6 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: 'GroupRollDialog',
         classes: ['daggerheart', 'views', 'dh-style', 'dialog', 'group-roll-dialog'],
         position: { width: 390, height: 'auto' },
         window: {
