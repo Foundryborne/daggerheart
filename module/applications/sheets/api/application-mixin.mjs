@@ -531,7 +531,7 @@ export default function DHApplicationMixin(Base) {
                     visible: element => {
                         const target = element.closest('[data-item-uuid]');
                         const doc = getDocFromElementSync(target);
-                        return doc?.isOwner && target.dataset.itemType !== 'beastform';
+                        return doc?.isOwner !== false && target.dataset.itemType !== 'beastform';
                     },
                     callback: async (target, event) => {
                         const doc = await getDocFromElement(target);
