@@ -59,13 +59,17 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             id: 'initialization',
             template: 'systems/daggerheart/templates/dialogs/tagTeamDialog/initialization.hbs'
         },
+        tagTeamRoll: {
+            id: 'tagTeamRoll',
+            template: 'systems/daggerheart/templates/dialogs/tagTeamDialog/tagTeamRoll.hbs'
+        },
         rollSelection: {
             id: 'rollSelection',
             template: 'systems/daggerheart/templates/dialogs/tagTeamDialog/rollSelection.hbs'
         },
-        tagTeamRoll: {
-            id: 'tagTeamRoll',
-            template: 'systems/daggerheart/templates/dialogs/tagTeamDialog/tagTeamRoll.hbs'
+        result: {
+            id: 'result',
+            template: 'systems/daggerheart/templates/dialogs/tagTeamDialog/result.hbs'
         }
     };
 
@@ -96,36 +100,15 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
     }
 
     _configureRenderParts(options) {
-        const { initialization, rollSelection, tagTeamRoll } = super._configureRenderParts(options);
-        const augmentedParts = { initialization };
+        const parts = super._configureRenderParts(options);
         for (const memberKey of Object.keys(this.party.system.tagTeam.members)) {
-            augmentedParts[memberKey] = {
+            parts[memberKey] = {
                 id: memberKey,
                 template: 'systems/daggerheart/templates/dialogs/tagTeamDialog/tagTeamMember.hbs'
             };
         }
-        augmentedParts.rollSelection = rollSelection;
-        augmentedParts.tagTeamRoll = tagTeamRoll;
 
-        return augmentedParts;
-    }
-
-    /**@inheritdoc */
-    async _onRender(context, options) {
-        await super._onRender(context, options);
-
-        // if (this.element.querySelector('.roll-selection')) {
-        //     for (const element of this.element.querySelectorAll('.team-member-container')) {
-        //         element.classList.add('select-padding');
-        //     }
-        // }
-
-        if (this.element.querySelector('.team-container')) return;
-        const initializationPart = this.element.querySelector('.initialization-container');
-        initializationPart.insertAdjacentHTML('afterend', '<div class="team-container"></div>');
-        const teamContainer = this.element.querySelector('.team-container');
-        for (const memberContainer of this.element.querySelectorAll('.team-member-container'))
-            teamContainer.appendChild(memberContainer);
+        return parts;
     }
 
     async _prepareContext(_options) {
@@ -167,6 +150,9 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 partContext.openForAllPlayers = this.openForAllPlayers;
 
                 break;
+            case 'tagTeamRoll':
+                partContext.memberKeys = Object.keys(this.party.system.tagTeam.members);
+                break;
             case 'rollSelection':
                 partContext.members = Object.keys(this.party.system.tagTeam.members).reduce((acc, key) => {
                     const member = this.party.system.tagTeam.members[key];
@@ -174,7 +160,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                     return acc;
                 }, {});
                 break;
-            case 'tagTeamRoll':
+            case 'result':
                 const selectedRoll = Object.values(this.party.system.tagTeam.members).find(member => member.selected);
                 const critSelected = !selectedRoll
                     ? undefined
@@ -242,7 +228,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
     }
 
     getUpdatingParts(target) {
-        const { initialization, rollSelection, tagTeamRoll } = this.constructor.PARTS;
+        const { initialization, rollSelection, result } = this.constructor.PARTS;
         const isInitialization = this.tabGroups.application === initialization.id;
         const updatingMember = target.closest('.team-member-container')?.dataset?.memberKey;
 
@@ -250,7 +236,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             ...(isInitialization ? [initialization.id] : []),
             ...(updatingMember ? [updatingMember] : []),
             ...(!isInitialization ? [rollSelection.id] : []),
-            ...(!isInitialization ? [tagTeamRoll.id] : [])
+            ...(!isInitialization ? [result.id] : [])
         ];
     }
 
