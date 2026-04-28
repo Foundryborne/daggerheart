@@ -2347,7 +2347,8 @@
                 "triggers": "Triggers",
                 "deathMoves": "Deathmoves",
                 "sources": "Sources",
-                "packs": "Packs"
+                "packs": "Packs",
+                "range": "Range"
             },
             "Tiers": {
                 "singular": "Tier",

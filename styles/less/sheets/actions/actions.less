@@ -153,4 +153,23 @@
         align-items: center;
         gap: 4px;
     }
+
+    .inner-tabs {
+        justify-content: left;
+
+        .inner-tab {
+            line-height: 1.5;
+            border: 1px solid light-dark(@beige, @beige);
+            border-radius: 6px;
+            padding: 0 4px;
+            background: light-dark(@beige, @dark-blue);
+            color: light-dark(@dark-blue, @beige);
+
+            a {
+                &.active {
+                    
+                }
+            }
+        }
+    }
 }

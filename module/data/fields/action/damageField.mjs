@@ -4,6 +4,15 @@ import IterableTypedObjectField from '../iterableTypedObjectField.mjs';
 
 const fields = foundry.data.fields;
 
+const getDamageBaseFields = () => ({
+    parts: new IterableTypedObjectField(DHDamageData),
+    includeBase: new fields.BooleanField({
+        initial: false,
+        label: 'DAGGERHEART.ACTIONS.Settings.includeBase.label'
+    }),
+    direct: new fields.BooleanField({ initial: false, label: 'DAGGERHEART.CONFIG.DamageType.direct.name' }),
+});
+
 export default class DamageField extends fields.SchemaField {
     /**
      * Action Workflow order
@@ -13,12 +22,13 @@ export default class DamageField extends fields.SchemaField {
     /** @inheritDoc */
     constructor(options, context = {}) {
         const damageFields = {
-            parts: new IterableTypedObjectField(DHDamageData),
-            includeBase: new fields.BooleanField({
-                initial: false,
-                label: 'DAGGERHEART.ACTIONS.Settings.includeBase.label'
+            ...getDamageBaseFields(),
+            altOutcomes: new fields.SchemaField({
+                successFear: new fields.EmbeddedDataField(AltDamageOutcome, { nullable: true, initial: null }),
+                failureHope: new fields.EmbeddedDataField(AltDamageOutcome, { nullable: true, initial: null }),
+                failureFear: new fields.EmbeddedDataField(AltDamageOutcome, { nullable: true, initial: null }),
+                critical: new fields.EmbeddedDataField(AltDamageOutcome, { nullable: true, initial: null })
             }),
-            direct: new fields.BooleanField({ initial: false, label: 'DAGGERHEART.CONFIG.DamageType.direct.name' }),
             groupAttack: new fields.StringField({
                 choices: CONFIG.DH.GENERAL.groupAttackRange,
                 blank: true,
@@ -26,6 +36,12 @@ export default class DamageField extends fields.SchemaField {
             })
         };
         super(damageFields, options, context);
+    }
+
+    getDamageData(outcome) {
+        if (outcome === 'successHope') return this;
+
+        return this.altOutcomes[outcome].data;
     }
 
     /**
@@ -324,5 +340,19 @@ export class DHDamageData extends DHResourceData {
                 }
             )
         };
+    }
+}
+
+class AltDamageOutcome extends foundry.abstract.DataModel {
+    static defineSchema() {
+        return {
+            copyStandard: new fields.BooleanField({ required: true, initial: true }),
+            ...getDamageBaseFields(),
+            /* Stuff */
+        }
+    }
+
+    get data() {
+        return this.copyStandard ? this.parent : {}; // If not copying, return data from the this alternate outcome
     }
 }

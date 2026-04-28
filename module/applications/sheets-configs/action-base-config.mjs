@@ -62,6 +62,10 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             id: 'configuration',
             template: 'systems/daggerheart/templates/sheets-settings/action-settings/configuration.hbs'
         },
+        configuration: {
+            id: 'range',
+            template: 'systems/daggerheart/templates/sheets-settings/action-settings/range.hbs'
+        },
         effect: {
             id: 'effect',
             template: 'systems/daggerheart/templates/sheets-settings/action-settings/effect.hbs'
@@ -89,6 +93,14 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             icon: null,
             label: 'DAGGERHEART.GENERAL.Tabs.configuration'
         },
+        range: {
+            active: false,
+            cssClass: '',
+            group: 'primary',
+            id: 'range',
+            icon: null,
+            label: 'DAGGERHEART.GENERAL.Tabs.range'
+        },
         effect: {
             active: false,
             cssClass: '',
@@ -105,6 +117,25 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             icon: null,
             label: 'DAGGERHEART.GENERAL.Tabs.triggers'
         }
+    };
+
+    static OUTCOME_TABS = {
+        successWithHope: {
+            active: true,
+            cssClass: '',
+            group: 'outcomes',
+            id: 'successWithHope',
+            icon: null,
+            label: 'Success With Hope'
+        },
+        successWithFear: {
+            active: false,
+            cssClass: '',
+            group: 'outcomes',
+            id: 'successWithFear',
+            icon: null,
+            label: 'Success With Fear'
+        },
     };
 
     static CLEAN_ARRAYS = ['cost', 'effects', 'summon'];
@@ -155,6 +186,10 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
 
         context.openSection = this.openSection;
         context.tabs = this._getTabs(this.constructor.TABS);
+        
+        context.outcomeTabs = this._getTabs(this.constructor.OUTCOME_TABS);
+        context.outcomeData = context.outcomeTabs.successWithHope.active ? context.source.damage : context.source.damage.altOutcomes.successWithFear;
+
         context.config = CONFIG.DH;
         if (this.action.damage) {
             context.allDamageTypesUsed = !getUnusedDamageTypes(this.action.damage.parts).length;
