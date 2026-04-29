@@ -64,7 +64,7 @@ You can find the documentation here: https://github.com/Foundryborne/daggerheart
 
 ## Contributing
 
-Looking to contribute to the project? Look no further, check out our [contributing guide](contributing.md), and keep the [Code of Conduct](coc.md) in mind when working on things.
+Looking to contribute to the project? Look no further, check out our [contributing guide](CONTRIBUTING.md), and keep the [Code of Conduct](coc.md) in mind when working on things.
 
 ## Disclaimer:
 
