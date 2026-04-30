@@ -139,7 +139,7 @@ export default class ClassSheet extends DHBaseItemSheet {
             if (item.system.classIdentifiers.includes(this.document.system.identifier))
                 return;
 
-            await item.update({ 'system.classIdentifiers': this.document.system.identifier });
+            await item.update({ 'system.classIdentifiers': [...item.system.classIdentifiers, this.document.system.identifier] });
         }
 
         else if (['feature', 'ActiveEffect'].includes(itemType)) {
