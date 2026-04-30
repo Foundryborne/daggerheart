@@ -28,6 +28,8 @@ export default class DHSubclass extends BaseDataItem {
             features: new ItemLinkFields(),
             featureState: new fields.NumberField({ required: true, initial: 1, min: 1 }),
             isMulticlass: new fields.BooleanField({ initial: false }),
+            classIdentifiers: new fields.ArrayField(new fields.StringField({ nullable: false })),
+            /* Linked class is legacy. If we can safetely migrate it away at some point we could remove it */
             linkedClass: new ForeignDocumentUUIDField({ type: 'Item', nullable: true, initial: null })
         };
     }

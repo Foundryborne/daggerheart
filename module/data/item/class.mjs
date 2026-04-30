@@ -30,7 +30,6 @@ export default class DHClass extends BaseDataItem {
             }),
             evasion: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.evasion' }),
             features: new ItemLinkFields(),
-            subclasses: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
             inventory: new fields.SchemaField({
                 take: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
                 choiceA: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
@@ -51,7 +50,10 @@ export default class DHClass extends BaseDataItem {
             }),
             backgroundQuestions: new fields.ArrayField(new fields.StringField(), { initial: ['', '', ''] }),
             connections: new fields.ArrayField(new fields.StringField(), { initial: ['', '', ''] }),
-            isMulticlass: new fields.BooleanField({ initial: false })
+            isMulticlass: new fields.BooleanField({ initial: false }),
+            identifier: new fields.StringField(),
+            /* Subclasses is legacy. If we can safetely migrate it away at some point we could remove it*/
+            subclasses: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
         };
     }
 
@@ -69,6 +71,28 @@ export default class DHClass extends BaseDataItem {
     get classFeatures() {
         return this.features.filter(x => x.type === CONFIG.DH.ITEM.featureSubTypes.class).map(x => x.item);
     }
+
+    async getSubclasses() {
+        const oldLinkedSubclasses = this.subclasses.filter(x => x);
+        if (!this.identifier) return oldLinkedSubclasses;
+
+        const subclasses = game.items.filter(x => x.type === 'subclass' && x.system.classIdentifiers.includes(this.identifier));
+        for(const pack of game.packs) {
+            const indexes =  await pack.getIndex({ fields: ['system.classIdentifiers']});
+            for(const index of indexes) {
+                if (
+                    index.type === 'subclass' && 
+                    (index.system.classIdentifiers??[]).includes(this.identifier && 
+                        !subclasses.find(x => x.uuid === index.uuid))
+                ) {
+                    const subclass = await foundry.utils.fromUuid(index.uuid);
+                    subclasses.push(subclass);
+                }
+            }
+        }
+        
+        return subclasses;
+    } 
 
     async _preCreate(data, options, user) {
         if (this.actor?.type === 'character') {

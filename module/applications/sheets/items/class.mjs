@@ -128,20 +128,21 @@ export default class ClassSheet extends DHBaseItemSheet {
         const item = await fromUuid(data.uuid);
         const itemType = data.type === 'ActiveEffect' ? data.type : item.type;
         const target = event.target.closest('fieldset.drop-section');
+
         if (itemType === 'subclass') {
-            if (item.system.linkedClass) {
-                return ui.notifications.warn(
-                    game.i18n.format('DAGGERHEART.UI.Notifications.subclassAlreadyLinked', {
-                        name: item.name,
-                        class: this.document.name
-                    })
-                );
+            if (!this.document.system.identifier) {
+                return ui.notifications.error(
+                    game.i18n.localize('DAGGERHEART.UI.Notifications.classMissingIdentifier')
+                ); 
             }
-            await item.update({ 'system.linkedClass': this.document.uuid });
-            await this.document.update({
-                'system.subclasses': [...this.document.system.subclasses.map(x => x.uuid), item.uuid]
-            });
-        } else if (['feature', 'ActiveEffect'].includes(itemType)) {
+
+            if (item.system.classIdentifiers.includes(this.document.system.identifier))
+                return;
+
+            await item.update({ 'system.classIdentifiers': this.document.system.identifier });
+        }
+
+        else if (['feature', 'ActiveEffect'].includes(itemType)) {
             super._onDrop(event);
         } else if (this.document.parent?.type !== 'character') {
             if (itemType === 'weapon') {
