@@ -40,7 +40,8 @@
     "experiences": {
       "ti3Z1mq2M92KK4GJ": {
         "name": "Bloodthirsty",
-        "description": ""
+        "description": "",
+        "value": 3
       }
     },
     "bonuses": {
