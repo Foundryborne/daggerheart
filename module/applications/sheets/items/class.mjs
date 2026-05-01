@@ -133,16 +133,15 @@ export default class ClassSheet extends DHBaseItemSheet {
             if (!this.document.system.identifier) {
                 return ui.notifications.error(
                     game.i18n.localize('DAGGERHEART.UI.Notifications.classMissingIdentifier')
-                ); 
+                );
             }
 
-            if (item.system.classIdentifiers.includes(this.document.system.identifier))
-                return;
+            if (item.system.classIdentifiers.includes(this.document.system.identifier)) return;
 
-            await item.update({ 'system.classIdentifiers': [...item.system.classIdentifiers, this.document.system.identifier] });
-        }
-
-        else if (['feature', 'ActiveEffect'].includes(itemType)) {
+            await item.update({
+                'system.classIdentifiers': [...item.system.classIdentifiers, this.document.system.identifier]
+            });
+        } else if (['feature', 'ActiveEffect'].includes(itemType)) {
             super._onDrop(event);
         } else if (this.document.parent?.type !== 'character') {
             if (itemType === 'weapon') {
