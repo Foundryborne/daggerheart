@@ -185,7 +185,9 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         if (effect.origin) {
             if (useOrigin) value = value.replaceAll(/origin\.@/gi, '@');
             const originEffect = foundry.utils.fromUuidSync(effect.origin);
-            origin = this.#resolveParentDocument(originEffect, Item);
+            
+            if (originEffect)
+                origin = this.#resolveParentDocument(originEffect, Item);
         }
 
         // Get the actor and item documents. Note that actor roll data is inclusive of system roll data
