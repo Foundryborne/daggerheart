@@ -2,7 +2,7 @@ import BaseDataItem from './base.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 import ItemLinkFields from '../fields/itemLinkFields.mjs';
-import { addLinkedItemsDiff, camelize, getFeaturesHTMLData, updateLinkedItemApps } from '../../helpers/utils.mjs';
+import { addLinkedItemsDiff, getFeaturesHTMLData, updateLinkedItemApps } from '../../helpers/utils.mjs';
 
 export default class DHClass extends BaseDataItem {
     /** @inheritDoc */
@@ -50,10 +50,7 @@ export default class DHClass extends BaseDataItem {
             }),
             backgroundQuestions: new fields.ArrayField(new fields.StringField(), { initial: ['', '', ''] }),
             connections: new fields.ArrayField(new fields.StringField(), { initial: ['', '', ''] }),
-            isMulticlass: new fields.BooleanField({ initial: false }),
-            identifier: new fields.StringField({ blank: false, initial: obj => camelize(obj?.name ?? '') }),
-            /* Subclasses is legacy. If we can safetely migrate it away at some point we could remove it*/
-            subclasses: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false })
+            isMulticlass: new fields.BooleanField({ initial: false })
         };
     }
 
@@ -72,18 +69,14 @@ export default class DHClass extends BaseDataItem {
         return this.features.filter(x => x.type === CONFIG.DH.ITEM.featureSubTypes.class).map(x => x.item);
     }
 
-    async getSubclasses() {
-        const oldLinkedSubclasses = this.subclasses;
-        if (oldLinkedSubclasses.length) return oldLinkedSubclasses;
-
-        const subclasses = game.items.filter(
-            x => x.type === 'subclass' && x.system.classLink.identifier === this.identifier
-        );
+    async fetchSubclasses() {
+        const uuids = [this.parent.uuid, this.parent._stats?.compendiumSource].filter(u => !!u);
+        const subclasses = game.items.filter(x => x.type === 'subclass' && uuids.includes(x.system.linkedClass));
         for (const pack of game.packs) {
-            const indexes = await pack.getIndex({ fields: ['system.classLink.identifier'] });
+            const indexes = await pack.getIndex({ fields: ['system.linkedClass'] });
             for (const index of indexes) {
                 if (index.type !== 'subclass') continue;
-                if (index.system?.classLink?.identifier !== this.identifier) continue;
+                if (!uuids.includes(index.system?.linkedClass)) continue;
                 if (subclasses.find(x => x.uuid === index.uuid)) continue;
 
                 const subclass = await foundry.utils.fromUuid(index.uuid);

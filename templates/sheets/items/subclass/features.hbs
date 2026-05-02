@@ -5,11 +5,23 @@
 >
     <fieldset>
         <legend>{{localize "TYPES.Item.class"}}</legend>
-        {{#if document.system.classLink.identifier}}
+        {{#if class}}
             <div class="feature-list">
                 <li class="feature-line">
-                    <img class="image" src="{{document.system.classLink.img}}" />
-                    <span>{{document.system.classLink.name}}</span>
+                    <img class="image" src="{{class.img}}" />
+                    <span>{{class.name}} {{#if class.missing}}<i class="fa-solid fa-link-slash" inert></i>{{/if}}</span>
+                    {{#unless class.missing}}
+                        <div class='controls'>
+                            <a
+                                class='effect-control'
+                                data-action='editDoc'
+                                data-item-uuid={{class.uuid}}
+                                data-tooltip='{{localize "DAGGERHEART.UI.Tooltip.openItemWorld"}}'
+                            >
+                                <i class="fa-solid fa-globe" inert></i>
+                            </a>
+                        </div>
+                    {{/unless}}
                 </li>
             </div>
         {{else}}

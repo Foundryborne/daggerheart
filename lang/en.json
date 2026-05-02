@@ -3164,7 +3164,6 @@
                 "noSelectionsLeft": "Nothing more to select!",
                 "alreadySelectedClass": "You already have that class!",
                 "classAlreadySelected": "The character already has a class",
-                "classMissingIdentifier": "The class hasn't set up an identifier",
                 "subclassAlreadySelected": "The character already has a subclass for that class.",
                 "noClassSelected": "Your character has no class selected!",
                 "lacksDomain": "Your character doesn't have the domain of the card!",

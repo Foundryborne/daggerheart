@@ -1,3 +1,4 @@
+import { sortBy } from '../../../helpers/utils.mjs';
 import DHBaseItemSheet from '../api/base-item.mjs';
 
 const { TextEditor } = foundry.applications.ux;
@@ -9,8 +10,7 @@ export default class ClassSheet extends DHBaseItemSheet {
         position: { width: 700 },
         actions: {
             removeItemFromCollection: ClassSheet.#removeItemFromCollection,
-            removeSuggestedItem: ClassSheet.#removeSuggestedItem,
-            resetIdentifier: ClassSheet.#resetIdentifier
+            removeSuggestedItem: ClassSheet.#removeSuggestedItem
         },
         tagifyConfigs: [
             {
@@ -105,10 +105,10 @@ export default class ClassSheet extends DHBaseItemSheet {
     }
 
     /**@inheritdoc */
-    async _prepareContext(_options) {
-        const context = await super._prepareContext(_options);
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
         context.domains = this.document.system.domains;
-        context.subclasses = await this.document.system.getSubclasses();
+        context.subclasses = await this.document.system.fetchSubclasses();
         return context;
     }
 
@@ -190,12 +190,6 @@ export default class ClassSheet extends DHBaseItemSheet {
     static async #removeItemFromCollection(_event, element) {
         const { uuid, target } = element.dataset;
         const prop = foundry.utils.getProperty(this.document.system, target);
-
-        if (target === 'subclasses') {
-            const subclass = await foundry.utils.fromUuid(uuid);
-            await subclass?.update({ 'system.linkedClass': null });
-        }
-
         await this.document.update({ [`system.${target}`]: prop.filter(i => i && i.uuid !== uuid).map(x => x.uuid) });
     }
 
@@ -207,11 +201,5 @@ export default class ClassSheet extends DHBaseItemSheet {
     static async #removeSuggestedItem(_event, element) {
         const { target } = element.dataset;
         await this.document.update({ [`system.characterGuide.${target}`]: null });
-    }
-
-    static async #resetIdentifier() {
-        const document = this.document;
-        const initial = document.system.schema.fields.identifier.getInitialValue(document._source);
-        document.update({ 'system.identifier': initial });
     }
 }
