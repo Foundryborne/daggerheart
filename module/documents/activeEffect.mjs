@@ -171,6 +171,7 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
 
     /** Recursively finds the first parent document of the given object */
     static #resolveParentDocument(model, documentClass) {
+        if (!model) return null;
         return model instanceof documentClass
             ? model
             : model.parent

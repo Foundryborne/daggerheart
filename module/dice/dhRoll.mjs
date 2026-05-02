@@ -257,7 +257,7 @@ export default class DHRoll extends Roll {
             if (!roll.terms[i].isDeterministic) continue;
             const termTotal = roll.terms[i].total;
             if (typeof termTotal === 'number') {
-                const multiplier = roll.terms[i - 1]?.operator === ' - ' ? -1 : 1;
+                const multiplier = roll.terms[i - 1]?.operator === '-' ? -1 : 1;
                 modifierTotal += multiplier * termTotal;
             }
         }
