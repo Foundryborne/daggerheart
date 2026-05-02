@@ -121,6 +121,7 @@ export default class DHEnvironmentSettings extends DHBaseActorSettings {
     }
 
     async _onDrop(event) {
+        event.stopPropagation();
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
         const item = await fromUuid(data.uuid);
         if (data.fromInternal && item?.parent?.uuid === this.actor.uuid) return;
@@ -137,9 +138,5 @@ export default class DHEnvironmentSettings extends DHBaseActorSettings {
             await this.actor.createEmbeddedDocuments('Item', [item]);
             this.render();
         }
-    }
-
-    async _onDropItem(event, item) {
-        console.log(item);
     }
 }
