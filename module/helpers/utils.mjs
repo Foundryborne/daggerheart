@@ -841,3 +841,11 @@ export function createShallowProxy(obj) {
         }
     });
 }
+
+export function camelize(str) {
+    return str
+        .replace(/(?:^\w|[A-Z]|\b\w)/g, (part, index) => {
+            return index === 0 ? part.toLowerCase() : part.toUpperCase();
+        })
+        .replace(/\s+/g, '');
+}

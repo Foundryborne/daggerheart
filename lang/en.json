@@ -2532,6 +2532,9 @@
                     "recovery": { "label": "Recovery" },
                     "type": { "label": "Type" },
                     "value": { "label": "Value" }
+                },
+                "identifier": {
+                    "label": "Identifier"
                 }
             },
             "Ancestry": {

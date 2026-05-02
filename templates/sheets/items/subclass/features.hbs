@@ -3,6 +3,20 @@
     data-tab='{{tabs.features.id}}'
     data-group='{{tabs.features.group}}'
 >
+    <fieldset>
+        <legend>{{localize "TYPES.Item.class"}}</legend>
+        {{#if document.system.classLink.identifier}}
+            <div class="feature-list">
+                <li class="feature-line">
+                    <img class="image" src="{{document.system.classLink.img}}" />
+                    <span>{{document.system.classLink.name}}</span>
+                </li>
+            </div>
+        {{else}}
+            <div class="drag-area">{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "TYPES.Item.class")}}</div>
+        {{/if}}
+    </fieldset>
+
     <fieldset class="drop-section" data-type="foundation">
         <legend>
             {{localize "DAGGERHEART.GENERAL.Tabs.foundation"}} 

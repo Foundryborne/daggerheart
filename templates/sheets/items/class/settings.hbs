@@ -3,6 +3,15 @@
     data-tab='{{tabs.settings.id}}'
     data-group='{{tabs.settings.group}}'
 >
+    <fieldset class="two-columns">
+        <legend>{{localize "DAGGERHEART.GENERAL.general"}}</legend>
+        <span>{{localize "DAGGERHEART.ITEMS.FIELDS.identifier.label"}}</span>
+        <div class="flexrow">
+            {{formInput systemFields.identifier value=source.system.identifier}}
+            <button class="plain inline-control icon fa-solid fa-rotate-right" data-action="resetIdentifier"></button>
+        </div>
+    </fieldset>
+
     <fieldset class="two-columns even">
         <legend>{{localize tabs.settings.label}}</legend>
         {{formGroup systemFields.hitPoints value=source.system.hitPoints localize=true}}

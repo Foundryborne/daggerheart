@@ -9,7 +9,8 @@ export default class ClassSheet extends DHBaseItemSheet {
         position: { width: 700 },
         actions: {
             removeItemFromCollection: ClassSheet.#removeItemFromCollection,
-            removeSuggestedItem: ClassSheet.#removeSuggestedItem
+            removeSuggestedItem: ClassSheet.#removeSuggestedItem,
+            resetIdentifier: ClassSheet.#resetIdentifier
         },
         tagifyConfigs: [
             {
@@ -107,6 +108,7 @@ export default class ClassSheet extends DHBaseItemSheet {
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.domains = this.document.system.domains;
+        context.subclasses = await this.document.system.getSubclasses();
         return context;
     }
 
@@ -129,19 +131,7 @@ export default class ClassSheet extends DHBaseItemSheet {
         const itemType = data.type === 'ActiveEffect' ? data.type : item.type;
         const target = event.target.closest('fieldset.drop-section');
 
-        if (itemType === 'subclass') {
-            if (!this.document.system.identifier) {
-                return ui.notifications.error(
-                    game.i18n.localize('DAGGERHEART.UI.Notifications.classMissingIdentifier')
-                );
-            }
-
-            if (item.system.classIdentifiers.includes(this.document.system.identifier)) return;
-
-            await item.update({
-                'system.classIdentifiers': [...item.system.classIdentifiers, this.document.system.identifier]
-            });
-        } else if (['feature', 'ActiveEffect'].includes(itemType)) {
+        if (['feature', 'ActiveEffect'].includes(itemType)) {
             super._onDrop(event);
         } else if (this.document.parent?.type !== 'character') {
             if (itemType === 'weapon') {
@@ -217,5 +207,11 @@ export default class ClassSheet extends DHBaseItemSheet {
     static async #removeSuggestedItem(_event, element) {
         const { target } = element.dataset;
         await this.document.update({ [`system.characterGuide.${target}`]: null });
+    }
+
+    static async #resetIdentifier() {
+        const document = this.document;
+        const initial = document.system.schema.fields.identifier.getInitialValue(document._source);
+        document.update({ 'system.identifier': initial });
     }
 }
