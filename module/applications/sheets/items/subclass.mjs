@@ -45,7 +45,7 @@ export default class SubclassSheet extends DHBaseItemSheet {
         const context = await super._prepareContext(options);
         if (this.document.system.linkedClass) {
             context.class = (await fromUuid(this.document.system.linkedClass)) ?? {
-                name: 'Missing Class',
+                name: _loc('DAGGERHEART.GENERAL.missingX', { x: _loc('TYPES.Item.class') }),
                 img: 'systems/daggerheart/assets/icons/documents/items/laurel-crown.svg',
                 missing: true
             };

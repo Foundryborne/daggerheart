@@ -2442,6 +2442,7 @@
                 "single": "Miss",
                 "plural": "Miss"
             },
+            "missingX": "Missing {x}",
             "maxWithThing": "Max {thing}",
             "missingDragDropThing": "Drop {thing} here",
             "multiclass": "Multiclass",

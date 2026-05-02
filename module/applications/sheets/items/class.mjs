@@ -1,4 +1,3 @@
-import { sortBy } from '../../../helpers/utils.mjs';
 import DHBaseItemSheet from '../api/base-item.mjs';
 
 const { TextEditor } = foundry.applications.ux;
