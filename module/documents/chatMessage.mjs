@@ -288,9 +288,8 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                 canvas.regions.placeRegion(data, { create: true });
             };
 
-            const needsGMExecution = effects.length > 0;
-
-            if (needsGMExecution && !game.user.isGM) {
+            // Regions with effects must be placed by the GM
+            if (effects.length > 0 && !game.user.isGM) {
                 if (!game.users.activeGM)
                     return ui.notifications.error(
                         game.i18n.localize('DAGGERHEART.UI.Notifications.behaviorRegionRequiresGM')
