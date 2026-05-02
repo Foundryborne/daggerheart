@@ -1,4 +1,4 @@
-import { emitAsGM, emitGMCreate, GMUpdateEvent } from '../systemRegistration/socket.mjs';
+import { emitGMUpdate, emitGMCreate, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 
 export default class DhpChatMessage extends foundry.documents.ChatMessage {
     targetHook = null;
@@ -214,7 +214,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             const action = this.system.action;
             if (!action || !action?.hasSave) return;
             game.system.api.fields.ActionFields.SaveField.rollSave.call(action, token.actor, event).then(result =>
-                emitAsGM(
+                emitGMUpdate(
                     GMUpdateEvent.UpdateSaveMessage,
                     game.system.api.fields.ActionFields.SaveField.updateSaveMessage.bind(
                         action,

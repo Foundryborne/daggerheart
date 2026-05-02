@@ -1,5 +1,5 @@
 import { ResourceUpdateMap } from '../../data/action/baseAction.mjs';
-import { emitAsGM, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 import Party from '../sheets/actors/party.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -242,7 +242,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
             });
         };
 
-        await emitAsGM(
+        await emitGMUpdate(
             GMUpdateEvent.UpdateDocument,
             gmUpdate,
             update,

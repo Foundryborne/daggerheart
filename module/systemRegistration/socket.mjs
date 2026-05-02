@@ -125,7 +125,7 @@ export const registerUserQueries = () => {
 };
 
 export const emitGMUpdate = async (eventName, callback, update, uuid = null, refresh = null) => {
-    return await emitAsGM(socketEvent.GMUpdate, { eventName, callback, data: update, uuid, refresh });
+    return await emitAsGM(socketEvent.GMUpdate, { action: eventName, callback, data: update, uuid, refresh });
 };
 
 export const emitGMCreate = async (documentType, callback, data, scene) => {

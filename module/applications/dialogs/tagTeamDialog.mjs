@@ -1,6 +1,6 @@
 import { MemberData } from '../../data/tagTeamData.mjs';
 import { getCritDamageBonus } from '../../helpers/utils.mjs';
-import { emitAsGM, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 import Party from '../sheets/actors/party.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -259,7 +259,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             });
         };
 
-        await emitAsGM(
+        await emitGMUpdate(
             GMUpdateEvent.UpdateDocument,
             gmUpdate,
             update,
