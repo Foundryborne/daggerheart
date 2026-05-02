@@ -258,7 +258,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             const effects = selectedArea.effects.map(effect => this.system.action.item.effects.get(effect).uuid);
             const { shape: type, size: range } = selectedArea;
             const shapeData = CONFIG.Canvas.layers.regions.layerClass.getTemplateShape({ type, range });
-            
+
             const scene = game.scenes.get(game.user.viewedScene);
             const level = scene.levels.find(x => x.isView);
 
@@ -267,39 +267,37 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                 levels: level ? [level.id] : [],
                 shapes: [shapeData],
                 restriction: { enabled: false, type: 'move', priority: 0 },
-                behaviors: effects.length > 0 ? [
-                    {
-                        name: game.i18n.localize('TYPES.RegionBehavior.applyActiveEffect'),
-                        type: 'applyActiveEffect',
-                        system: {
-                            effects: effects
-                        }
-                    }] : [],
+                behaviors:
+                    effects.length > 0
+                        ? [
+                              {
+                                  name: game.i18n.localize('TYPES.RegionBehavior.applyActiveEffect'),
+                                  type: 'applyActiveEffect',
+                                  system: {
+                                      effects: effects
+                                  }
+                              }
+                          ]
+                        : [],
                 displayMeasurements: true,
                 locked: false,
                 ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE },
                 visibility: CONST.REGION_VISIBILITY.ALWAYS
             };
-            const placeRegion = (data) => {
-                canvas.regions.placeRegion(
-                    data,
-                    { create: true }
-                );
+            const placeRegion = data => {
+                canvas.regions.placeRegion(data, { create: true });
             };
-            
+
             const needsGMExecution = effects.length > 0;
 
             if (needsGMExecution && !game.user.isGM) {
                 if (!game.users.activeGM)
-                    return ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.behaviorRegionRequiresGM'));
+                    return ui.notifications.error(
+                        game.i18n.localize('DAGGERHEART.UI.Notifications.behaviorRegionRequiresGM')
+                    );
 
                 const region = await canvas.regions.placeRegion(regionData, { create: false });
-                emitGMCreate(
-                    'Region',
-                    placeRegion,
-                    region,
-                    scene.id,
-                );
+                emitGMCreate('Region', placeRegion, region, scene.id);
             } else {
                 placeRegion(regionData);
             }

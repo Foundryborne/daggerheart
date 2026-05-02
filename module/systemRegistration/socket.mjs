@@ -42,7 +42,7 @@ export const GMUpdateEvent = {
     UpdateSetting: 'DhGMUpdateSetting',
     UpdateFear: 'DhGMUpdateFear',
     UpdateCountdowns: 'DhGMUpdateCountdowns',
-    UpdateSaveMessage: 'DhGMUpdateSaveMessage',
+    UpdateSaveMessage: 'DhGMUpdateSaveMessage'
 };
 
 export const RefreshType = {
@@ -109,7 +109,7 @@ export const registerSocketHooks = () => {
 
     Hooks.on(socketEvent.GMCreate, async ({ data, documentType, scene }) => {
         if (!game.user.isGM) return;
-        
+
         switch (documentType) {
             default:
                 const cls = getDocumentClass(documentType);
@@ -129,7 +129,7 @@ export const emitGMUpdate = async (eventName, callback, update, uuid = null, ref
 };
 
 export const emitGMCreate = async (documentType, callback, data, scene) => {
-    return await emitAsGM(socketEvent.GMCreate, { documentType, callback, data, scene });  
+    return await emitAsGM(socketEvent.GMCreate, { documentType, callback, data, scene });
 };
 
 export const emitAsGM = async (event, data = { callback: () => {}, data: {} }) => {
