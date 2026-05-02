@@ -120,11 +120,11 @@ export default class DhSceneConfigSettings extends foundry.applications.sheets.S
             foundry.utils.fromUuidSync(x)
         );
 
-        for (const key of Object.keys(this.document._source.flags.daggerheart?.sceneEnvironments ?? {})) {
-            if (!submitData.flags.daggerheart.sceneEnvironments[key]) {
-                submitData.flags.daggerheart.sceneEnvironments[key] = _del;
-            }
-        }
+        // for (const key of Object.keys(this.document._source.flags.daggerheart?.sceneEnvironments ?? {})) {
+        //     if (!submitData.flags.daggerheart.sceneEnvironments[key]) {
+        //         submitData.flags.daggerheart.sceneEnvironments[key] = _del;
+        //     }
+        // }
 
         super._processSubmitData(event, form, submitData, options);
     }
