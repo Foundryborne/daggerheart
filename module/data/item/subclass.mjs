@@ -83,7 +83,8 @@ export default class DHSubclass extends BaseDataItem {
                     ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.missingClass'));
                     return false;
                 }
-                if (actorClass.system.subclasses.every(x => x.uuid !== dataUuid)) {
+
+                if ((await actorClass.system.fetchSubclasses()).every(x => x.uuid !== dataUuid)) {
                     ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.subclassNotInClass'));
                     return false;
                 }
