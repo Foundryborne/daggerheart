@@ -6,7 +6,7 @@
         {{else}}
             {{localize "DAGGERHEART.GENERAL.damage"}}
         {{/if}}
-        {{#unless (eq path 'system.attack.')}}<a data-action="addDamage" {{#if @root.allDamageTypesUsed}}disabled{{/if}}><i class="fa-solid fa-plus icon-button"></i></a>{{/unless}}
+        {{#unless (eq path 'system.attack.')}}<a data-action="addDamage" data-outcome="{{outcome}}" {{#if @root.allDamageTypesUsed}}disabled{{/if}}><i class="fa-solid fa-plus icon-button"></i></a>{{/unless}}
     </legend>
     <div class="nest-inputs">
         {{#if @root.hasBaseDamage}}
@@ -19,7 +19,7 @@
             {{formField baseFields.groupAttack value=source.groupAttack name=(concat path "damage.groupAttack") localize=true classes="select"}}
         {{/if}}
     </div>
-
+    
     {{!-- Handlebars uses Symbol.Iterator to produce index|key. This isn't compatible with our parts object, so we instead use applyTo, which is the same value --}}
     {{#each source.parts as |dmg key|}}
         <div class="nest-inputs">

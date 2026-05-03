@@ -343,16 +343,18 @@ export class DHDamageData extends DHResourceData {
     }
 }
 
-class AltDamageOutcome extends foundry.abstract.DataModel {
+export class AltDamageOutcome extends foundry.abstract.DataModel {
     static defineSchema() {
         return {
-            copyStandard: new fields.BooleanField({ required: true, initial: true }),
+            useStandardHitPointDamage: new fields.BooleanField({ required: true, initial: true }),
             ...getDamageBaseFields(),
-            /* Stuff */
         }
     }
 
     get data() {
-        return this.copyStandard ? this.parent : {}; // If not copying, return data from the this alternate outcome
+        return {
+            ...this.parent,
+            ...this,
+        }
     }
 }

@@ -1,3 +1,4 @@
+import { AltDamageOutcome } from '../../data/fields/action/damageField.mjs';
 import { getUnusedDamageTypes } from '../../helpers/utils.mjs';
 import DaggerheartSheet from '../sheets/daggerheart-sheet.mjs';
 
@@ -62,7 +63,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             id: 'configuration',
             template: 'systems/daggerheart/templates/sheets-settings/action-settings/configuration.hbs'
         },
-        configuration: {
+        range: {
             id: 'range',
             template: 'systems/daggerheart/templates/sheets-settings/action-settings/range.hbs'
         },
@@ -120,19 +121,19 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     };
 
     static OUTCOME_TABS = {
-        successWithHope: {
+        successHope: {
             active: true,
             cssClass: '',
             group: 'outcomes',
-            id: 'successWithHope',
+            id: 'successHope',
             icon: null,
             label: 'Success With Hope'
         },
-        successWithFear: {
+        successFear: {
             active: false,
             cssClass: '',
             group: 'outcomes',
-            id: 'successWithFear',
+            id: 'successFear',
             icon: null,
             label: 'Success With Fear'
         },
@@ -188,7 +189,6 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         context.tabs = this._getTabs(this.constructor.TABS);
         
         context.outcomeTabs = this._getTabs(this.constructor.OUTCOME_TABS);
-        context.outcomeData = context.outcomeTabs.successWithHope.active ? context.source.damage : context.source.damage.altOutcomes.successWithFear;
 
         context.config = CONFIG.DH;
         if (this.action.damage) {
@@ -334,9 +334,10 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
-    static addDamage(_event) {
+    static addDamage(_event, button) {
         if (!this.action.damage.parts) return;
 
+        const outcome = button.dataset.outcome;
         const choices = getUnusedDamageTypes(this.action._source.damage.parts);
         const content = new foundry.data.fields.StringField({
             label: game.i18n.localize('Damage Type'),
@@ -360,7 +361,16 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             if (type === CONFIG.DH.GENERAL.healingTypes.hitPoints.id)
                 part.type = this.action.schema.fields.damage.fields.parts.element.fields.type.element.initial;
 
-            data.damage.parts[type] = part;
+            if (outcome === 'successHope')
+                data.damage.parts[type] = part;
+            else {
+                if (!data.damage.altOutcomes[outcome]) {
+                    data.damage.altOutcomes[outcome] = new AltDamageOutcome();
+                }
+
+                data.damage.altOutcomes[outcome].parts[type] = part;
+            }
+
             this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
         };
 
