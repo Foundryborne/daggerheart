@@ -227,7 +227,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             context.resources.stress.max < maxResource ? maxResource - context.resources.stress.max : 0;
 
         context.equippedItems = sortBy(
-            this.document.items.filter(i => i.system.equipped),
+            this.document.items.filter(i => i.system.equipped && (i.type === 'weapon' || i.usable)),
             i => (i.type === 'weapon' ? (i.system.secondary ? 1 : 0) : 2)
         );
 
