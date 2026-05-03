@@ -1,5 +1,5 @@
 import { waitForDiceSoNice } from '../../helpers/utils.mjs';
-import { emitAsGM, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -204,7 +204,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                 start: newMax
             }
         });
-        await emitAsGM(GMUpdateEvent.UpdateCountdowns, DhCountdowns.gmSetSetting.bind(settings), settings, null, {
+        await emitGMUpdate(GMUpdateEvent.UpdateCountdowns, DhCountdowns.gmSetSetting.bind(settings), settings, null, {
             refreshType: RefreshType.Countdown
         });
     }
@@ -218,7 +218,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             ? Math.min(countdown.progress.current + 1, countdown.progress.start)
             : Math.max(countdown.progress.current - 1, 0);
         await settings.updateSource({ [`countdowns.${target.id}.progress.current`]: newCurrent });
-        await emitAsGM(GMUpdateEvent.UpdateCountdowns, DhCountdowns.gmSetSetting.bind(settings), settings, null, {
+        await emitGMUpdate(GMUpdateEvent.UpdateCountdowns, DhCountdowns.gmSetSetting.bind(settings), settings, null, {
             refreshType: RefreshType.Countdown
         });
     }
@@ -277,7 +277,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                 return acc;
             }, {})
         };
-        await emitAsGM(GMUpdateEvent.UpdateCountdowns, DhCountdowns.gmSetSetting.bind(settings), settings, null, {
+        await emitGMUpdate(GMUpdateEvent.UpdateCountdowns, DhCountdowns.gmSetSetting.bind(settings), settings, null, {
             refreshType: RefreshType.Countdown
         });
     }

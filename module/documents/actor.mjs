@@ -1,4 +1,4 @@
-import { emitAsGM, GMUpdateEvent } from '../systemRegistration/socket.mjs';
+import { emitGMUpdate, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
 import { createScrollText, damageKeyToNumber, getDamageKey, createShallowProxy } from '../helpers/utils.mjs';
@@ -827,7 +827,7 @@ export default class DhpActor extends Actor {
             const u = updates[key];
             if (key === 'items') {
                 Object.values(u).forEach(async item => {
-                    await emitAsGM(
+                    await emitGMUpdate(
                         GMUpdateEvent.UpdateDocument,
                         item.target.update.bind(item.target),
                         item.resources,
@@ -836,7 +836,7 @@ export default class DhpActor extends Actor {
                 });
             } else {
                 if (Object.keys(u.resources).length > 0) {
-                    await emitAsGM(
+                    await emitGMUpdate(
                         GMUpdateEvent.UpdateDocument,
                         u.target.update.bind(u.target),
                         u.resources,

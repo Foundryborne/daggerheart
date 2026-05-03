@@ -1,0 +1,38 @@
+<section class="tag-team-roll tab {{#if tabs.tagTeamRoll.active}} active{{/if}}" data-group="{{tabs.tagTeamRoll.group}}" data-tab="{{tabs.tagTeamRoll.id}}">
+    <div class="tag-team-roll-container {{#unless isEditable}}inactive{{/unless}}">
+        <div class="results-container">
+            <span class="result-container-label">{{localize "DAGGERHEART.GENERAL.result.plural"}}</span>
+            <div class="results-inner-container">
+                {{#if hintText}}
+                    <div class="hint">{{localize hintText}}</div>
+                {{else}}
+                    {{#if joinedRoll.roll}}
+                        <div class="result-container">
+                            <span class="result-section-label">{{localize "DAGGERHEART.GENERAL.dualityRoll"}}</span>
+                            <div class="result-info">
+                                <div class="damage-info">{{joinedRoll.roll.total}}</div>
+                                <div>{{localize "DAGGERHEART.GENERAL.withThing" thing=joinedRoll.roll.totalLabel}}</div>
+                            </div>
+                        </div>
+                    {{/if}}
+                    {{#if joinedRoll.rollData.options.hasDamage}}
+                        <div class="result-container">
+                            <span class="result-section-label">{{localize "DAGGERHEART.GENERAL.damage"}}</span>
+                            {{#each joinedRoll.rollData.options.damage as |damage key|}}
+                                <div class="result-info">
+                                    <div>{{localize (concat "DAGGERHEART.CONFIG.HealingType." key ".name")}}</div>
+                                    <div class="damage-info">{{damage.total}}</div>
+                                </div>
+                            {{/each}}
+                        </div>
+                    {{/if}}
+                {{/if}}
+            </div>
+        </div>
+
+        <div class="finish-container">
+            <button type="button" data-action="cancelRoll">{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.cancelTagTeamRoll"}}</button>
+            <button type="button" data-action="finishRoll" {{#if hintText}}disabled{{/if}} class="finish-button">{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.finishTagTeamRoll"}}</button>
+        </div>
+    </div>
+</section>

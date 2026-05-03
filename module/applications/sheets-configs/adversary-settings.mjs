@@ -110,6 +110,7 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
     }
 
     async _onDrop(event) {
+        event.stopPropagation();
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
 
         const item = await fromUuid(data.uuid);

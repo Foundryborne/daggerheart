@@ -342,7 +342,8 @@ Hooks.on(CONFIG.DH.HOOKS.hooksConfig.tagTeamStart, async data => {
         const party = game.actors.get(data.partyId);
         if (!party) return;
 
-        const dialog = new game.system.api.applications.dialogs.TagTeamDialog(party);
+        const TagTeamDialog = game.system.api.applications.dialogs.TagTeamDialog;
+        const dialog = foundry.applications.instances.get(`TagTeamDialog-${party.id}`) ?? new TagTeamDialog(party);
         dialog.tabGroups.application = 'tagTeamRoll';
         await dialog.render({ force: true });
     }
@@ -353,7 +354,8 @@ Hooks.on(CONFIG.DH.HOOKS.hooksConfig.groupRollStart, async data => {
         const party = game.actors.get(data.partyId);
         if (!party) return;
 
-        const dialog = new game.system.api.applications.dialogs.GroupRollDialog(party);
+        const GroupRollDialog = game.system.api.applications.dialogs.GroupRollDialog;
+        const dialog = foundry.applications.instances.get(`GroupRollDialog-${party.id}`) ?? new GroupRollDialog(party);
         dialog.tabGroups.application = 'groupRoll';
         await dialog.render({ force: true });
     }

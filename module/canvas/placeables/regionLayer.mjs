@@ -57,14 +57,14 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
     }
 
     async placeRegion(data, options = {}) {
-        const preConfirm = ({ _event, document, _create, _options }) => {
-            const shape = document.shapes[0];
+        const preConfirm = data => {
+            const shape = data.document.shapes[0];
             const isEmanation = shape.type === 'emanation';
             if (isEmanation) {
                 const token = this.#findTokenInBounds(shape.base.origin);
-                if (!token) return options.preConfirm?.() ?? true;
+                if (!token) return options.preConfirm?.(data) ?? true;
                 const shapeData = shape.toObject();
-                document.updateSource({
+                data.document.updateSource({
                     shapes: [
                         {
                             ...shapeData,
@@ -80,10 +80,10 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
                 });
             }
 
-            return options?.preConfirm?.() ?? true;
+            return options?.preConfirm?.(data) ?? true;
         };
 
-        super.placeRegion(data, { ...options, preConfirm });
+        return await super.placeRegion(data, { ...options, preConfirm });
     }
 
     /** Searches for token at origin point, returning null if there are no tokens or multiple overlapping tokens */

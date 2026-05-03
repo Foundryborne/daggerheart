@@ -1,4 +1,4 @@
-import { emitAsGM, GMUpdateEvent } from '../../systemRegistration/socket.mjs';
+import { emitGMUpdate, GMUpdateEvent } from '../../systemRegistration/socket.mjs';
 
 export default class DhSceneNavigation extends foundry.applications.ui.SceneNavigation {
     /** @inheritdoc */
@@ -68,7 +68,7 @@ export default class DhSceneNavigation extends foundry.applications.ui.SceneNavi
                                 1
                             )[0];
                             newEnvironments.unshift(newFirst);
-                            emitAsGM(
+                            emitGMUpdate(
                                 GMUpdateEvent.UpdateDocument,
                                 scene.update.bind(scene),
                                 { 'flags.daggerheart.sceneEnvironments': newEnvironments },

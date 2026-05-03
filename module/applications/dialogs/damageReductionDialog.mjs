@@ -22,9 +22,10 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         );
 
         const orderedArmorSources = getArmorSources(actor).filter(s => !s.disabled);
-        const armor = orderedArmorSources.reduce((acc, { document }) => {
+        const armor = orderedArmorSources.reduce((acc, { name, document }) => {
             const { current, max } = document.type === 'armor' ? document.system.armor : document.system.armorData;
             acc.push({
+                name,
                 effect: document,
                 marks: [...Array(max).keys()].reduce((acc, _, index) => {
                     const spent = index < current;
@@ -152,14 +153,8 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
 
         const armorSources = [];
         for (const source of this.marks.armor) {
-            const parent = source.effect.origin
-                ? await foundry.utils.fromUuid(source.effect.origin)
-                : source.effect.parent;
-
-            const useEffectName = parent.type === 'armor' || parent instanceof Actor;
-            const label = useEffectName ? source.effect.name : parent.name;
             armorSources.push({
-                label: label,
+                label: source.name,
                 uuid: source.effect.uuid,
                 marks: source.marks
             });

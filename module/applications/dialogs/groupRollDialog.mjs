@@ -1,12 +1,12 @@
 import { ResourceUpdateMap } from '../../data/action/baseAction.mjs';
-import { emitAsGM, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 import Party from '../sheets/actors/party.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 export default class GroupRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     constructor(party) {
-        super();
+        super({ id: `GroupRollDialog-${party.id}` });
 
         this.party = party;
         this.partyMembers = party.system.partyMembers
@@ -35,7 +35,6 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: 'GroupRollDialog',
         classes: ['daggerheart', 'views', 'dh-style', 'dialog', 'group-roll-dialog'],
         position: { width: 390, height: 'auto' },
         window: {
@@ -243,7 +242,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
             });
         };
 
-        await emitAsGM(
+        await emitGMUpdate(
             GMUpdateEvent.UpdateDocument,
             gmUpdate,
             update,

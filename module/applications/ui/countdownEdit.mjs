@@ -1,6 +1,6 @@
 import { DhCountdown } from '../../data/countdowns.mjs';
 import { waitForDiceSoNice } from '../../helpers/utils.mjs';
-import { emitAsGM, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -114,7 +114,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         }
 
         await this.data.updateSource(update);
-        await emitAsGM(GMUpdateEvent.UpdateCountdowns, this.gmSetSetting.bind(this.data), this.data, null, {
+        await emitGMUpdate(GMUpdateEvent.UpdateCountdowns, this.gmSetSetting.bind(this.data), this.data, null, {
             refreshType: RefreshType.Countdown
         });
 

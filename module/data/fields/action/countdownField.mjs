@@ -1,4 +1,4 @@
-import { emitAsGM, GMUpdateEvent, RefreshType, socketEvent } from '../../../systemRegistration/socket.mjs';
+import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../../systemRegistration/socket.mjs';
 
 const fields = foundry.data.fields;
 
@@ -78,7 +78,7 @@ export default class CountdownField extends fields.ArrayField {
             );
         }
 
-        await emitAsGM(
+        await emitGMUpdate(
             GMUpdateEvent.UpdateCountdowns,
             async () => {
                 const countdownSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);

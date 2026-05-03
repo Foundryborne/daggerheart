@@ -836,10 +836,10 @@ export default class DhCharacter extends DhCreature {
 
         /* Scars can alter the amount of current hope */
         if (changes.system?.scars) {
-            const diff = this.system.scars - changes.system.scars;
-            const newHopeMax = this.system.resources.hope.max + diff;
-            const newHopeValue = Math.min(newHopeMax, this.system.resources.hope.value);
-            if (newHopeValue != this.system.resources.hope.value) {
+            const diff = this.scars - changes.system.scars;
+            const newHopeMax = this.resources.hope.max + diff;
+            const newHopeValue = Math.min(newHopeMax, this.resources.hope.value);
+            if (newHopeValue != this.resources.hope.value) {
                 if (!changes.system.resources.hope) changes.system.resources.hope = { value: 0 };
 
                 changes.system.resources.hope = {
