@@ -85,6 +85,14 @@ export default class Party extends DHBaseActorSheet {
     /*  Prepare Context                             */
     /* -------------------------------------------- */
 
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
+        const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Metagaming);
+        context.showStats =
+            settings.hidePartyStats === 'never' || (settings.hidePartyStats === 'players' && game.user.isGM);
+        return context;
+    }
+
     async _preparePartContext(partId, context, options) {
         context = await super._preparePartContext(partId, context, options);
         switch (partId) {

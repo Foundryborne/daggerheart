@@ -2822,6 +2822,15 @@
                     "hideObserverPermissionInChat": {
                         "label": "Hide Chat Info From Players",
                         "hint": "Information such as hit/miss on attack rolls against adversaries will be hidden"
+                    },
+                    "hidePartyStats": {
+                        "label": "Hide Party Stats",
+                        "hint": "Resources and stats in the party sheet's member list will be hidden to the following users, even if the user is part of the same party",
+                        "choices": {
+                            "never": "Never, always show",
+                            "players": "Hide From Players",
+                            "always": "Hide from Everyone"
+                        }
                     }
                 }
             },
