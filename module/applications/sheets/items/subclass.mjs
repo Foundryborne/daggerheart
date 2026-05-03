@@ -62,6 +62,10 @@ export default class SubclassSheet extends DHBaseItemSheet {
             const uuid = item._stats.compendiumSource ?? item.uuid;
             if (this.document.system.linkedClass !== uuid) {
                 await this.document.update({ 'system.linkedClass': uuid });
+                // Re-render all class sheets for instant feedback
+                for (const app of foundry.applications.instances.values()) {
+                    if (app.document?.type === 'class') app.render();
+                }
             }
             return;
         }
