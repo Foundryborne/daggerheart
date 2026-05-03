@@ -8,9 +8,12 @@
         {{#if class}}
             <div class="feature-list">
                 <li class="feature-line">
-                    <img class="image" src="{{class.img}}" />
-                    <span>{{class.name}} {{#if class.missing}}<i class="fa-solid fa-link-slash" inert></i>{{/if}}</span>
-                    {{#unless class.missing}}
+                    {{#if class.missing}}
+                        <i class="fa-solid fa-link-slash hint image-icon" inert></i>
+                        <span class="hint">{{class.name}}</span>
+                    {{else}}
+                        <img class="image" src="{{class.img}}" />
+                        <span>{{class.name}}</span>
                         <div class='controls'>
                             <a
                                 class='effect-control'
@@ -21,7 +24,7 @@
                                 <i class="fa-solid fa-globe" inert></i>
                             </a>
                         </div>
-                    {{/unless}}
+                    {{/if}}
                 </li>
             </div>
         {{else}}
