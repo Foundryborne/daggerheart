@@ -440,9 +440,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             };
 
         if (type === 'subclasses')
-            presets.filter = {
-                'system.linkedClass': { key: 'system.linkedClass', value: this.setup.class?.uuid }
-            };
+            presets.items = await (await foundry.utils.fromUuid(this.setup.class.uuid)).system.fetchSubclasses();
 
         if (equipment.includes(type))
             presets.filter = {

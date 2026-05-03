@@ -240,85 +240,84 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         super._replaceHTML(result, content, options);
     }
 
-    loadItems() {
+    async loadItems() {
         let loadTimeout = this.toggleLoader(true);
 
         const browserSettings = game.settings.get(
             CONFIG.DH.id,
             CONFIG.DH.SETTINGS.gameSettings.CompendiumBrowserSettings
         );
-        const promises = [];
 
-        game.packs.forEach(pack => {
-            promises.push(
-                new Promise(async resolve => {
-                    const items = await pack.getDocuments({ type__in: this.selectedMenu?.data?.type });
-                    resolve(items);
-                })
-            );
-        });
+        let allItems = [];
+        for (const pack of game.packs) {
+            allItems.push(...(await pack.getDocuments({ type__in: this.selectedMenu?.data?.type })));
+        }
 
-        Promise.all(promises).then(async result => {
-            this.items = ItemBrowser.sortBy(
-                result.flatMap(r => r).filter(r => !browserSettings.isEntryExcluded.bind(browserSettings)(r)),
-                'name'
-            );
+        const items = this.presets.items ?? allItems;
 
-            /* If any noticeable slowdown occurs, consider replacing with enriching description on clicking to expand descriptions */
-            for (const item of this.items) {
-                if (['weapon', 'armor'].includes(item.type)) {
-                    item.system.enrichedTags = await foundry.applications.handlebars.renderTemplate(
-                        'systems/daggerheart/templates/ui/itemBrowser/item-tags.hbs',
-                        { item: item.system }
-                    );
-                }
-                item.system.enrichedDescription =
-                    (await item.system.getEnrichedDescription?.()) ??
-                    (await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.description));
+        this.items = ItemBrowser.sortBy(
+            items.filter(r => !browserSettings.isEntryExcluded.bind(browserSettings)(r)),
+            'name'
+        );
+        allItems = ItemBrowser.sortBy(
+            allItems.filter(r => !browserSettings.isEntryExcluded.bind(browserSettings)(r)),
+            'name'
+        );
+
+        /* If any noticeable slowdown occurs, consider replacing with enriching description on clicking to expand descriptions */
+        for (const item of this.items) {
+            if (['weapon', 'armor'].includes(item.type)) {
+                item.system.enrichedTags = await foundry.applications.handlebars.renderTemplate(
+                    'systems/daggerheart/templates/ui/itemBrowser/item-tags.hbs',
+                    { item: item.system }
+                );
             }
+            item.system.enrichedDescription =
+                (await item.system.getEnrichedDescription?.()) ??
+                (await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.description));
+        }
 
-            this.fieldFilter = await this._createFieldFilter();
+        this.fieldFilter = await this._createFieldFilter(allItems);
 
-            if (this.presets?.filter) {
-                Object.entries(this.presets.filter).forEach(([k, v]) => {
-                    const filter = this.fieldFilter.find(c => c.name === k);
-                    if (filter) filter.value = v.value;
-                });
-                // await this._onInputFilterBrowser();
+        if (this.presets?.filter) {
+            Object.entries(this.presets.filter).forEach(([k, v]) => {
+                const filter = this.fieldFilter.find(c => c.name === k);
+                if (filter) filter.value = v.value;
+            });
+            // await this._onInputFilterBrowser();
+        }
+
+        const filterList = await foundry.applications.handlebars.renderTemplate(
+            'systems/daggerheart/templates/ui/itemBrowser/filterContainer.hbs',
+            {
+                fieldFilter: this.fieldFilter,
+                presets: this.presets,
+                formatChoices: this.formatChoices
             }
+        );
 
-            const filterList = await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/ui/itemBrowser/filterContainer.hbs',
-                {
-                    fieldFilter: this.fieldFilter,
-                    presets: this.presets,
-                    formatChoices: this.formatChoices
-                }
-            );
+        this.element.querySelector('.filter-content .wrapper').innerHTML = filterList;
+        const filterContainer = this.element.querySelector('.filter-header > [data-action="expandContent"]');
+        if (this.fieldFilter.length === 0) filterContainer.setAttribute('disabled', '');
+        else filterContainer.removeAttribute('disabled');
 
-            this.element.querySelector('.filter-content .wrapper').innerHTML = filterList;
-            const filterContainer = this.element.querySelector('.filter-header > [data-action="expandContent"]');
-            if (this.fieldFilter.length === 0) filterContainer.setAttribute('disabled', '');
-            else filterContainer.removeAttribute('disabled');
+        const itemList = await foundry.applications.handlebars.renderTemplate(
+            'systems/daggerheart/templates/ui/itemBrowser/itemContainer.hbs',
+            {
+                items: this.items,
+                menu: this.selectedMenu,
+                formatLabel: this.formatLabel
+            }
+        );
 
-            const itemList = await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/ui/itemBrowser/itemContainer.hbs',
-                {
-                    items: this.items,
-                    menu: this.selectedMenu,
-                    formatLabel: this.formatLabel
-                }
-            );
+        this.element.querySelector('.item-list').innerHTML = itemList;
 
-            this.element.querySelector('.item-list').innerHTML = itemList;
+        this._createFilterInputs();
+        await this._onInputFilterBrowser();
+        this._createDragProcess();
 
-            this._createFilterInputs();
-            await this._onInputFilterBrowser();
-            this._createDragProcess();
-
-            clearTimeout(loadTimeout);
-            this.toggleLoader(false);
-        });
+        clearTimeout(loadTimeout);
+        this.toggleLoader(false);
     }
 
     toggleLoader(state) {
@@ -355,12 +354,12 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         );
     }
 
-    async _createFieldFilter() {
+    async _createFieldFilter(items) {
         const filters = ItemBrowser.getFolderConfig(this.selectedMenu.data, 'filters');
         for (const f of filters) {
             if (typeof f.field === 'string') f.field = foundry.utils.getProperty(game, f.field);
             else if (typeof f.choices === 'function') {
-                f.choices = await f.choices(this.items);
+                f.choices = await f.choices(items);
             }
 
             // Clear field label so template uses our custom label parameter
