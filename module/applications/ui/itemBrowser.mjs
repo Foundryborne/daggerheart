@@ -357,7 +357,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
     async _createFieldFilter() {
         const filters = ItemBrowser.getFolderConfig(this.selectedMenu.data, 'filters');
-        for(const f of filters) {
+        for (const f of filters) {
             if (typeof f.field === 'string') f.field = foundry.utils.getProperty(game, f.field);
             else if (typeof f.choices === 'function') {
                 f.choices = await f.choices(this.items);

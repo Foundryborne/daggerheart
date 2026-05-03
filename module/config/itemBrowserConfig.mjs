@@ -383,7 +383,8 @@ export const typeConfig = {
             {
                 key: 'system.linkedClass',
                 label: 'TYPES.Item.class',
-                format: linkedClass => linkedClass?.name ?? 'DAGGERHEART.UI.ItemBrowser.missing'
+                format: linkedClass =>
+                    foundry.utils.fromUuidSync(linkedClass)?.name ?? 'DAGGERHEART.UI.ItemBrowser.missing'
             },
             {
                 key: 'system.spellcastingTrait',
@@ -397,7 +398,7 @@ export const typeConfig = {
                 label: 'TYPES.Item.class',
                 choices: async items => {
                     const list = [];
-                    for(const item of items.filter(item => item.system.linkedClass)) {
+                    for (const item of items.filter(item => item.system.linkedClass)) {
                         const linkedClass = await foundry.utils.fromUuid(item.system.linkedClass);
                         list.push({
                             value: linkedClass.uuid,
