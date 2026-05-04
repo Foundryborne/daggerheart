@@ -74,62 +74,6 @@
         .death-roll-btn {
             display: none;
         }
-
-        .icons-list {
-            position: absolute;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            align-items: end;
-            justify-content: center;
-            top: 45px;
-            right: 10px;
-
-            .spellcast-icon {
-                display: flex;
-                align-items: center;
-                justify-content: end;
-                text-align: center;
-                padding-right: 8px;
-                max-width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-                background: light-dark(@dark-blue-60, @dark-golden-80);
-                backdrop-filter: blur(8px);
-                border: 4px double light-dark(@beige, @golden);
-                color: light-dark(@beige, @golden);
-                border-radius: 999px;
-                transition: all 0.3s ease;
-
-                .spellcast-label {
-                    font-size: var(--font-size-14);
-                    opacity: 0;
-                    margin-right: 0.3rem;
-                    transition: all 0.3s ease;
-                }
-
-                i {
-                    height: 24px;
-                    width: 24px;
-                    align-content: center;
-                    margin-right: 3px;
-                }
-
-                &:not(.no-label):hover {
-                    max-width: 300px;
-                    padding: 0 10px;
-                    border-radius: 60px;
-
-                    .spellcast-label {
-                        opacity: 1;
-                    }
-
-                    i {
-                        margin-right: 0px;
-                    }
-                }
-            }
-        }
     }
 
     .info-section {

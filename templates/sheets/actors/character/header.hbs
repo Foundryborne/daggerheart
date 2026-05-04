@@ -125,14 +125,9 @@
 
     <div class="character-traits">
         {{#each this.attributes as |attribute key|}} 
-            <div class="trait" data-tooltip="<b>{{localize (concat 'DAGGERHEART.CONFIG.Traits.' key '.name') }}:</b><br>{{#each attribute.verbs}}{{this}}<br>{{/each}}" data-action="rollAttribute" data-attribute="{{key}}" data-value="{{attribute.value}}">
+            <div class="trait" data-tooltip="<b>{{attribute.label}}:</b><br>{{#each attribute.verbs}}{{this}}<br>{{/each}}" data-action="rollAttribute" data-attribute="{{key}}" data-value="{{attribute.value}}">
                 <div class="trait-name"> 
-                    <span>{{localize (concat 'DAGGERHEART.CONFIG.Traits.' key '.short')}}</span>
-                    {{#if attribute.tierMarked}}
-                        <i class='fa-solid fa-circle'></i>
-                    {{else}}
-                        <i class='fa-regular fa-circle'></i>
-                    {{/if}}
+                    <span>{{attribute.label}}</span>
                 </div>
                 <div class="trait-value">
                     {{#if (gt attribute.value 0)}}
@@ -141,6 +136,16 @@
                         <span>{{attribute.value}}</span>
                     {{/if}}
                 </div>
+                {{#if attribute.tierMarked}}
+                    <div class="tier-mark">
+                        <i class='fa-solid fa-circle' inert></i>
+                    </div>
+                {{/if}}
+                {{#if isSpellcasting}}
+                    <div class="spellcasting-mark" data-tooltip="DAGGERHEART.ITEMS.Subclass.spellcastingTrait">
+                        <i class="fa-solid fa-wand-magic-sparkles" inert></i>
+                    </div>
+                {{/if}}
             </div>
         {{/each}}
     </div>
