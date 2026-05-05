@@ -125,27 +125,37 @@
 
     <div class="character-traits">
         {{#each this.attributes as |attribute key|}} 
-            <div class="trait" data-tooltip="<b>{{attribute.label}}:</b><br>{{#each attribute.verbs}}{{this}}<br>{{/each}}" data-action="rollAttribute" data-attribute="{{key}}" data-value="{{attribute.value}}">
-                <div class="trait-name"> 
-                    <span>{{attribute.label}}</span>
-                </div>
-                <div class="trait-value">
-                    {{#if (gt attribute.value 0)}}
-                        <span>+{{attribute.value}}</span>
-                    {{else}}
-                        <span>{{attribute.value}}</span>
-                    {{/if}}
-                </div>
+            {{!-- <div class="trait" data-tooltip="<b>{{attribute.label}}:</b><br>{{#each attribute.verbs}}{{this}}<br>{{/each}}" data-action="rollAttribute" data-attribute="{{key}}" data-value="{{attribute.value}}">
+
                 {{#if attribute.tierMarked}}
                     <div class="tier-mark">
                         <i class='fa-solid fa-circle' inert></i>
                     </div>
                 {{/if}}
-                {{#if isSpellcasting}}
-                    <div class="spellcasting-mark" data-tooltip="DAGGERHEART.ITEMS.Subclass.spellcastingTrait">
-                        <i class="fa-solid fa-wand-magic-sparkles" inert></i>
+            </div> --}}
+            <div class="trait {{#if isSpellcasting}}with-spellcasting{{/if}}" data-tooltip="<b>{{attribute.label}}:</b><br>{{#each attribute.verbs}}{{this}}<br>{{/each}}" data-action="rollAttribute" data-attribute="{{key}}" data-value="{{attribute.value}}">
+                <div class="trait-name">
+                    <div class="tier-mark {{#if attribute.tierMarked}}marked{{/if}}"></div>
+                    <span>{{attribute.label}}</span>
+                </div>
+                <div class="trait-value-area">
+                    <svg width="52" height="46" viewBox="0 0 52 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0H52L51.0714 18.254L48.6808 24.0952L47.5745 39.9596L26 46L4.42553 39.9596L3.31915 24.0952L0.928571 18.254L0 0Z" fill="var(--color-border)"/>
+                        <path d="M2.61192 6.55748C2.28358 3.03888 5.05207 0 8.58596 0H43.414C46.9479 0 49.7164 3.03887 49.3881 6.55747L46.8083 34.203C46.5652 36.808 44.6622 38.9552 42.1052 39.5094L27.2709 42.7245C26.4334 42.9061 25.5666 42.9061 24.7291 42.7245L9.89482 39.5094C7.33785 38.9552 5.43478 36.808 5.19169 34.203L2.61192 6.55748Z" fill="var(--background)"/>
+                    </svg>
+                    <div class="trait-value">
+                        {{#if (gt attribute.value 0)}}
+                            <span>+{{attribute.value}}</span>
+                        {{else}}
+                            <span>{{attribute.value}}</span>
+                        {{/if}}
                     </div>
-                {{/if}}
+                    {{#if isSpellcasting}}
+                        <div class="spellcasting-mark" data-tooltip="DAGGERHEART.ITEMS.Subclass.spellcastingTrait">
+                            <i class="fa-solid fa-wand-magic-sparkles" inert></i>
+                        </div>
+                    {{/if}}
+                </div>
             </div>
         {{/each}}
     </div>
