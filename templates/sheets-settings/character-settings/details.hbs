@@ -10,8 +10,14 @@
             <div class="traits-inner-container">
                 {{#each document._source.system.traits as | trait key |}}
                     <div class="trait-container">
-                        <span>{{localize (concat "DAGGERHEART.CONFIG.Traits." key ".name" )}}</span>
-                        <input type="text" data-dtype="Number" name="{{concat "system.traits." key ".value"}}" value="{{trait.value}}" />
+                        <span class="trait-name">{{localize (concat "DAGGERHEART.CONFIG.Traits." key ".name" )}}</span>
+                        <div class="trait-inner-container">
+                            <svg width="52" height="46" viewBox="0 0 52 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M 0,0 H 52 L 51.0714,18.254 48.781,24.0952 47.5745,39.9596 26,46 4.42553,39.9596 3.219,24.0952 0.928571,18.254 Z" fill="var(--color-border)"></path>
+                                <path d="M 3.312,5.357 8.58596,0 H 43.414 l 5.274,5.357 -1.8797,28.846 c -0.2431,2.605 -2.1461,4.7522 -4.7031,5.3064 l -14.8343,3.2151 c -0.8375,0.1816 -1.7043,0.1816 -2.5418,0 L 9.89482,39.5094 C 7.33785,38.9552 5.43478,36.808 5.19169,34.203 Z" fill="var(--background)"></path>
+                            </svg>
+                            <input type="text" data-dtype="Number" name="{{concat "system.traits." key ".value"}}" value="{{trait.value}}" />
+                        </div>
                     </div>
                 {{/each}}
             </div>
