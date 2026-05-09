@@ -306,6 +306,9 @@
                     }
                 },
                 "newAdversary": "New Adversary"
+            },
+            "Party": {
+                "triggerRestContent": "This will trigger a dialog to players make their downtime moves. Are you sure?"
             }
         },
         "APPLICATIONS": {
