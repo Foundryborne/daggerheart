@@ -409,7 +409,7 @@
                 "openCountdowns": "Countdowns",
                 "adversaryCategories": {
                     "friendly": "Friendly",
-                    "neutral": "Neutral"
+                    "adversaries": "Adversaries"
                 }
             },
             "CompendiumBrowserSettings": {
