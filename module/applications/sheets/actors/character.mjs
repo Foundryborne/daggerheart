@@ -209,8 +209,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
         context.attributes = Object.keys(this.document.system.traits).reduce((acc, key) => {
             acc[key] = {
                 ...this.document.system.traits[key],
-                name: game.i18n.localize(CONFIG.DH.ACTOR.abilities[key].name),
-                verbs: CONFIG.DH.ACTOR.abilities[key].verbs.map(x => game.i18n.localize(x))
+                label: _loc(CONFIG.DH.ACTOR.abilities[key].label),
+                verbs: CONFIG.DH.ACTOR.abilities[key].verbs.map(x => game.i18n.localize(x)),
+                isSpellcasting: this.document.system.spellcastModifierTrait?.key === key
             };
 
             return acc;
@@ -227,7 +228,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             context.resources.stress.max < maxResource ? maxResource - context.resources.stress.max : 0;
 
         context.equippedItems = sortBy(
-            this.document.items.filter(i => i.system.equipped),
+            this.document.items.filter(i => i.system.equipped && (i.type === 'weapon' || i.usable)),
             i => (i.type === 'weapon' ? (i.system.secondary ? 1 : 0) : 2)
         );
 

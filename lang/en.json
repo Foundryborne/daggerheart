@@ -2443,6 +2443,7 @@
                 "single": "Miss",
                 "plural": "Miss"
             },
+            "missingX": "Missing {x}",
             "maxWithThing": "Max {thing}",
             "missingDragDropThing": "Drop {thing} here",
             "multiclass": "Multiclass",
@@ -2533,6 +2534,9 @@
                     "recovery": { "label": "Recovery" },
                     "type": { "label": "Type" },
                     "value": { "label": "Value" }
+                },
+                "identifier": {
+                    "label": "Identifier"
                 }
             },
             "Ancestry": {
@@ -2823,6 +2827,15 @@
                     "hideObserverPermissionInChat": {
                         "label": "Hide Chat Info From Players",
                         "hint": "Information such as hit/miss on attack rolls against adversaries will be hidden"
+                    },
+                    "hidePartyStats": {
+                        "label": "Hide Party Stats",
+                        "hint": "Resources and stats in the party sheet's member list will be hidden to the following users, even if the user is part of the same party",
+                        "choices": {
+                            "never": "Never, always show",
+                            "players": "Hide From Players",
+                            "always": "Hide from Everyone"
+                        }
                     }
                 }
             },
@@ -3211,7 +3224,6 @@
                 "subclassesAlreadyPresent": "You already have a class and multiclass subclass",
                 "noDiceSystem": "Your selected dice {system} does not have a {faces} dice",
                 "gmMenuRefresh": "You refreshed all actions and resources {types}",
-                "subclassAlreadyLinked": "{name} is already a subclass in the class {class}. Remove it from there if you want it to be a subclass to this class.",
                 "gmRequired": "This action requires an online GM",
                 "gmOnly": "This can only be accessed by the GM",
                 "noActorOwnership": "You do not have permissions for this character",

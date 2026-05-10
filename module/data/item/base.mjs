@@ -200,7 +200,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             const features = [];
             for (let f of this.features) {
                 const fBase = f.item ?? f;
-                const feature = fBase.system ? fBase : await foundry.utils.fromUuid(fBase.uuid);
+                const feature = fBase.pack ? await foundry.utils.fromUuid(fBase.uuid) : fBase;
                 features.push(
                     foundry.utils.mergeObject(
                         feature.toObject(),

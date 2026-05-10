@@ -383,7 +383,8 @@ export const typeConfig = {
             {
                 key: 'system.linkedClass',
                 label: 'TYPES.Item.class',
-                format: linkedClass => linkedClass?.name ?? 'DAGGERHEART.UI.ItemBrowser.missing'
+                format: linkedClass =>
+                    foundry.utils.fromUuidSync(linkedClass)?.name ?? 'DAGGERHEART.UI.ItemBrowser.missing'
             },
             {
                 key: 'system.spellcastingTrait',
@@ -393,15 +394,18 @@ export const typeConfig = {
         ],
         filters: [
             {
-                key: 'system.linkedClass.uuid',
+                key: 'system.linkedClass',
                 label: 'TYPES.Item.class',
-                choices: items => {
-                    const list = items
-                        .filter(item => item.system.linkedClass)
-                        .map(item => ({
-                            value: item.system.linkedClass.uuid,
-                            label: item.system.linkedClass.name
-                        }));
+                choices: async items => {
+                    const list = [];
+                    for (const item of items.filter(item => item.system.linkedClass)) {
+                        const linkedClass = await foundry.utils.fromUuid(item.system.linkedClass);
+                        list.push({
+                            value: linkedClass.uuid,
+                            label: linkedClass.name
+                        });
+                    }
+
                     return list.reduce((a, c) => {
                         if (!a.find(i => i.value === c.value)) a.push(c);
                         return a;

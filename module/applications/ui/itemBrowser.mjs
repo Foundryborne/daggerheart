@@ -277,7 +277,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                     (await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.description));
             }
 
-            this.fieldFilter = this._createFieldFilter();
+            this.fieldFilter = await this._createFieldFilter();
 
             if (this.presets?.filter) {
                 Object.entries(this.presets.filter).forEach(([k, v]) => {
@@ -355,12 +355,12 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         );
     }
 
-    _createFieldFilter() {
+    async _createFieldFilter() {
         const filters = ItemBrowser.getFolderConfig(this.selectedMenu.data, 'filters');
-        filters.forEach(f => {
+        for (const f of filters) {
             if (typeof f.field === 'string') f.field = foundry.utils.getProperty(game, f.field);
             else if (typeof f.choices === 'function') {
-                f.choices = f.choices(this.items);
+                f.choices = await f.choices(this.items);
             }
 
             // Clear field label so template uses our custom label parameter
@@ -370,7 +370,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
             f.name ??= f.key;
             f.value = this.presets?.filter?.[f.name]?.value ?? null;
-        });
+        }
+
         return filters;
     }
 

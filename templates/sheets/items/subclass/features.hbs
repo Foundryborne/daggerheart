@@ -3,6 +3,35 @@
     data-tab='{{tabs.features.id}}'
     data-group='{{tabs.features.group}}'
 >
+    <fieldset>
+        <legend>{{localize "TYPES.Item.class"}}</legend>
+        {{#if class}}
+            <div class="feature-list">
+                <li class="feature-line">
+                    {{#if class.missing}}
+                        <i class="fa-solid fa-link-slash hint image-icon" inert></i>
+                        <span class="hint">{{class.name}}</span>
+                    {{else}}
+                        <img class="image" src="{{class.img}}" />
+                        <span>{{class.name}}</span>
+                        <div class='controls'>
+                            <a
+                                class='effect-control'
+                                data-action='editDoc'
+                                data-item-uuid={{class.uuid}}
+                                data-tooltip='{{localize "DAGGERHEART.UI.Tooltip.openItemWorld"}}'
+                            >
+                                <i class="fa-solid fa-globe" inert></i>
+                            </a>
+                        </div>
+                    {{/if}}
+                </li>
+            </div>
+        {{else}}
+            <div class="drag-area">{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "TYPES.Item.class")}}</div>
+        {{/if}}
+    </fieldset>
+
     <fieldset class="drop-section" data-type="foundation">
         <legend>
             {{localize "DAGGERHEART.GENERAL.Tabs.foundation"}} 

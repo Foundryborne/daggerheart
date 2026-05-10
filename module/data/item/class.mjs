@@ -30,7 +30,6 @@ export default class DHClass extends BaseDataItem {
             }),
             evasion: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.evasion' }),
             features: new ItemLinkFields(),
-            subclasses: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
             inventory: new fields.SchemaField({
                 take: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
                 choiceA: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
@@ -68,6 +67,24 @@ export default class DHClass extends BaseDataItem {
 
     get classFeatures() {
         return this.features.filter(x => x.type === CONFIG.DH.ITEM.featureSubTypes.class).map(x => x.item);
+    }
+
+    async fetchSubclasses() {
+        const uuids = [this.parent.uuid, this.parent._stats?.compendiumSource].filter(u => !!u);
+        const subclasses = game.items.filter(x => x.type === 'subclass' && uuids.includes(x.system.linkedClass));
+        for (const pack of game.packs) {
+            const indexes = await pack.getIndex({ fields: ['system.linkedClass'] });
+            for (const index of indexes) {
+                if (index.type !== 'subclass') continue;
+                if (!uuids.includes(index.system?.linkedClass)) continue;
+                if (subclasses.find(x => x.uuid === index.uuid)) continue;
+
+                const subclass = await foundry.utils.fromUuid(index.uuid);
+                subclasses.push(subclass);
+            }
+        }
+
+        return subclasses;
     }
 
     async _preCreate(data, options, user) {

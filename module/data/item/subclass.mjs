@@ -28,7 +28,7 @@ export default class DHSubclass extends BaseDataItem {
             features: new ItemLinkFields(),
             featureState: new fields.NumberField({ required: true, initial: 1, min: 1 }),
             isMulticlass: new fields.BooleanField({ initial: false }),
-            linkedClass: new ForeignDocumentUUIDField({ type: 'Item', nullable: true, initial: null })
+            linkedClass: new fields.DocumentUUIDField({ type: 'Item', nullable: true, initial: null })
         };
     }
 
@@ -83,7 +83,8 @@ export default class DHSubclass extends BaseDataItem {
                     ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.missingClass'));
                     return false;
                 }
-                if (actorClass.system.subclasses.every(x => x.uuid !== dataUuid)) {
+
+                if ((await actorClass.system.fetchSubclasses()).every(x => x.uuid !== dataUuid)) {
                     ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.subclassNotInClass'));
                     return false;
                 }
