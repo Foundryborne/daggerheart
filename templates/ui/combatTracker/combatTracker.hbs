@@ -8,9 +8,6 @@
     {{#if (gt this.friendlies.length 0)}}
         {{> 'systems/daggerheart/templates/ui/combatTracker/combatTrackerSection.hbs' this title=(localize "DAGGERHEART.APPLICATIONS.CombatTracker.adversaryCategories.friendly") turns=this.friendlies}}
     {{/if}}
-    {{#if (gt this.neutrals.length 0)}}
-        {{> 'systems/daggerheart/templates/ui/combatTracker/combatTrackerSection.hbs' this title=(localize "DAGGERHEART.APPLICATIONS.CombatTracker.adversaryCategories.neutral") turns=this.neutrals}}
-    {{/if}}
     {{#if (gt this.adversaries.length 0)}}
         {{> 'systems/daggerheart/templates/ui/combatTracker/combatTrackerSection.hbs' this title=(localize "DAGGERHEART.GENERAL.Adversary.plural") turns=this.adversaries}}
     {{/if}}

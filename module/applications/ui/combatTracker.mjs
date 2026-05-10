@@ -57,11 +57,8 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
         await super._prepareTrackerContext(context, options);
 
         const npcs = context.turns?.filter(x => x.isNPC) ?? [];
-        const adversaries = npcs.filter(x => x.disposition === CONST.TOKEN_DISPOSITIONS.HOSTILE);
+        const adversaries = npcs.filter(x => x.disposition !== CONST.TOKEN_DISPOSITIONS.FRIENDLY);
         const friendlies = npcs.filter(x => x.disposition === CONST.TOKEN_DISPOSITIONS.FRIENDLY);
-        const neutrals = npcs.filter(x =>
-            [CONST.TOKEN_DISPOSITIONS.SECRET, CONST.TOKEN_DISPOSITIONS.NEUTRAL].includes(x.disposition)
-        );
         const characters = context.turns?.filter(x => !x.isNPC) ?? [];
         const spotlightQueueEnabled = game.settings.get(
             CONFIG.DH.id,
@@ -81,7 +78,6 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
             actionTokens: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).actionTokens,
             adversaries,
             friendlies,
-            neutrals,
             allCharacters: characters,
             characters: characters.filter(x => !spotlightQueueEnabled || x.system.spotlight.requestOrderIndex == 0),
             spotlightRequests
