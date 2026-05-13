@@ -93,6 +93,17 @@
             }
         }
 
+        .status-label {
+            position: relative;
+            background: light-dark(@dark-blue, @golden);
+            h4 {
+                font-weight: bold;
+                text-align: center;
+                line-height: 18px;
+                color: light-dark(@beige, @dark-blue);
+            }
+        }
+
         .resources-section {
             display: flex;
             justify-content: space-evenly;
@@ -106,19 +117,10 @@
                 height: 40px;
 
                 .status-label {
-                    position: relative;
                     top: 40px;
                     height: 22px;
                     width: 79px;
                     clip-path: path('M0 0H79L74 16.5L39 22L4 16.5L0 0Z');
-                    background: light-dark(@dark-blue, @golden);
-
-                    h4 {
-                        font-weight: bold;
-                        text-align: center;
-                        line-height: 18px;
-                        color: light-dark(@beige, @dark-blue);
-                    }
                 }
 
                 .status-value {
@@ -253,12 +255,10 @@
 
                 .status-label {
                     padding: 2px 2px;
-                    position: relative;
                     top: 30px;
                     height: 22px;
                     width: 95px;
                     border-radius: 3px;
-                    background: light-dark(@dark-blue, @golden);
                     clip-path: none;
                     display: flex;
                     align-items: center;
@@ -268,10 +268,6 @@
                     transition: all 0.3s ease;
 
                     h4 {
-                        font-weight: bold;
-                        text-align: center;
-                        line-height: 18px;
-                        color: light-dark(@beige, @dark-blue);
                         font-size: var(--font-size-12);
                     }
 
@@ -494,14 +490,8 @@
                     padding: 2px 10px;
                     width: 100%;
                     border-radius: 3px;
-                    background: light-dark(@dark-blue, @golden);
-
                     h4 {
-                        font-weight: bold;
-                        text-align: center;
-                        line-height: 18px;
                         font-size: var(--font-size-12);
-                        color: light-dark(@beige, @dark-blue);
                     }
                 }
             }

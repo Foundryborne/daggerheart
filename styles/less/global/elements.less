@@ -99,15 +99,16 @@
     }
 
     button:where(:not(.plain, color-picker *, file-picker *)) {
-        background: light-dark(transparent, @golden);
-        border: 1px solid light-dark(@dark-blue, @dark-blue);
-        color: light-dark(@dark-blue, @dark-blue);
+        background: var(--button-background);
+        border: 1px solid light-dark(@dark-blue, #efe6d850);
+        color: light-dark(@dark-blue, #efe6d8);
         outline: none;
         box-shadow: none;
+        border-radius: 0;
 
         &:hover {
-            background: light-dark(@light-black, @dark-blue);
-            color: light-dark(@dark-blue, @golden);
+            background-color: @golden-40;
+            background-blend-mode: lighten;
         }
 
         &.glow {
@@ -115,15 +116,8 @@
         }
 
         &:disabled {
-            background: light-dark(transparent, @golden);
-            color: light-dark(@dark-blue, @dark-blue);
             opacity: 0.6;
             cursor: not-allowed;
-
-            &:hover {
-                background: light-dark(transparent, @golden);
-                color: light-dark(@dark-blue, @dark-blue);
-            }
         }
 
         &.reverted {
@@ -558,38 +552,31 @@
 
         .item-button {
             display: flex;
-            border: 1px solid light-dark(#18162e, #18162e);
-            color: light-dark(#18162e, #18162e);
             outline: none;
             box-shadow: none;
-            border-radius: 6px;
+            border-radius: 0;
 
             button {
-                border-radius: 3px 0px 0px 3px;
-                color: light-dark(@dark-blue, @dark-blue);
+                --button-size: 2.25em;
+                font-size: var(--font-size-12);
+                font-family: @font-body;
+                font-weight: 500;
                 white-space: nowrap;
-                border: 0;
 
-                &:hover {
-                    color: light-dark(@dark-blue, @golden);
+                &:not(:last-child) {
+                    border-right-width: 0;
                 }
 
                 &:not(:first-child) {
                     padding: 6px;
-                    background: light-dark(@dark-blue-10, @golden-secondary);
-                    border-radius: 0px 3px 3px 0px;
-                    color: light-dark(@dark-blue, @dark-golden);
-
-                    &:hover {
-                        background: light-dark(@light-black, @dark-blue);
-                        color: light-dark(@dark-blue, @golden-secondary);
-                    }
+                    border-left-width: 0;
                 }
             }
 
             .spacer {
-                border-right: 1px solid black;
+                border-right: 1px solid light-dark(#18162e, #efe6d850);
                 content: '';
+                margin-left: -1px;
             }
         }
     }
@@ -701,6 +688,8 @@
 }
 
 .theme-light {
+    --button-background: transparent;
+    
     .application {
         &.sheet.dh-style {
             button.glow {
@@ -721,6 +710,11 @@
             }
         }
     }
+}
+
+.theme-dark .dh-style,
+.theme-dark.dh-style {
+    --button-background: url('../assets/parchments/dh-parchment-button-dark.png');
 }
 
 .application .component.dh-style.card-preview-container {
