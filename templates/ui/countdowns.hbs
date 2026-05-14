@@ -1,4 +1,14 @@
 <div>
+    <header class="countdowns-header">
+        <i class="fa-solid fa-clock-rotate-left" inert></i>
+        <span class="window-title">{{localize "DAGGERHEART.UI.Countdowns.title"}}</span>
+        <a class="header-control" data-tooltip aria-label="DAGGERHEART.APPLICATIONS.CountdownEdit.editTitle" data-action="editCountdowns">
+            <i class="fa-solid fa-wrench" inert></i>
+        </a>
+        <a class="header-control" data-tooltip aria-label="DAGGERHEART.UI.Countdowns.toggleIconMode" data-action="toggleViewMode">
+            <i class="fa-solid fa-down-left-and-up-right-to-center" inert></i>
+        </a>
+    </header>
     <div class="countdowns-container">
         {{#each countdowns as | countdown id |}}
             <div class="countdown-container {{#if ../iconOnly}}icon-only{{/if}}">

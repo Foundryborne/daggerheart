@@ -21,10 +21,10 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     static DEFAULT_OPTIONS = {
         id: 'countdowns',
         tag: 'div',
-        classes: ['daggerheart', 'dh-style', 'countdowns', 'faded-ui'],
+        classes: ['daggerheart', 'dh-style', 'countdowns'],
         window: {
             icon: 'fa-solid fa-clock-rotate-left',
-            frame: true,
+            frame: false,
             title: 'DAGGERHEART.UI.Countdowns.title',
             positioned: false,
             resizable: false,
@@ -61,20 +61,6 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             CONFIG.DH.GENERAL.countdownAppMode.iconOnly;
         if (iconOnly) frame.classList.add('icon-only');
         else frame.classList.remove('icon-only');
-
-        const header = frame.querySelector('.window-header');
-        header.querySelector('button[data-action="close"]').remove();
-        header.querySelector('button[data-action="toggleControls"]').remove();
-
-        if (game.user.isGM) {
-            const editTooltip = game.i18n.localize('DAGGERHEART.APPLICATIONS.CountdownEdit.editTitle');
-            const editButton = `<a style="margin-right: 8px;" class="header-control" data-tooltip="${editTooltip}" aria-label="${editTooltip}" data-action="editCountdowns"><i class="fa-solid fa-wrench"></i></a>`;
-            header.insertAdjacentHTML('beforeEnd', editButton);
-        }
-
-        const minimizeTooltip = game.i18n.localize('DAGGERHEART.UI.Countdowns.toggleIconMode');
-        const minimizeButton = `<a class="header-control" data-tooltip="${minimizeTooltip}" aria-label="${minimizeTooltip}" data-action="toggleViewMode"><i class="fa-solid fa-down-left-and-up-right-to-center"></i></a>`;
-        header.insertAdjacentHTML('beforeEnd', minimizeButton);
 
         return frame;
     }

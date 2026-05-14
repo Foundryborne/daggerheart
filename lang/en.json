@@ -406,7 +406,11 @@
                 "giveSpotlight": "Give The Spotlight",
                 "requestingSpotlight": "Requesting The Spotlight",
                 "requestSpotlight": "Request The Spotlight",
-                "openCountdowns": "Countdowns"
+                "openCountdowns": "Countdowns",
+                "adversaryCategories": {
+                    "friendly": "Friendly",
+                    "adversaries": "Adversaries"
+                }
             },
             "CompendiumBrowserSettings": {
                 "title": "Enable Compendiums",
