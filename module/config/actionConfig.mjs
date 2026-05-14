@@ -122,3 +122,22 @@ export const areaTypes = {
         label: 'Placed Area'
     }
 };
+
+export const outcomeTypes = {
+    successHope: {
+        key: 'successHope',
+        label: 'DAGGERHEART.CONFIG.OutcomeType.successHope'
+    },
+    successFear: {
+        key: 'successFear',
+        label: 'DAGGERHEART.CONFIG.OutcomeType.successFear'
+    },
+    failureHope: {
+        key: 'failureHope',
+        label: 'DAGGERHEART.CONFIG.OutcomeType.failureHope'
+    },
+    failureFear: {
+        key: 'failureFear',
+        label: 'DAGGERHEART.CONFIG.OutcomeType.failureFear'
+    }
+};

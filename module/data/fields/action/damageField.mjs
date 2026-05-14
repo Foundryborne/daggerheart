@@ -10,7 +10,7 @@ const getDamageBaseFields = () => ({
         initial: false,
         label: 'DAGGERHEART.ACTIONS.Settings.includeBase.label'
     }),
-    direct: new fields.BooleanField({ initial: false, label: 'DAGGERHEART.CONFIG.DamageType.direct.name' }),
+    direct: new fields.BooleanField({ initial: false, label: 'DAGGERHEART.CONFIG.DamageType.direct.name' })
 });
 
 export default class DamageField extends fields.SchemaField {
@@ -26,8 +26,7 @@ export default class DamageField extends fields.SchemaField {
             altOutcomes: new fields.SchemaField({
                 successFear: new fields.EmbeddedDataField(AltDamageOutcome, { nullable: true, initial: null }),
                 failureHope: new fields.EmbeddedDataField(AltDamageOutcome, { nullable: true, initial: null }),
-                failureFear: new fields.EmbeddedDataField(AltDamageOutcome, { nullable: true, initial: null }),
-                critical: new fields.EmbeddedDataField(AltDamageOutcome, { nullable: true, initial: null })
+                failureFear: new fields.EmbeddedDataField(AltDamageOutcome, { nullable: true, initial: null })
             }),
             groupAttack: new fields.StringField({
                 choices: CONFIG.DH.GENERAL.groupAttackRange,
@@ -347,14 +346,14 @@ export class AltDamageOutcome extends foundry.abstract.DataModel {
     static defineSchema() {
         return {
             useStandardHitPointDamage: new fields.BooleanField({ required: true, initial: true }),
-            ...getDamageBaseFields(),
-        }
+            ...getDamageBaseFields()
+        };
     }
 
     get data() {
         return {
             ...this.parent,
-            ...this,
-        }
+            ...this
+        };
     }
 }

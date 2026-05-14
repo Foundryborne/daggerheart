@@ -10,10 +10,85 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         this.action = action;
         this.openSection = null;
         this.openTrigger = this.action.triggers.length > 0 ? 0 : null;
+
+        this.outcomeTabs = DHActionBaseConfig.getOutcomeTabs(action);
     }
 
     get title() {
         return `${game.i18n.localize('DAGGERHEART.GENERAL.Tabs.settings')}: ${this.action.name}`;
+    }
+
+    /* Needs to consider effect altOutcomes aswell */
+    static getOutcomeTabs(action) {
+        const outcomeKeys = [
+            'successHope',
+            ...Object.keys(action.damage?.altOutcomes ?? {}).filter(key => action.damage.altOutcomes[key])
+        ];
+        return outcomeKeys.reduce((acc, key, index) => {
+            acc[key] = {
+                active: index === 0,
+                cssClass: '',
+                group: 'outcomes',
+                id: key,
+                icon: null,
+                label:
+                    outcomeKeys.length === 1
+                        ? game.i18n.localize('DAGGERHEART.CONFIG.OutcomeType.simpleOutcome')
+                        : game.i18n.localize(CONFIG.DH.ACTIONS.outcomeTypes[key].label)
+            };
+            return acc;
+        }, {});
+    }
+
+    /* Needs to consider effect altOutcomes aswell */
+    static selectOutcome(action, callback) {
+        const choices = Object.entries(CONFIG.DH.ACTIONS.outcomeTypes).reduce((acc, [key, value]) => {
+            if (key !== 'successHope' && action.damage.altOutcomes[key] === null)
+                acc.push({ id: key, label: game.i18n.localize(value.label) });
+
+            return acc;
+        }, []);
+        const content = new foundry.data.fields.StringField({
+            label: game.i18n.localize('Outcome'),
+            choices,
+            required: true
+        }).toFormGroup(
+            {},
+            {
+                name: 'outcome',
+                localize: true,
+                nameAttr: 'value',
+                labelAttr: 'label'
+            }
+        ).outerHTML;
+
+        const callbackWrapper = (_, button) => {
+            const choiceIndex = button.form.elements.outcome.value;
+            callback(choices[choiceIndex]?.id);
+        };
+
+        const typeDialog = new foundry.applications.api.DialogV2({
+            buttons: [
+                foundry.utils.mergeObject(
+                    {
+                        action: 'ok',
+                        label: 'Confirm',
+                        icon: 'fas fa-check',
+                        default: true
+                    },
+                    { callback: callbackWrapper }
+                )
+            ],
+            content: content,
+            rejectClose: false,
+            modal: false,
+            window: {
+                title: game.i18n.localize('Add Outcome')
+            },
+            position: { width: 300 }
+        });
+
+        typeDialog.render(true);
     }
 
     static DEFAULT_OPTIONS = {
@@ -31,6 +106,8 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             addElement: this.addElement,
             removeElement: this.removeElement,
             removeTransformActor: this.removeTransformActor,
+            addOutcome: this.addOutcome,
+            removeOutcome: this.removeOutcome,
             editEffect: this.editEffect,
             addDamage: this.addDamage,
             removeDamage: this.removeDamage,
@@ -120,25 +197,6 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         }
     };
 
-    static OUTCOME_TABS = {
-        successHope: {
-            active: true,
-            cssClass: '',
-            group: 'outcomes',
-            id: 'successHope',
-            icon: null,
-            label: 'Success With Hope'
-        },
-        successFear: {
-            active: false,
-            cssClass: '',
-            group: 'outcomes',
-            id: 'successFear',
-            icon: null,
-            label: 'Success With Fear'
-        },
-    };
-
     static CLEAN_ARRAYS = ['cost', 'effects', 'summon'];
 
     _getTabs(tabs) {
@@ -187,8 +245,9 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
 
         context.openSection = this.openSection;
         context.tabs = this._getTabs(this.constructor.TABS);
-        
-        context.outcomeTabs = this._getTabs(this.constructor.OUTCOME_TABS);
+
+        context.outcomeTabs = this._getTabs(this.outcomeTabs);
+        context.allOutcomesAssigned = Object.keys(this.outcomeTabs).length >= 4;
 
         context.config = CONFIG.DH;
         if (this.action.damage) {
@@ -338,7 +397,11 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         if (!this.action.damage.parts) return;
 
         const outcome = button.dataset.outcome;
-        const choices = getUnusedDamageTypes(this.action._source.damage.parts);
+        const outcomeParts =
+            outcome === 'successHope'
+                ? this.action._source.damage.parts
+                : this.action._source.damage.altOutcomes[outcome].parts;
+        const choices = getUnusedDamageTypes(outcomeParts);
         const content = new foundry.data.fields.StringField({
             label: game.i18n.localize('Damage Type'),
             choices,
@@ -361,8 +424,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             if (type === CONFIG.DH.GENERAL.healingTypes.hitPoints.id)
                 part.type = this.action.schema.fields.damage.fields.parts.element.fields.type.element.initial;
 
-            if (outcome === 'successHope')
-                data.damage.parts[type] = part;
+            if (outcome === 'successHope') data.damage.parts[type] = part;
             else {
                 if (!data.damage.altOutcomes[outcome]) {
                     data.damage.altOutcomes[outcome] = new AltDamageOutcome();
@@ -401,9 +463,15 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     static removeDamage(_event, button) {
         if (!this.action.damage.parts) return;
         const data = this.action.toObject();
-        const key = button.dataset.key;
-        delete data.damage.parts[key];
-        data.damage.parts[`${key}`] = _del;
+        const { key, outcome } = button.dataset;
+        if (outcome === 'successHope') {
+            delete data.damage.parts[key];
+            data.damage.parts[`${key}`] = _del;
+        } else {
+            delete data.damage.altOutcomes[outcome].parts[key];
+            data.damage.altOutcomes[outcome].parts[`${key}`] = _del;
+        }
+
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
@@ -494,6 +562,8 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     }
 
     /** Specific implementation in extending classes **/
+    static addOutcome(_event) {}
+    static removeOutcome(_event) {}
     static async addEffect(_event) {}
     static removeEffect(_event, _button) {}
     static editEffect(_event) {}

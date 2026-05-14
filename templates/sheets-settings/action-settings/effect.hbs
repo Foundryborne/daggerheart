@@ -9,8 +9,10 @@
                 <a class='{{tab.id}} {{tab.cssClass}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}'>
                     {{localize tab.label}}
                 </a>
+                {{#unless (eq tab.id 'successHope')}}<a data-outcome="{{tab.id}}" data-action="removeOutcome"><i class="fa-solid fa-trash"></i></a>{{/unless}}
             </div>
         {{/each}}
+        <a data-action="addOutcome" {{#if allOutcomesAssigned}}disabled{{/if}}><i class="fa-solid fa-plus"></i></a>
     </nav>
     
     {{#each outcomeTabs as |tab|}}
@@ -20,10 +22,10 @@
             data-tab="{{tab.id}}"
         >
             {{#if (eq tab.id 'successHope')}}
-                {{#if ../fields.damage}}{{> 'systems/daggerheart/templates/actionTypes/damage.hbs' fields=../fields.damage.fields.parts.element.fields source=../source.damage baseFields=../fields.damage.fields outcome=tab.id }}{{/if}}
+                {{#if ../fields.damage}}{{> 'systems/daggerheart/templates/actionTypes/damage.hbs' fields=../fields.damage.fields.parts.element.fields source=../source.damage baseFields=../fields.damage.fields outcome=tab.id outcomePath="damage" }}{{/if}}
             {{else}}
                 {{#with (lookup ../fields.damage.fields.altOutcomes.fields tab.id) as |field|}}
-                    {{> 'systems/daggerheart/templates/actionTypes/damage.hbs' fields=field.fields.parts.element.fields source=(lookup ../../source.damage.altOutcomes ../id) baseFields=field.fields outcome=../id }}
+                    {{> 'systems/daggerheart/templates/actionTypes/damage.hbs' fields=field.fields.parts.element.fields source=(lookup ../../source.damage.altOutcomes ../id) baseFields=field.fields outcome=../id outcomePath=(concat "damage.altOutcomes." tab.id) }}
                 {{/with }}
             {{/if}}
         </section>

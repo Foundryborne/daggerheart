@@ -1,3 +1,4 @@
+import { AltDamageOutcome } from '../../data/fields/action/damageField.mjs';
 import DHActionBaseConfig from './action-base-config.mjs';
 
 export default class DHActionConfig extends DHActionBaseConfig {
@@ -5,6 +6,8 @@ export default class DHActionConfig extends DHActionBaseConfig {
         ...DHActionBaseConfig.DEFAULT_OPTIONS,
         actions: {
             ...DHActionBaseConfig.DEFAULT_OPTIONS.actions,
+            addOutcome: this.addOutcome,
+            removeOutcome: this.removeOutcome,
             addEffect: this.addEffect,
             removeEffect: this.removeEffect,
             editEffect: this.editEffect
@@ -17,6 +20,28 @@ export default class DHActionConfig extends DHActionBaseConfig {
         context.getEffectDetails = this.getEffectDetails.bind(this);
 
         return context;
+    }
+
+    static addOutcome() {
+        const data = this.action.toObject();
+
+        DHActionBaseConfig.selectOutcome(this.action, key => {
+            if (!key) return;
+
+            data.damage.altOutcomes[key] = new AltDamageOutcome();
+            this.outcomeTabs = DHActionBaseConfig.getOutcomeTabs(data);
+            this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+        });
+    }
+
+    static removeOutcome(_event, button) {
+        const { outcome } = button.dataset;
+        const data = this.action.toObject();
+
+        data.damage.altOutcomes[outcome] = null;
+        this.outcomeTabs = DHActionBaseConfig.getOutcomeTabs(data);
+
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
     static async addEffect(event) {
