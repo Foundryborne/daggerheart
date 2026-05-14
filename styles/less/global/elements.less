@@ -99,7 +99,7 @@
     }
 
     button:where(:not(.plain, color-picker *, file-picker *)) {
-        background: var(--button-background);
+        background: var(--dh-button-background);
         border: 1px solid light-dark(@dark-blue, #efe6d850);
         color: light-dark(@dark-blue, #efe6d8);
         outline: none;
@@ -688,7 +688,7 @@
 }
 
 .theme-light {
-    --button-background: transparent;
+    --dh-button-background: transparent;
     
     .application {
         &.sheet.dh-style {
@@ -714,7 +714,7 @@
 
 .theme-dark .dh-style,
 .theme-dark.dh-style {
-    --button-background: url('../assets/parchments/dh-parchment-button-dark.png');
+    --dh-button-background: url('../assets/parchments/dh-parchment-button-dark.png');
 }
 
 .application .component.dh-style.card-preview-container {
