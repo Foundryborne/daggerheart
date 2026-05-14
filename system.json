@@ -16,6 +16,11 @@
             "name": "WBHarry"
         },
         {
+            "name": "Supe",
+            "url": "https://github.com/CarlosFdez",
+            "discord": "supe"
+        },
+        {
             "name": "cptn-cosmo",
             "url": "https://github.com/cptn-cosmo",
             "email": "cptncosmo@gmail.com",
@@ -298,5 +303,11 @@
     },
     "background": "systems/daggerheart/assets/logos/FoundrybornBackgroundLogo.png",
     "primaryTokenAttribute": "resources.hitPoints",
-    "secondaryTokenAttribute": "resources.stress"
+    "secondaryTokenAttribute": "resources.stress",
+    "flags": {
+        "hotReload": {
+            "extensions": ["css", "hbs", "json"],
+            "paths": ["styles/daggerheart.css", "templates", "lang"]
+        }
+    }
 }
