@@ -136,6 +136,8 @@
                 "criticalThreshold": "Critical Threshold",
                 "includeBase": { "label": "Include Item Damage" },
                 "groupAttack": { "label": "Group Attack" },
+                "inheritDefaultDamage": { "label": "Inherit Default Damage" },
+                "inheritDefaultEffects": { "label": "Inherit Default Effects" },
                 "multiplier": "Multiplier",
                 "saveHint": "Set a default Trait to enable Reaction Roll. It can be changed later in Reaction Roll Dialog.",
                 "resultBased": {
@@ -1280,11 +1282,11 @@
                 "die": "Die"
             },
             "OutcomeType": {
+                "default": "Default Outcome",
                 "successHope": "Success/ Hope",
                 "successFear": "Success/ Fear",
                 "failureHope": "Failure/ Hope",
-                "failureFear": "Failure/ Fear",
-                "simpleOutcome": "Outcome"
+                "failureFear": "Failure/ Fear"
             },
             "Range": {
                 "self": {
@@ -2359,7 +2361,8 @@
                 "deathMoves": "Deathmoves",
                 "sources": "Sources",
                 "packs": "Packs",
-                "range": "Range"
+                "range": "Range",
+                "outcomes": "Outcomes"
             },
             "Tiers": {
                 "singular": "Tier",

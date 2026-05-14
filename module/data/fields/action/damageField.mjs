@@ -24,6 +24,7 @@ export default class DamageField extends fields.SchemaField {
         const damageFields = {
             ...getDamageBaseFields(),
             altOutcomes: new fields.SchemaField({
+                successHope: new fields.EmbeddedDataField(AltDamageOutcome, { nullable: true, initial: null }),
                 successFear: new fields.EmbeddedDataField(AltDamageOutcome, { nullable: true, initial: null }),
                 failureHope: new fields.EmbeddedDataField(AltDamageOutcome, { nullable: true, initial: null }),
                 failureFear: new fields.EmbeddedDataField(AltDamageOutcome, { nullable: true, initial: null })
@@ -345,7 +346,16 @@ export class DHDamageData extends DHResourceData {
 export class AltDamageOutcome extends foundry.abstract.DataModel {
     static defineSchema() {
         return {
-            useStandardHitPointDamage: new fields.BooleanField({ required: true, initial: true }),
+            inheritDefaultDamage: new fields.BooleanField({
+                required: true,
+                initial: true,
+                label: 'DAGGERHEART.ACTIONS.Settings.inheritDefaultDamage.label'
+            }),
+            inheritDefaultEffects: new fields.BooleanField({
+                required: true,
+                initial: true,
+                label: 'DAGGERHEART.ACTIONS.Settings.inheritDefaultEffects.label'
+            }),
             ...getDamageBaseFields()
         };
     }

@@ -21,7 +21,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     /* Needs to consider effect altOutcomes aswell */
     static getOutcomeTabs(action) {
         const outcomeKeys = [
-            'successHope',
+            'default',
             ...Object.keys(action.damage?.altOutcomes ?? {}).filter(key => action.damage.altOutcomes[key])
         ];
         return outcomeKeys.reduce((acc, key, index) => {
@@ -31,10 +31,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
                 group: 'outcomes',
                 id: key,
                 icon: null,
-                label:
-                    outcomeKeys.length === 1
-                        ? game.i18n.localize('DAGGERHEART.CONFIG.OutcomeType.simpleOutcome')
-                        : game.i18n.localize(CONFIG.DH.ACTIONS.outcomeTypes[key].label)
+                label: game.i18n.localize(CONFIG.DH.ACTIONS.outcomeTypes[key].label)
             };
             return acc;
         }, {});
@@ -43,8 +40,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     /* Needs to consider effect altOutcomes aswell */
     static selectOutcome(action, callback) {
         const choices = Object.entries(CONFIG.DH.ACTIONS.outcomeTypes).reduce((acc, [key, value]) => {
-            if (key !== 'successHope' && action.damage.altOutcomes[key] === null)
-                acc.push({ id: key, label: game.i18n.localize(value.label) });
+            if (action.damage.altOutcomes[key] === null) acc.push({ id: key, label: game.i18n.localize(value.label) });
 
             return acc;
         }, []);
@@ -185,7 +181,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             group: 'primary',
             id: 'effect',
             icon: null,
-            label: 'DAGGERHEART.GENERAL.Tabs.effects'
+            label: 'DAGGERHEART.GENERAL.Tabs.outcomes'
         },
         trigger: {
             active: false,
@@ -398,7 +394,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
 
         const outcome = button.dataset.outcome;
         const outcomeParts =
-            outcome === 'successHope'
+            outcome === 'default'
                 ? this.action._source.damage.parts
                 : this.action._source.damage.altOutcomes[outcome].parts;
         const choices = getUnusedDamageTypes(outcomeParts);
@@ -424,7 +420,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             if (type === CONFIG.DH.GENERAL.healingTypes.hitPoints.id)
                 part.type = this.action.schema.fields.damage.fields.parts.element.fields.type.element.initial;
 
-            if (outcome === 'successHope') data.damage.parts[type] = part;
+            if (outcome === 'default') data.damage.parts[type] = part;
             else {
                 if (!data.damage.altOutcomes[outcome]) {
                     data.damage.altOutcomes[outcome] = new AltDamageOutcome();
@@ -464,7 +460,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         if (!this.action.damage.parts) return;
         const data = this.action.toObject();
         const { key, outcome } = button.dataset;
-        if (outcome === 'successHope') {
+        if (outcome === 'default') {
             delete data.damage.parts[key];
             data.damage.parts[`${key}`] = _del;
         } else {

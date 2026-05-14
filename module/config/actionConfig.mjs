@@ -124,6 +124,10 @@ export const areaTypes = {
 };
 
 export const outcomeTypes = {
+    default: {
+        key: 'default',
+        label: 'DAGGERHEART.CONFIG.OutcomeType.default'
+    },
     successHope: {
         key: 'successHope',
         label: 'DAGGERHEART.CONFIG.OutcomeType.successHope'
