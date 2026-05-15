@@ -268,7 +268,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
             const x = mark * widthUnit;
             const marked = mark < Math.ceil(data.value);
             const remainder = mark === Math.ceil(data.value) - 1 ? data.value % 1 : 0;
-            const color = !marked ? emptyColor : remainder ? Color.mix(emptyColor, fillColor, remainder) : fillColor;
+            const color = !marked ? emptyColor : remainder ? emptyColor.mix(fillColor, remainder) : fillColor;
             if (mark === 0 || mark === sections.length - 1) {
                 bar.beginFill(color, marked ? 1.0 : 0.5).drawRect(x, 0, widthUnit, bh, 2 * s); // Would like drawRoundedRect, but it's very troublsome with the corners. Leaving for now.
             } else {
