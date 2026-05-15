@@ -262,10 +262,10 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         const fillColor =
             number === 0 ? foundry.utils.Color.fromRGB([1, 0, 0]) : foundry.utils.Color.fromString('#0032b1');
 
-        // Draw the bar
-        const widthUnit = bw / data.max;
+        // Draw the bar (accounting for possible floating point numbers)
+        const widthUnit = bw / Math.ceil(data.max);
         bar.clear().lineStyle(s, 0x000000, 1.0);
-        const sections = [...Array(data.max).keys()];
+        const sections = [...Array(Math.ceil(data.max)).keys()];
         for (let mark of sections) {
             const x = mark * widthUnit;
             const marked = mark + 1 <= data.value;
