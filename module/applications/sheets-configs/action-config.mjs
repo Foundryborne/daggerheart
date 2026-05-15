@@ -6,8 +6,8 @@ export default class DHActionConfig extends DHActionBaseConfig {
         ...DHActionBaseConfig.DEFAULT_OPTIONS,
         actions: {
             ...DHActionBaseConfig.DEFAULT_OPTIONS.actions,
-            addOutcome: this.addOutcome,
-            removeOutcome: this.removeOutcome,
+            addOutcome: this.onAddOutcome,
+            removeOutcome: this.onRemoveOutcome,
             addEffect: this.addEffect,
             removeEffect: this.removeEffect,
             editEffect: this.editEffect
@@ -22,7 +22,7 @@ export default class DHActionConfig extends DHActionBaseConfig {
         return context;
     }
 
-    static addOutcome() {
+    static onAddOutcome() {
         const data = this.action.toObject();
 
         DHActionBaseConfig.selectOutcome(this.action, key => {
@@ -34,7 +34,7 @@ export default class DHActionConfig extends DHActionBaseConfig {
         });
     }
 
-    static removeOutcome(_event, button) {
+    static onRemoveOutcome(_event, button) {
         const { outcome } = button.dataset;
         const data = this.action.toObject();
 

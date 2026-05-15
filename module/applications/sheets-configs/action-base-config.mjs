@@ -18,75 +18,6 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         return `${game.i18n.localize('DAGGERHEART.GENERAL.Tabs.settings')}: ${this.action.name}`;
     }
 
-    /* Needs to consider effect altOutcomes aswell */
-    static getOutcomeTabs(action) {
-        const outcomeKeys = [
-            'default',
-            ...Object.keys(action.damage?.altOutcomes ?? {}).filter(key => action.damage.altOutcomes[key])
-        ];
-        return outcomeKeys.reduce((acc, key, index) => {
-            acc[key] = {
-                active: index === 0,
-                cssClass: '',
-                group: 'outcomes',
-                id: key,
-                icon: null,
-                label: game.i18n.localize(CONFIG.DH.ACTIONS.outcomeTypes[key].label)
-            };
-            return acc;
-        }, {});
-    }
-
-    /* Needs to consider effect altOutcomes aswell */
-    static selectOutcome(action, callback) {
-        const choices = Object.entries(CONFIG.DH.ACTIONS.outcomeTypes).reduce((acc, [key, value]) => {
-            if (action.damage.altOutcomes[key] === null) acc.push({ id: key, label: game.i18n.localize(value.label) });
-
-            return acc;
-        }, []);
-        const content = new foundry.data.fields.StringField({
-            label: game.i18n.localize('Outcome'),
-            choices,
-            required: true
-        }).toFormGroup(
-            {},
-            {
-                name: 'outcome',
-                localize: true,
-                nameAttr: 'value',
-                labelAttr: 'label'
-            }
-        ).outerHTML;
-
-        const callbackWrapper = (_, button) => {
-            const choiceIndex = button.form.elements.outcome.value;
-            callback(choices[choiceIndex]?.id);
-        };
-
-        const typeDialog = new foundry.applications.api.DialogV2({
-            buttons: [
-                foundry.utils.mergeObject(
-                    {
-                        action: 'ok',
-                        label: 'Confirm',
-                        icon: 'fas fa-check',
-                        default: true
-                    },
-                    { callback: callbackWrapper }
-                )
-            ],
-            content: content,
-            rejectClose: false,
-            modal: false,
-            window: {
-                title: game.i18n.localize('Add Outcome')
-            },
-            position: { width: 300 }
-        });
-
-        typeDialog.render(true);
-    }
-
     static DEFAULT_OPTIONS = {
         tag: 'form',
         classes: ['daggerheart', 'dh-style', 'action-config', 'dialog', 'max-800'],
@@ -97,16 +28,11 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         position: { width: 600, height: 'auto' },
         actions: {
             toggleSection: this.toggleSection,
-            addEffect: this.addEffect,
-            removeEffect: this.removeEffect,
             addElement: this.addElement,
             removeElement: this.removeElement,
             removeTransformActor: this.removeTransformActor,
-            addOutcome: this.addOutcome,
-            removeOutcome: this.removeOutcome,
-            editEffect: this.editEffect,
-            addDamage: this.addDamage,
-            removeDamage: this.removeDamage,
+            addDamage: this.onAddDamage,
+            removeDamage: this.onRemoveDamage,
             editDoc: this.editDoc,
             addTrigger: this.addTrigger,
             removeTrigger: this.removeTrigger,
@@ -194,6 +120,75 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     };
 
     static CLEAN_ARRAYS = ['cost', 'effects', 'summon'];
+
+    /* Needs to consider effect altOutcomes aswell */
+    static getOutcomeTabs(action) {
+        const outcomeKeys = [
+            'default',
+            ...Object.keys(action.damage?.altOutcomes ?? {}).filter(key => action.damage.altOutcomes[key])
+        ];
+        return outcomeKeys.reduce((acc, key, index) => {
+            acc[key] = {
+                active: index === 0,
+                cssClass: '',
+                group: 'outcomes',
+                id: key,
+                icon: null,
+                label: game.i18n.localize(CONFIG.DH.ACTIONS.outcomeTypes[key].label)
+            };
+            return acc;
+        }, {});
+    }
+
+    /* Needs to consider effect altOutcomes aswell */
+    static selectOutcome(action, callback) {
+        const choices = Object.entries(CONFIG.DH.ACTIONS.outcomeTypes).reduce((acc, [key, value]) => {
+            if (action.damage.altOutcomes[key] === null) acc.push({ id: key, label: game.i18n.localize(value.label) });
+
+            return acc;
+        }, []);
+        const content = new foundry.data.fields.StringField({
+            label: game.i18n.localize('Outcome'),
+            choices,
+            required: true
+        }).toFormGroup(
+            {},
+            {
+                name: 'outcome',
+                localize: true,
+                nameAttr: 'value',
+                labelAttr: 'label'
+            }
+        ).outerHTML;
+
+        const callbackWrapper = (_, button) => {
+            const choiceIndex = button.form.elements.outcome.value;
+            callback(choices[choiceIndex]?.id);
+        };
+
+        const typeDialog = new foundry.applications.api.DialogV2({
+            buttons: [
+                foundry.utils.mergeObject(
+                    {
+                        action: 'ok',
+                        label: 'Confirm',
+                        icon: 'fas fa-check',
+                        default: true
+                    },
+                    { callback: callbackWrapper }
+                )
+            ],
+            content: content,
+            rejectClose: false,
+            modal: false,
+            window: {
+                title: game.i18n.localize('Add Outcome')
+            },
+            position: { width: 300 }
+        });
+
+        typeDialog.render(true);
+    }
 
     _getTabs(tabs) {
         for (const v of Object.values(tabs)) {
@@ -389,7 +384,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
-    static addDamage(_event, button) {
+    static onAddDamage(_event, button) {
         if (!this.action.damage.parts) return;
 
         const outcome = button.dataset.outcome;
@@ -456,7 +451,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         typeDialog.render(true);
     }
 
-    static removeDamage(_event, button) {
+    static onRemoveDamage(_event, button) {
         if (!this.action.damage.parts) return;
         const data = this.action.toObject();
         const { key, outcome } = button.dataset;
@@ -556,13 +551,6 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         data.transform.resourceRefresh[event.target.dataset.resource] = event.target.checked;
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
-
-    /** Specific implementation in extending classes **/
-    static addOutcome(_event) {}
-    static removeOutcome(_event) {}
-    static async addEffect(_event) {}
-    static removeEffect(_event, _button) {}
-    static editEffect(_event) {}
 
     async close(options) {
         this.tabGroups.primary = 'base';
