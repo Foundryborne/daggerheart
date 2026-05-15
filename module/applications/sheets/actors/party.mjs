@@ -44,7 +44,10 @@ export default class Party extends DHBaseActorSheet {
     static PARTS = {
         header: { template: 'systems/daggerheart/templates/sheets/actors/party/header.hbs' },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
-        partyMembers: { template: 'systems/daggerheart/templates/sheets/actors/party/party-members.hbs' },
+        partyMembers: {
+            template: 'systems/daggerheart/templates/sheets/actors/party/party-members.hbs',
+            scrollable: ['']
+        },
         /* NOT YET IMPLEMENTED */
         // projects: {
         //     template: 'systems/daggerheart/templates/sheets/actors/party/projects.hbs',
