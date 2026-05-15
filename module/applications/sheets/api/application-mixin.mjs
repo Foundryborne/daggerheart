@@ -89,7 +89,7 @@ export default function DHApplicationMixin(Base) {
             classes: ['daggerheart', 'sheet', 'dh-style'],
             actions: {
                 triggerContextMenu: DHSheetV2.#triggerContextMenu,
-                createDoc: DHSheetV2.#createDoc,
+                createDoc: DHSheetV2.#onCreateDoc,
                 editDoc: DHSheetV2.#editDoc,
                 deleteDoc: DHSheetV2.#deleteDoc,
                 toChat: DHSheetV2.#toChat,
@@ -97,8 +97,8 @@ export default function DHApplicationMixin(Base) {
                 viewItem: DHSheetV2.#viewItem,
                 toggleEffect: DHSheetV2.#toggleEffect,
                 toggleExtended: DHSheetV2.#toggleExtended,
-                addNewItem: DHSheetV2.#addNewItem,
-                browseItem: DHSheetV2.#browseItem,
+                addNewItem: DHSheetV2.#onAddNewItem,
+                browseItem: DHSheetV2.#onBrowseItem,
                 editAttribution: DHSheetV2.#editAttribution
             },
             contextMenus: [
@@ -639,7 +639,7 @@ export default function DHApplicationMixin(Base) {
         /*  Application Clicks Actions                  */
         /* -------------------------------------------- */
 
-        static async #addNewItem(event, target) {
+        static async #onAddNewItem(event, target) {
             const createChoice = await foundry.applications.api.DialogV2.wait({
                 classes: ['dh-style', 'two-big-buttons'],
                 buttons: [
@@ -658,11 +658,11 @@ export default function DHApplicationMixin(Base) {
 
             if (!createChoice) return;
 
-            if (createChoice === 'browse') return DHSheetV2.#browseItem.call(this, event, target);
-            else return DHSheetV2.#createDoc.call(this, event, target);
+            if (createChoice === 'browse') return DHSheetV2.#onBrowseItem.call(this, event, target);
+            else return DHSheetV2.#onCreateDoc.call(this, event, target);
         }
 
-        static async #browseItem(event, target) {
+        static async #onBrowseItem(_event, target) {
             const type = target.dataset.compendium ?? target.dataset.type;
 
             const presets = {
@@ -713,7 +713,7 @@ export default function DHApplicationMixin(Base) {
          * Create an embedded document.
          * @type {ApplicationClickAction}
          */
-        static async #createDoc(event, target) {
+        static async #onCreateDoc(event, target) {
             const { documentClass, type, inVault, disabled } = target.dataset;
             const parentIsItem = this.document.documentName === 'Item';
             const featureOnCharacter = this.document.parent?.type === 'character' && type === 'feature';
@@ -725,7 +725,7 @@ export default function DHApplicationMixin(Base) {
                       : null
                   : this.document;
 
-            let systemData = null;
+            let systemData = {};
             if (featureOnCharacter) {
                 systemData = {
                     originItemType: this.document.type,
@@ -738,15 +738,18 @@ export default function DHApplicationMixin(Base) {
 
             const data = {
                 name: cls.defaultName({ type, parent }),
-                type
+                type,
+                system: systemData
             };
-
-            if (systemData) data.system = systemData;
-
-            if (inVault) data['system.inVault'] = true;
             if (disabled) data.disabled = true;
-            if (type === 'domainCard' && parent?.system.domains?.length) {
-                data.system.domain = parent.system.domains[0];
+
+            if (type === 'domainCard') {
+                if (parent?.system.domains?.length) data.system.domain = parent.system.domains[0];
+                if (inVault) data.system.inVault = true;
+            } else if (type === 'weapon') {
+                // Passing an empty system object to weapon causes validation failure due to attack action initialization
+                // todo: determine why, fix it at its source, then remove this fallback
+                delete data.system;
             }
 
             const doc = await cls.create(data, { parent, renderSheet: !event.shiftKey });
