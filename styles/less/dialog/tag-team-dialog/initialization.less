@@ -17,18 +17,27 @@
         }
 
         .members-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 8px;
+
+            // Force 3 columns for 5 -> 6 players
+            &:has(> :nth-child(5)):not(:has(> :nth-child(7))) {
+                padding-left: 10%;
+                padding-right: 10%;
+            }
 
             .member-container {
                 position: relative;
                 display: flex;
+                align-items: stretch;
                 justify-content: center;
                 border-radius: 6px;
                 border: 1px solid light-dark(@dark-blue, @golden);
                 overflow: hidden;
-                height: 12.5rem;
+                height: 11.5rem;
+                width: 122px;
 
                 &.inactive {
                     border-color: light-dark(@dark-blue-40, @golden-40);
@@ -69,6 +78,7 @@
                 img {
                     object-fit: cover;
                     object-position: top center;
+                    flex: 1;
                 }
 
                 .leader-mark {
