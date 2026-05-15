@@ -18,9 +18,6 @@
         {{#if (and @root.isNPC (not (eq path 'system.attack.')))}}
             {{formField baseFields.groupAttack value=source.groupAttack name=(concat path basePath ".groupAttack") localize=true classes="select"}}
         {{/if}}
-        {{#unless isDefaultDamage}}
-            {{formField @root.fields.damage.fields.altOutcomes.fields.successFear.fields.inheritDefaultDamage name=(concat path basePath ".inheritDefaultDamage") localize=true classes="checkbox"}}
-        {{/unless}}
     </div>
     
     {{!-- Handlebars uses Symbol.Iterator to produce index|key. This isn't compatible with our parts object, so we instead use applyTo, which is the same value --}}

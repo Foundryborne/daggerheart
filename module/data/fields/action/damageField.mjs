@@ -346,16 +346,6 @@ export class DHDamageData extends DHResourceData {
 export class AltDamageOutcome extends foundry.abstract.DataModel {
     static defineSchema() {
         return {
-            inheritDefaultDamage: new fields.BooleanField({
-                required: true,
-                initial: true,
-                label: 'DAGGERHEART.ACTIONS.Settings.inheritDefaultDamage.label'
-            }),
-            inheritDefaultEffects: new fields.BooleanField({
-                required: true,
-                initial: true,
-                label: 'DAGGERHEART.ACTIONS.Settings.inheritDefaultEffects.label'
-            }),
             ...getDamageBaseFields()
         };
     }
