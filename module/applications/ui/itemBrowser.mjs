@@ -109,8 +109,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             CONFIG.DH.id,
             CONFIG.DH.FLAGS[`${this.compendiumBrowserTypeKey}`].position
         );
-
         options.position = userPresetPosition ?? ItemBrowser.DEFAULT_OPTIONS.position;
+        delete options.position.zIndex;
 
         if (!userPresetPosition) {
             const width = noFolder === true || lite === true ? 600 : 850;
