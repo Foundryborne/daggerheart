@@ -78,12 +78,14 @@
 
                     .levelup-domain-label {
                         position: absolute;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
                         text-align: center;
-                        top: 4px;
                         background: grey;
-                        padding: 0 12px;
-                        border-radius: 6px;
+                        padding: 2px 12px;
                         z-index: 2;
+                        line-height: 1;
                     }
 
                     img {
@@ -98,17 +100,17 @@
 
                     .levelup-domain-selected {
                         position: absolute;
-                        height: 48px;
-                        width: 48px;
+                        height: 40px;
+                        width: 40px;
                         border-radius: 50%;
                         border: 2px solid @golden;
-                        font-size: var(--font-size-28);
+                        font-size: var(--font-size-24);
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         background: @dark-golden;
                         color: @golden;
-                        top: calc(50% - 10px);
+                        top: 10px;
                         z-index: 2;
 
                         i {
