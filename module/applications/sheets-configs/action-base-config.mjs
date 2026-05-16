@@ -388,10 +388,8 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         if (!this.action.damage.parts) return;
 
         const outcome = button.dataset.outcome;
-        const outcomeParts =
-            outcome === 'default'
-                ? this.action._source.damage.parts
-                : this.action._source.damage.altOutcomes[outcome].parts;
+        const source = this.action._source;
+        const outcomeParts = outcome === 'default' ? source.damage.parts : source.damage.altOutcomes[outcome].parts;
         const choices = getUnusedDamageTypes(outcomeParts);
         const content = new foundry.data.fields.StringField({
             label: game.i18n.localize('Damage Type'),
@@ -412,32 +410,23 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             const type = choices[button.form.elements.type.value].value;
             const part = this.action.schema.fields.damage.fields.parts.element.getInitialValue();
             part.applyTo = type;
-            if (type === CONFIG.DH.GENERAL.healingTypes.hitPoints.id)
+            if (type === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
                 part.type = this.action.schema.fields.damage.fields.parts.element.fields.type.element.initial;
-
-            if (outcome === 'default') data.damage.parts[type] = part;
-            else {
-                if (!data.damage.altOutcomes[outcome]) {
-                    data.damage.altOutcomes[outcome] = new AltDamageOutcome();
-                }
-
-                data.damage.altOutcomes[outcome].parts[type] = part;
             }
-
+            if (outcome !== 'default') data.damage.altOutcomes[outcome] ??= new AltDamageOutcome();
+            (outcome === 'default' ? data.damage : data.damage.altOutcomes[outcome]).parts[type] = part;
             this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
         };
 
         const typeDialog = new foundry.applications.api.DialogV2({
             buttons: [
-                foundry.utils.mergeObject(
-                    {
-                        action: 'ok',
-                        label: 'Confirm',
-                        icon: 'fas fa-check',
-                        default: true
-                    },
-                    { callback: callback }
-                )
+                {
+                    action: 'ok',
+                    label: 'Confirm',
+                    icon: 'fas fa-check',
+                    default: true,
+                    callback
+                }
             ],
             content: content,
             rejectClose: false,
@@ -455,14 +444,8 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         if (!this.action.damage.parts) return;
         const data = this.action.toObject();
         const { key, outcome } = button.dataset;
-        if (outcome === 'default') {
-            delete data.damage.parts[key];
-            data.damage.parts[`${key}`] = _del;
-        } else {
-            delete data.damage.altOutcomes[outcome].parts[key];
-            data.damage.altOutcomes[outcome].parts[`${key}`] = _del;
-        }
-
+        const parts = outcome === 'default' ? data.damage.parts : data.damage.altOutcomes[outcome].parts;
+        parts[key] = _del;
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
