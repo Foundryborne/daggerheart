@@ -7,39 +7,85 @@
 }
 
 .daggerheart.dialog.dh-style.views.tag-team-dialog {
-    .initialization-container {
+    .initialization-container.active {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacer-4);
+
         h2 {
             text-align: center;
         }
 
         .members-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 8px;
+
+            // Force 3 columns for 5 -> 6 players
+            &:has(> :nth-child(5)):not(:has(> :nth-child(7))) {
+                padding-left: 10%;
+                padding-right: 10%;
+            }
 
             .member-container {
                 position: relative;
                 display: flex;
+                align-items: stretch;
                 justify-content: center;
+                border-radius: 6px;
+                border: 1px solid light-dark(@dark-blue, @golden);
+                overflow: hidden;
+                height: 11.5rem;
+                width: 122px;
 
                 &.inactive {
-                    opacity: 0.4;
+                    border-color: light-dark(@dark-blue-40, @golden-40);
+                    img {
+                        opacity: 0.4;
+                    }
                 }
 
                 .member-name {
+                    --shadow-color: light-dark(white, black);
                     position: absolute;
-                    padding: 0 2px;
-                    border: 1px solid;
-                    border-radius: 6px;
-                    margin-top: 4px;
-                    color: light-dark(@dark, @beige);
-                    background-image: url('../assets/parchments/dh-parchment-dark.png');
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    min-height: 4rem;
+                    padding: 5rem 4px var(--spacer-8) 4px;
                     text-align: center;
+
+                    color: var(--color-text-primary);
+                    text-shadow: 1px 1px 2px var(--shadow-color), 0 0 10px var(--shadow-color);
+
+                    // Basic "scrim" gradient
+                    background-image: linear-gradient(
+                        to top,
+                        var(--shadow-color),
+                        rgba(from var(--shadow-color) r g b / 0.834) 10.6%,
+                        rgba(from var(--shadow-color) r g b / 0.541) 34%,
+                        rgba(from var(--shadow-color) r g b / 0.382) 47%,
+                        rgba(from var(--shadow-color) r g b / 0.194) 65%,
+                        transparent 100%
+                    );
                 }
 
                 img {
-                    border-radius: 6px;
-                    border: 1px solid light-dark(@dark-blue, @golden);
+                    object-fit: cover;
+                    object-position: top center;
+                    flex: 1;
+                }
+
+                .leader-mark {
+                    position: absolute;
+                    top: 4px;
+                    right: 4px;
+                    text-shadow: var(--shadow-text-stroke), 0 0 20px black;
                 }
             }
         }

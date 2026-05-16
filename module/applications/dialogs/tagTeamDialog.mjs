@@ -38,6 +38,9 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         tag: 'form',
         classes: ['daggerheart', 'views', 'dh-style', 'dialog', 'tag-team-dialog'],
         position: { width: 550, height: 'auto' },
+        window: {
+            icon: 'fa-solid fa-user-group'
+        },
         actions: {
             toggleSelectMember: TagTeamDialog.#toggleSelectMember,
             startTagTeamRoll: TagTeamDialog.#startTagTeamRoll,

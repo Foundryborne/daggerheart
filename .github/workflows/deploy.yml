@@ -37,6 +37,7 @@ jobs:
         url: https://github.com/${{github.repository}}
         manifest: https://raw.githubusercontent.com/${{github.repository}}/v14/system.json
         download: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/system.zip
+        flags.hotReload: false
 
     # Create a zip file with all files required by the module to add to the release
     - run: zip -r ./system.zip system.json README.md LICENSE build/daggerheart.js build/tagify.css styles/daggerheart.css assets/ templates/ packs/ lang/

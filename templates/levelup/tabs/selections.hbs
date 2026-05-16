@@ -43,45 +43,6 @@
             </fieldset>
         {{/if}}
 
-        {{#if (gt this.domainCards.length 0)}}
-            <div class="card-section">
-                <div class="card-section-header">
-                    <side-line-div class="invert"></side-line-div>
-                    <h3>{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.domainCards"}}</h3>
-                    <side-line-div></side-line-div>
-                </div>
-                <div class="tip">
-
-                </div>
-
-                <div class="levelup-card-selection domain-cards">
-                    {{#each this.domainCards}}
-                        {{#> "systems/daggerheart/templates/components/card-preview.hbs" this }}
-                            {{#each this.emptySubtexts}}
-                                <div class="">{{this}}</div>
-                            {{/each}}
-                        {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
-                    {{/each}}
-                </div>
-            </div>
-        {{/if}}
-
-        {{#if (gt this.subclassCards.length 0)}}
-            <div class="card-section">
-                <div class="card-section-header">
-                    <side-line-div class="invert"></side-line-div>
-                    <h3>{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.subclass"}}</h3>
-                    <side-line-div></side-line-div>
-                </div>
-
-                <div class="levelup-card-selection subclass-cards">
-                    {{#each this.subclassCards}}
-                        {{> "systems/daggerheart/templates/levelup/parts/selectable-card-preview.hbs" img=this.img header=this.featureLabel name=this.name path=this.path selected=this.selected uuid=this.uuid isMulticlass=this.isMulticlass featureState=this.featureState disabled=this.disabled }}
-                    {{/each}}
-                </div>
-            </div>
-        {{/if}}
-
         {{#if this.multiclass}}
             <div class="card-section">
                 <div class="card-section-header">
@@ -124,6 +85,45 @@
                             {{/each}}
                         </div>
                     {{/if}}
+                </div>
+            </div>
+        {{/if}}
+
+        {{#if (gt this.domainCards.length 0)}}
+            <div class="card-section">
+                <div class="card-section-header">
+                    <side-line-div class="invert"></side-line-div>
+                    <h3>{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.domainCards"}}</h3>
+                    <side-line-div></side-line-div>
+                </div>
+                <div class="tip">
+
+                </div>
+
+                <div class="levelup-card-selection domain-cards">
+                    {{#each this.domainCards}}
+                        {{#> "systems/daggerheart/templates/components/card-preview.hbs" this }}
+                            {{#each this.emptySubtexts}}
+                                <div class="">{{this}}</div>
+                            {{/each}}
+                        {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
+                    {{/each}}
+                </div>
+            </div>
+        {{/if}}
+
+        {{#if (gt this.subclassCards.length 0)}}
+            <div class="card-section">
+                <div class="card-section-header">
+                    <side-line-div class="invert"></side-line-div>
+                    <h3>{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.subclass"}}</h3>
+                    <side-line-div></side-line-div>
+                </div>
+
+                <div class="levelup-card-selection subclass-cards">
+                    {{#each this.subclassCards}}
+                        {{> "systems/daggerheart/templates/levelup/parts/selectable-card-preview.hbs" img=this.img header=this.featureLabel name=this.name path=this.path selected=this.selected uuid=this.uuid isMulticlass=this.isMulticlass featureState=this.featureState disabled=this.disabled }}
+                    {{/each}}
                 </div>
             </div>
         {{/if}}

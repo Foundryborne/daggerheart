@@ -11,9 +11,11 @@
 });
 
 .daggerheart.levelup {
-    .window-content {
-        max-height: 960px;
+    .tab.active {
+        flex: 1;
         overflow: auto;
+        scrollbar-width: thin;
+        scrollbar-color: light-dark(@dark-blue, @golden) transparent;
     }
 
     div[data-application-part='form'] {
@@ -22,15 +24,13 @@
         gap: 8px;
     }
 
-    section {
-        .section-container {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            gap: 20px 8px;
-            margin-top: 8px;
-            flex-wrap: wrap;
-        }
+    .section-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px 8px;
+        margin-top: 8px;
+        flex-wrap: wrap;
     }
 
     .levelup-footer {

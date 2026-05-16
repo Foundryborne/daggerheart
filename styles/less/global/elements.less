@@ -96,8 +96,6 @@
 
     textarea {
         color: light-dark(@dark, @beige);
-        scrollbar-width: thin;
-        scrollbar-color: light-dark(@dark-blue, @golden) transparent;
     }
 
     button:where(:not(.plain)) {
@@ -804,6 +802,7 @@
 
         .preview-image-container {
             width: 100%;
+            min-height: 0;
             flex-grow: 1;
             object-fit: cover;
             border-radius: 4px 4px 0 0;

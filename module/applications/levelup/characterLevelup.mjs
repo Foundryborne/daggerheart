@@ -156,6 +156,7 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                 if (multiclasses?.[0]) {
                     const data = multiclasses[0];
                     const multiclass = data.data.length > 0 ? await foundry.utils.fromUuid(data.data[0]) : {};
+                    const subclasses = (await multiclass?.system?.fetchSubclasses()) ?? [];
 
                     context.multiclass = {
                         ...data,
@@ -175,13 +176,12 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                                         alreadySelected
                                 };
                             }) ?? [],
-                        subclasses:
-                            multiclass?.system?.subclasses.map(subclass => ({
-                                ...subclass,
-                                uuid: subclass.uuid,
-                                selected: data.secondaryData.subclass === subclass.uuid,
-                                disabled: data.secondaryData.subclass && data.secondaryData.subclass !== subclass.uuid
-                            })) ?? [],
+                        subclasses: subclasses.map(subclass => ({
+                            ...subclass,
+                            uuid: subclass.uuid,
+                            selected: data.secondaryData.subclass === subclass.uuid,
+                            disabled: data.secondaryData.subclass && data.secondaryData.subclass !== subclass.uuid
+                        })),
                         compendium: 'classes',
                         limit: 1
                     };
