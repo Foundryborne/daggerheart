@@ -66,9 +66,9 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             id: 'range',
             template: 'systems/daggerheart/templates/sheets-settings/action-settings/range.hbs'
         },
-        effect: {
-            id: 'effect',
-            template: 'systems/daggerheart/templates/sheets-settings/action-settings/effect.hbs'
+        outcomes: {
+            id: 'outcomes',
+            template: 'systems/daggerheart/templates/sheets-settings/action-settings/outcomes.hbs'
         },
         trigger: {
             id: 'trigger',
@@ -101,11 +101,11 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             icon: null,
             label: 'DAGGERHEART.GENERAL.Tabs.range'
         },
-        effect: {
+        outcomes: {
             active: false,
             cssClass: '',
             group: 'primary',
-            id: 'effect',
+            id: 'outcomes',
             icon: null,
             label: 'DAGGERHEART.GENERAL.Tabs.outcomes'
         },
