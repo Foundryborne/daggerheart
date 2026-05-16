@@ -4,7 +4,7 @@ import IterableTypedObjectField from '../iterableTypedObjectField.mjs';
 
 const fields = foundry.data.fields;
 
-const getDamageBaseFields = () => ({
+export const getDamageBaseFields = () => ({
     parts: new IterableTypedObjectField(DHDamageData),
     includeBase: new fields.BooleanField({
         initial: false,
@@ -23,12 +23,6 @@ export default class DamageField extends fields.SchemaField {
     constructor(options, context = {}) {
         const damageFields = {
             ...getDamageBaseFields(),
-            altOutcomes: new fields.SchemaField({
-                successHope: new fields.EmbeddedDataField(AltDamageOutcome, { nullable: true, initial: null }),
-                successFear: new fields.EmbeddedDataField(AltDamageOutcome, { nullable: true, initial: null }),
-                failureHope: new fields.EmbeddedDataField(AltDamageOutcome, { nullable: true, initial: null }),
-                failureFear: new fields.EmbeddedDataField(AltDamageOutcome, { nullable: true, initial: null })
-            }),
             groupAttack: new fields.StringField({
                 choices: CONFIG.DH.GENERAL.groupAttackRange,
                 blank: true,
@@ -339,21 +333,6 @@ export class DHDamageData extends DHResourceData {
                     label: game.i18n.localize('DAGGERHEART.GENERAL.type')
                 }
             )
-        };
-    }
-}
-
-export class AltDamageOutcome extends foundry.abstract.DataModel {
-    static defineSchema() {
-        return {
-            ...getDamageBaseFields()
-        };
-    }
-
-    get data() {
-        return {
-            ...this.parent,
-            ...this
         };
     }
 }
