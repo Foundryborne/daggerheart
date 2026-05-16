@@ -4,10 +4,6 @@
         <input type="text" name="elevation" value="{{elevation}}" {{disabled (or locked (and isGamePaused (not isGM)))}}>
     </div>
 
-    <button type="button" class="control-icon" data-action="sort" data-tooltip="HUD.ToFrontOrBack">
-        <i class="fa-solid fa-arrow-down-arrow-up" inert></i>
-    </button>
-
     {{#if canChangeLevel}}
     <button type="button" class="control-icon" data-action="togglePalette" data-palette="levels"
             aria-label="{{ localize "HUD.ChangeLevel" }}" data-tooltip>
@@ -20,6 +16,10 @@
     </div>
     {{/if}}
 
+    <button type="button" class="control-icon" data-action="sort" data-tooltip aria-label="HUD.ToFrontOrBack">
+        <i class="fa-solid fa-arrow-down-arrow-up" inert></i>
+    </button>
+
     {{#if hasCompanion}}
         <button type="button" class="control-icon clown-car" data-action="toggleCompanions" data-tooltip="{{#if companionOnCanvas}}{{localize "DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrieveCompanionTokens"}}{{else}}{{localize "DAGGERHEART.APPLICATIONS.HUD.tokenHUD.depositCompanionTokens"}}{{/if}}">
             <img {{#if companionOnCanvas}}class="flipped"{{/if}} src="{{icons.toggleClowncar}}">
@@ -27,7 +27,7 @@
     {{/if}}
 
     {{#if canConfigure}}
-    <button type="button" class="control-icon" data-action="config" data-tooltip="HUD.OpenConfig">
+    <button type="button" class="control-icon" data-action="config" data-tooltip aria-label="HUD.OpenConfig">
         <i class="fa-solid fa-gear" inert></i>
     </button>
     {{/if}}
@@ -49,8 +49,9 @@
 
 <div class="col right">
     {{#if isGM}}
-    <button type="button" class="control-icon {{visibilityClass}}" data-action="visibility" data-tooltip="HUD.ToggleVis">
-        <img src="{{icons.visibility}}">
+    <button type="button" class="control-icon {{visibilityClass}}" data-action="visibility"
+        data-tooltip aria-label="{{localize (ifThen visibilityClass "HUD.Show" "HUD.Hide")}}">
+        <i class="fa-solid {{ifThen hidden "fa-eye-slash" "fa-eye"}}" inert></i>
     </button>
     {{/if}}
 
@@ -119,13 +120,15 @@
         {{/each}}
     </div>
 
-    <button type="button" class="control-icon {{targetClass}}" data-action="target" data-tooltip="HUD.ToggleTargetState">
+    <button type="button" class="control-icon {{targetClass}}" data-action="target"
+        data-tooltip aria-label="{{localize (ifThen targetClass "HUD.Untarget" "HUD.Target")}}">
         <i class="fa-solid fa-bullseye" inert></i>
     </button>
 
     {{#if canToggleCombat}}
-    <button type="button" class="control-icon {{combatClass}}" data-action="combat" data-tooltip="HUD.ToggleCombatState">
-        <img src="{{icons.combat}}">
+    <button type="button" class="control-icon {{combatClass}}" data-action="combat"
+        data-tooltip aria-label="{{localize (ifThen combatClass "HUD.ExitCombat" "HUD.EnterCombat")}}">
+        <i class="fa-solid fa-swords" inert></i>
     </button>
     {{/if}}
 </div>
