@@ -125,6 +125,7 @@
 
             .form-group {
                 white-space: nowrap;
+                gap: 0;
             }
 
             .filter-header {
@@ -167,6 +168,10 @@
                         color: light-dark(@dark-blue-50, @beige-50);
                     }
                 }
+            }
+
+            .filter-content {            
+                margin-top: 8px;
             }
         }
 
@@ -272,7 +277,7 @@
 
             div[data-sort-key] {
                 &:after {
-                    font-family: 'Font Awesome 6 Pro';
+                    font-family: var(--font-awesome);
                     margin-left: 5px;
                 }
 
