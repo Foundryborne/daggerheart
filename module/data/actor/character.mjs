@@ -840,12 +840,13 @@ export default class DhCharacter extends DhCreature {
             const newHopeMax = this.resources.hope.max + diff;
             const newHopeValue = Math.min(newHopeMax, this.resources.hope.value);
             if (newHopeValue != this.resources.hope.value) {
-                if (!changes.system.resources.hope) changes.system.resources.hope = { value: 0 };
-
-                changes.system.resources.hope = {
-                    ...changes.system.resources.hope,
-                    value: changes.system.resources.hope.value + newHopeValue
-                };
+                changes.system = foundry.utils.mergeObject(changes.system ?? {}, {
+                    resources: {
+                        hope: {
+                            value: (changes.system?.resources?.hope?.value ?? 0) + newHopeMax
+                        }
+                    }
+                });
             }
         }
 
