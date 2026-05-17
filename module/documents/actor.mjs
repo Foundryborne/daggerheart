@@ -112,10 +112,22 @@ export default class DhpActor extends Actor {
         this.updateSource(update);
     }
 
+    /** Perform a render, debounced in order to prevent overloading repeat render requests */
+    renderDebounced = foundry.utils.debounce(options => {
+        return this.render(options);
+    }, 10);
+
+    _onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
+        super._onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId);
+        for (const party of this.parties) {
+            party.renderDebounced({ parts: ['partyMembers'] });
+        }
+    }
+
     _onUpdate(changes, options, userId) {
         super._onUpdate(changes, options, userId);
         for (const party of this.parties) {
-            party.render({ parts: ['partyMembers'] });
+            party.renderDebounced({ parts: ['partyMembers'] });
         }
     }
 
@@ -134,7 +146,7 @@ export default class DhpActor extends Actor {
     _onDelete(options, userId) {
         super._onDelete(options, userId);
         for (const party of this.parties) {
-            party.render({ parts: ['partyMembers'] });
+            party.renderDebounced({ parts: ['partyMembers'] });
         }
     }
 
