@@ -4,6 +4,7 @@
     "autocompleter": "^9.3.2",
     "gulp": "^5.0.0",
     "gulp-less": "^5.0.0",
+    "gulp-sourcemaps": "^3.0.0",
     "rollup": "^4.40.0"
   },
   "scripts": {
