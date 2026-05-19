@@ -7,12 +7,12 @@
     input[type='text'],
     input[type='number'],
     textarea,
+    file-picker,
     .input[contenteditable] {
         background: light-dark(transparent, transparent);
         border-radius: 6px;
         box-shadow: 0 4px 30px @soft-shadow;
         backdrop-filter: blur(9.5px);
-        -webkit-backdrop-filter: blur(9.5px);
         outline: 2px solid transparent;
         color: light-dark(@dark-blue, @golden);
         border: 1px solid light-dark(@dark, @beige);
@@ -98,7 +98,7 @@
         color: light-dark(@dark, @beige);
     }
 
-    button:where(:not(.plain)) {
+    button:where(:not(.plain, color-picker *, file-picker *)) {
         background: light-dark(transparent, @golden);
         border: 1px solid light-dark(@dark-blue, @dark-blue);
         color: light-dark(@dark-blue, @dark-blue);
@@ -250,6 +250,15 @@
     a:hover,
     a.active {
         text-shadow: 0 0 1px currentColor, 0 0 1px currentColor, 0 0 8px light-dark(@dark-blue, @golden);
+    }
+
+    file-picker, color-picker {
+        > input[type=text] {
+            background: transparent;
+            border: none;
+            outline: none;        
+            backdrop-filter: unset;
+        }
     }
 
     fieldset {
@@ -594,59 +603,6 @@
         color: light-dark(#14142599, #efe6d850);
         font-size: var(--font-size-12);
         padding-left: 3px;
-    }
-}
-
-.application.setting.dh-style {
-    h2,
-    h3,
-    h4 {
-        margin: 8px 0 4px;
-        text-align: center;
-    }
-
-    footer {
-        margin-top: 8px;
-        display: flex;
-        gap: 8px;
-
-        button {
-            flex: 1;
-        }
-    }
-
-    .form-group {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 0.25rem 0.5rem;
-        flex-wrap: wrap;
-
-        label {
-            font-size: var(--font-size-14);
-            font-weight: normal;
-        }
-
-        .form-fields {
-            display: flex;
-            gap: 4px;
-            align-items: center;
-        }
-
-        &.setting-two-values {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.25rem 0.5rem;
-
-            .form-group {
-                justify-content: end;
-                flex-wrap: nowrap;
-            }
-
-            .hint {
-                grid-column: 1 / -1;
-            }
-        }
     }
 }
 
