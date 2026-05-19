@@ -4,7 +4,7 @@ export default class DomainCardSheet extends DHBaseItemSheet {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
         classes: ['domain-card'],
-        position: { width: 450, height: 700 }
+        position: { width: 450, height: 680 }
     };
 
     /** @override */
