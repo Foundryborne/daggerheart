@@ -718,7 +718,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     ? {
                           'system.linkedClass.uuid': {
                               key: 'system.linkedClass.uuid',
-                              value: this.document.system.class.value._stats.compendiumSource
+                              value: this.document.system.class.value?._stats.compendiumSource
                           }
                       }
                     : undefined,

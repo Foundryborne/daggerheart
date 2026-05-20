@@ -281,6 +281,7 @@ export default class DhpActor extends Actor {
 
     async levelUp(levelupData) {
         const levelupAuto = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto;
+        const getStatsWithSource = document => ({ ...(document._stats ?? {}), compendiumSource: document.uuid });
 
         const levelups = {};
         for (var levelKey of Object.keys(levelupData)) {
@@ -393,8 +394,7 @@ export default class DhpActor extends Actor {
                     const embeddedItem = await this.createEmbeddedDocuments('Item', [
                         {
                             ...multiclassData,
-                            uuid: multiclassItem.uuid,
-                            _stats: multiclassItem._stats,
+                            _stats: getStatsWithSource(multiclassItem),
                             system: {
                                 ...multiclassData.system,
                                 features: multiclassData.system.features.filter(x => x.type !== 'hope'),
@@ -407,8 +407,7 @@ export default class DhpActor extends Actor {
                     await this.createEmbeddedDocuments('Item', [
                         {
                             ...subclassData,
-                            uuid: subclassItem.uuid,
-                            _stats: subclassItem._stats,
+                            _stats: getStatsWithSource(subclassItem),
                             system: {
                                 ...subclassData.system,
                                 isMulticlass: true
@@ -428,8 +427,7 @@ export default class DhpActor extends Actor {
                     const embeddedItem = await this.createEmbeddedDocuments('Item', [
                         {
                             ...cardData,
-                            uuid: cardItem.uuid,
-                            _stats: cardItem._stats,
+                            _stats: getStatsWithSource(cardItem),
                             system: {
                                 ...cardData.system,
                                 inVault: true
@@ -450,8 +448,7 @@ export default class DhpActor extends Actor {
                     const embeddedItem = await this.createEmbeddedDocuments('Item', [
                         {
                             ...cardData,
-                            uuid: cardItem.uuid,
-                            _stats: cardItem._stats,
+                            _stats: getStatsWithSource(cardItem),
                             system: {
                                 ...cardData.system,
                                 inVault: true
