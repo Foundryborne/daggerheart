@@ -68,7 +68,7 @@ export default class DHSubclass extends BaseDataItem {
                         return false;
                     }
 
-                    if (multiclass.system.subclasses.every(x => x.uuid !== dataUuid)) {
+                    if ((await multiclass.system.fetchSubclasses()).every(x => x.uuid !== dataUuid)) {
                         ui.notifications.error(
                             game.i18n.localize('DAGGERHEART.UI.Notifications.subclassNotInMulticlass')
                         );
