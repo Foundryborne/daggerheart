@@ -588,11 +588,9 @@ export default class DhCharacter extends DhCreature {
             } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.community.id) {
                 communityFeatures.push(item);
             } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.class.id) {
-                if (item.system.multiclassOrigin) multiclassFeatures.push(item);
-                else classFeatures.push(item);
+                (item.system.multiclassOrigin ? multiclassFeatures : classFeatures).push(item);
             } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.subclass.id) {
-                if (item.system.multiclassOrigin) multiclassSubclassFeatures.push(item);
-                else subclassFeatures.push(item);
+                (item.system.multiclassOrigin ? multiclassSubclassFeatures : subclassFeatures).push(item);
             } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.companion.id) {
                 companionFeatures.push(item);
             } else if (item.type === 'feature' && !item.system.type) {
