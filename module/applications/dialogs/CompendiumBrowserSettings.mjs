@@ -1,5 +1,3 @@
-import { slugify } from '../../helpers/utils.mjs';
-
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class CompendiumBrowserSettings extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -55,9 +53,9 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
             const { type, label, packageType, packageName: basePackageName, id: baseId } = pack.metadata;
             if (!CompendiumBrowserSettings.#browserPackTypes.includes(type)) return acc;
 
-            const id = slugify(baseId);
+            const id = baseId.slugify();
             const isWorldPack = packageType === 'world';
-            const packageName = isWorldPack ? 'world' : slugify(basePackageName);
+            const packageName = isWorldPack ? 'world' : basePackageName.slugify();
             const sourceChecked =
                 !excludedSourceData[packageName] ||
                 !excludedSourceData[packageName].excludedDocumentTypes.includes(type);

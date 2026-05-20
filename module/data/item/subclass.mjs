@@ -56,38 +56,30 @@ export default class DHSubclass extends BaseDataItem {
         if (allowed === false) return;
 
         if (this.actor?.type === 'character') {
-            const dataUuid = data.uuid ?? data._stats.compendiumSource ?? `Item.${data._id}`;
-            if (this.actor.system.class.subclass) {
-                if (this.actor.system.multiclass.subclass) {
-                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.subclassesAlreadyPresent'));
-                    return false;
-                } else {
-                    const multiclass = this.actor.items.find(x => x.type === 'class' && x.system.isMulticlass);
-                    if (!multiclass) {
-                        ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.missingMulticlass'));
-                        return false;
-                    }
+            const { value: actorClass, subclass: existingSubclass } = this.actor.system.class;
+            const { value: multiclass, subclass: existingMultisubclass } = this.actor.system.multiclass;
+            if (!actorClass && !multiclass) {
+                ui.notifications.warn('DAGGERHEART.UI.Notifications.missingClass', { localize: true });
+                return false;
+            }
+            if (existingSubclass && existingMultisubclass) {
+                ui.notifications.warn('DAGGERHEART.UI.Notifications.subclassesAlreadyPresent', { localize: true });
+                return false;
+            }
+            if (existingSubclass && !multiclass) {
+                ui.notifications.warn('DAGGERHEART.UI.Notifications.missingMulticlass', { localize: true });
+                return false;
+            }
 
-                    if (multiclass.system.subclasses.every(x => x.uuid !== dataUuid)) {
-                        ui.notifications.error(
-                            game.i18n.localize('DAGGERHEART.UI.Notifications.subclassNotInMulticlass')
-                        );
-                        return false;
-                    }
-
-                    await this.updateSource({ isMulticlass: true });
-                }
-            } else {
-                const actorClass = this.actor.items.find(x => x.type === 'class' && !x.system.isMulticlass);
-                if (!actorClass) {
-                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.missingClass'));
-                    return false;
-                }
-
-                if ((await actorClass.system.fetchSubclasses()).every(x => x.uuid !== dataUuid)) {
-                    ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.subclassNotInClass'));
-                    return false;
-                }
+            const match = [multiclass, actorClass].find(
+                c => c && (c._stats.compendiumSource ?? c.uuid) === this.linkedClass
+            );
+            if (!match) {
+                const key = multiclass ? 'subclassNotInMulticlass' : 'subclassNotInClass';
+                ui.notifications.warn(`DAGGERHEART.UI.Notifications.${key}`, { localize: true });
+                return false;
+            } else if (match.system.isMulticlass) {
+                await this.updateSource({ isMulticlass: true });
             }
         }
     }
