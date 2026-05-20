@@ -233,16 +233,14 @@ export default class DhpActor extends Actor {
 
                 if (multiclass) {
                     const multiclassItem = this.items.find(x => x.uuid === multiclass.itemUuid);
-                    const multiclassFeatures = this.items.filter(
-                        x => x.system.originItemType === 'class' && x.system.multiclassOrigin
+                    const multiclassRelatedFeatures = this.items.filter(
+                        x => ['class', 'subclass'].includes(x.system.originItemType) && x.system.multiclassOrigin
                     );
-                    const subclassFeatures = this.items.filter(
-                        x => x.system.originItemType === 'subclass' && x.system.multiclassOrigin
-                    );
+                    if (!multiclassItem) console.error('Unexpected missing multiclass item to remove');
 
                     this.deleteEmbeddedDocuments(
                         'Item',
-                        [multiclassItem, ...multiclassFeatures, ...subclassFeatures].map(x => x.id)
+                        [multiclassItem, ...multiclassRelatedFeatures].filter(i => !!i).map(x => x.id)
                     );
 
                     this.update({
@@ -394,6 +392,7 @@ export default class DhpActor extends Actor {
                     const embeddedItem = await this.createEmbeddedDocuments('Item', [
                         {
                             ...multiclassData,
+                            uuid: multiclassItem.uuid, // todo: replace with setting an id and using keepId
                             _stats: getStatsWithSource(multiclassItem),
                             system: {
                                 ...multiclassData.system,
@@ -407,6 +406,7 @@ export default class DhpActor extends Actor {
                     await this.createEmbeddedDocuments('Item', [
                         {
                             ...subclassData,
+                            uuid: subclassItem.uuid, // todo: replace with setting an id and using keepId
                             _stats: getStatsWithSource(subclassItem),
                             system: {
                                 ...subclassData.system,
@@ -427,6 +427,7 @@ export default class DhpActor extends Actor {
                     const embeddedItem = await this.createEmbeddedDocuments('Item', [
                         {
                             ...cardData,
+                            uuid: cardItem.uuid, // todo: replace with setting an id and using keepId
                             _stats: getStatsWithSource(cardItem),
                             system: {
                                 ...cardData.system,
