@@ -1,3 +1,5 @@
+import { slugify } from '../../helpers/utils.mjs';
+
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class CompendiumBrowserSettings extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -50,11 +52,12 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
         const excludedSourceData = this.browserSettings.excludedSources;
         const excludedPackData = this.browserSettings.excludedPacks;
         context.typePackCollections = game.packs.reduce((acc, pack) => {
-            const { type, label, packageType, packageName: basePackageName, id } = pack.metadata;
+            const { type, label, packageType, packageName: basePackageName, id: baseId } = pack.metadata;
             if (!CompendiumBrowserSettings.#browserPackTypes.includes(type)) return acc;
 
+            const id = slugify(baseId);
             const isWorldPack = packageType === 'world';
-            const packageName = isWorldPack ? 'world' : basePackageName;
+            const packageName = isWorldPack ? 'world' : slugify(basePackageName);
             const sourceChecked =
                 !excludedSourceData[packageName] ||
                 !excludedSourceData[packageName].excludedDocumentTypes.includes(type);

@@ -1,3 +1,5 @@
+import { slugify } from '../helpers/utils.mjs';
+
 export default class CompendiumBrowserSettings extends foundry.abstract.DataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
@@ -24,11 +26,12 @@ export default class CompendiumBrowserSettings extends foundry.abstract.DataMode
         const pack = game.packs.get(item.pack);
         if (!pack) return false;
 
-        const packageName = pack.metadata.packageType === 'world' ? 'world' : pack.metadata.packageName;
+        const packageName = pack.metadata.packageType === 'world' ? 'world' : slugify(pack.metadata.packageName);
         const excludedSourceData = this.excludedSources[packageName];
         if (excludedSourceData && excludedSourceData.excludedDocumentTypes.includes(pack.metadata.type)) return true;
 
-        const excludedPackData = this.excludedPacks[item.pack];
+        const packName = slugify(item.pack);
+        const excludedPackData = this.excludedPacks[packName];
         if (excludedPackData && excludedPackData.excludedDocumentTypes.includes(pack.metadata.type)) return true;
 
         return false;
