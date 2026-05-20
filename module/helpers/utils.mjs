@@ -453,10 +453,6 @@ export async function createEmbeddedItemsWithEffects(actor, baseData) {
     await actor.createEmbeddedDocuments('Item', effectData);
 }
 
-export const slugify = name => {
-    return name.toLowerCase().replaceAll(' ', '-').replaceAll('.', '');
-};
-
 export function shuffleArray(array) {
     let currentIndex = array.length;
     while (currentIndex != 0) {
