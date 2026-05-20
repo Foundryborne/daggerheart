@@ -113,12 +113,8 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
             ? this.browserSettings.excludedPacks[source][packName].excludedDocumentTypes.includes(type)
             : false;
 
-        if (!this.browserSettings.excludedPacks[source]?.[packName]) {
-            if (!this.browserSettings.excludedPacks[source]) this.browserSettings.excludedPacks[source] = {};
-
-            this.browserSettings.excludedPacks[source][packName] = { excludedDocumentTypes: [] };
-        }
-
+        this.browserSettings.excludedPacks[source] ??= {};
+        this.browserSettings.excludedPacks[source][packName] ??= { excludedDocumentTypes: [] };
         this.browserSettings.excludedPacks[source][packName].excludedDocumentTypes = currentlyExcluded
             ? this.browserSettings.excludedPacks[source][packName].excludedDocumentTypes.filter(x => x !== type)
             : [...(this.browserSettings.excludedPacks[source][packName]?.excludedDocumentTypes ?? []), type];
