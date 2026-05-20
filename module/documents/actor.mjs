@@ -153,10 +153,13 @@ export default class DhpActor extends Actor {
     async updateLevel(newLevel) {
         if (!['character', 'companion'].includes(this.type) || newLevel === this.system.levelData.level.changed) return;
 
+        const tiers = Object.values(game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers);
+        const maxLevel = tiers.reduce((acc, tier) => Math.max(acc, tier.levels.end), 0);
+        const multiclassMinLevel = Math.min(
+            maxLevel,
+            ...tiers.filter(t => t.options.multiclass).map(t => t.levels.start)
+        );
         if (newLevel > this.system.levelData.level.current) {
-            const maxLevel = Object.values(
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers
-            ).reduce((acc, tier) => Math.max(acc, tier.levels.end), 0);
             if (newLevel > maxLevel) {
                 ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.tooHighLevel'));
             }
@@ -231,16 +234,19 @@ export default class DhpActor extends Actor {
                     this.system.multiclass.subclass.update({ 'system.featureState': subclassFeatureState.multiclass });
                 }
 
-                if (multiclass) {
-                    const multiclassItem = this.items.find(x => x.uuid === multiclass.itemUuid);
-                    const multiclassRelatedFeatures = this.items.filter(
-                        x => ['class', 'subclass'].includes(x.system.originItemType) && x.system.multiclassOrigin
+                // Remove multiclass if we're removing a multiclass feature or if we're below the multiclass minimum level
+                // Multclasses cannot be manually removed on the sheet, so this allows recovering in the case of errors
+                if (multiclass || newLevel < multiclassMinLevel) {
+                    const multiclassItems = this.items.filter(
+                        x =>
+                            x.uuid === multiclass?.itemUuid ||
+                            x.system.isMulticlass ||
+                            (['class', 'subclass'].includes(x.system.originItemType) && x.system.multiclassOrigin)
                     );
-                    if (!multiclassItem) console.error('Unexpected missing multiclass item to remove');
 
                     this.deleteEmbeddedDocuments(
                         'Item',
-                        [multiclassItem, ...multiclassRelatedFeatures].filter(i => !!i).map(x => x.id)
+                        multiclassItems.map(x => x.id)
                     );
 
                     this.update({
