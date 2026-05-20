@@ -58,6 +58,14 @@ export default class CharacterSheet extends DHBaseActorSheet {
         ],
         contextMenus: [
             {
+                handler: CharacterSheet.#getCreationMainContextOptions,
+                selector: '.character-details [data-action="editDoc"]',
+                options: {
+                    parentClassHooks: false,
+                    fixed: true
+                }
+            },
+            {
                 handler: CharacterSheet.#getDomainCardContextOptions,
                 selector: '[data-item-uuid][data-type="domainCard"]',
                 options: {
@@ -318,6 +326,53 @@ export default class CharacterSheet extends DHBaseActorSheet {
     /* -------------------------------------------- */
     /*  Context Menu                                */
     /* -------------------------------------------- */
+
+    static #getCreationMainContextOptions() {
+        /** Returns true if the item is managed by the level up wizard. Such items shouldn't allow things like manual removal */
+        function isItemWizardManaged(item) {
+            const actor = item?.actor;
+            if (!actor) return false;
+            const levelupAuto = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto;
+            if (!levelupAuto) return false;
+
+            // Core items aren't part of levelup data. TODO: add some way to flag a specific character as no auto leveling
+            const classPair = actor.system.class;
+            const coreItems = [actor.system.ancestry, actor.system.community, classPair?.value, classPair?.subclass];
+            if (coreItems.includes(item)) return true;
+
+            const levelups = Object.values(actor.system.levelData?.levelups) ?? [];
+            const uuid = item.uuid;
+            const sourceUuid = item._stats.compendiumSource; // on older characters this may be missing
+            return levelups.some(data => {
+                if (item.type === 'subclass') {
+                    const selectedSubclasses = data.selections.map(s => s.secondaryData?.subclass).filter(s => !!s);
+                    return sourceUuid
+                        ? selectedSubclasses.includes(sourceUuid)
+                        : selectedSubclasses.length && item.system.isMulticlass;
+                }
+
+                const matchesCard = data.achievements.domainCards.some(i => i.itemUuid === uuid);
+                const matchesSelection = data.selections.some(s => s.itemUuid === uuid);
+                return matchesCard || matchesSelection;
+            });
+        }
+
+        return [
+            {
+                label: 'CONTROLS.CommonDelete',
+                icon: 'fa-solid fa-trash',
+                visible: target => {
+                    const doc = getDocFromElementSync(target);
+                    return doc?.isOwner && !isItemWizardManaged(doc);
+                },
+                callback: async (target, event) => {
+                    const doc = await getDocFromElement(target);
+                    if (event.shiftKey) return doc.delete();
+                    else return doc.deleteDialog();
+                }
+            }
+        ];
+    }
 
     /**
      * Get the set of ContextMenu options for DomainCards.
