@@ -407,7 +407,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
                 ...Object.values(this.settings.domains),
                 ...Object.values(CONFIG.DH.DOMAIN.domains)
             ];
-            if (existingDomains.find(x => game.i18n.localize(x.label).slugify() === newSlug)) {
+            if (existingDomains.find(x => x.id === newSlug)) {
                 ui.notifications.warn(game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.domains.duplicateDomain'));
                 return;
             }
