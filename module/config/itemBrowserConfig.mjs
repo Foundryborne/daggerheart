@@ -443,10 +443,12 @@ export const typeConfig = {
                     const list = [];
                     for (const item of items.filter(item => item.system.linkedClass)) {
                         const linkedClass = await foundry.utils.fromUuid(item.system.linkedClass);
-                        list.push({
-                            value: linkedClass.uuid,
-                            label: linkedClass.name
-                        });
+                        if (linkedClass) {
+                            list.push({
+                                value: linkedClass.uuid,
+                                label: linkedClass.name
+                            });
+                        }
                     }
 
                     return list.reduce((a, c) => {
