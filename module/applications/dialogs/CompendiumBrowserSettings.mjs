@@ -50,12 +50,11 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
         const excludedSourceData = this.browserSettings.excludedSources;
         const excludedPackData = this.browserSettings.excludedPacks;
         context.typePackCollections = game.packs.reduce((acc, pack) => {
-            const { type, label, packageType, packageName: basePackageName, id: baseId } = pack.metadata;
+            const { type, label, packageType, packageName: basePackageName, name, id } = pack.metadata;
             if (!CompendiumBrowserSettings.#browserPackTypes.includes(type)) return acc;
 
-            const id = baseId.slugify();
             const isWorldPack = packageType === 'world';
-            const packageName = isWorldPack ? 'world' : basePackageName.slugify();
+            const packageName = isWorldPack ? 'world' : basePackageName;
             const sourceChecked =
                 !excludedSourceData[packageName] ||
                 !excludedSourceData[packageName].excludedDocumentTypes.includes(type);
@@ -69,10 +68,12 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
             if (!acc[type].sources[packageName])
                 acc[type].sources[packageName] = { label: sourceLabel, checked: sourceChecked, packs: [] };
 
-            const checked = !excludedPackData[id] || !excludedPackData[id].excludedDocumentTypes.includes(type);
+            const checked =
+                !excludedPackData[packageName] ||
+                !excludedPackData[packageName][name]?.excludedDocumentTypes.includes(type);
 
             acc[type].sources[packageName].packs.push({
-                pack: id,
+                name,
                 type,
                 label: id === game.system.id ? game.system.title : game.i18n.localize(label),
                 checked: checked
@@ -107,16 +108,20 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
     toggleTypedPack(event) {
         event.stopPropagation();
 
-        const { type, pack } = event.target.dataset;
-        const currentlyExcluded = this.browserSettings.excludedPacks[pack]
-            ? this.browserSettings.excludedPacks[pack].excludedDocumentTypes.includes(type)
+        const { type, source, packName } = event.target.dataset;
+        const currentlyExcluded = this.browserSettings.excludedPacks[source]?.[packName]
+            ? this.browserSettings.excludedPacks[source][packName].excludedDocumentTypes.includes(type)
             : false;
 
-        if (!this.browserSettings.excludedPacks[pack])
-            this.browserSettings.excludedPacks[pack] = { excludedDocumentTypes: [] };
-        this.browserSettings.excludedPacks[pack].excludedDocumentTypes = currentlyExcluded
-            ? this.browserSettings.excludedPacks[pack].excludedDocumentTypes.filter(x => x !== type)
-            : [...(this.browserSettings.excludedPacks[pack]?.excludedDocumentTypes ?? []), type];
+        if (!this.browserSettings.excludedPacks[source]?.[packName]) {
+            if (!this.browserSettings.excludedPacks[source]) this.browserSettings.excludedPacks[source] = {};
+
+            this.browserSettings.excludedPacks[source][packName] = { excludedDocumentTypes: [] };
+        }
+
+        this.browserSettings.excludedPacks[source][packName].excludedDocumentTypes = currentlyExcluded
+            ? this.browserSettings.excludedPacks[source][packName].excludedDocumentTypes.filter(x => x !== type)
+            : [...(this.browserSettings.excludedPacks[source][packName]?.excludedDocumentTypes ?? []), type];
 
         this.render();
     }
