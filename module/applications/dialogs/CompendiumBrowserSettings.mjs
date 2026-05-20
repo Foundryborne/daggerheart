@@ -68,7 +68,7 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
             if (!acc[type].sources[packageName])
                 acc[type].sources[packageName] = { label: sourceLabel, checked: sourceChecked, packs: [] };
 
-            const checked =
+            const included =
                 !excludedPackData[packageName] ||
                 !excludedPackData[packageName][name]?.excludedDocumentTypes.includes(type);
 
@@ -76,7 +76,7 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
                 name,
                 type,
                 label: id === game.system.id ? game.system.title : game.i18n.localize(label),
-                checked: checked
+                checked: included
             });
 
             return acc;
