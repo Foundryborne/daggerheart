@@ -577,6 +577,8 @@ export default class DhCharacter extends DhCreature {
             communityFeatures = [],
             classFeatures = [],
             subclassFeatures = [],
+            multiclassFeatures = [],
+            multiclassSubclassFeatures = [],
             companionFeatures = [],
             features = [];
 
@@ -586,9 +588,11 @@ export default class DhCharacter extends DhCreature {
             } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.community.id) {
                 communityFeatures.push(item);
             } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.class.id) {
-                classFeatures.push(item);
+                if (item.system.multiclassOrigin) multiclassFeatures.push(item);
+                else classFeatures.push(item);
             } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.subclass.id) {
-                subclassFeatures.push(item);
+                if (item.system.multiclassOrigin) multiclassSubclassFeatures.push(item);
+                else subclassFeatures.push(item);
             } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.companion.id) {
                 companionFeatures.push(item);
             } else if (item.type === 'feature' && !item.system.type) {
@@ -617,6 +621,24 @@ export default class DhCharacter extends DhCreature {
                 type: 'subclass',
                 values: subclassFeatures
             },
+            ...(multiclassFeatures.length
+                ? {
+                      multiclassFeatures: {
+                          title: `${game.i18n.localize('DAGGERHEART.GENERAL.multiclass')} - ${this.multiclass.value?.name}`,
+                          type: 'multiclass',
+                          values: multiclassFeatures
+                      }
+                  }
+                : {}),
+            ...(multiclassSubclassFeatures.length
+                ? {
+                      multiclassSubclassFeatures: {
+                          title: `${game.i18n.localize('DAGGERHEART.GENERAL.multiclass')} ${game.i18n.localize('TYPES.Item.subclass')} - ${this.multiclass.subclass?.name}`,
+                          type: 'multiclassSubclass',
+                          values: multiclassSubclassFeatures
+                      }
+                  }
+                : {}),
             companionFeatures: {
                 title: game.i18n.localize('DAGGERHEART.ACTORS.Character.companionFeatures'),
                 type: 'companion',
