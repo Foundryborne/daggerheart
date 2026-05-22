@@ -15,6 +15,7 @@ export default class DhTokenManager {
             if (tokenSize && actor.system.size !== CONFIG.DH.ACTOR.tokenSize.custom.id) {
                 tokenData.width = tokenSize;
                 tokenData.height = tokenSize;
+                tokenData.depth = tokenSize;
             }
         }
 
