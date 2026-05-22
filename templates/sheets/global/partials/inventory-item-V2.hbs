@@ -12,6 +12,8 @@ Parameters:
 - hideTags {boolean} : If true, hide simple-tags else show simple-tags.
 - hideTooltip {boolean} : If true, disables the tooltip on the item image.
 - hideControls {boolean} : If true, hides the controls inside inventory-item partials.
+- hideContextMenu {boolean}: If true, hides the context menu dropdown button
+- hideModifyControls {boolean}: If true, hides the edit and delete options (todo: swap to show, only party cares to show this)
 - hideDescription {boolean} : If true, hides the item's description.
 - hideResources {boolean} : If true, hides the item's resources.
 - showActions {boolean} : If true show feature's actions.
@@ -112,7 +114,7 @@ Parameters:
                 <a data-action="triggerContextMenu" data-tooltip="DAGGERHEART.UI.Tooltip.moreOptions">
                     <i class="fa-solid fa-fw fa-ellipsis-vertical" inert></i>
                 </a>
-            {{else if @root.editable}}
+            {{else if (and @root.editable (not hideModifyControls))}}
                 <a data-action="editDoc" data-tooltip="DAGGERHEART.UI.Tooltip.edit">
                     <i class="fa-solid fa-edit" inert></i>
                 </a>
