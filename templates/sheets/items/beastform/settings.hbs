@@ -46,6 +46,13 @@
                     placeholder=(localize (ifThen dimensionsDisabled "DAGGERHEART.ITEMS.Beastform.FIELDS.tokenSize.disabledPlaceholder" "DAGGERHEART.ITEMS.Beastform.FIELDS.tokenSize.placeholder")) 
                     disabled=dimensionsDisabled 
                 }}
+                {{formGroup 
+                    systemFields.tokenSize.fields.depth 
+                    value=source.system.tokenSize.depth 
+                    localize=true 
+                    placeholder=(localize (ifThen dimensionsDisabled "DAGGERHEART.ITEMS.Beastform.FIELDS.tokenSize.disabledPlaceholder" "DAGGERHEART.ITEMS.Beastform.FIELDS.tokenSize.placeholder")) 
+                    disabled=dimensionsDisabled 
+                }}
             </div>
             <div class="full-width">
                 {{formGroup systemFields.tokenSize.fields.scale value=source.system.tokenSize.scale localize=true }}

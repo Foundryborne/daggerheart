@@ -51,7 +51,8 @@ export default class DHBeastform extends BaseDataItem {
                 }),
                 scale: new fields.NumberField({ nullable: false, min: 0.2, max: 3, step: 0.05, initial: 1 }),
                 height: new fields.NumberField({ integer: true, min: 1, initial: null, nullable: true }),
-                width: new fields.NumberField({ integer: true, min: 1, initial: null, nullable: true })
+                width: new fields.NumberField({ integer: true, min: 1, initial: null, nullable: true }),
+                depth: new fields.NumberField({ integer: true, min: 1, initial: null, nullable: true })
             }),
             mainTrait: new fields.StringField({
                 required: true,
@@ -192,7 +193,8 @@ export default class DHBeastform extends BaseDataItem {
                     tokenSize: {
                         scale: this.parent.parent.prototypeToken.texture.scaleX,
                         height: this.parent.parent.prototypeToken.height,
-                        width: this.parent.parent.prototypeToken.width
+                        width: this.parent.parent.prototypeToken.width,
+                        depth: this.parent.parent.prototypeToken.depth
                     }
                 },
                 advantageOn: this.advantageOn,
@@ -211,10 +213,12 @@ export default class DHBeastform extends BaseDataItem {
                 : null;
         const width = autoTokenSize ?? this.tokenSize.width;
         const height = autoTokenSize ?? this.tokenSize.height;
+        const depth = autoTokenSize ?? this.tokenSize.depth;
 
         const prototypeTokenUpdate = {
             height,
             width,
+            depth,
             texture: {
                 src: this.tokenImg,
                 scaleX: this.tokenSize.scale,

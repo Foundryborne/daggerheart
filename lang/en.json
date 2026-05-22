@@ -2567,10 +2567,11 @@
                     "tokenImg": { "label": "Token Image" },
                     "tokenRingImg": { "label": "Subject Texture" },
                     "tokenSize": {
-                        "placeholder": "Using character dimensions",
-                        "disabledPlaceholder": "Set by character size",
+                        "placeholder": "Token Size",
+                        "disabledPlaceholder": "Token Size",
                         "height": { "label": "Height" },
                         "width": { "label": "Width" },
+                        "depth": { "label": "Depth" },
                         "scale": { "label": "Token Scale" }
                     },
                     "evolved": {
