@@ -354,6 +354,9 @@
             "Attribution": {
                 "title": "Attribution"
             },
+            "CampaignFrames": {
+                "title": "Campaign Frames"
+            },
             "CharacterCreation": {
                 "tabs": {
                     "ancestry": "Ancestry",

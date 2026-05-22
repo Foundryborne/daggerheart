@@ -1,3 +1,4 @@
+export { default as CampaignFrames } from './campaignFrames.mjs';
 export { default as DhCombat } from './combat.mjs';
 export { default as DhCombatant } from './combatant.mjs';
 export { default as DhRollTable } from './rollTable.mjs';

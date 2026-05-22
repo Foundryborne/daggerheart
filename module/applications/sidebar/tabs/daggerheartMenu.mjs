@@ -32,7 +32,8 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
         actions: {
             selectRefreshable: DaggerheartMenu.#selectRefreshable,
             refreshActors: DaggerheartMenu.#refreshActors,
-            createFallCollisionDamage: DaggerheartMenu.#createFallCollisionDamage
+            createFallCollisionDamage: DaggerheartMenu.#createFallCollisionDamage,
+            openCampaignFrames: DaggerheartMenu.#openCampaignFrames
         }
     };
 
@@ -90,5 +91,9 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
             rolls: [rollJSON],
             sound: CONFIG.sounds.dice
         });
+    }
+
+    static async #openCampaignFrames() {
+        new game.system.api.applications.campaignFrame.CampaignFrames().render({ force: true });
     }
 }

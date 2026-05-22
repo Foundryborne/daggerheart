@@ -1,0 +1,41 @@
+<div>
+    {{!-- <nav class='feature-tab tabs' data-group='frames'>
+        {{#each tabs as |tab|}}
+            <button class='{{tab.id}} {{tab.cssClass}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}' {{disabled tab.disabled}}>
+                {{localize tab.label}}
+            </button>
+        {{/each}}
+    </nav> --}}
+    <div class="campaign-frames-container">
+        {{#each campaignFrames as |frame|}}
+            {{> ".frame" }}
+        {{/each}}
+    </div>
+</div>
+
+{{#*inline ".frame"}}
+    <fieldset>
+        <legend>{{name}}</legend>
+
+        <div class="campaign-frame-container">
+            <img src="{{img}}" />
+            <div class="information-container">
+                <label>{{localize "The Pitch"}}</label>
+                <div class="subtext">{{localize "Read this section to your players to to introduce them to the campaign."}}</div>
+                <div>{{{pitch}}}</div>
+            </div>
+            <div class="information-container">
+                <label>{{localize "Tone & Feel"}}</label>
+                <div>{{toneAndFeel}}</div>
+            </div>
+            <div class="information-container">
+                <label>{{localize "Themes"}}</label>
+                <div>{{themes}}</div>
+            </div>
+            <div class="information-container">
+                <label>{{localize "Touchstones"}}</label>
+                <div class="italic">{{touchstones}}</div>
+            </div>
+        </div>
+    </fieldset>
+{{/inline}}

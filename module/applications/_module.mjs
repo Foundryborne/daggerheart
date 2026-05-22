@@ -1,3 +1,4 @@
+export * as campaignFrame from './campaignFrame/_module.mjs';
 export * as characterCreation from './characterCreation/_module.mjs';
 export * as dialogs from './dialogs/_module.mjs';
 export * as hud from './hud/_module.mjs';

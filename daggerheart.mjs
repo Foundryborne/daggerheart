@@ -104,6 +104,7 @@ Hooks.once('init', () => {
         fields
     };
 
+    game.system.campaignFrames = new game.system.api.data.CampaignFrames();
     game.system.registeredTriggers = new game.system.api.data.RegisteredTriggers();
 
     const { DocumentSheetConfig } = foundry.applications.apps;
@@ -317,6 +318,28 @@ Hooks.on('ready', async () => {
             game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.welcomeMessage, true);
         }
     }
+
+    /* Temporary for testing */
+    game.system.campaignFrames.register({
+        witherwild: {
+            name: 'Witherwild',
+            img: 'CampaignFrameStuff/Witherwild.png',
+            complexityRating: 1,
+            pitch: `<div>Fanewick was once a place of great abundance and peace
+                dangerous to those unfamiliar with the land, but a cornucopia
+                to those who respected its ways. When Haven invaded the
+                wilds and forced the land into eternal spring, a dangerous
+                bloom known as the Witherwild took hold and now threatens
+                the lives of all who live there. In a Witherwild campaign,
+                you’ll play unlikely heroes from humble beginnings who are
+                reckoning with their newfound duty to save Fanewick’s people
+                from dangerous corruption.</div>`,
+            toneAndFeel: 'Adventurous, Dynamic, Epic, Heroic, Thrilling, Uncanny, Whimsical',
+            themes: 'Cultural Clash, Ends Justify Means, Grief, People vs. Nature, Transformation and Change, Survival',
+            touchstones: 'Princess Mononoke, The Legend of Zelda, The Dark Crystal, Nausicaä of the Valley of the Wind'
+        }
+    });
+    /* Temporary for testing */
 
     runMigrations();
 });
