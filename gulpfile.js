@@ -15,8 +15,8 @@ gulp.task('less', function (cb) {
 
 gulp.task(
     'default',
-    gulp.series('less', function (cb) {
-        gulp.watch('styles/**/*.less', gulp.series('less'));
-        cb();
+    gulp.series('less', function () {
+        return gulp.watch('styles/**/*.less', gulp.series('less'))
+            .on('error', console.error.bind(console));
     })
 );
