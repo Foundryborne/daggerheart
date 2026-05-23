@@ -3097,6 +3097,7 @@
                 }
             },
             "ChatLog": {
+                "rerollActionRoll": "Reroll Action",
                 "rerollDamage": "Reroll Damage",
                 "assignTagRoll": "Assign as Tag Roll"
             },
