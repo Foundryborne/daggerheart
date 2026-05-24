@@ -11,7 +11,7 @@
         .profile {
             height: 235px;
             cursor: pointer;
-            mask-image: linear-gradient(0deg, transparent 0%, black 10%);
+            mask-image: linear-gradient(0deg, transparent 0%, black 12%);
         }
 
         .actor-name {
@@ -24,12 +24,14 @@
             margin-bottom: -30px;
 
             input[type='text'] {
-                font-size: var(--font-size-24);
-                height: 32px;
-                text-align: center;
+                background-color: light-dark(@dark-15, @light-black);
                 border: 1px solid transparent;
+                font-size: var(--font-size-24);
+                height: 2rem;
+                text-align: center;
                 outline: 2px solid transparent;
                 transition: all 0.3s ease;
+                text-shadow: 1px 1px 2px light-dark(@soft-white-shadow, @light-black);
 
                 &:hover {
                     outline: 2px solid light-dark(@dark, @golden);
