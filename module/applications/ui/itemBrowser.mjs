@@ -1,3 +1,4 @@
+import { getDocFromElement } from '../../helpers/utils.mjs';
 import { RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -47,7 +48,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             expandContent: this.expandContent,
             resetFilters: this.resetFilters,
             sortList: this.sortList,
-            openSettings: this.openSettings
+            openSettings: this.openSettings,
+            viewSheet: this.#onViewSheet
         },
         position: {
             left: 100,
@@ -306,7 +308,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 {
                     items: this.items,
                     menu: this.selectedMenu,
-                    formatLabel: this.formatLabel
+                    formatLabel: this.formatLabel,
+                    viewSheet: this.items[0] instanceof Actor
                 }
             );
 
@@ -566,6 +569,11 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 }
             });
         }
+    }
+
+    static async #onViewSheet(_, target) {
+        const document = await getDocFromElement(target);
+        document?.sheet?.render(true);
     }
 
     _createDragProcess() {
