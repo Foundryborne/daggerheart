@@ -148,14 +148,22 @@ export default class DualityRoll extends D20Roll {
     }
 
     applyAdvantage() {
-        if (this.hasAdvantage || this.hasDisadvantage) {
-            const dieFaces = this.advantageFaces,
-                advDie = new foundry.dice.terms.Die({ faces: dieFaces, number: this.advantageNumber });
-            if (this.advantageNumber > 1) advDie.modifiers = ['kh'];
-            this.terms.push(
-                new foundry.dice.terms.OperatorTerm({ operator: this.hasDisadvantage ? '-' : '+' }),
-                advDie
-            );
+        const advDieClass = this.hasAdvantage
+            ? game.system.api.dice.diceTypes.AdvantageDie
+            : this.hasDisadvantage
+              ? game.system.api.dice.diceTypes.DisadvantageDie
+              : null;
+        if (advDieClass) {
+            const advDie = new advDieClass({ faces: this.advantageFaces, number: this.advantageNumber });
+            if (this.terms.length < 4) {
+                if (this.advantageNumber > 1) advDie.modifiers = ['kh'];
+                this.terms.push(
+                    new foundry.dice.terms.OperatorTerm({ operator: this.hasDisadvantage ? '-' : '+' }),
+                    advDie
+                );
+            } else {
+                this.terms[4] = advDie;
+            }
         }
         if (this.rallyFaces)
             this.terms.push(
