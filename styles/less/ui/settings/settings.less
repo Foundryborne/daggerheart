@@ -1,6 +1,67 @@
 @import '../../utils/colors.less';
 
 .daggerheart.dh-style.setting {
+    --color-form-label: var(--color-text-primary);
+
+    h2,
+    h3,
+    h4 {
+        margin: 8px 0 4px;
+        text-align: center;
+    }
+
+    footer {
+        margin-top: 8px;
+        display: flex;
+        gap: 8px;
+
+        button {
+            flex: 1;
+        }
+    }
+
+    .standard-form {
+        gap: var(--spacer-8);
+        .form-group .form-fields {
+            width: unset;
+        }
+    }
+
+    .form-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.25rem 0.5rem;
+        flex-wrap: wrap;
+
+        label {
+            font-size: var(--font-size-14);
+            font-weight: normal;
+            line-height: var(--input-height);
+        }
+
+        .form-fields {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        &.setting-two-values {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.25rem 0.5rem;
+
+            .form-group {
+                justify-content: end;
+                flex-wrap: nowrap;
+            }
+
+            .hint {
+                grid-column: 1 / -1;
+            }
+        }
+    }
+
     fieldset {
         display: flex;
         flex-direction: column;
@@ -19,7 +80,10 @@
         &.three-columns {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 2px;
+            gap: 4px;
+            .form-group label {
+                line-height: unset;
+            }
         }
 
         &.six-columns {

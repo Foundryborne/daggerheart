@@ -1,5 +1,6 @@
 @import '../../../utils/colors.less';
 @import '../../../utils/fonts.less';
+@import '../../../utils/mixin.less';
 
 .application.sheet.daggerheart.actor.dh-style.environment {
     .environment-header-sheet {
@@ -10,58 +11,81 @@
 
         .profile {
             height: 235px;
-            mask-image: linear-gradient(0deg, transparent 0%, black 10%);
             cursor: pointer;
+            .smooth-gradient-ease-in-out(mask-image, to top, black, 3.5rem);
         }
 
         .item-container {
-            display: flex;
+            display: grid;
+            grid-auto-flow: row;
+            grid-template-columns: 1fr min-content;
+
             align-items: center;
             position: relative;
-            top: -45px;
-            gap: 20px;
+            top: -36px;
+            gap: 0 var(--spacer-12);
             padding: 0 20px;
-            margin-bottom: -30px;
+            margin-bottom: -26px;
 
-            .item-info {
+            .item-name input[type='text'] {
+                backdrop-filter: none;
+                border: none;
+                font-family: @font-title;
+                font-size: var(--font-size-32);
+                text-align: start;
+                transition: all 0.3s ease;
+                outline: 2px solid transparent;
+                box-shadow: none;
+                text-shadow: 0 0 4px light-dark(white, @dark-80), 0 0 8px light-dark(white, @dark-80), 0 0 14px light-dark(white, @dark-80);
+
+                padding-left: 0;
+                height: 2.625rem;
+
+                &:hover[type='text'],
+                &:focus[type='text'] {
+                    box-shadow: none;
+                    outline: 2px solid light-dark(@dark-blue, @golden);
+                }
+            }
+            
+            .flexrow {
+                align-items: baseline;
+                grid-column: span 2;
+            }
+
+            .tags {
                 display: flex;
-                flex-direction: column;
-                gap: 8px;
+                gap: 10px;
+                padding-bottom: 0;
+                flex: 0;
 
-                .tags {
+                .tag {
                     display: flex;
-                    gap: 10px;
-                    padding-bottom: 0;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 3px 5px;
+                    font-size: var(--font-size-12);
+                    font: @font-body;
+                    white-space: nowrap;
 
-                    .tag {
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: center;
-                        align-items: center;
-                        padding: 3px 5px;
-                        font-size: var(--font-size-12);
-                        font: @font-body;
-
-                        background: light-dark(@dark-15, @beige-15);
-                        border: 1px solid light-dark(@dark, @beige);
-                        border-radius: 3px;
-                    }
-
-                    .label {
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: center;
-                        align-items: center;
-                        font-size: var(--font-size-12);
-                    }
+                    background: light-dark(@dark-15, @beige-15);
+                    border: 1px solid light-dark(@dark, @beige);
+                    border-radius: 3px;
                 }
 
-                .attribution-header-label {
-                    text-align: left;
-                    position: relative;
-                    top: 4px;
-                    margin-bottom: -6px;
+                .label {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: var(--font-size-12);
                 }
+            }
+
+            .attribution-header-label {
+                text-align: right;
+                position: relative;
             }
 
             .status-number {
@@ -81,7 +105,7 @@
                     font-size: 1.2rem;
                     align-items: center;
                     justify-content: center;
-                    background: light-dark(transparent, @dark-blue);
+                    background: light-dark(#e8e6e3, @dark-blue);
                     z-index: 2;
 
                     &.armor-slots {
@@ -93,7 +117,7 @@
                 .status-label {
                     padding: 2px 10px;
                     width: 100%;
-                    border-radius: 3px;
+                    border-radius: 0 0 3px 3px;
                     background: light-dark(@dark-blue, @golden);
 
                     h4 {
@@ -105,37 +129,23 @@
                     }
                 }
             }
-
-            .item-name {
-                input[type='text'] {
-                    font-size: var(--font-size-32);
-                    height: 42px;
-                    text-align: start;
-                    transition: all 0.3s ease;
-                    outline: 2px solid transparent;
-                    border: 1px solid transparent;
-
-                    &:hover[type='text'],
-                    &:focus[type='text'] {
-                        box-shadow: none;
-                        outline: 2px solid light-dark(@dark-blue, @golden);
-                    }
-                }
-            }
         }
 
         .environment-info {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: var(--spacer-8);
             padding: 10px 20px;
         }
 
         .environment-navigation {
             display: flex;
             gap: 20px;
-            align-items: center;
+            align-items: baseline;
             padding: 0 20px;
+            .tab-navigation {
+                margin-top: 0;
+            }
         }
     }
 }

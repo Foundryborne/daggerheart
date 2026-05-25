@@ -424,7 +424,7 @@ export default function DHApplicationMixin(Base) {
                         const target = element.closest('[data-item-uuid]');
                         return !target.dataset.disabled && target.dataset.itemType !== 'beastform';
                     },
-                    callback: async target => (await getDocFromElement(target)).update({ disabled: true })
+                    onClick: async (_, target) => (await getDocFromElement(target)).update({ disabled: true })
                 },
                 {
                     label: 'enableEffect',
@@ -433,7 +433,7 @@ export default function DHApplicationMixin(Base) {
                         const target = element.closest('[data-item-uuid]');
                         return target.dataset.disabled && target.dataset.itemType !== 'beastform';
                     },
-                    callback: async target => (await getDocFromElement(target)).update({ disabled: false })
+                    onClick: async (_, target) => (await getDocFromElement(target)).update({ disabled: false })
                 }
             ].map(option => ({
                 ...option,
@@ -478,7 +478,9 @@ export default function DHApplicationMixin(Base) {
                             (doc?.isOwner && (!doc?.hasOwnProperty('systemPath') || doc?.inCollection))
                         );
                     },
-                    callback: async target => (await getDocFromElement(target)).sheet.render({ force: true })
+                    onClick: async (_, target) => {
+                        return (await getDocFromElement(target)).sheet.render({ force: true });
+                    }
                 }
             ];
 
@@ -493,7 +495,7 @@ export default function DHApplicationMixin(Base) {
                             !foundry.utils.isEmpty(doc?.damage?.parts);
                         return doc?.isOwner && hasDamage;
                     },
-                    callback: async (target, event) => {
+                    onClick: async (event, target) => {
                         const doc = await getDocFromElement(target),
                             action = doc?.system?.attack ?? doc;
                         const config = action.prepareConfig(event);
@@ -513,7 +515,7 @@ export default function DHApplicationMixin(Base) {
                         const doc = getDocFromElementSync(target);
                         return doc?.isOwner && !(doc.type === 'domainCard' && doc.system.inVault);
                     },
-                    callback: async (target, event) => (await getDocFromElement(target)).use(event)
+                    onClick: async (event, target) => (await getDocFromElement(target)).use(event)
                 });
             }
 
@@ -521,7 +523,7 @@ export default function DHApplicationMixin(Base) {
                 options.push({
                     label: 'DAGGERHEART.APPLICATIONS.ContextMenu.sendToChat',
                     icon: 'fa-solid fa-message',
-                    callback: async target => (await getDocFromElement(target)).toChat(this.document.uuid)
+                    onClick: async (_, target) => (await getDocFromElement(target)).toChat(this.document.uuid)
                 });
 
             if (deletable)
@@ -533,7 +535,7 @@ export default function DHApplicationMixin(Base) {
                         const doc = getDocFromElementSync(target);
                         return doc?.isOwner !== false && target.dataset.itemType !== 'beastform';
                     },
-                    callback: async (target, event) => {
+                    onClick: async (event, target) => {
                         const doc = await getDocFromElement(target);
                         if (event.shiftKey) return doc.delete();
                         else return doc.deleteDialog();

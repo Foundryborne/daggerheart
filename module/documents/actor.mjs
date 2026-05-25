@@ -112,10 +112,22 @@ export default class DhpActor extends Actor {
         this.updateSource(update);
     }
 
+    /** Perform a render, debounced in order to prevent overloading repeat render requests */
+    renderDebounced = foundry.utils.debounce(options => {
+        return this.render(options);
+    }, 10);
+
+    _onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
+        super._onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId);
+        for (const party of this.parties) {
+            party.renderDebounced({ parts: ['partyMembers'] });
+        }
+    }
+
     _onUpdate(changes, options, userId) {
         super._onUpdate(changes, options, userId);
         for (const party of this.parties) {
-            party.render({ parts: ['partyMembers'] });
+            party.renderDebounced({ parts: ['partyMembers'] });
         }
     }
 
@@ -134,17 +146,20 @@ export default class DhpActor extends Actor {
     _onDelete(options, userId) {
         super._onDelete(options, userId);
         for (const party of this.parties) {
-            party.render({ parts: ['partyMembers'] });
+            party.renderDebounced({ parts: ['partyMembers'] });
         }
     }
 
     async updateLevel(newLevel) {
         if (!['character', 'companion'].includes(this.type) || newLevel === this.system.levelData.level.changed) return;
 
+        const tiers = Object.values(game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers);
+        const maxLevel = tiers.reduce((acc, tier) => Math.max(acc, tier.levels.end), 0);
+        const multiclassMinLevel = Math.min(
+            maxLevel,
+            ...tiers.filter(t => t.options.multiclass).map(t => t.levels.start)
+        );
         if (newLevel > this.system.levelData.level.current) {
-            const maxLevel = Object.values(
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers
-            ).reduce((acc, tier) => Math.max(acc, tier.levels.end), 0);
             if (newLevel > maxLevel) {
                 ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.tooHighLevel'));
             }
@@ -219,18 +234,19 @@ export default class DhpActor extends Actor {
                     this.system.multiclass.subclass.update({ 'system.featureState': subclassFeatureState.multiclass });
                 }
 
-                if (multiclass) {
-                    const multiclassItem = this.items.find(x => x.uuid === multiclass.itemUuid);
-                    const multiclassFeatures = this.items.filter(
-                        x => x.system.originItemType === 'class' && x.system.multiclassOrigin
-                    );
-                    const subclassFeatures = this.items.filter(
-                        x => x.system.originItemType === 'subclass' && x.system.multiclassOrigin
+                // Remove multiclass if we're removing a multiclass feature or if we're below the multiclass minimum level
+                // Multclasses cannot be manually removed on the sheet, so this allows recovering in the case of errors
+                if (multiclass || newLevel < multiclassMinLevel) {
+                    const multiclassItems = this.items.filter(
+                        x =>
+                            x.uuid === multiclass?.itemUuid ||
+                            x.system.isMulticlass ||
+                            (['class', 'subclass'].includes(x.system.originItemType) && x.system.multiclassOrigin)
                     );
 
                     this.deleteEmbeddedDocuments(
                         'Item',
-                        [multiclassItem, ...multiclassFeatures, ...subclassFeatures].map(x => x.id)
+                        multiclassItems.map(x => x.id)
                     );
 
                     this.update({
@@ -269,6 +285,7 @@ export default class DhpActor extends Actor {
 
     async levelUp(levelupData) {
         const levelupAuto = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto;
+        const getStatsWithSource = document => ({ ...(document._stats ?? {}), compendiumSource: document.uuid });
 
         const levelups = {};
         for (var levelKey of Object.keys(levelupData)) {
@@ -381,8 +398,8 @@ export default class DhpActor extends Actor {
                     const embeddedItem = await this.createEmbeddedDocuments('Item', [
                         {
                             ...multiclassData,
-                            uuid: multiclassItem.uuid,
-                            _stats: multiclassItem._stats,
+                            uuid: multiclassItem.uuid, // todo: replace with setting an id and using keepId
+                            _stats: getStatsWithSource(multiclassItem),
                             system: {
                                 ...multiclassData.system,
                                 features: multiclassData.system.features.filter(x => x.type !== 'hope'),
@@ -395,8 +412,8 @@ export default class DhpActor extends Actor {
                     await this.createEmbeddedDocuments('Item', [
                         {
                             ...subclassData,
-                            uuid: subclassItem.uuid,
-                            _stats: subclassItem._stats,
+                            uuid: subclassItem.uuid, // todo: replace with setting an id and using keepId
+                            _stats: getStatsWithSource(subclassItem),
                             system: {
                                 ...subclassData.system,
                                 isMulticlass: true
@@ -416,8 +433,8 @@ export default class DhpActor extends Actor {
                     const embeddedItem = await this.createEmbeddedDocuments('Item', [
                         {
                             ...cardData,
-                            uuid: cardItem.uuid,
-                            _stats: cardItem._stats,
+                            uuid: cardItem.uuid, // todo: replace with setting an id and using keepId
+                            _stats: getStatsWithSource(cardItem),
                             system: {
                                 ...cardData.system,
                                 inVault: true
@@ -438,8 +455,7 @@ export default class DhpActor extends Actor {
                     const embeddedItem = await this.createEmbeddedDocuments('Item', [
                         {
                             ...cardData,
-                            uuid: cardItem.uuid,
-                            _stats: cardItem._stats,
+                            _stats: getStatsWithSource(cardItem),
                             system: {
                                 ...cardData.system,
                                 inVault: true

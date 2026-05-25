@@ -1,3 +1,5 @@
+@import '../../utils/mixin.less';
+
 .theme-light .daggerheart.dialog.dh-style.views.tag-team-dialog {
     .initialization-container .members-container .member-container {
         .member-name {
@@ -62,17 +64,7 @@
 
                     color: var(--color-text-primary);
                     text-shadow: 1px 1px 2px var(--shadow-color), 0 0 10px var(--shadow-color);
-
-                    // Basic "scrim" gradient
-                    background-image: linear-gradient(
-                        to top,
-                        var(--shadow-color),
-                        rgba(from var(--shadow-color) r g b / 0.834) 10.6%,
-                        rgba(from var(--shadow-color) r g b / 0.541) 34%,
-                        rgba(from var(--shadow-color) r g b / 0.382) 47%,
-                        rgba(from var(--shadow-color) r g b / 0.194) 65%,
-                        transparent 100%
-                    );
+                    .smooth-gradient-ease-in-out(background-image, to bottom, var(--shadow-color), 100%);
                 }
 
                 img {

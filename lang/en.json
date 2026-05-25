@@ -778,7 +778,9 @@
                 "title": "Group Roll"
             },
             "TokenConfig": {
-                "actorSizeUsed": "Actor size is set, determining the dimensions"
+                "actorSizeUsed": "Actor size is set, determining the dimensions",
+                "tokenSize": "Token Size",
+                "sizeCategory": "Size Category"
             }
         },
         "CLASS": {
@@ -2565,10 +2567,11 @@
                     "tokenImg": { "label": "Token Image" },
                     "tokenRingImg": { "label": "Subject Texture" },
                     "tokenSize": {
-                        "placeholder": "Using character dimensions",
-                        "disabledPlaceholder": "Set by character size",
+                        "placeholder": "Token Size",
+                        "disabledPlaceholder": "Token Size",
                         "height": { "label": "Height" },
                         "width": { "label": "Width" },
+                        "depth": { "label": "Depth" },
                         "scale": { "label": "Token Scale" }
                     },
                     "evolved": {

@@ -1,6 +1,5 @@
 import { DhHomebrew } from '../../data/settings/_module.mjs';
 import { Resource } from '../../data/settings/Homebrew.mjs';
-import { slugify } from '../../helpers/utils.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -403,12 +402,12 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             const domainName = button.form.elements.domainName.value;
             if (!domainName) return;
 
-            const newSlug = slugify(domainName);
+            const newSlug = domainName.slugify();
             const existingDomains = [
                 ...Object.values(this.settings.domains),
                 ...Object.values(CONFIG.DH.DOMAIN.domains)
             ];
-            if (existingDomains.find(x => slugify(game.i18n.localize(x.label)) === newSlug)) {
+            if (existingDomains.find(x => x.id === newSlug)) {
                 ui.notifications.warn(game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.domains.duplicateDomain'));
                 return;
             }
@@ -529,7 +528,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             const identifier = button.form.elements.identifier.value;
             if (!identifier) return;
 
-            const sluggedIdentifier = slugify(identifier);
+            const sluggedIdentifier = identifier.slugify();
 
             await this.settings.updateSource({
                 [`resources.${actorType}.resources.${sluggedIdentifier}`]: Resource.getDefaultResourceData(identifier)
