@@ -1,5 +1,6 @@
 @import '../../../utils/colors.less';
 @import '../../../utils/fonts.less';
+@import '../../../utils/mixin.less';
 
 .party-header-sheet {
     display: flex;
@@ -9,26 +10,30 @@
 
     .profile {
         height: 235px;
-        mask-image: linear-gradient(0deg, transparent 0%, black 10%);
         cursor: pointer;
+        .smooth-gradient-ease-in-out(mask-image, to top, black, 3.5rem);
     }
 
     .item-container {
-        .item-name {
-            padding: 0 20px;
-            input[type='text'] {
-                font-size: 32px;
-                height: 42px;
-                text-align: center;
-                transition: all 0.3s ease;
-                outline: 2px solid transparent;
-                border: 1px solid transparent;
+        margin-top: -2rem;
+        z-index: 1;
+        input.item-name[type='text'] {
+            backdrop-filter: none;
+            border: none;
+            font-family: @font-title;
+            font-size: var(--font-size-32);
+            outline: 2px solid transparent;
+            box-shadow: unset;
+            text-shadow: 0 0 4px light-dark(white, @dark-80), 0 0 8px light-dark(white, @dark-80), 0 0 14px light-dark(white, @dark-80);
 
-                &:hover[type='text'],
-                &:focus[type='text'] {
-                    box-shadow: none;
-                    outline: 2px solid light-dark(@dark-blue, @golden);
-                }
+            text-align: center;
+            transition: all 0.3s ease;
+            width: calc(100% - 40px);
+            height: 2.625rem;
+
+            &:hover[type='text'],
+            &:focus[type='text'] {
+                outline: 2px solid light-dark(@dark-blue, @golden);
             }
         }
 

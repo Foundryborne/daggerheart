@@ -1,5 +1,6 @@
 @import '../../../utils/colors.less';
 @import '../../../utils/fonts.less';
+@import '../../../utils/mixin.less';
 
 .application.sheet.daggerheart.actor.dh-style.environment {
     .environment-header-sheet {
@@ -10,8 +11,8 @@
 
         .profile {
             height: 235px;
-            mask-image: linear-gradient(0deg, transparent 0%, black 20%);
             cursor: pointer;
+            .smooth-gradient-ease-in-out(mask-image, to top, black, 3.5rem);
         }
 
         .item-container {
@@ -21,10 +22,31 @@
 
             align-items: center;
             position: relative;
-            top: -40px;
+            top: -36px;
             gap: 0 var(--spacer-12);
             padding: 0 20px;
-            margin-bottom: -30px;
+            margin-bottom: -26px;
+
+            .item-name input[type='text'] {
+                backdrop-filter: none;
+                border: none;
+                font-family: @font-title;
+                font-size: var(--font-size-32);
+                text-align: start;
+                transition: all 0.3s ease;
+                outline: 2px solid transparent;
+                box-shadow: none;
+                text-shadow: 0 0 4px light-dark(white, @dark-80), 0 0 8px light-dark(white, @dark-80), 0 0 14px light-dark(white, @dark-80);
+
+                padding-left: 0;
+                height: 2.625rem;
+
+                &:hover[type='text'],
+                &:focus[type='text'] {
+                    box-shadow: none;
+                    outline: 2px solid light-dark(@dark-blue, @golden);
+                }
+            }
             
             .flexrow {
                 align-items: baseline;
@@ -104,26 +126,6 @@
                         line-height: 18px;
                         font-size: var(--font-size-12);
                         color: light-dark(@beige, @dark-blue);
-                    }
-                }
-            }
-
-            .item-name {
-                input[type='text'] {
-                    background-color: light-dark(@dark-15, @light-black);
-                    border: 1px solid transparent;
-                    font-size: var(--font-size-32);
-                    height: 2.625rem;
-                    text-align: start;
-                    transition: all 0.3s ease;
-                    outline: 2px solid transparent;
-                    text-shadow: 1px 1px 2px light-dark(@soft-white-shadow, @light-black);
-                    padding-left: 0;
-
-                    &:hover[type='text'],
-                    &:focus[type='text'] {
-                        box-shadow: none;
-                        outline: 2px solid light-dark(@dark-blue, @golden);
                     }
                 }
             }
