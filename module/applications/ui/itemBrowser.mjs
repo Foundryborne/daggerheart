@@ -606,7 +606,16 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 items: {
                     folder: 'equipments',
                     render: {
-                        noFolder: true
+                        folders: [
+                            'equipments',
+                            'ancestries',
+                            'classes',
+                            'subclasses',
+                            'domains',
+                            'communities',
+                            'beastforms'
+                            // excluded: features
+                        ]
                     }
                 },
                 compendium: {}
