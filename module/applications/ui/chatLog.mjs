@@ -113,7 +113,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 callback: async li => {
                     const message = game.messages.get(li.dataset.messageId);
                     const reroll = await message.rolls[0].reroll({ liveRoll: true });
-
                     message.update({ rolls: [reroll] });
                 }
             },
@@ -129,9 +128,10 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 },
                 callback: async li => {
                     const message = game.messages.get(li.dataset.messageId);
-                    const reroll = await message.rolls[0].reroll();
-                    message.update({ rolls: [reroll] });
-                    // new game.system.api.applications.dialogs.RerollDamageDialog(message).render({ force: true });
+                    const damageRoll = new game.system.api.dice.DamageRoll(message.system.damage.hitPoints.roll);
+                    await message.system.action.workflow.get('damage')?.execute(message.system, message.id, true);
+                    // message.update({ rolls: [reroll] });
+                    console.log('test');
                 }
             }
         ];
