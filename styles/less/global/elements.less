@@ -12,8 +12,8 @@
         box-shadow: 0 4px 30px @soft-shadow;
         backdrop-filter: blur(9.5px);
         outline: 2px solid transparent;
-        color: @input-text-color;
-        border: 1px solid @input-border-color;
+        color: @input-color-text;
+        border: 1px solid @input-color-border;
         transition: all 0.3s ease;
 
         &::placeholder {
@@ -28,7 +28,7 @@
         &:focus[type='number'] {
             background: light-dark(@soft-shadow, @semi-transparent-dark-blue);
             box-shadow: none;
-            outline: 2px solid @input-border-color;
+            outline: 2px solid @input-color-border;
         }
 
         &:disabled[type='text'],

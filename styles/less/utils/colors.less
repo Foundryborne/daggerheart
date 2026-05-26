@@ -88,7 +88,8 @@
 /** 
  * Override core foundry color variables in theme scopes, and add some new theme specific variants.
  * These are intended to be more representative of its use case, so avoid naming these after the color.
- * Heavily scoped foundry variables (such as input-border-color, which is defined inside input) instead get a prefix.
+ * Some foundry variables are heavily scoped and we need to redefine them (https://github.com/foundryvtt/foundryvtt/issues/12893)
+ * Convention for the redefined ones is --dh-{element}-color-{thing}
  */
 @scope (.theme-light) to (.themed) {
     .dh-style :scope,
@@ -100,8 +101,8 @@
         --color-text-emphatic: @dark-blue;
         --color-text-subtle: #555;
 
-        --dh-input-border-color: @dark;
-        --dh-input-text-color: @dark;
+        --dh-input-color-border: @dark;
+        --dh-input-color-text: @dark;
     }
 }
 @scope (.theme-dark) to (.themed) {  
@@ -114,8 +115,8 @@
         --color-text-emphatic: @golden;
         --color-text-subtle: #a29086;
 
-        --dh-input-border-color: @beige;
-        --dh-input-text-color: @beige;
+        --dh-input-color-border: @beige;
+        --dh-input-color-text: @beige;
     }
 }
 
@@ -231,5 +232,5 @@
 @color-text-emphatic: var(--color-text-emphatic);
 @color-text-primary: var(--color-text-primary);
 @color-text-subtle: var(--color-text-subtle);
-@input-border-color: var(--dh-input-border-color);
-@input-text-color: var(--dh-input-text-color);
+@input-color-border: var(--dh-input-color-border);
+@input-color-text: var(--dh-input-color-text);
