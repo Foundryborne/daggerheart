@@ -79,7 +79,7 @@
                     display: flex;
                     gap: 4px;
                     background-color: light-dark(var(--color-light-1), @dark-blue);
-                    color: light-dark(@dark-blue, @golden);
+                    color: @color-text-emphatic;
                     padding: 4px 6px;
                     border: 1px solid light-dark(@dark-blue, @golden);
                     border-radius: 3px;
@@ -93,7 +93,7 @@
 
                         &.threshold-label {
                             font-size: var(--font-size-10);
-                            color: light-dark(@dark-blue, @golden);
+                            color: @color-text-emphatic;
                         }
 
                         &.threshold-value {
@@ -116,7 +116,7 @@
                     width: 100%;
                     z-index: 1;
                     font-size: var(--font-size-20);
-                    color: light-dark(@dark-blue, @golden);
+                    color: @color-text-emphatic;
                     font-weight: bold;
                 }
 
@@ -132,7 +132,7 @@
                 .hope-section {
                     display: flex;
                     background-color: light-dark(transparent, @dark-blue);
-                    color: light-dark(@dark-blue, @golden);
+                    color: @color-text-emphatic;
                     padding: 3px 6px;
                     border: 1px solid light-dark(@dark-blue, @golden);
                     border-radius: 3px;
@@ -144,7 +144,7 @@
                         font-size: var(--font-size-12);
                         font-weight: bold;
                         text-transform: uppercase;
-                        color: light-dark(@dark-blue, @golden);
+                        color: @color-text-emphatic;
                         margin-right: 3px;
                     }
 
@@ -212,7 +212,7 @@
                         gap: 4px;
 
                         background-color: light-dark(@dark-blue-10, @dark-blue);
-                        color: light-dark(@dark-blue, @golden);
+                        color: @color-text-emphatic;
                         padding: 2px 5px;
                         border: 1px solid light-dark(@dark-blue, @golden);
                         border-radius: 0 6px 6px 0;
@@ -260,7 +260,7 @@
                     justify-content: space-between;
                     gap: 3px;
                     .label {
-                        color: light-dark(@dark-blue, @golden);
+                        color: @color-text-emphatic;
                     }
                     .value {
                         font-weight: 600;

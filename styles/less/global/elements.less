@@ -14,7 +14,7 @@
         box-shadow: 0 4px 30px @soft-shadow;
         backdrop-filter: blur(9.5px);
         outline: 2px solid transparent;
-        color: light-dark(@dark-blue, @golden);
+        color: @color-text-emphatic;
         border: 1px solid light-dark(@dark, @beige);
         transition: all 0.3s ease;
 
@@ -107,7 +107,7 @@
 
         &:hover {
             background: light-dark(@light-black, @dark-blue);
-            color: light-dark(@dark-blue, @golden);
+            color: @color-text-emphatic;
         }
 
         &.glow {
@@ -128,7 +128,7 @@
 
         &.reverted {
             background: light-dark(@dark-blue-10, @golden-10);
-            color: light-dark(@dark-blue, @golden);
+            color: @color-text-emphatic;
             border: 1px solid light-dark(@dark, transparent);
             &:hover {
                 background: light-dark(transparent, @golden);
@@ -175,7 +175,7 @@
             height: inherit;
             .tag {
                 padding: 0.3rem 0.5rem;
-                color: light-dark(@dark-blue, @golden);
+                color: @color-text-emphatic;
                 background-color: light-dark(@dark-blue-10, @golden-40);
                 border-radius: 3px;
                 transition: 0.13s ease-out;
@@ -353,7 +353,7 @@
 
         legend {
             font-weight: bold;
-            color: light-dark(@dark-blue, @golden);
+            color: @color-text-emphatic;
 
             &.with-icon {
                 display: flex;
@@ -571,7 +571,7 @@
                 border: 0;
 
                 &:hover {
-                    color: light-dark(@dark-blue, @golden);
+                    color: @color-text-emphatic;
                 }
 
                 &:not(:first-child) {
