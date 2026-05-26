@@ -175,14 +175,14 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         this.disadvantage = advantage === -1;
 
         this.config.roll.advantage = this.config.roll.advantage === advantage ? 0 : advantage;
+        if (this.config.roll.advantage === 0) return this.render();
 
-        if (this.config.roll.advantage === 1 && this.config.data.rules.roll.defaultAdvantageDice) {
-            const faces = Number.parseInt(this.config.data.rules.roll.defaultAdvantageDice);
-            this.roll.advantageFaces = Number.isNaN(faces) ? this.roll.advantageFaces : faces;
-        } else if (this.config.roll.advantage === -1 && this.config.data.rules.roll.defaultDisadvantageDice) {
-            const faces = Number.parseInt(this.config.data.rules.roll.defaultDisadvantageDice);
-            this.roll.advantageFaces = Number.isNaN(faces) ? this.roll.advantageFaces : faces;
-        }
+        const defaultFaces =
+            this.config.roll.advantage === 1
+                ? this.config.data.rules.roll.defaultAdvantageDice
+                : this.config.data.rules.roll.defaultDisadvantageDice;
+        const faces = Number.parseInt(defaultFaces);
+        this.roll.advantageFaces = Number.isNaN(faces) ? this.roll.advantageFaces : faces;
 
         this.render();
     }

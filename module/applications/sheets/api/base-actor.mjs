@@ -166,6 +166,15 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         }
     }
 
+    /** Add support for input content editables */
+    _toggleDisabled(disabled) {
+        super._toggleDisabled(disabled);
+        const form = this.form;
+        for (const element of form.querySelectorAll('.input[contenteditable]')) {
+            element.classList.toggle('disabled', disabled);
+        }
+    }
+
     /* -------------------------------------------- */
     /*  Context Menu                                */
     /* -------------------------------------------- */

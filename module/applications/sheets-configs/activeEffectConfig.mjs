@@ -175,6 +175,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         const partContext = await super._preparePartContext(partId, context);
         switch (partId) {
             case 'details':
+                partContext.isItemEffect = partContext.isItemEffect || this.options.isSetting;
                 const useGeneric = game.settings.get(
                     CONFIG.DH.id,
                     CONFIG.DH.SETTINGS.gameSettings.appearance

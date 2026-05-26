@@ -184,6 +184,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
         for (const input of form.querySelectorAll('input:not([type=search]), .editor.prosemirror')) {
             input.disabled = disabled;
         }
+        for (const element of form.querySelectorAll('.input[contenteditable]')) {
+            element.classList.toggle('disabled', disabled);
+        }
     }
 
     /** @inheritDoc */
@@ -368,7 +371,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     const doc = getDocFromElementSync(target);
                     return doc?.isOwner && !isItemWizardManaged(doc);
                 },
-                callback: async (target, event) => {
+                onClick: async (event, target) => {
                     const doc = await getDocFromElement(target);
                     if (event.shiftKey) return doc.delete();
                     else return doc.deleteDialog();
@@ -393,7 +396,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     const doc = getDocFromElementSync(target);
                     return doc?.isOwner && doc.system.inVault;
                 },
-                callback: async target => {
+                onClick: async (_, target) => {
                     const doc = await getDocFromElement(target);
                     const actorLoadout = doc.actor.system.loadoutSlot;
                     if (actorLoadout.available) return doc.update({ 'system.inVault': false });
@@ -407,7 +410,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     const doc = getDocFromElementSync(target);
                     return doc?.isOwner && doc.system.inVault;
                 },
-                callback: async (target, event) => {
+                onClick: async (event, target) => {
                     const doc = await getDocFromElement(target);
                     const actorLoadout = doc.actor.system.loadoutSlot;
                     if (!actorLoadout.available) {
@@ -446,7 +449,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     const doc = getDocFromElementSync(target);
                     return doc?.isOwner && !doc.system.inVault;
                 },
-                callback: async target => (await getDocFromElement(target)).update({ 'system.inVault': true })
+                onClick: async (_, target) => (await getDocFromElement(target)).update({ 'system.inVault': true })
             }
         ].map(option => ({
             ...option,
@@ -472,7 +475,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     const doc = getDocFromElementSync(target);
                     return doc.isOwner && doc && !doc.system.equipped;
                 },
-                callback: (target, event) => CharacterSheet.#toggleEquipItem.call(this, event, target)
+                onClick: (event, target) => CharacterSheet.#toggleEquipItem.call(this, event, target)
             },
             {
                 label: 'unequip',
@@ -481,7 +484,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     const doc = getDocFromElementSync(target);
                     return doc.isOwner && doc && doc.system.equipped;
                 },
-                callback: (target, event) => CharacterSheet.#toggleEquipItem.call(this, event, target)
+                onClick: (event, target) => CharacterSheet.#toggleEquipItem.call(this, event, target)
             }
         ].map(option => ({
             ...option,

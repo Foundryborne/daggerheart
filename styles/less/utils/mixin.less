@@ -114,3 +114,48 @@
         font-family: @font-body;
     }
 }
+
+
+// A simple ease-out mask
+.smooth-gradient-ease-out(@param, @to, @destination, @length) {
+    @{param}+: linear-gradient(
+        @to,
+        transparent 0%,
+        rgb(from @destination r g b / ~"calc(alpha * 0.013)") calc(0.008 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.049)") calc(0.029 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.104)") calc(0.064 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.259)") calc(0.166 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.45)") calc(0.304 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.741)") calc(0.554 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.825)") calc(0.644 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.896)") calc(0.735 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.951)") calc(0.825 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.987)") calc(0.914 * @length),
+        @destination @length
+    );
+}
+
+/**
+ * A simple ease in and out mask.
+ * @param - the parameter to add to
+ * @param - direction, such as "to top"
+ * @destination - the color at the destination. The origin is always transparent
+ * @length - the value at the destination
+ */
+.smooth-gradient-ease-in-out(@param, @to, @destination, @length: 100%) {
+    @{param}+: linear-gradient(
+        @to,
+        transparent 0%,
+        rgb(from @destination r g b / ~"calc(alpha * 0.013)") calc(0.081 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.049)") calc(0.155 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.104)") calc(0.225 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.259)") calc(0.353 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.45)") calc(0.471 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.741)") calc(0.647 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.825)") calc(0.71 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.896)") calc(0.775 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.951)") calc(0.845 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.987)") calc(0.914 * @length),
+        @destination @length
+    );
+}

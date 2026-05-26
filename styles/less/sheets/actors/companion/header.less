@@ -11,7 +11,7 @@
         .profile {
             height: 235px;
             cursor: pointer;
-            mask-image: linear-gradient(0deg, transparent 0%, black 10%);
+            .smooth-gradient-ease-in-out(mask-image, to top, black, 2.25rem);
         }
 
         .actor-name {
@@ -24,11 +24,16 @@
             margin-bottom: -30px;
 
             input[type='text'] {
+                backdrop-filter: none;
+                border: none;
+                font-family: @font-title;
                 font-size: var(--font-size-24);
-                height: 32px;
-                text-align: center;
-                border: 1px solid transparent;
                 outline: 2px solid transparent;
+                box-shadow: unset;                
+                text-shadow: 0 0 4px light-dark(white, @dark-80), 0 0 8px light-dark(white, @dark-80), 0 0 14px light-dark(white, @dark-80);
+
+                height: 2rem;
+                text-align: center;
                 transition: all 0.3s ease;
 
                 &:hover {
@@ -243,7 +248,7 @@
         .companion-navigation {
             display: flex;
             gap: 8px;
-            align-items: center;
+            align-items: baseline;
             width: 100%;
         }
     }
