@@ -184,6 +184,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
         for (const input of form.querySelectorAll('input:not([type=search]), .editor.prosemirror')) {
             input.disabled = disabled;
         }
+        for (const element of form.querySelectorAll('.input[contenteditable]')) {
+            element.classList.toggle('disabled', disabled);
+        }
     }
 
     /** @inheritDoc */
