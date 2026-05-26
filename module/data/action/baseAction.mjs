@@ -148,10 +148,14 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
               : null;
     }
 
-    /** Returns true if the action is usable */
+    /**
+     * Returns true if the action is usable.
+     * An action is usable on any actor type. For example, an adversary might have a base attack action.
+     */
     get usable() {
         const actor = this.actor;
-        return this.isOwner && actor?.type === 'character';
+        const pack = actor?.pack ? game.packs.get(actor.pack) : null;
+        return !pack?.locked && this.isOwner;
     }
 
     static getRollType(parent) {
