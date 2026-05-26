@@ -2,8 +2,6 @@
 @import '../utils/fonts.less';
 
 .dh-style {
-    border: 1px solid light-dark(@dark-blue, @golden);
-
     input[type='text'],
     input[type='number'],
     textarea,
@@ -14,12 +12,12 @@
         box-shadow: 0 4px 30px @soft-shadow;
         backdrop-filter: blur(9.5px);
         outline: 2px solid transparent;
-        color: @color-text-emphatic;
-        border: 1px solid light-dark(@dark, @beige);
+        color: @input-text-color;
+        border: 1px solid @input-border-color;
         transition: all 0.3s ease;
 
         &::placeholder {
-            color: light-dark(@dark-40, @beige-50);
+            color: @color-text-subtle;
         }
 
         &:hover,
@@ -30,7 +28,7 @@
         &:focus[type='number'] {
             background: light-dark(@soft-shadow, @semi-transparent-dark-blue);
             box-shadow: none;
-            outline: 2px solid light-dark(@dark, @beige);
+            outline: 2px solid @input-border-color;
         }
 
         &:disabled[type='text'],
@@ -47,7 +45,7 @@
     .input[contenteditable] {
         cursor: var(--cursor-text);
         &:empty:before {
-            color: light-dark(@dark-40, @beige-50);
+            color: @color-text-subtle;
             content: attr(placeholder);
         }
     }
@@ -265,7 +263,7 @@
         align-items: center;
         margin-top: 5px;
         border-radius: 6px;
-        border-color: light-dark(@dark-blue, @golden);
+        border-color: @color-fieldset-border;
 
         &.glassy {
             background-color: light-dark(@dark-blue-10, @golden-10);
@@ -274,7 +272,7 @@
             legend {
                 padding: 2px 12px;
                 border-radius: 3px;
-                background-color: light-dark(@dark-blue, @golden);
+                background-color: @color-fieldset-border;
                 color: light-dark(@beige, @dark-blue);
                 margin-bottom: var(--spacer-4);
             }
@@ -362,18 +360,6 @@
                 i {
                     padding: 0 4px;
                 }
-            }
-        }
-
-        input[type='text'],
-        input[type='number'] {
-            color: light-dark(@dark, @beige);
-            transition: all 0.3s ease;
-            outline: 2px solid transparent;
-
-            &:focus,
-            &:hover {
-                outline: 2px solid light-dark(@dark, @beige);
             }
         }
 
@@ -514,7 +500,7 @@
         display: block;
         height: 1px;
         width: 100%;
-        border-bottom: 1px solid light-dark(@dark-blue, @golden);
+        border-bottom: 1px solid @color-border;
         mask-image: linear-gradient(270deg, transparent 0%, black 50%, transparent 100%);
     }
 
@@ -522,7 +508,7 @@
         display: block;
         height: 1px;
         width: 100%;
-        border-bottom: 1px solid light-dark(@dark-blue, @golden);
+        border-bottom: 1px solid @color-border;
         mask-image: linear-gradient(270deg, transparent 0%, black 100%);
 
         &.invert {

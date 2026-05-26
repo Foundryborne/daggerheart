@@ -51,7 +51,7 @@
     --dark-blue-50: #18162e50;
     --dark-blue-60: #18162e60;
     --dark-blue-90: #18162e90;
-    --dark-blue-d0: #18162ed0;
+    --dark-blue-c0: #18162ec0;
     --semi-transparent-dark-blue: rgba(24, 22, 46, 0.33);
 
     --dark: #222222;
@@ -85,13 +85,23 @@
     --primary-color-fear: rgba(9, 71, 179, 0.75);
 }
 
+/** 
+ * Override core foundry color variables in theme scopes, and add some new theme specific variants.
+ * These are intended to be more representative of its use case, so avoid naming these after the color.
+ * Heavily scoped foundry variables (such as input-border-color, which is defined inside input) instead get a prefix.
+ */
 @scope (.theme-light) to (.themed) {
     .dh-style :scope,
     :scope.dh-style,
     .dh-style,
     .duality {
+        --color-border: @dark-blue;
+        --color-fieldset-border: @dark-blue;
         --color-text-emphatic: @dark-blue;
         --color-text-subtle: #555;
+
+        --dh-input-border-color: @dark;
+        --dh-input-text-color: @dark;
     }
 }
 @scope (.theme-dark) to (.themed) {  
@@ -99,8 +109,13 @@
     :scope.dh-style,
     .dh-style,
     .duality {
+        --color-border: @golden;
+        --color-fieldset-border: @golden;
         --color-text-emphatic: @golden;
         --color-text-subtle: #a29086;
+
+        --dh-input-border-color: @beige;
+        --dh-input-text-color: @beige;
     }
 }
 
@@ -156,7 +171,7 @@
 @dark-blue-50: var(--dark-blue-50, #18162e50);
 @dark-blue-60: var(--dark-blue-60, #18162e60);
 @dark-blue-90: var(--dark-blue-90, #18162e90);
-@dark-blue-d0: var(--dark-blue-d0, #18162ed0);
+@dark-blue-c0: var(--dark-blue-c0, #18162ec0);
 @semi-transparent-dark-blue: var(--semi-transparent-dark-blue, rgba(24, 22, 46, 0.33));
 
 @dark: var(--dark, #222222);
@@ -211,6 +226,10 @@
 }
 
 // LESS variable versions of core foundry color variables
+@color-border: var(--color-border);
+@color-fieldset-border: var(--color-fieldset-border);
 @color-text-emphatic: var(--color-text-emphatic);
 @color-text-primary: var(--color-text-primary);
 @color-text-subtle: var(--color-text-subtle);
+@input-border-color: var(--dh-input-border-color);
+@input-text-color: var(--dh-input-text-color);

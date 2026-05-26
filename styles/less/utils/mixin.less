@@ -50,14 +50,15 @@
  */
 .dh-typography() {
     h1 {
+        --dh-input-text-color: @color-text-emphatic;
         font-family: @font-title;
         margin: 0;
         border: none;
         font-weight: normal;
-    }
-
-    h1 input[type='text'] {
-        font-family: @font-title;
+        input[type='text'],
+        .input[contenteditable] {
+            font-family: @font-title;
+        }
     }
 
     h2,
