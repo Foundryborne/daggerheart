@@ -78,24 +78,6 @@ export class DHActionRollData extends foundry.abstract.DataModel {
         return formula;
     }
 
-    getModifier() {
-        const modifiers = [];
-        if (!this.parent?.actor) return modifiers;
-        switch (this.parent.actor.type) {
-            case 'companion':
-            case 'adversary':
-                if (this.type === CONFIG.DH.GENERAL.rollTypes.attack.id)
-                    modifiers.push({
-                        label: 'Bonus to Hit',
-                        value: this.bonus ?? this.parent.actor.system.attack.roll.bonus ?? 0
-                    });
-                break;
-            default:
-                break;
-        }
-        return modifiers;
-    }
-
     get rollTrait() {
         if (this.parent?.actor?.type !== 'character') return null;
         switch (this.type) {
@@ -145,7 +127,6 @@ export default class RollField extends fields.EmbeddedDataField {
         config.dialog.configure = RollField.getAutomation() ? !config.dialog.configure : config.dialog.configure;
 
         const roll = {
-            baseModifiers: this.roll.getModifier(),
             label: 'Attack',
             type: this.roll?.type,
             trait: this.roll?.rollTrait,
