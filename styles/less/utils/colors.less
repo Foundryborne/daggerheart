@@ -71,6 +71,7 @@
     --beige-filter: brightness(0) saturate(100%) invert(87%) sepia(25%) saturate(164%) hue-rotate(339deg) brightness(106%) contrast(87%);
     --bright-beige-filter: brightness(0) saturate(100%) invert(87%) sepia(15%) saturate(343%) hue-rotate(333deg) brightness(110%) contrast(87%);
 
+    --light-white: rgba(255, 255, 255, 0.3);
     --soft-white-shadow: rgba(255, 255, 255, 0.05);
 
     --light-black: rgba(0, 0, 0, 0.3);
@@ -101,8 +102,11 @@
         --color-text-emphatic: @dark-blue;
         --color-text-subtle: #555;
 
+        --dh-color-text-shadow-contrast: #ffffffa0;
         --dh-input-color-border: @dark;
         --dh-input-color-text: @dark;
+        --dh-trait-color-bg: #b1afb6;
+        --dh-trait-color-border: #8e8d96;
     }
 }
 @scope (.theme-dark) to (.themed) {  
@@ -115,8 +119,11 @@
         --color-text-emphatic: @golden;
         --color-text-subtle: #a29086;
 
+        --dh-color-text-shadow-contrast: @dark-80;
         --dh-input-color-border: @beige;
         --dh-input-color-text: @beige;
+        --dh-trait-color-bg: #50433F;
+        --dh-trait-color-border: #927952;
     }
 }
 
@@ -194,6 +201,7 @@
 
 @soft-white-shadow: var(--soft-white-shadow, rgba(255, 255, 255, 0.05));
 
+@light-white: var(--light-white, rgba(255, 255, 255, 0.3));
 @light-black: var(--light-black, rgba(0, 0, 0, 0.3));
 @soft-shadow: var(--soft-shadow, rgba(0, 0, 0, 0.05));
 
@@ -232,5 +240,8 @@
 @color-text-emphatic: var(--color-text-emphatic);
 @color-text-primary: var(--color-text-primary);
 @color-text-subtle: var(--color-text-subtle);
+@color-text-shadow-contrast: var(--dh-color-text-shadow-contrast);
 @input-color-border: var(--dh-input-color-border);
 @input-color-text: var(--dh-input-color-text);
+@trait-color-bg: var(--dh-trait-color-bg);
+@trait-color-border: var(--dh-trait-color-border);

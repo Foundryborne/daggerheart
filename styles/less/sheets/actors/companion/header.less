@@ -30,14 +30,14 @@
                 font-size: var(--font-size-24);
                 outline: 2px solid transparent;
                 box-shadow: unset;                
-                text-shadow: 0 0 4px light-dark(white, @dark-80), 0 0 8px light-dark(white, @dark-80), 0 0 14px light-dark(white, @dark-80);
-
+                text-shadow: 0 0 4px @color-text-shadow-contrast, 0 0 8px @color-text-shadow-contrast, 0 0 14px @color-text-shadow-contrast;
+                
                 height: 2rem;
                 text-align: center;
                 transition: all 0.3s ease;
 
                 &:hover {
-                    outline: 2px solid light-dark(@dark, @golden);
+                    outline: 2px solid @color-border;
                 }
             }
         }
