@@ -86,6 +86,8 @@
 }
 
 @scope (.theme-light) to (.themed) {
+    .dh-style :scope,
+    :scope.dh-style,
     .dh-style,
     .duality {
         --color-text-emphatic: @dark-blue;
@@ -93,6 +95,8 @@
     }
 }
 @scope (.theme-dark) to (.themed) {  
+    .dh-style :scope,
+    :scope.dh-style,
     .dh-style,
     .duality {
         --color-text-emphatic: @golden;
