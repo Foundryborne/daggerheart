@@ -108,7 +108,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 icon: '<i class="fa-solid fa-dice"></i>',
                 visible: li => {
                     const message = game.messages.get(li.dataset.messageId);
-                    return game.user.isGM || message.isAuthor;
+                    return message.system.hasRoll && (game.user.isGM || message.isAuthor);
                 },
                 callback: async li => {
                     const message = game.messages.get(li.dataset.messageId);
@@ -128,10 +128,8 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 },
                 callback: async li => {
                     const message = game.messages.get(li.dataset.messageId);
-                    const damageRoll = new game.system.api.dice.DamageRoll(message.system.damage.hitPoints.roll);
-                    await message.system.action.workflow.get('damage')?.execute(message.system, message.id, true);
-                    // message.update({ rolls: [reroll] });
-                    console.log('test');
+                    const update = await message.system.getRerolledDamage();
+                    message.update(update);
                 }
             }
         ];

@@ -130,6 +130,41 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         });
     }
 
+    /* TODO: Change how damage data is stored somehow to enable better rerolling */
+    async getRerolledDamage() {
+        if (!this.damage) return;
+
+        const rerolls = [];
+        const update = { system: { damage: {} } };
+        for (const partKey in this.damage) {
+            const part = this.damage[partKey];
+            const testRoll = Roll.fromData(part.parts[0].roll);
+            const rerolled = await testRoll.reroll();
+            rerolls.push(rerolled);
+
+            if (!update.system.damage[partKey]) update.system.damage[partKey] = { parts: [part.parts[0]] };
+            const partData = update.system.damage[partKey].parts[0];
+            update.system.damage[partKey].total = rerolled.total;
+            partData.modifierTotal = rerolled.terms.reduce((acc, x) => {
+                if (x.isDeterministic && !x.operator) acc += x.total;
+                return acc;
+            }, 0);
+            partData.dice = rerolled.dice;
+            partData.total = rerolled.total;
+            partData.roll = rerolled.toJSON();
+        }
+
+        if (game.modules.get('dice-so-nice')?.active) {
+            for (const roll of rerolls) {
+                await game.dice3d.showForRoll(roll, game.user, true);
+            }
+        } else {
+            foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
+        }
+
+        return update;
+    }
+
     registerTargetHook() {
         if (!this.parent.isAuthor || !this.hasTarget) return;
         if (this.targetMode && this.parent.targetHook !== null) {
