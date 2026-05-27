@@ -1,5 +1,4 @@
-import { getFeaturesHTMLData } from '../../helpers/utils.mjs';
-import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
+import { fromUuids, getFeaturesHTMLData } from '../../helpers/utils.mjs';
 import ItemLinkFields from '../fields/itemLinkFields.mjs';
 import BaseDataItem from './base.mjs';
 
@@ -91,6 +90,11 @@ export default class DHSubclass extends BaseDataItem {
         const spellcastTrait = this.spellcastingTrait
             ? game.i18n.localize(CONFIG.DH.ACTOR.abilities[this.spellcastingTrait].label)
             : null;
+
+        // Preload all class features for acquisition from the cache
+        // todo: make feature acquisition async and replace feature helpers for methods
+        await fromUuids(this._source.features.map(f => f.item));
+
         const foundationFeatures = await getFeaturesHTMLData(this.foundationFeatures);
         const specializationFeatures = await getFeaturesHTMLData(this.specializationFeatures);
         const masteryFeatures = await getFeaturesHTMLData(this.masteryFeatures);
