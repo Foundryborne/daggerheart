@@ -132,13 +132,7 @@ export default class DualityRoll extends D20Roll {
     }
 
     createBaseDice() {
-        if (
-            this.dice[0] instanceof game.system.api.dice.diceTypes.HopeDie &&
-            this.dice[1] instanceof game.system.api.dice.diceTypes.FearDie
-        ) {
-            this.terms = [this.terms[0], this.terms[1], this.terms[2]];
-            return;
-        }
+        this.terms = [this.terms[0], this.terms[1], this.terms[2]];
 
         this.terms[0] = new game.system.api.dice.diceTypes.HopeDie({
             faces: this.data.rules.dualityRoll?.defaultHopeDice ?? 12

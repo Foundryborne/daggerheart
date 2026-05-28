@@ -128,30 +128,8 @@ export default class D20Roll extends DHRoll {
         }
     }
 
-    getBaseModifiers() {
-        const modifiers = [];
-        const actor = foundry.utils.fromUuidSync(this.options.source.actor);
-        if (!actor) return modifiers;
-        switch (actor.type) {
-            case 'companion':
-            case 'adversary':
-                if (
-                    this.options.roll.type === CONFIG.DH.GENERAL.rollTypes.attack.id ||
-                    this.options.source.action === actor.system.attack.id
-                )
-                    modifiers.push({
-                        label: 'Bonus to Hit',
-                        value: this.data.attack.roll.bonus ?? 0
-                    });
-                break;
-            default:
-                break;
-        }
-        return modifiers;
-    }
-
     applyBaseBonus() {
-        const modifiers = this.getBaseModifiers();
+        const modifiers = foundry.utils.deepClone(this.options.roll.baseModifiers) ?? [];
 
         modifiers.push(
             ...this.getBonus(
