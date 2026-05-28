@@ -1,5 +1,4 @@
-import { ResourceUpdateMap } from '../../data/action/baseAction.mjs';
-import DualityRoll from '../dualityRoll.mjs';
+import { updateResourcesForDualityReroll } from '../helpers.mjs';
 
 export default class DualityDie extends foundry.dice.terms.Die {
     constructor(options) {
@@ -40,7 +39,7 @@ export default class DualityDie extends foundry.dice.terms.Die {
             if (options.liveRoll.isReaction) return;
 
             const newDuality = this.#getDualityState(options.liveRoll.roll);
-            DualityRoll.updateResources(oldDuality, newDuality, options.liveRoll.actor);
+            updateResourcesForDualityReroll(oldDuality, newDuality, options.liveRoll.actor);
         }
     }
 

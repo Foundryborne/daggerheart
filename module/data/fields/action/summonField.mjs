@@ -1,4 +1,4 @@
-import { itemAbleRollParse } from '../../../helpers/utils.mjs';
+import { itemAbleRollParse, triggerChatRollFx } from '../../../helpers/utils.mjs';
 import FormulaField from '../formulaField.mjs';
 
 const fields = foundry.data.fields;
@@ -40,7 +40,7 @@ export default class DHSummonField extends fields.ArrayField {
             const roll = new Roll(itemAbleRollParse(summon.count, this.actor, this.item));
             await roll.evaluate();
             const count = roll.total;
-            if (!roll.isDeterministic && game.modules.get('dice-so-nice')?.active) rolls.push(roll);
+            if (!roll.isDeterministic) rolls.push(roll);
 
             const actor = await DHSummonField.getWorldActor(await foundry.utils.fromUuid(summon.actorUUID));
             /* Extending summon data in memory so it's available in actionField.toChat. Think it's harmless, but ugly. Could maybe find a better way. */
@@ -56,7 +56,7 @@ export default class DHSummonField extends fields.ArrayField {
             }
         }
 
-        if (rolls.length) await Promise.all(rolls.map(roll => game.dice3d.showForRoll(roll, game.user, true)));
+        if (rolls.length) await triggerChatRollFx(rolls);
 
         this.actor.sheet?.minimize();
         DHSummonField.handleSummon(summonData, this.actor);

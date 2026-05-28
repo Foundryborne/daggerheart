@@ -1,4 +1,5 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
+import { triggerChatRollFx } from '../helpers/utils.mjs';
 import DHRoll from './dhRoll.mjs';
 
 export default class D20Roll extends DHRoll {
@@ -230,11 +231,7 @@ export default class D20Roll extends DHRoll {
         if (this instanceof game.system.api.dice.DualityRoll) return result;
 
         if (options?.liveRoll) {
-            if (game.modules.get('dice-so-nice')?.active) {
-                await game.dice3d.showForRoll(result, game.user, true);
-            } else {
-                foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
-            }
+            await triggerChatRollFx([result]);
         }
 
         return result;

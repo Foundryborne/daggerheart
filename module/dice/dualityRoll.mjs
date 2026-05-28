@@ -2,7 +2,7 @@ import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 import D20Roll from './d20Roll.mjs';
 import { parseRallyDice, setDiceSoNiceForDualityRoll } from '../helpers/utils.mjs';
 import { getDiceSoNicePresets } from '../config/generalConfig.mjs';
-import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
+import { updateResourcesForDualityReroll } from './helpers.mjs';
 
 export default class DualityRoll extends D20Roll {
     _advantageNumber = 1;
@@ -385,24 +385,6 @@ export default class DualityRoll extends D20Roll {
         }
     }
 
-    static updateResources(oldDuality, newDuality, actor) {
-        const { hopeFear } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
-        if (game.user.isGM ? !hopeFear.gm : !hopeFear.players) return;
-
-        const updates = [];
-        const hope = (newDuality >= 0 ? 1 : 0) - (oldDuality >= 0 ? 1 : 0);
-        const stress = (newDuality === 0 ? 1 : 0) - (oldDuality === 0 ? 1 : 0);
-        const fear = (newDuality === -1 ? 1 : 0) - (oldDuality === -1 ? 1 : 0);
-
-        if (hope !== 0) updates.push({ key: 'hope', value: hope, total: -1 * hope, enabled: true });
-        if (stress !== 0) updates.push({ key: 'stress', value: -1 * stress, total: stress, enabled: true });
-        if (fear !== 0) updates.push({ key: 'fear', value: fear, total: -1 * fear, enabled: true });
-
-        const resourceUpdates = new ResourceUpdateMap(actor);
-        resourceUpdates.addResources(updates);
-        resourceUpdates.updateResources();
-    }
-
     async reroll(options) {
         const oldDuality = this.withHope ? 1 : this.withFear ? -1 : 0;
         const rerolled = DualityRoll.fromData((await super.reroll(options)).toJSON());
@@ -429,7 +411,7 @@ export default class DualityRoll extends D20Roll {
 
             const newDuality = rerolled.withHope ? 1 : rerolled.withFear ? -1 : 0;
             const actor = await foundry.utils.fromUuid(this.options.source.actor);
-            DualityRoll.updateResources(oldDuality, newDuality, actor);
+            updateResourcesForDualityReroll(oldDuality, newDuality, actor);
         }
 
         return rerolled;
