@@ -36,15 +36,14 @@
                 transition: all 0.3s ease;
                 outline: 2px solid transparent;
                 box-shadow: none;
-                text-shadow: 0 0 4px light-dark(white, @dark-80), 0 0 8px light-dark(white, @dark-80), 0 0 14px light-dark(white, @dark-80);
-
+                text-shadow: 0 0 4px @color-text-shadow-contrast, 0 0 8px @color-text-shadow-contrast, 0 0 14px @color-text-shadow-contrast;
                 padding-left: 0;
                 height: 2.625rem;
 
                 &:hover[type='text'],
                 &:focus[type='text'] {
                     box-shadow: none;
-                    outline: 2px solid light-dark(@dark-blue, @golden);
+                    outline: 2px solid @color-border;
                 }
             }
             
@@ -98,7 +97,7 @@
                     display: flex;
                     width: 50px;
                     height: 30px;
-                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border: 1px solid @color-border;
                     border-bottom: none;
                     border-radius: 6px 6px 0 0;
                     padding: 0 6px;

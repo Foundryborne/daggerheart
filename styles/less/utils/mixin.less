@@ -5,16 +5,16 @@
  */
 .appTheme(@darkRules, @lightRules) {
     // Dark theme selectors
-    .themed.theme-dark .application.daggerheart.sheet.dh-style,
-    .themed.theme-dark.application.daggerheart.sheet.dh-style,
+    .themed.theme-dark .application.daggerheart.dh-style,
+    .themed.theme-dark.application.daggerheart.dh-style,
     body.theme-dark .application.daggerheart,
     body.theme-dark.application.daggerheart {
         @darkRules();
     }
 
     // Light theme selectors
-    .themed.theme-light .application.daggerheart.sheet.dh-style,
-    .themed.theme-light.application.daggerheart.sheet.dh-style,
+    .themed.theme-light .application.daggerheart.dh-style,
+    .themed.theme-light.application.daggerheart.dh-style,
     body.theme-light .application.daggerheart,
     body.theme-light.application.daggerheart {
         @lightRules();
@@ -50,14 +50,15 @@
  */
 .dh-typography() {
     h1 {
+        --dh-input-color-text: @color-text-emphatic;
         font-family: @font-title;
         margin: 0;
         border: none;
         font-weight: normal;
-    }
-
-    h1 input[type='text'] {
-        font-family: @font-title;
+        input[type='text'],
+        .input[contenteditable] {
+            font-family: @font-title;
+        }
     }
 
     h2,

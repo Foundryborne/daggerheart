@@ -103,7 +103,7 @@
             padding: 5px 0;
             margin-bottom: 8px;
             font-size: var(--font-size-12);
-            color: light-dark(@dark-blue, @golden);
+            color: @color-text-emphatic;
 
             .missing-header-feature {
                 opacity: 0.5;
@@ -170,9 +170,9 @@
                 display: flex;
                 gap: 4px;
                 background-color: light-dark(transparent, @dark-blue);
-                color: light-dark(@dark-blue, @golden);
+                color: @color-text-emphatic;
                 padding: 5px 10px;
-                border: 1px solid light-dark(@dark-blue, @golden);
+                border: 1px solid @color-border;
                 border-radius: 6px;
                 align-items: center;
                 width: fit-content;
@@ -182,7 +182,7 @@
                     font-size: var(--font-size-14);
                     font-weight: bold;
                     text-transform: uppercase;
-                    color: light-dark(@dark-blue, @golden);
+                    color: @color-text-emphatic;
                     margin-right: 4px;
                 }
 
@@ -195,7 +195,7 @@
                         font-size: var(--font-size-14);
                         font-weight: bold;
                         text-transform: uppercase;
-                        color: light-dark(@dark-blue, @golden);
+                        color: @color-text-emphatic;
                     }
 
                     img {
@@ -226,7 +226,6 @@
             padding-left: 0.5rem;
 
             .trait {
-                --color-border: light-dark(@semi-transparent-dark-blue, @golden-60);
                 cursor: pointer;
                 position: relative;
 
@@ -238,10 +237,10 @@
 
                 .trait-name {
                     position: relative;
-                    background-color: light-dark(@semi-transparent-dark-blue, @golden-40);
-                    border: 1px solid var(--color-border);
+                    background-color: @trait-color-bg;
+                    border: 1px solid @trait-color-border;
                     border-radius: 3px;
-                    color: light-dark(var(--color-light-1), @golden);
+                    color: @color-text-emphatic;
                     font-size: var(--font-size-12);
                     font-weight: 600;
                     height: 1rem;
@@ -250,7 +249,7 @@
                     width: 100%;
                     padding: 0 0.1876px 0 0.375rem;
                     margin-right: 0.125rem; /* makes it center SLIGHTLY */
-                    text-shadow: 1px 1px 2px @light-black;
+                    text-shadow: 1px 1px 3px @color-text-shadow-contrast;
 
                     display: flex;
                     align-items: center;
@@ -259,7 +258,7 @@
                     .tier-mark {
                         position: absolute;
                         background-color: @dark-blue;
-                        border: 1px solid light-dark(@dark-blue, @golden);
+                        border: 1px solid @color-border;
                         border-radius: 50%;
                         width: 1rem;
                         height: 1rem;
@@ -279,6 +278,7 @@
                 }
 
                 .trait-value-area {
+                    --color-border: @trait-color-border;
                     --background: light-dark(#e8e6e3, @dark-blue);
                     display: flex;
                     position: relative;
@@ -298,7 +298,7 @@
 
                     .spellcasting-mark {
                         position: absolute;
-                        border: 1px solid light-dark(@dark-blue, @golden);
+                        border: 1px solid @color-border;
                         color: @golden;
                         left: 0;
                         right: 0;

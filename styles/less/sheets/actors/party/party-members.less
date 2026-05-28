@@ -48,7 +48,7 @@
                         border-radius: 50%;
                         width: 24px;
                         height: 24px;
-                        border: 1px solid light-dark(@dark-blue, @golden);
+                        border: 1px solid @color-border;
                         object-fit: cover;
                     }
                 }
@@ -79,9 +79,9 @@
                     display: flex;
                     gap: 4px;
                     background-color: light-dark(var(--color-light-1), @dark-blue);
-                    color: light-dark(@dark-blue, @golden);
+                    color: @color-text-emphatic;
                     padding: 4px 6px;
-                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border: 1px solid @color-border;
                     border-radius: 3px;
                     align-items: baseline;
                     width: fit-content;
@@ -93,7 +93,7 @@
 
                         &.threshold-label {
                             font-size: var(--font-size-10);
-                            color: light-dark(@dark-blue, @golden);
+                            color: @color-text-emphatic;
                         }
 
                         &.threshold-value {
@@ -116,7 +116,7 @@
                     width: 100%;
                     z-index: 1;
                     font-size: var(--font-size-20);
-                    color: light-dark(@dark-blue, @golden);
+                    color: @color-text-emphatic;
                     font-weight: bold;
                 }
 
@@ -132,9 +132,9 @@
                 .hope-section {
                     display: flex;
                     background-color: light-dark(transparent, @dark-blue);
-                    color: light-dark(@dark-blue, @golden);
+                    color: @color-text-emphatic;
                     padding: 3px 6px;
-                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border: 1px solid @color-border;
                     border-radius: 3px;
                     align-items: center;
                     width: fit-content;
@@ -144,7 +144,7 @@
                         font-size: var(--font-size-12);
                         font-weight: bold;
                         text-transform: uppercase;
-                        color: light-dark(@dark-blue, @golden);
+                        color: @color-text-emphatic;
                         margin-right: 3px;
                     }
 
@@ -212,9 +212,9 @@
                         gap: 4px;
 
                         background-color: light-dark(@dark-blue-10, @dark-blue);
-                        color: light-dark(@dark-blue, @golden);
+                        color: @color-text-emphatic;
                         padding: 2px 5px;
-                        border: 1px solid light-dark(@dark-blue, @golden);
+                        border: 1px solid @color-border;
                         border-radius: 0 6px 6px 0;
                         width: fit-content;
                         min-height: 22px;
@@ -232,7 +232,7 @@
                         .slot {
                             width: 16px;
                             height: 10px;
-                            border: 1px solid light-dark(@dark-blue, @golden);
+                            border: 1px solid @color-border;
                             background: light-dark(@dark-blue-10, @golden-10);
                             border-radius: 3px;
                             transition: all 0.3s ease;
@@ -248,7 +248,7 @@
 
             .traits {
                 background-color: light-dark(@dark-blue-10, @dark-blue);
-                border: 1px solid light-dark(@dark-blue, @golden);
+                border: 1px solid @color-border;
                 border-radius: 6px;
                 display: grid;
                 grid-template-columns: 1fr 1fr;                
@@ -260,7 +260,7 @@
                     justify-content: space-between;
                     gap: 3px;
                     .label {
-                        color: light-dark(@dark-blue, @golden);
+                        color: @color-text-emphatic;
                     }
                     .value {
                         font-weight: 600;
