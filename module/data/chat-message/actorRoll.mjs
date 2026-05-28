@@ -155,9 +155,8 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         }
 
         if (game.modules.get('dice-so-nice')?.active) {
-            for (const roll of rerolls) {
-                await game.dice3d.showForRoll(roll, game.user, true);
-            }
+            const rerollPromises = rerolls.map(roll => game.dice3d.showForRoll(roll, game.user, true));
+            await Promise.allSettled(rerollPromises);
         } else {
             foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
         }
