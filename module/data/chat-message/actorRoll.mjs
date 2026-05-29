@@ -151,7 +151,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
                 if (x.isDeterministic && !x.operator) acc += x.total;
                 return acc;
             }, 0);
-            partData.dice = rerolled.dice;
+            partData.dice = rerolled.dice.map(d => ({ ...d.toJSON(), dice: d.denomination }));
             partData.total = rerolled.total;
             partData.roll = rerolled.toJSON();
         }
