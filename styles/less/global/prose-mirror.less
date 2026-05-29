@@ -40,6 +40,11 @@
             ul {
                 list-style: disc;
             }
+        }       
+        // Fixes centering and makes it not render over scrollbar
+        &:hover button.toggle:enabled {
+            display: flex;
+            right: 12px;
         }
     }
 }
