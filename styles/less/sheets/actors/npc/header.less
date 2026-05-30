@@ -1,0 +1,54 @@
+.application.sheet.daggerheart.actor.dh-style.npc {
+    .npc-header-sheet {
+        width: 100%;
+        display: flex;
+
+        .portrait {
+            cursor: pointer;
+            width: 275px;
+
+            img {
+                height: 275px;
+            }
+        }
+
+        .info-section {
+            flex: 1;
+            padding: 0 15px;
+            padding-top: var(--header-height);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            .name-row {
+                display: flex;
+                gap: 5px;
+                align-items: center;
+                justify-content: space-between;
+
+                h1 {
+                    display: flex;
+                    flex: 1;
+                    padding: 6px 0 0 0;
+                    font-size: var(--font-size-32);
+                    text-align: start;
+                    border: 1px solid transparent;
+                    outline: 2px solid transparent;
+                    transition: all 0.3s ease;
+                    word-break: break-word;
+
+                    &:hover {
+                        outline: 2px solid light-dark(@dark, @golden);
+                    }
+                }
+            }
+
+            .npc-info {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                padding: 16px 0;
+            }
+        }
+    }
+}

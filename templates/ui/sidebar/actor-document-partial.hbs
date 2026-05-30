@@ -6,6 +6,8 @@
         <span>{{name}}</span>
         {{#if (or (eq type "adversary") (eq type "environment"))}}
             <span class="entry-subtitle">{{localize "DAGGERHEART.UI.Sidebar.actorDirectory.tier" tier=system.tier type=(@root.getTypeLabel this)}}</span>
+        {{else if (eq type "npc")}}
+            <span class="entry-subtitle">{{localize "TYPES.Actor.npc"}}</span>
         {{else if (eq type "character")}}
             <span class="entry-subtitle">{{localize "DAGGERHEART.UI.Sidebar.actorDirectory.character" level=system.levelData.level.current}}</span>
         {{else if (eq type "companion")}}

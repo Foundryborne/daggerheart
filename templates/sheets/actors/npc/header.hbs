@@ -1,0 +1,30 @@
+<header class='npc-header-sheet'>
+    <div class="portrait">
+        <img src="{{source.img}}" alt="{{source.name}}" data-action='editImage' data-edit="img">
+    </div>
+    <div class="info-section">
+        <line-div></line-div>
+
+        <div class="name-row">
+            <h1
+                class="input actor-name"
+                contenteditable="plaintext-only"
+                data-property="name"
+                placeholder="{{localize "DAGGERHEART.GENERAL.actorName"}}"
+                autocomplete="off"
+                spellcheck="false"
+            >{{source.name}}</h1>
+        </div>
+
+        <line-div></line-div>
+
+        <div class="npc-info">
+            <span class="description">
+                <i>{{{description}}}</i>
+            </span>
+            <span class="motives-and-tatics">
+                <b>{{localize 'DAGGERHEART.ACTORS.NPC.FIELDS.motive.label'}}: </b>{{{source.system.motive}}}
+            </span>
+        </div>
+    </div>
+</header>

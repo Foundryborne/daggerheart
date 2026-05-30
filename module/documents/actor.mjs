@@ -109,6 +109,14 @@ export default class DhpActor extends Actor {
             });
         }
 
+        if (this.type === 'npc') {
+            Object.assign(update, {
+                prototypeToken: {
+                    disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
+                }
+            });
+        }
+
         this.updateSource(update);
     }
 

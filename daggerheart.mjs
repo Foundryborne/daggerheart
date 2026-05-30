@@ -196,6 +196,11 @@ Hooks.once('init', () => {
         makeDefault: true,
         label: sheetLabel('TYPES.Actor.environment')
     });
+    Actors.registerSheet(SYSTEM.id, applications.sheets.actors.NPC, {
+        types: ['npc'],
+        makeDefault: true,
+        label: sheetLabel('TYPES.Actor.npc')
+    });
     Actors.registerSheet(SYSTEM.id, applications.sheets.actors.Party, {
         types: ['party'],
         makeDefault: true,

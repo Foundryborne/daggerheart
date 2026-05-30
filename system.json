@@ -244,6 +244,9 @@
             "adversary": {
                 "htmlFields": ["notes", "description"]
             },
+            "npc": {
+                "htmlFields": ["notes"]
+            },
             "environment": {
                 "htmlFields": ["notes", "description"]
             },

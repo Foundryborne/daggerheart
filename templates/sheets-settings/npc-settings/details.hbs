@@ -1,0 +1,9 @@
+<section
+    class='tab {{tabs.details.cssClass}} {{tabs.details.id}}'
+    data-tab='{{tabs.details.id}}'
+    data-group='{{tabs.details.group}}'
+>
+        {{formField systemFields.description value=document._source.system.description}}
+        {{formField systemFields.motive value=document._source.system.motive}}
+        {{formGroup systemFields.difficulty value=document._source.system.difficulty localize=true}}
+</section>
