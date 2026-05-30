@@ -25,7 +25,7 @@ export default class DhpNPC extends BaseDataActor {
                 label: 'DAGGERHEART.GENERAL.difficulty'
             }),
             description: new fields.HTMLField({ label: 'DAGGERHEART.GENERAL.description' }),
-            motives: new fields.HTMLField(),
+            motives: new fields.StringField(),
             notes: new fields.HTMLField()
         };
     }

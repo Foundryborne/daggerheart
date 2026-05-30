@@ -8,10 +8,6 @@
         {{formInput systemFields.description value=document._source.system.description}}
     </fieldset>
 
-    <fieldset>
-        <legend>{{localize "DAGGERHEART.ACTORS.NPC.FIELDS.motives.label"}}</legend>
-        {{formInput systemFields.motives value=document._source.system.motives}}
-    </fieldset>
-
+    {{formGroup systemFields.motives value=document._source.system.motives}}
     {{formGroup systemFields.difficulty value=document._source.system.difficulty localize=true}}
 </section>
