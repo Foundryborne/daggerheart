@@ -116,7 +116,12 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
-        context.isEditable = this.getIsEditable();
+        context.isEditable =
+            game.user.isGM ||
+            this.party.system.partyMembers.some(actor => {
+                const selected = Boolean(this.party.system.tagTeam.members[actor.id]);
+                return selected && actor.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
+            });
         context.fields = this.party.system.schema.fields.tagTeam.fields;
         context.data = this.party.system.tagTeam;
         context.rollTypes = CONFIG.DH.GENERAL.tagTeamRollTypes;
@@ -179,55 +184,54 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         }
 
         if (Object.keys(this.party.system.tagTeam.members).includes(partId)) {
-            const data = this.party.system.tagTeam.members[partId];
-            const actor = game.actors.get(partId);
-
-            const rollOptions = [];
-            const damageRollOptions = [];
-            for (const item of actor.items) {
-                if (item.system.metadata.hasActions) {
-                    const actions = [...item.system.actions, ...(item.system.attack ? [item.system.attack] : [])];
-                    for (const action of actions) {
-                        if (action.hasRoll) {
-                            const actionItem = {
-                                value: action.uuid,
-                                label: action.name,
-                                group: item.name,
-                                baseAction: action.baseAction
-                            };
-
-                            if (action.hasDamage) damageRollOptions.push(actionItem);
-                            else rollOptions.push(actionItem);
-                        }
-                    }
-                }
-            }
-
-            const selectedRoll = Object.values(this.party.system.tagTeam.members).find(member => member.selected);
-            const critSelected = !selectedRoll
-                ? undefined
-                : (selectedRoll?.rollData?.options?.roll?.isCritical ?? false);
-
-            const damage = data.rollData?.options?.damage;
-            partContext.hasDamage |= Boolean(damage);
-            const critHitPointsDamage = await this.getCriticalDamage(damage);
-
-            partContext.members[partId] = {
-                ...data,
-                roll: data.roll,
-                isEditable: actor.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER),
-                key: partId,
-                readyToRoll: Boolean(data.rollChoice),
-                hasRolled: Boolean(data.rollData),
-                rollOptions,
-                damageRollOptions,
-                damage: damage,
-                critDamage: critHitPointsDamage,
-                useCritDamage: critSelected || (critSelected === undefined && data.rollData?.options?.roll?.isCritical)
-            };
+            const data = await this.#prepareMemberContext(partId);
+            partContext.hasDamage |= Boolean(data?.damage);
+            partContext.members[partId] = data;
         }
 
         return partContext;
+    }
+
+    async #prepareMemberContext(partId) {
+        const data = this.party.system.tagTeam.members[partId] ?? {};
+        const actor = game.actors.get(partId);
+        if (!actor) console.error(`Failed to get actor ${partId}`);
+
+        const rollOptions = [];
+        const damageRollOptions = [];
+        for (const item of actor?.items ?? []) {
+            if (!item.system.metadata.hasActions) continue;
+            const actions = [...item.system.actions, ...(item.system.attack ? [item.system.attack] : [])];
+            for (const action of actions) {
+                if (action.hasRoll) {
+                    const collection = action.hasDamage ? damageRollOptions : rollOptions;
+                    collection.push({
+                        value: action.uuid,
+                        label: action.name,
+                        group: item.name,
+                        baseAction: action.baseAction
+                    });
+                }
+            }
+        }
+
+        const selectedRoll = Object.values(this.party.system.tagTeam.members).find(member => member.selected);
+        const critSelected = !selectedRoll ? undefined : (selectedRoll?.rollData?.options?.roll?.isCritical ?? false);
+        const damage = data.rollData?.options?.damage;
+
+        return {
+            ...data,
+            roll: data.roll,
+            isEditable: actor?.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER),
+            key: partId,
+            readyToRoll: Boolean(data.rollChoice),
+            hasRolled: Boolean(data.rollData),
+            rollOptions,
+            damageRollOptions,
+            damage: damage,
+            critDamage: await this.getCriticalDamage(damage),
+            useCritDamage: critSelected || (critSelected === undefined && data.rollData?.options?.roll?.isCritical)
+        };
     }
 
     getUpdatingParts(target) {
@@ -271,13 +275,6 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 ? { refreshType: RefreshType.TagTeamRoll, action: 'refresh', parts: updatingParts }
                 : undefined
         );
-    }
-
-    getIsEditable() {
-        return this.party.system.partyMembers.some(actor => {
-            const selected = Boolean(this.party.system.tagTeam.members[actor.id]);
-            return selected && actor.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
-        });
     }
 
     tagTeamRefresh = ({ refreshType, action, parts }) => {
@@ -649,42 +646,50 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
     }
 
     async getJoinedRoll({ overrideIsCritical, displayVersion } = {}) {
-        const memberValues = Object.values(this.party.system.tagTeam.members);
-        const selectedRoll = memberValues.find(x => x.selected);
-        let baseMainRoll = selectedRoll ?? memberValues[0];
-        let baseSecondaryRoll = selectedRoll
-            ? memberValues.find(x => !x.selected)
-            : memberValues.length > 1
-              ? memberValues[1]
-              : null;
+        try {
+            const memberValues = Object.values(this.party.system.tagTeam.members);
+            const selectedRoll = memberValues.find(x => x.selected);
+            const baseMainRoll = selectedRoll ?? memberValues[0];
+            const baseSecondaryRoll = selectedRoll
+                ? memberValues.find(x => !x.selected)
+                : memberValues.length > 1
+                  ? memberValues[1]
+                  : null;
 
-        if (!baseMainRoll?.rollData || !baseSecondaryRoll) return null;
+            if (!baseMainRoll?.rollData || !baseSecondaryRoll) return null;
 
-        const mainRoll = new MemberData(baseMainRoll.toObject());
-        const secondaryRollData = new MemberData(baseSecondaryRoll.toObject()).rollData;
-        const systemData = mainRoll.rollData.options;
-        const isCritical = overrideIsCritical ?? systemData.roll.isCritical;
-        if (isCritical) systemData.damage = await this.getCriticalDamage(systemData.damage);
+            const mainRoll = new MemberData(baseMainRoll.toObject());
+            const secondaryRollData = new MemberData(baseSecondaryRoll.toObject()).rollData;
+            const systemData = mainRoll.rollData.options;
+            const isCritical = overrideIsCritical ?? systemData.roll.isCritical;
+            if (isCritical) systemData.damage = await this.getCriticalDamage(systemData.damage);
 
-        if (secondaryRollData?.options.hasDamage) {
-            const secondaryDamage = (displayVersion ? overrideIsCritical : isCritical)
-                ? await this.getCriticalDamage(secondaryRollData.options.damage)
-                : secondaryRollData.options.damage;
-            if (systemData.damage) {
-                for (const key in secondaryDamage) {
-                    const damage = secondaryDamage[key];
-                    systemData.damage[key].formula = [systemData.damage[key].formula, damage.formula]
-                        .filter(x => x)
-                        .join(' + ');
-                    systemData.damage[key].total += damage.total;
-                    systemData.damage[key].parts.push(...damage.parts);
+            if (secondaryRollData?.options.hasDamage) {
+                const secondaryDamage = (displayVersion ? overrideIsCritical : isCritical)
+                    ? await this.getCriticalDamage(secondaryRollData.options.damage)
+                    : secondaryRollData.options.damage;
+                if (systemData.damage) {
+                    for (const [key, damage] of Object.entries(secondaryDamage ?? {})) {
+                        if (key in systemData.damage) {
+                            systemData.damage[key].formula = [systemData.damage[key]?.formula, damage.formula]
+                                .filter(x => x)
+                                .join(' + ');
+                            systemData.damage[key].total += damage.total;
+                            systemData.damage[key].parts.push(...damage.parts);
+                        } else {
+                            systemData.damage[key] = damage;
+                        }
+                    }
+                } else {
+                    systemData.damage = secondaryDamage;
                 }
-            } else {
-                systemData.damage = secondaryDamage;
             }
-        }
 
-        return mainRoll;
+            return mainRoll;
+        } catch (err) {
+            console.error(err);
+            return null;
+        }
     }
 
     static async #onCancelRoll(_event, _button, options = { confirm: true }) {
