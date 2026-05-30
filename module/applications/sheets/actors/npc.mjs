@@ -46,9 +46,14 @@ export default class NPCSheet extends DHBaseActorSheet {
         }
     };
 
+    prepareTabs(context) {
+        context.tabs.features.empty = this.document.system.features.length === 0;
+    }
+
     /**@inheritdoc */
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
+        this.prepareTabs(context);
 
         return context;
     }
@@ -88,6 +93,13 @@ export default class NPCSheet extends DHBaseActorSheet {
         });
     }
 
+    /**
+     * Prepare render context for the Features part.
+     * @param {ApplicationRenderContext} context
+     * @param {ApplicationRenderOptions} options
+     * @returns {Promise<void>}
+     * @protected
+     */
     async _prepareFeaturesContext(context, _options) {
         const featureForms = ['passive', 'action', 'reaction'];
         context.features = this.document.system.features.sort((a, b) =>
@@ -123,10 +135,5 @@ export default class NPCSheet extends DHBaseActorSheet {
                 })
             };
         }
-    }
-
-    /**@inheritdoc */
-    _attachPartListeners(partId, htmlElement, options) {
-        super._attachPartListeners(partId, htmlElement, options);
     }
 }
