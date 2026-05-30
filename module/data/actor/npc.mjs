@@ -19,8 +19,8 @@ export default class DhpNPC extends BaseDataActor {
         return {
             ...super.defineSchema(),
             difficulty: new fields.NumberField({ nullable: true, initial: null, integer: true }),
-            description: new fields.StringField(),
-            motive: new fields.StringField(),
+            description: new fields.HTMLField(),
+            motives: new fields.HTMLField(),
             notes: new fields.HTMLField()
         };
     }

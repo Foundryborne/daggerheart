@@ -16,15 +16,25 @@
             >{{source.name}}</h1>
         </div>
 
+        {{#if source.system.difficulty}} 
+            <div class="tags">
+                <div class="tag">
+                    <span>{{localize "DAGGERHEART.GENERAL.difficulty"}}</span>
+                    <span>{{source.system.difficulty}}</span>
+                </div>
+            </div>
+        {{/if}}
+
         <line-div></line-div>
 
         <div class="npc-info">
             <span class="description">
                 <i>{{{description}}}</i>
             </span>
-            <span class="motives-and-tatics">
-                <b>{{localize 'DAGGERHEART.ACTORS.NPC.FIELDS.motive.label'}}: </b>{{{source.system.motive}}}
-            </span>
+            <div class="motives-and-tactics">
+                <b>{{localize 'DAGGERHEART.ACTORS.NPC.FIELDS.motives.label'}}</b>
+                {{{source.system.motives}}}
+            </div>
         </div>
     </div>
 </header>
