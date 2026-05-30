@@ -336,9 +336,7 @@
             },
             "NPC": {
                 "FIELDS": {
-                    "difficulty": { "label": "Difficulty" },
-                    "motives": { "label": "Motives" },
-                    "description": { "label": "Description" }
+                    "motives": { "label": "Motives" }
                 }
             },
             "Party": {

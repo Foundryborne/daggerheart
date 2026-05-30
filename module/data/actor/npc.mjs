@@ -18,8 +18,13 @@ export default class DhpNPC extends BaseDataActor {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            difficulty: new fields.NumberField({ nullable: true, initial: null, integer: true }),
-            description: new fields.HTMLField(),
+            difficulty: new fields.NumberField({
+                nullable: true,
+                initial: null,
+                integer: true,
+                label: 'DAGGERHEART.GENERAL.difficulty'
+            }),
+            description: new fields.HTMLField({ label: 'DAGGERHEART.GENERAL.description' }),
             motives: new fields.HTMLField(),
             notes: new fields.HTMLField()
         };

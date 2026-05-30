@@ -251,7 +251,7 @@
                 "htmlFields": ["notes", "description"]
             },
             "party": {
-                "htmlFields": ["notes"]
+                "htmlFields": ["notes", "description", "motives"]
             }
         },
         "Item": {
