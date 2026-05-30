@@ -434,8 +434,6 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         if (!result) return;
 
-        if (!game.modules.get('dice-so-nice')?.active) foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
-
         const rollData = result.messageRoll.toJSON();
         delete rollData.options.messageRoll;
         this.updatePartyData(

@@ -904,3 +904,17 @@ export async function fromUuids(uuids) {
 
     return entries.map(e => e.value);
 }
+/**
+ * Triggers DiceSoNice rolls or dice roll audio for rolls. Not used for duality rolls.
+ * @param { Roll[] } rolls
+ * @return { void }
+ */
+export async function triggerChatRollFx(rolls, options = { whisper: false, blind: false }) {
+    const { whisper, blind } = options;
+    if (game.modules.get('dice-so-nice')?.active) {
+        const rerollPromises = rolls.map(roll => game.dice3d.showForRoll(roll, game.user, true, whisper, blind));
+        await Promise.allSettled(rerollPromises);
+    } else {
+        foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
+    }
+}

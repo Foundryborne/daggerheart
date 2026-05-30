@@ -712,12 +712,6 @@
             "ReactionRoll": {
                 "title": "Reaction Roll: {trait}"
             },
-            "RerollDialog": {
-                "title": "Reroll",
-                "damageTitle": "Reroll Damage",
-                "deselectDiceNotification": "Deselect one of the selected dice first",
-                "acceptCurrentRolls": "Accept Current Rolls"
-            },
             "ResourceDice": {
                 "title": "{name} Resource",
                 "rerollDice": "Reroll Dice"
@@ -3097,6 +3091,7 @@
                 }
             },
             "ChatLog": {
+                "rerollActionRoll": "Reroll Action",
                 "rerollDamage": "Reroll Damage",
                 "assignTagRoll": "Assign as Tag Roll"
             },

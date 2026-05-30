@@ -1,6 +1,8 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 import D20Roll from './d20Roll.mjs';
 import { parseRallyDice, setDiceSoNiceForDualityRoll } from '../helpers/utils.mjs';
+import { getDiceSoNicePresets } from '../config/generalConfig.mjs';
+import { updateResourcesForDualityReroll } from './helpers.mjs';
 
 export default class DualityRoll extends D20Roll {
     _advantageNumber = 1;
@@ -130,13 +132,7 @@ export default class DualityRoll extends D20Roll {
     }
 
     createBaseDice() {
-        if (
-            this.dice[0] instanceof game.system.api.dice.diceTypes.HopeDie &&
-            this.dice[1] instanceof game.system.api.dice.diceTypes.FearDie
-        ) {
-            this.terms = [this.terms[0], this.terms[1], this.terms[2]];
-            return;
-        }
+        this.terms = [this.terms[0], this.terms[1], this.terms[2]];
 
         this.terms[0] = new game.system.api.dice.diceTypes.HopeDie({
             faces: this.data.rules.dualityRoll?.defaultHopeDice ?? 12
@@ -387,5 +383,41 @@ export default class DualityRoll extends D20Roll {
             const currentCombatant = game.combat.combatants.get(game.combat.current?.combatantId);
             if (currentCombatant?.actorId == config.data.id) ui.combat.setCombatantSpotlight(currentCombatant.id);
         }
+    }
+
+    async reroll(options) {
+        const oldDuality = this.withHope ? 1 : this.withFear ? -1 : 0;
+        const rerolled = DualityRoll.fromData((await super.reroll(options)).toJSON());
+
+        if (options?.liveRoll) {
+            if (game.modules.get('dice-so-nice')?.active) {
+                const diceAppearance = await getDiceSoNicePresets(
+                    rerolled,
+                    rerolled.dHope.denomination,
+                    rerolled.dFear.denomination
+                );
+                rerolled.dHope.options.appearance = diceAppearance.hope.appearance;
+                rerolled.dFear.options.appearance = diceAppearance.fear.appearance;
+                if (rerolled.dAdvantage) rerolled.dAdvantage.options.appearance = diceAppearance.advantage.appearance;
+                if (rerolled.dDisadvantage)
+                    rerolled.dDisadvantage.options.appearance = diceAppearance.disadvantage.appearance;
+
+                await game.dice3d.showForRoll(rerolled, game.user, true);
+            } else {
+                foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
+            }
+
+            if (this.options.actionType === 'reaction') return;
+
+            const newDuality = rerolled.withHope ? 1 : rerolled.withFear ? -1 : 0;
+            const actor = await foundry.utils.fromUuid(this.options.source.actor);
+            updateResourcesForDualityReroll(oldDuality, newDuality, actor);
+        }
+
+        return rerolled;
+    }
+
+    fromJSON(json) {
+        return super.fromJSON(json);
     }
 }
