@@ -12,13 +12,9 @@
                 {{/if}}
             </span>
         </div>
-        {{#if roll.difficulty}}
-            <span class="roll-difficulty{{#unless roll.success}} is-miss{{/unless}}">
-                {{!-- {{#if canViewSecret}} --}}
-                    difficulty {{roll.difficulty}}
-                {{!-- {{else}}
-                    {{localize (ifThen roll.success "DAGGERHEART.GENERAL.success" "DAGGERHEART.GENERAL.failure")}}
-                {{/if}} --}}
+        {{#if roll.options.roll.difficulty}}
+            <span class="roll-difficulty{{#unless roll.options.roll.success}} is-miss{{/unless}}">
+                {{localize "DAGGERHEART.GENERAL.difficulty"}} {{roll.options.roll.difficulty}}
             </span>
         {{/if}}
     </div>
