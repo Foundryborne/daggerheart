@@ -46,19 +46,16 @@ export default class NPCSheet extends DHBaseActorSheet {
         }
     };
 
-    prepareTabs(context) {
-        context.tabs.features.empty = this.document.system.features.length === 0;
+    /** @inheritdoc */
+    _prepareTabs(group) {
+        const result = super._prepareTabs(group);
+        if (group === 'primary') {
+            result.features.empty = this.document.system.features.length === 0;
+        }
+        return result;
     }
 
-    /**@inheritdoc */
-    async _prepareContext(options) {
-        const context = await super._prepareContext(options);
-        this.prepareTabs(context);
-
-        return context;
-    }
-
-    /**@inheritdoc */
+    /** @inheritdoc */
     async _preparePartContext(partId, context, options) {
         context = await super._preparePartContext(partId, context, options);
         switch (partId) {
