@@ -16,7 +16,7 @@
                     {{/unless}}
                 {{/each}}
                 {{#if part.modifierTotal}}
-                    <span class="roll-operator">{{#if (gte part.modifierTotal 0)}}+{{else}}-{{/if}}</span>
+                    {{#if part.dice.length}}<span class="roll-operator">{{#if (gte part.modifierTotal 0)}}+{{else}}-{{/if}}</span>{{/if}}
                     <span class="roll-value">{{positive part.modifierTotal}}</span>
                 {{/if}}
             </div>
