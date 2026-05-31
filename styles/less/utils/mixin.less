@@ -160,3 +160,47 @@
         @destination @length
     );
 }
+
+// Scroll shadows, but only if the browser supports. At the time of writing, this doesn't work on firefox
+@supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)) {
+    @property --fade-start {
+        syntax: "<length>";
+        inherits: false;
+        initial-value: 0;
+    }
+
+    @property --fade-end {
+        syntax: "<length>";
+        inherits: false;
+        initial-value: 0;
+    }
+
+    @keyframes scrollfade {
+        0% {
+            --fade-start: 0;
+        }
+        10%, 100% {
+            --fade-start: 12px;
+        }
+        0%, 90% {
+            --fade-end: 12px;
+        }
+        100% {
+            --fade-end: 0;
+        }
+    }
+}
+
+.with-scroll-shadows() {
+    animation: scrollfade;
+    animation-timeline: --scrollfade;
+    animation-range: entry 0% exit 100%;
+    scroll-timeline: --scrollfade y;
+    mask-image: linear-gradient(
+        0deg, 
+        transparent 0%, 
+        black var(--fade-end), 
+        black calc(100% - var(--fade-start)), 
+        transparent 100%
+    );
+}

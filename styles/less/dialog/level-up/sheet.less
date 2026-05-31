@@ -14,8 +14,7 @@
     .tab.active {
         flex: 1;
         overflow: auto;
-        scrollbar-width: thin;
-        scrollbar-color: light-dark(@dark-blue, @golden) transparent;
+        .with-scroll-shadows();
     }
 
     div[data-application-part='form'] {

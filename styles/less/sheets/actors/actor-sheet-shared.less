@@ -38,11 +38,23 @@
     }
 
     .tab.inventory {
-        .search-section {
-            display: flex;
+        .gold-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
             gap: 10px;
-            align-items: center;
+            padding: 10px 10px 0;
+
+            .input {
+                color: light-dark(@dark, @beige);
+            }
         }
+    }
+
+    .search-section {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: space-between;
         .search-bar {
             position: relative;
             color: light-dark(@dark-blue-50, @beige-50);
@@ -72,20 +84,9 @@
                 height: 32px;
                 position: absolute;
                 right: 20px;
-                font-size: 16px;
+                font-size: var(--font-size-16);
                 z-index: 1;
                 color: light-dark(@dark-blue-50, @beige-50);
-            }
-        }
-
-        .gold-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 10px;
-            padding: 10px 10px 0;
-
-            .input {
-                color: light-dark(@dark, @beige);
             }
         }
     }

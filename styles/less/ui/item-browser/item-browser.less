@@ -1,5 +1,6 @@
 @import '../../utils/colors.less';
 @import '../../utils/fonts.less';
+@import '../../utils/mixin.less';
 
 .application.daggerheart.dh-style.compendium-browser {
     border: initial;
@@ -242,6 +243,7 @@
         .compendium-sidebar > .folder-list {
             overflow-y: auto;
             scrollbar-gutter: stable;
+            .with-scroll-shadows();
         }
 
         .item-list-header,
