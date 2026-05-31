@@ -56,7 +56,7 @@ export default class EffectsField extends fields.ArrayField {
             if (!token) return;
 
             const messageToken = token.document ?? token;
-            const conditionImmunities = messageToken.actor.system.rules.conditionImmunities ?? {};
+            const conditionImmunities = messageToken.actor.system.rules?.conditionImmunities ?? {};
             messageTargets.push({
                 token: messageToken,
                 conditionImmunities: Object.values(conditionImmunities).some(x => x)

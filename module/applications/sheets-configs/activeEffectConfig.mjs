@@ -41,7 +41,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
      * @returns {ChangeChoice { value: string, label: string, hint: string, group: string }[]}
      */
     static getChangeChoices() {
-        const ignoredActorKeys = ['config', 'DhEnvironment', 'DhParty'];
+        const ignoredActorKeys = ['config', 'DhEnvironment', 'DhParty', 'DhNPC'];
 
         const getAllLeaves = (root, group, parentPath = '') => {
             const leaves = [];
