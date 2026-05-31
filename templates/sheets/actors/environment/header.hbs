@@ -44,9 +44,10 @@
         </span>
     </div>
     <div class="environment-navigation">
-        {{> 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
-        <button type="button" data-action="openSettings">
-            <i class="fa-solid fa-wrench"></i>
-        </button>
+        {{#> 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
+            <button type="button" data-action="openSettings">
+                <i class="fa-solid fa-wrench"></i>
+            </button>
+        {{/ 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
     </div>
 </header>
