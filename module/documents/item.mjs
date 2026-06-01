@@ -82,6 +82,7 @@ export default class DHItem extends foundry.documents.Item {
     /** @inheritdoc */
     static async createDialog(data = {}, createOptions = {}, options = {}) {
         const { folders, types, template, context = {}, ...dialogOptions } = options;
+        dialogOptions.classes = [options.classes ?? [], 'item-create'].flat(); // handled in hook
 
         if (types?.length === 0) {
             throw new Error('The array of sub-types to restrict to must not be empty.');

@@ -65,6 +65,11 @@ export default class DhpActor extends Actor {
         };
     }
 
+    static createDialog(data, createOptions, options, renderOptions) {
+        options.classes = [options.classes ?? [], 'actor-create'].flat(); // handled in hook
+        return super.createDialog(data, createOptions, options, renderOptions);
+    }
+
     /* -------------------------------------------- */
 
     /** @inheritDoc */
