@@ -31,6 +31,16 @@ export default class AdversarySheet extends DHBaseActorSheet {
                 dragSelector: '[data-item-id][draggable="true"], [data-item-id] [draggable="true"]',
                 dropSelector: null
             }
+        ],
+        contextMenus: [
+            {
+                handler: AdversarySheet.#getStandardAttackContextOptions,
+                selector: '[data-item-uuid][data-type="attack"]',
+                options: {
+                    parentClassHooks: false,
+                    fixed: true
+                }
+            }
         ]
     };
 
@@ -262,6 +272,43 @@ export default class AdversarySheet extends DHBaseActorSheet {
                 return acc;
             }, {})
         });
+    }
+
+    /**
+     * Get the set of ContextMenu options for the standard attack.
+     * @returns {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} - The Array of context options passed to the ContextMenu instance
+     * @this {CharacterSheet}
+     * @protected
+     */
+    static #getStandardAttackContextOptions() {
+        /**@type {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} */
+        return [
+            {
+                label: 'DAGGERHEART.CONFIG.RollTypes.attack.name',
+                icon: 'fa-solid fa-burst',
+                onClick: async (event, target) => (await getDocFromElement(target)).use(event)
+            },
+            {
+                label: 'DAGGERHEART.GENERAL.damage',
+                icon: 'fa-solid fa-explosion',
+                onClick: async (event, target) => {
+                    const doc = await getDocFromElement(target),
+                        action = doc?.system?.attack ?? doc;
+                    const config = action.prepareConfig(event);
+                    config.effects = await game.system.api.data.actions.actionsTypes.base.getEffects(
+                        this.document,
+                        doc
+                    );
+                    config.hasRoll = false;
+                    return action && action.workflow.get('damage').execute(config, null, true);
+                }
+            },
+            {
+                label: 'DAGGERHEART.APPLICATIONS.ContextMenu.sendToChat',
+                icon: 'fa-solid fa-message',
+                onClick: async (_, target) => (await getDocFromElement(target)).toChat(this.document.uuid)
+            }
+        ];
     }
 
     /* -------------------------------------------- */
