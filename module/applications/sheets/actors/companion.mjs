@@ -1,4 +1,3 @@
-import { getDocFromElement } from '../../../helpers/utils.mjs';
 import DhCompanionLevelUp from '../../levelup/companionLevelup.mjs';
 import DHBaseActorSheet from '../api/base-actor.mjs';
 
