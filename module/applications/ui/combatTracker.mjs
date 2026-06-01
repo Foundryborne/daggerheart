@@ -133,7 +133,7 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
             canPing: combatant.sceneId === canvas.scene?.id && game.user.hasPermission('PING_CANVAS'),
             type: combatant.actor?.system?.type,
             img: await this._getCombatantThumbnail(combatant),
-            disposition: combatant.token.disposition
+            disposition: combatant.token?.disposition
         };
 
         turn.css = [turn.active ? 'active' : null, hidden ? 'hide' : null, isDefeated ? 'defeated' : null].filterJoin(
