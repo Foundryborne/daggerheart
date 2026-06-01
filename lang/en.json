@@ -711,9 +711,9 @@
             },
             "PendingReactionsDialog": {
                 "title": "Pending Reaction Rolls Found",
-                "unfinishedRolls": "Some Tokens still need to roll their Reaction Roll.",
-                "confirmation": "Are you sure you want to continue ?",
-                "warning": "Undone reaction rolls will be considered as failed"
+                "unfinishedRolls": "Some Tokens have not finished their Reaction Rolls.",
+                "warning": "Unfinished reaction rolls will be considered as failed.",
+                "confirmation": "Are you sure you want to continue?"
             },
             "ReactionRoll": {
                 "title": "Reaction Roll: {trait}"

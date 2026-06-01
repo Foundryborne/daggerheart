@@ -183,7 +183,11 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             if (pendingingSaves.length) {
                 const confirm = await foundry.applications.api.DialogV2.confirm({
                     window: { title: game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.title') },
-                    content: `<p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p><p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p><p><i>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>`
+                    content: `
+                        <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p>
+                        <p><i>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>
+                        <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p>
+                    `
                 });
                 if (!confirm) return;
             }
@@ -255,7 +259,11 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             if (pendingingSaves.length) {
                 const confirm = await foundry.applications.api.DialogV2.confirm({
                     window: { title: game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.title') },
-                    content: `<p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p><p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p><p><i>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>`
+                    content: `
+                        <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p>
+                        <p><i>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>
+                        <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p>
+                    `
                 });
                 if (!confirm) return;
             }
