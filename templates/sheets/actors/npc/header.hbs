@@ -31,10 +31,12 @@
             <span class="description">
                 <i>{{{description}}}</i>
             </span>
-            <div class="motives-and-tactics">
-                <b>{{localize 'DAGGERHEART.ACTORS.NPC.FIELDS.motives.label'}}: </b>
-                {{source.system.motives}}
-            </div>
+            {{#if source.system.motives}}
+                <div class="motives-and-tactics">
+                    <b>{{localize 'DAGGERHEART.ACTORS.NPC.FIELDS.motives.label'}}: </b>
+                    {{source.system.motives}}
+                </div>
+            {{/if}}
         </div>
     </div>
 </header>

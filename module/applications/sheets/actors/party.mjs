@@ -47,11 +47,6 @@ export default class Party extends DHBaseActorSheet {
             template: 'systems/daggerheart/templates/sheets/actors/party/party-members.hbs',
             scrollable: ['']
         },
-        /* NOT YET IMPLEMENTED */
-        // projects: {
-        //     template: 'systems/daggerheart/templates/sheets/actors/party/projects.hbs',
-        //     scrollable: ['']
-        // },
         inventory: {
             template: 'systems/daggerheart/templates/sheets/actors/party/inventory.hbs',
             scrollable: ['.tab.inventory .items-section']
@@ -62,19 +57,13 @@ export default class Party extends DHBaseActorSheet {
     /** @inheritdoc */
     static TABS = {
         primary: {
-            tabs: [
-                { id: 'partyMembers' },
-                /* NOT YET IMPLEMENTED */
-                // { id: 'projects' },
-                { id: 'inventory' },
-                { id: 'notes' }
-            ],
+            tabs: [{ id: 'partyMembers' }, { id: 'inventory' }, { id: 'notes' }],
             initial: 'partyMembers',
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
 
-    static ALLOWED_ACTOR_TYPES = ['character', 'companion', 'adversary'];
+    static ALLOWED_ACTOR_TYPES = ['character', 'companion', 'adversary', 'npc'];
     static DICE_ROLL_ACTOR_TYPES = ['character'];
 
     async _onRender(context, options) {
