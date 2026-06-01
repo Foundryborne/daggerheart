@@ -1045,7 +1045,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         game.tooltip.activate(target, {
             html,
             locked: true,
-            cssClass: 'bordered-tooltip',
+            cssClass: 'bordered-tooltip dh-style',
             direction: 'DOWN'
         });
 
@@ -1141,7 +1141,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         game.tooltip.activate(target, {
             html,
             locked: true,
-            cssClass: 'bordered-tooltip',
+            cssClass: 'bordered-tooltip dh-style',
             direction: 'DOWN',
             noOffset: true
         });

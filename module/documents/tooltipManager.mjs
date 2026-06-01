@@ -320,7 +320,6 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
     /**@inheritdoc */
     _setStyle(position = {}) {
         super._setStyle(position);
-        this.tooltip.classList.add('dh-style');
 
         if (this.#wide) {
             this.tooltip.classList.add('wide');
