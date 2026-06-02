@@ -89,7 +89,7 @@ export default function DHApplicationMixin(Base) {
             classes: ['daggerheart', 'sheet', 'dh-style'],
             actions: {
                 triggerContextMenu: DHSheetV2.#triggerContextMenu,
-                createDoc: DHSheetV2.#createDoc,
+                createDoc: DHSheetV2.#onCreateDoc,
                 editDoc: DHSheetV2.#editDoc,
                 deleteDoc: DHSheetV2.#deleteDoc,
                 toChat: DHSheetV2.#toChat,
@@ -97,8 +97,8 @@ export default function DHApplicationMixin(Base) {
                 viewItem: DHSheetV2.#viewItem,
                 toggleEffect: DHSheetV2.#toggleEffect,
                 toggleExtended: DHSheetV2.#toggleExtended,
-                addNewItem: DHSheetV2.#addNewItem,
-                browseItem: DHSheetV2.#browseItem,
+                addNewItem: DHSheetV2.#onAddNewItem,
+                browseItem: DHSheetV2.#onBrowseItem,
                 editAttribution: DHSheetV2.#editAttribution
             },
             contextMenus: [
@@ -424,7 +424,7 @@ export default function DHApplicationMixin(Base) {
                         const target = element.closest('[data-item-uuid]');
                         return !target.dataset.disabled && target.dataset.itemType !== 'beastform';
                     },
-                    callback: async target => (await getDocFromElement(target)).update({ disabled: true })
+                    onClick: async (_, target) => (await getDocFromElement(target)).update({ disabled: true })
                 },
                 {
                     label: 'enableEffect',
@@ -433,7 +433,7 @@ export default function DHApplicationMixin(Base) {
                         const target = element.closest('[data-item-uuid]');
                         return target.dataset.disabled && target.dataset.itemType !== 'beastform';
                     },
-                    callback: async target => (await getDocFromElement(target)).update({ disabled: false })
+                    onClick: async (_, target) => (await getDocFromElement(target)).update({ disabled: false })
                 }
             ].map(option => ({
                 ...option,
@@ -478,7 +478,9 @@ export default function DHApplicationMixin(Base) {
                             (doc?.isOwner && (!doc?.hasOwnProperty('systemPath') || doc?.inCollection))
                         );
                     },
-                    callback: async target => (await getDocFromElement(target)).sheet.render({ force: true })
+                    onClick: async (_, target) => {
+                        return (await getDocFromElement(target)).sheet.render({ force: true });
+                    }
                 }
             ];
 
@@ -493,7 +495,7 @@ export default function DHApplicationMixin(Base) {
                             !foundry.utils.isEmpty(doc?.damage?.parts);
                         return doc?.isOwner && hasDamage;
                     },
-                    callback: async (target, event) => {
+                    onClick: async (event, target) => {
                         const doc = await getDocFromElement(target),
                             action = doc?.system?.attack ?? doc;
                         const config = action.prepareConfig(event);
@@ -513,7 +515,7 @@ export default function DHApplicationMixin(Base) {
                         const doc = getDocFromElementSync(target);
                         return doc?.isOwner && !(doc.type === 'domainCard' && doc.system.inVault);
                     },
-                    callback: async (target, event) => (await getDocFromElement(target)).use(event)
+                    onClick: async (event, target) => (await getDocFromElement(target)).use(event)
                 });
             }
 
@@ -521,7 +523,7 @@ export default function DHApplicationMixin(Base) {
                 options.push({
                     label: 'DAGGERHEART.APPLICATIONS.ContextMenu.sendToChat',
                     icon: 'fa-solid fa-message',
-                    callback: async target => (await getDocFromElement(target)).toChat(this.document.uuid)
+                    onClick: async (_, target) => (await getDocFromElement(target)).toChat(this.document.uuid)
                 });
 
             if (deletable)
@@ -533,7 +535,7 @@ export default function DHApplicationMixin(Base) {
                         const doc = getDocFromElementSync(target);
                         return doc?.isOwner !== false && target.dataset.itemType !== 'beastform';
                     },
-                    callback: async (target, event) => {
+                    onClick: async (event, target) => {
                         const doc = await getDocFromElement(target);
                         if (event.shiftKey) return doc.delete();
                         else return doc.deleteDialog();
@@ -639,7 +641,7 @@ export default function DHApplicationMixin(Base) {
         /*  Application Clicks Actions                  */
         /* -------------------------------------------- */
 
-        static async #addNewItem(event, target) {
+        static async #onAddNewItem(event, target) {
             const createChoice = await foundry.applications.api.DialogV2.wait({
                 classes: ['dh-style', 'two-big-buttons'],
                 buttons: [
@@ -658,11 +660,11 @@ export default function DHApplicationMixin(Base) {
 
             if (!createChoice) return;
 
-            if (createChoice === 'browse') return DHSheetV2.#browseItem.call(this, event, target);
-            else return DHSheetV2.#createDoc.call(this, event, target);
+            if (createChoice === 'browse') return DHSheetV2.#onBrowseItem.call(this, event, target);
+            else return DHSheetV2.#onCreateDoc.call(this, event, target);
         }
 
-        static async #browseItem(event, target) {
+        static async #onBrowseItem(_event, target) {
             const type = target.dataset.compendium ?? target.dataset.type;
 
             const presets = {
@@ -713,7 +715,7 @@ export default function DHApplicationMixin(Base) {
          * Create an embedded document.
          * @type {ApplicationClickAction}
          */
-        static async #createDoc(event, target) {
+        static async #onCreateDoc(event, target) {
             const { documentClass, type, inVault, disabled } = target.dataset;
             const parentIsItem = this.document.documentName === 'Item';
             const featureOnCharacter = this.document.parent?.type === 'character' && type === 'feature';
@@ -725,7 +727,7 @@ export default function DHApplicationMixin(Base) {
                       : null
                   : this.document;
 
-            let systemData = null;
+            let systemData = {};
             if (featureOnCharacter) {
                 systemData = {
                     originItemType: this.document.type,
@@ -738,15 +740,18 @@ export default function DHApplicationMixin(Base) {
 
             const data = {
                 name: cls.defaultName({ type, parent }),
-                type
+                type,
+                system: systemData
             };
-
-            if (systemData) data.system = systemData;
-
-            if (inVault) data['system.inVault'] = true;
             if (disabled) data.disabled = true;
-            if (type === 'domainCard' && parent?.system.domains?.length) {
-                data.system.domain = parent.system.domains[0];
+
+            if (type === 'domainCard') {
+                if (parent?.system.domains?.length) data.system.domain = parent.system.domains[0];
+                if (inVault) data.system.inVault = true;
+            } else if (type === 'weapon') {
+                // Passing an empty system object to weapon causes validation failure due to attack action initialization
+                // todo: determine why, fix it at its source, then remove this fallback
+                delete data.system;
             }
 
             const doc = await cls.create(data, { parent, renderSheet: !event.shiftKey });

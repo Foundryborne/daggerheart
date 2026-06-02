@@ -1,4 +1,5 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
+import { triggerChatRollFx } from '../helpers/utils.mjs';
 
 export default class DHRoll extends Roll {
     baseTerms = [];
@@ -75,9 +76,7 @@ export default class DHRoll extends Roll {
         }
 
         if (config.skips?.createMessage) {
-            if (game.modules.get('dice-so-nice')?.active) {
-                await game.dice3d.showForRoll(roll, game.user, true);
-            }
+            await triggerChatRollFx([roll]);
         } else if (!config.source?.message) {
             config.message = await this.toMessage(roll, config);
         }
@@ -85,6 +84,7 @@ export default class DHRoll extends Roll {
 
     static postEvaluate(roll, config = {}) {
         return {
+            ...roll.options.roll,
             total: roll.total,
             formula: roll.formula,
             dice: roll.dice.map(d => ({

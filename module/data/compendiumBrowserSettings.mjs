@@ -11,11 +11,13 @@ export default class CompendiumBrowserSettings extends foundry.abstract.DataMode
                 })
             ),
             excludedPacks: new fields.TypedObjectField(
-                new fields.SchemaField({
-                    excludedDocumentTypes: new fields.ArrayField(
-                        new fields.StringField({ required: true, choices: CONST.SYSTEM_SPECIFIC_COMPENDIUM_TYPES })
-                    )
-                })
+                new fields.TypedObjectField(
+                    new fields.SchemaField({
+                        excludedDocumentTypes: new fields.ArrayField(
+                            new fields.StringField({ required: true, choices: CONST.SYSTEM_SPECIFIC_COMPENDIUM_TYPES })
+                        )
+                    })
+                )
             )
         };
     }
@@ -28,7 +30,7 @@ export default class CompendiumBrowserSettings extends foundry.abstract.DataMode
         const excludedSourceData = this.excludedSources[packageName];
         if (excludedSourceData && excludedSourceData.excludedDocumentTypes.includes(pack.metadata.type)) return true;
 
-        const excludedPackData = this.excludedPacks[item.pack];
+        const excludedPackData = this.excludedPacks[packageName]?.[pack.metadata.name];
         if (excludedPackData && excludedPackData.excludedDocumentTypes.includes(pack.metadata.type)) return true;
 
         return false;

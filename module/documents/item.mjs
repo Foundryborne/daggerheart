@@ -73,13 +73,16 @@ export default class DHItem extends foundry.documents.Item {
     /** Returns true if the item can be used */
     get usable() {
         const actor = this.actor;
-        const actionsList = this.system.actionsList;
-        return this.isOwner && actor?.type === 'character' && (actionsList?.size || actionsList?.length);
+        const pack = actor?.pack ? game.packs.get(actor.pack) : null;
+        const hasActions = this.system.actionsList?.size || this.system.actionsList?.length;
+        const isValidType = actor?.type === 'character' || this.type === 'feature';
+        return !pack?.locked && this.isOwner && isValidType && hasActions;
     }
 
     /** @inheritdoc */
     static async createDialog(data = {}, createOptions = {}, options = {}) {
         const { folders, types, template, context = {}, ...dialogOptions } = options;
+        dialogOptions.classes = [options.classes ?? [], 'item-create'].flat(); // handled in hook
 
         if (types?.length === 0) {
             throw new Error('The array of sub-types to restrict to must not be empty.');

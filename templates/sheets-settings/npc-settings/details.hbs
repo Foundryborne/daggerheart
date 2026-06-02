@@ -1,0 +1,13 @@
+<section
+    class='tab {{tabs.details.cssClass}} {{tabs.details.id}}'
+    data-tab='{{tabs.details.id}}'
+    data-group='{{tabs.details.group}}'
+>
+    <fieldset>
+        <legend>{{localize "DAGGERHEART.GENERAL.description"}}</legend>
+        {{formInput systemFields.description value=document._source.system.description}}
+    </fieldset>
+
+    {{formGroup systemFields.motives value=document._source.system.motives}}
+    {{formGroup systemFields.difficulty value=document._source.system.difficulty localize=true}}
+</section>

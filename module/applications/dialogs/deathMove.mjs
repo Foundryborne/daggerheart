@@ -57,6 +57,7 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
 
         let returnMessage = game.i18n.localize('DAGGERHEART.UI.Chat.deathMove.avoidScar');
         if (config.roll.fate.value <= this.actor.system.levelData.level.current) {
+            const maxHope = this.actor.system.resources.hope.max + this.actor.system.scars;
             const newScarAmount = this.actor.system.scars + 1;
             await this.actor.update({
                 system: {
@@ -64,7 +65,7 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
                 }
             });
 
-            if (newScarAmount >= this.actor.system.resources.hope.max) {
+            if (newScarAmount >= maxHope) {
                 await this.actor.setDeathMoveDefeated(CONFIG.DH.GENERAL.defeatedConditionChoices.dead.id);
                 return game.i18n.format('DAGGERHEART.UI.Chat.deathMove.journeysEnd', { scars: newScarAmount });
             }

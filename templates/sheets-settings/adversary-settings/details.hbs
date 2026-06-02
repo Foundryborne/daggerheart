@@ -18,6 +18,12 @@
         {{formField systemFields.motivesAndTactics value=document._source.system.motivesAndTactics label=(localize "DAGGERHEART.ACTORS.Adversary.FIELDS.motivesAndTactics.label")}}
     </fieldset>
 
+    <fieldset class="flex">
+        <legend>{{localize "DAGGERHEART.GENERAL.DamageThresholds.title"}}</legend>
+        {{formGroup systemFields.damageThresholds.fields.major value=document._source.system.damageThresholds.major label=(localize "DAGGERHEART.GENERAL.DamageThresholds.majorThreshold")}}
+        {{formGroup systemFields.damageThresholds.fields.severe value=document._source.system.damageThresholds.severe label=(localize "DAGGERHEART.GENERAL.DamageThresholds.severeThreshold")}}
+    </fieldset>
+    
     <div class="fieldsets-section">
         <fieldset class="flex">
             <legend>{{localize "DAGGERHEART.GENERAL.Resource.plural"}}</legend>
@@ -26,10 +32,4 @@
             {{/each}}
          </fieldset>
     </div>
-
-    <fieldset class="flex">
-        <legend>{{localize "DAGGERHEART.GENERAL.DamageThresholds.title"}}</legend>
-        {{formGroup systemFields.damageThresholds.fields.major value=document._source.system.damageThresholds.major label=(localize "DAGGERHEART.GENERAL.DamageThresholds.majorThreshold")}}
-        {{formGroup systemFields.damageThresholds.fields.severe value=document._source.system.damageThresholds.severe label=(localize "DAGGERHEART.GENERAL.DamageThresholds.severeThreshold")}}
-    </fieldset>
 </section>

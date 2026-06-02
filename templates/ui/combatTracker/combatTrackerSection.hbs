@@ -13,20 +13,20 @@
                         <div class="combatant-controls flex-0">
                             {{#if @root.user.isGM}}
                             <button type="button" class="inline-control combatant-control icon fa-solid fa-eye-slash {{#if hidden}}active{{/if}}"
-                                    data-action="toggleHidden" data-tooltip aria-label="{{ localize "COMBAT.ToggleVis" }}"></button>
+                                    data-action="toggleHidden" data-tooltip aria-label="{{ localize (ifThen hidden "COMBATANT.Show" "COMBATANT.Hide") }}"></button>
                             <button type="button" class="inline-control combatant-control icon fa-solid fa-skull {{#if isDefeated}}active{{/if}}"
                                     data-action="toggleDefeated" data-tooltip
-                                    aria-label="{{ localize "COMBAT.ToggleDead" }}"></button>
+                                    aria-label="{{ localize (ifThen isDefeated "COMBATANT.UnmarkDefeated" "COMBATANT.MarkDefeated") }}"></button>
                             {{/if}}
                             {{#if canPing}}
                             <button type="button" class="inline-control combatant-control icon fa-solid fa-bullseye-arrow"
                                     data-action="pingCombatant" data-tooltip
-                                    aria-label="{{ localize "COMBAT.PingCombatant" }}"></button>
+                                    aria-label="{{ localize "COMBATANT.Ping" }}"></button>
                             {{/if}}
                             {{#unless @root.user.isGM}}
                             <button type="button" class="inline-control combatant-control icon fa-solid fa-arrows-to-eye"
                                     data-action="panToCombatant" data-tooltip
-                                    aria-label="{{ localize "COMBAT.PanToCombatant" }}"></button>
+                                    aria-label="{{ localize "COMBATANT.PanTo" }}"></button>
                             {{/unless}}
                         </div>
 

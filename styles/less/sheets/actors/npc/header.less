@@ -1,0 +1,83 @@
+.application.sheet.daggerheart.actor.dh-style.npc {
+    .npc-header-sheet {
+        width: 100%;
+        display: flex;
+
+        .portrait {
+            cursor: pointer;
+            max-width: 275px;
+
+            img {
+                height: 275px;
+            }
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+            padding-bottom: 8px;
+
+            .tag {
+                display: flex;
+                flex-direction: row;
+                gap: 4px;
+                justify-content: center;
+                align-items: center;
+                padding: 3px 5px;
+                font-size: var(--font-size-12);
+                font: @font-body;
+
+                background: light-dark(@dark-15, @beige-15);
+                border: 1px solid light-dark(@dark, @beige);
+                border-radius: 3px;
+            }
+
+            .label {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                font-size: var(--font-size-12);
+            }
+        }
+
+        .info-section {
+            flex: 1;
+            padding: 0 15px;
+            padding-top: var(--header-height);
+            display: flex;
+            flex-direction: column;
+
+            .name-row {
+                display: flex;
+                gap: 5px;
+                align-items: center;
+                justify-content: space-between;
+                padding: 8px 0;
+
+                h1 {
+                    display: flex;
+                    flex: 1;
+                    padding: 6px 0 0 0;
+                    font-size: var(--font-size-32);
+                    text-align: start;
+                    border: 1px solid transparent;
+                    outline: 2px solid transparent;
+                    transition: all 0.3s ease;
+                    word-break: break-word;
+
+                    &:hover {
+                        outline: 2px solid light-dark(@dark, @golden);
+                    }
+                }
+            }
+
+            .npc-info {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                padding: 16px 0;
+            }
+        }
+    }
+}

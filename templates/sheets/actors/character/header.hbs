@@ -64,7 +64,7 @@
             {{/if}}
         </div>
 
-        {{#if document.system.multiclass.value}}
+        {{#if (or document.system.multiclass.value document.system.multiclass.subclass)}}
             <div class="multiclass">
                 {{#if document.system.multiclass.value}}
                     <span data-action="editDoc"data-item-uuid="{{document.system.multiclass.value.uuid}}">{{document.system.multiclass.value.name}}</span>

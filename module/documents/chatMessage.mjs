@@ -183,7 +183,11 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             if (pendingingSaves.length) {
                 const confirm = await foundry.applications.api.DialogV2.confirm({
                     window: { title: game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.title') },
-                    content: `<p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p><p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p><p><i>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>`
+                    content: `
+                        <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p>
+                        <p><i>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>
+                        <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p>
+                    `
                 });
                 if (!confirm) return;
             }
@@ -247,8 +251,24 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         const targets = this.filterPermTargets(this.system.hitTargets),
             config = foundry.utils.deepClone(this.system);
         config.event = event;
+
         if (targets.length === 0)
-            ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelectedOrPerm'));
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelectedOrPerm'));
+        else if (config.hasSave) {
+            const pendingingSaves = targets.filter(t => t.saved.success === null);
+            if (pendingingSaves.length) {
+                const confirm = await foundry.applications.api.DialogV2.confirm({
+                    window: { title: game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.title') },
+                    content: `
+                        <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p>
+                        <p><i>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>
+                        <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p>
+                    `
+                });
+                if (!confirm) return;
+            }
+        }
+
         this.consumeOnSuccess();
         this.system.action?.workflow.get('effects')?.execute(config, targets, true);
     }

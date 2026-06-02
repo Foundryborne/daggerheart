@@ -196,6 +196,11 @@ Hooks.once('init', () => {
         makeDefault: true,
         label: sheetLabel('TYPES.Actor.environment')
     });
+    Actors.registerSheet(SYSTEM.id, applications.sheets.actors.NPC, {
+        types: ['npc'],
+        makeDefault: true,
+        label: sheetLabel('TYPES.Actor.npc')
+    });
     Actors.registerSheet(SYSTEM.id, applications.sheets.actors.Party, {
         types: ['party'],
         makeDefault: true,
@@ -440,4 +445,34 @@ Hooks.on('canvasTearDown', canvas => {
 /* Non actor-linked Actors should register the triggers of their tokens on a readied scene */
 Hooks.on('canvasReady', canas => {
     game.system.registeredTriggers.registerSceneTriggers(canvas.scene);
+});
+
+/** Make the user to select a document type, instead of having a default doc type for them to accidentally keep */
+Hooks.on('renderDialogV2', (_dialog, html) => {
+    if (!html.classList.contains('dialog')) return;
+    const cls = html.classList.contains('item-create')
+        ? documents.DHItem.implementation
+        : html.classList.contains('actor-create')
+          ? documents.DhpActor.implementation
+          : null;
+    if (!cls) return;
+
+    const form = html.querySelector('form');
+    const submit = html.querySelector('button[type=submit]');
+    const select = html.querySelector('select[name=type]');
+    const nameInput = html.querySelector('input[name=name]');
+    if (!form || !select || !submit || !nameInput) return;
+
+    nameInput.placeholder = cls.defaultName({});
+    const emptyOption = document.createElement('option');
+    emptyOption.value = '';
+    emptyOption.selected = true;
+    select.required = true;
+    select.prepend(emptyOption);
+    submit.addEventListener('click', event => {
+        if (!form.reportValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+    });
 });

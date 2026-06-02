@@ -40,7 +40,7 @@
 .application.sheet.dh-style .character-sidebar-sheet {
     width: 275px;
     min-width: 275px;
-    border-right: 1px solid light-dark(@dark-blue, @golden);
+    border-right: 1px solid @color-border;
 
     .portrait {
         position: relative;
@@ -168,7 +168,7 @@
                     appearance: none;
                     width: 100px;
                     height: 40px;
-                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border: 1px solid @color-border;
                     border-radius: 6px;
                     z-index: 1;
                     background: @dark-blue;
@@ -282,11 +282,11 @@
 
                     &:hover {
                         background: light-dark(@light-black, @dark-blue);
-                        border: 1px solid light-dark(@dark-blue, @golden);
+                        border: 1px solid @color-border;
 
                         h4,
                         i {
-                            color: light-dark(@dark-blue, @golden);
+                            color: @color-text-emphatic;
                         }
                     }
                 }
@@ -309,12 +309,12 @@
                         flex-wrap: wrap;
                         gap: 4px;
                         padding: 5px;
-                        border: 1px solid light-dark(@dark-blue, @golden);
+                        border: 1px solid @color-border;
                         border-radius: 6px;
                         z-index: 1;
                         background: @dark-blue;
                         justify-content: center;
-                        color: light-dark(@dark-blue, @golden);
+                        color: @color-text-emphatic;
 
                         .armor-slot {
                             cursor: pointer;
@@ -343,12 +343,12 @@
 
                         &:hover {
                             background: light-dark(@light-black, @dark-blue);
-                            border: 1px solid light-dark(@dark-blue, @golden);
+                            border: 1px solid @color-border;
 
                             .label,
                             .value,
                             i {
-                                color: light-dark(@dark-blue, @golden);
+                                color: @color-text-emphatic;
                             }
                         }
 
@@ -375,7 +375,7 @@
                     text-align: center;
                     z-index: 2;
                     color: light-dark(@dark-blue, @beige);
-                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border: 1px solid @color-border;
                     border-bottom: none;
                     border-radius: 6px 6px 0 0;
 
@@ -411,7 +411,7 @@
                     appearance: none;
                     width: 80px;
                     height: 30px;
-                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border: 1px solid @color-border;
                     border-radius: 6px;
                     z-index: 1;
                     background: light-dark(transparent, @dark-blue);
@@ -450,7 +450,7 @@
                     display: flex;
                     width: 50px;
                     height: 30px;
-                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border: 1px solid @color-border;
                     border-bottom: none;
                     border-radius: 6px 6px 0 0;
                     padding: 0 6px;
@@ -513,9 +513,9 @@
             align-self: center;
             gap: 10px;
             background-color: light-dark(transparent, @dark-blue);
-            color: light-dark(@dark-blue, @golden);
+            color: @color-text-emphatic;
             padding: 5px 10px;
-            border: 1px solid light-dark(@dark-blue, @golden);
+            border: 1px solid @color-border;
             border-radius: 6px;
             align-items: center;
             width: fit-content;
@@ -525,7 +525,7 @@
                 font-size: var(--font-size-14);
                 font-weight: bold;
                 text-transform: uppercase;
-                color: light-dark(@dark-blue, @golden);
+                color: @color-text-emphatic;
 
                 &.threshold-value {
                     color: light-dark(@dark, @beige);
@@ -549,8 +549,8 @@
         overflow-y: hidden;
         padding-top: 10px;
         padding-bottom: 20px;
-        mask-image: linear-gradient(0deg, transparent 0%, black 5%);
         scrollbar-gutter: stable;
+        .with-scroll-shadows();
         
         &:hover {
             overflow-y: auto;

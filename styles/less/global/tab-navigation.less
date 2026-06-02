@@ -3,8 +3,7 @@
 
 .daggerheart.dh-style {
     .tab-navigation {
-        margin: 5px 0;
-        height: 40px;
+        margin: 5px 0 10px 0;
         width: 100%;
 
         .navigation-container {
@@ -20,7 +19,11 @@
                     white-space: nowrap;
 
                     a {
-                        color: light-dark(@dark-blue, @golden);
+                        color: @color-text-emphatic;
+
+                        &.empty:not(.active) {
+                            opacity: 0.4;
+                        }
                     }
                 }
             }

@@ -2,16 +2,6 @@
 @import '../../../utils/fonts.less';
 @import '../../../utils/mixin.less';
 
-body.game:is(.performance-low, .noblur) {
-    .application.sheet.daggerheart.actor.dh-style.party .tab.resources .actors-list .actor-resources {
-        background: light-dark(@dark-blue, @dark-golden);
-
-        .actor-name {
-            background: light-dark(@dark-blue, @dark-golden);
-        }
-    }
-}
-
 .application.sheet.daggerheart.actor.dh-style.party .tab.partyMembers {
     overflow: auto;
 
@@ -58,7 +48,7 @@ body.game:is(.performance-low, .noblur) {
                         border-radius: 50%;
                         width: 24px;
                         height: 24px;
-                        border: 1px solid light-dark(@dark-blue, @golden);
+                        border: 1px solid @color-border;
                         object-fit: cover;
                     }
                 }
@@ -89,9 +79,9 @@ body.game:is(.performance-low, .noblur) {
                     display: flex;
                     gap: 4px;
                     background-color: light-dark(var(--color-light-1), @dark-blue);
-                    color: light-dark(@dark-blue, @golden);
+                    color: @color-text-emphatic;
                     padding: 4px 6px;
-                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border: 1px solid @color-border;
                     border-radius: 3px;
                     align-items: baseline;
                     width: fit-content;
@@ -103,7 +93,7 @@ body.game:is(.performance-low, .noblur) {
 
                         &.threshold-label {
                             font-size: var(--font-size-10);
-                            color: light-dark(@dark-blue, @golden);
+                            color: @color-text-emphatic;
                         }
 
                         &.threshold-value {
@@ -126,7 +116,7 @@ body.game:is(.performance-low, .noblur) {
                     width: 100%;
                     z-index: 1;
                     font-size: var(--font-size-20);
-                    color: light-dark(@dark-blue, @golden);
+                    color: @color-text-emphatic;
                     font-weight: bold;
                 }
 
@@ -142,9 +132,9 @@ body.game:is(.performance-low, .noblur) {
                 .hope-section {
                     display: flex;
                     background-color: light-dark(transparent, @dark-blue);
-                    color: light-dark(@dark-blue, @golden);
+                    color: @color-text-emphatic;
                     padding: 3px 6px;
-                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border: 1px solid @color-border;
                     border-radius: 3px;
                     align-items: center;
                     width: fit-content;
@@ -154,7 +144,7 @@ body.game:is(.performance-low, .noblur) {
                         font-size: var(--font-size-12);
                         font-weight: bold;
                         text-transform: uppercase;
-                        color: light-dark(@dark-blue, @golden);
+                        color: @color-text-emphatic;
                         margin-right: 3px;
                     }
 
@@ -222,9 +212,9 @@ body.game:is(.performance-low, .noblur) {
                         gap: 4px;
 
                         background-color: light-dark(@dark-blue-10, @dark-blue);
-                        color: light-dark(@dark-blue, @golden);
+                        color: @color-text-emphatic;
                         padding: 2px 5px;
-                        border: 1px solid light-dark(@dark-blue, @golden);
+                        border: 1px solid @color-border;
                         border-radius: 0 6px 6px 0;
                         width: fit-content;
                         min-height: 22px;
@@ -242,7 +232,7 @@ body.game:is(.performance-low, .noblur) {
                         .slot {
                             width: 16px;
                             height: 10px;
-                            border: 1px solid light-dark(@dark-blue, @golden);
+                            border: 1px solid @color-border;
                             background: light-dark(@dark-blue-10, @golden-10);
                             border-radius: 3px;
                             transition: all 0.3s ease;
@@ -258,7 +248,7 @@ body.game:is(.performance-low, .noblur) {
 
             .traits {
                 background-color: light-dark(@dark-blue-10, @dark-blue);
-                border: 1px solid light-dark(@dark-blue, @golden);
+                border: 1px solid @color-border;
                 border-radius: 6px;
                 display: grid;
                 grid-template-columns: 1fr 1fr;                
@@ -270,7 +260,7 @@ body.game:is(.performance-low, .noblur) {
                     justify-content: space-between;
                     gap: 3px;
                     .label {
-                        color: light-dark(@dark-blue, @golden);
+                        color: @color-text-emphatic;
                     }
                     .value {
                         font-weight: 600;

@@ -50,6 +50,11 @@
     </nav>
     {{/if}}
 
+    {{!-- Encounter Name --}}
+    {{#if combat.name}}
+    <h2 class="encounter-name">{{ combat.name }}</h2>
+    {{/if}}
+
     <div class="encounter-controls {{#if hasCombat}}combat{{/if}}">
         {{!-- Combat Status --}}
         <strong class="encounter-title">

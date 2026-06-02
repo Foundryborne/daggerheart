@@ -124,7 +124,9 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
         const animationDuration = 500;
         const scene = game.scenes.get(game.user.viewedScene);
         /* getDependentTokens returns already removed tokens with id = null. Need to filter that until it's potentially fixed from Foundry */
-        const activeTokens = actors.flatMap(member => member.getDependentTokens({ scenes: scene }).filter(x => x._id));
+        const activeTokens = actors.flatMap(member =>
+            member.getDependentTokens({ scenes: scene }).filter(x => x._id && !x._destroyed)
+        );
         const { x: actorX, y: actorY } = this.document;
         if (activeTokens.length > 0) {
             for (let token of activeTokens) {

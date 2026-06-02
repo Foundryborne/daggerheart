@@ -34,15 +34,27 @@
     .attribution-header-label {
         font-style: italic;
         font-family: @font-body;
-        color: light-dark(@chat-blue-bg, @beige-50);
+        color: @color-text-subtle;
     }
 
     .tab.inventory {
-        .search-section {
-            display: flex;
+        .gold-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
             gap: 10px;
-            align-items: center;
+            padding: 10px 10px 0;
+
+            .input {
+                color: light-dark(@dark, @beige);
+            }
         }
+    }
+
+    .search-section {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: space-between;
         .search-bar {
             position: relative;
             color: light-dark(@dark-blue-50, @beige-50);
@@ -72,20 +84,9 @@
                 height: 32px;
                 position: absolute;
                 right: 20px;
-                font-size: 16px;
+                font-size: var(--font-size-16);
                 z-index: 1;
                 color: light-dark(@dark-blue-50, @beige-50);
-            }
-        }
-
-        .gold-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 10px;
-            padding: 10px 10px 0;
-
-            .input {
-                color: light-dark(@dark, @beige);
             }
         }
     }
@@ -127,7 +128,7 @@
                     .title-name {
                         text-align: start;
                         font-size: var(--font-size-28);
-                        color: light-dark(@dark-blue, @golden);
+                        color: @color-text-emphatic;
                         text-align: center;
                     }
                 }
@@ -180,9 +181,9 @@
                         display: flex;
                         gap: 10px;
                         background-color: light-dark(transparent, @dark-blue);
-                        color: light-dark(@dark-blue, @golden);
+                        color: @color-text-emphatic;
                         padding: 5px 10px;
-                        border: 1px solid light-dark(@dark-blue, @golden);
+                        border: 1px solid @color-border;
                         border-radius: 6px;
                         align-items: center;
                         width: fit-content;
@@ -194,7 +195,7 @@
                             font-size: var(--font-size-14);
                             font-weight: bold;
                             text-transform: uppercase;
-                            color: light-dark(@dark-blue, @golden);
+                            color: @color-text-emphatic;
                         }
 
                         .domain {
@@ -206,7 +207,7 @@
                                 font-size: var(--font-size-14);
                                 font-weight: bold;
                                 text-transform: uppercase;
-                                color: light-dark(@dark-blue, @golden);
+                                color: @color-text-emphatic;
                             }
 
                             img {
@@ -230,7 +231,7 @@
                             padding: 10px;
                             border-radius: 5px;
                             min-width: 90px;
-                            color: light-dark(@dark-blue, @golden);
+                            color: @color-text-emphatic;
                             background-color: light-dark(@dark-blue-10, @golden-40);
                         }
                     }

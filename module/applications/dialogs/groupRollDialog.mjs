@@ -106,7 +106,12 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         const context = await super._prepareContext(_options);
 
         context.isGM = game.user.isGM;
-        context.isEditable = this.getIsEditable();
+        context.isEditable =
+            game.user.isGM ||
+            this.party.system.partyMembers.some(actor => {
+                const selected = Boolean(this.party.system.groupRoll.participants[actor.id]);
+                return selected && actor.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
+            });
         context.fields = this.party.system.schema.fields.groupRoll.fields;
         context.data = this.party.system.groupRoll;
         context.traitOptions = CONFIG.DH.ACTOR.abilities;
@@ -265,13 +270,6 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         ];
     }
 
-    getIsEditable() {
-        return this.party.system.partyMembers.some(actor => {
-            const selected = Boolean(this.party.system.groupRoll.participants[actor.id]);
-            return selected && actor.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
-        });
-    }
-
     groupRollRefresh = ({ refreshType, action, parts }) => {
         if (refreshType !== RefreshType.GroupRoll) return;
 
@@ -358,8 +356,6 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         });
 
         if (!result) return;
-        // todo: move logic to actor.rollTrait() or actor.diceRoll()
-        if (!game.modules.get('dice-so-nice')?.active) foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
 
         const rollData = result.messageRoll.toJSON();
         delete rollData.options.messageRoll;

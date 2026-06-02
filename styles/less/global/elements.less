@@ -2,24 +2,22 @@
 @import '../utils/fonts.less';
 
 .dh-style {
-    border: 1px solid light-dark(@dark-blue, @golden);
-
     input[type='text'],
     input[type='number'],
     textarea,
+    file-picker,
     .input[contenteditable] {
         background: light-dark(transparent, transparent);
         border-radius: 6px;
         box-shadow: 0 4px 30px @soft-shadow;
         backdrop-filter: blur(9.5px);
-        -webkit-backdrop-filter: blur(9.5px);
         outline: 2px solid transparent;
-        color: light-dark(@dark-blue, @golden);
-        border: 1px solid light-dark(@dark, @beige);
+        color: @input-color-text;
+        border: 1px solid @input-color-border;
         transition: all 0.3s ease;
 
         &::placeholder {
-            color: light-dark(@dark-40, @beige-50);
+            color: @color-text-subtle;
         }
 
         &:hover,
@@ -30,7 +28,7 @@
         &:focus[type='number'] {
             background: light-dark(@soft-shadow, @semi-transparent-dark-blue);
             box-shadow: none;
-            outline: 2px solid light-dark(@dark, @beige);
+            outline: 2px solid @input-color-border;
         }
 
         &:disabled[type='text'],
@@ -47,7 +45,7 @@
     .input[contenteditable] {
         cursor: var(--cursor-text);
         &:empty:before {
-            color: light-dark(@dark-40, @beige-50);
+            color: @color-text-subtle;
             content: attr(placeholder);
         }
     }
@@ -98,7 +96,7 @@
         color: light-dark(@dark, @beige);
     }
 
-    button:where(:not(.plain)) {
+    button:where(:not(.plain, color-picker *, file-picker *)) {
         background: light-dark(transparent, @golden);
         border: 1px solid light-dark(@dark-blue, @dark-blue);
         color: light-dark(@dark-blue, @dark-blue);
@@ -107,7 +105,7 @@
 
         &:hover {
             background: light-dark(@light-black, @dark-blue);
-            color: light-dark(@dark-blue, @golden);
+            color: @color-text-emphatic;
         }
 
         &.glow {
@@ -128,7 +126,7 @@
 
         &.reverted {
             background: light-dark(@dark-blue-10, @golden-10);
-            color: light-dark(@dark-blue, @golden);
+            color: @color-text-emphatic;
             border: 1px solid light-dark(@dark, transparent);
             &:hover {
                 background: light-dark(transparent, @golden);
@@ -175,7 +173,7 @@
             height: inherit;
             .tag {
                 padding: 0.3rem 0.5rem;
-                color: light-dark(@dark-blue, @golden);
+                color: @color-text-emphatic;
                 background-color: light-dark(@dark-blue-10, @golden-40);
                 border-radius: 3px;
                 transition: 0.13s ease-out;
@@ -252,11 +250,20 @@
         text-shadow: 0 0 1px currentColor, 0 0 1px currentColor, 0 0 8px light-dark(@dark-blue, @golden);
     }
 
+    file-picker, color-picker {
+        > input[type=text] {
+            background: transparent;
+            border: none;
+            outline: none;        
+            backdrop-filter: unset;
+        }
+    }
+
     fieldset {
         align-items: center;
         margin-top: 5px;
         border-radius: 6px;
-        border-color: light-dark(@dark-blue, @golden);
+        border-color: @color-fieldset-border;
 
         &.glassy {
             background-color: light-dark(@dark-blue-10, @golden-10);
@@ -265,7 +272,7 @@
             legend {
                 padding: 2px 12px;
                 border-radius: 3px;
-                background-color: light-dark(@dark-blue, @golden);
+                background-color: @color-fieldset-border;
                 color: light-dark(@beige, @dark-blue);
                 margin-bottom: var(--spacer-4);
             }
@@ -276,7 +283,7 @@
         }
 
         &.fit-height {
-            height: 95%;
+            flex: 1;
         }
 
         &.flex {
@@ -344,7 +351,7 @@
 
         legend {
             font-weight: bold;
-            color: light-dark(@dark-blue, @golden);
+            color: @color-text-emphatic;
 
             &.with-icon {
                 display: flex;
@@ -353,18 +360,6 @@
                 i {
                     padding: 0 4px;
                 }
-            }
-        }
-
-        input[type='text'],
-        input[type='number'] {
-            color: light-dark(@dark, @beige);
-            transition: all 0.3s ease;
-            outline: 2px solid transparent;
-
-            &:focus,
-            &:hover {
-                outline: 2px solid light-dark(@dark, @beige);
             }
         }
 
@@ -505,7 +500,7 @@
         display: block;
         height: 1px;
         width: 100%;
-        border-bottom: 1px solid light-dark(@dark-blue, @golden);
+        border-bottom: 1px solid @color-border;
         mask-image: linear-gradient(270deg, transparent 0%, black 50%, transparent 100%);
     }
 
@@ -513,7 +508,7 @@
         display: block;
         height: 1px;
         width: 100%;
-        border-bottom: 1px solid light-dark(@dark-blue, @golden);
+        border-bottom: 1px solid @color-border;
         mask-image: linear-gradient(270deg, transparent 0%, black 100%);
 
         &.invert {
@@ -562,7 +557,7 @@
                 border: 0;
 
                 &:hover {
-                    color: light-dark(@dark-blue, @golden);
+                    color: @color-text-emphatic;
                 }
 
                 &:not(:first-child) {
@@ -594,59 +589,6 @@
         color: light-dark(#14142599, #efe6d850);
         font-size: var(--font-size-12);
         padding-left: 3px;
-    }
-}
-
-.application.setting.dh-style {
-    h2,
-    h3,
-    h4 {
-        margin: 8px 0 4px;
-        text-align: center;
-    }
-
-    footer {
-        margin-top: 8px;
-        display: flex;
-        gap: 8px;
-
-        button {
-            flex: 1;
-        }
-    }
-
-    .form-group {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 0.25rem 0.5rem;
-        flex-wrap: wrap;
-
-        label {
-            font-size: var(--font-size-14);
-            font-weight: normal;
-        }
-
-        .form-fields {
-            display: flex;
-            gap: 4px;
-            align-items: center;
-        }
-
-        &.setting-two-values {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.25rem 0.5rem;
-
-            .form-group {
-                justify-content: end;
-                flex-wrap: nowrap;
-            }
-
-            .hint {
-                grid-column: 1 / -1;
-            }
-        }
     }
 }
 

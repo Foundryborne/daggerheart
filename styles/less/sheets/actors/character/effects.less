@@ -1,5 +1,6 @@
 @import '../../../utils/colors.less';
 @import '../../../utils/fonts.less';
+@import '../../../utils/mixin.less';
 
 .application.sheet.daggerheart.actor.dh-style.character {
     .tab.effects {
@@ -8,8 +9,8 @@
             flex-direction: column;
             gap: 10px;
             overflow-y: auto;
-            mask-image: linear-gradient(0deg, transparent 0%, black 5%);
             padding-bottom: 20px;
+            .with-scroll-shadows();
         }
     }
 }

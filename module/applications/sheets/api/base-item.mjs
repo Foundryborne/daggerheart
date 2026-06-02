@@ -126,7 +126,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         options.push({
             name: 'CONTROLS.CommonDelete',
             icon: '<i class="fa-solid fa-trash"></i>',
-            callback: async target => {
+            onClick: async (_, target) => {
                 const feature = await getDocFromElement(target);
                 if (!feature) return;
                 const confirmed = await foundry.applications.api.DialogV2.confirm({

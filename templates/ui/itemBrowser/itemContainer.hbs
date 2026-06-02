@@ -1,7 +1,7 @@
 {{#each items}}
     <div class="item-container" data-item-uuid="{{uuid}}" draggable="true">
         <div class="item-header">
-            <div class="item-info" data-action="expandContent">
+            <div class="item-info" {{#if @root.viewSheet}}data-action="viewSheet"{{else}}data-action="expandContent"{{/if}}>
                 <img src="{{img}}" data-item-key="img" class="item-list-img">
                 <span data-item-key="name" class="item-list-name">{{name}}</span>
                 {{#each ../menu.data.columns}}
@@ -9,11 +9,13 @@
                 {{/each}}
             </div>
         </div>
-        <div class="item-desc extensible">
-            <span class="wrapper">
-                {{{system.enrichedTags}}}
-                {{{system.enrichedDescription}}}
-            </span>
-        </div>
+        {{#unless viewSheet}}
+            <div class="item-desc extensible">
+                <span class="wrapper">
+                    {{{system.enrichedTags}}}
+                    {{{system.enrichedDescription}}}
+                </span>
+            </div>
+        {{/unless}}
     </div>
 {{/each}}
