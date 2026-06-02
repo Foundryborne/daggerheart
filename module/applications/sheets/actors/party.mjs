@@ -26,7 +26,6 @@ export default class Party extends DHBaseActorSheet {
         actions: {
             openDocument: Party.#openDocument,
             deletePartyMember: Party.#deletePartyMember,
-            deleteItem: Party.#deleteItem,
             toggleHope: Party.#toggleHope,
             toggleHitPoints: Party.#toggleHitPoints,
             toggleStress: Party.#toggleStress,
@@ -48,11 +47,6 @@ export default class Party extends DHBaseActorSheet {
             template: 'systems/daggerheart/templates/sheets/actors/party/party-members.hbs',
             scrollable: ['']
         },
-        /* NOT YET IMPLEMENTED */
-        // projects: {
-        //     template: 'systems/daggerheart/templates/sheets/actors/party/projects.hbs',
-        //     scrollable: ['']
-        // },
         inventory: {
             template: 'systems/daggerheart/templates/sheets/actors/party/inventory.hbs',
             scrollable: ['.tab.inventory .items-section']
@@ -63,19 +57,13 @@ export default class Party extends DHBaseActorSheet {
     /** @inheritdoc */
     static TABS = {
         primary: {
-            tabs: [
-                { id: 'partyMembers' },
-                /* NOT YET IMPLEMENTED */
-                // { id: 'projects' },
-                { id: 'inventory' },
-                { id: 'notes' }
-            ],
+            tabs: [{ id: 'partyMembers' }, { id: 'inventory' }, { id: 'notes' }],
             initial: 'partyMembers',
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
 
-    static ALLOWED_ACTOR_TYPES = ['character', 'companion', 'adversary'];
+    static ALLOWED_ACTOR_TYPES = ['character', 'companion', 'adversary', 'npc'];
     static DICE_ROLL_ACTOR_TYPES = ['character'];
 
     async _onRender(context, options) {
@@ -508,24 +496,5 @@ export default class Party extends DHBaseActorSheet {
         const currentMembers = this.document.system.partyMembers.map(x => x.uuid);
         const newMembersList = currentMembers.filter(uuid => uuid !== doc.uuid);
         await this.document.update({ 'system.partyMembers': newMembersList });
-    }
-
-    static async #deleteItem(event, target) {
-        const doc = await getDocFromElement(target.closest('.inventory-item'));
-        if (!event.shiftKey) {
-            const confirmed = await foundry.applications.api.DialogV2.confirm({
-                window: {
-                    title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
-                        type: game.i18n.localize('TYPES.Actor.party'),
-                        name: doc.name
-                    })
-                },
-                content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', { name: doc.name })
-            });
-
-            if (!confirmed) return;
-        }
-
-        this.document.deleteEmbeddedDocuments('Item', [doc.id]);
     }
 }

@@ -1,5 +1,5 @@
 import DamageDialog from '../applications/dialogs/damageDialog.mjs';
-import { parseRallyDice } from '../helpers/utils.mjs';
+import { parseRallyDice, triggerChatRollFx } from '../helpers/utils.mjs';
 import DHRoll from './dhRoll.mjs';
 
 export default class DamageRoll extends DHRoll {
@@ -18,7 +18,12 @@ export default class DamageRoll extends DHRoll {
         if (config.evaluate !== false) for (const roll of config.roll) await roll.roll.evaluate();
 
         roll._evaluated = true;
-        const parts = config.roll.map(r => this.postEvaluate(r));
+
+        const parts = [];
+        for (const roll of config.roll) {
+            parts.push(this.postEvaluate(roll));
+            roll.roll = JSON.stringify(roll.roll.toJSON());
+        }
 
         config.damage = this.unifyDamageRoll(parts);
     }
@@ -38,25 +43,24 @@ export default class DamageRoll extends DHRoll {
         const chatMessage = config.source?.message
             ? ui.chat.collection.get(config.source.message)
             : getDocumentClass('ChatMessage').applyMode({}, config.rollMode ?? 'public');
+
+        const diceRolls = [];
         if (game.modules.get('dice-so-nice')?.active) {
-            const pool = foundry.dice.terms.PoolTerm.fromRolls(
-                    Object.values(config.damage).flatMap(r => r.parts.map(p => p.roll))
-                ),
-                diceRoll = Roll.fromTerms([pool]);
-            await game.dice3d.showForRoll(
-                diceRoll,
-                game.user,
-                true,
-                chatMessage.whisper?.length > 0 ? chatMessage.whisper : null,
-                chatMessage.blind
-            );
             config.mute = true;
+            const pool = foundry.dice.terms.PoolTerm.fromRolls(
+                Object.values(config.damage).flatMap(r => r.parts.map(p => p.roll))
+            );
+            diceRolls.push(Roll.fromTerms([pool]));
         }
+
+        await triggerChatRollFx(diceRolls, {
+            whisper: chatMessage.whisper?.length > 0 ? chatMessage.whisper : null,
+            blind: chatMessage.blind
+        });
         await super.buildPost(roll, config, message);
+
         if (config.source?.message) {
             chatMessage.update({ 'system.damage': config.damage });
-
-            if (!game.modules.get('dice-so-nice')?.active) foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
         }
     }
 
@@ -319,9 +323,10 @@ export default class DamageRoll extends DHRoll {
         const newIndex = parsedDiceTerms[dice].results.length;
         await term.reroll(`/r1=${termResult.result}`);
 
+        const diceRolls = [];
         if (game.modules.get('dice-so-nice')?.active) {
             const newResult = parsedDiceTerms[dice].results[newIndex];
-            const diceSoNiceRoll = {
+            diceRolls.push({
                 _evaluated: true,
                 dice: [
                     new foundry.dice.terms.Die({
@@ -332,11 +337,10 @@ export default class DamageRoll extends DHRoll {
                     })
                 ],
                 options: { appearance: {} }
-            };
-
-            await game.dice3d.showForRoll(diceSoNiceRoll, game.user, true);
+            });
         }
 
+        await triggerChatRollFx(diceRolls);
         await parsedRoll.evaluate();
 
         const results = parsedRoll.dice[dice].results.map(result => ({

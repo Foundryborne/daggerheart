@@ -2,7 +2,7 @@ import BaseDataItem from './base.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 import ItemLinkFields from '../fields/itemLinkFields.mjs';
-import { addLinkedItemsDiff, getFeaturesHTMLData, updateLinkedItemApps } from '../../helpers/utils.mjs';
+import { addLinkedItemsDiff, fromUuids, getFeaturesHTMLData, updateLinkedItemApps } from '../../helpers/utils.mjs';
 
 export default class DHClass extends BaseDataItem {
     /** @inheritDoc */
@@ -73,15 +73,16 @@ export default class DHClass extends BaseDataItem {
         const uuids = [this.parent.uuid, this.parent._stats?.compendiumSource].filter(u => !!u);
         const subclasses = game.items.filter(x => x.type === 'subclass' && uuids.includes(x.system.linkedClass));
         for (const pack of game.packs) {
+            const packIds = [];
             const indexes = await pack.getIndex({ fields: ['system.linkedClass'] });
             for (const index of indexes) {
                 if (index.type !== 'subclass') continue;
                 if (!uuids.includes(index.system?.linkedClass)) continue;
                 if (subclasses.find(x => x.uuid === index.uuid)) continue;
-
-                const subclass = await foundry.utils.fromUuid(index.uuid);
-                subclasses.push(subclass);
+                packIds.push(index._id);
             }
+
+            if (packIds.length > 0) subclasses.push(...(await pack.getDocuments({ _id__in: packIds })));
         }
 
         return subclasses;
@@ -215,6 +216,10 @@ export default class DHClass extends BaseDataItem {
             const contentLink = await foundry.applications.ux.TextEditor.implementation._createContentLink(linkData);
             classItems.push(contentLink.outerHTML);
         }
+
+        // Preload all class features for acquisition from the cache
+        // todo: make feature acquisition async and replace feature helpers for methods
+        await fromUuids(this._source.features.map(f => f.item));
 
         const hopeFeatures = await getFeaturesHTMLData(this.hopeFeatures);
         const classFeatures = await getFeaturesHTMLData(this.classFeatures);

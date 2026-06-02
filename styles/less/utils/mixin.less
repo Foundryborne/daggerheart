@@ -5,16 +5,16 @@
  */
 .appTheme(@darkRules, @lightRules) {
     // Dark theme selectors
-    .themed.theme-dark .application.daggerheart.sheet.dh-style,
-    .themed.theme-dark.application.daggerheart.sheet.dh-style,
+    .themed.theme-dark .application.daggerheart.dh-style,
+    .themed.theme-dark.application.daggerheart.dh-style,
     body.theme-dark .application.daggerheart,
     body.theme-dark.application.daggerheart {
         @darkRules();
     }
 
     // Light theme selectors
-    .themed.theme-light .application.daggerheart.sheet.dh-style,
-    .themed.theme-light.application.daggerheart.sheet.dh-style,
+    .themed.theme-light .application.daggerheart.dh-style,
+    .themed.theme-light.application.daggerheart.dh-style,
     body.theme-light .application.daggerheart,
     body.theme-light.application.daggerheart {
         @lightRules();
@@ -50,14 +50,15 @@
  */
 .dh-typography() {
     h1 {
+        --dh-input-color-text: @color-text-emphatic;
         font-family: @font-title;
         margin: 0;
         border: none;
         font-weight: normal;
-    }
-
-    h1 input[type='text'] {
-        font-family: @font-title;
+        input[type='text'],
+        .input[contenteditable] {
+            font-family: @font-title;
+        }
     }
 
     h2,
@@ -113,4 +114,93 @@
     nav a {
         font-family: @font-body;
     }
+}
+
+
+// A simple ease-out mask
+.smooth-gradient-ease-out(@param, @to, @destination, @length) {
+    @{param}+: linear-gradient(
+        @to,
+        transparent 0%,
+        rgb(from @destination r g b / ~"calc(alpha * 0.013)") calc(0.008 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.049)") calc(0.029 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.104)") calc(0.064 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.259)") calc(0.166 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.45)") calc(0.304 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.741)") calc(0.554 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.825)") calc(0.644 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.896)") calc(0.735 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.951)") calc(0.825 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.987)") calc(0.914 * @length),
+        @destination @length
+    );
+}
+
+/**
+ * A simple ease in and out mask.
+ * @param - the parameter to add to
+ * @param - direction, such as "to top"
+ * @destination - the color at the destination. The origin is always transparent
+ * @length - the value at the destination
+ */
+.smooth-gradient-ease-in-out(@param, @to, @destination, @length: 100%) {
+    @{param}+: linear-gradient(
+        @to,
+        transparent 0%,
+        rgb(from @destination r g b / ~"calc(alpha * 0.013)") calc(0.081 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.049)") calc(0.155 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.104)") calc(0.225 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.259)") calc(0.353 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.45)") calc(0.471 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.741)") calc(0.647 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.825)") calc(0.71 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.896)") calc(0.775 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.951)") calc(0.845 * @length),
+        rgb(from @destination r g b / ~"calc(alpha * 0.987)") calc(0.914 * @length),
+        @destination @length
+    );
+}
+
+// Scroll shadows, but only if the browser supports. At the time of writing, this doesn't work on firefox
+@supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)) {
+    @property --fade-start {
+        syntax: "<length>";
+        inherits: false;
+        initial-value: 0;
+    }
+
+    @property --fade-end {
+        syntax: "<length>";
+        inherits: false;
+        initial-value: 0;
+    }
+
+    @keyframes scrollfade {
+        0% {
+            --fade-start: 0;
+        }
+        10%, 100% {
+            --fade-start: 12px;
+        }
+        0%, 90% {
+            --fade-end: 12px;
+        }
+        100% {
+            --fade-end: 0;
+        }
+    }
+}
+
+.with-scroll-shadows() {
+    animation: scrollfade;
+    animation-timeline: --scrollfade;
+    animation-range: entry 0% exit 100%;
+    scroll-timeline: --scrollfade y;
+    mask-image: linear-gradient(
+        0deg, 
+        transparent 0%, 
+        black var(--fade-end), 
+        black calc(100% - var(--fade-start)), 
+        transparent 100%
+    );
 }

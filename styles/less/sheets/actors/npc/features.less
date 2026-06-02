@@ -1,0 +1,18 @@
+.application.sheet.daggerheart.actor.dh-style.npc {
+    .tab.features {
+        &.active {
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow-y: auto;
+            padding-bottom: 4px;
+            .with-scroll-shadows();
+        }
+    }
+}

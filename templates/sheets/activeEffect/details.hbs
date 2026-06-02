@@ -5,16 +5,9 @@
     {{formGroup systemFields.targetDispositions value=source.system.targetDispositions name=(concat "system.targetDispositions") localize=true}}
 
     {{#if isActorEffect}}
-        <div class="form-group">
-            <label>{{localize "EFFECT.FIELDS.origin.label"}}</label>
-            <div class="form-fields">
-                <input type="text" value="{{source.origin}}" disabled />
-            </div>
-        </div>
-    {{/if}}
-    
-    {{#if isItemEffect}}
-        {{formGroup fields.transfer value=source.transfer rootId=rootId label=legacyTransfer.label hint=(localize "DAGGERHEART.EFFECTS.Attachments.transferHint")}}
+        {{formGroup fields.origin value=source.origin rootId=rootId disabled=true}}
+    {{else if isItemEffect}}
+        {{formGroup fields.transfer value=source.transfer rootId=rootId}}
     {{/if}}
 
     {{formGroup fields.statuses value=source.statuses options=statuses rootId=rootId classes="statuses"}}

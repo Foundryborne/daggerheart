@@ -23,6 +23,7 @@
             "companion": "Companion",
             "adversary": "Adversary",
             "environment": "Environment",
+            "npc": "NPC",
             "party": "Party"
         }
     },
@@ -332,6 +333,11 @@
                     }
                 },
                 "newAdversary": "New Adversary"
+            },
+            "NPC": {
+                "FIELDS": {
+                    "motives": { "label": "Motives" }
+                }
             },
             "Party": {
                 "Subtitle": {
@@ -705,18 +711,12 @@
             },
             "PendingReactionsDialog": {
                 "title": "Pending Reaction Rolls Found",
-                "unfinishedRolls": "Some Tokens still need to roll their Reaction Roll.",
-                "confirmation": "Are you sure you want to continue ?",
-                "warning": "Undone reaction rolls will be considered as failed"
+                "unfinishedRolls": "Some Tokens have not finished their Reaction Rolls.",
+                "warning": "Unfinished reaction rolls will be considered as failed.",
+                "confirmation": "Are you sure you want to continue?"
             },
             "ReactionRoll": {
                 "title": "Reaction Roll: {trait}"
-            },
-            "RerollDialog": {
-                "title": "Reroll",
-                "damageTitle": "Reroll Damage",
-                "deselectDiceNotification": "Deselect one of the selected dice first",
-                "acceptCurrentRolls": "Accept Current Rolls"
             },
             "ResourceDice": {
                 "title": "{name} Resource",
@@ -778,7 +778,9 @@
                 "title": "Group Roll"
             },
             "TokenConfig": {
-                "actorSizeUsed": "Actor size is set, determining the dimensions"
+                "actorSizeUsed": "Actor size is set, determining the dimensions",
+                "tokenSize": "Token Size",
+                "sizeCategory": "Size Category"
             }
         },
         "CLASS": {
@@ -2574,10 +2576,11 @@
                     "tokenImg": { "label": "Token Image" },
                     "tokenRingImg": { "label": "Subject Texture" },
                     "tokenSize": {
-                        "placeholder": "Using character dimensions",
-                        "disabledPlaceholder": "Set by character size",
+                        "placeholder": "Token Size",
+                        "disabledPlaceholder": "Token Size",
                         "height": { "label": "Height" },
                         "width": { "label": "Width" },
+                        "depth": { "label": "Depth" },
                         "scale": { "label": "Token Scale" }
                     },
                     "evolved": {
@@ -3103,6 +3106,7 @@
                 }
             },
             "ChatLog": {
+                "rerollActionRoll": "Reroll Action",
                 "rerollDamage": "Reroll Damage",
                 "assignTagRoll": "Assign as Tag Roll"
             },

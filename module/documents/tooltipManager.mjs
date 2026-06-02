@@ -3,7 +3,6 @@ import { AdversaryBPPerEncounter, BaseBPPerEncounter } from '../config/encounter
 export default class DhTooltipManager extends foundry.helpers.interaction.TooltipManager {
     #wide = false;
     #bordered = false;
-    #active = false;
 
     async activate(element, options = {}) {
         const { TextEditor } = foundry.applications.ux;

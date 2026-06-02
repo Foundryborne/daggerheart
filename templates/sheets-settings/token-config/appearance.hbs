@@ -1,20 +1,43 @@
 <div class="tab scrollable{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
-    {{formGroup fields.texture.fields.src value=source.texture.src rootId=rootId}}
-    {{#if randomImgEnabled}}
-    {{formGroup fields.randomImg value=source.randomImg classes="slim" rootId=rootId}}
-    {{else if hasAlternates}}
-    <div class="form-group">
-        <label for="{{rootId}}-alternateImages">{{localize "TOKEN.ImageAlts"}}</label>
-        <select id="{{rootId}}-alternateImages" class="alternate-images" name="alternateImages">
-            {{selectOptions alternateImages selected=source.texture.src blank=""}}
-        </select>
+    <div class="token-image-group">
+        {{formGroup fields.texture.fields.src value=source.texture.src rootId=rootId}}
+        {{#if randomImgEnabled}}
+        {{formGroup fields.randomImg value=source.randomImg classes="slim" rootId=rootId}}
+        {{else if hasAlternates}}
+        <div class="form-group">
+            <label for="{{rootId}}-alternateImages">{{localize "TOKEN.ImageAlts"}}</label>
+            <select id="{{rootId}}-alternateImages" class="alternate-images" name="alternateImages">
+                {{selectOptions alternateImages selected=source.texture.src blank=""}}
+            </select>
+        </div>
+        {{/if}}
+
+        {{#if imagePreview}}
+            <div class="{{imagePreview.cls}}">
+                {{#if imagePreview.isVideo}}
+                <video class="token-image-thumb" src="{{imagePreview.src}}" autoplay muted loop playsinline
+                    disablepictureinpicture></video>
+                {{else}}
+                <img class="token-image-thumb" src="{{imagePreview.src}}" alt="{{localize "TOKEN.ImagePreview"}}">
+                {{/if}}
+                <div class="token-image-controls">
+                    <button type="button" class="cycle-prev icon fa-solid fa-chevron-left" data-action="cycleImage"
+                            data-delta="-1" aria-label="{{localize "TOKEN.ImageCyclePrev"}}"
+                            {{#unless imagePreview.hasPrev}} disabled{{/unless}}></button>
+                    <span class="counter">{{imagePreview.current}} / {{imagePreview.total}}</span>
+                    <button type="button" class="cycle-next icon fa-solid fa-chevron-right" data-action="cycleImage"
+                            data-delta="1" aria-label="{{localize "TOKEN.ImageCycleNext"}}"
+                            {{#unless imagePreview.hasNext}} disabled{{/unless}}></button>
+                </div>
+            </div>
+        {{/if}}
     </div>
-    {{/if}}
+
     <fieldset>
-        <legend>{{localize "Token Size"}}</legend>
+        <legend>{{localize "DAGGERHEART.APPLICATIONS.TokenConfig.tokenSize"}}</legend>
         {{#if usesActorSize}}
-            <div class="form-group lim">
-                <label>{{localize "Size Category"}}</label>
+            <div class="form-group slim">
+                <label>{{localize "DAGGERHEART.APPLICATIONS.TokenConfig.sizeCategory"}}</label>
 
                 <select id="dhTokenSize">
                     {{selectOptions tokenSizes selected=tokenSize valueAttr="id" labelAttr="label" localize=true}}
@@ -23,15 +46,17 @@
         {{/if}}
 
         <div id="tokenSizeDimensions" class="form-group slim" {{#if actorSizeDisable}}data-tooltip="{{localize "DAGGERHEART.APPLICATIONS.TokenConfig.actorSizeUsed"}}"{{/if}}>
-            <label>
-                {{localize "TOKEN.Dimensions"}} <span class="units">({{localize "GridSpaces"}})</span>
-                <i class="fa-solid fa-lock" {{#unless actorSizeDisable}}style="opacity: 0%;"{{/unless}}></i>
-            </label>
-            <div class="form-fields">
+            <span class="label">
+                {{localize "TOKEN.Size"}}
+                <span class="units">({{localize "MEASUREMENT.GridSpaces"}})</span>
+            </span>
+            <div class="form-group slim">
                 <label for="{{rootId}}-width">{{localize "DOCUMENT.FIELDS.width.label"}}</label>
                 {{formInput fields.width value=source.width id=(concat rootId "-width") disabled=actorSizeDisable}}
                 <label for="{{rootId}}-height">{{localize "DOCUMENT.FIELDS.height.label"}}</label>
                 {{formInput fields.height value=source.height id=(concat rootId "-height") disabled=actorSizeDisable}}
+                <label for="{{rootId}}-depth">Z</label>
+                {{formInput fields.depth value=source.depth id=(concat rootId "-depth") disabled=actorSizeDisable}}
             </div>
         </div>
     </fieldset>

@@ -6,19 +6,15 @@
                 {{#if roll.isCritical}}
                     <span>{{localize "DAGGERHEART.GENERAL.criticalShort"}}</span>
                 {{else}}
-                    {{#if (and roll.dHope (not (eq roll.type "reaction")))}}
+                    {{#if (and roll.dHope (not (eq roll.options.roll.type "reaction")))}}
                         <span>{{localize "DAGGERHEART.GENERAL.withThing" thing=roll.totalLabel}}</span>
                     {{/if}}
                 {{/if}}
             </span>
         </div>
-        {{#if roll.difficulty}}
-            <span class="roll-difficulty{{#unless roll.success}} is-miss{{/unless}}">
-                {{!-- {{#if canViewSecret}} --}}
-                    difficulty {{roll.difficulty}}
-                {{!-- {{else}}
-                    {{localize (ifThen roll.success "DAGGERHEART.GENERAL.success" "DAGGERHEART.GENERAL.failure")}}
-                {{/if}} --}}
+        {{#if roll.options.roll.difficulty}}
+            <span class="roll-difficulty{{#unless roll.options.roll.success}} is-miss{{/unless}}">
+                {{localize "DAGGERHEART.GENERAL.difficulty"}} {{roll.options.roll.difficulty}}
             </span>
         {{/if}}
     </div>

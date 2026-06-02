@@ -42,7 +42,7 @@
                         {{#if member.difficulty includeZero=true}}
                             <div class="evasion" data-tooltip="DAGGERHEART.GENERAL.difficulty">{{member.difficulty}}</div>
                         {{/if}}
-                        {{#unless (eq member.type 'companion')}}
+                        {{#unless (or (eq member.type 'companion') (eq member.type 'npc'))}}
                             <div class="threshold-section">
                                 <h4 class="threshold-label">{{localize "DAGGERHEART.ACTORS.Party.Thresholds.minor"}}</h4>
                                 <h4 class="threshold-value">{{member.damageThresholds.major}}</h4>
@@ -58,7 +58,7 @@
                             <a class="delete-icon" data-action="deletePartyMember" data-uuid="{{member.uuid}}"><i class="fa-regular fa-times" inert></i></a>
                         </h2>
                         <div>
-                            {{#unless (or (eq member.type 'companion') (eq member.type 'adversary')) }}
+                            {{#unless (or (eq member.type 'companion') (eq member.type 'adversary') (eq member.type 'npc')) }}
                                 <div class="hope-section">
                                     <h4>{{localize "DAGGERHEART.GENERAL.hope"}}</h4>
                                     {{#times member.resources.hope.max}}
@@ -79,7 +79,7 @@
                     </header>
                     <section class="body">
                         <section class="resources">
-                            {{#unless (eq member.type 'companion') }}
+                            {{#unless (or (eq member.type 'companion') (eq member.type 'npc')) }}
                                 <div class="slot-section">
                                     <div class="slot-label" data-tooltip="DAGGERHEART.GENERAL.HitPoints.plural">
                                         <span class="label">
@@ -101,25 +101,27 @@
                                 </div>
                             {{/unless}}
 
-                            <div class="slot-section">
-                                <div class="slot-label" data-tooltip="DAGGERHEART.GENERAL.stress">
-                                    <span class="label">
-                                        <i class="fa-solid fa-bolt" inert></i>
-                                    </span>
-                                    <span class="value">
-                                        <span class="current">{{member.resources.stress.value}}</span>
-                                        / 
-                                        <span class="max">{{member.resources.stress.max}}</span>
-                                    </span>
-                                </div>
-                                <div class="slot-bar">
-                                    {{#times member.resources.stress.max}}
-                                        <span class='slot {{#if (gte member.resources.stress.value (add this 1))}}filled{{/if}}'
-                                        data-action='toggleStress' data-actor-id="{{member.uuid}}" data-value="{{add this 1}}">
+                            {{#unless (eq member.type 'npc')}}
+                                <div class="slot-section">
+                                    <div class="slot-label" data-tooltip="DAGGERHEART.GENERAL.stress">
+                                        <span class="label">
+                                            <i class="fa-solid fa-bolt" inert></i>
                                         </span>
-                                    {{/times}}
+                                        <span class="value">
+                                            <span class="current">{{member.resources.stress.value}}</span>
+                                            / 
+                                            <span class="max">{{member.resources.stress.max}}</span>
+                                        </span>
+                                    </div>
+                                    <div class="slot-bar">
+                                        {{#times member.resources.stress.max}}
+                                            <span class='slot {{#if (gte member.resources.stress.value (add this 1))}}filled{{/if}}'
+                                            data-action='toggleStress' data-actor-id="{{member.uuid}}" data-value="{{add this 1}}">
+                                            </span>
+                                        {{/times}}
+                                    </div>
                                 </div>
-                            </div>
+                            {{/unless}}
 
                             {{#if member.armorScore.max}}
                                 <div class="slot-section">

@@ -44,10 +44,9 @@
         </span>
     </div>
 
-    <div class="adversary-navigation">
-        {{> 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
+    {{#> 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
         <button type="button" data-action="openSettings" data-tooltip-text="{{localize "DAGGERHEART.UI.Tooltip.openSheetSettings"}}">
             <i class="fa-solid fa-wrench"></i>
         </button>
-    </div>
+    {{/ 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
 </header>

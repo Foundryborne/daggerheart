@@ -2,15 +2,15 @@
     "id": "daggerheart",
     "title": "Daggerheart",
     "description": "An unofficial implementation of the Daggerheart system",
-    "version": "2.2.5",
+    "version": "2.3.1",
     "compatibility": {
-        "minimum": "14.359",
-        "verified": "14.361",
+        "minimum": "14.361",
+        "verified": "14.363",
         "maximum": "14"
     },
     "url": "https://github.com/Foundryborne/daggerheart",
     "manifest": "https://raw.githubusercontent.com/Foundryborne/daggerheart/v14/system.json",
-    "download": "https://github.com/Foundryborne/daggerheart/releases/download/2.2.5/system.zip",
+    "download": "https://github.com/Foundryborne/daggerheart/releases/download/2.3.1/system.zip",
     "authors": [
         {
             "name": "WBHarry"
@@ -244,11 +244,14 @@
             "adversary": {
                 "htmlFields": ["notes", "description"]
             },
+            "npc": {
+                "htmlFields": ["notes"]
+            },
             "environment": {
                 "htmlFields": ["notes", "description"]
             },
             "party": {
-                "htmlFields": ["notes"]
+                "htmlFields": ["notes", "description"]
             }
         },
         "Item": {

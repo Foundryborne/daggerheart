@@ -35,6 +35,7 @@ export default class BeastformEffect extends BaseEffect {
     static migrateData(source) {
         if (!source.characterTokenData.tokenSize.height) source.characterTokenData.tokenSize.height = 1;
         if (!source.characterTokenData.tokenSize.width) source.characterTokenData.tokenSize.width = 1;
+        if (!source.characterTokenData.tokenSize.depth) source.characterTokenData.tokenSize.depth = 1;
 
         return super.migrateData(source);
     }
@@ -52,7 +53,8 @@ export default class BeastformEffect extends BaseEffect {
         if (this.parent.parent.type === 'character') {
             const baseUpdate = {
                 height: this.characterTokenData.tokenSize.height,
-                width: this.characterTokenData.tokenSize.width
+                width: this.characterTokenData.tokenSize.width,
+                depth: this.characterTokenData.tokenSize.depth
             };
             const update = {
                 ...baseUpdate,

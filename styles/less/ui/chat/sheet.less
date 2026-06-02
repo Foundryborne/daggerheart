@@ -93,7 +93,7 @@
         }
 
         a[href] {
-            color: light-dark(@dark-blue, @golden);
+            color: @color-text-emphatic;
         }
 
         a[href]:hover,
@@ -195,7 +195,7 @@ fieldset.daggerheart.chat {
         &:before,
         &:after {
             content: '\f0d8';
-            font-family: 'Font Awesome 6 Pro';
+            font-family: var(--font-awesome);
         }
     }
     &.expanded {

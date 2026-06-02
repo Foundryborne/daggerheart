@@ -449,13 +449,8 @@ export async function createEmbeddedItemsWithEffects(actor, baseData) {
             effects: data.effects?.map(effect => effect.toObject())
         });
     }
-
     await actor.createEmbeddedDocuments('Item', effectData);
 }
-
-export const slugify = name => {
-    return name.toLowerCase().replaceAll(' ', '-').replaceAll('.', '');
-};
 
 export function shuffleArray(array) {
     let currentIndex = array.length;
@@ -868,4 +863,58 @@ export function camelize(str) {
             return index === 0 ? part.toLowerCase() : part.toUpperCase();
         })
         .replace(/\s+/g, '');
+}
+
+/** Bulk load a list of documents using uuids. Returns the documents in the same order */
+export async function fromUuids(uuids) {
+    // Set up base entries. Each step works on a sublist of these objects
+    const entries = uuids.map(uuid => ({
+        uuid,
+        parsed: foundry.utils.parseUuid(uuid),
+        value: foundry.utils.fromUuidSync(uuid)
+    }));
+
+    // Handle missing uuids for embedded documents first
+    // A value may be index data, so we check if its a document
+    const packEmbeddedEntries = entries.filter(
+        e =>
+            !(e.value instanceof Document) &&
+            e.parsed.collection instanceof foundry.documents.collections.CompendiumCollection &&
+            e.parsed.embedded.length > 0
+    );
+    await Promise.all(
+        packEmbeddedEntries.map(async e => {
+            e.value = await fromUuid(e.uuid);
+            return true;
+        })
+    );
+
+    // Handle missing top level pack stuff, by batching per pack
+    const missingTopLevel = entries.filter(e => !(e.value instanceof Document) && e.value?.pack);
+    for (const packGroup of Object.values(Object.groupBy(missingTopLevel, e => e.value.pack))) {
+        const pack = game.packs.get(packGroup[0].value.pack);
+        if (!pack) continue;
+
+        const ids = packGroup.map(p => p.parsed.id);
+        const documents = await pack.getDocuments({ _id__in: ids });
+        for (const p of packGroup) {
+            p.value = documents.find(d => d.id === p.parsed.id) ?? p.value;
+        }
+    }
+
+    return entries.map(e => e.value);
+}
+/**
+ * Triggers DiceSoNice rolls or dice roll audio for rolls. Not used for duality rolls.
+ * @param { Roll[] } rolls
+ * @return { void }
+ */
+export async function triggerChatRollFx(rolls, options = { whisper: false, blind: false }) {
+    const { whisper, blind } = options;
+    if (game.modules.get('dice-so-nice')?.active) {
+        const rerollPromises = rolls.map(roll => game.dice3d.showForRoll(roll, game.user, true, whisper, blind));
+        await Promise.allSettled(rerollPromises);
+    } else {
+        foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
+    }
 }

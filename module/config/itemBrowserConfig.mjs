@@ -70,6 +70,49 @@ export const typeConfig = {
             }
         ]
     },
+    environments: {
+        columns: [
+            {
+                key: 'system.tier',
+                label: 'DAGGERHEART.GENERAL.Tiers.singular'
+            },
+            {
+                key: 'system.type',
+                label: 'DAGGERHEART.GENERAL.type',
+                format: type => {
+                    if (!type) return '-';
+
+                    return CONFIG.DH.ACTOR.environmentTypes[type].label;
+                }
+            }
+        ],
+        filters: [
+            {
+                key: 'system.tier',
+                label: 'DAGGERHEART.GENERAL.Tiers.singular',
+                field: 'system.api.models.actors.DhEnvironment.schema.fields.tier'
+            },
+            {
+                key: 'system.type',
+                label: 'DAGGERHEART.GENERAL.type',
+                field: 'system.api.models.actors.DhEnvironment.schema.fields.type'
+            },
+            {
+                key: 'system.difficulty',
+                name: 'difficulty.min',
+                label: 'DAGGERHEART.UI.ItemBrowser.difficultyMin',
+                field: 'system.api.models.actors.DhEnvironment.schema.fields.difficulty',
+                operator: 'gte'
+            },
+            {
+                key: 'system.difficulty',
+                name: 'difficulty.max',
+                label: 'DAGGERHEART.UI.ItemBrowser.difficultyMax',
+                field: 'system.api.models.actors.DhEnvironment.schema.fields.difficulty',
+                operator: 'lte'
+            }
+        ]
+    },
     items: {
         columns: [
             {
@@ -400,10 +443,12 @@ export const typeConfig = {
                     const list = [];
                     for (const item of items.filter(item => item.system.linkedClass)) {
                         const linkedClass = await foundry.utils.fromUuid(item.system.linkedClass);
-                        list.push({
-                            value: linkedClass.uuid,
-                            label: linkedClass.name
-                        });
+                        if (linkedClass) {
+                            list.push({
+                                value: linkedClass.uuid,
+                                label: linkedClass.name
+                            });
+                        }
                     }
 
                     return list.reduce((a, c) => {
@@ -559,7 +604,8 @@ export const compendiumConfig = {
         id: 'environments',
         keys: ['environments'],
         label: 'DAGGERHEART.UI.ItemBrowser.folders.environments',
-        type: ['environment']
+        type: ['environment'],
+        listType: 'environments'
     },
     beastforms: {
         id: 'beastforms',

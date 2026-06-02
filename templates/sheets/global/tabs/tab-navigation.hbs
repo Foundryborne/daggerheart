@@ -4,7 +4,7 @@
             <line-div></line-div>
             <nav class='feature-tab sheet-tabs tabs' data-group='primary'>
                 {{#each tabs as |tab|}}
-                    <a class='{{tab.id}} {{tab.cssClass}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}'>
+                    <a class='{{tab.id}} {{tab.cssClass}} {{#if tab.empty}}empty{{/if}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}'>
                         <span>{{localize tab.label}}</span>
                     </a>
                 {{/each}}

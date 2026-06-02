@@ -1,5 +1,6 @@
 @import '../../utils/colors.less';
 @import '../../utils/fonts.less';
+@import '../../utils/mixin.less';
 
 .application.daggerheart.dh-style.compendium-browser {
     border: initial;
@@ -125,6 +126,7 @@
 
             .form-group {
                 white-space: nowrap;
+                gap: 0;
             }
 
             .filter-header {
@@ -168,6 +170,10 @@
                     }
                 }
             }
+
+            .filter-content {            
+                margin-top: 8px;
+            }
         }
 
         .folder-list {
@@ -195,7 +201,7 @@
                 font-weight: bold;
                 border-radius: 3px;
                 background-color: light-dark(@dark-blue-40, @golden-40);
-                color: light-dark(@dark-blue, @golden);
+                color: @color-text-emphatic;
             }
 
             .subfolder-list {
@@ -213,7 +219,7 @@
                     font-weight: bold;
                     border-radius: 3px;
                     background-color: light-dark(@dark-blue-10, @golden-10);
-                    color: light-dark(@dark-blue, @golden);
+                    color: @color-text-emphatic;
                 }
 
                 .wrapper {
@@ -237,10 +243,11 @@
         .compendium-sidebar > .folder-list {
             overflow-y: auto;
             scrollbar-gutter: stable;
+            .with-scroll-shadows();
         }
 
         .item-list-header,
-        .item-list [data-action='expandContent'] {
+        .item-list .item-info[data-action] {
             display: flex;
 
             > * {
@@ -260,8 +267,8 @@
         .item-list-header {
             align-items: center;
             background-color: light-dark(@dark-15, @dark-golden-80);
-            color: light-dark(@dark-blue, @golden);
-            border: 1px solid light-dark(@dark-blue, @golden);
+            color: @color-text-emphatic;
+            border: 1px solid @color-border;
             border-radius: 3px;
             min-height: 30px;
             font-weight: bold;
@@ -272,7 +279,7 @@
 
             div[data-sort-key] {
                 &:after {
-                    font-family: 'Font Awesome 6 Pro';
+                    font-family: var(--font-awesome);
                     margin-left: 5px;
                 }
 

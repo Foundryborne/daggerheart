@@ -1,4 +1,5 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
+import { triggerChatRollFx } from '../helpers/utils.mjs';
 import DHRoll from './dhRoll.mjs';
 
 export default class D20Roll extends DHRoll {
@@ -223,5 +224,16 @@ export default class D20Roll extends DHRoll {
 
     resetFormula() {
         return (this._formula = this.constructor.getFormula(this.terms));
+    }
+
+    async reroll(options) {
+        const result = await super.reroll(options);
+        if (this instanceof game.system.api.dice.DualityRoll) return result;
+
+        if (options?.liveRoll) {
+            await triggerChatRollFx([result]);
+        }
+
+        return result;
     }
 }

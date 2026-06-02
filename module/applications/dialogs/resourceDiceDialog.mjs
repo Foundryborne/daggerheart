@@ -1,4 +1,4 @@
-import { itemAbleRollParse } from '../../helpers/utils.mjs';
+import { itemAbleRollParse, triggerChatRollFx } from '../../helpers/utils.mjs';
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -69,7 +69,7 @@ export default class ResourceDiceDialog extends HandlebarsApplicationMixin(Appli
         const max = itemAbleRollParse(this.item.system.resource.max, this.actor, this.item);
         const diceFormula = `${max}${this.item.system.resource.dieFaces}`;
         const roll = await new Roll(diceFormula).evaluate();
-        if (game.modules.get('dice-so-nice')?.active) await game.dice3d.showForRoll(roll, game.user, true);
+        await triggerChatRollFx([roll]);
         this.rollValues = roll.terms[0].results.map(x => ({ value: x.result, used: false }));
         this.resetUsed = true;
 

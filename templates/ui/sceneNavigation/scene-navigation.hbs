@@ -12,15 +12,20 @@
         </menu>
     {{/with}}
     {{#if scenes.levels}}
-        <menu id="scene-navigation-levels" class="scene-levels scene-navigation-menu flexcol" style="--max-levels: {{ scenes.levels.length }}">
+        <menu id="scene-navigation-levels" class="scene-levels scene-navigation-menu flexcol" 
+            style="--max-levels: {{ scenes.levels.length }}">
             {{#each scenes.levels}}
             <li class="level-row">
-                {{#with button}}
-                <button type="button" class="ui-control icon fa-solid {{ css }}" data-action="cycleLevel"
-                        data-direction="{{ direction }}" aria-label="{{ label }}"></button>
-                {{/with}}
                 <div class="ui-control scene scene-level {{ css }}" data-scene-id="{{ sceneId }}" data-level-id="{{ id }}" data-action="viewLevel">
                     <span class="ellipsis">{{ name }}</span>
+                    {{#if users}}
+                    <ul class="scene-players">
+                        {{#each users}}
+                        <li class="scene-player" style="--color-bg: {{ color }}; --color-border: {{ border }}" data-tooltip
+                            aria-label="{{ name }}">{{ letter }}</li>
+                        {{/each}}
+                    </ul>
+                    {{/if}}
                 </div>
             </li>
             {{/each}}
@@ -40,7 +45,8 @@
 
 {{#*inline ".scene"}}
 <li class="scene-wrapper">
-    <div class="ui-control scene {{ cssClass }}" data-scene-id="{{ id }}" data-action="viewScene" {{#if tooltip}}data-tooltip-text="{{ tooltip }}"{{/if}}>
+    <div class="ui-control scene {{ cssClass }}" data-scene-id="{{ id }}" data-action="viewScene" 
+        {{#if tooltip}}data-tooltip-text="{{ tooltip }}"{{/if}}>
         <span class="scene-name ellipsis">{{ name }}</span>
         {{#if users}}
         <ul class="scene-players">

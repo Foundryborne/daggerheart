@@ -104,6 +104,19 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         return [
             ...super._getEntryContextOptions(),
             {
+                label: 'DAGGERHEART.UI.ChatLog.rerollActionRoll',
+                icon: '<i class="fa-solid fa-dice"></i>',
+                visible: li => {
+                    const message = game.messages.get(li.dataset.messageId);
+                    return message.system.hasRoll && (game.user.isGM || message.isAuthor);
+                },
+                callback: async li => {
+                    const message = game.messages.get(li.dataset.messageId);
+                    const reroll = await message.rolls[0].reroll({ liveRoll: true });
+                    message.update({ rolls: [reroll] });
+                }
+            },
+            {
                 label: 'DAGGERHEART.UI.ChatLog.rerollDamage',
                 icon: '<i class="fa-solid fa-dice"></i>',
                 visible: li => {
@@ -113,9 +126,10 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                         : false;
                     return (game.user.isGM || message.isAuthor) && hasRolledDamage;
                 },
-                callback: li => {
+                callback: async li => {
                     const message = game.messages.get(li.dataset.messageId);
-                    new game.system.api.applications.dialogs.RerollDamageDialog(message).render({ force: true });
+                    const update = await message.system.getRerolledDamage();
+                    message.update(update);
                 }
             }
         ];
