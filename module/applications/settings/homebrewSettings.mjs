@@ -111,7 +111,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
 
         switch (partId) {
             case 'domains':
-                const selectedDomain = this.selected.domain ? this.settings.domains[this.selected.domain] : null;
+                const selectedDomain = this.settings.domains[this.selected.domain] ?? null;
                 const enrichedDescription = selectedDomain
                     ? await foundry.applications.ux.TextEditor.implementation.enrichHTML(selectedDomain.description)
                     : null;
