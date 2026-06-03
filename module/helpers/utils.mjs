@@ -879,6 +879,7 @@ export async function fromUuids(uuids) {
     const packEmbeddedEntries = entries.filter(
         e =>
             !(e.value instanceof Document) &&
+            e.parsed &&
             e.parsed.collection instanceof foundry.documents.collections.CompendiumCollection &&
             e.parsed.embedded.length > 0
     );
@@ -895,7 +896,7 @@ export async function fromUuids(uuids) {
         const pack = game.packs.get(packGroup[0].value.pack);
         if (!pack) continue;
 
-        const ids = packGroup.map(p => p.parsed.id);
+        const ids = packGroup.map(p => p.parsed?.id).filter(id => !!id);
         const documents = await pack.getDocuments({ _id__in: ids });
         for (const p of packGroup) {
             p.value = documents.find(d => d.id === p.parsed.id) ?? p.value;
