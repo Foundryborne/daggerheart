@@ -126,4 +126,15 @@ class GoldField extends fields.SchemaField {
     }
 }
 
-export { attributeField, ResourcesField, GoldField, stressDamageReductionRule, bonusField };
+class CharacterGoldField extends GoldField {
+    getInitialValue(options) {
+        const base = super.getInitialValue(options);
+        const initialCurrency = CONFIG.DH.RESOURCE.character.initialCurrency;
+        for (const type of ['coins', 'handfuls', 'bags', 'chests']) {
+            base[type] = initialCurrency[type];
+        }
+        return base;
+    }
+}
+
+export { attributeField, ResourcesField, GoldField, CharacterGoldField, stressDamageReductionRule, bonusField };

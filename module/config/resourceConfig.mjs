@@ -65,6 +65,7 @@ const companionBaseResources = Object.freeze({
 
 export const character = {
     base: characterBaseResources,
+    initialCurrency: { coins: 0, handfuls: 1, bags: 0, chests: 0 },
     custom: {}, // module stuff goes here
     all: { ...characterBaseResources }
 };
