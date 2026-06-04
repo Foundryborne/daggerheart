@@ -91,7 +91,7 @@ export default class DHSubclass extends BaseDataItem {
             ? game.i18n.localize(CONFIG.DH.ACTOR.abilities[this.spellcastingTrait].label)
             : null;
 
-        // Preload all class features for acquisition from the cache
+        // Preload all subclass features for acquisition from the cache
         // todo: make feature acquisition async and replace feature helpers for methods
         await fromUuids(this._source.features.map(f => f.item));
 

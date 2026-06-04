@@ -27,7 +27,7 @@ export default class DHCommunity extends BaseDataItem {
 
     /**@inheritdoc */
     async getDescriptionData() {
-        // Preload all class features for acquisition from the cache
+        // Preload all community features for acquisition from the cache
         // todo: make feature acquisition async and replace feature helpers for methods
         await fromUuids(this._source.features);
 

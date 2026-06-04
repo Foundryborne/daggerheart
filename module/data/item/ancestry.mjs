@@ -45,7 +45,7 @@ export default class DHAncestry extends BaseDataItem {
 
     /**@inheritdoc */
     async getDescriptionData() {
-        // Preload all class features for acquisition from the cache
+        // Preload all ancestry features for acquisition from the cache
         // todo: make feature acquisition async and replace feature helpers for methods
         await fromUuids(this._source.features.map(f => f.item));
 
