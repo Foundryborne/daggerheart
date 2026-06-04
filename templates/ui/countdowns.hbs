@@ -11,18 +11,20 @@
     </header>
     <div class="countdowns-container">
         {{#each countdowns as | countdown id |}}
-            <div class="countdown-container {{#if ../iconOnly}}icon-only{{/if}}">
+            <div class="countdown-container {{#if ../iconOnly}}icon-only{{/if}}" data-countdown="{{id}}">
                 <div class="countdown-main-container">
                     <img src="{{countdown.img}}" {{#if ../iconOnly}}data-tooltip="{{countdown.name}}"{{/if}}/>
                     <div class="countdown-content">
-                        {{#unless ../iconOnly}}<label>{{countdown.name}}</label>{{/unless}}
+                        {{#unless ../iconOnly}}
+                            <header>{{countdown.name}}</header>
+                        {{/unless}}
                         <div class="countdown-tools">
                             <div class="countdown-tool-controls">
-                                {{#if countdown.editable}}<a data-action="decreaseCountdown" id="{{id}}"><i class="fa-solid fa-minus"></i></a>{{/if}}
+                                {{#if countdown.editable}}<a data-action="decreaseCountdown"><i class="fa-solid fa-minus"></i></a>{{/if}}
                                 <div class="progress-tag">
                                     {{countdown.progress.current}}/{{countdown.progress.start}}
                                 </div>
-                                {{#if countdown.editable}}<a data-action="increaseCountdown" id="{{id}}"><i class="fa-solid fa-plus"></i></a>{{/if}}
+                                {{#if countdown.editable}}<a data-action="increaseCountdown"><i class="fa-solid fa-plus"></i></a>{{/if}}
                             </div>
                             <div class="countdown-tool-icons">
                                 {{#if (not ../iconOnly)}}
@@ -31,7 +33,7 @@
                                     {{/if}}
                                     {{#unless (eq countdown.progress.looping "noLooping")}}
                                         <span data-tooltip="{{countdown.loopTooltip}}">
-                                            <a class="looping-container {{#if countdown.shouldLoop}}should-loop{{/if}}" {{#if countdown.loopDisabled}}disabled{{/if}} data-action="loopCountdown" id="{{id}}">
+                                            <a class="looping-container {{#if countdown.shouldLoop}}should-loop{{/if}}" {{#if countdown.loopDisabled}}disabled{{/if}} data-action="loopCountdown">
                                                 <i class="loop-marker fa-solid fa-repeat"></i>
                                                 {{#if (eq countdown.progress.looping "increasing")}}
                                                     <i class="direction-marker fa-solid fa-angles-up" data-tooltip="{{localize "DAGGERHEART.UI.Countdowns.increasingLoop"}}"></i>

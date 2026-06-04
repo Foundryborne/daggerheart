@@ -31,9 +31,9 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             minimizable: false
         },
         actions: {
-            toggleViewMode: DhCountdowns.#toggleViewMode,
-            editCountdowns: DhCountdowns.#editCountdowns,
-            loopCountdown: DhCountdowns.#loopCountdown,
+            toggleViewMode: DhCountdowns.#onToggleViewMode,
+            editCountdowns: DhCountdowns.#onEditCountdowns,
+            loopCountdown: DhCountdowns.#onLoopCountdown,
             decreaseCountdown: (_, target) => this.editCountdown(false, target),
             increaseCountdown: (_, target) => this.editCountdown(true, target)
         },
@@ -147,7 +147,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         return true;
     }
 
-    static async #toggleViewMode() {
+    static async #onToggleViewMode() {
         const currentMode = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode);
         const appMode = CONFIG.DH.GENERAL.countdownAppMode;
         const newMode = currentMode === appMode.textIcon ? appMode.iconOnly : appMode.textIcon;
@@ -158,15 +158,16 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         this.render();
     }
 
-    static async #editCountdowns() {
+    static async #onEditCountdowns() {
         new game.system.api.applications.ui.CountdownEdit().render(true);
     }
 
-    static async #loopCountdown(_, target) {
+    static async #onLoopCountdown(_, target) {
         if (!DhCountdowns.canPerformEdit()) return;
 
         const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-        const countdown = settings.countdowns[target.id];
+        const countdownId = target.closest('[data-countdown]').dataset.countdown;
+        const countdown = settings.countdowns[countdownId];
 
         let progressMax = countdown.progress.start;
         let message = null;
@@ -185,7 +186,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
 
         await waitForDiceSoNice(message);
         await settings.updateSource({
-            [`countdowns.${target.id}.progress`]: {
+            [`countdowns.${countdownId}.progress`]: {
                 current: newMax,
                 start: newMax
             }
@@ -199,11 +200,12 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         if (!DhCountdowns.canPerformEdit()) return;
 
         const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-        const countdown = settings.countdowns[target.id];
+        const countdownId = target.closest('[data-countdown]').dataset.countdown;
+        const countdown = settings.countdowns[countdownId];
         const newCurrent = increase
             ? Math.min(countdown.progress.current + 1, countdown.progress.start)
             : Math.max(countdown.progress.current - 1, 0);
-        await settings.updateSource({ [`countdowns.${target.id}.progress.current`]: newCurrent });
+        await settings.updateSource({ [`countdowns.${countdownId}.progress.current`]: newCurrent });
         await emitGMUpdate(GMUpdateEvent.UpdateCountdowns, DhCountdowns.gmSetSetting.bind(settings), settings, null, {
             refreshType: RefreshType.Countdown
         });
