@@ -2,9 +2,11 @@
     <header class="countdowns-header">
         <i class="fa-solid fa-clock-rotate-left" inert></i>
         <span class="window-title">{{localize "DAGGERHEART.UI.Countdowns.title"}}</span>
-        <a class="header-control" data-tooltip aria-label="DAGGERHEART.APPLICATIONS.CountdownEdit.editTitle" data-action="editCountdowns">
-            <i class="fa-solid fa-wrench" inert></i>
-        </a>
+        {{#if isGM}}
+            <a class="header-control" data-tooltip aria-label="DAGGERHEART.APPLICATIONS.CountdownEdit.editTitle" data-action="editCountdowns">
+                <i class="fa-solid fa-wrench" inert></i>
+            </a>
+        {{/if}}
         <a class="header-control" data-tooltip aria-label="DAGGERHEART.UI.Countdowns.toggleIconMode" data-action="toggleViewMode">
             <i class="fa-solid fa-down-left-and-up-right-to-center" inert></i>
         </a>
