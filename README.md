@@ -66,6 +66,10 @@ You can find the documentation here: https://github.com/Foundryborne/daggerheart
 
 Looking to contribute to the project? Look no further, check out our [contributing guide](CONTRIBUTING.md), and keep the [Code of Conduct](coc.md) in mind when working on things.
 
+## AI Policy
+
+The Foundryborne Daggerheart system does not make use of AI (generative or otherwise) for any area of its implementation. We expect all contributors to follow this same policy when contributing with a pull request; contributions made using AI will be rejected outright.
+
 ## Disclaimer:
 
 **Daggerheart System**
