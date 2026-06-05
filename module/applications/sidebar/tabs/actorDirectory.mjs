@@ -13,8 +13,8 @@ export default class DhActorDirectory extends foundry.applications.sidebar.tabs.
             return document.type === 'adversary'
                 ? game.i18n.localize(adversaryTypes[document.system.type]?.label ?? 'TYPES.Actor.adversary')
                 : document.type === 'environment'
-                  ? game.i18n.localize(environmentTypes[document.system.type]?.label ?? 'TYPES.Actor.environment')
-                  : null;
+                    ? game.i18n.localize(environmentTypes[document.system.type]?.label ?? 'TYPES.Actor.environment')
+                    : null;
         };
     }
 

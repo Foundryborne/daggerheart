@@ -259,10 +259,10 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
                 const resetValue = increasing
                     ? 0
                     : feature.system.resource.max
-                      ? new Roll(
+                        ? new Roll(
                             Roll.replaceFormulaData(feature.system.resource.max, this.actor.getRollData())
                         ).evaluateSync().total
-                      : 0;
+                        : 0;
 
                 await feature.update({ 'system.resource.value': resetValue });
             }

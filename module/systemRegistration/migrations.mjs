@@ -24,8 +24,8 @@ export async function runMigrations() {
                     const { originItemType, isMulticlass, identifier } = item.system;
                     const base = originItemType
                         ? actor.items.find(
-                              x => x.type === originItemType && Boolean(isMulticlass) === Boolean(x.system.isMulticlass)
-                          )
+                            x => x.type === originItemType && Boolean(isMulticlass) === Boolean(x.system.isMulticlass)
+                        )
                         : null;
                     if (base) {
                         const feature = base.system.features.find(x => x.item && x.item.uuid === item.uuid);

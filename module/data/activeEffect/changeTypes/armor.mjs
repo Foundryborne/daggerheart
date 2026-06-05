@@ -166,10 +166,10 @@ export default class ArmorChange extends foundry.abstract.DataModel {
                 value:
                     change.type === 'armor'
                         ? {
-                              ...change.value,
-                              current: Math.min(change.value.current, newMax),
-                              max: newMax
-                          }
+                            ...change.value,
+                            current: Math.min(change.value.current, newMax),
+                            max: newMax
+                        }
                         : change.value
             }))
         ];

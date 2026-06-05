@@ -87,11 +87,11 @@ export default class CountdownField extends fields.ArrayField {
                     CONFIG.DH.id,
                     CONFIG.DH.SETTINGS.gameSettings.Countdowns,
                     countdownSetting.toObject()
-                ),
-                    game.socket.emit(`system.${CONFIG.DH.id}`, {
-                        action: socketEvent.Refresh,
-                        data: { refreshType: RefreshType.Countdown }
-                    });
+                );
+                game.socket.emit(`system.${CONFIG.DH.id}`, {
+                    action: socketEvent.Refresh,
+                    data: { refreshType: RefreshType.Countdown }
+                });
                 Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
             },
             data,

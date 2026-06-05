@@ -109,10 +109,10 @@ export default class DualityRoll extends D20Roll {
         const label = this.guaranteedCritical
             ? 'DAGGERHEART.GENERAL.guaranteedCriticalSuccess'
             : this.isCritical
-              ? 'DAGGERHEART.GENERAL.criticalSuccess'
-              : this.withHope
-                ? 'DAGGERHEART.GENERAL.hope'
-                : 'DAGGERHEART.GENERAL.fear';
+                ? 'DAGGERHEART.GENERAL.criticalSuccess'
+                : this.withHope
+                    ? 'DAGGERHEART.GENERAL.hope'
+                    : 'DAGGERHEART.GENERAL.fear';
 
         return game.i18n.localize(label);
     }
@@ -147,8 +147,8 @@ export default class DualityRoll extends D20Roll {
         const advDieClass = this.hasAdvantage
             ? game.system.api.dice.diceTypes.AdvantageDie
             : this.hasDisadvantage
-              ? game.system.api.dice.diceTypes.DisadvantageDie
-              : null;
+                ? game.system.api.dice.diceTypes.DisadvantageDie
+                : null;
         if (advDieClass) {
             const advDie = new advDieClass({ faces: this.advantageFaces, number: this.advantageNumber });
             if (this.terms.length < 4) {

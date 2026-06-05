@@ -127,8 +127,8 @@ export const typeConfig = {
                     isSecondary
                         ? 'DAGGERHEART.ITEMS.Weapon.secondaryWeapon.short'
                         : isSecondary === false
-                          ? 'DAGGERHEART.ITEMS.Weapon.primaryWeapon.short'
-                          : '-'
+                            ? 'DAGGERHEART.ITEMS.Weapon.primaryWeapon.short'
+                            : '-'
             },
             {
                 key: 'system.tier',

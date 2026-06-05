@@ -67,10 +67,10 @@ export default class DhEffectsDisplay extends HandlebarsApplicationMixin(Applica
         const actor = token
             ? token.actor
             : canvas.tokens.controlled.length === 0
-              ? !game.user.isGM
-                  ? game.user.character
-                  : null
-              : canvas.tokens.controlled[0].actor;
+                ? !game.user.isGM
+                    ? game.user.character
+                    : null
+                : canvas.tokens.controlled[0].actor;
         return getIconVisibleActiveEffects(actor?.getActiveEffects() ?? []);
     };
 

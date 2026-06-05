@@ -154,8 +154,8 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             v.active = this.tabGroups[v.group]
                 ? this.tabGroups[v.group] === v.id
                 : this.tabGroups.primary !== 'equipment'
-                  ? v.active
-                  : false;
+                    ? v.active
+                    : false;
             v.cssClass = v.active ? 'active' : '';
 
             switch (v.id) {
@@ -211,9 +211,9 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
         context.suggestedTraits = this.setup.class.system
             ? Object.keys(this.setup.class.system.characterGuide.suggestedTraits).map(traitKey => {
-                  const trait = this.setup.class.system.characterGuide.suggestedTraits[traitKey];
-                  return `${game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${traitKey}.short`)} ${trait > 0 ? `+${trait}` : trait}`;
-              })
+                const trait = this.setup.class.system.characterGuide.suggestedTraits[traitKey];
+                return `${game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${traitKey}.short`)} ${trait > 0 ? `+${trait}` : trait}`;
+            })
             : [];
         context.traits = {
             values: Object.keys(this.setup.traits).map(traitKey => {
@@ -450,7 +450,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         if (equipment.includes(type))
             presets.filter = {
                 'system.tier': { key: 'system.tier', value: 1 },
-                'type': { key: 'type', value: type }
+                type: { key: 'type', value: type }
             };
 
         ui.compendiumBrowser.open(presets);

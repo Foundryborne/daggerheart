@@ -98,8 +98,8 @@ export default class DHItem extends foundry.documents.Item {
                     isInventoryItem === true
                         ? 'Inventory Items' //TODO localize
                         : isInventoryItem === false
-                          ? 'Character Items' //TODO localize
-                          : 'Other'; //TODO localize
+                            ? 'Character Items' //TODO localize
+                            : 'Other'; //TODO localize
 
                 return { value: type, label, group };
             }

@@ -167,8 +167,8 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
                 partContext.groupRoll = {
                     totalLabel: leader?.rollData
                         ? game.i18n.format('DAGGERHEART.GENERAL.withThing', {
-                              thing: leader.roll.totalLabel
-                          })
+                            thing: leader.roll.totalLabel
+                        })
                         : null,
                     totalDualityClass: leader?.roll?.isCritical ? 'critical' : leader?.roll?.withHope ? 'hope' : 'fear',
                     total: leaderTotal + modifierTotal,

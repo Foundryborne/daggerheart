@@ -1,8 +1,11 @@
 import '@client/global.mjs';
+import '@common/global.mjs';
+import '@common/primitives/global.mjs';
 import Canvas from '@client/canvas/board.mjs';
 
 // Foundry's use of `Object.assign(globalThis) means many globally available objects are not read as such
 // This declare global hopefully fixes that
+// Note: eslint is not aware of these, whatever is added here should go in the eslint's globals list
 declare global {
     /**
      * A simple event framework used throughout Foundry Virtual Tabletop.
@@ -12,9 +15,28 @@ declare global {
     class Hooks extends foundry.helpers.Hooks {}
     const fromUuid = foundry.utils.fromUuid;
     const fromUuidSync = foundry.utils.fromUuidSync;
-
+    /**
+     * A representation of a color in hexadecimal format.
+     * This class provides methods for transformations and manipulations of colors.
+     */
+    class Color extends foundry.utils.Color {}
     /**
      * The singleton game canvas
      */
     const canvas: Canvas;
+
+    const ActiveEffect: foundry.documents.ActiveEffect;
+    const Actor: foundry.documents.Actor;
+    const BaseScene: foundry.documents.BaseScene;
+    const ChatMessage: foundry.documents.ChatMessage;
+    const Combat: foundry.documents.Combat;
+    const Combatant: foundry.documents.Combatant;
+    const Item: foundry.documents.Item;
+    const Macro: foundry.documents.Macro;
+    const Scene: foundry.documents.Scene;
+    const TokenDocument: foundry.documents.TokenDocument;
+
+    const Collection: foundry.utils.Collection;
+    const FormDataExtended: foundry.applications.ux.FormDataExtended;
+    const TextEditor: foundry.applications.ux.TextEditor;
 }

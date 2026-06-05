@@ -56,8 +56,8 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
                 ? countdown.progress.looping === CONFIG.DH.GENERAL.countdownLoopingTypes.increasing.id
                     ? 'DAGGERHEART.UI.Countdowns.increasingLoop'
                     : countdown.progress.looping === CONFIG.DH.GENERAL.countdownLoopingTypes.decreasing.id
-                      ? 'DAGGERHEART.UI.Countdowns.decreasingLoop'
-                      : 'DAGGERHEART.UI.Countdowns.loop'
+                        ? 'DAGGERHEART.UI.Countdowns.decreasingLoop'
+                        : 'DAGGERHEART.UI.Countdowns.loop'
                 : null;
             const randomizeValid = !new Roll(countdown.progress.startFormula ?? '').isDeterministic;
             acc[key] = {
@@ -148,11 +148,11 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
     }
 
     async gmSetSetting(data) {
-        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, data),
-            game.socket.emit(`system.${CONFIG.DH.id}`, {
-                action: socketEvent.Refresh,
-                data: { refreshType: RefreshType.Countdown }
-            });
+        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, data);
+        game.socket.emit(`system.${CONFIG.DH.id}`, {
+            action: socketEvent.Refresh,
+            data: { refreshType: RefreshType.Countdown }
+        });
         Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
     }
 

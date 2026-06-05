@@ -105,8 +105,8 @@ export default class BeastformField extends fields.SchemaField {
                 baseSize === 'custom'
                     ? 'custom'
                     : (Object.keys(CONFIG.DH.ACTOR.tokenSize).find(
-                          x => CONFIG.DH.ACTOR.tokenSize[x].value === CONFIG.DH.ACTOR.tokenSize[baseSize].value + 1
-                      ) ?? baseSize);
+                        x => CONFIG.DH.ACTOR.tokenSize[x].value === CONFIG.DH.ACTOR.tokenSize[baseSize].value + 1
+                    ) ?? baseSize);
             formData.system.tokenSize = {
                 ...evolvedData.form.system.tokenSize,
                 size: evolvedSize

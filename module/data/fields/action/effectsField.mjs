@@ -61,11 +61,11 @@ export default class EffectsField extends fields.ArrayField {
                 token: messageToken,
                 conditionImmunities: Object.values(conditionImmunities).some(x => x)
                     ? game.i18n.format('DAGGERHEART.UI.Chat.effectSummary.immunityTo', {
-                          immunities: Object.keys(conditionImmunities)
-                              .filter(x => conditionImmunities[x])
-                              .map(x => game.i18n.localize(conditions[x].name))
-                              .join(', ')
-                      })
+                        immunities: Object.keys(conditionImmunities)
+                            .filter(x => conditionImmunities[x])
+                            .map(x => game.i18n.localize(conditions[x].name))
+                            .join(', ')
+                    })
                     : null
             });
 

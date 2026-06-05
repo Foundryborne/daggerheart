@@ -785,11 +785,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
             filter:
                 key === 'subclasses'
                     ? {
-                          'system.linkedClass.uuid': {
-                              key: 'system.linkedClass.uuid',
-                              value: this.document.system.class.value?._stats.compendiumSource
-                          }
-                      }
+                        'system.linkedClass.uuid': {
+                            key: 'system.linkedClass.uuid',
+                            value: this.document.system.class.value?._stats.compendiumSource
+                        }
+                    }
                     : undefined,
             render: {
                 noFolder: true

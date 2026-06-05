@@ -377,7 +377,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                 action: 'update',
                 documentName: 'Item',
                 parent: targetActor,
-                updates: [{ '_id': existing.id, 'system.quantity': existing.system.quantity + quantity }]
+                updates: [{ _id: existing.id, 'system.quantity': existing.system.quantity + quantity }]
             });
         } else {
             const itemsToCreate = [];
@@ -410,7 +410,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                 action: 'update',
                 documentName: 'Item',
                 parent: originActor,
-                updates: [{ '_id': item.id, 'system.quantity': item.system.quantity - quantity }]
+                updates: [{ _id: item.id, 'system.quantity': item.system.quantity - quantity }]
             });
         }
 

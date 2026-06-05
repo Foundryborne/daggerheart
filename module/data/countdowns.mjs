@@ -77,11 +77,11 @@ export class DhCountdown extends foundry.abstract.DataModel {
     static defaultCountdown(type, playerHidden) {
         const ownership = playerHidden
             ? game.users.reduce((acc, user) => {
-                  if (!user.isGM) {
-                      acc[user.id] = CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE;
-                  }
-                  return acc;
-              }, {})
+                if (!user.isGM) {
+                    acc[user.id] = CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE;
+                }
+                return acc;
+            }, {})
             : undefined;
 
         return {
@@ -102,8 +102,8 @@ export class DhCountdown extends foundry.abstract.DataModel {
                 value: user.isGM
                     ? CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER
                     : this.ownership.players[user.id] && this.ownership.players[user.id].type !== -1
-                      ? this.ownership.players[user.id].type
-                      : this.ownership.default,
+                        ? this.ownership.players[user.id].type
+                        : this.ownership.default,
                 isGM: user.isGM
             };
 

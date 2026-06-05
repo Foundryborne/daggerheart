@@ -155,15 +155,15 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         const targetEdge = this.#getEdgeBoundary(targetBounds, originPoint, targetPoint);
         const adjustedOriginPoint = originEdge
             ? canvas.grid.getTopLeftPoint({
-                  x: originEdge.x + Math.sign(originPoint.x - originEdge.x),
-                  y: originEdge.y + Math.sign(originPoint.y - originEdge.y)
-              })
+                x: originEdge.x + Math.sign(originPoint.x - originEdge.x),
+                y: originEdge.y + Math.sign(originPoint.y - originEdge.y)
+            })
             : originPoint;
         const adjustDestinationPoint = targetEdge
             ? canvas.grid.getTopLeftPoint({
-                  x: targetEdge.x + Math.sign(targetPoint.x - targetEdge.x),
-                  y: targetEdge.y + Math.sign(targetPoint.y - targetEdge.y)
-              })
+                x: targetEdge.x + Math.sign(targetPoint.x - targetEdge.x),
+                y: targetEdge.y + Math.sign(targetPoint.y - targetEdge.y)
+            })
             : targetPoint;
         const distance = canvas.grid.measurePath([
             { ...adjustedOriginPoint, elevation: 0 },

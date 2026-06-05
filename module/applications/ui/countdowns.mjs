@@ -101,8 +101,8 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                 ? countdown.progress.looping === CONFIG.DH.GENERAL.countdownLoopingTypes.increasing.id
                     ? 'DAGGERHEART.UI.Countdowns.increasingLoop'
                     : countdown.progress.looping === CONFIG.DH.GENERAL.countdownLoopingTypes.decreasing.id
-                      ? 'DAGGERHEART.UI.Countdowns.decreasingLoop'
-                      : 'DAGGERHEART.UI.Countdowns.loop'
+                        ? 'DAGGERHEART.UI.Countdowns.decreasingLoop'
+                        : 'DAGGERHEART.UI.Countdowns.loop'
                 : null;
             const loopDisabled =
                 !countdownEditable ||
@@ -181,8 +181,8 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             countdown.progress.looping === CONFIG.DH.GENERAL.countdownLoopingTypes.increasing.id
                 ? Number(progressMax) + 1
                 : countdown.progress.looping === CONFIG.DH.GENERAL.countdownLoopingTypes.decreasing.id
-                  ? Math.max(Number(progressMax) - 1, 0)
-                  : progressMax;
+                    ? Math.max(Number(progressMax) - 1, 0)
+                    : progressMax;
 
         await waitForDiceSoNice(message);
         await settings.updateSource({
@@ -212,11 +212,11 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     }
 
     static async gmSetSetting(data) {
-        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, data),
-            game.socket.emit(`system.${CONFIG.DH.id}`, {
-                action: socketEvent.Refresh,
-                data: { refreshType: RefreshType.Countdown }
-            });
+        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, data);
+        game.socket.emit(`system.${CONFIG.DH.id}`, {
+            action: socketEvent.Refresh,
+            data: { refreshType: RefreshType.Countdown }
+        });
         Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
     }
 

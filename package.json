@@ -24,18 +24,20 @@
     "prepare": "husky"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@foundryvtt/foundryvtt-cli": "^1.0.2",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
+    "@stylistic/eslint-plugin": "^5.10.0",
     "concurrently": "^8.2.2",
     "eslint": "^10.2.1",
-    "eslint-plugin-prettier": "^5.5.5",
     "globals": "^17.5.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
     "postcss": "^8.4.32",
-    "prettier": "^3.5.3",
-    "rollup-plugin-postcss": "^4.0.2"
+    "rollup-plugin-postcss": "^4.0.2",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.60.1"
   },
   "lint-staged": {
     "**/*": "eslint --fix"

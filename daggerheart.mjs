@@ -453,8 +453,8 @@ Hooks.on('renderDialogV2', (_dialog, html) => {
     const cls = html.classList.contains('item-create')
         ? documents.DHItem.implementation
         : html.classList.contains('actor-create')
-          ? documents.DhpActor.implementation
-          : null;
+            ? documents.DhpActor.implementation
+            : null;
     if (!cls) return;
 
     const form = html.querySelector('form');

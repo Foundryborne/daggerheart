@@ -324,7 +324,7 @@ export default class DHToken extends CONFIG.Token.documentClass {
         }
         let x = 0.5 * bottom;
         let y = 0.25;
-        for (let k = width - bottom; k--; ) {
+        for (let k = width - bottom; k--;) {
             points.push(x, y);
             x += 0.5;
             y -= 0.25;
@@ -333,7 +333,7 @@ export default class DHToken extends CONFIG.Token.documentClass {
             y += 0.25;
         }
         points.push(x, y);
-        for (let k = bottom; k--; ) {
+        for (let k = bottom; k--;) {
             y += 0.5;
             points.push(x, y);
             x += 0.5;
@@ -341,14 +341,14 @@ export default class DHToken extends CONFIG.Token.documentClass {
             points.push(x, y);
         }
         y += 0.5;
-        for (let k = top; k--; ) {
+        for (let k = top; k--;) {
             points.push(x, y);
             x -= 0.5;
             y += 0.25;
             points.push(x, y);
             y += 0.5;
         }
-        for (let k = width - top; k--; ) {
+        for (let k = width - top; k--;) {
             points.push(x, y);
             x -= 0.5;
             y += 0.25;
@@ -357,7 +357,7 @@ export default class DHToken extends CONFIG.Token.documentClass {
             y -= 0.25;
         }
         points.push(x, y);
-        for (let k = top; k--; ) {
+        for (let k = top; k--;) {
             y -= 0.5;
             points.push(x, y);
             x -= 0.5;
@@ -365,7 +365,7 @@ export default class DHToken extends CONFIG.Token.documentClass {
             points.push(x, y);
         }
         y -= 0.5;
-        for (let k = bottom; k--; ) {
+        for (let k = bottom; k--;) {
             points.push(x, y);
             x += 0.5;
             y -= 0.25;

@@ -722,10 +722,10 @@ export default function DHApplicationMixin(Base) {
             const parent = featureOnCharacter
                 ? this.document.parent
                 : parentIsItem && documentClass === 'Item'
-                  ? type === 'action'
-                      ? this.document.system
-                      : null
-                  : this.document;
+                    ? type === 'action'
+                        ? this.document.system
+                        : null
+                    : this.document;
 
             let systemData = {};
             if (featureOnCharacter) {

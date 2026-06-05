@@ -315,8 +315,8 @@ export default class DhCharacter extends DhCreature {
         return currentLevel === 1
             ? 1
             : Object.values(game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers).find(
-                  tier => currentLevel >= tier.levels.start && currentLevel <= tier.levels.end
-              ).tier;
+                tier => currentLevel >= tier.levels.start && currentLevel <= tier.levels.end
+            ).tier;
     }
 
     get ancestry() {
@@ -520,20 +520,20 @@ export default class DhCharacter extends DhCreature {
 
             if (armorSource.type === 'armor') {
                 armorUpdates[armorSource.parent.id].updates.push({
-                    '_id': armorSource.id,
+                    _id: armorSource.id,
                     'system.armor.current': armorSource.system.armor.current + usedArmorChange
                 });
             } else {
                 effectUpdates[armorSource.parent.id].updates.push({
-                    '_id': armorSource.id,
+                    _id: armorSource.id,
                     'system.changes': armorSource.system.changes.map(change => ({
                         ...change,
                         value:
                             change.type === 'armor'
                                 ? {
-                                      ...change.value,
-                                      current: armorSource.system.armorChange.value.current + usedArmorChange
-                                  }
+                                    ...change.value,
+                                    current: armorSource.system.armorChange.value.current + usedArmorChange
+                                }
                                 : change.value
                     }))
                 });
@@ -621,21 +621,21 @@ export default class DhCharacter extends DhCreature {
             },
             ...(multiclassFeatures.length
                 ? {
-                      multiclassFeatures: {
-                          title: `${game.i18n.localize('DAGGERHEART.GENERAL.multiclass')} - ${this.multiclass.value?.name}`,
-                          type: 'multiclass',
-                          values: multiclassFeatures
-                      }
-                  }
+                    multiclassFeatures: {
+                        title: `${game.i18n.localize('DAGGERHEART.GENERAL.multiclass')} - ${this.multiclass.value?.name}`,
+                        type: 'multiclass',
+                        values: multiclassFeatures
+                    }
+                }
                 : {}),
             ...(multiclassSubclassFeatures.length
                 ? {
-                      multiclassSubclassFeatures: {
-                          title: `${game.i18n.localize('DAGGERHEART.GENERAL.multiclass')} ${game.i18n.localize('TYPES.Item.subclass')} - ${this.multiclass.subclass?.name}`,
-                          type: 'multiclassSubclass',
-                          values: multiclassSubclassFeatures
-                      }
-                  }
+                    multiclassSubclassFeatures: {
+                        title: `${game.i18n.localize('DAGGERHEART.GENERAL.multiclass')} ${game.i18n.localize('TYPES.Item.subclass')} - ${this.multiclass.subclass?.name}`,
+                        type: 'multiclassSubclass',
+                        values: multiclassSubclassFeatures
+                    }
+                }
                 : {}),
             companionFeatures: {
                 title: game.i18n.localize('DAGGERHEART.ACTORS.Character.companionFeatures'),
@@ -659,8 +659,8 @@ export default class DhCharacter extends DhCreature {
             (this.primaryWeapon && this.secondaryWeapon)
             ? burden.twoHanded.value
             : this.primaryWeapon || this.secondaryWeapon
-              ? burden.oneHanded.value
-              : null;
+                ? burden.oneHanded.value
+                : null;
     }
 
     get deathMoveViable() {
@@ -726,8 +726,8 @@ export default class DhCharacter extends DhCreature {
             currentLevel === 1
                 ? null
                 : Object.values(game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers).find(
-                      tier => currentLevel >= tier.levels.start && currentLevel <= tier.levels.end
-                  ).tier;
+                    tier => currentLevel >= tier.levels.start && currentLevel <= tier.levels.end
+                ).tier;
         if (game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto) {
             for (let levelKey in this.levelData.levelups) {
                 const level = this.levelData.levelups[levelKey];

@@ -653,8 +653,8 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             const baseSecondaryRoll = selectedRoll
                 ? memberValues.find(x => !x.selected)
                 : memberValues.length > 1
-                  ? memberValues[1]
-                  : null;
+                    ? memberValues[1]
+                    : null;
 
             if (!baseMainRoll?.rollData || !baseSecondaryRoll) return null;
 

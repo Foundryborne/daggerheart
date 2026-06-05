@@ -196,14 +196,14 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             this.config.costs.indexOf(this.config.costs.find(c => c.extKey === button.dataset.key)) > -1
                 ? this.config.costs.filter(x => x.extKey !== button.dataset.key)
                 : [
-                      ...this.config.costs,
-                      {
-                          extKey: button.dataset.key,
-                          key: this.config?.data?.parent?.isNPC ? 'fear' : 'hope',
-                          value: 1,
-                          name: this.config.data?.system.experiences?.[button.dataset.key]?.name
-                      }
-                  ];
+                    ...this.config.costs,
+                    {
+                        extKey: button.dataset.key,
+                        key: this.config?.data?.parent?.isNPC ? 'fear' : 'hope',
+                        value: 1,
+                        name: this.config.data?.system.experiences?.[button.dataset.key]?.name
+                    }
+                ];
         this.render();
     }
 
@@ -213,8 +213,8 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             this.config.actionType = this.reactionOverride
                 ? 'reaction'
                 : this.config.actionType === 'reaction'
-                  ? 'action'
-                  : this.config.actionType;
+                    ? 'action'
+                    : this.config.actionType;
             this.render();
         }
     }

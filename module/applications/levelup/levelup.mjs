@@ -135,192 +135,6 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                 context.tabs.advancements.progress = { selected: selections, max: currentLevel.maxSelections };
                 context.showTabs = this.tabGroups.primary !== 'summary';
                 break;
-
-                const actorArmor = this.actor.system.armor;
-                const levelKeys = Object.keys(this.levelup.levels);
-                let achivementProficiency = 0;
-                const achievementCards = [];
-                let achievementExperiences = [];
-                for (var levelKey of levelKeys) {
-                    const level = this.levelup.levels[levelKey];
-                    if (Number(levelKey) < this.levelup.startLevel) continue;
-
-                    achivementProficiency += level.achievements.proficiency ?? 0;
-                    const cards = level.achievements.domainCards ? Object.values(level.achievements.domainCards) : null;
-                    if (cards) {
-                        for (var card of cards) {
-                            const itemCard = await foundry.utils.fromUuid(card.uuid);
-                            achievementCards.push(itemCard);
-                        }
-                    }
-
-                    achievementExperiences = level.achievements.experiences
-                        ? Object.values(level.achievements.experiences).reduce((acc, experience) => {
-                              if (experience.name) acc.push(experience);
-                              return acc;
-                          }, [])
-                        : [];
-                }
-
-                context.achievements = {
-                    proficiency: {
-                        old: this.actor.system.proficiency,
-                        new: this.actor.system.proficiency + achivementProficiency,
-                        shown: achivementProficiency > 0
-                    },
-                    damageThresholds: {
-                        major: {
-                            old: this.actor.system.damageThresholds.major,
-                            new: this.actor.system.damageThresholds.major + changedActorLevel - currentActorLevel
-                        },
-                        severe: {
-                            old: this.actor.system.damageThresholds.severe,
-                            new:
-                                this.actor.system.damageThresholds.severe +
-                                (actorArmor
-                                    ? changedActorLevel - currentActorLevel
-                                    : (changedActorLevel - currentActorLevel) * 2)
-                        },
-                        unarmored: !actorArmor
-                    },
-                    domainCards: {
-                        values: achievementCards,
-                        shown: achievementCards.length > 0
-                    },
-                    experiences: {
-                        values: achievementExperiences
-                    }
-                };
-
-                const advancement = {};
-                for (var levelKey of levelKeys) {
-                    const level = this.levelup.levels[levelKey];
-                    if (Number(levelKey) < this.levelup.startLevel) continue;
-
-                    for (var choiceKey of Object.keys(level.choices)) {
-                        const choice = level.choices[choiceKey];
-                        for (var checkbox of Object.values(choice)) {
-                            switch (choiceKey) {
-                                case 'proficiency':
-                                case 'hitPoint':
-                                case 'stress':
-                                case 'evasion':
-                                    advancement[choiceKey] = advancement[choiceKey]
-                                        ? advancement[choiceKey] + Number(checkbox.value)
-                                        : Number(checkbox.value);
-                                    break;
-                                case 'trait':
-                                    if (!advancement[choiceKey]) advancement[choiceKey] = {};
-                                    for (var traitKey of checkbox.data) {
-                                        if (!advancement[choiceKey][traitKey]) advancement[choiceKey][traitKey] = 0;
-                                        advancement[choiceKey][traitKey] += 1;
-                                    }
-                                    break;
-                                case 'domainCard':
-                                    if (!advancement[choiceKey]) advancement[choiceKey] = [];
-                                    if (checkbox.data.length === 1) {
-                                        const choiceItem = await foundry.utils.fromUuid(checkbox.data[0]);
-                                        advancement[choiceKey].push(choiceItem.toObject());
-                                    }
-                                    break;
-                                case 'experience':
-                                    if (!advancement[choiceKey]) advancement[choiceKey] = [];
-                                    const data = checkbox.data.map(data => {
-                                        const experience = Object.keys(this.actor.system.experiences).find(
-                                            x => x === data
-                                        );
-                                        return this.actor.system.experiences[experience]?.description ?? '';
-                                    });
-                                    advancement[choiceKey].push({ data: data, value: checkbox.value });
-                                    break;
-                                case 'subclass':
-                                    if (checkbox.data[0]) {
-                                        const subclassItem = await foundry.utils.fromUuid(checkbox.data[0]);
-                                        if (!advancement[choiceKey]) advancement[choiceKey] = [];
-                                        advancement[choiceKey].push({
-                                            ...subclassItem.toObject(),
-                                            featureLabel: game.i18n.localize(
-                                                subclassFeatureLabels[Number(checkbox.secondaryData.featureState)]
-                                            )
-                                        });
-                                    }
-                                    break;
-                                case 'multiclass':
-                                    const multiclassItem = await foundry.utils.fromUuid(checkbox.data[0]);
-                                    const subclass = multiclassItem
-                                        ? await foundry.utils.fromUuid(checkbox.secondaryData.subclass)
-                                        : null;
-                                    advancement[choiceKey] = multiclassItem
-                                        ? {
-                                              ...multiclassItem.toObject(),
-                                              domain: checkbox.secondaryData.domain
-                                                  ? game.i18n.localize(
-                                                        CONFIG.DH.DOMAIN.allDomains()[checkbox.secondaryData.domain]
-                                                            .label
-                                                    )
-                                                  : null,
-                                              subclass: subclass ? subclass.name : null
-                                          }
-                                        : {};
-                                    break;
-                            }
-                        }
-                    }
-                }
-
-                context.advancements = {
-                    statistics: {
-                        proficiency: {
-                            old: context.achievements.proficiency.new,
-                            new: context.achievements.proficiency.new + (advancement.proficiency ?? 0)
-                        },
-                        hitPoints: {
-                            old: this.actor.system.resources.hitPoints.max,
-                            new: this.actor.system.resources.hitPoints.max + (advancement.hitPoint ?? 0)
-                        },
-                        stress: {
-                            old: this.actor.system.resources.stress.max,
-                            new: this.actor.system.resources.stress.max + (advancement.stress ?? 0)
-                        },
-                        evasion: {
-                            old: this.actor.system.evasion,
-                            new: this.actor.system.evasion + (advancement.evasion ?? 0)
-                        }
-                    },
-                    traits: Object.keys(this.actor.system.traits).reduce((acc, traitKey) => {
-                        if (advancement.trait?.[traitKey]) {
-                            if (!acc) acc = {};
-                            acc[traitKey] = {
-                                label: game.i18n.localize(abilities[traitKey].label),
-                                old: this.actor.system.traits[traitKey].value,
-                                new: this.actor.system.traits[traitKey].value + advancement.trait[traitKey]
-                            };
-                        }
-                        return acc;
-                    }, null),
-                    domainCards: advancement.domainCard ?? [],
-                    experiences:
-                        advancement.experience?.flatMap(x => x.data.map(data => ({ name: data, modifier: x.value }))) ??
-                        [],
-                    multiclass: advancement.multiclass,
-                    subclass: advancement.subclass
-                };
-
-                context.advancements.statistics.proficiency.shown =
-                    context.advancements.statistics.proficiency.new > context.advancements.statistics.proficiency.old;
-                context.advancements.statistics.hitPoints.shown =
-                    context.advancements.statistics.hitPoints.new > context.advancements.statistics.hitPoints.old;
-                context.advancements.statistics.stress.shown =
-                    context.advancements.statistics.stress.new > context.advancements.statistics.stress.old;
-                context.advancements.statistics.evasion.shown =
-                    context.advancements.statistics.evasion.new > context.advancements.statistics.evasion.old;
-                context.advancements.statistics.shown =
-                    context.advancements.statistics.proficiency.shown ||
-                    context.advancements.statistics.hitPoints.shown ||
-                    context.advancements.statistics.stress.shown ||
-                    context.advancements.statistics.evasion.shown;
-
-                break;
         }
 
         return context;
@@ -384,37 +198,35 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
         this._dragDrop.forEach(d => d.bind(htmlElement));
     }
 
-    tagifyUpdate =
-        type =>
-        async (_, { option, removed }) => {
-            const updatePath = Object.keys(this.levelup.levels[this.levelup.currentLevel].choices).reduce(
-                (acc, choiceKey) => {
-                    const choice = this.levelup.levels[this.levelup.currentLevel].choices[choiceKey];
-                    Object.keys(choice).forEach(checkboxNr => {
-                        const checkbox = choice[checkboxNr];
-                        if (
-                            choiceKey === type &&
-                            (removed ? checkbox.data.includes(option) : checkbox.data.length < checkbox.amount)
-                        ) {
-                            acc = `levels.${this.levelup.currentLevel}.choices.${choiceKey}.${checkboxNr}.data`;
-                        }
-                    });
+    tagifyUpdate = type => async (_, { option, removed }) => {
+        const updatePath = Object.keys(this.levelup.levels[this.levelup.currentLevel].choices).reduce(
+            (acc, choiceKey) => {
+                const choice = this.levelup.levels[this.levelup.currentLevel].choices[choiceKey];
+                Object.keys(choice).forEach(checkboxNr => {
+                    const checkbox = choice[checkboxNr];
+                    if (
+                        choiceKey === type &&
+                    (removed ? checkbox.data.includes(option) : checkbox.data.length < checkbox.amount)
+                    ) {
+                        acc = `levels.${this.levelup.currentLevel}.choices.${choiceKey}.${checkboxNr}.data`;
+                    }
+                });
 
-                    return acc;
-                },
-                null
-            );
+                return acc;
+            },
+            null
+        );
 
-            if (!updatePath) {
-                ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.noSelectionsLeft'));
-                return;
-            }
+        if (!updatePath) {
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.noSelectionsLeft'));
+            return;
+        }
 
-            const currentData = foundry.utils.getProperty(this.levelup, updatePath);
-            const updatedData = removed ? currentData.filter(x => x !== option) : [...currentData, option];
-            await this.levelup.updateSource({ [updatePath]: updatedData });
-            this.render();
-        };
+        const currentData = foundry.utils.getProperty(this.levelup, updatePath);
+        const updatedData = removed ? currentData.filter(x => x !== option) : [...currentData, option];
+        await this.levelup.updateSource({ [updatePath]: updatedData });
+        this.render();
+    };
 
     static async updateForm(event, _, formData) {
         const { levelup } = foundry.utils.expandObject(formData.object);
@@ -593,10 +405,10 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
         const domainCards = this.levelup.levels[this.levelup.currentLevel].achievements.domainCards;
         const illegalDomainCards = option.secondaryData.domain
             ? Object.keys(domainCards)
-                  .map(key => ({ ...domainCards[key], key }))
-                  .filter(
-                      x => x.uuid && foundry.utils.fromUuidSync(x.uuid).system.domain === option.secondaryData.domain
-                  )
+                .map(key => ({ ...domainCards[key], key }))
+                .filter(
+                    x => x.uuid && foundry.utils.fromUuidSync(x.uuid).system.domain === option.secondaryData.domain
+                )
             : [];
         illegalDomainCards.forEach(card => {
             update[`levels.${this.levelup.currentLevel}.achievements.domainCards.${card.key}.uuid`] = null;

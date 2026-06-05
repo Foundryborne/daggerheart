@@ -175,8 +175,8 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         return model instanceof documentClass
             ? model
             : model.parent
-              ? this.#resolveParentDocument(model.parent, documentClass)
-              : null;
+                ? this.#resolveParentDocument(model.parent, documentClass)
+                : null;
     }
 
     static getChangeValue(model, change, effect) {

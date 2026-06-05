@@ -104,9 +104,9 @@ export default class DHRoll extends Roll {
         if (action?.chatDisplay) {
             actionDescription = action
                 ? await foundry.applications.ux.TextEditor.implementation.enrichHTML(action.description, {
-                      relativeTo: config.data,
-                      rollData: config.data.getRollData?.() ?? {}
-                  })
+                    relativeTo: config.data,
+                    rollData: config.data.getRollData?.() ?? {}
+                })
                 : null;
             config.actionChatMessageHandled = true;
         }

@@ -77,9 +77,9 @@ export default class DhCompanionLevelUp extends BaseLevelUp {
 
                     achievementExperiences = level.achievements.experiences
                         ? Object.values(level.achievements.experiences).reduce((acc, experience) => {
-                              if (experience.name) acc.push(experience);
-                              return acc;
-                          }, [])
+                            if (experience.name) acc.push(experience);
+                            return acc;
+                        }, [])
                         : [];
                 }
                 context.achievements = {
@@ -155,15 +155,15 @@ export default class DhCompanionLevelUp extends BaseLevelUp {
                     vicious: {
                         damage: advancement.vicious?.damage
                             ? {
-                                  old: actorDamageDice,
-                                  new: advancement.vicious.damage
-                              }
+                                old: actorDamageDice,
+                                new: advancement.vicious.damage
+                            }
                             : null,
                         range: advancement.vicious?.range
                             ? {
-                                  old: game.i18n.localize(`DAGGERHEART.CONFIG.Range.${actorRange}.name`),
-                                  new: game.i18n.localize(advancement.vicious.range.label)
-                              }
+                                old: game.i18n.localize(`DAGGERHEART.CONFIG.Range.${actorRange}.name`),
+                                new: game.i18n.localize(advancement.vicious.range.label)
+                            }
                             : null
                     },
                     simple: advancement.simple ?? {}

@@ -69,11 +69,11 @@ export default class SaveField extends fields.SchemaField {
                                 game.user === actor.owner
                                     ? SaveField.rollSave.call(this, actor, event)
                                     : actor.owner.query('reactionRoll', {
-                                          actionId: this.uuid,
-                                          actorId: actor.uuid,
-                                          event,
-                                          message
-                                      });
+                                        actionId: this.uuid,
+                                        actorId: actor.uuid,
+                                        event,
+                                        message
+                                    });
                             const result = await rollSave;
                             await SaveField.updateSaveMessage.call(this, result, message, target.id);
                             subResolve();
@@ -97,8 +97,8 @@ export default class SaveField extends fields.SchemaField {
         const title = actor.isNPC
                 ? game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll')
                 : game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
-                      ability: game.i18n.localize(abilities[this.save.trait]?.label)
-                  }),
+                    ability: game.i18n.localize(abilities[this.save.trait]?.label)
+                }),
             rollConfig = {
                 event,
                 title,

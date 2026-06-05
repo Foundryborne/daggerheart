@@ -2,6 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import readline from 'readline';
 
+console.log('Creates a foundry symlink in the base folder for type purposes\n');
+
 const askQuestion = question => {
     const rl = readline.createInterface({
         input: process.stdin,

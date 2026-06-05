@@ -82,7 +82,7 @@ function getMean(numbers) {
 }
 
 function getMedianAverageDeviation(numbers, { median }) {
-    const residuals = allDamage.map(d => Math.abs(d - median));
+    const residuals = numbers.map(d => Math.abs(d - median));
     return getMedian(residuals);
 }
 
@@ -98,8 +98,8 @@ function parseDamage(damage) {
             p.value.custom.enabled
                 ? p.value.custom.formula
                 : [p.value.flatMultiplier ? `${p.value.flatMultiplier}${p.value.dice}` : 0, p.value.bonus ?? 0]
-                      .filter(p => !!p)
-                      .join('+')
+                    .filter(p => !!p)
+                    .join('+')
         )
         .join('+');
     return getExpectedDamage(formula);

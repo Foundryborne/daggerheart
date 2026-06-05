@@ -108,9 +108,9 @@ export const tagifyElement = (element, baseOptions, onChange, tagifyOptions = {}
     const options = Array.isArray(baseOptions)
         ? baseOptions
         : Object.keys(baseOptions).map(optionKey => ({
-              ...baseOptions[optionKey],
-              id: optionKey
-          }));
+            ...baseOptions[optionKey],
+            id: optionKey
+        }));
 
     const tagifyElement = new Tagify(element, {
         tagTextProp: 'name',
@@ -605,8 +605,8 @@ export function calculateExpectedValue(formulaOrTerms) {
     const terms = Array.isArray(formulaOrTerms)
         ? formulaOrTerms
         : typeof formulaOrTerms === 'string'
-          ? parseTermsFromSimpleFormula(formulaOrTerms)
-          : [formulaOrTerms];
+            ? parseTermsFromSimpleFormula(formulaOrTerms)
+            : [formulaOrTerms];
     return terms.reduce((r, t) => r + (t.bonus ?? 0) + (t.diceQuantity ? (t.diceQuantity * (t.faces + 1)) / 2 : 0), 0);
 }
 
@@ -656,8 +656,8 @@ export async function RefreshFeatures(
                         'resource.value': increasing
                             ? 0
                             : game.system.api.documents.DhActiveEffect.effectSafeEval(
-                                  Roll.replaceFormulaData(item.system.resource.max, actor.getRollData())
-                              )
+                                Roll.replaceFormulaData(item.system.resource.max, actor.getRollData())
+                            )
                     };
                 }
                 if (item.system.metadata?.hasActions) {

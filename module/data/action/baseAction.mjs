@@ -144,8 +144,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return this.item instanceof DhpActor
             ? this.item
             : this.item?.parent instanceof DhpActor
-              ? this.item.parent
-              : null;
+                ? this.item.parent
+                : null;
     }
 
     /**
@@ -223,7 +223,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @returns {object}
      */
     async use(event, configOptions = {}) {
-        if (!this.actor) throw new Error("An Action can't be used outside of an Actor context.");
+        if (!this.actor) throw new Error('An Action can\'t be used outside of an Actor context.');
 
         let config = this.prepareConfig(event, configOptions);
         if (!config) return;
@@ -300,17 +300,17 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
             const groupAttackTokens = this.damage.groupAttack
                 ? game.system.api.fields.ActionFields.DamageField.getGroupAttackTokens(
-                      this.actor.id,
-                      this.damage.groupAttack
-                  )
+                    this.actor.id,
+                    this.damage.groupAttack
+                )
                 : null;
 
             config.damageOptions = {
                 groupAttack: this.damage.groupAttack
                     ? {
-                          numAttackers: Math.max(groupAttackTokens.length, 1),
-                          range: this.damage.groupAttack
-                      }
+                        numAttackers: Math.max(groupAttackTokens.length, 1),
+                        range: this.damage.groupAttack
+                    }
                     : null
             };
         }

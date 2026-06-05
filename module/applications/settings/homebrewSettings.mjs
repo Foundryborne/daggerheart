@@ -251,8 +251,8 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         const configTitle = isDowntime
             ? game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.downtimeMove')
             : type === 'armorFeatures'
-              ? game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.armorFeature')
-              : game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.weaponFeature');
+                ? game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.armorFeature')
+                : game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.weaponFeature');
 
         const editedBase = await game.system.api.applications.sheetConfigs.SettingFeatureConfig.configure(
             configTitle,

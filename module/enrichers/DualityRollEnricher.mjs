@@ -15,8 +15,8 @@ function getDualityMessage(roll, flavor) {
         (roll?.trait
             ? game.i18n.format('DAGGERHEART.GENERAL.rollWith', { roll: trait })
             : roll?.reaction
-              ? game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll')
-              : game.i18n.localize('DAGGERHEART.GENERAL.duality'));
+                ? game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll')
+                : game.i18n.localize('DAGGERHEART.GENERAL.duality'));
 
     const dataLabel = trait
         ? game.i18n.localize(abilities[roll.trait].label)
@@ -25,14 +25,14 @@ function getDualityMessage(roll, flavor) {
     const advantage = roll?.advantage
         ? CONFIG.DH.ACTIONS.advantageState.advantage.value
         : roll?.disadvantage
-          ? CONFIG.DH.ACTIONS.advantageState.disadvantage.value
-          : undefined;
+            ? CONFIG.DH.ACTIONS.advantageState.disadvantage.value
+            : undefined;
     const advantageLabel =
         advantage === CONFIG.DH.ACTIONS.advantageState.advantage.value
             ? 'Advantage'
             : advantage === CONFIG.DH.ACTIONS.advantageState.disadvantage.value
-              ? 'Disadvantage'
-              : undefined;
+                ? 'Disadvantage'
+                : undefined;
 
     const dualityElement = document.createElement('span');
     dualityElement.innerHTML = `
