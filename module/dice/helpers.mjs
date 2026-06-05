@@ -1,3 +1,5 @@
+import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
+
 export function updateResourcesForDualityReroll(oldDuality, newDuality, actor) {
     const { hopeFear } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
     if (game.user.isGM ? !hopeFear.gm : !hopeFear.players) return;
