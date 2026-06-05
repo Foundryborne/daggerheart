@@ -37,6 +37,7 @@ export default class DHRoll extends Roll {
     static async buildConfigure(config = {}, message = {}) {
         config.hooks = [...this.getHooks(), ''];
         config.dialog ??= {};
+        config.damageOptions ??= {};
 
         for (const hook of config.hooks) {
             if (Hooks.call(`${CONFIG.DH.id}.preRoll${hook.capitalize()}`, config, message) === false) return null;
