@@ -399,8 +399,9 @@ export default class DhCharacter extends DhCreature {
         return this.domains.map(key => {
             const domain = allDomainData[key];
             return {
+                id: key,
                 ...domain,
-                label: game.i18n.localize(domain.label)
+                label: game.i18n.localize(domain?.label) ?? key
             };
         });
     }
@@ -418,14 +419,11 @@ export default class DhCharacter extends DhCreature {
     }
 
     get loadoutSlot() {
-        const loadoutCount = this.domainCards.loadout?.length ?? 0,
-            worldSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxLoadout,
-            max = !worldSetting ? null : worldSetting + this.bonuses.maxLoadout;
-
+        const loadoutCount = this.domainCards.loadout?.length ?? 0;
+        const worldSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxLoadout;
         return {
             current: loadoutCount,
-            available: !max ? true : Math.max(max - loadoutCount, 0),
-            max
+            available: loadoutCount < worldSetting
         };
     }
 
@@ -600,6 +598,8 @@ export default class DhCharacter extends DhCreature {
             communityFeatures = [],
             classFeatures = [],
             subclassFeatures = [],
+            multiclassFeatures = [],
+            multiclassSubclassFeatures = [],
             companionFeatures = [],
             features = [];
 
@@ -609,9 +609,9 @@ export default class DhCharacter extends DhCreature {
             } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.community.id) {
                 communityFeatures.push(item);
             } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.class.id) {
-                classFeatures.push(item);
+                (item.system.multiclassOrigin ? multiclassFeatures : classFeatures).push(item);
             } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.subclass.id) {
-                subclassFeatures.push(item);
+                (item.system.multiclassOrigin ? multiclassSubclassFeatures : subclassFeatures).push(item);
             } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.companion.id) {
                 companionFeatures.push(item);
             } else if (item.type === 'feature' && !item.system.type) {
@@ -640,6 +640,24 @@ export default class DhCharacter extends DhCreature {
                 type: 'subclass',
                 values: subclassFeatures
             },
+            ...(multiclassFeatures.length
+                ? {
+                      multiclassFeatures: {
+                          title: `${game.i18n.localize('DAGGERHEART.GENERAL.multiclass')} - ${this.multiclass.value?.name}`,
+                          type: 'multiclass',
+                          values: multiclassFeatures
+                      }
+                  }
+                : {}),
+            ...(multiclassSubclassFeatures.length
+                ? {
+                      multiclassSubclassFeatures: {
+                          title: `${game.i18n.localize('DAGGERHEART.GENERAL.multiclass')} ${game.i18n.localize('TYPES.Item.subclass')} - ${this.multiclass.subclass?.name}`,
+                          type: 'multiclassSubclass',
+                          values: multiclassSubclassFeatures
+                      }
+                  }
+                : {}),
             companionFeatures: {
                 title: game.i18n.localize('DAGGERHEART.ACTORS.Character.companionFeatures'),
                 type: 'companion',
@@ -804,6 +822,8 @@ export default class DhCharacter extends DhCreature {
 
     prepareDerivedData() {
         super.prepareDerivedData();
+
+        this.resources.hope.max -= this.scars;
         if (this.companion) {
             for (let levelKey in this.companion.system.levelData.levelups) {
                 const level = this.companion.system.levelData.levelups[levelKey];
@@ -817,7 +837,6 @@ export default class DhCharacter extends DhCreature {
             }
         }
 
-        this.resources.hope.max -= this.scars;
         this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
 
         this.resources.armor = {
@@ -835,6 +854,9 @@ export default class DhCharacter extends DhCreature {
         }
 
         this.attack.damage.parts.hitPoints.value.custom.formula = `@prof${this.basicAttackDamageDice}${this.rules.attack.damage.bonus ? ` + ${this.rules.attack.damage.bonus}` : ''}`;
+
+        // Clamp resources (must be done last to ensure all updates occur)
+        this.resources.clamp();
     }
 
     getRollData() {
@@ -866,16 +888,17 @@ export default class DhCharacter extends DhCreature {
 
         /* Scars can alter the amount of current hope */
         if (changes.system?.scars) {
-            const diff = this.system.scars - changes.system.scars;
-            const newHopeMax = this.system.resources.hope.max + diff;
-            const newHopeValue = Math.min(newHopeMax, this.system.resources.hope.value);
-            if (newHopeValue != this.system.resources.hope.value) {
-                if (!changes.system.resources.hope) changes.system.resources.hope = { value: 0 };
-
-                changes.system.resources.hope = {
-                    ...changes.system.resources.hope,
-                    value: changes.system.resources.hope.value + newHopeValue
-                };
+            const diff = this.scars - changes.system.scars;
+            const newHopeMax = this.resources.hope.max + diff;
+            const newHopeValue = Math.min(newHopeMax, this.resources.hope.value);
+            if (newHopeValue != this.resources.hope.value) {
+                changes.system = foundry.utils.mergeObject(changes.system ?? {}, {
+                    resources: {
+                        hope: {
+                            value: (changes.system?.resources?.hope?.value ?? 0) + newHopeMax
+                        }
+                    }
+                });
             }
         }
 

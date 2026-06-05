@@ -1,0 +1,29 @@
+<section
+    class='tab {{tabs.features.cssClass}} {{tabs.features.id}}'
+    data-tab='{{tabs.features.id}}'
+    data-group='{{tabs.features.group}}'
+>
+    <button type="button" class="add-feature-btn" data-action="createDoc" data-document-class="Item" data-type="feature">
+        {{localize "DOCUMENT.New" type=(localize "TYPES.Item.feature")}}
+    </button>
+    <fieldset>
+        <legend>{{localize tabs.features.label}}</legend>
+        <ul class="feature-list">
+            {{#each @root.features as |feature|}}
+                <li class="feature-item" id="{{feature.id}}" draggable="true">
+                    <img src="{{feature.img}}" alt="">
+                    <div class="label">
+                        <span>{{feature.name}}</span>
+                    </div>
+                    <div class="controls">
+                        <a data-action="editDoc" data-item-uuid="{{feature.uuid}}" data-tooltip="{{localize 'CONTROLS.CommonEdit'}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a data-action="deleteDoc"  data-item-uuid="{{feature.uuid}}" data-tooltip="{{localize 'CONTROLS.CommonDelete'}}"><i class="fa-solid fa-trash"></i></a>
+                    </div>
+                </li>
+            {{/each}}
+        </ul>
+        <div class="features-dragger">
+            <span>{{localize "DAGGERHEART.GENERAL.dropFeaturesHere"}}</span>
+        </div>
+    </fieldset>
+</section>

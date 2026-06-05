@@ -439,10 +439,13 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 'system.domain': { key: 'system.domain', value: this.setup.class?.system.domains ?? null }
             };
 
-        if (type === 'subclasses')
+        if (type === 'subclasses') {
+            const classItem = this.setup.class;
+            const uuid = classItem?._stats.compendiumSource ?? classItem?.uuid;
             presets.filter = {
-                'system.linkedClass.uuid': { key: 'system.linkedClass.uuid', value: this.setup.class?.uuid }
+                'system.linkedClass': { key: 'system.linkedClass', value: uuid }
             };
+        }
 
         if (equipment.includes(type))
             presets.filter = {
@@ -610,7 +613,8 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 [foundry.utils.randomID()]: {}
             };
         } else if (item.type === 'subclass' && event.target.closest('.subclass-card')) {
-            if (this.setup.class.system.subclasses.every(subclass => subclass.uuid !== item.uuid)) {
+            const classSubclasses = await this.setup.class.system.fetchSubclasses();
+            if (classSubclasses.every(subclass => subclass.uuid !== item.uuid)) {
                 ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.subclassNotInClass'));
                 return;
             }

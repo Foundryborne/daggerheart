@@ -1,5 +1,3 @@
-import { emitAsGM, GMUpdateEvent } from '../../../systemRegistration/socket.mjs';
-
 const fields = foundry.data.fields;
 
 export default class EffectsField extends fields.ArrayField {
@@ -34,8 +32,7 @@ export default class EffectsField extends fields.ArrayField {
         }
         if (EffectsField.getAutomation() || force) {
             targets ??= (message.system?.targets ?? config.targets).filter(t => !config.hasRoll || t.hit);
-            await emitAsGM(GMUpdateEvent.UpdateEffect, EffectsField.applyEffects.bind(this), targets, this.uuid);
-            // EffectsField.applyEffects.call(this, config.targets.filter(t => !config.hasRoll || t.hit));
+            EffectsField.applyEffects.call(this, targets);
         }
     }
 
@@ -59,7 +56,7 @@ export default class EffectsField extends fields.ArrayField {
             if (!token) return;
 
             const messageToken = token.document ?? token;
-            const conditionImmunities = messageToken.actor.system.rules.conditionImmunities ?? {};
+            const conditionImmunities = messageToken.actor.system.rules?.conditionImmunities ?? {};
             messageTargets.push({
                 token: messageToken,
                 conditionImmunities: Object.values(conditionImmunities).some(x => x)

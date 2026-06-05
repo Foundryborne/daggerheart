@@ -1,4 +1,5 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
+import { triggerChatRollFx } from '../helpers/utils.mjs';
 
 export default class DHRoll extends Roll {
     baseTerms = [];
@@ -36,6 +37,7 @@ export default class DHRoll extends Roll {
     static async buildConfigure(config = {}, message = {}) {
         config.hooks = [...this.getHooks(), ''];
         config.dialog ??= {};
+        config.damageOptions ??= {};
 
         for (const hook of config.hooks) {
             if (Hooks.call(`${CONFIG.DH.id}.preRoll${hook.capitalize()}`, config, message) === false) return null;
@@ -75,9 +77,7 @@ export default class DHRoll extends Roll {
         }
 
         if (config.skips?.createMessage) {
-            if (game.modules.get('dice-so-nice')?.active) {
-                await game.dice3d.showForRoll(roll, game.user, true);
-            }
+            await triggerChatRollFx([roll]);
         } else if (!config.source?.message) {
             config.message = await this.toMessage(roll, config);
         }
@@ -85,6 +85,7 @@ export default class DHRoll extends Roll {
 
     static postEvaluate(roll, config = {}) {
         return {
+            ...roll.options.roll,
             total: roll.total,
             formula: roll.formula,
             dice: roll.dice.map(d => ({
@@ -141,8 +142,8 @@ export default class DHRoll extends Roll {
         const metagamingSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Metagaming);
         const chatData = await this._prepareChatRenderContext({ flavor, isPrivate, ...options });
         return foundry.applications.handlebars.renderTemplate(template, {
-            ...chatData,
             roll: this,
+            ...chatData,
             parent: chatData.parent,
             targetMode: chatData.targetMode,
             areas: chatData.action?.areas,
@@ -257,7 +258,7 @@ export default class DHRoll extends Roll {
             if (!roll.terms[i].isDeterministic) continue;
             const termTotal = roll.terms[i].total;
             if (typeof termTotal === 'number') {
-                const multiplier = roll.terms[i - 1]?.operator === ' - ' ? -1 : 1;
+                const multiplier = roll.terms[i - 1]?.operator === '-' ? -1 : 1;
                 modifierTotal += multiplier * termTotal;
             }
         }

@@ -7,7 +7,12 @@
  * @property {boolean} isInventoryItem- Indicates whether items of this type is a Inventory Item
  */
 
-import { addLinkedItemsDiff, getScrollTextData, updateLinkedItemApps } from '../../helpers/utils.mjs';
+import {
+    addLinkedItemsDiff,
+    getScrollTextData,
+    createShallowProxy,
+    updateLinkedItemApps
+} from '../../helpers/utils.mjs';
 import { ActionsField } from '../fields/actionField.mjs';
 import FormulaField from '../fields/formulaField.mjs';
 
@@ -159,8 +164,8 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
      * @returns {object}
      */
     getRollData(options = {}) {
-        const actorRollData = this.actor?.getRollData() ?? {};
-        const data = { ...actorRollData, item: { ...this } };
+        const data = this.actor?.getRollData() ?? {};
+        data.item = createShallowProxy(this);
         return data;
     }
 
@@ -195,7 +200,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             const features = [];
             for (let f of this.features) {
                 const fBase = f.item ?? f;
-                const feature = fBase.system ? fBase : await foundry.utils.fromUuid(fBase.uuid);
+                const feature = fBase.pack ? await foundry.utils.fromUuid(fBase.uuid) : fBase;
                 features.push(
                     foundry.utils.mergeObject(
                         feature.toObject(),

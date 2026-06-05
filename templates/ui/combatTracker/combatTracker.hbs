@@ -5,7 +5,10 @@
     {{#if (gt this.characters.length 0)}}
         {{> 'systems/daggerheart/templates/ui/combatTracker/combatTrackerSection.hbs' this title=(localize "DAGGERHEART.GENERAL.Character.plural") turns=this.characters}}
     {{/if}}
+    {{#if (gt this.friendlies.length 0)}}
+        {{> 'systems/daggerheart/templates/ui/combatTracker/combatTrackerSection.hbs' this title=(localize "DAGGERHEART.APPLICATIONS.CombatTracker.adversaryCategories.friendly") turns=this.friendlies}}
+    {{/if}}
     {{#if (gt this.adversaries.length 0)}}
-        {{> 'systems/daggerheart/templates/ui/combatTracker/combatTrackerSection.hbs' this title=(localize "DAGGERHEART.GENERAL.Adversary.plural") turns=this.adversaries}}
+        {{> 'systems/daggerheart/templates/ui/combatTracker/combatTrackerSection.hbs' this title=(localize "DAGGERHEART.APPLICATIONS.CombatTracker.adversaryCategories.adversaries") turns=this.adversaries}}
     {{/if}}
 </div>

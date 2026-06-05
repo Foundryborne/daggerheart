@@ -1,7 +1,14 @@
 <header class='adversary-header-sheet'>
     <line-div></line-div>
     <div class="name-row">
-        <h1 class='input actor-name' contenteditable="plaintext-only" data-property="name" placeholder="{{localize "DAGGERHEART.GENERAL.actorName"}}">{{source.name}}</h1>
+        <h1
+            class="input actor-name"
+            contenteditable="plaintext-only"
+            data-property="name"
+            placeholder="{{localize "DAGGERHEART.GENERAL.actorName"}}"
+            autocomplete="off"
+            spellcheck="false"
+        >{{source.name}}</h1>
     </div>
     <div class="tags">
         <div class="tag">
@@ -37,10 +44,9 @@
         </span>
     </div>
 
-    <div class="adversary-navigation">
-        {{> 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
+    {{#> 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
         <button type="button" data-action="openSettings" data-tooltip-text="{{localize "DAGGERHEART.UI.Tooltip.openSheetSettings"}}">
             <i class="fa-solid fa-wrench"></i>
         </button>
-    </div>
+    {{/ 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
 </header>

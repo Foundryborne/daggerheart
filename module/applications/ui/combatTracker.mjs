@@ -56,7 +56,9 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
     async _prepareTrackerContext(context, options) {
         await super._prepareTrackerContext(context, options);
 
-        const adversaries = context.turns?.filter(x => x.isNPC) ?? [];
+        const npcs = context.turns?.filter(x => x.isNPC) ?? [];
+        const adversaries = npcs.filter(x => x.disposition !== CONST.TOKEN_DISPOSITIONS.FRIENDLY);
+        const friendlies = npcs.filter(x => x.disposition === CONST.TOKEN_DISPOSITIONS.FRIENDLY);
         const characters = context.turns?.filter(x => !x.isNPC) ?? [];
         const spotlightQueueEnabled = game.settings.get(
             CONFIG.DH.id,
@@ -75,25 +77,56 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
         Object.assign(context, {
             actionTokens: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).actionTokens,
             adversaries,
+            friendlies,
             allCharacters: characters,
             characters: characters.filter(x => !spotlightQueueEnabled || x.system.spotlight.requestOrderIndex == 0),
             spotlightRequests
         });
     }
 
+    /**
+     * Open the dialog used to edit the name of the currently viewed Combat encounter.
+     * @this {CombatTracker}
+     * @returns {Promise<void>}
+     */
+    static async #onEditName() {
+        const combat = this.viewed;
+        if (!combat || !game.user.isGM) return null;
+        const field = combat.schema.fields.name;
+        const inputHTML = field.toFormGroup({}, { name: 'name', value: combat.name, autofocus: true }).outerHTML;
+        const formData = await foundry.applications.api.DialogV2.input({
+            window: { icon: 'fa-solid fa-tag', title: 'COMBAT.ACTIONS.EditNameTitle' },
+            position: { width: 480 },
+            content: inputHTML
+        });
+        await combat.update({ name: formData.name || '' });
+    }
+
     _getCombatContextOptions() {
         return [
             {
-                label: 'COMBAT.ClearMovementHistories',
-                icon: '<i class="fa-solid fa-shoe-prints"></i>',
-                visible: () => game.user.isGM && this.viewed?.combatants.size > 0,
-                callback: () => this.viewed.clearMovementHistories()
+                label: 'COMBAT.ACTIONS.EditName',
+                icon: 'fa-solid fa-tag',
+                visible: () => game.user.isGM && !!this.viewed,
+                onClick: () => DhCombatTracker.#onEditName.call(this)
             },
             {
-                label: 'COMBAT.Delete',
-                icon: '<i class="fa-solid fa-trash"></i>',
+                label: 'COMBAT.ACTIONS.LinkToScene',
+                icon: '<i class="fa-solid fa-link"></i>',
+                visible: () => game.user.isGM && !this.scene,
+                onClick: () => this.viewed.toggleSceneLink()
+            },
+            {
+                label: 'COMBAT.ACTIONS.UnlinkFromScene',
+                icon: '<i class="fa-solid fa-unlink"></i>',
+                visible: () => game.user.isGM && !!this.scene,
+                onClick: () => this.viewed.toggleSceneLink()
+            },
+            {
+                label: 'COMBAT.End',
+                icon: 'fa-solid fa-xmark',
                 visible: () => game.user.isGM && !!this.viewed,
-                callback: () => this.viewed.endCombat()
+                onClick: () => this.viewed.endCombat()
             }
         ];
     }
@@ -129,7 +162,8 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
             active: index === combat.turn,
             canPing: combatant.sceneId === canvas.scene?.id && game.user.hasPermission('PING_CANVAS'),
             type: combatant.actor?.system?.type,
-            img: await this._getCombatantThumbnail(combatant)
+            img: await this._getCombatantThumbnail(combatant),
+            disposition: combatant.token?.disposition
         };
 
         turn.css = [turn.active ? 'active' : null, hidden ? 'hide' : null, isDefeated ? 'defeated' : null].filterJoin(

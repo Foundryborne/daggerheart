@@ -1,4 +1,4 @@
-import { emitAsGM, GMUpdateEvent } from '../systemRegistration/socket.mjs';
+import { emitGMUpdate, emitGMCreate, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 
 export default class DhpChatMessage extends foundry.documents.ChatMessage {
     targetHook = null;
@@ -183,7 +183,11 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             if (pendingingSaves.length) {
                 const confirm = await foundry.applications.api.DialogV2.confirm({
                     window: { title: game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.title') },
-                    content: `<p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p><p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p><p><i>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>`
+                    content: `
+                        <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p>
+                        <p><i>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>
+                        <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p>
+                    `
                 });
                 if (!confirm) return;
             }
@@ -214,7 +218,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             const action = this.system.action;
             if (!action || !action?.hasSave) return;
             game.system.api.fields.ActionFields.SaveField.rollSave.call(action, token.actor, event).then(result =>
-                emitAsGM(
+                emitGMUpdate(
                     GMUpdateEvent.UpdateSaveMessage,
                     game.system.api.fields.ActionFields.SaveField.updateSaveMessage.bind(
                         action,
@@ -247,8 +251,24 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         const targets = this.filterPermTargets(this.system.hitTargets),
             config = foundry.utils.deepClone(this.system);
         config.event = event;
+
         if (targets.length === 0)
-            ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelectedOrPerm'));
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelectedOrPerm'));
+        else if (config.hasSave) {
+            const pendingingSaves = targets.filter(t => t.saved.success === null);
+            if (pendingingSaves.length) {
+                const confirm = await foundry.applications.api.DialogV2.confirm({
+                    window: { title: game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.title') },
+                    content: `
+                        <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p>
+                        <p><i>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>
+                        <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p>
+                    `
+                });
+                if (!confirm) return;
+            }
+        }
+
         this.consumeOnSuccess();
         this.system.action?.workflow.get('effects')?.execute(config, targets, true);
     }
@@ -259,27 +279,47 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             const { shape: type, size: range } = selectedArea;
             const shapeData = CONFIG.Canvas.layers.regions.layerClass.getTemplateShape({ type, range });
 
-            await canvas.regions.placeRegion(
-                {
-                    name: selectedArea.name,
-                    shapes: [shapeData],
-                    restriction: { enabled: false, type: 'move', priority: 0 },
-                    behaviors: [
-                        {
-                            name: game.i18n.localize('TYPES.RegionBehavior.applyActiveEffect'),
-                            type: 'applyActiveEffect',
-                            system: {
-                                effects: effects
-                            }
-                        }
-                    ],
-                    displayMeasurements: true,
-                    locked: false,
-                    ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE },
-                    visibility: CONST.REGION_VISIBILITY.ALWAYS
-                },
-                { create: true }
-            );
+            const scene = game.scenes.get(game.user.viewedScene);
+            const level = scene.levels.find(x => x.isView);
+
+            const regionData = {
+                name: selectedArea.name,
+                levels: level ? [level.id] : [],
+                shapes: [shapeData],
+                restriction: { enabled: false, type: 'move', priority: 0 },
+                behaviors:
+                    effects.length > 0
+                        ? [
+                              {
+                                  name: game.i18n.localize('TYPES.RegionBehavior.applyActiveEffect'),
+                                  type: 'applyActiveEffect',
+                                  system: {
+                                      effects: effects
+                                  }
+                              }
+                          ]
+                        : [],
+                displayMeasurements: true,
+                locked: false,
+                ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE },
+                visibility: CONST.REGION_VISIBILITY.ALWAYS
+            };
+            const placeRegion = data => {
+                canvas.regions.placeRegion(data, { create: true });
+            };
+
+            // Regions with effects must be placed by the GM
+            if (effects.length > 0 && !game.user.isGM) {
+                if (!game.users.activeGM)
+                    return ui.notifications.error(
+                        game.i18n.localize('DAGGERHEART.UI.Notifications.behaviorRegionRequiresGM')
+                    );
+
+                const region = await canvas.regions.placeRegion(regionData, { create: false });
+                emitGMCreate('Region', placeRegion, region, scene.id);
+            } else {
+                placeRegion(regionData);
+            }
         };
 
         if (this.system.action.areas.length === 1) createArea(this.system.action.areas[0]);

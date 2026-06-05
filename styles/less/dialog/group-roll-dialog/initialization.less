@@ -1,62 +1,59 @@
-.theme-light .daggerheart.dialog.dh-style.views.group-roll-dialog {
-    .initialization-container .members-container .member-container {
-        .member-name {
-            background-image: url('../assets/parchments/dh-parchment-light.png');
-        }
-    }
-}
-
 .daggerheart.dialog.dh-style.views.group-roll-dialog {
-    .initialization-container {
-        h2 {
-            text-align: center;
-        }
-
-        .members-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 8px;
-
-            .member-container {
-                position: relative;
-                display: flex;
-                justify-content: center;
-
-                &.inactive {
-                    opacity: 0.4;
-                }
-
-                .member-name {
-                    position: absolute;
-                    padding: 0 2px;
-                    border: 1px solid;
-                    border-radius: 6px;
-                    margin-top: 4px;
-                    color: light-dark(@dark, @beige);
-                    background-image: url('../assets/parchments/dh-parchment-dark.png');
-                    text-align: center;
-                }
-
-                img {
-                    border-radius: 6px;
-                    border: 1px solid light-dark(@dark-blue, @golden);
-                }
-            }
-        }
+    .initialization-container.active {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
 
         .main-roll {
-            margin-top: 8px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            padding-bottom: 4px;
 
             &.inactive {
                 opacity: 0.4;
             }
         }
 
+        .hint {
+            color: var(--color-form-hint);
+            line-height: 1;
+            padding: var(--spacer-8) 0;
+            font-family: var(--dh-font-body);
+            font-size: var(--font-size-12);
+            font-weight: 300;
+        }
+
+        .members-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            overflow-y: auto;
+
+            .member-container {
+                display: flex;
+                position: relative;
+                justify-content: center;
+                height: unset;
+                padding: 4px 8px;
+                gap: var(--spacer-8);
+                flex: 0 0 auto;
+
+                &:not(.inactive) {
+                    background: @golden-bg;
+                }
+
+                .name {
+                    flex: 1;
+                    color: light-dark(@dark, @beige);
+                    font-weight: 500;
+                    text-align: left;
+                }
+            }
+        }
+
         footer {
-            margin-top: 8px;
+            margin-top: 12px;
             display: flex;
             gap: 8px;
 

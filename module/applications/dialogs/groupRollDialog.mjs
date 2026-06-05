@@ -1,12 +1,12 @@
 import { ResourceUpdateMap } from '../../data/action/baseAction.mjs';
-import { emitAsGM, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 import Party from '../sheets/actors/party.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 export default class GroupRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     constructor(party) {
-        super();
+        super({ id: `GroupRollDialog-${party.id}` });
 
         this.party = party;
         this.partyMembers = party.system.partyMembers
@@ -35,19 +35,18 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: 'GroupRollDialog',
         classes: ['daggerheart', 'views', 'dh-style', 'dialog', 'group-roll-dialog'],
-        position: { width: 550, height: 'auto' },
+        position: { width: 390, height: 'auto' },
+        window: {
+            icon: 'fa-solid fa-users'
+        },
         actions: {
             toggleSelectMember: this.#toggleSelectMember,
             startGroupRoll: this.#startGroupRoll,
             makeRoll: this.#makeRoll,
             removeRoll: this.#removeRoll,
             rerollDice: this.#rerollDice,
-            makeLeaderRoll: this.#makeLeaderRoll,
-            removeLeaderRoll: this.#removeLeaderRoll,
-            rerollLeaderDice: this.#rerollLeaderDice,
-            markSuccessfull: this.#markSuccessfull,
+            markSuccessful: this.#markSuccessful,
             cancelRoll: this.#onCancelRoll,
             finishRoll: this.#finishRoll
         },
@@ -59,17 +58,21 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
             id: 'initialization',
             template: 'systems/daggerheart/templates/dialogs/groupRollDialog/initialization.hbs'
         },
+        main: {
+            id: 'main',
+            template: 'systems/daggerheart/templates/dialogs/groupRollDialog/main.hbs'
+        },
         leader: {
             id: 'leader',
-            template: 'systems/daggerheart/templates/dialogs/groupRollDialog/leader.hbs'
+            template: 'systems/daggerheart/templates/dialogs/groupRollDialog/parts/member.hbs'
         },
-        groupRoll: {
-            id: 'groupRoll',
-            template: 'systems/daggerheart/templates/dialogs/groupRollDialog/groupRoll.hbs'
+        result: {
+            id: 'result',
+            template: 'systems/daggerheart/templates/dialogs/groupRollDialog/parts/result.hbs'
         },
         footer: {
             id: 'footer',
-            template: 'systems/daggerheart/templates/dialogs/groupRollDialog/footer.hbs'
+            template: 'systems/daggerheart/templates/dialogs/groupRollDialog/parts/footer.hbs'
         }
     };
 
@@ -89,51 +92,31 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
     }
 
     _configureRenderParts(options) {
-        const { initialization, leader, groupRoll, footer } = super._configureRenderParts(options);
-        const augmentedParts = { initialization };
+        const parts = super._configureRenderParts(options);
         for (const memberKey of Object.keys(this.party.system.groupRoll.aidingCharacters)) {
-            augmentedParts[memberKey] = {
+            parts[memberKey] = {
                 id: memberKey,
-                template: 'systems/daggerheart/templates/dialogs/groupRollDialog/groupRollMember.hbs'
+                template: 'systems/daggerheart/templates/dialogs/groupRollDialog/parts/member.hbs'
             };
         }
-
-        augmentedParts.leader = leader;
-        augmentedParts.groupRoll = groupRoll;
-        augmentedParts.footer = footer;
-
-        return augmentedParts;
-    }
-
-    /**@inheritdoc */
-    async _onRender(context, options) {
-        await super._onRender(context, options);
-
-        if (this.element.querySelector('.team-container')) return;
-
-        if (this.tabGroups.application !== this.constructor.PARTS.initialization.id) {
-            const initializationPart = this.element.querySelector('.initialization-container');
-            initializationPart.insertAdjacentHTML('afterend', '<div class="team-container"></div>');
-            initializationPart.insertAdjacentHTML(
-                'afterend',
-                `<div class="section-title">${game.i18n.localize('DAGGERHEART.APPLICATIONS.GroupRollSelect.aidingCharacters')}</div>`
-            );
-
-            const teamContainer = this.element.querySelector('.team-container');
-            for (const memberContainer of this.element.querySelectorAll('.team-member-container'))
-                teamContainer.appendChild(memberContainer);
-        }
+        return parts;
     }
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
 
         context.isGM = game.user.isGM;
-        context.isEditable = this.getIsEditable();
+        context.isEditable =
+            game.user.isGM ||
+            this.party.system.partyMembers.some(actor => {
+                const selected = Boolean(this.party.system.groupRoll.participants[actor.id]);
+                return selected && actor.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
+            });
         context.fields = this.party.system.schema.fields.groupRoll.fields;
         context.data = this.party.system.groupRoll;
         context.traitOptions = CONFIG.DH.ACTOR.abilities;
         context.members = {};
+        context.aidKeys = Object.keys(this.party.system.groupRoll.aidingCharacters);
         context.allHaveRolled = Object.keys(context.data.participants).every(key => {
             const data = context.data.participants[key];
             return Boolean(data.rollData);
@@ -145,6 +128,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
     async _preparePartContext(partId, context, options) {
         const partContext = await super._preparePartContext(partId, context, options);
         partContext.partId = partId;
+        partContext.leader = this.getRollCharacterData(this.party.system.groupRoll.leader);
 
         switch (partId) {
             case 'initialization':
@@ -162,19 +146,14 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
                 partContext.canStartGroupRoll = selectedMembers.length > 1 && this.leader?.memberId;
                 partContext.openForAllPlayers = this.openForAllPlayers;
                 break;
-            case 'leader':
-                partContext.leader = this.getRollCharacterData(this.party.system.groupRoll.leader);
-                break;
-            case 'groupRoll':
+            case 'result':
                 const leader = this.party.system.groupRoll.leader;
                 partContext.hasRolled =
                     leader?.rollData ||
-                    Object.values(this.party.system.groupRoll?.aidingCharacters ?? {}).some(
-                        x => x.successfull !== null
-                    );
+                    Object.values(this.party.system.groupRoll?.aidingCharacters ?? {}).some(x => x.successful !== null);
                 const { modifierTotal, modifiers } = Object.values(this.party.system.groupRoll.aidingCharacters).reduce(
                     (acc, curr) => {
-                        const modifier = curr.successfull === true ? 1 : curr.successfull === false ? -1 : null;
+                        const modifier = curr.successful === true ? 1 : curr.successful === false ? -1 : null;
                         if (modifier) {
                             acc.modifierTotal += modifier;
                             acc.modifiers.push(modifier);
@@ -200,7 +179,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
             case 'footer':
                 partContext.canFinishRoll =
                     Boolean(this.party.system.groupRoll.leader?.rollData) &&
-                    Object.values(this.party.system.groupRoll.aidingCharacters).every(x => x.successfull !== null);
+                    Object.values(this.party.system.groupRoll.aidingCharacters).every(x => x.successful !== null);
                 break;
         }
 
@@ -216,20 +195,42 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         if (!data) return {};
 
         const actor = game.actors.get(data.id);
+        const isLeader = data === this.party.system.groupRoll.leader;
+
+        const roll = data.roll;
+        const withTypeSuffix = !roll ? null : roll.isCritical ? 'criticalShort' : roll.withHope ? 'hope' : 'fear';
+        const thing = withTypeSuffix ? _loc(`DAGGERHEART.GENERAL.${withTypeSuffix}`) : null;
 
         return {
             ...data,
+            type: isLeader ? 'leader' : 'aid',
+            basePath: isLeader ? 'system.groupRoll.leader' : `system.groupRoll.aidingCharacters.${data.id}`,
+            rollChoiceLabel: _loc(CONFIG.DH.ACTOR.abilities[data.rollChoice]?.label),
             roll: data.roll,
-            isEditable: actor.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER),
+            isEditable: actor?.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER),
             key: partId,
             readyToRoll: Boolean(data.rollChoice),
-            hasRolled: Boolean(data.rollData)
+            hasRolled: Boolean(data.rollData),
+            modifier: data.successful ? 1 : data.successful === false ? -1 : 0,
+            withLabelShort: thing ? _loc('DAGGERHEART.GENERAL.withThing', { thing }) : null
         };
+    }
+
+    #getCharacterDataById(id) {
+        if (!id) return null;
+
+        const groupRoll = this.party.system.groupRoll;
+        if (id === 'leader' || id === groupRoll.leader?.id) {
+            return { data: groupRoll.leader, basePath: 'system.groupRoll.leader' };
+        } else if (id in groupRoll.aidingCharacters) {
+            return { data: groupRoll.aidingCharacters[id], basePath: `system.groupRoll.aidingCharacters.${id}` };
+        }
+
+        return null;
     }
 
     static async updateData(event, _, formData) {
         const partyData = foundry.utils.expandObject(formData.object);
-
         this.updatePartyData(partyData, this.getUpdatingParts(event.target));
     }
 
@@ -246,7 +247,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
             });
         };
 
-        await emitAsGM(
+        await emitGMUpdate(
             GMUpdateEvent.UpdateDocument,
             gmUpdate,
             update,
@@ -256,24 +257,17 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
     }
 
     getUpdatingParts(target) {
-        const { initialization, leader, groupRoll, footer } = this.constructor.PARTS;
+        const { initialization, leader, result, footer } = this.constructor.PARTS;
         const isInitialization = this.tabGroups.application === initialization.id;
-        const updatingMember = target.closest('.team-member-container')?.dataset?.memberKey;
-        const updatingLeader = target.closest('.main-character-outer-container');
+        const updatingMember = target.closest('.member-roll-container.aid')?.dataset?.memberKey;
+        const updatingLeader = target.closest('.member-roll-container.leader');
 
         return [
             ...(isInitialization ? [initialization.id] : []),
             ...(updatingMember ? [updatingMember] : []),
             ...(updatingLeader ? [leader.id] : []),
-            ...(!isInitialization ? [groupRoll.id, footer.id] : [])
+            ...(!isInitialization ? [result.id, footer.id] : [])
         ];
-    }
-
-    getIsEditable() {
-        return this.party.system.partyMembers.some(actor => {
-            const selected = Boolean(this.party.system.groupRoll.participants[actor.id]);
-            return selected && actor.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
-        });
     }
 
     groupRollRefresh = ({ refreshType, action, parts }) => {
@@ -304,6 +298,9 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
     static #toggleSelectMember(_, button) {
         const member = this.partyMembers.find(x => x.id === button.dataset.id);
         member.selected = !member.selected;
+        if (this.leader?.memberId === member.id) {
+            this.leader = null;
+        }
         this.render();
     }
 
@@ -343,11 +340,14 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
     }
     //#endregion
 
-    async makeRoll(button, characterData, path) {
-        const actor = game.actors.find(x => x.id === characterData.id);
+    /** @this GroupRollDialog */
+    static async #makeRoll(_event, button) {
+        const member = button.closest('[data-member-key]').dataset.memberKey;
+        const { data, basePath } = this.#getCharacterDataById(member);
+        const actor = game.actors.find(x => x.id === data.id);
         if (!actor) return;
 
-        const result = await actor.rollTrait(characterData.rollChoice, {
+        const result = await actor.rollTrait(data.rollChoice, {
             skips: {
                 createMessage: true,
                 resources: true,
@@ -356,53 +356,38 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         });
 
         if (!result) return;
-        if (!game.modules.get('dice-so-nice')?.active) foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
 
         const rollData = result.messageRoll.toJSON();
         delete rollData.options.messageRoll;
         this.updatePartyData(
             {
-                [path]: rollData
+                [basePath]: { rollData, successful: null }
             },
             this.getUpdatingParts(button)
         );
     }
 
-    static async #makeRoll(_event, button) {
-        const { member } = button.dataset;
-        const character = this.party.system.groupRoll.aidingCharacters[member];
-        this.makeRoll(button, character, `system.groupRoll.aidingCharacters.${member}.rollData`);
-    }
-
-    static async #makeLeaderRoll(_event, button) {
-        const character = this.party.system.groupRoll.leader;
-        this.makeRoll(button, character, 'system.groupRoll.leader.rollData');
-    }
-
-    async removeRoll(button, path) {
+    /** @this GroupRollDialog  */
+    static async #removeRoll(_event, button) {
+        const member = button.closest('[data-member-key]').dataset.memberKey;
+        const { basePath } = this.#getCharacterDataById(member);
         this.updatePartyData(
             {
-                [path]: {
+                [basePath]: {
                     rollData: null,
                     rollChoice: null,
                     selected: false,
-                    successfull: null
+                    successful: null
                 }
             },
             this.getUpdatingParts(button)
         );
     }
 
-    static async #removeRoll(_event, button) {
-        this.removeRoll(button, `system.groupRoll.aidingCharacters.${button.dataset.member}`);
-    }
-
-    static async #removeLeaderRoll(_event, button) {
-        this.removeRoll(button, 'system.groupRoll.leader');
-    }
-
-    async rerollDice(button, data, path) {
+    /** @this GroupRollDialog */
+    static async #rerollDice(_, button) {
         const { diceType } = button.dataset;
+        const { data, basePath } = this.#getCharacterDataById(button.dataset.member);
 
         const dieIndex = diceType === 'hope' ? 0 : diceType === 'fear' ? 1 : 2;
         const newRoll = game.system.api.dice.DualityRoll.fromData(data.rollData);
@@ -416,31 +401,19 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         const rollData = newRoll.toJSON();
         this.updatePartyData(
             {
-                [path]: rollData
+                [`${basePath}.rollData`]: rollData
             },
             this.getUpdatingParts(button)
         );
     }
 
-    static async #rerollDice(_, button) {
-        const { member } = button.dataset;
-        this.rerollDice(
-            button,
-            this.party.system.groupRoll.aidingCharacters[member],
-            `system.groupRoll.aidingCharacters.${member}.rollData`
-        );
-    }
-
-    static async #rerollLeaderDice(_, button) {
-        this.rerollDice(button, this.party.system.groupRoll.leader, `system.groupRoll.leader.rollData`);
-    }
-
-    static #markSuccessfull(_event, button) {
-        const previousValue = this.party.system.groupRoll.aidingCharacters[button.dataset.member].successfull;
-        const newValue = Boolean(button.dataset.successfull === 'true');
+    static #markSuccessful(_event, button) {
+        const memberKey = button.closest('[data-member-key]').dataset.memberKey;
+        const previousValue = this.party.system.groupRoll.aidingCharacters[memberKey].successful;
+        const newValue = Boolean(button.dataset.success === 'true');
         this.updatePartyData(
             {
-                [`system.groupRoll.aidingCharacters.${button.dataset.member}.successfull`]:
+                [`system.groupRoll.aidingCharacters.${memberKey}.successful`]:
                     previousValue === newValue ? null : newValue
             },
             this.getUpdatingParts(button)
@@ -484,7 +457,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
     static async #finishRoll() {
         const totalRoll = this.party.system.groupRoll.leader.roll;
         for (const character of Object.values(this.party.system.groupRoll.aidingCharacters)) {
-            totalRoll.terms.push(new foundry.dice.terms.OperatorTerm({ operator: character.successfull ? '+' : '-' }));
+            totalRoll.terms.push(new foundry.dice.terms.OperatorTerm({ operator: character.successful ? '+' : '-' }));
             totalRoll.terms.push(new foundry.dice.terms.NumericTerm({ number: 1 }));
         }
 

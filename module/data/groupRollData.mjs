@@ -30,7 +30,7 @@ export class CharacterData extends foundry.abstract.DataModel {
             }),
             rollData: new fields.JSONField({ nullable: true, initial: null }),
             selected: new fields.BooleanField({ initial: false }),
-            successfull: new fields.BooleanField({ nullable: true, initial: null })
+            successful: new fields.BooleanField({ nullable: true, initial: null })
         };
     }
 

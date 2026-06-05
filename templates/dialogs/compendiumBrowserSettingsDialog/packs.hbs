@@ -22,7 +22,7 @@
                             <div class="checks-container {{#unless source.checked}}collapsed{{/unless}}">
                                 {{#each source.packs as |pack|}}
                                     <div class="check-container">
-                                        <input type="checkbox" class="pack-checkbox" data-type="{{pack.type}}" data-pack="{{pack.pack}}" {{checked pack.checked}} />
+                                        <input type="checkbox" class="pack-checkbox" data-type="{{pack.type}}" data-source="{{@../key}}" data-pack-name="{{pack.name}}" {{checked pack.checked}} />
                                         <label>{{pack.label}}</label>
                                     </div>
                                 {{/each}}

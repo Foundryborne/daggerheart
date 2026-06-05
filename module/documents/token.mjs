@@ -66,7 +66,8 @@ export default class DHToken extends CONFIG.Token.documentClass {
                 if (tokenSize && actor.system.size !== CONFIG.DH.ACTOR.tokenSize.custom.id) {
                     document.updateSource({
                         width: tokenSize,
-                        height: tokenSize
+                        height: tokenSize,
+                        depth: tokenSize
                     });
                 }
             }
@@ -90,7 +91,7 @@ export default class DHToken extends CONFIG.Token.documentClass {
             ) {
                 const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
                 const tokenSize = tokenSizes[update.system.size];
-                if (tokenSize !== this.width || tokenSize !== this.height) {
+                if (tokenSize !== this.width || tokenSize !== this.height || tokenSize !== this.depth) {
                     this.parent?.syncTokenDimensions(this, update.system.size);
                 }
             }

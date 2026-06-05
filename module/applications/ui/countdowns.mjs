@@ -1,5 +1,5 @@
 import { waitForDiceSoNice } from '../../helpers/utils.mjs';
-import { emitAsGM, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -21,19 +21,19 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     static DEFAULT_OPTIONS = {
         id: 'countdowns',
         tag: 'div',
-        classes: ['daggerheart', 'dh-style', 'countdowns', 'faded-ui'],
+        classes: ['daggerheart', 'dh-style', 'countdowns'],
         window: {
             icon: 'fa-solid fa-clock-rotate-left',
-            frame: true,
+            frame: false,
             title: 'DAGGERHEART.UI.Countdowns.title',
             positioned: false,
             resizable: false,
             minimizable: false
         },
         actions: {
-            toggleViewMode: DhCountdowns.#toggleViewMode,
-            editCountdowns: DhCountdowns.#editCountdowns,
-            loopCountdown: DhCountdowns.#loopCountdown,
+            toggleViewMode: DhCountdowns.#onToggleViewMode,
+            editCountdowns: DhCountdowns.#onEditCountdowns,
+            loopCountdown: DhCountdowns.#onLoopCountdown,
             decreaseCountdown: (_, target) => this.editCountdown(false, target),
             increaseCountdown: (_, target) => this.editCountdown(true, target)
         },
@@ -61,20 +61,6 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             CONFIG.DH.GENERAL.countdownAppMode.iconOnly;
         if (iconOnly) frame.classList.add('icon-only');
         else frame.classList.remove('icon-only');
-
-        const header = frame.querySelector('.window-header');
-        header.querySelector('button[data-action="close"]').remove();
-        header.querySelector('button[data-action="toggleControls"]').remove();
-
-        if (game.user.isGM) {
-            const editTooltip = game.i18n.localize('DAGGERHEART.APPLICATIONS.CountdownEdit.editTitle');
-            const editButton = `<a style="margin-right: 8px;" class="header-control" data-tooltip="${editTooltip}" aria-label="${editTooltip}" data-action="editCountdowns"><i class="fa-solid fa-wrench"></i></a>`;
-            header.insertAdjacentHTML('beforeEnd', editButton);
-        }
-
-        const minimizeTooltip = game.i18n.localize('DAGGERHEART.UI.Countdowns.toggleIconMode');
-        const minimizeButton = `<a class="header-control" data-tooltip="${minimizeTooltip}" aria-label="${minimizeTooltip}" data-action="toggleViewMode"><i class="fa-solid fa-down-left-and-up-right-to-center"></i></a>`;
-        header.insertAdjacentHTML('beforeEnd', minimizeButton);
 
         return frame;
     }
@@ -161,7 +147,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         return true;
     }
 
-    static async #toggleViewMode() {
+    static async #onToggleViewMode() {
         const currentMode = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode);
         const appMode = CONFIG.DH.GENERAL.countdownAppMode;
         const newMode = currentMode === appMode.textIcon ? appMode.iconOnly : appMode.textIcon;
@@ -172,15 +158,16 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         this.render();
     }
 
-    static async #editCountdowns() {
+    static async #onEditCountdowns() {
         new game.system.api.applications.ui.CountdownEdit().render(true);
     }
 
-    static async #loopCountdown(_, target) {
+    static async #onLoopCountdown(_, target) {
         if (!DhCountdowns.canPerformEdit()) return;
 
         const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-        const countdown = settings.countdowns[target.id];
+        const countdownId = target.closest('[data-countdown]').dataset.countdown;
+        const countdown = settings.countdowns[countdownId];
 
         let progressMax = countdown.progress.start;
         let message = null;
@@ -199,12 +186,12 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
 
         await waitForDiceSoNice(message);
         await settings.updateSource({
-            [`countdowns.${target.id}.progress`]: {
+            [`countdowns.${countdownId}.progress`]: {
                 current: newMax,
                 start: newMax
             }
         });
-        await emitAsGM(GMUpdateEvent.UpdateCountdowns, DhCountdowns.gmSetSetting.bind(settings), settings, null, {
+        await emitGMUpdate(GMUpdateEvent.UpdateCountdowns, DhCountdowns.gmSetSetting.bind(settings), settings, null, {
             refreshType: RefreshType.Countdown
         });
     }
@@ -213,12 +200,13 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         if (!DhCountdowns.canPerformEdit()) return;
 
         const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-        const countdown = settings.countdowns[target.id];
+        const countdownId = target.closest('[data-countdown]').dataset.countdown;
+        const countdown = settings.countdowns[countdownId];
         const newCurrent = increase
             ? Math.min(countdown.progress.current + 1, countdown.progress.start)
             : Math.max(countdown.progress.current - 1, 0);
-        await settings.updateSource({ [`countdowns.${target.id}.progress.current`]: newCurrent });
-        await emitAsGM(GMUpdateEvent.UpdateCountdowns, DhCountdowns.gmSetSetting.bind(settings), settings, null, {
+        await settings.updateSource({ [`countdowns.${countdownId}.progress.current`]: newCurrent });
+        await emitGMUpdate(GMUpdateEvent.UpdateCountdowns, DhCountdowns.gmSetSetting.bind(settings), settings, null, {
             refreshType: RefreshType.Countdown
         });
     }
@@ -277,7 +265,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                 return acc;
             }, {})
         };
-        await emitAsGM(GMUpdateEvent.UpdateCountdowns, DhCountdowns.gmSetSetting.bind(settings), settings, null, {
+        await emitGMUpdate(GMUpdateEvent.UpdateCountdowns, DhCountdowns.gmSetSetting.bind(settings), settings, null, {
             refreshType: RefreshType.Countdown
         });
     }

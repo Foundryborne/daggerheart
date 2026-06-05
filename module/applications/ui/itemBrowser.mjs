@@ -1,3 +1,4 @@
+import { getDocFromElement } from '../../helpers/utils.mjs';
 import { RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -47,7 +48,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             expandContent: this.expandContent,
             resetFilters: this.resetFilters,
             sortList: this.sortList,
-            openSettings: this.openSettings
+            openSettings: this.openSettings,
+            viewSheet: this.#onViewSheet
         },
         position: {
             left: 100,
@@ -109,8 +111,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             CONFIG.DH.id,
             CONFIG.DH.FLAGS[`${this.compendiumBrowserTypeKey}`].position
         );
-
         options.position = userPresetPosition ?? ItemBrowser.DEFAULT_OPTIONS.position;
+        delete options.position.zIndex;
 
         if (!userPresetPosition) {
             const width = noFolder === true || lite === true ? 600 : 850;
@@ -277,7 +279,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                     (await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.description));
             }
 
-            this.fieldFilter = this._createFieldFilter();
+            this.fieldFilter = await this._createFieldFilter();
 
             if (this.presets?.filter) {
                 Object.entries(this.presets.filter).forEach(([k, v]) => {
@@ -306,7 +308,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 {
                     items: this.items,
                     menu: this.selectedMenu,
-                    formatLabel: this.formatLabel
+                    formatLabel: this.formatLabel,
+                    viewSheet: this.items[0] instanceof Actor
                 }
             );
 
@@ -355,12 +358,12 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         );
     }
 
-    _createFieldFilter() {
+    async _createFieldFilter() {
         const filters = ItemBrowser.getFolderConfig(this.selectedMenu.data, 'filters');
-        filters.forEach(f => {
+        for (const f of filters) {
             if (typeof f.field === 'string') f.field = foundry.utils.getProperty(game, f.field);
             else if (typeof f.choices === 'function') {
-                f.choices = f.choices(this.items);
+                f.choices = await f.choices(this.items);
             }
 
             // Clear field label so template uses our custom label parameter
@@ -370,7 +373,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
             f.name ??= f.key;
             f.value = this.presets?.filter?.[f.name]?.value ?? null;
-        });
+        }
+
         return filters;
     }
 
@@ -567,6 +571,11 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         }
     }
 
+    static async #onViewSheet(_, target) {
+        const document = await getDocFromElement(target);
+        document?.sheet?.render(true);
+    }
+
     _createDragProcess() {
         new foundry.applications.ux.DragDrop.implementation({
             dragSelector: '.item-container',
@@ -605,7 +614,16 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 items: {
                     folder: 'equipments',
                     render: {
-                        noFolder: true
+                        folders: [
+                            'equipments',
+                            'ancestries',
+                            'classes',
+                            'subclasses',
+                            'domains',
+                            'communities',
+                            'beastforms'
+                            // excluded: features
+                        ]
                     }
                 },
                 compendium: {}

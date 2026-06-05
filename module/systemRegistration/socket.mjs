@@ -6,6 +6,9 @@ export function handleSocketEvent({ action = null, data = {} } = {}) {
         case socketEvent.GMUpdate:
             Hooks.callAll(socketEvent.GMUpdate, data);
             break;
+        case socketEvent.GMCreate:
+            Hooks.callAll(socketEvent.GMCreate, data);
+            break;
         case socketEvent.DhpFearUpdate:
             Hooks.callAll(socketEvent.DhpFearUpdate);
             break;
@@ -25,6 +28,7 @@ export function handleSocketEvent({ action = null, data = {} } = {}) {
 
 export const socketEvent = {
     GMUpdate: 'DhGMUpdate',
+    GMCreate: 'DhGMCreate',
     Refresh: 'DhRefresh',
     DhpFearUpdate: 'DhFearUpdate',
     DowntimeTrigger: 'DowntimeTrigger',
@@ -56,14 +60,14 @@ export const registerSocketHooks = () => {
             const document = data.uuid ? await fromUuid(data.uuid) : null;
             switch (data.action) {
                 case GMUpdateEvent.UpdateDocument:
-                    if (document && data.update) await document.update(data.update);
+                    if (document && data.data) await document.update(data.data);
                     break;
                 case GMUpdateEvent.UpdateEffect:
-                    if (document && data.update)
-                        await game.system.api.fields.ActionFields.EffectsField.applyEffects.call(document, data.update);
+                    if (document && data.data)
+                        await game.system.api.fields.ActionFields.EffectsField.applyEffects.call(document, data.data);
                     break;
                 case GMUpdateEvent.UpdateSetting:
-                    await game.settings.set(CONFIG.DH.id, data.uuid, data.update);
+                    await game.settings.set(CONFIG.DH.id, data.uuid, data.data);
                     break;
                 case GMUpdateEvent.UpdateFear:
                     await game.settings.set(
@@ -73,22 +77,22 @@ export const registerSocketHooks = () => {
                             0,
                             Math.min(
                                 game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear,
-                                data.update
+                                data.data
                             )
                         )
                     );
                     break;
                 case GMUpdateEvent.UpdateCountdowns:
-                    await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, data.update);
+                    await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, data.data);
                     Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
                     break;
                 case GMUpdateEvent.UpdateSaveMessage:
-                    const message = game.messages.get(data.update.message);
+                    const message = game.messages.get(data.data.message);
                     if (!message) return;
                     game.system.api.fields.ActionFields.SaveField.updateSaveMessage(
-                        data.update.result,
+                        data.data.result,
                         message,
-                        data.update.token
+                        data.data.token
                     );
                     break;
             }
@@ -102,6 +106,17 @@ export const registerSocketHooks = () => {
             }
         }
     });
+
+    Hooks.on(socketEvent.GMCreate, async ({ data, documentType, scene }) => {
+        if (!game.user.isGM) return;
+
+        switch (documentType) {
+            default:
+                const cls = getDocumentClass(documentType);
+                cls.create(data, { parent: game.scenes.get(scene) });
+                break;
+        }
+    });
 };
 
 export const registerUserQueries = () => {
@@ -109,18 +124,21 @@ export const registerUserQueries = () => {
     CONFIG.queries.reactionRoll = game.system.api.fields.ActionFields.SaveField.rollSaveQuery;
 };
 
-export const emitAsGM = async (eventName, callback, update, uuid = null, refresh = null) => {
+export const emitGMUpdate = async (eventName, callback, update, uuid = null, refresh = null) => {
+    return await emitAsGM(socketEvent.GMUpdate, { action: eventName, callback, data: update, uuid, refresh });
+};
+
+export const emitGMCreate = async (documentType, callback, data, scene) => {
+    return await emitAsGM(socketEvent.GMCreate, { documentType, callback, data, scene });
+};
+
+export const emitAsGM = async (event, data = { callback: () => {}, data: {} }) => {
     if (!game.user.isGM) {
         return await game.socket.emit(`system.${CONFIG.DH.id}`, {
-            action: socketEvent.GMUpdate,
-            data: {
-                action: eventName,
-                uuid,
-                update,
-                refresh
-            }
+            action: event,
+            data: data
         });
-    } else return callback(update);
+    } else return data.callback(data.data);
 };
 
 export const emitAsOwner = (eventName, userId, args) => {

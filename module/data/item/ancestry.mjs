@@ -1,6 +1,6 @@
 import BaseDataItem from './base.mjs';
 import ItemLinkFields from '../../data/fields/itemLinkFields.mjs';
-import { getFeaturesHTMLData } from '../../helpers/utils.mjs';
+import { fromUuids, getFeaturesHTMLData } from '../../helpers/utils.mjs';
 
 export default class DHAncestry extends BaseDataItem {
     /** @inheritDoc */
@@ -45,6 +45,10 @@ export default class DHAncestry extends BaseDataItem {
 
     /**@inheritdoc */
     async getDescriptionData() {
+        // Preload all ancestry features for acquisition from the cache
+        // todo: make feature acquisition async and replace feature helpers for methods
+        await fromUuids(this._source.features.map(f => f.item));
+
         const baseDescription = this.description;
         const features = await getFeaturesHTMLData(this.features);
 

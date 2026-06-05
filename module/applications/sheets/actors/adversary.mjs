@@ -31,6 +31,16 @@ export default class AdversarySheet extends DHBaseActorSheet {
                 dragSelector: '[data-item-id][draggable="true"], [data-item-id] [draggable="true"]',
                 dropSelector: null
             }
+        ],
+        contextMenus: [
+            {
+                handler: DHBaseActorSheet.getBaseAttackContextOptions,
+                selector: '[data-item-uuid][data-type="attack"]',
+                options: {
+                    parentClassHooks: false,
+                    fixed: true
+                }
+            }
         ]
     };
 

@@ -91,7 +91,10 @@ const registerMenuSettings = () => {
     game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Metagaming, {
         scope: 'world',
         config: false,
-        type: DhMetagaming
+        type: DhMetagaming,
+        onChange: value => {
+            value.handleChange();
+        }
     });
 
     game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew, {

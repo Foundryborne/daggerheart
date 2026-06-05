@@ -40,7 +40,7 @@
 .application.sheet.dh-style .character-sidebar-sheet {
     width: 275px;
     min-width: 275px;
-    border-right: 1px solid light-dark(@dark-blue, @golden);
+    border-right: 1px solid @color-border;
 
     .portrait {
         position: relative;
@@ -73,62 +73,6 @@
 
         .death-roll-btn {
             display: none;
-        }
-
-        .icons-list {
-            position: absolute;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            align-items: end;
-            justify-content: center;
-            top: 45px;
-            right: 10px;
-
-            .spellcast-icon {
-                display: flex;
-                align-items: center;
-                justify-content: end;
-                text-align: center;
-                padding-right: 8px;
-                max-width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-                background: light-dark(@dark-blue-60, @dark-golden-80);
-                backdrop-filter: blur(8px);
-                border: 4px double light-dark(@beige, @golden);
-                color: light-dark(@beige, @golden);
-                border-radius: 999px;
-                transition: all 0.3s ease;
-
-                .spellcast-label {
-                    font-size: var(--font-size-14);
-                    opacity: 0;
-                    margin-right: 0.3rem;
-                    transition: all 0.3s ease;
-                }
-
-                i {
-                    height: 24px;
-                    width: 24px;
-                    align-content: center;
-                    margin-right: 3px;
-                }
-
-                &:not(.no-label):hover {
-                    max-width: 300px;
-                    padding: 0 10px;
-                    border-radius: 60px;
-
-                    .spellcast-label {
-                        opacity: 1;
-                    }
-
-                    i {
-                        margin-right: 0px;
-                    }
-                }
-            }
         }
     }
 
@@ -224,7 +168,7 @@
                     appearance: none;
                     width: 100px;
                     height: 40px;
-                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border: 1px solid @color-border;
                     border-radius: 6px;
                     z-index: 1;
                     background: @dark-blue;
@@ -338,11 +282,11 @@
 
                     &:hover {
                         background: light-dark(@light-black, @dark-blue);
-                        border: 1px solid light-dark(@dark-blue, @golden);
+                        border: 1px solid @color-border;
 
                         h4,
                         i {
-                            color: light-dark(@dark-blue, @golden);
+                            color: @color-text-emphatic;
                         }
                     }
                 }
@@ -365,12 +309,12 @@
                         flex-wrap: wrap;
                         gap: 4px;
                         padding: 5px;
-                        border: 1px solid light-dark(@dark-blue, @golden);
+                        border: 1px solid @color-border;
                         border-radius: 6px;
                         z-index: 1;
                         background: @dark-blue;
                         justify-content: center;
-                        color: light-dark(@dark-blue, @golden);
+                        color: @color-text-emphatic;
 
                         .armor-slot {
                             cursor: pointer;
@@ -399,12 +343,12 @@
 
                         &:hover {
                             background: light-dark(@light-black, @dark-blue);
-                            border: 1px solid light-dark(@dark-blue, @golden);
+                            border: 1px solid @color-border;
 
                             .label,
                             .value,
                             i {
-                                color: light-dark(@dark-blue, @golden);
+                                color: @color-text-emphatic;
                             }
                         }
 
@@ -431,7 +375,7 @@
                     text-align: center;
                     z-index: 2;
                     color: light-dark(@dark-blue, @beige);
-                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border: 1px solid @color-border;
                     border-bottom: none;
                     border-radius: 6px 6px 0 0;
 
@@ -467,7 +411,7 @@
                     appearance: none;
                     width: 80px;
                     height: 30px;
-                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border: 1px solid @color-border;
                     border-radius: 6px;
                     z-index: 1;
                     background: light-dark(transparent, @dark-blue);
@@ -506,7 +450,7 @@
                     display: flex;
                     width: 50px;
                     height: 30px;
-                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border: 1px solid @color-border;
                     border-bottom: none;
                     border-radius: 6px 6px 0 0;
                     padding: 0 6px;
@@ -569,9 +513,9 @@
             align-self: center;
             gap: 10px;
             background-color: light-dark(transparent, @dark-blue);
-            color: light-dark(@dark-blue, @golden);
+            color: @color-text-emphatic;
             padding: 5px 10px;
-            border: 1px solid light-dark(@dark-blue, @golden);
+            border: 1px solid @color-border;
             border-radius: 6px;
             align-items: center;
             width: fit-content;
@@ -581,7 +525,7 @@
                 font-size: var(--font-size-14);
                 font-weight: bold;
                 text-transform: uppercase;
-                color: light-dark(@dark-blue, @golden);
+                color: @color-text-emphatic;
 
                 &.threshold-value {
                     color: light-dark(@dark, @beige);
@@ -605,13 +549,11 @@
         overflow-y: hidden;
         padding-top: 10px;
         padding-bottom: 20px;
-        mask-image: linear-gradient(0deg, transparent 0%, black 5%);
         scrollbar-gutter: stable;
-        scrollbar-width: thin;
-
+        .with-scroll-shadows();
+        
         &:hover {
             overflow-y: auto;
-            scrollbar-color: light-dark(@dark-blue, @golden) transparent;
         }
     }
 

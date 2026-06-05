@@ -1,7 +1,7 @@
 import { parseInlineParams } from './parser.mjs';
 
 export default function DhDamageEnricher(match, _options) {
-    const { value, type, inline } = parseInlineParams(match[1]);
+    const { value, type, inline } = parseInlineParams(match[1], { first: 'value' });
     if (!value || !type) return match[0];
     return getDamageMessage(value, type, inline, match[0]);
 }
@@ -59,7 +59,7 @@ export const renderDamageButton = async event => {
             {
                 formula: value,
                 applyTo: CONFIG.DH.GENERAL.healingTypes.hitPoints.id,
-                type: type
+                damageTypes: type
             }
         ]
     };

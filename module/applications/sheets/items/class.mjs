@@ -104,9 +104,10 @@ export default class ClassSheet extends DHBaseItemSheet {
     }
 
     /**@inheritdoc */
-    async _prepareContext(_options) {
-        const context = await super._prepareContext(_options);
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
         context.domains = this.document.system.domains;
+        context.subclasses = await this.document.system.fetchSubclasses();
         return context;
     }
 
@@ -128,20 +129,8 @@ export default class ClassSheet extends DHBaseItemSheet {
         const item = await fromUuid(data.uuid);
         const itemType = data.type === 'ActiveEffect' ? data.type : item.type;
         const target = event.target.closest('fieldset.drop-section');
-        if (itemType === 'subclass') {
-            if (item.system.linkedClass) {
-                return ui.notifications.warn(
-                    game.i18n.format('DAGGERHEART.UI.Notifications.subclassAlreadyLinked', {
-                        name: item.name,
-                        class: this.document.name
-                    })
-                );
-            }
-            await item.update({ 'system.linkedClass': this.document.uuid });
-            await this.document.update({
-                'system.subclasses': [...this.document.system.subclasses.map(x => x.uuid), item.uuid]
-            });
-        } else if (['feature', 'ActiveEffect'].includes(itemType)) {
+
+        if (['feature', 'ActiveEffect'].includes(itemType)) {
             super._onDrop(event);
         } else if (this.document.parent?.type !== 'character') {
             if (itemType === 'weapon') {
@@ -200,12 +189,6 @@ export default class ClassSheet extends DHBaseItemSheet {
     static async #removeItemFromCollection(_event, element) {
         const { uuid, target } = element.dataset;
         const prop = foundry.utils.getProperty(this.document.system, target);
-
-        if (target === 'subclasses') {
-            const subclass = await foundry.utils.fromUuid(uuid);
-            await subclass?.update({ 'system.linkedClass': null });
-        }
-
         await this.document.update({ [`system.${target}`]: prop.filter(i => i && i.uuid !== uuid).map(x => x.uuid) });
     }
 

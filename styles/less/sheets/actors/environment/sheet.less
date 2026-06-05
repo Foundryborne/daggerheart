@@ -5,10 +5,6 @@
 .appTheme({
     &.environment {
         background-image: url('../assets/parchments/dh-parchment-dark.png');
-
-        .attribution-header-label {
-            background-image: url('../assets/parchments/dh-parchment-dark.png');
-        }
     }
 }, {
     &.environment {
@@ -20,8 +16,6 @@
     .tab {
         flex: 1;
         overflow-y: auto;
-        scrollbar-width: thin;
-        scrollbar-color: light-dark(@dark-blue, @golden) transparent;
 
         &.active {
             overflow: hidden;

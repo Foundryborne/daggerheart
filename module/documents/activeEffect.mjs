@@ -169,27 +169,37 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         super._applyChangeUnguided(actor, change, changes, options);
     }
 
+    /** Recursively finds the first parent document of the given object */
+    static #resolveParentDocument(model, documentClass) {
+        if (!model) return null;
+        return model instanceof documentClass
+            ? model
+            : model.parent
+              ? this.#resolveParentDocument(model.parent, documentClass)
+              : null;
+    }
+
     static getChangeValue(model, change, effect) {
-        let key = change.value.toString();
-        const isOriginTarget = key.toLowerCase().includes('origin.@');
-        let parseModel = model;
-        if (isOriginTarget && effect.origin) {
-            key = change.key.replaceAll(/origin\.@/gi, '@');
-            try {
-                const originEffect = foundry.utils.fromUuidSync(effect.origin);
-                const doc =
-                    originEffect.parent?.parent instanceof game.system.api.documents.DhpActor
-                        ? originEffect.parent
-                        : originEffect.parent.parent;
-                if (doc) parseModel = doc;
-            } catch (_) {}
+        let value = change.value.toString();
+        const useOrigin = value.toLowerCase().includes('origin.@') && effect.origin;
+        let origin = null;
+        if (effect.origin) {
+            if (useOrigin) value = value.replaceAll(/origin\.@/gi, '@');
+            const originEffect = foundry.utils.fromUuidSync(effect.origin);
+            origin = this.#resolveParentDocument(originEffect, Item);
         }
 
+        // Get the actor and item documents. Note that actor roll data is inclusive of system roll data
+        const actor = this.#resolveParentDocument(model, Actor);
+        const item =
+            (useOrigin ? origin : null) ??
+            this.#resolveParentDocument(effect.parent, Item) ??
+            (origin?.actor === actor ? origin : null);
         const stackingParsedValue = effect.system.stacking
-            ? Roll.replaceFormulaData(key, { stacks: effect.system.stacking.value })
-            : key;
-        const evalValue = itemAbleRollParse(stackingParsedValue, parseModel, effect.parent);
-        return evalValue ?? key;
+            ? Roll.replaceFormulaData(value, { stacks: effect.system.stacking.value })
+            : value;
+        const evalValue = this.effectSafeEval(itemAbleRollParse(stackingParsedValue, actor, item));
+        return evalValue ?? value;
     }
 
     /**

@@ -1,0 +1,15 @@
+<section class="group-roll tab {{#if tabs.groupRoll.active}} active{{/if}}" data-group="{{tabs.groupRoll.group}}" data-tab="{{tabs.groupRoll.id}}">
+    <h1>{{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.title"}}</h1>
+    <header><span>{{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.members"}}</span></header>
+    <div class="aiding-members">
+        {{#each aidKeys as |key|}}
+            <div data-application-part="{{key}}"></div>
+        {{/each}}
+    </div>
+
+    <header><span>{{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.leader"}}</span></header>
+    <div data-application-part="leader"></div>
+    <header><span>{{localize "DAGGERHEART.GENERAL.result.single"}}</span></header>
+    <div data-application-part="result"></div>
+    <div data-application-part="footer"></div>
+</section>

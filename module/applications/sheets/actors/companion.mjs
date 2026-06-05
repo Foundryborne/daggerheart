@@ -11,7 +11,17 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
             toggleStress: DhCompanionSheet.#toggleStress,
             actionRoll: DhCompanionSheet.#actionRoll,
             levelManagement: DhCompanionSheet.#levelManagement
-        }
+        },
+        contextMenus: [
+            {
+                handler: DHBaseActorSheet.getBaseAttackContextOptions,
+                selector: '[data-item-uuid][data-type="attack"]',
+                options: {
+                    parentClassHooks: false,
+                    fixed: true
+                }
+            }
+        ]
     };
 
     static PARTS = {

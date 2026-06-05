@@ -3,7 +3,7 @@ aside[role='tooltip']:has(div.daggerheart.dh-style.tooltip),
 #tooltip.bordered-tooltip {
     .tooltip-title {
         font-size: var(--font-size-20);
-        color: light-dark(@dark-blue, @golden);
+        color: @color-text-emphatic;
         font-weight: 700;
     }
 
@@ -47,9 +47,6 @@ aside[role='tooltip']:has(div.daggerheart.dh-style.tooltip),
         max-height: 150px;
         overflow-y: auto;
         position: relative;
-
-        scrollbar-width: thin;
-        scrollbar-color: light-dark(@dark-blue, @golden) transparent;
 
         .tooltip-tag {
             display: flex;

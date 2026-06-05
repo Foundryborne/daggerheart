@@ -45,7 +45,7 @@
           "hitPoints": {
             "value": {
               "dice": "d10",
-              "bonus": 1,
+              "bonus": 2,
               "multiplier": "prof",
               "flatMultiplier": 1,
               "custom": {

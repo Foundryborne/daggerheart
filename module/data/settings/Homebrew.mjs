@@ -1,4 +1,5 @@
 import { defaultRestOptions } from '../../config/generalConfig.mjs';
+import { resetAndRerenderActors } from '../../helpers/utils.mjs';
 import { ActionsField } from '../fields/actionField.mjs';
 
 const currencyField = (initial, label, icon) =>
@@ -54,7 +55,7 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
             maxDomains: new fields.NumberField({
                 required: true,
                 integer: true,
-                min: 1,
+                min: 0,
                 initial: 2,
                 label: 'DAGGERHEART.SETTINGS.Homebrew.FIELDS.maxDomains.label'
             }),
@@ -196,6 +197,12 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
         return source;
     }
 
+    _initialize(options) {
+        super._initialize(options);
+        this.maxDomains ||= Infinity;
+        this.maxLoadout ||= Infinity;
+    }
+
     /** Invoked by the setting when data changes */
     handleChange() {
         if (this.maxFear) {
@@ -203,7 +210,7 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
         }
 
         this.refreshConfig();
-        this.#resetActors();
+        resetAndRerenderActors();
     }
 
     /** Update config values based on homebrew data. Make sure the references don't change */
@@ -222,29 +229,6 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                 ...config.custom,
                 ...config.base
             });
-        }
-    }
-
-    /**
-     * Triggers a reset and non-forced re-render on all given actors (if given)
-     * or all world actors and actors in all scenes to show immediate results for a changed setting.
-     */
-    #resetActors() {
-        const actors = new Set(
-            [
-                game.actors.contents,
-                game.scenes.contents.flatMap(s => s.tokens.contents).flatMap(t => t.actor ?? [])
-            ].flat()
-        );
-        for (const actor of actors) {
-            for (const app of Object.values(actor.apps)) {
-                for (const element of app.element?.querySelectorAll('prose-mirror.active')) {
-                    element.open = false; // This triggers a save
-                }
-            }
-
-            actor.reset();
-            actor.render();
         }
     }
 }

@@ -1,4 +1,4 @@
-import { getFeaturesHTMLData } from '../../helpers/utils.mjs';
+import { fromUuids, getFeaturesHTMLData } from '../../helpers/utils.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 import BaseDataItem from './base.mjs';
 
@@ -27,6 +27,10 @@ export default class DHCommunity extends BaseDataItem {
 
     /**@inheritdoc */
     async getDescriptionData() {
+        // Preload all community features for acquisition from the cache
+        // todo: make feature acquisition async and replace feature helpers for methods
+        await fromUuids(this._source.features);
+
         const baseDescription = this.description;
         const features = await getFeaturesHTMLData(this.features);
 

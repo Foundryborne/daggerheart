@@ -1,6 +1,6 @@
 import DHBaseActorSettings from '../../applications/sheets/api/actor-setting.mjs';
 import DHItem from '../../documents/item.mjs';
-import { getScrollTextData } from '../../helpers/utils.mjs';
+import { createShallowProxy, getScrollTextData } from '../../helpers/utils.mjs';
 
 const fields = foundry.data.fields;
 
@@ -180,8 +180,7 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
      * @returns {object}
      */
     getRollData() {
-        const data = { ...this };
-        return data;
+        return createShallowProxy(this);
     }
 
     /**

@@ -1,0 +1,30 @@
+{{#if (and hasRolled leader.roll)}}
+    <div class="group-roll-results with-result {{groupRoll.totalDualityClass}}">
+        <div class="row leader">
+            <span class="label">{{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.leaderRoll"}}</span>
+            <span class="duality-label">
+                {{leader.roll.total}} 
+                <span class="with">{{localize "DAGGERHEART.GENERAL.withThing" thing=leader.roll.totalLabel}}</span>
+            </span>
+        </div>
+        <div class="row modifiers">
+            <span class="label">{{localize "DAGGERHEART.GENERAL.Modifier.plural"}}</span>
+            <div class="item-tags">
+                {{#each groupRoll.modifiers as |modifier|}}
+                    <span class="tag {{#if (gte modifier 0)}}success{{else}}failure{{/if}}">
+                        {{numberFormat modifier sign=true}}
+                    </span>
+                {{/each}}
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="row total">
+            <span class="label">{{localize "DAGGERHEART.GENERAL.total"}}</span>
+            <span class="duality-label"><span class="value">{{groupRoll.total}}</span> {{groupRoll.totalLabel}}</span>
+        </div>
+    </div>
+{{else}}
+    <div class="group-roll-results empty">
+        {{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.resultsHint"}}
+    </div>
+{{/if}}

@@ -1,32 +1,43 @@
 <section class="initialization-container tab {{#if tabs.initialization.active}} active{{/if}}" data-group="{{tabs.initialization.group}}" data-tab="{{tabs.initialization.id}}">
+    <h1>{{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.initializationTitle"}}</h1>
+    <header><span>{{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.leader"}}</span></header>
+    <section class="main-roll {{#if selectedLeaderDisabled}}inactive{{/if}}">
+        <div class="hint">{{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.selectLeaderHint"}}</div>
+        <select class="main-character-field" {{#if selectedLeaderDisabled}}disabled{{/if}}>
+            {{selectOptions selectedLeaderOptions selected=selectedLeader.memberId blank="" }}
+        </select>
+    </section>
+
+    <header><span>{{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.members"}}</span></header>
+    <div class="hint">{{"DAGGERHEART.APPLICATIONS.GroupRollSelect.selectParticipantsHint"}}</div>
     <div class="members-container">
         {{#each memberSelection as |member|}}
-            <a 
-                class="member-container {{#unless member.selected}}inactive {{#if ../allselected}}locked{{/if}}{{/unless}}" 
-                data-action="toggleSelectMember" data-id="{{member.id}}" {{#if (and (not member.selected) ../allSelected)}}disabled{{/if}}
+            <button 
+                class="plain member-container {{#unless member.selected}}inactive {{#if ../allselected}}locked{{/if}}{{/unless}}"
+                data-action="toggleSelectMember" 
+                data-id="{{member.id}}" 
+                {{#if (and (not member.selected) ../allSelected)}}disabled{{/if}}
             >
-                <span class="member-name">{{member.name}}</span>
-                <img src="{{member.img}}" />
-            </a>
+                <img class="portrait" src="{{member.img}}" />
+                <span class="name">
+                    {{member.name}}
+                    {{#if (eq @root.selectedLeader.memberId member.id)}}
+                        <i class="fa-solid fa-crown" inert></i>
+                    {{/if}}
+                </span>
+                <input type="checkbox" {{#if member.selected}}checked{{/if}} />
+            </button>
         {{/each}} 
     </div>
 
-    <div class="main-roll {{#if selectedLeaderDisabled}}inactive{{/if}}">
-        <div class="form-group">
-            <label>{{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.leader"}}</label>
-            <div class="form-fields">
-                <select class="main-character-field" {{#if selectedLeaderDisabled}}disabled{{/if}}>
-                    {{selectOptions selectedLeaderOptions selected=selectedLeader.memberId blank="" }}
-                </select>
-            </div>
-        </div>
-    </div>
-
     <footer>
-        <button type="button" data-action="startGroupRoll" {{#unless canStartGroupRoll}}disabled{{/unless}}>{{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.startGroupRoll"}} <i class="fa-solid fa-arrow-right-long"></i></button>
         <div class="finish-tools {{#unless canStartGroupRoll}}inactive{{/unless}}">
             <span>{{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.openDialogForAll"}}</span>
             <input type="checkbox" class="openforall-field" {{#unless canStartGroupRoll}}disabled{{/unless}} {{checked openForAllPlayers}} />
         </div>
+        <button type="button" data-action="startGroupRoll" {{#unless canStartGroupRoll}}disabled{{/unless}}>
+            <i class="fa-solid fa-arrow-right-long" inert></i>
+            {{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.startGroupRoll"}}
+        </button>
     </footer>
 </section>

@@ -189,17 +189,14 @@ export const getDeleteKeys = (property, innerProperty, innerPropertyDefaultValue
 
 // Fix on Foundry native formula replacement for DH
 const nativeReplaceFormulaData = Roll.replaceFormulaData;
-Roll.replaceFormulaData = function (formula, baseData = {}, { missing, warn = false } = {}) {
+Roll.replaceFormulaData = function (formula, data = {}, { missing, warn = false } = {}) {
     /* Inserting global data */
-    const data = {
-        ...baseData,
-        partySize: game.actors?.party?.system.partyMembers.length ?? 0
-    };
+    const defaultingTypes = [
+        ...Object.keys(CONFIG.DH.GENERAL.multiplierTypes).map(x => ({ term: x, default: 1 })),
+        { term: 'partySize', default: game.actors?.party?.system.partyMembers.length ?? 0 }
+    ];
 
-    const terms = Object.keys(CONFIG.DH.GENERAL.multiplierTypes).map(type => {
-        return { term: type, default: 1 };
-    });
-    formula = terms.reduce((a, c) => a.replaceAll(`@${c.term}`, data[c.term] ?? c.default), formula);
+    formula = defaultingTypes.reduce((a, c) => a.replaceAll(`@${c.term}`, data[c.term] ?? c.default), formula);
     return nativeReplaceFormulaData(formula, data, { missing, warn });
 };
 
@@ -375,10 +372,11 @@ export const itemAbleRollParse = (value, actor, item) => {
 
     const isItemTarget = value.toLowerCase().includes('item.@');
     const slicedValue = isItemTarget ? value.replaceAll(/item\.@/gi, '@') : value;
-    const model = isItemTarget ? item : actor;
+    const model = isItemTarget || item instanceof Item ? item : actor;
+    const rollData = isItemTarget || !model?.getRollData ? model : model.getRollData();
 
     try {
-        return Roll.replaceFormulaData(slicedValue, isItemTarget || !model?.getRollData ? model : model.getRollData());
+        return Roll.replaceFormulaData(slicedValue, rollData);
     } catch (_) {
         return '';
     }
@@ -451,13 +449,8 @@ export async function createEmbeddedItemsWithEffects(actor, baseData) {
             effects: data.effects?.map(effect => effect.toObject())
         });
     }
-
     await actor.createEmbeddedDocuments('Item', effectData);
 }
-
-export const slugify = name => {
-    return name.toLowerCase().replaceAll(' ', '-').replaceAll('.', '');
-};
 
 export function shuffleArray(array) {
     let currentIndex = array.length;
@@ -759,9 +752,12 @@ export function getArmorSources(actor) {
         // Get the origin item. Since the actor is already loaded, it should already be cached
         // Consider the relative function versions if this causes an issue
         const origin = doc.origin ? foundry.utils.fromUuidSync(doc.origin) : doc;
+        const useParentName = doc.parent && !(doc.parent instanceof Actor);
+        const name = doc.origin || !useParentName ? doc.name : doc.parent.name;
+
         return {
             origin,
-            name: origin.name,
+            name,
             document: doc,
             data: doc.system.armor ?? doc.system.armorData,
             disabled: !!doc.disabled || !!doc.isSuppressed
@@ -793,6 +789,26 @@ export function getArmorSources(actor) {
 }
 
 /**
+ * Triggers a reset and non-forced re-render on all given actors (if given)
+ * or all world actors and actors in all scenes to show immediate results for a changed setting.
+ */
+export function resetAndRerenderActors() {
+    const actors = new Set(
+        [game.actors.contents, game.scenes.contents.flatMap(s => s.tokens.contents).flatMap(t => t.actor ?? [])].flat()
+    );
+    for (const actor of actors) {
+        for (const app of Object.values(actor.apps)) {
+            for (const element of app.element?.querySelectorAll('prose-mirror.active')) {
+                element.open = false; // This triggers a save
+            }
+        }
+
+        actor.reset();
+        actor.render();
+    }
+}
+
+/**
  * Returns an array sorted by a function that returns a thing to compare, or an array to compare in order
  * Similar to lodash's sortBy function.
  */
@@ -811,4 +827,95 @@ export function sortBy(arr, fn) {
         return directCompare(resultA, resultB);
     };
     return arr.sort(cmp);
+}
+
+/**
+ * Creates a proxy that allows retrieval of top data but diverts updates to a different object.
+ * Generally used for roll data
+ */
+export function createShallowProxy(obj) {
+    if (obj._isShallowProxy) return obj;
+
+    const overrides = {};
+    return new Proxy(obj, {
+        get(target, prop, receiver) {
+            if (prop === '_isShallowProxy') return true;
+            if (prop in overrides) return overrides[prop];
+            return Reflect.get(target, prop, receiver);
+        },
+        set(_target, prop, newValue) {
+            overrides[prop] = newValue;
+            return true;
+        },
+        deleteProperty(_target, prop) {
+            delete overrides[prop];
+            return true;
+        },
+        has(target, key) {
+            return key in overrides || key in target;
+        }
+    });
+}
+
+export function camelize(str) {
+    return str
+        .replace(/(?:^\w|[A-Z]|\b\w)/g, (part, index) => {
+            return index === 0 ? part.toLowerCase() : part.toUpperCase();
+        })
+        .replace(/\s+/g, '');
+}
+
+/** Bulk load a list of documents using uuids. Returns the documents in the same order */
+export async function fromUuids(uuids) {
+    // Set up base entries. Each step works on a sublist of these objects
+    const entries = uuids.map(uuid => ({
+        uuid,
+        parsed: foundry.utils.parseUuid(uuid),
+        value: foundry.utils.fromUuidSync(uuid)
+    }));
+
+    // Handle missing uuids for embedded documents first
+    // A value may be index data, so we check if its a document
+    const packEmbeddedEntries = entries.filter(
+        e =>
+            !(e.value instanceof Document) &&
+            e.parsed &&
+            e.parsed.collection instanceof foundry.documents.collections.CompendiumCollection &&
+            e.parsed.embedded.length > 0
+    );
+    await Promise.all(
+        packEmbeddedEntries.map(async e => {
+            e.value = await fromUuid(e.uuid);
+            return true;
+        })
+    );
+
+    // Handle missing top level pack stuff, by batching per pack
+    const missingTopLevel = entries.filter(e => !(e.value instanceof Document) && e.value?.pack);
+    for (const packGroup of Object.values(Object.groupBy(missingTopLevel, e => e.value.pack))) {
+        const pack = game.packs.get(packGroup[0].value.pack);
+        if (!pack) continue;
+
+        const ids = packGroup.map(p => p.parsed?.id).filter(id => !!id);
+        const documents = await pack.getDocuments({ _id__in: ids });
+        for (const p of packGroup) {
+            p.value = documents.find(d => d.id === p.parsed.id) ?? p.value;
+        }
+    }
+
+    return entries.map(e => e.value);
+}
+/**
+ * Triggers DiceSoNice rolls or dice roll audio for rolls. Not used for duality rolls.
+ * @param { Roll[] } rolls
+ * @return { void }
+ */
+export async function triggerChatRollFx(rolls, options = { whisper: false, blind: false }) {
+    const { whisper, blind } = options;
+    if (game.modules.get('dice-so-nice')?.active) {
+        const rerollPromises = rolls.map(roll => game.dice3d.showForRoll(roll, game.user, true, whisper, blind));
+        await Promise.allSettled(rerollPromises);
+    } else {
+        foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
+    }
 }

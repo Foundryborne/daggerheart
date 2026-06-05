@@ -249,9 +249,6 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
 
     /** @inheritDoc */
     _drawBar(number, bar, data) {
-        const val = Number(data.value);
-        const pct = Math.clamp(val, 0, data.max) / data.max;
-
         // Determine sizing
         const { width, height } = this.document.getSize();
         const s = canvas.dimensions.uiScale;
@@ -259,17 +256,19 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         const bh = 8 * (this.document.height >= 2 ? 1.5 : 1) * s;
 
         // Determine the color to use
-        const fillColor =
-            number === 0 ? foundry.utils.Color.fromRGB([1, 0, 0]) : foundry.utils.Color.fromString('#0032b1');
+        const Color = foundry.utils.Color;
+        const fillColor = number === 0 ? Color.fromRGB([1, 0, 0]) : Color.fromString('#0032b1');
+        const emptyColor = Color.fromRGB([0, 0, 0]);
 
-        // Draw the bar
-        const widthUnit = bw / data.max;
+        // Draw the bar (accounting floating point numbers from bar animations)
+        const widthUnit = bw / Math.ceil(data.max);
         bar.clear().lineStyle(s, 0x000000, 1.0);
-        const sections = [...Array(data.max).keys()];
-        for (let mark of sections) {
+        const sections = [...Array(Math.ceil(data.max)).keys()];
+        for (const mark of sections) {
             const x = mark * widthUnit;
-            const marked = mark + 1 <= data.value;
-            const color = marked ? fillColor : foundry.utils.Color.fromRGB([0, 0, 0]);
+            const marked = mark < Math.ceil(data.value);
+            const remainder = mark === Math.ceil(data.value) - 1 ? data.value % 1 : 0;
+            const color = !marked ? emptyColor : remainder ? emptyColor.mix(fillColor, remainder) : fillColor;
             if (mark === 0 || mark === sections.length - 1) {
                 bar.beginFill(color, marked ? 1.0 : 0.5).drawRect(x, 0, widthUnit, bh, 2 * s); // Would like drawRoundedRect, but it's very troublsome with the corners. Leaving for now.
             } else {

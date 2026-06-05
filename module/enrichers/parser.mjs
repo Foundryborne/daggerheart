@@ -8,7 +8,7 @@ export function parseInlineParams(paramString, { first } = {}) {
     const parts = paramString.split('|').map(x => x.trim());
     const params = {};
     for (const [idx, param] of parts.entries()) {
-        if (first && idx === 0) {
+        if (first && idx === 0 && !param.includes(':')) {
             params[first] = param;
         } else {
             const parts = param.split(':');

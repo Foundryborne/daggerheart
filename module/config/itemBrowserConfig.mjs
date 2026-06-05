@@ -70,6 +70,49 @@ export const typeConfig = {
             }
         ]
     },
+    environments: {
+        columns: [
+            {
+                key: 'system.tier',
+                label: 'DAGGERHEART.GENERAL.Tiers.singular'
+            },
+            {
+                key: 'system.type',
+                label: 'DAGGERHEART.GENERAL.type',
+                format: type => {
+                    if (!type) return '-';
+
+                    return CONFIG.DH.ACTOR.environmentTypes[type].label;
+                }
+            }
+        ],
+        filters: [
+            {
+                key: 'system.tier',
+                label: 'DAGGERHEART.GENERAL.Tiers.singular',
+                field: 'system.api.models.actors.DhEnvironment.schema.fields.tier'
+            },
+            {
+                key: 'system.type',
+                label: 'DAGGERHEART.GENERAL.type',
+                field: 'system.api.models.actors.DhEnvironment.schema.fields.type'
+            },
+            {
+                key: 'system.difficulty',
+                name: 'difficulty.min',
+                label: 'DAGGERHEART.UI.ItemBrowser.difficultyMin',
+                field: 'system.api.models.actors.DhEnvironment.schema.fields.difficulty',
+                operator: 'gte'
+            },
+            {
+                key: 'system.difficulty',
+                name: 'difficulty.max',
+                label: 'DAGGERHEART.UI.ItemBrowser.difficultyMax',
+                field: 'system.api.models.actors.DhEnvironment.schema.fields.difficulty',
+                operator: 'lte'
+            }
+        ]
+    },
     items: {
         columns: [
             {
@@ -177,8 +220,8 @@ export const typeConfig = {
                 key: 'system.secondary',
                 label: 'DAGGERHEART.UI.ItemBrowser.subtype',
                 choices: [
-                    { value: false, label: 'DAGGERHEART.ITEMS.Weapon.primaryWeapon' },
-                    { value: true, label: 'DAGGERHEART.ITEMS.Weapon.secondaryWeapon' }
+                    { value: false, label: 'DAGGERHEART.ITEMS.Weapon.primaryWeapon.full' },
+                    { value: true, label: 'DAGGERHEART.ITEMS.Weapon.secondaryWeapon.full' }
                 ]
             },
             {
@@ -383,7 +426,8 @@ export const typeConfig = {
             {
                 key: 'system.linkedClass',
                 label: 'TYPES.Item.class',
-                format: linkedClass => linkedClass?.name ?? 'DAGGERHEART.UI.ItemBrowser.missing'
+                format: linkedClass =>
+                    foundry.utils.fromUuidSync(linkedClass)?.name ?? 'DAGGERHEART.UI.ItemBrowser.missing'
             },
             {
                 key: 'system.spellcastingTrait',
@@ -393,15 +437,20 @@ export const typeConfig = {
         ],
         filters: [
             {
-                key: 'system.linkedClass.uuid',
+                key: 'system.linkedClass',
                 label: 'TYPES.Item.class',
-                choices: items => {
-                    const list = items
-                        .filter(item => item.system.linkedClass)
-                        .map(item => ({
-                            value: item.system.linkedClass.uuid,
-                            label: item.system.linkedClass.name
-                        }));
+                choices: async items => {
+                    const list = [];
+                    for (const item of items.filter(item => item.system.linkedClass)) {
+                        const linkedClass = await foundry.utils.fromUuid(item.system.linkedClass);
+                        if (linkedClass) {
+                            list.push({
+                                value: linkedClass.uuid,
+                                label: linkedClass.name
+                            });
+                        }
+                    }
+
                     return list.reduce((a, c) => {
                         if (!a.find(i => i.value === c.value)) a.push(c);
                         return a;
@@ -555,7 +604,8 @@ export const compendiumConfig = {
         id: 'environments',
         keys: ['environments'],
         label: 'DAGGERHEART.UI.ItemBrowser.folders.environments',
-        type: ['environment']
+        type: ['environment'],
+        listType: 'environments'
     },
     beastforms: {
         id: 'beastforms',

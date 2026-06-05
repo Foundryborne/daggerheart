@@ -1,5 +1,6 @@
 @import '../../../utils/colors.less';
 @import '../../../utils/fonts.less';
+@import '../../../utils/mixin.less';
 
 .application.sheet.daggerheart.actor.dh-style.character {
     .tab.biography {
@@ -9,12 +10,15 @@
             gap: 10px;
             height: 100%;
             overflow-y: auto;
-            mask-image: linear-gradient(0deg, transparent 0%, black 10%, black 98%, transparent 100%);
-            padding-bottom: 10px;
+            padding-top: 8px;
+            padding-bottom: 20px;
             height: 100%;
+            .with-scroll-shadows();
+        }
 
-            scrollbar-width: thin;
-            scrollbar-color: light-dark(@dark-blue, @golden) transparent;
+        .characteristics-section {
+            gap: 20px;
+            padding: 0 10px;
         }
 
         .biography-section {

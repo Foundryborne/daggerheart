@@ -1,0 +1,95 @@
+{{#with (ifThen (eq partId "leader") leader (lookup members partId))}}
+    <section class="member-roll-container {{type}} {{#if @root.allHaveRolled}}select-padding{{/if}} {{#unless isEditable}}inactive{{/unless}}" data-member-key="{{@root.partId}}">
+        <img class="portrait" src="{{img}}" />
+        <div class="name-area">
+            <span class="name">{{name}}</span>
+            {{#if hasRolled}}
+                <div class="trait item-tags">
+                    <div class="tag">{{rollChoiceLabel}}</div>
+                    {{#if modifier}}
+                        <span class="tag {{#if (gte modifier 0)}}success{{else}}failure{{/if}}">
+                            {{numberFormat modifier sign=true}}
+                        </span>
+                    {{/if}}
+                    {{#if isEditable}}
+                        <div class="buttons">
+                            <button type="button" data-action="makeRoll" class="plain" data-tooltip="DAGGERHEART.GENERAL.Roll.basic">
+                                <img class="roll-img duality" src="systems/daggerheart/assets/icons/dice/duality/DualityBW.svg" alt="2d12">
+                            </button>
+                            <button 
+                                type="button" 
+                                data-action="removeRoll" 
+                                class="plain icon fa-solid fa-trash" 
+                                data-tooltip="DAGGERHEART.APPLICATIONS.GroupRollSelect.removeRoll"
+                            ></button>
+                        </div>
+                    {{/if}}
+                </div>
+            {{else if readyToRoll}}
+                <div class="trait">
+                    {{localize "DAGGERHEART.CONFIG.RollTypes.trait.name" }}
+                    <select name="{{basePath}}.rollChoice" {{#if hasRolled}}disabled{{/if}}>
+                        {{selectOptions ../traitOptions selected=rollChoice localize=true}}
+                    </select>
+                </div>
+            {{/if}}
+        </div>
+        {{#if roll}}
+            <div class="with-result {{#if roll.withHope}}hope{{else if roll.withFear}}fear{{else}}critical{{/if}}">
+                <div class="roll-data">
+                    <div class="duality-label">
+                        {{roll.total}} 
+                        <span class="with">{{withLabelShort}}</span>
+                    </div>
+                    <div class="roll-dice-container">
+                        <a class="roll-dice" data-action="rerollDice" data-member="{{@root.partId}}" data-dice-type="hope">
+                            <span class="dice-label">{{roll.dHope.total}}</span>
+                            <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/" roll.dHope.denomination ".svg"}}" />
+                        </a>
+                        <a class="roll-dice" data-action="rerollDice" data-member="{{@root.partId}}" data-dice-type="fear">
+                            <span class="dice-label">{{roll.dFear.total}}</span>
+                            <img src="{{concat "systems/daggerheart/assets/icons/dice/fear/" roll.dFear.denomination ".svg"}}" />
+                        </a>
+                        {{#if roll.hasAdvantage}}
+                            <span class="roll-operator">+</span>
+                            <span class="roll-dice">
+                                <span class="dice-label">{{roll.dAdvantage.total}}</span>
+                                <img src="{{concat "systems/daggerheart/assets/icons/dice/adv/d" roll.advantageFaces ".svg"}}" />
+                            </span>
+                        {{/if}}
+                        {{#if roll.hasDisadvantage}}
+                            <span class="roll-operator">-</span>
+                            <span class="roll-dice">
+                                <span class="dice-label">{{roll.dDisadvantage.total}}</span>
+                                <img src="{{concat "systems/daggerheart/assets/icons/dice/disadv/d" roll.advantageFaces ".svg"}}" />
+                            </span>
+                        {{/if}}
+                        <span class="roll-operator ">{{#if (gte roll.modifierTotal 0)}}+{{else}}-{{/if}}</span>
+                        <span class="roll-value">{{positive roll.modifierTotal}}</span>
+                    </div>
+                </div>
+                {{#if (and @root.isGM (ne ../partId "leader"))}}
+                    <div class="buttons">
+                        <button 
+                            type="button" 
+                            data-action="markSuccessful" 
+                            data-success="true" 
+                            class="plain icon fa-solid fa-check {{#if modifier}}{{#if successful}}active{{else}}inactive{{/if}}{{/if}}"
+                            data-tooltip="DAGGERHEART.GENERAL.success"
+                        ></button>
+                        <button 
+                            type="button" 
+                            data-action="markSuccessful" 
+                            class="plain icon fa-solid fa-times {{#if modifier}}{{#if successful}}inactive{{else}}active{{/if}}{{/if}}"
+                            data-tooltip="DAGGERHEART.GENERAL.failure"
+                        ></button>
+                    </div>
+                {{/if}}
+            </div>
+        {{else if (and readyToRoll isEditable)}}
+            <a class="roll-button initial-roll" data-action="makeRoll" data-member="{{@root.partId}}" data-tooltip="DAGGERHEART.GENERAL.Roll.basic">
+                <img class="roll-img duality" src="systems/daggerheart/assets/icons/dice/duality/DualityBW.svg" alt="2d12">
+            </a>
+        {{/if}}
+    </section>
+{{/with}}

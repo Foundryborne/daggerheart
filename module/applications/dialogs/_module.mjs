@@ -10,7 +10,6 @@ export { default as ImageSelectDialog } from './imageSelectDialog.mjs';
 export { default as ItemTransferDialog } from './itemTransfer.mjs';
 export { default as MulticlassChoiceDialog } from './multiclassChoiceDialog.mjs';
 export { default as OwnershipSelection } from './ownershipSelection.mjs';
-export { default as RerollDamageDialog } from './rerollDamageDialog.mjs';
 export { default as ResourceDiceDialog } from './resourceDiceDialog.mjs';
 export { default as ActionSelectionDialog } from './actionSelectionDialog.mjs';
 export { default as TagTeamDialog } from './tagTeamDialog.mjs';

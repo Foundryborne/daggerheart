@@ -1,17 +1,19 @@
 @import '../../utils/colors.less';
 
-.theme-light .application.daggerheart.dh-style.dialog {
-    .tab.details {
-        .traits-inner-container .trait-container {
-            background: url('../assets/svg/trait-shield-light.svg') no-repeat;
+.appTheme({}, {
+    &.dialog.character-settings {
+        .tab.details {
+            .traits-inner-container .trait-container {
+                background: url('../assets/svg/trait-shield-light.svg') no-repeat;
 
-            div {
-                filter: drop-shadow(0 0 3px @beige);
-                text-shadow: 0 0 3px @beige;
+                div {
+                    filter: drop-shadow(0 0 3px @beige);
+                    text-shadow: 0 0 3px @beige;
+                }
             }
         }
     }
-}
+});
 
 .application.daggerheart.dh-style.dialog {
     .tab.details {
