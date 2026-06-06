@@ -38,11 +38,13 @@ You can find the documentation here: https://github.com/Foundryborne/daggerheart
 
 3. **Configure your Foundry paths:**
 
-    ```bash
-    npm run setup:dev -- --foundry-path="/path/to/foundry/main.js" --data-path="/path/to/data"
-    ```
+    Copy `.env.example` to `.env` and set up the foundry path and data path. The foundry path must point to main.js, and the data path must point the folder containing the Data folder itself (but not the `Data` folder itself).
 
-4. **Start developing:**
+4. **Setup symlinks:**
+
+    In a shell with elevated privilages, run `npm run createSymlink`. It will add a foundry folder for types, and add a symlink to the daggerheart folder into your foundry data.
+
+5. **Start developing:**
     ```bash
     npm start
     ```
@@ -51,7 +53,7 @@ You can find the documentation here: https://github.com/Foundryborne/daggerheart
 
 - `npm start` - Start development with file watching and Foundry launching
 - `npm run build` - One-time build
-- `npm run setup:dev -- --foundry-path="<path>" --data-path="<path>"` - Configure development environment
+- `npm run createSymlink` - Setup types and output symlinks
 
 ### Notes
 

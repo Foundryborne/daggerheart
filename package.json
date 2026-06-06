@@ -18,7 +18,6 @@
     "pullYMLtoLDB": "node ./tools/pullYMLtoLDB.mjs",
     "pullYMLtoLDBBuild": "node ./tools/pullYMLtoLDB.mjs --build",
     "createSymlink": "node ./tools/create-symlink.mjs",
-    "setup:dev": "node ./tools/dev-setup.mjs",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "prepare": "husky"
