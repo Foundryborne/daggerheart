@@ -116,25 +116,29 @@ class ResourcesField extends fields.TypedObjectField {
 }
 
 class GoldField extends fields.SchemaField {
-    constructor() {
-        super({
-            coins: new fields.NumberField({ initial: 0, integer: true }),
-            handfuls: new fields.NumberField({ initial: 1, integer: true }),
-            bags: new fields.NumberField({ initial: 0, integer: true }),
-            chests: new fields.NumberField({ initial: 0, integer: true })
-        });
+    constructor({ initial, ...options } = {}) {
+        super(
+            {
+                coins: new fields.NumberField({ initial: 0, integer: true }),
+                handfuls: new fields.NumberField({ initial: 1, integer: true }),
+                bags: new fields.NumberField({ initial: 0, integer: true }),
+                chests: new fields.NumberField({ initial: 0, integer: true })
+            },
+            options
+        );
+        this._initialCallback = initial;
     }
-}
 
-class CharacterGoldField extends GoldField {
-    getInitialValue(options) {
-        const base = super.getInitialValue(options);
-        const initialCurrency = CONFIG.DH.RESOURCE.character.initialCurrency;
-        for (const type of ['coins', 'handfuls', 'bags', 'chests']) {
-            base[type] = initialCurrency[type];
+    getInitialValue(data) {
+        if (this._initialCallback) {
+            try {
+                return this._initialCallback(data);
+            } catch {
+                /* settings not yet available */
+            }
         }
-        return base;
+        return super.getInitialValue(data);
     }
 }
 
-export { attributeField, ResourcesField, GoldField, CharacterGoldField, stressDamageReductionRule, bonusField };
+export { attributeField, ResourcesField, GoldField, stressDamageReductionRule, bonusField };

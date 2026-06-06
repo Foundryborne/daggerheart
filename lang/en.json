@@ -2888,7 +2888,7 @@
                     "iconNameHint": "Icons are from fontawesome",
                     "bagName": "Bag Name",
                     "chestName": "Chest Name",
-                    "quantityName": "Quantity Name",
+                    "denomination": "Denomination",
                     "initialAmount": "Starting Amount"
                 },
                 "domains": {

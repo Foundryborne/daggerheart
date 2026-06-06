@@ -239,11 +239,6 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                 ...config.base
             });
         }
-
-        const currencyInitial = CONFIG.DH.RESOURCE.character.initialCurrency;
-        for (const type of ['coins', 'handfuls', 'bags', 'chests']) {
-            currencyInitial[type] = this.currency[type].initialAmount;
-        }
     }
 }
 
