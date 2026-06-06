@@ -116,7 +116,7 @@ class ResourcesField extends fields.TypedObjectField {
 }
 
 class GoldField extends fields.SchemaField {
-    constructor({ initial, ...options } = {}) {
+    constructor(options = {}) {
         super(
             {
                 coins: new fields.NumberField({ initial: 0, integer: true }),
@@ -126,18 +126,6 @@ class GoldField extends fields.SchemaField {
             },
             options
         );
-        this._initialCallback = initial;
-    }
-
-    getInitialValue(data) {
-        if (this._initialCallback) {
-            try {
-                return this._initialCallback(data);
-            } catch {
-                /* settings not yet available */
-            }
-        }
-        return super.getInitialValue(data);
     }
 }
 
