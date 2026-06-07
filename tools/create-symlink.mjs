@@ -66,5 +66,5 @@ async function createDaggerheartSymlink() {
 }
 
 await createFoundrySymlink();
-console.log();
+console.log(); // Add empty newline
 await createDaggerheartSymlink();
