@@ -16,10 +16,10 @@ export function readEnvFile() {
     });
 
     // Determine foundry path, handling if its an electron install (nested structure)
-    const foundryPath = path.normalize(process.env.FOUNDRY_MAIN_PATH);
-    const dataPath = path.normalize(process.env.FOUNDRY_DATA_PATH);
-    if (!foundryPath.endsWith(path.join('app', 'main.js'))) {
-        console.error('Configured FOUNDRY_MAIN_PATH is invalid, it must end with app/main.js');
+    const foundryPath = path.normalize(process.env.FOUNDRY_MAIN_PATH).trimEnd();
+    const dataPath = path.normalize(process.env.FOUNDRY_DATA_PATH).trimEnd();
+    if (!foundryPath.endsWith('main.js')) {
+        console.error('Configured FOUNDRY_MAIN_PATH is invalid, it must end with main.js');
         process.exit();
     }
     if (/Data(\/|\\)?$/.test(dataPath) || !fs.existsSync(path.join(dataPath, 'Data'))) {
