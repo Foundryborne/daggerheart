@@ -22,8 +22,9 @@ export function readEnvFile() {
         console.error('Configured FOUNDRY_MAIN_PATH is invalid, it must end with main.js');
         process.exit();
     }
-    if (/Data(\/|\\)?$/.test(dataPath) || !fs.existsSync(path.join(dataPath, 'Data'))) {
+    if (path.basename(dataPath) === 'Data' || !fs.existsSync(path.join(dataPath, 'Data'))) {
         console.error('Configured FOUNDRY_DATA_PATH is incorrect. This must be a folder that contains "Data"');
+        process.exit();
     }
 
     return {
