@@ -59,7 +59,7 @@ export default class SubclassSheet extends DHBaseItemSheet {
         const item = await fromUuid(data.uuid);
         const itemType = data.type === 'ActiveEffect' ? data.type : item.type;
         if (itemType === 'class') {
-            const uuid = item._stats.compendiumSource ?? item.uuid;
+            const uuid = item.sourceUuid;
             if (this.document.system.linkedClass !== uuid) {
                 await this.document.update({ 'system.linkedClass': uuid });
                 // Re-render all class sheets for instant feedback

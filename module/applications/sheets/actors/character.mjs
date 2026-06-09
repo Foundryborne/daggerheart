@@ -356,7 +356,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
             const levelups = Object.values(actor.system.levelData?.levelups) ?? [];
             const uuid = item.uuid;
-            const sourceUuid = item._stats.compendiumSource; // on older characters this may be missing
+            const sourceUuid = item.sourceUuid; // on older characters this may be missing
             return levelups.some(data => {
                 if (item.type === 'subclass') {
                     const selectedSubclasses = data.selections.map(s => s.secondaryData?.subclass).filter(s => !!s);

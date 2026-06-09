@@ -5,6 +5,16 @@ import ActionSelectionDialog from '../applications/dialogs/actionSelectionDialog
  * @extends {foundry.documents.Item}
  */
 export default class DHItem extends foundry.documents.Item {
+    /** 
+     * Returns the uuid of the original item this item was derived from, 
+     * or its own uuid if its a compendium item or not derived from a source item.
+     * @returns {string}
+     */
+    get sourceUuid() {
+        const isCompendium = this._id && this.pack && !this.isEmbedded;
+        return isCompendium ? this.uuid : this._stats.duplicateSource ?? this._stats.compendiumSource ?? this.uuid;
+    }
+
     /** @inheritDoc */
     prepareEmbeddedDocuments() {
         super.prepareEmbeddedDocuments();

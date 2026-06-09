@@ -70,9 +70,7 @@ export default class DHSubclass extends BaseDataItem {
                 return false;
             }
 
-            const match = [multiclass, actorClass].find(
-                c => c && (c._stats.compendiumSource ?? c.uuid) === this.linkedClass
-            );
+            const match = [multiclass, actorClass].find(c => c && c.sourceUuid === this.linkedClass);
             if (!match) {
                 const key = multiclass ? 'subclassNotInMulticlass' : 'subclassNotInClass';
                 ui.notifications.warn(`DAGGERHEART.UI.Notifications.${key}`, { localize: true });

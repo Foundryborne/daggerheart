@@ -441,9 +441,8 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
         if (type === 'subclasses') {
             const classItem = this.setup.class;
-            const uuid = classItem?._stats.compendiumSource ?? classItem?.uuid;
             presets.filter = {
-                'system.linkedClass': { key: 'system.linkedClass', value: uuid }
+                'system.linkedClass': { key: 'system.linkedClass', value: classItem?.sourceUuid }
             };
         }
 
