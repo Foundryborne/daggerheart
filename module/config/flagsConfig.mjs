@@ -24,7 +24,8 @@ export const itemAttachmentSource = 'attachmentSource';
 
 export const userFlags = {
     welcomeMessage: 'welcome-message',
-    countdownMode: 'countdown-mode'
+    countdownMode: 'countdown-mode',
+    countdownTypeModes: 'countdown-type-modes'
 };
 
 export const combatToggle = 'combat-toggle-origin';

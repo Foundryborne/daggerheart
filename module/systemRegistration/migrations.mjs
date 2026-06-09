@@ -178,8 +178,8 @@ export async function runMigrations() {
 
         await countdownSettings.updateSource({
             countdowns: {
-                ...getCountdowns(countdownSettings.narrative, CONFIG.DH.GENERAL.countdownBaseTypes.narrative.id),
-                ...getCountdowns(countdownSettings.encounter, CONFIG.DH.GENERAL.countdownBaseTypes.encounter.id)
+                ...getCountdowns(countdownSettings.narrative, 'narrative'),
+                ...getCountdowns(countdownSettings.encounter, 'encounter')
             }
         });
         await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, countdownSettings);

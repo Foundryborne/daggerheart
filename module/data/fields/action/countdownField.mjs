@@ -8,8 +8,8 @@ export default class CountdownField extends fields.ArrayField {
             ...game.system.api.data.countdowns.DhCountdown.defineSchema(),
             type: new fields.StringField({
                 required: true,
-                choices: CONFIG.DH.GENERAL.countdownBaseTypes,
-                initial: CONFIG.DH.GENERAL.countdownBaseTypes.encounter.id,
+                choices: CONFIG.DH.GENERAL.countdownType,
+                initial: CONFIG.DH.GENERAL.countdownType.shortterm.id,
                 label: 'DAGGERHEART.GENERAL.type'
             }),
             name: new fields.StringField({

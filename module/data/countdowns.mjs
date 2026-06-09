@@ -13,6 +13,33 @@ export default class DhCountdowns extends foundry.abstract.DataModel {
             })
         };
     }
+
+    handleChange() {
+        const previousCountdowns = foundry.ui.countdowns.previusCountdownData;
+        const changedCountdowns = Object.values(this.countdowns).reduce((acc, [key, countdown]) => {
+            const previousCountdown = previousCountdowns[key];
+            if (!previousCountdown || (previousCountdown.current !== countdown.current)) {
+                acc.push(key);
+            }
+
+            return acc;
+        }, []);
+
+        foundry.ui.performChangeAnimations(changedCountdowns);
+    }
+
+    migrateData(source) {
+        for (const countdown of source.countdowns) {
+            switch (countdown.type) {
+                case 'narrative':
+                    countdown.type = CONFIG.DH.GENERAL.countdownType.longterm.id;
+                    break;
+                case 'encounter':
+                    countdown.type = CONFIG.DH.GENERAL.countdownType.shortterm.id;
+                    break;
+            }
+        }
+    }
 }
 
 export class DhCountdown extends foundry.abstract.DataModel {
@@ -21,7 +48,8 @@ export class DhCountdown extends foundry.abstract.DataModel {
         return {
             type: new fields.StringField({
                 required: true,
-                choices: CONFIG.DH.GENERAL.countdownBaseTypes,
+                choices: CONFIG.DH.GENERAL.countdownType,
+                initial: CONFIG.DH.GENERAL.countdownType.shortterm.id,
                 label: 'DAGGERHEART.GENERAL.type'
             }),
             name: new fields.StringField({
@@ -85,7 +113,7 @@ export class DhCountdown extends foundry.abstract.DataModel {
             : undefined;
 
         return {
-            type: type ?? CONFIG.DH.GENERAL.countdownBaseTypes.narrative.id,
+            type: type ?? CONFIG.DH.GENERAL.countdownType.shortterm.id,
             name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Countdown.newCountdown'),
             img: 'icons/magic/time/hourglass-yellow-green.webp',
             ownership: ownership,

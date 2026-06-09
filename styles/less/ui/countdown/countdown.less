@@ -65,12 +65,31 @@
         padding: 0 0.5rem;
         overflow: hidden;
         font-size: var(--font-size-13);
+        
         .window-title {
             font-family: @font-body;
-            flex: 1;
         }
-        .header-control + .header-control {
-            margin-left: 8px;
+
+
+        .header-type-toggles {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+
+            .header-type {
+                flex: 1;
+                border: 1px solid @beige;
+                border-radius: 12px;
+                padding: 2px 4px;
+                text-align: center;
+                background-color: @dark-blue;
+                color: @beige;
+
+                &.inactive {
+                    opacity: 0.4;
+                }
+            }
         }
     }
 

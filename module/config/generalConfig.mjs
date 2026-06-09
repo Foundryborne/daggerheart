@@ -935,17 +935,6 @@ export const simpleOwnershiplevels = {
     ...basicOwnershiplevels
 };
 
-export const countdownBaseTypes = {
-    narrative: {
-        id: 'narrative',
-        label: 'DAGGERHEART.APPLICATIONS.Countdown.types.narrative'
-    },
-    encounter: {
-        id: 'encounter',
-        label: 'DAGGERHEART.APPLICATIONS.Countdown.types.encounter'
-    }
-};
-
 export const countdownLoopingTypes = {
     noLooping: {
         id: 'noLooping',
@@ -968,6 +957,17 @@ export const countdownLoopingTypes = {
 export const countdownAppMode = {
     textIcon: 'text-icon',
     iconOnly: 'icon-only'
+};
+
+export const countdownType = {
+    shortterm: {
+        id: 'shortterm', 
+        label: 'Short'
+    },
+    longterm: {
+        id: 'longterm',
+        label: 'Long'  
+    }
 };
 
 export const sceneRangeMeasurementSetting = {

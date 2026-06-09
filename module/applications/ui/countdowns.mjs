@@ -11,9 +11,14 @@ const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
  */
 
 export default class DhCountdowns extends HandlebarsApplicationMixin(ApplicationV2) {
+    previusCountdownData = null;
+    countdownChangeAnimationTimeout = null;
+
     constructor(options = {}) {
         super(options);
 
+        this.previusCountdownData = 
+            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns).countdowns;
         this.setupHooks();
     }
 
@@ -32,6 +37,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         },
         actions: {
             toggleViewMode: DhCountdowns.#onToggleViewMode,
+            onToggleCountdownTypes: DhCountdowns.#onToggleCountdownTypes,
             editCountdowns: DhCountdowns.#onEditCountdowns,
             loopCountdown: DhCountdowns.#onLoopCountdown,
             decreaseCountdown: (_, target) => this.editCountdown(false, target),
@@ -48,7 +54,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     static PARTS = {
         resources: {
             root: true,
-            template: 'systems/daggerheart/templates/ui/countdowns.hbs'
+            template: 'systems/daggerheart/templates/ui/countdowns/countdowns-view.hbs'
         }
     };
 
@@ -76,16 +82,14 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         return values.filter(v => v.ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE);
     }
 
-    /** @override */
-    async _prepareContext(options) {
-        const context = await super._prepareContext(options);
-        context.isGM = game.user.isGM;
-
-        context.iconOnly =
-            game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode) ===
-            CONFIG.DH.GENERAL.countdownAppMode.iconOnly;
+    _getCountdownData() {
         const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-        context.countdowns = this.#getCountdowns().reduce((acc, { key, countdown, ownership }) => {
+        const typeModes = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) ?? [];
+
+        return this.#getCountdowns().reduce((acc, { key, countdown, ownership }) => {
+            if (!typeModes.includes(countdown.type)) 
+                return acc;
+
             const playersWithAccess = game.users.reduce((acc, user) => {
                 const ownership = DhCountdowns.#getPlayerOwnership(user, setting, countdown);
                 if (!user.isGM && ownership && ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE) {
@@ -118,6 +122,27 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             };
             return acc;
         }, {});
+    }
+
+    /** @override */
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
+        context.isGM = game.user.isGM;
+        this.previusCountdownData = 
+            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns).countdowns;
+
+        context.iconOnly =
+            game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode) ===
+            CONFIG.DH.GENERAL.countdownAppMode.iconOnly;
+
+        const userCountdownTypes = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) ?? [];
+        context.typeToggles = Object.values(CONFIG.DH.GENERAL.countdownType).map(type => ({
+            type: type.id,
+            label: game.i18n.localize(type.label),
+            active: userCountdownTypes.includes(type.id)
+        }));
+
+        context.countdowns = this._getCountdownData();
 
         return context;
     }
@@ -156,6 +181,36 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         if (newMode === appMode.iconOnly) this.element.classList.add('icon-only');
         else this.element.classList.remove('icon-only');
         this.render();
+    }
+
+    static async #onToggleCountdownTypes(event, target) {
+        const currentTypes = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) ?? [];
+        const { type } = target.dataset;
+        const newTypes = event.shiftKey ? 
+            [type] : 
+            currentTypes.includes(type) ? currentTypes.filter(x => x !== type) : [...currentTypes, type];
+        await game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes, newTypes);
+
+        for (const type of Object.keys(CONFIG.DH.GENERAL.countdownType)) {
+            const toggleElement = this.element.querySelector(`.header-type-toggles .header-type[data-type="${type}"]`);
+            if (newTypes.includes(type))
+                toggleElement.classList.remove('inactive');
+               
+            else 
+                toggleElement.classList.add('inactive');
+        }
+  
+        const updatedCountdownsElement = await foundry.applications.handlebars.renderTemplate(
+            'systems/daggerheart/templates/ui/countdowns/parts/countdowns.hbs',
+            {
+                countdowns: this._getCountdownData(),
+                iconOnly: game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode) ===
+                    CONFIG.DH.GENERAL.countdownAppMode.iconOnly,
+                isGM: game.user.isGM
+            }
+        );
+
+        this.element.querySelector('#countdowns .countdowns-container').innerHTML = updatedCountdownsElement;
     }
 
     static async #onEditCountdowns() {
@@ -212,6 +267,10 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     }
 
     static async gmSetSetting(data) {
+        // if(Object.keys(data).some(x => x.includes('countdowns'))) {
+        //     this.previusCountdownData = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns).countdowns;
+        // }
+
         await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, data);
         game.socket.emit(`system.${CONFIG.DH.id}`, {
             action: socketEvent.Refresh,
@@ -268,6 +327,20 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         await emitGMUpdate(GMUpdateEvent.UpdateCountdowns, DhCountdowns.gmSetSetting.bind(settings), settings, null, {
             refreshType: RefreshType.Countdown
         });
+    }
+
+    /**
+     * 
+     * @param {*} context 
+     * @param {*} options 
+     */
+    async performChangeAnimations(changedCountdowns) {
+        if (this.countdownChangeAnimationTimeout)
+            clearTimeout(this.countdownChangeAnimationTimeout);
+
+        this.countdownChangeAnimationTimeout = setTimeout(() => {
+
+        }, 3000);
     }
 
     async _onRender(context, options) {

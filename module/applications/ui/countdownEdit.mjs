@@ -35,7 +35,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
 
     static PARTS = {
         countdowns: {
-            template: 'systems/daggerheart/templates/ui/countdown-edit.hbs',
+            template: 'systems/daggerheart/templates/ui/countdowns/countdown-edit.hbs',
             scrollable: ['.expanded-view', '.edit-content']
         }
     };
@@ -45,7 +45,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         context.isGM = game.user.isGM;
         context.ownershipDefaultOptions = CONFIG.DH.GENERAL.basicOwnershiplevels;
         context.defaultOwnership = this.data.defaultOwnership;
-        context.countdownBaseTypes = CONFIG.DH.GENERAL.countdownBaseTypes;
+        context.countdownTypes = CONFIG.DH.GENERAL.countdownType;
         context.countdownProgressionTypes = CONFIG.DH.GENERAL.countdownProgressionTypes;
         context.countdownLoopingTypes = CONFIG.DH.GENERAL.countdownLoopingTypes;
         context.hideNewCountdowns = this.hideNewCountdowns;
@@ -62,7 +62,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
             const randomizeValid = !new Roll(countdown.progress.startFormula ?? '').isDeterministic;
             acc[key] = {
                 ...countdown,
-                typeName: game.i18n.localize(CONFIG.DH.GENERAL.countdownBaseTypes[countdown.type].label),
+                typeName: game.i18n.localize(CONFIG.DH.GENERAL.countdownType[countdown.type].label),
                 progress: {
                     ...countdown.progress,
                     typeName: game.i18n.localize(
