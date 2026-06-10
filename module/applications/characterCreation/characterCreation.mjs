@@ -525,17 +525,16 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         };
 
         // Inner function to create the base item data
-        // @todo double check the data/baseData splat. That doesn't work for system, but its the previous code
         async function createEmbeddedItemData(baseData) {
             const uuid = baseData.uuid ?? baseData._uuid
             const data = baseData instanceof Item ? baseData : await foundry.utils.fromUuid(baseData.uuid) ?? baseData;
             return {
-                ...data,
                 ...baseData,
                 id: data.id,
                 uuid: uuid,
                 _uuid: uuid,
                 effects: data.effects?.map(effect => effect.toObject()),
+                flags: baseData.flags ?? data.flags,
                 _stats: {
                     ...data._stats,
                     compendiumSource: uuid.startsWith('Compendium.') ? uuid : null,
