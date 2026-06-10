@@ -189,7 +189,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         context.typeToggles = 
             Object.values(CONFIG.DH.GENERAL.countdownType).map(type => ({
                 type: type.id,
-                label: game.i18n.localize(type.label),
+                label: game.i18n.localize(type.shortLabel),
                 active: context.userCountdownTypes.includes(type.id)
             }));
 

@@ -1170,6 +1170,10 @@
                 "fear": "Fear",
                 "spotlight": "Spotlight"
             },
+            "CountdownBaseType": {
+                "shortterm": { "label": "Short Term", "shortLabel": "Short" },
+                "longterm": { "label": "Long Term", "shortLabel": "Long" }
+            },
             "DaggerheartDiceAnimationEvents": {
                 "critical": { "name": "Critical" },
                 "higher": { "name": "Highest Roll" }

@@ -962,11 +962,13 @@ export const countdownAppMode = {
 export const countdownType = {
     shortterm: {
         id: 'shortterm', 
-        label: 'Short'
+        label: 'DAGGERHEART.CONFIG.CountdownBaseType.shortterm.label',
+        shortLabel: 'DAGGERHEART.CONFIG.CountdownBaseType.shortterm.shortLabel'
     },
     longterm: {
         id: 'longterm',
-        label: 'Long'  
+        label: 'DAGGERHEART.CONFIG.CountdownBaseType.longterm.label',
+        shortLabel: 'DAGGERHEART.CONFIG.CountdownBaseType.longterm.shortLabel'  
     }
 };
 
