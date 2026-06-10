@@ -1,7 +1,9 @@
 import { waitForDiceSoNice } from '../../helpers/utils.mjs';
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+import { SYSTEM } from './../../../module/config/system.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
+const { shortterm, longterm } = SYSTEM.GENERAL.countdownType;
 
 /**
  * A UI element which displays the countdowns in this world.
@@ -75,30 +77,19 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     async _onRender(context, options) {
         await super._onRender(context, options);
 
-        /**/
+        /* Handle rendering/hiding/positioning of the countdown UI */
         this.element.hidden = !game.user.isGM && this.#getCountdowns().length === 0;
         if (options?.force) {
             document.getElementById('ui-right-column-1')?.appendChild(this.element);
         }
 
-        /**/
+        this.previusCountdownData = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns)
+            .countdowns;
+
+        /* Handle animations to draw attention to countdown values changing */
         if (this.changedCountdownsForAnimation.size) {
             if (this.countdownChangeAnimationTimeout)
                 clearTimeout(this.countdownChangeAnimationTimeout);
-
-            for (const countdownKey of this.changedCountdownsForAnimation) {
-                this.element.querySelector(`.countdown-container[data-countdown="${countdownKey}"]`)
-                    .classList.add('change-glow');
-
-                /* If the countdown is not currently visible, add a glow to the CountdownType pill */
-                const visibleTypes = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) ?? []
-                const countdown = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns)
-                    .countdowns[countdownKey];
-                if (!visibleTypes.includes(countdown?.type)) {
-                    this.element.querySelector(`.header-type-toggles .header-type[data-type="${countdown.type}"]`)
-                        .classList.add('change-glow');
-                }
-            }
 
             this.countdownChangeAnimationTimeout = setTimeout(() => {
                 this.changedCountdownsForAnimation.clear();
@@ -111,10 +102,25 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                 }
                 
             }, 3000);
-        }
 
-        this.previusCountdownData = 
-            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns).countdowns;
+            for (const countdownKey of this.changedCountdownsForAnimation) {
+                /* If the countdown is not currently visible, add a glow to the CountdownType pill */
+                const visibleTypes = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) 
+                    ?? [shortterm.id, longterm.id]
+                const countdown = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns)
+                    .countdowns[countdownKey];
+                if (!visibleTypes.includes(countdown?.type)) {
+                    this.element.querySelector(`.header-type-toggles .header-type[data-type="${countdown.type}"]`)
+                        .classList.add('change-glow');
+                }
+
+                /* If the countdown element is not rendered the user doesn't have permissiosn to it. No animation needed on the elment itself */
+                const countdownElement = this.element.querySelector(`.countdown-container[data-countdown="${countdownKey}"]`);
+                if (!countdownElement) continue;
+
+                countdownElement.classList.add('change-glow');
+            }
+        }
     }
 
     /** Returns countdown data filtered by ownership */
@@ -178,13 +184,14 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode) 
             === CONFIG.DH.GENERAL.countdownAppMode.iconOnly;
 
-        context.userCountdownTypes = 
-            game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) ?? [];
-        context.typeToggles = Object.values(CONFIG.DH.GENERAL.countdownType).map(type => ({
-            type: type.id,
-            label: game.i18n.localize(type.label),
-            active: context.userCountdownTypes.includes(type.id)
-        }));
+        context.userCountdownTypes = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) 
+            ?? [shortterm.id, longterm.id];
+        context.typeToggles = 
+            Object.values(CONFIG.DH.GENERAL.countdownType).map(type => ({
+                type: type.id,
+                label: game.i18n.localize(type.label),
+                active: context.userCountdownTypes.includes(type.id)
+            }));
 
         context.countdowns = this._getCountdownData();
 
@@ -228,7 +235,8 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     }
 
     static async #onToggleCountdownTypes(event, target) {
-        const currentTypes = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) ?? [];
+        const currentTypes = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) 
+            ?? [shortterm.id, longterm.id];
         const { type } = target.dataset;
         const newTypes = event.shiftKey ? 
             [type] : 
