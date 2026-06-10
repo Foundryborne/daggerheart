@@ -524,37 +524,53 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             }
         };
 
-        await createEmbeddedItemWithEffects(this.character, ancestry);
-        await createEmbeddedItemWithEffects(this.character, this.setup.community);
-        await createEmbeddedItemWithEffects(this.character, this.setup.class);
-        await createEmbeddedItemWithEffects(this.character, this.setup.subclass);
-        await createEmbeddedItemsWithEffects(this.character, Object.values(this.setup.domainCards));
+        // Inner function to create the base item data
+        // @todo double check the data/baseData splat. That doesn't work for system, but its the previous code
+        async function createEmbeddedItemData(baseData) {
+            const uuid = baseData.uuid ?? baseData._uuid
+            const data = baseData instanceof Item ? baseData : await foundry.utils.fromUuid(baseData.uuid) ?? baseData;
+            return {
+                ...data,
+                ...baseData,
+                id: data.id,
+                uuid: uuid,
+                _uuid: uuid,
+                effects: data.effects?.map(effect => effect.toObject()),
+                _stats: {
+                    ...data._stats,
+                    compendiumSource: uuid.startsWith('Compendium.') ? uuid : null,
+                    duplicateSource: uuid && !uuid.startsWith('Compendium.') ? uuid : null
+                }
+            };
+        }
 
+        // Add the class first. All other items validate it during pre creation
+        await this.character.createEmbeddedDocuments('Item', [await createEmbeddedItemData(this.setup.class)]);
+        
+        // Add the remaining items
+        const newItems = [
+            await createEmbeddedItemData(ancestry),
+            await createEmbeddedItemData(this.setup.community),
+            await createEmbeddedItemData(this.setup.subclass),
+            ...(await Promise.all(
+                Object.values(this.setup.domainCards).map(d => createEmbeddedItemData(d))
+            ))
+        ];
         if (this.equipment.armor.uuid)
-            await createEmbeddedItemWithEffects(this.character, this.equipment.armor, {
-                ...this.equipment.armor,
-                system: { ...this.equipment.armor.system, equipped: true }
-            });
+            newItems.push(await createEmbeddedItemData(this.equipment.armor));
         if (this.equipment.primaryWeapon.uuid)
-            await createEmbeddedItemWithEffects(this.character, this.equipment.primaryWeapon, {
-                ...this.equipment.primaryWeapon,
-                system: { ...this.equipment.primaryWeapon.system, equipped: true }
-            });
+            newItems.push(await createEmbeddedItemData(this.equipment.primaryWeapon));
         if (this.equipment.secondaryWeapon.uuid)
-            await createEmbeddedItemWithEffects(this.character, this.equipment.secondaryWeapon, {
-                ...this.equipment.secondaryWeapon,
-                system: { ...this.equipment.secondaryWeapon.system, equipped: true }
-            });
+            newItems.push(await createEmbeddedItemData(this.equipment.secondaryWeapon));
         if (this.equipment.inventory.choiceA.uuid)
-            await createEmbeddedItemWithEffects(this.character, this.equipment.inventory.choiceA);
+            newItems.push(await createEmbeddedItemData(this.equipment.inventory.choiceA));
         if (this.equipment.inventory.choiceB.uuid)
-            await createEmbeddedItemWithEffects(this.character, this.equipment.inventory.choiceB);
+            newItems.push(await createEmbeddedItemData(this.equipment.inventory.choiceB));
+        for (const item of this.setup.class.system.inventory.take.filter(x => x)) {
+            newItems.push(await createEmbeddedItemData(item));
+        }
 
-        await createEmbeddedItemsWithEffects(
-            this.character,
-            this.setup.class.system.inventory.take.filter(x => x)
-        );
-
+        await this.character.createEmbeddedDocuments('Item', newItems);
         await this.character.update(
             {
                 system: {
@@ -587,26 +603,14 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         const item = await foundry.utils.fromUuid(data.uuid);
         if (item.type === 'ancestry' && event.target.closest('.primary-ancestry-card')) {
             this.setup.ancestryName.primary = item.name;
-            this.setup.primaryAncestry = {
-                ...item,
-                effects: Array.from(item.effects).map(x => x.toObject()),
-                uuid: item.uuid
-            };
+            this.setup.primaryAncestry = item;
         } else if (item.type === 'ancestry' && event.target.closest('.secondary-ancestry-card')) {
             this.setup.ancestryName.secondary = item.name;
-            this.setup.secondaryAncestry = {
-                ...item,
-                effects: Array.from(item.effects).map(x => x.toObject()),
-                uuid: item.uuid
-            };
+            this.setup.secondaryAncestry = item;
         } else if (item.type === 'community' && event.target.closest('.community-card')) {
-            this.setup.community = {
-                ...item,
-                effects: Array.from(item.effects).map(x => x.toObject()),
-                uuid: item.uuid
-            };
+            this.setup.community = item;
         } else if (item.type === 'class' && event.target.closest('.class-card')) {
-            this.setup.class = { ...item, effects: Array.from(item.effects).map(x => x.toObject()), uuid: item.uuid };
+            this.setup.class = item;
             this.setup.subclass = {};
             this.setup.domainCards = {
                 [foundry.utils.randomID()]: {},
@@ -619,11 +623,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 return;
             }
 
-            this.setup.subclass = {
-                ...item,
-                effects: Array.from(item.effects).map(x => x.toObject()),
-                uuid: item.uuid
-            };
+            this.setup.subclass = item;
         } else if (item.type === 'domainCard' && event.target.closest('.domain-card')) {
             if (!this.setup.class.uuid) {
                 ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.missingClass'));
@@ -645,14 +645,14 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 return;
             }
 
-            this.setup.domainCards[event.target.closest('.domain-card').dataset.card] = { ...item, uuid: item.uuid };
+            this.setup.domainCards[event.target.closest('.domain-card').dataset.card] = item;
         } else if (item.type === 'armor' && event.target.closest('.armor-card')) {
             if (item.system.tier > 1) {
                 ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.itemTooHighTier'));
                 return;
             }
 
-            this.equipment.armor = { ...item, uuid: item.uuid };
+            this.equipment.armor = item;
         } else if (item.type === 'weapon' && event.target.closest('.primary-weapon-card')) {
             if (item.system.secondary) {
                 ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.notPrimary'));
@@ -668,7 +668,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 this.equipment.secondaryWeapon = {};
             }
 
-            this.equipment.primaryWeapon = { ...item, uuid: item.uuid };
+            this.equipment.primaryWeapon = item;
         } else if (item.type === 'weapon' && event.target.closest('.secondary-weapon-card')) {
             if (this.equipment.primaryWeapon?.system?.burden === burden.twoHanded.value) {
                 ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.primaryIsTwoHanded'));
@@ -685,7 +685,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 return;
             }
 
-            this.equipment.secondaryWeapon = { ...item, uuid: item.uuid };
+            this.equipment.secondaryWeapon = item;
         } else {
             return;
         }
