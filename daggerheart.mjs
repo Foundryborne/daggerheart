@@ -77,6 +77,20 @@ CONFIG.Token.prototypeSheetClass = applications.sheetConfigs.DhPrototypeTokenCon
 CONFIG.Token.objectClass = placeables.DhTokenPlaceable;
 CONFIG.Token.rulerClass = placeables.DhTokenRuler;
 CONFIG.Token.hudClass = applications.hud.DHTokenHUD;
+CONFIG.Token.barConfig = {
+    bar1: {
+        colors: {
+            full: Color.fromRGB([1, 0, 0]),
+            empty: Color.fromRGB([0, 0, 0])
+        }
+    },
+    bar2: {
+        colors: {
+            full: Color.fromString('#0032b1'),
+            empty: Color.fromRGB([0, 0, 0])
+        }
+    }
+};
 
 CONFIG.ui.combat = applications.ui.DhCombatTracker;
 CONFIG.ui.nav = applications.ui.DhSceneNavigation;

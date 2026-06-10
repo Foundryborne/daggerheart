@@ -248,7 +248,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
     }
 
     /** @inheritDoc */
-    _drawBar(number, bar, data) {
+    _drawBar(index, bar, data) {
         // Determine sizing
         const { width, height } = this.document.getSize();
         const s = canvas.dimensions.uiScale;
@@ -256,9 +256,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         const bh = 8 * (this.document.height >= 2 ? 1.5 : 1) * s;
 
         // Determine the color to use
-        const Color = foundry.utils.Color;
-        const fillColor = number === 0 ? Color.fromRGB([1, 0, 0]) : Color.fromString('#0032b1');
-        const emptyColor = Color.fromRGB([0, 0, 0]);
+        const { full: fullColor, empty: emptyColor } = this._getBarColors(index, data);
 
         // Draw the bar (accounting floating point numbers from bar animations)
         const widthUnit = bw / Math.ceil(data.max);
@@ -268,7 +266,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
             const x = mark * widthUnit;
             const marked = mark < Math.ceil(data.value);
             const remainder = mark === Math.ceil(data.value) - 1 ? data.value % 1 : 0;
-            const color = !marked ? emptyColor : remainder ? emptyColor.mix(fillColor, remainder) : fillColor;
+            const color = !marked ? emptyColor : remainder ? emptyColor.mix(fullColor, remainder) : fullColor;
             if (mark === 0 || mark === sections.length - 1) {
                 bar.beginFill(color, marked ? 1.0 : 0.5).drawRect(x, 0, widthUnit, bh, 2 * s); // Would like drawRoundedRect, but it's very troublsome with the corners. Leaving for now.
             } else {
@@ -277,7 +275,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         }
 
         // Set position
-        const posY = number === 0 ? height - bh : 0;
+        const posY = index === 0 ? height - bh : 0;
         bar.position.set(0, posY);
         return true;
     }
