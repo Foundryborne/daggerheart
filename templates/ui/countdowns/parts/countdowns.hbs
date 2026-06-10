@@ -1,40 +1,44 @@
-{{#each countdowns as | countdown id |}}
-    <div class="countdown-container {{#if ../iconOnly}}icon-only{{/if}}" data-countdown="{{id}}">
-        <div class="countdown-main-container">
-            <img src="{{countdown.img}}" {{#if ../iconOnly}}data-tooltip="{{countdown.name}}"{{/if}}/>
-            <div class="countdown-content">
-                {{#unless ../iconOnly}}
-                    <header>{{countdown.name}}</header>
-                {{/unless}}
-                <div class="countdown-tools">
-                    <div class="countdown-tool-controls">
-                        {{#if countdown.editable}}<a data-action="decreaseCountdown"><i class="fa-solid fa-minus"></i></a>{{/if}}
-                        <div class="progress-tag">
-                            {{countdown.progress.current}}/{{countdown.progress.start}}
+{{#each countdowns as | category key |}}
+    <div class="countdown-category-container {{#unless (includes @root.userCountdownTypes key)}}hidden{{/unless}}">
+        {{#each category as |countdown id|}}
+            <div class="countdown-container {{#if ../iconOnly}}icon-only{{/if}}" data-countdown="{{id}}">
+                <div class="countdown-main-container">
+                    <img src="{{countdown.img}}" {{#if ../iconOnly}}data-tooltip="{{countdown.name}}"{{/if}}/>
+                    <div class="countdown-content">
+                        {{#unless ../iconOnly}}
+                            <header>{{countdown.name}}</header>
+                        {{/unless}}
+                        <div class="countdown-tools">
+                            <div class="countdown-tool-controls">
+                                {{#if countdown.editable}}<a data-action="decreaseCountdown"><i class="fa-solid fa-minus"></i></a>{{/if}}
+                                <div class="progress-tag">
+                                    {{countdown.progress.current}}/{{countdown.progress.start}}
+                                </div>
+                                {{#if countdown.editable}}<a data-action="increaseCountdown"><i class="fa-solid fa-plus"></i></a>{{/if}}
+                            </div>
+                            <div class="countdown-tool-icons">
+                                {{#if (not ../iconOnly)}}
+                                    {{#if (and countdown.noPlayerAccess @root.isGM)}}
+                                        <i class="fa-solid fa-eye-slash" data-tooltip="{{localize "DAGGERHEART.UI.Countdowns.noPlayerAccess"}}"></i>
+                                    {{/if}}
+                                    {{#unless (eq countdown.progress.looping "noLooping")}}
+                                        <span data-tooltip="{{countdown.loopTooltip}}">
+                                            <a class="looping-container {{#if countdown.shouldLoop}}should-loop{{/if}}" {{#if countdown.loopDisabled}}disabled{{/if}} data-action="loopCountdown">
+                                                <i class="loop-marker fa-solid fa-repeat"></i>
+                                                {{#if (eq countdown.progress.looping "increasing")}}
+                                                    <i class="direction-marker fa-solid fa-angles-up" data-tooltip="{{localize "DAGGERHEART.UI.Countdowns.increasingLoop"}}"></i>
+                                                {{else if (eq countdown.progress.looping "decreasing")}}
+                                                    <i class="direction-marker fa-solid fa-angles-down" data-tooltip="{{localize "DAGGERHEART.UI.Countdowns.decreasingLoop"}}"></i>
+                                                {{/if}}
+                                            </a>
+                                        </span>
+                                    {{/unless}}
+                                {{/if}}
+                            </div>
                         </div>
-                        {{#if countdown.editable}}<a data-action="increaseCountdown"><i class="fa-solid fa-plus"></i></a>{{/if}}
-                    </div>
-                    <div class="countdown-tool-icons">
-                        {{#if (not ../iconOnly)}}
-                            {{#if (and countdown.noPlayerAccess @root.isGM)}}
-                                <i class="fa-solid fa-eye-slash" data-tooltip="{{localize "DAGGERHEART.UI.Countdowns.noPlayerAccess"}}"></i>
-                            {{/if}}
-                            {{#unless (eq countdown.progress.looping "noLooping")}}
-                                <span data-tooltip="{{countdown.loopTooltip}}">
-                                    <a class="looping-container {{#if countdown.shouldLoop}}should-loop{{/if}}" {{#if countdown.loopDisabled}}disabled{{/if}} data-action="loopCountdown">
-                                        <i class="loop-marker fa-solid fa-repeat"></i>
-                                        {{#if (eq countdown.progress.looping "increasing")}}
-                                            <i class="direction-marker fa-solid fa-angles-up" data-tooltip="{{localize "DAGGERHEART.UI.Countdowns.increasingLoop"}}"></i>
-                                        {{else if (eq countdown.progress.looping "decreasing")}}
-                                            <i class="direction-marker fa-solid fa-angles-down" data-tooltip="{{localize "DAGGERHEART.UI.Countdowns.decreasingLoop"}}"></i>
-                                        {{/if}}
-                                    </a>
-                                </span>
-                            {{/unless}}
-                        {{/if}}
                     </div>
                 </div>
             </div>
-        </div>
+        {{/each}}
     </div>
 {{/each}}

@@ -12,6 +12,7 @@ const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 export default class DhCountdowns extends HandlebarsApplicationMixin(ApplicationV2) {
     previusCountdownData = null;
+    changedCountdownsForAnimation = new Set();
     countdownChangeAnimationTimeout = null;
 
     constructor(options = {}) {
@@ -58,7 +59,6 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         }
     };
 
-    /**@inheritdoc */
     async _renderFrame(options) {
         const frame = await super._renderFrame(options);
 
@@ -69,6 +69,52 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         else frame.classList.remove('icon-only');
 
         return frame;
+    }
+
+    
+    async _onRender(context, options) {
+        await super._onRender(context, options);
+
+        /**/
+        this.element.hidden = !game.user.isGM && this.#getCountdowns().length === 0;
+        if (options?.force) {
+            document.getElementById('ui-right-column-1')?.appendChild(this.element);
+        }
+
+        /**/
+        if (this.changedCountdownsForAnimation.size) {
+            if (this.countdownChangeAnimationTimeout)
+                clearTimeout(this.countdownChangeAnimationTimeout);
+
+            for (const countdownKey of this.changedCountdownsForAnimation) {
+                this.element.querySelector(`.countdown-container[data-countdown="${countdownKey}"]`)
+                    .classList.add('change-glow');
+
+                /* If the countdown is not currently visible, add a glow to the CountdownType pill */
+                const visibleTypes = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) ?? []
+                const countdown = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns)
+                    .countdowns[countdownKey];
+                if (!visibleTypes.includes(countdown?.type)) {
+                    this.element.querySelector(`.header-type-toggles .header-type[data-type="${countdown.type}"]`)
+                        .classList.add('change-glow');
+                }
+            }
+
+            this.countdownChangeAnimationTimeout = setTimeout(() => {
+                this.changedCountdownsForAnimation.clear();
+                for (const element of this.element.querySelectorAll('.countdown-container')) {
+                    element.classList.remove('change-glow');
+                }
+
+                for (const element of this.element.querySelectorAll('.header-type-toggles .header-type')) {
+                    element.classList.remove('change-glow');
+                }
+                
+            }, 3000);
+        }
+
+        this.previusCountdownData = 
+            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns).countdowns;
     }
 
     /** Returns countdown data filtered by ownership */
@@ -84,12 +130,8 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
 
     _getCountdownData() {
         const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-        const typeModes = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) ?? [];
 
         return this.#getCountdowns().reduce((acc, { key, countdown, ownership }) => {
-            if (!typeModes.includes(countdown.type)) 
-                return acc;
-
             const playersWithAccess = game.users.reduce((acc, user) => {
                 const ownership = DhCountdowns.#getPlayerOwnership(user, setting, countdown);
                 if (!user.isGM && ownership && ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE) {
@@ -112,7 +154,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                 !countdownEditable ||
                 (isLooping && (countdown.progress.current > 0 || countdown.progress.start === '0'));
 
-            acc[key] = {
+            acc[countdown.type][key] = {
                 ...countdown,
                 editable: countdownEditable,
                 noPlayerAccess: nonGmPlayers.length && playersWithAccess.length === 0,
@@ -121,25 +163,27 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                 loopTooltip: isLooping && game.i18n.localize(loopTooltip)
             };
             return acc;
-        }, {});
+        }, Object.keys(CONFIG.DH.GENERAL.countdownType).reduce((acc, key) => {
+            acc[key] = {};
+            return acc;
+        }, {}));
     }
 
     /** @override */
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
         context.isGM = game.user.isGM;
-        this.previusCountdownData = 
-            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns).countdowns;
 
         context.iconOnly =
-            game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode) ===
-            CONFIG.DH.GENERAL.countdownAppMode.iconOnly;
+            game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode) 
+            === CONFIG.DH.GENERAL.countdownAppMode.iconOnly;
 
-        const userCountdownTypes = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) ?? [];
+        context.userCountdownTypes = 
+            game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) ?? [];
         context.typeToggles = Object.values(CONFIG.DH.GENERAL.countdownType).map(type => ({
             type: type.id,
             label: game.i18n.localize(type.label),
-            active: userCountdownTypes.includes(type.id)
+            active: context.userCountdownTypes.includes(type.id)
         }));
 
         context.countdowns = this._getCountdownData();
@@ -191,26 +235,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             currentTypes.includes(type) ? currentTypes.filter(x => x !== type) : [...currentTypes, type];
         await game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes, newTypes);
 
-        for (const type of Object.keys(CONFIG.DH.GENERAL.countdownType)) {
-            const toggleElement = this.element.querySelector(`.header-type-toggles .header-type[data-type="${type}"]`);
-            if (newTypes.includes(type))
-                toggleElement.classList.remove('inactive');
-               
-            else 
-                toggleElement.classList.add('inactive');
-        }
-  
-        const updatedCountdownsElement = await foundry.applications.handlebars.renderTemplate(
-            'systems/daggerheart/templates/ui/countdowns/parts/countdowns.hbs',
-            {
-                countdowns: this._getCountdownData(),
-                iconOnly: game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode) ===
-                    CONFIG.DH.GENERAL.countdownAppMode.iconOnly,
-                isGM: game.user.isGM
-            }
-        );
-
-        this.element.querySelector('#countdowns .countdowns-container').innerHTML = updatedCountdownsElement;
+        this.render();
     }
 
     static async #onEditCountdowns() {
@@ -267,10 +292,6 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     }
 
     static async gmSetSetting(data) {
-        // if(Object.keys(data).some(x => x.includes('countdowns'))) {
-        //     this.previusCountdownData = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns).countdowns;
-        // }
-
         await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, data);
         game.socket.emit(`system.${CONFIG.DH.id}`, {
             action: socketEvent.Refresh,
@@ -327,27 +348,5 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         await emitGMUpdate(GMUpdateEvent.UpdateCountdowns, DhCountdowns.gmSetSetting.bind(settings), settings, null, {
             refreshType: RefreshType.Countdown
         });
-    }
-
-    /**
-     * 
-     * @param {*} context 
-     * @param {*} options 
-     */
-    async performChangeAnimations(changedCountdowns) {
-        if (this.countdownChangeAnimationTimeout)
-            clearTimeout(this.countdownChangeAnimationTimeout);
-
-        this.countdownChangeAnimationTimeout = setTimeout(() => {
-
-        }, 3000);
-    }
-
-    async _onRender(context, options) {
-        await super._onRender(context, options);
-        this.element.hidden = !game.user.isGM && this.#getCountdowns().length === 0;
-        if (options?.force) {
-            document.getElementById('ui-right-column-1')?.appendChild(this.element);
-        }
     }
 }

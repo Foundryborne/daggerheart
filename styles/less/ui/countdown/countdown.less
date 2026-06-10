@@ -89,6 +89,10 @@
                 &.inactive {
                     opacity: 0.4;
                 }
+
+                &.change-glow {
+                    animation: change-glow 1s ease-in-out infinite;
+                }
             }
         }
     }
@@ -101,9 +105,19 @@
         overflow: auto;
         max-height: 312px;
 
+        .countdown-category-container {
+            &.hidden {
+                display: none;
+            }
+        }
+
         .countdown-container {
             display: flex;
             width: 100%;
+
+            &.change-glow {
+                animation: change-glow 1s ease-in-out infinite;
+            }
 
             &.icon-only {
                 gap: 8px;
@@ -201,6 +215,16 @@
             //         content: '';
             //     }
             // }
+        }
+    }
+
+    @keyframes change-glow {
+        0% {
+            box-shadow: 0 0 1px 1px @golden;
+        }
+
+        100% {
+            box-shadow: 0 0 2px 2px @golden;
         }
     }
 }

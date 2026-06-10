@@ -16,16 +16,16 @@ export default class DhCountdowns extends foundry.abstract.DataModel {
 
     handleChange() {
         const previousCountdowns = foundry.ui.countdowns.previusCountdownData;
-        const changedCountdowns = Object.values(this.countdowns).reduce((acc, [key, countdown]) => {
+        const changedCountdowns = Object.entries(this.countdowns).reduce((acc, [key, countdown]) => {
             const previousCountdown = previousCountdowns[key];
-            if (!previousCountdown || (previousCountdown.current !== countdown.current)) {
+            if (!previousCountdown || (previousCountdown.progress.current !== countdown.progress.current)) {
                 acc.push(key);
             }
 
             return acc;
         }, []);
 
-        foundry.ui.performChangeAnimations(changedCountdowns);
+        foundry.ui.countdowns.changedCountdownsForAnimation.add(...changedCountdowns);
     }
 
     migrateData(source) {
