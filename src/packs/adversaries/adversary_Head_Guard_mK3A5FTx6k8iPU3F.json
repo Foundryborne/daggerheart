@@ -346,7 +346,7 @@
             "countdown": [
               {
                 "name": "On My Signal",
-                "type": "encounter",
+                "type": "shortterm",
                 "defaultOwnership": -1,
                 "img": "icons/skills/ranged/target-bullseye-arrow-blue.webp",
                 "progress": {

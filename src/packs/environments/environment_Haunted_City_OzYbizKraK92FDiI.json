@@ -313,7 +313,7 @@
             "countdown": [
               {
                 "name": "Apocalypse Then",
-                "type": "encounter",
+                "type": "shortterm",
                 "defaultOwnership": -1,
                 "img": "icons/magic/death/skull-weapon-staff-glow-pink.webp",
                 "progress": {

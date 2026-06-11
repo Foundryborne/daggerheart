@@ -166,7 +166,7 @@
             "countdown": [
               {
                 "name": "Dangerous Crossing",
-                "type": "encounter",
+                "type": "shortterm",
                 "defaultOwnership": -1,
                 "img": "icons/magic/water/wave-water-blue.webp",
                 "progress": {

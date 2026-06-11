@@ -57,7 +57,7 @@
         "countdown": [
           {
             "name": "Mass Disguise",
-            "type": "encounter",
+            "type": "shortterm",
             "defaultOwnership": -1,
             "img": "icons/magic/time/hourglass-brown-orange.webp",
             "progress": {

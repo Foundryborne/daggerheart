@@ -157,7 +157,7 @@
             "countdown": [
               {
                 "name": "The Climb",
-                "type": "encounter",
+                "type": "shortterm",
                 "defaultOwnership": -1,
                 "img": "icons/environment/wilderness/terrain-rocks-brown.webp",
                 "progress": {

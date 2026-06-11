@@ -484,7 +484,6 @@
                 "startFormula": "Randomized Start Value Formula",
                 "currentCountdownCurrent": "Current: {value}",
                 "currentCountdownStart": "Start: {value}",
-                "category": "Category",
                 "progressionType": "Progression",
                 "decreasing": "Decreasing",
                 "looping": "Looping",

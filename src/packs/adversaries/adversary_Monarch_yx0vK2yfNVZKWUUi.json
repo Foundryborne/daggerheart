@@ -346,7 +346,7 @@
             "countdown": [
               {
                 "name": "Casus Belli",
-                "type": "narrative",
+                "type": "longterm",
                 "defaultOwnership": -1,
                 "img": "icons/sundries/scrolls/scroll-bound-sealed-red-tan.webp",
                 "progress": {

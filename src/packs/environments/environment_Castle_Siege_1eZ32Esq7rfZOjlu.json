@@ -256,7 +256,7 @@
             "countdown": [
               {
                 "name": "Siege Weapons (Environment Change)",
-                "type": "encounter",
+                "type": "shortterm",
                 "defaultOwnership": -1,
                 "img": "icons/weapons/artillery/catapult-simple.webp",
                 "progress": {

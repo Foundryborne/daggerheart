@@ -563,7 +563,7 @@
             "countdown": [
               {
                 "name": "Shackles of Guilt",
-                "type": "encounter",
+                "type": "shortterm",
                 "defaultOwnership": -1,
                 "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
                 "progress": {

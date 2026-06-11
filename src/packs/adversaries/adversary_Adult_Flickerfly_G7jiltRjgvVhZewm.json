@@ -713,7 +713,7 @@
             "countdown": [
               {
                 "name": "Hallucinatory Breath",
-                "type": "encounter",
+                "type": "shortterm",
                 "defaultOwnership": -1,
                 "img": "icons/magic/air/fog-gas-smoke-purple.webp",
                 "progress": {

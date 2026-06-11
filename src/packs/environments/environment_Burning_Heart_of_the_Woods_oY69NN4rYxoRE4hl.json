@@ -510,7 +510,7 @@
             "countdown": [
               {
                 "name": "Choking Ash",
-                "type": "encounter",
+                "type": "shortterm",
                 "defaultOwnership": -1,
                 "img": "icons/magic/air/fog-gas-smoke-brown.webp",
                 "progress": {

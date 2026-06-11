@@ -180,7 +180,7 @@
             "countdown": [
               {
                 "name": "Final Preparations",
-                "type": "encounter",
+                "type": "shortterm",
                 "defaultOwnership": -1,
                 "img": "icons/magic/unholy/hands-circle-light-green.webp",
                 "progress": {
@@ -543,7 +543,7 @@
             "countdown": [
               {
                 "name": "Beginning of the End",
-                "type": "encounter",
+                "type": "shortterm",
                 "defaultOwnership": -1,
                 "img": "icons/magic/unholy/silhouette-robe-evil-glow.webp",
                 "progress": {

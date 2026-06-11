@@ -402,7 +402,7 @@
             "countdown": [
               {
                 "name": "The Summoning",
-                "type": "encounter",
+                "type": "shortterm",
                 "defaultOwnership": -1,
                 "img": "icons/magic/unholy/barrier-fire-pink.webp",
                 "progress": {
