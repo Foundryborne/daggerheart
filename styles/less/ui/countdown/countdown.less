@@ -114,9 +114,13 @@
         .countdown-container {
             display: flex;
             width: 100%;
+            border-radius: 6px;
 
             &.change-glow {
-                animation: change-glow 1s ease-in-out infinite;
+                animation: shimmer 1s ease-in-out;
+                background: linear-gradient(-45deg, transparent 30%, light-dark(@dark-blue-40, @golden-40) 35%, transparent 40%);
+                background-size: 300%;
+                background-position-x: 100%
             }
 
             &.icon-only {
@@ -138,6 +142,7 @@
                 display: flex;
                 align-items: center;
                 gap: 16px;
+                border-radius: 6px;
 
                 img {
                     width: 2.75rem;
@@ -218,13 +223,9 @@
         }
     }
 
-    @keyframes change-glow {
-        0% {
-            box-shadow: 0 0 1px 1px @golden;
-        }
-
-        100% {
-            box-shadow: 0 0 2px 2px @golden;
+    @keyframes shimmer {
+        to {
+            background-position-x: 0%
         }
     }
 }
