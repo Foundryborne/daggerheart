@@ -106,6 +106,10 @@
         max-height: 312px;
 
         .countdown-category-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            
             &.hidden {
                 display: none;
             }
@@ -117,7 +121,7 @@
             border-radius: 6px;
 
             &.change-glow {
-                animation: shimmer 1s ease-in-out;
+                animation: shimmer 1s ease-in-out infinite;
                 background: linear-gradient(-45deg, transparent 30%, light-dark(@dark-blue-40, @golden-40) 35%, transparent 40%);
                 background-size: 300%;
                 background-position-x: 100%

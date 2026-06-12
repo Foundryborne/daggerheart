@@ -1,5 +1,5 @@
 {{#each countdowns as | category key |}}
-    <div class="countdown-category-container {{#unless (includes @root.userCountdownTypes key)}}hidden{{/unless}}">
+    <div class="countdown-category-container {{#unless (includes @root.countdownTypesWithVisibleEntries key)}}hidden{{/unless}}">
         {{#each category as |countdown id|}}
             <div class="countdown-container {{#if ../iconOnly}}icon-only{{/if}}" data-countdown="{{id}}">
                 <div class="countdown-main-container">

@@ -186,6 +186,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
 
         context.userCountdownTypes = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) 
             ?? [shortterm.id, longterm.id];
+
         context.typeToggles = 
             Object.values(CONFIG.DH.GENERAL.countdownType).map(type => ({
                 type: type.id,
@@ -194,6 +195,13 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             }));
 
         context.countdowns = this._getCountdownData();
+        context.countdownTypesWithVisibleEntries = this.#getCountdowns().reduce((acc, data) => {
+            if (context.userCountdownTypes.includes(data.countdown.type) && !acc.includes(data.countdown.type)) 
+                acc.push(data.countdown.type);
+
+            return acc;
+        }, []);
+        
 
         return context;
     }
