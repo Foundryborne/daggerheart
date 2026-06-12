@@ -91,7 +91,7 @@
                 }
 
                 &.change-glow {
-                    animation: change-glow 1s ease-in-out infinite;
+                    animation: glow 1s ease-in-out infinite;
                 }
             }
         }
@@ -224,6 +224,16 @@
             //         content: '';
             //     }
             // }
+        }
+    }
+
+    @keyframes glow {
+        0% {
+            box-shadow: 0 0 1px 1px @golden;
+        }
+
+        100% {
+            box-shadow: 0 0 2px 2px @golden;
         }
     }
 
