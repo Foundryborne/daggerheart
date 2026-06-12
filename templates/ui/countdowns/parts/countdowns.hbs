@@ -1,11 +1,11 @@
 {{#each countdowns as | category key |}}
     <div class="countdown-category-container {{#unless (includes @root.countdownTypesWithVisibleEntries key)}}hidden{{/unless}}">
         {{#each category as |countdown id|}}
-            <div class="countdown-container {{#if ../iconOnly}}icon-only{{/if}}" data-countdown="{{id}}">
+            <div class="countdown-container {{#if @root.iconOnly}}icon-only{{/if}}" data-countdown="{{id}}">
                 <div class="countdown-main-container">
-                    <img src="{{countdown.img}}" {{#if ../iconOnly}}data-tooltip="{{countdown.name}}"{{/if}}/>
+                    <img src="{{countdown.img}}" {{#if @root.iconOnly}}data-tooltip="{{countdown.name}}"{{/if}}/>
                     <div class="countdown-content">
-                        {{#unless ../iconOnly}}
+                        {{#unless @root.iconOnly}}
                             <header>{{countdown.name}}</header>
                         {{/unless}}
                         <div class="countdown-tools">
@@ -17,7 +17,7 @@
                                 {{#if countdown.editable}}<a data-action="increaseCountdown"><i class="fa-solid fa-plus"></i></a>{{/if}}
                             </div>
                             <div class="countdown-tool-icons">
-                                {{#if (not ../iconOnly)}}
+                                {{#if (not @root.iconOnly)}}
                                     {{#if (and countdown.noPlayerAccess @root.isGM)}}
                                         <i class="fa-solid fa-eye-slash" data-tooltip="{{localize "DAGGERHEART.UI.Countdowns.noPlayerAccess"}}"></i>
                                     {{/if}}
