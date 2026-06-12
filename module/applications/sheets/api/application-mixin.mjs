@@ -381,9 +381,10 @@ export default function DHApplicationMixin(Base) {
          * @param {DragEvent} event
          * @protected
          */
-        _onDrop(event) {
+        async _onDrop(event) {
             event.stopPropagation();
-            const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
+            const baseData = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
+            const data = !baseData.name && baseData.uuid ? await foundry.utils.fromUuid(baseData.uuid) : baseData;
             if (data.type === 'ActiveEffect' && data.fromInternal !== this.document.uuid) {
                 this.document.createEmbeddedDocuments('ActiveEffect', [data.data]);
             } else {
