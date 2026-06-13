@@ -186,15 +186,6 @@ export default class AdversarySheet extends DHBaseActorSheet {
         });
     }
 
-    /** @inheritdoc */
-    async _onDragStart(event) {
-        const inventoryItem = event.currentTarget.closest('.inventory-item');
-        if (inventoryItem) {
-            event.dataTransfer.setDragImage(inventoryItem.querySelector('img'), 60, 0);
-        }
-        super._onDragStart(event);
-    }
-
     /* -------------------------------------------- */
     /*  Application Clicks Actions                  */
     /* -------------------------------------------- */

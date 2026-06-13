@@ -447,13 +447,15 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
 
         const item = await getDocFromElement(event.target);
         if (item) {
+            const inventoryItem = event.currentTarget.closest('.inventory-item');
             const dragData = {
+                ...item.toDragData(),
                 originActor: this.document.uuid,
-                originId: item.id,
-                type: item.documentName,
-                uuid: item.uuid
+                originId: item.id
             };
             event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+            if (inventoryItem) event.dataTransfer.setDragImage(inventoryItem.querySelector('img'), 60, 0);
+            return;
         }
 
         super._onDragStart(event);

@@ -361,18 +361,17 @@ export default function DHApplicationMixin(Base) {
          */
         async _onDragStart(event) {
             const inventoryItem = event.currentTarget.closest('.inventory-item');
-            if (inventoryItem) {
-                const { type, itemUuid } = inventoryItem.dataset;
-                if (type === 'effect') {
-                    const effect = await foundry.utils.fromUuid(itemUuid);
-                    const effectData = {
-                        type: 'ActiveEffect',
-                        data: { ...effect.toObject(), _id: null },
-                        fromInternal: this.document.uuid
-                    };
-                    event.dataTransfer.setData('text/plain', JSON.stringify(effectData));
-                    event.dataTransfer.setDragImage(inventoryItem.querySelector('img'), 60, 0);
-                }
+            if (!inventoryItem) return;
+            
+            const { type, itemUuid } = inventoryItem.dataset;
+            const effect = type === 'effect' ? await foundry.utils.fromUuid(itemUuid) : null;
+            if (effect) {
+                const effectData = {
+                    ...effect.toDragData(),
+                    fromInternal: this.document.uuid
+                };
+                event.dataTransfer.setData('text/plain', JSON.stringify(effectData));
+                event.dataTransfer.setDragImage(inventoryItem.querySelector('img'), 60, 0);
             }
         }
 
@@ -382,14 +381,10 @@ export default function DHApplicationMixin(Base) {
          * @protected
          */
         _onDrop(event) {
+            // Fallback to super, but note that config sheets don't have this option
+            // We still need this to avoid setting apps having issues
             event.stopPropagation();
-            const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-            if (data.type === 'ActiveEffect' && data.fromInternal !== this.document.uuid) {
-                this.document.createEmbeddedDocuments('ActiveEffect', [data.data]);
-            } else {
-                // Fallback to super, but note that item sheets do not have this function
-                return super._onDrop?.(event);
-            }
+            return super._onDrop?.(event);
         }
 
         /* -------------------------------------------- */

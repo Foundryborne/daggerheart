@@ -1193,15 +1193,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
         });
     }
 
-    /** @inheritdoc */
-    async _onDragStart(event) {
-        const inventoryItem = event.currentTarget.closest('.inventory-item');
-        if (inventoryItem) {
-            event.dataTransfer.setDragImage(inventoryItem.querySelector('img'), 60, 0);
-        }
-        super._onDragStart(event);
-    }
-
     async _onDropItem(event, item) {
         const setupCriticalItemTypes = ['class', 'subclass', 'ancestry', 'community'];
         if (this.document.system.needsCharacterSetup && setupCriticalItemTypes.includes(item.type)) {
