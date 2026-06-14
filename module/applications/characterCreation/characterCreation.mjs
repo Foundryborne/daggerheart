@@ -1,6 +1,5 @@
 import { abilities } from '../../config/actorConfig.mjs';
 import { burden } from '../../config/generalConfig.mjs';
-import { createEmbeddedItemsWithEffects, createEmbeddedItemWithEffects } from '../../helpers/utils.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
