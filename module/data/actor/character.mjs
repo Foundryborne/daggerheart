@@ -411,8 +411,8 @@ export default class DhCharacter extends DhCreature {
 
     get domainCards() {
         const domainCards = this.parent.items.filter(x => x.type === 'domainCard');
-        const loadout = domainCards.filter(x => !x.system.inVault);
-        const vault = domainCards.filter(x => x.system.inVault);
+        const loadout = domainCards.filter(x => !x.system.inVault).sort((a, b) => a.sort - b.sort);
+        const vault = domainCards.filter(x => x.system.inVault).sort((a, b) => a.sort - b.sort);
 
         return {
             loadout: loadout,
