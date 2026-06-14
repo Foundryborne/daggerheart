@@ -107,6 +107,12 @@ export default class D20Roll extends DHRoll {
                 this.options.data.companion;
             actorExperiences = companion?.system?.experiences ?? {};
         }
+        for (const m of this.options.experiences?.filter(m => !!actorExperiences[m]) ?? []) {
+            this.options.roll.modifiers.push({
+                label: actorExperiences[m].name,
+                value: actorExperiences[m].value
+            });
+        }
 
         this.addModifiers();
         if (this.options.extraFormula) {
