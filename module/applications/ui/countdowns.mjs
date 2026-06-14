@@ -13,14 +13,14 @@ const { shortterm, longterm } = SYSTEM.GENERAL.countdownType;
  */
 
 export default class DhCountdowns extends HandlebarsApplicationMixin(ApplicationV2) {
-    previusCountdownData = null;
+    previousCountdownData = null;
     changedCountdownsForAnimation = new Set();
     countdownChangeAnimationTimeout = null;
 
     constructor(options = {}) {
         super(options);
 
-        this.previusCountdownData = 
+        this.previousCountdownData = 
             game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns).countdowns;
         this.setupHooks();
     }
@@ -61,6 +61,16 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         }
     };
 
+    /** 
+     * Returns all visible countdown types
+     * @returns {string[]}
+     */
+    get visibleCountdownTypes() {
+        const { shortterm, longterm } = SYSTEM.GENERAL.countdownType;
+        return game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) 
+            ?? [shortterm.id, longterm.id];
+    }
+
     async _renderFrame(options) {
         const frame = await super._renderFrame(options);
 
@@ -83,7 +93,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             document.getElementById('ui-right-column-1')?.appendChild(this.element);
         }
 
-        this.previusCountdownData = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns)
+        this.previousCountdownData = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns)
             .countdowns;
 
         /* Handle animations to draw attention to countdown values changing */
@@ -93,20 +103,15 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
 
             this.countdownChangeAnimationTimeout = setTimeout(() => {
                 this.changedCountdownsForAnimation.clear();
-                for (const element of this.element.querySelectorAll('.countdown-container')) {
+                const selector = '.countdown-container, .header-type-toggles .header-type';
+                for (const element of this.element.querySelectorAll(selector)) {
                     element.classList.remove('change-glow');
                 }
-
-                for (const element of this.element.querySelectorAll('.header-type-toggles .header-type')) {
-                    element.classList.remove('change-glow');
-                }
-                
             }, 3000);
 
+            /* If the countdown is not currently visible, add a glow to the CountdownType pill */
+            const visibleTypes = this.visibleCountdownTypes;
             for (const countdownKey of this.changedCountdownsForAnimation) {
-                /* If the countdown is not currently visible, add a glow to the CountdownType pill */
-                const visibleTypes = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) 
-                    ?? [shortterm.id, longterm.id]
                 const countdown = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns)
                     .countdowns[countdownKey];
                 if (!visibleTypes.includes(countdown?.type)) {
@@ -114,7 +119,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                         .classList.add('change-glow');
                 }
 
-                /* If the countdown element is not rendered the user doesn't have permissiosn to it. No animation needed on the elment itself */
+                /* If the countdown element is not rendered the user doesn't have permissions to it. No animation needed on the elment itself */
                 const countdownElement = this.element.querySelector(`.countdown-container[data-countdown="${countdownKey}"]`);
                 if (!countdownElement) continue;
 
@@ -184,8 +189,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode) 
             === CONFIG.DH.GENERAL.countdownAppMode.iconOnly;
 
-        context.userCountdownTypes = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) 
-            ?? [shortterm.id, longterm.id];
+        context.userCountdownTypes = this.visibleCountdownTypes;
 
         context.typeToggles = 
             Object.values(CONFIG.DH.GENERAL.countdownType).map(type => ({
@@ -231,6 +235,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         return true;
     }
 
+    /** @this {DhCountdowns} */
     static async #onToggleViewMode() {
         const currentMode = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode);
         const appMode = CONFIG.DH.GENERAL.countdownAppMode;
@@ -242,9 +247,9 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         this.render();
     }
 
+    /** @this {DhCountdowns} */
     static async #onToggleCountdownTypes(event, target) {
-        const currentTypes = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) 
-            ?? [shortterm.id, longterm.id];
+        const currentTypes = this.visibleCountdownTypes;
         const { type } = target.dataset;
         const newTypes = event.shiftKey ? 
             [type] : 
@@ -254,10 +259,12 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         this.render();
     }
 
+    /** @this {DhCountdowns} */
     static async #onEditCountdowns() {
         new game.system.api.applications.ui.CountdownEdit().render(true);
     }
 
+    /** @this {DhCountdowns} */
     static async #onLoopCountdown(_, target) {
         if (!DhCountdowns.canPerformEdit()) return;
 

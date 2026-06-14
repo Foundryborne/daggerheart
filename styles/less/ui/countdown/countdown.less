@@ -120,7 +120,7 @@
             border-radius: 6px;
 
             &.change-glow {
-                animation: shimmer 1s ease-in-out;
+                animation: shimmer 1s ease-out;
                 background: linear-gradient(-45deg, transparent 30%, light-dark(@dark-blue-40, @golden-40) 35%, transparent 40%);
                 background-size: 300%;
                 background-position-x: 100%
@@ -237,6 +237,9 @@
     }
 
     @keyframes shimmer {
+        from {
+            background-position-x: 98%;
+        }
         to {
             background-position-x: 0%
         }
