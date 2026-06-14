@@ -688,7 +688,7 @@
             "countdown": [
               {
                 "name": "Rampage",
-                "type": "shortterm",
+                "type": "encounter",
                 "defaultOwnership": -1,
                 "img": "icons/magic/movement/trail-streak-zigzag-yellow.webp",
                 "progress": {

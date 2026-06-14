@@ -208,7 +208,7 @@
             "countdown": [
               {
                 "name": "Impossible Architecture",
-                "type": "shortterm",
+                "type": "encounter",
                 "defaultOwnership": -1,
                 "img": "icons/magic/symbols/squares-3d-green.webp",
                 "progress": {
@@ -317,7 +317,7 @@
             "countdown": [
               {
                 "name": "Everything You Are This Place Will Take from You",
-                "type": "shortterm",
+                "type": "encounter",
                 "defaultOwnership": -1,
                 "img": "icons/magic/control/sihouette-hold-beam-green.webp",
                 "progress": {

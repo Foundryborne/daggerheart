@@ -613,7 +613,7 @@
             "countdown": [
               {
                 "name": "All-Consuming Rage",
-                "type": "shortterm",
+                "type": "encounter",
                 "defaultOwnership": -1,
                 "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
                 "progress": {

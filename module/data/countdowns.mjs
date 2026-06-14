@@ -27,19 +27,6 @@ export default class DhCountdowns extends foundry.abstract.DataModel {
 
         foundry.ui.countdowns.changedCountdownsForAnimation.add(...changedCountdowns);
     }
-
-    migrateData(source) {
-        for (const countdown of source.countdowns) {
-            switch (countdown.type) {
-                case 'narrative':
-                    countdown.type = CONFIG.DH.GENERAL.countdownType.longterm.id;
-                    break;
-                case 'encounter':
-                    countdown.type = CONFIG.DH.GENERAL.countdownType.shortterm.id;
-                    break;
-            }
-        }
-    }
 }
 
 export class DhCountdown extends foundry.abstract.DataModel {
@@ -49,7 +36,7 @@ export class DhCountdown extends foundry.abstract.DataModel {
             type: new fields.StringField({
                 required: true,
                 choices: CONFIG.DH.GENERAL.countdownType,
-                initial: CONFIG.DH.GENERAL.countdownType.shortterm.id,
+                initial: CONFIG.DH.GENERAL.countdownType.encounter.id,
                 label: 'DAGGERHEART.GENERAL.type'
             }),
             name: new fields.StringField({
@@ -113,7 +100,7 @@ export class DhCountdown extends foundry.abstract.DataModel {
             : undefined;
 
         return {
-            type: type ?? CONFIG.DH.GENERAL.countdownType.shortterm.id,
+            type: type ?? CONFIG.DH.GENERAL.countdownType.encounter.id,
             name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Countdown.newCountdown'),
             img: 'icons/magic/time/hourglass-yellow-green.webp',
             ownership: ownership,

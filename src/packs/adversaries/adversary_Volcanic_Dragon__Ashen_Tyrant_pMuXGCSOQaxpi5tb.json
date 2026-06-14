@@ -840,7 +840,7 @@
             "countdown": [
               {
                 "name": "Apocalyptic Thrasing",
-                "type": "shortterm",
+                "type": "encounter",
                 "defaultOwnership": -1,
                 "img": "icons/creatures/abilities/mouth-teeth-fire-orange.webp",
                 "progress": {

@@ -960,15 +960,15 @@ export const countdownAppMode = {
 };
 
 export const countdownType = {
-    shortterm: {
-        id: 'shortterm', 
-        label: 'DAGGERHEART.CONFIG.CountdownBaseType.shortterm.label',
-        shortLabel: 'DAGGERHEART.CONFIG.CountdownBaseType.shortterm.shortLabel'
+    encounter: {
+        id: 'encounter', 
+        label: 'DAGGERHEART.CONFIG.CountdownBaseType.encounter.label',
+        shortLabel: 'DAGGERHEART.CONFIG.CountdownBaseType.encounter.shortLabel'
     },
-    longterm: {
-        id: 'longterm',
-        label: 'DAGGERHEART.CONFIG.CountdownBaseType.longterm.label',
-        shortLabel: 'DAGGERHEART.CONFIG.CountdownBaseType.longterm.shortLabel'  
+    narrative: {
+        id: 'narrative',
+        label: 'DAGGERHEART.CONFIG.CountdownBaseType.narrative.label',
+        shortLabel: 'DAGGERHEART.CONFIG.CountdownBaseType.narrative.shortLabel'  
     }
 };
 

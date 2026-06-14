@@ -3,7 +3,6 @@ import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../sys
 import { SYSTEM } from './../../../module/config/system.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
-const { shortterm, longterm } = SYSTEM.GENERAL.countdownType;
 
 /**
  * A UI element which displays the countdowns in this world.
@@ -66,9 +65,9 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
      * @returns {string[]}
      */
     get visibleCountdownTypes() {
-        const { shortterm, longterm } = SYSTEM.GENERAL.countdownType;
+        const { encounter, narrative } = SYSTEM.GENERAL.countdownType;
         return game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) 
-            ?? [shortterm.id, longterm.id];
+            ?? [encounter.id, narrative.id];
     }
 
     async _renderFrame(options) {

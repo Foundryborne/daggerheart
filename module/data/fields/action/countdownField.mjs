@@ -9,7 +9,7 @@ export default class CountdownField extends fields.ArrayField {
             type: new fields.StringField({
                 required: true,
                 choices: CONFIG.DH.GENERAL.countdownType,
-                initial: CONFIG.DH.GENERAL.countdownType.shortterm.id,
+                initial: CONFIG.DH.GENERAL.countdownType.encounter.id,
                 label: 'DAGGERHEART.GENERAL.type'
             }),
             name: new fields.StringField({

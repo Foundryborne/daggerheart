@@ -759,7 +759,7 @@
             "countdown": [
               {
                 "name": "Your Life Is Mine",
-                "type": "shortterm",
+                "type": "encounter",
                 "defaultOwnership": -1,
                 "img": "icons/magic/unholy/hand-claw-fire-green.webp",
                 "progress": {

@@ -393,7 +393,7 @@
             "countdown": [
               {
                 "name": "Icy Winds",
-                "type": "shortterm",
+                "type": "encounter",
                 "defaultOwnership": -1,
                 "img": "icons/magic/water/snowflake-ice-blue-white.webp",
                 "progress": {

@@ -522,7 +522,7 @@
             "countdown": [
               {
                 "name": "Blood and Souls",
-                "type": "shortterm",
+                "type": "encounter",
                 "defaultOwnership": -1,
                 "img": "icons/creatures/unholy/demon-fire-horned-clawed.webp",
                 "progress": {

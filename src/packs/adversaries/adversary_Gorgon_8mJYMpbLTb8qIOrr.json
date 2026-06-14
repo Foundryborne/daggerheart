@@ -593,7 +593,7 @@
             "countdown": [
               {
                 "name": "Petrifying Gaze",
-                "type": "shortterm",
+                "type": "encounter",
                 "defaultOwnership": -1,
                 "img": "icons/magic/earth/strike-body-stone-crumble.webp",
                 "progress": {

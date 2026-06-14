@@ -522,7 +522,7 @@
             "countdown": [
               {
                 "name": "Avalanche Roar",
-                "type": "shortterm",
+                "type": "encounter",
                 "defaultOwnership": -1,
                 "img": "icons/magic/sonic/projectile-sound-rings-wave.webp",
                 "progress": {
