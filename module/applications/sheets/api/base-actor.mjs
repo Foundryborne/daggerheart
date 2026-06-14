@@ -1,10 +1,12 @@
 import { getDocFromElement, itemIsIdentical } from '../../../helpers/utils.mjs';
-import DHBaseActorSettings from './actor-setting.mjs';
 import DHApplicationMixin from './application-mixin.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 
-/**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
+/** 
+ * @import DHBaseActorSettings from './actor-setting.mjs';
+ * @typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction
+ */
 
 /**
  * A base actor sheet extending {@link ActorSheetV2} via {@link DHApplicationMixin}

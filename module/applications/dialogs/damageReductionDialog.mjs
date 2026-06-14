@@ -176,7 +176,6 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     }
 
     static updateData(event, _, formData) {
-        const form = foundry.utils.expandObject(formData.object);
         this.render(true);
     }
 

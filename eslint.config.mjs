@@ -90,12 +90,26 @@ export default defineConfig([
         },
         rules: {
             'no-undef': 'error',
-            // 'no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+            'no-unused-vars': [
+                'error',
+                {
+                    args: 'none',
+                    destructuredArrayIgnorePattern: '^_',
+                    varsIgnorePattern: '^_[A-Z]',
+                    ignoreRestSiblings: true
+                }
+            ],
             ...stylisticRules
         }
     },
     {
         files: ['**/*.ts'],
-        extends: [js.configs.recommended, tseslint.configs.recommended]
+        extends: [js.configs.recommended, tseslint.configs.recommended],
+        plugins: {
+            '@stylistic': stylistic
+        },
+        rules: {
+            ...stylisticRules
+        }
     }
 ]);

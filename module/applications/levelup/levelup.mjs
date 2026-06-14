@@ -1,4 +1,3 @@
-import { abilities, subclassFeatureLabels } from '../../config/actorConfig.mjs';
 import { getDeleteKeys, tagifyElement } from '../../helpers/utils.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;

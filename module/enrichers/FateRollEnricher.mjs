@@ -49,7 +49,7 @@ export const renderFateButton = async event => {
     const fateTypeData = getFateTypeData(button.dataset?.fatetype);
 
     if (!fateTypeData) ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateTypeParsing'));
-    const { value: fateType, label: fateTypeLabel } = fateTypeData;
+    const { value: fateType } = fateTypeData;
 
     await enrichedFateRoll(
         {

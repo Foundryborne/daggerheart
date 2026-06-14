@@ -8,7 +8,7 @@
         }
     },
     "exclude": ["node_modules", "**/node_modules/*"],
-    "include": ["daggerheart.mjs", "foundry/client/client.mjs", "daggerheart.d.ts"],
+    "include": ["daggerheart.mjs", "foundry/client/client.mjs", "daggerheart.d.ts", "module/**/*.d.ts"],
     "typeAcquisition": {
         "include": ["jquery"]
     }

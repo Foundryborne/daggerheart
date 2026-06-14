@@ -318,7 +318,7 @@ export function getDocFromElementSync(element) {
     const target = element.closest('[data-item-uuid]');
     try {
         return foundry.utils.fromUuidSync(target.dataset.itemUuid) ?? null;
-    } catch (_) {
+    } catch {
         return null;
     }
 }
@@ -377,7 +377,7 @@ export const itemAbleRollParse = (value, actor, item) => {
 
     try {
         return Roll.replaceFormulaData(slicedValue, rollData);
-    } catch (_) {
+    } catch {
         return '';
     }
 };

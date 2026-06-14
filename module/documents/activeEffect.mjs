@@ -212,7 +212,7 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         try {
             const evl = new Function('sandbox', `with (sandbox) { return ${expression}}`);
             result = evl(Roll.MATH_PROXY);
-        } catch (err) {
+        } catch {
             return expression;
         }
 

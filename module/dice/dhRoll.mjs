@@ -23,6 +23,10 @@ export default class DHRoll extends Roll {
 
     static DefaultDialog = D20RollDialog;
 
+    /**
+     * @param {Partial<RollConfig>} config
+     * @returns {Promise<RollConfig>}
+     */
     static async build(config = {}, message = {}) {
         const roll = await this.buildConfigure(config, message);
         if (!roll) return;
@@ -34,6 +38,10 @@ export default class DHRoll extends Roll {
         return config;
     }
 
+    /** 
+     * @param {Partial<RollConfig>} config 
+     * @returns {Promise<RollConfig>}
+     */
     static async buildConfigure(config = {}, message = {}) {
         config.hooks = [...this.getHooks(), ''];
         config.dialog ??= {};

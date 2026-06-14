@@ -531,21 +531,7 @@ export default class DhpActor extends Actor {
     }
 
     /**
-     * @param {object} config
-     * @param {Event} config.event
-     * @param {string} config.title
-     * @param {object} config.roll
-     * @param {number} config.roll.modifier
-     * @param {boolean} [config.roll.simple=false]
-     * @param {string} [config.roll.type]
-     * @param {number} [config.roll.difficulty]
-     * @param {boolean} [config.hasDamage]
-     * @param {boolean} [config.hasEffect]
-     * @param {object} [config.chatMessage]
-     * @param {string} config.chatMessage.template
-     * @param {boolean} [config.chatMessage.mute]
-     * @param {object} [config.targets]
-     * @param {object} [config.costs]
+     * @param {Partial<RollConfig>} config
      */
     async diceRoll(config) {
         config.source = { ...(config.source ?? {}), actor: this.uuid };

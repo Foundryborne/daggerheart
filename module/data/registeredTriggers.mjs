@@ -149,7 +149,7 @@ export default class RegisteredTriggers extends Map {
 
                         const result = await command(...args);
                         if (result?.updates?.length) updates.push(...result.updates);
-                    } catch (_) {
+                    } catch {
                         const triggerName = game.i18n.localize(triggerData.label);
                         ui.notifications.error(
                             game.i18n.format('DAGGERHEART.CONFIG.Triggers.triggerError', {
