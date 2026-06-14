@@ -103,14 +103,10 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
 
             this.countdownChangeAnimationTimeout = setTimeout(() => {
                 this.changedCountdownsForAnimation.clear();
-                for (const element of this.element.querySelectorAll('.countdown-container')) {
+                const selector = '.countdown-container, .header-type-toggles .header-type';
+                for (const element of this.element.querySelectorAll(selector)) {
                     element.classList.remove('change-glow');
                 }
-
-                for (const element of this.element.querySelectorAll('.header-type-toggles .header-type')) {
-                    element.classList.remove('change-glow');
-                }
-                
             }, 3000);
 
             /* If the countdown is not currently visible, add a glow to the CountdownType pill */
@@ -123,7 +119,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                         .classList.add('change-glow');
                 }
 
-                /* If the countdown element is not rendered the user doesn't have permissiosn to it. No animation needed on the elment itself */
+                /* If the countdown element is not rendered the user doesn't have permissions to it. No animation needed on the elment itself */
                 const countdownElement = this.element.querySelector(`.countdown-container[data-countdown="${countdownKey}"]`);
                 if (!countdownElement) continue;
 
