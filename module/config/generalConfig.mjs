@@ -867,27 +867,27 @@ export const abilityCosts = {
 export const countdownProgressionTypes = {
     actionRoll: {
         id: 'actionRoll',
-        label: 'DAGGERHEART.CONFIG.CountdownType.actionRoll'
+        label: 'DAGGERHEART.CONFIG.CountdownProgressType.actionRoll'
     },
     characterAttack: {
         id: 'characterAttack',
-        label: 'DAGGERHEART.CONFIG.CountdownType.characterAttack'
+        label: 'DAGGERHEART.CONFIG.CountdownProgressType.characterAttack'
     },
     characterSpotlight: {
         id: 'characterSpotlight',
-        label: 'DAGGERHEART.CONFIG.CountdownType.characterSpotlight'
+        label: 'DAGGERHEART.CONFIG.CountdownProgressType.characterSpotlight'
     },
     custom: {
         id: 'custom',
-        label: 'DAGGERHEART.CONFIG.CountdownType.custom'
+        label: 'DAGGERHEART.CONFIG.CountdownProgressType.custom'
     },
     fear: {
         id: 'fear',
-        label: 'DAGGERHEART.CONFIG.CountdownType.fear'
+        label: 'DAGGERHEART.CONFIG.CountdownProgressType.fear'
     },
     spotlight: {
         id: 'spotlight',
-        label: 'DAGGERHEART.CONFIG.CountdownType.spotlight'
+        label: 'DAGGERHEART.CONFIG.CountdownProgressType.spotlight'
     }
 };
 export const rollTypes = {
@@ -962,13 +962,13 @@ export const countdownAppMode = {
 export const countdownType = {
     encounter: {
         id: 'encounter', 
-        label: 'DAGGERHEART.CONFIG.CountdownBaseType.encounter.label',
-        shortLabel: 'DAGGERHEART.CONFIG.CountdownBaseType.encounter.shortLabel'
+        label: 'DAGGERHEART.CONFIG.CountdownType.encounter.label',
+        shortLabel: 'DAGGERHEART.CONFIG.CountdownType.encounter.shortLabel'
     },
     narrative: {
         id: 'narrative',
-        label: 'DAGGERHEART.CONFIG.CountdownBaseType.narrative.label',
-        shortLabel: 'DAGGERHEART.CONFIG.CountdownBaseType.narrative.shortLabel'  
+        label: 'DAGGERHEART.CONFIG.CountdownType.narrative.label',
+        shortLabel: 'DAGGERHEART.CONFIG.CountdownType.narrative.shortLabel'  
     }
 };
 

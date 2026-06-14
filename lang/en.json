@@ -1161,7 +1161,7 @@
                     "autoAppliedByLabel": "Max Stress"
                 }
             },
-            "CountdownType": {
+            "CountdownProgressType": {
                 "actionRoll": "Action Roll",
                 "characterAttack": "Character Attack",
                 "characterSpotlight": "Character Spotlight",
@@ -1169,7 +1169,7 @@
                 "fear": "Fear",
                 "spotlight": "Spotlight"
             },
-            "CountdownBaseType": {
+            "CountdownType": {
                 "encounter": { "label": "Short Term", "shortLabel": "Short" },
                 "narrative": { "label": "Long Term", "shortLabel": "Long" }
             },
