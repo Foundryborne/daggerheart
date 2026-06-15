@@ -35,8 +35,8 @@ export class DhCountdown extends foundry.abstract.DataModel {
         return {
             type: new fields.StringField({
                 required: true,
-                choices: CONFIG.DH.GENERAL.countdownType,
-                initial: CONFIG.DH.GENERAL.countdownType.encounter.id,
+                choices: CONFIG.DH.GENERAL.countdownTypes,
+                initial: CONFIG.DH.GENERAL.countdownTypes.encounter.id,
                 label: 'DAGGERHEART.GENERAL.type'
             }),
             name: new fields.StringField({
@@ -100,7 +100,7 @@ export class DhCountdown extends foundry.abstract.DataModel {
             : undefined;
 
         return {
-            type: type ?? CONFIG.DH.GENERAL.countdownType.encounter.id,
+            type: type ?? CONFIG.DH.GENERAL.countdownTypes.encounter.id,
             name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Countdown.newCountdown'),
             img: 'icons/magic/time/hourglass-yellow-green.webp',
             ownership: ownership,

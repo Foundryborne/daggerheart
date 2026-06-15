@@ -959,7 +959,7 @@ export const countdownAppMode = {
     iconOnly: 'icon-only'
 };
 
-export const countdownType = {
+export const countdownTypes = {
     encounter: {
         id: 'encounter', 
         label: 'DAGGERHEART.CONFIG.CountdownType.encounter.label',

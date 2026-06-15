@@ -1,6 +1,5 @@
 import { waitForDiceSoNice } from '../../helpers/utils.mjs';
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
-import { SYSTEM } from './../../../module/config/system.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -39,7 +38,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         },
         actions: {
             toggleViewMode: DhCountdowns.#onToggleViewMode,
-            onToggleCountdownTypes: DhCountdowns.#onToggleCountdownTypes,
+            toggleCountdownTypes: DhCountdowns.#onToggleCountdownTypes,
             editCountdowns: DhCountdowns.#onEditCountdowns,
             loopCountdown: DhCountdowns.#onLoopCountdown,
             decreaseCountdown: (_, target) => this.editCountdown(false, target),
@@ -65,7 +64,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
      * @returns {string[]}
      */
     get visibleCountdownTypes() {
-        const { encounter, narrative } = SYSTEM.GENERAL.countdownType;
+        const { encounter, narrative } = CONFIG.DH.GENERAL.countdownTypes;
         return game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) 
             ?? [encounter.id, narrative.id];
     }
@@ -173,7 +172,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                 loopTooltip: isLooping && game.i18n.localize(loopTooltip)
             };
             return acc;
-        }, Object.keys(CONFIG.DH.GENERAL.countdownType).reduce((acc, key) => {
+        }, Object.keys(CONFIG.DH.GENERAL.countdownTypes).reduce((acc, key) => {
             acc[key] = {};
             return acc;
         }, {}));
@@ -191,7 +190,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         context.userCountdownTypes = this.visibleCountdownTypes;
 
         context.typeToggles = 
-            Object.values(CONFIG.DH.GENERAL.countdownType).map(type => ({
+            Object.values(CONFIG.DH.GENERAL.countdownTypes).map(type => ({
                 type: type.id,
                 label: game.i18n.localize(type.shortLabel),
                 active: context.userCountdownTypes.includes(type.id)

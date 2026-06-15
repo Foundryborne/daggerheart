@@ -6,7 +6,7 @@
         {{/unless}}
         <div class="header-type-toggles">
             {{#each typeToggles as |type|}}
-                <a class="header-type {{#unless type.active}}inactive{{/unless}}" data-action="onToggleCountdownTypes" data-type="{{type.type}}">{{localize type.label}}</a>
+                <a class="header-type {{#unless type.active}}inactive{{/unless}}" data-action="toggleCountdownTypes" data-type="{{type.type}}">{{localize type.label}}</a>
             {{/each}}
         </div>
         {{#if isGM}}
