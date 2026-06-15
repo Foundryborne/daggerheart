@@ -343,13 +343,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         return Array.from(await actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true })).filter(
             effect => {
-                /* Effects on weapons only ever apply for the weapon itself */
-                if (effect.parent.type === 'weapon') {
-                    /* Unless they're secondary - then they apply only to other primary weapons */
-                    if (effect.parent.system.secondary) {
-                        if (effectParent?.type !== 'weapon' || effectParent?.system.secondary) return false;
-                    } else if (effectParent?.id !== effect.parent.id) return false;
-                }
+                /* Effects on secondary weapons only ever apply for the primary weapon */
+                const isSecondaryWeaponEffect = effect.parent.type === 'weapon' && effect.parent.system.secondary;
+                const parentIsNotPrimaryWeapon = effectParent?.type !== 'weapon' || effectParent?.system.secondary;
+                if (isSecondaryWeaponEffect && parentIsNotPrimaryWeapon)
+                    return false;
 
                 return !effect.isSuppressed;
             }
