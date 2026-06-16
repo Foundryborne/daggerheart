@@ -13,7 +13,6 @@ const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 export default class DhCountdowns extends HandlebarsApplicationMixin(ApplicationV2) {
     previousCountdownData = null;
     changedCountdownsForAnimation = new Set();
-    countdownChangeAnimationTimeout = null;
 
     constructor(options = {}) {
         super(options);
@@ -95,35 +94,41 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             .countdowns;
 
         /* Handle animations to draw attention to countdown values changing */
-        if (this.changedCountdownsForAnimation.size) {
-            if (this.countdownChangeAnimationTimeout)
-                clearTimeout(this.countdownChangeAnimationTimeout);
+        const typesToAnimate = new Set();
+        for (const countdownKey of this.changedCountdownsForAnimation) {
+            const shimmerAnimation = [
+                { backgroundPositionX: '98%' },
+                { backgroundPositionX: '0%' }
+            ];
+            const shimmerTiming = {
+                duration: 1000,
+                iterations: 1
+            };
 
-            this.countdownChangeAnimationTimeout = setTimeout(() => {
-                this.changedCountdownsForAnimation.clear();
-                const selector = '.countdown-container, .header-type-toggles .header-type';
-                for (const element of this.element.querySelectorAll(selector)) {
-                    element.classList.remove('change-glow');
-                }
-            }, 3000);
+            const element = this.element.querySelector(`.countdown-container[data-countdown="${countdownKey}"]`);
+            element.animate(shimmerAnimation, shimmerTiming);
 
-            /* If the countdown is not currently visible, add a glow to the CountdownType pill */
-            const visibleTypes = this.visibleCountdownTypes;
-            for (const countdownKey of this.changedCountdownsForAnimation) {
-                const countdown = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns)
-                    .countdowns[countdownKey];
-                if (!visibleTypes.includes(countdown?.type)) {
-                    this.element.querySelector(`.header-type-toggles .header-type[data-type="${countdown.type}"]`)
-                        .classList.add('change-glow');
-                }
-
-                /* If the countdown element is not rendered the user doesn't have permissions to it. No animation needed on the elment itself */
-                const countdownElement = this.element.querySelector(`.countdown-container[data-countdown="${countdownKey}"]`);
-                if (!countdownElement) continue;
-
-                countdownElement.classList.add('change-glow');
-            }
+            const countdown = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns)
+                .countdowns[countdownKey];
+            if (!this.visibleCountdownTypes.includes(countdown?.type)) 
+                typesToAnimate.add(countdown.type);
         }
+
+        for (const type of typesToAnimate) {
+            const pulseAnimation = [
+                { boxShadow: '0 0 1px 1px var(--golden)' },
+                { boxShadow: '0 0 2px 2px var(--golden)' }
+            ];
+            const pulseTiming = {
+                duration: 1000,
+                iterations: 3
+            };
+
+            const element = this.element.querySelector(`.header-type-toggles .header-type[data-type="${type}"]`);
+            element.animate(pulseAnimation, pulseTiming);
+        }
+        
+        this.changedCountdownsForAnimation.clear();
     }
 
     /** Returns countdown data filtered by ownership */

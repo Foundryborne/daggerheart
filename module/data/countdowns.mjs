@@ -25,7 +25,8 @@ export default class DhCountdowns extends foundry.abstract.DataModel {
             return acc;
         }, []);
 
-        foundry.ui.countdowns.changedCountdownsForAnimation.add(...changedCountdowns);
+        for (const countdownKey of changedCountdowns)
+            foundry.ui.countdowns.changedCountdownsForAnimation.add(countdownKey);
     }
 }
 
