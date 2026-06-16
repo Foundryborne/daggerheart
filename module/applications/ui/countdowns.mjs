@@ -106,7 +106,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             };
 
             const element = this.element.querySelector(`.countdown-container[data-countdown="${countdownKey}"]`);
-            element.animate(shimmerAnimation, shimmerTiming);
+            element?.animate(shimmerAnimation, shimmerTiming);
 
             const countdown = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns)
                 .countdowns[countdownKey];
@@ -125,7 +125,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             };
 
             const element = this.element.querySelector(`.header-type-toggles .header-type[data-type="${type}"]`);
-            element.animate(pulseAnimation, pulseTiming);
+            element?.animate(pulseAnimation, pulseTiming);
         }
         
         this.changedCountdownsForAnimation.clear();
