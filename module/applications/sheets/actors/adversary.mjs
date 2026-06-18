@@ -131,6 +131,15 @@ export default class AdversarySheet extends DHBaseActorSheet {
         return context;
     }
 
+    /** @inheritdoc */
+    _prepareTabs(group) {
+        const result = super._prepareTabs(group);
+        if (group === 'primary') {
+            result.notes.empty = !this.document.system.notes?.trim();
+        }
+        return result;
+    }
+
     /**@inheritdoc */
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
