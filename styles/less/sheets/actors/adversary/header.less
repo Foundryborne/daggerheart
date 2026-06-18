@@ -3,16 +3,21 @@
 
 .application.sheet.daggerheart.actor.dh-style.adversary {
     .adversary-header-sheet {
-        padding: 0 15px;
         padding-top: var(--header-height);
         width: 100%;
+
+        > *:not(line-div, .tab-navigation) {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
 
         .name-row {
             display: flex;
             gap: 5px;
             align-items: center;
             justify-content: space-between;
-            padding: 8px 0;
+            padding-top: var(--spacer-4);
+            padding-bottom: var(--spacer-4);
             flex: 1;
 
             h1 {
@@ -34,8 +39,8 @@
 
         .tags {
             display: flex;
-            gap: 10px;
-            padding-bottom: 8px;
+            gap: 8px;
+            padding-bottom: var(--spacer-12);
 
             .tag {
                 display: flex;
@@ -44,8 +49,7 @@
                 justify-content: center;
                 align-items: center;
                 padding: 3px 5px;
-                font-size: var(--font-size-12);
-                font: @font-body;
+                font: var(--font-size-12) @font-body;
 
                 background: light-dark(@dark-15, @beige-15);
                 border: 1px solid light-dark(@dark, @beige);
@@ -64,8 +68,16 @@
         .adversary-info {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            padding: 16px 0;
+            gap: var(--spacer-8);
+            padding-top: var(--spacer-12);
+            padding-bottom: var(--spacer-12);
+        }
+
+        .tab-navigation {
+            margin-top: 0;
+            button[data-action="openSettings"] {
+                margin-right: 12px;
+            }
         }
     }
 }
