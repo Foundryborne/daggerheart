@@ -387,6 +387,30 @@ export default function DHApplicationMixin(Base) {
             return super._onDrop?.(event);
         }
 
+        /** @inheritdoc */
+        _onSortItem(event, item) {
+            // If we are dragging a feature past its allowed feature form, put it in the front or in the back
+            const doc = this.actor.items.get(item.id);
+            const dropTargetEl = event.target.closest('[data-item-id]');
+            const dropTarget = this.actor.items.get(dropTargetEl?.dataset.itemId);
+            if (doc?.type === 'feature' && dropTarget?.type === 'feature' && doc.system.featureForm !== dropTarget.system.featureForm) {
+                const siblings = this.actor.itemTypes.feature
+                    .filter(f => f.system.featureForm === doc.system.featureForm)
+                    .sort((a, b) => a.sort - b.sort);
+                if (siblings.length > 1) {
+                    const featureForms = Object.keys(CONFIG.DH.ITEM.featureForm);
+                    const thisFeatureIdx = featureForms.indexOf(doc.system.featureForm);
+                    const targetFeatureIdx = featureForms.indexOf(dropTarget.system.featureForm);
+                    const target = targetFeatureIdx < thisFeatureIdx ? siblings[0] : siblings.at(-1);
+                    const sortUpdates = foundry.utils.performIntegerSort(doc, { target, siblings });
+                    const updateData = sortUpdates.map(u => ({ ...u.update, _id: u.target._id }));
+                    return this.actor.updateEmbeddedDocuments('Item', updateData);
+                }
+            }
+
+            return super._onSortItem?.(event, item);
+        }
+
         /* -------------------------------------------- */
         /*  Context Menu                                */
         /* -------------------------------------------- */

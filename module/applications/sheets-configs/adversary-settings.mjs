@@ -54,7 +54,7 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
 
-        const featureForms = ['passive', 'action', 'reaction'];
+        const featureForms = Object.keys(CONFIG.DH.ITEM.featureForm);
         context.features = context.document.system.features.sort((a, b) =>
             a.system.featureForm !== b.system.featureForm
                 ? featureForms.indexOf(a.system.featureForm) - featureForms.indexOf(b.system.featureForm)

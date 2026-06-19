@@ -103,7 +103,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
         context.resources.stress.emptyPips =
             context.resources.stress.max < maxResource ? maxResource - context.resources.stress.max : 0;
 
-        const featureForms = ['passive', 'action', 'reaction'];
+        const featureForms = Object.keys(CONFIG.DH.ITEM.featureForm);
         context.features = this.document.system.features.sort((a, b) =>
             a.system.featureForm !== b.system.featureForm
                 ? featureForms.indexOf(a.system.featureForm) - featureForms.indexOf(b.system.featureForm)
