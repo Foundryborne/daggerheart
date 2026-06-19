@@ -1,6 +1,6 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 import D20Roll from './d20Roll.mjs';
-import { parseRallyDice, setDiceSoNiceForDualityRoll } from '../helpers/utils.mjs';
+import { parseRallyDice, setDiceSoNiceForDualityRoll, shouldUseHopeFearAutomation } from '../helpers/utils.mjs';
 import { getDiceSoNicePresets } from '../config/generalConfig.mjs';
 import { updateResourcesForDualityReroll } from './helpers.mjs';
 
@@ -312,11 +312,9 @@ export default class DualityRoll extends D20Roll {
     }
 
     static async addDualityResourceUpdates(config) {
-        const automationSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
-        const hopeFearAutomation = automationSettings.hopeFear;
         if (
             !config.source?.actor ||
-            (game.user.isGM ? !hopeFearAutomation.gm : !hopeFearAutomation.players) ||
+            !shouldUseHopeFearAutomation() ||
             config.actionType === 'reaction' ||
             config.skips?.resources
         )

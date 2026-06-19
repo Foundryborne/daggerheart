@@ -1,4 +1,5 @@
 import { ResourceUpdateMap } from '../../data/action/baseAction.mjs';
+import { shouldUseHopeFearAutomation } from '../../helpers/utils.mjs';
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 import Party from '../sheets/actors/party.mjs';
 
@@ -479,6 +480,8 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
             };
 
         await cls.create(msgData);
+
+        if (!shouldUseHopeFearAutomation()) return this.cancelRoll({ confirm: false });
 
         const resourceMap = new ResourceUpdateMap(actor);
         if (totalRoll.isCritical) {

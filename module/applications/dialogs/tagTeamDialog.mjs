@@ -1,5 +1,5 @@
 import { MemberData } from '../../data/tagTeamData.mjs';
-import { getCritDamageBonus } from '../../helpers/utils.mjs';
+import { getCritDamageBonus, shouldUseHopeFearAutomation } from '../../helpers/utils.mjs';
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 import Party from '../sheets/actors/party.mjs';
 
@@ -749,6 +749,8 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             };
 
         await cls.create(msgData);
+
+        if (!shouldUseHopeFearAutomation()) return this.cancelRoll({ confirm: false });
 
         /* Handle resource updates from the finished TagTeamRoll */
         const tagTeamData = this.party.system.tagTeam;
