@@ -481,21 +481,22 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
 
         await cls.create(msgData);
 
-        if (!shouldUseHopeFearAutomation()) return this.cancelRoll({ confirm: false });
+        /* Handle resource updates for the finished GroupRoll */
+        if (shouldUseHopeFearAutomation({ gmAsPlayer: true })) {
+            const resourceMap = new ResourceUpdateMap(actor);
+            if (totalRoll.isCritical) {
+                resourceMap.addResources([
+                    { key: 'stress', value: -1, total: 1 },
+                    { key: 'hope', value: 1, total: 1 }
+                ]);
+            } else if (totalRoll.withHope) {
+                resourceMap.addResources([{ key: 'hope', value: 1, total: 1 }]);
+            } else {
+                resourceMap.addResources([{ key: 'fear', value: 1, total: 1 }]);
+            }
 
-        const resourceMap = new ResourceUpdateMap(actor);
-        if (totalRoll.isCritical) {
-            resourceMap.addResources([
-                { key: 'stress', value: -1, total: 1 },
-                { key: 'hope', value: 1, total: 1 }
-            ]);
-        } else if (totalRoll.withHope) {
-            resourceMap.addResources([{ key: 'hope', value: 1, total: 1 }]);
-        } else {
-            resourceMap.addResources([{ key: 'fear', value: 1, total: 1 }]);
+            resourceMap.updateResources();
         }
-
-        resourceMap.updateResources();
 
         /* Fin */
         this.cancelRoll({ confirm: false });

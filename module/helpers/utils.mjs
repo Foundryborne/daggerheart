@@ -886,7 +886,7 @@ export async function triggerChatRollFx(rolls, options = { whisper: false, blind
     }
 }
 
-export function shouldUseHopeFearAutomation() {
+export function shouldUseHopeFearAutomation(options = { gmAsPlayer: true }) {
     const { hopeFear } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
-    return game.user.isGM ? hopeFear.gm : hopeFear.players; 
+    return (!game.user.isGM || options.gmAsPlayer) ? hopeFear.players : hopeFear.gm; 
 }
