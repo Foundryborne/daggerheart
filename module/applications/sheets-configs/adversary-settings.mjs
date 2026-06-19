@@ -97,32 +97,4 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
 
         await this.actor.update({ [`system.experiences.${target.dataset.experience}`]: _del });
     }
-
-    async _onDragStart(event) {
-        const featureItem = event.currentTarget.closest('.feature-item');
-
-        if (featureItem) {
-            const feature = this.actor.items.get(featureItem.id);
-            const featureData = { type: 'Item', uuid: feature.uuid, fromInternal: true };
-            event.dataTransfer.setData('text/plain', JSON.stringify(featureData));
-            event.dataTransfer.setDragImage(featureItem.querySelector('img'), 60, 0);
-        }
-    }
-
-    async _onDrop(event) {
-        event.stopPropagation();
-        const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-
-        const item = await fromUuid(data.uuid);
-        if (item?.type === 'feature') {
-            if (data.fromInternal && item.parent?.uuid === this.actor.uuid) {
-                return;
-            }
-
-            const itemData = item.toObject();
-            delete itemData._id;
-
-            await this.actor.createEmbeddedDocuments('Item', [itemData]);
-        }
-    }
 }

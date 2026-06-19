@@ -78,7 +78,6 @@ export default class DhpEnvironment extends DHBaseActorSheet {
         switch (partId) {
             case 'header':
                 await this._prepareHeaderContext(context, options);
-
                 break;
             case 'features':
                 await this._prepareFeaturesContext(context, options);

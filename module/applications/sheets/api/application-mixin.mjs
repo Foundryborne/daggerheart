@@ -381,8 +381,7 @@ export default function DHApplicationMixin(Base) {
          * @protected
          */
         _onDrop(event) {
-            // Fallback to super, but note that config sheets don't have this option
-            // We still need this to avoid setting apps having issues
+            // Potentially handle subclasses that dont descend from actor/item sheet.
             event.stopPropagation();
             return super._onDrop?.(event);
         }
