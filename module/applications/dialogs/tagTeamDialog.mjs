@@ -1,3 +1,4 @@
+import { ResourceUpdateMap } from '../../data/action/baseAction.mjs';
 import { MemberData } from '../../data/tagTeamData.mjs';
 import { getCritDamageBonus, shouldUseHopeFearAutomation } from '../../helpers/utils.mjs';
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
@@ -767,11 +768,13 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         /* Handle resource updates from the finished TagTeamRoll */
         const tagTeamData = this.party.system.tagTeam;
-        const fearUpdate = { key: 'fear', value: null, enabled: true };
+        const fearResourceMap = new ResourceUpdateMap(mainActor);
 
         if (shouldUseHopeFearAutomation({ gmAsPlayer: true })) {
-            for (let memberId in tagTeamData.members) {
-                const resourceUpdates = [];
+            for (const memberId in tagTeamData.members) {
+                const actor = game.actors.get(memberId);
+                const resourceMap = new ResourceUpdateMap(actor);
+
                 const rollGivesHope = finalRoll.isCritical || finalRoll.withHope;
                 if (memberId === tagTeamData.initiator.memberId) {
                     const value = tagTeamData.initiator.cost
@@ -779,16 +782,20 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                             ? 1 - tagTeamData.initiator.cost
                             : -tagTeamData.initiator.cost
                         : 1;
-                    resourceUpdates.push({ key: 'hope', value: value, enabled: true });
+                    resourceMap.addResources([{ key: 'hope', value: value, enabled: true }]);
                 } else if (rollGivesHope) {
-                    resourceUpdates.push({ key: 'hope', value: 1, enabled: true });
+                    resourceMap.addResources([{ key: 'hope', value: 1, enabled: true }]);
                 }
-                if (finalRoll.isCritical) resourceUpdates.push({ key: 'stress', value: -1, enabled: true });
+                if (finalRoll.isCritical) resourceMap.addResources([{ key: 'stress', value: -1, enabled: true }]);
                 if (finalRoll.withFear) {
-                    fearUpdate.value = fearUpdate.value === null ? 1 : fearUpdate.value + 1;
+                    fearResourceMap.addResources([{ 
+                        key: 'fear', 
+                        value: 1, 
+                        enabled: true 
+                    }]);
                 }
 
-                game.actors.get(memberId).modifyResource(resourceUpdates);
+                resourceMap.updateResources();
             }
         } 
         /* Even with Hope/Fear automation off, the hope cost of performing the TagTeamRoll can still optionally be subtracted */
@@ -797,10 +804,8 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             initiatingActor.modifyResource([{ key: 'hope', value: -tagTeamData.initiator.cost, enabled: true }]);
         }
 
-        if (fearUpdate.value) {
-            mainActor.modifyResource([fearUpdate]);
-        }
-        
+        fearResourceMap.updateResources();
+
         /* Fin */
         this.cancelRoll({ confirm: false });
     }
