@@ -1,13 +1,15 @@
 import DHApplicationMixin from './application-mixin.mjs';
-const { DocumentSheetV2 } = foundry.applications.api;
+const { ActorSheetV2 } = foundry.applications.sheets;
 
-/**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
+/**
+ * @typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction
+ */
 
 /**
  * Base settings sheet for Daggerheart actors.
- * @extends {DHApplicationMixin<DocumentSheetV2>}
+ * @extends {DHApplicationMixin<ActorSheetV2>}
  */
-export default class DHBaseActorSettings extends DHApplicationMixin(DocumentSheetV2) {
+export default class DHBaseActorSettings extends DHApplicationMixin(ActorSheetV2) {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
         classes: ['dialog'],
@@ -34,7 +36,7 @@ export default class DHBaseActorSettings extends DHApplicationMixin(DocumentShee
         return options;
     }
 
-    /**@returns {foundry.documents.Actor} */
+    /** @returns {foundry.documents.Actor} */
     get actor() {
         return this.document;
     }
@@ -72,5 +74,30 @@ export default class DHBaseActorSettings extends DHApplicationMixin(DocumentShee
         }
 
         return context;
+    }
+
+    async _onDragStart(event) {
+        const featureItemEl = event.currentTarget.closest('.feature-item');
+        const feature = this.actor.items.get(featureItemEl?.dataset.itemId);
+        if (feature && event.target.closest('.tab.features')) {
+            const featureData = { ...feature.toDragData(), fromInternal: true };
+            event.dataTransfer.setData('text/plain', JSON.stringify(featureData));
+            event.dataTransfer.setDragImage(featureItemEl.querySelector('img'), 60, 0);
+        }
+    }
+
+    async _onDrop(event) {
+        event.stopPropagation();
+        const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
+        const item = await fromUuid(data.uuid);
+        if (item?.type === 'feature') {
+            if (data.fromInternal && item.parent?.uuid === this.actor.uuid) {
+                return super._onDrop(event);
+            }
+
+            const itemData = item.toObject();
+            delete itemData._id;
+            await this.actor.createEmbeddedDocuments('Item', [itemData]);
+        }
     }
 }

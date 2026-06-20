@@ -767,7 +767,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         /* Handle resource updates from the finished TagTeamRoll */
         const tagTeamData = this.party.system.tagTeam;
-        const fearUpdate = { key: 'fear', value: null, total: null, enabled: true };
+        const fearUpdate = { key: 'fear', value: null, enabled: true };
 
         if (shouldUseHopeFearAutomation({ gmAsPlayer: true })) {
             for (let memberId in tagTeamData.members) {
@@ -779,14 +779,13 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                             ? 1 - tagTeamData.initiator.cost
                             : -tagTeamData.initiator.cost
                         : 1;
-                    resourceUpdates.push({ key: 'hope', value: value, total: -value, enabled: true });
+                    resourceUpdates.push({ key: 'hope', value: value, enabled: true });
                 } else if (rollGivesHope) {
-                    resourceUpdates.push({ key: 'hope', value: 1, total: -1, enabled: true });
+                    resourceUpdates.push({ key: 'hope', value: 1, enabled: true });
                 }
-                if (finalRoll.isCritical) resourceUpdates.push({ key: 'stress', value: -1, total: 1, enabled: true });
+                if (finalRoll.isCritical) resourceUpdates.push({ key: 'stress', value: -1, enabled: true });
                 if (finalRoll.withFear) {
                     fearUpdate.value = fearUpdate.value === null ? 1 : fearUpdate.value + 1;
-                    fearUpdate.total = fearUpdate.total === null ? -1 : fearUpdate.total - 1;
                 }
 
                 game.actors.get(memberId).modifyResource(resourceUpdates);
@@ -795,7 +794,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         /* Even with Hope/Fear automation off, the hope cost of performing the TagTeamRoll can still optionally be subtracted */
         else if (tagTeamData.initiator.cost) {
             const initiatingActor = game.actors.get(tagTeamData.initiator.memberId);
-            initiatingActor.modifyResource([{ key: 'hope', value: -tagTeamData.initiator.cost, total: tagTeamData.initiator.cost, enabled: true }]);
+            initiatingActor.modifyResource([{ key: 'hope', value: -tagTeamData.initiator.cost, enabled: true }]);
         }
 
         if (fearUpdate.value) {

@@ -459,8 +459,7 @@ export class ResourceUpdateMap extends Map {
             } else if (!existing?.clear) {
                 this.set(resource.key, {
                     ...existing,
-                    value: existing.value + (resource.value ?? 0),
-                    total: existing.total + (resource.total ?? 0)
+                    value: existing.value + (resource.value ?? 0)
                 });
             }
         }

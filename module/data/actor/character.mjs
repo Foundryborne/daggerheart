@@ -315,7 +315,12 @@ export default class DhCharacter extends DhCreature {
                         label: 'DAGGERHEART.ACTORS.Character.defaultDisadvantageDice'
                     })
                 })
-            })
+            }),
+            /** Accumulated armor score from all sources */
+            armorScore: new fields.SchemaField({
+                value: new fields.NumberField(),
+                max: new fields.NumberField()
+            }, { persisted: false })
         };
     }
 

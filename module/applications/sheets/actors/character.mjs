@@ -809,7 +809,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
         /* This could be avoided by baking config.costs into config.resourceUpdates. Didn't feel like messing with it at the time */
         const costResources =
-            result.costs?.filter(x => x.enabled).map(cost => ({ ...cost, value: -cost.value, total: -cost.total })) ||
+            result.costs?.filter(x => x.enabled).map(cost => ({ ...cost, value: -cost.value })) ||
             {};
         result.resourceUpdates.addResources(costResources);
         await result.resourceUpdates.updateResources();

@@ -9,9 +9,9 @@ export function updateResourcesForDualityReroll(oldDuality, newDuality, actor) {
     const stress = (newDuality === 0 ? 1 : 0) - (oldDuality === 0 ? 1 : 0);
     const fear = (newDuality === -1 ? 1 : 0) - (oldDuality === -1 ? 1 : 0);
 
-    if (hope !== 0) updates.push({ key: 'hope', value: hope, total: -1 * hope, enabled: true });
-    if (stress !== 0) updates.push({ key: 'stress', value: -1 * stress, total: stress, enabled: true });
-    if (fear !== 0) updates.push({ key: 'fear', value: fear, total: -1 * fear, enabled: true });
+    if (hope !== 0) updates.push({ key: 'hope', value: hope, enabled: true });
+    if (stress !== 0) updates.push({ key: 'stress', value: -1 * stress, enabled: true });
+    if (fear !== 0) updates.push({ key: 'fear', value: fear, enabled: true });
 
     const resourceUpdates = new ResourceUpdateMap(actor);
     resourceUpdates.addResources(updates);
