@@ -778,17 +778,17 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             const fearResourceMap = actorResourceMaps[tagTeamData.initiator.memberId];
             for (const memberId in tagTeamData.members) {
                 const resourceMap = actorResourceMaps[memberId];
-                if (finalRoll.isCritical || finalRoll.withHope) {
+                if (finalRoll.withHope) {
                     resourceMap.addResources([{ key: 'hope', value: 1, enabled: true }]);
                 }
-                if (finalRoll.isCritical) 
-                    resourceMap.addResources([{ key: 'stress', value: -1, enabled: true }]);
-                if (finalRoll.withFear) {
-                    fearResourceMap.addResources([{ 
-                        key: 'fear', 
-                        value: 1, 
-                        enabled: true 
-                    }]);
+                if (finalRoll.isCritical) {
+                    resourceMap.addResources([
+                        { key: 'stress', value: -1, enabled: true },
+                        { key: 'hope', value: 1, enabled: true }
+                    ]);
+                }
+                else if (finalRoll.withFear) {
+                    fearResourceMap.addResources([{ key: 'fear', value: 1, enabled: true }]);
                 }
             }
         } 
