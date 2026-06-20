@@ -9,6 +9,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
     constructor(party) {
         super({ id: `TagTeamDialog-${party.id}` });
 
+        this.usesTagTeamHopeCost = true;
         this.party = party;
         this.partyMembers = party.system.partyMembers
             .filter(x => Party.DICE_ROLL_ACTOR_TYPES.includes(x.type))
@@ -20,7 +21,9 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 owned: member.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER)
             }));
 
-        this.initiator = { cost: 3 };
+        this.initiator = { cost: 
+            this.party.system.schema.fields.tagTeam.fields.initiator.fields.cost.initial 
+        };
         this.openForAllPlayers = true;
 
         this.tabGroups.application = Object.keys(party.system.tagTeam.members).length
@@ -94,8 +97,12 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             ?.addEventListener('input', this.updateInitiatorMemberField.bind(this));
 
         htmlElement
-            .querySelector('.initiator-cost-field')
+            .querySelector('.initiator-cost-input')
             ?.addEventListener('input', this.updateInitiatorCostField.bind(this));
+
+        htmlElement
+            .querySelector('.initiator-cost-enabled-checkbox')
+            ?.addEventListener('change', this.toggleInitiatorCostEnabled.bind(this));
 
         htmlElement
             .querySelector('.openforall-field')
@@ -156,6 +163,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                     .map(x => ({ value: x.id, label: x.name }));
                 partContext.initiatorDisabled = !selectedMembers.length;
                 partContext.openForAllPlayers = this.openForAllPlayers;
+                partContext.usesTagTeamHopeCost = this.usesTagTeamHopeCost;
 
                 break;
             case 'tagTeamRoll':
@@ -394,6 +402,13 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
     updateInitiatorCostField(event) {
         if (!this.initiator) this.initiator = {};
         this.initiator.cost = event.target.value ? Number.parseInt(event.target.value) : null;
+        this.render();
+    }
+
+    toggleInitiatorCostEnabled(_event) {
+        this.usesTagTeamHopeCost = !this.usesTagTeamHopeCost;
+        this.initiator.cost = this.usesTagTeamHopeCost ? 
+            this.party.system.schema.fields.tagTeam.fields.initiator.fields.cost.initial : 0;
         this.render();
     }
 
@@ -751,9 +766,10 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         await cls.create(msgData);
 
         /* Handle resource updates from the finished TagTeamRoll */
+        const tagTeamData = this.party.system.tagTeam;
+        const fearUpdate = { key: 'fear', value: null, total: null, enabled: true };
+
         if (shouldUseHopeFearAutomation({ gmAsPlayer: true })) {
-            const tagTeamData = this.party.system.tagTeam;
-            const fearUpdate = { key: 'fear', value: null, total: null, enabled: true };
             for (let memberId in tagTeamData.members) {
                 const resourceUpdates = [];
                 const rollGivesHope = finalRoll.isCritical || finalRoll.withHope;
@@ -775,12 +791,17 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
                 game.actors.get(memberId).modifyResource(resourceUpdates);
             }
-
-            if (fearUpdate.value) {
-                mainActor.modifyResource([fearUpdate]);
-            }
+        } 
+        /* Even with Hope/Fear automation off, the hope cost of performing the TagTeamRoll can still optionally be subtracted */
+        else if (tagTeamData.initiator.cost) {
+            const initiatingActor = game.actors.get(tagTeamData.initiator.memberId);
+            initiatingActor.modifyResource([{ key: 'hope', value: -tagTeamData.initiator.cost, total: tagTeamData.initiator.cost, enabled: true }]);
         }
 
+        if (fearUpdate.value) {
+            mainActor.modifyResource([fearUpdate]);
+        }
+        
         /* Fin */
         this.cancelRoll({ confirm: false });
     }
