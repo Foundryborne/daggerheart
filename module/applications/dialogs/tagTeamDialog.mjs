@@ -752,7 +752,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         /* Handle resource updates from the finished TagTeamRoll */
         const tagTeamData = this.party.system.tagTeam;
-        const fearUpdate = { key: 'fear', value: null, total: null, enabled: true };
+        const fearUpdate = { key: 'fear', value: null, enabled: true };
         for (let memberId in tagTeamData.members) {
             const resourceUpdates = [];
             const rollGivesHope = finalRoll.isCritical || finalRoll.withHope;
@@ -762,11 +762,11 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                         ? 1 - tagTeamData.initiator.cost
                         : -tagTeamData.initiator.cost
                     : 1;
-                resourceUpdates.push({ key: 'hope', value: value, total: -value, enabled: true });
+                resourceUpdates.push({ key: 'hope', value: value, enabled: true });
             } else if (rollGivesHope) {
-                resourceUpdates.push({ key: 'hope', value: 1, total: -1, enabled: true });
+                resourceUpdates.push({ key: 'hope', value: 1, enabled: true });
             }
-            if (finalRoll.isCritical) resourceUpdates.push({ key: 'stress', value: -1, total: 1, enabled: true });
+            if (finalRoll.isCritical) resourceUpdates.push({ key: 'stress', value: -1, enabled: true });
             if (finalRoll.withFear) {
                 fearUpdate.value = fearUpdate.value === null ? 1 : fearUpdate.value + 1;
                 fearUpdate.total = fearUpdate.total === null ? -1 : fearUpdate.total - 1;

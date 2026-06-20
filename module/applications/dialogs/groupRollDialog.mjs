@@ -483,13 +483,13 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         const resourceMap = new ResourceUpdateMap(actor);
         if (totalRoll.isCritical) {
             resourceMap.addResources([
-                { key: 'stress', value: -1, total: 1 },
-                { key: 'hope', value: 1, total: 1 }
+                { key: 'stress', value: -1 },
+                { key: 'hope', value: 1 }
             ]);
         } else if (totalRoll.withHope) {
-            resourceMap.addResources([{ key: 'hope', value: 1, total: 1 }]);
+            resourceMap.addResources([{ key: 'hope', value: 1 }]);
         } else {
-            resourceMap.addResources([{ key: 'fear', value: 1, total: 1 }]);
+            resourceMap.addResources([{ key: 'fear', value: 1 }]);
         }
 
         resourceMap.updateResources();

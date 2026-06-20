@@ -334,15 +334,15 @@ export default class DualityRoll extends D20Roll {
                 const fear =
                     (config.roll.result.duality === -1 ? 1 : 0) - (config.rerolledRoll.result.duality === -1 ? 1 : 0);
 
-                if (hope !== 0) updates.push({ key: 'hope', value: hope, total: -1 * hope, enabled: true });
-                if (stress !== 0) updates.push({ key: 'stress', value: -1 * stress, total: stress, enabled: true });
-                if (fear !== 0) updates.push({ key: 'fear', value: fear, total: -1 * fear, enabled: true });
+                if (hope !== 0) updates.push({ key: 'hope', value: hope, enabled: true });
+                if (stress !== 0) updates.push({ key: 'stress', value: -1 * stress, enabled: true });
+                if (fear !== 0) updates.push({ key: 'fear', value: fear, enabled: true });
             }
         } else {
             if (config.roll.isCritical || config.roll.result.duality === 1)
-                updates.push({ key: 'hope', value: 1, total: -1, enabled: true });
-            if (config.roll.isCritical) updates.push({ key: 'stress', value: -1, total: 1, enabled: true });
-            if (config.roll.result.duality === -1) updates.push({ key: 'fear', value: 1, total: -1, enabled: true });
+                updates.push({ key: 'hope', value: 1, enabled: true });
+            if (config.roll.isCritical) updates.push({ key: 'stress', value: -1, enabled: true });
+            if (config.roll.result.duality === -1) updates.push({ key: 'fear', value: 1, enabled: true });
         }
 
         if (updates.length) {
