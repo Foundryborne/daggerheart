@@ -781,7 +781,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 if (finalRoll.withHope) {
                     resourceMap.addResources([{ key: 'hope', value: 1, enabled: true }]);
                 }
-                if (finalRoll.isCritical) {
+                else if (finalRoll.isCritical) {
                     resourceMap.addResources([
                         { key: 'stress', value: -1, enabled: true },
                         { key: 'hope', value: 1, enabled: true }
