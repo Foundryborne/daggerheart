@@ -342,7 +342,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
      * Sends updates of the countdowns to the GM player. Since this is asynchronous, be sure to
      * update all the countdowns at the same time.
      *
-     * @param  {...any} progressTypes Countdowns to be updated
+     * @param  {...{ type: <key>, reverseDirection: boolean }} progressTypes Countdowns to be updated
      */
     static async updateCountdowns(...progressTypes) {
         const { countdownAutomation } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
@@ -351,20 +351,21 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         const countdownSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
         const updatedCountdowns = Object.keys(countdownSetting.countdowns).reduce((acc, key) => {
             const countdown = countdownSetting.countdowns[key];
-            if (progressTypes.indexOf(countdown.progress.type) !== -1 && countdown.progress.current > 0) {
-                acc.push(key);
+            const progressData = progressTypes.find(x => x.type === countdown.progress.type);
+            if (progressData && countdown.progress.current > 0) {
+                acc[key] = { value: progressData.reverseDirection ? 1 : -1 };
             }
 
             return acc;
-        }, []);
+        }, {});
 
         const countdownData = countdownSetting.toObject();
         const settings = {
             ...countdownData,
             countdowns: Object.keys(countdownData.countdowns).reduce((acc, key) => {
                 const countdown = foundry.utils.deepClone(countdownData.countdowns[key]);
-                if (updatedCountdowns.includes(key)) {
-                    countdown.progress.current -= 1;
+                if (updatedCountdowns[key]) {
+                    countdown.progress.current += updatedCountdowns[key].value;
                 }
 
                 acc[key] = countdown;
