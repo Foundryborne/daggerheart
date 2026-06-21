@@ -342,7 +342,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
      * Sends updates of the countdowns to the GM player. Since this is asynchronous, be sure to
      * update all the countdowns at the same time.
      *
-     * @param  {...{ type: <key>, undo: boolean }} progressTypes Countdowns to be updated
+     * @param  {...(string | { type: string; undo?: boolean })} progressTypes Countdowns to be updated
      */
     static async updateCountdowns(...progressTypes) {
         progressTypes = progressTypes.map(p => typeof p === 'string' ? { type: p } : p);
