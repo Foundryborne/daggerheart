@@ -32,11 +32,13 @@ export default class DHEnvironmentSettings extends DHBaseActorSettings {
         },
         features: {
             id: 'features',
-            template: 'systems/daggerheart/templates/sheets-settings/environment-settings/features.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/environment-settings/features.hbs',
+            scrollable: ['']
         },
         adversaries: {
             id: 'adversaries',
-            template: 'systems/daggerheart/templates/sheets-settings/environment-settings/adversaries.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/environment-settings/adversaries.hbs',
+            scrollable: ['']
         }
     };
 
@@ -52,12 +54,16 @@ export default class DHEnvironmentSettings extends DHBaseActorSettings {
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
 
-        const featureForms = ['passive', 'action', 'reaction'];
-        context.features = context.document.system.features.sort((a, b) =>
-            a.system.featureForm !== b.system.featureForm
-                ? featureForms.indexOf(a.system.featureForm) - featureForms.indexOf(b.system.featureForm)
-                : a.sort - b.sort
-        );
+        // Get feature groups. Uncategorized go to actions
+        const featureFormsTypes = ['passive', 'action', 'reaction'];
+        const features = this.document.system.features.sort((a, b) => a.sort - b.sort);
+        const featureGroups = featureFormsTypes.map(t => ({
+            featureForm: t,
+            label: _loc(CONFIG.DH.ITEM.featureForm[t]),
+            features: features.filter(f => f.system.featureForm === t)
+        }));
+        featureGroups[1].features.push(...features.filter(f => !featureFormsTypes.includes(f.system.featureForm)));
+        context.featureGroups = featureGroups;
 
         return context;
     }

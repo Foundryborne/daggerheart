@@ -734,7 +734,7 @@ export default function DHApplicationMixin(Base) {
          * @type {ApplicationClickAction}
          */
         static async #onCreateDoc(event, target) {
-            const { documentClass, type, inVault, disabled } = target.dataset;
+            const { documentClass, type, inVault, disabled, featureForm } = target.dataset;
             const parentIsItem = this.document.documentName === 'Item';
             const featureOnCharacter = this.document.parent?.type === 'character' && type === 'feature';
             const parent = featureOnCharacter
@@ -752,6 +752,7 @@ export default function DHApplicationMixin(Base) {
                     identifier: this.document.system.isMulticlass ? 'multiclass' : null
                 };
             }
+            if (featureForm) systemData.featureForm = featureForm;
 
             const cls =
                 type === 'action' ? game.system.api.models.actions.actionsTypes.base : getDocumentClass(documentClass);

@@ -25,7 +25,7 @@ export default class DHBaseActorSettings extends DHApplicationMixin(ActorSheetV2
         },
         dragDrop: [
             { dragSelector: null, dropSelector: '.tab.features' },
-            { dragSelector: '.feature-item', dropSelector: null }
+            { dragSelector: '.feature-item, .inventory-item[data-type="feature"]', dropSelector: null }
         ]
     };
 
@@ -77,7 +77,7 @@ export default class DHBaseActorSettings extends DHApplicationMixin(ActorSheetV2
     }
 
     async _onDragStart(event) {
-        const featureItemEl = event.currentTarget.closest('.feature-item');
+        const featureItemEl = event.currentTarget.closest('.feature-item, .inventory-item[data-type="feature"]');
         const feature = this.actor.items.get(featureItemEl?.dataset.itemId);
         if (feature && event.target.closest('.tab.features')) {
             const featureData = { ...feature.toDragData(), fromInternal: true };
