@@ -359,8 +359,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                             effectData.system.changes = 
                                 effectData.system.changes.filter(x => weaponTransferredEffectKeys.includes(x.key));
                         } 
-                    }
-                    else if (effectParent?.id !== effect.parent.id) {
+                    } else if (effectParent?.id !== effect.parent.id) {
                         effectData.system.changes = 
                             effectData.system.changes.filter(x => weaponTransferredEffectKeys.includes(x.key));
                     }
