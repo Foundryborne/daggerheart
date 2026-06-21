@@ -19,15 +19,10 @@ export function updateResourcesForDualityReroll(oldDuality, newDuality, actor) {
         resourceUpdates.updateResources();
     }
 
-    if (countdownAutomation) {
-        const updates = [];
-        if (fear !== 0) {
-            updates.push({ 
-                type: CONFIG.DH.GENERAL.countdownProgressionTypes.fear.id, 
-                undo: fear === 1 ? false : true 
-            });
-        }
-
-        game.system.api.applications.ui.DhCountdowns.updateCountdowns(...updates);
+    if (countdownAutomation && fear !== 0) {
+        game.system.api.applications.ui.DhCountdowns.updateCountdowns({ 
+            type: CONFIG.DH.GENERAL.countdownProgressionTypes.fear.id, 
+            undo: fear === 1 ? false : true 
+        });
     }
 }
