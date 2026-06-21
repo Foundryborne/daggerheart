@@ -160,7 +160,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         }
         if (rest.hasOwnProperty('trait')) {
             this.config.roll.trait = rest.trait;
-            if (!this.config.source.item)
+            if (!this.config.source.item && this.config.roll.trait)
                 this.config.title = game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
                     ability: game.i18n.localize(abilities[this.config.roll.trait]?.label)
                 });
@@ -225,8 +225,6 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
     }
 
     static async submitRoll(event) {
-        event.preventDefault();
-        await this.submit();
         await this.close({ submitted: true });
     }
 
