@@ -226,6 +226,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
 
     static async submitRoll(event) {
         event.preventDefault();
+        await this.submit();
         await this.close({ submitted: true });
     }
 
