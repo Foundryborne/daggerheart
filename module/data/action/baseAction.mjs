@@ -341,19 +341,31 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     static async getEffects(actor, effectParent) {
         if (!actor) return [];
 
-        return Array.from(await actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true })).filter(
-            effect => {
+        // Changes on weapon effects are not typically only applicable to show in the roll dialog for the weapon itself 
+        // The exemptions to this rule are listed below
+        const weaponTrasnferredEffectKeys = [
+            'system.bonuses.roll.spellcasting'
+        ];
+
+        return Array.from(await actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true })).reduce(
+            (acc, effect) => {
+                const effectData = effect.toObject();
                 /* Effects on weapons only ever apply for the weapon itself */
                 if (effect.parent.type === 'weapon') {
                     /* Unless they're secondary - then they apply only to other primary weapons */
                     if (effect.parent.system.secondary) {
-                        if (effectParent?.type !== 'weapon' || effectParent?.system.secondary) return false;
-                    } else if (effectParent?.id !== effect.parent.id) return false;
+                        if (effectParent?.type !== 'weapon' || effectParent?.system.secondary) 
+                            effectData.system.changes.filter(x => weaponTrasnferredEffectKeys.includes(x.key));
+                    } else if (effectParent?.id !== effect.parent.id) 
+                        effectData.system.changes.filter(x => weaponTrasnferredEffectKeys.includes(x.key));
                 }
 
-                return !effect.isSuppressed;
-            }
-        );
+                if (!effect.isSuppressed) {
+                    acc.push(effectData);
+                }
+
+                return acc;
+            }, []);
     }
 
     /**
