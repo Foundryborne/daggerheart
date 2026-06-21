@@ -72,6 +72,16 @@ export default class DhpEnvironment extends DHBaseActorSheet {
         return applicationOptions;
     }
 
+    /** @inheritdoc */
+    _prepareTabs(group) {
+        const result = super._prepareTabs(group);
+        if (group === 'primary') {
+            result.potentialAdversaries.empty = foundry.utils.isEmpty(this.document.system.potentialAdversaries);
+            result.notes.empty = !this.document.system.notes?.trim();
+        }
+        return result;
+    }
+
     /**@inheritdoc */
     async _preparePartContext(partId, context, options) {
         context = await super._preparePartContext(partId, context, options);
