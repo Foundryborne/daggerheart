@@ -228,7 +228,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         let config = this.prepareConfig(event, configOptions);
         if (!config) return;
 
-        config.effects = await game.system.api.data.actions.actionsTypes.base.getEffects(this.actor, this.item);
+        config.effects = 
+            await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(this.actor, this.item);
 
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
@@ -333,31 +334,36 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     /**
-     * Get the all potentially applicable effects on the actor
+     * Get the all potentially applicable effects on the actor for the action's RollDialog
      * @param {DHActor} actor The actor performing the action
      * @param {DHItem|DhActor} effectParent The parent of the effect
      * @returns {DhActiveEffect[]}
      */
-    static async getEffects(actor, effectParent) {
+    static async getActionRelevantEffects(actor, effectParent) {
         if (!actor) return [];
 
         // Changes on weapon effects are not typically only applicable to show in the roll dialog for the weapon itself 
         // The exemptions to this rule are listed below
-        const weaponTrasnferredEffectKeys = [
-            'system.bonuses.roll.spellcasting'
+        const weaponTransferredEffectKeys = [
+            'system.bonuses.roll.spellcast.bonus'
         ];
 
         return Array.from(await actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true })).reduce(
             (acc, effect) => {
                 const effectData = effect.toObject();
-                /* Effects on weapons only ever apply for the weapon itself */
+                /* Effects on weapons only ever apply for the weapon itself, with a few defined exceptions */
                 if (effect.parent.type === 'weapon') {
                     /* Unless they're secondary - then they apply only to other primary weapons */
                     if (effect.parent.system.secondary) {
-                        if (effectParent?.type !== 'weapon' || effectParent?.system.secondary) 
-                            effectData.system.changes.filter(x => weaponTrasnferredEffectKeys.includes(x.key));
-                    } else if (effectParent?.id !== effect.parent.id) 
-                        effectData.system.changes.filter(x => weaponTrasnferredEffectKeys.includes(x.key));
+                        if (effectParent?.type !== 'weapon' || effectParent?.system.secondary) {
+                            effectData.system.changes = 
+                                effectData.system.changes.filter(x => weaponTransferredEffectKeys.includes(x.key));
+                        } 
+                    }
+                    else if (effectParent?.id !== effect.parent.id) {
+                        effectData.system.changes = 
+                            effectData.system.changes.filter(x => weaponTransferredEffectKeys.includes(x.key));
+                    }
                 }
 
                 if (!effect.isSuppressed) {

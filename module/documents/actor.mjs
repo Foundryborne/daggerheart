@@ -549,7 +549,7 @@ export default class DhpActor extends Actor {
             headerTitle: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
                 ability: abilityLabel
             }),
-            effects: await game.system.api.data.actions.actionsTypes.base.getEffects(this),
+            effects: await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(this),
             roll: {
                 trait: trait,
                 type: 'trait'

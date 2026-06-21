@@ -212,7 +212,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                     const doc = await getDocFromElement(target),
                         action = doc?.system?.attack ?? doc;
                     const config = action.prepareConfig(event);
-                    config.effects = await game.system.api.data.actions.actionsTypes.base.getEffects(
+                    config.effects = await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
                         this.document,
                         doc
                     );
