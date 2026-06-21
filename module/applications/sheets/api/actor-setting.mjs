@@ -100,4 +100,7 @@ export default class DHBaseActorSettings extends DHApplicationMixin(ActorSheetV2
             await this.actor.createEmbeddedDocuments('Item', [itemData]);
         }
     }
+
+    /** Setting sheets do not auto extend */
+    async _autoExpandDescriptions() {}
 }

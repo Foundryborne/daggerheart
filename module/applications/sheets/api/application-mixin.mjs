@@ -4,6 +4,7 @@ import { getDocFromElement, getDocFromElementSync, tagifyElement } from '../../.
 const typeSettingsMap = {
     character: 'extendCharacterDescriptions',
     adversary: 'extendAdversaryDescriptions',
+    npc: 'extendAdversaryDescriptions',
     environment: 'extendEnvironmentDescriptions',
     ancestry: 'extendItemDescriptions',
     community: 'extendItemDescriptions',
@@ -262,7 +263,7 @@ export default function DHApplicationMixin(Base) {
 
             if (!!this.options.contextMenus.length) this._createContextMenus();
 
-            this.#autoExtendDescriptions(context);
+            this._autoExpandDescriptions(context);
         }
 
         /** @inheritDoc */
@@ -630,8 +631,9 @@ export default function DHApplicationMixin(Base) {
         /**
          * Extend inventory description when enabled in settings.
          * @returns {Promise<void>}
+         * @protected
          */
-        async #autoExtendDescriptions(context) {
+        async _autoExpandDescriptions(context) {
             const inventoryItems = this.element.querySelectorAll('.inventory-item[data-item-uuid]');
             for (const el of inventoryItems) {
                 // Get the doc uuid from the element
