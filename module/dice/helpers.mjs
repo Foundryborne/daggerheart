@@ -24,7 +24,7 @@ export function updateResourcesForDualityReroll(oldDuality, newDuality, actor) {
         if (fear !== 0) {
             updates.push({ 
                 type: CONFIG.DH.GENERAL.countdownProgressionTypes.fear.id, 
-                reverseDirection: fear === 1 ? false : true 
+                undo: fear === 1 ? false : true 
             });
         }
 

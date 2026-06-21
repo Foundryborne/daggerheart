@@ -342,9 +342,10 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
      * Sends updates of the countdowns to the GM player. Since this is asynchronous, be sure to
      * update all the countdowns at the same time.
      *
-     * @param  {...{ type: <key>, reverseDirection: boolean }} progressTypes Countdowns to be updated
+     * @param  {...{ type: <key>, undo: boolean }} progressTypes Countdowns to be updated
      */
     static async updateCountdowns(...progressTypes) {
+        progressTypes = progressTypes.map(p => typeof p === 'string' ? { type: p } : p);
         const { countdownAutomation } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
         if (!countdownAutomation) return;
 
@@ -353,7 +354,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             const countdown = countdownSetting.countdowns[key];
             const progressData = progressTypes.find(x => x.type === countdown.progress.type);
             if (progressData && countdown.progress.current > 0) {
-                acc[key] = { value: progressData.reverseDirection ? 1 : -1 };
+                acc[key] = { value: progressData.undo ? 1 : -1 };
             }
 
             return acc;

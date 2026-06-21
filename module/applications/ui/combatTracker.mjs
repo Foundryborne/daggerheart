@@ -202,11 +202,11 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
             const { updateCountdowns } = game.system.api.applications.ui.DhCountdowns;
             if (combatant.actor?.type === 'character') {
                 await updateCountdowns(
-                    { type: CONFIG.DH.GENERAL.countdownProgressionTypes.spotlight.id },
-                    { type: CONFIG.DH.GENERAL.countdownProgressionTypes.characterSpotlight.id }
+                    CONFIG.DH.GENERAL.countdownProgressionTypes.spotlight.id,
+                    CONFIG.DH.GENERAL.countdownProgressionTypes.characterSpotlight.id
                 );
             } else {
-                await updateCountdowns({ type: CONFIG.DH.GENERAL.countdownProgressionTypes.spotlight.id });
+                await updateCountdowns(CONFIG.DH.GENERAL.countdownProgressionTypes.spotlight.id);
             }
 
             const autoPoints = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).actionPoints;

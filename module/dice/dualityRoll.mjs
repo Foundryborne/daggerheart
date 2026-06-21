@@ -362,11 +362,11 @@ export default class DualityRoll extends D20Roll {
 
             if (config.roll.result.duality === -1) {
                 await updateCountdowns(
-                    { type: CONFIG.DH.GENERAL.countdownProgressionTypes.actionRoll.id },
-                    { type: CONFIG.DH.GENERAL.countdownProgressionTypes.fear.id }
+                    CONFIG.DH.GENERAL.countdownProgressionTypes.actionRoll.id,
+                    CONFIG.DH.GENERAL.countdownProgressionTypes.fear.id
                 );
             } else {
-                await updateCountdowns({ type: CONFIG.DH.GENERAL.countdownProgressionTypes.actionRoll.id });
+                await updateCountdowns(CONFIG.DH.GENERAL.countdownProgressionTypes.actionRoll.id);
             }
         }
 
