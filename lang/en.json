@@ -1451,7 +1451,7 @@
                 },
                 "triggerType": "Trigger Type",
                 "triggeringActorType": "Triggering Actor Type",
-                "triggerError": "{trigger} trigger on {item} failed for {actor}. It's probably configured wrong."
+                "triggerError": "{trigger} trigger on {item}({itemUuid}) failed for {actor}. It's probably configured wrong."
             },
             "WeaponFeature": {
                 "barrier": {

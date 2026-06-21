@@ -156,7 +156,8 @@ export default class RegisteredTriggers extends Map {
                             game.i18n.format('DAGGERHEART.CONFIG.Triggers.triggerError', {
                                 trigger: triggerName,
                                 actor: currentActor?.name,
-                                item: item?.name ?? '<Missing Item>'
+                                item: item?.name ?? '<Missing Item>',
+                                itemUuid: item?.uuid ?? '<Missing UUID>'
                             })
                         );
                     }
