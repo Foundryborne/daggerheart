@@ -346,21 +346,15 @@
           "_id": "pZUEkMkCus4U7h8W",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.evasion",
+                "mode": 5,
+                "value": "@system.evasion / 2",
+                "priority": 10
+              }
+            ]
           },
-          "changes": [
-            {
-              "key": "system.evasion",
-              "mode": 5,
-              "value": "@system.evasion / 2",
-              "priority": 10
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,

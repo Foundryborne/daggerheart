@@ -447,12 +447,6 @@
           "_id": "YznseQP43jNrk07h",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": [],
             "duration": {
               "type": "scene"

@@ -165,15 +165,8 @@
         },
         "ACTIVEEFFECT": {
             "Config": {
-                "rangeDependence": {
-                    "title": "Range Dependence"
-                },
                 "stacking": { "title": "Stacking" },
                 "targetDispositions": "Affected Dispositions"
-            },
-            "RangeDependance": {
-                "hint": "Settings for an optional distance at which this effect should activate",
-                "title": "Range Dependant"
             },
             "immuneStatusText": "Immunity: {status}"
         },

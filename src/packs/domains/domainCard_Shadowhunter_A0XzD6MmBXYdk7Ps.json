@@ -24,16 +24,10 @@
       "name": "Shadowhunter Evasion",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": []
       },
       "_id": "A6gMv7TbMu3nV3NT",
       "img": "icons/skills/movement/feet-winged-boots-glowing-yellow.webp",
-      "changes": [],
       "disabled": true,
       "duration": {
         "startTime": null,
@@ -60,23 +54,17 @@
       "name": "Shadowhunter Advantage Hint",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.advantageSources",
+            "mode": 2,
+            "value": "Attack rolls while shrouded in low light or darkness.",
+            "priority": null
+          }
+        ]
       },
       "_id": "a1hDCNYDvF4dWt58",
       "img": "icons/skills/targeting/crosshair-bars-yellow.webp",
-      "changes": [
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Attack rolls while shrouded in low light or darkness.",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

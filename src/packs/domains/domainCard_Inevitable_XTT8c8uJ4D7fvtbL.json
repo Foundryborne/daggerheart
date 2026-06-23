@@ -23,23 +23,17 @@
       "name": "Inevitable",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.advantageSources",
+            "mode": 2,
+            "value": "If you failed your previous action roll",
+            "priority": null
+          }
+        ]
       },
       "_id": "wX4BFGaM0bdzHPn2",
       "img": "icons/magic/light/explosion-beam-impact-silhouette.webp",
-      "changes": [
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "If you failed your previous action roll",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

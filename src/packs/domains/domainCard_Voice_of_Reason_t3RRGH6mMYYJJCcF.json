@@ -23,29 +23,23 @@
       "name": "Advantage",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.advantageSources",
+            "mode": 2,
+            "value": "De-escalate violent situations.",
+            "priority": null
+          },
+          {
+            "key": "system.advantageSources",
+            "mode": 2,
+            "value": "Convince someone to follow your lead.",
+            "priority": null
+          }
+        ]
       },
       "_id": "qWDojebJXMPIP629",
       "img": "icons/skills/social/diplomacy-handshake.webp",
-      "changes": [
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "De-escalate violent situations.",
-          "priority": null
-        },
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Convince someone to follow your lead.",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -72,23 +66,17 @@
       "name": "Emboldened (activate manually)",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.proficiency",
+            "mode": 2,
+            "value": "+1",
+            "priority": null
+          }
+        ]
       },
       "_id": "i5dnpOxTtWV1J46k",
       "img": "icons/skills/melee/unarmed-punch-fist-yellow-red.webp",
-      "changes": [
-        {
-          "key": "system.proficiency",
-          "mode": 2,
-          "value": "+1",
-          "priority": null
-        }
-      ],
       "disabled": true,
       "duration": {
         "startTime": null,

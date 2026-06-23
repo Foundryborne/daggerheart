@@ -24,21 +24,15 @@
       "_id": "Xl3TsKUJcl6vi1ly",
       "img": "icons/magic/control/buff-flight-wings-runes-purple-orange.webp",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.resources.stress.max",
+            "mode": 2,
+            "value": "1",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.resources.stress.max",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

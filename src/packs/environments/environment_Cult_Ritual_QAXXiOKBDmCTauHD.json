@@ -183,21 +183,15 @@
           "_id": "8yNIw8Y7rfMdOqWC",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.rules.dualityRoll.defaultHopeDice",
+                "mode": 5,
+                "value": "d10",
+                "priority": null
+              }
+            ]
           },
-          "changes": [
-            {
-              "key": "system.rules.dualityRoll.defaultHopeDice",
-              "mode": 5,
-              "value": "d10",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,
@@ -285,14 +279,8 @@
           "_id": "dYQBQq1xIysM0qLo",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": []
           },
-          "changes": [],
           "disabled": false,
           "duration": {
             "startTime": null,
@@ -321,27 +309,21 @@
           "_id": "Hxw5lXE77bGzuaOu",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.bonuses.damage.physical.dice",
+                "mode": 2,
+                "value": "1d10",
+                "priority": null
+              },
+              {
+                "key": "system.bonuses.damage.magical.dice",
+                "mode": 2,
+                "value": "1d10",
+                "priority": null
+              }
+            ]
           },
-          "changes": [
-            {
-              "key": "system.bonuses.damage.physical.dice",
-              "mode": 2,
-              "value": "1d10",
-              "priority": null
-            },
-            {
-              "key": "system.bonuses.damage.magical.dice",
-              "mode": 2,
-              "value": "1d10",
-              "priority": null
-            }
-          ],
           "disabled": true,
           "duration": {
             "startTime": null,

@@ -92,33 +92,27 @@
       "_id": "ptBC882plZW39Ld9",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.damage.physical.bonus",
+            "mode": 2,
+            "value": "10",
+            "priority": null
+          },
+          {
+            "key": "system.bonuses.damage.magical.bonus",
+            "mode": 2,
+            "value": "10",
+            "priority": null
+          },
+          {
+            "key": "system.rules.conditionImmunities.restrained",
+            "mode": 5,
+            "value": "1",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.physical.bonus",
-          "mode": 2,
-          "value": "10",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.magical.bonus",
-          "mode": 2,
-          "value": "10",
-          "priority": null
-        },
-        {
-          "key": "system.rules.conditionImmunities.restrained",
-          "mode": 5,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

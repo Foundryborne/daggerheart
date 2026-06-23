@@ -107,16 +107,10 @@
       "name": "Grace-Touched",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": []
       },
       "_id": "KK5m2slpFuXDxFaL",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/grace.png",
-      "changes": [],
       "disabled": false,
       "duration": {
         "startTime": null,

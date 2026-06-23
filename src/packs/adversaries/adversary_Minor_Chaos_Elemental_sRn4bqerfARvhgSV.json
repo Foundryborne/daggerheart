@@ -235,21 +235,15 @@
           "_id": "vwc93gtzFoFZj4XT",
           "img": "icons/magic/defensive/shield-barrier-flaming-diamond-blue.webp",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.resistance.magical.resistance",
+                "mode": 2,
+                "value": "1",
+                "priority": null
+              }
+            ]
           },
-          "changes": [
-            {
-              "key": "system.resistance.magical.resistance",
-              "mode": 2,
-              "value": "1",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,
@@ -383,12 +377,6 @@
           "_id": "KIyV2eXDmmymXY5y",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": [],
             "duration": {
               "type": "shortRest"

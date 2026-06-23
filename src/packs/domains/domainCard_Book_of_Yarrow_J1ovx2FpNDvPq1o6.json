@@ -118,12 +118,6 @@
       "_id": "HWJYhSegVLeAa3dE",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [
           {
             "key": "system.resistance.magical.immunity",

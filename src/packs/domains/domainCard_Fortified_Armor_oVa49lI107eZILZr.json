@@ -23,29 +23,23 @@
       "name": "Fortified Armor",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.damageThresholds.major",
+            "mode": 2,
+            "value": "2",
+            "priority": null
+          },
+          {
+            "key": "system.damageThresholds.severe",
+            "mode": 2,
+            "value": "2",
+            "priority": null
+          }
+        ]
       },
       "_id": "jx8KWAdyoPV2hV0s",
       "img": "icons/equipment/chest/breastplate-helmet-metal.webp",
-      "changes": [
-        {
-          "key": "system.damageThresholds.major",
-          "mode": 2,
-          "value": "2",
-          "priority": null
-        },
-        {
-          "key": "system.damageThresholds.severe",
-          "mode": 2,
-          "value": "2",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

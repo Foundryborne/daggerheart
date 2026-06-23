@@ -25,27 +25,21 @@
       "_id": "HMx9uZ54mvMiH95x",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.damage.physical.bonus",
+            "mode": 2,
+            "value": "@system.levelData.level.current",
+            "priority": null
+          },
+          {
+            "key": "system.bonuses.damage.magical.bonus",
+            "mode": 2,
+            "value": "@system.levelData.level.current",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.physical.bonus",
-          "mode": 2,
-          "value": "@system.levelData.level.current",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.magical.bonus",
-          "mode": 2,
-          "value": "@system.levelData.level.current",
-          "priority": null
-        }
-      ],
       "disabled": true,
       "duration": {
         "startTime": null,

@@ -24,21 +24,15 @@
       "_id": "4Lc40mNnRInTKMC5",
       "img": "icons/magic/defensive/shield-barrier-glowing-triangle-orange.webp",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.rules.damageReduction.stressDamageReduction.minor.cost",
+            "mode": 5,
+            "value": "2",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.rules.damageReduction.stressDamageReduction.minor.cost",
-          "mode": 5,
-          "value": "2",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

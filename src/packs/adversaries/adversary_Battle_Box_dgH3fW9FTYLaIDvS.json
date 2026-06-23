@@ -680,12 +680,6 @@
           "_id": "9NQcCXMhjyBReJRd",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": [],
             "duration": {
               "type": "temporary",
@@ -927,12 +921,6 @@
           "_id": "S7kJlhnV8Nexzi8l",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": [],
             "duration": {
               "type": "temporary",

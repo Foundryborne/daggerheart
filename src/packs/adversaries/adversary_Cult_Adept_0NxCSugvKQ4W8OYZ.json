@@ -415,12 +415,6 @@
           "_id": "U9lWz1LgeAiK5L85",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": [
               {
                 "key": "system.resistance.magical.resistance",
@@ -546,12 +540,6 @@
           "_id": "lNH6srSPyEprXZ4o",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": [],
             "duration": {
               "type": "temporary",

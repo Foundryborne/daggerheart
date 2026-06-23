@@ -323,21 +323,15 @@
           "_id": "WYqjt1tVqPEdVV5l",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.disadvantageSources",
+                "mode": 2,
+                "value": "Your next action",
+                "priority": null
+              }
+            ]
           },
-          "changes": [
-            {
-              "key": "system.disadvantageSources",
-              "mode": 2,
-              "value": "Your next action",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,
@@ -462,12 +456,6 @@
           "_id": "X8NF2OB23mSpDvlx",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": [],
             "duration": {
               "type": "temporary",

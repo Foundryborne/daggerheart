@@ -21,23 +21,17 @@
       "name": "Advanced Training",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.companionData.levelupChoices",
+            "mode": 2,
+            "value": "2",
+            "priority": null
+          }
+        ]
       },
       "_id": "bKOuMxhB2Jth3j2T",
       "img": "icons/creatures/mammals/wolf-howl-moon-gray.webp",
-      "changes": [
-        {
-          "key": "system.companionData.levelupChoices",
-          "mode": 2,
-          "value": "2",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

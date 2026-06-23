@@ -394,12 +394,6 @@
           "_id": "3PY5KIG6d3dr3dty",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "any",
-              "range": "self"
-            },
             "changes": [
               {
                 "key": "system.resistance.physical.resistance",

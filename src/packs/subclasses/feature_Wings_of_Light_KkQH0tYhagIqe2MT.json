@@ -94,27 +94,21 @@
       "_id": "PfCwuVbKLxhnrm9X",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.damage.physical.dice",
+            "mode": 2,
+            "value": "+1d8",
+            "priority": null
+          },
+          {
+            "key": "system.bonuses.damage.magical.dice",
+            "mode": 2,
+            "value": "+1d8",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.physical.dice",
-          "mode": 2,
-          "value": "+1d8",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.magical.dice",
-          "mode": 2,
-          "value": "+1d8",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

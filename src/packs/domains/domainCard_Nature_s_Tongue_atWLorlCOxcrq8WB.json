@@ -109,21 +109,15 @@
       "_id": "0JYDk5CQ66bHGQO0",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.roll.spellcast.bonus",
+            "mode": 2,
+            "value": "+2",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.bonuses.roll.spellcast.bonus",
-          "mode": 2,
-          "value": "+2",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

@@ -24,21 +24,15 @@
       "_id": "RwhxYOAAKKlYZiz0",
       "img": "icons/sundries/books/book-open-brown.webp",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.advantageSources",
+            "mode": 2,
+            "value": "History, culture, or politics of a prominent person or place",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "History, culture, or politics of a prominent person or place",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

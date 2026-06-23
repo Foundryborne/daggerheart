@@ -21,23 +21,17 @@
       "name": "Fleeting Shadow",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.evasion",
+            "mode": 2,
+            "value": "1",
+            "priority": null
+          }
+        ]
       },
       "_id": "hsEwoHkNr2qVwm2H",
       "img": "icons/magic/unholy/projectile-flame-white-purple.webp",
-      "changes": [
-        {
-          "key": "system.evasion",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

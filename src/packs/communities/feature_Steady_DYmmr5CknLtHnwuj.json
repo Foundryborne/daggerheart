@@ -24,33 +24,27 @@
       "_id": "QDf9LD8Mhd0Cw0CB",
       "img": "icons/equipment/feet/boots-collared-simple-leather.webp",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.advantageSources",
+            "mode": 2,
+            "value": "Traverse dangerous cliffs and ledges",
+            "priority": null
+          },
+          {
+            "key": "system.advantageSources",
+            "mode": 2,
+            "value": "Navigate harsh environment",
+            "priority": null
+          },
+          {
+            "key": "system.advantageSources",
+            "mode": 2,
+            "value": "Use your survival knowledge",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Traverse dangerous cliffs and ledges",
-          "priority": null
-        },
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Navigate harsh environment",
-          "priority": null
-        },
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Use your survival knowledge",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

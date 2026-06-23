@@ -358,14 +358,8 @@
       "disabled": true,
       "_id": "xoal60Ed3Ih7saBJ",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": []
       },
-      "changes": [],
       "duration": {
         "startTime": 0,
         "combat": null

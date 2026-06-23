@@ -255,12 +255,6 @@
       "_id": "ptYT10JZ2WJHvFMd",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [
           {
             "type": "armor",

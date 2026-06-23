@@ -21,29 +21,23 @@
       "name": "Combat Training",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.damage.physical.bonus",
+            "mode": 2,
+            "value": "@system.levelData.level.current",
+            "priority": null
+          },
+          {
+            "key": "system.rules.burden.ignore",
+            "mode": 5,
+            "value": "1",
+            "priority": null
+          }
+        ]
       },
       "_id": "Y7sTM0tw0VpgU6pC",
       "img": "icons/skills/melee/spear-tips-quintuple-orange.webp",
-      "changes": [
-        {
-          "key": "system.bonuses.damage.physical.bonus",
-          "mode": 2,
-          "value": "@system.levelData.level.current",
-          "priority": null
-        },
-        {
-          "key": "system.rules.burden.ignore",
-          "mode": 5,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

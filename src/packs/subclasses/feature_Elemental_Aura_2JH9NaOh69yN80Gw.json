@@ -189,21 +189,15 @@
       "_id": "WRuijfHxmUscAa69",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.traits.strength.value",
+            "mode": 2,
+            "value": "1",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.traits.strength.value",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -232,14 +226,8 @@
       "_id": "H7W52ps5d3UGmaFr",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": []
       },
-      "changes": [],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -268,14 +256,8 @@
       "_id": "WX5AMEpmUAutB9Hm",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": []
       },
-      "changes": [],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -304,14 +286,8 @@
       "_id": "mJBA2QTyM9SM5NVS",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": []
       },
-      "changes": [],
       "disabled": false,
       "duration": {
         "startTime": null,

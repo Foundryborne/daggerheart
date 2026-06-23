@@ -797,15 +797,7 @@ export const weaponFeatures = {
                         mode: 2,
                         value: '1'
                     }
-                ],
-                system: {
-                    rangeDependence: {
-                        enabled: true,
-                        range: 'melee',
-                        target: 'hostile',
-                        type: 'withinRange'
-                    }
-                }
+                ]
             },
             {
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.doubleDuty.effects.doubleDuty.name',
@@ -1109,15 +1101,7 @@ export const weaponFeatures = {
                         mode: 2,
                         value: 'ITEM.@system.tier + 1'
                     }
-                ],
-                system: {
-                    rangeDependence: {
-                        enabled: true,
-                        range: 'melee',
-                        target: 'hostile',
-                        type: 'withinRange'
-                    }
-                }
+                ]
             }
         ]
     },

@@ -23,23 +23,17 @@
       "name": "Untouchable",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.evasion",
+            "mode": 2,
+            "value": "ceil(@system.traits.agility.value / 2)",
+            "priority": 21
+          }
+        ]
       },
       "_id": "H8hazlQe4Wj4JFO6",
       "img": "icons/skills/movement/feet-winged-boots-glowing-yellow.webp",
-      "changes": [
-        {
-          "key": "system.evasion",
-          "mode": 2,
-          "value": "ceil(@system.traits.agility.value / 2)",
-          "priority": 21
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

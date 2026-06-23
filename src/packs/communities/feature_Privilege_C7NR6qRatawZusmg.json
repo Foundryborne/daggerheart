@@ -24,33 +24,27 @@
       "_id": "xgtjykfgvg142urA",
       "img": "icons/commodities/currency/coins-plain-stack-gold.webp",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.advantageSources",
+            "mode": 2,
+            "value": "Consort with nobles",
+            "priority": null
+          },
+          {
+            "key": "system.advantageSources",
+            "mode": 2,
+            "value": "Negotiate prices",
+            "priority": null
+          },
+          {
+            "key": "system.advantageSources",
+            "mode": 2,
+            "value": "Leverage your reputation to get what you want",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Consort with nobles",
-          "priority": null
-        },
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Negotiate prices",
-          "priority": null
-        },
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Leverage your reputation to get what you want",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

@@ -270,23 +270,17 @@
           "name": "Numbers Must Go Up",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.bonuses.roll.attack.bonus",
+                "mode": 2,
+                "value": "ITEM.@system.resource.value",
+                "priority": 21
+              }
+            ]
           },
           "_id": "iLeiOlUtWvYsgbDQ",
           "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
-          "changes": [
-            {
-              "key": "system.bonuses.roll.attack.bonus",
-              "mode": 2,
-              "value": "ITEM.@system.resource.value",
-              "priority": 21
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,

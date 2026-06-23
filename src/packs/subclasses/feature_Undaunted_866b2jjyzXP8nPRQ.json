@@ -21,29 +21,23 @@
       "name": "Undaunted",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "any",
-          "range": "self"
-        }
+        "changes": [
+          {
+            "key": "system.damageThresholds.severe",
+            "mode": 2,
+            "value": "3",
+            "priority": null
+          },
+          {
+            "key": "system.damageThresholds.major",
+            "mode": 2,
+            "value": "3",
+            "priority": null
+          }
+        ]
       },
       "_id": "zggFRaerHCj1e5F5",
       "img": "icons/skills/melee/shield-block-gray-yellow.webp",
-      "changes": [
-        {
-          "key": "system.damageThresholds.severe",
-          "mode": 2,
-          "value": "3",
-          "priority": null
-        },
-        {
-          "key": "system.damageThresholds.major",
-          "mode": 2,
-          "value": "3",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

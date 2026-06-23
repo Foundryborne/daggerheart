@@ -79,23 +79,17 @@
       "name": "Shrug It Off",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.rules.damageReduction.stressDamageReduction.any.cost",
+            "mode": 5,
+            "value": "1",
+            "priority": null
+          }
+        ]
       },
       "_id": "5DTQDVU8Jy5Nnp5V",
       "img": "icons/magic/defensive/shield-barrier-deflect-teal.webp",
-      "changes": [
-        {
-          "key": "system.rules.damageReduction.stressDamageReduction.any.cost",
-          "mode": 5,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

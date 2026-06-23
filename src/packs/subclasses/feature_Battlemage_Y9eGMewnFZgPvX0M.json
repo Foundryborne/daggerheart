@@ -21,23 +21,17 @@
       "name": "Battlemage",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.resources.hitPoints.max",
+            "mode": 2,
+            "value": "1",
+            "priority": null
+          }
+        ]
       },
       "_id": "6jjKzvBxAJTHHGoX",
       "img": "icons/equipment/chest/collar-steel.webp",
-      "changes": [
-        {
-          "key": "system.resources.hitPoints.max",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

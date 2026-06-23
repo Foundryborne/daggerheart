@@ -26,27 +26,21 @@
       "_id": "8uOMyEczlY2OrKau",
       "img": "icons/skills/melee/hand-grip-staff-teal.webp",
       "system": {
-        "rangeDependence": {
-          "enabled": true,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.damage.primaryWeapon.bonus",
+            "mode": 2,
+            "value": "@system.traits.strength.value",
+            "priority": 21
+          },
+          {
+            "key": "system.bonuses.damage.secondaryWeapon.bonus",
+            "mode": 2,
+            "value": "@system.traits.strength.value",
+            "priority": 21
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.primaryWeapon.bonus",
-          "mode": 2,
-          "value": "@system.traits.strength.value",
-          "priority": 21
-        },
-        {
-          "key": "system.bonuses.damage.secondaryWeapon.bonus",
-          "mode": 2,
-          "value": "@system.traits.strength.value",
-          "priority": 21
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

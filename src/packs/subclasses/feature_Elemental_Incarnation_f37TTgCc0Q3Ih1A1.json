@@ -243,27 +243,21 @@
       "_id": "7xyUtUbBk5jbNnqY",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "any",
-          "range": "self"
-        }
+        "changes": [
+          {
+            "key": "system.damageThresholds.major",
+            "mode": 2,
+            "value": "@system.proficiency",
+            "priority": 21
+          },
+          {
+            "key": "system.damageThresholds.severe",
+            "mode": 2,
+            "value": "@system.proficiency",
+            "priority": 21
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.damageThresholds.major",
-          "mode": 2,
-          "value": "@system.proficiency",
-          "priority": 21
-        },
-        {
-          "key": "system.damageThresholds.severe",
-          "mode": 2,
-          "value": "@system.proficiency",
-          "priority": 21
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -292,21 +286,15 @@
       "_id": "3ck6CeapLxQVjE2W",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.advantageSources",
+            "mode": 2,
+            "value": "Advantage on Agility Rolls",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Advantage on Agility Rolls",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -335,14 +323,8 @@
       "_id": "Jy6dpEbzkZ2eRDf5",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": []
       },
-      "changes": [],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -371,14 +353,8 @@
       "_id": "ANle8tuOEZIevTWv",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": []
       },
-      "changes": [],
       "disabled": false,
       "duration": {
         "startTime": null,

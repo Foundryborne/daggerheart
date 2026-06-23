@@ -23,23 +23,17 @@
       "name": "Brace",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.rules.damageReduction.maxArmorMarked.stressExtra",
+            "mode": 2,
+            "value": "1",
+            "priority": null
+          }
+        ]
       },
       "_id": "xSjqLOHfi5lImDHS",
       "img": "icons/magic/defensive/shield-barrier-blue.webp",
-      "changes": [
-        {
-          "key": "system.rules.damageReduction.maxArmorMarked.stressExtra",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

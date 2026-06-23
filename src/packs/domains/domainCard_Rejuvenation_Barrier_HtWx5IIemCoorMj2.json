@@ -110,12 +110,6 @@
       "_id": "obul9k0P4CjFuxJD",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [
           {
             "key": "system.resistance.physical.resistance",

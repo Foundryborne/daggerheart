@@ -24,21 +24,15 @@
       "_id": "HQeQH9gUfrjlWWcg",
       "img": "icons/magic/nature/root-vine-barrier-wall-brown.webp",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.advantageSources",
+            "mode": 2,
+            "value": "Agility Rolls that involve balancing and climbing",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Agility Rolls that involve balancing and climbing",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

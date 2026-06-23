@@ -65,21 +65,15 @@
       "_id": "OQreUqdAfIt3V6uq",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.rules.damageReduction.increasePerArmorMark",
+            "mode": 2,
+            "value": "+1",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.rules.damageReduction.increasePerArmorMark",
-          "mode": 2,
-          "value": "+1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,
