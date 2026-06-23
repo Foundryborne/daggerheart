@@ -225,7 +225,7 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
      */
     _getTags() {
         const tags = [];
-        const originActor = DhActiveEffect.#resolveParentDocument(fromUuidSync(this.origin), Actor);
+        const originActor = DhActiveEffect.#resolveParentDocument(fromUuidSync(this.origin, { strict: false }), Actor);
         if (originActor && originActor !== this.actor) {
             tags.push(_loc('DAGGERHEART.EFFECTS.OriginTag', { name: originActor.name }));
         } else if (!(this.parent instanceof Actor)) {
