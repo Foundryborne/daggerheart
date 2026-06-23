@@ -1,5 +1,5 @@
 <div class="item-tags">
-    {{#each _getTags as |tag|}}
+    {{#each (_getTags @root.document) as |tag|}}
          <div class="tag">
             {{tag}}
         </div>

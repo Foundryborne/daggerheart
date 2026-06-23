@@ -223,12 +223,11 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
      * Generates a list of localized tags based on this item's type-specific properties.
      * @returns {string[]} An array of localized tag strings.
      */
-    _getTags() {
+    _getTags(rootDocument) {
         const tags = [
-            `${game.i18n.localize(this.parent.system.metadata.label)}: ${this.parent.name}`,
-            game.i18n.localize(
-                this.isTemporary ? 'DAGGERHEART.EFFECTS.Duration.temporary' : 'DAGGERHEART.EFFECTS.Duration.passive'
-            )
+            rootDocument && rootDocument === this.parent 
+                ? _loc(`DOCUMENT.${rootDocument.documentName}`) 
+                : `${_loc(this.parent.system.metadata.label)}: ${this.parent.name}`
         ];
 
         for (const statusId of this.statuses) {
