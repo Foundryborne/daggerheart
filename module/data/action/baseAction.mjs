@@ -348,29 +348,31 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             'system.bonuses.roll.spellcast.bonus'
         ];
 
-        return Array.from(await actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true })).reduce(
-            (acc, effect) => {
-                const effectData = effect.toObject();
-                /* Effects on weapons only ever apply for the weapon itself, with a few defined exceptions */
-                if (effect.parent.type === 'weapon') {
-                    /* Unless they're secondary - then they apply only to other primary weapons */
-                    if (effect.parent.system.secondary) {
-                        if (effectParent?.type !== 'weapon' || effectParent?.system.secondary) {
-                            effectData.system.changes = 
-                                effectData.system.changes.filter(x => weaponTransferredEffectKeys.includes(x.key));
-                        } 
-                    } else if (effectParent?.id !== effect.parent.id) {
-                        effectData.system.changes = 
-                            effectData.system.changes.filter(x => weaponTransferredEffectKeys.includes(x.key));
+        const results = [];
+        const applicableEffects = await actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
+        for (const effect of [...applicableEffects].filter(e => !e.isSuppressed)) {
+            if (effect.parent.type === 'weapon') {
+                // Effects on weapons only ever apply for the weapon itself (with a few exceptions)
+                const restricted =
+                    effect.parent.system.secondary
+                        // Secondary applies only to other primary weapons
+                        ? effectParent?.type !== 'weapon' || effectParent?.system.secondary
+                        // Primary only applies to itself
+                        : effectParent?.id !== effect.parent.id;
+                if (restricted) {
+                    const sourceChanges = effect._source.system.changes;
+                    const changes = sourceChanges.filter(x => weaponTransferredEffectKeys.includes(x.key));
+                    if (changes.length) {
+                        results.push(effect.clone({ 'system.changes': changes }));
                     }
+                    continue;
                 }
+            }
+                
+            results.push(effect);
+        }
 
-                if (!effect.isSuppressed) {
-                    acc.push(effectData);
-                }
-
-                return acc;
-            }, []);
+        return results;
     }
 
     /**
