@@ -223,12 +223,14 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
      * Generates a list of localized tags based on this item's type-specific properties.
      * @returns {string[]} An array of localized tag strings.
      */
-    _getTags(rootDocument) {
-        const tags = [
-            rootDocument && rootDocument === this.parent 
-                ? _loc(`DOCUMENT.${rootDocument.documentName}`) 
-                : `${_loc(this.parent.system.metadata.label)}: ${this.parent.name}`
-        ];
+    _getTags() {
+        const tags = [];
+        const originActor = DhActiveEffect.#resolveParentDocument(fromUuidSync(this.origin), Actor);
+        if (originActor && originActor !== this.actor) {
+            tags.push(_loc('DAGGERHEART.EFFECTS.OriginTag', { name: originActor.name }));
+        } else if (!(this.parent instanceof Actor)) {
+            tags.push(`${_loc(this.parent.system.metadata.label)}: ${this.parent.name}`);
+        }
 
         for (const statusId of this.statuses) {
             const status = CONFIG.statusEffects.find(s => s.id === statusId);
