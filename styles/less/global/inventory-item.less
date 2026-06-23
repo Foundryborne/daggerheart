@@ -43,14 +43,19 @@
                 }
             }
 
+            .item-main {
+                border-radius: 5px;
+                padding: 2px;
+                margin: -2px;
+            }
+
             &:hover {
                 .inventory-item-header .item-label .item-name .expanded-icon {
                     margin-left: 10px;
                     display: inline-block;
                 }
                 &:has(.inventory-item-content.extensible) {
-                    .inventory-item-header,
-                    .inventory-item-content {
+                    .item-main {
                         background: light-dark(@dark-blue-40, @golden-40);
                     }
                 }
@@ -59,19 +64,6 @@
                         display: none;
                     }
                 }
-            }
-
-            &:has(.inventory-item-content.extensible) {
-                .inventory-item-header {
-                    border-radius: 5px 5px 0 0;
-                }
-                .inventory-item-content {
-                    border-radius: 0 0 5px 5px;
-                }
-            }
-
-            &:not(:has(.inventory-item-content.extensible)) .inventory-item-header {
-                border-radius: 5px;
             }
         }
 
