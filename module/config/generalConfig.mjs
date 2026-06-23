@@ -106,11 +106,18 @@ export const templateTypes = {
     }
 };
 
-export const targetTypes = {
-    self: {
-        id: 'self',
-        label: 'DAGGERHEART.CONFIG.TargetTypes.self'
+export const rangeInclusion = {
+    withinRange: {
+        id: 'withinRange',
+        label: 'DAGGERHEART.CONFIG.RangeInclusion.withinRange'
     },
+    outsideRange: {
+        id: 'outsideRange',
+        label: 'DAGGERHEART.CONFIG.RangeInclusion.outsideRange'
+    }
+};
+
+export const otherTargetTypes = {
     friendly: {
         id: 'friendly',
         label: 'DAGGERHEART.CONFIG.TargetTypes.friendly'
@@ -123,6 +130,14 @@ export const targetTypes = {
         id: 'any',
         label: 'DAGGERHEART.CONFIG.TargetTypes.any'
     }
+}
+
+export const targetTypes = {
+    self: {
+        id: 'self',
+        label: 'DAGGERHEART.CONFIG.TargetTypes.self'
+    },
+    ...otherTargetTypes
 };
 
 export const burden = {
