@@ -100,7 +100,7 @@
         "duration": {
           "description": "",
           "type": "temporary"
-        },
+        }
       },
       "disabled": false,
       "start": {
