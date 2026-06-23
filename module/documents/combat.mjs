@@ -46,7 +46,9 @@ export default class DhpCombat extends Combat {
             for (let actor of actors) {
                 await actor.createEmbeddedDocuments(
                     'ActiveEffect',
-                    effects.filter(x => x.effectTargetTypes.includes(actor.type))
+                    effects
+                        .filter(x => x.effectTargetTypes.includes(actor.type))
+                        .map(x => foundry.utils.deepClone(x))
                 );
             }
         } else {
