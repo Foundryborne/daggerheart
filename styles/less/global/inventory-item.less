@@ -54,10 +54,8 @@
                     margin-left: 10px;
                     display: inline-block;
                 }
-                &:has(.inventory-item-content.extensible) {
-                    .item-main {
-                        background: light-dark(@dark-blue-40, @golden-40);
-                    }
+                .item-main {
+                    background: light-dark(@dark-blue-40, @golden-40);
                 }
                 &:has(.inventory-item-content.extended) {
                     .inventory-item-header .item-label .item-name .expanded-icon {
@@ -163,7 +161,7 @@
                     grid-template-rows: 1fr;
                     padding-top: 4px;
                 }
-                .invetory-description {
+                .inventory-description {
                     overflow: hidden;
 
                     h1 {

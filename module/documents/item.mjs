@@ -89,6 +89,10 @@ export default class DHItem extends foundry.documents.Item {
         return !pack?.locked && this.isOwner && isValidType && hasActions;
     }
 
+    get hasDescription() {
+        return Boolean(this.system.description);
+    }
+
     /** @inheritdoc */
     static async createDialog(data = {}, createOptions = {}, options = {}) {
         const { folders, types, template, context = {}, ...dialogOptions } = options;

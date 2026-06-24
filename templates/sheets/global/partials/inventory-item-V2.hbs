@@ -26,7 +26,7 @@ Parameters:
     data-item-uuid="{{item.uuid}}" data-no-compendium-edit="{{noCompendiumEdit}}"
 >
     <div class="item-main">
-        <div class="inventory-item-header{{#if hideContextMenu}} padded{{/if}}" {{#unless (or noExtensible (not item.system.description))}}data-action="toggleExtended" {{/unless}}>
+        <div class="inventory-item-header{{#if hideContextMenu}} padded{{/if}}" {{#unless (or noExtensible (not item.hasDescription))}}data-action="toggleExtended" {{/unless}}>
             {{!-- Image --}}
             <div class="img-portait" draggable="true"
                 {{#unless (eq showActions false)}}data-action='{{ifThen item.usable "useItem" (ifThen (hasProperty item "toChat" ) "toChat" "editDoc" ) }}'{{/unless}}
@@ -44,7 +44,7 @@ Parameters:
             {{!-- Name & Tags --}}
             <div class="item-label" draggable="true">
                 {{!-- Item Name --}}
-                <span class="item-name">{{localize item.name}} {{#unless (or noExtensible (not item.system.description))}}<span class="expanded-icon"><i class="fa-solid fa-expand"></i></span>{{/unless}}</span>
+                <span class="item-name">{{localize item.name}} {{#unless (or noExtensible (not item.hasDescription))}}<span class="expanded-icon"><i class="fa-solid fa-expand"></i></span>{{/unless}}</span>
 
                 {{!-- Tags Start --}}
                 {{#if (not hideTags)}}
@@ -130,12 +130,12 @@ Parameters:
                 </div>
             {{/unless}}
         </div>
-        <div class="inventory-item-content{{#unless noExtensible}} extensible{{/unless}}">
-            {{!-- Description --}}
-            {{#unless hideDescription}}
-            <div class="invetory-description"></div>
-            {{/unless}}
-        </div>
+        {{#unless hideDescription}}
+            <div class="inventory-item-content{{#unless (or noExtensible (not item.hasDescription))}} extensible{{/unless}}">
+                {{!-- Description --}}
+                <div class="inventory-description"></div>
+            </div>
+        {{/unless}}
     </div>
     {{!-- Dice Resource --}}
     {{#if (and (not hideResources) (eq item.system.resource.type 'diceValue'))}}

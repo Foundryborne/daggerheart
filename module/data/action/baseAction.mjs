@@ -54,6 +54,10 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return {};
     }
 
+    get hasDescription() {
+        return Boolean(this.description);
+    }
+
     /**
      * Create a Map containing each Action step based on fields define in schema. Ordered by Fields order property.
      *
