@@ -113,6 +113,10 @@ export default class DHWeapon extends AttachableItem {
         );
     }
 
+    get itemFeatures() {
+        return this.weaponFeatures;
+    }
+
     /**@inheritdoc */
     async getDescriptionData() {
         const baseDescription = this.description;
@@ -268,9 +272,5 @@ export default class DHWeapon extends AttachableItem {
         }
 
         return labels;
-    }
-
-    get itemFeatures() {
-        return this.weaponFeatures;
     }
 }

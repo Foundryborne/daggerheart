@@ -90,7 +90,7 @@ export default class DHItem extends foundry.documents.Item {
     }
 
     get hasDescription() {
-        return Boolean(this.system.description);
+        return Boolean(this.system.description) || Boolean(this.system.itemFeatures?.length);
     }
 
     /** @inheritdoc */
