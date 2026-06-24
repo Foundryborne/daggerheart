@@ -2010,7 +2010,8 @@
             "Attachments": {
                 "attachHint": "Drop items here to attach them",
                 "transferHint": "If checked, this effect will be applied to any actor that owns this Effect's parent Item. The effect is always applied if this Item is attached to another one."
-            }
+            },
+            "OriginTag": "Origin: {name}"
         },
         "GENERAL": {
             "Ability": {
