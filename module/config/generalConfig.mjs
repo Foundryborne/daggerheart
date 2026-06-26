@@ -130,7 +130,7 @@ export const otherTargetTypes = {
         id: 'any',
         label: 'DAGGERHEART.CONFIG.TargetTypes.any'
     }
-}
+};
 
 export const targetTypes = {
     self: {
