@@ -57,6 +57,10 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
                 description: new fields.HTMLField({ label: 'DAGGERHEART.GENERAL.description' })
             }),
             rangeDependence: new fields.SchemaField({
+                enabled: new fields.BooleanField({ // Temporary for the remaining onMove logic 
+                    initial: false,
+                    label: 'DAGGERHEART.GENERAL.enabled'
+                }),
                 type: new fields.StringField({
                     required: true,
                     choices: CONFIG.DH.GENERAL.rangeInclusion,

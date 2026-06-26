@@ -233,6 +233,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         const systemData = {
             rangeDependence: event.target.checked
                 ? { 
+                    enabled: true, // Temporary while the onMove handling is still in
                     type: rangeFields.type.initial, 
                     target: rangeFields.target.initial,
                     range: rangeFields.range.initial 

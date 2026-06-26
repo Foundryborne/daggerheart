@@ -381,6 +381,74 @@ Hooks.on(CONFIG.DH.HOOKS.hooksConfig.groupRollStart, async data => {
     }
 });
 
+const updateActorsRangeDependentEffects = async token => {
+    if (!token) return;
+
+    const rangeMeasurement = game.settings.get(
+        CONFIG.DH.id,
+        CONFIG.DH.SETTINGS.gameSettings.variantRules
+    ).rangeMeasurement;
+
+    for (let effect of token.actor?.allApplicableEffects() ?? []) {
+        if (!effect.system.rangeDependence || effect.system.rangeDependence.enabled === false) continue;
+        const { target, range, type } = effect.system.rangeDependence;
+
+        // If there are no targets, assume false. Otherwise, start with the effect enabled.
+        let enabledEffect = game.user.targets.size !== 0;
+        // Expect all targets to meet the rangeDependence requirements
+        for (let userTarget of game.user.targets) {
+            const disposition = userTarget.document.disposition;
+            if ((target === 'friendly' && disposition !== 1) || (target === 'hostile' && disposition !== -1)) {
+                enabledEffect = false;
+                break;
+            }
+
+            // Get required distance and special case 5 feet to test adjacency
+            const required = rangeMeasurement[range];
+            const reverse = type === CONFIG.DH.GENERAL.rangeInclusion.outsideRange.id;
+            const inRange = userTarget.distanceTo(token.object) <= required;
+            if (reverse ? inRange : !inRange) {
+                enabledEffect = false;
+                break;
+            }
+        }
+
+        await effect.update({ disabled: !enabledEffect });
+    }
+};
+
+const updateAllRangeDependentEffects = async () => {
+    const effectsAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).effects;
+    if (!effectsAutomation.rangeDependent) return;
+
+    const tokens = canvas.scene?.tokens;
+    if (!tokens) return;
+
+    if (game.user.character) {
+        // The character updates their character's token. There can be only one token.
+        const characterToken = tokens.find(x => x.actor === game.user.character);
+        updateActorsRangeDependentEffects(characterToken);
+    } else if (game.user.isActiveGM) {
+        // The GM is responsible for all other tokens.
+        const playerCharacters = game.users.players.filter(x => x.active).map(x => x.character);
+        for (const token of tokens.filter(x => !playerCharacters.includes(x.actor))) {
+            updateActorsRangeDependentEffects(token);
+        }
+    }
+};
+
+const debouncedRangeEffectCall = foundry.utils.debounce(updateAllRangeDependentEffects, 50);
+
+Hooks.on('targetToken', () => {
+    debouncedRangeEffectCall();
+});
+
+Hooks.on('refreshToken', (token, options) => {
+    if (options.refreshPosition && !token._original) {
+        debouncedRangeEffectCall();
+    }
+});
+
 Hooks.on('renderCompendiumDirectory', (app, html) => applications.ui.ItemBrowser.injectSidebarButton(html));
 Hooks.on('renderDocumentDirectory', (app, html) => applications.ui.ItemBrowser.injectSidebarButton(html));
 
