@@ -14,7 +14,7 @@
         {{/each}}
     </ol>
 
-    <fieldset class="armor-change-container optional">
+    <fieldset class="armor-change-container optional {{#if typeChanges.armor}}active{{/if}}">
         <legend>
             {{localize "DAGGERHEART.GENERAL.armor"}} 
             <input type="checkbox" class="armor-change-checkbox" data-index="{{typedChanges.armor.index}}" {{checked typedChanges.armor}} />
