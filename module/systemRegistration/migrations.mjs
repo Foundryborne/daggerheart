@@ -303,6 +303,8 @@ export async function runMigrations() {
 
         /* Migrate existing effects modifying armor, creating new Armor Effects instead */
         const migrateEffects = async entity => {
+            if (!entity?.effects) return;
+
             for (const effect of entity.effects) {
                 if (effect.system.changes.every(x => x.key !== 'system.armorScore')) continue;
 
