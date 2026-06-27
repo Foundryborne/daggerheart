@@ -155,61 +155,65 @@ export async function runMigrations() {
 
         /* Migrate old countdown structure */
         const countdownSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-        const getCountdowns = (data, type) => {
-            return Object.keys(data.countdowns).reduce((acc, key) => {
-                const countdown = data.countdowns[key];
-                acc[key] = {
-                    ...countdown,
-                    type: type,
-                    ownership: Object.keys(countdown.ownership.players).reduce((acc, key) => {
-                        acc[key] =
-                            countdown.ownership.players[key].type === 1 ? 2 : countdown.ownership.players[key].type;
-                        return acc;
-                    }, {}),
-                    progress: {
-                        ...countdown.progress,
-                        type: countdown.progress.type.value
-                    }
-                };
+        if (!countdownSettings.narrative || !countdownSettings.encounter) {
+            const getCountdowns = (data, type) => {
+                return Object.keys(data.countdowns).reduce((acc, key) => {
+                    const countdown = data.countdowns[key];
+                    acc[key] = {
+                        ...countdown,
+                        type: type,
+                        ownership: Object.keys(countdown.ownership.players).reduce((acc, key) => {
+                            acc[key] =
+                                countdown.ownership.players[key].type === 1 ? 2 : countdown.ownership.players[key].type;
+                            return acc;
+                        }, {}),
+                        progress: {
+                            ...countdown.progress,
+                            type: countdown.progress.type.value
+                        }
+                    };
 
-                return acc;
-            }, {});
-        };
+                    return acc;
+                }, {});
+            };
 
-        await countdownSettings.updateSource({
-            countdowns: {
-                ...getCountdowns(countdownSettings.narrative, 'narrative'),
-                ...getCountdowns(countdownSettings.encounter, 'encounter')
-            }
-        });
-        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, countdownSettings);
+            await countdownSettings.updateSource({
+                countdowns: {
+                    ...getCountdowns(countdownSettings.narrative, 'narrative'),
+                    ...getCountdowns(countdownSettings.encounter, 'encounter')
+                }
+            });
+            await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, countdownSettings);
 
-        game.socket.emit(`system.${CONFIG.DH.id}`, {
-            action: socketEvent.Refresh,
-            data: { refreshType: RefreshType.Countdown }
-        });
-        Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
-
+            game.socket.emit(`system.${CONFIG.DH.id}`, {
+                action: socketEvent.Refresh,
+                data: { refreshType: RefreshType.Countdown }
+            });
+            Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
+        }
+        
         lastMigrationVersion = '1.2.0';
     }
 
     if (foundry.utils.isNewerVersion('1.2.7', lastMigrationVersion)) {
-        const tagTeam = game.settings.get(CONFIG.DH.id, 'TagTeamRoll');
-        const initatorMissing = tagTeam.initiator && !game.actors.some(actor => actor.id === tagTeam.initiator);
-        const missingMembers = Object.keys(tagTeam.members).reduce((acc, id) => {
-            if (!game.actors.some(actor => actor.id === id)) {
-                acc[id] = _del;
-            }
-            return acc;
-        }, {});
+        try {
+            const tagTeam = game.settings.get(CONFIG.DH.id, 'TagTeamRoll');
+            const initatorMissing = tagTeam.initiator && !game.actors.some(actor => actor.id === tagTeam.initiator);
+            const missingMembers = Object.keys(tagTeam.members).reduce((acc, id) => {
+                if (!game.actors.some(actor => actor.id === id)) {
+                    acc[id] = _del;
+                }
+                return acc;
+            }, {});
 
-        await tagTeam.updateSource({
-            initiator: initatorMissing ? null : tagTeam.initiator,
-            members: missingMembers
-        });
-        await game.settings.set(CONFIG.DH.id, 'TagTeamRoll', tagTeam);
-
-        lastMigrationVersion = '1.2.7';
+            await tagTeam.updateSource({
+                initiator: initatorMissing ? null : tagTeam.initiator,
+                members: missingMembers
+            });
+            await game.settings.set(CONFIG.DH.id, 'TagTeamRoll', tagTeam);
+        } finally {
+            lastMigrationVersion = '1.2.7';
+        }
     }
 
     if (foundry.utils.isNewerVersion('1.5.5', lastMigrationVersion)) {
