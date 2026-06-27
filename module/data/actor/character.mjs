@@ -107,6 +107,7 @@ export default class DhCharacter extends DhCreature {
                         parts: {
                             hitPoints: {
                                 type: ['physical'],
+                                applyTo: 'hitPoints',
                                 value: {
                                     custom: {
                                         enabled: true,

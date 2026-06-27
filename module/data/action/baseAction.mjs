@@ -447,7 +447,15 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     static migrateData(source) {
         if (source.damage?.parts && Array.isArray(source.damage.parts)) {
+            let hitPointsExists = source.damage.parts.some(x => x.applyTo === 'hitPoints');
             source.damage.parts = source.damage.parts.reduce((acc, part) => {
+                if (!part.applyTo && hitPointsExists) return acc;
+
+                if (!part.applyTo) {
+                    hitPointsExists = true;
+                    part.applyTo = 'hitPoints';
+                }
+
                 acc[part.applyTo] = part;
                 return acc;
             }, {});
