@@ -28,6 +28,39 @@ export default class DhCountdowns extends foundry.abstract.DataModel {
         for (const countdownKey of changedCountdowns)
             foundry.ui.countdowns.changedCountdownsForAnimation.add(countdownKey);
     }
+
+    static migrateData(source) {
+        const migrateOldCountdowns = (data, type) => {
+            for (const key of Object.keys(data.countdowns)) {
+                const countdown = data.countdowns[key];
+                source.countdowns[key] = {
+                    ...countdown,
+                    type: type,
+                    ownership: Object.keys(countdown.ownership.players).reduce((acc, key) => {
+                        acc[key] =
+                            countdown.ownership.players[key].type === 1 ? 2 : countdown.ownership.players[key].type;
+                        return acc;
+                    }, {}),
+                    progress: {
+                        ...countdown.progress,
+                        type: countdown.progress.type.value
+                    }
+                };
+            }
+
+            source[type] = null;
+        };
+
+        if (source.narrative) {
+            migrateOldCountdowns(source.narrative, 'narrative');
+        }
+
+        if (source.encounter) {
+            migrateOldCountdowns(source.encounter, 'encounter');
+        }
+
+        return super.migrateData(source);
+    }
 }
 
 export class DhCountdown extends foundry.abstract.DataModel {

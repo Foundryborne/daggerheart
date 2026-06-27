@@ -1,5 +1,4 @@
 import { defaultRestOptions } from '../config/generalConfig.mjs';
-import { RefreshType, socketEvent } from './socket.mjs';
 
 export async function runMigrations() {
     let lastMigrationVersion = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion);
@@ -152,43 +151,6 @@ export async function runMigrations() {
             const pack = game.packs.get(packId);
             await pack.configure({ locked: true });
         }
-
-        /* Migrate old countdown structure */
-        const countdownSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-        const getCountdowns = (data, type) => {
-            return Object.keys(data.countdowns).reduce((acc, key) => {
-                const countdown = data.countdowns[key];
-                acc[key] = {
-                    ...countdown,
-                    type: type,
-                    ownership: Object.keys(countdown.ownership.players).reduce((acc, key) => {
-                        acc[key] =
-                            countdown.ownership.players[key].type === 1 ? 2 : countdown.ownership.players[key].type;
-                        return acc;
-                    }, {}),
-                    progress: {
-                        ...countdown.progress,
-                        type: countdown.progress.type.value
-                    }
-                };
-
-                return acc;
-            }, {});
-        };
-
-        await countdownSettings.updateSource({
-            countdowns: {
-                ...getCountdowns(countdownSettings.narrative, 'narrative'),
-                ...getCountdowns(countdownSettings.encounter, 'encounter')
-            }
-        });
-        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, countdownSettings);
-
-        game.socket.emit(`system.${CONFIG.DH.id}`, {
-            action: socketEvent.Refresh,
-            data: { refreshType: RefreshType.Countdown }
-        });
-        Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
 
         lastMigrationVersion = '1.2.0';
     }
