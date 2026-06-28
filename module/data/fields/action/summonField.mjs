@@ -65,9 +65,16 @@ export default class DHSummonField extends fields.ArrayField {
     /* Check for any available instances of the actor present in the world if we're missing artwork in the compendium. If none exists, create one. */
     static async getWorldActor(baseActor) {
         const dataType = game.system.api.data.actors[`Dh${baseActor.type.capitalize()}`];
-        if (baseActor.inCompendium && dataType && baseActor.img === dataType.DEFAULT_ICON) {
+        if (baseActor.inCompendium) {
             const worldActorCopy = game.actors.find(x => x.name === baseActor.name);
-            if (worldActorCopy) return worldActorCopy;
+            if (
+                worldActorCopy && (
+                    baseActor.img === worldActorCopy.img || 
+                    (dataType && baseActor.img === dataType.DEFAULT_ICON)
+                )
+            ) {
+                return worldActorCopy;
+            } 
 
             return await game.system.api.documents.DhpActor.create(baseActor.toObject());
         }
