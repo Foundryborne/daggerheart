@@ -1,5 +1,4 @@
 import { defaultRestOptions } from '../config/generalConfig.mjs';
-import { RefreshType, socketEvent } from './socket.mjs';
 
 export async function runMigrations() {
     let lastMigrationVersion = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion);
@@ -153,61 +152,26 @@ export async function runMigrations() {
             await pack.configure({ locked: true });
         }
 
-        /* Migrate old countdown structure */
-        const countdownSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-        const getCountdowns = (data, type) => {
-            return Object.keys(data.countdowns).reduce((acc, key) => {
-                const countdown = data.countdowns[key];
-                acc[key] = {
-                    ...countdown,
-                    type: type,
-                    ownership: Object.keys(countdown.ownership.players).reduce((acc, key) => {
-                        acc[key] =
-                            countdown.ownership.players[key].type === 1 ? 2 : countdown.ownership.players[key].type;
-                        return acc;
-                    }, {}),
-                    progress: {
-                        ...countdown.progress,
-                        type: countdown.progress.type.value
-                    }
-                };
-
-                return acc;
-            }, {});
-        };
-
-        await countdownSettings.updateSource({
-            countdowns: {
-                ...getCountdowns(countdownSettings.narrative, 'narrative'),
-                ...getCountdowns(countdownSettings.encounter, 'encounter')
-            }
-        });
-        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, countdownSettings);
-
-        game.socket.emit(`system.${CONFIG.DH.id}`, {
-            action: socketEvent.Refresh,
-            data: { refreshType: RefreshType.Countdown }
-        });
-        Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
-
         lastMigrationVersion = '1.2.0';
     }
 
     if (foundry.utils.isNewerVersion('1.2.7', lastMigrationVersion)) {
-        const tagTeam = game.settings.get(CONFIG.DH.id, 'TagTeamRoll');
-        const initatorMissing = tagTeam.initiator && !game.actors.some(actor => actor.id === tagTeam.initiator);
-        const missingMembers = Object.keys(tagTeam.members).reduce((acc, id) => {
-            if (!game.actors.some(actor => actor.id === id)) {
-                acc[id] = _del;
-            }
-            return acc;
-        }, {});
+        try {
+            const tagTeam = game.settings.get(CONFIG.DH.id, 'TagTeamRoll');
+            const initatorMissing = tagTeam.initiator && !game.actors.some(actor => actor.id === tagTeam.initiator);
+            const missingMembers = Object.keys(tagTeam.members).reduce((acc, id) => {
+                if (!game.actors.some(actor => actor.id === id)) {
+                    acc[id] = _del;
+                }
+                return acc;
+            }, {});
 
-        await tagTeam.updateSource({
-            initiator: initatorMissing ? null : tagTeam.initiator,
-            members: missingMembers
-        });
-        await game.settings.set(CONFIG.DH.id, 'TagTeamRoll', tagTeam);
+            await tagTeam.updateSource({
+                initiator: initatorMissing ? null : tagTeam.initiator,
+                members: missingMembers
+            });
+            await game.settings.set(CONFIG.DH.id, 'TagTeamRoll', tagTeam);
+        } catch { }
 
         lastMigrationVersion = '1.2.7';
     }
@@ -303,6 +267,8 @@ export async function runMigrations() {
 
         /* Migrate existing effects modifying armor, creating new Armor Effects instead */
         const migrateEffects = async entity => {
+            if (!entity?.effects) return;
+
             for (const effect of entity.effects) {
                 if (effect.system.changes.every(x => x.key !== 'system.armorScore')) continue;
 

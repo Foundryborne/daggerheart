@@ -65,6 +65,10 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         );
     }
 
+    get hasDescription() {
+        return Boolean(this.description);
+    }
+
     /* -------------------------------------------- */
     /*  Event Handlers                              */
     /* -------------------------------------------- */

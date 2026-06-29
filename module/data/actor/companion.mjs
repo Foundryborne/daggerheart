@@ -102,6 +102,7 @@ export default class DhCompanion extends DhCreature {
                         parts: {
                             hitPoints: {
                                 type: ['physical'],
+                                applyTo: 'hitPoints',
                                 value: {
                                     dice: 'd6',
                                     multiplier: 'prof'

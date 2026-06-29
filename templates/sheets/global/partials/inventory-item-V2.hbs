@@ -25,146 +25,146 @@ Parameters:
     data-type="{{type}}" data-item-type="{{item.type}}"
     data-item-uuid="{{item.uuid}}" data-no-compendium-edit="{{noCompendiumEdit}}"
 >
-  <div class="inventory-item-header {{#if hideContextMenu}}padded{{/if}}" {{#unless noExtensible}}data-action="toggleExtended" {{/unless}}>
-    {{!-- Image --}}
-    <div class="img-portait" draggable="true"
-        {{#unless (eq showActions false)}}data-action='{{ifThen item.usable "useItem" (ifThen (hasProperty item "toChat" ) "toChat" "editDoc" ) }}'{{/unless}}
-        {{#unless hideTooltip}} {{#if (eq type 'attack' )}} data-tooltip="#attack#{{item.actor.uuid}}" {{else}} data-tooltip="#item#{{item.uuid}}" {{/if}} {{/unless}}>
-        <img src="{{item.img}}" class="item-img {{#if isActor}}actor-img{{/if}}" />
-        {{#if (and item.usable (ne showActions false))}}
-            {{#if @root.isNPC}}
-                <img class="roll-img d20" src="systems/daggerheart/assets/icons/dice/default/d20.svg" alt="d20">
-            {{else}}
-                <img class="roll-img duality" src="systems/daggerheart/assets/icons/dice/duality/DualityBW.svg" alt="2d12">
-            {{/if}}
-        {{/if}}
-    </div>
-
-    {{!-- Name & Tags --}}
-    <div class="item-label" draggable="true">
-        {{!-- Item Name --}}
-        <span class="item-name">{{localize item.name}} {{#unless (or noExtensible (not item.system.description))}}<span class="expanded-icon"><i class="fa-solid fa-expand"></i></span>{{/unless}}</span>
-
-        {{!-- Tags Start --}}
-        {{#if (not hideTags)}}
-            {{#> "systems/daggerheart/templates/sheets/global/partials/item-tags.hbs" item}}
-                {{#if (eq ../type 'feature')}}
-                    {{#if (and system.featureForm (ne @root.document.type "character"))}}
-                        <div class="tag feature-form">
-                            <span class="recall-value">{{localize (concat "DAGGERHEART.CONFIG.FeatureForm." system.featureForm)}}</span>
-                        </div>
+    <div class="item-main">
+        <div class="inventory-item-header{{#if hideContextMenu}} padded{{/if}}" {{#unless (or noExtensible (not item.hasDescription))}}data-action="toggleExtended" {{/unless}}>
+            {{!-- Image --}}
+            <div class="img-portait" draggable="true"
+                {{#unless (eq showActions false)}}data-action='{{ifThen item.usable "useItem" (ifThen (hasProperty item "toChat" ) "toChat" "editDoc" ) }}'{{/unless}}
+                {{#unless hideTooltip}} {{#if (eq type 'attack' )}} data-tooltip="#attack#{{item.actor.uuid}}" {{else}} data-tooltip="#item#{{item.uuid}}" {{/if}} {{/unless}}>
+                <img src="{{item.img}}" class="item-img {{#if isActor}}actor-img{{/if}}" />
+                {{#if (and item.usable (ne showActions false))}}
+                    {{#if @root.isNPC}}
+                        <img class="roll-img d20" src="systems/daggerheart/assets/icons/dice/default/d20.svg" alt="d20">
+                    {{else}}
+                        <img class="roll-img duality" src="systems/daggerheart/assets/icons/dice/duality/DualityBW.svg" alt="2d12">
                     {{/if}}
                 {{/if}}
-            {{/ "systems/daggerheart/templates/sheets/global/partials/item-tags.hbs"}}
-        {{/if}}
+            </div>
 
-      {{!--Tags End --}}
-    </div>
+            {{!-- Name & Tags --}}
+            <div class="item-label" draggable="true">
+                {{!-- Item Name --}}
+                <span class="item-name">{{localize item.name}} {{#unless (or noExtensible (not item.hasDescription))}}<span class="expanded-icon"><i class="fa-solid fa-expand"></i></span>{{/unless}}</span>
 
-    {{!-- Simple Resource --}}
-    {{#if (and (not hideResources) (not (eq item.system.resource.type 'diceValue')))}}
-    {{> "systems/daggerheart/templates/sheets/global/partials/item-resource.hbs"}}
-    {{/if}}
-    {{#if (or isQuantifiable (or (eq item.system.quantity 0) (gt item.system.quantity 1)))}}
-        <div class="item-resource">
-            <input type="number" id="{{item.uuid}}-quantity" class="inventory-item-quantity" value="{{item.system.quantity}}" min="0" />
+                {{!-- Tags Start --}}
+                {{#if (not hideTags)}}
+                    {{#> "systems/daggerheart/templates/sheets/global/partials/item-tags.hbs" item}}
+                        {{#if (and (eq ../type 'feature') system.featureForm (ne @root.document.type "character"))}}
+                            <div class="tag feature-form">
+                                <span class="recall-value">{{localize (concat "DAGGERHEART.CONFIG.FeatureForm." system.featureForm)}}</span>
+                            </div>
+                        {{/if}}
+                    {{/ "systems/daggerheart/templates/sheets/global/partials/item-tags.hbs"}}
+                {{/if}}
+
+            {{!--Tags End --}}
+            </div>
+
+            {{!-- Simple Resource --}}
+            {{#if (and (not hideResources) (not (eq item.system.resource.type 'diceValue')))}}
+                {{> "systems/daggerheart/templates/sheets/global/partials/item-resource.hbs"}}
+            {{/if}}
+            {{#if (or isQuantifiable (or (eq item.system.quantity 0) (gt item.system.quantity 1)))}}
+                <div class="item-resource">
+                    <input type="number" id="{{item.uuid}}-quantity" class="inventory-item-quantity" value="{{item.system.quantity}}" min="0" />
+                </div>
+            {{/if}}
+
+            {{!-- Controls --}}
+            {{#unless hideControls}}
+                <div class="controls">
+                    {{!-- Toggle/Equip buttons --}}
+                    {{#if @root.editable}}
+                        {{#if (and (eq actorType 'character') (eq type 'weapon'))}}
+                            <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem"
+                                data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.equipped 'unequip' 'equip' }}">
+                                <i class="fa-solid fa-hands" inert></i>
+                            </a>
+                        {{/if}}
+                        {{#if (and (eq actorType 'character') (eq type 'armor'))}}
+                            <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem"
+                                data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.equipped 'unequip' 'equip' }}">
+                                <i class="fa-solid fa-fw fa-shield" inert></i>
+                            </a>
+                        {{/if}}
+                        {{#if (and (eq type 'domainCard'))}}
+                            <a data-action="toggleVault"
+                                data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.inVault 'sendToLoadout' 'sendToVault' }}">
+                                <i class="fa-solid {{ifThen item.system.inVault 'fa-arrow-up' 'fa-arrow-down'}}" inert></i>
+                            </a>
+                        {{/if}}
+                        {{#if (and (and (eq type 'effect') (not (eq item.type 'beastform'))))}}
+                            <a data-action="toggleEffect"
+                                data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.disabled 'enableEffect' 'disableEffect' }}">
+                                <i class="{{ifThen item.disabled 'fa-solid fa-toggle-off' 'fa-solid fa-toggle-on'}}" inert></i>
+                            </a>
+                        {{/if}}
+                    {{/if}}
+
+                    {{!-- Send to Chat --}}
+                    {{#if (hasProperty item "toChat")}}
+                        <a data-action="toChat" data-tooltip="DAGGERHEART.UI.Tooltip.sendToChat">
+                            <i class="fa-regular fa-fw fa-message" inert></i>
+                        </a>
+                    {{/if}}
+
+                    {{!-- Document management buttons or context menu --}}
+                    {{#if (and (not isActor) (not hideContextMenu))}}
+                        <a data-action="triggerContextMenu" data-tooltip="DAGGERHEART.UI.Tooltip.moreOptions">
+                            <i class="fa-solid fa-fw fa-ellipsis-vertical" inert></i>
+                        </a>
+                    {{else if (and @root.editable (not hideModifyControls))}}
+                        <a data-action="editDoc" data-tooltip="DAGGERHEART.UI.Tooltip.edit">
+                            <i class="fa-solid fa-edit" inert></i>
+                        </a>
+                        {{#if (not isActor)}}
+                            <a data-action="deleteDoc" data-tooltip="DAGGERHEART.UI.Tooltip.deleteItem">
+                                <i class="fa-solid fa-trash" inert></i>
+                            </a>
+                        {{else if (eq type 'adversary')}}
+                            <a data-action='deleteAdversary' data-category="{{categoryAdversary}}" data-tooltip="CONTROLS.CommonDelete">
+                                <i class="fas fa-trash" inert></i>
+                            </a>
+                        {{/if}}
+                    {{/if}}
+                </div>
+            {{/unless}}
         </div>
+        {{#unless hideDescription}}
+            <div class="inventory-item-content{{#unless (or noExtensible (not item.hasDescription))}} extensible{{/unless}}">
+                {{!-- Description --}}
+                <div class="inventory-description"></div>
+            </div>
+        {{/unless}}
+    </div>
+    {{!-- Dice Resource --}}
+    {{#if (and (not hideResources) (eq item.system.resource.type 'diceValue'))}}
+        {{> "systems/daggerheart/templates/sheets/global/partials/item-resource.hbs"}}
     {{/if}}
-
-    {{!-- Controls --}}
-    {{#unless hideControls}}
-        <div class="controls">
-            {{!-- Toggle/Equip buttons --}}
-            {{#if @root.editable}}
-                {{#if (and (eq actorType 'character') (eq type 'weapon'))}}
-                    <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem"
-                        data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.equipped 'unequip' 'equip' }}">
-                        <i class="fa-solid fa-hands" inert></i>
-                    </a>
-                {{/if}}
-                {{#if (and (eq actorType 'character') (eq type 'armor'))}}
-                    <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem"
-                        data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.equipped 'unequip' 'equip' }}">
-                        <i class="fa-solid fa-fw fa-shield" inert></i>
-                    </a>
-                {{/if}}
-                {{#if (and (eq type 'domainCard'))}}
-                    <a data-action="toggleVault"
-                        data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.inVault 'sendToLoadout' 'sendToVault' }}">
-                        <i class="fa-solid {{ifThen item.system.inVault 'fa-arrow-up' 'fa-arrow-down'}}" inert></i>
-                    </a>
-                {{/if}}
-                {{#if (and (and (eq type 'effect') (not (eq item.type 'beastform'))))}}
-                    <a data-action="toggleEffect"
-                        data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.disabled 'enableEffect' 'disableEffect' }}">
-                        <i class="{{ifThen item.disabled 'fa-solid fa-toggle-off' 'fa-solid fa-toggle-on'}}" inert></i>
-                    </a>
-                {{/if}}
+    {{!-- Actions Buttons --}}
+    {{#if (and showActions item.system.actions.size)}}
+    <div class="item-buttons">
+        {{#each item.system.actions as | action |}}
+        <div class="item-button">
+            {{#if (and (eq action.type 'beastform') @root.beastformActive)}}
+            <button type="button" data-action="cancelBeastform" data-item-uuid="{{action.uuid}}">
+                <i class="fa-solid {{action.typeIcon}} action-icon"></i>
+                {{localize "DAGGERHEART.ACTORS.Character.cancelBeastform"}}
+            </button>
+            {{else}}
+            <button type="button" data-action="useItem" data-item-uuid="{{action.uuid}}">
+                <i class="fa-solid {{action.typeIcon}} action-icon"></i>
+                {{action.name}}
+            </button>
             {{/if}}
-
-            {{!-- Send to Chat --}}
-            {{#if (hasProperty item "toChat")}}
-                <a data-action="toChat" data-tooltip="DAGGERHEART.UI.Tooltip.sendToChat">
-                    <i class="fa-regular fa-fw fa-message" inert></i>
-                </a>
-            {{/if}}
-
-            {{!-- Document management buttons or context menu --}}
-            {{#if (and (not isActor) (not hideContextMenu))}}
-                <a data-action="triggerContextMenu" data-tooltip="DAGGERHEART.UI.Tooltip.moreOptions">
-                    <i class="fa-solid fa-fw fa-ellipsis-vertical" inert></i>
-                </a>
-            {{else if (and @root.editable (not hideModifyControls))}}
-                <a data-action="editDoc" data-tooltip="DAGGERHEART.UI.Tooltip.edit">
-                    <i class="fa-solid fa-edit" inert></i>
-                </a>
-                {{#if (not isActor)}}
-                    <a data-action="deleteDoc" data-tooltip="DAGGERHEART.UI.Tooltip.deleteItem">
-                        <i class="fa-solid fa-trash" inert></i>
-                    </a>
-                {{else if (eq type 'adversary')}}
-                    <a data-action='deleteAdversary' data-category="{{categoryAdversary}}" data-tooltip="CONTROLS.CommonDelete">
-                        <i class="fas fa-trash" inert></i>
-                    </a>
-                {{/if}}
+            {{#if action.uses.max}}
+                <div class="spacer"></div>
+                <button type="button" class="action-uses-button" data-action="increaseActionUses" data-item-uuid="{{action.uuid}}">
+                {{action.remainingUses}}/{{action.uses.max}}
+                </button>
             {{/if}}
         </div>
-    {{/unless}}
-  </div>
-  <div class="inventory-item-content{{#unless noExtensible}} extensible{{/unless}}">
-    {{!-- Description --}}
-    {{#unless hideDescription}}
-    <div class="invetory-description"></div>
-    {{/unless}}
-  </div>
-  {{!-- Dice Resource --}}
-  {{#if (and (not hideResources) (eq item.system.resource.type 'diceValue'))}}
-  {{> "systems/daggerheart/templates/sheets/global/partials/item-resource.hbs"}}
-  {{/if}}
-  {{!-- Actions Buttons --}}
-  {{#if (and showActions item.system.actions.size)}}
-  <div class="item-buttons">
-    {{#each item.system.actions as | action |}}
-    <div class="item-button">
-        {{#if (and (eq action.type 'beastform') @root.beastformActive)}}
-          <button type="button" data-action="cancelBeastform" data-item-uuid="{{action.uuid}}">
-            <i class="fa-solid {{action.typeIcon}} action-icon"></i>
-            {{localize "DAGGERHEART.ACTORS.Character.cancelBeastform"}}
-          </button>
-        {{else}}
-          <button type="button" data-action="useItem" data-item-uuid="{{action.uuid}}">
-            <i class="fa-solid {{action.typeIcon}} action-icon"></i>
-            {{action.name}}
-          </button>
-        {{/if}}
-      {{#if action.uses.max}}
-        <div class="spacer"></div>
-        <button type="button" class="action-uses-button" data-action="increaseActionUses" data-item-uuid="{{action.uuid}}">
-          {{action.remainingUses}}/{{action.uses.max}}
-        </button>
-      {{/if}}
+        {{/each}}
     </div>
-    {{/each}}
-  </div>
-  {{/if}}
+    {{/if}}
 </li>
