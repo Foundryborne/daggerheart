@@ -37,12 +37,21 @@ export default class DHSummonField extends fields.SchemaField {
             return false;
         }
 
-        if (this.actor.prototypeToken.actorLink) {
-            ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.transform.actorLinkError'));
-            return false;
-        }
+        const activeTokens = this.actor.getActiveTokens().map(x => x.document);
+        const controlledMatchingTokens = canvas.tokens.controlled
+            .filter(x => x.actor && x.actor.uuid === this.actor.uuid)
+            .map(x => x.document);
+        const token = this.actor.token ?? (
+            activeTokens.length === 1 ? activeTokens[0] :
+                (controlledMatchingTokens.length === 1 ? controlledMatchingTokens[0] : null)
+        );
 
-        if (!this.actor.token) {
+        if (!this.actor.token && !token) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.transform.linkedSelectedError'));
+            return false;
+        } 
+
+        if (!token) {
             ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.transform.prototypeError'));
             return false;
         }
@@ -51,30 +60,36 @@ export default class DHSummonField extends fields.SchemaField {
         const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
         const tokenSize = actor?.system.metadata.usesSize ? tokenSizes[actor.system.size] : actor.prototypeToken.width;
 
-        await this.actor.token.update(
-            { ...actor.prototypeToken.toJSON(), actorId: actor.id, width: tokenSize, height: tokenSize },
+        await token.update(
+            { 
+                ...actor.prototypeToken.toJSON(), 
+                actorLink: false, 
+                actorId: actor.id, 
+                width: tokenSize, 
+                height: tokenSize 
+            },
             { diff: false, recursive: false, noHook: true }
         );
 
-        if (this.actor.token.combatant) {
-            this.actor.token.combatant.update({ actorId: actor.id, img: actor.prototypeToken.texture.src });
+        if (token.combatant) {
+            token.combatant.update({ actorId: actor.id, img: actor.prototypeToken.texture.src });
         }
 
         const marks = { hitPoints: 0, stress: 0 };
         if (!this.transform.resourceRefresh.hitPoints) {
             marks.hitPoints = Math.min(
                 this.actor.system.resources.hitPoints.value,
-                this.actor.token.actor.system.resources.hitPoints.max - 1
+                token.actor.system.resources.hitPoints.max - 1
             );
         }
         if (!this.transform.resourceRefresh.stress) {
             marks.stress = Math.min(
                 this.actor.system.resources.stress.value,
-                this.actor.token.actor.system.resources.stress.max - 1
+                token.actor.system.resources.stress.max - 1
             );
         }
         if (marks.hitPoints || marks.stress) {
-            this.actor.token.actor.update({
+            token.actor.update({
                 'system.resources': {
                     hitPoints: { value: marks.hitPoints },
                     stress: { value: marks.stress }
@@ -84,7 +99,7 @@ export default class DHSummonField extends fields.SchemaField {
 
         const prevPosition = { ...this.actor.sheet.position };
         this.actor.sheet.close();
-        this.actor.token.actor.sheet.render({ force: true, position: prevPosition });
+        token.actor.sheet.render({ force: true, position: prevPosition });
     }
 
     /* Check for any available instances of the actor present in the world, or create a world actor based on compendium */

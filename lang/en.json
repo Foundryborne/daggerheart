@@ -84,6 +84,7 @@
                     "transformActorMissing": "The assigned actor to transform into does not exist. It was probably deleted or moved in/out of a compendium",
                     "canvasError": "There is no active scene.",
                     "prototypeError": "You can only use a transform action from a Token",
+                    "linkedSelectedError": "To transform a linked actor there either needs to be only a single token of it on the canvas, or you need to left-click select only one of them.",
                     "actorLinkError": "You cannot transform a token with Actor Link set to true"
                 }
             },
