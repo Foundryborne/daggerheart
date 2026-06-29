@@ -171,9 +171,9 @@ export async function runMigrations() {
                 members: missingMembers
             });
             await game.settings.set(CONFIG.DH.id, 'TagTeamRoll', tagTeam);
-        } finally {
-            lastMigrationVersion = '1.2.7';
-        }
+        } catch { }
+
+        lastMigrationVersion = '1.2.7';
     }
 
     if (foundry.utils.isNewerVersion('1.5.5', lastMigrationVersion)) {
