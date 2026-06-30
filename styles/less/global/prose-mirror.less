@@ -1,5 +1,6 @@
 @import '../utils/colors.less';
 @import '../utils/fonts.less';
+@import '../utils/mixin.less';
 
 .application.daggerheart {
     prose-mirror {
@@ -12,6 +13,7 @@
             background-color: transparent;
         }
         .editor-content {
+            .with-scroll-shadows();
             h1 {
                 font-size: var(--font-size-32);
             }
@@ -42,7 +44,7 @@
             ul {
                 list-style: disc;
             }
-        }       
+        }
         // Fixes centering and makes it not render over scrollbar
         &:hover button.toggle:enabled {
             display: flex;
