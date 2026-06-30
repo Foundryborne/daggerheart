@@ -897,7 +897,7 @@ export async function getWorldActor(baseActor) {
             game.actors.find(x => x._stats.compendiumSource === baseActor.uuid && x.name === baseActor.name);
 
         if (worldActorCopy)
-            return worldActorCopy;
+            return worldActorCopy.toObject();
 
         const baseActorData = baseActor.toObject();
         return await game.system.api.documents.DhpActor.create({ 
