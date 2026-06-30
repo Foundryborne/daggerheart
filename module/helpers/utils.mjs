@@ -890,3 +890,24 @@ export function shouldUseHopeFearAutomation(options = { gmAsPlayer: true }) {
     const { hopeFear } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
     return (!game.user.isGM || options.gmAsPlayer) ? hopeFear.players : hopeFear.gm; 
 }
+
+export async function getWorldActor(baseActor) {
+    if (baseActor.inCompendium) {
+        const worldActorCopy = 
+            game.actors.find(x => x._stats.compendiumSource === baseActor.uuid && x.name === baseActor.name);
+
+        if (worldActorCopy)
+            return worldActorCopy;
+
+        const baseActorData = baseActor.toObject();
+        return await game.system.api.documents.DhpActor.create({ 
+            ...baseActorData, 
+            _stats: { 
+                ...baseActorData._stats, 
+                compendiumSource: baseActor.uuid 
+            } 
+        });
+    }
+
+    return baseActor.toObject();
+}
