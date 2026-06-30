@@ -1,3 +1,5 @@
+import { getWorldActor } from '../../../helpers/utils.mjs';
+
 const fields = foundry.data.fields;
 
 export default class DHSummonField extends fields.SchemaField {
@@ -56,7 +58,7 @@ export default class DHSummonField extends fields.SchemaField {
             return false;
         }
 
-        const actor = await DHSummonField.getWorldActor(baseActor);
+        const actor = await getWorldActor(baseActor);
         const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
         const tokenSize = actor?.system.metadata.usesSize ? tokenSizes[actor.system.size] : actor.prototypeToken.width;
 
@@ -100,19 +102,5 @@ export default class DHSummonField extends fields.SchemaField {
         const prevPosition = { ...this.actor.sheet.position };
         this.actor.sheet.close();
         token.actor.sheet.render({ force: true, position: prevPosition });
-    }
-
-    /* Check for any available instances of the actor present in the world, or create a world actor based on compendium */
-    static async getWorldActor(baseActor) {
-        if (!baseActor.inCompendium) return baseActor;
-
-        const dataType = game.system.api.data.actors[`Dh${baseActor.type.capitalize()}`];
-        if (dataType && baseActor.img === dataType.DEFAULT_ICON) {
-            const worldActorCopy = game.actors.find(x => x.name === baseActor.name);
-            if (worldActorCopy) return worldActorCopy;
-        }
-
-        const worldActor = await game.system.api.documents.DhpActor.create(baseActor.toObject());
-        return worldActor;
     }
 }
