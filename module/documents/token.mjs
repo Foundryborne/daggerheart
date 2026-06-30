@@ -38,7 +38,8 @@ export default class DHToken extends CONFIG.Token.documentClass {
                 tokens.filter(x => x.actor).map(x => x.actor)
             );
         }
-        super.createCombatants(tokens, combat ?? {});
+        
+        await super.createCombatants(tokens, combat ?? {});
     }
 
     /**@inheritdoc */
