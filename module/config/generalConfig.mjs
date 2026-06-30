@@ -867,27 +867,27 @@ export const abilityCosts = {
 export const countdownProgressionTypes = {
     actionRoll: {
         id: 'actionRoll',
-        label: 'DAGGERHEART.CONFIG.CountdownType.actionRoll'
+        label: 'DAGGERHEART.CONFIG.CountdownProgressType.actionRoll'
     },
     characterAttack: {
         id: 'characterAttack',
-        label: 'DAGGERHEART.CONFIG.CountdownType.characterAttack'
+        label: 'DAGGERHEART.CONFIG.CountdownProgressType.characterAttack'
     },
     characterSpotlight: {
         id: 'characterSpotlight',
-        label: 'DAGGERHEART.CONFIG.CountdownType.characterSpotlight'
+        label: 'DAGGERHEART.CONFIG.CountdownProgressType.characterSpotlight'
     },
     custom: {
         id: 'custom',
-        label: 'DAGGERHEART.CONFIG.CountdownType.custom'
+        label: 'DAGGERHEART.CONFIG.CountdownProgressType.custom'
     },
     fear: {
         id: 'fear',
-        label: 'DAGGERHEART.CONFIG.CountdownType.fear'
+        label: 'DAGGERHEART.CONFIG.CountdownProgressType.fear'
     },
     spotlight: {
         id: 'spotlight',
-        label: 'DAGGERHEART.CONFIG.CountdownType.spotlight'
+        label: 'DAGGERHEART.CONFIG.CountdownProgressType.spotlight'
     }
 };
 export const rollTypes = {
@@ -935,17 +935,6 @@ export const simpleOwnershiplevels = {
     ...basicOwnershiplevels
 };
 
-export const countdownBaseTypes = {
-    narrative: {
-        id: 'narrative',
-        label: 'DAGGERHEART.APPLICATIONS.Countdown.types.narrative'
-    },
-    encounter: {
-        id: 'encounter',
-        label: 'DAGGERHEART.APPLICATIONS.Countdown.types.encounter'
-    }
-};
-
 export const countdownLoopingTypes = {
     noLooping: {
         id: 'noLooping',
@@ -968,6 +957,19 @@ export const countdownLoopingTypes = {
 export const countdownAppMode = {
     textIcon: 'text-icon',
     iconOnly: 'icon-only'
+};
+
+export const countdownTypes = {
+    encounter: {
+        id: 'encounter', 
+        label: 'DAGGERHEART.CONFIG.CountdownType.encounter.label',
+        shortLabel: 'DAGGERHEART.CONFIG.CountdownType.encounter.shortLabel'
+    },
+    narrative: {
+        id: 'narrative',
+        label: 'DAGGERHEART.CONFIG.CountdownType.narrative.label',
+        shortLabel: 'DAGGERHEART.CONFIG.CountdownType.narrative.shortLabel'  
+    }
 };
 
 export const sceneRangeMeasurementSetting = {

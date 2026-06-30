@@ -1,5 +1,6 @@
 import { calculateExpectedValue, parseTermsFromSimpleFormula } from '../../helpers/utils.mjs';
 import { adversaryExpectedDamage, adversaryScalingData } from '../../config/actorConfig.mjs';
+import { parseInlineParams } from '../../enrichers/parser.mjs';
 
 export function getTierAdjustedAdversary(source, tier) {
     const currentTier = source.tier ?? 1;
@@ -60,8 +61,8 @@ export function getTierAdjustedAdversary(source, tier) {
         const descriptionFormulas = [];
         for (const withDescription of [item.system, ...Object.values(item.system.actions)]) {
             withDescription.description = withDescription.description.replace(damageRegex, (match, inner) => {
-                const { value: formula } = parseInlineParams(inner);
-                if (!formula || !type) return match;
+                const { value: formula } = parseInlineParams(inner, { first: 'value' });
+                if (!formula) return match;
 
                 try {
                     const newFormula = calculateAdjustedDamage(formula, 'action', damageMeta)?.formula;

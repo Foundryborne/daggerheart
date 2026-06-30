@@ -168,8 +168,8 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
                     updatedEffects = deleteEffect
                         ? currentEffects.filter(x => x.id !== effectData.id)
                         : existingEffectIndex === -1
-                          ? [...currentEffects, effectData]
-                          : currentEffects.with(existingEffectIndex, effectData);
+                            ? [...currentEffects, effectData]
+                            : currentEffects.with(existingEffectIndex, effectData);
                     await this.updateMove({
                         [`${this.movePath}.effects`]: updatedEffects
                     });
@@ -235,9 +235,9 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
         return this.hasEffects
             ? tabs
             : Object.keys(tabs).reduce((acc, key) => {
-                  if (key !== 'effects') acc[key] = tabs[key];
-                  return acc;
-              }, {});
+                if (key !== 'effects') acc[key] = tabs[key];
+                return acc;
+            }, {});
     }
 
     /** @override */

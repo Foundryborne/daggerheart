@@ -1,5 +1,6 @@
+import { ResourceUpdateMap } from '../../data/action/baseAction.mjs';
 import { MemberData } from '../../data/tagTeamData.mjs';
-import { getCritDamageBonus } from '../../helpers/utils.mjs';
+import { getCritDamageBonus, shouldUseHopeFearAutomation } from '../../helpers/utils.mjs';
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 import Party from '../sheets/actors/party.mjs';
 
@@ -9,6 +10,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
     constructor(party) {
         super({ id: `TagTeamDialog-${party.id}` });
 
+        this.usesTagTeamHopeCost = true;
         this.party = party;
         this.partyMembers = party.system.partyMembers
             .filter(x => Party.DICE_ROLL_ACTOR_TYPES.includes(x.type))
@@ -20,7 +22,9 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 owned: member.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER)
             }));
 
-        this.initiator = { cost: 3 };
+        this.initiator = { cost: 
+            this.party.system.schema.fields.tagTeam.fields.initiator.fields.cost.initial 
+        };
         this.openForAllPlayers = true;
 
         this.tabGroups.application = Object.keys(party.system.tagTeam.members).length
@@ -94,8 +98,12 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             ?.addEventListener('input', this.updateInitiatorMemberField.bind(this));
 
         htmlElement
-            .querySelector('.initiator-cost-field')
+            .querySelector('.initiator-cost-input')
             ?.addEventListener('input', this.updateInitiatorCostField.bind(this));
+
+        htmlElement
+            .querySelector('.initiator-cost-enabled-checkbox')
+            ?.addEventListener('change', this.toggleInitiatorCostEnabled.bind(this));
 
         htmlElement
             .querySelector('.openforall-field')
@@ -156,6 +164,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                     .map(x => ({ value: x.id, label: x.name }));
                 partContext.initiatorDisabled = !selectedMembers.length;
                 partContext.openForAllPlayers = this.openForAllPlayers;
+                partContext.usesTagTeamHopeCost = this.usesTagTeamHopeCost;
 
                 break;
             case 'tagTeamRoll':
@@ -394,6 +403,13 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
     updateInitiatorCostField(event) {
         if (!this.initiator) this.initiator = {};
         this.initiator.cost = event.target.value ? Number.parseInt(event.target.value) : null;
+        this.render();
+    }
+
+    toggleInitiatorCostEnabled(_event) {
+        this.usesTagTeamHopeCost = !this.usesTagTeamHopeCost;
+        this.initiator.cost = this.usesTagTeamHopeCost ? 
+            this.party.system.schema.fields.tagTeam.fields.initiator.fields.cost.initial : 0;
         this.render();
     }
 
@@ -653,8 +669,8 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             const baseSecondaryRoll = selectedRoll
                 ? memberValues.find(x => !x.selected)
                 : memberValues.length > 1
-                  ? memberValues[1]
-                  : null;
+                    ? memberValues[1]
+                    : null;
 
             if (!baseMainRoll?.rollData || !baseSecondaryRoll) return null;
 
@@ -752,32 +768,37 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         /* Handle resource updates from the finished TagTeamRoll */
         const tagTeamData = this.party.system.tagTeam;
-        const fearUpdate = { key: 'fear', value: null, total: null, enabled: true };
-        for (let memberId in tagTeamData.members) {
-            const resourceUpdates = [];
-            const rollGivesHope = finalRoll.isCritical || finalRoll.withHope;
-            if (memberId === tagTeamData.initiator.memberId) {
-                const value = tagTeamData.initiator.cost
-                    ? rollGivesHope
-                        ? 1 - tagTeamData.initiator.cost
-                        : -tagTeamData.initiator.cost
-                    : 1;
-                resourceUpdates.push({ key: 'hope', value: value, total: -value, enabled: true });
-            } else if (rollGivesHope) {
-                resourceUpdates.push({ key: 'hope', value: 1, total: -1, enabled: true });
-            }
-            if (finalRoll.isCritical) resourceUpdates.push({ key: 'stress', value: -1, total: 1, enabled: true });
-            if (finalRoll.withFear) {
-                fearUpdate.value = fearUpdate.value === null ? 1 : fearUpdate.value + 1;
-                fearUpdate.total = fearUpdate.total === null ? -1 : fearUpdate.total - 1;
-            }
 
-            game.actors.get(memberId).modifyResource(resourceUpdates);
+        const actorResourceMaps = Object.keys(tagTeamData.members).reduce((acc, key) => {
+            acc[key] = new ResourceUpdateMap(game.actors.get(key));
+            return acc;
+        }, {});
+
+        if (shouldUseHopeFearAutomation({ gmAsPlayer: true })) {
+            const fearResourceMap = actorResourceMaps[tagTeamData.initiator.memberId];
+            for (const memberId in tagTeamData.members) {
+                const resourceMap = actorResourceMaps[memberId]; 
+                if (finalRoll.isCritical) {
+                    resourceMap.addResources([
+                        { key: 'stress', value: -1, enabled: true },
+                        { key: 'hope', value: 1, enabled: true }
+                    ]);
+                } else if (finalRoll.withHope) {
+                    resourceMap.addResources([{ key: 'hope', value: 1, enabled: true }]);
+                } else if (finalRoll.withFear) {
+                    fearResourceMap.addResources([{ key: 'fear', value: 1, enabled: true }]);
+                }
+            }
+        } 
+
+        /* Even with Hope/Fear automation off, the hope cost of performing the TagTeamRoll can still optionally be subtracted */
+        if (tagTeamData.initiator.cost) {
+            const resourceMap = actorResourceMaps[tagTeamData.initiator.memberId];
+            resourceMap.addResources([{ key: 'hope', value: -tagTeamData.initiator.cost, enabled: true }]);
         }
 
-        if (fearUpdate.value) {
-            mainActor.modifyResource([fearUpdate]);
-        }
+        for (const resourceMap of Object.values(actorResourceMaps))
+            resourceMap.updateResources();
 
         /* Fin */
         this.cancelRoll({ confirm: false });

@@ -100,16 +100,19 @@ export default class D20Roll extends DHRoll {
 
         this.options.roll.modifiers = this.applyBaseBonus();
 
-        const actorExperiences = this.options.roll.companionRoll
-            ? (this.options.data?.companion?.system.experiences ?? {})
-            : (this.options.data.system?.experiences ?? {});
-        this.options.experiences?.forEach(m => {
-            if (actorExperiences[m])
-                this.options.roll.modifiers.push({
-                    label: actorExperiences[m].name,
-                    value: actorExperiences[m].value
-                });
-        });
+        let actorExperiences = this.options.data.system?.experiences ?? {};
+        if (this.options.roll.companionRoll) {
+            const companion = typeof this.options.data.companion === 'string' ? 
+                foundry.utils.fromUuidSync(this.options.data.companion) :
+                this.options.data.companion;
+            actorExperiences = companion?.system?.experiences ?? {};
+        }
+        for (const m of this.options.experiences?.filter(m => !!actorExperiences[m]) ?? []) {
+            this.options.roll.modifiers.push({
+                label: actorExperiences[m].name,
+                value: actorExperiences[m].value
+            });
+        }
 
         this.addModifiers();
         if (this.options.extraFormula) {

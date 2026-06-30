@@ -199,7 +199,10 @@ const registerNonConfigSettings = () => {
     game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, {
         scope: 'world',
         config: false,
-        type: DhCountdowns
+        type: DhCountdowns,
+        onChange: value => {
+            value.handleChange();
+        }
     });
 
     game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.CompendiumBrowserSettings, {

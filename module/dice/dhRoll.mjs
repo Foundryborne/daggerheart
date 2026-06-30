@@ -23,6 +23,10 @@ export default class DHRoll extends Roll {
 
     static DefaultDialog = D20RollDialog;
 
+    /**
+     * @param {Partial<RollConfig>} config
+     * @returns {Promise<RollConfig>}
+     */
     static async build(config = {}, message = {}) {
         const roll = await this.buildConfigure(config, message);
         if (!roll) return;
@@ -34,9 +38,14 @@ export default class DHRoll extends Roll {
         return config;
     }
 
+    /** 
+     * @param {Partial<RollConfig>} config 
+     * @returns {Promise<RollConfig>}
+     */
     static async buildConfigure(config = {}, message = {}) {
         config.hooks = [...this.getHooks(), ''];
         config.dialog ??= {};
+        config.damageOptions ??= {};
 
         for (const hook of config.hooks) {
             if (Hooks.call(`${CONFIG.DH.id}.preRoll${hook.capitalize()}`, config, message) === false) return null;
@@ -103,9 +112,9 @@ export default class DHRoll extends Roll {
         if (action?.chatDisplay) {
             actionDescription = action
                 ? await foundry.applications.ux.TextEditor.implementation.enrichHTML(action.description, {
-                      relativeTo: config.data,
-                      rollData: config.data.getRollData?.() ?? {}
-                  })
+                    relativeTo: config.data,
+                    rollData: config.data.getRollData?.() ?? {}
+                })
                 : null;
             config.actionChatMessageHandled = true;
         }

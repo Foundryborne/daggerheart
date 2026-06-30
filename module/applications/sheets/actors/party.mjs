@@ -162,9 +162,9 @@ export default class Party extends DHBaseActorSheet {
                 difficulty: actor.system.difficulty,
                 traits: actor.system.traits
                     ? traits.map(t => ({
-                          label: game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${t}.short`),
-                          value: actor.system.traits[t].value
-                      }))
+                        label: game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${t}.short`),
+                        value: actor.system.traits[t].value
+                    }))
                     : null,
                 weapons
             });
@@ -306,7 +306,7 @@ export default class Party extends DHBaseActorSheet {
 
     static async downtimeMoveQuery({ actorId, downtimeType }) {
         const actor = await foundry.utils.fromUuid(actorId);
-        if (!actor || !actor?.isOwner) reject();
+        if (!actor || !actor?.isOwner) return;
         new game.system.api.applications.dialogs.Downtime(actor, downtimeType === 'shortRest').render({
             force: true
         });

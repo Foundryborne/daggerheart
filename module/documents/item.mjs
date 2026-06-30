@@ -5,6 +5,16 @@ import ActionSelectionDialog from '../applications/dialogs/actionSelectionDialog
  * @extends {foundry.documents.Item}
  */
 export default class DHItem extends foundry.documents.Item {
+    /** 
+     * Returns the uuid of the original item this item was derived from, 
+     * or its own uuid if its a compendium item or not derived from a source item.
+     * @returns {string}
+     */
+    get sourceUuid() {
+        const isCompendium = this._id && this.pack && !this.isEmbedded;
+        return isCompendium ? this.uuid : this._stats.duplicateSource ?? this._stats.compendiumSource ?? this.uuid;
+    }
+
     /** @inheritDoc */
     prepareEmbeddedDocuments() {
         super.prepareEmbeddedDocuments();
@@ -79,6 +89,10 @@ export default class DHItem extends foundry.documents.Item {
         return !pack?.locked && this.isOwner && isValidType && hasActions;
     }
 
+    get hasDescription() {
+        return Boolean(this.system.description) || Boolean(this.system.itemFeatures?.length);
+    }
+
     /** @inheritdoc */
     static async createDialog(data = {}, createOptions = {}, options = {}) {
         const { folders, types, template, context = {}, ...dialogOptions } = options;
@@ -98,8 +112,8 @@ export default class DHItem extends foundry.documents.Item {
                     isInventoryItem === true
                         ? 'Inventory Items' //TODO localize
                         : isInventoryItem === false
-                          ? 'Character Items' //TODO localize
-                          : 'Other'; //TODO localize
+                            ? 'Character Items' //TODO localize
+                            : 'Other'; //TODO localize
 
                 return { value: type, label, group };
             }

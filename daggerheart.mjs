@@ -77,6 +77,20 @@ CONFIG.Token.prototypeSheetClass = applications.sheetConfigs.DhPrototypeTokenCon
 CONFIG.Token.objectClass = placeables.DhTokenPlaceable;
 CONFIG.Token.rulerClass = placeables.DhTokenRuler;
 CONFIG.Token.hudClass = applications.hud.DHTokenHUD;
+CONFIG.Token.barConfig = {
+    bar1: {
+        colors: {
+            full: Color.fromRGB([1, 0, 0]),
+            empty: Color.fromRGB([0, 0, 0])
+        }
+    },
+    bar2: {
+        colors: {
+            full: Color.fromString('#0032b1'),
+            empty: Color.fromRGB([0, 0, 0])
+        }
+    }
+};
 
 CONFIG.ui.combat = applications.ui.DhCombatTracker;
 CONFIG.ui.nav = applications.ui.DhSceneNavigation;
@@ -88,6 +102,7 @@ CONFIG.ui.actors = applications.sidebar.DhActorDirectory;
 CONFIG.ui.daggerheartMenu = applications.sidebar.DaggerheartMenu;
 CONFIG.ui.resources = applications.ui.DhFearTracker;
 CONFIG.ui.countdowns = applications.ui.DhCountdowns;
+CONFIG.ui.pause = applications.ui.DhGamePause;
 CONFIG.ux.ContextMenu = applications.ux.DHContextMenu;
 CONFIG.ux.TooltipManager = documents.DhTooltipManager;
 CONFIG.ux.TokenManager = new TokenManager();
@@ -453,8 +468,8 @@ Hooks.on('renderDialogV2', (_dialog, html) => {
     const cls = html.classList.contains('item-create')
         ? documents.DHItem.implementation
         : html.classList.contains('actor-create')
-          ? documents.DhpActor.implementation
-          : null;
+            ? documents.DhpActor.implementation
+            : null;
     if (!cls) return;
 
     const form = html.querySelector('form');

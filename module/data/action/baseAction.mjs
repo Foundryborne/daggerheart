@@ -54,6 +54,10 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return {};
     }
 
+    get hasDescription() {
+        return Boolean(this.description);
+    }
+
     /**
      * Create a Map containing each Action step based on fields define in schema. Ordered by Fields order property.
      *
@@ -144,8 +148,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return this.item instanceof DhpActor
             ? this.item
             : this.item?.parent instanceof DhpActor
-              ? this.item.parent
-              : null;
+                ? this.item.parent
+                : null;
     }
 
     /**
@@ -223,12 +227,13 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @returns {object}
      */
     async use(event, configOptions = {}) {
-        if (!this.actor) throw new Error("An Action can't be used outside of an Actor context.");
+        if (!this.actor) throw new Error('An Action can\'t be used outside of an Actor context.');
 
         let config = this.prepareConfig(event, configOptions);
         if (!config) return;
 
-        config.effects = await game.system.api.data.actions.actionsTypes.base.getEffects(this.actor, this.item);
+        config.effects = 
+            await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(this.actor, this.item);
 
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
@@ -300,17 +305,17 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
             const groupAttackTokens = this.damage.groupAttack
                 ? game.system.api.fields.ActionFields.DamageField.getGroupAttackTokens(
-                      this.actor.id,
-                      this.damage.groupAttack
-                  )
+                    this.actor.id,
+                    this.damage.groupAttack
+                )
                 : null;
 
             config.damageOptions = {
                 groupAttack: this.damage.groupAttack
                     ? {
-                          numAttackers: Math.max(groupAttackTokens.length, 1),
-                          range: this.damage.groupAttack
-                      }
+                        numAttackers: Math.max(groupAttackTokens.length, 1),
+                        range: this.damage.groupAttack
+                    }
                     : null
             };
         }
@@ -333,27 +338,45 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     /**
-     * Get the all potentially applicable effects on the actor
+     * Get the all potentially applicable effects on the actor for the action's RollDialog
      * @param {DHActor} actor The actor performing the action
      * @param {DHItem|DhActor} effectParent The parent of the effect
      * @returns {DhActiveEffect[]}
      */
-    static async getEffects(actor, effectParent) {
+    static async getActionRelevantEffects(actor, effectParent) {
         if (!actor) return [];
 
-        return Array.from(await actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true })).filter(
-            effect => {
-                /* Effects on weapons only ever apply for the weapon itself */
-                if (effect.parent.type === 'weapon') {
-                    /* Unless they're secondary - then they apply only to other primary weapons */
-                    if (effect.parent.system.secondary) {
-                        if (effectParent?.type !== 'weapon' || effectParent?.system.secondary) return false;
-                    } else if (effectParent?.id !== effect.parent.id) return false;
-                }
+        // Changes on weapon effects are not typically only applicable to show in the roll dialog for the weapon itself 
+        // The exemptions to this rule are listed below
+        const weaponTransferredEffectKeys = [
+            'system.bonuses.roll.spellcast.bonus'
+        ];
 
-                return !effect.isSuppressed;
+        const results = [];
+        const applicableEffects = await actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
+        for (const effect of [...applicableEffects].filter(e => !e.isSuppressed)) {
+            if (effect.parent.type === 'weapon') {
+                // Effects on weapons only ever apply for the weapon itself (with a few exceptions)
+                const restricted =
+                    effect.parent.system.secondary
+                        // Secondary applies only to other primary weapons
+                        ? effectParent?.type !== 'weapon' || effectParent?.system.secondary
+                        // Primary only applies to itself
+                        : effectParent?.id !== effect.parent.id;
+                if (restricted) {
+                    const sourceChanges = effect._source.system.changes;
+                    const changes = sourceChanges.filter(x => weaponTransferredEffectKeys.includes(x.key));
+                    if (changes.length) {
+                        results.push(effect.clone({ 'system.changes': changes }));
+                    }
+                    continue;
+                }
             }
-        );
+                
+            results.push(effect);
+        }
+
+        return results;
     }
 
     /**
@@ -428,7 +451,15 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     static migrateData(source) {
         if (source.damage?.parts && Array.isArray(source.damage.parts)) {
+            let hitPointsExists = source.damage.parts.some(x => x.applyTo === 'hitPoints');
             source.damage.parts = source.damage.parts.reduce((acc, part) => {
+                if (!part.applyTo && hitPointsExists) return acc;
+
+                if (!part.applyTo) {
+                    hitPointsExists = true;
+                    part.applyTo = 'hitPoints';
+                }
+
                 acc[part.applyTo] = part;
                 return acc;
             }, {});
@@ -459,8 +490,7 @@ export class ResourceUpdateMap extends Map {
             } else if (!existing?.clear) {
                 this.set(resource.key, {
                     ...existing,
-                    value: existing.value + (resource.value ?? 0),
-                    total: existing.total + (resource.total ?? 0)
+                    value: existing.value + (resource.value ?? 0)
                 });
             }
         }

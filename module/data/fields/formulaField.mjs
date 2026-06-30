@@ -39,7 +39,7 @@ export default class FormulaField extends foundry.data.fields.StringField {
         let roll = null;
         try {
             roll = new Roll(value.replace(/@([a-z.0-9_-]+)/gi, '1'));
-        } catch (_) {
+        } catch {
             roll = new Roll(value.replace(/@([a-z.0-9_-]+)/gi, 'd6'));
         }
         roll.evaluateSync({ strict: false });

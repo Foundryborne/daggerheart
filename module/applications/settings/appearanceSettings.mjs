@@ -1,12 +1,13 @@
-import DhAppearance from '../../data/settings/Appearance.mjs';
 import { getDiceSoNicePreset } from '../../config/generalConfig.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 /**
+ * @import DhAppearance from '../../data/settings/Appearance.mjs';
  * @import {ApplicationClickAction} from "@client/applications/_types.mjs"
  */
 
+/** Settings menu for appearance settings */
 export default class DHAppearanceSettings extends HandlebarsApplicationMixin(ApplicationV2) {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {

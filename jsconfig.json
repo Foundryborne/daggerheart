@@ -1,14 +1,14 @@
 {
     "compilerOptions": {
-        "module": "ES6",
-        "target": "ES6",
+        "module": "es2022",
+        "target": "es2022",
         "paths": {
             "@client/*": ["./foundry/client/*"],
             "@common/*": ["./foundry/common/*"]
         }
     },
     "exclude": ["node_modules", "**/node_modules/*"],
-    "include": ["daggerheart.mjs", "foundry/client/client.mjs", "daggerheart.d.ts"],
+    "include": ["daggerheart.mjs", "foundry/client/client.mjs", "daggerheart.d.ts", "module/**/*.d.ts"],
     "typeAcquisition": {
         "include": ["jquery"]
     }

@@ -41,8 +41,8 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 const advantage = rollCommand.advantage
                     ? CONFIG.DH.ACTIONS.advantageState.advantage.value
                     : rollCommand.disadvantage
-                      ? CONFIG.DH.ACTIONS.advantageState.disadvantage.value
-                      : undefined;
+                        ? CONFIG.DH.ACTIONS.advantageState.disadvantage.value
+                        : undefined;
                 const difficulty = rollCommand.difficulty;
                 const grantResources = rollCommand.grantResources;
 
@@ -50,8 +50,8 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 const title =
                     (flavor ?? traitValue)
                         ? game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
-                              ability: game.i18n.localize(SYSTEM.ACTOR.abilities[traitValue].label)
-                          })
+                            ability: game.i18n.localize(CONFIG.DH.ACTOR.abilities[traitValue].label)
+                        })
                         : game.i18n.localize('DAGGERHEART.GENERAL.duality');
 
                 enrichedDualityRoll({

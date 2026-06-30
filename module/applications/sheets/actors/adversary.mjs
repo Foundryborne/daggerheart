@@ -103,7 +103,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
         context.resources.stress.emptyPips =
             context.resources.stress.max < maxResource ? maxResource - context.resources.stress.max : 0;
 
-        const featureForms = ['passive', 'action', 'reaction'];
+        const featureForms = Object.keys(CONFIG.DH.ITEM.featureForm);
         context.features = this.document.system.features.sort((a, b) =>
             a.system.featureForm !== b.system.featureForm
                 ? featureForms.indexOf(a.system.featureForm) - featureForms.indexOf(b.system.featureForm)
@@ -129,6 +129,15 @@ export default class AdversarySheet extends DHBaseActorSheet {
                 break;
         }
         return context;
+    }
+
+    /** @inheritdoc */
+    _prepareTabs(group) {
+        const result = super._prepareTabs(group);
+        if (group === 'primary') {
+            result.notes.empty = !this.document.system.notes?.trim();
+        }
+        return result;
     }
 
     /**@inheritdoc */
@@ -184,15 +193,6 @@ export default class AdversarySheet extends DHBaseActorSheet {
             secrets: this.document.isOwner,
             relativeTo: this.document
         });
-    }
-
-    /** @inheritdoc */
-    async _onDragStart(event) {
-        const inventoryItem = event.currentTarget.closest('.inventory-item');
-        if (inventoryItem) {
-            event.dataTransfer.setDragImage(inventoryItem.querySelector('img'), 60, 0);
-        }
-        super._onDragStart(event);
     }
 
     /* -------------------------------------------- */

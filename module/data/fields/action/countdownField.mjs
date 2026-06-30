@@ -8,8 +8,8 @@ export default class CountdownField extends fields.ArrayField {
             ...game.system.api.data.countdowns.DhCountdown.defineSchema(),
             type: new fields.StringField({
                 required: true,
-                choices: CONFIG.DH.GENERAL.countdownBaseTypes,
-                initial: CONFIG.DH.GENERAL.countdownBaseTypes.encounter.id,
+                choices: CONFIG.DH.GENERAL.countdownTypes,
+                initial: CONFIG.DH.GENERAL.countdownTypes.encounter.id,
                 label: 'DAGGERHEART.GENERAL.type'
             }),
             name: new fields.StringField({
@@ -87,11 +87,11 @@ export default class CountdownField extends fields.ArrayField {
                     CONFIG.DH.id,
                     CONFIG.DH.SETTINGS.gameSettings.Countdowns,
                     countdownSetting.toObject()
-                ),
-                    game.socket.emit(`system.${CONFIG.DH.id}`, {
-                        action: socketEvent.Refresh,
-                        data: { refreshType: RefreshType.Countdown }
-                    });
+                );
+                game.socket.emit(`system.${CONFIG.DH.id}`, {
+                    action: socketEvent.Refresh,
+                    data: { refreshType: RefreshType.Countdown }
+                });
                 Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
             },
             data,

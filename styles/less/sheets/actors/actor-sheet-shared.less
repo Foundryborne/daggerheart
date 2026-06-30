@@ -37,6 +37,10 @@
         color: @color-text-subtle;
     }
 
+    .window-header > .attribution-header-label {
+        margin-right: var(--spacer-4);
+    }
+
     .tab.inventory {
         .gold-section {
             display: grid;
@@ -47,6 +51,37 @@
             .input {
                 color: light-dark(@dark, @beige);
             }
+        }
+    }
+
+    .tab.notes.active {
+        padding: 0;
+        margin: 0;
+        margin-top: -10px; // will be removed once tab-navigation bottom margin is removed on all actor sheets
+        scrollbar-gutter: unset;
+
+        // Add padding around top level level prosemirrors used for note tabs
+        > prose-mirror {
+            @right-padding: calc(16px - var(--scrollbar-width));
+            .editor-content {
+                scrollbar-gutter: stable;
+                padding-right: @right-padding;
+            }
+            &.inactive {
+                button.toggle {
+                    top: 16px;
+                }
+                .editor-content {
+                    padding: 16px @right-padding 4px 16px;
+                }
+            }
+            &.active {
+                padding: 8px 0 4px 16px;
+            }
+        }
+
+        .artist-attribution {
+            padding-left: 16px;
         }
     }
 

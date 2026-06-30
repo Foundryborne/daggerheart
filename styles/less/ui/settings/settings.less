@@ -201,6 +201,23 @@
         }
     }
 
+    .currency-rows {
+        display: grid;
+        grid-template-columns: auto 1fr 1fr auto;
+        gap: 4px;
+        align-items: center;
+        width: 100%;
+
+        .currency-header-label {
+            text-align: center;
+            font-size: var(--font-size-14);
+        }
+
+        input[type='checkbox'] {
+            justify-self: center;
+        }
+    }
+
     .settings-hint {
         width: 100%;
         display: flex;

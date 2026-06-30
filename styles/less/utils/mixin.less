@@ -49,16 +49,15 @@
  * Apply default typography styles.
  */
 .dh-typography() {
+    --font-body: @font-body;
+    font-family: @font-body;
+
     h1 {
         --dh-input-color-text: @color-text-emphatic;
         font-family: @font-title;
         margin: 0;
         border: none;
         font-weight: normal;
-        input[type='text'],
-        .input[contenteditable] {
-            font-family: @font-title;
-        }
     }
 
     h2,
@@ -86,20 +85,15 @@
         font-weight: normal;
     }
 
-    p,
-    span,
-    textarea,
-    label,
-    select,
+    // todo: determine if we can remove these or replace with font-family: inherit
     multi-select .tags .tag,
     table,
-    fieldset legend,
-    input[type='text'],
-    input[type='number'],
-    input[type='search'],
-    .tagify__dropdown,
-    li {
+    .tagify__dropdown {
         font-family: @font-body;
+    }
+
+    textarea {
+        font-family: inherit;
     }
 
     button span {

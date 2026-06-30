@@ -210,9 +210,9 @@ export default class DhCharacterLevelUp extends LevelUpBase {
 
                     achievementExperiences = level.achievements.experiences
                         ? Object.values(level.achievements.experiences).reduce((acc, experience) => {
-                              if (experience.name) acc.push(experience);
-                              return acc;
-                          }, [])
+                            if (experience.name) acc.push(experience);
+                            return acc;
+                        }, [])
                         : [];
                 }
 
@@ -315,15 +315,15 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                                         : null;
                                     advancement[choiceKey] = multiclassItem
                                         ? {
-                                              ...multiclassItem.toObject(),
-                                              domain: checkbox.secondaryData.domain
-                                                  ? game.i18n.localize(
-                                                        CONFIG.DH.DOMAIN.allDomains()[checkbox.secondaryData.domain]
-                                                            .label
-                                                    )
-                                                  : null,
-                                              subclass: subclass ? subclass.name : null
-                                          }
+                                            ...multiclassItem.toObject(),
+                                            domain: checkbox.secondaryData.domain
+                                                ? game.i18n.localize(
+                                                    CONFIG.DH.DOMAIN.allDomains()[checkbox.secondaryData.domain]
+                                                        .label
+                                                )
+                                                : null,
+                                            subclass: subclass ? subclass.name : null
+                                        }
                                         : {};
                                     break;
                             }

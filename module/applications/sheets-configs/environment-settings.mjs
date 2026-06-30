@@ -15,7 +15,7 @@ export default class DHEnvironmentSettings extends DHBaseActorSettings {
         dragDrop: [
             { dragSelector: null, dropSelector: '.category-container' },
             { dragSelector: null, dropSelector: '.tab.features' },
-            { dragSelector: '.feature-item', dropSelector: null }
+            { dragSelector: '.feature-item, .inventory-item[data-type="adversary"]', dropSelector: null }
         ]
     };
 
@@ -32,11 +32,13 @@ export default class DHEnvironmentSettings extends DHBaseActorSettings {
         },
         features: {
             id: 'features',
-            template: 'systems/daggerheart/templates/sheets-settings/environment-settings/features.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/environment-settings/features.hbs',
+            scrollable: ['']
         },
         adversaries: {
             id: 'adversaries',
-            template: 'systems/daggerheart/templates/sheets-settings/environment-settings/adversaries.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/environment-settings/adversaries.hbs',
+            scrollable: ['']
         }
     };
 
@@ -52,12 +54,16 @@ export default class DHEnvironmentSettings extends DHBaseActorSettings {
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
 
-        const featureForms = ['passive', 'action', 'reaction'];
-        context.features = context.document.system.features.sort((a, b) =>
-            a.system.featureForm !== b.system.featureForm
-                ? featureForms.indexOf(a.system.featureForm) - featureForms.indexOf(b.system.featureForm)
-                : a.sort - b.sort
-        );
+        // Get feature groups. Uncategorized go to actions
+        const featureFormsTypes = ['passive', 'action', 'reaction'];
+        const features = this.document.system.features.sort((a, b) => a.sort - b.sort);
+        const featureGroups = featureFormsTypes.map(t => ({
+            featureForm: t,
+            label: _loc(CONFIG.DH.ITEM.featureForm[t]),
+            features: features.filter(f => f.system.featureForm === t)
+        }));
+        featureGroups[1].features.push(...features.filter(f => !featureFormsTypes.includes(f.system.featureForm)));
+        context.featureGroups = featureGroups;
 
         return context;
     }
@@ -110,33 +116,30 @@ export default class DHEnvironmentSettings extends DHBaseActorSettings {
     }
 
     async _onDragStart(event) {
-        const featureItem = event.currentTarget.closest('.feature-item');
-
-        if (featureItem) {
-            const feature = this.actor.items.get(featureItem.id);
-            const featureData = { type: 'Item', uuid: feature.uuid, fromInternal: true };
-            event.dataTransfer.setData('text/plain', JSON.stringify(featureData));
-            event.dataTransfer.setDragImage(featureItem.querySelector('img'), 60, 0);
+        const element = event.currentTarget.closest('.inventory-item[data-type=adversary]');
+        if (element) {
+            const adversaryData = { type: 'Actor', uuid: element.dataset.itemUuid };
+            event.dataTransfer.setData('text/plain', JSON.stringify(adversaryData));
+            event.dataTransfer.setDragImage(element, 60, 0);
+        } else {
+            return super._onDragStart(event);
         }
     }
 
     async _onDrop(event) {
         event.stopPropagation();
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-        const item = await fromUuid(data.uuid);
-        if (data.fromInternal && item?.parent?.uuid === this.actor.uuid) return;
-
-        if (item.type === 'adversary' && event.target.closest('.category-container')) {
+        const doc = await fromUuid(data.uuid);
+        if (doc?.type === 'adversary' && event.target.closest('.category-container')) {
             const target = event.target.closest('.category-container');
             const path = `system.potentialAdversaries.${target.dataset.potentialAdversary}.adversaries`;
             const current = foundry.utils.getProperty(this.actor, path).map(x => x.uuid);
-            await this.actor.update({
-                [path]: [...current, item.uuid]
-            });
-            this.render();
-        } else if (item.type === 'feature' && event.target.closest('.tab.features')) {
-            await this.actor.createEmbeddedDocuments('Item', [item]);
-            this.render();
+            if (!current.includes(doc.uuid)) {
+                await this.actor.update({ [path]: [...current, doc.uuid] });
+            }
+            return;
         }
+        
+        return super._onDrop(event);
     }
 }

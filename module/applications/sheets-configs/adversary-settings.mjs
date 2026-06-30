@@ -10,11 +10,7 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         actions: {
             addExperience: DHAdversarySettings.#addExperience,
             removeExperience: DHAdversarySettings.#removeExperience
-        },
-        dragDrop: [
-            { dragSelector: null, dropSelector: '.tab.features' },
-            { dragSelector: '.feature-item', dropSelector: null }
-        ]
+        }
     };
 
     /**@override */
@@ -38,7 +34,8 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         },
         features: {
             id: 'features',
-            template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/features.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/features.hbs',
+            scrollable: ['']
         }
     };
 
@@ -54,12 +51,16 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
 
-        const featureForms = ['passive', 'action', 'reaction'];
-        context.features = context.document.system.features.sort((a, b) =>
-            a.system.featureForm !== b.system.featureForm
-                ? featureForms.indexOf(a.system.featureForm) - featureForms.indexOf(b.system.featureForm)
-                : a.sort - b.sort
-        );
+        // Get feature groups. Uncategorized go to actions
+        const featureFormsTypes = ['passive', 'action', 'reaction'];
+        const features = this.document.system.features.sort((a, b) => a.sort - b.sort);
+        const featureGroups = featureFormsTypes.map(t => ({
+            featureForm: t,
+            label: _loc(CONFIG.DH.ITEM.featureForm[t]),
+            features: features.filter(f => f.system.featureForm === t)
+        }));
+        featureGroups[1].features.push(...features.filter(f => !featureFormsTypes.includes(f.system.featureForm)));
+        context.featureGroups = featureGroups;
 
         return context;
     }
@@ -96,33 +97,5 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         if (!confirmed) return;
 
         await this.actor.update({ [`system.experiences.${target.dataset.experience}`]: _del });
-    }
-
-    async _onDragStart(event) {
-        const featureItem = event.currentTarget.closest('.feature-item');
-
-        if (featureItem) {
-            const feature = this.actor.items.get(featureItem.id);
-            const featureData = { type: 'Item', uuid: feature.uuid, fromInternal: true };
-            event.dataTransfer.setData('text/plain', JSON.stringify(featureData));
-            event.dataTransfer.setDragImage(featureItem.querySelector('img'), 60, 0);
-        }
-    }
-
-    async _onDrop(event) {
-        event.stopPropagation();
-        const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-
-        const item = await fromUuid(data.uuid);
-        if (item?.type === 'feature') {
-            if (data.fromInternal && item.parent?.uuid === this.actor.uuid) {
-                return;
-            }
-
-            const itemData = item.toObject();
-            delete itemData._id;
-
-            await this.actor.createEmbeddedDocuments('Item', [itemData]);
-        }
     }
 }

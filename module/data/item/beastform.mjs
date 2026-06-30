@@ -208,8 +208,8 @@ export default class DHBeastform extends BaseDataItem {
         const autoTokenSize =
             this.tokenSize.size !== 'custom'
                 ? game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes[
-                      this.tokenSize.size
-                  ]
+                    this.tokenSize.size
+                ]
                 : null;
         const width = autoTokenSize ?? this.tokenSize.width;
         const height = autoTokenSize ?? this.tokenSize.height;

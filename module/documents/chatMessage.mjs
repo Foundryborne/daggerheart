@@ -9,9 +9,9 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             actor && this.isContentVisible
                 ? actor
                 : {
-                      img: this.author.avatar ? this.author.avatar : 'icons/svg/mystery-man.svg',
-                      name: ''
-                  };
+                    img: this.author.avatar ? this.author.avatar : 'icons/svg/mystery-man.svg',
+                    name: ''
+                };
         /* We can change to fully implementing the renderHTML function if needed, instead of augmenting it. */
         const html = await super.renderHTML({ actor: actorData, author: this.author });
 
@@ -167,7 +167,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         if (this.system.action) {
             const actor = await foundry.utils.fromUuid(config.source.actor);
             const item = actor?.items.get(config.source.item) ?? null;
-            config.effects = await game.system.api.data.actions.actionsTypes.base.getEffects(actor, item);
+            config.effects = await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(actor, item);
             await this.system.action.workflow.get('damage')?.execute(config, this._id, true);
         }
     }
@@ -290,14 +290,14 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                 behaviors:
                     effects.length > 0
                         ? [
-                              {
-                                  name: game.i18n.localize('TYPES.RegionBehavior.applyActiveEffect'),
-                                  type: 'applyActiveEffect',
-                                  system: {
-                                      effects: effects
-                                  }
-                              }
-                          ]
+                            {
+                                name: game.i18n.localize('TYPES.RegionBehavior.applyActiveEffect'),
+                                type: 'applyActiveEffect',
+                                system: {
+                                    effects: effects
+                                }
+                            }
+                        ]
                         : [],
                 displayMeasurements: true,
                 locked: false,

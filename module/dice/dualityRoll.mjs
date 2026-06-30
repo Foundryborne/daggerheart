@@ -1,6 +1,6 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 import D20Roll from './d20Roll.mjs';
-import { parseRallyDice, setDiceSoNiceForDualityRoll } from '../helpers/utils.mjs';
+import { parseRallyDice, setDiceSoNiceForDualityRoll, shouldUseHopeFearAutomation } from '../helpers/utils.mjs';
 import { getDiceSoNicePresets } from '../config/generalConfig.mjs';
 import { updateResourcesForDualityReroll } from './helpers.mjs';
 
@@ -109,10 +109,10 @@ export default class DualityRoll extends D20Roll {
         const label = this.guaranteedCritical
             ? 'DAGGERHEART.GENERAL.guaranteedCriticalSuccess'
             : this.isCritical
-              ? 'DAGGERHEART.GENERAL.criticalSuccess'
-              : this.withHope
-                ? 'DAGGERHEART.GENERAL.hope'
-                : 'DAGGERHEART.GENERAL.fear';
+                ? 'DAGGERHEART.GENERAL.criticalSuccess'
+                : this.withHope
+                    ? 'DAGGERHEART.GENERAL.hope'
+                    : 'DAGGERHEART.GENERAL.fear';
 
         return game.i18n.localize(label);
     }
@@ -147,8 +147,8 @@ export default class DualityRoll extends D20Roll {
         const advDieClass = this.hasAdvantage
             ? game.system.api.dice.diceTypes.AdvantageDie
             : this.hasDisadvantage
-              ? game.system.api.dice.diceTypes.DisadvantageDie
-              : null;
+                ? game.system.api.dice.diceTypes.DisadvantageDie
+                : null;
         if (advDieClass) {
             const advDie = new advDieClass({ faces: this.advantageFaces, number: this.advantageNumber });
             if (this.terms.length < 4) {
@@ -312,11 +312,9 @@ export default class DualityRoll extends D20Roll {
     }
 
     static async addDualityResourceUpdates(config) {
-        const automationSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
-        const hopeFearAutomation = automationSettings.hopeFear;
         if (
             !config.source?.actor ||
-            (game.user.isGM ? !hopeFearAutomation.gm : !hopeFearAutomation.players) ||
+            !shouldUseHopeFearAutomation() ||
             config.actionType === 'reaction' ||
             config.skips?.resources
         )
@@ -334,15 +332,15 @@ export default class DualityRoll extends D20Roll {
                 const fear =
                     (config.roll.result.duality === -1 ? 1 : 0) - (config.rerolledRoll.result.duality === -1 ? 1 : 0);
 
-                if (hope !== 0) updates.push({ key: 'hope', value: hope, total: -1 * hope, enabled: true });
-                if (stress !== 0) updates.push({ key: 'stress', value: -1 * stress, total: stress, enabled: true });
-                if (fear !== 0) updates.push({ key: 'fear', value: fear, total: -1 * fear, enabled: true });
+                if (hope !== 0) updates.push({ key: 'hope', value: hope, enabled: true });
+                if (stress !== 0) updates.push({ key: 'stress', value: -1 * stress, enabled: true });
+                if (fear !== 0) updates.push({ key: 'fear', value: fear, enabled: true });
             }
         } else {
             if (config.roll.isCritical || config.roll.result.duality === 1)
-                updates.push({ key: 'hope', value: 1, total: -1, enabled: true });
-            if (config.roll.isCritical) updates.push({ key: 'stress', value: -1, total: 1, enabled: true });
-            if (config.roll.result.duality === -1) updates.push({ key: 'fear', value: 1, total: -1, enabled: true });
+                updates.push({ key: 'hope', value: 1, enabled: true });
+            if (config.roll.isCritical) updates.push({ key: 'stress', value: -1, enabled: true });
+            if (config.roll.result.duality === -1) updates.push({ key: 'fear', value: 1, enabled: true });
         }
 
         if (updates.length) {

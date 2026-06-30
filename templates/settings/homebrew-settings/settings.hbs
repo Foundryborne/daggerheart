@@ -42,29 +42,35 @@
 
         <fieldset>
             <legend>
-                {{localize "DAGGERHEART.SETTINGS.Homebrew.currency.title"}} 
+                {{localize "DAGGERHEART.SETTINGS.Homebrew.currency.title"}}
             </legend>
             <div class="toggleable-row spaced">
                 {{formGroup settingFields.schema.fields.currency.fields.title value=settingFields._source.currency.title localize=true}}
             </div>
-            <div class="toggleable-row">
+            <div class="currency-rows">
+                <span></span>
+                <span class="currency-header-label">{{localize "DAGGERHEART.SETTINGS.Homebrew.currency.denomination"}}</span>
+                <span class="currency-header-label">{{localize "DAGGERHEART.SETTINGS.Homebrew.currency.initialAmount"}}</span>
+                <span></span>
+
                 <button class="icon {{settingFields._source.currency.coins.icon}}" data-action="editCurrencyIcon" data-currency="coins" data-tooltip="DAGGERHEART.SETTINGS.Homebrew.currency.changeIcon"></button>
-                {{formGroup settingFields.schema.fields.currency.fields.coins.fields.label value=settingFields._source.currency.coins.label localize=true}}
+                {{formInput settingFields.schema.fields.currency.fields.coins.fields.label value=settingFields._source.currency.coins.label name="currency.coins.label"}}
+                <input type="number" name="currency.coins.initialAmount" value="{{settingFields._source.currency.coins.initialAmount}}" min="0" step="1" />
                 <input type="checkbox" name="currency.coins.enabled" {{checked settingFields._source.currency.coins.enabled}} />
-            </div>
-            <div class="toggleable-row">
+
                 <button class="icon {{settingFields._source.currency.handfuls.icon}}" data-action="editCurrencyIcon" data-currency="handfuls" data-tooltip="DAGGERHEART.SETTINGS.Homebrew.currency.changeIcon"></button>
-                {{formGroup settingFields.schema.fields.currency.fields.handfuls.fields.label value=settingFields._source.currency.handfuls.label localize=true}}
+                {{formInput settingFields.schema.fields.currency.fields.handfuls.fields.label value=settingFields._source.currency.handfuls.label name="currency.handfuls.label"}}
+                <input type="number" name="currency.handfuls.initialAmount" value="{{settingFields._source.currency.handfuls.initialAmount}}" min="0" step="1" />
                 <input type="checkbox" name="currency.handfuls.enabled" {{checked settingFields._source.currency.handfuls.enabled}} />
-            </div>
-            <div class="toggleable-row">
+
                 <button class="icon {{settingFields._source.currency.bags.icon}}" data-action="editCurrencyIcon" data-currency="bags" data-tooltip="DAGGERHEART.SETTINGS.Homebrew.currency.changeIcon"></button>
-                {{formGroup settingFields.schema.fields.currency.fields.bags.fields.label value=settingFields._source.currency.bags.label localize=true}}
+                {{formInput settingFields.schema.fields.currency.fields.bags.fields.label value=settingFields._source.currency.bags.label name="currency.bags.label"}}
+                <input type="number" name="currency.bags.initialAmount" value="{{settingFields._source.currency.bags.initialAmount}}" min="0" step="1" />
                 <input type="checkbox" name="currency.bags.enabled" {{checked settingFields._source.currency.bags.enabled}} />
-            </div>
-            <div class="toggleable-row">
+
                 <button class="icon {{settingFields._source.currency.chests.icon}}" data-action="editCurrencyIcon" data-currency="chests" data-tooltip="DAGGERHEART.SETTINGS.Homebrew.currency.changeIcon"></button>
-                {{formGroup settingFields.schema.fields.currency.fields.chests.fields.label value=settingFields._source.currency.chests.label localize=true}}
+                {{formInput settingFields.schema.fields.currency.fields.chests.fields.label value=settingFields._source.currency.chests.label name="currency.chests.label"}}
+                <input type="number" name="currency.chests.initialAmount" value="{{settingFields._source.currency.chests.initialAmount}}" min="0" step="1" />
                 <input type="checkbox" name="currency.chests.enabled" {{checked settingFields._source.currency.chests.enabled}} />
             </div>
         </fieldset>

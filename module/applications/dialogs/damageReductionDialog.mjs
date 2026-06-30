@@ -138,13 +138,13 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         const stressReductionStress = this.availableStressReductions
             ? stressReductions.reduce((acc, red) => acc + red.cost, 0)
             : 0;
+        const stress = this.actor.system.resources.stress;
         context.stress =
             selectedStressMarks.length > 0 || this.availableStressReductions
                 ? {
-                      value:
-                          this.actor.system.resources.stress.value + selectedStressMarks.length + stressReductionStress,
-                      max: this.actor.system.resources.stress.max
-                  }
+                    value: stress.value + selectedStressMarks.length + stressReductionStress,
+                    max: stress.max
+                }
                 : null;
 
         context.maxArmorUsed = maxArmorUsed;
@@ -176,7 +176,6 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     }
 
     static updateData(event, _, formData) {
-        const form = foundry.utils.expandObject(formData.object);
         this.render(true);
     }
 

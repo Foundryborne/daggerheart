@@ -52,6 +52,10 @@ export default class DHArmor extends AttachableItem {
         );
     }
 
+    get itemFeatures() {
+        return this.armorFeatures;
+    }
+
     /**@inheritdoc */
     async getDescriptionData() {
         const baseDescription = this.description;
@@ -168,9 +172,5 @@ export default class DHArmor extends AttachableItem {
     _getLabels() {
         const labels = [`${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.armor.max}`];
         return labels;
-    }
-
-    get itemFeatures() {
-        return this.armorFeatures;
     }
 }

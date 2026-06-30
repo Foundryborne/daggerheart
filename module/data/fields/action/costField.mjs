@@ -116,8 +116,8 @@ export default class CostField extends fields.ArrayField {
                 c.key === 'fear'
                     ? game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear)
                     : resources[c.key].isReversed
-                      ? resources[c.key].max - resources[c.key].value
-                      : resources[c.key].value;
+                        ? resources[c.key].max - resources[c.key].value
+                        : resources[c.key].value;
             if (c.scalable) c.maxStep = Math.floor((c.max - c.value) / c.step);
             return c;
         });
@@ -149,8 +149,8 @@ export default class CostField extends fields.ArrayField {
                 !resources[c.key]
                     ? a
                     : a && resources[c.key].isReversed
-                      ? resources[c.key].value + (c.total ?? c.value) <= resources[c.key].max
-                      : resources[c.key]?.value >= (c.total ?? c.value),
+                        ? resources[c.key].value + (c.total ?? c.value) <= resources[c.key].max
+                        : resources[c.key]?.value >= (c.total ?? c.value),
             true
         );
     }

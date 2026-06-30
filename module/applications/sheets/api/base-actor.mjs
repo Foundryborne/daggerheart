@@ -1,10 +1,12 @@
 import { getDocFromElement, itemIsIdentical } from '../../../helpers/utils.mjs';
-import DHBaseActorSettings from './actor-setting.mjs';
 import DHApplicationMixin from './application-mixin.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 
-/**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
+/** 
+ * @import DHBaseActorSettings from './actor-setting.mjs';
+ * @typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction
+ */
 
 /**
  * A base actor sheet extending {@link ActorSheetV2} via {@link DHApplicationMixin}
@@ -210,7 +212,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                     const doc = await getDocFromElement(target),
                         action = doc?.system?.attack ?? doc;
                     const config = action.prepareConfig(event);
-                    config.effects = await game.system.api.data.actions.actionsTypes.base.getEffects(
+                    config.effects = await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
                         this.document,
                         doc
                     );
@@ -377,7 +379,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                 action: 'update',
                 documentName: 'Item',
                 parent: targetActor,
-                updates: [{ '_id': existing.id, 'system.quantity': existing.system.quantity + quantity }]
+                updates: [{ _id: existing.id, 'system.quantity': existing.system.quantity + quantity }]
             });
         } else {
             const itemsToCreate = [];
@@ -410,7 +412,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                 action: 'update',
                 documentName: 'Item',
                 parent: originActor,
-                updates: [{ '_id': item.id, 'system.quantity': item.system.quantity - quantity }]
+                updates: [{ _id: item.id, 'system.quantity': item.system.quantity - quantity }]
             });
         }
 
@@ -447,13 +449,15 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
 
         const item = await getDocFromElement(event.target);
         if (item) {
+            const inventoryItem = event.currentTarget.closest('.inventory-item');
             const dragData = {
+                ...item.toDragData(),
                 originActor: this.document.uuid,
-                originId: item.id,
-                type: item.documentName,
-                uuid: item.uuid
+                originId: item.id
             };
             event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+            if (inventoryItem) event.dataTransfer.setDragImage(inventoryItem.querySelector('img'), 60, 0);
+            return;
         }
 
         super._onDragStart(event);

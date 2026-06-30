@@ -65,6 +65,10 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         );
     }
 
+    get hasDescription() {
+        return Boolean(this.description);
+    }
+
     /* -------------------------------------------- */
     /*  Event Handlers                              */
     /* -------------------------------------------- */
@@ -175,8 +179,8 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         return model instanceof documentClass
             ? model
             : model.parent
-              ? this.#resolveParentDocument(model.parent, documentClass)
-              : null;
+                ? this.#resolveParentDocument(model.parent, documentClass)
+                : null;
     }
 
     static getChangeValue(model, change, effect) {
@@ -212,7 +216,7 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         try {
             const evl = new Function('sandbox', `with (sandbox) { return ${expression}}`);
             result = evl(Roll.MATH_PROXY);
-        } catch (err) {
+        } catch {
             return expression;
         }
 
@@ -224,12 +228,13 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
      * @returns {string[]} An array of localized tag strings.
      */
     _getTags() {
-        const tags = [
-            `${game.i18n.localize(this.parent.system.metadata.label)}: ${this.parent.name}`,
-            game.i18n.localize(
-                this.isTemporary ? 'DAGGERHEART.EFFECTS.Duration.temporary' : 'DAGGERHEART.EFFECTS.Duration.passive'
-            )
-        ];
+        const tags = [];
+        const originActor = DhActiveEffect.#resolveParentDocument(fromUuidSync(this.origin, { strict: false }), Actor);
+        if (originActor && originActor !== this.actor) {
+            tags.push(_loc('DAGGERHEART.EFFECTS.OriginTag', { name: originActor.name }));
+        } else if (!(this.parent instanceof Actor)) {
+            tags.push(`${_loc(this.parent.system.metadata.label)}: ${this.parent.name}`);
+        }
 
         for (const statusId of this.statuses) {
             const status = CONFIG.statusEffects.find(s => s.id === statusId);

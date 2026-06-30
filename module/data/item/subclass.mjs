@@ -70,9 +70,7 @@ export default class DHSubclass extends BaseDataItem {
                 return false;
             }
 
-            const match = [multiclass, actorClass].find(
-                c => c && (c._stats.compendiumSource ?? c.uuid) === this.linkedClass
-            );
+            const match = [multiclass, actorClass].find(c => c && c.sourceUuid === this.linkedClass);
             if (!match) {
                 const key = multiclass ? 'subclassNotInMulticlass' : 'subclassNotInClass';
                 ui.notifications.warn(`DAGGERHEART.UI.Notifications.${key}`, { localize: true });
@@ -91,7 +89,7 @@ export default class DHSubclass extends BaseDataItem {
             ? game.i18n.localize(CONFIG.DH.ACTOR.abilities[this.spellcastingTrait].label)
             : null;
 
-        // Preload all class features for acquisition from the cache
+        // Preload all subclass features for acquisition from the cache
         // todo: make feature acquisition async and replace feature helpers for methods
         await fromUuids(this._source.features.map(f => f.item));
 

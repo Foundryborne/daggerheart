@@ -108,9 +108,9 @@ export const tagifyElement = (element, baseOptions, onChange, tagifyOptions = {}
     const options = Array.isArray(baseOptions)
         ? baseOptions
         : Object.keys(baseOptions).map(optionKey => ({
-              ...baseOptions[optionKey],
-              id: optionKey
-          }));
+            ...baseOptions[optionKey],
+            id: optionKey
+        }));
 
     const tagifyElement = new Tagify(element, {
         tagTextProp: 'name',
@@ -318,7 +318,7 @@ export function getDocFromElementSync(element) {
     const target = element.closest('[data-item-uuid]');
     try {
         return foundry.utils.fromUuidSync(target.dataset.itemUuid) ?? null;
-    } catch (_) {
+    } catch {
         return null;
     }
 }
@@ -377,7 +377,7 @@ export const itemAbleRollParse = (value, actor, item) => {
 
     try {
         return Roll.replaceFormulaData(slicedValue, rollData);
-    } catch (_) {
+    } catch {
         return '';
     }
 };
@@ -416,40 +416,6 @@ export function createScrollText(actor, data) {
             });
         });
     }
-}
-
-export async function createEmbeddedItemWithEffects(actor, baseData, update) {
-    const data = baseData.uuid.startsWith('Compendium') ? await foundry.utils.fromUuid(baseData.uuid) : baseData;
-    const [doc] = await actor.createEmbeddedDocuments('Item', [
-        {
-            ...(update ?? data),
-            ...baseData,
-            id: data.id,
-            uuid: data.uuid,
-            _uuid: data.uuid,
-            effects: data.effects?.map(effect => effect.toObject()),
-            _stats: {
-                ...data._stats,
-                compendiumSource: data.pack ? `Compendium.${data.pack}.Item.${data.id}` : null
-            }
-        }
-    ]);
-
-    return doc;
-}
-
-export async function createEmbeddedItemsWithEffects(actor, baseData) {
-    const effectData = [];
-    for (let d of baseData) {
-        const data = d.uuid.startsWith('Compendium') ? await foundry.utils.fromUuid(d.uuid) : d;
-        effectData.push({
-            ...data,
-            id: data.id,
-            uuid: data.uuid,
-            effects: data.effects?.map(effect => effect.toObject())
-        });
-    }
-    await actor.createEmbeddedDocuments('Item', effectData);
 }
 
 export function shuffleArray(array) {
@@ -605,8 +571,8 @@ export function calculateExpectedValue(formulaOrTerms) {
     const terms = Array.isArray(formulaOrTerms)
         ? formulaOrTerms
         : typeof formulaOrTerms === 'string'
-          ? parseTermsFromSimpleFormula(formulaOrTerms)
-          : [formulaOrTerms];
+            ? parseTermsFromSimpleFormula(formulaOrTerms)
+            : [formulaOrTerms];
     return terms.reduce((r, t) => r + (t.bonus ?? 0) + (t.diceQuantity ? (t.diceQuantity * (t.faces + 1)) / 2 : 0), 0);
 }
 
@@ -656,8 +622,8 @@ export async function RefreshFeatures(
                         'resource.value': increasing
                             ? 0
                             : game.system.api.documents.DhActiveEffect.effectSafeEval(
-                                  Roll.replaceFormulaData(item.system.resource.max, actor.getRollData())
-                              )
+                                Roll.replaceFormulaData(item.system.resource.max, actor.getRollData())
+                            )
                     };
                 }
                 if (item.system.metadata?.hasActions) {
@@ -879,6 +845,7 @@ export async function fromUuids(uuids) {
     const packEmbeddedEntries = entries.filter(
         e =>
             !(e.value instanceof Document) &&
+            e.parsed &&
             e.parsed.collection instanceof foundry.documents.collections.CompendiumCollection &&
             e.parsed.embedded.length > 0
     );
@@ -895,7 +862,7 @@ export async function fromUuids(uuids) {
         const pack = game.packs.get(packGroup[0].value.pack);
         if (!pack) continue;
 
-        const ids = packGroup.map(p => p.parsed.id);
+        const ids = packGroup.map(p => p.parsed?.id).filter(id => !!id);
         const documents = await pack.getDocuments({ _id__in: ids });
         for (const p of packGroup) {
             p.value = documents.find(d => d.id === p.parsed.id) ?? p.value;
@@ -917,4 +884,32 @@ export async function triggerChatRollFx(rolls, options = { whisper: false, blind
     } else {
         foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
     }
+}
+
+export function shouldUseHopeFearAutomation(options = { gmAsPlayer: true }) {
+    const { hopeFear } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+    return (!game.user.isGM || options.gmAsPlayer) ? hopeFear.players : hopeFear.gm; 
+}
+
+export async function getWorldActor(baseActor) {
+    if (baseActor.inCompendium) {
+        const worldActorCopy = game.actors.find(x => 
+            x._stats.compendiumSource === baseActor.uuid && 
+            (!x.prototypeToken.actorLink || x.name === baseActor.name)
+        );
+
+        if (worldActorCopy)
+            return worldActorCopy;
+
+        const baseActorData = baseActor;
+        return await game.system.api.documents.DhpActor.create({ 
+            ...baseActorData, 
+            _stats: { 
+                ...baseActorData._stats, 
+                compendiumSource: baseActor.uuid 
+            } 
+        });
+    }
+
+    return baseActor;
 }

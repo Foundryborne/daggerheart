@@ -2,7 +2,7 @@ import { defaultRestOptions } from '../../config/generalConfig.mjs';
 import { resetAndRerenderActors } from '../../helpers/utils.mjs';
 import { ActionsField } from '../fields/actionField.mjs';
 
-const currencyField = (initial, label, icon) =>
+const currencyField = (initial, label, icon, initialAmount = 0) =>
     new foundry.data.fields.SchemaField({
         enabled: new foundry.data.fields.BooleanField({ required: true, initial: true }),
         label: new foundry.data.fields.StringField({
@@ -10,7 +10,14 @@ const currencyField = (initial, label, icon) =>
             initial,
             label
         }),
-        icon: new foundry.data.fields.StringField({ required: true, nullable: false, blank: true, initial: icon })
+        icon: new foundry.data.fields.StringField({ required: true, nullable: false, blank: true, initial: icon }),
+        initialAmount: new foundry.data.fields.NumberField({
+            required: true,
+            integer: true,
+            min: 0,
+            initial: initialAmount,
+            label: 'DAGGERHEART.SETTINGS.Homebrew.currency.initialAmount'
+        })
     });
 
 const restMoveField = () =>
@@ -108,7 +115,8 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                 handfuls: currencyField(
                     'Handfuls',
                     'DAGGERHEART.SETTINGS.Homebrew.currency.handfulName',
-                    'fa-solid fa-coins'
+                    'fa-solid fa-coins',
+                    1
                 ),
                 bags: currencyField('Bags', 'DAGGERHEART.SETTINGS.Homebrew.currency.bagName', 'fa-solid fa-sack'),
                 chests: currencyField(
@@ -193,6 +201,7 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
         for (const type of ['coins', 'handfuls', 'bags', 'chests']) {
             const initial = this.schema.fields.currency.fields[type].getInitialValue();
             source.currency[type] = foundry.utils.mergeObject(initial, source.currency[type], { inplace: false });
+            source.currency[type].initialAmount ??= 0;
         }
         return source;
     }

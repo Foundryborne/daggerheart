@@ -356,7 +356,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
             const levelups = Object.values(actor.system.levelData?.levelups) ?? [];
             const uuid = item.uuid;
-            const sourceUuid = item._stats.compendiumSource; // on older characters this may be missing
+            const sourceUuid = item.sourceUuid; // on older characters this may be missing
             return levelups.some(data => {
                 if (item.type === 'subclass') {
                     const selectedSubclasses = data.selections.map(s => s.secondaryData?.subclass).filter(s => !!s);
@@ -785,11 +785,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
             filter:
                 key === 'subclasses'
                     ? {
-                          'system.linkedClass.uuid': {
-                              key: 'system.linkedClass.uuid',
-                              value: this.document.system.class.value?._stats.compendiumSource
-                          }
-                      }
+                        'system.linkedClass.uuid': {
+                            key: 'system.linkedClass.uuid',
+                            value: this.document.system.class.value?._stats.compendiumSource
+                        }
+                    }
                     : undefined,
             render: {
                 noFolder: true
@@ -809,7 +809,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
         /* This could be avoided by baking config.costs into config.resourceUpdates. Didn't feel like messing with it at the time */
         const costResources =
-            result.costs?.filter(x => x.enabled).map(cost => ({ ...cost, value: -cost.value, total: -cost.total })) ||
+            result.costs?.filter(x => x.enabled).map(cost => ({ ...cost, value: -cost.value })) ||
             {};
         result.resourceUpdates.addResources(costResources);
         await result.resourceUpdates.updateResources();
@@ -1191,15 +1191,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
         new game.system.api.applications.dialogs.Downtime(this.document, button.dataset.type === 'shortRest').render({
             force: true
         });
-    }
-
-    /** @inheritdoc */
-    async _onDragStart(event) {
-        const inventoryItem = event.currentTarget.closest('.inventory-item');
-        if (inventoryItem) {
-            event.dataTransfer.setDragImage(inventoryItem.querySelector('img'), 60, 0);
-        }
-        super._onDragStart(event);
     }
 
     async _onDropItem(event, item) {

@@ -290,7 +290,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             };
         }
 
-        if (this.action.parent.metadata.isInventoryItem) {
+        if (this.action.parent.metadata?.isInventoryItem) {
             options.quantity = {
                 label: 'DAGGERHEART.GENERAL.itemQuantity',
                 group: 'Global'

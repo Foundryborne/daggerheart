@@ -484,7 +484,6 @@
                 "startFormula": "Randomized Start Value Formula",
                 "currentCountdownCurrent": "Current: {value}",
                 "currentCountdownStart": "Start: {value}",
-                "category": "Category",
                 "progressionType": "Progression",
                 "decreasing": "Decreasing",
                 "looping": "Looping",
@@ -1162,13 +1161,17 @@
                     "autoAppliedByLabel": "Max Stress"
                 }
             },
-            "CountdownType": {
+            "CountdownProgressType": {
                 "actionRoll": "Action Roll",
                 "characterAttack": "Character Attack",
                 "characterSpotlight": "Character Spotlight",
                 "custom": "Custom",
                 "fear": "Fear",
                 "spotlight": "Spotlight"
+            },
+            "CountdownType": {
+                "encounter": { "label": "Short Term", "shortLabel": "Short" },
+                "narrative": { "label": "Long Term", "shortLabel": "Long" }
             },
             "DaggerheartDiceAnimationEvents": {
                 "critical": { "name": "Critical" },
@@ -1455,7 +1458,7 @@
                 },
                 "triggerType": "Trigger Type",
                 "triggeringActorType": "Triggering Actor Type",
-                "triggerError": "{trigger} trigger failed for {actor}. It's probably configured wrong."
+                "triggerError": "{trigger} trigger on {item}({itemUuid}) failed for {actor}. It's probably configured wrong."
             },
             "WeaponFeature": {
                 "barrier": {
@@ -2014,7 +2017,8 @@
             "Attachments": {
                 "attachHint": "Drop items here to attach them",
                 "transferHint": "If checked, this effect will be applied to any actor that owns this Effect's parent Item. The effect is always applied if this Item is attached to another one."
-            }
+            },
+            "OriginTag": "Origin: {name}"
         },
         "GENERAL": {
             "Ability": {
@@ -2896,7 +2900,9 @@
                     "iconName": "Icon Name",
                     "iconNameHint": "Icons are from fontawesome",
                     "bagName": "Bag Name",
-                    "chestName": "Chest Name"
+                    "chestName": "Chest Name",
+                    "denomination": "Denomination",
+                    "initialAmount": "Starting Amount"
                 },
                 "domains": {
                     "domainsTitle": "Base Domains",

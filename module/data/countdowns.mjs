@@ -13,6 +13,54 @@ export default class DhCountdowns extends foundry.abstract.DataModel {
             })
         };
     }
+
+    handleChange() {
+        const previousCountdowns = foundry.ui.countdowns.previousCountdownData;
+        const changedCountdowns = Object.entries(this.countdowns).reduce((acc, [key, countdown]) => {
+            const previousCountdown = previousCountdowns[key];
+            if (!previousCountdown || (previousCountdown.progress.current !== countdown.progress.current)) {
+                acc.push(key);
+            }
+
+            return acc;
+        }, []);
+
+        for (const countdownKey of changedCountdowns)
+            foundry.ui.countdowns.changedCountdownsForAnimation.add(countdownKey);
+    }
+
+    static migrateData(source) {
+        const migrateOldCountdowns = (data, type) => {
+            for (const key of Object.keys(data.countdowns)) {
+                const countdown = data.countdowns[key];
+                source.countdowns[key] = {
+                    ...countdown,
+                    type: type,
+                    ownership: Object.keys(countdown.ownership.players).reduce((acc, key) => {
+                        acc[key] =
+                            countdown.ownership.players[key].type === 1 ? 2 : countdown.ownership.players[key].type;
+                        return acc;
+                    }, {}),
+                    progress: {
+                        ...countdown.progress,
+                        type: countdown.progress.type.value
+                    }
+                };
+            }
+
+            source[type] = null;
+        };
+
+        if (source.narrative) {
+            migrateOldCountdowns(source.narrative, 'narrative');
+        }
+
+        if (source.encounter) {
+            migrateOldCountdowns(source.encounter, 'encounter');
+        }
+
+        return super.migrateData(source);
+    }
 }
 
 export class DhCountdown extends foundry.abstract.DataModel {
@@ -21,7 +69,8 @@ export class DhCountdown extends foundry.abstract.DataModel {
         return {
             type: new fields.StringField({
                 required: true,
-                choices: CONFIG.DH.GENERAL.countdownBaseTypes,
+                choices: CONFIG.DH.GENERAL.countdownTypes,
+                initial: CONFIG.DH.GENERAL.countdownTypes.encounter.id,
                 label: 'DAGGERHEART.GENERAL.type'
             }),
             name: new fields.StringField({
@@ -77,15 +126,15 @@ export class DhCountdown extends foundry.abstract.DataModel {
     static defaultCountdown(type, playerHidden) {
         const ownership = playerHidden
             ? game.users.reduce((acc, user) => {
-                  if (!user.isGM) {
-                      acc[user.id] = CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE;
-                  }
-                  return acc;
-              }, {})
+                if (!user.isGM) {
+                    acc[user.id] = CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE;
+                }
+                return acc;
+            }, {})
             : undefined;
 
         return {
-            type: type ?? CONFIG.DH.GENERAL.countdownBaseTypes.narrative.id,
+            type: type ?? CONFIG.DH.GENERAL.countdownTypes.encounter.id,
             name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Countdown.newCountdown'),
             img: 'icons/magic/time/hourglass-yellow-green.webp',
             ownership: ownership,
@@ -102,8 +151,8 @@ export class DhCountdown extends foundry.abstract.DataModel {
                 value: user.isGM
                     ? CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER
                     : this.ownership.players[user.id] && this.ownership.players[user.id].type !== -1
-                      ? this.ownership.players[user.id].type
-                      : this.ownership.default,
+                        ? this.ownership.players[user.id].type
+                        : this.ownership.default,
                 isGM: user.isGM
             };
 

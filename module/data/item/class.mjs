@@ -70,14 +70,14 @@ export default class DHClass extends BaseDataItem {
     }
 
     async fetchSubclasses() {
-        const uuids = [this.parent.uuid, this.parent._stats?.compendiumSource].filter(u => !!u);
-        const subclasses = game.items.filter(x => x.type === 'subclass' && uuids.includes(x.system.linkedClass));
+        const sourceUuid = this.parent.sourceUuid;
+        const subclasses = game.items.filter(x => x.type === 'subclass' && x.system.linkedClass === sourceUuid);
         for (const pack of game.packs) {
             const packIds = [];
             const indexes = await pack.getIndex({ fields: ['system.linkedClass'] });
             for (const index of indexes) {
                 if (index.type !== 'subclass') continue;
-                if (!uuids.includes(index.system?.linkedClass)) continue;
+                if (index.system?.linkedClass !== sourceUuid) continue;
                 if (subclasses.find(x => x.uuid === index.uuid)) continue;
                 packIds.push(index._id);
             }
