@@ -44,7 +44,7 @@ export default class DHSummonField extends fields.ArrayField {
 
             const actor = await getWorldActor(await foundry.utils.fromUuid(summon.actorUUID));
             /* Extending summon data in memory so it's available in actionField.toChat. Think it's harmless, but ugly. Could maybe find a better way. */
-            summon.actor = actor;
+            summon.actor = actor.toObject();
 
             const countNumber = Number.parseInt(count);
             for (let i = 0; i < countNumber; i++) {

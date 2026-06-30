@@ -893,13 +893,15 @@ export function shouldUseHopeFearAutomation(options = { gmAsPlayer: true }) {
 
 export async function getWorldActor(baseActor) {
     if (baseActor.inCompendium) {
-        const worldActorCopy = 
-            game.actors.find(x => x._stats.compendiumSource === baseActor.uuid && x.name === baseActor.name);
+        const worldActorCopy = game.actors.find(x => 
+            x._stats.compendiumSource === baseActor.uuid && 
+            (!x.prototypeToken.actorLink || x.name === baseActor.name)
+        );
 
         if (worldActorCopy)
-            return worldActorCopy.toObject();
+            return worldActorCopy;
 
-        const baseActorData = baseActor.toObject();
+        const baseActorData = baseActor;
         return await game.system.api.documents.DhpActor.create({ 
             ...baseActorData, 
             _stats: { 
@@ -909,5 +911,5 @@ export async function getWorldActor(baseActor) {
         });
     }
 
-    return baseActor.toObject();
+    return baseActor;
 }
