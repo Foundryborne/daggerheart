@@ -1,4 +1,4 @@
-import { AltDamageOutcome } from '../../data/fields/action/damageField.mjs';
+import { AltOutcome } from '../../data/action/altOutcome.mjs';
 import DHActionBaseConfig from './action-base-config.mjs';
 
 export default class DHActionConfig extends DHActionBaseConfig {
@@ -27,9 +27,7 @@ export default class DHActionConfig extends DHActionBaseConfig {
 
         DHActionBaseConfig.selectOutcome(this.action, key => {
             if (!key) return;
-
-            data.damage.altOutcomes[key] = new AltDamageOutcome();
-            this.outcomeTabs = DHActionBaseConfig.getOutcomeTabs(data);
+            data.altOutcomes[key] = new AltOutcome();
             this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
         });
     }
@@ -37,10 +35,7 @@ export default class DHActionConfig extends DHActionBaseConfig {
     static onRemoveOutcome(_event, button) {
         const { outcome } = button.dataset;
         const data = this.action.toObject();
-
-        data.damage.altOutcomes[outcome] = null;
-        this.outcomeTabs = DHActionBaseConfig.getOutcomeTabs(data);
-
+        data.altOutcomes[outcome] = null;
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 

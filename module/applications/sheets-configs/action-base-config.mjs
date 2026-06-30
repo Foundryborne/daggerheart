@@ -1,4 +1,4 @@
-import { AltDamageOutcome } from '../../data/fields/action/damageField.mjs';
+import { AltOutcome } from '../../data/action/altOutcome.mjs';
 import { getUnusedDamageTypes } from '../../helpers/utils.mjs';
 import DaggerheartSheet from '../sheets/daggerheart-sheet.mjs';
 
@@ -10,8 +10,6 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         this.action = action;
         this.openSection = null;
         this.openTrigger = this.action.triggers.length > 0 ? 0 : null;
-
-        this.outcomeTabs = DHActionBaseConfig.getOutcomeTabs(action);
     }
 
     get title() {
@@ -125,7 +123,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     static getOutcomeTabs(action) {
         const outcomeKeys = [
             'default',
-            ...Object.keys(action.damage?.altOutcomes ?? {}).filter(key => action.damage.altOutcomes[key])
+            ...Object.keys(action.altOutcomes ?? {}).filter(key => action.altOutcomes[key])
         ];
         return outcomeKeys.reduce((acc, key, index) => {
             acc[key] = {
@@ -134,7 +132,10 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
                 group: 'outcomes',
                 id: key,
                 icon: null,
-                label: game.i18n.localize(CONFIG.DH.ACTIONS.outcomeTypes[key].label)
+                label: game.i18n.localize(CONFIG.DH.ACTIONS.outcomeTypes[key].label),
+                source: key === 'default' ? action._source : action._source.altOutcomes[key],
+                fields: key === 'default' ? action.schema.fields : action.schema.fields.altOutcomes.fields[key].fields,
+                getBasePath: path => (key === 'default' ? path : ['altOutcomes', key, path].join('.'))
             };
             return acc;
         }, {});
@@ -143,7 +144,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     /* Needs to consider effect altOutcomes aswell */
     static selectOutcome(action, callback) {
         const choices = Object.entries(CONFIG.DH.ACTIONS.outcomeTypes).reduce((acc, [key, value]) => {
-            if (action.damage.altOutcomes[key] === null) acc.push({ id: key, label: game.i18n.localize(value.label) });
+            if (action.altOutcomes[key] === null) acc.push({ id: key, label: game.i18n.localize(value.label) });
 
             return acc;
         }, []);
@@ -237,8 +238,8 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         context.openSection = this.openSection;
         context.tabs = this._getTabs(this.constructor.TABS);
 
-        context.outcomeTabs = this._getTabs(this.outcomeTabs);
-        context.allOutcomesAssigned = Object.keys(this.outcomeTabs).length >= 4;
+        context.outcomeTabs = this._getTabs(DHActionBaseConfig.getOutcomeTabs(this.action));
+        context.allOutcomesAssigned = Object.keys(context.outcomeTabs).length >= 4;
 
         context.config = CONFIG.DH;
         if (this.action.damage) {
@@ -388,9 +389,8 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         if (!this.action.damage.parts) return;
 
         const outcome = button.dataset.outcome;
-        const source = this.action._source;
-        const outcomeParts = outcome === 'default' ? source.damage.parts : source.damage.altOutcomes[outcome].parts;
-        const choices = getUnusedDamageTypes(outcomeParts);
+        const outcomeData = outcome === 'default' ? this.action._source : this.action._source.altOutcomes[outcome];
+        const choices = getUnusedDamageTypes(outcomeData.damage.parts);
         const content = new foundry.data.fields.StringField({
             label: game.i18n.localize('Damage Type'),
             choices,
@@ -413,8 +413,8 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             if (type === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
                 part.type = this.action.schema.fields.damage.fields.parts.element.fields.type.element.initial;
             }
-            if (outcome !== 'default') data.damage.altOutcomes[outcome] ??= new AltDamageOutcome();
-            (outcome === 'default' ? data.damage : data.damage.altOutcomes[outcome]).parts[type] = part;
+            if (outcome !== 'default') data.altOutcomes[outcome] ??= new AltOutcome();
+            (outcome === 'default' ? data : data.altOutcomes[outcome]).damage.parts[type] = part;
             this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
         };
 
@@ -444,8 +444,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         if (!this.action.damage.parts) return;
         const data = this.action.toObject();
         const { key, outcome } = button.dataset;
-        const parts = outcome === 'default' ? data.damage.parts : data.damage.altOutcomes[outcome].parts;
-        parts[key] = _del;
+        (outcome === 'default' ? data : data.altOutcomes[outcome]).damage.parts[key] = _del;
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 

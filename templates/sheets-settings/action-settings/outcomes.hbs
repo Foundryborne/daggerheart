@@ -21,14 +21,15 @@
             data-group="outcomes"
             data-tab="{{tab.id}}"
         >
-            {{#if ../fields.damage}}
-                {{#if (eq tab.id 'default')}}
-                    {{> 'systems/daggerheart/templates/actionTypes/damage.hbs' fields=../fields.damage.fields.parts.element.fields source=../source.damage baseFields=../fields.damage.fields outcome=tab.id outcomePath="damage" isDefaultDamage="true" }}
-                {{else}}
-                    {{#with (lookup ../fields.damage.fields.altOutcomes.fields tab.id) as |field|}}
-                        {{> 'systems/daggerheart/templates/actionTypes/damage.hbs' fields=field.fields.parts.element.fields source=(lookup ../../source.damage.altOutcomes ../id) baseFields=field.fields outcome=../id outcomePath=(concat "damage.altOutcomes." tab.id) }}
-                    {{/with }}
-                {{/if}}
+            {{#if tab.fields.damage}}
+                {{> 'systems/daggerheart/templates/actionTypes/damage.hbs'
+                    outcome=tab.id 
+                    fields=tab.fields.damage.fields.parts.element.fields 
+                    source=tab.source.damage 
+                    baseFields=tab.fields.damage.fields 
+                    isDefaultDamage="true"
+                    basePath=(tab.getBasePath "damage")
+                }}
             {{/if}}
             
         </section>
