@@ -33,6 +33,10 @@ export default class AreasField extends fields.ArrayField {
                 initial: CONFIG.DH.GENERAL.range.veryClose.id,
                 label: 'DAGGERHEART.ACTIONS.Config.area.size'
             }),
+            hasHole: new fields.BooleanField({ 
+                initial: false,
+                label: 'DAGGERHEART.ACTIONS.Config.area.hasHole' 
+            }),
             effects: new fields.ArrayField(new fields.DocumentIdField())
         });
         super(element, options, context);

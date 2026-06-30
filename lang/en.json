@@ -113,7 +113,8 @@
                 "area": {
                     "sectionTitle": "Areas",
                     "shape": "Shape",
-                    "size": "Size"
+                    "size": "Size",
+                    "hasHole": "Area Hole"
                 },
                 "displayInChat": "Display in chat",
                 "deleteTriggerTitle": "Delete Trigger",
@@ -869,6 +870,10 @@
                 "leader": "for each Leader adversary.",
                 "bruiser": "for each Bruiser adversary.",
                 "solo": "for each Solo adversary."
+            },
+            "AreaTypes": {
+                "aura": { "label": "Aura" },
+                "placed": { "label": "Placed Area" }
             },
             "ArmorInteraction": {
                 "none": { "label": "Ignores Armor" },
