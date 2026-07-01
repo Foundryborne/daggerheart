@@ -6,18 +6,13 @@
             <div class="message-sub-header-container">
                 {{#if message.title}}
                     <h4>{{message.title}}</h4>
-                    <div>{{actor.name}} {{#if author.isGM}}(GM){{/if}}</div>
+                    <div>{{alias}} {{#if author.isGM}}(GM){{/if}}</div>
                 {{else}}
                     {{#unless actor.name}}
                         <h4>{{author.name}}</h4>
                     {{else}}
-                        {{#if (eq message.type 'base')}}
-                            <h4>{{actor.name}}</h4>
-                            <div>{{author.name}}</div>
-                        {{else}}
-                            <h4>{{alias}}</h4>
-                            <div>{{actor.name}} {{#if author.isGM}}(GM){{/if}}</div>
-                        {{/if}}
+                        <h4>{{alias}}</h4>
+                        <div>{{author.name}}</div>
                     {{/unless}}
                 {{/if}}
             </div>
