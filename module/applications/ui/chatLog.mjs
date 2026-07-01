@@ -152,6 +152,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         html.querySelectorAll('.risk-it-all-button').forEach(element =>
             element.addEventListener('click', event => this.riskItAllClearStressAndHitPoints(event, data))
         );
+        for (const element of html.querySelectorAll('.roll-reload-check')) {
+            element.addEventListener('click', event => this.onRollReloadCheck(event, message));
+        }
     };
 
     setupHooks() {
@@ -296,5 +299,13 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         const resourceValue = event.target.dataset.resourceValue;
         const actor = game.actors.get(event.target.dataset.actorId);
         new game.system.api.applications.dialogs.RiskItAllDialog(actor, resourceValue).render({ force: true });
+    }
+
+    async onRollReloadCheck(_event, messageData) {
+        const message = game.messages.get(messageData._id);
+        const needReload = await message.system.action.handleReload?.({ awaitRoll: true });
+        await message.update({
+            'system.needReload': needReload
+        });
     }
 }

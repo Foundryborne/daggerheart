@@ -122,6 +122,10 @@
                 "damageOnSave": "Damage on Save",
                 "useDefaultItemValues": "Use default Item values"
             },
+            "Reload": {
+                "checkReload": "Check Reload",
+                "reloadRequired": "Reload Required!"
+            },
             "RollField": {
                 "diceRolling": {
                     "compare": "Should be",
@@ -2785,6 +2789,10 @@
                             "label": "Effect Range Dependent",
                             "hint": "Effects with defined range dependency will automatically turn on/off depending on range"
                         }
+                    },
+                    "reload": {
+                        "label": "Reload Checking",
+                        "hint": "If the system should present a button for checking if the character will need to reload or do it automatically"
                     },
                     "resourceScrollTexts": {
                         "label": "Show Resource Change Scrolltexts",

@@ -61,6 +61,24 @@ export default class DHAttackAction extends DHDamageAction {
         return result;
     }
 
+    async handleReload(options = { awaitRoll: false }) {
+        const roll = await new Roll('1d6').evaluate();
+        if (game.modules.get('dice-so-nice')?.active) {
+            if (options.awaitRoll)
+                await game.dice3d.showForRoll(roll, game.user, true);
+            else
+                game.dice3d.showForRoll(roll, game.user, true);    
+        }
+
+        const needsToReload = roll.total === 1;
+        if (needsToReload) {
+            // TODO: Update item resource value when the functionality has been added to the system
+            // this.item.update({ 'system.resource.value': 0 });
+        }
+        return true;
+        return needsToReload;
+    }
+
     /**
      * Generate a localized label array for this item subtype.
      * @returns {(string | { value: string, icons: string[] })[]} An array of localized strings and damage label objects.

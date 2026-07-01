@@ -59,3 +59,18 @@ export const actionAutomationChoices = {
         label: 'DAGGERHEART.CONFIG.ActionAutomationChoices.always'
     }
 };
+
+export const reloadChoices = {
+    off: {
+        id: 'off',
+        label: 'Don\'t Use'
+    },
+    button: {
+        id: 'button',
+        label: 'Use Button'
+    },
+    auto: {
+        id: 'auto',
+        label: 'Automatic'
+    }
+};

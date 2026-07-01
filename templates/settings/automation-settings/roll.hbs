@@ -18,6 +18,7 @@
                 <p class="hint">{{localize (concat "DAGGERHEART.SETTINGS.Automation.FIELDS.roll." field.name ".hint")}}</p>
             </div>
         {{/each}}
+        {{formGroup settingFields.schema.fields.reload value=settingFields.reload localize=true}}
     </fieldset>
 
     <fieldset>
