@@ -9,110 +9,108 @@
     }   
 });
 
+/** Pips styling, can exist standalone even without a slot-value */
+.slot-bar {
+    display: flex;
+    gap: 4px;
+    padding: 5px;
+    border: 1px solid @color-border;
+    border-radius: 6px;
+    z-index: 1;
+    color: @color-text-emphatic;
+    width: fit-content;
+    min-height: 22px;
+    flex-wrap: wrap;
+
+    .slot {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .slot:not(:has(i)) {
+        width: 15px;
+        height: 10px;
+        border: 1px solid @color-border;
+        background: light-dark(@dark-blue-10, @golden-10);
+        border-radius: 3px;
+
+        &.large {
+            width: 20px;
+        }
+
+        &.filled {
+            background: light-dark(@dark-blue, @golden);
+        }
+    }
+
+    &.armor .slot {
+        font-size: var(--font-size-12);
+        .fa-shield-halved {
+            color: light-dark(@dark-blue-40, @golden-40);
+        }
+    }
+
+    .empty-slot {
+        width: 15px;
+        height: 10px;
+    }
+}
+
+.slot-value {
+    display: flex;
+    flex-direction: column;
+    padding: 0 5px;
+    font-size: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 2;
+    color: @beige;
+
+    .slot-label {
+        display: flex;
+        align-items: center;
+        color: light-dark(@beige, @dark-blue);
+        background: light-dark(@dark-blue, @golden);
+        padding: 0 5px;
+        width: fit-content;
+        font-weight: bold;
+        border-radius: 0px 0px 5px 5px;
+        font-size: var(--font-size-12);
+
+        .label {
+            padding-right: 5px;
+        }
+
+        .value {
+            padding-left: 6px;
+            border-left: 1px solid light-dark(@beige, @dark-golden);
+        }
+    }
+}
+
 .status-bar {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     position: relative;
-    width: 120px;
-    height: 40px;
-
-    .status-label {
-        position: relative;
-        top: 40px;
-        height: 22px;
-        width: 79px;
-        clip-path: path('M0 0H79L74 16.5L39 22L4 16.5L0 0Z');
-        background: light-dark(@dark-blue, @golden);
-
-        h4 {
-            font-weight: bold;
-            text-align: center;
-            line-height: 18px;
-            color: light-dark(@beige, @dark-blue);
-        }
-    }
-    .slot-value {
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        padding: 0 5px;
-        font-size: 1.5rem;
-        align-items: center;
-        width: 140px;
-        height: 40px;
-        justify-content: center;
-        text-align: center;
-        z-index: 2;
-        color: @beige;
-
-        .slot-bar {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            padding: 5px;
-            border: 1px solid @color-border;
-            border-radius: 6px;
-            z-index: 1;
-            color: @color-text-emphatic;
-            width: fit-content;
-
-            .slot {
-                width: 15px;
-                height: 10px;
-                border: 1px solid @color-border;
-                background: light-dark(@dark-blue-10, @golden-10);
-                border-radius: 3px;
-                transition: all 0.3s ease;
-                cursor: pointer;
-
-                &.large {
-                    width: 20px;
-                }
-
-                &.filled {
-                    background: light-dark(@dark-blue, @golden);
-                }
-            }
-
-            .empty-slot {
-                width: 15px;
-                height: 10px;
-            }
-        }
-        .slot-label {
-            display: flex;
-            align-items: center;
-            color: light-dark(@beige, @dark-blue);
-            background: light-dark(@dark-blue, @golden);
-            padding: 0 5px;
-            width: fit-content;
-            font-weight: bold;
-            border-radius: 0px 0px 5px 5px;
-            font-size: var(--font-size-12);
-
-            .label {
-                padding-right: 5px;
-            }
-
-            .value {
-                padding-left: 6px;
-                border-left: 1px solid light-dark(@beige, @dark-golden);
-            }
-        }
-    }
 
     .status-value {
-        position: absolute;
+        position: relative;
         display: flex;
         padding: 0 5px;
         font-size: 1.5rem;
         align-items: center;
-        width: 140px;
+        width: 100px;
         height: 40px;
         justify-content: center;
         text-align: center;
         z-index: 2;
         color: @beige;
+
+        > * {
+            z-index: 1;
+        }
 
         input[type='number'] {
             background: transparent;
@@ -146,11 +144,11 @@
     .progress-bar {
         position: absolute;
         appearance: none;
-        width: 100px;
-        height: 40px;
+        width: 100%;
+        height: 100%;
         border: 1px solid @color-border;
         border-radius: 6px;
-        z-index: 1;
+        z-index: 0;
         background: @dark-blue;
 
         &::-webkit-progress-bar {
@@ -175,4 +173,29 @@
             border-radius: 6px;
         }
     }
+    .status-label {
+        position: relative;
+        height: 22px;
+        width: 79px;
+        background: light-dark(@dark-blue, @golden);
+
+        &.pointy {
+            clip-path: path('M0 0H79L74 16.5L39 22L4 16.5L0 0Z');
+            margin-bottom: -2px; // compensate for pointy bottom so spacing feels more "right"
+        }
+
+        h4 {
+            font-weight: bold;
+            text-align: center;
+            line-height: 18px;
+            color: light-dark(@beige, @dark-blue);
+        }
+    }
+}
+
+// Overrides for sidebar usage.
+aside[data-application-part="sidebar"] .resources-section .slot-bar {
+    display: grid;
+    grid-template-columns: repeat(6, min-content);
+    grid-auto-flow: row;
 }

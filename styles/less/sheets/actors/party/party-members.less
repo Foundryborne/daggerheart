@@ -206,42 +206,12 @@
                     }
 
                     .slot-bar {
-                        display: flex;
                         align-items: center;
                         flex-wrap: wrap;
-                        gap: 4px;
-
                         background-color: light-dark(@dark-blue-10, @dark-blue);
-                        color: @color-text-emphatic;
                         padding: 2px 5px;
-                        border: 1px solid @color-border;
                         border-radius: 0 6px 6px 0;
                         width: fit-content;
-                        min-height: 22px;
-
-                        .armor-slot {
-                            cursor: pointer;
-                            transition: all 0.3s ease;
-                            font-size: var(--font-size-12);
-
-                            .fa-shield-halved {
-                                color: light-dark(@dark-blue-40, @golden-40);
-                            }
-                        }
-
-                        .slot {
-                            width: 16px;
-                            height: 10px;
-                            border: 1px solid @color-border;
-                            background: light-dark(@dark-blue-10, @golden-10);
-                            border-radius: 3px;
-                            transition: all 0.3s ease;
-                            cursor: pointer;
-
-                            &.filled {
-                                background: light-dark(@dark-blue, @golden);
-                            }
-                        }
                     }
                 }
             }

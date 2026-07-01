@@ -3,9 +3,9 @@
     {{#each sources as |source|}}
         <div class="armor-source-container">
             <p class="armor-source-label">{{source.name}}</p>
-            <div class="slot-bar">
+            <div class="slot-bar armor">
                 {{#times source.max}}
-                    <a class='armor-slot' data-value="{{add this 1}}" data-uuid="{{source.uuid}}">
+                    <a class="slot" data-value="{{add this 1}}" data-uuid="{{source.uuid}}">
                         {{#if (gte ../current (add this 1))}}
                             <i class="fa-solid fa-shield" data-index="{{this}}"></i>
                         {{else}}
