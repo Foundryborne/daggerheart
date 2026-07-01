@@ -22,8 +22,8 @@
 
 .application.sheet.daggerheart.actor.dh-style.adversary {
     .adversary-sidebar-sheet {
-        width: 275px;
-        min-width: 275px;
+        width: var(--sidebar-width);
+        min-width: var(--sidebar-width);
         border-right: 1px solid light-dark(@dark-blue, @golden);
 
         .portrait {
@@ -52,7 +52,7 @@
             }
 
             img {
-                height: 275px;
+                height: var(--sidebar-width);
             }
 
             .death-roll-btn {
@@ -63,7 +63,7 @@
         .threshold-section {
             position: relative;
             display: flex;
-            gap: 10px;
+            gap: 7px;
             background-color: light-dark(transparent, @dark-blue);
             color: @color-text-emphatic;
             padding: 5px 10px;
@@ -107,7 +107,7 @@
             flex-direction: column;
             top: -20px;
             gap: 10px;
-            margin-bottom: -10px;
+            margin-bottom: -16px;
 
             &.pip-display {
                 top: -15px;
@@ -185,8 +185,8 @@
 
         .shortcut-items-section {
             overflow-y: hidden;
-            padding-top: 10px;
-            padding-bottom: 20px;
+            padding: 10px 0;
+            flex: 1;
             scrollbar-gutter: stable;
             .with-scroll-shadows();
 
@@ -214,8 +214,6 @@
         }
 
         .experience-section {
-            margin-bottom: 20px;
-
             .title {
                 display: flex;
                 gap: 15px;
@@ -232,21 +230,21 @@
                 gap: 5px;
                 width: 100%;
                 margin-top: 10px;
-                align-items: center;
+                align-items: stretch;
+                padding: 0 4px 0 12px;
 
                 .experience-row {
                     display: flex;
                     gap: 5px;
-                    width: 250px;
                     align-items: center;
                     justify-content: space-between;
 
                     .experience-name {
-                        width: 180px;
                         display: flex;
                         align-items: center;
                         text-align: start;
                         font-size: var(--font-size-14);
+                        flex: 1;
                         color: light-dark(@dark, @beige);
                         line-height: 1;
                     }
@@ -271,9 +269,7 @@
 
         .reaction-section {
             display: flex;
-            padding: 0 10px;
-            margin-top: 20px;
-            width: 100%;
+            margin: 10px;
 
             button {
                 height: 40px;
