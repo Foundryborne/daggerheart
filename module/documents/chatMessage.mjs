@@ -311,7 +311,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             const placeRegion = data => {
                 canvas.regions.placeRegion(data, { 
                     create: true, 
-                    attachToToken: selectedArea.type === CONFIG.DH.ACTIONS.areaTypes.aura.id 
+                    attachToToken: selectedArea.type === CONFIG.DH.ACTIONS.areaTypes.attached.id 
                 });
             };
 

@@ -121,8 +121,8 @@ export const areaTypes = {
         id: 'placed',
         label: 'DAGGERHEART.CONFIG.AreaTypes.placed.label'
     },
-    aura: {
-        id: 'aura',
-        label: 'DAGGERHEART.CONFIG.AreaTypes.aura.label'
+    attached: {
+        id: 'attached',
+        label: 'DAGGERHEART.CONFIG.AreaTypes.attached.label'
     }
 };

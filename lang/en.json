@@ -872,8 +872,8 @@
                 "solo": "for each Solo adversary."
             },
             "AreaTypes": {
-                "aura": { "label": "Aura" },
-                "placed": { "label": "Placed Area" }
+                "attached": { "label": "Attached To Token" },
+                "placed": { "label": "Placed In Scene" }
             },
             "ArmorInteraction": {
                 "none": { "label": "Ignores Armor" },
