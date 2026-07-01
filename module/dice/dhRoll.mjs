@@ -125,7 +125,10 @@ export default class DHRoll extends Roll {
 
         const reloadSetting = 
             game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).reload;
-        const useReload = item?.system.hasReload && reloadSetting === CONFIG.DH.SETTINGS.reloadChoices.auto.id;
+        const useReload = 
+            item?.system.hasReload && 
+            action?.type === 'attack' && 
+            reloadSetting === CONFIG.DH.SETTINGS.reloadChoices.auto.id;
         const needReload = useReload ? await action?.handleReload?.() : false;
         
         const cls = getDocumentClass('ChatMessage'),
@@ -162,6 +165,7 @@ export default class DHRoll extends Roll {
         return foundry.applications.handlebars.renderTemplate(template, {
             roll: this,
             ...chatData,
+            action: chatData.action,
             parent: chatData.parent,
             targetMode: chatData.targetMode,
             areas: chatData.action?.areas,

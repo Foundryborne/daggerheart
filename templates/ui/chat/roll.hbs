@@ -1,15 +1,18 @@
 <div class="chat-roll">
     <div class="roll-part-title"><span>{{title}}</span></div>
-    {{#if (and needReload (eq automationSettings.reload 'auto'))}}
-        <p class="roll-reload-container">{{localize "DAGGERHEART.ACTIONS.Reload.reloadRequired"}}</p>
-    {{/if}}
-    {{#if (eq automationSettings.reload 'button')}}
-        <div class="roll-reload-container">
-            {{#if needReload}}
-                <p class=>{{localize "DAGGERHEART.ACTIONS.Reload.reloadRequired"}}</p>
-            {{/if}}
-            <button class="roll-reload-check" {{#if needReload}}disabled{{/if}}>{{localize "DAGGERHEART.ACTIONS.Reload.checkReload"}}</button>
-        </div>
+    
+    {{#if (eq action.type 'attack')}}
+        {{#if (and needReload (eq automationSettings.reload 'auto'))}}
+            <p class="roll-reload-container">{{localize "DAGGERHEART.ACTIONS.Reload.reloadRequired"}}</p>
+        {{/if}}
+        {{#if (eq automationSettings.reload 'button')}}
+            <div class="roll-reload-container">
+                {{#if needReload}}
+                    <p class=>{{localize "DAGGERHEART.ACTIONS.Reload.reloadRequired"}}</p>
+                {{/if}}
+                <button class="roll-reload-check" {{#if needReload}}disabled{{/if}}>{{localize "DAGGERHEART.ACTIONS.Reload.checkReload"}}</button>
+            </div>
+        {{/if}}
     {{/if}}
 
     {{#if actionDescription}}{{> 'systems/daggerheart/templates/ui/chat/parts/description-part.hbs'}}{{/if}}
