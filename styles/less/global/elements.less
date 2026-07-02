@@ -264,10 +264,11 @@
         margin-top: 5px;
         border-radius: 6px;
         border-color: @color-fieldset-border;
+        padding-inline: 0.625rem;
 
         &.glassy {
             background-color: light-dark(@dark-blue-10, @golden-10);
-            border-color: transparent;
+            border: none;
 
             legend {
                 padding: 2px 12px;
@@ -546,50 +547,39 @@
         transform-origin: top;
     }
 
-    .item-buttons {
-        grid-column: span 3;
+    /* A multi-button element used to attach resources to other buttons */
+    .item-button {
         display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        margin-top: 2px;
+        button {
+            color: light-dark(@dark-blue, @dark-blue);
+            white-space: nowrap;
+            border: none;
 
-        .item-button {
-            display: flex;
-            border: 1px solid light-dark(#18162e, #18162e);
-            color: light-dark(#18162e, #18162e);
-            outline: none;
-            box-shadow: none;
-            border-radius: 6px;
+            &:hover {
+                color: @color-text-emphatic;
+            }
 
-            button {
-                border-radius: 3px 0px 0px 3px;
-                color: light-dark(@dark-blue, @dark-blue);
-                white-space: nowrap;
-                border: 0;
+            &:not(:first-child) {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                padding: 6px;
+                background: light-dark(@dark-blue-10, @golden-secondary);
+                color: light-dark(@dark-blue, @dark-golden);
 
                 &:hover {
-                    color: @color-text-emphatic;
-                }
-
-                &:not(:first-child) {
-                    padding: 6px;
-                    background: light-dark(@dark-blue-10, @golden-secondary);
-                    border-radius: 0px 3px 3px 0px;
-                    color: light-dark(@dark-blue, @dark-golden);
-
-                    &:hover {
-                        background: light-dark(@light-black, @dark-blue);
-                        color: light-dark(@dark-blue, @golden-secondary);
-                    }
+                    background: light-dark(@light-black, @dark-blue);
+                    color: light-dark(@dark-blue, @golden-secondary);
                 }
             }
 
-            .spacer {
+            &:not(:last-child) {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
                 border-right: 1px solid black;
-                content: '';
             }
         }
     }
+
     .artist-attribution {
         width: 100%;
         display: flex;
