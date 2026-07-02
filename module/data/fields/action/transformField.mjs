@@ -61,7 +61,7 @@ export default class DHSummonField extends fields.SchemaField {
         if (!this.actor.token && !token) {
             ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.transform.linkedSelectedError'));
             return false;
-        } 
+        }
 
         if (!token) {
             ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.transform.prototypeError'));
@@ -72,57 +72,15 @@ export default class DHSummonField extends fields.SchemaField {
         const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
         const tokenSize = actor?.system.metadata.usesSize ? tokenSizes[actor.system.size] : actor.prototypeToken.width;
 
-        const prototypeTokenData = actor.prototypeToken.toObject();
-        const createdToken = (await canvas.scene.createEmbeddedDocuments(
-            'Token', [{
-                ...prototypeTokenData,
-                actorId: actor.id,
-                x: token.x,
-                y: token.y,
-                width: tokenSize, 
-                height: tokenSize,
-                level: game.user.viewedLevel,
-                elevation: token.elevation
-            }],
-            { controlObject: true, parent: canvas.scene }
-        ))[0];
+        // Update token. Avoid using recursive: false, since that prevents animations
+        await token.update(
+            { ...actor.prototypeToken.toObject(), actorId: actor.id, width: tokenSize, height: tokenSize },
+            { diff: false, noHook: true }
+        );
 
-        /* Swap out previous combatant for a new one if applicable */
         if (token.combatant) {
-            const combatantWasSpotlighted = 
-                game.combat.turn === game.combat.combatants.contents
-                    .sort(game.combat._sortCombatants)
-                    .map(x => x.id)
-                    .indexOf(token.combatant.id);
-
-            /* Batching combatants update to avoid jumpy UI with multiple rerenders */
-            const batch = [
-                {
-                    action: 'create',
-                    documentName: 'Combatant',
-                    data: [{ 
-                        tokenId: createdToken.id, 
-                        sceneId: createdToken.parent.id, 
-                        actorId: createdToken.actorId, 
-                        hidden: createdToken.hidden 
-                    }],
-                    parent: game.combat 
-                },
-                {
-                    action: 'delete',
-                    documentName: 'Combatant',
-                    ids: [token.combatant.id],
-                    parent: game.combat
-                }
-            ];
-            await foundry.documents.modifyBatch(batch);
-
-            if (combatantWasSpotlighted) {
-                ui.combat.setCombatantSpotlight(createdToken.combatant.id);
-            }
+            this.actor.token.combatant.update({ actorId: actor.id, img: actor.prototypeToken.texture.src });
         }
-
-        await token.delete();
 
         const marks = { hitPoints: 0, stress: 0 };
         if (!this.transform.resourceRefresh.hitPoints) {
@@ -138,7 +96,7 @@ export default class DHSummonField extends fields.SchemaField {
             );
         }
         if (marks.hitPoints || marks.stress) {
-            createdToken.actor.update({
+            token.actor.update({
                 'system.resources': {
                     hitPoints: { value: marks.hitPoints },
                     stress: { value: marks.stress }
@@ -148,6 +106,9 @@ export default class DHSummonField extends fields.SchemaField {
 
         const prevPosition = { ...this.actor.sheet.position };
         this.actor.sheet.close();
-        createdToken.actor.sheet.render({ force: true, position: prevPosition });
+        token.actor.sheet.render({ force: true, position: prevPosition });
+        if (token.object.controlled) {
+            ui.effectsDisplay.refresh();
+        }
     }
 }
