@@ -1057,7 +1057,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             direction: 'DOWN'
         });
 
-        html.querySelectorAll('.armor-slot').forEach(element => {
+        html.querySelectorAll('.armor .slot').forEach(element => {
             element.addEventListener('click', CharacterSheet.armorSourcePipUpdate);
         });
     }
@@ -1072,7 +1072,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
     /** Update specific armor source */
     static async armorSourcePipUpdate(event) {
-        const target = event.target.closest('.armor-slot');
+        const target = event.target.closest('.slot');
         const { uuid, value } = target.dataset;
         const document = await foundry.utils.fromUuid(uuid);
 
@@ -1100,7 +1100,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         }
 
         const container = target.closest('.slot-bar');
-        for (const armorSlot of container.querySelectorAll('.armor-slot i')) {
+        for (const armorSlot of container.querySelectorAll('.armor .slot i')) {
             const index = Number.parseInt(armorSlot.dataset.index);
             if (decreasing && index >= newCurrent) {
                 armorSlot.classList.remove('fa-shield');

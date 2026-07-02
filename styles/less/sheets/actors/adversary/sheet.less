@@ -2,35 +2,37 @@
 @import '../../../utils/fonts.less';
 
 .application.sheet.daggerheart.actor.dh-style.adversary {
+    --sidebar-width: 260px;
+
     .window-content {
         display: grid;
-        grid-template-columns: 275px 1fr;
+        grid-template-columns: var(--sidebar-width) 1fr;
         grid-template-rows: auto 1fr;
         height: 100%;
         width: 100%;
         padding-bottom: 0;
+    }
 
-        .adversary-sidebar-sheet {
-            grid-row: 1 / span 2;
-            grid-column: 1;
+    .adversary-sidebar-sheet {
+        grid-row: 1 / span 2;
+        grid-column: 1;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .adversary-header-sheet {
+        grid-row: 1;
+        grid-column: 2;
+    }
+
+    .tab {
+        grid-row: 2;
+        grid-column: 2;
+        &.active {
             overflow: hidden;
             display: flex;
             flex-direction: column;
-        }
-
-        .adversary-header-sheet {
-            grid-row: 1;
-            grid-column: 2;
-        }
-
-        .tab {
-            grid-row: 2;
-            grid-column: 2;
-            &.active {
-                overflow: hidden;
-                display: flex;
-                flex-direction: column;
-            }
         }
     }
 }

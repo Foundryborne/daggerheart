@@ -114,7 +114,8 @@
                 "area": {
                     "sectionTitle": "Areas",
                     "shape": "Shape",
-                    "size": "Size"
+                    "size": "Size",
+                    "hasHole": "Area Hole"
                 },
                 "displayInChat": "Display in chat",
                 "deleteTriggerTitle": "Delete Trigger",
@@ -870,6 +871,10 @@
                 "leader": "for each Leader adversary.",
                 "bruiser": "for each Bruiser adversary.",
                 "solo": "for each Solo adversary."
+            },
+            "AreaTypes": {
+                "attached": { "label": "Attached To Token" },
+                "placed": { "label": "Placed In Scene" }
             },
             "ArmorInteraction": {
                 "none": { "label": "Ignores Armor" },
