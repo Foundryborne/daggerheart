@@ -2,6 +2,10 @@ import { getWorldActor } from '../../../helpers/utils.mjs';
 
 const fields = foundry.data.fields;
 
+/**
+ * @import DHSummonAction from '../../action/summonAction.mjs'
+ */
+
 export default class DHSummonField extends fields.SchemaField {
     /**
      * Action Workflow order
@@ -22,6 +26,11 @@ export default class DHSummonField extends fields.SchemaField {
         super(transformFields, options, context);
     }
 
+    /**
+     * Runs the execute. This is run on behalf of DHSummonAction.
+     * @todo move this function to be on the summon action.
+     * @this DHSummonAction
+     */
     static async execute() {
         if (!this.transform.actorUUID) {
             ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.transform.noTransformActor'));
@@ -39,10 +48,11 @@ export default class DHSummonField extends fields.SchemaField {
             return false;
         }
 
-        const activeTokens = this.actor.getActiveTokens().map(x => x.document);
+        const activeTokens = this.actor.getActiveTokens(false, true);
         const controlledMatchingTokens = canvas.tokens.controlled
             .filter(x => x.actor && x.actor.uuid === this.actor.uuid)
             .map(x => x.document);
+        /** @type {typeof game.system.api.documents.DhToken | null} */
         const token = this.actor.token ?? (
             activeTokens.length === 1 ? activeTokens[0] :
                 (controlledMatchingTokens.length === 1 ? controlledMatchingTokens[0] : null)
@@ -62,9 +72,10 @@ export default class DHSummonField extends fields.SchemaField {
         const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
         const tokenSize = actor?.system.metadata.usesSize ? tokenSizes[actor.system.size] : actor.prototypeToken.width;
 
-        const createdTokens = await canvas.scene.createEmbeddedDocuments(
+        const prototypeTokenData = actor.prototypeToken.toObject();
+        const createdToken = (await canvas.scene.createEmbeddedDocuments(
             'Token', [{
-                ...actor.prototypeToken.toObject(),
+                ...prototypeTokenData,
                 actorId: actor.id,
                 x: token.x,
                 y: token.y,
@@ -74,8 +85,7 @@ export default class DHSummonField extends fields.SchemaField {
                 elevation: token.elevation
             }],
             { controlObject: true, parent: canvas.scene }
-        );
-        const createdToken = createdTokens[0];
+        ))[0];
 
         /* Swap out previous combatant for a new one if applicable */
         if (token.combatant) {

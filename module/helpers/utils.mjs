@@ -1,6 +1,10 @@
 import { diceTypes, getDiceSoNicePresets, getDiceSoNicePreset, range } from '../config/generalConfig.mjs';
 import Tagify from '@yaireo/tagify';
 
+/**
+ * @import DhpActor from '../documents/actor.mjs';
+ */
+
 export const capitalize = string => {
     return string.charAt(0).toUpperCase() + string.slice(1);
 };
@@ -891,6 +895,13 @@ export function shouldUseHopeFearAutomation(options = { gmAsPlayer: true }) {
     return (!game.user.isGM || options.gmAsPlayer) ? hopeFear.players : hopeFear.gm; 
 }
 
+/**
+ * Returns the given actor if its a world actor, 
+ * finds a world actor equivalent, 
+ * or imports the actor and returns the imported actor.
+ * @param {DhpActor} baseActor 
+ * @returns {Promise<DhpActor>} a world actor
+ */
 export async function getWorldActor(baseActor) {
     if (baseActor.inCompendium) {
         const worldActorCandidates = game.actors.filter(x =>
