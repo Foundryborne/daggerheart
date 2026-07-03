@@ -38,6 +38,8 @@ CONFIG.RegionBehavior.dataModels = {
 };
 
 Object.assign(CONFIG.Dice.termTypes, dice.diceTypes);
+CONFIG.Dice.terms.d = dice.BaseDie;
+CONFIG.Dice.types = [dice.BaseDie, CONFIG.Dice.terms.f];
 
 CONFIG.Actor.documentClass = documents.DhpActor;
 CONFIG.Actor.dataModels = models.actors.config;

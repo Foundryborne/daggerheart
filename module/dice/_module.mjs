@@ -4,4 +4,5 @@ export { default as DamageRoll } from './damageRoll.mjs';
 export { default as DHRoll } from './dhRoll.mjs';
 export { default as DualityRoll } from './dualityRoll.mjs';
 export { default as FateRoll } from './fateRoll.mjs';
+export { BaseDie } from './die/_module.mjs';
 export { diceTypes } from './die/_module.mjs';
