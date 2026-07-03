@@ -119,6 +119,10 @@ export const advantageState = {
 export const areaTypes = {
     placed: {
         id: 'placed',
-        label: 'Placed Area'
+        label: 'DAGGERHEART.CONFIG.AreaTypes.placed.label'
+    },
+    attached: {
+        id: 'attached',
+        label: 'DAGGERHEART.CONFIG.AreaTypes.attached.label'
     }
 };

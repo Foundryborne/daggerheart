@@ -114,7 +114,10 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return this._id;
     }
 
-    /** Returns true if the current user is the owner of the containing item */
+    /** 
+     * Returns true if the current user is the owner of the containing item.
+     * @returns {boolean}
+     */
     get isOwner() {
         return this.item?.isOwner ?? true;
     }
@@ -143,6 +146,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     /**
      * Return the first Actor parent found.
+     * @returns {DhpActor | null}
      */
     get actor() {
         return this.item instanceof DhpActor
@@ -155,6 +159,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /**
      * Returns true if the action is usable.
      * An action is usable on any actor type. For example, an adversary might have a base attack action.
+     * @returns {boolean}
      */
     get usable() {
         const actor = this.actor;

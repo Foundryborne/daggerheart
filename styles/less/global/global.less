@@ -12,6 +12,9 @@
 }
 
 .daggerheart.dh-style {
+    /** Not an actual scrollbar width (it can't be configured on all browsers) but actually a compensation value for scrollbar gutter purposes */
+    --scrollbar-width: 10px;
+
     * {
         scrollbar-width: thin;
         scrollbar-color: light-dark(@dark-blue, @golden) transparent;

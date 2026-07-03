@@ -34,12 +34,14 @@ export default class DhpActor extends Actor {
         super.prepareData();
 
         // Update effects if it is the user's character or is controlled
-        if (canvas.ready) {
+        // A timeout avoids an infinite loop when accessing token actors before the delta is finished constructing
+        window.setTimeout(() => {
+            if (!canvas.ready) return;
             const controlled = canvas.tokens.controlled.some(t => t.actor === this);
             if (game.user.character === this || controlled) {
-                ui.effectsDisplay.render();
+                ui.effectsDisplay.refresh();
             }
-        }
+        }, 0);
     }
 
     /* -------------------------------------------- */

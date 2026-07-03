@@ -5,6 +5,26 @@
 .application.sheet.daggerheart.actor.dh-style.party .tab.partyMembers {
     overflow: auto;
 
+    .actions-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        margin-bottom: 10px;
+        gap: 20px;
+        background-color: light-dark(@dark-blue-10, @golden-10);
+
+        button {
+            span {
+                font-size: 12px;
+            }
+        }
+
+        .active-action {
+            animation: glow 0.75s infinite alternate;
+        }
+    }
+
     .actors-list {
         display: flex;
         flex-direction: column;
@@ -206,42 +226,12 @@
                     }
 
                     .slot-bar {
-                        display: flex;
                         align-items: center;
                         flex-wrap: wrap;
-                        gap: 4px;
-
                         background-color: light-dark(@dark-blue-10, @dark-blue);
-                        color: @color-text-emphatic;
                         padding: 2px 5px;
-                        border: 1px solid @color-border;
                         border-radius: 0 6px 6px 0;
                         width: fit-content;
-                        min-height: 22px;
-
-                        .armor-slot {
-                            cursor: pointer;
-                            transition: all 0.3s ease;
-                            font-size: var(--font-size-12);
-
-                            .fa-shield-halved {
-                                color: light-dark(@dark-blue-40, @golden-40);
-                            }
-                        }
-
-                        .slot {
-                            width: 16px;
-                            height: 10px;
-                            border: 1px solid @color-border;
-                            background: light-dark(@dark-blue-10, @golden-10);
-                            border-radius: 3px;
-                            transition: all 0.3s ease;
-                            cursor: pointer;
-
-                            &.filled {
-                                background: light-dark(@dark-blue, @golden);
-                            }
-                        }
                     }
                 }
             }

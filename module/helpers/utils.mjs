@@ -1,6 +1,10 @@
 import { diceTypes, getDiceSoNicePresets, getDiceSoNicePreset, range } from '../config/generalConfig.mjs';
 import Tagify from '@yaireo/tagify';
 
+/**
+ * @import DhpActor from '../documents/actor.mjs';
+ */
+
 export const capitalize = string => {
     return string.charAt(0).toUpperCase() + string.slice(1);
 };
@@ -889,4 +893,33 @@ export async function triggerChatRollFx(rolls, options = { whisper: false, blind
 export function shouldUseHopeFearAutomation(options = { gmAsPlayer: true }) {
     const { hopeFear } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
     return (!game.user.isGM || options.gmAsPlayer) ? hopeFear.players : hopeFear.gm; 
+}
+
+/**
+ * Returns the given actor if its a world actor, 
+ * finds a world actor equivalent, 
+ * or imports the actor and returns the imported actor.
+ * @param {DhpActor} baseActor 
+ * @returns {Promise<DhpActor>} a world actor
+ */
+export async function getWorldActor(baseActor) {
+    if (baseActor.inCompendium) {
+        const worldActorCandidates = game.actors.filter(x =>
+            x._stats.compendiumSource === baseActor.uuid &&
+            x.prototypeToken.actorLink === baseActor.prototypeToken.actorLink
+        );
+        const worldActorCopy = worldActorCandidates.find(a => a.name === baseActor.name) ?? worldActorCandidates[0];
+        if (worldActorCopy) return worldActorCopy;
+
+        const baseActorData = baseActor;
+        return await game.system.api.documents.DhpActor.create({ 
+            ...baseActorData, 
+            _stats: { 
+                ...baseActorData._stats, 
+                compendiumSource: baseActor.uuid 
+            } 
+        });
+    }
+
+    return baseActor;
 }

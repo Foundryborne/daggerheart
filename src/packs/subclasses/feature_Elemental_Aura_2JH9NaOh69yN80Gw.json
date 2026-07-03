@@ -52,7 +52,7 @@
           "includeBase": false
         },
         "target": {
-          "type": "hostile",
+          "type": "",
           "amount": 1
         },
         "effects": [
@@ -63,13 +63,23 @@
         ],
         "name": "Fire",
         "img": "icons/magic/fire/barrier-wall-explosion-orange.webp",
-        "range": "close"
+        "range": "",
+        "areas": [
+          {
+            "name": "Elemental Aura: Fire",
+            "type": "attached",
+            "shape": "emanation",
+            "size": "close",
+            "hasHole": false,
+            "effects": []
+          }
+        ]
       },
       "xDBLH5TWidvrYF7z": {
         "type": "effect",
         "_id": "xDBLH5TWidvrYF7z",
         "systemPath": "actions",
-        "description": "<p>When an adversary marks 1 or more Hit Points, they must also mark a Stress.</p>",
+        "description": "<p>Your allies gain a +1 bonus to Strength.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -78,19 +88,26 @@
           "max": "",
           "recovery": null
         },
-        "effects": [
-          {
-            "_id": "WRuijfHxmUscAa69",
-            "onSave": false
-          }
-        ],
+        "effects": [],
         "target": {
-          "type": "friendly",
+          "type": "",
           "amount": null
         },
         "name": "Earth",
         "img": "icons/magic/control/buff-strength-muscle-damage-red.webp",
-        "range": "close"
+        "range": "",
+        "areas": [
+          {
+            "name": "Elemental Aura: Earth",
+            "type": "attached",
+            "shape": "emanation",
+            "size": "close",
+            "hasHole": true,
+            "effects": [
+              "yvpWNCNobg0LLjey"
+            ]
+          }
+        ]
       },
       "S4t5HlgxWlHwaBDw": {
         "type": "effect",
@@ -112,12 +129,22 @@
           }
         ],
         "target": {
-          "type": "hostile",
+          "type": "self",
           "amount": null
         },
         "name": "Water",
         "img": "icons/magic/water/vortex-water-whirlpool.webp",
-        "range": "close"
+        "range": "self",
+        "areas": [
+          {
+            "name": "Elemental Aura: Water",
+            "type": "attached",
+            "shape": "emanation",
+            "size": "close",
+            "hasHole": false,
+            "effects": []
+          }
+        ]
       },
       "hAsKFFewtTqd1gg9": {
         "type": "attack",
@@ -138,15 +165,10 @@
           "includeBase": false
         },
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
-        "effects": [
-          {
-            "_id": "mJBA2QTyM9SM5NVS",
-            "onSave": false
-          }
-        ],
+        "effects": [],
         "roll": {
           "type": "diceSet",
           "trait": null,
@@ -169,7 +191,19 @@
         },
         "name": "Air",
         "img": "icons/magic/air/air-burst-spiral-blue-gray.webp",
-        "range": ""
+        "range": "self",
+        "areas": [
+          {
+            "name": "Elemental Aura: Air",
+            "type": "attached",
+            "shape": "emanation",
+            "size": "close",
+            "hasHole": false,
+            "effects": [
+              "vnKV5hsO4DVjURAl"
+            ]
+          }
+        ]
       }
     },
     "originItemType": null,
@@ -181,49 +215,6 @@
     }
   },
   "effects": [
-    {
-      "name": "Elemental Aura (Earth)",
-      "img": "icons/magic/control/buff-strength-muscle-damage-orange.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.2JH9NaOh69yN80Gw",
-      "transfer": false,
-      "_id": "WRuijfHxmUscAa69",
-      "type": "base",
-      "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
-      },
-      "changes": [
-        {
-          "key": "system.traits.strength.value",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "description": "",
-      "tint": "#ffffff",
-      "statuses": [],
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "_key": "!items.effects!2JH9NaOh69yN80Gw.WRuijfHxmUscAa69"
-    },
     {
       "name": "Elemental Aura (Water)",
       "img": "icons/magic/water/vortex-water-whirlpool.webp",
@@ -237,18 +228,15 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
-        }
+        },
+        "changes": []
       },
-      "changes": [],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "tint": "#ffffff",
@@ -258,6 +246,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!2JH9NaOh69yN80Gw.H7W52ps5d3UGmaFr"
     },
     {
@@ -273,18 +264,15 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
-        }
+        },
+        "changes": []
       },
-      "changes": [],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "tint": "#ffffff",
@@ -294,43 +282,120 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!2JH9NaOh69yN80Gw.WX5AMEpmUAutB9Hm"
     },
     {
-      "name": "Elemental Aura (Air)",
-      "img": "icons/magic/air/air-burst-spiral-blue-gray.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.2JH9NaOh69yN80Gw",
+      "name": "Elemental Aura: Earth",
+      "disabled": false,
+      "img": "icons/magic/control/buff-strength-muscle-damage-red.webp",
+      "description": "<p>Your allies gain a +1 bonus to Strength.</p>",
       "transfer": false,
-      "_id": "mJBA2QTyM9SM5NVS",
-      "type": "base",
+      "statuses": [],
       "system": {
         "rangeDependence": {
           "enabled": false,
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
-        }
+        },
+        "changes": [
+          {
+            "key": "system.traits.strength.value",
+            "type": "add",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "stacking": null,
+        "targetDispositions": [
+          1
+        ]
       },
-      "changes": [],
-      "disabled": false,
-      "duration": {
-        "startTime": null,
+      "_id": "yvpWNCNobg0LLjey",
+      "type": "base",
+      "start": {
+        "time": 0,
         "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
       },
-      "description": "",
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "origin": null,
       "tint": "#ffffff",
-      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
       "sort": 0,
       "flags": {},
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!items.effects!2JH9NaOh69yN80Gw.mJBA2QTyM9SM5NVS"
+      "_key": "!items.effects!2JH9NaOh69yN80Gw.yvpWNCNobg0LLjey"
+    },
+    {
+      "name": "Elemental Aura: Air",
+      "disabled": false,
+      "img": "icons/magic/air/air-burst-spiral-blue-gray.webp",
+      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">When you or an ally takes damage from an attack beyond Melee range, reduce the damage by 1d8.</span></p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        },
+        "changes": [],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "stacking": null,
+        "targetDispositions": [
+          1
+        ]
+      },
+      "_id": "vnKV5hsO4DVjURAl",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!2JH9NaOh69yN80Gw.vnKV5hsO4DVjURAl"
     }
   ],
   "sort": 100000,
