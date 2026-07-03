@@ -2225,7 +2225,9 @@
             },
             "Resource": {
                 "single": "Resource",
-                "plural": "Resources"
+                "plural": "Resources",
+                "unloaded": "The weapon is not loaded",
+                "loaded": "The weapon is loaded"
             },
             "Roll": {
                 "attack": "Attack Roll",
