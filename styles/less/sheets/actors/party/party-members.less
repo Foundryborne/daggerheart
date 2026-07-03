@@ -3,7 +3,8 @@
 @import '../../../utils/mixin.less';
 
 .application.sheet.daggerheart.actor.dh-style.party .tab.partyMembers {
-    overflow: auto;
+    padding: 12px calc(12px - var(--scrollbar-width)) 4px 12px;
+    .stable-scroll-container();
 
     .actions-section {
         display: flex;

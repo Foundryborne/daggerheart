@@ -174,10 +174,10 @@
             --fade-start: 0;
         }
         10%, 100% {
-            --fade-start: 12px;
+            --fade-start: 14px;
         }
         0%, 90% {
-            --fade-end: 12px;
+            --fade-end: 14px;
         }
         100% {
             --fade-end: 0;
@@ -197,4 +197,10 @@
         black calc(100% - var(--fade-start)), 
         transparent 100%
     );
+}
+
+.stable-scroll-container() {
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+    .with-scroll-shadows();
 }

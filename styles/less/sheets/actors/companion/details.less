@@ -1,7 +1,10 @@
 @import '../../../utils/colors.less';
 @import '../../../utils/fonts.less';
 
-.application.sheet.daggerheart.actor.dh-style.companion {
+.application.sheet.daggerheart.actor.dh-style.companion .tab.details.active {
+    padding: 12px calc(12px - var(--scrollbar-width)) 4px 12px;
+    .stable-scroll-container();
+
     .partner-section,
     .attack-section,
     .experience-list {

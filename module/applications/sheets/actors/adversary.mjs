@@ -7,7 +7,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
     /** @inheritDoc */
     static DEFAULT_OPTIONS = {
         classes: ['adversary'],
-        position: { width: 645, height: 760 },
+        position: { width: 645, height: 750 },
         window: { resizable: true },
         actions: {
             toggleHitPoints: AdversarySheet.#toggleHitPoints,
