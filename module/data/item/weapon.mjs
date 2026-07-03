@@ -9,7 +9,8 @@ export default class DHWeapon extends AttachableItem {
             type: 'weapon',
             hasDescription: true,
             isInventoryItem: true,
-            hasActions: true
+            hasActions: true,
+            hasResource: true
         });
     }
 

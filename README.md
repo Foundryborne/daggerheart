@@ -2,11 +2,17 @@
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [User Install Guide](#user-install)
-- [Documentation](#documentation)
-- [Developer Setup](#development-setup)
-- [Contribution Info](#contributing)
+- [Foundryborne Daggerheart](#foundryborne-daggerheart)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [User Install](#user-install)
+  - [Documentation](#documentation)
+  - [Development Setup](#development-setup)
+    - [Available Scripts](#available-scripts)
+    - [Notes](#notes)
+  - [Contributing](#contributing)
+  - [AI Policy](#ai-policy)
+  - [Disclaimer](#disclaimer)
 
 ## Overview
 
@@ -72,7 +78,7 @@ Looking to contribute to the project? Look no further, check out our [contributi
 
 The Foundryborne Daggerheart system does not make use of AI (generative or otherwise) for any area of its implementation. We expect all contributors to follow this same policy when contributing with a pull request; contributions made using AI will be rejected outright.
 
-## Disclaimer:
+## Disclaimer
 
 **Daggerheart System**
 Daggerheart is a trademark of Darrington Press LLC. All original content, mechanics, and intellectual property related to the Daggerheart roleplaying game are © Darrington Press LLC.
