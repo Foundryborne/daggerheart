@@ -1,14 +1,15 @@
 <section class='tab {{tabs.features.cssClass}} {{tabs.features.id}}' data-tab='{{tabs.features.id}}'
     data-group='{{tabs.features.group}}'>
-    <div class="feature-section">
-        {{> 'daggerheart.inventory-items'
-            title=tabs.features.label
-            type='feature'
-            collection=@root.features
-            hideContextMenu=true
-            hideModifyControls=true
-            canCreate=@root.editable
-            showActions=@root.editable
-        }}
+    <div class="feature-section items-list">
+        {{#each @root.features as |item|}}
+            {{> "daggerheart.inventory-item"
+                item=item
+                type="feature"
+                actorType=@root.document.type
+                hideContextMenu=true
+                hideModifyControls=true
+                showActions=@root.editable
+            }}
+        {{/each}}
     </div>
 </section>
