@@ -961,12 +961,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
     static async #onToggleItemReload(_, target) {
         const item = await getDocFromElement(target);
-        if (!item || !item.system.resource?.type === 'simple' || !item.system.resource.max) 
+        if (!item || !item.system.resource?.max) 
             return;
 
-        const isReloaded = item.system.resource.value > 0;
-        await item.update({
-            'system.resource.value': isReloaded ? 0 : itemAbleRollParse(item.system.resource.max, this.document, item)
+        await item.update({ 'system.resource.value': 
+            item.system.needsReload ? itemAbleRollParse(item.system.resource.max, this.document, item) : 0
         })
     }
 

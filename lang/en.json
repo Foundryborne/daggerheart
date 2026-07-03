@@ -3263,7 +3263,8 @@
                 "knowTheTide": "Know The Tide gained a token",
                 "lackingItemTransferPermission": "User {user} lacks owner permission needed to transfer items to {target}",
                 "noTokenTargeted": "No token is targeted",
-                "behaviorRegionRequiresGM": "Creating a Region with an attached Behavior requires an online GM"
+                "behaviorRegionRequiresGM": "Creating a Region with an attached Behavior requires an online GM",
+                "reloadRequired": "The {weapon} must be reloaded to be used!"
             },
             "Progress": {
                 "migrationLabel": "Performing system migration. Please wait and do not close Foundry."

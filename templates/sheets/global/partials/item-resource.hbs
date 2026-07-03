@@ -2,8 +2,8 @@
 {{#if (eq item.system.resource.type 'simple')}}
     <div class="item-resource">
         {{#if item.system.hasReload}}
-            <a data-action="toggleItemReload" title="{{localize (ifThen (eq item.system.resource.value 0) 'DAGGERHEART.GENERAL.Resource.unloaded' 'DAGGERHEART.GENERAL.Resource.loaded')}}">
-                <i class="fa-solid fa-gun {{#if (eq item.system.resource.value 0)}}unloaded{{/if}}"></i>
+            <a data-action="toggleItemReload" title="{{localize (ifThen item.system.needsReload 'DAGGERHEART.GENERAL.Resource.unloaded' 'DAGGERHEART.GENERAL.Resource.loaded')}}">
+                <i class="fa-solid fa-gun {{#if item.system.needsReload}}unloaded{{/if}}"></i>
             </a>
         {{else}}
             <i class="{{#if item.system.resource.icon}}{{item.system.resource.icon}}{{else}}fa-solid fa-hashtag{{/if}}"></i>
