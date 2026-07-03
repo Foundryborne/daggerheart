@@ -2,8 +2,14 @@ import { calculateExpectedValue, parseTermsFromSimpleFormula } from '../../helpe
 import { adversaryExpectedDamage, adversaryScalingData } from '../../config/actorConfig.mjs';
 import { parseInlineParams } from '../../enrichers/parser.mjs';
 
+/** 
+ * Accepts source data for an adversary and a target tier, and returns new source data
+ * @type {object} source
+ * @type {number} tier
+ * @returns {object} adjusted source data
+ */
 export function getTierAdjustedAdversary(source, tier) {
-    const currentTier = source.tier ?? 1;
+    const currentTier = source.system.tier ?? 1;
 
     /** @type {(2 | 3 | 4)[]} */
     const tiers = new Array(Math.abs(tier - currentTier))
@@ -35,7 +41,7 @@ export function getTierAdjustedAdversary(source, tier) {
     // Store initial attack damage for abilities that have you deal a "standard attack"
     const initialAttack = {
         type: source.system.attack.damage?.parts.hitPoints?.type?.toSorted(),
-        value: getDamagePartsFormula(source.system.attack.damage?.parts.hitPoints?.value)
+        value: getFormula(source.system.attack.damage?.parts.hitPoints?.value)
     };
 
     // Update damage of base attack.
@@ -45,9 +51,9 @@ export function getTierAdjustedAdversary(source, tier) {
 
         for (const property of ['value', 'valueAlt']) {
             const data = damage.parts.hitPoints[property];
-            const previousFormula = getDamagePartsFormula(data);
-            const { value, formula } = calculateAdjustedDamage(previousFormula, 'attack', damageMeta);
-            applyAdjustedDamage(data, value, formula);
+            const previousFormula = getFormula(data);
+            const value = calculateAdjustedDamage(previousFormula, 'attack', damageMeta);
+            applyAdjustedDamage(data, value);
         }
     } catch (err) {
         ui.notifications.warn('Failed to convert attack damage of adversary');
@@ -65,7 +71,7 @@ export function getTierAdjustedAdversary(source, tier) {
                 if (!formula) return match;
 
                 try {
-                    const newFormula = calculateAdjustedDamage(formula, 'action', damageMeta)?.formula;
+                    const newFormula = getFormula(calculateAdjustedDamage(formula, 'action', damageMeta));
                     descriptionFormulas.push(formula);
                     return match.replace(formula, newFormula);
                 } catch {
@@ -82,15 +88,15 @@ export function getTierAdjustedAdversary(source, tier) {
                 const result = [];
                 for (const property of ['value', 'valueAlt']) {
                     const { [property]: data, type: damageType } = action.damage.parts.hitPoints;
-                    const previousFormula = getDamagePartsFormula(data);
+                    const previousFormula = getFormula(data);
                     const isActuallyAttack =
                         previousFormula === initialAttack.value &&
                         foundry.utils.equals(damageType.toSorted(), initialAttack.type) &&
                         !descriptionFormulas.includes(previousFormula);
                     const type = isActuallyAttack ? 'attack' : 'action';
-                    const { value, formula } = calculateAdjustedDamage(previousFormula, type, damageMeta);
-                    applyAdjustedDamage(data, value, formula);
-                    result.push({ previousFormula, formula });
+                    const value = calculateAdjustedDamage(previousFormula, type, damageMeta);
+                    applyAdjustedDamage(data, value);
+                    result.push({ previousFormula, formula: getFormula(value) });
                 }
 
                 // Override text in the description with those values
@@ -189,24 +195,30 @@ function calculateAdjustedDamage(formula, type, { currentDamageRange, newDamageR
         value.bonus = Math.round(expected - getBaseAverage());
     }
 
-    const newFormula = [value.diceQuantity ? `${value.diceQuantity}d${value.faces}` : null, value.bonus]
-        .filter(p => !!p)
-        .join('+');
-    return { value, formula: newFormula };
+    return value;
 }
 
-function getDamagePartsFormula(data) {
-    return data.custom.enabled
-        ? data.custom.formula
-        : [data.flatMultiplier ? `${data.flatMultiplier}${data.dice}` : 0, data.bonus ?? 0].filter(p => !!p).join('+');
+/** 
+ * Get formula from either damage parts *or* a simple formula object.
+ * @returns {string} the new formula data
+ */
+function getFormula(data) {
+    if (data.custom?.enabled) {
+        return data.custom.formula;
+    }
+
+    const diceQuantity = data.flatMultiplier ?? data.diceQuantity;
+    const dice = data.faces ? `d${data.faces}` : data.dice;
+    const mod = data.bonus;
+    return [diceQuantity ? `${diceQuantity}${dice}` : 0, mod].filter(p => !!p).join('+');
 }
 
 /**
  * Updates damage to reflect a specific value.
- * @throws if damage structure is invalid for conversion
- * @returns the converted formula and value as a simplified term, or null if it doesn't deal HP damage
+ * @param {object} diceData
+ * @param {object} value 
  */
-function applyAdjustedDamage(diceData, value, formula) {
+function applyAdjustedDamage(diceData, value) {
     if (value.diceQuantity) {
         diceData.custom.enabled = false;
         diceData.bonus = value.bonus;
@@ -214,6 +226,6 @@ function applyAdjustedDamage(diceData, value, formula) {
         diceData.flatMultiplier = value.diceQuantity;
     } else if (!value.diceQuantity) {
         diceData.custom.enabled = true;
-        diceData.custom.formula = formula;
+        diceData.custom.formula = getFormula(value);
     }
 }

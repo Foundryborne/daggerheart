@@ -39,6 +39,20 @@
 
     .window-header > .attribution-header-label {
         margin-right: var(--spacer-4);
+        pointer-events: none;
+    }
+
+    .tab-navigation {
+        margin-bottom: 0;
+    }
+
+    .tab {
+        flex: 1;
+        padding: 0;
+        overflow: hidden;
+        .search-section {
+            padding: 12px 14px var(--spacer-8) 12px;
+        }
     }
 
     .tab.inventory {
@@ -46,7 +60,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
             gap: 10px;
-            padding: 10px 10px 0;
+            padding: var(--spacer-8) 16px var(--spacer-8) 16px;
 
             .input {
                 color: light-dark(@dark, @beige);
@@ -57,7 +71,6 @@
     .tab.notes.active {
         padding: 0;
         margin: 0;
-        margin-top: -10px; // will be removed once tab-navigation bottom margin is removed on all actor sheets
         scrollbar-gutter: unset;
 
         // Add padding around top level level prosemirrors used for note tabs
@@ -66,6 +79,7 @@
             .editor-content {
                 scrollbar-gutter: stable;
                 padding-right: @right-padding;
+                padding-bottom: 4px;
             }
             &.inactive {
                 button.toggle {
@@ -76,7 +90,7 @@
                 }
             }
             &.active {
-                padding: 8px 0 4px 16px;
+                padding: 8px 0 0 16px;
             }
         }
 

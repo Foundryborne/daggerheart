@@ -7,9 +7,8 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            overflow-y: auto;
-            padding-bottom: 20px;
-            .with-scroll-shadows();
+            padding: 7px calc(12px - var(--scrollbar-width)) 4px 12px;
+            .stable-scroll-container();
         }
     }
 }

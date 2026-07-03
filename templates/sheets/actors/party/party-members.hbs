@@ -135,9 +135,9 @@
                                             <span class="max">{{member.armorScore.max}}</span>
                                         </span>
                                     </div>
-                                    <div class="slot-bar">
+                                    <div class="slot-bar armor">
                                         {{#times member.armorScore.max}}
-                                            <a class='armor-slot' data-action='toggleArmorSlot' data-actor-id="{{member.uuid}}" data-value="{{add this 1}}">
+                                            <a class="slot" data-action="toggleArmorSlot" data-actor-id="{{member.uuid}}" data-value="{{add this 1}}">
                                             {{#if (gte member.armorScore.value (add this 1))}}
                                                 <i class="fa-solid fa-shield"></i>
                                             {{else}}

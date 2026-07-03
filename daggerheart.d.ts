@@ -4,6 +4,15 @@ import '@common/primitives/global.mjs';
 import Canvas from '@client/canvas/board.mjs';
 import { ResourceUpdateMap } from './module/data/action/baseAction.mjs';
 
+import * as applications from './module/applications/_module.mjs';
+import * as data from './module/data/_module.mjs';
+import * as models from './module/data/_module.mjs';
+import * as documents from './module/documents/_module.mjs';
+import { macros } from './module/_module.mjs';
+import * as dice from './module/dice/_module.mjs';
+import * as fields from './module/data/fields/_module.mjs';
+
+
 // Foundry's use of `Object.assign(globalThis) means many globally available objects are not read as such
 // This declare global hopefully fixes that
 // Note: eslint is not aware of these, whatever is added here should go in the eslint's globals list
@@ -78,5 +87,19 @@ declare global {
             configure: boolean;
         };
         damageOptions: object;
+    }
+}
+
+declare module '@client/packages/system.mjs' {
+    export default interface System {
+        api: {
+            applications: typeof applications,
+            data: typeof data,
+            models: typeof models,
+            documents: typeof documents,
+            macros: typeof macros,
+            dice: typeof dice,
+            fields: typeof fields
+        };
     }
 }

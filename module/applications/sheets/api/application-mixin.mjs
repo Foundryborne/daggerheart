@@ -305,7 +305,7 @@ export default function DHApplicationMixin(Base) {
         _preSyncPartState(partId, newElement, priorElement, state) {
             super._preSyncPartState(partId, newElement, priorElement, state);
             for (const el of priorElement.querySelectorAll('.extensible.extended')) {
-                const { actionId, itemUuid } = el.parentElement.dataset;
+                const { actionId, itemUuid } = el.closest('[data-item-uuid], [data-action-id]').dataset;
                 const selector = `${actionId ? `[data-action-id="${actionId}"]` : `[data-item-uuid="${itemUuid}"]`} .extensible`;
                 const newExtensible = newElement.querySelector(selector);
                 newExtensible?.classList.add('extended');

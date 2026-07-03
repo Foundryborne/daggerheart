@@ -19,16 +19,19 @@
 
 .application.sheet.daggerheart.actor.dh-style.character {
     .character-header-sheet {
-        padding: 0 15px;
         padding-top: var(--header-height);
         width: 100%;
+
+        > *:not(line-div, .tab-navigation) {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
 
         .name-row {
             display: flex;
             gap: 6px;
             align-items: start;
             justify-content: space-between;
-            padding: 0;
             padding-top: 5px;
             flex: 1;
 
@@ -100,8 +103,8 @@
         .character-details {
             display: flex;
             justify-content: space-between;
-            padding: 5px 0;
-            margin-bottom: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
             font-size: var(--font-size-12);
             color: @color-text-emphatic;
 
@@ -130,7 +133,6 @@
         .character-row {
             display: flex;
             align-items: center;
-            padding: 0;
             margin-bottom: 12px;
 
             .resource-section {
@@ -218,12 +220,11 @@
 
         .character-traits {
             display: flex;
-            padding: 0;
             margin-bottom: 15px;
             justify-content: space-between;
             max-width: 38.5rem;
             gap: 0.5rem;
-            padding-left: 0.5rem;
+            margin-left: 0.5rem;
 
             .trait {
                 cursor: pointer;
@@ -324,6 +325,10 @@
                     }
                 }
             }
+        }
+
+        .tab-navigation button[data-action="openSettings"] {
+            margin-right: 12px;
         }
     }
 }

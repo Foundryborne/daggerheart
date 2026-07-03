@@ -276,8 +276,12 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     async onCreateAreas(event) {
         const createArea = async selectedArea => {
             const effects = selectedArea.effects.map(effect => this.system.action.item.effects.get(effect).uuid);
-            const { shape: type, size: range } = selectedArea;
-            const shapeData = CONFIG.Canvas.layers.regions.layerClass.getTemplateShape({ type, range });
+            const { shape: shapeType, size: range, hasHole } = selectedArea;
+            const shapeData = CONFIG.Canvas.layers.regions.layerClass.getTemplateShape({ 
+                shapeType, 
+                range, 
+                hasHole 
+            });
 
             const scene = game.scenes.get(game.user.viewedScene);
             const level = scene.levels.find(x => x.isView);
@@ -305,7 +309,10 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                 visibility: CONST.REGION_VISIBILITY.ALWAYS
             };
             const placeRegion = data => {
-                canvas.regions.placeRegion(data, { create: true });
+                canvas.regions.placeRegion(data, { 
+                    create: true, 
+                    attachToToken: selectedArea.type === CONFIG.DH.ACTIONS.areaTypes.attached.id 
+                });
             };
 
             // Regions with effects must be placed by the GM

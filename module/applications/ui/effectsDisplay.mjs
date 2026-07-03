@@ -39,6 +39,12 @@ export default class DhEffectsDisplay extends HandlebarsApplicationMixin(Applica
         }
     };
 
+    /**
+     * Debounce and slightly delayed request to re-render this panel. Necessary for situations where it is not possible
+     * to properly wait for promises to resolve before refreshing the UI.
+     */
+    refresh = foundry.utils.debounce(this.render.bind(this), 50);
+
     get element() {
         return document.body.querySelector('.daggerheart.dh-style.effects-display');
     }
