@@ -622,22 +622,30 @@ export default class DhpActor extends Actor {
         return rollData;
     }
 
-    #canReduceDamage(hpDamage, type) {
-        const { stressDamageReduction, disabledArmor } = this.system.rules.damageReduction;
+    #canReduceDamage(hpDamage, types) {
+        const { stressDamageReduction, disabledArmor, reduceSeverity, thresholdImmunities } = 
+            this.system.rules.damageReduction;
         if (disabledArmor) return false;
 
         const availableStress = this.system.resources.stress.max - this.system.resources.stress.value;
 
         const canUseArmor =
             this.system.armorScore.value < this.system.armorScore.max &&
-            type.every(t => this.system.armorApplicableDamageTypes[t] === true);
+            types.every(t => this.system.armorApplicableDamageTypes[t] === true);
+
         const canUseStress = Object.keys(stressDamageReduction).reduce((acc, x) => {
             const rule = stressDamageReduction[x];
             if (damageKeyToNumber(x) <= hpDamage) return acc || (rule.enabled && availableStress >= rule.cost);
             return acc;
         }, false);
 
-        return canUseArmor || canUseStress;
+        const hasReduceSeverity = types.some(t => reduceSeverity[t]);
+        
+        const hasThresholdImmunity = Object.entries(thresholdImmunities)
+            .filter(([key, value]) => Boolean(value) && damageKeyToNumber(key) === hpDamage)
+            .length;
+
+        return canUseArmor || canUseStress || hasReduceSeverity || hasThresholdImmunity;
     }
 
     async takeDamage(damages, isDirect = false) {
