@@ -25,14 +25,6 @@
             "scalable": false,
             "step": null,
             "consumeOnSuccess": false
-          },
-          {
-            "key": "resource",
-            "itemId": "n0P3VS1WfxvmXbB6",
-            "value": 1,
-            "scalable": false,
-            "step": null,
-            "consumeOnSuccess": false
           }
         ],
         "uses": {
