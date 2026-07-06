@@ -17,7 +17,10 @@ export default class BaseDie extends foundry.dice.terms.Die {
 
     async handleComboDice(maxIncreasesDiceSize) {
         /* ComboDice only works with exactly two dice and both have to be the same denomination */
-        if (this.number !== 2) return false;
+        if (this.number !== 2) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.comboDiceOnlyTwoDiceError'));
+            return false;
+        }
 
         const result = await this.continueCombo(maxIncreasesDiceSize);
 

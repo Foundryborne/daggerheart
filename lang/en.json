@@ -3253,7 +3253,8 @@
                 "knowTheTide": "Know The Tide gained a token",
                 "lackingItemTransferPermission": "User {user} lacks owner permission needed to transfer items to {target}",
                 "noTokenTargeted": "No token is targeted",
-                "behaviorRegionRequiresGM": "Creating a Region with an attached Behavior requires an online GM"
+                "behaviorRegionRequiresGM": "Creating a Region with an attached Behavior requires an online GM",
+                "comboDiceOnlyTwoDiceError": "Combo dice functionality only works on a single pair of two dice"
             },
             "Progress": {
                 "migrationLabel": "Performing system migration. Please wait and do not close Foundry."
