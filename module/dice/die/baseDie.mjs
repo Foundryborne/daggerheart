@@ -3,14 +3,22 @@ import { adjustDice } from '../../helpers/utils.mjs';
 export default class BaseDie extends foundry.dice.terms.Die {
     static MODIFIERS = {
         ...foundry.dice.terms.Die.MODIFIERS,
+        cc: 'compoundComboDice',
         c: 'comboDice'
     };
 
-    async comboDice(modifier) {
+    async compoundComboDice() {
+        return this.handleComboDice(true);
+    }
+
+    async comboDice() {
+        return this.handleComboDice(false);
+    }
+
+    async handleComboDice(maxIncreasesDiceSize) {
         /* ComboDice only works with exactly two dice and both have to be the same denomination */
         if (this.number !== 2) return false;
 
-        const maxIncreasesDiceSize = modifier.endsWith('1');
         const result = await this.continueCombo(maxIncreasesDiceSize);
 
         /* The flow of DiceSoNice has no way of knowign that some of the results of a Die should be a different denomination 
@@ -56,7 +64,7 @@ export default class BaseDie extends foundry.dice.terms.Die {
         this.results.push({ result: newRoll.total, denomination: denomination, active: true });
         this.number += 1;
 
-        return this.continueCombo();
+        return this.continueCombo(maxIncreasesDiceSize);
     }
 
     /** @override */
