@@ -26,6 +26,12 @@
       "_id": "8uOMyEczlY2OrKau",
       "img": "icons/skills/melee/hand-grip-staff-teal.webp",
       "system": {
+        "rangeDependence": {
+          "enabled": true,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        },
         "changes": [
           {
             "key": "system.bonuses.damage.primaryWeapon.bonus",

@@ -114,6 +114,12 @@
       "description": "Add this Secondary Weapon's tier + 1 to your primary weapon against targets within Melee range",
       "img": "icons/skills/melee/weapons-crossed-swords-yellow-teal.webp",
       "system": {
+        "rangeDependence": {
+          "enabled": true,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        },
         "changes": [
           {
             "key": "system.bonuses.damage.primaryWeapon.bonus",
