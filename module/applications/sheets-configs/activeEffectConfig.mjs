@@ -232,11 +232,11 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         const rangeFields = this.document.system.schema.fields.rangeDependence.fields;
         const systemData = {
             rangeDependence: event.target.checked
-                ? { 
+                ? _replace({ 
                     type: rangeFields.type.initial, 
                     target: rangeFields.target.initial,
                     range: rangeFields.range.initial 
-                }
+                })
                 : null
         };
         return this.submit({ updateData: { system: systemData } });

@@ -141,7 +141,9 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
             description: '',
             transfer: options.transfer,
             statuses: [],
-            changes: []
+            system: {
+                changes: []
+            }
         };
     }
 
