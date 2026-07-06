@@ -11,7 +11,25 @@ export default class BaseDie extends foundry.dice.terms.Die {
         if (this.number !== 2) return false;
 
         const maxIncreasesDiceSize = modifier.endsWith('1');
-        return this.continueCombo(maxIncreasesDiceSize);
+        const result = await this.continueCombo(maxIncreasesDiceSize);
+
+        /* The flow of DiceSoNice has no way of knowign that some of the results of a Die should be a different denomination 
+           We solve this by marking the results as hidden so they're not picked up by the auto roll of DiceSoNice.
+           The actual rolls are done here in place so every dice gets the correct denomination.
+        */
+        if (game.modules.get('dice-so-nice')?.active) {
+            await Promise.allSettled(this.results.map(async result => {
+                const roll = await (new Roll(`1${result.denomination ?? this.denomination}`)).evaluate();
+                roll.terms[0].results = [result];
+                roll._evaluateTotal();
+                return game.dice3d.showForRoll(roll, game.user, false);
+            }));
+        }
+
+        for (const result of this.results)
+            result.hidden = true;
+
+        return result;
     }
 
     async continueCombo(maxIncreasesDiceSize) {
