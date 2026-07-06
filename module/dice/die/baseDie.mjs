@@ -30,4 +30,23 @@ export default class BaseDie extends foundry.dice.terms.Die {
 
         return this.continueCombo();
     }
+
+    /** @override */
+    getResultCSS(result) {
+        const hasSuccess = result.success !== undefined;
+        const hasFailure = result.failure !== undefined;
+        const isMax = result.result === this.faces;
+        const isMin = result.result === 1;
+        return [
+            this.constructor.name.toLowerCase(),
+            result.denomination ?? this.denomination, // Accomodating ComboDie as a result can have a different denomination than the die as a whole
+            result.success ? 'success' : null,
+            result.failure ? 'failure' : null,
+            result.rerolled ? 'rerolled' : null,
+            result.exploded ? 'exploded' : null,
+            result.discarded ? 'discarded' : null,
+            !(hasSuccess || hasFailure) && isMin ? 'min' : null,
+            !(hasSuccess || hasFailure) && isMax ? 'max' : null
+        ];
+    }
 }

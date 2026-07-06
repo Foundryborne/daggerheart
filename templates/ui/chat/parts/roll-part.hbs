@@ -84,8 +84,13 @@
                             {{else}}
                                 {{#each roll.dice}}
                                     {{#each results}}
+                                        {{debug this}}
                                         <div class="roll-die {{#unless (or @../first discarded)}} has-plus{{/unless}}">
-                                            <div class="dice {{../denomination}}{{#if discarded}} discarded{{else}}{{#if (and @../first ../../roll.advantage.type)}}{{#if (eq ../../roll.advantage.type 1)}} color-adv{{else}} color-dis{{/if}}{{/if}}{{#if success}} color-adv{{/if}}{{/if}}">
+                                            <div class="
+                                                dice 
+                                                {{ifThen denomination denomination ../denomination}}
+                                                {{#if discarded}} discarded{{else}}{{#if (and @../first ../../roll.advantage.type)}}{{#if (eq ../../roll.advantage.type 1)}} color-adv{{else}} color-dis{{/if}}{{/if}}{{#if success}} color-adv{{/if}}{{/if}}
+                                            ">
                                                 {{result}}
                                             </div>
                                         </div>
