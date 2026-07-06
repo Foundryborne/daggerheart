@@ -8,7 +8,8 @@ export default class DHArmor extends AttachableItem {
             type: 'armor',
             hasDescription: true,
             isInventoryItem: true,
-            hasActions: true
+            hasActions: true,
+            hasResource: true
         });
     }
 
@@ -50,6 +51,10 @@ export default class DHArmor extends AttachableItem {
         return this.actions.filter(
             action => !this.armorFeatures.some(feature => feature.actionIds.includes(action.id))
         );
+    }
+
+    get itemFeatures() {
+        return this.armorFeatures;
     }
 
     /**@inheritdoc */
@@ -168,9 +173,5 @@ export default class DHArmor extends AttachableItem {
     _getLabels() {
         const labels = [`${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.armor.max}`];
         return labels;
-    }
-
-    get itemFeatures() {
-        return this.armorFeatures;
     }
 }

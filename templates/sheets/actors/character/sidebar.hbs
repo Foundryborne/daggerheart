@@ -23,9 +23,9 @@
                 <div class="status-bar armor-slots">
                     {{#if useResourcePips}}
                     <div class='slot-value'>
-                        <div class="slot-bar">
+                        <div class="slot-bar armor">
                         {{#times document.system.armorScore.max}}
-                            <a class='armor-slot' data-action='toggleArmor' data-value="{{add this 1}}">
+                            <a class="slot" data-action="toggleArmor" data-value="{{add this 1}}">
                                 {{#if (gte ../document.system.armorScore.value (add this 1))}}
                                     <i class="fa-solid fa-shield"></i>
                                 {{else}}
@@ -44,15 +44,15 @@
                     </div>
                     {{else}}
                     <div class='status-value'>
+                        <progress
+                            class='progress-bar stress-color'
+                            value='{{document.system.armorScore.value}}'
+                            max='{{document.system.armorScore.max}}'
+                        ></progress>
                         <input class="bar-input armor-marks-input" value="{{document.system.armorScore.value}}" type="number" id="{{document.uuid}}-armor-slots">
                         <span>/</span>
                         <span class="bar-label">{{document.system.armorScore.max}}</span>
                     </div>
-                    <progress
-                        class='progress-bar stress-color'
-                        value='{{document.system.armorScore.value}}'
-                        max='{{document.system.armorScore.max}}'
-                    ></progress>
                     <a class="status-label" data-action="toggleArmorMangement" {{disabled (not @root.editable)}}>
                         <h4>{{localize "DAGGERHEART.GENERAL.armorSlots"}}</h4>
                         {{#if @root.editable}}<i class="fa-solid fa-gear" inert></i>{{/if}}

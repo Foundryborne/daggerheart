@@ -54,6 +54,10 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return {};
     }
 
+    get hasDescription() {
+        return Boolean(this.description);
+    }
+
     /**
      * Create a Map containing each Action step based on fields define in schema. Ordered by Fields order property.
      *
@@ -110,7 +114,10 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return this._id;
     }
 
-    /** Returns true if the current user is the owner of the containing item */
+    /** 
+     * Returns true if the current user is the owner of the containing item.
+     * @returns {boolean}
+     */
     get isOwner() {
         return this.item?.isOwner ?? true;
     }
@@ -139,6 +146,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     /**
      * Return the first Actor parent found.
+     * @returns {DhpActor | null}
      */
     get actor() {
         return this.item instanceof DhpActor
@@ -151,6 +159,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /**
      * Returns true if the action is usable.
      * An action is usable on any actor type. For example, an adversary might have a base attack action.
+     * @returns {boolean}
      */
     get usable() {
         const actor = this.actor;
@@ -447,7 +456,15 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     static migrateData(source) {
         if (source.damage?.parts && Array.isArray(source.damage.parts)) {
+            let hitPointsExists = source.damage.parts.some(x => x.applyTo === 'hitPoints');
             source.damage.parts = source.damage.parts.reduce((acc, part) => {
+                if (!part.applyTo && hitPointsExists) return acc;
+
+                if (!part.applyTo) {
+                    hitPointsExists = true;
+                    part.applyTo = 'hitPoints';
+                }
+
                 acc[part.applyTo] = part;
                 return acc;
             }, {});

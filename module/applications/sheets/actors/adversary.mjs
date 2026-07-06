@@ -7,7 +7,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
     /** @inheritDoc */
     static DEFAULT_OPTIONS = {
         classes: ['adversary'],
-        position: { width: 660, height: 766 },
+        position: { width: 645, height: 750 },
         window: { resizable: true },
         actions: {
             toggleHitPoints: AdversarySheet.#toggleHitPoints,
@@ -58,12 +58,13 @@ export default class AdversarySheet extends DHBaseActorSheet {
             template: 'systems/daggerheart/templates/sheets/actors/adversary/features.hbs',
             scrollable: ['.feature-section']
         },
-        notes: {
-            template: 'systems/daggerheart/templates/sheets/actors/adversary/notes.hbs'
-        },
         effects: {
             template: 'systems/daggerheart/templates/sheets/actors/adversary/effects.hbs',
             scrollable: ['.effects-sections']
+        },
+        notes: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/notes.hbs',
+            scrollable: ['.editor-content']
         }
     };
 

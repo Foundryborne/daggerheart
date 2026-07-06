@@ -84,6 +84,7 @@
                     "transformActorMissing": "The assigned actor to transform into does not exist. It was probably deleted or moved in/out of a compendium",
                     "canvasError": "There is no active scene.",
                     "prototypeError": "You can only use a transform action from a Token",
+                    "linkedSelectedError": "To transform a linked actor there either needs to be only a single token of it on the canvas, or you need to left-click select only one of them.",
                     "actorLinkError": "You cannot transform a token with Actor Link set to true"
                 }
             },
@@ -113,7 +114,8 @@
                 "area": {
                     "sectionTitle": "Areas",
                     "shape": "Shape",
-                    "size": "Size"
+                    "size": "Size",
+                    "hasHole": "Area Hole"
                 },
                 "displayInChat": "Display in chat",
                 "deleteTriggerTitle": "Delete Trigger",
@@ -867,6 +869,10 @@
                 "leader": "for each Leader adversary.",
                 "bruiser": "for each Bruiser adversary.",
                 "solo": "for each Solo adversary."
+            },
+            "AreaTypes": {
+                "attached": { "label": "Attached To Token" },
+                "placed": { "label": "Placed In Scene" }
             },
             "ArmorInteraction": {
                 "none": { "label": "Ignores Armor" },

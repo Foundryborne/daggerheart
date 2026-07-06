@@ -58,10 +58,11 @@ export const renderMeasuredTemplate = async event => {
     if (!type || !range || !game.canvas.scene) return;
 
     const shapeData = CONFIG.Canvas.layers.regions.layerClass.getTemplateShape({
-        type,
+        shapetype: type,
         angle,
         range,
-        direction
+        direction,
+        hasHole: false
     });
 
     await canvas.regions.placeRegion(

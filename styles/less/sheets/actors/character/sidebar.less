@@ -89,113 +89,13 @@
 
             .resources-section {
                 justify-content: space-around;
-                margin: 8px 2px 8px 2px;
+                margin: 8px 2px 0 2px;
             }
         }
 
         .resources-section {
             display: flex;
             justify-content: space-evenly;
-            margin-bottom: 20px;
-
-            .status-bar {
-                display: flex;
-                justify-content: center;
-                position: relative;
-                width: 120px;
-                height: 40px;
-
-                .status-label {
-                    position: relative;
-                    top: 40px;
-                    height: 22px;
-                    width: 79px;
-                    clip-path: path('M0 0H79L74 16.5L39 22L4 16.5L0 0Z');
-                    background: light-dark(@dark-blue, @golden);
-
-                    h4 {
-                        font-weight: bold;
-                        text-align: center;
-                        line-height: 18px;
-                        color: light-dark(@beige, @dark-blue);
-                    }
-                }
-
-                .status-value {
-                    position: absolute;
-                    display: flex;
-                    padding: 0 5px;
-                    font-size: 1.5rem;
-                    align-items: center;
-                    width: 140px;
-                    height: 40px;
-                    justify-content: center;
-                    text-align: center;
-                    z-index: 2;
-                    color: @beige;
-
-                    input[type='number'] {
-                        background: transparent;
-                        font-size: 1.5rem;
-                        width: 40px;
-                        height: 30px;
-                        text-align: center;
-                        border: none;
-                        outline: 2px solid transparent;
-                        color: @beige;
-
-                        &.bar-input {
-                            padding: 0;
-                            color: @beige;
-                            backdrop-filter: none;
-                            background: transparent;
-                            transition: all 0.3s ease;
-
-                            &:hover,
-                            &:focus {
-                                background: @semi-transparent-dark-blue;
-                                backdrop-filter: blur(9.5px);
-                            }
-                        }
-                    }
-
-                    .bar-label {
-                        width: 40px;
-                    }
-                }
-                .progress-bar {
-                    position: absolute;
-                    appearance: none;
-                    width: 100px;
-                    height: 40px;
-                    border: 1px solid @color-border;
-                    border-radius: 6px;
-                    z-index: 1;
-                    background: @dark-blue;
-
-                    &::-webkit-progress-bar {
-                        border: none;
-                        background: @dark-blue;
-                        border-radius: 6px;
-                    }
-                    &::-webkit-progress-value {
-                        background: @gradient-hp;
-                        border-radius: 6px;
-                    }
-                    &.stress-color::-webkit-progress-value {
-                        background: @gradient-stress;
-                        border-radius: 6px;
-                    }
-                    &::-moz-progress-bar {
-                        background: @gradient-hp;
-                        border-radius: 6px;
-                    }
-                    &.stress-color::-moz-progress-bar {
-                        background: @gradient-stress;
-                        border-radius: 6px;
-                    }
-                }
-            }
         }
 
         .status-section {
@@ -245,21 +145,21 @@
 
             .status-bar.armor-slots {
                 display: flex;
-                justify-content: center;
-                position: relative;
                 width: 95px;
-                height: 30px;
                 white-space: nowrap;
+
+                .status-label {
+                    height: 30px;
+                }
 
                 .status-label {
                     padding: 2px 2px;
                     position: relative;
-                    top: 30px;
                     height: 22px;
                     width: 95px;
                     border-radius: 3px;
                     background: light-dark(@dark-blue, @golden);
-                    clip-path: none;
+
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -291,40 +191,16 @@
                     }
                 }
                 .slot-value {
-                    position: absolute;
-                    display: flex;
-                    padding: 0 5px;
                     font-size: 1.2rem;
-                    align-items: center;
                     width: 80px;
                     height: 30px;
-                    justify-content: center;
-                    text-align: center;
-                    z-index: 2;
                     color: light-dark(@dark-blue, @beige);
                     flex-direction: column;
 
                     .slot-bar {
-                        display: flex;
-                        flex-wrap: wrap;
-                        gap: 4px;
-                        padding: 5px;
-                        border: 1px solid @color-border;
-                        border-radius: 6px;
-                        z-index: 1;
                         background: @dark-blue;
                         justify-content: center;
-                        color: @color-text-emphatic;
-
-                        .armor-slot {
-                            cursor: pointer;
-                            transition: all 0.3s ease;
-                            font-size: var(--font-size-12);
-
-                            .fa-shield-halved {
-                                color: light-dark(@dark-blue-40, @golden-40);
-                            }
-                        }
+                        border-bottom: none;
                     }
                     .slot-label {
                         display: flex;
@@ -364,41 +240,21 @@
                     }
                 }
                 .status-value {
-                    position: absolute;
-                    display: flex;
                     padding: 0 6px;
                     font-size: 1.2rem;
-                    align-items: center;
                     width: 80px;
                     height: 30px;
                     justify-content: center;
-                    text-align: center;
-                    z-index: 2;
                     color: light-dark(@dark-blue, @beige);
-                    border: 1px solid @color-border;
-                    border-bottom: none;
-                    border-radius: 6px 6px 0 0;
 
                     input[type='number'] {
-                        background: transparent;
                         font-size: 1.2rem;
                         width: 30px;
                         height: 20px;
-                        text-align: center;
-                        border: none;
-                        outline: 2px solid transparent;
                         color: light-dark(@dark-blue, @beige);
 
                         &.bar-input {
-                            padding: 0;
                             color: light-dark(@dark-blue, @beige);
-                            backdrop-filter: none;
-                            background: transparent;
-                            &:hover,
-                            &:focus {
-                                background: @semi-transparent-dark-blue;
-                                backdrop-filter: blur(9.5px);
-                            }
                         }
                     }
 
@@ -407,32 +263,9 @@
                     }
                 }
                 .progress-bar {
-                    position: absolute;
-                    appearance: none;
-                    width: 80px;
-                    height: 30px;
-                    border: 1px solid @color-border;
-                    border-radius: 6px;
-                    z-index: 1;
                     background: light-dark(transparent, @dark-blue);
                     border-bottom: none;
                     border-radius: 6px 6px 0 0;
-                    &::-webkit-progress-bar {
-                        border: none;
-                        background: light-dark(transparent, @dark-blue);
-                    }
-                    &::-webkit-progress-value {
-                        background: @gradient-stress;
-                    }
-                    &.stress-color::-webkit-progress-value {
-                        background: @gradient-stress;
-                    }
-                    &::-moz-progress-bar {
-                        background: @gradient-stress;
-                    }
-                    &.stress-color::-moz-progress-bar {
-                        background: @gradient-stress;
-                    }
                 }
             }
 

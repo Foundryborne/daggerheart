@@ -9,7 +9,8 @@ export default class DHWeapon extends AttachableItem {
             type: 'weapon',
             hasDescription: true,
             isInventoryItem: true,
-            hasActions: true
+            hasActions: true,
+            hasResource: true
         });
     }
 
@@ -111,6 +112,10 @@ export default class DHWeapon extends AttachableItem {
         return this.actions.filter(
             action => !this.weaponFeatures.some(feature => feature.actionIds.includes(action.id))
         );
+    }
+
+    get itemFeatures() {
+        return this.weaponFeatures;
     }
 
     /**@inheritdoc */
@@ -268,9 +273,5 @@ export default class DHWeapon extends AttachableItem {
         }
 
         return labels;
-    }
-
-    get itemFeatures() {
-        return this.weaponFeatures;
     }
 }

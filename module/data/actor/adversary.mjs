@@ -87,6 +87,7 @@ export default class DhpAdversary extends DhCreature {
                         parts: {
                             hitPoints: {
                                 type: ['physical'],
+                                applyTo: 'hitPoints',
                                 value: {
                                     multiplier: 'flat'
                                 }
