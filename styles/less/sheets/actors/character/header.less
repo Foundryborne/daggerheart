@@ -42,19 +42,14 @@
             }
 
             h1 {
+                --dh-input-color-border: @color-border;
                 display: flex;
                 flex: 1;
                 padding: 6px 0 0 0;
                 font-size: var(--font-size-32);
                 text-align: start;
-                border: 1px solid transparent;
-                outline: 2px solid transparent;
                 transition: all 0.3s ease;
                 word-break: break-word;
-
-                &:hover {
-                    outline: 2px solid light-dark(@dark, @golden);
-                }
             }
 
             .level-div {

@@ -26,9 +26,11 @@
         &:focus,
         &:focus[type='text'],
         &:focus[type='number'] {
-            background: light-dark(@soft-shadow, @semi-transparent-dark-blue);
-            box-shadow: none;
-            outline: 2px solid @input-color-border;
+            &:where(:not(:disabled)) {
+                background: light-dark(@soft-shadow, @semi-transparent-dark-blue);
+                box-shadow: none;
+                outline: 2px solid @input-color-border;
+            }
         }
 
         &:disabled[type='text'],

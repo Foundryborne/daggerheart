@@ -1,7 +1,7 @@
 import { ResourceUpdateMap } from '../../data/action/baseAction.mjs';
 import { shouldUseHopeFearAutomation } from '../../helpers/utils.mjs';
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
-import Party from '../sheets/actors/party.mjs';
+import PartySheet from '../sheets/actors/party.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -11,7 +11,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
 
         this.party = party;
         this.partyMembers = party.system.partyMembers
-            .filter(x => Party.DICE_ROLL_ACTOR_TYPES.includes(x.type))
+            .filter(x => PartySheet.DICE_ROLL_ACTOR_TYPES.includes(x.type))
             .map(member => ({
                 ...member.toObject(),
                 uuid: member.uuid,
