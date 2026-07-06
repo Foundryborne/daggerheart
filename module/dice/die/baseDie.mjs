@@ -56,8 +56,8 @@ export default class BaseDie extends foundry.dice.terms.Die {
     async continueCombo(maxIncreasesDiceSize) {
         const lastIndex = this.results.length - 1;
 
-        /* The Combo only continues if the latest roll was higher than the previous */
-        if (this.results[lastIndex].result <= this.results[lastIndex - 1].result) return false;
+        /* The Combo only continues if the latest roll was higher or equal to the previous */
+        if (this.results[lastIndex].result < this.results[lastIndex - 1].result) return false;
 
         const lastFaces = this.results[lastIndex].denomination?.slice(1) ?? this.faces;
         const increaseDiceSize = maxIncreasesDiceSize && lastFaces < 12 && this.results[lastIndex].result === lastFaces;
