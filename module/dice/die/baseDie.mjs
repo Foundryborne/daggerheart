@@ -18,12 +18,22 @@ export default class BaseDie extends foundry.dice.terms.Die {
            The actual rolls are done here in place so every dice gets the correct denomination.
         */
         if (game.modules.get('dice-so-nice')?.active) {
-            await Promise.allSettled(this.results.map(async result => {
+            const rolls = [];
+            for (const result of this.results) {
                 const roll = await (new Roll(`1${result.denomination ?? this.denomination}`)).evaluate();
                 roll.terms[0].results = [result];
                 roll._evaluateTotal();
-                return game.dice3d.showForRoll(roll, game.user, false);
-            }));
+                rolls.push(roll);
+            }
+
+            /* If there are other dice that will be rolled we cannot await here. The other dice will be awaited in the normal flow */
+            if (this._root.dice.length > 1) {
+                for (const roll of rolls) {
+                    game.dice3d.showForRoll(roll, game.user, true);
+                }
+            } else {
+                await Promise.allSettled(rolls.map(roll => game.dice3d.showForRoll(roll, game.user, true)));
+            }
         }
 
         for (const result of this.results)
