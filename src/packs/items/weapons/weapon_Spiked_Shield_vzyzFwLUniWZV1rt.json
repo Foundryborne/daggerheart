@@ -114,6 +114,12 @@
       "description": "+1 to Armor Score; +1 to primary weapon damage within Melee range",
       "img": "icons/skills/melee/sword-shield-stylized-white.webp",
       "system": {
+        "rangeDependence": {
+          "enabled": true,
+          "range": "melee",
+          "target": "hostile",
+          "type": "withinRange"
+        },
         "changes": [
           {
             "key": "system.bonuses.damage.primaryWeapon.bonus",

@@ -791,13 +791,21 @@ export const weaponFeatures = {
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.doubleDuty.effects.doubleDuty.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.doubleDuty.effects.doubleDuty.description',
                 img: 'icons/skills/melee/sword-shield-stylized-white.webp',
-                changes: [
-                    {
-                        key: 'system.bonuses.damage.primaryWeapon.bonus',
-                        mode: 2,
-                        value: '1'
+                system: {
+                    changes: [
+                        {
+                            key: 'system.bonuses.damage.primaryWeapon.bonus',
+                            mode: 2,
+                            value: '1'
+                        }
+                    ],
+                    rangeDependence: {
+                        enabled: true,
+                        range: 'melee',
+                        target: 'hostile',
+                        type: 'withinRange'
                     }
-                ]
+                }
             },
             {
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.doubleDuty.effects.doubleDuty.name',
@@ -1095,13 +1103,21 @@ export const weaponFeatures = {
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.paired.effects.paired.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.paired.effects.paired.description',
                 img: 'icons/skills/melee/weapons-crossed-swords-yellow-teal.webp',
-                changes: [
-                    {
-                        key: 'system.bonuses.damage.primaryWeapon.bonus',
-                        mode: 2,
-                        value: 'ITEM.@system.tier + 1'
+                system: {
+                    changes: [
+                        {
+                            key: 'system.bonuses.damage.primaryWeapon.bonus',
+                            mode: 2,
+                            value: 'ITEM.@system.tier + 1'
+                        }
+                    ],
+                    rangeDependence: {
+                        enabled: true,
+                        range: 'melee',
+                        target: 'hostile',
+                        type: 'withinRange'
                     }
-                ]
+                }
             }
         ]
     },
