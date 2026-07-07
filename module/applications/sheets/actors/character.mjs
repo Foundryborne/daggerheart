@@ -914,7 +914,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const doc = await getDocFromElement(button);
         const { available } = this.document.system.loadoutSlot;
         if (doc.system.inVault && !available && !doc.system.loadoutIgnore) {
-            return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.loadoutMaxReached'));
+            return ui.notifications.warn('DAGGERHEART.UI.Notifications.loadoutMaxReached', { localize: true });
         }
 
         await doc?.update({ 'system.inVault': !doc.system.inVault });
@@ -1206,10 +1206,22 @@ export default class CharacterSheet extends DHBaseActorSheet {
             if (!confirmed) return;
         }
 
-        if (this.document.uuid === item.parent?.uuid) {
+        // Check for same actor drag/drop attempts
+        const isSameActor = this.document.uuid === item.parent?.uuid;
+        const loadoutFieldset = event.target.closest('[data-in-vault]');
+        const vaulting = loadoutFieldset?.dataset.inVault === 'true';
+        if (isSameActor && loadoutFieldset && item.type === 'domainCard' && vaulting !== item.system.inVault) {
+            // This is likely an attempt to vault or unvault an item
+            const { available } = this.document.system.loadoutSlot;
+            if (!vaulting && !available && !item.system.loadoutIgnore) {
+                return ui.notifications.warn('DAGGERHEART.UI.Notifications.loadoutMaxReached', { localize: true });
+            }
+            return item.update({ 'system.inVault': vaulting });
+        } else if (isSameActor) {
             return super._onDropItem(event, item);
         }
 
+        // Handle beastforms
         if (item.type === 'beastform') {
             if (this.document.effects.find(x => x.type === 'beastform')) {
                 return ui.notifications.warn(

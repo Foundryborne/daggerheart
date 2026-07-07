@@ -3233,7 +3233,7 @@
                 "beastformToManyAdvantages": "You cannot select any more advantages.",
                 "beastformToManyFeatures": "You cannot select any more features.",
                 "beastformEquipWeapon": "You cannot use weapons while in a Beastform.",
-                "loadoutMaxReached": "You've reached maximum loadout. Move atleast one domain card to the vault, or increase the limit in homebrew settings if desired.",
+                "loadoutMaxReached": "You've reached the maximum loadout. Move at least one domain card to the vault, or increase the limit in homebrew settings if desired.",
                 "domainMaxReached": "You've reached the maximum domains for the class. Increase the limit in homebrew settings if desired.",
                 "insufficientResources": "You don't have enough resources to use that action.",
                 "actionNoUsesRemaining": "That action doesn't have remaining uses.",
