@@ -772,7 +772,7 @@
                 "removeRoll": "Remove Roll",
                 "resultsHint": "Results will appear when characters roll",
                 "selectLeaderHint": "Select one Character to be the leader",
-                "selectParticipantsHint": "Select one Character to be the leader",
+                "selectParticipantsHint": "Select all Characters who will participate in the roll",
                 "startGroupRoll": "Start Group Roll",
                 "title": "Group Roll"
             },
