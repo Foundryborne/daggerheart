@@ -208,6 +208,16 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         const rollOptions = [];
         const damageRollOptions = [];
+
+        if (actor?.system.usedUnarmed) {
+            damageRollOptions.push({
+                value: actor.system.attack.uuid,
+                label: actor.system.usedUnarmed.name,
+                group: actor.name,
+                baseAction: actor.system.attack
+            });
+        }
+
         for (const item of actor?.items ?? []) {
             if (!item.system.metadata.hasActions) continue;
             const actions = [...item.system.actions, ...(item.system.attack ? [item.system.attack] : [])];
