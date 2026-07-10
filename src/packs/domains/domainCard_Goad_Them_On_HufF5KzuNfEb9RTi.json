@@ -106,21 +106,15 @@
       "_id": "Jccsuc48gmA6QAni",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.disadvantageSources",
+            "mode": 2,
+            "value": "Attacking the goading creature",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.disadvantageSources",
-          "mode": 2,
-          "value": "Attacking the goading creature",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

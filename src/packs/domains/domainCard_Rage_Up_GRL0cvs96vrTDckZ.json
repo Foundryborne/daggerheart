@@ -65,12 +65,6 @@
       "_id": "bq1MhcmoP6Wo5CXF",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [
           {
             "key": "system.bonuses.damage.magical.bonus",
@@ -129,12 +123,6 @@
       "_id": "t6SIjQxB6UBUJ98f",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [
           {
             "key": "system.bonuses.damage.magical.bonus",

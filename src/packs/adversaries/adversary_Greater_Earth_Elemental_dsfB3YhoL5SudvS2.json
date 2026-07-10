@@ -340,23 +340,17 @@
           "name": "Immovable Object",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.resistance.physical.reduction",
+                "mode": 2,
+                "value": "7",
+                "priority": null
+              }
+            ]
           },
           "_id": "7V7qMq9in3AArwiM",
           "img": "icons/magic/defensive/shield-barrier-glowing-triangle-green.webp",
-          "changes": [
-            {
-              "key": "system.resistance.physical.reduction",
-              "mode": 2,
-              "value": "7",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,
@@ -510,12 +504,6 @@
           "_id": "38MUzfbH64EMLVse",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": [],
             "duration": {
               "type": "temporary",

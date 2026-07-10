@@ -92,23 +92,17 @@
       "name": "Rise Up",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.damageThresholds.severe",
+            "mode": 2,
+            "value": "@system.proficiency",
+            "priority": 21
+          }
+        ]
       },
       "_id": "ulQpnnRFwW4BwMlE",
       "img": "icons/magic/defensive/shield-barrier-flaming-pentagon-teal-purple.webp",
-      "changes": [
-        {
-          "key": "system.damageThresholds.severe",
-          "mode": 2,
-          "value": "@system.proficiency",
-          "priority": 21
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

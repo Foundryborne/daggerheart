@@ -244,12 +244,6 @@
       "_id": "wMXCIQxqLS9IbsEK",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": []
       },
       "disabled": false,
@@ -282,12 +276,6 @@
       "_id": "bZ0xgZ6TT2099OYp",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": []
       },
       "disabled": false,
@@ -320,12 +308,6 @@
       "_id": "Oe95zWWY41nH8y5l",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": []
       },
       "disabled": false,

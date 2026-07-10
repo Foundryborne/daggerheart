@@ -53,12 +53,6 @@
       "name": "Bonus to Threshold",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [
           {
             "key": "system.damageThresholds.severe",
@@ -106,16 +100,10 @@
       "name": "Bonus to Trait",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": []
       },
       "_id": "cTgSmxkTi89y6sbc",
       "img": "icons/magic/fire/elemental-fire-flying.webp",
-      "changes": [],
       "disabled": true,
       "duration": {
         "startTime": null,
@@ -142,23 +130,17 @@
       "name": "Bonus to Proficiency",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.proficiency",
+            "mode": 2,
+            "value": "+1",
+            "priority": null
+          }
+        ]
       },
       "_id": "oWf3iXf4dawdbmzd",
       "img": "icons/magic/fire/elemental-fire-flying.webp",
-      "changes": [
-        {
-          "key": "system.proficiency",
-          "mode": 2,
-          "value": "+1",
-          "priority": null
-        }
-      ],
       "disabled": true,
       "duration": {
         "startTime": null,
@@ -185,16 +167,10 @@
       "name": "Bonus to Evasion",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": []
       },
       "_id": "2LCF6lSnWFqNiPs5",
       "img": "icons/magic/fire/elemental-fire-flying.webp",
-      "changes": [],
       "disabled": true,
       "duration": {
         "startTime": null,

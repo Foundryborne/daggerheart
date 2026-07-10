@@ -321,23 +321,17 @@
           "name": "Flying",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.difficulty",
+                "mode": 2,
+                "value": "3",
+                "priority": null
+              }
+            ]
           },
           "_id": "8o8yG73ZfrZ3hb5i",
           "img": "icons/commodities/biological/wing-green.webp",
-          "changes": [
-            {
-              "key": "system.difficulty",
-              "mode": 2,
-              "value": "3",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,
@@ -390,23 +384,17 @@
           "name": "Obsidian Scales",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.resistance.physical.resistance",
+                "mode": 5,
+                "value": "1",
+                "priority": null
+              }
+            ]
           },
           "_id": "Jr9SlkRnkroulYhy",
           "img": "icons/commodities/leather/scale-chitin-grey.webp",
-          "changes": [
-            {
-              "key": "system.resistance.physical.resistance",
-              "mode": 5,
-              "value": "1",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,
@@ -551,12 +539,6 @@
           "_id": "qtIaAZDW8QsjILgb",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": []
           },
           "disabled": false,

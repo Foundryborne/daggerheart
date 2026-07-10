@@ -63,12 +63,6 @@
       "_id": "H5q5iYImr69TfZcp",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [
           {
             "key": "system.traits.strength.value",

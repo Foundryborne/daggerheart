@@ -2,7 +2,7 @@ import { ResourceUpdateMap } from '../../data/action/baseAction.mjs';
 import { MemberData } from '../../data/tagTeamData.mjs';
 import { getCritDamageBonus, shouldUseHopeFearAutomation } from '../../helpers/utils.mjs';
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
-import Party from '../sheets/actors/party.mjs';
+import PartySheet from '../sheets/actors/party.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -13,7 +13,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         this.usesTagTeamHopeCost = true;
         this.party = party;
         this.partyMembers = party.system.partyMembers
-            .filter(x => Party.DICE_ROLL_ACTOR_TYPES.includes(x.type))
+            .filter(x => PartySheet.DICE_ROLL_ACTOR_TYPES.includes(x.type))
             .map(member => ({
                 ...member.toObject(),
                 uuid: member.uuid,
@@ -208,6 +208,16 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         const rollOptions = [];
         const damageRollOptions = [];
+
+        if (actor?.system.usedUnarmed) {
+            damageRollOptions.push({
+                value: actor.system.attack.uuid,
+                label: actor.system.usedUnarmed.name,
+                group: actor.name,
+                baseAction: actor.system.attack
+            });
+        }
+
         for (const item of actor?.items ?? []) {
             if (!item.system.metadata.hasActions) continue;
             const actions = [...item.system.actions, ...(item.system.attack ? [item.system.attack] : [])];

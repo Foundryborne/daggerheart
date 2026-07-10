@@ -52,21 +52,15 @@
       "_id": "FrSJH9vzDHkFGYQL",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.rally",
+            "mode": 2,
+            "value": "6 + min((floor(@system.levelData.level.current / 5)*2), 2)",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.bonuses.rally",
-          "mode": 2,
-          "value": "6 + min((floor(@system.levelData.level.current / 5)*2), 2)",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

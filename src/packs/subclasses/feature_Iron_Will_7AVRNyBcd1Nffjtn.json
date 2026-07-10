@@ -21,23 +21,17 @@
       "name": "Iron Will",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.rules.damageReduction.maxArmorMarked.value",
+            "mode": 2,
+            "value": "1",
+            "priority": null
+          }
+        ]
       },
       "_id": "htEDIjCEWYtznpRV",
       "img": "icons/equipment/chest/breastplate-helmet-metal.webp",
-      "changes": [
-        {
-          "key": "system.rules.damageReduction.maxArmorMarked.value",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

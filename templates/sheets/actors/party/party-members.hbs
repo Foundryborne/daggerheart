@@ -23,12 +23,12 @@
         </button>
     </div>
 
-    {{#if @root.showStats}}
-        <ul class="actors-list">
-            {{#each partyMembers as |member id|}}
-                <li class="actor-resources">
-                    <div class="actor-img-frame">
-                        <img class="actor-img" src="{{member.img}}">
+    <ul class="actors-list{{#unless @root.showStats}} limited{{/unless}}">
+        {{#each partyMembers as |member id|}}
+            <li class="actor-resources">
+                <div class="actor-img-frame">
+                    <img class="actor-img" src="{{member.img}}">
+                    {{#if @root.showStats}}
                         {{#if member.weapons}}
                             <div class="equipped-weapons">
                                 {{#each member.weapons as |weapon|}}
@@ -51,12 +51,16 @@
                                 <h4 class="threshold-label">{{localize "DAGGERHEART.ACTORS.Party.Thresholds.severe"}}</h4>
                             </div>
                         {{/unless}}
-                    </div>
-                    <header>
-                        <h2 class="actor-name">
-                            <a data-action="openDocument" data-uuid="{{member.uuid}}">{{member.name}}</a>
+                    {{/if}}
+                </div>
+                <header>
+                    <h2 class="actor-name">
+                        <a data-action="openDocument" data-uuid="{{member.uuid}}">{{member.name}}</a>
+                        {{#if @root.editable}}
                             <a class="delete-icon" data-action="deletePartyMember" data-uuid="{{member.uuid}}"><i class="fa-regular fa-times" inert></i></a>
-                        </h2>
+                        {{/if}}
+                    </h2>
+                    {{#if @root.showStats}}
                         <div>
                             {{#unless (or (eq member.type 'companion') (eq member.type 'adversary') (eq member.type 'npc')) }}
                                 <div class="hope-section">
@@ -73,10 +77,12 @@
                                 </div>
                             {{/unless}}
                         </div>
-                        {{#if member.subtitle}}
-                            <span class="subtitle">{{member.subtitle}}</span>
-                        {{/if}}
-                    </header>
+                    {{/if}}
+                    {{#if member.subtitle}}
+                        <span class="subtitle">{{member.subtitle}}</span>
+                    {{/if}}
+                </header>
+                {{#if @root.showStats}}
                     <section class="body">
                         <section class="resources">
                             {{#unless (or (eq member.type 'companion') (eq member.type 'npc')) }}
@@ -160,29 +166,10 @@
                             </div>
                         {{/if}}
                     </section>
-                </li>
-            {{/each}}
-        </ul>
-    {{else}}
-        <ul class="actors-list limited">
-            {{#each partyMembers as |member id|}}
-                <li class="actor-resources">
-                    <div class="actor-img-frame">
-                        <img class="actor-img" src="{{member.img}}">
-                    </div>
-                    <header>
-                        <h2 class="actor-name">
-                            <a data-action="openDocument" data-uuid="{{member.uuid}}">{{member.name}}</a>
-                            <a class="delete-icon" data-action="deletePartyMember" data-uuid="{{member.uuid}}"><i class="fa-regular fa-times" inert></i></a>
-                        </h2>
-                        {{#if member.subtitle}}
-                            <span class="subtitle">{{member.subtitle}}</span>
-                        {{/if}}
-                    </header>
-                </li>
-            {{/each}}
-        </ul>
-    {{/if}}
+                {{/if}}
+            </li>
+        {{/each}}
+    </ul>
     {{#unless document.system.partyMembers.length}}
         <div class="actors-dragger">
             <span>{{localize "DAGGERHEART.GENERAL.dropActorsHere"}}</span>

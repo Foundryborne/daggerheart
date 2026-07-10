@@ -57,23 +57,17 @@
       "name": "Bone Touched",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.traits.agility.value",
+            "mode": 2,
+            "value": "1",
+            "priority": null
+          }
+        ]
       },
       "_id": "P6hYkkI64FqIcMoP",
       "img": "icons/magic/death/bones-crossed-orange.webp",
-      "changes": [
-        {
-          "key": "system.traits.agility.value",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

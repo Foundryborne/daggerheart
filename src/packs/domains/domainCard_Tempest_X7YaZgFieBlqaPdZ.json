@@ -290,12 +290,6 @@
       "_id": "oqPY3I9oO9J6l5Aj",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [],
         "duration": {
           "type": "temporary"
@@ -338,12 +332,6 @@
       "_id": "tB7AyDy0pbE9q5hM",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": []
       },
       "disabled": false,
@@ -374,12 +362,6 @@
       "_id": "S4Vpgf3FMmq8MGrb",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": []
       },
       "disabled": false,

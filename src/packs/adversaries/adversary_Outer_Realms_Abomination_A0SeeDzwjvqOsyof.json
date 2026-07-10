@@ -313,21 +313,15 @@
           "_id": "rpkjVdlJYI5dB99B",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.disadvantageSources",
+                "mode": 2,
+                "value": "On your next action roll.",
+                "priority": null
+              }
+            ]
           },
-          "changes": [
-            {
-              "key": "system.disadvantageSources",
-              "mode": 2,
-              "value": "On your next action roll.",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,
@@ -445,12 +439,6 @@
           "_id": "edEZER9ImWicMwRb",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": [],
             "duration": {
               "type": "scene"

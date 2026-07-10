@@ -375,21 +375,15 @@
           "_id": "w5VTwlHmUjl8XCQ4",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.advantageSources",
+                "mode": 2,
+                "value": "Attacks made while Hidden",
+                "priority": null
+              }
+            ]
           },
-          "changes": [
-            {
-              "key": "system.advantageSources",
-              "mode": 2,
-              "value": "Attacks made while Hidden",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,

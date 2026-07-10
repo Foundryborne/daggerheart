@@ -234,23 +234,17 @@
           "name": "Punish the Guilty",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.rules.attack.damage.hpDamageMultiplier",
+                "mode": 5,
+                "value": "2",
+                "priority": null
+              }
+            ]
           },
           "_id": "ID85zoIa5GfhNMti",
           "img": "icons/magic/control/buff-flight-wings-runes-red-yellow.webp",
-          "changes": [
-            {
-              "key": "system.rules.attack.damage.hpDamageMultiplier",
-              "mode": 5,
-              "value": "2",
-              "priority": null
-            }
-          ],
           "disabled": true,
           "duration": {
             "startTime": null,

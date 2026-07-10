@@ -329,12 +329,6 @@
           "_id": "d7sB1Qa1kJMnglqu",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": [
               {
                 "key": "system.rules.attack.damage.hpDamageTakenMultiplier",

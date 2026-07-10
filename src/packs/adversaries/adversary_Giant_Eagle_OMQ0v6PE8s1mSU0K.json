@@ -265,23 +265,17 @@
           "name": "Flying",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.difficulty",
+                "mode": 2,
+                "value": "3",
+                "priority": null
+              }
+            ]
           },
           "_id": "odAyKY0BSAkcO3Dd",
           "img": "icons/creatures/birds/raptor-hawk-flying.webp",
-          "changes": [
-            {
-              "key": "system.difficulty",
-              "mode": 2,
-              "value": "3",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,
@@ -425,12 +419,6 @@
           "_id": "m6qqQZxukDPVcGdQ",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": [],
             "duration": {
               "type": "act"
@@ -579,14 +567,8 @@
           "_id": "Sd34xywRqiF5w9sX",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": []
           },
-          "changes": [],
           "disabled": false,
           "duration": {
             "startTime": null,

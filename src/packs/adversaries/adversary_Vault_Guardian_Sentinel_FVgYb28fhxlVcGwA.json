@@ -297,21 +297,15 @@
           "_id": "Fo5bLYlmYGtQFAGg",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.disadvantageSources",
+                "mode": 2,
+                "value": "On attack rolls while you're within Very Close range of the Sentinel",
+                "priority": null
+              }
+            ]
           },
-          "changes": [
-            {
-              "key": "system.disadvantageSources",
-              "mode": 2,
-              "value": "On attack rolls while you're within Very Close range of the Sentinel",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,

@@ -113,21 +113,21 @@
       "name": "Paired",
       "description": "<p>Add this Secondary Weapon's tier + 1 to your primary weapon against targets within Melee range</p>",
       "img": "icons/skills/melee/weapons-crossed-swords-yellow-teal.webp",
-      "changes": [
-        {
-          "key": "system.bonuses.damage.primaryWeapon.bonus",
-          "mode": 2,
-          "value": "ITEM.@system.tier + 1",
-          "priority": null
-        }
-      ],
       "system": {
         "rangeDependence": {
           "enabled": true,
           "range": "melee",
           "target": "hostile",
           "type": "withinRange"
-        }
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.damage.primaryWeapon.bonus",
+            "mode": 2,
+            "value": "ITEM.@system.tier + 1",
+            "priority": null
+          }
+        ]
       },
       "_id": "djNtNpasgNDRP8Dd",
       "type": "base",

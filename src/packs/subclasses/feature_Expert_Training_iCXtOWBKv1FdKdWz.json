@@ -21,23 +21,17 @@
       "name": "Expert Training",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.companionData.levelupChoices",
+            "mode": 2,
+            "value": "1",
+            "priority": null
+          }
+        ]
       },
       "_id": "rknTONvaUDZ2Yz1W",
       "img": "icons/creatures/mammals/dog-husky-white-blue.webp",
-      "changes": [
-        {
-          "key": "system.companionData.levelupChoices",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

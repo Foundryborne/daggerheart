@@ -240,23 +240,17 @@
           "name": "Warped Fortitude",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.resistance.physical.resistance",
+                "mode": 5,
+                "value": "1",
+                "priority": null
+              }
+            ]
           },
           "_id": "3QLH2EEtcUEZolFz",
           "img": "icons/creatures/magical/humanoid-silhouette-glowing-pink.webp",
-          "changes": [
-            {
-              "key": "system.resistance.physical.resistance",
-              "mode": 5,
-              "value": "1",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,
@@ -309,23 +303,17 @@
           "name": "Overwhelm",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.rules.attack.damage.hpDamageMultiplier",
+                "mode": 5,
+                "value": "2",
+                "priority": null
+              }
+            ]
           },
           "_id": "eGB9G0ljYCcdGbOx",
           "img": "icons/skills/melee/strike-slashes-orange.webp",
-          "changes": [
-            {
-              "key": "system.rules.attack.damage.hpDamageMultiplier",
-              "mode": 5,
-              "value": "2",
-              "priority": null
-            }
-          ],
           "disabled": true,
           "duration": {
             "startTime": null,

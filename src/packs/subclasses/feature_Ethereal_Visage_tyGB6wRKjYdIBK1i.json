@@ -21,23 +21,17 @@
       "name": "Ethereal Visage",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.advantageSources",
+            "mode": 2,
+            "value": "Presence rolls while flying",
+            "priority": null
+          }
+        ]
       },
       "_id": "Ns1DcQ8wo47LhlL3",
       "img": "icons/magic/holy/saint-glass-portrait-halo.webp",
-      "changes": [
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Presence rolls while flying",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

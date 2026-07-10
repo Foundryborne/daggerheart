@@ -141,21 +141,15 @@
       "_id": "FoBFRSXRfGa1zkiX",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "any",
-          "range": "self"
-        }
+        "changes": [
+          {
+            "key": "system.proficiency",
+            "mode": 2,
+            "value": "1",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.proficiency",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -184,12 +178,6 @@
       "_id": "bGwFZZT4juuaIRmZ",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "veryFar"
-        },
         "changes": [],
         "duration": {
           "type": "temporary"
@@ -232,21 +220,15 @@
       "_id": "edF2zvvlcGf54r2n",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "any",
-          "range": "self"
-        }
+        "changes": [
+          {
+            "key": "system.evasion",
+            "mode": 2,
+            "value": "1",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.evasion",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -275,14 +257,8 @@
       "_id": "p5FoUb4JKQFP405d",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": []
       },
-      "changes": [],
       "disabled": false,
       "duration": {
         "startTime": null,

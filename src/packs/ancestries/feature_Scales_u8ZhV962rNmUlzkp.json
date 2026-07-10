@@ -24,21 +24,15 @@
       "_id": "b6Pkwwk7pgBeeUTe",
       "img": "icons/commodities/leather/scales-brown.webp",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.rules.damageReduction.stressDamageReduction.severe.cost",
+            "mode": 5,
+            "value": "1",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.rules.damageReduction.stressDamageReduction.severe.cost",
-          "mode": 5,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

@@ -390,7 +390,7 @@ const updateActorsRangeDependentEffects = async token => {
     ).rangeMeasurement;
 
     for (let effect of token.actor?.allApplicableEffects() ?? []) {
-        if (!effect.system.rangeDependence?.enabled) continue;
+        if (!effect.system.rangeDependence) continue;
         const { target, range, type } = effect.system.rangeDependence;
 
         // If there are no targets, assume false. Otherwise, start with the effect enabled.

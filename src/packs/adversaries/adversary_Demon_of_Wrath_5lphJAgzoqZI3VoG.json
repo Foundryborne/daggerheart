@@ -319,12 +319,6 @@
           "_id": "gFeHLGgeRoDdd3VG",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": [
               {
                 "key": "system.rules.dualityRoll.defaultFearDice",

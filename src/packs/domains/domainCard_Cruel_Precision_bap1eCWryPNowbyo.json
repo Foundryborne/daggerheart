@@ -23,29 +23,23 @@
       "name": "Cruel Precision (Agi)",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.damage.primaryWeapon.bonus",
+            "mode": 2,
+            "value": "@system.traits.agility.value",
+            "priority": 21
+          },
+          {
+            "key": "system.bonuses.damage.secondaryWeapon.bonus",
+            "mode": 2,
+            "value": "@system.traits.agility.value",
+            "priority": 21
+          }
+        ]
       },
       "_id": "t5D10AL2W9LMGsX4",
       "img": "icons/skills/melee/strike-dagger-arcane-pink.webp",
-      "changes": [
-        {
-          "key": "system.bonuses.damage.primaryWeapon.bonus",
-          "mode": 2,
-          "value": "@system.traits.agility.value",
-          "priority": 21
-        },
-        {
-          "key": "system.bonuses.damage.secondaryWeapon.bonus",
-          "mode": 2,
-          "value": "@system.traits.agility.value",
-          "priority": 21
-        }
-      ],
       "disabled": true,
       "duration": {
         "startTime": null,
@@ -72,29 +66,23 @@
       "name": "Cruel Precision (Fin)",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.damage.primaryWeapon.bonus",
+            "mode": 2,
+            "value": "@system.traits.finesse.value",
+            "priority": null
+          },
+          {
+            "key": "system.bonuses.damage.secondaryWeapon.bonus",
+            "mode": 2,
+            "value": "@system.traits.finesse.value",
+            "priority": null
+          }
+        ]
       },
       "_id": "Ha7c4XgmN5zGMSHG",
       "img": "icons/skills/melee/strike-dagger-arcane-pink.webp",
-      "changes": [
-        {
-          "key": "system.bonuses.damage.primaryWeapon.bonus",
-          "mode": 2,
-          "value": "@system.traits.finesse.value",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.secondaryWeapon.bonus",
-          "mode": 2,
-          "value": "@system.traits.finesse.value",
-          "priority": null
-        }
-      ],
       "disabled": true,
       "duration": {
         "startTime": null,

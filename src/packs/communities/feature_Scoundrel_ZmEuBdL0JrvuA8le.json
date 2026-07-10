@@ -24,33 +24,27 @@
       "_id": "snkYmZ22Q8HHLY9M",
       "img": "icons/equipment/head/hood-cloth-teal-gold.webp",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.advantageSources",
+            "mode": 2,
+            "value": "Negotiate with criminals",
+            "priority": null
+          },
+          {
+            "key": "system.advantageSources",
+            "mode": 2,
+            "value": "Detect lies",
+            "priority": null
+          },
+          {
+            "key": "system.advantageSources",
+            "mode": 2,
+            "value": "Find a safe place to hide",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Negotiate with criminals",
-          "priority": null
-        },
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Detect lies",
-          "priority": null
-        },
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Find a safe place to hide",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

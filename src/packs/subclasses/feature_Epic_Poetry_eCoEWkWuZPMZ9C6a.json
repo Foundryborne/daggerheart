@@ -20,23 +20,17 @@
       "name": "Rally:d10",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.rally",
+            "mode": 5,
+            "value": "d10",
+            "priority": null
+          }
+        ]
       },
       "_id": "RSmscgGyuHJucF6C",
       "img": "icons/sundries/documents/document-letter-blue.webp",
-      "changes": [
-        {
-          "key": "system.bonuses.rally",
-          "mode": 5,
-          "value": "d10",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

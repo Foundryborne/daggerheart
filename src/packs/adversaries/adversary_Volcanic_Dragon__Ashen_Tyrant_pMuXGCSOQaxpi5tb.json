@@ -376,23 +376,17 @@
           "name": "Injured Wings",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.difficulty",
+                "mode": 2,
+                "value": "1",
+                "priority": null
+              }
+            ]
           },
           "_id": "zCi90lgFAaA7yrJG",
           "img": "icons/commodities/biological/wing-green.webp",
-          "changes": [
-            {
-              "key": "system.difficulty",
-              "mode": 2,
-              "value": "1",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,
@@ -873,12 +867,6 @@
           "_id": "YUjdwrEZ4zn7WR9X",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": [],
             "duration": {
               "type": "temporary",
