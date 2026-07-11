@@ -334,24 +334,25 @@ export async function runMigrations() {
 
         const batch = [];
         for (const actor of game.actors) {
-            const updates = [];
             for (const item of actor.items) {
+                const updates = [];
                 for (const effect of item.effects) { 
-                    const changes = handler.updateEffect(effect.toObject(), effect.parent);
-                    if (changes) updates.push(changes);
+                    const update = await handler.updateEffect(effect.toObject(), effect.parent);
+                    if (update) {
+                        updates.push(update);
+                    }
                 }
+
                 if (updates.length) {
-                    batch.push({
-                        action: 'update',
-                        documentName: 'ActiveEffect',
-                        updates: [updates],
-                        parent: item
-                    });
+                    batch.push({ item, updates });
                 }
             }
         }
 
-        await foundry.documents.modifyBatch(batch);
+        for (const updateData of batch) {
+            await updateData.item.updateEmbeddedDocuments('ActiveEffect', updateData.updates);
+        }
+
         progress.advance({ by: 5 });
 
         lastMigrationVersion = '2.5.2';
