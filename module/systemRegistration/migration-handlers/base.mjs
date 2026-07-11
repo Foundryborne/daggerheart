@@ -1,4 +1,8 @@
 /** 
+ * @import DHItem from "../../documents/item.mjs";
+ */
+
+/** 
  * The base class of an async migration. 
  * These are generally run between versions for things that require compendiums or must be done in post.
  * The migrate() functions calls the various updateXSource() functions.
@@ -6,6 +10,17 @@
  */
 export class MigrationHandlerBase {
     version = null;
+
+    /**
+     * Gets change data for an active effect's source, or null if no changes
+     * @param {object} effectSource 
+     * @param {DHItem} item 
+     * @returns {Promise<object>}
+     * @protected
+     */
+    async updateActiveEffectSource(effectSource, item) {
+        return null;
+    }
 
     async migrate() {
         // todo: handle migrations, but have a way for a migration handler to specify if migrations are handled
@@ -33,7 +48,7 @@ export class MigrationHandlerBase {
         const updateItem = async item => {
             const itemUpdates = [];
             for (const effect of item.effects) {
-                const changes = await this.updateEffectSource(effect.toObject(), effect.parent);
+                const changes = await this.updateActiveEffectSource(effect.toObject(), item);
                 if (changes) itemUpdates.push(changes);
             }
             if (itemUpdates.length) {

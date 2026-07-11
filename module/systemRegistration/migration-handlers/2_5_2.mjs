@@ -2,14 +2,9 @@ import { MigrationHandlerBase } from './base.mjs';
 
 export class Migration_2_5_2 extends MigrationHandlerBase {
     version = '2.5.2';
-    documentNames = ['Actor', 'Item'];
 
-    /** @protected */
-    _preMigrate() {
-
-    }
-
-    async updateEffectSource(effectSource, item) {
+    /** @inheritdoc */
+    async updateActiveEffectSource(effectSource, item) {
         let shouldUpdate = false;
         const newChanges = [];
         const srdItem = item?._stats.compendiumSource ? 
