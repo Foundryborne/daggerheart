@@ -12,7 +12,6 @@ export class MigrationHandlerBase {
         // todo: handle more than just migrating effects. Right now this can only migrate effects
         // NOTE: the preload is hardcoded, we should not hardcode it
 
-        // note: last update costs as 5 on the progress
         const numActors = game.actors.length;
         const numItems = game.items.length;
         const finalUpdateProgress = 5;
