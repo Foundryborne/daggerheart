@@ -322,42 +322,18 @@ export async function runMigrations() {
         lastMigrationVersion = '2.1.0';
     }
 
-    if (foundry.utils.isNewerVersion('2.5.2', lastMigrationVersion)) {
-        const progress = game.system.api.applications.ui.DhProgress.createMigrationProgress(game.packs.size + 5);
-        for (const pack of game.packs) {
-            await pack.getDocuments();
-            progress.advance();
-        }
-
-        // todo: introduce a runner class that can handle passing on to the different update functions
-        const handler = new Migration_2_5_2();        
-
-        const batch = [];
-        for (const actor of game.actors) {
-            for (const item of actor.items) {
-                const updates = [];
-                for (const effect of item.effects) { 
-                    const update = await handler.updateEffect(effect.toObject(), effect.parent);
-                    if (update) {
-                        updates.push(update);
-                    }
-                }
-
-                if (updates.length) {
-                    batch.push({ item, updates });
-                }
-            }
-        }
-
-        for (const updateData of batch) {
-            await updateData.item.updateEmbeddedDocuments('ActiveEffect', updateData.updates);
-        }
-
-        progress.advance({ by: 5 });
-
-        lastMigrationVersion = '2.5.2';
-    }
-    //#endregion
-
     await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion, lastMigrationVersion);
+
+    /* -------------------------------------------- */
+    /*  New Style migrations below this point       */
+    /* -------------------------------------------- */
+
+    const migrations = [
+        new Migration_2_5_2()
+    ].filter(m => m.version && foundry.utils.isNewerVersion(m.version, lastMigrationVersion));
+
+    for (const handler of migrations) {
+        await handler.migrate();
+        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion, handler.version);
+    }
 }

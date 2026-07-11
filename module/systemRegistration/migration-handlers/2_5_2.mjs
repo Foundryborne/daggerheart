@@ -1,7 +1,15 @@
-export class Migration_2_5_2 {
-    version = '2.5.2';
+import { MigrationHandlerBase } from './base.mjs';
 
-    async updateEffect(effectSource, item) {
+export class Migration_2_5_2 extends MigrationHandlerBase {
+    version = '2.5.2';
+    documentNames = ['Actor', 'Item'];
+
+    /** @protected */
+    _preMigrate() {
+
+    }
+
+    async updateEffectSource(effectSource, item) {
         let shouldUpdate = false;
         const newChanges = [];
         const srdItem = item?._stats.compendiumSource ? 
