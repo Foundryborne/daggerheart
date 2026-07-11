@@ -88,7 +88,7 @@
         "changes": [
           {
             "key": "system.traits.presence.value",
-            "mode": 2,
+            "type": "add",
             "value": "@system.traits.strength.value",
             "priority": null
           }

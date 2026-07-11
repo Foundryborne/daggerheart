@@ -425,25 +425,25 @@
             "changes": [
               {
                 "key": "system.difficulty",
-                "mode": 2,
+                "type": "add",
                 "value": "0",
                 "priority": null
               },
               {
                 "key": "system.bonuses.damage.physical.bonus",
-                "mode": 2,
+                "type": "add",
                 "value": "0",
                 "priority": null
               },
               {
                 "key": "system.bonuses.damage.magical.bonus",
-                "mode": 2,
+                "type": "add",
                 "value": "0",
                 "priority": null
               },
               {
                 "key": "system.bonuses.roll.attack.bonus",
-                "mode": 2,
+                "type": "add",
                 "value": "0",
                 "priority": null
               }

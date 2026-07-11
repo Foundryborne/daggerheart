@@ -27,7 +27,7 @@
         "changes": [
           {
             "key": "system.resources.hitPoints.max",
-            "mode": 2,
+            "type": "add",
             "value": "1",
             "priority": null
           }

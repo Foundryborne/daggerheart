@@ -27,7 +27,7 @@
         "changes": [
           {
             "key": "system.advantageSources",
-            "mode": 2,
+            "type": "add",
             "value": "Agility Rolls that involve balancing and climbing",
             "priority": null
           }

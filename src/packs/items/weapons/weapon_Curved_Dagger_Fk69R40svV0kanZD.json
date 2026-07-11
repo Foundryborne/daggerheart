@@ -116,7 +116,7 @@
       "changes": [
         {
           "key": "system.rules.damage.flipMinDiceValue",
-          "mode": 5,
+          "type": "override",
           "value": "1"
         }
       ],

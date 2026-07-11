@@ -45,12 +45,12 @@
       "changes": [
         {
           "key": "system.bonuses.damage.primaryWeapon.dice",
-          "mode": 2,
+          "type": "add",
           "value": "1d4"
         },
         {
           "key": "system.bonuses.damage.secondaryWeapon.dice",
-          "mode": 2,
+          "type": "add",
           "value": "1d4"
         }
       ],

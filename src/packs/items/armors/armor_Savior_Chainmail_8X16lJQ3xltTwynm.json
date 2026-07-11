@@ -45,37 +45,37 @@
       "changes": [
         {
           "key": "system.traits.agility.value",
-          "mode": 2,
+          "type": "add",
           "value": "-1"
         },
         {
           "key": "system.traits.strength.value",
-          "mode": 2,
+          "type": "add",
           "value": "-1"
         },
         {
           "key": "system.traits.finesse.value",
-          "mode": 2,
+          "type": "add",
           "value": "-1"
         },
         {
           "key": "system.traits.instinct.value",
-          "mode": 2,
+          "type": "add",
           "value": "-1"
         },
         {
           "key": "system.traits.presence.value",
-          "mode": 2,
+          "type": "add",
           "value": "-1"
         },
         {
           "key": "system.traits.knowledge.value",
-          "mode": 2,
+          "type": "add",
           "value": "-1"
         },
         {
           "key": "system.evasion",
-          "mode": 2,
+          "type": "add",
           "value": "-1"
         }
       ],

@@ -35,13 +35,13 @@
         "changes": [
           {
             "key": "system.bonuses.damage.primaryWeapon.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "@system.traits.strength.value",
             "priority": 21
           },
           {
             "key": "system.bonuses.damage.secondaryWeapon.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "@system.traits.strength.value",
             "priority": 21
           }

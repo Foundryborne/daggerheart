@@ -186,7 +186,7 @@
             "changes": [
               {
                 "key": "system.rules.dualityRoll.defaultHopeDice",
-                "mode": 5,
+                "type": "override",
                 "value": "d10",
                 "priority": null
               }
@@ -312,13 +312,13 @@
             "changes": [
               {
                 "key": "system.bonuses.damage.physical.dice",
-                "mode": 2,
+                "type": "add",
                 "value": "1d10",
                 "priority": null
               },
               {
                 "key": "system.bonuses.damage.magical.dice",
-                "mode": 2,
+                "type": "add",
                 "value": "1d10",
                 "priority": null
               }

@@ -66,13 +66,13 @@
         "changes": [
           {
             "key": "system.bonuses.rest.shortRest.shortMoves",
-            "mode": 2,
+            "type": "add",
             "value": "1",
             "priority": null
           },
           {
             "key": "system.bonuses.rest.longRest.longMoves",
-            "mode": 2,
+            "type": "add",
             "value": "1",
             "priority": null
           }

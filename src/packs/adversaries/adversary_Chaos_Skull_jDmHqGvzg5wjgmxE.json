@@ -235,7 +235,7 @@
             "changes": [
               {
                 "key": "system.rules.conditionImmunities.restrained",
-                "mode": 5,
+                "type": "override",
                 "value": "1",
                 "priority": null
               }
@@ -298,7 +298,7 @@
             "changes": [
               {
                 "key": "system.resistance.magical.resistance",
-                "mode": 5,
+                "type": "override",
                 "value": "1",
                 "priority": null
               }

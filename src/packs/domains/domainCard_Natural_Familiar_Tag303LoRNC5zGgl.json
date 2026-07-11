@@ -142,13 +142,13 @@
         "changes": [
           {
             "key": "system.bonuses.damage.magical.dice",
-            "mode": 2,
+            "type": "add",
             "value": "d6",
             "priority": null
           },
           {
             "key": "system.bonuses.damage.physical.dice",
-            "mode": 2,
+            "type": "add",
             "value": "d6",
             "priority": null
           }

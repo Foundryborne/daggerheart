@@ -55,7 +55,7 @@
         "changes": [
           {
             "key": "system.bonuses.rally",
-            "mode": 2,
+            "type": "add",
             "value": "6 + min((floor(@system.levelData.level.current / 5)*2), 2)",
             "priority": null
           }
