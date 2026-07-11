@@ -14,35 +14,17 @@ export default class DamageRoll extends DHRoll {
     static DefaultDialog = DamageDialog;
 
     /** @inheritdoc */
-    static async buildEvaluate(roll, config = {}, message = {}) {
+    static async buildEvaluate(roll, config = {}) {
         if (config.dialog.configure === false) roll.constructFormula(config);
-        for (const roll of config.roll) await roll.roll.evaluate();
-
-        roll._evaluated = true;
-
-        const parts = [];
-        for (const rollData of config.roll) {
-            const roll = rollData.roll;
-            parts.push({
-                ...rollData,
-                ...roll.options.roll,
-                total: roll.total,
-                formula: roll.formula,
-                dice: roll.dice.map(d => ({
-                    dice: d.denomination,
-                    total: d.total,
-                    formula: d.formula,
-                    results: d.results
-                })),
-                damageTypes: [...(rollData.damageTypes ?? [])],
-                roll,
-                type: config.type,
-                modifierTotal: this.calculateTotalModifiers(roll)
-            });
-            rollData.roll = JSON.stringify(roll.toJSON());
+        
+        for (const roll of config.roll) {
+            await roll.roll.evaluate();
+            config.damage.types[roll.applyTo] = { 
+                roll: roll.roll,
+                damageTypes: roll.damageTypes ?? [],
+                type: config.type 
+            };
         }
-
-        config.damage = this.unifyDamageRoll(parts);
     }
 
     static async buildPost(roll, config, message) {
@@ -54,7 +36,7 @@ export default class DamageRoll extends DHRoll {
         if (game.modules.get('dice-so-nice')?.active) {
             config.mute = true;
             const pool = foundry.dice.terms.PoolTerm.fromRolls(
-                Object.values(config.damage).flatMap(r => r.parts.map(p => p.roll))
+                Object.values(config.damage.types).map(x => x.roll)
             );
             diceRolls.push(Roll.fromTerms([pool]));
         }
@@ -66,20 +48,11 @@ export default class DamageRoll extends DHRoll {
         await super.buildPost(roll, config, message);
 
         if (config.source?.message) {
-            chatMessage.update({ 'system.damage': config.damage });
+            chatMessage.update({ 'system.damage': {
+                ...config.damage.toObject(),
+                types: config.damage.types
+            }});
         }
-    }
-
-    static unifyDamageRoll(rolls) {
-        const unified = {};
-        rolls.forEach(r => {
-            const resource = unified[r.applyTo] ?? { formula: '', total: 0, parts: [] };
-            resource.formula += `${resource.formula !== '' ? ' + ' : ''}${r.formula}`;
-            resource.total += r.total;
-            resource.parts.push(r);
-            unified[r.applyTo] = resource;
-        });
-        return unified;
     }
 
     static formatGlobal(rolls) {

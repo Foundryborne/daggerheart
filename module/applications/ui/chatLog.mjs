@@ -183,13 +183,8 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             total = message.rolls.reduce((a, c) => a + Roll.fromJSON(c).total, 0),
             damages = {
                 hitPoints: {
-                    parts: [
-                        {
-                            applyTo: 'hitPoints',
-                            damageTypes: [],
-                            total
-                        }
-                    ]
+                    damageTypes: [],
+                    roll: { total }
                 }
             },
             targets = Array.from(game.user.targets);
@@ -259,23 +254,14 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         const target = event.target.closest('[data-die-index]');
 
         if (target.dataset.type === 'damage') {
-            const { damageType, part, dice, result } = target.dataset;
-            const damagePart = message.system.damage[damageType].parts[part];
-            const { parsedRoll, rerolledDice } = await game.system.api.dice.DamageRoll.reroll(damagePart, dice, result);
-            const damageParts = message.system.damage[damageType].parts.map((damagePart, index) => {
-                if (index !== Number(part)) return damagePart;
-                return {
-                    ...damagePart,
-                    total: parsedRoll.total,
-                    dice: rerolledDice
-                };
-            });
-            const updateMessage = game.messages.get(message._id);
-            await updateMessage.update({
-                [`system.damage.${damageType}`]: {
-                    total: parsedRoll.total,
-                    parts: damageParts
-                }
+            const { damageType, dice } = target.dataset;
+            await message.system.damage.rerollDamageDice(damageType, dice);
+            await message.update({
+                'system.damage.types': {
+                    [damageType]: {
+                        roll: message.system.damage.types[damageType].roll.toJSON()
+                    }
+                } 
             });
         } else {
             const rerollDice = message.system.roll.dice[target.dataset.dieIndex];

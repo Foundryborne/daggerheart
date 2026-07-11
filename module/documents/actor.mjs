@@ -659,15 +659,13 @@ export default class DhpActor extends Actor {
         const updates = [];
 
         Object.entries(damages).forEach(([key, damage]) => {
-            damage.parts.forEach(part => {
-                if (part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id)
-                    part.total = this.calculateDamage(part.total, part.damageTypes);
-                const update = updates.find(u => u.key === key);
-                if (update) {
-                    update.value += part.total;
-                    update.damageTypes.add(...new Set(part.damageTypes));
-                } else updates.push({ value: part.total, key, damageTypes: new Set(part.damageTypes) });
-            });
+            if (key === CONFIG.DH.GENERAL.healingTypes.hitPoints.id)
+                damage.roll.total = this.calculateDamage(damage.roll.total, damage.damageTypes);
+            const update = updates.find(u => u.key === key);
+            if (update) {
+                update.value += damage.roll.total;
+                update.damageTypes.add(...new Set(damage.damageTypes));
+            } else updates.push({ value: damage.roll.total, key, damageTypes: new Set(damage.damageTypes) });
         });
 
         if (Hooks.call(`${CONFIG.DH.id}.postCalculateDamage`, this, damages) === false) return null;
@@ -772,11 +770,9 @@ export default class DhpActor extends Actor {
 
         const updates = [];
         Object.entries(healings).forEach(([key, healing]) => {
-            healing.parts.forEach(part => {
-                const update = updates.find(u => u.key === key);
-                if (update) update.value += part.total;
-                else updates.push({ value: part.total, key });
-            });
+            const update = updates.find(u => u.key === key);
+            if (update) update.value += healing.roll.total;
+            else updates.push({ value: healing.roll.total, key });
         });
 
         updates.forEach(

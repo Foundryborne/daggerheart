@@ -111,16 +111,17 @@ export default class DamageField extends fields.SchemaField {
                 : actor.prototypeToken;
             if (config.hasHealing)
                 damagePromises.push(
-                    actor.takeHealing(config.damage).then(updates => targetDamage.push({ token, updates }))
+                    actor.takeHealing(config.damage.types).then(updates => targetDamage.push({ token, updates }))
                 );
             else {
-                const configDamage = foundry.utils.deepClone(config.damage);
+                const configDamage = foundry.utils.deepClone(config.damage.types);
                 const hpDamageMultiplier = config.actionActor?.system.rules?.attack?.damage?.hpDamageMultiplier ?? 1;
                 const hpDamageTakenMultiplier = actor.system.rules?.attack?.damage?.hpDamageTakenMultiplier;
                 if (configDamage.hitPoints) {
-                    for (const part of configDamage.hitPoints.parts) {
-                        part.total = Math.ceil(part.total * hpDamageMultiplier * hpDamageTakenMultiplier);
-                    }
+                    configDamage.hitPoints.roll = configDamage.hitPoints.roll.toJSON();
+                    configDamage.hitPoints.roll.total = Math.ceil(
+                        configDamage.hitPoints.roll.total * hpDamageMultiplier * hpDamageTakenMultiplier
+                    );
                 }
 
                 damagePromises.push(

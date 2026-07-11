@@ -29,6 +29,60 @@ export const originItemField = () =>
         actionIndex: new fields.StringField()
     });
 
+class ChatMessageRollDamage extends foundry.abstract.DataModel {
+    static defineSchema() {
+        return {
+            types: new fields.TypedObjectField(new fields.SchemaField({
+                roll: new fields.JSONField({validate: ChatMessageRollDamage.#validateRoll}),
+                damageTypes: new fields.ArrayField(new fields.StringField({ choices: CONFIG.DH.GENERAL.damageTypes })),
+                type: new fields.StringField()
+            }))
+        };
+    }
+
+    get active() {
+        return Boolean(Object.keys(this.types).length);
+    }
+
+    static #validateRoll(rollJSON) {
+        const roll = JSON.parse(rollJSON);
+        if (!roll.evaluated) throw new Error('Roll objects added to ChatMessage documents must be evaluated');
+    }
+
+    prepareRolls() {
+        for (const key of Object.keys(this.types)) {
+            const type = this.types[key];
+            try {
+                const roll = Roll.fromData(type.roll);
+                type.roll = roll;
+                type.roll.modifierTotal = CONFIG.Dice.daggerheart.DHRoll.calculateTotalModifiers(roll);
+            } catch {}
+        }
+    }
+
+    async rerollDamageDice(damageType, dice) {
+        const reroll = this.types[damageType].roll;
+        const rerollDice = reroll.dice[dice];
+        await rerollDice.reroll(`/r1=${rerollDice.total}`);
+        await reroll._evaluate();
+
+        const result = rerollDice.results.find(x => x.active);
+        if (result) {
+            const fakeRoll = {
+                _evaluated: true,
+                dice: [new foundry.dice.terms.Die({
+                    ...rerollDice,
+                    results: [result],
+                    total: result.value,
+                    faces: rerollDice.faces
+                })],
+                options: { appearance: {} }
+            };
+            await triggerChatRollFx([fakeRoll]);
+        }
+    }
+}
+
 export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     static defineSchema() {
         return {
@@ -49,7 +103,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
                 originItem: originItemField(),
                 action: new fields.StringField()
             }),
-            damage: new fields.ObjectField(),
+            damage: new fields.EmbeddedDataField(ChatMessageRollDamage),
             damageOptions: new fields.ObjectField(),
             costs: new fields.ArrayField(new fields.ObjectField()),
             successConsumed: new fields.BooleanField({ initial: false })
@@ -134,27 +188,35 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
 
     /* TODO: Change how damage data is stored somehow to enable better rerolling */
     async getRerolledDamage() {
-        if (!this.damage) return;
+        if (!this.damage.active) return;
 
         const rerolls = [];
-        const update = { system: { damage: {} } };
-        for (const partKey in this.damage) {
-            const part = this.damage[partKey];
-            const testRoll = Roll.fromData(part.parts[0].roll);
-            const rerolled = await testRoll.reroll();
-            rerolls.push(rerolled);
-
-            if (!update.system.damage[partKey]) update.system.damage[partKey] = { parts: [part.parts[0]] };
-            const partData = update.system.damage[partKey].parts[0];
-            update.system.damage[partKey].total = rerolled.total;
-            partData.modifierTotal = rerolled.terms.reduce((acc, x) => {
-                if (x.isDeterministic && !x.operator) acc += x.total;
-                return acc;
-            }, 0);
-            partData.dice = rerolled.dice.map(d => ({ ...d.toJSON(), dice: d.denomination }));
-            partData.total = rerolled.total;
-            partData.roll = rerolled.toJSON();
+        const update = { system: { damage: { types: {} } } };
+        for (const key of Object.keys(this.damage.types)) {
+            const type = this.damage.types[key];
+            const reroll = await type.roll.reroll();
+            rerolls.push(reroll);
+            update.system.damage.types[key] = { roll: reroll.toJSON() };
         }
+
+        // const update = { system: { damage: {} } };
+        // for (const partKey in this.damage) {
+        //     const part = this.damage[partKey];
+        //     const testRoll = Roll.fromData(part.parts[0].roll);
+        //     const rerolled = await testRoll.reroll();
+        //     rerolls.push(rerolled);
+
+        //     if (!update.system.damage[partKey]) update.system.damage[partKey] = { parts: [part.parts[0]] };
+        //     const partData = update.system.damage[partKey].parts[0];
+        //     update.system.damage[partKey].total = rerolled.total;
+        //     partData.modifierTotal = rerolled.terms.reduce((acc, x) => {
+        //         if (x.isDeterministic && !x.operator) acc += x.total;
+        //         return acc;
+        //     }, 0);
+        //     partData.dice = rerolled.dice.map(d => ({ ...d.toJSON(), dice: d.denomination }));
+        //     partData.total = rerolled.total;
+        //     partData.roll = rerolled.toJSON();
+        // }
 
         await triggerChatRollFx(rerolls);
 
@@ -175,6 +237,8 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     }
 
     prepareDerivedData() {
+        this.damage.prepareRolls();
+
         if (this.hasTarget) {
             this.hasHitTarget = this.targets.filter(t => t.hit === true).length > 0;
             this.currentTargets = this.getTargetList();
