@@ -1,4 +1,5 @@
 import { defaultRestOptions } from '../config/generalConfig.mjs';
+import { Migration_2_5_2 } from './migration-handlers/2_5_2.mjs';
 
 export async function runMigrations() {
     let lastMigrationVersion = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion);
@@ -328,41 +329,19 @@ export async function runMigrations() {
             progress.advance();
         }
 
+        // todo: introduce a runner class that can handle passing on to the different update functions
+        const handler = new Migration_2_5_2();        
+
         const batch = [];
         for (const actor of game.actors) {
             for (const item of actor.items) {
                 for (const effect of item.effects) { 
-                    let shouldUpdate = false;
-                    const newChanges = [];
-                    const srdItem = item._stats.compendiumSource ? 
-                        await foundry.utils.fromUuid(item._stats.compendiumSource) : 
-                        null;
-                    for (let i = 0; i < effect.system.changes.length; i++) {
-                        const change = effect.system.changes[i];
-                        const srdEffect = srdItem?.effects.find(x => x.name === effect.name);
-                        if (change.type === 'custom') {
-                            const srdChange = srdEffect ? srdEffect.system.changes[i] : null;
-                            if (
-                                change.key === srdChange.key && 
-                                change.value === srdChange.value && 
-                                change.type !== srdChange.type
-                            ) {
-                                shouldUpdate = true;
-                                newChanges.push(srdChange);
-                            }
-                        } else {
-                            newChanges.push(change);
-                        }
-                    }
-
-                    if (shouldUpdate) {
+                    const changes = handler.updateEffect(effect.toObject(), effect.parent);
+                    if (changes) {
                         batch.push({
                             action: 'update',
                             documentName: 'ActiveEffect',
-                            updates: [{
-                                _id: effect.id,
-                                system: { changes: newChanges }
-                            }],
+                            updates: [changes],
                             parent: item
                         });
                     }
