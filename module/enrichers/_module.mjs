@@ -35,23 +35,24 @@ export const enricherConfig = [
 ];
 
 export const enricherRenderSetup = element => {
+    const clickWrapper = func => event => {
+        event.stopPropagation();
+        func(event);
+    };   
+
     element
         .querySelectorAll('.enriched-damage-button')
-        .forEach(element => element.addEventListener('click', renderDamageButton));
+        .forEach(element => element.addEventListener('click', clickWrapper(renderDamageButton)));
 
     element
         .querySelectorAll('.duality-roll-button')
-        .forEach(element => element.addEventListener('click', renderDualityButton));
+        .forEach(element => element.addEventListener('click', clickWrapper(renderDualityButton)));
 
     element
         .querySelectorAll('.fate-roll-button')
-        .forEach(element => element.addEventListener('click', renderFateButton));
+        .forEach(element => element.addEventListener('click', clickWrapper(renderFateButton)));
 
     element
         .querySelectorAll('.measured-template-button')
-        .forEach(element => element.addEventListener('click', renderMeasuredTemplate));
-
-    // element
-    //     .querySelectorAll('.enriched-effect')
-    //     .forEach(element => element.addEventListener('dragstart', dragEnrichedEffect));
+        .forEach(element => element.addEventListener('click', clickWrapper(renderMeasuredTemplate)));
 };
