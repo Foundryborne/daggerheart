@@ -34,8 +34,7 @@ class ChatMessageRollDamage extends foundry.abstract.DataModel {
         return {
             types: new fields.TypedObjectField(new fields.SchemaField({
                 roll: new fields.JSONField({validate: ChatMessageRollDamage.#validateRoll}),
-                damageTypes: new fields.ArrayField(new fields.StringField({ choices: CONFIG.DH.GENERAL.damageTypes })),
-                type: new fields.StringField()
+                damageTypes: new fields.ArrayField(new fields.StringField({ choices: CONFIG.DH.GENERAL.damageTypes }))
             }))
         };
     }
@@ -242,6 +241,24 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         this.canButtonApply = game.user.isGM; //temp
         this.isGM = game.user.isGM; //temp
     }
+
+    static migrateData(source) {
+        if (source.hasDamage && !source.damage.types) {
+            source.damage = {
+                types: Object.keys(source.damage).reduce((acc, key) => {
+                    const damageData = source.damage[key];
+                    acc[key] = {
+                        roll: damageData.parts[0]?.roll ?? null,
+                        damageTypes: damageData.parts[0]?.damageTypes ?? []
+                    };
+                    return acc;
+                }, {})
+            }; 
+        }
+        
+        return source;
+    }
+
 
     getTargetList() {
         const targets =

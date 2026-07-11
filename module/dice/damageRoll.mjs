@@ -21,8 +21,7 @@ export default class DamageRoll extends DHRoll {
             await roll.roll.evaluate();
             config.damage.types[roll.applyTo] = { 
                 roll: roll.roll,
-                damageTypes: roll.damageTypes ?? [],
-                type: config.type 
+                damageTypes: roll.damageTypes ?? []
             };
         }
     }
