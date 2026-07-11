@@ -334,17 +334,19 @@ export async function runMigrations() {
 
         const batch = [];
         for (const actor of game.actors) {
+            const updates = [];
             for (const item of actor.items) {
                 for (const effect of item.effects) { 
                     const changes = handler.updateEffect(effect.toObject(), effect.parent);
-                    if (changes) {
-                        batch.push({
-                            action: 'update',
-                            documentName: 'ActiveEffect',
-                            updates: [changes],
-                            parent: item
-                        });
-                    }
+                    if (changes) updates.push(changes);
+                }
+                if (updates.length) {
+                    batch.push({
+                        action: 'update',
+                        documentName: 'ActiveEffect',
+                        updates: [updates],
+                        parent: item
+                    });
                 }
             }
         }
