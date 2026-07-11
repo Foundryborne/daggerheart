@@ -89,7 +89,7 @@
         "changes": [
           {
             "key": "system.bonuses.roll.spellcast.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "@system.proficiency",
             "priority": null
           }

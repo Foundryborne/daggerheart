@@ -45,7 +45,7 @@
       "changes": [
         {
           "key": "system.resistance.magical.reduction",
-          "mode": 2,
+          "type": "add",
           "value": "@system.armorScore",
           "priority": 21
         }

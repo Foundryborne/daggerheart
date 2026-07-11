@@ -108,7 +108,7 @@
         "changes": [
           {
             "key": "system.bonuses.roll.spellcast.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "+2",
             "priority": null
           }
@@ -149,7 +149,7 @@
         "changes": [
           {
             "key": "system.traits.agility.value",
-            "mode": 1,
+            "type": "multiply",
             "value": "2",
             "priority": null
           }
@@ -186,7 +186,7 @@
         "changes": [
           {
             "key": "system.traits.instinct.value",
-            "mode": 1,
+            "type": "multiply",
             "value": "2",
             "priority": null
           }

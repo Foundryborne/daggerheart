@@ -328,7 +328,7 @@
             "changes": [
               {
                 "key": "system.disadvantageSources",
-                "mode": 2,
+                "type": "add",
                 "value": "Agility Rolls",
                 "priority": null
               }

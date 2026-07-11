@@ -109,7 +109,7 @@
         "changes": [
           {
             "key": "system.disadvantageSources",
-            "mode": 2,
+            "type": "add",
             "value": "Attacking the goading creature",
             "priority": null
           }

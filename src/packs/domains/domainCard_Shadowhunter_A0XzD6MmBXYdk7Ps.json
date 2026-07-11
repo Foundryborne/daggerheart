@@ -57,7 +57,7 @@
         "changes": [
           {
             "key": "system.advantageSources",
-            "mode": 2,
+            "type": "add",
             "value": "Attack rolls while shrouded in low light or darkness.",
             "priority": null
           }

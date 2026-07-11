@@ -26,13 +26,13 @@
         "changes": [
           {
             "key": "system.advantageSources",
-            "mode": 2,
+            "type": "add",
             "value": "De-escalate violent situations.",
             "priority": null
           },
           {
             "key": "system.advantageSources",
-            "mode": 2,
+            "type": "add",
             "value": "Convince someone to follow your lead.",
             "priority": null
           }
@@ -69,7 +69,7 @@
         "changes": [
           {
             "key": "system.proficiency",
-            "mode": 2,
+            "type": "add",
             "value": "+1",
             "priority": null
           }

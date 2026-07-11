@@ -27,7 +27,7 @@
         "changes": [
           {
             "key": "system.rules.damageReduction.stressDamageReduction.severe.cost",
-            "mode": 5,
+            "type": "override",
             "value": "1",
             "priority": null
           }

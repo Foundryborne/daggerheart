@@ -26,13 +26,13 @@
         "changes": [
           {
             "key": "system.bonuses.damage.primaryWeapon.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "@system.traits.agility.value",
             "priority": 21
           },
           {
             "key": "system.bonuses.damage.secondaryWeapon.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "@system.traits.agility.value",
             "priority": 21
           }
@@ -69,13 +69,13 @@
         "changes": [
           {
             "key": "system.bonuses.damage.primaryWeapon.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "@system.traits.finesse.value",
             "priority": null
           },
           {
             "key": "system.bonuses.damage.secondaryWeapon.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "@system.traits.finesse.value",
             "priority": null
           }

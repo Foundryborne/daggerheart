@@ -23,13 +23,13 @@
         "changes": [
           {
             "key": "system.bonuses.damage.physical.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "@system.tier",
             "priority": null
           },
           {
             "key": "system.bonuses.damage.magical.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "@system.tier",
             "priority": null
           }

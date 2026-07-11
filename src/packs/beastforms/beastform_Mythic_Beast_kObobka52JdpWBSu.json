@@ -49,19 +49,19 @@
       "changes": [
         {
           "key": "system.bonuses.damage.physical.bonus",
-          "mode": 2,
+          "type": "add",
           "value": "9",
           "priority": null
         },
         {
           "key": "system.evasion",
-          "mode": 2,
+          "type": "add",
           "value": "3",
           "priority": null
         },
         {
           "key": "system.rules.attack.damage.diceIndex",
-          "mode": 2,
+          "type": "add",
           "value": "1",
           "priority": 60
         }

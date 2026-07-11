@@ -154,7 +154,7 @@
       "changes": [
         {
           "key": "system.evasion",
-          "mode": 2,
+          "type": "add",
           "value": "@system.armorScore",
           "priority": 21
         }

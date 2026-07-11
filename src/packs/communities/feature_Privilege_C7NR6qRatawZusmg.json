@@ -27,19 +27,19 @@
         "changes": [
           {
             "key": "system.advantageSources",
-            "mode": 2,
+            "type": "add",
             "value": "Consort with nobles",
             "priority": null
           },
           {
             "key": "system.advantageSources",
-            "mode": 2,
+            "type": "add",
             "value": "Negotiate prices",
             "priority": null
           },
           {
             "key": "system.advantageSources",
-            "mode": 2,
+            "type": "add",
             "value": "Leverage your reputation to get what you want",
             "priority": null
           }

@@ -116,7 +116,7 @@
       "changes": [
         {
           "key": "system.bonuses.damage.primaryWeapon.bonus",
-          "mode": 2,
+          "type": "add",
           "value": "@system.levelData.level.current"
         }
       ],

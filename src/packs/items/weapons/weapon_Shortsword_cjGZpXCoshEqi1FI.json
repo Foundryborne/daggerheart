@@ -123,7 +123,7 @@
         "changes": [
           {
             "key": "system.bonuses.damage.primaryWeapon.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "ITEM.@system.tier + 1",
             "priority": null
           }

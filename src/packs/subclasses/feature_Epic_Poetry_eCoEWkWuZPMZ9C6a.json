@@ -23,7 +23,7 @@
         "changes": [
           {
             "key": "system.bonuses.rally",
-            "mode": 5,
+            "type": "override",
             "value": "d10",
             "priority": null
           }

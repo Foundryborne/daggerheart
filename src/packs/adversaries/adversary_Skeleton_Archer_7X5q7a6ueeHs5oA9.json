@@ -238,7 +238,7 @@
             "changes": [
               {
                 "key": "system.rules.attack.damage.hpDamageMultiplier",
-                "mode": 5,
+                "type": "override",
                 "value": "2",
                 "priority": null
               }

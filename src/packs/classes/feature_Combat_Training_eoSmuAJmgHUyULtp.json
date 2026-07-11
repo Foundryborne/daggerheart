@@ -24,13 +24,13 @@
         "changes": [
           {
             "key": "system.bonuses.damage.physical.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "@system.levelData.level.current",
             "priority": null
           },
           {
             "key": "system.rules.burden.ignore",
-            "mode": 5,
+            "type": "override",
             "value": "1",
             "priority": null
           }

@@ -65,31 +65,31 @@
         "changes": [
           {
             "key": "system.bonuses.damage.physical.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "ORIGIN.@item.resource.value",
             "priority": null
           },
           {
             "key": "system.bonuses.damage.magical.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "ORIGIN.@item.resource.value",
             "priority": null
           },
           {
             "key": "system.rules.damageReduction.reduceSeverity.physical",
-            "mode": 2,
+            "type": "add",
             "value": "1",
             "priority": null
           },
           {
             "key": "system.rules.conditionImmunities.vulnerable",
-            "mode": 5,
+            "type": "override",
             "value": "1",
             "priority": null
           },
           {
             "key": "system.rules.conditionImmunities.restrained",
-            "mode": 5,
+            "type": "override",
             "value": "1",
             "priority": null
           }

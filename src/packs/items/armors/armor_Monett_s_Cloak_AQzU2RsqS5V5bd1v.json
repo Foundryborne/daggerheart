@@ -45,7 +45,7 @@
       "changes": [
         {
           "key": "system.rules.damageReduction.magical",
-          "mode": 5,
+          "type": "override",
           "value": "1"
         }
       ],

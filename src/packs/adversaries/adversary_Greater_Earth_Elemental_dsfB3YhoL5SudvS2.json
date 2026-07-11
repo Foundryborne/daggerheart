@@ -343,7 +343,7 @@
             "changes": [
               {
                 "key": "system.resistance.physical.reduction",
-                "mode": 2,
+                "type": "add",
                 "value": "7",
                 "priority": null
               }

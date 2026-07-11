@@ -1,4 +1,5 @@
 import { defaultRestOptions } from '../config/generalConfig.mjs';
+import { Migration_2_5_2 } from './migration-handlers/2_5_2.mjs';
 
 export async function runMigrations() {
     let lastMigrationVersion = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion);
@@ -320,7 +321,19 @@ export async function runMigrations() {
 
         lastMigrationVersion = '2.1.0';
     }
-    //#endregion
 
     await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion, lastMigrationVersion);
+
+    /* -------------------------------------------- */
+    /*  New Style migrations below this point       */
+    /* -------------------------------------------- */
+
+    const migrations = [
+        new Migration_2_5_2()
+    ].filter(m => m.version && foundry.utils.isNewerVersion(m.version, lastMigrationVersion));
+
+    for (const handler of migrations) {
+        await handler.migrate();
+        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion, handler.version);
+    }
 }

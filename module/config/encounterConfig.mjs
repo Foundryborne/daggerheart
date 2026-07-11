@@ -90,18 +90,20 @@ export const BPModifiers = {
                     name: 'DAGGERHEART.CONFIG.BPModifiers.increaseDamage.effect.name',
                     description: 'DAGGERHEART.CONFIG.BPModifiers.increaseDamage.effect.description',
                     img: 'icons/magic/control/buff-flight-wings-red.webp',
-                    changes: [
-                        {
-                            key: 'system.bonuses.damage.physical.dice',
-                            mode: 2,
-                            value: '1d4'
-                        },
-                        {
-                            key: 'system.bonuses.damage.magical.dice',
-                            mode: 2,
-                            value: '1d4'
-                        }
-                    ]
+                    system: {
+                        changes: [
+                            {
+                                key: 'system.bonuses.damage.physical.dice',
+                                type: 'add',
+                                value: '1d4'
+                            },
+                            {
+                                key: 'system.bonuses.damage.magical.dice',
+                                type: 'add',
+                                value: '1d4'
+                            }
+                        ]
+                    }
                 }
             ]
         }

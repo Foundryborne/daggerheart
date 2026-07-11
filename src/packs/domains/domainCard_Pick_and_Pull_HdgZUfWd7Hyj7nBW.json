@@ -26,19 +26,19 @@
         "changes": [
           {
             "key": "system.advantageSources",
-            "mode": 2,
+            "type": "add",
             "value": "Pick nonmagical locks",
             "priority": null
           },
           {
             "key": "system.advantageSources",
-            "mode": 2,
+            "type": "add",
             "value": "Disarm nonmagical traps",
             "priority": null
           },
           {
             "key": "system.advantageSources",
-            "mode": 2,
+            "type": "add",
             "value": "Steal items from a target (either through stealth or by force)",
             "priority": null
           }

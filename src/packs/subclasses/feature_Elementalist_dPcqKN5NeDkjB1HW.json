@@ -101,7 +101,7 @@
         "changes": [
           {
             "key": "system.bonuses.roll.action.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "+2",
             "priority": null
           }
@@ -138,13 +138,13 @@
         "changes": [
           {
             "key": "system.bonuses.damage.magical.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "+3",
             "priority": null
           },
           {
             "key": "system.bonuses.damage.physical.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "+3",
             "priority": null
           }

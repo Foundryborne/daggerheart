@@ -24,13 +24,13 @@
         "changes": [
           {
             "key": "system.damageThresholds.severe",
-            "mode": 2,
+            "type": "add",
             "value": "3",
             "priority": null
           },
           {
             "key": "system.damageThresholds.major",
-            "mode": 2,
+            "type": "add",
             "value": "3",
             "priority": null
           }

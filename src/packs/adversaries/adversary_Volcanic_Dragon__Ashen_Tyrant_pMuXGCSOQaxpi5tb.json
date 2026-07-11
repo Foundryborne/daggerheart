@@ -379,7 +379,7 @@
             "changes": [
               {
                 "key": "system.difficulty",
-                "mode": 2,
+                "type": "add",
                 "value": "1",
                 "priority": null
               }

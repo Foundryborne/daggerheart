@@ -116,7 +116,7 @@
       "changes": [
         {
           "key": "system.traits.finesse.value",
-          "mode": 2,
+          "type": "add",
           "value": "-1"
         }
       ],

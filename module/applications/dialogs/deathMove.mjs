@@ -139,13 +139,15 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
                 name: game.i18n.localize('DAGGERHEART.CONFIG.DeathMoves.blazeOfGlory.name'),
                 description: game.i18n.localize('DAGGERHEART.CONFIG.DeathMoves.blazeOfGlory.description'),
                 img: CONFIG.DH.GENERAL.deathMoves.blazeOfGlory.img,
-                changes: [
-                    {
-                        key: 'system.rules.roll.guaranteedCritical',
-                        mode: 2,
-                        value: 'true'
-                    }
-                ]
+                system: {
+                    changes: [
+                        {
+                            key: 'system.rules.roll.guaranteedCritical',
+                            type: 'add',
+                            value: 'true'
+                        }
+                    ]
+                }
             }
         ]);
 

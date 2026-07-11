@@ -53,13 +53,13 @@
         "changes": [
           {
             "key": "system.resistance.magical.resistance",
-            "mode": 5,
+            "type": "override",
             "value": "1",
             "priority": null
           },
           {
             "key": "system.resistance.physical.resistance",
-            "mode": 5,
+            "type": "override",
             "value": "1",
             "priority": null
           }

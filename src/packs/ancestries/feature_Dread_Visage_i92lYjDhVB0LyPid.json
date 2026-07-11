@@ -27,7 +27,7 @@
         "changes": [
           {
             "key": "system.advantageSources",
-            "mode": 2,
+            "type": "add",
             "value": "Dread Visage: Rolls to intimidate hostile creatures",
             "priority": null
           }

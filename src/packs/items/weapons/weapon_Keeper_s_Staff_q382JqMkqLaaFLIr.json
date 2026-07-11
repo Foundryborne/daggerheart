@@ -119,7 +119,7 @@
         "changes": [
           {
             "key": "system.bonuses.roll.primaryWeapon.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "1"
           }
         ]

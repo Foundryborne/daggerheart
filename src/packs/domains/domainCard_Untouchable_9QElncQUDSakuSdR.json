@@ -26,7 +26,7 @@
         "changes": [
           {
             "key": "system.evasion",
-            "mode": 2,
+            "type": "add",
             "value": "ceil(@system.traits.agility.value / 2)",
             "priority": 21
           }

@@ -316,7 +316,7 @@
             "changes": [
               {
                 "key": "system.disadvantageSources",
-                "mode": 2,
+                "type": "add",
                 "value": "On your next action roll.",
                 "priority": null
               }

@@ -27,19 +27,19 @@
         "changes": [
           {
             "key": "system.advantageSources",
-            "mode": 2,
+            "type": "add",
             "value": "Traverse dangerous cliffs and ledges",
             "priority": null
           },
           {
             "key": "system.advantageSources",
-            "mode": 2,
+            "type": "add",
             "value": "Navigate harsh environment",
             "priority": null
           },
           {
             "key": "system.advantageSources",
-            "mode": 2,
+            "type": "add",
             "value": "Use your survival knowledge",
             "priority": null
           }
