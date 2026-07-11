@@ -320,6 +320,61 @@ export async function runMigrations() {
 
         lastMigrationVersion = '2.1.0';
     }
+
+    if (foundry.utils.isNewerVersion('2.5.2', lastMigrationVersion)) {
+        const progress = game.system.api.applications.ui.DhProgress.createMigrationProgress(game.packs.size + 5);
+        for (const pack of game.packs) {
+            await pack.getDocuments();
+            progress.advance();
+        }
+
+        const batch = [];
+        for (const actor of game.actors) {
+            for (const item of actor.items) {
+                for (const effect of item.effects) { 
+                    let shouldUpdate = false;
+                    const newChanges = [];
+                    const srdItem = item._stats.compendiumSource ? 
+                        await foundry.utils.fromUuid(item._stats.compendiumSource) : 
+                        null;
+                    for (let i = 0; i < effect.system.changes.length; i++) {
+                        const change = effect.system.changes[i];
+                        const srdEffect = srdItem?.effects.find(x => x.name === effect.name);
+                        if (change.type === 'custom') {
+                            const srdChange = srdEffect ? srdEffect.system.changes[i] : null;
+                            if (
+                                change.key === srdChange.key && 
+                                change.value === srdChange.value && 
+                                change.type !== srdChange.type
+                            ) {
+                                shouldUpdate = true;
+                                newChanges.push(srdChange);
+                            }
+                        } else {
+                            newChanges.push(change);
+                        }
+                    }
+
+                    if (shouldUpdate) {
+                        batch.push({
+                            action: 'update',
+                            documentName: 'ActiveEffect',
+                            updates: [{
+                                _id: effect.id,
+                                system: { changes: newChanges }
+                            }],
+                            parent: item
+                        });
+                    }
+                }
+            }
+        }
+
+        await foundry.documents.modifyBatch(batch);
+        progress.advance({ by: 5 });
+
+        lastMigrationVersion = '2.5.2';
+    }
     //#endregion
 
     await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion, lastMigrationVersion);
