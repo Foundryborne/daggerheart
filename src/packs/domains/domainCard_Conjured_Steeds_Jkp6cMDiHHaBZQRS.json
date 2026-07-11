@@ -66,19 +66,19 @@
         "changes": [
           {
             "key": "system.bonuses.roll.attack.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "-2",
             "priority": null
           },
           {
             "key": "system.bonuses.damage.magical.dice",
-            "mode": 2,
+            "type": "add",
             "value": "+2",
             "priority": null
           },
           {
             "key": "system.bonuses.damage.physical.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "+2",
             "priority": null
           }

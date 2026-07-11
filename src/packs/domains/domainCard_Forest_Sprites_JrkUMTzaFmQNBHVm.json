@@ -91,7 +91,7 @@
         "changes": [
           {
             "key": "system.bonuses.roll.attack.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "+3",
             "priority": null
           }

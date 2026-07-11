@@ -324,7 +324,7 @@
             "changes": [
               {
                 "key": "system.difficulty",
-                "mode": 2,
+                "type": "add",
                 "value": "3",
                 "priority": null
               }
@@ -387,7 +387,7 @@
             "changes": [
               {
                 "key": "system.resistance.physical.resistance",
-                "mode": 5,
+                "type": "override",
                 "value": "1",
                 "priority": null
               }

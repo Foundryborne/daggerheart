@@ -27,19 +27,19 @@
         "changes": [
           {
             "key": "system.advantageSources",
-            "mode": 2,
+            "type": "add",
             "value": "Negotiate with criminals",
             "priority": null
           },
           {
             "key": "system.advantageSources",
-            "mode": 2,
+            "type": "add",
             "value": "Detect lies",
             "priority": null
           },
           {
             "key": "system.advantageSources",
-            "mode": 2,
+            "type": "add",
             "value": "Find a safe place to hide",
             "priority": null
           }

@@ -214,13 +214,13 @@
         "changes": [
           {
             "key": "system.bonuses.damage.physical.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "+5",
             "priority": null
           },
           {
             "key": "system.bonuses.damage.magical.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "+5",
             "priority": null
           }
@@ -257,13 +257,13 @@
         "changes": [
           {
             "key": "system.bonuses.damage.magical.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "+10",
             "priority": null
           },
           {
             "key": "system.bonuses.damage.physical.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "+10",
             "priority": null
           }
@@ -300,13 +300,13 @@
         "changes": [
           {
             "key": "system.bonuses.damage.magical.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "+15",
             "priority": null
           },
           {
             "key": "system.bonuses.damage.physical.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "+15",
             "priority": null
           }
@@ -343,13 +343,13 @@
         "changes": [
           {
             "key": "system.bonuses.damage.magical.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "+20",
             "priority": null
           },
           {
             "key": "system.bonuses.damage.physical.bonus",
-            "mode": 2,
+            "type": "add",
             "value": "+20",
             "priority": null
           }

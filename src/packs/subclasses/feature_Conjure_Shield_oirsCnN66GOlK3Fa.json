@@ -24,7 +24,7 @@
         "changes": [
           {
             "key": "system.evasion",
-            "mode": 2,
+            "type": "add",
             "value": "@system.proficiency",
             "priority": 21
           }

@@ -326,7 +326,7 @@
             "changes": [
               {
                 "key": "system.disadvantageSources",
-                "mode": 2,
+                "type": "add",
                 "value": "Your next action",
                 "priority": null
               }

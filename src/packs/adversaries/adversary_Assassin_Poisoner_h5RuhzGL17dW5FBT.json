@@ -338,7 +338,7 @@
             "changes": [
               {
                 "key": "system.advantageSources",
-                "mode": 2,
+                "type": "add",
                 "value": "On attacks if they are Hidden.",
                 "priority": null
               }

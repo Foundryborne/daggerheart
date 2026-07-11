@@ -13,30 +13,36 @@ export default class DamageRoll extends DHRoll {
 
     static DefaultDialog = DamageDialog;
 
+    /** @inheritdoc */
     static async buildEvaluate(roll, config = {}, message = {}) {
         if (config.dialog.configure === false) roll.constructFormula(config);
-        if (config.evaluate !== false) for (const roll of config.roll) await roll.roll.evaluate();
+        for (const roll of config.roll) await roll.roll.evaluate();
 
         roll._evaluated = true;
 
         const parts = [];
-        for (const roll of config.roll) {
-            parts.push(this.postEvaluate(roll));
-            roll.roll = JSON.stringify(roll.roll.toJSON());
+        for (const rollData of config.roll) {
+            const roll = rollData.roll;
+            parts.push({
+                ...rollData,
+                ...roll.options.roll,
+                total: roll.total,
+                formula: roll.formula,
+                dice: roll.dice.map(d => ({
+                    dice: d.denomination,
+                    total: d.total,
+                    formula: d.formula,
+                    results: d.results
+                })),
+                damageTypes: [...(rollData.damageTypes ?? [])],
+                roll,
+                type: config.type,
+                modifierTotal: this.calculateTotalModifiers(roll)
+            });
+            rollData.roll = JSON.stringify(roll.toJSON());
         }
 
         config.damage = this.unifyDamageRoll(parts);
-    }
-
-    static postEvaluate(roll, config = {}) {
-        return {
-            ...roll,
-            ...super.postEvaluate(roll.roll, config),
-            damageTypes: [...(roll.damageTypes ?? [])],
-            roll: roll.roll,
-            type: config.type,
-            modifierTotal: this.calculateTotalModifiers(roll.roll)
-        };
     }
 
     static async buildPost(roll, config, message) {

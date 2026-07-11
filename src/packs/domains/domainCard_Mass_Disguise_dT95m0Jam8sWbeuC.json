@@ -96,7 +96,7 @@
         "changes": [
           {
             "key": "system.advantageSources",
-            "mode": 2,
+            "type": "add",
             "value": "Presence Rolls to avoid scrutiny.",
             "priority": null
           }

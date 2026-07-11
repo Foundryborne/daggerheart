@@ -462,7 +462,7 @@
             "changes": [
               {
                 "key": "system.bonuses.damage.physical.bonus",
-                "mode": 2,
+                "type": "add",
                 "value": "10",
                 "priority": null
               }

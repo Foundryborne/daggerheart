@@ -27,7 +27,7 @@
         "changes": [
           {
             "key": "system.advantageSources",
-            "mode": 2,
+            "type": "add",
             "value": "History, culture, or politics of a prominent person or place",
             "priority": null
           }

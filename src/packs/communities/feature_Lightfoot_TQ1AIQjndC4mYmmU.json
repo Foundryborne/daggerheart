@@ -27,7 +27,7 @@
         "changes": [
           {
             "key": "system.advantageSources",
-            "mode": 2,
+            "type": "add",
             "value": "Move without being heard.",
             "priority": null
           }

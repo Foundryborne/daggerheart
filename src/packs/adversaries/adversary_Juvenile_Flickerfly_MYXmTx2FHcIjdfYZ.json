@@ -349,7 +349,7 @@
             "changes": [
               {
                 "key": "system.evasion",
-                "mode": 5,
+                "type": "override",
                 "value": "@system.evasion / 2",
                 "priority": 10
               }

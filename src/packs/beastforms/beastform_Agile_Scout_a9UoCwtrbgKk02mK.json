@@ -62,25 +62,25 @@
       "changes": [
         {
           "key": "system.traits.agility.value",
-          "mode": 2,
+          "type": "add",
           "value": "1",
           "priority": null
         },
         {
           "key": "system.evasion",
-          "mode": 2,
+          "type": "add",
           "value": "2",
           "priority": null
         },
         {
           "key": "system.rules.attack.damage.diceIndex",
-          "mode": 5,
+          "type": "override",
           "value": "0",
           "priority": null
         },
         {
           "key": "system.rules.attack.roll.trait",
-          "mode": 5,
+          "type": "override",
           "value": "agility",
           "priority": null
         }

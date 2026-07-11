@@ -243,7 +243,7 @@
             "changes": [
               {
                 "key": "system.resistance.physical.resistance",
-                "mode": 5,
+                "type": "override",
                 "value": "1",
                 "priority": null
               }
@@ -306,7 +306,7 @@
             "changes": [
               {
                 "key": "system.rules.attack.damage.hpDamageMultiplier",
-                "mode": 5,
+                "type": "override",
                 "value": "2",
                 "priority": null
               }

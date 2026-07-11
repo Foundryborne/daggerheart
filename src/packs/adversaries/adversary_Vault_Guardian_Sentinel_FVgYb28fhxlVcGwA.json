@@ -300,7 +300,7 @@
             "changes": [
               {
                 "key": "system.disadvantageSources",
-                "mode": 2,
+                "type": "add",
                 "value": "On attack rolls while you're within Very Close range of the Sentinel",
                 "priority": null
               }

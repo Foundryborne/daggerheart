@@ -63,7 +63,7 @@
         "changes": [
           {
             "key": "system.bonuses.damage.physical.dice",
-            "mode": 2,
+            "type": "add",
             "value": "1d8",
             "priority": null
           }
