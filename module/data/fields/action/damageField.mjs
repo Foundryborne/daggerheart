@@ -275,10 +275,18 @@ export class DHActionDiceData extends foundry.abstract.DataModel {
         };
     }
 
+    /**
+     * @returns {string} the formula associated with this damage field
+     */
     getFormula() {
-        const multiplier = this.multiplier === 'flat' ? this.flatMultiplier : `@${this.multiplier}`,
-            bonus = this.bonus ? (this.bonus < 0 ? ` - ${Math.abs(this.bonus)}` : ` + ${this.bonus}`) : '';
-        return this.custom.enabled ? this.custom.formula : `${multiplier ?? 1}${this.dice}${bonus}`;
+        if (this.custom.enabled) return this.custom.formula;
+
+        const multiplier = this.multiplier === 'flat' ? this.flatMultiplier : `@${this.multiplier}`;
+        if (!multiplier) return String(this.bonus || 0);
+
+        const dice = `${multiplier ?? 1}${this.dice}`;
+        const sign = this.bonus < 0 ? ' - ' : ' + ';
+        return this.bonus ? `${dice} ${sign} ${Math.abs(this.bonus)}` : dice;
     }
 }
 
