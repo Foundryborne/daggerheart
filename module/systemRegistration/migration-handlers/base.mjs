@@ -23,7 +23,6 @@ export class MigrationHandlerBase {
     }
 
     async migrate() {
-        // todo: handle migrations, but have a way for a migration handler to specify if migrations are handled
         // todo: handle more than just migrating effects. Right now this can only migrate effects
         // NOTE: the preload is hardcoded, we should not hardcode it
 
