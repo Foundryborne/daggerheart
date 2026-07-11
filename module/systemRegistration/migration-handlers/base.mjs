@@ -27,8 +27,8 @@ export class MigrationHandlerBase {
         // todo: handle more than just migrating effects. Right now this can only migrate effects
         // NOTE: the preload is hardcoded, we should not hardcode it
 
-        const numActors = game.actors.length;
-        const numItems = game.items.length;
+        const numActors = game.actors.size;
+        const numItems = game.items.size;
         const finalUpdateProgress = 5;
         const DhProgress = game.system.api.applications.ui.DhProgress;
         const preRunProgress = game.packs.size;
