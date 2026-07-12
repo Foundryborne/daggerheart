@@ -8,9 +8,8 @@
         {{#if (eq automationSettings.reload 'button')}}
             <div class="roll-reload-container">
                 {{#if needReload}}
-                    <p class=>{{localize "DAGGERHEART.ACTIONS.Reload.reloadRequired"}}</p>
+                    <p class='reload-warning'>{{localize "DAGGERHEART.ACTIONS.Reload.reloadRequired"}}</p>
                 {{/if}}
-                <button class="roll-reload-check" {{#if needReload}}disabled{{/if}}>{{localize "DAGGERHEART.ACTIONS.Reload.checkReload"}}</button>
             </div>
         {{/if}}
     {{/if}}
