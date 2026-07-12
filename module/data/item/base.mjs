@@ -143,7 +143,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
     /**
      * Gets the enriched and augmented description for the item.
      * @param {object} [options] - Options that modify the styling of the rendered template. { headerStyle: undefined|'none'|'large' }
-     * @returns {string}
+     * @returns {Promise<string>}
      */
     async getEnrichedDescription() {
         if (!this.metadata.hasDescription) return '';
