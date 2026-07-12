@@ -105,23 +105,17 @@
       "name": "Increase Spellcasting",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.roll.spellcast.bonus",
+            "type": "add",
+            "value": "+2",
+            "priority": null
+          }
+        ]
       },
       "_id": "7zMpgedPII5GIYUl",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
-      "changes": [
-        {
-          "key": "system.bonuses.roll.spellcast.bonus",
-          "mode": 2,
-          "value": "+2",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -152,21 +146,15 @@
       "_id": "Mmax64mlLPYxJPB7",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.traits.agility.value",
+            "type": "multiply",
+            "value": "2",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.traits.agility.value",
-          "mode": 1,
-          "value": "2",
-          "priority": null
-        }
-      ],
       "disabled": true,
       "duration": {
         "startTime": null,
@@ -195,21 +183,15 @@
       "_id": "p03IjcyigL4b2WD1",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.traits.instinct.value",
+            "type": "multiply",
+            "value": "2",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.traits.instinct.value",
-          "mode": 1,
-          "value": "2",
-          "priority": null
-        }
-      ],
       "disabled": true,
       "duration": {
         "startTime": null,

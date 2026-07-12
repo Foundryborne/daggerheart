@@ -63,21 +63,15 @@
       "_id": "qtHDKXJ1pH8Cu7by",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.advantageSources",
+            "type": "add",
+            "value": "Deceive or trick someone into believing a lie you told them",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Deceive or trick someone into believing a lie you told them",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

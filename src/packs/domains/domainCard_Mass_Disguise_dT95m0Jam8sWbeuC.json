@@ -93,21 +93,15 @@
       "_id": "HgF4n0idPcdz8Bi7",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.advantageSources",
+            "type": "add",
+            "value": "Presence Rolls to avoid scrutiny.",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Presence Rolls to avoid scrutiny.",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

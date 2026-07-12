@@ -139,27 +139,21 @@
       "_id": "0BumAWKw2aK4A5al",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.damage.magical.dice",
+            "type": "add",
+            "value": "d6",
+            "priority": null
+          },
+          {
+            "key": "system.bonuses.damage.physical.dice",
+            "type": "add",
+            "value": "d6",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.magical.dice",
-          "mode": 2,
-          "value": "d6",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.physical.dice",
-          "mode": 2,
-          "value": "d6",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

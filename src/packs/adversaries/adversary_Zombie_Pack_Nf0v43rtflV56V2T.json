@@ -309,14 +309,8 @@
       "disabled": true,
       "_id": "aWWZTlNS9zYoUay7",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": []
       },
-      "changes": [],
       "duration": {
         "startTime": 0,
         "combat": null

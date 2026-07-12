@@ -446,12 +446,6 @@
           "_id": "Q5eeh0B6qaXFS1Ck",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": [],
             "duration": {
               "type": "shortRest",

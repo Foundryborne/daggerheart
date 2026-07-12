@@ -98,21 +98,15 @@
       "_id": "EY87mY6ULfIt3XC8",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "any",
-          "range": "self"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.roll.action.bonus",
+            "type": "add",
+            "value": "+2",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.bonuses.roll.action.bonus",
-          "mode": 2,
-          "value": "+2",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -141,27 +135,21 @@
       "_id": "WwibpgaO6Kkks7aZ",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "any",
-          "range": "self"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.damage.magical.bonus",
+            "type": "add",
+            "value": "+3",
+            "priority": null
+          },
+          {
+            "key": "system.bonuses.damage.physical.bonus",
+            "type": "add",
+            "value": "+3",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.magical.bonus",
-          "mode": 2,
-          "value": "+3",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.physical.bonus",
-          "mode": 2,
-          "value": "+3",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

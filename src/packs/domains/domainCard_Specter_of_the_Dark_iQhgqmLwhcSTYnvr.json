@@ -63,21 +63,15 @@
       "_id": "d9bZJl0yZnvOe2f3",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.resistance.physical.immunity",
+            "type": "override",
+            "value": "true",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.resistance.physical.immunity",
-          "mode": 5,
-          "value": "true",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

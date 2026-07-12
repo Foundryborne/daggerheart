@@ -88,12 +88,6 @@
       "_id": "pZ5YpjKidaj48IYF",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [],
         "duration": {
           "type": "temporary",

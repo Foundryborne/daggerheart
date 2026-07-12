@@ -24,21 +24,15 @@
       "_id": "zaxVYqKzUYDJ3SDq",
       "img": "icons/skills/movement/arrows-up-trio-red.webp",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.evasion",
+            "type": "add",
+            "value": "1",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.evasion",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

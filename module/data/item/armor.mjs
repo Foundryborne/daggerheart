@@ -8,7 +8,8 @@ export default class DHArmor extends AttachableItem {
             type: 'armor',
             hasDescription: true,
             isInventoryItem: true,
-            hasActions: true
+            hasActions: true,
+            hasResource: true
         });
     }
 

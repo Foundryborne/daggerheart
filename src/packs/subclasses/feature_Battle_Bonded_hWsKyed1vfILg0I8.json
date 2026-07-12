@@ -21,12 +21,6 @@
       "name": "Battle Bonded",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [
           {
             "key": "system.evasion",

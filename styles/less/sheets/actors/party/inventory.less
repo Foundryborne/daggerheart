@@ -8,10 +8,8 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            overflow-y: auto;
-            margin-top: 20px;
-            padding-bottom: 4px;
-            .with-scroll-shadows();
+            padding: 8px calc(12px - var(--scrollbar-width)) 4px 12px;
+            .stable-scroll-container();
         }
     }
 }

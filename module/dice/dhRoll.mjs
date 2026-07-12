@@ -33,7 +33,9 @@ export default class DHRoll extends Roll {
 
         if (config.skips?.createMessage) config.messageRoll = roll;
 
-        await this.buildEvaluate(roll, config, (message = {}));
+        if (config.evaluate !== false) {
+            await this.buildEvaluate(roll, config, (message = {}));
+        }
         await this.buildPost(roll, config, (message = {}));
         return config;
     }
@@ -72,27 +74,14 @@ export default class DHRoll extends Roll {
         return roll;
     }
 
+    /** 
+     * Evaluates the roll and assigns roll data into the config. 
+     * This is only called if config.evaluate is not set to false
+     * @protected
+     */
     static async buildEvaluate(roll, config = {}, message = {}) {
-        if (config.evaluate !== false) {
-            await roll.evaluate();
-            config.roll = this.postEvaluate(roll, config);
-        }
-    }
-
-    static async buildPost(roll, config, message) {
-        for (const hook of config.hooks) {
-            if (Hooks.call(`${CONFIG.DH.id}.postRoll${hook.capitalize()}`, config, message) === false) return null;
-        }
-
-        if (config.skips?.createMessage) {
-            await triggerChatRollFx([roll]);
-        } else if (!config.source?.message) {
-            config.message = await this.toMessage(roll, config);
-        }
-    }
-
-    static postEvaluate(roll, config = {}) {
-        return {
+        await roll.evaluate();
+        config.roll = {
             ...roll.options.roll,
             total: roll.total,
             formula: roll.formula,
@@ -103,6 +92,22 @@ export default class DHRoll extends Roll {
                 results: d.results
             }))
         };
+    }
+
+    /** 
+     * Runs any post configuration events that need to happen towards the end, such as hooks and dice so nice 
+     * @protected
+     */
+    static async buildPost(roll, config, message) {
+        for (const hook of config.hooks) {
+            if (Hooks.call(`${CONFIG.DH.id}.postRoll${hook.capitalize()}`, config, message) === false) return null;
+        }
+
+        if (config.skips?.createMessage) {
+            await triggerChatRollFx([roll]);
+        } else if (!config.source?.message) {
+            config.message = await this.toMessage(roll, config);
+        }
     }
 
     static async toMessage(roll, config) {

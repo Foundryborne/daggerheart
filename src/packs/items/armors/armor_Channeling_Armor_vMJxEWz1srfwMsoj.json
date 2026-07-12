@@ -45,7 +45,7 @@
       "changes": [
         {
           "key": "system.bonuses.roll.spellcast",
-          "mode": 2,
+          "type": "add",
           "value": "1"
         }
       ],

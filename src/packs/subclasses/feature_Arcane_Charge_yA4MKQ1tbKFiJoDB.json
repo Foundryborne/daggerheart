@@ -29,23 +29,17 @@
       "name": "Charged",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.damage.magical.bonus",
+            "type": "add",
+            "value": "+10",
+            "priority": null
+          }
+        ]
       },
       "_id": "z49V45ir45HGHOBB",
       "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
-      "changes": [
-        {
-          "key": "system.bonuses.damage.magical.bonus",
-          "mode": 2,
-          "value": "+10",
-          "priority": null
-        }
-      ],
       "disabled": true,
       "duration": {
         "startTime": null,

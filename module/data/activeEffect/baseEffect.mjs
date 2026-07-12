@@ -57,11 +57,6 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
                 description: new fields.HTMLField({ label: 'DAGGERHEART.GENERAL.description' })
             }),
             rangeDependence: new fields.SchemaField({
-                enabled: new fields.BooleanField({
-                    required: true,
-                    initial: false,
-                    label: 'DAGGERHEART.GENERAL.enabled'
-                }),
                 type: new fields.StringField({
                     required: true,
                     choices: CONFIG.DH.GENERAL.rangeInclusion,
@@ -80,7 +75,7 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
                     initial: CONFIG.DH.GENERAL.range.melee.id,
                     label: 'DAGGERHEART.GENERAL.range'
                 })
-            }),
+            }, { nullable: true, initial: null }),
             stacking: new fields.SchemaField(
                 {
                     value: new fields.NumberField({
@@ -146,14 +141,8 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
             description: '',
             transfer: options.transfer,
             statuses: [],
-            changes: [],
             system: {
-                rangeDependence: {
-                    enabled: false,
-                    type: CONFIG.DH.GENERAL.rangeInclusion.withinRange.id,
-                    target: CONFIG.DH.GENERAL.otherTargetTypes.hostile.id,
-                    range: CONFIG.DH.GENERAL.range.melee.id
-                }
+                changes: []
             }
         };
     }
@@ -184,5 +173,13 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
 
         if (this.parent.actor && options.scrollingTextData)
             this.parent.actor.queueScrollText(options.scrollingTextData);
+    }
+
+    static migrateData(source) {
+        if (source.rangeDependence?.enabled === false) {
+            source.rangeDependence = null;
+        }
+
+        return super.migrateData(source);
     }
 }

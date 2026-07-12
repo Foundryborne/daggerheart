@@ -363,12 +363,6 @@
           "_id": "U50Ccm9emMqAxma6",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": [],
             "duration": {
               "type": "temporary",

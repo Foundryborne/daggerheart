@@ -397,14 +397,8 @@
           "_id": "znFFS76Nopwb8Yi7",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": []
           },
-          "changes": [],
           "disabled": false,
           "duration": {
             "startTime": null,
@@ -428,39 +422,33 @@
           "_id": "i3KYskkA9D4GHbXi",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.difficulty",
+                "type": "add",
+                "value": "0",
+                "priority": null
+              },
+              {
+                "key": "system.bonuses.damage.physical.bonus",
+                "type": "add",
+                "value": "0",
+                "priority": null
+              },
+              {
+                "key": "system.bonuses.damage.magical.bonus",
+                "type": "add",
+                "value": "0",
+                "priority": null
+              },
+              {
+                "key": "system.bonuses.roll.attack.bonus",
+                "type": "add",
+                "value": "0",
+                "priority": null
+              }
+            ]
           },
-          "changes": [
-            {
-              "key": "system.difficulty",
-              "mode": 2,
-              "value": "0",
-              "priority": null
-            },
-            {
-              "key": "system.bonuses.damage.physical.bonus",
-              "mode": 2,
-              "value": "0",
-              "priority": null
-            },
-            {
-              "key": "system.bonuses.damage.magical.bonus",
-              "mode": 2,
-              "value": "0",
-              "priority": null
-            },
-            {
-              "key": "system.bonuses.roll.attack.bonus",
-              "mode": 2,
-              "value": "0",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,

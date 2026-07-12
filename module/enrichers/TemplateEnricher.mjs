@@ -58,7 +58,7 @@ export const renderMeasuredTemplate = async event => {
     if (!type || !range || !game.canvas.scene) return;
 
     const shapeData = CONFIG.Canvas.layers.regions.layerClass.getTemplateShape({
-        shapetype: type,
+        shapeType: type,
         angle,
         range,
         direction,

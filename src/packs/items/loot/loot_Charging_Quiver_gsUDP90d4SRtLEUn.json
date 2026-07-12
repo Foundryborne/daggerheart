@@ -20,27 +20,21 @@
       "_id": "0zebbOsyjkm9IqE6",
       "img": "icons/weapons/ammunition/arrow-broadhead-glowing-orange.webp",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.damage.physical.bonus",
+            "type": "add",
+            "value": "@system.tier",
+            "priority": null
+          },
+          {
+            "key": "system.bonuses.damage.magical.bonus",
+            "type": "add",
+            "value": "@system.tier",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.physical.bonus",
-          "mode": 2,
-          "value": "@system.tier",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.magical.bonus",
-          "mode": 2,
-          "value": "@system.tier",
-          "priority": null
-        }
-      ],
       "disabled": true,
       "duration": {
         "startTime": null,

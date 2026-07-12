@@ -259,23 +259,17 @@
           "name": "Unyielding",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.resistance.physical.resistance",
+                "type": "override",
+                "value": "1",
+                "priority": null
+              }
+            ]
           },
           "_id": "D1lCoe9WVr6vYuD9",
           "img": "icons/magic/defensive/shield-barrier-blue.webp",
-          "changes": [
-            {
-              "key": "system.resistance.physical.resistance",
-              "mode": 5,
-              "value": "1",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,
@@ -434,14 +428,8 @@
       "disabled": true,
       "_id": "9D6SteWlhbfMPhvt",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": []
       },
-      "changes": [],
       "duration": {
         "startTime": 0,
         "combat": null

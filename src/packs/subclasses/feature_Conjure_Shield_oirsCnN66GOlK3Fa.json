@@ -21,23 +21,17 @@
       "name": "Conjure Shield",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.evasion",
+            "type": "add",
+            "value": "@system.proficiency",
+            "priority": 21
+          }
+        ]
       },
       "_id": "0i7GVOvjH6bK5AUM",
       "img": "icons/magic/defensive/barrier-shield-dome-blue-purple.webp",
-      "changes": [
-        {
-          "key": "system.evasion",
-          "mode": 2,
-          "value": "@system.proficiency",
-          "priority": 21
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

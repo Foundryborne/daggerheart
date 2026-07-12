@@ -91,14 +91,8 @@
       "_id": "y82y3nUStyL8DIJL",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": []
       },
-      "changes": [],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -127,12 +121,6 @@
       "_id": "WTYg0b8nE1XbnMiA",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [],
         "duration": {
           "type": "temporary"

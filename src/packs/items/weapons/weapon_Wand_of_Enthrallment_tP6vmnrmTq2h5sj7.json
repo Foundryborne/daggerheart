@@ -152,7 +152,7 @@
       "changes": [
         {
           "key": "system.traits.presence.value",
-          "mode": 2,
+          "type": "add",
           "value": "2"
         }
       ],

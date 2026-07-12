@@ -85,21 +85,15 @@
       "_id": "2XEYhuAcRGTtqvED",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.traits.presence.value",
+            "type": "add",
+            "value": "@system.traits.strength.value",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.traits.presence.value",
-          "mode": 2,
-          "value": "@system.traits.strength.value",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

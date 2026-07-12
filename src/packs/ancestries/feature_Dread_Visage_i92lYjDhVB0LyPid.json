@@ -24,21 +24,15 @@
       "_id": "2Gd6iHQX521aAZqC",
       "img": "icons/magic/control/fear-fright-monster-red.webp",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.advantageSources",
+            "type": "add",
+            "value": "Dread Visage: Rolls to intimidate hostile creatures",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Dread Visage: Rolls to intimidate hostile creatures",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

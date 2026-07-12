@@ -57,14 +57,8 @@
       "_id": "9JSLRu7amQ4iuIO7",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": []
       },
-      "changes": [],
       "disabled": false,
       "duration": {
         "startTime": null,

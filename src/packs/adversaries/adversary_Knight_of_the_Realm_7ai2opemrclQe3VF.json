@@ -250,23 +250,17 @@
           "name": "Chevalier",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.difficulty",
+                "type": "add",
+                "value": "2",
+                "priority": null
+              }
+            ]
           },
           "_id": "w8wLcSsTiTU3mS7e",
           "img": "icons/environment/people/cavalry-heavy.webp",
-          "changes": [
-            {
-              "key": "system.difficulty",
-              "mode": 2,
-              "value": "2",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,
@@ -319,23 +313,17 @@
           "name": "Heavily Armored",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.resistance.physical.reduction",
+                "type": "add",
+                "value": "3",
+                "priority": null
+              }
+            ]
           },
           "_id": "xZjvrNRRjskY3n3j",
           "img": "icons/equipment/chest/breastplate-cuirass-steel-grey.webp",
-          "changes": [
-            {
-              "key": "system.resistance.physical.reduction",
-              "mode": 2,
-              "value": "3",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,

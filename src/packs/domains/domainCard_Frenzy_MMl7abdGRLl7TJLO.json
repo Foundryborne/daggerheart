@@ -57,12 +57,6 @@
       "_id": "1POoAgObPOWDpUco",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [
           {
             "key": "system.bonuses.damage.physical.bonus",

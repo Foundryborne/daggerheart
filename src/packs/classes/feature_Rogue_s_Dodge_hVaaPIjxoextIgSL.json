@@ -60,12 +60,6 @@
       "_id": "hhVjBro2osGDTT5g",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "any",
-          "range": "self"
-        },
         "changes": [
           {
             "key": "system.evasion",

@@ -57,27 +57,21 @@
       "_id": "smTjINqIldErFD3q",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.rest.shortRest.longMoves",
+            "type": "add",
+            "value": "1",
+            "priority": null
+          },
+          {
+            "key": "system.bonuses.rest.shortRest.shortMoves",
+            "type": "add",
+            "value": "-1",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.bonuses.rest.shortRest.longMoves",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.rest.shortRest.shortMoves",
-          "mode": 2,
-          "value": "-1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -102,29 +96,23 @@
       "name": "Recovery",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.rest.shortRest.longMoves",
+            "type": "add",
+            "value": "1",
+            "priority": null
+          },
+          {
+            "key": "system.bonuses.rest.shortRest.shortMoves",
+            "type": "add",
+            "value": "-1",
+            "priority": null
+          }
+        ]
       },
       "_id": "7GsHTQCtNB8PEVgr",
       "img": "icons/magic/life/cross-beam-green.webp",
-      "changes": [
-        {
-          "key": "system.bonuses.rest.shortRest.longMoves",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.rest.shortRest.shortMoves",
-          "mode": 2,
-          "value": "-1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

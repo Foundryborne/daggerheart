@@ -232,23 +232,17 @@
           "name": "Levitation",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.rules.conditionImmunities.restrained",
+                "type": "override",
+                "value": "1",
+                "priority": null
+              }
+            ]
           },
           "_id": "k6iaQVfMZhrpwYQj",
           "img": "icons/magic/air/fog-gas-smoke-blue-gray.webp",
-          "changes": [
-            {
-              "key": "system.rules.conditionImmunities.restrained",
-              "mode": 5,
-              "value": "1",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,
@@ -301,23 +295,17 @@
           "name": "Wards",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.resistance.magical.resistance",
+                "type": "override",
+                "value": "1",
+                "priority": null
+              }
+            ]
           },
           "_id": "4rj6PM0AGrrlbxSc",
           "img": "icons/magic/defensive/barrier-shield-dome-blue-purple.webp",
-          "changes": [
-            {
-              "key": "system.resistance.magical.resistance",
-              "mode": 5,
-              "value": "1",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,

@@ -322,32 +322,23 @@
           "_id": "ia0NUIOxE3RHb45P",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.evasion",
+                "type": "override",
+                "value": "@system.evasion / 2",
+                "priority": 10
+              }
+            ]
           },
-          "changes": [
-            {
-              "key": "system.evasion",
-              "mode": 5,
-              "value": "@system.evasion / 2",
-              "priority": 10
-            }
-          ],
-          "disabled": false,
           "duration": {
-            "startTime": null,
-            "combat": null,
-            "seconds": null,
-            "rounds": null,
-            "turns": null,
-            "startRound": null,
-            "startTurn": null
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
           },
-          "description": "<p>When the Flickerfl y makes an attack, the target’s Evasion is halved against the attack.</p>",
+          "disabled": false,
+          "description": "<p>When the Flickerfly makes an attack, the target’s Evasion is halved against the attack.</p>",
           "tint": "#ffffff",
           "statuses": [],
           "sort": 0,

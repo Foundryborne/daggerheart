@@ -24,12 +24,6 @@
       "_id": "pCp32u7UwqxCI4WW",
       "img": "icons/environment/settlement/temple-night.webp",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [
           {
             "key": "system.advantageSources",

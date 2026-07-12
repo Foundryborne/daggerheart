@@ -211,27 +211,21 @@
       "_id": "C6e1T2oEx6PFoRUP",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.damage.physical.bonus",
+            "type": "add",
+            "value": "+5",
+            "priority": null
+          },
+          {
+            "key": "system.bonuses.damage.magical.bonus",
+            "type": "add",
+            "value": "+5",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.physical.bonus",
-          "mode": 2,
-          "value": "+5",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.magical.bonus",
-          "mode": 2,
-          "value": "+5",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -260,27 +254,21 @@
       "_id": "bMMxsBungVYB1rI8",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.damage.magical.bonus",
+            "type": "add",
+            "value": "+10",
+            "priority": null
+          },
+          {
+            "key": "system.bonuses.damage.physical.bonus",
+            "type": "add",
+            "value": "+10",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.magical.bonus",
-          "mode": 2,
-          "value": "+10",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.physical.bonus",
-          "mode": 2,
-          "value": "+10",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -309,27 +297,21 @@
       "_id": "tsQRbrurzi8iqs0o",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.damage.magical.bonus",
+            "type": "add",
+            "value": "+15",
+            "priority": null
+          },
+          {
+            "key": "system.bonuses.damage.physical.bonus",
+            "type": "add",
+            "value": "+15",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.magical.bonus",
-          "mode": 2,
-          "value": "+15",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.physical.bonus",
-          "mode": 2,
-          "value": "+15",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -358,27 +340,21 @@
       "_id": "3eTaSgHlmNDcymnW",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.damage.magical.bonus",
+            "type": "add",
+            "value": "+20",
+            "priority": null
+          },
+          {
+            "key": "system.bonuses.damage.physical.bonus",
+            "type": "add",
+            "value": "+20",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.magical.bonus",
-          "mode": 2,
-          "value": "+20",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.physical.bonus",
-          "mode": 2,
-          "value": "+20",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

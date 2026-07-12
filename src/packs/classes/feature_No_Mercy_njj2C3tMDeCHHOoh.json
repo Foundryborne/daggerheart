@@ -62,12 +62,6 @@
       "_id": "XK4cCcz9sRGDJr0q",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [
           {
             "key": "system.bonuses.roll.attack.bonus",

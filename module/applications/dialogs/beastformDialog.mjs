@@ -315,15 +315,15 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
 
                     const beastformEffect = selected.effects.find(x => x.type === 'beastform');
                     for (const traitBonus of app.modifications.traitBonuses) {
-                        const existingChange = beastformEffect.changes.find(
+                        const existingChange = beastformEffect.system.changes.find(
                             x => x.key === `system.traits.${traitBonus.trait}.value`
                         );
                         if (existingChange) {
                             existingChange.value = Number.parseInt(existingChange.value) + traitBonus.bonus;
                         } else {
-                            beastformEffect.changes.push({
+                            beastformEffect.system.changes.push({
                                 key: `system.traits.${traitBonus.trait}.value`,
-                                mode: 2,
+                                type: 'add',
                                 priority: null,
                                 value: traitBonus.bonus
                             });

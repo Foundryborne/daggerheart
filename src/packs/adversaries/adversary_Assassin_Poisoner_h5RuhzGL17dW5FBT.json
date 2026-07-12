@@ -270,12 +270,6 @@
           "_id": "2iBVUGHtGW3I9VIj",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": [],
             "duration": {
               "type": "temporary",
@@ -341,23 +335,17 @@
           "name": "Out of Nowhere",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.advantageSources",
+                "type": "add",
+                "value": "On attacks if they are Hidden.",
+                "priority": null
+              }
+            ]
           },
           "_id": "qT5nh7OcQ6aGdiWS",
           "img": "icons/magic/perception/shadow-stealth-eyes-purple.webp",
-          "changes": [
-            {
-              "key": "system.advantageSources",
-              "mode": 2,
-              "value": "On attacks if they are Hidden.",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,
@@ -452,12 +440,6 @@
           "_id": "yP4ot8VqS56RnxnE",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": []
           },
           "disabled": false,

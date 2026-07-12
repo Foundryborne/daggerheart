@@ -89,12 +89,6 @@
       "_id": "eSfBBZ7IP8qirLu7",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [
           {
             "key": "system.advantageSources",

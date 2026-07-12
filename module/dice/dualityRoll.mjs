@@ -232,22 +232,10 @@ export default class DualityRoll extends D20Roll {
         return changeKeys;
     }
 
+    /** @inheritdoc */
     static async buildEvaluate(roll, config = {}, message = {}) {
         await super.buildEvaluate(roll, config, message);
-
-        await setDiceSoNiceForDualityRoll(
-            roll,
-            config.roll.advantage.type,
-            config.roll.hope.dice,
-            config.roll.fear.dice,
-            config.roll.advantage.dice
-        );
-    }
-
-    static postEvaluate(roll, config = {}) {
-        const data = super.postEvaluate(roll, config);
-
-        data.hope = {
+        config.roll.hope = {
             dice: roll.dHope.denomination,
             value: this.guaranteedCritical ? 0 : roll.dHope.total,
             rerolled: {
@@ -255,7 +243,7 @@ export default class DualityRoll extends D20Roll {
                 rerolls: roll.dHope.results.filter(x => x.rerolled)
             }
         };
-        data.fear = {
+        config.roll.fear = {
             dice: roll.dFear.denomination,
             value: this.guaranteedCritical ? 0 : roll.dFear.total,
             rerolled: {
@@ -263,11 +251,11 @@ export default class DualityRoll extends D20Roll {
                 rerolls: roll.dFear.results.filter(x => x.rerolled)
             }
         };
-        data.rally = {
+        config.roll.rally = {
             dice: roll.dRally?.denomination,
             value: roll.dRally?.total
         };
-        data.result = {
+        config.roll.result = {
             duality: roll.withHope ? 1 : roll.withFear ? -1 : 0,
             total: this.guaranteedCritical ? 0 : roll.dHope.total + roll.dFear.total,
             label: roll.totalLabel
@@ -275,11 +263,18 @@ export default class DualityRoll extends D20Roll {
 
         if (roll._rallyIndex && roll.data?.parent)
             roll.data.parent.deleteEmbeddedDocuments('ActiveEffect', [roll._rallyIndex]);
-
-        return data;
     }
-
+    
+    /** @inheritdoc */
     static async buildPost(roll, config, message) {
+        await setDiceSoNiceForDualityRoll(
+            roll,
+            config.roll.advantage.type,
+            config.roll.hope.dice,
+            config.roll.fear.dice,
+            config.roll.advantage.dice
+        );
+
         await super.buildPost(roll, config, message);
 
         await DualityRoll.dualityUpdate(config);

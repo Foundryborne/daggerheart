@@ -433,12 +433,6 @@
           "_id": "oILkLJlGNZl7KI1R",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": [],
             "duration": {
               "type": "shortRest"
