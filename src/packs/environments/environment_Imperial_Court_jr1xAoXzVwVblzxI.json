@@ -46,12 +46,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -102,7 +99,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -128,7 +125,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -297,7 +295,7 @@
             "type": "attack",
             "_id": "9ipckCFMz9DVw8ab",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to tick down a long-term countdown related to the empire’s agenda by [[/r 1d4]]. If this triggers the countdown, a proclamation related to the agenda is announced at court as the plan is executed.</p><section class=\"secret\" id=\"secret-ThoGDjazxfPoUvJS\"><p><em>What display of power or transfer of wealth was needed to expedite this plan? Whose lives were disrupted or upended to make this happen?</em></p></section>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

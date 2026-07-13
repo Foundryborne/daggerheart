@@ -597,6 +597,44 @@
         font-size: var(--font-size-12);
         padding-left: 3px;
     }
+
+    secret-block {
+        position: relative;
+        section.secret {
+            background-color: @red-10;
+            padding: 0;
+            margin-top: 0.375rem;
+            &.revealed {
+                background-color: @green-10;
+            }
+            p {
+                margin: 0.5rem 0;
+            }
+        }
+        button.reveal {
+            --button-size: 0.875rem;
+            position: absolute;
+            margin: auto;
+            left: 0;
+            right: 0;
+            width: min-content;
+            padding: 1px 8px 0 8px;
+            bottom: calc(100% - 0.4375rem - 2px);
+            
+            background-color: var(--dh-window-button-color-bg); // todo: find a better var name
+            border-color: var(--color-secret-border);
+            color: var(--dh-window-button-color-text);
+            font-size: var(--font-size-10);
+            user-select: none;
+            text-transform: uppercase;
+
+            visibility: hidden;
+        }
+
+        &:hover button.reveal {
+            visibility: visible;
+        }
+    }
 }
 
 .system-daggerheart {
