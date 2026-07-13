@@ -267,6 +267,10 @@ Hooks.on('i18nInit', () => {
 });
 
 Hooks.on('setup', () => {
+    if (game.user.isGM) {
+        document.body.dataset.gm = true;
+    }
+
     CONFIG.statusEffects = [
         ...CONFIG.statusEffects.filter(x => !['dead', 'unconscious'].includes(x.id)),
         ...Object.values(SYSTEM.GENERAL.conditions()).map(x => ({

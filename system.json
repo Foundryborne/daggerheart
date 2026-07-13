@@ -256,34 +256,34 @@
         },
         "Item": {
             "ancestry": {
-                "htmlFields": ["description"]
+                "htmlFields": ["description", "gmNotes"]
             },
             "community": {
-                "htmlFields": ["description"]
+                "htmlFields": ["description", "gmNotes"]
             },
             "class": {
-                "htmlFields": ["description"]
+                "htmlFields": ["description", "gmNotes"]
             },
             "subclass": {
-                "htmlFields": ["description"]
+                "htmlFields": ["description", "gmNotes"]
             },
             "feature": {
-                "htmlFields": ["description"]
+                "htmlFields": ["description", "gmNotes"]
             },
             "domainCard": {
-                "htmlFields": ["description"]
+                "htmlFields": ["description", "gmNotes"]
             },
             "loot": {
-                "htmlFields": ["description"]
+                "htmlFields": ["description", "gmNotes"]
             },
             "consumable": {
-                "htmlFields": ["description"]
+                "htmlFields": ["description", "gmNotes"]
             },
             "weapon": {
-                "htmlFields": ["description"]
+                "htmlFields": ["description", "gmNotes"]
             },
             "armor": {
-                "htmlFields": ["description"]
+                "htmlFields": ["description", "gmNotes"]
             },
             "beastform": {}
         },
