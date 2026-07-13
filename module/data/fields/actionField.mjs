@@ -269,7 +269,7 @@ export function ActionMixin(Base) {
             return this.delete();
         }
 
-        async toChat(origin) {
+        async toChat(origin, config) {
             const autoExpandDescription = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
                 .expandRollMessage?.desc;
 
@@ -282,7 +282,7 @@ export function ActionMixin(Base) {
                     img: this.baseAction ? this.parent.parent.img : this.img,
                     tags: this.tags ? this.tags : ['Spell', 'Arcana', 'Lv 10'],
                     areas: this.areas,
-                    summon: this.summon
+                    summon: config?.summonData
                 },
                 source: {
                     actor: this.actor.uuid,

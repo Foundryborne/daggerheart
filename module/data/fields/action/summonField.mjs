@@ -23,7 +23,7 @@ export default class DHSummonField extends fields.ArrayField {
         super(summonFields, options, context);
     }
 
-    static async execute() {
+    static async execute(config) {
         if (!canvas.scene) {
             ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.summon.error'));
             return;
@@ -36,6 +36,7 @@ export default class DHSummonField extends fields.ArrayField {
 
         const rolls = [];
         const summonData = [];
+        const chatMessageData = [];
         for (const summon of this.summon) {
             const roll = new Roll(itemAbleRollParse(summon.count, this.actor, this.item));
             await roll.evaluate();
@@ -54,17 +55,18 @@ export default class DHSummonField extends fields.ArrayField {
                     tokenPreviewName: `${actor.prototypeToken.name}${remaining > 1 ? ` (${remaining}x)` : ''}`
                 });
             }
+
+            chatMessageData.push({
+                data: actor,
+                quantity: countNumber
+            });
         }
 
         if (rolls.length) await triggerChatRollFx(rolls);
 
         this.actor.sheet?.minimize();
-        DHSummonField.handleSummon(summonData, this.actor);
-    }
-
-    static async handleSummon(summonData, actionActor) {
-        await CONFIG.ux.TokenManager.createTokensWithPreview(summonData, { elevation: actionActor.token?.elevation });
-
-        return actionActor.sheet?.maximize();
+        await CONFIG.ux.TokenManager.createTokensWithPreview(summonData, { elevation: this.actor.token?.elevation });
+        this.actor.sheet?.maximize();
+        config.summonData = chatMessageData;
     }
 }

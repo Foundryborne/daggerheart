@@ -19,7 +19,7 @@ export default class DhTokenManager {
             }
         }
 
-        return await canvas.tokens.placeTokens(
+        const placedData = await canvas.tokens.placeTokens(
             [
                 {
                     ...(await actor.getTokenDocument()).toObject(),
@@ -30,6 +30,10 @@ export default class DhTokenManager {
             ],
             { create: false }
         );
+
+        if (!placedData.length) return null;
+
+        return placedData[0];
     }
 
     /**
@@ -46,22 +50,24 @@ export default class DhTokenManager {
 
         const createElevation = elevation ?? level.elevation.bottom;
         for (const tokenData of tokensData) {
-            const previewTokens = await this.createPreview(tokenData.actor, {
+            const previewToken = await this.createPreview(tokenData.actor, {
                 name: tokenData.tokenPreviewName,
                 level: game.user.viewedLevel,
                 elevation: createElevation,
                 flags: { daggerheart: { createPlacement: true } }
             });
-            if (!previewTokens?.length) return null;
+            if (!previewToken) return null;
+
+            const finalTokenData = {
+                ...previewToken.toObject(),
+                name: tokenData.actor.prototypeToken.name,
+                displayName: tokenData.actor.prototypeToken.displayName,
+                flags: tokenData.actor.prototypeToken.flags
+            };
 
             await canvas.scene.createEmbeddedDocuments(
                 'Token',
-                previewTokens.map(x => ({
-                    ...x.toObject(),
-                    name: tokenData.actor.prototypeToken.name,
-                    displayName: tokenData.actor.prototypeToken.displayName,
-                    flags: tokenData.actor.prototypeToken.flags
-                })),
+                [finalTokenData],
                 { controlObject: true, parent: canvas.scene }
             );
         }
