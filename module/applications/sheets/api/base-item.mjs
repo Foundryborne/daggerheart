@@ -339,9 +339,21 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         }
     }
 
+    /** 
+     * Handles the Add GM Note button being pressed. This is only used when an item has no GM notes.
+     * Later edits to a GM note instead go through the normal editor toggle workflow.
+     * @this DHBaseItemSheet
+     */
     static #onEditGMNote() {
+        // Open the editor, which might be hidden. We remove the css class to hide temporarily
+        // so that menu auto resizing functions properly.
         const editor = this.element.querySelector('prose-mirror[name="system.gmNotes"]');
+        const wasHidden = editor.classList.contains('hide-if-inactive');
+        editor.classList.remove('hide-if-inactive');
         editor.open = true;
+        window.setTimeout(() => {
+            if (wasHidden) editor.classList.add('hide-if-inactive');
+        }, 0);
     }
 
     /** @inheritdoc */

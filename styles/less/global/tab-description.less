@@ -61,12 +61,12 @@
                 flex: 1 0;
             }
             &:has(prose-mirror[name="system.gmNotes"]:not(.hide-if-inactive)) {
-                prose-mirror {
+                prose-mirror.inactive {
                     --min-height: 3rem;
-                    &.inactive[name="system.description"] {
+                    &[name="system.description"] {
                         flex: 0 0;
                     }
-                    &.inactive[name="system.gmNotes"] {
+                    &[name="system.gmNotes"] {
                         flex: 1 0;
                     }
                 }
