@@ -22,7 +22,7 @@ export default class DhTokenManager {
         return await canvas.tokens.placeTokens(
             [
                 {
-                    ...actor.prototypeToken.toObject(),
+                    ...(await actor.getTokenDocument()).toObject(),
                     actorId: actor.id,
                     displayName: 50,
                     ...tokenData
