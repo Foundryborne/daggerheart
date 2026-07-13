@@ -2245,7 +2245,7 @@
                         "hint": "A used armor slot normally reduces damage by one step. This value increases the number of steps damage is reduced by."
                     },
                     "magical": {
-                        "label": "Daamge Reduction: Only Magical",
+                        "label": "Damage Reduction: Only Magical",
                         "hint": "Armor can only be used to reduce magical damage"
                     },
                     "maxArmorMarkedBonus": "Max Armor Used",
