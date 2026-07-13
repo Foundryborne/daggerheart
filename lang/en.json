@@ -2568,6 +2568,9 @@
                     "severe": "Severe Threshold"
                 }
             },
+            "Base": {
+                "addGMNote": "Add GM Note"
+            },
             "Beastform": {
                 "FIELDS": {
                     "beastformType": { "label": "Beastform Type" },

@@ -371,6 +371,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
                 button.type = 'button';
                 button.classList.add('icon', 'toggle', 'fa-regular', 'fa-note-medical');
                 button.dataset.action = 'editGMNote';
+                button.dataset.tooltip = 'DAGGERHEART.ITEMS.Base.addGMNote';
                 description.appendChild(button);
             }
             
