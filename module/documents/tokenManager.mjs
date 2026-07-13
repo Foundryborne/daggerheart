@@ -31,9 +31,7 @@ export default class DhTokenManager {
             { create: false }
         );
 
-        if (!placedData.length) return null;
-
-        return placedData[0];
+        return placedData[0] ?? null;
     }
 
     /**
