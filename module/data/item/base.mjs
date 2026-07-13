@@ -157,7 +157,10 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             const gmNotesElement = document.createElement('section');
             gmNotesElement.classList.add('gm-notes-section');
             gmNotesElement.dataset.visibility = 'gm';
-            gmNotesElement.innerHTML = '<header class="gm-notes">GM Notes</header>' + this.gmNotes;
+            const header = document.createElement('header');
+            header.classList.add('gm-notes');
+            header.textContent = _loc('DAGGERHEART.ITEMS.FIELDS.gmNotes.label');
+            gmNotesElement.innerHTML = header.outerHTML + this.gmNotes;
             fullDescription += gmNotesElement.outerHTML;
         }
 

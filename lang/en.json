@@ -2550,6 +2550,9 @@
                 },
                 "identifier": {
                     "label": "Identifier"
+                },
+                "gmNotes": {
+                    "label": "GM Notes"
                 }
             },
             "Ancestry": {

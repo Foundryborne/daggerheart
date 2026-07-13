@@ -8,7 +8,7 @@
         {{#if (and systemFields.gmNotes @root.user.isGM)}}
             <section class="gm-notes-section">
                 {{#if enrichedGMNotes}}
-                    <header class="gm-notes">GM Notes</header>
+                    <header class="gm-notes">{{localize "DAGGERHEART.ITEMS.FIELDS.gmNotes.label"}}</header>
                 {{/if}}
                 <prose-mirror
                     name="system.gmNotes"
