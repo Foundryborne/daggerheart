@@ -45,12 +45,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -101,7 +98,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -127,7 +124,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -204,7 +202,7 @@
             "type": "damage",
             "_id": "p1UiGEiGyl6r7PrA",
             "systemPath": "actions",
-            "description": "<p>Previous climbers left behind large metal rods that climbers can use to aid their ascent. If a PC using the pitons fails an action roll to climb, they can <strong>mark a Stress</strong> instead of ticking the countdown up.</p><section class=\"secret\" id=\"secret-fWHkzBQAxCLDmV6H\"><p><em>What do the shape and material of these pitons tell you about the previous climbers? How far apart are they from one another?</em></p></section>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -435,7 +433,7 @@
             "type": "effect",
             "_id": "M8MfD2qBfYCwNKvH",
             "systemPath": "actions",
-            "description": "<p>Spend a Fear to have a PC’s handhold fail, plummeting them toward the ground. If they aren’t saved on the next action, they hit the ground and tick up the countdown by 2. The PC takes <strong>1d12</strong> physical damage if the countdown is between 8 and 12, <strong>2d12</strong> between 4 and 7, and <strong>3d12</strong> at 3 or lower.</p><section class=\"secret\" id=\"secret-ufZ6ifPWxU4MkKow\"><p><em>How can you tell many others have fallen here before? What lives in these walls that might try to scare adventurers into falling for an easy meal?</em></p></section>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

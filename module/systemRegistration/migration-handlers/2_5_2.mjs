@@ -15,7 +15,7 @@ export class Migration_2_5_2 extends MigrationHandlerBase {
             const srdEffect = srdItem?.effects.find(x => x.name === effectSource.name);
             if (change.type === 'custom') {
                 const srdChange = srdEffect ? srdEffect.system.changes[i] : null;
-                if (
+                if (srdChange &&
                     change.key === srdChange.key && 
                     change.value === srdChange.value && 
                     change.type !== srdChange.type
