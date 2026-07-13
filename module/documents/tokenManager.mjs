@@ -31,7 +31,7 @@ export default class DhTokenManager {
             { create: false }
         );
 
-        return placedData[0] ?? null;
+        return placedData?.[0] ?? null;
     }
 
     /**
