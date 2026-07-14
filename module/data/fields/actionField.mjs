@@ -269,10 +269,7 @@ export function ActionMixin(Base) {
             return this.delete();
         }
 
-        async toChat(origin) {
-            const autoExpandDescription = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
-                .expandRollMessage?.desc;
-
+        async toChat(origin, config) {
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
                 title: game.i18n.localize('DAGGERHEART.CONFIG.FeatureForm.action'),
@@ -282,7 +279,7 @@ export function ActionMixin(Base) {
                     img: this.baseAction ? this.parent.parent.img : this.img,
                     tags: this.tags ? this.tags : ['Spell', 'Arcana', 'Lv 10'],
                     areas: this.areas,
-                    summon: this.summon
+                    summon: config?.summonData
                 },
                 source: {
                     actor: this.actor.uuid,
@@ -307,7 +304,7 @@ export function ActionMixin(Base) {
                 system: systemData,
                 content: await foundry.applications.handlebars.renderTemplate(
                     'systems/daggerheart/templates/ui/chat/action.hbs',
-                    { ...systemData, open: autoExpandDescription ? 'open' : '' }
+                    systemData
                 ),
                 flags: {
                     daggerheart: {
