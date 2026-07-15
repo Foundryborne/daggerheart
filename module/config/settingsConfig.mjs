@@ -27,8 +27,10 @@ export const menu = {
 };
 
 export const gameSettings = {
+    /** @type {'Automation'} */
     Automation: 'Automation',
     Metagaming: 'Metagaming',
+    /** @type {'Homebrew'} */
     Homebrew: 'Homebrew',
     appearance: 'Appearance',
     GlobalOverrides: 'GlobalOverrides',
@@ -37,6 +39,7 @@ export const gameSettings = {
         Fear: 'ResourcesFear'
     },
     LevelTiers: 'LevelTiers',
+    /** @type {'Countdowns'} */
     Countdowns: 'Countdowns',
     LastMigrationVersion: 'LastMigrationVersion',
     SpotlightRequestQueue: 'SpotlightRequestQueue',

@@ -12,6 +12,7 @@ import * as HOOKS from './hooksConfig.mjs';
 import * as TRIGGER from './triggerConfig.mjs';
 import * as ITEMBROWSER from './itemBrowserConfig.mjs';
 
+/** @type {"daggerheart"} */
 export const SYSTEM_ID = 'daggerheart';
 
 export const SYSTEM = {
