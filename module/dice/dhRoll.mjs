@@ -1,7 +1,8 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 import { triggerChatRollFx } from '../helpers/utils.mjs';
+import BaseRoll from './baseRoll.mjs';
 
-export default class DHRoll extends Roll {
+export default class DHRoll extends BaseRoll {
     baseTerms = [];
     constructor(formula, data = {}, options = {}) {
         super(formula, data, foundry.utils.mergeObject(options, { roll: [] }, { overwrite: false }));

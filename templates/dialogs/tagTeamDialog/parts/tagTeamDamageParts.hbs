@@ -1,25 +1,25 @@
-{{#each damage as |damage key|}}
+{{#each damage.types as |damage key|}}
     <div class="roll-data {{#if isCritical}}critical{{/if}}">
         <div class="duality-label">
             <span>{{localize (concat "DAGGERHEART.CONFIG.HealingType." key ".name")}}:</span>
-            <span>{{damage.total}}</span>
+            <span>{{damage.roll.total}}</span>
         </div>
-        {{#each damage.parts as |part|}}
+        {{#with damage.roll}}
             <div class="roll-dice-container">
-                {{#each part.dice as |dice index|}}
-                    <a class="roll-dice" data-action="rerollDamageDice" data-member-key="{{../../../key}}" data-damage-key="{{@../../key}}" data-part="{{@../index}}" data-dice="{{index}}">
+                {{#each this.dice as |dice index|}}
+                    <a class="roll-dice" data-action="rerollDamageDice" data-member-key="{{../../../key}}" data-damage-key="{{@../../key}}" data-dice="{{index}}">
                         <span class="dice-label">{{dice.total}}</span>
-                        <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/" dice.dice ".svg"}}" />
+                        <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/" dice.denomination ".svg"}}" />
                     </a>
                     {{#unless @last}}
                         <span class="roll-operator">+</span>
                     {{/unless}}
                 {{/each}}
-                {{#if part.modifierTotal}}
-                    {{#if part.dice.length}}<span class="roll-operator">{{#if (gte part.modifierTotal 0)}}+{{else}}-{{/if}}</span>{{/if}}
-                    <span class="roll-value">{{positive part.modifierTotal}}</span>
+                {{#if this.modifierTotal}}
+                    {{#if this.dice.length}}<span class="roll-operator">{{#if (gte this.modifierTotal 0)}}+{{else}}-{{/if}}</span>{{/if}}
+                    <span class="roll-value">{{positive this.modifierTotal}}</span>
                 {{/if}}
             </div>
-        {{/each}}
+        {{/with}}
     </div>
 {{/each}}
