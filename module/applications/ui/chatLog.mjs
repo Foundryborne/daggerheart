@@ -179,15 +179,15 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     }
 
     async onRollSimple(event, message) {
-        const buttonType = event.target.dataset.type ?? 'damage',
-            total = message.rolls.reduce((a, c) => a + Roll.fromJSON(c).total, 0),
-            damages = {
-                hitPoints: {
-                    damageTypes: [],
-                    roll: { total }
-                }
-            },
-            targets = Array.from(game.user.targets);
+        const buttonType = event.target.dataset.type ?? 'damage';
+        const total = message.rolls.reduce((a, c) => a + Roll.fromJSON(c).total, 0);
+        const damages = {
+            hitPoints: {
+                damageTypes: [],
+                roll: { total }
+            }
+        };
+        const targets = Array.from(game.user.targets);
 
         if (targets.length === 0)
             return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
@@ -255,7 +255,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
 
         if (target.dataset.type === 'damage') {
             const { damageType, dice, result } = target.dataset;
-            await message.system.damage.rerollDamageDice(damageType, dice, result);
+            await message.system.damage.rerollDamageDie(damageType, dice, result);
             await message.update({
                 'system.damage.types': {
                     [damageType]: {
