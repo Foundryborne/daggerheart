@@ -59,20 +59,21 @@ class ChatMessageRollDamage extends foundry.abstract.DataModel {
         }
     }
 
-    async rerollDamageDice(damageType, dice) {
+    async rerollDamageDice(damageType, dice, resultIndex) {
         const reroll = this.types[damageType].roll;
         const rerollDice = reroll.dice[dice];
-        await rerollDice.reroll(`/r1=${rerollDice.total}`);
+        const diceResult = rerollDice.results[resultIndex];
+        await rerollDice.reroll(`/r1=${diceResult.result}`);
         await reroll._evaluate();
-
-        const result = rerollDice.results.find(x => x.active);
-        if (result) {
+    
+        const rerolledResult = rerollDice.results[rerollDice.results.length - 1];
+        if (rerolledResult) {
             const fakeRoll = {
                 _evaluated: true,
                 dice: [new foundry.dice.terms.Die({
                     ...rerollDice,
-                    results: [result],
-                    total: result.value,
+                    results: [rerolledResult],
+                    total: rerolledResult.value,
                     faces: rerollDice.faces
                 })],
                 options: { appearance: {} }
