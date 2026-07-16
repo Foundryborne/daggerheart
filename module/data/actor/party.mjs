@@ -54,7 +54,6 @@ export default class DhParty extends BaseDataActor {
             const member = this.tagTeam.members[memberKey];
             member.damageRollData = member.rollData?.options.damage ? 
                 ChatDamageData.fromJSON(JSON.stringify(member.rollData.options.damage)) : null;
-            member.damageRollData?.prepareRolls();
         }
     }
 

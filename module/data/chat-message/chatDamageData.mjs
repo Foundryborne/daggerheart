@@ -1,6 +1,12 @@
 import { triggerChatRollFx } from '../../helpers/utils.mjs';
 
 export class ChatDamageData extends foundry.abstract.DataModel {
+    constructor(data = {}, options = {}) {
+        super(data, options);
+        
+        this._prepareRolls();
+    }
+
     static defineSchema() {
         const fields = foundry.data.fields;
         
@@ -21,7 +27,7 @@ export class ChatDamageData extends foundry.abstract.DataModel {
         if (!roll.evaluated) throw new Error('Roll objects added to ChatMessage documents must be evaluated');
     }
 
-    prepareRolls() {
+    _prepareRolls() {
         for (const key of Object.keys(this.types)) {
             const type = this.types[key];
             try {
