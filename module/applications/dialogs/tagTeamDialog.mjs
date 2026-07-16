@@ -740,10 +740,16 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         const mainActor = this.party.system.partyMembers.find(x => x.uuid === mainRoll.options.source.actor);
         mainRoll.options.title = game.i18n.localize('DAGGERHEART.APPLICATIONS.TagTeamSelect.chatMessageRollTitle');
+        
+        /* This could assumably be done better. For some reason rolls don't get correctly done through rollData.toJSON */
         const systemData = {
             ...mainRoll.options,
-            damage: joinedRoll.damageRollData
+            damage: joinedRoll.damageRollData.toJSON()
         };
+        for (const type of Object.keys(joinedRoll.damageRollData.types)) {
+            systemData.damage.types[type].roll = joinedRoll.damageRollData.types[type].roll.toJSON();
+        }
+
         const cls = getDocumentClass('ChatMessage'),
             msgData = {
                 type: 'dualityRoll',
