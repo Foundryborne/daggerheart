@@ -5,7 +5,7 @@ export class Migration_2_6_0 extends MigrationHandlerBase {
 
     /** @inheritdoc */
     async updateActorSource(actor) {
-        if (actor.type === 'party') {
+        if (actor.type === 'party' && Object.keys(actor.system.tagTeam.members).length) {
             return {
                 _id: actor._id,
                 system: {
