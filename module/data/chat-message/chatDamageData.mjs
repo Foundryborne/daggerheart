@@ -25,9 +25,8 @@ export class ChatDamageData extends foundry.abstract.DataModel {
         for (const key of Object.keys(this.types)) {
             const type = this.types[key];
             try {
-                const roll = Roll.fromData(type.roll);
-                type.roll = roll;
-                type.roll.modifierTotal = CONFIG.Dice.daggerheart.DHRoll.calculateTotalModifiers(roll);
+                type.roll = Roll.fromData(type.roll);
+                type.roll.modifierTotal = CONFIG.Dice.daggerheart.DHRoll.calculateTotalModifiers(type.roll);
             } catch {}
         }
     }
