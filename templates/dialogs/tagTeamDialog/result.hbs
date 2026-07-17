@@ -21,7 +21,7 @@
                             {{#each joinedRoll.damageRollData.types as |damage key|}}
                                 <div class="result-info">
                                     <div>{{localize (concat "DAGGERHEART.CONFIG.HealingType." key ".name")}}</div>
-                                    <div class="damage-info">{{damage.roll.total}}</div>
+                                    <div class="damage-info">{{damage.total}}</div>
                                 </div>
                             {{/each}}
                         </div>

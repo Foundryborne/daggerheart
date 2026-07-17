@@ -7,10 +7,14 @@
 
         <div class="roll-dice-container">
             {{#each roll.dice as |dice index|}}
-                <a class="roll-dice" data-action="rerollDamageDice" data-member-key="{{../../../key}}" data-damage-key="{{@../../key}}" data-dice="{{index}}">
-                    <span class="dice-label">{{dice.total}}</span>
-                    <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/" dice.denomination ".svg"}}" />
-                </a>
+                {{#each results}}
+                    {{#if active}}
+                        <a class="roll-dice" data-action="rerollDamageDice" data-member-key="{{../../key}}" data-dice="{{../key}}" data-result="{{index}}">
+                            <span class="dice-label">{{result}}</span>
+                            <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/" dice.denomination ".svg"}}" />
+                        </a>
+                    {{/if}}
+                {{/each}}
                 {{#unless @last}}
                     <span class="roll-operator">+</span>
                 {{/unless}}
