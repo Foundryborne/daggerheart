@@ -182,7 +182,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 const selectedRoll = Object.values(this.party.system.tagTeam.members).find(member => member.selected);
                 const critSelected = !selectedRoll
                     ? undefined
-                    : (selectedRoll?.rollData?.options?.roll?.isCritical ?? false);
+                    : (selectedRoll?.roll?.isCritical ?? false);
 
                 partContext.hintText = await this.getInfoTexts(this.party.system.tagTeam.members);
                 partContext.joinedRoll = await this.getJoinedRoll({
@@ -236,7 +236,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         }
 
         const selectedRoll = Object.values(this.party.system.tagTeam.members).find(member => member.selected);
-        const critSelected = !selectedRoll ? undefined : (selectedRoll?.rollData?.options?.roll?.isCritical ?? false);
+        const critSelected = !selectedRoll ? undefined : (selectedRoll?.roll?.isCritical ?? false);
 
         return {
             ...data,
@@ -249,7 +249,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             damageRollOptions,
             damage: data.damageRollData,
             critDamage: await this.getCriticalDamage(data.damageRollData),
-            useCritDamage: critSelected || (critSelected === undefined && data.rollData?.options?.roll?.isCritical)
+            useCritDamage: critSelected || (critSelected === undefined && data.roll?.isCritical)
         };
     }
 
@@ -629,9 +629,8 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             secondaryRoll.damageRollData = baseSecondaryRoll.damageRollData ? 
                 ChatDamageData.fromJSON(JSON.stringify(baseSecondaryRoll.damageRollData)) : null;
 
-            const systemData = mainRoll.rollData.options;
-            const isCritical = overrideIsCritical ?? systemData.roll.isCritical;
-            if (isCritical) mainRoll.damageRollData = await this.getCriticalDamage(systemData.damageRollData);
+            const isCritical = overrideIsCritical ?? mainRoll.roll.isCritical;
+            if (isCritical) mainRoll.damageRollData = await this.getCriticalDamage(mainRoll.damageRollData);
 
             if (secondaryRoll.damageRollData) {
                 const secondaryDamage = (displayVersion ? overrideIsCritical : isCritical)
