@@ -67,13 +67,11 @@ export default class DHWeapon extends AttachableItem {
                         type: 'attack'
                     },
                     damage: {
-                        parts: {
-                            hitPoints: {
-                                type: ['physical'],
-                                value: {
-                                    multiplier: 'prof',
-                                    dice: 'd8'
-                                }
+                        main: {
+                            type: ['physical'],
+                            value: {
+                                multiplier: 'prof',
+                                dice: 'd8'
                             }
                         }
                     }
@@ -230,7 +228,7 @@ export default class DHWeapon extends AttachableItem {
             game.i18n.localize(`DAGGERHEART.CONFIG.Burden.${burden}`)
         ];
 
-        for (const { value, type } of attack.damage.parts) {
+        for (const { value, type } of [attack.damage.main, ...attack.damage.resources]) {
             const parts = value.custom.enabled ? [game.i18n.localize('DAGGERHEART.GENERAL.custom')] : [value.dice];
             if (!value.custom.enabled && value.bonus) parts.push(value.bonus.signedString());
 
@@ -258,7 +256,7 @@ export default class DHWeapon extends AttachableItem {
         if (roll.trait) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${roll.trait}.short`));
         if (range) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.short`));
 
-        for (const { value, type } of damage.parts) {
+        for (const { value, type } of [damage.main, ...damage.resources]) {
             const str = Roll.replaceFormulaData(value.getFormula(), this.actor?.getRollData() ?? {});
 
             const icons = Array.from(type)

@@ -104,15 +104,13 @@ export default class DhCharacter extends DhCreature {
                         trait: 'strength'
                     },
                     damage: {
-                        parts: {
-                            hitPoints: {
-                                type: ['physical'],
-                                applyTo: 'hitPoints',
-                                value: {
-                                    custom: {
-                                        enabled: true,
-                                        formula: '@profd4'
-                                    }
+                        main: {
+                            type: ['physical'],
+                            applyTo: 'hitPoints',
+                            value: {
+                                custom: {
+                                    enabled: true,
+                                    formula: '@profd4'
                                 }
                             }
                         }
