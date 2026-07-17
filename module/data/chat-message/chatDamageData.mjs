@@ -11,7 +11,7 @@ export class ChatDamageData extends foundry.abstract.DataModel {
         const fields = foundry.data.fields;
         
         return {
-            damage: new fields.JSONField({validate: ChatDamageData.#validateRoll}),
+            main: new fields.JSONField({ nullable: true, validate: ChatDamageData.#validateRoll}),
             resources: new fields.TypedObjectField(new fields.JSONField({validate: ChatDamageData.#validateRoll}))
         };
     }
@@ -21,8 +21,10 @@ export class ChatDamageData extends foundry.abstract.DataModel {
     }
 
     static #validateRoll(rollJSON) {
-        const roll = JSON.parse(rollJSON);
-        if (!roll.evaluated) throw new Error('Roll objects added to ChatMessage documents must be evaluated');
+        if (rollJSON) {
+            const roll = JSON.parse(rollJSON);
+            if (!roll.evaluated) throw new Error('Roll objects added to ChatMessage documents must be evaluated');
+        }
     }
 
     _prepareRolls() {

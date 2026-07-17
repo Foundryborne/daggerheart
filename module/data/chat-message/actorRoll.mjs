@@ -188,19 +188,28 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     }
 
     static migrateData(source) {
-        if (source.hasDamage && !source.damage.types) {
-            source.damage = {
-                types: Object.keys(source.damage).reduce((acc, key) => {
-                    const damageData = source.damage[key];
-                    const oldRoll = damageData.parts[0]?.roll;
-                    acc[key] = oldRoll ? {
-                        ...oldRoll,
-                        options: {
-                            ...oldRoll.options,
-                            damageTypes: damageData.parts[0].damageTypes ?? []
-                        }
-                    } : null;
+        if (source.hasDamage && !source.damage.resources === undefined) {
+            const getRoll = key => {
+                const damageData = source.damage[key];
+                const oldRoll = damageData.parts[0]?.roll;
+                return oldRoll ? {
+                    ...oldRoll,
+                    options: {
+                        ...oldRoll.options,
+                        damageTypes: damageData.parts[0].damageTypes ?? []
+                    }
+                } : null;
+            };
 
+            source.damage = {
+                main: source.damage.hitPoints ? getRoll('hitPoints') : null,
+                resources: Object.keys(source.damage).reduce((acc, key) => {
+                    if (key === 'hitPoints') return acc;
+
+                    const roll = getRoll(key);
+                    if (!roll) return acc;
+
+                    acc[key] = roll;
                     return acc;
                 }, {})
             }; 
