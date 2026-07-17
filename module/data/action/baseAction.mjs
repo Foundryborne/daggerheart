@@ -469,6 +469,22 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                 return acc;
             }, {});
         }
+
+        if (source.damage && source.damage.resources === undefined) {
+            source.damage.resources = {};
+            for (const [partKey, part] of Object.entries(source.damage.parts)) {
+                if (partKey === 'hitPoints') {
+                    source.damage.main = {
+                        ...part,
+                        includeBase: source.damage.includeBase,
+                        direct: source.damage.direct,
+                        groupAttack: source.damage.groupAttack
+                    };
+                } else {
+                    source.damage.resources[partKey] = part;
+                }
+            }
+        }
     }
 }
 

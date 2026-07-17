@@ -838,7 +838,7 @@ export default class DhCharacter extends DhCreature {
             isReversed: true
         };
 
-        this.attack.damage.parts.hitPoints.value.custom.formula = `@prof${this.basicAttackDamageDice}${this.rules.attack.damage.bonus ? ` + ${this.rules.attack.damage.bonus}` : ''}`;
+        this.attack.damage.main.value.custom.formula = `@prof${this.basicAttackDamageDice}${this.rules.attack.damage.bonus ? ` + ${this.rules.attack.damage.bonus}` : ''}`;
 
         // Clamp resources (must be done last to ensure all updates occur)
         this.resources.clamp();

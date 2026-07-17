@@ -13,17 +13,8 @@ export default class DamageField extends fields.SchemaField {
     /** @inheritDoc */
     constructor(options, context = {}) {
         const damageFields = {
-            parts: new IterableTypedObjectField(DHDamageData),
-            includeBase: new fields.BooleanField({
-                initial: false,
-                label: 'DAGGERHEART.ACTIONS.Settings.includeBase.label'
-            }),
-            direct: new fields.BooleanField({ initial: false, label: 'DAGGERHEART.CONFIG.DamageType.direct.name' }),
-            groupAttack: new fields.StringField({
-                choices: CONFIG.DH.GENERAL.groupAttackRange,
-                blank: true,
-                label: 'DAGGERHEART.ACTIONS.Settings.groupAttack.label'
-            })
+            main: new fields.EmbeddedDataField(DHDamageData),
+            resources: new IterableTypedObjectField(DHResourceData)
         };
         super(damageFields, options, context);
     }
@@ -287,6 +278,18 @@ export class DHResourceData extends foundry.abstract.DataModel {
     /** @override */
     static defineSchema() {
         return {
+            base: new fields.BooleanField({ initial: false, readonly: true, label: 'Base' }),
+            type: new fields.SetField(
+                new fields.StringField({
+                    choices: CONFIG.DH.GENERAL.damageTypes,
+                    initial: 'physical',
+                    nullable: false,
+                    required: true
+                }),
+                {
+                    label: game.i18n.localize('DAGGERHEART.GENERAL.type')
+                }
+            ),
             applyTo: new fields.StringField({
                 choices: CONFIG.DH.GENERAL.healingTypes,
                 required: true,
@@ -309,18 +312,16 @@ export class DHDamageData extends DHResourceData {
     static defineSchema() {
         return {
             ...super.defineSchema(),
-            base: new fields.BooleanField({ initial: false, readonly: true, label: 'Base' }),
-            type: new fields.SetField(
-                new fields.StringField({
-                    choices: CONFIG.DH.GENERAL.damageTypes,
-                    initial: 'physical',
-                    nullable: false,
-                    required: true
-                }),
-                {
-                    label: game.i18n.localize('DAGGERHEART.GENERAL.type')
-                }
-            )
+            includeBase: new fields.BooleanField({
+                initial: false,
+                label: 'DAGGERHEART.ACTIONS.Settings.includeBase.label'
+            }),
+            direct: new fields.BooleanField({ initial: false, label: 'DAGGERHEART.CONFIG.DamageType.direct.name' }),
+            groupAttack: new fields.StringField({
+                choices: CONFIG.DH.GENERAL.groupAttackRange,
+                blank: true,
+                label: 'DAGGERHEART.ACTIONS.Settings.groupAttack.label'
+            })
         };
     }
 }

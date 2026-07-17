@@ -11,7 +11,8 @@ export class ChatDamageData extends foundry.abstract.DataModel {
         const fields = foundry.data.fields;
         
         return {
-            types: new fields.TypedObjectField(new fields.JSONField({validate: ChatDamageData.#validateRoll}))
+            damage: new fields.JSONField({validate: ChatDamageData.#validateRoll}),
+            resources: new fields.TypedObjectField(new fields.JSONField({validate: ChatDamageData.#validateRoll}))
         };
     }
 
