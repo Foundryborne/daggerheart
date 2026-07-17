@@ -19,12 +19,10 @@ export default class DamageRoll extends DHRoll {
         
         for (const roll of config.roll) {
             await roll.roll.evaluate();
-            
+            roll.roll.options = { damageTypes: roll.damageTypes ?? [] };
+
             if (!config.damage?.types) config.damage = { types: {} };
-            config.damage.types[roll.applyTo] = { 
-                roll: roll.roll,
-                damageTypes: roll.damageTypes ?? []
-            };
+            config.damage.types[roll.applyTo] = roll.roll;
         }
 
         roll._evaluated = true;

@@ -1,25 +1,24 @@
-{{#each damage.types as |damage key|}}
+{{#each damage.types as |roll key|}}
     <div class="roll-data {{#if isCritical}}critical{{/if}}">
         <div class="duality-label">
             <span>{{localize (concat "DAGGERHEART.CONFIG.HealingType." key ".name")}}:</span>
             <span>{{damage.roll.total}}</span>
         </div>
-        {{#with damage.roll}}
-            <div class="roll-dice-container">
-                {{#each this.dice as |dice index|}}
-                    <a class="roll-dice" data-action="rerollDamageDice" data-member-key="{{../../../key}}" data-damage-key="{{@../../key}}" data-dice="{{index}}">
-                        <span class="dice-label">{{dice.total}}</span>
-                        <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/" dice.denomination ".svg"}}" />
-                    </a>
-                    {{#unless @last}}
-                        <span class="roll-operator">+</span>
-                    {{/unless}}
-                {{/each}}
-                {{#if this.modifierTotal}}
-                    {{#if this.dice.length}}<span class="roll-operator">{{#if (gte this.modifierTotal 0)}}+{{else}}-{{/if}}</span>{{/if}}
-                    <span class="roll-value">{{positive this.modifierTotal}}</span>
-                {{/if}}
-            </div>
-        {{/with}}
+
+        <div class="roll-dice-container">
+            {{#each roll.dice as |dice index|}}
+                <a class="roll-dice" data-action="rerollDamageDice" data-member-key="{{../../../key}}" data-damage-key="{{@../../key}}" data-dice="{{index}}">
+                    <span class="dice-label">{{dice.total}}</span>
+                    <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/" dice.denomination ".svg"}}" />
+                </a>
+                {{#unless @last}}
+                    <span class="roll-operator">+</span>
+                {{/unless}}
+            {{/each}}
+            {{#if roll.modifierTotal}}
+                {{#if roll.dice.length}}<span class="roll-operator">{{#if (gte roll.modifierTotal 0)}}+{{else}}-{{/if}}</span>{{/if}}
+                <span class="roll-value">{{positive roll.modifierTotal}}</span>
+            {{/if}}
+        </div>
     </div>
 {{/each}}

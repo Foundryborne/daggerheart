@@ -140,9 +140,9 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         const update = { system: { damage: { types: {} } } };
         for (const key of Object.keys(this.damage.types)) {
             const type = this.damage.types[key];
-            const reroll = await type.roll.reroll();
+            const reroll = await type.reroll();
             rerolls.push(reroll);
-            update.system.damage.types[key] = { roll: reroll.toJSON() };
+            update.system.damage.types[key] = reroll.toJSON();
         }
 
         await triggerChatRollFx(rerolls);
@@ -192,10 +192,15 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             source.damage = {
                 types: Object.keys(source.damage).reduce((acc, key) => {
                     const damageData = source.damage[key];
-                    acc[key] = {
-                        roll: damageData.parts[0]?.roll ?? null,
-                        damageTypes: damageData.parts[0]?.damageTypes ?? []
-                    };
+                    const oldRoll = damageData.parts[0]?.roll;
+                    acc[key] = oldRoll ? {
+                        ...oldRoll,
+                        options: {
+                            ...oldRoll.options,
+                            damageTypes: damageData.parts[0].damageTypes ?? []
+                        }
+                    } : null;
+
                     return acc;
                 }, {})
             }; 

@@ -258,9 +258,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             await message.system.damage.rerollDamageDie(damageType, dice, result);
             await message.update({
                 'system.damage.types': {
-                    [damageType]: {
-                        roll: message.system.damage.types[damageType].roll.toJSON()
-                    }
+                    [damageType]: message.system.damage.types[damageType].toJSON()
                 } 
             });
         } else {

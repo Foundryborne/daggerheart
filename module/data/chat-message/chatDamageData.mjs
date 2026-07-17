@@ -11,10 +11,7 @@ export class ChatDamageData extends foundry.abstract.DataModel {
         const fields = foundry.data.fields;
         
         return {
-            types: new fields.TypedObjectField(new fields.SchemaField({
-                roll: new fields.JSONField({validate: ChatDamageData.#validateRoll}),
-                damageTypes: new fields.ArrayField(new fields.StringField({ choices: CONFIG.DH.GENERAL.damageTypes }))
-            }))
+            types: new fields.TypedObjectField(new fields.JSONField({validate: ChatDamageData.#validateRoll}))
         };
     }
 
@@ -31,14 +28,14 @@ export class ChatDamageData extends foundry.abstract.DataModel {
         for (const key of Object.keys(this.types)) {
             const type = this.types[key];
             try {
-                type.roll = Roll.fromData(type.roll);
-                type.roll.modifierTotal = CONFIG.Dice.daggerheart.DHRoll.calculateTotalModifiers(type.roll);
+                this.types[key] = Roll.fromData(type);
+                this.types[key].options.modifierTotal = CONFIG.Dice.daggerheart.DHRoll.calculateTotalModifiers(type);
             } catch {}
         }
     }
 
     async rerollDamageDie(damageType, dice, resultIndex) {
-        const reroll = this.types[damageType].roll;
+        const reroll = this.types[damageType];
         const rerollDice = reroll.dice[dice];
         await rerollDice.rerollResult(resultIndex);
         await reroll._evaluate();
