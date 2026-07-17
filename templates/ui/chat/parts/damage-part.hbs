@@ -39,7 +39,7 @@
                                         {{#if active}}
                                             <div class="roll-die{{#unless @../first}} has-plus{{/unless}}">
                                                 <div 
-                                                    class="dice reroll-button {{../dice}}" 
+                                                    class="dice reroll-button {{../denomination}}" 
                                                     data-die-index="0" data-type="damage" data-damage-type="{{@../../key}}" data-dice="{{@../key}}" data-result="{{@key}}"
                                                 >
                                                     {{#if hasRerolls}}<i class="fa-solid fa-dice dice-rerolled" data-tooltip="{{localize "DAGGERHEART.GENERAL.rerolled"}}"></i>{{/if}}
@@ -49,6 +49,7 @@
                                         {{/if}}
                                     {{/each}}
                                 {{/each}}
+                                
                                 {{#if roll.modifierTotal}}
                                     <div class="roll-die{{#if (gt roll.modifierTotal 0)}} has-plus{{/if}}">
                                         <div class="font-20">{{roll.modifierTotal}}</div>
