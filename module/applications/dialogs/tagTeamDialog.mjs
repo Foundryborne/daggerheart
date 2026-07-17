@@ -612,14 +612,13 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
     async getCriticalDamage(origDamage) {
         const newDamage = origDamage ? ChatDamageData.fromJSON(JSON.stringify(origDamage)) : null;
         for (let key in newDamage?.types ?? {}) {
-            const damage = newDamage.types[key];
-            const criticalDamage = await getCritDamageBonus(damage.roll.formula);
+            const criticalDamage = await getCritDamageBonus(newDamage.types[key].formula);
             if (!criticalDamage) continue;
     
             const criticalTerm = new foundry.dice.terms.NumericTerm({ number: criticalDamage, evaluated: true });
             criticalTerm.evaluate();
-            damage.roll = await Roll.fromTerms([
-                ...origDamage.types[key].roll.terms,
+            newDamage.types[key] = await Roll.fromTerms([
+                ...origDamage.types[key].terms,
                 new foundry.dice.terms.OperatorTerm({ operator: '+' }),
                 criticalTerm
             ]);
@@ -675,10 +674,10 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 if (mainRoll.damageRollData) {
                     for (const [key, damage] of Object.entries(secondaryDamage.types ?? {})) {
                         if (key in mainRoll.damageRollData.types) {
-                            mainRoll.damageRollData.types[key].roll = Roll.fromTerms([
-                                ...baseMainRoll.damageRollData.types[key].roll.terms,
+                            mainRoll.damageRollData.types[key] = Roll.fromTerms([
+                                ...baseMainRoll.damageRollData.types[key].terms,
                                 new foundry.dice.terms.OperatorTerm({ operator: '+' }),
-                                ...baseSecondaryRoll.damageRollData.types[key].roll.terms
+                                ...baseSecondaryRoll.damageRollData.types[key].terms
                             ]);
                         } else {
                             mainRoll.damageRollData.types[key] = damage;
@@ -744,10 +743,10 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         /* This could assumably be done better. For some reason rolls don't get correctly done through rollData.toJSON */
         const systemData = {
             ...mainRoll.options,
-            damage: joinedRoll.damageRollData.toJSON()
+            damage: joinedRoll.damageRollData?.toJSON()
         };
-        for (const type of Object.keys(joinedRoll.damageRollData.types)) {
-            systemData.damage.types[type].roll = joinedRoll.damageRollData.types[type].roll.toJSON();
+        for (const type of Object.keys(joinedRoll.damageRollData?.types ?? {})) {
+            systemData.damage.types[type] = joinedRoll.damageRollData.types[type].toJSON();
         }
 
         const cls = getDocumentClass('ChatMessage'),
