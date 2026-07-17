@@ -660,12 +660,12 @@ export default class DhpActor extends Actor {
 
         Object.entries(damages).forEach(([key, damage]) => {
             if (key === CONFIG.DH.GENERAL.healingTypes.hitPoints.id)
-                damage.roll.total = this.calculateDamage(damage.roll.total, damage.damageTypes);
+                damage.total = this.calculateDamage(damage.total, damage.damageTypes);
             const update = updates.find(u => u.key === key);
             if (update) {
-                update.value += damage.roll.total;
+                update.value += damage.total;
                 update.damageTypes.add(...new Set(damage.damageTypes));
-            } else updates.push({ value: damage.roll.total, key, damageTypes: new Set(damage.damageTypes) });
+            } else updates.push({ value: damage.total, key, damageTypes: new Set(damage.damageTypes) });
         });
 
         if (Hooks.call(`${CONFIG.DH.id}.postCalculateDamage`, this, damages) === false) return null;
