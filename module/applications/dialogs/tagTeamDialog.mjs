@@ -588,6 +588,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 new foundry.dice.terms.OperatorTerm({ operator: '+' }),
                 criticalTerm
             ]);
+            newDamage.types[key].options = foundry.utils.deepClone(origDamage.types[key].options);
         }
 
         return newDamage;
@@ -650,6 +651,16 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                                 new foundry.dice.terms.OperatorTerm({ operator: '+' }),
                                 ...baseSecondaryRoll.damageRollData.types[key].terms
                             ]);
+
+                            /* Joining the roll.options of both rolls */
+                            const joinedDamageTypes = new Set([
+                                ...baseMainRoll.damageRollData.types[key].options.damageTypes,
+                                ...baseSecondaryRoll.damageRollData.types[key].options.damageTypes
+                            ]);
+                            mainRoll.damageRollData.types[key].options = {
+                                ...baseMainRoll.damageRollData.types[key].options,
+                                damageTypes: [...joinedDamageTypes]
+                            };
                         } else {
                             mainRoll.damageRollData.types[key] = damage;
                         }
