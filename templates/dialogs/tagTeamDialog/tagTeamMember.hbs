@@ -64,7 +64,10 @@
 
                         {{#if roll}}
                             <div class="roll-data {{#if roll.withHope}}hope{{else if roll.withFear}}fear{{else}}critical{{/if}}">
-                                <div class="duality-label">{{roll.total}} {{localize "DAGGERHEART.GENERAL.withThing" thing=roll.totalLabel}}</div>
+                                <div class="duality-label">
+                                    {{roll.total}} 
+                                    {{#if roll.isCritical}}{{roll.totalLabel}}{{else}}{{localize "DAGGERHEART.GENERAL.withThing" thing=roll.totalLabel}}{{/if}}
+                                </div>
                                 <div class="roll-dice-container">
                                     <a class="roll-dice" data-action="rerollDice" data-member="{{@root.partId}}" data-dice-type="hope">
                                         <span class="dice-label">{{roll.dHope.total}}</span>

@@ -595,6 +595,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
     static async #selectRoll(_, button) {
         const { memberKey } = button.dataset;
+        
         this.updatePartyData(
             {
                 [`system.tagTeam.members`]: Object.entries(this.party.system.tagTeam.members).reduce(
@@ -605,7 +606,12 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                     {}
                 )
             },
-            this.getUpdatingParts(button)
+            /* Selecting a roll must update all member sections hbs to display the correct damage information incase of a critical */
+            [ 
+                ...Object.keys(this.party.system.tagTeam.members),
+                this.constructor.PARTS.rollSelection.id,
+                this.constructor.PARTS.result.id
+            ]
         );
     }
 
