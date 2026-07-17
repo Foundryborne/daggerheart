@@ -3,7 +3,6 @@ import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayFie
 import TagTeamData from '../tagTeamData.mjs';
 import GroupRollData from '../groupRollData.mjs';
 import { GoldField } from '../fields/actorField.mjs';
-import { ChatDamageData } from '../chat-message/chatDamageData.mjs';
 
 export default class DhParty extends BaseDataActor {
     /** @inheritdoc */
@@ -46,14 +45,6 @@ export default class DhParty extends BaseDataActor {
             for (const member of this.partyMembers) {
                 member.parties?.add(this.parent);
             }
-        }
-    }
-
-    prepareDerivedData() {
-        for (const memberKey in this.tagTeam.members) {
-            const member = this.tagTeam.members[memberKey];
-            member.damageRollData = member.rollData?.options.damage ? 
-                ChatDamageData.fromJSON(JSON.stringify(member.rollData.options.damage)) : null;
         }
     }
 

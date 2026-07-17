@@ -6,12 +6,12 @@
         </div>
 
         <div class="roll-dice-container">
-            {{#each roll.dice as |dice index|}}
-                {{#each results}}
-                    {{#if active}}
-                        <a class="roll-dice" data-action="rerollDamageDice" data-member-key="{{../../key}}" data-dice="{{../key}}" data-result="{{index}}">
-                            <span class="dice-label">{{result}}</span>
-                            <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/" dice.denomination ".svg"}}" />
+            {{#each roll.dice}}
+                {{#each results as |result index|}}
+                    {{#if result.active}}
+                        <a class="roll-dice" data-action="rerollDamageDice" data-member-key="{{../../../key}}" data-damage-key="{{@../../key}}" data-dice-index="{{@../key}}" data-result-index="{{index}}">
+                            <span class="dice-label">{{result.result}}</span>
+                            <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/" ../denomination ".svg"}}" />
                         </a>
                     {{/if}}
                 {{/each}}

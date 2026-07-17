@@ -141,7 +141,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             const hasRolled = Boolean(data.rollData);
             if (!hasRolled) return false;
 
-            return !data.rollData.options.hasDamage || Boolean(data.rollData.options.damage);
+            return !data.rollData.options.hasDamage || data.damageRollData.active;
         });
 
         return context;
@@ -379,7 +379,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         let rollIsSelected = false;
         for (const member of Object.values(members)) {
             const rollFinished = Boolean(member.rollData);
-            const damageFinished = member.rollData?.options?.hasDamage ? Boolean(member.rollData.options.damage) : true;
+            const damageFinished = member.rollData?.options?.hasDamage ? member.damageRollData.active : true;
 
             rollsAreFinished = rollsAreFinished && rollFinished && damageFinished;
             rollIsSelected = rollIsSelected || member.selected;
@@ -540,17 +540,10 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         await action.workflow.get('damage').execute(config, null, true);
         if (!config.damage) return;
-
-        const current = this.party.system.tagTeam.members[memberKey].rollData;
+        
         await this.updatePartyData(
             {
-                [`system.tagTeam.members.${memberKey}.rollData`]: {
-                    ...current,
-                    options: {
-                        ...current.options,
-                        damage: config.damage
-                    }
-                }
+                [`system.tagTeam.members.${memberKey}.damageRollData`]: config.damage
             },
             this.getUpdatingParts(button)
         );
@@ -558,52 +551,25 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
     static async #removeDamageRoll(_, button) {
         const { memberKey } = button.dataset;
-        const current = this.party.system.tagTeam.members[memberKey].rollData;
         this.updatePartyData(
             {
-                [`system.tagTeam.members.${memberKey}.rollData`]: {
-                    ...current,
-                    options: {
-                        ...current.options,
-                        damage: null
-                    }
-                }
+                [`system.tagTeam.members.${memberKey}.damageRollData.types`]:
+                _replace({}) 
             },
             this.getUpdatingParts(button)
         );
     }
 
     static async #rerollDamageDice(_, button) {
-        const { memberKey, damageKey, part, dice } = button.dataset;
+        const { memberKey, damageKey, diceIndex, resultIndex } = button.dataset;
         const memberData = this.party.system.tagTeam.members[memberKey];
-        const partData = memberData.rollData.options.damage[damageKey].parts[part];
-        const activeDiceResultKey = Object.keys(partData.dice[dice].results).find(
-            index => partData.dice[dice].results[index].active
-        );
-        const { parsedRoll, rerolledDice } = await game.system.api.dice.DamageRoll.reroll(
-            partData,
-            dice,
-            activeDiceResultKey
-        );
-
-        const rollData = this.party.system.tagTeam.members[memberKey].rollData;
-        rollData.options.damage[damageKey].parts = rollData.options.damage[damageKey].parts.map((damagePart, index) => {
-            if (index !== Number.parseInt(part)) return damagePart;
-
-            return {
-                ...damagePart,
-                total: parsedRoll.total,
-                dice: rerolledDice
-            };
-        });
-        rollData.options.damage[damageKey].total = rollData.options.damage[damageKey].parts.reduce((acc, part) => {
-            acc += part.total;
-            return acc;
-        }, 0);
+        await memberData.damageRollData.rerollDamageDie(damageKey, diceIndex, resultIndex);
 
         this.updatePartyData(
             {
-                [`system.tagTeam.members.${memberKey}.rollData`]: rollData
+                [`system.tagTeam.members.${memberKey}.damageRollData.types`]: { 
+                    [damageKey]: memberData.damageRollData.types[damageKey].toJSON()
+                }
             },
             this.getUpdatingParts(button)
         );
