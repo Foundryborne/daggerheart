@@ -228,7 +228,8 @@ export default class DHWeapon extends AttachableItem {
             game.i18n.localize(`DAGGERHEART.CONFIG.Burden.${burden}`)
         ];
 
-        for (const { value, type } of [attack.damage.main, ...attack.damage.resources]) {
+        if (attack.damage.main) {
+            const { value, type } = attack.damage.main;
             const parts = value.custom.enabled ? [game.i18n.localize('DAGGERHEART.GENERAL.custom')] : [value.dice];
             if (!value.custom.enabled && value.bonus) parts.push(value.bonus.signedString());
 
@@ -241,7 +242,7 @@ export default class DHWeapon extends AttachableItem {
 
             tags.push(parts.join(''));
         }
-
+        
         return tags;
     }
 
