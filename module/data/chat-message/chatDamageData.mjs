@@ -34,8 +34,8 @@ export class ChatDamageData extends foundry.abstract.DataModel {
         }
     }
 
-    async rerollDamageDie(damageType, dice, resultIndex) {
-        const reroll = this.types[damageType];
+    async rerollDamageDie(isResource, damageType, dice, resultIndex) {
+        const reroll = isResource ? this.resources[damageType] : this.main;
         const rerollDice = reroll.dice[dice];
         await rerollDice.rerollResult(resultIndex);
         await reroll._evaluate();

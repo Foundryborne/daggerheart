@@ -563,15 +563,15 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
     }
 
     static async #rerollDamageDice(_, button) {
-        const { memberKey, damageKey, diceIndex, resultIndex } = button.dataset;
+        const { isResource, memberKey, damageKey, diceIndex, resultIndex } = button.dataset;
         const memberData = this.party.system.tagTeam.members[memberKey];
-        await memberData.damageRollData.rerollDamageDie(damageKey, diceIndex, resultIndex);
+        await memberData.damageRollData.rerollDamageDie(isResource, damageKey, diceIndex, resultIndex);
 
+        const basePath = `system.tagTeam.members.${memberKey}.damageRollData`;
+        const updatePath = isResource ? `${basePath}.resources.${damageKey}` : `${basePath}.main`;
         this.updatePartyData(
             {
-                [`system.tagTeam.members.${memberKey}.damageRollData.types`]: { 
-                    [damageKey]: memberData.damageRollData.types[damageKey].toJSON()
-                }
+                [updatePath]: memberData.damageRollData.types[damageKey].toJSON()
             },
             this.getUpdatingParts(button)
         );
