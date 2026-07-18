@@ -48,9 +48,8 @@ export default class RegisterHandlebarsHelpers {
         return formula;
     }
 
-    static damageSymbols(damageParts) {
-        const allTypes = [...new Set([...damageParts].flatMap(x => Array.from(x.type)))];
-        const symbols = allTypes.map(p => CONFIG.DH.GENERAL.damageTypes[p].icon);
+    static damageSymbols(damageData) {
+        const symbols = damageData.type.map(p => CONFIG.DH.GENERAL.damageTypes[p].icon);
         return new Handlebars.SafeString(Array.from(symbols).map(symbol => `<i class="fa-solid ${symbol}"></i>`));
     }
 

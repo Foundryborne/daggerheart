@@ -150,27 +150,8 @@ export default class DamageRoll extends DHRoll {
         if (!formulaData) return null;
         this.options.isCritical = config.isCritical;
 
-        const isHitpointPart = formulaData.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id;
         formulaData.roll = new Roll(Roll.replaceFormulaData(formulaData.formula, config.data));
         formulaData.roll.terms = Roll.parse(formulaData.roll.formula, config.data);
-        if (formulaData.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-            formulaData.modifiers = this.applyBaseBonus(formulaData);
-            this.addModifiers(formulaData);
-            formulaData.modifiers?.forEach(m => {
-                formulaData.roll.terms.push(...this.formatModifier(m.value));
-            });
-        }
-
-        /* To Remove When Reaction System */
-        if (isDamage && formulaData.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-            for (const mod in config.modifiers) {
-                const modifier = config.modifiers[mod];
-                if (
-                    modifier.beforeCrit === true && 
-                    (modifier.enabled || modifier.value)
-                ) modifier.callback(formulaData);
-            }
-        }
 
         if (formulaData.extraFormula) {
             formulaData.roll.terms.push(
@@ -179,27 +160,42 @@ export default class DamageRoll extends DHRoll {
             );
         }
 
-        if (config.damageOptions.groupAttack?.numAttackers > 1 && isHitpointPart) {
-            const damageTypes = [foundry.dice.terms.Die, foundry.dice.terms.NumericTerm];
-            for (const term of formulaData.roll.terms) {
-                if (damageTypes.some(type => term instanceof type)) {
-                    term.number *= config.damageOptions.groupAttack.numAttackers;
-                }
-            }
-        }
-
-        if (config.isCritical && isHitpointPart) {
-            const total = formulaData.roll.dice.reduce((acc, term) => acc + term._faces * term._number, 0);
-            if (total > 0) {
-                formulaData.roll.terms.push(...this.formatModifier(total));
-            }
-        }
-
-        /* To Remove When Reaction System */
         if (isDamage && formulaData.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
+            formulaData.modifiers = this.applyBaseBonus(formulaData);
+            this.addModifiers(formulaData);
+            formulaData.modifiers?.forEach(m => {
+                formulaData.roll.terms.push(...this.formatModifier(m.value));
+            });
+
+            /* To Remove When Reaction System */
+            for (const mod in config.modifiers) {
+                const modifier = config.modifiers[mod];
+                if (
+                    modifier.beforeCrit === true && 
+                    (modifier.enabled || modifier.value)
+                ) modifier.callback(formulaData);
+            }
+
+            /* To Remove When Reaction System */
             for (const mod in config.modifiers) {
                 const modifier = config.modifiers[mod];
                 if (!modifier.beforeCrit && (modifier.enabled || modifier.value)) modifier.callback(formulaData);
+            }
+
+            if (config.damageOptions.groupAttack?.numAttackers > 1) {
+                const damageTypes = [foundry.dice.terms.Die, foundry.dice.terms.NumericTerm];
+                for (const term of formulaData.roll.terms) {
+                    if (damageTypes.some(type => term instanceof type)) {
+                        term.number *= config.damageOptions.groupAttack.numAttackers;
+                    }
+                }
+            }
+
+            if (config.isCritical) {
+                const total = formulaData.roll.dice.reduce((acc, term) => acc + term._faces * term._number, 0);
+                if (total > 0) {
+                    formulaData.roll.terms.push(...this.formatModifier(total));
+                }
             }
         }
 

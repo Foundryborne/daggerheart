@@ -43,25 +43,23 @@
         {{/with}}
     {{/if}}
 
-    <div class="flexcol">
-        {{#unless (empty @root.resourceFormulas)}}
-            <div class="section-header">{{localize "Resource Drain"}}</div>
-        {{/unless}}
+    {{#unless (empty @root.resourceFormulas)}}
+        <div class="section-header">{{localize "Resource Drain"}}</div>
+    {{/unless}}
 
-        {{#each @root.resourceFormulas}}
-            <div class="damage-formula">
-                <span class="damage-resource"><b>{{localize "DAGGERHEART.GENERAL.formula"}}:</b> {{roll.formula}}</span>
-                <span class="damage-details">
-                    {{#with (lookup @root.config.GENERAL.healingTypes applyTo)}}
-                        {{localize label}}
-                    {{/with}}
-                </span>
-            </div>
-            <div class="bonuses form-group flexrow">
-                <input type="text" value="{{extraFormula}}" name={{concat "resourceFormulas." @key ".extraFormula"}} placeholder="{{localize "DAGGERHEART.GENERAL.situationalBonus"}}">
-            </div>
-        {{/each}}
-    </div>
+    {{#each @root.resourceFormulas}}
+        <div class="damage-formula">
+            <span class="damage-resource"><b>{{localize "DAGGERHEART.GENERAL.formula"}}:</b> {{roll.formula}}</span>
+            <span class="damage-details">
+                {{#with (lookup @root.config.GENERAL.healingTypes applyTo)}}
+                    {{localize label}}
+                {{/with}}
+            </span>
+        </div>
+        <div class="bonuses form-group flexrow">
+            <input type="text" value="{{extraFormula}}" name={{concat "resourceFormulas." @key ".extraFormula"}} placeholder="{{localize "DAGGERHEART.GENERAL.situationalBonus"}}">
+        </div>
+    {{/each}}
 
     {{#if damageOptions.groupAttack}}
         <fieldset class="group-attack-container">

@@ -188,8 +188,8 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     }
 
     static migrateData(source) {
-        const { main, resources, ...flatDamageKeys } = source.damage;
-        if (!main && !resources) {
+        const { main, resources, ...flatDamageKeys } = source.damage ?? {};
+        if (source.damage && !main && !resources) {
             source.damage.main = null;
             source.damage.resources = {};
 
