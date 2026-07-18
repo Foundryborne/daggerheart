@@ -1,44 +1,46 @@
-<fieldset class="one-column">
-    <legend class="with-icon">
-        {{#if (eq @root.source.type 'healing')}}
-            {{localize "DAGGERHEART.GENERAL.healing"}}
-        {{else}}
+{{#unless (eq @root.source.type 'healing')}}
+    <fieldset class="one-column">
+        <legend class="with-icon">
             {{localize "DAGGERHEART.GENERAL.damage"}}
-        {{/if}}
-        {{#if source.main}}
-            <a data-action="removeDamage"><i class="fa-solid fa-trash icon-button"></i></a>
-        {{else}}
-            <a data-action="addDamage"><i class="fa-solid fa-plus icon-button"></i></a>
-        {{/if}}
-    </legend>
+            {{#if source.main}}
+                <a data-action="removeDamage"><i class="fa-solid fa-trash icon-button"></i></a>
+            {{else}}
+                <a data-action="addDamage"><i class="fa-solid fa-plus icon-button"></i></a>
+            {{/if}}
+        </legend>
 
-    {{#if source.main}}
-        <div class="nest-inputs">
-            {{#if @root.hasBaseDamage}}
-                {{formField @root.fields.damage.fields.main.fields.includeBase value=@root.source.damage.includeBase name="damage.main.includeBase" classes="checkbox" localize=true }}
+        {{#if source.main}}
+            <div class="nest-inputs">
+                {{#if @root.hasBaseDamage}}
+                    {{formField @root.fields.damage.fields.main.fields.includeBase value=@root.source.damage.includeBase name="damage.main.includeBase" classes="checkbox" localize=true }}
+                {{/if}}
+                {{#unless (eq @root.source.type 'healing')}}
+                    {{formField baseFields.main.fields.direct value=source.main.direct name=(concat path "damage.main.direct") localize=true classes="checkbox"}}
+                {{/unless}}
+                {{#if (and @root.isNPC (not (eq path 'system.attack.')))}}
+                    {{formField baseFields.main.fields.groupAttack value=source.main.groupAttack name=(concat path "damage.main.groupAttack") localize=true classes="select"}}
+                {{/if}}
+            </div>
+            {{> damageData damage=source.main fields=fields.main.fields basePath=(concat path "damage.main")}}
+            {{#if horde}}
+                {{> hordeDamage source=source.main fields=fields.main.fields basePath=(concat path "damage.main")}}
             {{/if}}
-            {{#unless (eq @root.source.type 'healing')}}
-                {{formField baseFields.main.fields.direct value=source.main.direct name=(concat path "damage.main.direct") localize=true classes="checkbox"}}
-            {{/unless}}
-            {{#if (and @root.isNPC (not (eq path 'system.attack.')))}}
-                {{formField baseFields.main.fields.groupAttack value=source.main.groupAttack name=(concat path "damage.main.groupAttack") localize=true classes="select"}}
+            {{#if (ne @root.source.type 'healing')}}
+                {{formField fields.main.fields.type value=source.main.type name=(concat path "damage.main.type") localize=true}}
             {{/if}}
-        </div>
-        {{> damageData damage=source.main fields=fields.main.fields basePath=(concat path "damage.main")}}
-        {{#if horde}}
-            {{> hordeDamage source=source.main fields=fields.main.fields basePath=(concat path "damage.main")}}
         {{/if}}
-        {{#if (ne @root.source.type 'healing')}}
-            {{formField fields.main.fields.type value=source.main.type name=(concat path "damage.main.type") localize=true}}
-        {{/if}}
-    {{/if}}
-</fieldset>
+    </fieldset>
+{{/unless}}
 
 {{#unless (eq path 'system.attack.')}}
     {{! In the future, consider allowing this even on NPCs}}
     <fieldset class="one-column">
         <legend class="with-icon">
-            {{localize "DAGGERHEART.GENERAL.Resource.plural"}}
+            {{#if (eq @root.source.type 'healing')}}
+                {{localize "DAGGERHEART.GENERAL.healing"}}
+            {{else}}
+                {{localize "DAGGERHEART.GENERAL.Resource.plural"}}
+            {{/if}}
             {{#unless @root.allDamageTypesUsed}}<a data-action="addDamageResource"><i class="fa-solid fa-plus icon-button"></i></a>{{/unless}}
         </legend>
         {{#each source.resources as |dmg key|}}

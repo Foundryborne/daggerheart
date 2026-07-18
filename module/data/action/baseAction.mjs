@@ -474,7 +474,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             source.damage.main = null;
             source.damage.resources = {};
             for (const [partKey, part] of Object.entries(source.damage.parts)) {
-                if (partKey === 'hitPoints') {
+                if (partKey === 'hitPoints' && source.type !== 'healing') {
                     source.damage.main = {
                         ...part,
                         includeBase: source.damage.includeBase,
