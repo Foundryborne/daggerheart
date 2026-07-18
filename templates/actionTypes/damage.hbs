@@ -39,7 +39,7 @@
             {{#if (eq @root.source.type 'healing')}}
                 {{localize "DAGGERHEART.GENERAL.healing"}}
             {{else}}
-                {{localize "DAGGERHEART.GENERAL.Resource.plural"}}
+                {{localize "DAGGERHEART.ACTIONS.Config.damage.markResources"}}
             {{/if}}
             {{#unless @root.allDamageTypesUsed}}<a data-action="addDamageResource"><i class="fa-solid fa-plus icon-button"></i></a>{{/unless}}
         </legend>
