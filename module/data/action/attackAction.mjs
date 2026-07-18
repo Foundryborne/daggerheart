@@ -82,7 +82,7 @@ export default class DHAttackAction extends DHDamageAction {
                     x: game.i18n.localize('DAGGERHEART.GENERAL.damage')
                 });
 
-            const icons = Array.from(type)
+            const icons = Array.from(type ?? [])
                 .map(t => CONFIG.DH.GENERAL.damageTypes[t]?.icon)
                 .filter(Boolean);
 

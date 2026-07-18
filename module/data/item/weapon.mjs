@@ -232,7 +232,7 @@ export default class DHWeapon extends AttachableItem {
             const parts = value.custom.enabled ? [game.i18n.localize('DAGGERHEART.GENERAL.custom')] : [value.dice];
             if (!value.custom.enabled && value.bonus) parts.push(value.bonus.signedString());
 
-            if (type.size > 0) {
+            if (type?.size) {
                 const typeTags = Array.from(type)
                     .map(t => game.i18n.localize(`DAGGERHEART.CONFIG.DamageType.${t}.abbreviation`))
                     .join(' | ');
@@ -259,7 +259,7 @@ export default class DHWeapon extends AttachableItem {
         for (const { value, type } of [damage.main, ...damage.resources].filter(d => !!d)) {
             const str = Roll.replaceFormulaData(value.getFormula(), this.actor?.getRollData() ?? {});
 
-            const icons = Array.from(type)
+            const icons = Array.from(type ?? [])
                 .map(t => CONFIG.DH.GENERAL.damageTypes[t]?.icon)
                 .filter(Boolean);
 

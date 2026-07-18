@@ -159,7 +159,8 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         context.tabs = this._getTabs(this.constructor.TABS);
         context.config = CONFIG.DH;
         if (this.action.damage) {
-            context.allDamageTypesUsed = !this.#getUnusedDamageTypes().length;
+            const allKeys = Object.keys(CONFIG.DH.GENERAL.healingTypes);
+            context.allDamageTypesUsed = allKeys.every(k => k in this.action._source.damage.resources);
             if (this.action.damage?.main?.hasOwnProperty('includeBase') && this.action.type === 'attack')
                 context.hasBaseDamage = !!this.action.parent.attack;
         }
@@ -232,23 +233,6 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         return filtered;
     }
 
-    /**
-     * Gets unused resource types of the damage field
-     * @returns {{ value: string; label: string }[]}
-     */
-    #getUnusedDamageTypes() {
-        const usedKeys = Object.keys(this.action._source.damage.resources);
-        return Object.keys(CONFIG.DH.GENERAL.healingTypes).reduce((acc, key) => {
-            if (!usedKeys.includes(key))
-                acc.push({
-                    value: key,
-                    label: game.i18n.localize(CONFIG.DH.GENERAL.healingTypes[key].label)
-                });
-
-            return acc;
-        }, []);
-    }
-
     _prepareSubmitData(_event, formData) {
         const submitData = foundry.utils.expandObject(formData.object);
 
@@ -317,6 +301,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
+    /** @this DHActionBaseConfig */
     static #onAddDamage() {
         if (!this.action.damage || this.action.damage?.main) return;
 
@@ -329,6 +314,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
+    /** @this DHActionBaseConfig */
     static #onRemoveDamage() {
         if (!this.action.damage?.main) return;
         const data = this.action.toObject();
@@ -340,50 +326,46 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     static #onAddDamageResource(_event) {
         if (!this.action.damage) return;
 
-        const choices = this.#getUnusedDamageTypes();
+        const allKeys = Object.keys(CONFIG.DH.GENERAL.healingTypes);
+        const unused = allKeys.filter(k => !(k in this.action._source.damage.resources));
+        const choices = unused.map(k => ({ value: k, label: _loc(CONFIG.DH.GENERAL.healingTypes[k].label) }));
         const content = new foundry.data.fields.StringField({
-            label: game.i18n.localize('Damage Type'),
+            label: _loc('DAGGERHEART.GENERAL.damageType'),
             choices,
             required: true
-        }).toFormGroup(
-            {},
-            {
-                name: 'type',
-                localize: true,
-                nameAttr: 'value',
-                labelAttr: 'label'
-            }
-        ).outerHTML;
+        }).toFormGroup({}, {
+            name: 'type',
+            localize: true,
+            nameAttr: 'value',
+            labelAttr: 'label'
+        }).outerHTML;
 
         const callback = (_, button) => {
             const data = this.action.toObject();
             const type = choices[button.form.elements.type.value].value;
-            const part = this.action.schema.fields.damage.fields.resources.element.getInitialValue();
-            part.applyTo = type;
-            if (type === CONFIG.DH.GENERAL.healingTypes.hitPoints.id)
-                part.type = this.action.schema.fields.damage.fields.resources.element.fields.type.element.initial;
-
-            data.damage.resources[type] = part;
+            data.damage.resources[type] = {
+                ...this.action.schema.fields.damage.fields.resources.element.getInitialValue(),
+                applyTo: type
+            };
             this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
         };
 
         const typeDialog = new foundry.applications.api.DialogV2({
             buttons: [
-                foundry.utils.mergeObject(
-                    {
-                        action: 'ok',
-                        label: 'Confirm',
-                        icon: 'fas fa-check',
-                        default: true
-                    },
-                    { callback: callback }
-                )
+                {
+                    action: 'ok',
+                    label: 'Confirm',
+                    icon: 'fas fa-check',
+                    default: true,
+                    callback
+                }
             ],
             content: content,
             rejectClose: false,
             modal: false,
             window: {
-                title: game.i18n.localize('Add Damage')
+                /** @todo localize */
+                title: 'Add Damage'
             },
             position: { width: 300 }
         });
@@ -391,6 +373,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         typeDialog.render(true);
     }
 
+    /** @this DHActionBaseConfig */
     static #onRemoveDamageResource(_event, button) {
         if (!this.action.damage?.resources) return;
         const data = this.action.toObject();
