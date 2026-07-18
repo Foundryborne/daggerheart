@@ -192,12 +192,13 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         if (!main && !resources) {
             source.damage.main = null;
             source.damage.resources = {};
-            
+
             const getRoll = key => {
                 const damageData = source.damage[key];
                 const oldRoll = damageData.parts[0]?.roll;
                 return oldRoll ? JSON.stringify({
                     ...oldRoll,
+                    class: 'BaseRoll',
                     options: {
                         ...oldRoll.options,
                         damageTypes: damageData.parts[0].damageTypes ?? []
