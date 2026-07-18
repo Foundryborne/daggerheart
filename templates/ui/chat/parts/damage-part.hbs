@@ -11,7 +11,7 @@
     <div class="roll-part-extra on-reduced">
         <div class="wrapper">
             {{#if damage.main}}
-                {{> formula roll=damage.main label=(ifThen hasHealing (localize "DAGGERHEART.GENERAL.healing") (localize "DAGGERHEART.GENERAL.damage")) }}
+                {{> formula roll=damage.main label=(localize "DAGGERHEART.GENERAL.damage") }}
             {{/if}}
             {{#each damage.resources as | roll index | }}
                 {{> formula roll=roll label=(ifThen ../hasHealing (localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.name')) (localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.inChatRoll'))) }}
@@ -20,20 +20,15 @@
     </div>
     <div class="roll-part-content dice-result">
         <div class="dice-tooltip">
-            <div class="wrapper">   
+            <div class="wrapper">
                 {{#if damage.main}}
-                    {{> damage
-                        label=(ifThen hasHealing (localize "DAGGERHEART.GENERAL.healing") (localize "DAGGERHEART.GENERAL.damage")) 
-                        roll=damage.main 
-                        index=0 
-                    }}
+                    {{> damage label=(localize "DAGGERHEART.GENERAL.damage") roll=damage.main isDirect=isDirect }}
                 {{/if}}
 
                 {{#each damage.resources as | roll index | }}
                     {{> damage
                         label=(ifThen ../hasHealing (localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.name')) (localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.inChatRoll'))) 
-                        roll=roll 
-                        index=index
+                        roll=roll
                         isResource=true 
                     }}
                 {{/each}}
@@ -50,7 +45,7 @@
     <fieldset>
         <legend>
             {{label}}
-            <div class="roll-formula">{{localize "DAGGERHEART.GENERAL.total"}}: {{roll.total}}</div>{{#if (and (eq index "hitPoints") ../isDirect)}} <div class="roll-formula">{{localize "DAGGERHEART.CONFIG.DamageType.direct.short"}}</div>{{/if}}
+            <div class="roll-formula">{{localize "DAGGERHEART.GENERAL.total"}}: {{roll.total}}</div>{{#if isDirect}} <div class="roll-formula">{{localize "DAGGERHEART.CONFIG.DamageType.direct.short"}}</div>{{/if}}
         </legend>
         {{#if (and (not @root.hasHealing) roll.options.damageTypes.length)}}
             <label class="roll-part-header"><span>
