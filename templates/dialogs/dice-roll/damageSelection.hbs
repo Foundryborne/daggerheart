@@ -16,7 +16,9 @@
         </fieldset>
     {{/if}}
 
-    {{> formula @root.damageFormula path="damageFormula"}}
+    {{#if @root.damageFormula}}
+        {{> formula @root.damageFormula path="damageFormula"}}
+    {{/if}}
 
     {{#each @root.resourceFormulas}}
         {{> formula path=(concat "resourceFormulas." @key)}}

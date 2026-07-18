@@ -145,6 +145,7 @@ export default class DamageRoll extends DHRoll {
     }
 
     constructFormula(formulaData, config, isDamage) {
+        if (!formulaData) return null;
         this.options.isCritical = config.isCritical;
 
         const isHitpointPart = formulaData.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id;

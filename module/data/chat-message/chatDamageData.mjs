@@ -28,10 +28,7 @@ export class ChatDamageData extends foundry.abstract.DataModel {
     }
 
     _prepareRolls() {
-        if (this.main) {
-            this.main = Roll.fromData(this.main);
-        }
-
+        this.main &&= Roll.fromData(this.main);
         for (const key of Object.keys(this.resources)) {
             this.resources[key] = Roll.fromData(this.resources[key]);
         }

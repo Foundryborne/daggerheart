@@ -9,8 +9,8 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         classes: ['adversary-settings'],
         position: { width: 455, height: 'auto' },
         actions: {
-            addExperience: DHAdversarySettings.#onAddExperience,
-            removeExperience: DHAdversarySettings.#onRemoveExperience,
+            addExperience: this.#onAddExperience,
+            removeExperience: this.#onRemoveExperience,
             addDamage: this.#onAddDamage,
             removeDamage: this.#onRemoveDamage
         }

@@ -80,7 +80,7 @@ export default class DamageField extends fields.SchemaField {
 
         const targetDamage = [];
         const damagePromises = [];
-        for (let target of targets) {
+        for (const target of targets) {
             const actor = foundry.utils.fromUuidSync(target.actorId);
             if (!actor) continue;
             if (!config.hasHealing && config.onSave && target.saved?.success === true) {
@@ -102,14 +102,12 @@ export default class DamageField extends fields.SchemaField {
                     actor.takeHealing(config.damage.types).then(updates => targetDamage.push({ token, updates }))
                 );
             else {
-                const configDamage = foundry.utils.deepClone(config.damage.types);
-                const hpDamageMultiplier = config.actionActor?.system.rules?.attack?.damage?.hpDamageMultiplier ?? 1;
-                const hpDamageTakenMultiplier = actor.system.rules?.attack?.damage?.hpDamageTakenMultiplier;
-                if (configDamage.hitPoints) {
-                    configDamage.hitPoints = configDamage.hitPoints.toJSON();
-                    configDamage.hitPoints.total = Math.ceil(
-                        configDamage.hitPoints.total * hpDamageMultiplier * hpDamageTakenMultiplier
-                    );
+                const configDamage = config.damage.clone();
+                configDamage.main &&= configDamage.main.toJSON();
+                if (configDamage.main) {
+                    const multiplier = config.actionActor?.system.rules?.attack?.damage?.hpDamageMultiplier ?? 1;
+                    const takenMultiplier = actor.system.rules?.attack?.damage?.hpDamageTakenMultiplier;
+                    configDamage.main.total = Math.ceil(configDamage.main.total * multiplier * takenMultiplier);
                 }
 
                 damagePromises.push(
@@ -179,12 +177,12 @@ export default class DamageField extends fields.SchemaField {
     static formatFormulas(damageData, data) {
         const formulas = damageData.map(x => ({
             formula: DamageField.getFormulaValue.call(this, x, data).getFormula(this.actor),
-            damageTypes: x.applyTo === 'hitPoints' && !x.type.size ? new Set(['physical']) : x.type,
+            damageTypes: x.type ?? new Set(),
             applyTo: x.applyTo
         }));
 
         const formattedFormulas = [];
-        formulas.forEach(formula => {
+        for (const formula of formulas) {
             if (isNaN(formula.formula))
                 formula.formula = Roll.replaceFormulaData(formula.formula, this.getRollData(data));
             const same = formattedFormulas.find(
@@ -192,7 +190,7 @@ export default class DamageField extends fields.SchemaField {
             );
             if (same) same.formula += ` + ${formula.formula}`;
             else formattedFormulas.push(formula);
-        });
+        }
 
         return formattedFormulas;
     }
