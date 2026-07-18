@@ -185,8 +185,6 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
 
         if (result === undefined) return;
 
-        const autoExpandDescription = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
-            .expandRollMessage?.desc;
         const cls = getDocumentClass('ChatMessage');
 
         const msg = {
@@ -202,7 +200,6 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
                     img: this.selectedMove.img,
                     description: game.i18n.localize(this.selectedMove.description),
                     result: result,
-                    open: autoExpandDescription ? 'open' : '',
                     showRiskItAllButton: this.showRiskItAllButton,
                     riskItAllButtonLabel: this.riskItAllButtonLabel,
                     riskItAllHope: this.riskItAllHope

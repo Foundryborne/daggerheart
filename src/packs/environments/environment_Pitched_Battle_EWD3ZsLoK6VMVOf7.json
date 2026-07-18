@@ -199,7 +199,7 @@
             "type": "attack",
             "_id": "1giAFbu3tGqXwi8g",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> as a mage from one side uses large-scale destructive magic. Pick a point on the battlefield within Very Far range of the mage. All targets within Close range of that point must make an Agility Reaction Roll. Targets who fail take <strong>3d12+8</strong> magic damage and must mark a Stress.</p><section id=\"secret-jbI9lwrzP59CTRUt\" class=\"secret\"><p><em>What form does the attack take—fireball raining acid a storm of blades? What tactical objective is this attack meant to accomplish and what comes next?</em></p></section>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

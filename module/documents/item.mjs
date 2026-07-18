@@ -208,10 +208,7 @@ export default class DHItem extends foundry.documents.Item {
                 tags: this._getTags()
             },
             actions: item.system.actionsList,
-            description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.system.description, {
-                relativeTo: this.parent,
-                rollData: this.parent?.getRollData() ?? {}
-            })
+            description: await this.system.getEnrichedDescription()
         };
 
         const msg = {

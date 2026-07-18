@@ -3,6 +3,13 @@ import { emitGMUpdate, emitGMCreate, GMUpdateEvent } from '../systemRegistration
 export default class DhpChatMessage extends foundry.documents.ChatMessage {
     targetHook = null;
 
+    static #EXPAND_SECTIONS = [
+        { selector: 'roll-section [data-action="expandRoll"]', key: 'roll' },
+        { selector: 'damage-section', key: 'damage' },
+        { selector: 'target-section', key: 'target' },
+        { selector: 'description-section', key: 'desc' }
+    ];
+
     async renderHTML() {
         const actor = game.actors.get(this.speaker.actor);
         const actorData =
@@ -89,23 +96,26 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                 }
             }
 
+            // Check registered selectors and the main item section for expanding
+            // Preserving during re-render is handled by core foundry on anything with [data-action=expandRoll]
             const autoExpandRoll = game.settings.get(
-                    CONFIG.DH.id,
-                    CONFIG.DH.SETTINGS.gameSettings.appearance
-                ).expandRollMessage,
-                rollSections = html.querySelectorAll('.roll-part'),
-                itemDesc = html.querySelector('.domain-card-move');
-            rollSections.forEach(s => {
-                if (s.classList.contains('roll-section')) {
-                    const toExpand = s.querySelector('[data-action="expandRoll"]');
-                    toExpand.classList.toggle('expanded', autoExpandRoll.roll);
-                } else if (s.classList.contains('damage-section'))
-                    s.classList.toggle('expanded', autoExpandRoll.damage);
-                else if (s.classList.contains('target-section')) s.classList.toggle('expanded', autoExpandRoll.target);
-                else if (s.classList.contains('description-section'))
-                    s.classList.toggle('expanded', autoExpandRoll.desc);
-            });
-            if (itemDesc && autoExpandRoll.desc) itemDesc.setAttribute('open', '');
+                CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance
+            ).expandRollMessage;
+            for (const { selector, key } of DhpChatMessage.#EXPAND_SECTIONS) {
+                const elements = html.querySelectorAll(selector);
+                for (const element of elements) {
+                    element.classList.toggle('expanded', autoExpandRoll[key]);
+                }
+            }
+
+            // Auto expand the item description. These are not preserved by foundry during re-renders
+            const itemDesc = html.querySelector('details');
+            if (itemDesc) {
+                const existing = document.querySelector(`.chat-message[data-message-id="${this.id}"] details`);
+                if (existing?.hasAttribute('open') ?? autoExpandRoll.desc) {
+                    itemDesc.setAttribute('open', '');
+                }
+            }
         }
 
         if (!this.isAuthor && !this.speakerActor?.isOwner) {

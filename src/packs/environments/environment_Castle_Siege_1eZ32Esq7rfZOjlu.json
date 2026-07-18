@@ -330,7 +330,7 @@
             "type": "attack",
             "_id": "r5JN5oFYL5DC6Qqw",
             "systemPath": "actions",
-            "description": "<p>When an adversary is defeated, you can <strong>spend a Fear</strong> to have a stray attack from a siege weapon hit a point on the battlefield. All targets within Very Close range of that point must make an Agility Reaction Roll.</p><ul><li><p>Targets who fail take <strong>3d8+3</strong> physical or magic damage and must mark a Stress.</p></li><li><p>Targets who succeed must mark a Stress.</p></li></ul><section id=\"secret-qe1DM7HUSefRAplk\" class=\"secret\"><p><em>What debris is scattered by the attack? What is broken by the strike that can’t be easily mended?</em></p></section>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

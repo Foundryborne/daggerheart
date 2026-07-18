@@ -49,7 +49,10 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             })
         };
 
-        if (this.metadata.hasDescription) schema.description = new fields.HTMLField({ required: true, nullable: true });
+        if (this.metadata.hasDescription) {
+            schema.description = new fields.HTMLField({ required: true, nullable: true });
+            schema.gmNotes = new fields.HTMLField({ required: true, nullable: true });
+        }
 
         if (this.metadata.hasResource) {
             schema.resource = new fields.SchemaField(
@@ -134,7 +137,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
     /**
      * Augments the description for the item with type specific info to display. Implemented in applicable item subtypes.
      * @param {object} [options] - Options that modify the styling of the rendered template. { headerStyle: undefined|'none'|'large' }
-     * @returns {string}
+     * @returns {Promise<{ prefix: string | null; value: string | null; suffix: string | null }>}
      */
     async getDescriptionData(_options) {
         return { prefix: null, value: this.description, suffix: null };
@@ -143,16 +146,26 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
     /**
      * Gets the enriched and augmented description for the item.
      * @param {object} [options] - Options that modify the styling of the rendered template. { headerStyle: undefined|'none'|'large' }
-     * @returns {string}
+     * @returns {Promise<string>}
      */
-    async getEnrichedDescription() {
+    async getEnrichedDescription({ gmNotes = true } = {}) {
         if (!this.metadata.hasDescription) return '';
 
         const { prefix, value, suffix } = await this.getDescriptionData();
-        const fullDescription = [prefix, value, suffix].filter(p => !!p).join('\n<hr>\n');
+        let fullDescription = [prefix, value, suffix].filter(p => !!p).join('\n<hr>\n');
+        if (this.gmNotes && gmNotes) {
+            const gmNotesElement = document.createElement('section');
+            gmNotesElement.classList.add('gm-notes-section');
+            gmNotesElement.dataset.visibility = 'gm';
+            const header = document.createElement('header');
+            header.classList.add('gm-notes');
+            header.textContent = _loc('DAGGERHEART.ITEMS.FIELDS.gmNotes.label');
+            gmNotesElement.innerHTML = header.outerHTML + this.gmNotes;
+            fullDescription += gmNotesElement.outerHTML;
+        }
 
         return await foundry.applications.ux.TextEditor.implementation.enrichHTML(fullDescription, {
-            relativeTo: this,
+            relativeTo: this.parent,
             rollData: this.getRollData(),
             secrets: this.parent.isOwner
         });
