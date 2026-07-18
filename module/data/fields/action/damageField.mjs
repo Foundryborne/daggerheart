@@ -283,17 +283,6 @@ export class DHResourceData extends foundry.abstract.DataModel {
     static defineSchema() {
         return {
             base: new fields.BooleanField({ initial: false, readonly: true, label: 'Base' }),
-            type: new fields.SetField(
-                new fields.StringField({
-                    choices: CONFIG.DH.GENERAL.damageTypes,
-                    initial: 'physical',
-                    nullable: false,
-                    required: true
-                }),
-                {
-                    label: game.i18n.localize('DAGGERHEART.GENERAL.type')
-                }
-            ),
             applyTo: new fields.StringField({
                 choices: CONFIG.DH.GENERAL.healingTypes,
                 required: true,
@@ -325,7 +314,18 @@ export class DHDamageData extends DHResourceData {
                 choices: CONFIG.DH.GENERAL.groupAttackRange,
                 blank: true,
                 label: 'DAGGERHEART.ACTIONS.Settings.groupAttack.label'
-            })
+            }),
+            type: new fields.SetField(
+                new fields.StringField({
+                    choices: CONFIG.DH.GENERAL.damageTypes,
+                    initial: 'physical',
+                    nullable: false,
+                    required: true
+                }),
+                {
+                    label: game.i18n.localize('DAGGERHEART.GENERAL.type')
+                }
+            )
         };
     }
 }

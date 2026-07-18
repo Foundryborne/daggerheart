@@ -25,6 +25,9 @@
             {{/if}}
         </div>
         {{> damageData data=source.main fields=fields.main.fields basePath=(concat path "damage.main")}}
+        {{#if (ne @root.source.type 'healing')}}
+            {{formField fields.main.fields.type value=source.main.type name=(concat path "damage.main.type") localize=true}}
+        {{/if}}
     {{/if}}
 </fieldset>
 
@@ -33,8 +36,6 @@
         {{localize "DAGGERHEART.GENERAL.Resource.plural"}}
         {{#unless (eq path 'system.attack.')}}<a data-action="addDamageResource" {{#if @root.allDamageTypesUsed}}disabled{{/if}}><i class="fa-solid fa-plus icon-button"></i></a>{{/unless}}
     </legend>
-
-    {{!-- Handlebars uses Symbol.Iterator to produce index|key. This isn't compatible with our parts object, so we instead use applyTo, which is the same value --}}
     {{#each source.resources as |dmg key|}}
         <div class="nest-inputs">
             <fieldset{{#if dmg.base}} disabled{{/if}} class="one-column{{#if ../path}} no-style{{/if}}">
@@ -88,10 +89,6 @@
         </div>
     {{else}}
         {{> formula fields=fields.value.fields type=fields.type dmg=data source=data.value basePath=basePath target="value" key=data.applyTo path=../path}}
-    {{/if}}
-
-    {{#if (ne @root.source.type 'healing')}}
-        {{formField fields.type value=data.type name=(concat basePath ".type") localize=true}}
     {{/if}}
 
     {{#if ../horde}}
