@@ -1,4 +1,4 @@
-import { getUnusedDamageTypes } from '../../helpers/utils.mjs';
+import { DHDamageData } from '../../data/fields/action/damageField.mjs';
 import DaggerheartSheet from '../sheets/daggerheart-sheet.mjs';
 
 const { ApplicationV2 } = foundry.applications.api;
@@ -31,8 +31,10 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             removeElement: this.removeElement,
             removeTransformActor: this.removeTransformActor,
             editEffect: this.editEffect,
-            addDamage: this.addDamage,
-            removeDamage: this.removeDamage,
+            addDamage: this.#onAddDamage,
+            removeDamage: this.#onRemoveDamage,
+            addDamageResource: this.#onAddDamageResource,
+            removeDamageResource: this.#onRemoveDamageResource,
             editDoc: this.editDoc,
             addTrigger: this.addTrigger,
             removeTrigger: this.removeTrigger,
@@ -157,9 +159,8 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         context.tabs = this._getTabs(this.constructor.TABS);
         context.config = CONFIG.DH;
         if (this.action.damage) {
-            context.allDamageTypesUsed = !getUnusedDamageTypes(this.action.damage.parts).length;
-
-            if (this.action.damage.hasOwnProperty('includeBase') && this.action.type === 'attack')
+            context.allDamageTypesUsed = !this.#getUnusedDamageTypes().length;
+            if (this.action.damage?.main?.hasOwnProperty('includeBase') && this.action.type === 'attack')
                 context.hasBaseDamage = !!this.action.parent.attack;
         }
 
@@ -231,6 +232,23 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         return filtered;
     }
 
+    /**
+     * Gets unused resource types of the damage field
+     * @returns {{ value: string; label: string }[]}
+     */
+    #getUnusedDamageTypes() {
+        const usedKeys = Object.keys(this.action._source.damage.resources);
+        return Object.keys(CONFIG.DH.GENERAL.healingTypes).reduce((acc, key) => {
+            if (!usedKeys.includes(key))
+                acc.push({
+                    value: key,
+                    label: game.i18n.localize(CONFIG.DH.GENERAL.healingTypes[key].label)
+                });
+
+            return acc;
+        }, []);
+    }
+
     _prepareSubmitData(_event, formData) {
         const submitData = foundry.utils.expandObject(formData.object);
 
@@ -299,10 +317,30 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
-    static addDamage(_event) {
-        if (!this.action.damage.parts) return;
+    static #onAddDamage() {
+        if (!this.action.damage || this.action.damage?.main) return;
 
-        const choices = getUnusedDamageTypes(this.action._source.damage.parts);
+        const data = this.action.toObject();
+        data.damage.main = {
+            ...DHDamageData.schema.getInitialValue(),
+            applyTo: 'hitPoints',
+            type: 'physical'
+        };
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
+    static #onRemoveDamage() {
+        if (!this.action.damage?.main) return;
+        const data = this.action.toObject();
+        data.damage.main = null;
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
+    /** @this DHActionBaseConfig */
+    static #onAddDamageResource(_event) {
+        if (!this.action.damage) return;
+
+        const choices = this.#getUnusedDamageTypes();
         const content = new foundry.data.fields.StringField({
             label: game.i18n.localize('Damage Type'),
             choices,
@@ -320,12 +358,12 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         const callback = (_, button) => {
             const data = this.action.toObject();
             const type = choices[button.form.elements.type.value].value;
-            const part = this.action.schema.fields.damage.fields.parts.element.getInitialValue();
+            const part = this.action.schema.fields.damage.fields.resources.element.getInitialValue();
             part.applyTo = type;
             if (type === CONFIG.DH.GENERAL.healingTypes.hitPoints.id)
-                part.type = this.action.schema.fields.damage.fields.parts.element.fields.type.element.initial;
+                part.type = this.action.schema.fields.damage.fields.resources.element.fields.type.element.initial;
 
-            data.damage.parts[type] = part;
+            data.damage.resources[type] = part;
             this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
         };
 
@@ -353,12 +391,11 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         typeDialog.render(true);
     }
 
-    static removeDamage(_event, button) {
-        if (!this.action.damage.parts) return;
+    static #onRemoveDamageResource(_event, button) {
+        if (!this.action.damage?.resources) return;
         const data = this.action.toObject();
         const key = button.dataset.key;
-        delete data.damage.parts[key];
-        data.damage.parts[`${key}`] = _del;
+        data.damage.resources[key] = _del;
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
