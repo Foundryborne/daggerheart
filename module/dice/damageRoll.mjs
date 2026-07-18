@@ -120,12 +120,10 @@ export default class DamageRoll extends DHRoll {
         const type = this.options.messageType ?? (this.options.hasHealing ? 'healing' : 'damage');
         const changeKeys = [];
 
-        for (const roll of this.options.roll) {
-            for (const damageType of roll.damageTypes?.values?.() ?? []) {
-                changeKeys.push(`system.bonuses.${type}.${damageType}`);
-            }
+        for (const damageType of this.options.damageFormula?.damageTypes?.values?.() ?? []) {
+            changeKeys.push(`system.bonuses.${type}.${damageType}`);
         }
-
+        
         const item = this.data.parent?.items?.get(this.options.source.item);
         if (item) {
             switch (item.type) {

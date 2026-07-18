@@ -13,18 +13,19 @@ export default class DHAttackAction extends DHDamageAction {
             if (this.damage.includeBase) {
                 const baseDamage = this.getParentHitPointDamage();
                 if (baseDamage) {
-                    if (!this.damage.parts.hitPoints) {
-                        this.damage.parts.hitPoints = baseDamage;
+                    if (!this.damage.main) {
+                        this.damage.main = baseDamage;
                     } else {
-                        for (const type of baseDamage.type) this.damage.parts.hitPoints.type.add(type);
+                        for (const type of baseDamage.type) this.damage.main.type.add(type);
 
-                        this.damage.parts.hitPoints.value.custom = {
+                        this.damage.main.value.custom = {
                             enabled: true,
-                            formula: `${baseDamage.value.getFormula()} + ${this.damage.parts.hitPoints.value.getFormula()}`
+                            formula: `${baseDamage.value.getFormula()} + ${this.damage.main.value.getFormula()}`
                         };
                     }
                 }
             }
+            
             if (this.roll.useDefault) {
                 this.roll.trait = this.item.system.attack.roll.trait;
                 this.roll.type = 'attack';
@@ -33,18 +34,18 @@ export default class DHAttackAction extends DHDamageAction {
     }
 
     getParentHitPointDamage() {
-        return this.item?.system?.attack.damage.parts.hitPoints;
+        return this.item?.system?.attack.damage.main;
     }
 
     get damageFormula() {
-        const hitPointsPart = this.damage.parts.hitPoints;
+        const hitPointsPart = this.damage.main;
         if (!hitPointsPart) return '0';
 
         return hitPointsPart.value.getFormula();
     }
 
     get altDamageFormula() {
-        const hitPointsPart = this.damage.parts.hitPoints;
+        const hitPointsPart = this.damage.main;
         if (!hitPointsPart) return '0';
 
         return hitPointsPart.valueAlt.getFormula();
