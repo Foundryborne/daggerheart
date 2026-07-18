@@ -41,6 +41,10 @@ export default class DHRoll extends BaseRoll {
         return config;
     }
 
+    static createRollInstance(config) {
+        return new this(config.roll.formula, config.data, config);
+    }
+
     /** 
      * @param {Partial<RollConfig>} config 
      * @returns {Promise<RollConfig>}
@@ -58,7 +62,7 @@ export default class DHRoll extends BaseRoll {
 
         this.temporaryModifierBuilder(config);
 
-        let roll = new this(config.roll.formula, config.data, config);
+        let roll = this.createRollInstance(config);
         if (config.dialog.configure !== false) {
             // Open Roll Dialog
             const DialogClass = config.dialog?.class ?? this.DefaultDialog;

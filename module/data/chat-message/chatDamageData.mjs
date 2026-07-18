@@ -17,7 +17,7 @@ export class ChatDamageData extends foundry.abstract.DataModel {
     }
 
     get active() {
-        return Boolean(Object.keys(this.types).length);
+        return !!this.main || Boolean(Object.keys(this.resources).length);
     }
 
     static #validateRoll(rollJSON) {
@@ -28,12 +28,12 @@ export class ChatDamageData extends foundry.abstract.DataModel {
     }
 
     _prepareRolls() {
-        for (const key of Object.keys(this.types)) {
-            const type = this.types[key];
-            try {
-                this.types[key] = Roll.fromData(type);
-                this.types[key].options.modifierTotal = CONFIG.Dice.daggerheart.DHRoll.calculateTotalModifiers(type);
-            } catch {}
+        if (this.main) {
+            this.main = Roll.fromData(this.main);
+        }
+
+        for (const key of Object.keys(this.resources)) {
+            this.resources[key] = Roll.fromData(this.resources[key]);
         }
     }
 

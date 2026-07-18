@@ -32,25 +32,23 @@ export default class DamageField extends fields.SchemaField {
             this.hasRoll &&
             DamageField.getAutomation() === CONFIG.DH.SETTINGS.actionAutomationChoices.never.id &&
             !force
-        )
+        ) {
             return;
+        }
 
-        let formulas = this.damage.parts.map(p => ({
-            formula: DamageField.getFormulaValue.call(this, p, config).getFormula(this.actor),
-            damageTypes: p.applyTo === 'hitPoints' && !p.type.size ? new Set(['physical']) : p.type,
-            applyTo: p.applyTo
-        }));
+        const damageFormula = this.damage.main ? 
+            DamageField.formatFormulas.call(this, [this.damage.main], config)[0] : null;
+        const resourceFormulas = DamageField.formatFormulas.call(this, this.damage.resources, config);
 
-        if (!formulas.length) return false;
-
-        formulas = DamageField.formatFormulas.call(this, formulas, config);
+        if (!damageFormula && !resourceFormulas.length) return false;
 
         messageId = config.message?._id ?? messageId;
         const message = game.messages.get(messageId);
         const damageConfig = {
             dialog: {},
             ...config,
-            roll: formulas,
+            damageFormula,
+            resourceFormulas, 
             data: this.getRollData(),
             isCritical: Boolean(message?.system.roll?.isCritical)
         };
@@ -175,11 +173,17 @@ export default class DamageField extends fields.SchemaField {
     /**
      * Prepare formulas for Damage Roll
      * Must be called within Action context or similar.
-     * @param {object[]} formulas   Array of formatted formulas object
+     * @param {DHResourceData[]} damageData  Array of DHResourceData
      * @param {object} data         Action getRollData
      * @returns
      */
-    static formatFormulas(formulas, data) {
+    static formatFormulas(damageData, data) {
+        const formulas = damageData.map(x => ({
+            formula: DamageField.getFormulaValue.call(this, x, data).getFormula(this.actor),
+            damageTypes: x.applyTo === 'hitPoints' && !x.type.size ? new Set(['physical']) : x.type,
+            applyTo: x.applyTo
+        }));
+
         const formattedFormulas = [];
         formulas.forEach(formula => {
             if (isNaN(formula.formula))
@@ -190,6 +194,7 @@ export default class DamageField extends fields.SchemaField {
             if (same) same.formula += ` + ${formula.formula}`;
             else formattedFormulas.push(formula);
         });
+
         return formattedFormulas;
     }
 
