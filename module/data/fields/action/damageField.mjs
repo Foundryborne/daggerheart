@@ -12,11 +12,10 @@ export default class DamageField extends fields.SchemaField {
 
     /** @inheritDoc */
     constructor(options, context = {}) {
-        const damageFields = {
+        super({
             main: new fields.EmbeddedDataField(DHDamageData, { nullable: true }),
             resources: new IterableTypedObjectField(DHResourceData)
-        };
-        super(damageFields, options, context);
+        }, options, context);
     }
 
     /**
