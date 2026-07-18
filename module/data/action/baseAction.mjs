@@ -470,7 +470,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             }, {});
         }
 
-        if (source.damage && source.damage.resources === undefined) {
+        if (source.damage?.parts && !source.damage.resources && !source.damage.main) {
             source.damage.main = null;
             source.damage.resources = {};
             for (const [partKey, part] of Object.entries(source.damage.parts)) {
