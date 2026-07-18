@@ -330,7 +330,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         const unused = allKeys.filter(k => !(k in this.action._source.damage.resources));
         const choices = unused.map(k => ({ value: k, label: _loc(CONFIG.DH.GENERAL.healingTypes[k].label) }));
         const content = new foundry.data.fields.StringField({
-            label: _loc('DAGGERHEART.GENERAL.damageType'),
+            label: _loc('DAGGERHEART.GENERAL.Resource.single'),
             choices,
             required: true
         }).toFormGroup({}, {
@@ -364,8 +364,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             rejectClose: false,
             modal: false,
             window: {
-                /** @todo localize */
-                title: 'Add Damage'
+                title: _loc('DAGGERHEART.ACTIONS.Config.damage.addResource')
             },
             position: { width: 300 }
         });

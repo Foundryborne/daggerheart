@@ -104,6 +104,7 @@
                     "startCountdown": "Start Countdown"
                 },
                 "damage": {
+                    "addResource": "Add Resource",
                     "multiplier": "Multiplier",
                     "flatMultiplier": "Flat Multiplier",
                     "markResources": "Mark Resources"
