@@ -237,7 +237,8 @@ export function ActionMixin(Base) {
                 await this.parent.updateSource({ [path]: updates }, options);
                 result = this.parent;
             } else {
-                result = await this.item.update({ [path]: updates }, options);
+                // If no changes occur, update returns undefined, but we need to re-retrieve the action anyways
+                result = (await this.item.update({ [path]: updates }, options)) ?? this.item;
             }
 
             return this.inCollection

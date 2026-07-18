@@ -12,7 +12,7 @@
         {{#if source.main}}
             <div class="nest-inputs">
                 {{#if @root.hasBaseDamage}}
-                    {{formField @root.fields.damage.fields.main.fields.includeBase value=@root.source.damage.includeBase name="damage.main.includeBase" classes="checkbox" localize=true }}
+                    {{formField @root.fields.damage.fields.main.fields.includeBase value=source.main.includeBase name="damage.main.includeBase" classes="checkbox" localize=true }}
                 {{/if}}
                 {{#unless (eq @root.source.type 'healing')}}
                     {{formField baseFields.main.fields.direct value=source.main.direct name=(concat path "damage.main.direct") localize=true classes="checkbox"}}
