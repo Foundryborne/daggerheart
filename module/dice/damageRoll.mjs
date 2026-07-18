@@ -13,16 +13,31 @@ export default class DamageRoll extends DHRoll {
 
     static DefaultDialog = DamageDialog;
 
+    static createRollInstance(config) {
+        return new this(undefined, config.data, config);
+    }
+
     /** @inheritdoc */
     static async buildEvaluate(roll, config = {}) {
-        if (config.dialog.configure === false) roll.constructFormula(config);
+        if (config.dialog.configure === false) roll.constructFormulas(config);
         
-        for (const roll of config.roll) {
+        const evaluateRoll = async roll => {
             await roll.roll.evaluate();
             roll.roll.options = { damageTypes: roll.damageTypes ? [...roll.damageTypes] : [] };
+            return roll.roll;
+        }
 
-            if (!config.damage?.types) config.damage = { types: {} };
-            config.damage.types[roll.applyTo] = roll.roll;
+        if (!config.damage) config.damage = { main: null, resources: {} };
+
+        if (config.damageFormula) {
+            config.damage.main = await evaluateRoll(config.damageFormula);
+            config.damage.main.options = { damageTypes: 
+                config.damageFormula.damageTypes ? [...config.damageFormula.damageTypes] : []
+            };
+        }
+        
+        for (const roll of config.resourceFormulas) {
+            config.damage.resources[roll.applyTo] = await evaluateRoll(roll);
         }
 
         roll._evaluated = true;
@@ -36,9 +51,10 @@ export default class DamageRoll extends DHRoll {
         const diceRolls = [];
         if (game.modules.get('dice-so-nice')?.active) {
             config.mute = true;
-            const pool = foundry.dice.terms.PoolTerm.fromRolls(
-                Object.values(config.damage.types)
-            );
+            const pool = foundry.dice.terms.PoolTerm.fromRolls([
+                ...(config.damage.main ? [config.damage.main] : []),
+                ...Object.values(config.damage.resources)
+            ]);
             diceRolls.push(Roll.fromTerms([pool]));
         }
 
@@ -51,7 +67,8 @@ export default class DamageRoll extends DHRoll {
         if (config.source?.message) {
             chatMessage.update({ 'system.damage': {
                 ...config.damage.toObject(),
-                types: config.damage.types
+                main: config.damage.main,
+                resources: config.damage.resources
             }});
         }
     }
@@ -104,12 +121,10 @@ export default class DamageRoll extends DHRoll {
         const type = this.options.messageType ?? (this.options.hasHealing ? 'healing' : 'damage');
         const changeKeys = [];
 
-        for (const roll of this.options.roll) {
-            for (const damageType of roll.damageTypes?.values?.() ?? []) {
-                changeKeys.push(`system.bonuses.${type}.${damageType}`);
-            }
+        for (const damageType of this.options.damageFormula?.damageTypes?.values?.() ?? []) {
+            changeKeys.push(`system.bonuses.${type}.${damageType}`);
         }
-
+        
         const item = this.data.parent?.items?.get(this.options.source.item);
         if (item) {
             switch (item.type) {
@@ -125,62 +140,69 @@ export default class DamageRoll extends DHRoll {
         return changeKeys;
     }
 
-    constructFormula(config) {
+    constructFormulas(config) {
+        return {
+            damageFormula: this.constructFormula(this.options.damageFormula, config, true),
+            resourceFormulas: this.options.resourceFormulas.map(x => this.constructFormula(x, config))
+        };
+    }
+
+    constructFormula(formulaData, config, isDamage) {
+        if (!formulaData) return null;
         this.options.isCritical = config.isCritical;
-        for (const [index, part] of this.options.roll.entries()) {
-            const isHitpointPart = part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id;
-            part.roll = new Roll(Roll.replaceFormulaData(part.formula, config.data));
-            part.roll.terms = Roll.parse(part.roll.formula, config.data);
-            if (part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-                part.modifiers = this.applyBaseBonus(part);
-                this.addModifiers(part);
-                part.modifiers?.forEach(m => {
-                    part.roll.terms.push(...this.formatModifier(m.value));
-                });
+
+        formulaData.roll = new Roll(Roll.replaceFormulaData(formulaData.formula, config.data));
+        formulaData.roll.terms = Roll.parse(formulaData.roll.formula, config.data);
+
+        if (formulaData.extraFormula) {
+            formulaData.roll.terms.push(
+                new foundry.dice.terms.OperatorTerm({ operator: '+' }),
+                ...this.constructor.parse(formulaData.extraFormula, this.options.data)
+            );
+        }
+
+        if (isDamage && formulaData.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
+            formulaData.modifiers = this.applyBaseBonus(formulaData);
+            this.addModifiers(formulaData);
+            formulaData.modifiers?.forEach(m => {
+                formulaData.roll.terms.push(...this.formatModifier(m.value));
+            });
+
+            /* To Remove When Reaction System */
+            for (const mod in config.modifiers) {
+                const modifier = config.modifiers[mod];
+                if (
+                    modifier.beforeCrit === true && 
+                    (modifier.enabled || modifier.value)
+                ) modifier.callback(formulaData);
             }
 
             /* To Remove When Reaction System */
-            if (index === 0 && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-                for (const mod in config.modifiers) {
-                    const modifier = config.modifiers[mod];
-                    if (modifier.beforeCrit === true && (modifier.enabled || modifier.value)) modifier.callback(part);
-                }
+            for (const mod in config.modifiers) {
+                const modifier = config.modifiers[mod];
+                if (!modifier.beforeCrit && (modifier.enabled || modifier.value)) modifier.callback(formulaData);
             }
 
-            if (part.extraFormula) {
-                part.roll.terms.push(
-                    new foundry.dice.terms.OperatorTerm({ operator: '+' }),
-                    ...this.constructor.parse(part.extraFormula, this.options.data)
-                );
-            }
-
-            if (config.damageOptions.groupAttack?.numAttackers > 1 && isHitpointPart) {
+            if (config.damageOptions.groupAttack?.numAttackers > 1) {
                 const damageTypes = [foundry.dice.terms.Die, foundry.dice.terms.NumericTerm];
-                for (const term of part.roll.terms) {
+                for (const term of formulaData.roll.terms) {
                     if (damageTypes.some(type => term instanceof type)) {
                         term.number *= config.damageOptions.groupAttack.numAttackers;
                     }
                 }
             }
 
-            if (config.isCritical && isHitpointPart) {
-                const total = part.roll.dice.reduce((acc, term) => acc + term._faces * term._number, 0);
+            if (config.isCritical) {
+                const total = formulaData.roll.dice.reduce((acc, term) => acc + term._faces * term._number, 0);
                 if (total > 0) {
-                    part.roll.terms.push(...this.formatModifier(total));
+                    formulaData.roll.terms.push(...this.formatModifier(total));
                 }
             }
-
-            /* To Remove When Reaction System */
-            if (index === 0 && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-                for (const mod in config.modifiers) {
-                    const modifier = config.modifiers[mod];
-                    if (!modifier.beforeCrit && (modifier.enabled || modifier.value)) modifier.callback(part);
-                }
-            }
-
-            part.roll._formula = this.constructor.getFormula(part.roll.terms);
         }
-        return this.options.roll;
+
+        formulaData.roll._formula = this.constructor.getFormula(formulaData.roll.terms);
+        
+        return formulaData;
     }
 
     /* To Remove When Reaction System */

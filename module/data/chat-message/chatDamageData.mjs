@@ -11,31 +11,31 @@ export class ChatDamageData extends foundry.abstract.DataModel {
         const fields = foundry.data.fields;
         
         return {
-            types: new fields.TypedObjectField(new fields.JSONField({validate: ChatDamageData.#validateRoll}))
+            main: new fields.JSONField({ nullable: true, validate: ChatDamageData.#validateRoll}),
+            resources: new fields.TypedObjectField(new fields.JSONField({validate: ChatDamageData.#validateRoll}))
         };
     }
 
     get active() {
-        return Boolean(Object.keys(this.types).length);
+        return !!this.main || Boolean(Object.keys(this.resources).length);
     }
 
     static #validateRoll(rollJSON) {
-        const roll = JSON.parse(rollJSON);
-        if (!roll.evaluated) throw new Error('Roll objects added to ChatMessage documents must be evaluated');
-    }
-
-    _prepareRolls() {
-        for (const key of Object.keys(this.types)) {
-            const type = this.types[key];
-            try {
-                this.types[key] = Roll.fromData(type);
-                this.types[key].options.modifierTotal = CONFIG.Dice.daggerheart.DHRoll.calculateTotalModifiers(type);
-            } catch {}
+        if (rollJSON) {
+            const roll = JSON.parse(rollJSON);
+            if (!roll.evaluated) throw new Error('Roll objects added to ChatMessage documents must be evaluated');
         }
     }
 
-    async rerollDamageDie(damageType, dice, resultIndex) {
-        const reroll = this.types[damageType];
+    _prepareRolls() {
+        this.main &&= Roll.fromData(this.main);
+        for (const key of Object.keys(this.resources)) {
+            this.resources[key] = Roll.fromData(this.resources[key]);
+        }
+    }
+
+    async rerollDamageDie(isResource, damageType, dice, resultIndex) {
+        const reroll = isResource ? this.resources[damageType] : this.main;
         const rerollDice = reroll.dice[dice];
         await rerollDice.rerollResult(resultIndex);
         await reroll._evaluate();

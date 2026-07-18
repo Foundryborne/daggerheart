@@ -553,23 +553,27 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         const { memberKey } = button.dataset;
         this.updatePartyData(
             {
-                [`system.tagTeam.members.${memberKey}.damageRollData.types`]:
-                _replace({}) 
+                [`system.tagTeam.members.${memberKey}.damageRollData`]: {
+                    main: null,
+                    resources: _replace({})
+                }
             },
             this.getUpdatingParts(button)
         );
     }
 
     static async #rerollDamageDice(_, button) {
-        const { memberKey, damageKey, diceIndex, resultIndex } = button.dataset;
+        const { isResource, memberKey, damageKey, diceIndex, resultIndex } = button.dataset;
         const memberData = this.party.system.tagTeam.members[memberKey];
-        await memberData.damageRollData.rerollDamageDie(damageKey, diceIndex, resultIndex);
+        await memberData.damageRollData.rerollDamageDie(isResource, damageKey, diceIndex, resultIndex);
 
+        const basePath = `system.tagTeam.members.${memberKey}.damageRollData`;
+        const updatePath = isResource ? `${basePath}.resources.${damageKey}` : `${basePath}.main`;
+        const updateValue = isResource ? 
+            memberData.damageRollData.resources[damageKey] : memberData.damageRollData.main;
         this.updatePartyData(
             {
-                [`system.tagTeam.members.${memberKey}.damageRollData.types`]: { 
-                    [damageKey]: memberData.damageRollData.types[damageKey].toJSON()
-                }
+                [updatePath]: updateValue.toJSON()
             },
             this.getUpdatingParts(button)
         );
@@ -577,19 +581,19 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
     async getCriticalDamage(origDamage) {
         const newDamage = origDamage ? ChatDamageData.fromJSON(JSON.stringify(origDamage)) : null;
-        for (let key in newDamage?.types ?? {}) {
-            const criticalDamage = await getCritDamageBonus(newDamage.types[key].formula);
-            if (!criticalDamage) continue;
-    
-            const criticalTerm = new foundry.dice.terms.NumericTerm({ number: criticalDamage, evaluated: true });
-            criticalTerm.evaluate();
-            newDamage.types[key] = await Roll.fromTerms([
-                ...origDamage.types[key].terms,
-                new foundry.dice.terms.OperatorTerm({ operator: '+' }),
-                criticalTerm
-            ]);
-            newDamage.types[key].options = foundry.utils.deepClone(origDamage.types[key].options);
-        }
+        if (newDamage?.main) {
+            const criticalDamage = await getCritDamageBonus(newDamage.main.formula);
+            if (criticalDamage) {
+                const criticalTerm = new foundry.dice.terms.NumericTerm({ number: criticalDamage, evaluated: true });
+                criticalTerm.evaluate();
+                newDamage.main = await Roll.fromTerms([
+                    ...origDamage.main.terms,
+                    new foundry.dice.terms.OperatorTerm({ operator: '+' }),
+                    criticalTerm
+                ]);
+                newDamage.main.options = foundry.utils.deepClone(origDamage.main.options);
+            }
+        } 
 
         return newDamage;
     }
@@ -644,25 +648,47 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                     ? await this.getCriticalDamage(secondaryRoll.damageRollData)
                     : secondaryRoll.damageRollData;
                 if (mainRoll.damageRollData) {
-                    for (const [key, damage] of Object.entries(secondaryDamage.types ?? {})) {
-                        if (key in mainRoll.damageRollData.types) {
-                            mainRoll.damageRollData.types[key] = Roll.fromTerms([
-                                ...baseMainRoll.damageRollData.types[key].terms,
+                    if (secondaryDamage.main) {
+                        if (mainRoll.damageRollData.main) {
+                            mainRoll.damageRollData.main = Roll.fromTerms([
+                                ...baseMainRoll.damageRollData.main.terms,
                                 new foundry.dice.terms.OperatorTerm({ operator: '+' }),
-                                ...baseSecondaryRoll.damageRollData.types[key].terms
+                                ...baseSecondaryRoll.damageRollData.main.terms
                             ]);
 
                             /* Joining the roll.options of both rolls */
                             const joinedDamageTypes = new Set([
-                                ...baseMainRoll.damageRollData.types[key].options.damageTypes,
-                                ...baseSecondaryRoll.damageRollData.types[key].options.damageTypes
+                                ...baseMainRoll.damageRollData.main.options.damageTypes,
+                                ...baseSecondaryRoll.damageRollData.main.options.damageTypes
                             ]);
-                            mainRoll.damageRollData.types[key].options = {
-                                ...baseMainRoll.damageRollData.types[key].options,
+                            mainRoll.damageRollData.main.options = {
+                                ...baseMainRoll.damageRollData.main.options,
                                 damageTypes: [...joinedDamageTypes]
                             };
                         } else {
-                            mainRoll.damageRollData.types[key] = damage;
+                            mainRoll.damageRollData.main = secondaryDamage.main;
+                        }
+                    }
+
+                    for (const [key, damage] of Object.entries(secondaryDamage.resources ?? {})) {
+                        if (key in mainRoll.damageRollData.resources) {
+                            mainRoll.damageRollData.resources[key] = Roll.fromTerms([
+                                ...baseMainRoll.damageRollData.resources[key].terms,
+                                new foundry.dice.terms.OperatorTerm({ operator: '+' }),
+                                ...baseSecondaryRoll.damageRollData.resources[key].terms
+                            ]);
+
+                            /* Joining the roll.options of both rolls */
+                            const joinedDamageTypes = new Set([
+                                ...baseMainRoll.damageRollData.resources[key].options.damageTypes,
+                                ...baseSecondaryRoll.damageRollData.resources[key].options.damageTypes
+                            ]);
+                            mainRoll.damageRollData.resources[key].options = {
+                                ...baseMainRoll.damageRollData.resources[key].options,
+                                damageTypes: [...joinedDamageTypes]
+                            };
+                        } else {
+                            mainRoll.damageRollData.resources[key] = damage;
                         }
                     }
                 } else {
@@ -727,8 +753,12 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             ...mainRoll.options,
             damage: joinedRoll.damageRollData?.toJSON()
         };
-        for (const type of Object.keys(joinedRoll.damageRollData?.types ?? {})) {
-            systemData.damage.types[type] = joinedRoll.damageRollData.types[type].toJSON();
+
+        if (joinedRoll.damageRollData.main) {
+            systemData.damage.main = joinedRoll.damageRollData.toJSON();
+        }
+        for (const type of Object.keys(joinedRoll.damageRollData?.resources ?? {})) {
+            systemData.damage.resources[type] = joinedRoll.damageRollData.resources[type].toJSON();
         }
 
         const cls = getDocumentClass('ChatMessage'),

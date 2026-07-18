@@ -656,26 +656,23 @@ export default class DhpActor extends Actor {
             return;
         }
 
-        const updates = [];
-
-        Object.entries(damages).forEach(([key, damage]) => {
-            if (key === CONFIG.DH.GENERAL.healingTypes.hitPoints.id)
-                damage.total = this.calculateDamage(damage.total, damage.damageTypes);
-            const update = updates.find(u => u.key === key);
-            if (update) {
-                update.value += damage.total;
-                update.damageTypes.add(...new Set(damage.damageTypes));
-            } else updates.push({ value: damage.total, key, damageTypes: new Set(damage.damageTypes) });
-        });
+        if (damages.main) {
+            damages.main.total = this.calculateDamage(damages.main.total, damages.main.damageTypes);
+        }
 
         if (Hooks.call(`${CONFIG.DH.id}.postCalculateDamage`, this, damages) === false) return null;
 
-        if (!updates.length) return;
+        // Convert deducted resources to a record of updates. Return if nothing to do.
+        const updates = Object.entries(damages.resources).map(([key, damage]) => ({ key, value: damage.total }));
+        if (!updates.some(u => u.value) && !damages.main) return; 
 
-        const hpDamage = updates.find(u => u.key === CONFIG.DH.GENERAL.healingTypes.hitPoints.id);
-        if (hpDamage?.value) {
-            hpDamage.value = this.convertDamageToThreshold(hpDamage.value);
-            if (this.type === 'character' && !isDirect && this.#canReduceDamage(hpDamage.value, hpDamage.damageTypes)) {
+        if (damages.main) {
+            const hpDamage = { 
+                value: this.convertDamageToThreshold(damages.main.total),
+                damageTypes: new Set(damages.main.options.damageTypes), 
+                key: CONFIG.DH.GENERAL.healingTypes.hitPoints.id
+            };
+            if (this.type === 'character' && !isDirect && this.#canReduceDamage(hpDamage.total, hpDamage.damageTypes)) {
                 const armorSlotResult = await this.owner.query(
                     'armorSlot',
                     {
@@ -689,7 +686,7 @@ export default class DhpActor extends Actor {
                 );
                 if (armorSlotResult) {
                     const { modifiedDamage, armorChanges, stressSpent } = armorSlotResult;
-                    updates.find(u => u.key === 'hitPoints').value = modifiedDamage;
+                    hpDamage.value = modifiedDamage;
                     for (const armorChange of armorChanges) {
                         updates.push({ value: armorChange.amount, key: 'armor', uuid: armorChange.uuid });
                     }
@@ -699,19 +696,23 @@ export default class DhpActor extends Actor {
                         else updates.push({ value: stressSpent, key: 'stress' });
                     }
                 }
-            }
-            if (this.type === 'adversary') {
+            } else if (this.type === 'adversary') {
                 const reducedSeverity = hpDamage.damageTypes.reduce((value, curr) => {
                     return Math.max(this.system.rules.damageReduction.reduceSeverity[curr], value);
                 }, 0);
                 hpDamage.value = Math.max(hpDamage.value - reducedSeverity, 0);
-
-                if (
-                    hpDamage.value &&
-                    this.system.rules.damageReduction.thresholdImmunities[getDamageKey(hpDamage.value)]
-                ) {
-                    hpDamage.value -= 1;
+                if (this.system.rules.damageReduction.thresholdImmunities[getDamageKey(hpDamage.value)]) {
+                    hpDamage.value = Math.max(0, hpDamage.value - 1);
                 }
+            }
+
+            // Merge existing hitPoint deduction with finalised damage deduction
+            const existing = updates.find(u => u.key === CONFIG.DH.GENERAL.healingTypes.hitPoints.id);
+            if (existing) {
+                existing.value += hpDamage.value;
+                existing.damageTypes = hpDamage.damageTypes;
+            } else {
+                updates.push(hpDamage);
             }
         }
 
@@ -727,16 +728,36 @@ export default class DhpActor extends Actor {
             for (var result of results) resourceMap.addResources(result.updates);
             resourceMap.updateResources();
         }
-
-        updates.forEach(
-            u =>
-                (u.value =
-                    u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false ? u.value * -1 : u.value)
-        );
+        
+        for (const u of updates) {
+            u.value = u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false ? u.value * -1 : u.value;
+        }
 
         await this.modifyResource(updates);
 
         if (Hooks.call(`${CONFIG.DH.id}.postTakeDamage`, this, updates) === false) return null;
+
+        return updates;
+    }
+
+    async takeHealing(healings) {
+        if (Hooks.call(`${CONFIG.DH.id}.preTakeHealing`, this, healings) === false) return null;
+
+        const updates = Object.entries(healings.resources).map(([key, damage]) => ({ 
+            key, 
+            value: damage.total 
+        }));
+
+        updates.forEach(
+            u =>
+                (u.value = !(u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false)
+                    ? u.value * -1
+                    : u.value)
+        );
+
+        await this.modifyResource(updates);
+
+        if (Hooks.call(`${CONFIG.DH.id}.postTakeHealing`, this, updates) === false) return null;
 
         return updates;
     }
@@ -763,30 +784,6 @@ export default class DhpActor extends Actor {
             Infinity
         );
         return reduction === Infinity ? 0 : reduction;
-    }
-
-    async takeHealing(healings) {
-        if (Hooks.call(`${CONFIG.DH.id}.preTakeHealing`, this, healings) === false) return null;
-
-        const updates = [];
-        Object.entries(healings).forEach(([key, healing]) => {
-            const update = updates.find(u => u.key === key);
-            if (update) update.value += healing.roll.total;
-            else updates.push({ value: healing.roll.total, key });
-        });
-
-        updates.forEach(
-            u =>
-                (u.value = !(u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false)
-                    ? u.value * -1
-                    : u.value)
-        );
-
-        await this.modifyResource(updates);
-
-        if (Hooks.call(`${CONFIG.DH.id}.postTakeHealing`, this, updates) === false) return null;
-
-        return updates;
     }
 
     /**

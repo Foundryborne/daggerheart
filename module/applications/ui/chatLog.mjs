@@ -110,7 +110,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                     const message = game.messages.get(li.dataset.messageId);
                     return message.system.hasRoll && (game.user.isGM || message.isAuthor);
                 },
-                callback: async li => {
+                onClick: async (_event, li) => {
                     const message = game.messages.get(li.dataset.messageId);
                     const reroll = await message.rolls[0].reroll({ liveRoll: true });
                     message.update({ rolls: [reroll] });
@@ -126,7 +126,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                         : false;
                     return (game.user.isGM || message.isAuthor) && hasRolledDamage;
                 },
-                callback: async li => {
+                onClick: async (_event, li) => {
                     const message = game.messages.get(li.dataset.messageId);
                     const update = await message.system.getRerolledDamage();
                     message.update(update);
@@ -251,15 +251,17 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         }
 
         const message = game.messages.get(messageData._id);
-        const target = event.target.closest('[data-die-index]');
+        const target = event.target.closest('[data-result]');
 
         if (target.dataset.type === 'damage') {
-            const { damageType, dice, result } = target.dataset;
-            await message.system.damage.rerollDamageDie(damageType, dice, result);
+            const { isResource, damageType, dice, result } = target.dataset;
+            await message.system.damage.rerollDamageDie(isResource, damageType, dice, result);
+
+            const updatePath = isResource ? `system.damage.resources.${damageType}` : 'system.damage.main';
+            const updateValue = isResource ? 
+                message.system.damage.resources[damageType] : message.system.damage.main;
             await message.update({
-                'system.damage.types': {
-                    [damageType]: message.system.damage.types[damageType].toJSON()
-                } 
+                [updatePath]: updateValue.toJSON()
             });
         } else {
             const rerollDice = message.system.roll.dice[target.dataset.dieIndex];

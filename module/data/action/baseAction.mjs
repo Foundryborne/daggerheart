@@ -289,7 +289,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             hasEffect: this.hasEffect,
             hasSave: this.hasSave,
             onSave: this.save?.damageMod,
-            isDirect: !!this.damage?.direct,
             selectedMessageMode: game.settings.get('core', 'messageMode'),
             data: this.getRollData(),
             evaluate: this.hasRoll,
@@ -307,20 +306,20 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         };
 
         if (this.damage) {
-            config.isDirect = this.damage.direct;
+            config.isDirect = !!this.damage.main?.direct;
 
-            const groupAttackTokens = this.damage.groupAttack
+            const groupAttackTokens = this.damage.main?.groupAttack
                 ? game.system.api.fields.ActionFields.DamageField.getGroupAttackTokens(
                     this.actor.id,
-                    this.damage.groupAttack
+                    this.damage.main.groupAttack
                 )
                 : null;
 
             config.damageOptions = {
-                groupAttack: this.damage.groupAttack
+                groupAttack: this.damage.main?.groupAttack
                     ? {
                         numAttackers: Math.max(groupAttackTokens.length, 1),
-                        range: this.damage.groupAttack
+                        range: this.damage.main.groupAttack
                     }
                     : null
             };
@@ -430,11 +429,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     get hasDamage() {
-        return Boolean(Object.keys(this.damage?.parts ?? {}).length) && this.type !== 'healing';
+        return this.type !== 'healing' && (Boolean(this.damage.main) || !foundry.utils.isEmpty(this.damage.resources));
     }
 
     get hasHealing() {
-        return Boolean(Object.keys(this.damage?.parts ?? {}).length) && this.type === 'healing';
+        return this.type === 'healing' && !foundry.utils.isEmpty(this.damage.resources);
     }
 
     get hasSave() {
@@ -469,6 +468,25 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                 acc[part.applyTo] = part;
                 return acc;
             }, {});
+        }
+
+        if (source.damage?.parts && !source.damage.resources && !source.damage.main) {
+            source.damage.main = null;
+            source.damage.resources = {};
+            for (const [partKey, part] of Object.entries(source.damage.parts)) {
+                if (partKey === 'hitPoints' && source.type !== 'healing') {
+                    source.damage.main = {
+                        ...part,
+                        includeBase: source.damage.includeBase,
+                        direct: source.damage.direct,
+                        groupAttack: source.damage.groupAttack
+                    };
+                } else {
+                    source.damage.resources[partKey] = part;
+                }
+            }
+
+            delete source.damage.parts;
         }
     }
 }
