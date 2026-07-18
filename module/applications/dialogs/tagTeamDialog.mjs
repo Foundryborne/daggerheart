@@ -569,9 +569,11 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         const basePath = `system.tagTeam.members.${memberKey}.damageRollData`;
         const updatePath = isResource ? `${basePath}.resources.${damageKey}` : `${basePath}.main`;
+        const updateValue = isResource ? 
+            memberData.damageRollData.resources[damageKey] : memberData.damageRollData.main;
         this.updatePartyData(
             {
-                [updatePath]: memberData.damageRollData.types[damageKey].toJSON()
+                [updatePath]: updateValue.toJSON()
             },
             this.getUpdatingParts(button)
         );
