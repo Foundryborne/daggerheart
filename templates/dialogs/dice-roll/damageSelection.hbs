@@ -16,6 +16,23 @@
         </fieldset>
     {{/if}}
     
+    {{#if damageOptions.groupAttack}}
+        <fieldset class="group-attack-container">
+            <legend>{{localize "DAGGERHEART.ACTIONS.Settings.groupAttack.label"}}</legend>
+
+            <div class="group-attack-inner-container">
+                <input type="text" data-dtype="Number" name="damageOptions.groupAttack.numAttackers" value="{{damageOptions.groupAttack.numAttackers}}" />
+
+                <div class="group-attack-tools">
+                    <select name="damageOptions.groupAttack.range">
+                        {{selectOptions rangeOptions selected=damageOptions.groupAttack.range localize=true}}
+                    </select>
+                    <button data-action="updateGroupAttack"><i class="fa-solid fa-crosshairs"></i></button>
+                </div>
+            </div>
+        </fieldset>
+    {{/if}}
+    
     {{#if @root.damageFormula}}
         {{#with @root.damageFormula}}
             <div class="damage-formula">
@@ -41,10 +58,6 @@
         {{/with}}
     {{/if}}
 
-    {{#unless (empty @root.resourceFormulas)}}
-        <div class="section-header">{{localize "Resource Drain"}}</div>
-    {{/unless}}
-
     {{#each @root.resourceFormulas}}
         <div class="damage-formula">
             <span class="damage-resource"><b>{{localize "DAGGERHEART.GENERAL.formula"}}:</b> {{roll.formula}}</span>
@@ -58,23 +71,6 @@
             <input type="text" value="{{extraFormula}}" name={{concat "resourceFormulas." @key ".extraFormula"}} placeholder="{{localize "DAGGERHEART.GENERAL.situationalBonus"}}">
         </div>
     {{/each}}
-
-    {{#if damageOptions.groupAttack}}
-        <fieldset class="group-attack-container">
-            <legend>{{localize "DAGGERHEART.ACTIONS.Settings.groupAttack.label"}}</legend>
-
-            <div class="group-attack-inner-container">
-                <input type="text" data-dtype="Number" name="damageOptions.groupAttack.numAttackers" value="{{damageOptions.groupAttack.numAttackers}}" />
-
-                <div class="group-attack-tools">
-                    <select name="damageOptions.groupAttack.range">
-                        {{selectOptions rangeOptions selected=damageOptions.groupAttack.range localize=true}}
-                    </select>
-                    <button data-action="updateGroupAttack"><i class="fa-solid fa-crosshairs"></i></button>
-                </div>
-            </div>
-        </fieldset>
-    {{/if}}
 
     {{#unless (empty @root.modifiers)}}
         <fieldset class="modifier-container two-columns">
@@ -92,6 +88,7 @@
             {{/each}}
         </fieldset>
     {{/unless}}
+
     <div class="damage-section-controls">
         {{#if directDamage}}
             <select class="roll-mode-select" name="selectedMessageMode">
