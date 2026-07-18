@@ -77,7 +77,10 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
 
     static updateRollConfiguration(_event, _, formData) {
         const data = foundry.utils.expandObject(formData.object);
-        foundry.utils.mergeObject(this.config.damageFormula, data.damageFormula);
+
+        if (this.config.damageFormula) 
+            foundry.utils.mergeObject(this.config.damageFormula, data.damageFormula);
+        
         foundry.utils.mergeObject(this.config.resourceFormulas, data.resourceFormulas);
         foundry.utils.mergeObject(this.config.modifiers, data.modifiers);
         this.config.selectedMessageMode = data.selectedMessageMode;

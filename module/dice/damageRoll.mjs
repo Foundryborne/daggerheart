@@ -27,10 +27,14 @@ export default class DamageRoll extends DHRoll {
             return roll.roll;
         }
 
-        config.damage.main = await evaluateRoll(config.damageFormula);
-        config.damage.main.options = { damageTypes: 
-            config.damageFormula.damageTypes ? [...config.damageFormula.damageTypes] : []
-        };
+        if (!config.damage) config.damage = { main: null, resources: {} };
+
+        if (config.damageFormula) {
+            config.damage.main = await evaluateRoll(config.damageFormula);
+            config.damage.main.options = { damageTypes: 
+                config.damageFormula.damageTypes ? [...config.damageFormula.damageTypes] : []
+            };
+        }
         
         for (const roll of config.resourceFormulas) {
             config.damage.resources[roll.applyTo] = await evaluateRoll(roll);
