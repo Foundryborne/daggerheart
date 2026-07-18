@@ -110,7 +110,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                     const message = game.messages.get(li.dataset.messageId);
                     return message.system.hasRoll && (game.user.isGM || message.isAuthor);
                 },
-                callback: async li => {
+                onClick: async (_event, li) => {
                     const message = game.messages.get(li.dataset.messageId);
                     const reroll = await message.rolls[0].reroll({ liveRoll: true });
                     message.update({ rolls: [reroll] });
@@ -126,7 +126,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                         : false;
                     return (game.user.isGM || message.isAuthor) && hasRolledDamage;
                 },
-                callback: async li => {
+                onClick: async (_event, li) => {
                     const message = game.messages.get(li.dataset.messageId);
                     const update = await message.system.getRerolledDamage();
                     message.update(update);

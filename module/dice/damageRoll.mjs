@@ -51,9 +51,10 @@ export default class DamageRoll extends DHRoll {
         const diceRolls = [];
         if (game.modules.get('dice-so-nice')?.active) {
             config.mute = true;
-            const pool = foundry.dice.terms.PoolTerm.fromRolls(
-                Object.values(config.damage.types)
-            );
+            const pool = foundry.dice.terms.PoolTerm.fromRolls([
+                ...(config.damage.main ? [config.damage.main] : []),
+                ...Object.values(config.damage.resources)
+            ]);
             diceRolls.push(Roll.fromTerms([pool]));
         }
 
