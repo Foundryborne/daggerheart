@@ -251,15 +251,17 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         }
 
         const message = game.messages.get(messageData._id);
-        const target = event.target.closest('[data-die-index]');
+        const target = event.target.closest('[data-result]');
 
         if (target.dataset.type === 'damage') {
             const { isResource, damageType, dice, result } = target.dataset;
             await message.system.damage.rerollDamageDie(isResource, damageType, dice, result);
 
             const updatePath = isResource ? `system.damage.resources.${damageType}` : 'system.damage.main';
+            const updateValue = isResource ? 
+                message.system.damage.resources[damageType] : message.system.damage.main;
             await message.update({
-                [updatePath]: message.system.damage.types[damageType].toJSON()
+                [updatePath]: updateValue.toJSON()
             });
         } else {
             const rerollDice = message.system.roll.dice[target.dataset.dieIndex];
