@@ -964,8 +964,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
         if (!item || !item.system.resource?.max) 
             return;
 
-        await item.update({ 'system.resource.value': 
-            item.system.needsReload ? itemAbleRollParse(item.system.resource.max, this.document, item) : 0
+        await item.update({ 
+            'system.resource.value': item.system.needsReload ? 
+                itemAbleRollParse(item.system.resource.max, this.document, item) : 0
         })
     }
 
