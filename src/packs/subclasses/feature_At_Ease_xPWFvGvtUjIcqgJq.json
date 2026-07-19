@@ -21,23 +21,17 @@
       "name": "At Ease",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.resources.stress.max",
+            "type": "add",
+            "value": "1",
+            "priority": null
+          }
+        ]
       },
       "_id": "xbS4Lr3dWpXUCHEi",
       "img": "icons/magic/holy/meditation-chi-focus-blue.webp",
-      "changes": [
-        {
-          "key": "system.resources.stress.max",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

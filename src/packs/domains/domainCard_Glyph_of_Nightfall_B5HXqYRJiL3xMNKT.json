@@ -100,12 +100,6 @@
         "duration": {
           "description": "",
           "type": "temporary"
-        },
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
         }
       },
       "disabled": false,

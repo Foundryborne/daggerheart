@@ -271,12 +271,6 @@
           "_id": "LSeftEwgBbXXkLw3",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": [],
             "duration": {
               "type": "temporary",
@@ -397,7 +391,7 @@
             "type": "effect",
             "_id": "p6V4k4yMwJ1UPZMz",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to summon a @UUID[Compendium.daggerheart.adversaries.Actor.sRn4bqerfARvhgSV]{Minor Chaos Elemental} drawn to the echoes of violence and discord. They appear within Far range of a chosen PC and immediately take the spotlight.</p><section id=\"secret-iCbXJnMeqDXXOc8n\" class=\"secret\"><p><em>What color does the grass turn as the elemental appears? How does the chaos warp insects and small wildlife within the grove?</em></p></section>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

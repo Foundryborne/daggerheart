@@ -113,22 +113,16 @@
       "name": "Reliable",
       "description": "+1 to attack rolls",
       "img": "icons/skills/melee/strike-sword-slashing-red.webp",
-      "changes": [
-        {
-          "key": "system.bonuses.roll.primaryWeapon.bonus",
-          "mode": 2,
-          "value": "1"
-        }
-      ],
       "_id": "G9mMGxBSexwjWTYV",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.roll.primaryWeapon.bonus",
+            "type": "add",
+            "value": "1"
+          }
+        ]
       },
       "disabled": false,
       "duration": {

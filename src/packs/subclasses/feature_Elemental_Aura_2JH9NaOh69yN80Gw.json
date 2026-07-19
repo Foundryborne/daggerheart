@@ -223,12 +223,6 @@
       "_id": "H7W52ps5d3UGmaFr",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": []
       },
       "disabled": false,
@@ -259,12 +253,6 @@
       "_id": "WX5AMEpmUAutB9Hm",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": []
       },
       "disabled": false,
@@ -295,12 +283,6 @@
       "transfer": false,
       "statuses": [],
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [
           {
             "key": "system.traits.strength.value",

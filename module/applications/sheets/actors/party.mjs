@@ -6,7 +6,9 @@ import DaggerheartMenu from '../../sidebar/tabs/daggerheartMenu.mjs';
 import { socketEvent } from '../../../systemRegistration/socket.mjs';
 import DhpActor from '../../../documents/actor.mjs';
 
-export default class Party extends DHBaseActorSheet {
+/**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
+
+export default class PartySheet extends DHBaseActorSheet {
     constructor(options) {
         super(options);
 
@@ -24,17 +26,17 @@ export default class Party extends DHBaseActorSheet {
             resizable: true
         },
         actions: {
-            openDocument: Party.#openDocument,
-            deletePartyMember: Party.#deletePartyMember,
-            toggleHope: Party.#toggleHope,
-            toggleHitPoints: Party.#toggleHitPoints,
-            toggleStress: Party.#toggleStress,
-            toggleArmorSlot: Party.#toggleArmorSlot,
-            tempBrowser: Party.#tempBrowser,
-            refeshActions: Party.#refeshActions,
-            triggerRest: Party.#triggerRest,
-            tagTeamRoll: Party.#tagTeamRoll,
-            groupRoll: Party.#groupRoll
+            openDocument: PartySheet.#onOpenDocument,
+            deletePartyMember: PartySheet.#onDeletePartyMember,
+            toggleHope: PartySheet.#onToggleHope,
+            toggleHitPoints: PartySheet.#onToggleHitPoints,
+            toggleStress: PartySheet.#onToggleStress,
+            toggleArmorSlot: PartySheet.#onToggleArmorSlot,
+            tempBrowser: PartySheet.#onTempBrowser,
+            refreshActions: PartySheet.#onRefreshActions,
+            triggerRest: PartySheet.#onTriggerRest,
+            tagTeamRoll: PartySheet.#onTagTeamRoll,
+            groupRoll: PartySheet.#onGroupRoll
         },
         dragDrop: [{ dragSelector: '[data-item-id]', dropSelector: null }]
     };
@@ -70,6 +72,23 @@ export default class Party extends DHBaseActorSheet {
         await super._onRender(context, options);
         this._createFilterMenus();
         this._createSearchFilter();
+    }
+
+    /** @inheritdoc */
+    _toggleDisabled(disabled) {
+        // Overriden to only disable text inputs by default if the user is a member
+        const isMember = this.actor.system.partyMembers.some(
+            m => m.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER)
+        );
+        if (!isMember) return super._toggleDisabled(disabled);
+
+        const form = this.form;
+        for (const input of form.querySelectorAll('input:not([type=search]), .editor.prosemirror')) {
+            input.disabled = disabled;
+        }
+        for (const element of form.querySelectorAll('.input[contenteditable]')) {
+            element.classList.toggle('disabled', disabled);
+        }
     }
 
     /* -------------------------------------------- */
@@ -198,8 +217,16 @@ export default class Party extends DHBaseActorSheet {
             };
         }
     }
+    
+    /* -------------------------------------------- */
+    /*  Event handlers                          */
+    /* -------------------------------------------- */
 
-    static async #openDocument(_, target) {
+    /**
+     * @this PartySheet 
+     * @type {ApplicationClickAction}
+     */
+    static async #onOpenDocument(_, target) {
         const uuid = target.dataset.uuid;
         const document = await foundry.utils.fromUuid(uuid);
         document?.sheet?.render(true);
@@ -207,9 +234,10 @@ export default class Party extends DHBaseActorSheet {
 
     /**
      * Toggles a hope resource value.
+     * @this PartySheet
      * @type {ApplicationClickAction}
      */
-    static async #toggleHope(_, target) {
+    static async #onToggleHope(_, target) {
         const hopeValue = Number.parseInt(target.dataset.value);
         const actor = await foundry.utils.fromUuid(target.dataset.actorId);
         const newValue = actor.system.resources.hope.value >= hopeValue ? hopeValue - 1 : hopeValue;
@@ -219,9 +247,10 @@ export default class Party extends DHBaseActorSheet {
 
     /**
      * Toggles a hp resource value.
+     * @this PartySheet
      * @type {ApplicationClickAction}
      */
-    static async #toggleHitPoints(_, target) {
+    static async #onToggleHitPoints(_, target) {
         const hitPointsValue = Number.parseInt(target.dataset.value);
         const actor = await foundry.utils.fromUuid(target.dataset.actorId);
         const newValue = actor.system.resources.hitPoints.value >= hitPointsValue ? hitPointsValue - 1 : hitPointsValue;
@@ -231,9 +260,10 @@ export default class Party extends DHBaseActorSheet {
 
     /**
      * Toggles a stress resource value.
+     * @this PartySheet
      * @type {ApplicationClickAction}
      */
-    static async #toggleStress(_, target) {
+    static async #onToggleStress(_, target) {
         const stressValue = Number.parseInt(target.dataset.value);
         const actor = await foundry.utils.fromUuid(target.dataset.actorId);
         const newValue = actor.system.resources.stress.value >= stressValue ? stressValue - 1 : stressValue;
@@ -243,9 +273,10 @@ export default class Party extends DHBaseActorSheet {
 
     /**
      * Toggles a armor slot resource value.
+     * @this PartySheet
      * @type {ApplicationClickAction}
      */
-    static async #toggleArmorSlot(_, target) {
+    static async #onToggleArmorSlot(_, target) {
         const actor = await foundry.utils.fromUuid(target.dataset.actorId);
         const { value, max } = actor.system.armorScore;
         const inputValue = Number.parseInt(target.dataset.value);
@@ -258,12 +289,19 @@ export default class Party extends DHBaseActorSheet {
 
     /**
      * Opens Compedium Browser
+     * @this PartySheet
+     * @type {ApplicationClickAction}
      */
-    static async #tempBrowser(_, target) {
+    static async #onTempBrowser(_, target) {
         new ItemBrowser().render({ force: true });
     }
 
-    static async #refeshActions() {
+    /** 
+     * @todo Is this unused?
+     * @this PartySheet
+     * @type {ApplicationClickAction}
+     */
+    static async #onRefreshActions() {
         const confirmed = await foundry.applications.api.DialogV2.confirm({
             window: {
                 title: 'New Section',
@@ -281,7 +319,11 @@ export default class Party extends DHBaseActorSheet {
         if (!confirmed) return;
     }
 
-    static async #triggerRest(_, button) {
+    /** 
+     * @this PartySheet
+     * @type {ApplicationClickAction}
+     */
+    static async #onTriggerRest(_, button) {
         const confirmed = await foundry.applications.api.DialogV2.confirm({
             window: {
                 title: game.i18n.localize(`DAGGERHEART.APPLICATIONS.Downtime.${button.dataset.type}.title`),
@@ -304,6 +346,30 @@ export default class Party extends DHBaseActorSheet {
         });
     }
 
+    /** 
+     * @this PartySheet
+     * @type {ApplicationClickAction}
+     */
+    static async #onDeletePartyMember(event, target) {
+        const doc = await foundry.utils.fromUuid(target.closest('[data-uuid]')?.dataset.uuid);
+        if (!event.shiftKey) {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: game.i18n.format('DAGGERHEART.ACTORS.Party.RemoveConfirmation.title', {
+                        name: doc.name
+                    })
+                },
+                content: game.i18n.format('DAGGERHEART.ACTORS.Party.RemoveConfirmation.text', { name: doc.name })
+            });
+
+            if (!confirmed) return;
+        }
+
+        const currentMembers = this.document.system.partyMembers.map(x => x.uuid);
+        const newMembersList = currentMembers.filter(uuid => uuid !== doc.uuid);
+        await this.document.update({ 'system.partyMembers': newMembersList });
+    }
+
     static async downtimeMoveQuery({ actorId, downtimeType }) {
         const actor = await foundry.utils.fromUuid(actorId);
         if (!actor || !actor?.isOwner) return;
@@ -312,11 +378,19 @@ export default class Party extends DHBaseActorSheet {
         });
     }
 
-    static async #tagTeamRoll() {
+    /** 
+     * @this PartySheet
+     * @type {ApplicationClickAction}
+     */
+    static async #onTagTeamRoll() {
         new game.system.api.applications.dialogs.TagTeamDialog(this.document).render({ force: true });
     }
 
-    static async #groupRoll(_params) {
+    /** 
+     * @this PartySheet
+     * @type {ApplicationClickAction}
+     */
+    static async #onGroupRoll(_params) {
         new game.system.api.applications.dialogs.GroupRollDialog(this.document).render({ force: true });
     }
 
@@ -460,11 +534,10 @@ export default class Party extends DHBaseActorSheet {
         }
     }
 
-    /* -------------------------------------------- */
-
+    /** @inheritdoc */
     async _onDropActor(event, document) {
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-        if (document instanceof DhpActor && Party.ALLOWED_ACTOR_TYPES.includes(document.type)) {
+        if (document instanceof DhpActor && PartySheet.ALLOWED_ACTOR_TYPES.includes(document.type)) {
             const currentMembers = this.document.system.partyMembers.map(x => x.uuid);
             if (currentMembers.includes(data.uuid)) {
                 return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.duplicateCharacter'));
@@ -476,25 +549,5 @@ export default class Party extends DHBaseActorSheet {
         }
 
         return null;
-    }
-
-    static async #deletePartyMember(event, target) {
-        const doc = await foundry.utils.fromUuid(target.closest('[data-uuid]')?.dataset.uuid);
-        if (!event.shiftKey) {
-            const confirmed = await foundry.applications.api.DialogV2.confirm({
-                window: {
-                    title: game.i18n.format('DAGGERHEART.ACTORS.Party.RemoveConfirmation.title', {
-                        name: doc.name
-                    })
-                },
-                content: game.i18n.format('DAGGERHEART.ACTORS.Party.RemoveConfirmation.text', { name: doc.name })
-            });
-
-            if (!confirmed) return;
-        }
-
-        const currentMembers = this.document.system.partyMembers.map(x => x.uuid);
-        const newMembersList = currentMembers.filter(uuid => uuid !== doc.uuid);
-        await this.document.update({ 'system.partyMembers': newMembersList });
     }
 }

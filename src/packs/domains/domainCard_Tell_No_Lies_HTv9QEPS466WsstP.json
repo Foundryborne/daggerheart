@@ -97,16 +97,10 @@
       "name": "Can't Lie",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": []
       },
       "_id": "5L6fC80VfbPfGmcA",
       "img": "icons/magic/control/voodoo-doll-pain-damage-red.webp",
-      "changes": [],
       "disabled": false,
       "duration": {
         "startTime": null,

@@ -31,22 +31,22 @@
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"
-        }
-      },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.primaryWeapon.bonus",
-          "mode": 2,
-          "value": "@system.traits.strength.value",
-          "priority": 21
         },
-        {
-          "key": "system.bonuses.damage.secondaryWeapon.bonus",
-          "mode": 2,
-          "value": "@system.traits.strength.value",
-          "priority": 21
-        }
-      ],
+        "changes": [
+          {
+            "key": "system.bonuses.damage.primaryWeapon.bonus",
+            "type": "add",
+            "value": "@system.traits.strength.value",
+            "priority": 21
+          },
+          {
+            "key": "system.bonuses.damage.secondaryWeapon.bonus",
+            "type": "add",
+            "value": "@system.traits.strength.value",
+            "priority": 21
+          }
+        ]
+      },
       "disabled": false,
       "duration": {
         "startTime": null,

@@ -302,21 +302,15 @@
           "_id": "yQ85C0JHRG1pwu8a",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.evasion",
+                "type": "override",
+                "value": "@system.evasion / 2",
+                "priority": 10
+              }
+            ]
           },
-          "changes": [
-            {
-              "key": "system.evasion",
-              "mode": 5,
-              "value": "@system.evasion / 2",
-              "priority": 10
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,

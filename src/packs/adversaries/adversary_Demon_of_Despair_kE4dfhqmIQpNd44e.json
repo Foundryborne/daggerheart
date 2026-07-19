@@ -238,23 +238,17 @@
           "name": "Depths Of Despair",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.rules.attack.damage.hpDamageMultiplier",
+                "type": "override",
+                "value": "2",
+                "priority": null
+              }
+            ]
           },
           "_id": "nofxm1vGZ2TmceA2",
           "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
-          "changes": [
-            {
-              "key": "system.rules.attack.damage.hpDamageMultiplier",
-              "mode": 5,
-              "value": "2",
-              "priority": null
-            }
-          ],
           "disabled": true,
           "duration": {
             "startTime": null,
@@ -356,12 +350,6 @@
           "_id": "6WSx03mFbpbPWnOI",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": [
               {
                 "key": "system.rules.dualityRoll.defaultHopeDice",

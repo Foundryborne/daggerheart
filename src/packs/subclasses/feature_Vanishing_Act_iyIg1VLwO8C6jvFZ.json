@@ -60,14 +60,8 @@
       "_id": "czrwqq44sEr0uJ8O",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": []
       },
-      "changes": [],
       "disabled": true,
       "duration": {
         "startTime": null,

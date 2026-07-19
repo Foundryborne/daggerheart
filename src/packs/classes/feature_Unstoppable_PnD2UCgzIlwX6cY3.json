@@ -62,45 +62,39 @@
       "_id": "xzQtFSuDS48kUdAZ",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.damage.physical.bonus",
+            "type": "add",
+            "value": "ORIGIN.@item.resource.value",
+            "priority": null
+          },
+          {
+            "key": "system.bonuses.damage.magical.bonus",
+            "type": "add",
+            "value": "ORIGIN.@item.resource.value",
+            "priority": null
+          },
+          {
+            "key": "system.rules.damageReduction.reduceSeverity.physical",
+            "type": "add",
+            "value": "1",
+            "priority": null
+          },
+          {
+            "key": "system.rules.conditionImmunities.vulnerable",
+            "type": "override",
+            "value": "1",
+            "priority": null
+          },
+          {
+            "key": "system.rules.conditionImmunities.restrained",
+            "type": "override",
+            "value": "1",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.physical.bonus",
-          "mode": 2,
-          "value": "ORIGIN.@item.resource.value",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.magical.bonus",
-          "mode": 2,
-          "value": "ORIGIN.@item.resource.value",
-          "priority": null
-        },
-        {
-          "key": "system.rules.damageReduction.reduceSeverity.physical",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        },
-        {
-          "key": "system.rules.conditionImmunities.vulnerable",
-          "mode": 5,
-          "value": "1",
-          "priority": null
-        },
-        {
-          "key": "system.rules.conditionImmunities.restrained",
-          "mode": 5,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

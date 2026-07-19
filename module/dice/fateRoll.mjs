@@ -75,25 +75,23 @@ export default class FateRoll extends D20Roll {
         this.terms[0] = new foundry.dice.terms.Die({ faces: 12 });
     }
 
+    /** @inheritdoc */
     static async buildEvaluate(roll, config = {}, message = {}) {
         await super.buildEvaluate(roll, config, message);
+        config.roll.fate = {
+            dice: roll.fateDie === 'Hope' ? roll.dHope.denomination : roll.dFear.denomination,
+            value: roll.fateDie === 'Hope' ? roll.dHope.total : roll.dFear.total,
+            fateDie: roll.fateDie
+        };
+    }
 
+    /** @inheritdoc */
+    static async buildPost(roll, config, message) {
         if (roll.fateDie === 'Hope') {
             await setDiceSoNiceForHopeFateRoll(roll, config.roll.fate.dice);
         } else {
             await setDiceSoNiceForFearFateRoll(roll, config.roll.fate.dice);
         }
-    }
-
-    static postEvaluate(roll, config = {}) {
-        const data = super.postEvaluate(roll, config);
-
-        data.fate = {
-            dice: roll.fateDie === 'Hope' ? roll.dHope.denomination : roll.dFear.denomination,
-            value: roll.fateDie === 'Hope' ? roll.dHope.total : roll.dFear.total,
-            fateDie: roll.fateDie
-        };
-
-        return data;
+        return super.buildPost(roll, config, message);
     }
 }

@@ -6,11 +6,80 @@
         display: flex;
         flex-direction: column;
         flex: 1;
-        overflow-y: hidden !important;
-        padding-top: 10px;
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
 
-        prose-mirror.active + .artist-attribution {
-            display: none;
+        .description-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: auto;
+            padding: 12px 16px 4px 16px;
+            .with-scroll-shadows();
+            prose-mirror {
+                button.toggle {
+                    top: 0px;
+                    right: 0;
+                }
+                button[data-action=editGMNote] {
+                    right: calc(var(--button-size) + 4px);
+                }
+                &.inactive {
+                    height: unset!important;
+                    overflow: unset;
+                    .editor-content {
+                        position: relative;
+                        overflow: unset;
+
+                        // Allows content links to peek out
+                        margin-top: -4px;
+                        padding: 4px 0 0 0;
+                    }
+                }
+                &.active {
+                    --min-height: 250px;
+                    padding: 8px 0 0 16px;
+                    button[data-action=editGMNote] {
+                        display: none;
+                    }
+                    .editor-content {
+                        padding-right: 16px;
+                        padding-bottom: 4px;
+                    }
+                }
+            }
+            /** Hide editors that are empty when inactive if we need them to be */
+            prose-mirror.inactive.hide-if-inactive {
+                display: none;
+            }
+            &:has(prose-mirror.active) {
+                padding: 0;
+            }
+            /** Description should fill available room (with overriden exceptions) */
+            prose-mirror[name="system.description"] {
+                flex: 1 0;
+            }
+            &:has(prose-mirror[name="system.gmNotes"]:not(.hide-if-inactive)) {
+                prose-mirror.inactive {
+                    --min-height: 3rem;
+                    &[name="system.description"] {
+                        flex: 0 0;
+                    }
+                    &[name="system.gmNotes"] {
+                        flex: 1 0;
+                    }
+                }
+            }
+        }
+
+        /** Hide other elements if an editor is open */
+        &:has(prose-mirror.active) {
+            prose-mirror.inactive,
+            header.gm-notes,
+            .artist-attribution {
+                display: none;
+            }
         }
     }
 }

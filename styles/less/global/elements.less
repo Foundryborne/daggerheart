@@ -26,9 +26,11 @@
         &:focus,
         &:focus[type='text'],
         &:focus[type='number'] {
-            background: light-dark(@soft-shadow, @semi-transparent-dark-blue);
-            box-shadow: none;
-            outline: 2px solid @input-color-border;
+            &:where(:not(:disabled)) {
+                background: light-dark(@soft-shadow, @semi-transparent-dark-blue);
+                box-shadow: none;
+                outline: 2px solid @input-color-border;
+            }
         }
 
         &:disabled[type='text'],
@@ -305,6 +307,10 @@
             padding-bottom: 4px;
             min-height: auto;
             row-gap: 0;
+
+            &.active {
+                row-gap: 10px;
+            } 
 
             legend {
                 display: flex;
@@ -589,7 +595,86 @@
         margin-top: 4px;
         color: light-dark(#14142599, #efe6d850);
         font-size: var(--font-size-12);
-        padding-left: 3px;
+        padding-left: 16px;
+    }
+
+    section.gm-notes-section {
+        padding-bottom: var(--spacer-4);
+        header.gm-notes + p {
+            margin-top: 0;
+        }
+    }
+
+    header.gm-notes {
+        position: relative;
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        &::before,
+        &::after {
+            content: " ";
+            flex: 1;
+            border-bottom: 1px solid var(--color-dark-6);
+        }
+        &::before {
+            mask-image: linear-gradient(270deg, black 0%, black calc(100% - 10px), transparent 100%);
+        }
+        &::after {
+            mask-image: linear-gradient(270deg, transparent 0%, black 10px, black 100%);
+        }
+        margin-top: var(--spacer-8);
+        margin-bottom: var(--spacer-4);
+        font-size: var(--font-size-11);
+        text-transform: uppercase;
+    }
+
+    secret-block {
+        display: block;
+
+        /** A buffer to make the hover behavior work a bit better. The bottom in the button needs to compensate */
+        @buffer: 8px;
+        margin-top: -@buffer;
+        padding-top: @buffer;
+
+        button.reveal {
+            --button-size: 1rem;
+            height: var(--button-size);
+            position: absolute;
+            margin: auto;
+            left: 0;
+            right: 0;
+            width: min-content;
+            padding: 1px 8px 0 8px;
+            bottom: calc(100% - 0.4375rem - 1px);
+            
+            background-color: var(--dh-window-button-color-bg); // todo: find a better var name
+            border-color: var(--color-secret-border);
+            color: var(--dh-window-button-color-text);
+            font-size: var(--font-size-10);
+            user-select: none;
+            text-transform: uppercase;
+            white-space: nowrap;
+
+            visibility: hidden;
+        }
+
+        &:hover button.reveal {
+            visibility: visible;
+        }
+    }
+
+    /** 
+     * The element inside a secret-block. 
+     * This is separate since during prosemirror editing, the secret-block container does not exist.
+     */
+    section.secret {
+        --color-secret-bg: @red-10;
+        --color-revealed-bg: @green-10;
+        position: relative;
+        padding: 0;
+        p {
+            margin: 0.5rem 0;
+        }
     }
 }
 
@@ -810,5 +895,9 @@
             position: relative;
             right: 2px;
         }
+    }
+
+    .gm-notes {
+        font-style: italic;
     }
 }

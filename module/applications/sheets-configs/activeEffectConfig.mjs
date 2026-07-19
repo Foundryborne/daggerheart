@@ -156,6 +156,10 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             ?.addEventListener('change', this.stackingChangeToggle.bind(this));
 
         htmlElement
+            .querySelector('.range-dependence-change-checkbox')
+            ?.addEventListener('change', this.rangeDependenceChangeToggle.bind(this));
+
+        htmlElement
             .querySelector('.armor-change-checkbox')
             ?.addEventListener('change', this.armorChangeToggle.bind(this));
 
@@ -219,6 +223,20 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         const systemData = {
             stacking: event.target.checked
                 ? { value: stackingFields.value.initial, max: stackingFields.max.initial }
+                : null
+        };
+        return this.submit({ updateData: { system: systemData } });
+    }
+
+    rangeDependenceChangeToggle(event) {
+        const rangeFields = this.document.system.schema.fields.rangeDependence.fields;
+        const systemData = {
+            rangeDependence: event.target.checked
+                ? _replace({ 
+                    type: rangeFields.type.initial, 
+                    target: rangeFields.target.initial,
+                    range: rangeFields.range.initial 
+                })
                 : null
         };
         return this.submit({ updateData: { system: systemData } });

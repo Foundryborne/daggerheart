@@ -63,7 +63,7 @@
       "changes": [
         {
           "key": "system.traits.knowledge.value",
-          "mode": 2,
+          "type": "add",
           "value": "1",
           "priority": null
         }

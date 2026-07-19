@@ -45,7 +45,7 @@
       "changes": [
         {
           "key": "system.rules.damageReduction.increasePerArmorMark",
-          "mode": 5,
+          "type": "override",
           "value": "2"
         }
       ],

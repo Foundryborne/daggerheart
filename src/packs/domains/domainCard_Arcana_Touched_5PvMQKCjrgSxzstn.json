@@ -65,23 +65,17 @@
       "name": "Arcana-Touched",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.roll.spellcast.bonus",
+            "type": "add",
+            "value": "+1",
+            "priority": null
+          }
+        ]
       },
       "_id": "vTW98Xha0HP8ITrs",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/arcana.png",
-      "changes": [
-        {
-          "key": "system.bonuses.roll.spellcast.bonus",
-          "mode": 2,
-          "value": "+1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

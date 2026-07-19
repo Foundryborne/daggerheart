@@ -49,13 +49,13 @@
       "changes": [
         {
           "key": "system.bonuses.damage.physical.bonus",
-          "mode": 2,
+          "type": "add",
           "value": "6",
           "priority": null
         },
         {
           "key": "system.evasion",
-          "mode": 2,
+          "type": "add",
           "value": "2",
           "priority": null
         }

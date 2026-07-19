@@ -26,7 +26,7 @@ Parameters:
 - showActions {boolean} : If true show feature's actions. 
 --}}
 
-<fieldset class="{{#if isGlassy}}glassy{{/if}} drop-section">
+<fieldset class="{{#if isGlassy}}glassy{{/if}} drop-section" {{#unless (isNullish inVault)}}data-in-vault="{{inVault}}"{{/unless}}>
   <legend>
     {{localize title}}
     {{#if canCreate}}

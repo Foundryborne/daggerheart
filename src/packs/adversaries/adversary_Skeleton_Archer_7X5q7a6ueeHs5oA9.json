@@ -235,23 +235,17 @@
           "name": "Opportunist",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.rules.attack.damage.hpDamageMultiplier",
+                "type": "override",
+                "value": "2",
+                "priority": null
+              }
+            ]
           },
           "_id": "O03vYbyNLO3YPZGo",
           "img": "icons/skills/targeting/crosshair-triple-strike-orange.webp",
-          "changes": [
-            {
-              "key": "system.rules.attack.damage.hpDamageMultiplier",
-              "mode": 5,
-              "value": "2",
-              "priority": null
-            }
-          ],
           "disabled": true,
           "duration": {
             "startTime": null,

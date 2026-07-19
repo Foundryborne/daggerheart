@@ -89,12 +89,6 @@
       "_id": "ba9GO4NtQHYkaRR9",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [
           {
             "key": "system.traits.presence.value",

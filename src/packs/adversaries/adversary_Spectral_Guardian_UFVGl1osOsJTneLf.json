@@ -270,23 +270,17 @@
           "name": "Ghost",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.resistance.physical.resistance",
+                "type": "override",
+                "value": "1",
+                "priority": null
+              }
+            ]
           },
           "_id": "QDXyAMk33kJGe6hU",
           "img": "icons/magic/death/undead-ghost-scream-teal.webp",
-          "changes": [
-            {
-              "key": "system.resistance.physical.resistance",
-              "mode": 5,
-              "value": "1",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,

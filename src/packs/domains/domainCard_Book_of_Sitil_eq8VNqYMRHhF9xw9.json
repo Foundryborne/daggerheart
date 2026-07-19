@@ -136,14 +136,8 @@
       "_id": "klUaU5KeQCu7KCBI",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": []
       },
-      "changes": [],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -172,14 +166,8 @@
       "_id": "wnrHSvvB6pydTVcC",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": []
       },
-      "changes": [],
       "disabled": false,
       "duration": {
         "startTime": null,

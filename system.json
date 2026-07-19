@@ -2,7 +2,7 @@
     "id": "daggerheart",
     "title": "Daggerheart",
     "description": "An unofficial implementation of the Daggerheart system",
-    "version": "2.5.0",
+    "version": "2.5.4",
     "compatibility": {
         "minimum": "14.364",
         "verified": "14.364",
@@ -10,7 +10,7 @@
     },
     "url": "https://github.com/Foundryborne/daggerheart",
     "manifest": "https://raw.githubusercontent.com/Foundryborne/daggerheart/v14/system.json",
-    "download": "https://github.com/Foundryborne/daggerheart/releases/download/2.5.0/system.zip",
+    "download": "https://github.com/Foundryborne/daggerheart/releases/download/2.5.4/system.zip",
     "authors": [
         {
             "name": "WBHarry"
@@ -256,34 +256,34 @@
         },
         "Item": {
             "ancestry": {
-                "htmlFields": ["description"]
+                "htmlFields": ["description", "gmNotes"]
             },
             "community": {
-                "htmlFields": ["description"]
+                "htmlFields": ["description", "gmNotes"]
             },
             "class": {
-                "htmlFields": ["description"]
+                "htmlFields": ["description", "gmNotes"]
             },
             "subclass": {
-                "htmlFields": ["description"]
+                "htmlFields": ["description", "gmNotes"]
             },
             "feature": {
-                "htmlFields": ["description"]
+                "htmlFields": ["description", "gmNotes"]
             },
             "domainCard": {
-                "htmlFields": ["description"]
+                "htmlFields": ["description", "gmNotes"]
             },
             "loot": {
-                "htmlFields": ["description"]
+                "htmlFields": ["description", "gmNotes"]
             },
             "consumable": {
-                "htmlFields": ["description"]
+                "htmlFields": ["description", "gmNotes"]
             },
             "weapon": {
-                "htmlFields": ["description"]
+                "htmlFields": ["description", "gmNotes"]
             },
             "armor": {
-                "htmlFields": ["description"]
+                "htmlFields": ["description", "gmNotes"]
             },
             "beastform": {}
         },

@@ -54,21 +54,15 @@
       "_id": "zD3xVdwkEQi2ivOn",
       "img": "icons/creatures/abilities/wing-batlike-white-blue.webp",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.evasion",
+            "type": "add",
+            "value": "2",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.evasion",
-          "mode": 2,
-          "value": "2",
-          "priority": null
-        }
-      ],
       "disabled": true,
       "duration": {
         "startTime": null,

@@ -186,12 +186,6 @@
       "_id": "FK4IdbxluRErfYor",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "close"
-        },
         "changes": [],
         "duration": {
           "type": "temporary"

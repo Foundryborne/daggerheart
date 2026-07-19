@@ -185,8 +185,10 @@ export default class D20Roll extends DHRoll {
         return changeKeys;
     }
 
-    static postEvaluate(roll, config = {}) {
-        const data = super.postEvaluate(roll, config);
+    static async buildEvaluate(roll, config = {}, message = {}) {
+        await super.buildEvaluate(roll, config, message);
+
+        const data = config.roll;
         data.type = config.actionType;
         data.difficulty = config.roll.difficulty;
         if (config.targets?.length) {
@@ -222,7 +224,6 @@ export default class D20Roll extends DHRoll {
                 };
             });
         data.modifierTotal = roll.modifierTotal;
-        return data;
     }
 
     resetFormula() {

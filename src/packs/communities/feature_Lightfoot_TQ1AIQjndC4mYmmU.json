@@ -24,21 +24,15 @@
       "_id": "4my9X5XC3uwDSx7B",
       "img": "icons/magic/control/debuff-energy-snare-blue.webp",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.advantageSources",
+            "type": "add",
+            "value": "Move without being heard.",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Move without being heard.",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

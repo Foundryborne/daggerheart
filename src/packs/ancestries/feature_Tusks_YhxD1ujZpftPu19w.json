@@ -87,27 +87,21 @@
       "_id": "klEyAxQa5YHXVnrl",
       "img": "icons/creatures/abilities/fang-tooth-blood-red.webp",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.damage.physical.dice",
+            "type": "add",
+            "value": "1d6",
+            "priority": null
+          },
+          {
+            "key": "system.bonuses.damage.magical.dice",
+            "type": "add",
+            "value": "1d6",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.physical.dice",
-          "mode": 2,
-          "value": "1d6",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.magical.dice",
-          "mode": 2,
-          "value": "1d6",
-          "priority": null
-        }
-      ],
       "disabled": true,
       "duration": {
         "startTime": null,

@@ -104,8 +104,10 @@
                     "startCountdown": "Start Countdown"
                 },
                 "damage": {
+                    "addResource": "Add Resource",
                     "multiplier": "Multiplier",
-                    "flatMultiplier": "Flat Multiplier"
+                    "flatMultiplier": "Flat Multiplier",
+                    "markResources": "Mark Resources"
                 },
                 "general": {
                     "customFormula": "Custom Formula",
@@ -171,9 +173,7 @@
         },
         "ACTIVEEFFECT": {
             "Config": {
-                "rangeDependence": {
-                    "title": "Range Dependence"
-                },
+                "rangeDependence": { "title": "Range Dependence" },
                 "stacking": { "title": "Stacking" },
                 "targetDispositions": "Affected Dispositions"
             },
@@ -778,7 +778,7 @@
                 "removeRoll": "Remove Roll",
                 "resultsHint": "Results will appear when characters roll",
                 "selectLeaderHint": "Select one Character to be the leader",
-                "selectParticipantsHint": "Select one Character to be the leader",
+                "selectParticipantsHint": "Select all Characters who will participate in the roll",
                 "startGroupRoll": "Start Group Roll",
                 "title": "Group Roll"
             },
@@ -2253,7 +2253,7 @@
                         "hint": "A used armor slot normally reduces damage by one step. This value increases the number of steps damage is reduced by."
                     },
                     "magical": {
-                        "label": "Daamge Reduction: Only Magical",
+                        "label": "Damage Reduction: Only Magical",
                         "hint": "Armor can only be used to reduce magical damage"
                     },
                     "maxArmorMarkedBonus": "Max Armor Used",
@@ -2491,7 +2491,6 @@
             "reroll": "Reroll",
             "rerolled": "Rerolled",
             "rerollThing": "Reroll {thing}",
-            "resource": "Resource",
             "result": {
                 "single": "Result",
                 "plural": "Results"
@@ -2558,6 +2557,9 @@
                 },
                 "identifier": {
                     "label": "Identifier"
+                },
+                "gmNotes": {
+                    "label": "GM Notes"
                 }
             },
             "Ancestry": {
@@ -2572,6 +2574,9 @@
                     "major": "Major Threshold",
                     "severe": "Severe Threshold"
                 }
+            },
+            "Base": {
+                "addGMNote": "Add GM Note"
             },
             "Beastform": {
                 "FIELDS": {
@@ -3245,7 +3250,7 @@
                 "beastformToManyAdvantages": "You cannot select any more advantages.",
                 "beastformToManyFeatures": "You cannot select any more features.",
                 "beastformEquipWeapon": "You cannot use weapons while in a Beastform.",
-                "loadoutMaxReached": "You've reached maximum loadout. Move atleast one domain card to the vault, or increase the limit in homebrew settings if desired.",
+                "loadoutMaxReached": "You've reached the maximum loadout size. To add more, move at least one domain card to the vault.",
                 "domainMaxReached": "You've reached the maximum domains for the class. Increase the limit in homebrew settings if desired.",
                 "insufficientResources": "You don't have enough resources to use that action.",
                 "actionNoUsesRemaining": "That action doesn't have remaining uses.",

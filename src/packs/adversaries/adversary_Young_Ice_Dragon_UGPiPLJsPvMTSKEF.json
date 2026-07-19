@@ -500,12 +500,6 @@
           "_id": "g9bUvmw3jet6T99e",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": []
           },
           "disabled": false,
@@ -634,12 +628,6 @@
           "_id": "40cFHuNdEvbUZ9rs",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": [],
             "duration": {
               "type": "temporary",
@@ -768,12 +756,6 @@
           "_id": "1JlRxa07i8T1a9x6",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": [
               {
                 "key": "system.disadvantageSources",

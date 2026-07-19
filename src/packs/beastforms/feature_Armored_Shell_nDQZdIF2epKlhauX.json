@@ -60,7 +60,7 @@
       "changes": [
         {
           "key": "system.resistance.physical.resistance",
-          "mode": 5,
+          "type": "override",
           "value": "1",
           "priority": null
         }
@@ -98,7 +98,7 @@
       "changes": [
         {
           "key": "system.resistance.physical.reduction",
-          "mode": 2,
+          "type": "add",
           "value": "@system.armorScore",
           "priority": 21
         }

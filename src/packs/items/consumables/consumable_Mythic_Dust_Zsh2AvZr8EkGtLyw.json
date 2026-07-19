@@ -60,21 +60,15 @@
       "_id": "L68lFhuWdS3ppDxR",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.damage.magical.dice",
+            "type": "add",
+            "value": "1d12",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.magical.dice",
-          "mode": 2,
-          "value": "1d12",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

@@ -269,21 +269,15 @@
           "_id": "aATxfjeOzUYtKuU6",
           "img": "icons/commodities/biological/wing-insect-green.webp",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.difficulty",
+                "type": "add",
+                "value": "2",
+                "priority": null
+              }
+            ]
           },
-          "changes": [
-            {
-              "key": "system.difficulty",
-              "mode": 2,
-              "value": "2",
-              "priority": null
-            }
-          ],
           "disabled": true,
           "duration": {
             "startTime": null,
@@ -385,14 +379,8 @@
       "disabled": true,
       "_id": "dQgcYTz5vmV25Y6G",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": []
       },
-      "changes": [],
       "duration": {
         "startTime": 0,
         "combat": null

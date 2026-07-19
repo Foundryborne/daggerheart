@@ -44,12 +44,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -100,7 +97,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -126,7 +123,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -203,21 +201,15 @@
           "_id": "S9gl4jqdrziC1F0h",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.resistance.physical.resistance",
+                "type": "override",
+                "value": "1",
+                "priority": null
+              }
+            ]
           },
-          "changes": [
-            {
-              "key": "system.resistance.physical.resistance",
-              "mode": 5,
-              "value": "1",
-              "priority": null
-            }
-          ],
           "disabled": false,
           "duration": {
             "startTime": null,
@@ -288,7 +280,7 @@
             "type": "countdown",
             "_id": "VhqZKDA4032i8zY3",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to manifest the echo of a past disaster that ravaged the city. Activate a <em>Progress Countdown (5)</em> as the disaster replays around the PCs. To complete the countdown and escape the catastrophe, the PCs must overcome threats such as rampaging fires, stampeding civilians, collapsing buildings, or crumbling streets, while recalling history and finding clues to escape the inevitable.</p><section class=\"secret\" id=\"secret-2Ou4kbqfCwCgsG5X\"><p><em>Is this the disaster that led the city to be abandoned? What is known about this disaster and how could that help the PCs escape?</em></p></section>",
+            "description": "",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"

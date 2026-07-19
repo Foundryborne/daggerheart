@@ -23,35 +23,29 @@
       "name": "Pick and Pull",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.advantageSources",
+            "type": "add",
+            "value": "Pick nonmagical locks",
+            "priority": null
+          },
+          {
+            "key": "system.advantageSources",
+            "type": "add",
+            "value": "Disarm nonmagical traps",
+            "priority": null
+          },
+          {
+            "key": "system.advantageSources",
+            "type": "add",
+            "value": "Steal items from a target (either through stealth or by force)",
+            "priority": null
+          }
+        ]
       },
       "_id": "6IkjF8qNR0NVvvv8",
       "img": "icons/tools/hand/lockpicks-steel-grey.webp",
-      "changes": [
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Pick nonmagical locks",
-          "priority": null
-        },
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Disarm nonmagical traps",
-          "priority": null
-        },
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Steal items from a target (either through stealth or by force)",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

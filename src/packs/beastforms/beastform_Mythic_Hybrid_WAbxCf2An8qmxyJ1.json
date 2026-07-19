@@ -49,31 +49,31 @@
       "changes": [
         {
           "key": "system.traits.strength.value",
-          "mode": 2,
+          "type": "add",
           "value": "3",
           "priority": null
         },
         {
           "key": "system.evasion",
-          "mode": 2,
+          "type": "add",
           "value": "2",
           "priority": null
         },
         {
           "key": "system.rules.attack.damage.diceIndex",
-          "mode": 5,
+          "type": "override",
           "value": "4",
           "priority": null
         },
         {
           "key": "system.rules.attack.damage.bonus",
-          "mode": 5,
+          "type": "override",
           "value": "10",
           "priority": null
         },
         {
           "key": "system.rules.attack.roll.trait",
-          "mode": 5,
+          "type": "override",
           "value": "strength",
           "priority": null
         }

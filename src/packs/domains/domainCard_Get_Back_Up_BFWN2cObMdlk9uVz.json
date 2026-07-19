@@ -24,23 +24,17 @@
       "name": "Get Back Up",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.rules.damageReduction.stressDamageReduction.severe.cost",
+            "type": "override",
+            "value": "1",
+            "priority": null
+          }
+        ]
       },
       "_id": "aV3KUHtXXR86PRMh",
       "img": "icons/magic/control/silhouette-aura-energy.webp",
-      "changes": [
-        {
-          "key": "system.rules.damageReduction.stressDamageReduction.severe.cost",
-          "mode": 5,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
         "startTime": null,

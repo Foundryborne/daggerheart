@@ -65,21 +65,15 @@
       "_id": "gEDGcbsgWY2D2nOo",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.bonuses.roll.attack.bonus",
+            "type": "add",
+            "value": "1",
+            "priority": null
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.bonuses.roll.attack.bonus",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": true,
       "duration": {
         "startTime": null,

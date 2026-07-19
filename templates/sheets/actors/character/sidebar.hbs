@@ -110,7 +110,7 @@
                 {{/each}}
             </ul>
         </div>
-        <div class="loadout-section">
+        <div class="loadout-section" data-in-vault="false">
             <div class="title">
                 <side-line-div class="invert"></side-line-div>
                 <h3>{{localize "DAGGERHEART.GENERAL.loadout"}}</h3>
@@ -118,11 +118,10 @@
             </div>
             <ul class="items-sidebar-list">
                 {{#each document.system.domainCards.loadout as |card|}}
-                {{> 'daggerheart.inventory-item-compact'
-                    item=card
-                    type='domainCard'
-                }}
-
+                    {{> 'daggerheart.inventory-item-compact'
+                        item=card
+                        type='domainCard'
+                    }}
                 {{/each}}
             </ul>
         </div>
