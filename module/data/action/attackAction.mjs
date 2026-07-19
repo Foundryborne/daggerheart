@@ -53,7 +53,7 @@ export default class DHAttackAction extends DHDamageAction {
 
     async use(event, options) {
         if (this.item?.system.needsReload) {
-            return ui.notifications.error(game.i18n.format('DAGGERHEART.UI.Notifications.reloadRequired', { weapon: this.item.name }));
+            return ui.notifications.error(_loc('DAGGERHEART.UI.Notifications.reloadRequired', { weapon: this.item.name }));
         }
 
         const result = await super.use(event, options);
