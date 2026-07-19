@@ -139,7 +139,7 @@ export default class DHRoll extends BaseRoll {
             item?.system.hasReload && 
             action?.type === 'attack' && 
             reloadSetting === CONFIG.DH.SETTINGS.reloadChoices.auto.id;
-        const needReload = useReload ? await action?.handleReload?.() : false;
+        const needsReload = useReload ? await action?.handleReload?.() : false;
         
         const cls = getDocumentClass('ChatMessage'),
             msgData = {
@@ -148,7 +148,7 @@ export default class DHRoll extends BaseRoll {
                 title: roll.title,
                 speaker: cls.getSpeaker({ actor: roll.data?.parent }),
                 sound: config.mute ? null : CONFIG.sounds.dice,
-                system: { ...config, actionDescription, needReload },
+                system: { ...config, actionDescription, needsReload },
                 rolls: [roll]
             };
 

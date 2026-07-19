@@ -1,6 +1,6 @@
 <div class="roll-buttons">
     {{#if (eq automationSettings.reload 'button')}}
-        <button class="roll-reload-check" {{#if needReload}}disabled{{/if}}>{{localize "DAGGERHEART.ACTIONS.Reload.checkReload"}}</button>
+        <button class="roll-reload-check" {{#if needsReload}}disabled{{/if}}>{{localize "DAGGERHEART.ACTIONS.Reload.checkReload"}}</button>
     {{/if}}
     {{#if areas.length}}<button class="action-areas end-button"><i class="fa-solid fa-crosshairs"></i></button>{{/if}}
     {{#if hasDamage}}
