@@ -156,7 +156,7 @@ export default class DamageRoll extends DHRoll {
         if (!formulaData) return null;
         this.options.isCritical = config.isCritical;
 
-        formulaData.roll = new Roll(Roll.replaceFormulaData(formulaData.formula, config.data));
+        formulaData.roll = new this.constructor(Roll.replaceFormulaData(formulaData.formula, config.data));
         formulaData.roll.terms = Roll.parse(formulaData.roll.formula, config.data);
 
         if (formulaData.extraFormula) {
