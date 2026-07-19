@@ -181,21 +181,13 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     async onRollSimple(event, message) {
         const buttonType = event.target.dataset.type ?? 'damage';
         const total = message.rolls.reduce((a, c) => a + Roll.fromJSON(c).total, 0);
-        const damages = {
-            hitPoints: {
-                damageTypes: [],
-                roll: { total }
-            }
-        };
         const targets = Array.from(game.user.targets);
-
         if (targets.length === 0)
             return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
-
-        targets.forEach(target => {
-            if (buttonType === 'healing') target.actor.takeHealing(damages);
-            else target.actor.takeDamage(damages);
-        });
+        for (const target of targets) {
+            if (buttonType === 'healing') target.actor.takeHealing({ hitPoints: total });
+            else target.actor.takeDamage({ total });
+        }
     }
 
     async abilityUseButton(event, message) {

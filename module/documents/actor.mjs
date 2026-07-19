@@ -747,11 +747,11 @@ export default class DhpActor extends Actor {
         return updates;
     }
 
-    async takeHealing(healings) {
-        if (Hooks.call(`${CONFIG.DH.id}.preTakeHealing`, this, healings) === false) return null;
+    async takeHealing(args) {
+        args = this.#parseDamageArgs({ resources: 'resources' in args ? args.resources : args });
+        if (Hooks.call(`${CONFIG.DH.id}.preTakeHealing`, this, args) === false) return null;
 
-        const resources = 'resources' in healings ? healings.resources : healings;
-        const updates = this.#parseDamageArgs({ resources }).resourceUpdates;
+        const updates = args.resourceUpdates;
         for (const u of updates) {
             const shouldFlip = !(u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false);
             u.value = shouldFlip ? u.value * -1 : u.value;
