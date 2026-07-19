@@ -6,18 +6,9 @@
                 {{#if hintText}}
                     <div class="hint">{{localize hintText}}</div>
                 {{else}}
-                    {{#if joinedRoll.rollData}}
-                        <div class="result-container">
-                            <span class="result-section-label">{{localize "DAGGERHEART.GENERAL.dualityRoll"}}</span>
-                            <div class="result-info">
-                                <div class="damage-info">{{joinedRoll.rollData.total}}</div>
-                                <div>{{localize "DAGGERHEART.GENERAL.withThing" thing=joinedRoll.roll.totalLabel}}</div>
-                            </div>
-                        </div>
-                    {{/if}}
                     {{#if joinedRoll.damageRollData}}
                         <div class="result-container">
-                            <span class="result-section-label">{{localize "DAGGERHEART.GENERAL.damage"}}</span>
+                            <div class="damage-info">{{joinedRoll.rollData.total}} {{localize "DAGGERHEART.GENERAL.withThing" thing=joinedRoll.roll.totalLabel}}</div>
                             {{#if joinedRoll.damageRollData.main}}
                                 {{> damageSummary roll=joinedRoll.damageRollData.main label=(localize "DAGGERHEART.GENERAL.damage")}}
                             {{/if}}
@@ -41,8 +32,5 @@
 </section>
 
 {{#*inline "damageSummary"}}
-    <div class="result-info">
-        <div>{{label}}</div>
-        <div class="damage-info">{{roll.total}}</div>
-    </div>
+    <div>{{label}} {{roll.total}}</div>
 {{/inline}}

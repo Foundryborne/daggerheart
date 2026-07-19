@@ -236,11 +236,11 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             }
         }
 
+        const selectedRoll = Object.values(this.party.system.tagTeam.members).find(member => member.selected);
+        const critSelected = !selectedRoll ? undefined : (selectedRoll?.roll?.isCritical ?? false);
+        const isCritical = critSelected || (critSelected === undefined && data.roll?.isCritical);
         if (data.damageRollData.main) {
-            const selectedRoll = Object.values(this.party.system.tagTeam.members).find(member => member.selected);
-            const critSelected = !selectedRoll ? undefined : (selectedRoll?.roll?.isCritical ?? false);
-            const useCritDamage = critSelected || (critSelected === undefined && data.roll?.isCritical);
-            data.damageRollData.main.options.isCritical = useCritDamage;
+            data.damageRollData.main.options.isCritical = isCritical;
         }
 
         return {
@@ -253,8 +253,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             rollOptions,
             damageRollOptions,
             damage: data.damageRollData,
-            critDamage: this.getCriticalDamage(data.damageRollData),
-            useCritDamage: false
+            isCritical
         };
     }
 
