@@ -8,12 +8,17 @@ export default class DamageRoll extends DHRoll {
     }
 
     get isCritical() {
-        return true;
+        return this.options.isCritical;
     }
 
     get modifierTotal() {
         const criticalDamageBonus = this.isCritical ? getCritDamageBonus(this.terms) : 0;
         return super.modifierTotal + criticalDamageBonus;
+    }
+
+    get total() {
+        const criticalDamageBonus = this.isCritical ? getCritDamageBonus(this.terms) : 0;
+        return super.total + criticalDamageBonus;
     }
 
     static DefaultDialog = DamageDialog;
