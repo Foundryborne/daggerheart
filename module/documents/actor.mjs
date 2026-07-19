@@ -622,6 +622,11 @@ export default class DhpActor extends Actor {
         return rollData;
     }
 
+    /** 
+     * Checks to see if damage can be reduced in one way or another.
+     * @param {number} hpDamage the amount of marked hp that will be marked
+     * @param {Set<string>} types a list of damage types
+     */
     #canReduceDamage(hpDamage, types) {
         const { stressDamageReduction, disabledArmor, reduceSeverity, thresholdImmunities } = 
             this.system.rules.damageReduction;
@@ -648,31 +653,33 @@ export default class DhpActor extends Actor {
         return canUseArmor || canUseStress || hasReduceSeverity || hasThresholdImmunity;
     }
 
-    async takeDamage(damages, isDirect = false) {
-        if (Hooks.call(`${CONFIG.DH.id}.preTakeDamage`, this, damages) === false) return null;
+    async takeDamage(args, isDirect = false) {
+        args = this.#parseDamageArgs(args);
+        if (Hooks.call(`${CONFIG.DH.id}.preTakeDamage`, this, args) === false) return null;
 
         if (this.type === 'companion') {
             await this.modifyResource([{ value: 1, key: 'stress' }]);
             return;
         }
 
-        if (damages.main) {
-            damages.main.total = this.calculateDamage(damages.main.total, damages.main.damageTypes);
+        const updates = args.resourceUpdates;
+        if (args.main) {
+            // todo: avoid side effects, but hook currently requires it
+            args.main.value = this.calculateDamage(args.main.value, args.main.damageTypes);
         }
 
-        if (Hooks.call(`${CONFIG.DH.id}.postCalculateDamage`, this, damages) === false) return null;
+        if (Hooks.call(`${CONFIG.DH.id}.postCalculateDamage`, this, args) === false) return null;
 
         // Convert deducted resources to a record of updates. Return if nothing to do.
-        const updates = Object.entries(damages.resources).map(([key, damage]) => ({ key, value: damage.total }));
-        if (!updates.some(u => u.value) && !damages.main) return; 
+        if (!updates.some(u => u.value) && !args.main) return; 
 
-        if (damages.main) {
+        if (args.main) {
             const hpDamage = { 
-                value: this.convertDamageToThreshold(damages.main.total),
-                damageTypes: new Set(damages.main.options.damageTypes), 
+                value: this.convertDamageToThreshold(args.main.value),
+                damageTypes: new Set(args.main.damageTypes), 
                 key: CONFIG.DH.GENERAL.healingTypes.hitPoints.id
             };
-            if (this.type === 'character' && !isDirect && this.#canReduceDamage(hpDamage.total, hpDamage.damageTypes)) {
+            if (this.type === 'character' && !isDirect && this.#canReduceDamage(hpDamage.value, hpDamage.damageTypes)) {
                 const armorSlotResult = await this.owner.query(
                     'armorSlot',
                     {
@@ -743,23 +750,31 @@ export default class DhpActor extends Actor {
     async takeHealing(healings) {
         if (Hooks.call(`${CONFIG.DH.id}.preTakeHealing`, this, healings) === false) return null;
 
-        const updates = Object.entries(healings.resources).map(([key, damage]) => ({ 
-            key, 
-            value: damage.total 
-        }));
-
-        updates.forEach(
-            u =>
-                (u.value = !(u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false)
-                    ? u.value * -1
-                    : u.value)
-        );
-
+        const resources = 'resources' in healings ? healings.resources : healings;
+        const updates = this.#parseDamageArgs({ resources }).resourceUpdates;
+        for (const u of updates) {
+            const shouldFlip = !(u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false);
+            u.value = shouldFlip ? u.value * -1 : u.value;
+        }
         await this.modifyResource(updates);
 
         if (Hooks.call(`${CONFIG.DH.id}.postTakeHealing`, this, updates) === false) return null;
 
         return updates;
+    }
+
+    /** Parse damage args that may be coming from takeHealing or takeDamage. Used to simplify macro usage and roll vs non-roll usage */
+    #parseDamageArgs(args = {}) {
+        const damageRoll = 'total' in args ? args : (args.main ?? args.damage);
+        const damageValue = typeof damageRoll === 'number' ? damageRoll : damageRoll?.total;
+        const damageTypes = Array.from(damageRoll?.options?.damageTypes ?? damageRoll?.damageTypes ?? []);
+        const main = typeof damageValue === 'number' ? { key: 'damage', value: damageValue, damageTypes } : null;
+        const resourceUpdates = Object.entries(args.resources ?? {}).map(([key, damage]) => ({ 
+            key, 
+            value: typeof damage === 'number' ? damage : damage?.total ?? 0 
+        }));
+
+        return { main, resourceUpdates };
     }
 
     calculateDamage(baseDamage, type) {
