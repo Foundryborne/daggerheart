@@ -41,11 +41,12 @@ export class ChatDamageData extends foundry.abstract.DataModel {
     }
 
     _prepareRolls() {
-        this.main &&= Roll.fromData({ 
+        this.main &&= Roll.fromData({
             ...this.main, 
             options: { 
                 ...this.main.options, 
-                isCritical: this.main.options.isCritical || this.isCritical 
+                isCritical: 
+                    this.main.options.isCritical === false ? false : (this.main.options.isCritical || this.isCritical) 
             } 
         });
 

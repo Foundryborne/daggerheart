@@ -1,6 +1,7 @@
 import { ResourceUpdateMap } from '../../data/action/baseAction.mjs';
 import { ChatDamageData } from '../../data/chat-message/chatDamageData.mjs';
 import { MemberData } from '../../data/tagTeamData.mjs';
+import DamageRoll from '../../dice/damageRoll.mjs';
 import { getCritDamageBonus, shouldUseHopeFearAutomation } from '../../helpers/utils.mjs';
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 import PartySheet from '../sheets/actors/party.mjs';
@@ -235,8 +236,12 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             }
         }
 
-        const selectedRoll = Object.values(this.party.system.tagTeam.members).find(member => member.selected);
-        const critSelected = !selectedRoll ? undefined : (selectedRoll?.roll?.isCritical ?? false);
+        if (data.damageRollData.main) {
+            const selectedRoll = Object.values(this.party.system.tagTeam.members).find(member => member.selected);
+            const critSelected = !selectedRoll ? undefined : (selectedRoll?.roll?.isCritical ?? false);
+            const useCritDamage = critSelected || (critSelected === undefined && data.roll?.isCritical);
+            data.damageRollData.main.options.isCritical = useCritDamage;
+        }
 
         return {
             ...data,
@@ -249,7 +254,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             damageRollOptions,
             damage: data.damageRollData,
             critDamage: this.getCriticalDamage(data.damageRollData),
-            useCritDamage: critSelected || (critSelected === undefined && data.roll?.isCritical)
+            useCritDamage: false
         };
     }
 
@@ -640,17 +645,13 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             secondaryRoll.damageRollData = baseSecondaryRoll.damageRollData ? 
                 ChatDamageData.fromJSON(JSON.stringify(baseSecondaryRoll.damageRollData)) : null;
 
-            const isCritical = overrideIsCritical ?? mainRoll.roll.isCritical;
-            if (isCritical) mainRoll.damageRollData = this.getCriticalDamage(mainRoll.damageRollData);
-
             if (secondaryRoll.damageRollData) {
-                const secondaryDamage = (displayVersion ? overrideIsCritical : isCritical)
-                    ? this.getCriticalDamage(secondaryRoll.damageRollData)
-                    : secondaryRoll.damageRollData;
+                const secondaryDamage = secondaryRoll.damageRollData;
+
                 if (mainRoll.damageRollData) {
                     if (secondaryDamage.main) {
                         if (mainRoll.damageRollData.main) {
-                            mainRoll.damageRollData.main = Roll.fromTerms([
+                            mainRoll.damageRollData.main = DamageRoll.fromTerms([
                                 ...baseMainRoll.damageRollData.main.terms,
                                 new foundry.dice.terms.OperatorTerm({ operator: '+' }),
                                 ...baseSecondaryRoll.damageRollData.main.terms
@@ -672,7 +673,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
                     for (const [key, damage] of Object.entries(secondaryDamage.resources ?? {})) {
                         if (key in mainRoll.damageRollData.resources) {
-                            mainRoll.damageRollData.resources[key] = Roll.fromTerms([
+                            mainRoll.damageRollData.resources[key] = DamageRoll.fromTerms([
                                 ...baseMainRoll.damageRollData.resources[key].terms,
                                 new foundry.dice.terms.OperatorTerm({ operator: '+' }),
                                 ...baseSecondaryRoll.damageRollData.resources[key].terms
@@ -695,6 +696,12 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                     mainRoll.damageRollData = secondaryDamage;
                 }
             }
+
+            if (mainRoll.damageRollData.main) {
+                const isCritical = overrideIsCritical ?? mainRoll.roll.isCritical;
+                mainRoll.damageRollData.main.options.isCritical = isCritical;
+            }
+
 
             return mainRoll;
         } catch (err) {
@@ -755,7 +762,11 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         };
 
         if (joinedRoll.damageRollData.main) {
-            systemData.damage.main = joinedRoll.damageRollData.toJSON();
+            systemData.damage.main = joinedRoll.damageRollData.main.toJSON();
+            // isCritical is used internally in TagTeamDialog to force-flip damage from normal to critical and vice versa. 
+            // It's deleted here to avoid interupting normal critical damage logic in the chatMessage.
+            // If someone explicitly set their own damage roll to be a forced critical, then I think it's fine that isn't transmitted to the final joined roll.
+            delete systemData.damage.main.options.isCritical;
         }
         for (const type of Object.keys(joinedRoll.damageRollData?.resources ?? {})) {
             systemData.damage.resources[type] = joinedRoll.damageRollData.resources[type].toJSON();

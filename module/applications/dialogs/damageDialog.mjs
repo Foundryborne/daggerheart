@@ -6,6 +6,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
 
         this.roll = roll;
         this.config = config;
+        this.originalIsCritical = config.isCritical;
         this.selectedEffects = this.config.bonusEffects;
     }
 
@@ -121,13 +122,16 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
     }
 
     static async submitRoll() {
-        const isCritical = this.config.isCritical;
         const { damageFormula, resourceFormulas } = this.roll.constructFormulas({ ...this.config, isCritical: false }); 
         /* Sideeffect occuring in constructFormulas that sets this.config.isCritical to the false value. Can remove the below if it can be prevented */
-        this.config.isCritical = isCritical;
-        damageFormula.roll.options.isCritical = isCritical;
-        for (const formula of resourceFormulas)
-            formula.roll.options.isCritical = isCritical;
+        this.config.isCritical = this.originalIsCritical;
+
+        /* If a critical has been forced in the Dialog, save that forced state to the damage roll */
+        if (this.config.isCritical && !this.originalIsCritical) {
+            damageFormula.roll.options.isCritical = true;
+            for (const formula of resourceFormulas)
+                formula.roll.options.isCritical = true;
+        }
 
         this.config.damageFormula = damageFormula;
         this.config.resourceFormulas = resourceFormulas;

@@ -18,11 +18,11 @@
                     {{#if joinedRoll.damageRollData}}
                         <div class="result-container">
                             <span class="result-section-label">{{localize "DAGGERHEART.GENERAL.damage"}}</span>
-                            {{#each joinedRoll.damageRollData.types as |damage key|}}
-                                <div class="result-info">
-                                    <div>{{localize (concat "DAGGERHEART.CONFIG.HealingType." key ".name")}}</div>
-                                    <div class="damage-info">{{damage.total}}</div>
-                                </div>
+                            {{#if joinedRoll.damageRollData.main}}
+                                {{> damageSummary roll=joinedRoll.damageRollData.main label=(localize "DAGGERHEART.GENERAL.damage")}}
+                            {{/if}}
+                            {{#each joinedRoll.damageRollData.resources as |roll key|}}
+                                {{> damageSummary roll=roll label=(localize (concat "DAGGERHEART.CONFIG.HealingType." key ".name"))}}
                             {{/each}}
                         </div>
                     {{/if}}
@@ -39,3 +39,10 @@
         </div>
     </div>
 </section>
+
+{{#*inline "damageSummary"}}
+    <div class="result-info">
+        <div>{{label}}</div>
+        <div class="damage-info">{{roll.total}}</div>
+    </div>
+{{/inline}}
