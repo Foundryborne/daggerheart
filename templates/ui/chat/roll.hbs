@@ -2,9 +2,9 @@
     <div class="roll-part-title"><span>{{title}}</span></div>
     
     {{#if (eq action.type 'attack')}}
-        {{#if needReload}}
+        {{#if needsReload}}
             <div class="roll-reload-container">
-                {{#if needReload}}
+                {{#if needsReload}}
                     <p class='reload-warning'>{{localize "DAGGERHEART.ACTIONS.Reload.reloadRequired"}}</p>
                 {{/if}}
             </div>

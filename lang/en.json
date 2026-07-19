@@ -1326,6 +1326,11 @@
                     "short": "V. Far"
                 }
             },
+            "ReloadChoices": {
+                "off": { "label": "Don't Use" },
+                "button": { "label": "Use button" },
+                "auto": { "label": "Automatic" }
+            },
             "RollTypes": {
                 "trait": {
                     "name": "Trait"
