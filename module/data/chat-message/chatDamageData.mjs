@@ -1,4 +1,6 @@
 import { triggerChatRollFx } from '../../helpers/utils.mjs';
+import { MemberData } from '../tagTeamData.mjs';
+import DHActorRoll from './actorRoll.mjs';
 
 export class ChatDamageData extends foundry.abstract.DataModel {
     constructor(data = {}, options = {}) {
@@ -8,10 +10,14 @@ export class ChatDamageData extends foundry.abstract.DataModel {
     }
 
     get isCritical() {
-        if (!this.parent?.parent) return false;
+        if (this.parent && this.parent instanceof MemberData) {
+            return this.parent.roll.isCritical;
+        }
+        if (this.parent && this.parent instanceof DHActorRoll && this.parent.parent) {
+            return Roll.fromJSON(this.parent.parent._source.rolls[0]).isCritical;
+        }
 
-        const roll = Roll.fromJSON(this.parent.parent._source.rolls[0]);
-        return roll.isCritical;
+        return false;
     }
 
     static defineSchema() {
