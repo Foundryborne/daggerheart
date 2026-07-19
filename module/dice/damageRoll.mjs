@@ -33,7 +33,7 @@ export default class DamageRoll extends DHRoll {
         
         const evaluateRoll = async roll => {
             await roll.roll.evaluate();
-            roll.roll.options = { damageTypes: roll.damageTypes ? [...roll.damageTypes] : [] };
+            roll.roll.options = { ...roll.roll.options, damageTypes: roll.damageTypes ? [...roll.damageTypes] : [] };
             return roll.roll;
         }
 
@@ -41,8 +41,10 @@ export default class DamageRoll extends DHRoll {
 
         if (config.damageFormula) {
             config.damage.main = await evaluateRoll(config.damageFormula);
-            config.damage.main.options = { damageTypes: 
-                config.damageFormula.damageTypes ? [...config.damageFormula.damageTypes] : []
+            config.damage.main.options = { 
+                ...config.damage.main.options,
+                damageTypes: 
+                    config.damageFormula.damageTypes ? [...config.damageFormula.damageTypes] : []
             };
         }
         

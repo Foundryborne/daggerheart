@@ -8,6 +8,8 @@ export class ChatDamageData extends foundry.abstract.DataModel {
     }
 
     get isCritical() {
+        if (!this.parent?.parent) return false;
+
         const roll = Roll.fromJSON(this.parent.parent._source.rolls[0]);
         return roll.isCritical;
     }
@@ -33,7 +35,14 @@ export class ChatDamageData extends foundry.abstract.DataModel {
     }
 
     _prepareRolls() {
-        this.main &&= Roll.fromData({ ...this.main, options: { ...this.main.options, isCritical: this.isCritical } });
+        this.main &&= Roll.fromData({ 
+            ...this.main, 
+            options: { 
+                ...this.main.options, 
+                isCritical: this.main.options.isCritical || this.isCritical 
+            } 
+        });
+
         for (const key of Object.keys(this.resources)) {
             this.resources[key] = Roll.fromData(this.resources[key]);
         }
