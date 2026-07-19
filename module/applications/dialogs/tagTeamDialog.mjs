@@ -184,8 +184,8 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                     ? undefined
                     : (selectedRoll?.roll?.isCritical ?? false);
 
-                partContext.hintText = await this.getInfoTexts(this.party.system.tagTeam.members);
-                partContext.joinedRoll = await this.getJoinedRoll({
+                partContext.hintText = this.getInfoTexts(this.party.system.tagTeam.members);
+                partContext.joinedRoll = this.getJoinedRoll({
                     overrideIsCritical: critSelected,
                     displayVersion: true
                 });
@@ -194,7 +194,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         }
 
         if (Object.keys(this.party.system.tagTeam.members).includes(partId)) {
-            const data = await this.#prepareMemberContext(partId);
+            const data = this.#prepareMemberContext(partId);
             partContext.hasDamage |= Boolean(data?.damage);
             partContext.members[partId] = data;
         }
@@ -202,7 +202,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         return partContext;
     }
 
-    async #prepareMemberContext(partId) {
+    #prepareMemberContext(partId) {
         const data = this.party.system.tagTeam.members[partId] ?? {};
         const actor = game.actors.get(partId);
         if (!actor) console.error(`Failed to get actor ${partId}`);
@@ -248,7 +248,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             rollOptions,
             damageRollOptions,
             damage: data.damageRollData,
-            critDamage: await this.getCriticalDamage(data.damageRollData),
+            critDamage: this.getCriticalDamage(data.damageRollData),
             useCritDamage: critSelected || (critSelected === undefined && data.roll?.isCritical)
         };
     }
@@ -374,7 +374,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
     //#endregion
     //#region Tag Team Roll
 
-    async getInfoTexts(members) {
+    getInfoTexts(members) {
         let rollsAreFinished = true;
         let rollIsSelected = false;
         for (const member of Object.values(members)) {
@@ -579,14 +579,14 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         );
     }
 
-    async getCriticalDamage(origDamage) {
+    getCriticalDamage(origDamage) {
         const newDamage = origDamage ? ChatDamageData.fromJSON(JSON.stringify(origDamage)) : null;
         if (newDamage?.main) {
-            const criticalDamage = await getCritDamageBonus(newDamage.main.formula);
+            const criticalDamage = getCritDamageBonus(newDamage.main.terms);
             if (criticalDamage) {
                 const criticalTerm = new foundry.dice.terms.NumericTerm({ number: criticalDamage, evaluated: true });
                 criticalTerm.evaluate();
-                newDamage.main = await Roll.fromTerms([
+                newDamage.main = Roll.fromTerms([
                     ...origDamage.main.terms,
                     new foundry.dice.terms.OperatorTerm({ operator: '+' }),
                     criticalTerm
@@ -620,7 +620,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         );
     }
 
-    async getJoinedRoll({ overrideIsCritical, displayVersion } = {}) {
+    getJoinedRoll({ overrideIsCritical, displayVersion } = {}) {
         try {
             const memberValues = Object.values(this.party.system.tagTeam.members);
             const selectedRoll = memberValues.find(x => x.selected);
@@ -641,11 +641,11 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 ChatDamageData.fromJSON(JSON.stringify(baseSecondaryRoll.damageRollData)) : null;
 
             const isCritical = overrideIsCritical ?? mainRoll.roll.isCritical;
-            if (isCritical) mainRoll.damageRollData = await this.getCriticalDamage(mainRoll.damageRollData);
+            if (isCritical) mainRoll.damageRollData = this.getCriticalDamage(mainRoll.damageRollData);
 
             if (secondaryRoll.damageRollData) {
                 const secondaryDamage = (displayVersion ? overrideIsCritical : isCritical)
-                    ? await this.getCriticalDamage(secondaryRoll.damageRollData)
+                    ? this.getCriticalDamage(secondaryRoll.damageRollData)
                     : secondaryRoll.damageRollData;
                 if (mainRoll.damageRollData) {
                     if (secondaryDamage.main) {
@@ -741,7 +741,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         const error = this.checkInitiatorHopeError(this.party.system.tagTeam.initiator);
         if (error) return error;
 
-        const joinedRoll = await this.getJoinedRoll();
+        const joinedRoll = this.getJoinedRoll();
         const mainRoll = joinedRoll.rollData;
         const finalRoll = foundry.utils.deepClone(joinedRoll.roll);
 

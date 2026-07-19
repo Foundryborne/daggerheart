@@ -121,6 +121,9 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
     }
 
     static async submitRoll() {
+        const { damageFormula, resourceFormulas } = this.roll.constructFormulas({ ...this.config, isCritical: false }); 
+        this.config.damageFormula = damageFormula;
+        this.config.resourceFormulas = resourceFormulas;
         await this.close({ submitted: true });
     }
 

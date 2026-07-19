@@ -28,7 +28,7 @@ export class ChatDamageData extends foundry.abstract.DataModel {
     }
 
     _prepareRolls() {
-        this.main &&= Roll.fromData(this.main);
+        this.main &&= Roll.fromData({ ...this.main, class: 'DamageRoll' }); // Temp overriding to DamageRoll. Should be properly saved on creation instead
         for (const key of Object.keys(this.resources)) {
             this.resources[key] = Roll.fromData(this.resources[key]);
         }

@@ -1,5 +1,5 @@
 import DamageDialog from '../applications/dialogs/damageDialog.mjs';
-import { parseRallyDice, triggerChatRollFx } from '../helpers/utils.mjs';
+import { getCritDamageBonus, parseRallyDice, triggerChatRollFx } from '../helpers/utils.mjs';
 import DHRoll from './dhRoll.mjs';
 
 export default class DamageRoll extends DHRoll {
@@ -8,7 +8,12 @@ export default class DamageRoll extends DHRoll {
     }
 
     get isCritical() {
-        return !!this.options.isCritical;
+        return true;
+    }
+
+    get modifierTotal() {
+        const criticalDamageBonus = this.isCritical ? getCritDamageBonus(this.terms) : 0;
+        return super.modifierTotal + criticalDamageBonus;
     }
 
     static DefaultDialog = DamageDialog;
