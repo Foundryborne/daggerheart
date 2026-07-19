@@ -6,19 +6,19 @@
                 {{#if hintText}}
                     <div class="hint">{{localize hintText}}</div>
                 {{else}}
-                    {{#if joinedRoll.roll}}
+                    {{#if joinedRoll.rollData}}
                         <div class="result-container">
                             <span class="result-section-label">{{localize "DAGGERHEART.GENERAL.dualityRoll"}}</span>
                             <div class="result-info">
-                                <div class="damage-info">{{joinedRoll.roll.total}}</div>
+                                <div class="damage-info">{{joinedRoll.rollData.total}}</div>
                                 <div>{{localize "DAGGERHEART.GENERAL.withThing" thing=joinedRoll.roll.totalLabel}}</div>
                             </div>
                         </div>
                     {{/if}}
-                    {{#if joinedRoll.rollData.options.hasDamage}}
+                    {{#if joinedRoll.damageRollData}}
                         <div class="result-container">
                             <span class="result-section-label">{{localize "DAGGERHEART.GENERAL.damage"}}</span>
-                            {{#each joinedRoll.rollData.options.damage as |damage key|}}
+                            {{#each joinedRoll.damageRollData.types as |damage key|}}
                                 <div class="result-info">
                                     <div>{{localize (concat "DAGGERHEART.CONFIG.HealingType." key ".name")}}</div>
                                     <div class="damage-info">{{damage.total}}</div>

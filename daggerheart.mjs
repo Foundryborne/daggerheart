@@ -6,6 +6,7 @@ import * as documents from './module/documents/_module.mjs';
 import { macros } from './module/_module.mjs';
 import * as collections from './module/documents/collections/_module.mjs';
 import * as dice from './module/dice/_module.mjs';
+import * as die from './module/dice/die/_module.mjs';
 import * as fields from './module/data/fields/_module.mjs';
 import RegisterHandlebarsHelpers from './module/helpers/handlebarsHelper.mjs';
 import { enricherConfig, enricherRenderSetup } from './module/enrichers/_module.mjs';
@@ -23,7 +24,7 @@ import TokenManager from './module/documents/tokenManager.mjs';
 CONFIG.DH = SYSTEM;
 CONFIG.TextEditor.enrichers.push(...enricherConfig);
 
-CONFIG.Dice.rolls = [BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll, FateRoll];
+CONFIG.Dice.rolls = [Roll = BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll, FateRoll];
 CONFIG.Dice.daggerheart = {
     DHRoll: DHRoll,
     DualityRoll: DualityRoll,
@@ -38,8 +39,8 @@ CONFIG.RegionBehavior.dataModels = {
 };
 
 Object.assign(CONFIG.Dice.termTypes, dice.diceTypes);
-CONFIG.Dice.terms.d = dice.BaseDie;
-CONFIG.Dice.types = [dice.BaseDie, CONFIG.Dice.terms.f];
+CONFIG.Dice.terms.d = die.BaseDie;
+CONFIG.Dice.types = [die.BaseDie, CONFIG.Dice.terms.f];
 
 CONFIG.Actor.documentClass = documents.DhpActor;
 CONFIG.Actor.dataModels = models.actors.config;
@@ -269,6 +270,10 @@ Hooks.on('i18nInit', () => {
 });
 
 Hooks.on('setup', () => {
+    if (game.user.isGM) {
+        document.body.dataset.gm = true;
+    }
+
     CONFIG.statusEffects = [
         ...CONFIG.statusEffects.filter(x => !['dead', 'unconscious'].includes(x.id)),
         ...Object.values(SYSTEM.GENERAL.conditions()).map(x => ({

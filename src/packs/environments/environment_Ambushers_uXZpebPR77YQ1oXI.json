@@ -35,12 +35,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -91,7 +88,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -117,7 +114,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -156,7 +154,7 @@
             "type": "effect",
             "_id": "6DKa1Pm605HpChPd",
             "systemPath": "actions",
-            "description": "<p>When a PC starts the ambush on unsuspecting adversaries, you lose 2 Fear and the first attack roll a PC makes has advantage.</p><section class=\"secret\" id=\"secret-WV3oLdq2IoLoSZqe\"><p><em>What are the adversaries in the middle of doing when the ambush starts? How does this impact their approach to the fight?</em></p></section>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

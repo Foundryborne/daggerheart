@@ -1,3 +1,4 @@
+import { DHDamageData } from '../../data/fields/action/damageField.mjs';
 import DHBaseActorSettings from '../sheets/api/actor-setting.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
@@ -8,8 +9,10 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         classes: ['adversary-settings'],
         position: { width: 455, height: 'auto' },
         actions: {
-            addExperience: DHAdversarySettings.#addExperience,
-            removeExperience: DHAdversarySettings.#removeExperience
+            addExperience: this.#onAddExperience,
+            removeExperience: this.#onRemoveExperience,
+            addDamage: this.#onAddDamage,
+            removeDamage: this.#onRemoveDamage
         }
     };
 
@@ -71,7 +74,7 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
      * Adds a new experience entry to the actor.
      * @type {ApplicationClickAction}
      */
-    static async #addExperience() {
+    static async #onAddExperience() {
         const newExperience = {
             name: 'Experience',
             modifier: 0
@@ -83,7 +86,7 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
      * Removes an experience entry from the actor.
      * @type {ApplicationClickAction}
      */
-    static async #removeExperience(_, target) {
+    static async #onRemoveExperience(_, target) {
         const experience = this.actor.system.experiences[target.dataset.experience];
         const confirmed = await foundry.applications.api.DialogV2.confirm({
             window: {
@@ -97,5 +100,29 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         if (!confirmed) return;
 
         await this.actor.update({ [`system.experiences.${target.dataset.experience}`]: _del });
+    }
+
+    /**
+     * @this DHAdversarySettings 
+     * @type {ApplicationClickAction}
+     */
+    static #onAddDamage() {
+        this.actor.update({
+            'system.attack.damage.main': {
+                ...DHDamageData.schema.getInitialValue(),
+                applyTo: 'hitPoints',
+                type: 'physical'
+            }
+        });
+    }
+    
+    /**
+     * @this DHAdversarySettings 
+     * @type {ApplicationClickAction}
+     */
+    static #onRemoveDamage() {
+        this.actor.update({
+            'system.attack.damage.main': null
+        });
     }
 }

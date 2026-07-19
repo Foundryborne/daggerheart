@@ -64,7 +64,10 @@
 
                         {{#if roll}}
                             <div class="roll-data {{#if roll.withHope}}hope{{else if roll.withFear}}fear{{else}}critical{{/if}}">
-                                <div class="duality-label">{{roll.total}} {{localize "DAGGERHEART.GENERAL.withThing" thing=roll.totalLabel}}</div>
+                                <div class="duality-label">
+                                    {{roll.total}} 
+                                    {{#if roll.isCritical}}{{roll.totalLabel}}{{else}}{{localize "DAGGERHEART.GENERAL.withThing" thing=roll.totalLabel}}{{/if}}
+                                </div>
                                 <div class="roll-dice-container">
                                     <a class="roll-dice" data-action="rerollDice" data-member="{{@root.partId}}" data-dice-type="hope">
                                         <span class="dice-label">{{roll.dHope.total}}</span>
@@ -100,15 +103,12 @@
                                 <a class="roll-button" data-action="makeDamageRoll" data-member-key="{{@root.partId}}" {{#unless readyToRoll}}disabled{{/unless}}>
                                     <img src="systems/daggerheart/assets/icons/dice/hope/d20.svg" />
                                 </a>
-
-                                {{#if damage}}
-                                    <a class="delete-button" data-action="removeDamageRoll" data-member-key="{{@root.partId}}" {{#unless rollData.options.damage}}disabled{{/unless}}>
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
-                                {{/if}}
+                                <a class="delete-button" data-action="removeDamageRoll" data-member-key="{{@root.partId}}" {{#unless damage.active}}disabled{{/unless}}>
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
                             </div>
                         </span>
-                        {{#if damage}}
+                        {{#if damage.active}}
                             {{#if useCritDamage}}
                                 {{> "systems/daggerheart/templates/dialogs/tagTeamDialog/parts/tagTeamDamageParts.hbs" damage=critDamage isCritical=true }}
                             {{else}}

@@ -1,7 +1,8 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 import { triggerChatRollFx } from '../helpers/utils.mjs';
+import BaseRoll from './baseRoll.mjs';
 
-export default class DHRoll extends Roll {
+export default class DHRoll extends BaseRoll {
     baseTerms = [];
     constructor(formula, data = {}, options = {}) {
         super(formula, data, foundry.utils.mergeObject(options, { roll: [] }, { overwrite: false }));
@@ -40,6 +41,10 @@ export default class DHRoll extends Roll {
         return config;
     }
 
+    static createRollInstance(config) {
+        return new this(config.roll.formula, config.data, config);
+    }
+
     /** 
      * @param {Partial<RollConfig>} config 
      * @returns {Promise<RollConfig>}
@@ -57,7 +62,7 @@ export default class DHRoll extends Roll {
 
         this.temporaryModifierBuilder(config);
 
-        let roll = new this(config.roll.formula, config.data, config);
+        let roll = this.createRollInstance(config);
         if (config.dialog.configure !== false) {
             // Open Roll Dialog
             const DialogClass = config.dialog?.class ?? this.DefaultDialog;
