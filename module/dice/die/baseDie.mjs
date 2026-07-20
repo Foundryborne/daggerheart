@@ -19,7 +19,7 @@ export default class BaseDie extends foundry.dice.terms.Die {
         this.results.splice(resultIndex, 0, rerolledResult);
 
         if (['c', 'cc'].some(x => this.modifiers.includes(x))) {
-            await this.handleComboDiceReroll(resultIndex);
+            await this.handleComboDiceReroll(resultIndex, result);
         } 
     }
 
@@ -66,7 +66,7 @@ export default class BaseDie extends foundry.dice.terms.Die {
 
     async rollComboDice(options) {
         const { maxIncreasesDiceSize, rerollStartIndex } = options;
-        const initialResultsLength = this.results.length;
+        const initialResultsLength = this.results.filter(x => x.active).length;
         const result = await this.continueCombo(maxIncreasesDiceSize);
 
         /* The flow of DiceSoNice has no way of knowing that some of the results of a Die should be a different denomination 
@@ -133,8 +133,9 @@ export default class BaseDie extends foundry.dice.terms.Die {
         return this.continueCombo(maxIncreasesDiceSize);
     }
 
-    async handleComboDiceReroll(rerolledIndex) {
-        const resultGroupingIndexes = this.results.map((x, index) => ({ index, active: x.active }))
+    async handleComboDiceReroll(rerolledIndex, originalResult) {
+        /* Potentially sliced when correcting compound dice at (1) */
+        let resultGroupingIndexes = this.results.map((x, index) => ({ index, active: x.active }))
             .filter(x => x.active).map(x => x.index);
         if (resultGroupingIndexes.length <= 1) return;
 
@@ -147,7 +148,29 @@ export default class BaseDie extends foundry.dice.terms.Die {
         const nextIndex = resultGroupingIndexes[rerollGroupingIndex + 1];
         const nextResult = this.results[nextIndex];
 
-        /* Rerolling any of the last two dice might introduce new results */
+        const dropDice = preceeding => {
+            const cutoffIndex = preceeding ? resultGroupingIndexes[rerollGroupingIndex + 1] + 1 : rerolledIndex + 1;
+            this.results = this.results.slice(0, cutoffIndex);
+            this.number = this.results.filter(x => x.active).length;
+        };
+
+        /* (1) If subsequent size increases from the compound effect are now incorrect, drop subsequent dice */
+        const lastFaces = Number((originalResult.denomination ?? this.denomination).slice(1));
+        if (
+            compoundCombo && 
+            (
+                (originalResult.result === lastFaces && 
+                rerolledResult.result !== lastFaces)
+                ||
+                (originalResult.result !== lastFaces &&
+                rerolledResult.result === lastFaces)
+            )
+        ) {
+            dropDice(false);
+            resultGroupingIndexes = resultGroupingIndexes.slice(0, this.number);
+        }
+
+        /* (2) Rerolling any of the last two dice might introduce new results */
         if (
             rerollGroupingIndex === resultGroupingIndexes.length - 1 &&
             rerolledResult.result >= previousResult?.result
@@ -165,11 +188,13 @@ export default class BaseDie extends foundry.dice.terms.Die {
                 rerollStartIndex: rerollGroupingIndex 
             });
         }
-        /* Rerolling a preceeding dice might invalidate later dice which should then be dropped */
+        /* (3) Rerolling a subsequent dice might invalidate later dice which should then be dropped */
         else if (rerolledResult.result < previousResult?.result){
-            const cutoffIndex = rerollGroupingIndex === 0 ? resultGroupingIndexes[1] + 1 : rerolledIndex + 1;
-            this.results = this.results.slice(0, cutoffIndex);
-            this.number = this.results.filter(x => x.active).length;
+            dropDice(false);
+        }
+        /* (4) Rerolling a preceeding dice might invalidate later dice which should then be dropped */
+        else if (rerolledResult.result >= nextResult?.result) {
+            dropDice(true);
         }
 
         const fakeRollFaces = 
