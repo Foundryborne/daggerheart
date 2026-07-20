@@ -12,14 +12,11 @@ const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 export default class DhCountdowns extends HandlebarsApplicationMixin(ApplicationV2) {
     previousCountdownData = null;
-    changedCountdownsForAnimation = new Set();
 
     constructor(options = {}) {
         super(options);
-
         this.previousCountdownData = 
             game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns).countdowns;
-        this.setupHooks();
     }
 
     /** @inheritDoc */
@@ -80,7 +77,15 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         return frame;
     }
 
+    /** @inheritdoc */
+    async _onFirstRender(context, options) {
+        await super._onFirstRender(context, options);
+        this._createContextMenu(this._getCountdownContextOptions, '.countdown-container[data-countdown]', {
+            parentClassHooks: false, fixed: true
+        });
+    }
     
+    /** @inheritdoc */
     async _onRender(context, options) {
         await super._onRender(context, options);
 
@@ -95,7 +100,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
 
         /* Handle animations to draw attention to countdown values changing */
         const typesToAnimate = new Set();
-        for (const countdownKey of this.changedCountdownsForAnimation) {
+        for (const countdownKey of options.animate ?? []) {
             const shimmerAnimation = [
                 { backgroundPositionX: '98%' },
                 { backgroundPositionX: '0%' }
@@ -127,8 +132,6 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             const element = this.element.querySelector(`.header-type-toggles .header-type[data-type="${type}"]`);
             element?.animate(pulseAnimation, pulseTiming);
         }
-        
-        this.changedCountdownsForAnimation.clear();
     }
 
     /** Returns countdown data filtered by ownership */
@@ -137,17 +140,15 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         const values = Object.entries(setting.countdowns).map(([key, countdown]) => ({
             key,
             countdown,
-            ownership: DhCountdowns.#getPlayerOwnership(game.user, setting, countdown)
+            ownership: countdown.getUserLevel(game.user)
         }));
         return values.filter(v => v.ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE);
     }
 
     _getCountdownData() {
-        const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-
         return this.#getCountdowns().reduce((acc, { key, countdown, ownership }) => {
             const playersWithAccess = game.users.reduce((acc, user) => {
-                const ownership = DhCountdowns.#getPlayerOwnership(user, setting, countdown);
+                const ownership = countdown.getUserLevel(user);
                 if (!user.isGM && ownership && ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE) {
                     acc.push(user);
                 }
@@ -212,19 +213,6 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
 
         return context;
     }
-
-    static #getPlayerOwnership(user, setting, countdown) {
-        if (user.isGM) return CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
-
-        const playerOwnership = countdown.ownership[user.id];
-        return playerOwnership === undefined || playerOwnership === CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT
-            ? setting.defaultOwnership
-            : playerOwnership;
-    }
-
-    cooldownRefresh = ({ refreshType }) => {
-        if (refreshType === RefreshType.Countdown) this.render();
-    };
 
     static canPerformEdit() {
         if (game.user.isGM) return true;
@@ -323,18 +311,12 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             action: socketEvent.Refresh,
             data: { refreshType: RefreshType.Countdown }
         });
-        Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
-    }
-
-    setupHooks() {
-        Hooks.on(socketEvent.Refresh, this.cooldownRefresh.bind());
     }
 
     async close(options) {
         /* Opt out of Foundry's standard behavior of closing all application windows marked as UI when Escape is pressed */
         if (options.closeKey) return;
 
-        Hooks.off(socketEvent.Refresh, this.cooldownRefresh);
         return super.close(options);
     }
 
@@ -376,5 +358,31 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         await emitGMUpdate(GMUpdateEvent.UpdateCountdowns, DhCountdowns.gmSetSetting.bind(settings), settings, null, {
             refreshType: RefreshType.Countdown
         });
+    }
+
+    /**
+     * @returns {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]}
+     */
+    _getCountdownContextOptions() {
+        /** @param {HTMLElement} element */
+        const getCountdownFromElement = element => {
+            const id = element.closest('[data-countdown]').dataset.countdown;
+            if (!id) return null;
+            const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
+            return setting.countdowns[id ?? ''];
+        }
+
+        return [
+            {
+                label: 'CONTROLS.CommonDelete',
+                icon: 'fa-solid fa-trash',
+                visible: element => {
+                    return getCountdownFromElement(element)?.isOwner;
+                },
+                onClick: (_, target) => {
+                    getCountdownFromElement(target)?.delete();
+                }
+            }
+        ];
     }
 }

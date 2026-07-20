@@ -5,7 +5,7 @@
     "version": "2.5.4",
     "compatibility": {
         "minimum": "14.364",
-        "verified": "14.364",
+        "verified": "14.365",
         "maximum": "14"
     },
     "url": "https://github.com/Foundryborne/daggerheart",
