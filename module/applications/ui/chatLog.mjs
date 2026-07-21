@@ -1,6 +1,7 @@
 import { enrichedDualityRoll } from '../../enrichers/DualityRollEnricher.mjs';
 import { enrichedFateRoll, getFateTypeData } from '../../enrichers/FateRollEnricher.mjs';
 import { getCommandTarget, rollCommandToJSON } from '../../helpers/utils.mjs';
+import FearTracker from './fearTracker.mjs';
 
 export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLog {
     constructor(options) {
@@ -296,5 +297,10 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         const resourceValue = event.target.dataset.resourceValue;
         const actor = game.actors.get(event.target.dataset.actorId);
         new game.system.api.applications.dialogs.RiskItAllDialog(actor, resourceValue).render({ force: true });
+    }
+
+    _toggleNotifications({ closing = false } = {}) {
+        super._toggleNotifications(closing)
+        FearTracker.handleOffSet();
     }
 }
