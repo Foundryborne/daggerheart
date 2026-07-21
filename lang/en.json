@@ -126,7 +126,7 @@
                 "damageOnSave": "Damage on Save",
                 "useDefaultItemValues": "Use default Item values"
             },
-            "Reload": { 
+            "Reload": {
                 "checkReload": "Check Reload",
                 "reloadRequired": "Reload Required!"
             },
