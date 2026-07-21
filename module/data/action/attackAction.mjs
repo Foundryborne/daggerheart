@@ -75,8 +75,7 @@ export default class DHAttackAction extends DHDamageAction {
                 game.dice3d.showForRoll(roll, game.user, true);    
         }
 
-        const needsToReload = true;
-        // const needsToReload = roll.total === 1;
+        const needsToReload = roll.total === 1;
         if (needsToReload) {
             this.item.update({ 'system.resource.value': 0 });
         }
