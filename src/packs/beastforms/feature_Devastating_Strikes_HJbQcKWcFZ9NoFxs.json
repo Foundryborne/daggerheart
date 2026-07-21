@@ -6,33 +6,71 @@
     "description": "<p>When you deal Severe damage to a target within Melee range, you can <strong>mark a Stress</strong> to force them to mark an additional Hit Point.</p>",
     "resource": null,
     "actions": {
-      "Il2C9zALU6a1gGrg": {
-        "type": "effect",
-        "_id": "Il2C9zALU6a1gGrg",
+      "EvdZLuP0wunF5cmq": {
+        "type": "damage",
+        "_id": "EvdZLuP0wunF5cmq",
         "systemPath": "actions",
-        "description": "<p>When you deal Severe damage to a target within Melee range, you can <strong>mark a Stress</strong> to force them to mark an additional Hit Point.</p>",
+        "baseAction": false,
+        "description": "",
         "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
         "actionType": "action",
+        "triggers": [],
+        "areas": [],
         "cost": [
           {
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "step": null
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
-          "max": null,
-          "recovery": null
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
         },
-        "effects": [],
+        "damage": {
+          "main": null,
+          "resources": {
+            "hitPoints": {
+              "base": false,
+              "applyTo": "hitPoints",
+              "resultBased": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 0,
+                "dice": "d6",
+                "bonus": 1,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
+        },
         "target": {
-          "type": null,
+          "type": "any",
           "amount": null
         },
+        "effects": [],
         "name": "Mark Stress",
-        "img": "icons/skills/melee/blood-slash-foam-red.webp",
         "range": ""
       }
     },
