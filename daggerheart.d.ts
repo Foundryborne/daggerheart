@@ -11,6 +11,9 @@ import * as documents from './module/documents/_module.mjs';
 import { macros } from './module/_module.mjs';
 import * as dice from './module/dice/_module.mjs';
 import * as fields from './module/data/fields/_module.mjs';
+import { gameSettings } from './module/config/settingsConfig.mjs';
+import DhCountdowns from './module/data/countdowns.mjs';
+import DhAutomation from './module/data/settings/Automation.mjs';
 
 
 // Foundry's use of `Object.assign(globalThis) means many globally available objects are not read as such
@@ -101,5 +104,15 @@ declare module '@client/packages/system.mjs' {
             dice: typeof dice,
             fields: typeof fields
         };
+    }
+}
+
+declare module '@client/helpers/client-settings.mjs' {
+    // Add explicit typed overrides for auto complete. These require /** @type {"string"} on the vars themselves to work */
+    export default interface ClientSettings {
+        get(namespace: 'daggerheart', key: typeof gameSettings.Automation): DhAutomation;
+        get(namespace: 'daggerheart', key: typeof gameSettings.Homebrew): DhHomebrew;
+        get(namespace: 'daggerheart', key: typeof gameSettings.Countdowns): DhCountdowns;
+        get(namespace: 'daggerheart', key: string): unknown;
     }
 }

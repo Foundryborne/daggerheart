@@ -1,7 +1,8 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 import { triggerChatRollFx } from '../helpers/utils.mjs';
+import BaseRoll from './baseRoll.mjs';
 
-export default class DHRoll extends Roll {
+export default class DHRoll extends BaseRoll {
     baseTerms = [];
     constructor(formula, data = {}, options = {}) {
         super(formula, data, foundry.utils.mergeObject(options, { roll: [] }, { overwrite: false }));
@@ -40,6 +41,10 @@ export default class DHRoll extends Roll {
         return config;
     }
 
+    static createRollInstance(config) {
+        return new this(config.roll.formula, config.data, config);
+    }
+
     /** 
      * @param {Partial<RollConfig>} config 
      * @returns {Promise<RollConfig>}
@@ -57,7 +62,7 @@ export default class DHRoll extends Roll {
 
         this.temporaryModifierBuilder(config);
 
-        let roll = new this(config.roll.formula, config.data, config);
+        let roll = this.createRollInstance(config);
         if (config.dialog.configure !== false) {
             // Open Roll Dialog
             const DialogClass = config.dialog?.class ?? this.DefaultDialog;
@@ -112,7 +117,11 @@ export default class DHRoll extends Roll {
 
     static async toMessage(roll, config) {
         const item = config.data.parent?.items?.get?.(config.source.item) ?? null;
-        const action = item ? item.system.actions.get(config.source.action) : null;
+        const actions = item ? [
+            ...item.system.actions,
+            ...(item.system.attack?.id === config.source.action ? [item.system.attack] : [])
+        ] : [];
+        const action = actions.find(x => x.id === config.source.action);
         let actionDescription = null;
         if (action?.chatDisplay) {
             actionDescription = action
@@ -124,6 +133,14 @@ export default class DHRoll extends Roll {
             config.actionChatMessageHandled = true;
         }
 
+        const reloadSetting = 
+            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).reload;
+        const useReload = 
+            item?.system.hasReload && 
+            action?.type === 'attack' && 
+            reloadSetting === CONFIG.DH.SETTINGS.reloadChoices.auto.id;
+        const needsReload = useReload ? await action?.handleReload?.() : false;
+        
         const cls = getDocumentClass('ChatMessage'),
             msgData = {
                 type: this.messageType,
@@ -131,7 +148,7 @@ export default class DHRoll extends Roll {
                 title: roll.title,
                 speaker: cls.getSpeaker({ actor: roll.data?.parent }),
                 sound: config.mute ? null : CONFIG.sounds.dice,
-                system: { ...config, actionDescription },
+                system: { ...config, actionDescription, needsReload },
                 rolls: [roll]
             };
 
@@ -153,14 +170,17 @@ export default class DHRoll extends Roll {
         if (!this._evaluated) return;
 
         const metagamingSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Metagaming);
+        const automationSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
         const chatData = await this._prepareChatRenderContext({ flavor, isPrivate, ...options });
         return foundry.applications.handlebars.renderTemplate(template, {
             roll: this,
             ...chatData,
+            action: chatData.action,
             parent: chatData.parent,
             targetMode: chatData.targetMode,
             areas: chatData.action?.areas,
-            metagamingSettings
+            metagamingSettings,
+            automationSettings
         });
     }
 

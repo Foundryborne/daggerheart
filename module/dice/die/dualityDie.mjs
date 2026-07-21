@@ -1,6 +1,7 @@
+import BaseDie from './baseDie.mjs';
 import { updateResourcesForDualityReroll } from '../helpers.mjs';
 
-export default class DualityDie extends foundry.dice.terms.Die {
+export default class DualityDie extends BaseDie {
     constructor(options) {
         super(options);
 

@@ -84,13 +84,11 @@ export default class DhpAdversary extends DhCreature {
                         type: 'attack'
                     },
                     damage: {
-                        parts: {
-                            hitPoints: {
-                                type: ['physical'],
-                                applyTo: 'hitPoints',
-                                value: {
-                                    multiplier: 'flat'
-                                }
+                        main: {
+                            type: ['physical'],
+                            applyTo: 'hitPoints',
+                            value: {
+                                multiplier: 'flat'
                             }
                         }
                     }

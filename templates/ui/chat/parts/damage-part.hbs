@@ -1,4 +1,4 @@
-<div class="roll-part damage-section dice-roll" data-action="expandRoll"{{#if (empty damage)}} hidden{{/if}}>
+<div class="roll-part damage-section dice-roll" data-action="expandRoll"{{#unless damage.active}} hidden{{/unless}}>
     <div class="roll-part-header">
         <div>
             {{#if hasHealing}}
@@ -10,60 +10,79 @@
     </div>
     <div class="roll-part-extra on-reduced">
         <div class="wrapper">
-            {{#each damage as | roll index | }}
-                <div class="roll-formula">{{localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.inChatRoll')}}: {{total}}</div>
+            {{#if damage.main}}
+                {{> formula roll=damage.main label=(localize "DAGGERHEART.GENERAL.damage") }}
+            {{/if}}
+            {{#each damage.resources as | roll index | }}
+                {{> formula roll=roll label=(ifThen ../hasHealing (localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.name')) (localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.inChatRoll'))) }}
             {{/each}}
         </div>
     </div>
     <div class="roll-part-content dice-result">
         <div class="dice-tooltip">
             <div class="wrapper">
-                {{#each damage as | roll index | }}
-                    <fieldset>
-                        <legend>
-                            {{#if ../hasHealing}}{{localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.name')}}{{else}}{{localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.inChatRoll')}}{{/if}} <div class="roll-formula">{{localize "DAGGERHEART.GENERAL.total"}}: {{roll.total}}</div>{{#if (and (eq index "hitPoints") ../isDirect)}} <div class="roll-formula">{{localize "DAGGERHEART.CONFIG.DamageType.direct.short"}}</div>{{/if}}
-                        </legend>
-                        {{#each roll.parts}}
-                            {{#if (and (not @root.hasHealing) damageTypes.length)}}
-                                <label class="roll-part-header"><span>
-                                    {{#each damageTypes}}
-                                        {{localize (concat 'DAGGERHEART.CONFIG.ArmorFeature.' this '.name')}}
-                                        {{#unless @last}}/{{/unless}}
-                                    {{/each}}
-                                <div class="roll-formula">{{total}}</div></span></label>
-                            {{/if}}
-                            <div class="roll-dice">
-                                {{#if dice.length}}
-                                    {{#each dice}}
-                                        {{#each results}}
-                                            {{#unless discarded}}
-                                                <div class="roll-die{{#unless @../first}} has-plus{{/unless}}">
-                                                    <div 
-                                                        class="dice reroll-button {{../dice}}" 
-                                                        data-die-index="0" data-type="damage" data-damage-type="{{@../../../key}}" data-part="{{@../../key}}" data-dice="{{@../key}}" data-result="{{@key}}"
-                                                    >
-                                                        {{#if hasRerolls}}<i class="fa-solid fa-dice dice-rerolled" data-tooltip="{{localize "DAGGERHEART.GENERAL.rerolled"}}"></i>{{/if}}
-                                                        {{result}}
-                                                    </div>
-                                                </div>
-                                            {{/unless}}
-                                        {{/each}}
-                                    {{/each}}
-                                    {{#if modifierTotal}}
-                                        <div class="roll-die{{#if (gt modifierTotal 0)}} has-plus{{/if}}">
-                                            <div class="font-20">{{modifierTotal}}</div>
-                                        </div>
-                                    {{/if}}
-                                {{else}}
-                                    <div class="roll-die">
-                                        <div class="font-20">{{total}}</div>
-                                    </div>
-                                {{/if}}
-                            </div>
-                        {{/each}}
-                    </fieldset>
+                {{#if damage.main}}
+                    {{> damage label=(localize "DAGGERHEART.GENERAL.damage") roll=damage.main isDirect=isDirect }}
+                {{/if}}
+
+                {{#each damage.resources as | roll index | }}
+                    {{> damage
+                        label=(ifThen ../hasHealing (localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.name')) (localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.inChatRoll'))) 
+                        roll=roll
+                        isResource=true 
+                    }}
                 {{/each}}
             </div>
         </div>
     </div>
 </div>
+
+{{#*inline "formula"}}
+    <div class="roll-formula">{{label}}: {{roll.total}}</div>
+{{/inline}}
+
+{{#*inline "damage"}}
+    <fieldset>
+        <legend>
+            {{label}}
+            <div class="roll-formula">{{localize "DAGGERHEART.GENERAL.total"}}: {{roll.total}}</div>{{#if isDirect}} <div class="roll-formula">{{localize "DAGGERHEART.CONFIG.DamageType.direct.short"}}</div>{{/if}}
+        </legend>
+        {{#if (and (not @root.hasHealing) roll.options.damageTypes.length)}}
+            <label class="roll-part-header"><span>
+                {{#each roll.options.damageTypes}}
+                    {{localize (concat 'DAGGERHEART.CONFIG.ArmorFeature.' this '.name')}}
+                    {{#unless @last}}/{{/unless}}
+                {{/each}}
+            <div class="roll-formula">{{roll.total}}</div></span></label>
+        {{/if}}
+        <div class="roll-dice">
+            {{#if roll.dice.length}}
+                {{#each roll.dice}}
+                    {{#each results}}
+                        {{#if active}}
+                            <div class="roll-die{{#unless @../first}} has-plus{{/unless}}">
+                                <div 
+                                    class="dice reroll-button {{../denomination}}" 
+                                    data-type="damage" data-damage-type="{{@../../key}}" data-dice="{{@../key}}" data-result="{{@key}}" {{#if ../../isResource}}data-is-resource="true"{{/if}}
+                                >
+                                    {{#if hasRerolls}}<i class="fa-solid fa-dice dice-rerolled" data-tooltip="{{localize "DAGGERHEART.GENERAL.rerolled"}}"></i>{{/if}}
+                                    {{result}}
+                                </div>
+                            </div>
+                        {{/if}}
+                    {{/each}}
+                {{/each}}
+                
+                {{#if roll.modifierTotal}}
+                    <div class="roll-die{{#if (gt roll.modifierTotal 0)}} has-plus{{/if}}">
+                        <div class="font-20">{{roll.modifierTotal}}</div>
+                    </div>
+                {{/if}}
+            {{else}}
+                <div class="roll-die">
+                    <div class="font-20">{{roll.total}}</div>
+                </div>
+            {{/if}}
+        </div>
+    </fieldset>
+{{/inline}}

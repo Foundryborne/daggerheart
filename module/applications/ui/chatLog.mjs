@@ -111,7 +111,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                     const message = game.messages.get(li.dataset.messageId);
                     return message.system.hasRoll && (game.user.isGM || message.isAuthor);
                 },
-                callback: async li => {
+                onClick: async (_event, li) => {
                     const message = game.messages.get(li.dataset.messageId);
                     const reroll = await message.rolls[0].reroll({ liveRoll: true });
                     message.update({ rolls: [reroll] });
@@ -127,7 +127,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                         : false;
                     return (game.user.isGM || message.isAuthor) && hasRolledDamage;
                 },
-                callback: async li => {
+                onClick: async (_event, li) => {
                     const message = game.messages.get(li.dataset.messageId);
                     const update = await message.system.getRerolledDamage();
                     message.update(update);
@@ -153,6 +153,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         html.querySelectorAll('.risk-it-all-button').forEach(element =>
             element.addEventListener('click', event => this.riskItAllClearStressAndHitPoints(event, data))
         );
+        for (const element of html.querySelectorAll('.roll-reload-check')) {
+            element.addEventListener('click', event => this.onRollReloadCheck(event, message));
+        }
     };
 
     setupHooks() {
@@ -180,28 +183,15 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     }
 
     async onRollSimple(event, message) {
-        const buttonType = event.target.dataset.type ?? 'damage',
-            total = message.rolls.reduce((a, c) => a + Roll.fromJSON(c).total, 0),
-            damages = {
-                hitPoints: {
-                    parts: [
-                        {
-                            applyTo: 'hitPoints',
-                            damageTypes: [],
-                            total
-                        }
-                    ]
-                }
-            },
-            targets = Array.from(game.user.targets);
-
+        const buttonType = event.target.dataset.type ?? 'damage';
+        const total = message.rolls.reduce((a, c) => a + Roll.fromJSON(c).total, 0);
+        const targets = Array.from(game.user.targets);
         if (targets.length === 0)
             return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
-
-        targets.forEach(target => {
-            if (buttonType === 'healing') target.actor.takeHealing(damages);
-            else target.actor.takeDamage(damages);
-        });
+        for (const target of targets) {
+            if (buttonType === 'healing') target.actor.takeHealing({ hitPoints: total });
+            else target.actor.takeDamage({ total });
+        }
     }
 
     async abilityUseButton(event, message) {
@@ -257,26 +247,17 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         }
 
         const message = game.messages.get(messageData._id);
-        const target = event.target.closest('[data-die-index]');
+        const target = event.target.closest('[data-result]');
 
         if (target.dataset.type === 'damage') {
-            const { damageType, part, dice, result } = target.dataset;
-            const damagePart = message.system.damage[damageType].parts[part];
-            const { parsedRoll, rerolledDice } = await game.system.api.dice.DamageRoll.reroll(damagePart, dice, result);
-            const damageParts = message.system.damage[damageType].parts.map((damagePart, index) => {
-                if (index !== Number(part)) return damagePart;
-                return {
-                    ...damagePart,
-                    total: parsedRoll.total,
-                    dice: rerolledDice
-                };
-            });
-            const updateMessage = game.messages.get(message._id);
-            await updateMessage.update({
-                [`system.damage.${damageType}`]: {
-                    total: parsedRoll.total,
-                    parts: damageParts
-                }
+            const { isResource, damageType, dice, result } = target.dataset;
+            await message.system.damage.rerollDamageDie(isResource, damageType, dice, result);
+
+            const updatePath = isResource ? `system.damage.resources.${damageType}` : 'system.damage.main';
+            const updateValue = isResource ? 
+                message.system.damage.resources[damageType] : message.system.damage.main;
+            await message.update({
+                [updatePath]: updateValue.toJSON()
             });
         } else {
             const rerollDice = message.system.roll.dice[target.dataset.dieIndex];
@@ -302,5 +283,11 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     _toggleNotifications({ closing = false } = {}) {
         super._toggleNotifications(closing)
         FearTracker.handleOffSet();
+    }
+
+    async onRollReloadCheck(_event, messageData) {
+        const message = game.messages.get(messageData._id);
+        const needsReload = await message.system.action.handleReload?.({ awaitRoll: true });
+        await message.update({ 'system.needsReload': needsReload });
     }
 }

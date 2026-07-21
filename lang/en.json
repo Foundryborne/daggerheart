@@ -104,8 +104,10 @@
                     "startCountdown": "Start Countdown"
                 },
                 "damage": {
+                    "addResource": "Add Resource",
                     "multiplier": "Multiplier",
-                    "flatMultiplier": "Flat Multiplier"
+                    "flatMultiplier": "Flat Multiplier",
+                    "markResources": "Mark Resources"
                 },
                 "general": {
                     "customFormula": "Custom Formula",
@@ -123,6 +125,10 @@
                 "advantageState": "Advantage State",
                 "damageOnSave": "Damage on Save",
                 "useDefaultItemValues": "Use default Item values"
+            },
+            "Reload": {
+                "checkReload": "Check Reload",
+                "reloadRequired": "Reload Required!"
             },
             "RollField": {
                 "diceRolling": {
@@ -1320,6 +1326,11 @@
                     "short": "V. Far"
                 }
             },
+            "ReloadChoices": {
+                "off": { "label": "Don't Use" },
+                "button": { "label": "Use button" },
+                "auto": { "label": "Automatic" }
+            },
             "RollTypes": {
                 "trait": {
                     "name": "Trait"
@@ -2219,7 +2230,9 @@
             },
             "Resource": {
                 "single": "Resource",
-                "plural": "Resources"
+                "plural": "Resources",
+                "unloaded": "The weapon is not loaded",
+                "loaded": "The weapon is loaded"
             },
             "Roll": {
                 "attack": "Attack Roll",
@@ -2483,7 +2496,6 @@
             "reroll": "Reroll",
             "rerolled": "Rerolled",
             "rerollThing": "Reroll {thing}",
-            "resource": "Resource",
             "result": {
                 "single": "Result",
                 "plural": "Results"
@@ -2805,6 +2817,10 @@
                             "label": "Effect Range Dependent",
                             "hint": "Effects with defined range dependency will automatically turn on/off depending on range"
                         }
+                    },
+                    "reload": {
+                        "label": "Reload Checking",
+                        "hint": "If the system should present a button for checking if the character will need to reload or do it automatically"
                     },
                     "resourceScrollTexts": {
                         "label": "Show Resource Change Scrolltexts",
@@ -3267,7 +3283,8 @@
                 "knowTheTide": "Know The Tide gained a token",
                 "lackingItemTransferPermission": "User {user} lacks owner permission needed to transfer items to {target}",
                 "noTokenTargeted": "No token is targeted",
-                "behaviorRegionRequiresGM": "Creating a Region with an attached Behavior requires an online GM"
+                "behaviorRegionRequiresGM": "Creating a Region with an attached Behavior requires an online GM",
+                "reloadRequired": "The {weapon} must be reloaded to be used!"
             },
             "Progress": {
                 "migrationLabel": "Performing system migration. Please wait and do not close Foundry."

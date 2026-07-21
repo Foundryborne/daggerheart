@@ -67,13 +67,11 @@ export default class DHWeapon extends AttachableItem {
                         type: 'attack'
                     },
                     damage: {
-                        parts: {
-                            hitPoints: {
-                                type: ['physical'],
-                                value: {
-                                    multiplier: 'prof',
-                                    dice: 'd8'
-                                }
+                        main: {
+                            type: ['physical'],
+                            value: {
+                                multiplier: 'prof',
+                                dice: 'd8'
                             }
                         }
                     }
@@ -116,6 +114,14 @@ export default class DHWeapon extends AttachableItem {
 
     get itemFeatures() {
         return this.weaponFeatures;
+    }
+
+    get hasReload() {
+        return Boolean(this.weaponFeatures.find(x => x.value === 'reloading'));
+    }
+
+    get needsReload() {
+        return this.hasReload && this.resource.value === 0;
     }
 
     /**@inheritdoc */
@@ -230,11 +236,12 @@ export default class DHWeapon extends AttachableItem {
             game.i18n.localize(`DAGGERHEART.CONFIG.Burden.${burden}`)
         ];
 
-        for (const { value, type } of attack.damage.parts) {
+        if (attack.damage.main) {
+            const { value, type } = attack.damage.main;
             const parts = value.custom.enabled ? [game.i18n.localize('DAGGERHEART.GENERAL.custom')] : [value.dice];
             if (!value.custom.enabled && value.bonus) parts.push(value.bonus.signedString());
 
-            if (type.size > 0) {
+            if (type?.size) {
                 const typeTags = Array.from(type)
                     .map(t => game.i18n.localize(`DAGGERHEART.CONFIG.DamageType.${t}.abbreviation`))
                     .join(' | ');
@@ -243,7 +250,7 @@ export default class DHWeapon extends AttachableItem {
 
             tags.push(parts.join(''));
         }
-
+        
         return tags;
     }
 
@@ -258,10 +265,10 @@ export default class DHWeapon extends AttachableItem {
         if (roll.trait) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${roll.trait}.short`));
         if (range) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.short`));
 
-        for (const { value, type } of damage.parts) {
+        for (const { value, type } of [damage.main, ...damage.resources].filter(d => !!d)) {
             const str = Roll.replaceFormulaData(value.getFormula(), this.actor?.getRollData() ?? {});
 
-            const icons = Array.from(type)
+            const icons = Array.from(type ?? [])
                 .map(t => CONFIG.DH.GENERAL.damageTypes[t]?.icon)
                 .filter(Boolean);
 

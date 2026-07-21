@@ -13,36 +13,34 @@ export default class DamageRoll extends DHRoll {
 
     static DefaultDialog = DamageDialog;
 
+    static createRollInstance(config) {
+        return new this(undefined, config.data, config);
+    }
+
     /** @inheritdoc */
-    static async buildEvaluate(roll, config = {}, message = {}) {
-        if (config.dialog.configure === false) roll.constructFormula(config);
-        for (const roll of config.roll) await roll.roll.evaluate();
-
-        roll._evaluated = true;
-
-        const parts = [];
-        for (const rollData of config.roll) {
-            const roll = rollData.roll;
-            parts.push({
-                ...rollData,
-                ...roll.options.roll,
-                total: roll.total,
-                formula: roll.formula,
-                dice: roll.dice.map(d => ({
-                    dice: d.denomination,
-                    total: d.total,
-                    formula: d.formula,
-                    results: d.results
-                })),
-                damageTypes: [...(rollData.damageTypes ?? [])],
-                roll,
-                type: config.type,
-                modifierTotal: this.calculateTotalModifiers(roll)
-            });
-            rollData.roll = JSON.stringify(roll.toJSON());
+    static async buildEvaluate(roll, config = {}) {
+        if (config.dialog.configure === false) roll.constructFormulas(config);
+        
+        const evaluateRoll = async roll => {
+            await roll.roll.evaluate();
+            roll.roll.options = { damageTypes: roll.damageTypes ? [...roll.damageTypes] : [] };
+            return roll.roll;
         }
 
-        config.damage = this.unifyDamageRoll(parts);
+        if (!config.damage) config.damage = { main: null, resources: {} };
+
+        if (config.damageFormula) {
+            config.damage.main = await evaluateRoll(config.damageFormula);
+            config.damage.main.options = { damageTypes: 
+                config.damageFormula.damageTypes ? [...config.damageFormula.damageTypes] : []
+            };
+        }
+        
+        for (const roll of config.resourceFormulas) {
+            config.damage.resources[roll.applyTo] = await evaluateRoll(roll);
+        }
+
+        roll._evaluated = true;
     }
 
     static async buildPost(roll, config, message) {
@@ -53,9 +51,10 @@ export default class DamageRoll extends DHRoll {
         const diceRolls = [];
         if (game.modules.get('dice-so-nice')?.active) {
             config.mute = true;
-            const pool = foundry.dice.terms.PoolTerm.fromRolls(
-                Object.values(config.damage).flatMap(r => r.parts.map(p => p.roll))
-            );
+            const pool = foundry.dice.terms.PoolTerm.fromRolls([
+                ...(config.damage.main ? [config.damage.main] : []),
+                ...Object.values(config.damage.resources)
+            ]);
             diceRolls.push(Roll.fromTerms([pool]));
         }
 
@@ -66,20 +65,12 @@ export default class DamageRoll extends DHRoll {
         await super.buildPost(roll, config, message);
 
         if (config.source?.message) {
-            chatMessage.update({ 'system.damage': config.damage });
+            chatMessage.update({ 'system.damage': {
+                ...config.damage.toObject(),
+                main: config.damage.main,
+                resources: config.damage.resources
+            }});
         }
-    }
-
-    static unifyDamageRoll(rolls) {
-        const unified = {};
-        rolls.forEach(r => {
-            const resource = unified[r.applyTo] ?? { formula: '', total: 0, parts: [] };
-            resource.formula += `${resource.formula !== '' ? ' + ' : ''}${r.formula}`;
-            resource.total += r.total;
-            resource.parts.push(r);
-            unified[r.applyTo] = resource;
-        });
-        return unified;
     }
 
     static formatGlobal(rolls) {
@@ -130,12 +121,10 @@ export default class DamageRoll extends DHRoll {
         const type = this.options.messageType ?? (this.options.hasHealing ? 'healing' : 'damage');
         const changeKeys = [];
 
-        for (const roll of this.options.roll) {
-            for (const damageType of roll.damageTypes?.values?.() ?? []) {
-                changeKeys.push(`system.bonuses.${type}.${damageType}`);
-            }
+        for (const damageType of this.options.damageFormula?.damageTypes?.values?.() ?? []) {
+            changeKeys.push(`system.bonuses.${type}.${damageType}`);
         }
-
+        
         const item = this.data.parent?.items?.get(this.options.source.item);
         if (item) {
             switch (item.type) {
@@ -151,62 +140,69 @@ export default class DamageRoll extends DHRoll {
         return changeKeys;
     }
 
-    constructFormula(config) {
+    constructFormulas(config) {
+        return {
+            damageFormula: this.constructFormula(this.options.damageFormula, config, true),
+            resourceFormulas: this.options.resourceFormulas.map(x => this.constructFormula(x, config))
+        };
+    }
+
+    constructFormula(formulaData, config, isDamage) {
+        if (!formulaData) return null;
         this.options.isCritical = config.isCritical;
-        for (const [index, part] of this.options.roll.entries()) {
-            const isHitpointPart = part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id;
-            part.roll = new Roll(Roll.replaceFormulaData(part.formula, config.data));
-            part.roll.terms = Roll.parse(part.roll.formula, config.data);
-            if (part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-                part.modifiers = this.applyBaseBonus(part);
-                this.addModifiers(part);
-                part.modifiers?.forEach(m => {
-                    part.roll.terms.push(...this.formatModifier(m.value));
-                });
+
+        formulaData.roll = new Roll(Roll.replaceFormulaData(formulaData.formula, config.data));
+        formulaData.roll.terms = Roll.parse(formulaData.roll.formula, config.data);
+
+        if (formulaData.extraFormula) {
+            formulaData.roll.terms.push(
+                new foundry.dice.terms.OperatorTerm({ operator: '+' }),
+                ...this.constructor.parse(formulaData.extraFormula, this.options.data)
+            );
+        }
+
+        if (isDamage && formulaData.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
+            formulaData.modifiers = this.applyBaseBonus(formulaData);
+            this.addModifiers(formulaData);
+            formulaData.modifiers?.forEach(m => {
+                formulaData.roll.terms.push(...this.formatModifier(m.value));
+            });
+
+            /* To Remove When Reaction System */
+            for (const mod in config.modifiers) {
+                const modifier = config.modifiers[mod];
+                if (
+                    modifier.beforeCrit === true && 
+                    (modifier.enabled || modifier.value)
+                ) modifier.callback(formulaData);
             }
 
             /* To Remove When Reaction System */
-            if (index === 0 && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-                for (const mod in config.modifiers) {
-                    const modifier = config.modifiers[mod];
-                    if (modifier.beforeCrit === true && (modifier.enabled || modifier.value)) modifier.callback(part);
-                }
+            for (const mod in config.modifiers) {
+                const modifier = config.modifiers[mod];
+                if (!modifier.beforeCrit && (modifier.enabled || modifier.value)) modifier.callback(formulaData);
             }
 
-            if (part.extraFormula) {
-                part.roll.terms.push(
-                    new foundry.dice.terms.OperatorTerm({ operator: '+' }),
-                    ...this.constructor.parse(part.extraFormula, this.options.data)
-                );
-            }
-
-            if (config.damageOptions.groupAttack?.numAttackers > 1 && isHitpointPart) {
+            if (config.damageOptions.groupAttack?.numAttackers > 1) {
                 const damageTypes = [foundry.dice.terms.Die, foundry.dice.terms.NumericTerm];
-                for (const term of part.roll.terms) {
+                for (const term of formulaData.roll.terms) {
                     if (damageTypes.some(type => term instanceof type)) {
                         term.number *= config.damageOptions.groupAttack.numAttackers;
                     }
                 }
             }
 
-            if (config.isCritical && isHitpointPart) {
-                const total = part.roll.dice.reduce((acc, term) => acc + term._faces * term._number, 0);
+            if (config.isCritical) {
+                const total = formulaData.roll.dice.reduce((acc, term) => acc + term._faces * term._number, 0);
                 if (total > 0) {
-                    part.roll.terms.push(...this.formatModifier(total));
+                    formulaData.roll.terms.push(...this.formatModifier(total));
                 }
             }
-
-            /* To Remove When Reaction System */
-            if (index === 0 && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-                for (const mod in config.modifiers) {
-                    const modifier = config.modifiers[mod];
-                    if (!modifier.beforeCrit && (modifier.enabled || modifier.value)) modifier.callback(part);
-                }
-            }
-
-            part.roll._formula = this.constructor.getFormula(part.roll.terms);
         }
-        return this.options.roll;
+
+        formulaData.roll._formula = this.constructor.getFormula(formulaData.roll.terms);
+        
+        return formulaData;
     }
 
     /* To Remove When Reaction System */
@@ -298,77 +294,5 @@ export default class DamageRoll extends DHRoll {
 
         config.modifiers = mods;
         return mods;
-    }
-
-    static async reroll(rollPart, dice, result) {
-        let diceIndex = 0;
-        let parsedRoll = game.system.api.dice.DamageRoll.fromData({
-            ...rollPart.roll,
-            terms: rollPart.roll.terms.map(term => {
-                const isDie = term.class === 'Die';
-                const fixedTerm = {
-                    ...term,
-                    ...(isDie ? { results: rollPart.dice[diceIndex].results } : {})
-                };
-
-                if (isDie) diceIndex++;
-                return fixedTerm;
-            }),
-            class: 'DamageRoll',
-            evaluated: false
-        });
-
-        const parsedDiceTerms = Object.keys(parsedRoll.terms).reduce((acc, key) => {
-            const term = parsedRoll.terms[key];
-            if (term instanceof CONFIG.Dice.termTypes.DiceTerm) acc[Object.keys(acc).length] = term;
-            return acc;
-        }, {});
-        const term = parsedDiceTerms[dice];
-        const termResult = parsedDiceTerms[dice].results[result];
-
-        const newIndex = parsedDiceTerms[dice].results.length;
-        await term.reroll(`/r1=${termResult.result}`);
-
-        const diceRolls = [];
-        if (game.modules.get('dice-so-nice')?.active) {
-            const newResult = parsedDiceTerms[dice].results[newIndex];
-            diceRolls.push({
-                _evaluated: true,
-                dice: [
-                    new foundry.dice.terms.Die({
-                        ...term,
-                        total: newResult.result,
-                        faces: term._faces,
-                        results: [newResult]
-                    })
-                ],
-                options: { appearance: {} }
-            });
-        }
-
-        await triggerChatRollFx(diceRolls);
-        await parsedRoll.evaluate();
-
-        const results = parsedRoll.dice[dice].results.map(result => ({
-            ...result,
-            discarded: !result.active
-        }));
-        const newResult = results.splice(results.length - 1, 1);
-        results.splice(Number(result) + 1, 0, newResult[0]);
-
-        const rerolledDice = parsedRoll.dice.map((x, index) => {
-            const isRerollDice = index === Number(dice);
-            if (!isRerollDice) return { ...x, dice: x.denomination };
-            return {
-                dice: parsedRoll.dice[dice].denomination,
-                total: parsedRoll.dice[dice].total,
-                results: results.map(result => ({
-                    ...result,
-                    hasRerolls: result.hasRerolls || isRerollDice
-                }))
-            };
-        });
-
-        return { parsedRoll, rerolledDice };
     }
 }

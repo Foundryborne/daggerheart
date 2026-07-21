@@ -18,26 +18,26 @@
     </fieldset>
 
     <fieldset class="two-columns">
-        {{#with systemFields.attack.fields.damage.fields.parts.element.fields as | fields | }}
-        {{#with ../document.system.attack.damage.parts.hitPoints as | source | }}
-            <legend>{{localize "DAGGERHEART.GENERAL.damage"}}</legend>
-            <span>{{localize "DAGGERHEART.ACTIONS.Config.general.customFormula"}}</span>
-            {{formInput fields.value.fields.custom.fields.enabled value=source.value.custom.enabled name="system.attack.damage.parts.hitPoints.value.custom.enabled"}}
-            {{#if source.value.custom.enabled}}
-                <span>{{localize "DAGGERHEART.ACTIONS.Config.general.formula"}}</span>
-                {{formInput fields.value.fields.custom.fields.formula value=source.value.custom.formula name="system.attack.damage.parts.hitPoints.value.custom.formula"}}
-            {{else}}
-                <span>{{localize "DAGGERHEART.GENERAL.Dice.single"}}</span>
-                {{formInput fields.value.fields.dice value=source.value.dice name="system.attack.damage.parts.hitPoints.value.dice"}}
-                <span>{{localize "DAGGERHEART.GENERAL.bonus"}}</span>
-                {{formInput fields.value.fields.bonus value=source.value.bonus name="system.attack.damage.parts.hitPoints.value.bonus" localize=true}}
-            {{/if}}
-            <span>{{localize "DAGGERHEART.GENERAL.type"}}</span>
-            {{formInput fields.type value=source.type name="system.attack.damage.parts.hitPoints.type" localize=true}}
-            <span>{{localize "DAGGERHEART.CONFIG.DamageType.direct.name"}}</span>
-            {{formInput @root.systemFields.attack.fields.damage.fields.direct value=@root.document.system.attack.damage.direct name="system.attack.damage.direct" localize=true}}
-            <input type="hidden" name="system.attack.damage.parts.hitPoints.value.multiplier" value="{{source.value.multiplier}}">
-        {{/with}}
+        {{#with systemFields.attack.fields.damage.fields.main.fields as | fields | }}
+            {{#with ../document.system.attack.damage.main as | source | }}
+                <legend>{{localize "DAGGERHEART.GENERAL.damage"}}</legend>
+                <span>{{localize "DAGGERHEART.ACTIONS.Config.general.customFormula"}}</span>
+                {{formInput fields.value.fields.custom.fields.enabled value=source.value.custom.enabled name="system.attack.damage.main.value.custom.enabled"}}
+                {{#if source.value.custom.enabled}}
+                    <span>{{localize "DAGGERHEART.ACTIONS.Config.general.formula"}}</span>
+                    {{formInput fields.value.fields.custom.fields.formula value=source.value.custom.formula name="system.attack.damage.main.value.custom.formula"}}
+                {{else}}
+                    <span>{{localize "DAGGERHEART.GENERAL.Dice.single"}}</span>
+                    {{formInput fields.value.fields.dice value=source.value.dice name="system.attack.damage.main.value.dice"}}
+                    <span>{{localize "DAGGERHEART.GENERAL.bonus"}}</span>
+                    {{formInput fields.value.fields.bonus value=source.value.bonus name="system.attack.damage.main.value.bonus" localize=true}}
+                {{/if}}
+                <span>{{localize "DAGGERHEART.GENERAL.type"}}</span>
+                {{formInput fields.type value=source.type name="system.attack.damage.main.type" localize=true}}
+                <span>{{localize "DAGGERHEART.CONFIG.DamageType.direct.name"}}</span>
+                {{formInput @root.systemFields.attack.fields.damage.fields.main.fields.direct value=@root.document.system.attack.damage.main.direct name="system.attack.damage.main.direct" localize=true}}
+                <input type="hidden" name="system.attack.damage.main.value.multiplier" value="{{source.value.multiplier}}">
+            {{/with}}
         {{/with}}
     </fieldset>
     <fieldset class="two-columns">

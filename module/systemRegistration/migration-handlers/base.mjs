@@ -1,8 +1,9 @@
 /** 
  * @import DHItem from "../../documents/item.mjs";
+* @import DhActor from "../../documents/actor.mjs";
  */
-
 /** 
+
  * The base class of an async migration. 
  * These are generally run between versions for things that require compendiums or must be done in post.
  * The migrate() functions calls the various updateXSource() functions.
@@ -19,6 +20,16 @@ export class MigrationHandlerBase {
      * @protected
      */
     async updateActiveEffectSource(effectSource, item) {
+        return null;
+    }
+
+    /**
+     * Update a world actor
+     * @param {DhActor} actor 
+     * @returns {Promise<object>}
+     * @protected
+     */
+    async updateActorSource(actor) {
         return null;
     }
 
@@ -60,10 +71,39 @@ export class MigrationHandlerBase {
             }
         };
 
-        for (const actor of game.actors) {
+        const updateActor = async actor => {
+            const actorUpdate = await this.updateActorSource(actor);
+            if (actorUpdate) {
+                batch.push({
+                    action: 'update',
+                    documentName: 'Actor',
+                    updates: [actorUpdate]
+                });
+            }
+
+            const aeUpdates = [];
             for (const item of actor.items) {
                 await updateItem(item);
             }
+            
+            for (const effect of actor.effects) {
+                const changes = await this.updateActiveEffectSource(effect.toObject(), { parent: actor });
+                if (changes) aeUpdates.push(changes);
+            }
+            if (aeUpdates.length) {
+                batch.push({
+                    action: 'update',
+                    documentName: 'ActiveEffect',
+                    updates: aeUpdates,
+                    parent: actor
+                });
+            }
+        }
+
+
+        for (const actor of game.actors) {
+            await updateActor(actor);
+  
             progress.advance();
         }
         for (const item of game.items) {

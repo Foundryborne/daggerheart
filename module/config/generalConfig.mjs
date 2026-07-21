@@ -825,7 +825,7 @@ export const refreshTypes = {
 export const itemAbilityCosts = {
     resource: {
         id: 'resource',
-        label: 'DAGGERHEART.GENERAL.resource',
+        label: 'DAGGERHEART.GENERAL.Resource.single',
         group: 'Global'
     },
     quantity: {

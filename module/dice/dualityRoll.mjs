@@ -409,8 +409,4 @@ export default class DualityRoll extends D20Roll {
 
         return rerolled;
     }
-
-    fromJSON(json) {
-        return super.fromJSON(json);
-    }
 }
