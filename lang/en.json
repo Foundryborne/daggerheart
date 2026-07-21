@@ -126,7 +126,7 @@
                 "damageOnSave": "Damage on Save",
                 "useDefaultItemValues": "Use default Item values"
             },
-            "Reload": {
+            "Reload": { 
                 "checkReload": "Check Reload",
                 "reloadRequired": "Reload Required!"
             },
@@ -3274,7 +3274,9 @@
                 "lackingItemTransferPermission": "User {user} lacks owner permission needed to transfer items to {target}",
                 "noTokenTargeted": "No token is targeted",
                 "behaviorRegionRequiresGM": "Creating a Region with an attached Behavior requires an online GM",
-                "reloadRequired": "The {weapon} must be reloaded to be used!"
+                "reloadRequired": "The {weapon} must be reloaded to be used!",
+                "reloadRequiredRollResponse": "Reload Check: 1d6 -> {roll}. Reload required.",
+                "noReloadRequiredRollResponse": "Reload Check: 1d6 -> {roll}. No reload required."
             },
             "Progress": {
                 "migrationLabel": "Performing system migration. Please wait and do not close Foundry."
@@ -3329,7 +3331,8 @@
                 "immune": "Immune",
                 "middleClick": "[Middle Click] Keep tooltip view",
                 "tokenSize": "The token size used on the canvas",
-                "previewTokenHelp": "Left-click to place, right-click to cancel"
+                "previewTokenHelp": "Left-click to place, right-click to cancel",
+                "noReloadRequired": "No Reload Required!"
             }
         }
     }

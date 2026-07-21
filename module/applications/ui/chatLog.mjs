@@ -281,7 +281,12 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
 
     async onRollReloadCheck(_event, messageData) {
         const message = game.messages.get(messageData._id);
-        const needsReload = await message.system.action.handleReload?.({ awaitRoll: true });
-        await message.update({ 'system.needsReload': needsReload });
+        const { needsReload, rollValue } = await message.system.action.handleReload?.({ awaitRoll: true });
+        await message.update({ 'system.reloadCheckValue': rollValue });
+
+        if (needsReload) 
+            ui.notifications.info(_loc('DAGGERHEART.UI.Notifications.reloadRequiredRollResponse', { roll: rollValue }));
+        else
+            ui.notifications.info(_loc('DAGGERHEART.UI.Notifications.noReloadRequiredRollResponse', { roll: rollValue }));
     }
 }

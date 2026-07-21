@@ -42,7 +42,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             hasEffect: new fields.BooleanField({ initial: false }),
             hasSave: new fields.BooleanField({ initial: false }),
             hasTarget: new fields.BooleanField({ initial: false }),
-            needsReload: new fields.BooleanField({ initial: false }),
+            reloadCheckValue: new fields.NumberField({ integer: true, nullable: true, initial: null }),
             isDirect: new fields.BooleanField({ initial: false }),
             onSave: new fields.StringField(),
             source: new fields.SchemaField({
@@ -97,6 +97,10 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
 
     get hasReload() {
         return this.item?.system.hasReload;
+    }
+
+    get needsReload() {
+        return this.reloadCheckValue === 1;
     }
 
     get action() {
