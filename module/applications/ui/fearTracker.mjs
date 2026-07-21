@@ -95,26 +95,23 @@ export default class FearTracker extends HandlebarsApplicationMixin(ApplicationV
         if (options.isFirstRender) FearTracker.handleOffSet();
         if (!options.force) return;
         
+        this.handleStyleElement(fearPosition);
+
         switch (fearPosition) {
             case 'topCenter':
-                this.handleStyleElement(fearPosition);
                 document.getElementById('ui-top')?.appendChild(this.element);
                 break;
             case 'bottomCenter':
-                this.handleStyleElement(fearPosition);
                 document.getElementById('ui-bottom')?.prepend(this.element);
                 break;
             case 'rightTop':
-                this.handleStyleElement(fearPosition);
                 document.getElementById('ui-right-column-1')?.appendChild(this.element);
                 break;
             case 'leftBottom':
-                this.handleStyleElement(fearPosition);
-                document.getElementById('ui-left-column-1')?.appendChild(this.element);
+                document.getElementById('ui-left-column-1')?.insertBefore(this.element, document.getElementById('players'));
                 break;
                 
             default:
-                this.handleStyleElement(fearPosition);
                 document.body?.appendChild(this.element);
                 const position =
                     game.user.getFlag(CONFIG.DH.id, 'app.resources.position') ?? FearTracker.DEFAULT_OPTIONS.position;
@@ -130,21 +127,11 @@ export default class FearTracker extends HandlebarsApplicationMixin(ApplicationV
     }
 
     handleStyleElement(fearPosition) {
-        const positions = {
-            free: 'free',
-            topCenter: 'top-center',
-            bottomCenter: 'bottom-center',
-            rightTop: 'right-top',
-            leftBottom: 'left-bottom'
+        for (const position of Object.values(CONFIG.DH.GENERAL.fearPosition)) {
+            this.element.classList.remove(position.value); 
         }
 
-        const containsStyle = position => this.element.classList.contains(position);
-
-        Object.entries(positions).forEach(([key, value]) => {
-            if (containsStyle(value)) this.element.classList.remove(value);
-        })
-
-        this.element.classList.add(positions[fearPosition]);
+        this.element.classList.add(fearPosition);
     }
 
     static handleOffSet() {
@@ -186,6 +173,7 @@ export default class FearTracker extends HandlebarsApplicationMixin(ApplicationV
         );
     }
 
+    // TODO: Remove methods later to use Foundry's dragger and resize methods 
     /* -------------------------------------------- */
     /*  Dragging handlers                           */
     /* -------------------------------------------- */
