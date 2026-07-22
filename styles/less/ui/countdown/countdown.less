@@ -32,7 +32,7 @@
         background: var(--background);
         border-radius: 4px;
         opacity: var(--ui-fade-opacity);
-        transition: opacity var(--ui-fade-duration);
+        transition: opacity var(--ui-fade-delay) var(--ui-fade-duration);
     }
 
     &:not(.performance-low, .noblur) {
@@ -41,6 +41,7 @@
 
     &:hover::before {
         opacity: 1;
+        transition: opacity var(--ui-fade-duration);
     }
 
     #ui-right:has(#effects-display .effect-container) & {

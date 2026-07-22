@@ -924,6 +924,14 @@ export const fearDisplay = {
     hide: { value: 'hide', label: 'DAGGERHEART.SETTINGS.Appearance.fearDisplay.hide' }
 };
 
+export const fearPosition = {
+    free: { value: 'free', label: 'DAGGERHEART.SETTINGS.Appearance.fearPosition.free' },
+    topCenter: { value: 'topCenter', label: 'DAGGERHEART.SETTINGS.Appearance.fearPosition.topCenter' },
+    bottomCenter: { value: 'bottomCenter', label: 'DAGGERHEART.SETTINGS.Appearance.fearPosition.bottomCenter' },
+    rightTop: { value: 'rightTop', label: 'DAGGERHEART.SETTINGS.Appearance.fearPosition.rightTop' },
+    leftBottom: { value: 'leftBottom', label: 'DAGGERHEART.SETTINGS.Appearance.fearPosition.leftBottom' }
+};
+
 export const basicOwnershiplevels = {
     0: { value: 0, label: 'OWNERSHIP.NONE' },
     2: { value: 2, label: 'OWNERSHIP.OBSERVER' },

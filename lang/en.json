@@ -2704,6 +2704,9 @@
                     "displayFear": {
                         "label": "Display Fear"
                     },
+                    "fearPosition": {
+                        "label": "Fear Position"
+                    },
                     "displayCountdownUI": {
                         "label": "Display Countdown UI"
                     },
@@ -2755,6 +2758,13 @@
                     "token": "Tokens",
                     "bar": "Bar",
                     "hide": "Hide"
+                },
+                "fearPosition": {
+                    "free": "Free",
+                    "topCenter": "Top + Center",
+                    "bottomCenter": "Bottom + Center",
+                    "rightTop": "Right + Top",
+                    "leftBottom": "Left + Bottom"
                 }
             },
             "Automation": {
