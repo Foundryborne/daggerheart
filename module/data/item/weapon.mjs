@@ -116,6 +116,14 @@ export default class DHWeapon extends AttachableItem {
         return this.weaponFeatures;
     }
 
+    get hasReload() {
+        return Boolean(this.weaponFeatures.find(x => x.value === 'reloading'));
+    }
+
+    get needsReload() {
+        return this.hasReload && this.resource.value === 0;
+    }
+
     /**@inheritdoc */
     async getDescriptionData() {
         const baseDescription = this.description;

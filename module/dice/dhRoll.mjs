@@ -117,7 +117,11 @@ export default class DHRoll extends BaseRoll {
 
     static async toMessage(roll, config) {
         const item = config.data.parent?.items?.get?.(config.source.item) ?? null;
-        const action = item ? item.system.actions.get(config.source.action) : null;
+        const actions = item ? [
+            ...item.system.actions,
+            ...(item.system.attack?.id === config.source.action ? [item.system.attack] : [])
+        ] : [];
+        const action = actions.find(x => x.id === config.source.action);
         let actionDescription = null;
         if (action?.chatDisplay) {
             actionDescription = action
@@ -129,6 +133,14 @@ export default class DHRoll extends BaseRoll {
             config.actionChatMessageHandled = true;
         }
 
+        const reloadSetting = 
+            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).reload;
+        const useReload = 
+            item?.system.hasReload && 
+            action?.type === 'attack' && 
+            reloadSetting === CONFIG.DH.SETTINGS.reloadChoices.auto.id;
+        const reloadResult = useReload ? await action?.handleReload?.() : {};
+        
         const cls = getDocumentClass('ChatMessage'),
             msgData = {
                 type: this.messageType,
@@ -136,7 +148,11 @@ export default class DHRoll extends BaseRoll {
                 title: roll.title,
                 speaker: cls.getSpeaker({ actor: roll.data?.parent }),
                 sound: config.mute ? null : CONFIG.sounds.dice,
-                system: { ...config, actionDescription },
+                system: { 
+                    ...config, 
+                    actionDescription,
+                    reloadCheckValue: reloadResult.rollValue 
+                },
                 rolls: [roll]
             };
 
@@ -158,14 +174,17 @@ export default class DHRoll extends BaseRoll {
         if (!this._evaluated) return;
 
         const metagamingSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Metagaming);
+        const automationSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
         const chatData = await this._prepareChatRenderContext({ flavor, isPrivate, ...options });
         return foundry.applications.handlebars.renderTemplate(template, {
             roll: this,
             ...chatData,
+            action: chatData.action,
             parent: chatData.parent,
             targetMode: chatData.targetMode,
             areas: chatData.action?.areas,
-            metagamingSettings
+            metagamingSettings,
+            automationSettings
         });
     }
 

@@ -1,6 +1,7 @@
 import { enrichedDualityRoll } from '../../enrichers/DualityRollEnricher.mjs';
 import { enrichedFateRoll, getFateTypeData } from '../../enrichers/FateRollEnricher.mjs';
 import { getCommandTarget, rollCommandToJSON } from '../../helpers/utils.mjs';
+import FearTracker from './fearTracker.mjs';
 
 export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLog {
     constructor(options) {
@@ -152,6 +153,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         html.querySelectorAll('.risk-it-all-button').forEach(element =>
             element.addEventListener('click', event => this.riskItAllClearStressAndHitPoints(event, data))
         );
+        for (const element of html.querySelectorAll('.roll-reload-check')) {
+            element.addEventListener('click', event => this.onRollReloadCheck(event, message));
+        }
     };
 
     setupHooks() {
@@ -274,5 +278,28 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         const resourceValue = event.target.dataset.resourceValue;
         const actor = game.actors.get(event.target.dataset.actorId);
         new game.system.api.applications.dialogs.RiskItAllDialog(actor, resourceValue).render({ force: true });
+    }
+
+    _toggleNotifications({ closing = false } = {}) {
+        super._toggleNotifications(closing)
+        FearTracker.handleOffSet();
+    }
+
+    async onRollReloadCheck(_event, messageData) {
+        const message = game.messages.get(messageData._id);
+
+        if (message.system.reloadCheckValue) {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: _loc('DAGGERHEART.ACTIONS.Reload.rerollConfirmationTitle')
+                },
+                content: _loc('DAGGERHEART.ACTIONS.Reload.rerollConfirmationText')
+            });
+
+            if (!confirmed) return;
+        }
+
+        const { rollValue } = await message.system.action.handleReload?.({ awaitRoll: true });
+        await message.update({ 'system.reloadCheckValue': rollValue });
     }
 }

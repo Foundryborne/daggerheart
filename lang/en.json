@@ -126,6 +126,15 @@
                 "damageOnSave": "Damage on Save",
                 "useDefaultItemValues": "Use default Item values"
             },
+            "Reload": {
+                "checkReload": "Check Reload",
+                "reloadRequired": "Reload Required!",
+                "notRolled": "Not Rolled",
+                "checkFailed": "Check Failed",
+                "checkPassed": "Check Passed",
+                "rerollConfirmationTitle": "Reroll Reload Check",
+                "rerollConfirmationText": "Are you sure you want to reload the reload check?"
+            },
             "RollField": {
                 "diceRolling": {
                     "compare": "Should be",
@@ -1322,6 +1331,11 @@
                     "short": "V. Far"
                 }
             },
+            "ReloadChoices": {
+                "off": { "label": "Don't Use" },
+                "manual": { "label": "Manual" },
+                "auto": { "label": "Automatic" }
+            },
             "RollTypes": {
                 "trait": {
                     "name": "Trait"
@@ -2221,7 +2235,9 @@
             },
             "Resource": {
                 "single": "Resource",
-                "plural": "Resources"
+                "plural": "Resources",
+                "unloaded": "The weapon is not loaded",
+                "loaded": "The weapon is loaded"
             },
             "Roll": {
                 "attack": "Attack Roll",
@@ -2688,6 +2704,9 @@
                     "displayFear": {
                         "label": "Display Fear"
                     },
+                    "fearPosition": {
+                        "label": "Fear Position"
+                    },
                     "displayCountdownUI": {
                         "label": "Display Countdown UI"
                     },
@@ -2739,6 +2758,13 @@
                     "token": "Tokens",
                     "bar": "Bar",
                     "hide": "Hide"
+                },
+                "fearPosition": {
+                    "free": "Free",
+                    "topCenter": "Top + Center",
+                    "bottomCenter": "Bottom + Center",
+                    "rightTop": "Right + Top",
+                    "leftBottom": "Left + Bottom"
                 }
             },
             "Automation": {
@@ -2796,6 +2822,10 @@
                             "label": "Effect Range Dependent",
                             "hint": "Effects with defined range dependency will automatically turn on/off depending on range"
                         }
+                    },
+                    "reload": {
+                        "label": "Reload Checking",
+                        "hint": "If the system should automatically roll reload checks or wait for the manual press of a button in chat"
                     },
                     "resourceScrollTexts": {
                         "label": "Show Resource Change Scrolltexts",
@@ -3259,7 +3289,8 @@
                 "lackingItemTransferPermission": "User {user} lacks owner permission needed to transfer items to {target}",
                 "noTokenTargeted": "No token is targeted",
                 "behaviorRegionRequiresGM": "Creating a Region with an attached Behavior requires an online GM",
-                "comboDiceOnlyTwoDiceError": "Combo dice functionality only works on a single pair of two dice"
+                "comboDiceOnlyTwoDiceError": "Combo dice functionality only works on a single pair of two dice",
+                "reloadRequired": "The {weapon} must be reloaded to be used!"
             },
             "Progress": {
                 "migrationLabel": "Performing system migration. Please wait and do not close Foundry."

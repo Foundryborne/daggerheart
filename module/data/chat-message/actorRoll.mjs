@@ -42,6 +42,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             hasEffect: new fields.BooleanField({ initial: false }),
             hasSave: new fields.BooleanField({ initial: false }),
             hasTarget: new fields.BooleanField({ initial: false }),
+            reloadCheckValue: new fields.NumberField({ integer: true, nullable: true, initial: null }),
             isDirect: new fields.BooleanField({ initial: false }),
             onSave: new fields.StringField(),
             source: new fields.SchemaField({
@@ -75,10 +76,14 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         return fromUuidSync(this.source.actor);
     }
 
-    get actionItem() {
+    get item() {
         const actionActor = this.actionActor;
         if (!actionActor || !this.source.item) return null;
+        
+        return actionActor.items.get(this.source.item);
+    }
 
+    get actionItem() {
         switch (this.source.originItem.type) {
             case CONFIG.DH.ITEM.originItemType.restMove:
                 const restMoves = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).restMoves;
@@ -86,9 +91,16 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
                     this.source.originItem.actionIndex
                 ];
             default:
-                const item = actionActor.items.get(this.source.item);
-                return item ? item.system.actionsList?.find(a => a.id === this.source.action) : null;
+                return this.item?.system.actionsList?.find(a => a.id === this.source.action);
         }
+    }
+
+    get hasReload() {
+        return this.item?.system.hasReload;
+    }
+
+    get reloadCheckFailed() {
+        return this.reloadCheckValue === 1;
     }
 
     get action() {

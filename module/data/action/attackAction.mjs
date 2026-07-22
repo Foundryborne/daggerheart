@@ -52,6 +52,10 @@ export default class DHAttackAction extends DHDamageAction {
     }
 
     async use(event, options) {
+        if (this.item?.system.needsReload) {
+            return ui.notifications.error(_loc('DAGGERHEART.UI.Notifications.reloadRequired', { weapon: this.item.name }));
+        }
+
         const result = await super.use(event, options);
 
         if (result?.message?.system.action?.roll?.type === 'attack') {
@@ -60,6 +64,23 @@ export default class DHAttackAction extends DHDamageAction {
         }
 
         return result;
+    }
+
+    async handleReload(options = { awaitRoll: false }) {
+        const roll = await new Roll('1d6').evaluate();
+        if (game.modules.get('dice-so-nice')?.active) {
+            if (options.awaitRoll)
+                await game.dice3d.showForRoll(roll, game.user, true);
+            else
+                game.dice3d.showForRoll(roll, game.user, true);    
+        }
+        
+        const needsReload = roll.total === 1;
+        if (needsReload) {
+            this.item.update({ 'system.resource.value': 0 });
+        }
+
+        return { needsReload, rollValue: roll.total };
     }
 
     /**

@@ -196,6 +196,13 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                     })
                 })
             }),
+            reload: new fields.StringField({
+                required: true,
+                choices: CONFIG.DH.SETTINGS.reloadChoices,
+                initial: CONFIG.DH.SETTINGS.reloadChoices.manual.id,
+                label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.reload.label',
+                hint: 'DAGGERHEART.SETTINGS.Automation.FIELDS.reload.hint'
+            }),
             autoExpireActiveEffects: new fields.BooleanField({
                 required: true,
                 initial: true,

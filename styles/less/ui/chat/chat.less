@@ -621,16 +621,74 @@
         }
 
         .roll-buttons {
-            display: flex;
-            gap: 5px;
             margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
 
             button {
                 height: 32px;
-                flex: 1;
+            }
 
-                &.end-button {
-                    flex: 0;
+            .main-buttons {
+                display: flex;
+                gap: 5px;
+            
+                button {
+                    flex: 1;
+
+                    &.end-button {
+                        flex: 0;
+                    }
+                }
+            }
+
+            .extra-button-row {
+                width: 100%;
+                display: flex;
+                gap: 5px;
+
+                .image-container {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    
+                    img {
+                        height: 24px;
+                        filter: @dark-filter;
+                    }
+                    
+                    .dice-result {
+                        position: absolute;
+                        font-size: 18px;
+                        color: @beige;
+                        filter: drop-shadow(0 0 1px @light-white);
+                    }
+                }
+
+                .reload-data {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 5px;
+                    gap: 5px;
+                    cursor: pointer;
+                    padding: 5px;
+                    transition: all 0.3s ease;
+                    color: @golden;
+                    background: @golden-40;
+
+                    &.failed-check {
+                        background: @red-40;
+                        color: @red;
+                    }
+
+                    &.passed-check {
+                        background: @green-40;
+                        color: @green;
+                    }   
                 }
             }
         }
