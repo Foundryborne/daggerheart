@@ -247,7 +247,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         }
 
         const message = game.messages.get(messageData._id);
-        const target = event.target.closest('[data-result]');
+        const target = event.target.closest('[data-type]');
 
         if (target.dataset.type === 'damage') {
             const { isResource, damageType, dice, result } = target.dataset;
