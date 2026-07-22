@@ -23,7 +23,7 @@ export default class BaseDie extends foundry.dice.terms.Die {
         } 
     }
 
-    /** @override */
+    /** @inheritDoc */
     getResultCSS(result) {
         const hasSuccess = result.success !== undefined;
         const hasFailure = result.failure !== undefined;
