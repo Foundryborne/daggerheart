@@ -4,10 +4,10 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     targetHook = null;
 
     static #EXPAND_SECTIONS = [
-        { selector: 'roll-section [data-action="expandRoll"]', key: 'roll' },
-        { selector: 'damage-section', key: 'damage' },
-        { selector: 'target-section', key: 'target' },
-        { selector: 'description-section', key: 'desc' }
+        { selector: '.roll-section [data-action="expandRoll"]', key: 'roll' },
+        { selector: '.damage-section', key: 'damage' },
+        { selector: '.target-section', key: 'target' },
+        { selector: '.description-section', key: 'desc' }
     ];
 
     async renderHTML() {
