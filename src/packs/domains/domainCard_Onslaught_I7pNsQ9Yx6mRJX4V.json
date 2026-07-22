@@ -14,7 +14,7 @@
         "type": "damage",
         "_id": "MxaqNvY9IfWnFe5P",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">When a creature within your weapon’s range deals damage to an ally with an attack that doesn’t include you, you can <strong>mark a Stress</strong> to force them to make a Reaction Roll (15). On a failure, the target must mark a Hit Point.</p>",
+        "description": "<p>When a creature within your weapon’s range deals damage to an ally with an attack that doesn’t include you, you can <strong>mark a Stress</strong> to force them to make a Reaction Roll (15). On a failure, the target must mark a Hit Point.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
