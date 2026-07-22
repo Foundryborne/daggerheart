@@ -25,11 +25,12 @@
                     {{> damage label=(localize "DAGGERHEART.GENERAL.damage") roll=damage.main isDirect=isDirect }}
                 {{/if}}
 
-                {{#each damage.resources as | roll index | }}
+                {{#each damage.resources as |roll index| }}
                     {{> damage
                         label=(ifThen ../hasHealing (localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.name')) (localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.inChatRoll'))) 
                         roll=roll
-                        isResource=true 
+                        isResource=true
+                        resource=index
                     }}
                 {{/each}}
             </div>
@@ -42,7 +43,7 @@
 {{/inline}}
 
 {{#*inline "damage"}}
-    <fieldset>
+    <fieldset {{#if resource}}data-resource="{{resource}}"{{/if}}>
         <legend>
             {{label}}
             <div class="roll-formula">{{localize "DAGGERHEART.GENERAL.total"}}: {{roll.total}}</div>{{#if isDirect}} <div class="roll-formula">{{localize "DAGGERHEART.CONFIG.DamageType.direct.short"}}</div>{{/if}}
@@ -63,7 +64,7 @@
                             <div class="roll-die{{#unless @../first}} has-plus{{/unless}}">
                                 <div 
                                     class="dice reroll-button {{coalesce dieResult.denomination dice.denomination}}" 
-                                    data-type="damage" data-damage-type="{{@../../key}}" data-dice="{{diceKey}}" data-result="{{resultKey}}" {{#if ../../isResource}}data-is-resource="true"{{/if}}
+                                    data-type="damage" data-dice="{{diceKey}}" data-result="{{resultKey}}" {{#if ../../isResource}}data-is-resource="true"{{/if}}
                                 >
                                     {{#if hasRerolls}}<i class="fa-solid fa-dice dice-rerolled" data-tooltip="{{localize "DAGGERHEART.GENERAL.rerolled"}}"></i>{{/if}}
                                     {{result}}
