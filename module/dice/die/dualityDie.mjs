@@ -8,6 +8,10 @@ export default class DualityDie extends BaseDie {
         this.modifiers = [];
     }
 
+    get isRerolled() {
+        return this.results.some(x => x.rerolled);
+    }
+
     #getDualityState(roll) {
         if (!roll) return null;
         return roll.withHope ? 1 : roll.withFear ? -1 : 0;

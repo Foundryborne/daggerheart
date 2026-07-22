@@ -268,6 +268,8 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                     isReaction: message.system.roll.options.actionType === 'reaction'
                 }
             });
+            rerollDice.results[rerollDice.results.length - 1].rerolled = true;
+            
             await message.update({
                 rolls: [message.system.roll.toJSON()]
             });

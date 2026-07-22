@@ -65,7 +65,7 @@
                                     class="dice reroll-button {{coalesce dieResult.denomination dice.denomination}}" 
                                     data-type="damage" data-dice="{{diceKey}}" data-result="{{resultKey}}" {{#if ../../resource}}data-damage-type="{{../../resource}}" data-is-resource="true"{{/if}}
                                 >
-                                    {{#if hasRerolls}}<i class="fa-solid fa-dice dice-rerolled" data-tooltip="{{localize "DAGGERHEART.GENERAL.rerolled"}}"></i>{{/if}}
+                                    {{#if dieResult.rerolled}}<i class="fa-solid fa-dice dice-rerolled" data-tooltip="{{localize "DAGGERHEART.GENERAL.rerolled"}}"></i>{{/if}}
                                     {{result}}
                                 </div>
                             </div>

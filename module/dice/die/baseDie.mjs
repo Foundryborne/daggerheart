@@ -21,7 +21,8 @@ export default class BaseDie extends foundry.dice.terms.Die {
         if (['c', 'cc'].some(x => this.modifiers.includes(x))) {
             await this.handleComboDiceReroll(resultIndex, result);
         }
-        
+
+        rerolledResult.rerolled = true;
         return rerolledResult;
     }
 
