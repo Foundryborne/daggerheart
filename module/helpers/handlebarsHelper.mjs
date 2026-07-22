@@ -4,25 +4,30 @@ export default class RegisterHandlebarsHelpers {
     static registerHelpers() {
         Handlebars.registerHelper({
             add: this.add,
-            includes: this.includes,
-            times: this.times,
+            coalesce: this.coalesce,
             damageFormula: this.damageFormula,
-            formulaValue: this.formulaValue,
             damageSymbols: this.damageSymbols,
-            rollParsed: this.rollParsed,
-            hasProperty: foundry.utils.hasProperty,
-            getProperty: foundry.utils.getProperty,
-            setVar: this.setVar,
             empty: this.empty,
+            formulaValue: this.formulaValue,
+            getProperty: foundry.utils.getProperty,
+            hasProperty: foundry.utils.hasProperty,
+            includes: this.includes,
+            isNullish: this.isNullish,
             pluralize: this.pluralize,
             positive: this.positive,
-            isNullish: this.isNullish
+            rollParsed: this.rollParsed,
+            setVar: this.setVar,
+            times: this.times
         });
     }
     static add(a, b) {
         const aNum = Number.parseInt(a);
         const bNum = Number.parseInt(b);
         return (Number.isNaN(aNum) ? 0 : aNum) + (Number.isNaN(bNum) ? 0 : bNum);
+    }
+
+    static coalesce(...args) {
+        return args.find(a => a !== undefined && a !== null);
     }
 
     static includes(list, item) {
