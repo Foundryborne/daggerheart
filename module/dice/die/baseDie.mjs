@@ -25,21 +25,11 @@ export default class BaseDie extends foundry.dice.terms.Die {
 
     /** @inheritDoc */
     getResultCSS(result) {
-        const hasSuccess = result.success !== undefined;
-        const hasFailure = result.failure !== undefined;
-        const isMax = result.result === this.faces;
-        const isMin = result.result === 1;
-        return [
-            this.constructor.name.toLowerCase(),
-            result.denomination ?? this.denomination, // Accomodating ComboDie as a result can have a different denomination than the die as a whole
-            result.success ? 'success' : null,
-            result.failure ? 'failure' : null,
-            result.rerolled ? 'rerolled' : null,
-            result.exploded ? 'exploded' : null,
-            result.discarded ? 'discarded' : null,
-            !(hasSuccess || hasFailure) && isMin ? 'min' : null,
-            !(hasSuccess || hasFailure) && isMax ? 'max' : null
-        ];
+        // Accomodating ComboDie as a result can have a different denomination than the die as a whole
+        const css = super.getResultCSS(result);
+        const idx = css.findIndex(c => /d\d+/.test(c));
+        css[idx] = result.denomination ?? this.denomination;
+        return css;
     }
 
     /* -------------------------------------------- */
@@ -74,13 +64,8 @@ export default class BaseDie extends foundry.dice.terms.Die {
            The actual rolls are done here in place so every dice gets the correct denomination.
         */
         if (game.modules.get('dice-so-nice')?.active) {
-            const resultsToRoll = this.results.filter((x, index) => { 
-                if (!x.active) return false;
-                if (rerollStartIndex) 
-                    return index === rerollStartIndex || index > initialResultsLength - 1;
-
-                return true;
-            });
+            const resultsToRoll = this.results.filter((x, index) => 
+                x.active && (!rerollStartIndex || index === rerollStartIndex || index > initialResultsLength - 1));
             const rolls = [];
             for (const result of resultsToRoll) {
                 const roll = await (new Roll(`1${result.denomination ?? this.denomination}`)).evaluate();
@@ -90,12 +75,9 @@ export default class BaseDie extends foundry.dice.terms.Die {
             }
 
             /* If there are other dice that will be rolled we cannot await here. The other dice will be awaited in the normal flow */
-            if (rerollStartIndex === undefined && this._root.dice.length > 1) {
-                for (const roll of rolls) {
-                    game.dice3d.showForRoll(roll, game.user, true);
-                }
-            } else {
-                await Promise.allSettled(rolls.map(roll => game.dice3d.showForRoll(roll, game.user, true)));
+            const promises = rolls.map(roll => game.dice3d.showForRoll(roll, game.user, true));
+            if (rerollStartIndex !== undefined || this._root.dice.length <= 1) {
+                await Promise.allSettled(promises);
             }
         }
 
@@ -171,21 +153,14 @@ export default class BaseDie extends foundry.dice.terms.Die {
         }
 
         /* (2) Rerolling any of the last two dice might introduce new results */
-        if (
-            rerollGroupingIndex === resultGroupingIndexes.length - 1 &&
-            rerolledResult.result >= previousResult?.result
-        ) {
-            return await this.rollComboDice({ 
-                maxIncreasesDiceSize: compoundCombo, 
-                rerollStartIndex: rerollGroupingIndex 
-            });
-        } else if (
-            rerollGroupingIndex === resultGroupingIndexes.length - 2 &&
-            rerolledResult.result < nextResult?.result
-        ) {
-            return await this.rollComboDice({ 
-                maxIncreasesDiceSize: compoundCombo, 
-                rerollStartIndex: rerollGroupingIndex 
+        const isFinalHigher = 
+            rerollGroupingIndex === resultGroupingIndexes.length - 1 && rerolledResult.result >= previousResult?.result;
+        const isSemifinalLower = 
+            rerollGroupingIndex === resultGroupingIndexes.length - 2 && rerolledResult.result < nextResult?.result;
+        if (isFinalHigher || isSemifinalLower) {
+            return await this.rollComboDice({
+                maxIncreasesDiceSize: compoundCombo,
+                rerollStartIndex: rerollGroupingIndex
             });
         }
         /* (3) Rerolling a subsequent dice might invalidate later dice which should then be dropped */

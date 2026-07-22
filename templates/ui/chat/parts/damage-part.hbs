@@ -25,11 +25,11 @@
                     {{> damage label=(localize "DAGGERHEART.GENERAL.damage") roll=damage.main isDirect=isDirect }}
                 {{/if}}
 
-                {{#each damage.resources as | roll index | }}
+                {{#each damage.resources as |roll index| }}
                     {{> damage
                         label=(ifThen ../hasHealing (localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.name')) (localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.inChatRoll'))) 
                         roll=roll
-                        isResource=true 
+                        resource=index
                     }}
                 {{/each}}
             </div>
@@ -57,13 +57,13 @@
         {{/if}}
         <div class="roll-dice">
             {{#if roll.dice.length}}
-                {{#each roll.dice}}
-                    {{#each results}}
+                {{#each roll.dice as |dice diceKey|}}
+                    {{#each results as |dieResult resultKey|}}
                         {{#if active}}
                             <div class="roll-die{{#unless @../first}} has-plus{{/unless}}">
                                 <div 
-                                    class="dice reroll-button {{ifThen denomination denomination ../denomination}}" 
-                                    data-type="damage" data-damage-type="{{@../../key}}" data-dice="{{@../key}}" data-result="{{@key}}" {{#if ../../isResource}}data-is-resource="true"{{/if}}
+                                    class="dice reroll-button {{coalesce dieResult.denomination dice.denomination}}" 
+                                    data-type="damage" data-dice="{{diceKey}}" data-result="{{resultKey}}" {{#if ../../resource}}data-damage-type="{{../../resource}}" data-is-resource="true"{{/if}}
                                 >
                                     {{#if hasRerolls}}<i class="fa-solid fa-dice dice-rerolled" data-tooltip="{{localize "DAGGERHEART.GENERAL.rerolled"}}"></i>{{/if}}
                                     {{result}}
