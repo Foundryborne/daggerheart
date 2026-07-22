@@ -99,7 +99,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         return this.item?.system.hasReload;
     }
 
-    get needsReload() {
+    get reloadCheckFailed() {
         return this.reloadCheckValue === 1;
     }
 

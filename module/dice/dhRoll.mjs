@@ -141,13 +141,6 @@ export default class DHRoll extends BaseRoll {
             reloadSetting === CONFIG.DH.SETTINGS.reloadChoices.auto.id;
         const reloadResult = useReload ? await action?.handleReload?.() : {};
         
-        if (useReload) {
-            if (reloadResult.needsReload) 
-                ui.notifications.info(_loc('DAGGERHEART.UI.Notifications.reloadRequiredRollResponse', { roll: reloadResult.rollValue }));
-            else
-                ui.notifications.info(_loc('DAGGERHEART.UI.Notifications.noReloadRequiredRollResponse', { roll: reloadResult.rollValue }));
-        }
-        
         const cls = getDocumentClass('ChatMessage'),
             msgData = {
                 type: this.messageType,

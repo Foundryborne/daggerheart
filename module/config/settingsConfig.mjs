@@ -68,9 +68,9 @@ export const reloadChoices = {
         id: 'off',
         label: 'DAGGERHEART.CONFIG.ReloadChoices.off.label'
     },
-    button: {
-        id: 'button',
-        label: 'DAGGERHEART.CONFIG.ReloadChoices.button.label'
+    manual: {
+        id: 'manual',
+        label: 'DAGGERHEART.CONFIG.ReloadChoices.manual.label'
     },
     auto: {
         id: 'auto',

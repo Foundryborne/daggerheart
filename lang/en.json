@@ -128,7 +128,12 @@
             },
             "Reload": {
                 "checkReload": "Check Reload",
-                "reloadRequired": "Reload Required!"
+                "reloadRequired": "Reload Required!",
+                "notRolled": "Not Rolled",
+                "checkFailed": "Check Failed",
+                "checkPassed": "Check Passed",
+                "rerollConfirmationTitle": "Reroll Reload Check",
+                "rerollConfirmationText": "Are you sure you want to reload the reload check?"
             },
             "RollField": {
                 "diceRolling": {
@@ -1328,7 +1333,7 @@
             },
             "ReloadChoices": {
                 "off": { "label": "Don't Use" },
-                "button": { "label": "Use button" },
+                "manual": { "label": "Manual" },
                 "auto": { "label": "Automatic" }
             },
             "RollTypes": {
@@ -2810,7 +2815,7 @@
                     },
                     "reload": {
                         "label": "Reload Checking",
-                        "hint": "If the system should present a button for checking if the character will need to reload or do it automatically"
+                        "hint": "If the system should automatically roll reload checks or wait for the manual press of a button in chat"
                     },
                     "resourceScrollTexts": {
                         "label": "Show Resource Change Scrolltexts",
@@ -3274,9 +3279,7 @@
                 "lackingItemTransferPermission": "User {user} lacks owner permission needed to transfer items to {target}",
                 "noTokenTargeted": "No token is targeted",
                 "behaviorRegionRequiresGM": "Creating a Region with an attached Behavior requires an online GM",
-                "reloadRequired": "The {weapon} must be reloaded to be used!",
-                "reloadRequiredRollResponse": "Reload Check: 1d6 -> {roll}. Reload required.",
-                "noReloadRequiredRollResponse": "Reload Check: 1d6 -> {roll}. No reload required."
+                "reloadRequired": "The {weapon} must be reloaded to be used!"
             },
             "Progress": {
                 "migrationLabel": "Performing system migration. Please wait and do not close Foundry."
@@ -3331,8 +3334,7 @@
                 "immune": "Immune",
                 "middleClick": "[Middle Click] Keep tooltip view",
                 "tokenSize": "The token size used on the canvas",
-                "previewTokenHelp": "Left-click to place, right-click to cancel",
-                "noReloadRequired": "No Reload Required!"
+                "previewTokenHelp": "Left-click to place, right-click to cancel"
             }
         }
     }

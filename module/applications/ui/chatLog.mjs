@@ -279,14 +279,21 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         new game.system.api.applications.dialogs.RiskItAllDialog(actor, resourceValue).render({ force: true });
     }
 
-    async onRollReloadCheck(_event, messageData) {
+    async onRollReloadCheck(event, messageData) {
         const message = game.messages.get(messageData._id);
-        const { needsReload, rollValue } = await message.system.action.handleReload?.({ awaitRoll: true });
-        await message.update({ 'system.reloadCheckValue': rollValue });
 
-        if (needsReload) 
-            ui.notifications.info(_loc('DAGGERHEART.UI.Notifications.reloadRequiredRollResponse', { roll: rollValue }));
-        else
-            ui.notifications.info(_loc('DAGGERHEART.UI.Notifications.noReloadRequiredRollResponse', { roll: rollValue }));
+        if (message.system.reloadCheckValue) {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: _loc('DAGGERHEART.ACTIONS.Reload.rerollConfirmationTitle')
+                },
+                content: _loc('DAGGERHEART.ACTIONS.Reload.rerollConfirmationText')
+            });
+
+            if (!confirmed) return;
+        }
+
+        const { rollValue } = await message.system.action.handleReload?.({ awaitRoll: true });
+        await message.update({ 'system.reloadCheckValue': rollValue });
     }
 }

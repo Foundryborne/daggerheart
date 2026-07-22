@@ -1,11 +1,5 @@
 <div class="chat-roll">
     <div class="roll-part-title"><span>{{title}}</span></div>
-    
-    {{#if (and (eq action.type 'attack') parent.system.needsReload)}}
-        <div class="roll-reload-container">
-            <p class='reload-warning'>{{localize "DAGGERHEART.ACTIONS.Reload.reloadRequired"}}</p>
-        </div>
-    {{/if}}
 
     {{#if actionDescription}}{{> 'systems/daggerheart/templates/ui/chat/parts/description-part.hbs'}}{{/if}}
     {{#if hasRoll}}
