@@ -214,7 +214,35 @@
               }
             }
           },
-          "includeBase": false
+          "includeBase": false,
+          "main": null,
+          "resources": {
+            "hitPoints": {
+              "base": false,
+              "applyTo": "hitPoints",
+              "resultBased": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 0,
+                "dice": "d6",
+                "bonus": 1,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
         },
         "target": {
           "type": "any",
