@@ -8,7 +8,6 @@ Parameters:
 - collection {array} : Array of items to render.
 - type {string} : The type of items in the list:
 - isGlassy {boolean} : If true, applies the 'glassy' class to the fieldset.
-- cardView {boolean} : If true and type is 'domainCard', renders using domain card layout.
 - isActor {boolean} : Passed through to inventory-item partials.
 - isItem {boolean} : Passed through to inventory-item partials
 - actorType {boolean} : The actor type of the parent actor
@@ -40,18 +39,6 @@ Parameters:
     </a>
     {{/if }}
   </legend>
-  {{#if (and cardView (eq type 'domainCard'))}}
-  <ul class="card-list">
-    {{#each collection as |item|}}
-
-    {{> 'systems/daggerheart/templates/sheets/global/partials/domain-card-item.hbs'
-    item=item
-    type='domainCard'
-    }}
-
-    {{/each}}
-  </ul>
-  {{else}}
   <ul class="items-list">
     {{#each collection as |item|}}
     {{> 'daggerheart.inventory-item'
@@ -74,5 +61,4 @@ Parameters:
 
     {{/each}}
   </ul>
-  {{/if}}
 </fieldset>
