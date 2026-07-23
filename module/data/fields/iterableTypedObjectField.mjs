@@ -27,5 +27,3 @@ export default class IterableTypedObjectField extends foundry.data.fields.TypedO
         return object;
     }
 }
-
-
