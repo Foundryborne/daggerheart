@@ -682,7 +682,6 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 mainRoll.damageRollData.main.options.isCritical = isCritical;
             }
 
-
             return mainRoll;
         } catch (err) {
             console.error(err);
