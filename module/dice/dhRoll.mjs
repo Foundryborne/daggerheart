@@ -248,6 +248,22 @@ export default class DHRoll extends BaseRoll {
         });
     }
 
+    getTotalBonus(path) {
+        return Object.values(this.options.bonusEffects).reduce((acc, effect) => {
+            if (!effect.selected) return acc;
+            return acc + effect.changes.reduce((acc, change) => {
+                if (!change.key.includes(path)) return acc;
+                const changeValue = game.system.api.documents.DhActiveEffect.getChangeValue(
+                    this.data,
+                    change,
+                    effect.origEffect
+                );
+                
+                return Number.isNumeric(changeValue) ? acc + changeValue : acc; 
+            }, 0);
+        }, 0);
+    }
+
     getBonus(path, label) {
         const modifiers = [];
         for (const effect of Object.values(this.options.bonusEffects)) {

@@ -119,7 +119,9 @@ export default class DamageRoll extends DHRoll {
 
     getActionChangeKeys() {
         const type = this.options.messageType ?? (this.options.hasHealing ? 'healing' : 'damage');
-        const changeKeys = [];
+        const changeKeys = [
+            'system.rules.attack.damage.hpDamageMultiplier'
+        ];
 
         for (const damageType of this.options.damageFormula?.damageTypes?.values?.() ?? []) {
             changeKeys.push(`system.bonuses.${type}.${damageType}`);
@@ -197,6 +199,22 @@ export default class DamageRoll extends DHRoll {
                 if (total > 0) {
                     formulaData.roll.terms.push(...this.formatModifier(total));
                 }
+            }
+
+            const damageTakenMultiplier = this.getTotalBonus('system.rules.attack.damage.hpDamageMultiplier');
+            if (damageTakenMultiplier && damageTakenMultiplier !== 1) {
+                // The fully built up roll needs to be set inside of a paranthetical term, so we build the dice anew with all the pushed in terms.
+                // We clone it to avoid infinite recursion.
+                formulaData.roll = Roll.fromTerms(formulaData.roll.terms);
+
+                formulaData.roll.terms = [
+                    new foundry.dice.terms.ParentheticalTerm({ 
+                        roll: formulaData.roll.clone(), 
+                        term: formulaData.formula 
+                    }),
+                    new foundry.dice.terms.OperatorTerm({ operator: '*' }),
+                    new foundry.dice.terms.NumericTerm({ number: damageTakenMultiplier })
+                ];
             }
         }
 
