@@ -2,7 +2,7 @@ import { ResourceUpdateMap } from '../../data/action/baseAction.mjs';
 import { ChatDamageData } from '../../data/chat-message/chatDamageData.mjs';
 import { MemberData } from '../../data/tagTeamData.mjs';
 import DamageRoll from '../../dice/damageRoll.mjs';
-import { getCritDamageBonus, shouldUseHopeFearAutomation } from '../../helpers/utils.mjs';
+import { shouldUseHopeFearAutomation } from '../../helpers/utils.mjs';
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 import PartySheet from '../sheets/actors/party.mjs';
 
@@ -581,25 +581,6 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
             },
             this.getUpdatingParts(button)
         );
-    }
-
-    getCriticalDamage(origDamage) {
-        const newDamage = origDamage ? ChatDamageData.fromJSON(JSON.stringify(origDamage)) : null;
-        if (newDamage?.main) {
-            const criticalDamage = getCritDamageBonus(newDamage.main.terms);
-            if (criticalDamage) {
-                const criticalTerm = new foundry.dice.terms.NumericTerm({ number: criticalDamage, evaluated: true });
-                criticalTerm.evaluate();
-                newDamage.main = Roll.fromTerms([
-                    ...origDamage.main.terms,
-                    new foundry.dice.terms.OperatorTerm({ operator: '+' }),
-                    criticalTerm
-                ]);
-                newDamage.main.options = foundry.utils.deepClone(origDamage.main.options);
-            }
-        } 
-
-        return newDamage;
     }
 
     static async #selectRoll(_, button) {
