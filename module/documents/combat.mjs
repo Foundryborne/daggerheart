@@ -1,4 +1,9 @@
 export default class DhpCombat extends Combat {
+    /** @inheritDoc */
+    get nextCombatant() {
+        return null;
+    }
+
     async startCombat() {
         this._playCombatSound('startEncounter');
         const updateData = { round: 1, turn: null };
@@ -67,5 +72,51 @@ export default class DhpCombat extends Combat {
                 );
             }
         }
+    }
+
+    /* -------------------------------------------- */
+    /* Wholesale copied functions for minor changes */
+    /* -------------------------------------------- */
+
+    /** @inheritDoc */
+    _onUpdate(changed, options, _userId) {
+        const priorState = foundry.utils.deepClone(this.current);
+        if (!this.previous) this.previous = priorState; // Just in case
+
+        // Determine the new turn order
+        if ('combatants' in changed) this.setupTurns(); // Update all combatants
+        else {
+            this.current = this._getCurrentState(); // Update turn or round
+            if ((priorState.round === 0) && this.started) this.turns.forEach((c, i) => c.turnNumber = i);
+        }
+
+        // Record the prior state and manage turn events
+        const stateChanged = this.#recordPreviousState(priorState);
+        if (stateChanged && (options.turnEvents !== false)) this._manageTurnEvents();
+
+        // Render applications for Actors involved in the Combat
+        this.updateCombatantActors();
+
+        // Render the CombatTracker sidebar
+        const wasActivated = changed.active === true;
+        if (wasActivated && this.isActive) ui.combat.render({combat: this});
+        else if ('scene' in changed) ui.combat.render({combat: null});
+
+        // Refresh token combat markers
+        if (stateChanged || (wasActivated && this.isView)) this._updateTurnMarkers();
+
+        // Trigger combat sound cues in the active encounter
+        if (this.active && stateChanged && this.started && priorState.round && this.combatant) {
+            /* DAGGERHEART: Removed 'play' check */
+            this._playCombatSound('yourTurn');
+        }
+    }
+
+    #recordPreviousState(priorState) {
+        const {round, turn, combatantId} = this.current;
+        const turnChange = (combatantId !== priorState.combatantId) || (round !== priorState.round)
+        || (turn !== priorState.turn);
+        Object.assign(this.previous, priorState);
+        return turnChange;
     }
 }
