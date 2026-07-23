@@ -123,10 +123,12 @@ export default class DhAppearance extends foundry.abstract.DataModel {
 
     /** Invoked by the setting when data changes */
     handleChange() {
-        if (this.displayFear) {
-            if (ui.resources) {
-                if (this.displayFear === 'hide') ui.resources.close({ allowed: true });
-                else ui.resources.render({ force: true });
+        if (ui.resources) {
+            if (this.displayFear === 'hide') {
+                ui.resources.close({ allowed: true });
+            } else {
+                ui.resources.render({ force: true });
+                ui.resources.handleOffset();
             }
         }
 

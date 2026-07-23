@@ -1,7 +1,6 @@
 import { enrichedDualityRoll } from '../../enrichers/DualityRollEnricher.mjs';
 import { enrichedFateRoll, getFateTypeData } from '../../enrichers/FateRollEnricher.mjs';
 import { getCommandTarget, rollCommandToJSON } from '../../helpers/utils.mjs';
-import FearTracker from './fearTracker.mjs';
 
 export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLog {
     constructor(options) {
@@ -284,7 +283,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
 
     _toggleNotifications({ closing = false } = {}) {
         super._toggleNotifications(closing)
-        FearTracker.handleOffSet();
+        ui.resources.handleOffset();
     }
 
     async onRollReloadCheck(_event, messageData) {

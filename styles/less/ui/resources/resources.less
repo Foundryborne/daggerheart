@@ -65,8 +65,14 @@ body.theme-light {
     }
 
     &.rightTop {
+        position: relative;
         width: 300px !important;
         max-width: 300px;
+        left: unset!important;
+        top: unset!important;
+        #ui-right:has(#effects-display):has(.effect-container) & {
+            right: 62px;
+        }
     }
 
     &.leftBottom {
@@ -77,10 +83,6 @@ body.theme-light {
 
     &:not(.performance-low, .noblur) {
         backdrop-filter: blur(5px);
-    }
-
-    #ui-right:has(#effects-display .effect-container) & {
-        right: 62px;
     }
 
     #resource-fear {

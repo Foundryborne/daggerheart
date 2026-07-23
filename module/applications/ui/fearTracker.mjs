@@ -92,7 +92,7 @@ export default class FearTracker extends HandlebarsApplicationMixin(ApplicationV
 
         const fearPosition = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).fearPosition;
 
-        if (options.isFirstRender) FearTracker.handleOffSet();
+        if (options.isFirstRender) this.handleOffset();
         if (!options.force) return;
         
         this.handleStyleElement(fearPosition);
@@ -134,17 +134,37 @@ export default class FearTracker extends HandlebarsApplicationMixin(ApplicationV
         this.element.classList.add(fearPosition);
     }
 
-    static handleOffSet() {
+    handleOffset() {
         const fearTracker = document.getElementById('resources');
         const hotbar = document.getElementById('hotbar');
-
+        const countdowns = document.getElementById('countdowns');
         if (!fearTracker) return;
 
-        const offset = Number(hotbar.style.getPropertyValue('--offset').replace(/px$/, '')) || 0;
+        let offset = Math.max(0, Number(hotbar.style.getPropertyValue('--offset').replace(/px$/, '')) || 0);
+        offset -= 13;
 
-        if (offset > 0) return;
+        // If the countdowns overlaps the fear, offset some more. Countdown based offsets only need to be halved (due to centering)
+        if (this.fearPosition === 'topCenter') {
+            const effectsDisplay = document.getElementById('effects-display');
+            const top = document.getElementById('ui-top');
 
-        fearTracker.style.setProperty('--offset', `${offset - 13}px`);
+            // Logic derived from the internal code's ChatLog#offsetHotbar(). Since the sidebar might be mid animation, we can't really check directly.
+            const { uiScale } = game.settings.get('core', 'uiConfig');
+            const sidebarWidth = (348 * ui.sidebar.expanded) / uiScale;
+            const countdownsWidth = countdowns.getBoundingClientRect().width;
+            const effectsWidth = effectsDisplay.getBoundingClientRect().width;
+            const rightWidth = sidebarWidth + countdownsWidth + 16 + (effectsWidth ? 62 : 0);
+            const countdownLeftEdge = window.innerWidth - rightWidth - 16; // w/ extra padding
+
+            const topBounds = top.getBoundingClientRect();
+            const fearTrackerWidth = fearTracker.clientWidth;
+            const currentRightEdge = topBounds.right - (topBounds.width - fearTrackerWidth) / 2;
+            const countdownShift = countdownLeftEdge < currentRightEdge ? countdownLeftEdge - currentRightEdge : null
+            
+            offset = Math.min(offset, countdownShift ?? Infinity);
+        }
+
+        fearTracker.style.setProperty('--offset', `${offset}px`);
     }
 
     _onPosition(position) {

@@ -12,8 +12,10 @@ import { macros } from './module/_module.mjs';
 import * as dice from './module/dice/_module.mjs';
 import * as fields from './module/data/fields/_module.mjs';
 import { gameSettings } from './module/config/settingsConfig.mjs';
-import DhCountdowns from './module/data/countdowns.mjs';
 import DhAutomation from './module/data/settings/Automation.mjs';
+import FearTracker from './module/applications/ui/fearTracker.mjs';
+import DhCountdowns from './module/applications/ui/countdowns.mjs';
+import DhEffectsDisplay from './module/applications/ui/effectsDisplay.mjs';
 
 
 // Foundry's use of `Object.assign(globalThis) means many globally available objects are not read as such
@@ -115,4 +117,11 @@ declare module '@client/helpers/client-settings.mjs' {
         get(namespace: 'daggerheart', key: typeof gameSettings.Countdowns): DhCountdowns;
         get(namespace: 'daggerheart', key: string): unknown;
     }
+}
+
+// Add to global ui object
+declare module '@client/ui.mjs' {
+    const countdowns: DhCountdowns;
+    const resources: FearTracker;
+    const effectsDisplay: DhEffectsDisplay;
 }
