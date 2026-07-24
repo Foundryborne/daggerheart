@@ -248,6 +248,13 @@ export default class DHRoll extends BaseRoll {
         });
     }
 
+    /**
+     * Sums the values of all instances of ActiveEffect.change values from the toggleable bonusEffects of the roll 
+     * that match a given change.key partial path. Only for use on ActiveEffects.change with strictly numerical values.
+     * @param {string} path The full or partial effect.change key 
+     * @param {string} label The label to give the modifiers
+     * @returns {[label: string, value: any]}
+     */
     getTotalBonus(path) {
         return Object.values(this.options.bonusEffects).reduce((acc, effect) => {
             if (!effect.selected) return acc;
@@ -264,6 +271,13 @@ export default class DHRoll extends BaseRoll {
         }, 0);
     }
 
+    /**
+     * Grabs all instances of ActiveEffect.change values from the toggleable bonusEffects of the roll 
+     * that match a given change.key partial path.
+     * @param {string} path The full or partial effect.change key 
+     * @param {string} label The label to give the modifiers
+     * @returns {[label: string, value: any]}
+     */
     getBonus(path, label) {
         const modifiers = [];
         for (const effect of Object.values(this.options.bonusEffects)) {
