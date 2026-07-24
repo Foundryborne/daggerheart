@@ -3089,8 +3089,8 @@
                     "dealDamage": "Deal Damage",
                     "rollDamage": "Roll Damage",
                     "hitTarget": "Hit",
-                    "selectedTarget": "Selected",
-                    "currentTarget": "Current"
+                    "targettingInitial": "Target",
+                    "targettingSelected": "Selected"
                 },
                 "deathMove": {
                     "title": "Death Move",

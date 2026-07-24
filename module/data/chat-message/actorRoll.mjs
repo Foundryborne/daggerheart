@@ -3,23 +3,6 @@ import { ChatDamageData } from './chatDamageData.mjs';
 
 const fields = foundry.data.fields;
 
-const targetsField = () =>
-    new fields.ArrayField(
-        new fields.SchemaField({
-            id: new fields.StringField({}),
-            actorId: new fields.StringField({}),
-            name: new fields.StringField({}),
-            img: new fields.StringField({}),
-            difficulty: new fields.NumberField({ integer: true, nullable: true }),
-            evasion: new fields.NumberField({ integer: true }),
-            hit: new fields.BooleanField({ initial: false }),
-            saved: new fields.SchemaField({
-                result: new fields.NumberField(),
-                success: new fields.BooleanField({ nullable: true, initial: null })
-            })
-        })
-    );
-
 export const originItemField = () =>
     new fields.SchemaField({
         type: new fields.StringField({
@@ -31,11 +14,16 @@ export const originItemField = () =>
     });
 
 export default class DHActorRoll extends foundry.abstract.TypeDataModel {
+    constructor(data, options) {
+        super(data, options);
+
+        this.targeting = { usingSelect: !this.targets.length };
+    }
+
     static defineSchema() {
         return {
             title: new fields.StringField(),
             actionDescription: new fields.HTMLField(),
-            targets: targetsField(),
             hasRoll: new fields.BooleanField({ initial: false }),
             hasDamage: new fields.BooleanField({ initial: false }),
             hasHealing: new fields.BooleanField({ initial: false }),
@@ -45,6 +33,17 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             reloadCheckValue: new fields.NumberField({ integer: true, nullable: true, initial: null }),
             isDirect: new fields.BooleanField({ initial: false }),
             onSave: new fields.StringField(),
+            targets: new fields.ArrayField(
+                new fields.SchemaField({
+                    id: new fields.StringField({}),
+                    actorId: new fields.StringField({}),
+                    name: new fields.StringField({}),
+                    img: new fields.StringField({}),
+                    difficulty: new fields.NumberField({ integer: true, nullable: true }),
+                    evasion: new fields.NumberField({ integer: true })
+                })
+            ),
+            targetSaves: new fields.TypedObjectField(new fields.NumberField({ integer: true })),
             source: new fields.SchemaField({
                 actor: new fields.StringField(),
                 item: new fields.StringField(),
@@ -111,38 +110,36 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         return null;
     }
 
-    get targetMode() {
-        return this.parent.targetSelection;
-    }
+    get currentTargets() {
+        const getCommonData = data => {
+            const toHitNumber = data.difficulty || data.evasion;
+            const hitSuccessfull = (toHitNumber === null || !this.roll) ? false : this.roll.total >= toHitNumber;
 
-    set targetMode(mode) {
-        if (!this.parent.isAuthor) return;
-        this.parent.targetSelection = mode;
-        this.registerTargetHook();
-        this.updateTargets();
-    }
-
-    get hitTargets() {
-        return this.currentTargets.filter(t => t.hit || !this.hasRoll || !this.targetMode);
-    }
-
-    async updateTargets() {
-        if (!ui.chat.collection.get(this.parent.id)) return;
-        let targets;
-        if (this.targetMode) targets = this.targets;
-        else
-            targets = Array.from(game.user.targets).map(t =>
-                game.system.api.fields.ActionFields.TargetField.formatTarget(t)
-            );
-
-        await this.parent.update({
-            flags: {
-                [game.system.id]: {
-                    targets: targets,
-                    targetMode: this.targetMode
-                }
+            const saveValue = this.targetSaves[data.id];
+            const saveSuccessfull = saveValue === undefined ? false : 
+                saveValue >= (this.action.save.difficulty ?? this.action.actor?.baseSaveDifficulty);
+            
+            return {
+                ...data,
+                hitResult: this.hasRoll ? { success: hitSuccessfull } : null,
+                saveResult: saveValue ? { success: saveSuccessfull } : null
             }
-        });
+        };
+
+        if (!this.targeting.usingSelect) return this.targets.map(getCommonData);
+
+        return (canvas.tokens?.controlled ?? []).map(token => ({
+            id: token.id,
+            actorId: token.document.actor?.uuid,
+            name: token.document.prototype?.name ?? token.document.name,
+            img: token.document.texture.src,
+            difficulty: token.document.actor?.system.difficulty,
+            evasion: token.document.actor?.system.evasion
+        })).map(getCommonData);
+    }
+
+    get hasUnfinishedSaves() {
+        return this.hasSaves && this.currentTargets.some(x => !x.saveResult);
     }
 
     async getRerolledDamage() {
@@ -167,38 +164,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         return update;
     }
 
-    registerTargetHook() {
-        if (!this.parent.isAuthor || !this.hasTarget) return;
-        if (this.targetMode && this.parent.targetHook !== null) {
-            Hooks.off('targetToken', this.parent.targetHook);
-            return (this.parent.targetHook = null);
-        } else if (!this.targetMode && this.parent.targetHook === null) {
-            return (this.parent.targetHook = Hooks.on(
-                'targetToken',
-                foundry.utils.debounce(this.updateTargets.bind(this), 50)
-            ));
-        }
-    }
-
     prepareDerivedData() {
-        if (this.hasTarget) {
-            this.hasHitTarget = this.targets.filter(t => t.hit === true).length > 0;
-            this.currentTargets = this.getTargetList();
-            // this.registerTargetHook();
-
-            if (this.hasRoll) {
-                this.targetShort = this.targets.reduce(
-                    (a, c) => {
-                        if (c.hit) a.hit += 1;
-                        else a.miss += 1;
-                        return a;
-                    },
-                    { hit: 0, miss: 0 }
-                );
-            }
-            if (this.hasSave) this.setPendingSaves();
-        }
-
         this.canViewSecret = this.parent.speakerActor?.testUserPermission(game.user, 'OBSERVER');
         this.canButtonApply = game.user.isGM; //temp
         this.isGM = game.user.isGM; //temp
@@ -238,29 +204,5 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         }
         
         return source;
-    }
-
-
-    getTargetList() {
-        const targets =
-                this.targetMode && this.parent.isAuthor
-                    ? this.targets
-                    : (this.parent.getFlag(game.system.id, 'targets') ?? this.targets),
-            reactionRolls = this.parent.getFlag(game.system.id, 'reactionRolls');
-
-        if (reactionRolls) {
-            Object.entries(reactionRolls).forEach(([k, r]) => {
-                const target = targets.find(t => t.id === k);
-                if (target) target.saved = r;
-            });
-        }
-
-        return targets;
-    }
-
-    setPendingSaves() {
-        this.pendingSaves = this.targetMode
-            ? this.targets.filter(target => target.hit && target.saved.success === null).length > 0
-            : this.currentTargets.filter(target => target.saved.success === null).length > 0;
     }
 }

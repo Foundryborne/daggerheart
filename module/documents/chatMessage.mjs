@@ -1,14 +1,28 @@
 import { emitGMUpdate, emitGMCreate, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 
 export default class DhpChatMessage extends foundry.documents.ChatMessage {
-    targetHook = null;
-
     static #EXPAND_SECTIONS = [
         { selector: '.roll-section [data-action="expandRoll"]', key: 'roll' },
         { selector: '.damage-section', key: 'damage' },
         { selector: '.target-section', key: 'target' },
         { selector: '.description-section', key: 'desc' }
     ];
+
+    constructor(data, options) {
+        super(data, options);
+
+        this.setupHooks();
+    }
+
+    setupHooks() {
+        if (this.system.hasTarget) {
+            Hooks.on('controlToken', this.onSelectToken.bind(this));
+        }
+    }
+
+    async onSelectToken() {
+        await this.update({}, { diff: false });
+    }
 
     async renderHTML() {
         const actor = game.actors.get(this.speaker.actor);
@@ -35,28 +49,6 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     /* -------------------------------------------- */
 
     /** @inheritDoc */
-    prepareData() {
-        if (this.isAuthor && this.targetSelection === undefined) this.targetSelection = this.system.targets?.length > 0;
-        super.prepareData();
-    }
-
-    /* -------------------------------------------- */
-
-    /** @inheritDoc */
-    _onCreate(data, options, userId) {
-        super._onCreate(data, options, userId);
-        if (this.system.registerTargetHook) this.system.registerTargetHook();
-    }
-
-    /* -------------------------------------------- */
-
-    /** @inheritDoc */
-    async _preDelete(options, user) {
-        if (this.targetHook !== null) Hooks.off('targetToken', this.targetHook);
-        return super._preDelete(options, user);
-    }
-
-    /** @inheritDoc */
     _onUpdate(changes, options, userId) {
         super._onUpdate(changes, options, userId);
 
@@ -66,6 +58,12 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                 ui.chat.scrollBottom();
             }, 5);
         }
+    }
+
+    _onDelete(options, userId) {
+        super._onDelete(options, userId);
+
+        Hooks.off('targetToken', this.onSelectToken);
     }
 
     enrichChatMessage(html) {
@@ -184,23 +182,20 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
     async onApplyDamage(event) {
         event.stopPropagation();
-        const targets = this.filterPermTargets(this.system.hitTargets),
-            config = foundry.utils.deepClone(this.system);
+        const targets = this.system.currentTargets;
+        const config = foundry.utils.deepClone(this.system);
         config.event = event;
 
-        if (config.hasSave) {
-            const pendingingSaves = targets.filter(t => t.saved.success === null);
-            if (pendingingSaves.length) {
-                const confirm = await foundry.applications.api.DialogV2.confirm({
-                    window: { title: game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.title') },
-                    content: `
-                        <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p>
-                        <p><i>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>
-                        <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p>
-                    `
-                });
-                if (!confirm) return;
-            }
+        if (this.system.hasUnfinishedSaves) {
+            const confirm = await foundry.applications.api.DialogV2.confirm({
+                window: { title: game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.title') },
+                content: `
+                    <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p>
+                    <p><i>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>
+                    <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p>
+                `
+            });
+            if (!confirm) return;
         }
 
         if (targets.length === 0)
@@ -210,7 +205,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         if (this.system.action) this.system.action.workflow.get('applyDamage')?.execute(config, targets, true);
         else {
             for (const target of targets) {
-                const actor = await foundry.utils.fromUuid(target.actorId);
+                const actor = target.document.actor;
                 if (!actor) continue;
 
                 if (this.system.hasHealing) actor.takeHealing(this.system.damage);
@@ -250,34 +245,33 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     async onRollAllSave(event) {
         event.stopPropagation();
         if (!game.user.isGM) return;
-        const targets = this.system.hitTargets,
-            config = foundry.utils.deepClone(this.system);
+        const targets = this.system.currentTargets;
+        const config = foundry.utils.deepClone(this.system);
         config.event = event;
         this.system.action?.workflow.get('save')?.execute(config, targets, true);
     }
 
     async onApplyEffect(event) {
         event.stopPropagation();
-        const targets = this.filterPermTargets(this.system.hitTargets),
-            config = foundry.utils.deepClone(this.system);
+        const targets = this.system.currentTargets;
+        const config = foundry.utils.deepClone(this.system);
         config.event = event;
 
         if (targets.length === 0)
             return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelectedOrPerm'));
-        else if (config.hasSave) {
-            const pendingingSaves = targets.filter(t => t.saved.success === null);
-            if (pendingingSaves.length) {
-                const confirm = await foundry.applications.api.DialogV2.confirm({
-                    window: { title: game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.title') },
-                    content: `
-                        <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p>
-                        <p><i>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>
-                        <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p>
-                    `
-                });
-                if (!confirm) return;
-            }
+
+        if (this.system.hasUnfinishedSaves) {
+            const confirm = await foundry.applications.api.DialogV2.confirm({
+                window: { title: game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.title') },
+                content: `
+                    <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p>
+                    <p><i>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>
+                    <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p>
+                `
+            });
+            if (!confirm) return;
         }
+        
 
         this.consumeOnSuccess();
         this.system.action?.workflow.get('effects')?.execute(config, targets, true);
@@ -358,12 +352,8 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         }
     }
 
-    filterPermTargets(targets) {
-        return targets.filter(t => fromUuidSync(t.actorId)?.canUserModify(game.user, 'update'));
-    }
-
     consumeOnSuccess() {
-        if (!this.system.successConsumed && !this.targetSelection) this.system.action?.consume(this.system, true);
+        if (!this.system.successConsumed && !this.system.targets) this.system.action?.consume(this.system, true);
     }
 
     hoverTarget(event) {
@@ -389,7 +379,9 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
     onTargetSelection(event) {
         event.stopPropagation();
-        if (!event.target.classList.contains('target-selected'))
-            this.system.targetMode = Boolean(event.target.dataset.targetHit);
+        if (!event.target.classList.contains('target-selected')) {
+            this.system.targeting.usingSelect = Boolean(event.target.dataset.selected);
+            this.update({}, { diff: false });
+        }
     }
 }

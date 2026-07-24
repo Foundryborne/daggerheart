@@ -48,7 +48,9 @@ export default class EffectsField extends fields.ArrayField {
         let effects = this.effects;
         const messageTargets = [];
         targets.forEach(async baseToken => {
-            if (this.hasSave && baseToken.saved.success === true) effects = this.effects.filter(e => e.onSave === true);
+            if (this.hasSave && baseToken.saveResult.success === true) 
+                effects = this.effects.filter(e => e.onSave === true);
+            
             if (!effects.length) return;
 
             const token =

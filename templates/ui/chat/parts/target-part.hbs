@@ -1,5 +1,6 @@
 <div class="roll-part target-section dice-roll" data-action="expandRoll">
     <div class="roll-part-header"><div><span>{{pluralize currentTargets.length "DAGGERHEART.GENERAL.Target"}}</span></div></div>
+
     {{#if (or isGM (not metagamingSettings.hideObserverPermissionInChat))}}
         <div class="roll-part-extra on-reduced">
             <div class="wrapper">
@@ -14,25 +15,25 @@
     <div class="roll-part-content dice-result">
         <div class="dice-tooltip">
             <div class="wrapper">
-                {{#if (and parent.isAuthor targets.length)}}
+                {{#if (and isGM parent.isAuthor)}}
                     <div class="target-selector">
                         <div class="roll-part-header"><div></div></div>
                         <div class="target-choice">
-                            <div class="button-target-selection{{#if targetMode}} target-selected{{/if}}" data-target-hit="true">{{localize "DAGGERHEART.UI.Chat.damageRoll.hitTarget"}}</div>
-                            <div class="button-target-selection{{#unless targetMode}} target-selected{{/unless}}">{{localize "DAGGERHEART.UI.Chat.damageRoll.currentTarget"}}</div>
+                            <div class="button-target-selection{{#unless parent.system.targeting.usingSelect}} target-selected{{/unless}}">{{localize "DAGGERHEART.UI.Chat.damageRoll.targettingInitial"}}</div>
+                            <div class="button-target-selection{{#if parent.system.targeting.usingSelect}} target-selected{{/if}}" data-selected="true">{{localize "DAGGERHEART.UI.Chat.damageRoll.targettingSelected"}}</div>
                         </div>
                         <div class="roll-part-header"><div></div></div>
                     </div>
                 {{/if}}
-                {{#if (and hasSave currentTargets.length)}}<div class="roll-part-extra roll-all-save-button">{{localize "DAGGERHEART.UI.Chat.saveRoll.reactionRollAllTargets"}}<i class="fa-solid fa-shield fa-lg"></i></div>{{/if}}
-                {{#each currentTargets}}
+                {{#if (and hasSave parent.system.currentTargets.length)}}<div class="roll-part-extra roll-all-save-button">{{localize "DAGGERHEART.UI.Chat.saveRoll.reactionRollAllTargets"}}<i class="fa-solid fa-shield fa-lg"></i></div>{{/if}}
+                {{#each parent.system.currentTargets}}
                     <div class="roll-target" data-token="{{id}}">
                         <img class="target-img" src="{{img}}">
                         <div class="target-data">
                             <div class="target-name"><span>{{name}}</span></div>
-                            {{#if (and ../hasRoll (hasProperty this "hit"))}}
-                                <div class="target-hit-status {{#if hit}}is-hit{{else}}is-miss{{/if}}" data-perm-id="{{actorId}}" data-perm-hidden="true">
-                                    {{#if hit}}
+                            {{#if (and ../hasRoll hitResult)}}
+                                <div class="target-hit-status {{#if hitResult.success}}is-hit{{else}}is-miss{{/if}}" data-perm-id="{{actorId}}" data-perm-hidden="true">
+                                    {{#if hitResult.success}}
                                         {{localize "DAGGERHEART.GENERAL.hit.single"}}
                                     {{else}}
                                         {{localize "DAGGERHEART.GENERAL.miss.single"}}
@@ -40,9 +41,9 @@
                                 </div>
                             {{/if}}
                         </div>
-                        {{#if (and ../hasSave (or hit (not @root.hasRoll) (not @root.targetMode)))}}
-                            <div class="target-save{{#if saved.result includeZero=true}} is-rolled{{/if}}" data-perm-id="{{actorId}}">
-                                <i class="fa-solid {{#if saved.result includeZero=true}}{{#if saved.success}}fa-check{{else}}fa-xmark{{/if}}{{else}}fa-shield{{/if}} fa-lg"></i>
+                        {{#if ../hasSave }}
+                            <div class="target-save{{#if saveResult}} is-rolled{{/if}}" data-perm-id="{{actorId}}">
+                                <i class="fa-solid {{#if saveResult}}{{#if saveResult.success}}fa-check{{else}}fa-xmark{{/if}}{{else}}fa-shield{{/if}} fa-lg"></i>
                             </div>
                         {{/if}}
                     </div>
