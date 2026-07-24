@@ -6,6 +6,11 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
 
         this.roll = roll;
         this.config = config;
+        
+        /** The original isCritical state before any alterations in the dialog. 
+         * Used for checking if the state has been altered 
+         */  
+        this.originalIsCritical = config.isCritical;
         this.selectedEffects = this.config.bonusEffects;
     }
 
@@ -121,6 +126,22 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
     }
 
     static async submitRoll() {
+        /* Sideeffect occuring in constructFormulas that sets this.config.isCritical to the false value. Can remove the below if it can be prevented */
+        const sideEffectSafeIsCritical = this.config.isCritical;
+        const { damageFormula, resourceFormulas } = this.roll.constructFormulas({ ...this.config, isCritical: false }); 
+
+        this.config.isCritical = sideEffectSafeIsCritical;
+
+        /* If the isCritical state has been altered in the dialog, we update the roll options */
+        if (this.config.isCritical !== this.originalIsCritical) {
+            damageFormula.roll.options.isCritical = this.config.isCritical;
+
+            for (const formula of resourceFormulas)
+                formula.roll.optionsisCritical = this.config.isCritical;
+        }
+
+        this.config.damageFormula = damageFormula;
+        this.config.resourceFormulas = resourceFormulas;
         await this.close({ submitted: true });
     }
 

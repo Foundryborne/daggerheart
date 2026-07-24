@@ -495,9 +495,8 @@ export function expireActiveEffects(actor, allowedTypes = null) {
     actor.deleteEmbeddedDocuments('ActiveEffect', effectsToExpire);
 }
 
-export async function getCritDamageBonus(formula) {
-    const critRoll = new Roll(formula);
-    await critRoll.evaluate();
+export function getCritDamageBonus(terms) {
+    const critRoll = Roll.fromTerms(terms);
     return critRoll.dice.reduce((acc, dice) => acc + dice.faces * dice.results.filter(r => r.active).length, 0);
 }
 
