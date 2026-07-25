@@ -198,7 +198,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         }
 
         if (targets.length === 0)
-            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelectedOrPerm'));
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
 
         this.consumeOnSuccess();
         if (this.system.action) this.system.action.workflow.get('applyDamage')?.execute(config, targets, true);
@@ -257,7 +257,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         config.event = event;
 
         if (targets.length === 0)
-            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelectedOrPerm'));
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
 
         if (this.system.hasUnfinishedSaves) {
             const confirm = await foundry.applications.api.DialogV2.confirm({
