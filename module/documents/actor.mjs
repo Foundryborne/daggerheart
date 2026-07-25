@@ -165,6 +165,12 @@ export default class DhpActor extends Actor {
         }
     }
 
+    /**
+     * Get the bools for if the actor is resistant or immune to damage carrying certain damageTypes.
+     * An actor has to be resistant or immune to -all- related damageTypes for it to count.
+     * @param {string[]} damageTypes 
+     * @returns { resistant: bool, immune: bool }
+     */
     getResistanceStatus(damageTypes) {
         let resistant = null;
         let immune = null;
