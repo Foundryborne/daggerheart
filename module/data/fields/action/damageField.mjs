@@ -105,15 +105,29 @@ export default class DamageField extends fields.SchemaField {
                 const configDamage = config.damage.clone();
                 configDamage.main &&= configDamage.main.toJSON();
                 if (configDamage.main) {
-                    const multiplier = config.actionActor?.system.rules?.attack?.damage?.hpDamageMultiplier ?? 1;
                     const takenMultiplier = actor.system.rules?.attack?.damage?.hpDamageTakenMultiplier;
-                    configDamage.main.total = Math.ceil(configDamage.main.total * multiplier * takenMultiplier);
+                    configDamage.main.total = Math.ceil(configDamage.main.total * takenMultiplier);
                 }
 
                 damagePromises.push(
                     actor
                         .takeDamage(configDamage, config.isDirect)
-                        .then(updates => targetDamage.push({ token, updates }))
+                        .then(updates => { 
+                            const resistanceData = 
+                                token.actor?.getResistanceStatus(configDamage.main?.options.damageTypes);
+                            const tokenData = {
+                                id: token.id, 
+                                name: token.prototype?.name ?? token.name, 
+                                img: token.texture.src,
+                                resistant: resistanceData?.resistant,
+                                immune: resistanceData?.immune
+                            };
+                            
+                            targetDamage.push({
+                                token: tokenData,
+                                updates 
+                            })
+                        })
                 );
             }
         }
@@ -124,6 +138,11 @@ export default class DamageField extends fields.SchemaField {
                 CONFIG.DH.SETTINGS.gameSettings.Automation
             ).summaryMessages;
             if (!summaryMessageSettings.damage) return;
+
+            const { hideObserverPermissionInChat } = game.settings.get(
+                CONFIG.DH.id,
+                CONFIG.DH.SETTINGS.gameSettings.Metagaming
+            );
 
             const cls = getDocumentClass('ChatMessage');
             const msg = {
@@ -136,7 +155,8 @@ export default class DamageField extends fields.SchemaField {
                 content: await foundry.applications.handlebars.renderTemplate(
                     'systems/daggerheart/templates/ui/chat/damageSummary.hbs',
                     {
-                        targets: targetDamage
+                        targets: targetDamage,
+                        hideObserverPermissionInChat
                     }
                 )
             };

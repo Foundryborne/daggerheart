@@ -112,17 +112,28 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
 
     get currentTargets() {
         const getCommonData = data => {
+            const actor = data.actorId ? foundry.utils.fromUuidSync(data.actorId) : null;
             const toHitNumber = data.difficulty || data.evasion;
             const hitSuccessfull = (toHitNumber === null || !this.roll) ? false : this.roll.total >= toHitNumber;
 
             const saveValue = this.targetSaves[data.id];
             const saveSuccessfull = saveValue === undefined ? false : 
                 saveValue >= (this.action.save.difficulty ?? this.action.actor?.baseSaveDifficulty);
-            
+
+            let resistant = false;
+            let immune = false;
+            if (this.hasDamage && this.damage.active && actor) {
+                const data = actor.getResistanceStatus(this.damage.main.options.damageTypes);
+                resistant = data.resistant;
+                immune = data.immune;
+            }
+
             return {
                 ...data,
                 hitResult: this.hasRoll ? { success: hitSuccessfull } : null,
-                saveResult: saveValue ? { success: saveSuccessfull } : null
+                saveResult: saveValue ? { success: saveSuccessfull } : null,
+                resistant,
+                immune
             }
         };
 

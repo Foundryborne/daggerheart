@@ -24,25 +24,31 @@
                         </div>
                         <div class="roll-part-header"><div></div></div>
                     </div>
+                    {{#if (and hasSave parent.system.currentTargets.length)}}<div class="roll-part-extra roll-all-save-button">{{localize "DAGGERHEART.UI.Chat.saveRoll.reactionRollAllTargets"}}<i class="fa-solid fa-shield fa-lg"></i></div>{{/if}}
                 {{/if}}
-                {{#if (and hasSave parent.system.currentTargets.length)}}<div class="roll-part-extra roll-all-save-button">{{localize "DAGGERHEART.UI.Chat.saveRoll.reactionRollAllTargets"}}<i class="fa-solid fa-shield fa-lg"></i></div>{{/if}}
                 {{#each parent.system.currentTargets}}
                     <div class="roll-target" data-token="{{id}}">
                         <img class="target-img" src="{{img}}">
                         <div class="target-data">
                             <div class="target-name"><span>{{name}}</span></div>
-                            {{#if (and ../hasRoll hitResult)}}
-                                <div class="target-hit-status {{#if hitResult.success}}is-hit{{else}}is-miss{{/if}}" data-perm-id="{{actorId}}" data-perm-hidden="true">
-                                    {{#if hitResult.success}}
-                                        {{localize "DAGGERHEART.GENERAL.hit.single"}}
-                                    {{else}}
-                                        {{localize "DAGGERHEART.GENERAL.miss.single"}}
-                                    {{/if}}
-                                </div>
-                            {{/if}}
+                            <div class="target-roll-status" data-perm-id="{{actorId}}" data-perm-hidden="true">
+                                {{#if (and ../hasRoll hitResult)}}
+                                    <div class="target-hit-status {{#if hitResult.success}}is-hit{{else}}is-miss{{/if}}">
+                                        {{#if hitResult.success}}
+                                            {{localize "DAGGERHEART.GENERAL.hit.single"}}
+                                        {{else}}
+                                            {{localize "DAGGERHEART.GENERAL.miss.single"}}
+                                        {{/if}}
+                                    </div>
+                                {{/if}}
+                                {{#if (and ../hasDamage ../damage.active)}}
+                                    {{#if resistant}}<div class="target-resistance-container resistant">{{localize "Resistant"}}</div>{{/if}}
+                                    {{#if immune}}<div class="target-resistance-container immune">{{localize "Immune"}}</div>{{/if}}
+                                {{/if}}
+                            </div>
                         </div>
                         {{#if ../hasSave }}
-                            <div class="target-save{{#if saveResult}} is-rolled{{/if}}" data-perm-id="{{actorId}}">
+                            <div class="target-save{{#if saveResult}} is-rolled{{/if}}" data-perm-id="{{actorId}}" data-perm-hidden="true">
                                 <i class="fa-solid {{#if saveResult}}{{#if saveResult.success}}fa-check{{else}}fa-xmark{{/if}}{{else}}fa-shield{{/if}} fa-lg"></i>
                             </div>
                         {{/if}}
