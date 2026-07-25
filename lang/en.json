@@ -3089,7 +3089,7 @@
                     "dealDamage": "Deal Damage",
                     "rollDamage": "Roll Damage",
                     "hitTarget": "Hit",
-                    "targettingInitial": "Target",
+                    "targettingInitial": "Targets",
                     "targettingSelected": "Selected"
                 },
                 "deathMove": {
