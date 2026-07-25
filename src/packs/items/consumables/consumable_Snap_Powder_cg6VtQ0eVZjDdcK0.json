@@ -17,6 +17,14 @@
         "cost": [
           {
             "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          },
+          {
+            "scalable": false,
             "key": "quantity",
             "value": 1,
             "itemId": "cg6VtQ0eVZjDdcK0",
@@ -60,7 +68,7 @@
           "includeBase": false
         },
         "target": {
-          "type": "self",
+          "type": "",
           "amount": null
         },
         "effects": [],

@@ -7,13 +7,19 @@
     "description": "<p>You can use this stitcher to spend any number of Hope and clear that many Armor Slots.</p>",
     "quantity": 1,
     "actions": {
-      "htoGx8qrv8trds81": {
-        "type": "effect",
-        "_id": "htoGx8qrv8trds81",
+      "abD6jRVvOJnKUQaE": {
+        "type": "healing",
+        "_id": "abD6jRVvOJnKUQaE",
         "systemPath": "actions",
-        "description": "<p>You can use this stitcher to spend any number of Hope and clear that many Armor Slots.</p>",
+        "baseAction": false,
+        "description": "",
         "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
         "actionType": "action",
+        "triggers": [],
+        "areas": [],
         "cost": [
           {
             "scalable": true,
@@ -35,16 +41,61 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
-        "effects": [],
+        "damage": {
+          "main": null,
+          "resources": {
+            "armor": {
+              "base": false,
+              "applyTo": "armor",
+              "resultBased": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": true,
+                  "formula": "@scale"
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
+        },
         "target": {
-          "type": "self",
+          "type": "",
           "amount": null
         },
-        "name": "Stitch",
-        "img": "icons/skills/trades/textiles-stitching-leather-brown.webp",
-        "range": "self"
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Spend Hope",
+        "range": ""
       }
     },
     "consumeOnUse": true,

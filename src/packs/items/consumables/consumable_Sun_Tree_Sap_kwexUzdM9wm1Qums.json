@@ -34,7 +34,7 @@
           "includeBase": false
         },
         "target": {
-          "type": "any",
+          "type": "",
           "amount": null
         },
         "effects": [],

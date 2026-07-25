@@ -31,7 +31,7 @@
         },
         "effects": [],
         "target": {
-          "type": "any",
+          "type": "",
           "amount": null
         },
         "name": "Use",
