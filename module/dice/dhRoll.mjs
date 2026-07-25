@@ -275,7 +275,7 @@ export default class DHRoll extends BaseRoll {
      * that match a given change.key partial path.
      * @param {string} path The full or partial effect.change key 
      * @param {string} label The label to give the modifiers
-     * @returns {[label: string, value: any]}
+     * @returns {[{ label: string, value: any} ]}
      */
     getBonus(path, label) {
         const modifiers = [];
