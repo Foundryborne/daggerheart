@@ -142,6 +142,33 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         return this.hasSaves && this.currentTargets.some(x => !x.saveResult);
     }
 
+    syncSelectedTokens = foundry.utils.debounce(async () => {
+        if (!this.targeting.usingSelect) return;
+        
+        this.updateTargetHTML();
+    }, 50);
+
+    /**
+     * Updates the target section of the chat message through direct HTML manipulation.
+     * Listeners are reattched.
+     */
+    async updateTargetHTML() {
+        const targetTokensHTML = await foundry.applications.handlebars.renderTemplate(
+            'systems/daggerheart/templates/ui/chat/parts/target-tokens-part.hbs',
+            {
+                targeting: this.targeting,
+                currentTargets: this.currentTargets,
+                hasSave: this.hasSave,
+                hasRoll: this.hasRoll,
+                isGM: game.user.isGM
+            }
+        );
+        const chatMessageHTML = ui.chat.element.querySelector(`.chat-message[data-message-id="${this.parent.id}"]`);
+        const element = chatMessageHTML.querySelector('.chat-roll .target-section .roll-part-content .wrapper');
+        element.outerHTML = targetTokensHTML;
+        this.parent.addTargetSectionListeners(chatMessageHTML);
+    }
+
     async getRerolledDamage() {
         if (!this.damage.active) return;
 

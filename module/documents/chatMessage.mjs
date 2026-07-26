@@ -20,7 +20,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     }
 
     async onSelectToken() {
-        await this.update({}, { diff: false });
+        this.system.syncSelectedTokens();
     }
 
     async renderHTML() {
@@ -132,14 +132,6 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             element.addEventListener('click', this.onApplyDamage.bind(this))
         );
 
-        html.querySelectorAll('.target-save').forEach(element =>
-            element.addEventListener('click', this.onRollSave.bind(this))
-        );
-
-        html.querySelectorAll('.roll-all-save-button').forEach(element =>
-            element.addEventListener('click', this.onRollAllSave.bind(this))
-        );
-
         html.querySelectorAll('.duality-action-effect').forEach(element =>
             element.addEventListener('click', this.onApplyEffect.bind(this))
         );
@@ -147,6 +139,18 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         for (const element of html.querySelectorAll('.action-areas')) {
             element.addEventListener('click', this.onCreateAreas.bind(this));
         }
+
+        this.addTargetSectionListeners(html);
+    }
+
+    addTargetSectionListeners(html) {
+        html.querySelectorAll('.roll-all-save-button').forEach(element =>
+            element.addEventListener('click', this.onRollAllSave.bind(this))
+        );
+
+        html.querySelectorAll('.target-save').forEach(element =>
+            element.addEventListener('click', this.onRollSave.bind(this))
+        );
 
         html.querySelectorAll('.roll-target').forEach(element => {
             element.addEventListener('mouseenter', this.hoverTarget);
@@ -380,7 +384,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         event.stopPropagation();
         if (!event.target.classList.contains('target-selected')) {
             this.system.targeting.usingSelect = Boolean(event.target.dataset.selected);
-            this.update({}, { diff: false });
+            this.system.updateTargetHTML();
         }
     }
 }
