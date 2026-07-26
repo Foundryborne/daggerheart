@@ -158,6 +158,10 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             element.addEventListener('click', this.clickTarget);
         });
 
+        html.querySelectorAll('.selected-to-targets-button').forEach(element => {
+            element.addEventListener('click', this.onSelectedToTargets.bind(this));
+        });
+
         html.querySelectorAll('.button-target-selection').forEach(element => {
             element.addEventListener('click', this.onTargetSelection.bind(this));
         });
@@ -185,7 +189,13 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
     async onApplyDamage(event) {
         event.stopPropagation();
-        const targets = this.system.currentTargets;
+        if (this.system.currentTargets.length === 0)
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
+
+        const targets = this.system.currentHitTargets;
+        if (targets.length === 0)
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsHit'));
+
         const config = foundry.utils.deepClone(this.system);
         config.event = event;
 
@@ -200,9 +210,6 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             });
             if (!confirm) return;
         }
-
-        if (targets.length === 0)
-            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
 
         this.consumeOnSuccess();
         if (this.system.action) this.system.action.workflow.get('applyDamage')?.execute(config, targets, true);
@@ -219,8 +226,9 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
     async onRollSave(event) {
         event.stopPropagation();
-        const tokenId = event.target.closest('[data-token]')?.dataset.token,
-            token = game.canvas.tokens.get(tokenId);
+        const tokenId = event.target.closest('[data-token]')?.dataset.token;
+        const token = game.canvas.tokens.get(tokenId);
+        
         if (!token?.actor || !token.isOwner) return true;
         if (this.system.source.item && this.system.source.action) {
             const action = this.system.action;
@@ -248,7 +256,8 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     async onRollAllSave(event) {
         event.stopPropagation();
         if (!game.user.isGM) return;
-        const targets = this.system.currentTargets;
+        
+        const targets = this.system.currentHitTargets;
         const config = foundry.utils.deepClone(this.system);
         config.event = event;
         this.system.action?.workflow.get('save')?.execute(config, targets, true);
@@ -256,12 +265,15 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
     async onApplyEffect(event) {
         event.stopPropagation();
-        const targets = this.system.currentTargets;
+        if (this.system.currentTargets.length === 0)
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
+        
+        const targets = this.system.currentHitTargets;
+        if (targets.length === 0)
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsHit'));
+
         const config = foundry.utils.deepClone(this.system);
         config.event = event;
-
-        if (targets.length === 0)
-            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
 
         if (this.system.hasUnfinishedSaves) {
             const confirm = await foundry.applications.api.DialogV2.confirm({
@@ -378,6 +390,11 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             return;
         }
         game.canvas.pan(token);
+    }
+
+    onSelectedToTargets(event) {
+        event.stopPropagation();
+        this.system.setSelectedAsTargets();
     }
 
     onTargetSelection(event) {
