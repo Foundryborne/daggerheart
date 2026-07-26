@@ -126,8 +126,7 @@ export default class DhAppearance extends foundry.abstract.DataModel {
             if (this.displayFear === 'hide') {
                 ui.resources.close({ allowed: true });
             } else {
-                ui.resources.render({ force: true });
-                ui.resources.handleOffset();
+                ui.resources.render({ force: true }).then(() => ui.resources.handleOffset());
             }
         }
 

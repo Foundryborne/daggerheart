@@ -4,7 +4,7 @@
             {{#if hasHealing}}
                 <span>{{localize "DAGGERHEART.ACTIONS.TYPES.healing.name"}}</span>
             {{else}}
-                <span>{{localize (ifThen roll.isCritical "DAGGERHEART.ACTIONS.TYPES.damage.critical" "DAGGERHEART.ACTIONS.TYPES.damage.name")}}</span>
+                <span>{{localize (ifThen damage.main.isCritical "DAGGERHEART.ACTIONS.TYPES.damage.critical" "DAGGERHEART.ACTIONS.TYPES.damage.name")}}</span>
             {{/if}}
         </div>
     </div>

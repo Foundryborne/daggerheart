@@ -149,11 +149,12 @@ export default class FearTracker extends HandlebarsApplicationMixin(ApplicationV
             const top = document.getElementById('ui-top');
 
             // Logic derived from the internal code's ChatLog#offsetHotbar(). Since the sidebar might be mid animation, we can't really check directly.
+            // Treat effects as always open to minimize UI shifting
             const { uiScale } = game.settings.get('core', 'uiConfig');
             const sidebarWidth = (348 * ui.sidebar.expanded) / uiScale;
             const countdownsWidth = countdowns.getBoundingClientRect().width;
-            const effectsWidth = effectsDisplay.getBoundingClientRect().width;
-            const rightWidth = sidebarWidth + countdownsWidth + 16 + (effectsWidth ? 62 : 0);
+            const effectsWidth = Math.max(46, effectsDisplay.getBoundingClientRect().width);
+            const rightWidth = sidebarWidth + countdownsWidth + 16 + effectsWidth + 16;
             const countdownLeftEdge = window.innerWidth - rightWidth - 16; // w/ extra padding
 
             const topBounds = top.getBoundingClientRect();
