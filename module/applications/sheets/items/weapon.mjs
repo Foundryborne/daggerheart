@@ -2,7 +2,7 @@ import DHBaseItemSheet from '../api/base-item.mjs';
 import ItemAttachmentSheet from '../api/item-attachment-sheet.mjs';
 
 export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
-    /**@inheritdoc */
+    /** @inheritdoc */
     static DEFAULT_OPTIONS = {
         classes: ['weapon'],
         tagifyConfigs: [
@@ -14,27 +14,29 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
         ]
     };
 
-    /**@override */
+    /** @inheritdoc */
     static PARTS = {
         header: { template: 'systems/daggerheart/templates/sheets/items/weapon/header.hbs' },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
-        description: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-description.hbs' },
+        description: { 
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-description.hbs',
+            scrollable: ['.description-section']
+        },
         actions: {
             template: 'systems/daggerheart/templates/sheets/global/tabs/tab-actions.hbs',
-            scrollable: ['.actions']
+            scrollable: ['']
         },
         settings: {
             template: 'systems/daggerheart/templates/sheets/items/weapon/settings.hbs',
-            scrollable: ['.settings']
+            scrollable: ['']
         },
         effects: {
             template: 'systems/daggerheart/templates/sheets/global/tabs/tab-effects.hbs',
-            scrollable: ['.effects']
-        },
-        ...super.PARTS
+            scrollable: ['']
+        }
     };
 
-    /**@inheritdoc */
+    /** @inheritdoc */
     async _preparePartContext(partId, context) {
         await super._preparePartContext(partId, context);
         switch (partId) {
