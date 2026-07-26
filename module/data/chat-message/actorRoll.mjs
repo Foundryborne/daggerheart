@@ -143,9 +143,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     }
 
     syncSelectedTokens = foundry.utils.debounce(async () => {
-        if (!this.targeting.usingSelect) return;
-        
-        this.updateTargetHTML();
+        if (this.targeting.usingSelect) this.updateTargetHTML();
     }, 50);
 
     /**
