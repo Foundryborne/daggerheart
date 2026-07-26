@@ -39,7 +39,7 @@
         <div class="selected-targets-container">
             {{#with selectedTargetsData}}
                 {{#each tokens as |target|}}
-                    <div class="roll-target">
+                    <div class="roll-target" data-token="{{target.id}}">
                         <img class="target-img" src="{{target.img}}" />
                     </div>
                 {{/each}}

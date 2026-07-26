@@ -211,7 +211,6 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             if (!confirm) return;
         }
 
-        this.consumeOnSuccess();
         if (this.system.action) this.system.action.workflow.get('applyDamage')?.execute(config, targets, true);
         else {
             for (const target of targets) {
@@ -287,8 +286,6 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             if (!confirm) return;
         }
         
-
-        this.consumeOnSuccess();
         this.system.action?.workflow.get('effects')?.execute(config, targets, true);
     }
 
@@ -367,10 +364,6 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         }
     }
 
-    consumeOnSuccess() {
-        if (!this.system.successConsumed) this.system.action?.consume(this.system, true);
-    }
-
     hoverTarget(event) {
         event.stopPropagation();
         const token = canvas.tokens.get(event.currentTarget.dataset.token);
@@ -394,7 +387,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
     onSelectedToTargets(event) {
         event.stopPropagation();
-        this.system.setSelectedAsTargets();
+        this.update({ 'system.targets': this.system.currentTargets });
     }
 
     onTargetSelection(event) {

@@ -190,10 +190,6 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         element.outerHTML = targetTokensHTML;
         this.parent.addTargetSectionListeners(chatMessageHTML);
     }
-    
-    setSelectedAsTargets() {
-        this.parent.update({ 'system.targets': this.currentTargets });
-    }
 
     async getRerolledDamage() {
         if (!this.damage.active) return;
