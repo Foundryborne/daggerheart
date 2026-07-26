@@ -162,7 +162,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     }
 
     get hasUnfinishedSaves() {
-        return this.hasSaves && this.currentHitTargets.some(x => !x.saveResult);
+        return this.hasSave && this.currentHitTargets.some(x => !x.saveResult);
     }
 
     syncSelectedTokens = foundry.utils.debounce(async () => {

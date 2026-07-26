@@ -62,7 +62,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     _onDelete(options, userId) {
         super._onDelete(options, userId);
 
-        Hooks.off('targetToken', this.onSelectToken);
+        Hooks.off('controlToken', this.onSelectToken);
     }
 
     enrichChatMessage(html) {
@@ -368,7 +368,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     }
 
     consumeOnSuccess() {
-        if (!this.system.successConsumed && !this.system.targets) this.system.action?.consume(this.system, true);
+        if (!this.system.successConsumed) this.system.action?.consume(this.system, true);
     }
 
     hoverTarget(event) {

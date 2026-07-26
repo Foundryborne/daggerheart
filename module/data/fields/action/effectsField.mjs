@@ -48,10 +48,10 @@ export default class EffectsField extends fields.ArrayField {
         let effects = this.effects;
         const messageTargets = [];
         for (const baseToken of targets) {
-            if (this.hasSave && baseToken.saveResult.success === true) 
+            if (this.hasSave && baseToken.saveResult?.success === true) 
                 effects = this.effects.filter(e => e.onSave === true);
             
-            if (!effects.length) return;
+            if (!effects.length) continue;
 
             const token =
                 canvas.tokens.get(baseToken.id) ?? foundry.utils.fromUuidSync(baseToken.actorId).prototypeToken;
@@ -73,8 +73,9 @@ export default class EffectsField extends fields.ArrayField {
 
             for (const e of effects) {
                 const effect = (this.item.applyEffects ?? this.item.effects).get(e._id);
-                if (!token.actor || !effect) return;
-                await EffectsField.applyEffect(effect, token.actor);
+                if (token.actor && effect) {
+                    await EffectsField.applyEffect(effect, token.actor);
+                }
             }
         }
 
