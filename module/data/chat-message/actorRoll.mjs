@@ -150,7 +150,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
 
     /**
      * Updates the target section of the chat message through direct HTML manipulation.
-     * Listeners are reattched.
+     * Listeners are reattached.
      */
     async updateTargetHTML() {
         const targetTokensHTML = await foundry.applications.handlebars.renderTemplate(
