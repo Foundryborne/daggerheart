@@ -1,10 +1,23 @@
 import { triggerChatRollFx } from '../../helpers/utils.mjs';
+import { MemberData } from '../tagTeamData.mjs';
+import DHActorRoll from './actorRoll.mjs';
 
 export class ChatDamageData extends foundry.abstract.DataModel {
     constructor(data = {}, options = {}) {
         super(data, options);
         
         this._prepareRolls();
+    }
+
+    get isCritical() {
+        if (this.parent && this.parent instanceof MemberData) {
+            return this.parent.roll.isCritical;
+        }
+        if (this.parent && this.parent instanceof DHActorRoll && this.parent.parent) {
+            return Roll.fromJSON(this.parent.parent._source.rolls[0]).isCritical;
+        }
+
+        return false;
     }
 
     static defineSchema() {
@@ -28,7 +41,15 @@ export class ChatDamageData extends foundry.abstract.DataModel {
     }
 
     _prepareRolls() {
-        this.main &&= Roll.fromData(this.main);
+        this.main &&= Roll.fromData({
+            ...this.main, 
+            options: { 
+                ...this.main.options, 
+                isCritical: 
+                    this.main.options.isCritical === false ? false : (this.main.options.isCritical || this.isCritical) 
+            } 
+        });
+
         for (const key of Object.keys(this.resources)) {
             this.resources[key] = Roll.fromData(this.resources[key]);
         }

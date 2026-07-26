@@ -1,5 +1,5 @@
 import DamageDialog from '../applications/dialogs/damageDialog.mjs';
-import { parseRallyDice, triggerChatRollFx } from '../helpers/utils.mjs';
+import { getCritDamageBonus, parseRallyDice, triggerChatRollFx } from '../helpers/utils.mjs';
 import DHRoll from './dhRoll.mjs';
 
 export default class DamageRoll extends DHRoll {
@@ -8,7 +8,17 @@ export default class DamageRoll extends DHRoll {
     }
 
     get isCritical() {
-        return !!this.options.isCritical;
+        return this.options.isCritical;
+    }
+
+    get modifierTotal() {
+        const criticalDamageBonus = this.isCritical ? getCritDamageBonus(this.terms) : 0;
+        return super.modifierTotal + criticalDamageBonus;
+    }
+
+    get total() {
+        const criticalDamageBonus = this.isCritical ? getCritDamageBonus(this.terms) : 0;
+        return super.total + criticalDamageBonus;
     }
 
     static DefaultDialog = DamageDialog;
@@ -23,7 +33,7 @@ export default class DamageRoll extends DHRoll {
         
         const evaluateRoll = async roll => {
             await roll.roll.evaluate();
-            roll.roll.options = { damageTypes: roll.damageTypes ? [...roll.damageTypes] : [] };
+            roll.roll.options = { ...roll.roll.options, damageTypes: roll.damageTypes ? [...roll.damageTypes] : [] };
             return roll.roll;
         }
 
@@ -31,8 +41,10 @@ export default class DamageRoll extends DHRoll {
 
         if (config.damageFormula) {
             config.damage.main = await evaluateRoll(config.damageFormula);
-            config.damage.main.options = { damageTypes: 
-                config.damageFormula.damageTypes ? [...config.damageFormula.damageTypes] : []
+            config.damage.main.options = { 
+                ...config.damage.main.options,
+                damageTypes: 
+                    config.damageFormula.damageTypes ? [...config.damageFormula.damageTypes] : []
             };
         }
         
@@ -119,7 +131,9 @@ export default class DamageRoll extends DHRoll {
 
     getActionChangeKeys() {
         const type = this.options.messageType ?? (this.options.hasHealing ? 'healing' : 'damage');
-        const changeKeys = [];
+        const changeKeys = [
+            'system.rules.attack.damage.hpDamageMultiplier'
+        ];
 
         for (const damageType of this.options.damageFormula?.damageTypes?.values?.() ?? []) {
             changeKeys.push(`system.bonuses.${type}.${damageType}`);
@@ -151,7 +165,7 @@ export default class DamageRoll extends DHRoll {
         if (!formulaData) return null;
         this.options.isCritical = config.isCritical;
 
-        formulaData.roll = new Roll(Roll.replaceFormulaData(formulaData.formula, config.data));
+        formulaData.roll = new this.constructor(Roll.replaceFormulaData(formulaData.formula, config.data));
         formulaData.roll.terms = Roll.parse(formulaData.roll.formula, config.data);
 
         if (formulaData.extraFormula) {
@@ -197,6 +211,22 @@ export default class DamageRoll extends DHRoll {
                 if (total > 0) {
                     formulaData.roll.terms.push(...this.formatModifier(total));
                 }
+            }
+
+            const damageTakenMultiplier = this.getTotalBonus('system.rules.attack.damage.hpDamageMultiplier');
+            if (damageTakenMultiplier && damageTakenMultiplier !== 1) {
+                // The fully built up roll needs to be set inside of a paranthetical term, so we build the dice anew with all the pushed in terms.
+                // We clone it to avoid infinite recursion.
+                formulaData.roll = Roll.fromTerms(formulaData.roll.terms);
+
+                formulaData.roll.terms = [
+                    new foundry.dice.terms.ParentheticalTerm({ 
+                        roll: formulaData.roll.clone(), 
+                        term: formulaData.formula 
+                    }),
+                    new foundry.dice.terms.OperatorTerm({ operator: '*' }),
+                    new foundry.dice.terms.NumericTerm({ number: damageTakenMultiplier })
+                ];
             }
         }
 

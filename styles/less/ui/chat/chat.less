@@ -447,6 +447,39 @@
             text-align: center;
         }
 
+        .selected-targets-container {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 18px;
+
+            .roll-target {
+                width: fit-content;
+
+                &:not(:first-child) {
+                    margin-left: -22px;
+                }
+            }
+
+            .ellipsis-marker {
+                margin-left: -20px;
+            }
+
+            .targets-tools-container {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 4px;
+            }
+
+            .empty-text {
+                flex: 1;
+                text-align: center;
+            }
+        }
+
         .roll-target {
             display: flex;
             width: 100%;

@@ -109,11 +109,7 @@
                             </div>
                         </span>
                         {{#if damage.active}}
-                            {{#if useCritDamage}}
-                                {{> "systems/daggerheart/templates/dialogs/tagTeamDialog/parts/tagTeamDamageParts.hbs" damage=critDamage isCritical=true }}
-                            {{else}}
-                                {{> "systems/daggerheart/templates/dialogs/tagTeamDialog/parts/tagTeamDamageParts.hbs" damage=damage }}
-                            {{/if}}
+                            {{> "systems/daggerheart/templates/dialogs/tagTeamDialog/parts/tagTeamDamageParts.hbs" damage=damage isCritical=isCritical }}
                         {{else}}
                             <span class="hint">{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.makeYourRoll"}}</span>
                         {{/if}}

@@ -6,23 +6,14 @@
                 {{#if hintText}}
                     <div class="hint">{{localize hintText}}</div>
                 {{else}}
-                    {{#if joinedRoll.rollData}}
-                        <div class="result-container">
-                            <span class="result-section-label">{{localize "DAGGERHEART.GENERAL.dualityRoll"}}</span>
-                            <div class="result-info">
-                                <div class="damage-info">{{joinedRoll.rollData.total}}</div>
-                                <div>{{localize "DAGGERHEART.GENERAL.withThing" thing=joinedRoll.roll.totalLabel}}</div>
-                            </div>
-                        </div>
-                    {{/if}}
                     {{#if joinedRoll.damageRollData}}
                         <div class="result-container">
-                            <span class="result-section-label">{{localize "DAGGERHEART.GENERAL.damage"}}</span>
-                            {{#each joinedRoll.damageRollData.types as |damage key|}}
-                                <div class="result-info">
-                                    <div>{{localize (concat "DAGGERHEART.CONFIG.HealingType." key ".name")}}</div>
-                                    <div class="damage-info">{{damage.total}}</div>
-                                </div>
+                            <div class="damage-info">{{joinedRoll.rollData.total}} {{localize "DAGGERHEART.GENERAL.withThing" thing=joinedRoll.roll.totalLabel}}</div>
+                            {{#if joinedRoll.damageRollData.main}}
+                                {{> damageSummary roll=joinedRoll.damageRollData.main label=(localize "DAGGERHEART.GENERAL.damage")}}
+                            {{/if}}
+                            {{#each joinedRoll.damageRollData.resources as |roll key|}}
+                                {{> damageSummary roll=roll label=(localize (concat "DAGGERHEART.CONFIG.HealingType." key ".name"))}}
                             {{/each}}
                         </div>
                     {{/if}}
@@ -39,3 +30,7 @@
         </div>
     </div>
 </section>
+
+{{#*inline "damageSummary"}}
+    <div>{{label}} {{roll.total}}</div>
+{{/inline}}

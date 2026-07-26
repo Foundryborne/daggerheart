@@ -142,6 +142,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         return (canvas.tokens?.controlled ?? []).map(token => ({
             id: token.id,
             actorId: token.document.actor?.uuid,
+            _actorId: token.document.actor?.id,
             name: token.document.prototype?.name ?? token.document.name,
             img: token.document.texture.src,
             difficulty: token.document.actor?.system.difficulty,
@@ -149,8 +150,62 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         })).map(getCommonData);
     }
 
+    get currentHitTargets() {
+        if (!this.hasRoll || this.targeting.usingSelect) return this.currentTargets;
+
+        return this.currentTargets.filter(x => x.hitResult.success)
+    }
+
+    get selectedTargetsData() {
+        if (!this.targeting.usingSelect) return [];
+
+        const currentTargets = this.currentTargets;
+        const uniqueTokens = currentTargets.reduce((acc, target) => {
+            if (acc.find(x => x._actorId === target._actorId)) return acc;
+            acc.push(target);
+            return acc;
+        }, []);
+        return {
+            totalTokens: currentTargets.length,
+            uniqueTokens: uniqueTokens.length,
+            tokens: uniqueTokens.slice(0, 3)
+        }
+    }
+
     get hasUnfinishedSaves() {
-        return this.hasSaves && this.currentTargets.some(x => !x.saveResult);
+        return this.hasSaves && this.currentHitTargets.some(x => !x.saveResult);
+    }
+
+    syncSelectedTokens = foundry.utils.debounce(async () => {
+        if (this.targeting.usingSelect) this.updateTargetHTML();
+    }, 50);
+
+    /**
+     * Updates the target section of the chat message through direct HTML manipulation.
+     * Listeners are reattached.
+     */
+    async updateTargetHTML() {
+        const targetTokensHTML = await foundry.applications.handlebars.renderTemplate(
+            'systems/daggerheart/templates/ui/chat/parts/target-tokens-part.hbs',
+            {
+                targeting: this.targeting,
+                currentTargets: this.currentTargets,
+                selectedTargetsData: this.selectedTargetsData,
+                hasSave: this.hasSave,
+                hasRoll: this.hasRoll,
+                hasDamage: this.hasDamage,
+                damage: this.damage,
+                isGM: game.user.isGM
+            }
+        );
+        const chatMessageHTML = ui.chat.element.querySelector(`.chat-message[data-message-id="${this.parent.id}"]`);
+        const element = chatMessageHTML.querySelector('.chat-roll .target-section .roll-part-content .wrapper');
+        element.outerHTML = targetTokensHTML;
+        this.parent.addTargetSectionListeners(chatMessageHTML);
+    }
+    
+    setSelectedAsTargets() {
+        this.parent.update({ 'system.targets': this.currentTargets });
     }
 
     async getRerolledDamage() {
@@ -192,7 +247,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
                 const oldRoll = damageData.parts[0]?.roll;
                 return oldRoll ? JSON.stringify({
                     ...oldRoll,
-                    class: 'BaseRoll',
+                    class: 'DamageRoll',
                     options: {
                         ...oldRoll.options,
                         damageTypes: damageData.parts[0].damageTypes ?? []

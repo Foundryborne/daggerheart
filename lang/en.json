@@ -3091,8 +3091,11 @@
                     "dealDamage": "Deal Damage",
                     "rollDamage": "Roll Damage",
                     "hitTarget": "Hit",
-                    "targettingInitial": "Target",
-                    "targettingSelected": "Selected"
+                    "targetingInitial": "Targets",
+                    "targetingSelected": "Selected",
+                    "totalTargetedTokens": "{total} selected",
+                    "noTokensSelected": "No Tokens Selected",
+                    "setSelectedAsTargets": "Set Selected As Targets"
                 },
                 "deathMove": {
                     "title": "Death Move",
@@ -3215,6 +3218,7 @@
                 "beastformInapplicable": "A beastform can only be applied to a Character.",
                 "beastformAlreadyApplied": "The character already has a beastform applied!",
                 "noTargetsSelected": "No targets are selected.",
+                "noTargetsHit": "No targets are hit",
                 "attackTargetDoesNotExist": "The target token no longer exists",
                 "insufficentAdvancements": "You don't have enough advancements left.",
                 "noAssignedPlayerCharacter": "You have no assigned character.",
