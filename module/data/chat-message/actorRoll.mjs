@@ -173,8 +173,11 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     /**
      * Updates the target section of the chat message through direct HTML manipulation.
      * Listeners are reattached.
+     * @param {object} options
+     * @param {"targets" | "select" | null} [options.tab] If set, switches to this tab before updates
      */
-    async updateTargetHTML() {
+    async updateTargetHTML({ tab = null } = {}) {
+        if (tab) this.targeting.usingSelect = tab === 'select';
         const targetTokensHTML = await foundry.applications.handlebars.renderTemplate(
             'systems/daggerheart/templates/ui/chat/parts/target-tokens-part.hbs',
             {
