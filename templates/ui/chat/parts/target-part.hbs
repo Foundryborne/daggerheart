@@ -12,7 +12,7 @@
     {{/if}}
     <div class="roll-part-content dice-result">
         <div class="dice-tooltip">
-            {{> "systems/daggerheart/templates/ui/chat/parts/target-tokens-part.hbs" targeting=parent.system.targeting currentTargets=parent.system.currentTargets selectedTargetsData=parent.system.selectedTargetsData }}
+            {{> "systems/daggerheart/templates/ui/chat/parts/target-tokens-part.hbs" targeting=parent.system.targeting currentTargets=targetData.currentTargets selectedTargetsData=targetData.selectedTargetsData }}
         </div>
     </div>
 </div>

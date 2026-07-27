@@ -111,7 +111,23 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         return null;
     }
 
-    get currentTargets() {
+    get currentHitTargets() {
+        const currentTargets = this._getCurrentTargets();
+        if (!this.hasRoll || this.targeting.usingSelect) return currentTargets;
+
+        return currentTargets.filter(x => x.hitResult.success)
+    }
+
+    get hasUnfinishedSaves() {
+        return this.hasSave && this.currentHitTargets.some(x => !x.saveResult);
+    }
+
+    /**
+     * Get the target data for the current targets of the roll. 
+     * This will either be the initial targets, or the currently selected tokens depending on which tab the GM has open.
+     * @returns {TargetData[]}
+     */
+    _getCurrentTargets() {
         const getCommonData = data => {
             const toHitNumber = data.difficulty || data.evasion;
             const hitSuccessfull = (toHitNumber === null || !this.roll) ? false : this.roll.total >= toHitNumber;
@@ -140,21 +156,20 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         })).map(getCommonData);
     }
 
-    get currentHitTargets() {
-        if (!this.hasRoll || this.targeting.usingSelect) return this.currentTargets;
-
-        return this.currentTargets.filter(x => x.hitResult.success)
-    }
-
-    get selectedTargetsData() {
+    /**
+     * Returns the needed render data for the Selected tab of the targeting section.
+     * @returns {{ totalTokens: number, uniqueTokens: number, tokens: TokenData[] }}
+     */
+    _getSelectedTargetsData() {
         if (!this.targeting.usingSelect) return [];
 
-        const currentTargets = this.currentTargets;
+        const currentTargets = this._getCurrentTargets();
         const uniqueTokens = currentTargets.reduce((acc, target) => {
             if (acc.find(x => x._actorId === target._actorId)) return acc;
             acc.push(target);
             return acc;
         }, []);
+
         return {
             totalTokens: currentTargets.length,
             uniqueTokens: uniqueTokens.length,
@@ -162,9 +177,6 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         }
     }
 
-    get hasUnfinishedSaves() {
-        return this.hasSave && this.currentHitTargets.some(x => !x.saveResult);
-    }
 
     syncSelectedTokens = foundry.utils.debounce(async () => {
         if (this.targeting.usingSelect) this.updateTargetHTML();
@@ -182,8 +194,8 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             'systems/daggerheart/templates/ui/chat/parts/target-tokens-part.hbs',
             {
                 targeting: this.targeting,
-                currentTargets: this.currentTargets,
-                selectedTargetsData: this.selectedTargetsData,
+                currentTargets: this._getCurrentTargets(),
+                selectedTargetsData: this._getSelectedTargetsData(),
                 hasSave: this.hasSave,
                 hasRoll: this.hasRoll,
                 isGM: game.user.isGM

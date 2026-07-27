@@ -189,7 +189,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
     async onApplyDamage(event) {
         event.stopPropagation();
-        if (this.system.currentTargets.length === 0)
+        if (this.system._getCurrentTargets().length === 0)
             return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
 
         const targets = this.system.currentHitTargets;
@@ -265,7 +265,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
     async onApplyEffect(event) {
         event.stopPropagation();
-        if (this.system.currentTargets.length === 0)
+        if (this.system._getCurrentTargets().length === 0)
             return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
         
         const targets = this.system.currentHitTargets;
@@ -398,7 +398,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     async #onSelectedToTargets(event) {
         event.stopPropagation();
         // Update the targets and ensure that we swap to the targets tab
-        if (!(await this.update({ 'system.targets': this.system.currentTargets }))) {
+        if (!(await this.update({ 'system.targets': this.system._getCurrentTargets() }))) {
             this.system.updateTargetHTML({ tab: 'targets' });
         }
     }
