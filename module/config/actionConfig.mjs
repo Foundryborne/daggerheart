@@ -126,3 +126,26 @@ export const areaTypes = {
         label: 'DAGGERHEART.CONFIG.AreaTypes.attached.label'
     }
 };
+
+export const outcomeTypes = {
+    default: {
+        key: 'default',
+        label: 'DAGGERHEART.CONFIG.OutcomeType.default'
+    },
+    successHope: {
+        key: 'successHope',
+        label: 'DAGGERHEART.CONFIG.OutcomeType.successHope'
+    },
+    successFear: {
+        key: 'successFear',
+        label: 'DAGGERHEART.CONFIG.OutcomeType.successFear'
+    },
+    failureHope: {
+        key: 'failureHope',
+        label: 'DAGGERHEART.CONFIG.OutcomeType.failureHope'
+    },
+    failureFear: {
+        key: 'failureFear',
+        label: 'DAGGERHEART.CONFIG.OutcomeType.failureFear'
+    }
+};

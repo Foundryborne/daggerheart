@@ -23,6 +23,8 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/components/card-preview.hbs',
         'systems/daggerheart/templates/levelup/parts/selectable-card-preview.hbs',
         'systems/daggerheart/templates/ui/combatTracker/combatTrackerSection.hbs',
+        'systems/daggerheart/templates/actionTypes/parts/damageData.hbs',
+        'systems/daggerheart/templates/actionTypes/parts/damageResources.hbs',
         'systems/daggerheart/templates/actionTypes/damage.hbs',
         'systems/daggerheart/templates/actionTypes/resource.hbs',
         'systems/daggerheart/templates/actionTypes/macro.hbs',

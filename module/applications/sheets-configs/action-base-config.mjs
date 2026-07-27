@@ -120,6 +120,28 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         return tabs;
     }
 
+    /* Needs to consider effect altOutcomes aswell */
+    static getOutcomeTabs(action) {
+        const outcomeKeys = [
+            'default',
+            ...Object.keys(action.altOutcomes ?? {}).filter(key => action.altOutcomes[key])
+        ];
+        return outcomeKeys.reduce((acc, key, index) => {
+            acc[key] = {
+                active: index === 0,
+                cssClass: '',
+                group: 'outcomes',
+                id: key,
+                icon: null,
+                label: game.i18n.localize(CONFIG.DH.ACTIONS.outcomeTypes[key].label),
+                source: key === 'default' ? action._source : action._source.altOutcomes[key],
+                fields: key === 'default' ? action.schema.fields : action.schema.fields.altOutcomes.fields[key].fields,
+                getBasePath: path => (key === 'default' ? path : ['altOutcomes', key, path].join('.'))
+            };
+            return acc;
+        }, {});
+    }
+
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
 
@@ -136,6 +158,8 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         const context = await super._prepareContext(_options, 'action');
         context.source = this.action.toObject(true);
         context.action = this.action;
+        context.tabs = this._getTabs(this.constructor.TABS);
+        context.outcomeTabs = this._getTabs(DHActionBaseConfig.getOutcomeTabs(this.action));
 
         context.summons = [];
         for (const summon of context.source.summon ?? []) {
@@ -156,7 +180,6 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         }
 
         context.openSection = this.openSection;
-        context.tabs = this._getTabs(this.constructor.TABS);
         context.config = CONFIG.DH;
         if (this.action.damage) {
             const allKeys = Object.keys(CONFIG.DH.GENERAL.healingTypes);

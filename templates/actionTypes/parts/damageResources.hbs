@@ -1,0 +1,38 @@
+{{#unless (eq path 'system.attack.')}}
+    <nav class='inner-tabs tabs' data-group='outcomes'>
+        {{#each outcomeTabs as |tab|}}
+            <div class="inner-tab">
+                <a class='{{tab.id}} {{tab.cssClass}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}'>
+                    {{localize tab.label}}
+                </a>
+                {{#unless (eq tab.id 'default')}}<a data-outcome="{{tab.id}}" data-action="removeOutcome"><i class="fa-solid fa-trash"></i></a>{{/unless}}
+            </div>
+        {{/each}}
+        <a data-action="addOutcome" {{#if allOutcomesAssigned}}disabled{{/if}}><i class="fa-solid fa-plus"></i></a>
+    </nav>
+
+    {{! In the future, consider allowing this even on NPCs}}
+    <fieldset class="one-column">
+        <legend class="with-icon">
+            {{#if (eq @root.source.type 'healing')}}
+                {{localize "DAGGERHEART.GENERAL.healing"}}
+            {{else}}
+                {{localize "DAGGERHEART.ACTIONS.Config.damage.markResources"}}
+            {{/if}}
+            {{#unless @root.allDamageTypesUsed}}<a data-action="addDamageResource"><i class="fa-solid fa-plus icon-button"></i></a>{{/unless}}
+        </legend>
+        {{#each source.resources as |dmg key|}}
+            <div class="nest-inputs">
+                <fieldset{{#if dmg.base}} disabled{{/if}} class="one-column">
+                    <legend class="with-icon">
+                        {{localize (concat "DAGGERHEART.CONFIG.HealingType." dmg.applyTo ".name")}}
+                        {{#unless (or dmg.base ../path)}}
+                            <a data-action="removeDamageResource" data-key="{{key}}"><i class="fas fa-trash"></i></a>
+                        {{/unless}}
+                    </legend>
+                    {{> "systems/daggerheart/templates/actionTypes/parts/damageData.hbs" damage=dmg fields=../fields.resources.element.fields basePath=(concat ../path "damage.resources." dmg.applyTo)}}
+                </fieldset>
+            </div>
+        {{/each}}
+    </fieldset>
+{{/unless}}
