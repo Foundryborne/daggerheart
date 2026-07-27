@@ -62,7 +62,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     _onDelete(options, userId) {
         super._onDelete(options, userId);
 
-        Hooks.off('targetToken', this.onSelectToken);
+        Hooks.off('controlToken', this.onSelectToken);
     }
 
     enrichChatMessage(html) {
@@ -159,11 +159,11 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         });
 
         html.querySelectorAll('.selected-to-targets-button').forEach(element => {
-            element.addEventListener('click', this.onSelectedToTargets.bind(this));
+            element.addEventListener('click', this.#onSelectedToTargets.bind(this));
         });
 
         html.querySelectorAll('.button-target-selection').forEach(element => {
-            element.addEventListener('click', this.onTargetSelection.bind(this));
+            element.addEventListener('click', this.#onTargetSelection.bind(this));
         });
 
         html.querySelectorAll('.token-target-container').forEach(element => {
@@ -287,7 +287,6 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             if (!confirm) return;
         }
         
-
         this.consumeOnSuccess();
         this.system.action?.workflow.get('effects')?.execute(config, targets, true);
     }
@@ -367,8 +366,11 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         }
     }
 
+    /**
+     * If an action with consumeOnSuccess hasn't consumed resources initially, this function will do so if there were no initial targets.
+     */
     consumeOnSuccess() {
-        if (!this.system.successConsumed && !this.system.targets) this.system.action?.consume(this.system, true);
+        if (!this.system.successConsumed && !this.system.targets.length) this.system.action?.consume(this.system, true);
     }
 
     hoverTarget(event) {
@@ -392,16 +394,20 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         game.canvas.pan(token);
     }
 
-    onSelectedToTargets(event) {
+    /** Handle the user clicking the button to convert selected to targets and update the chat message */
+    async #onSelectedToTargets(event) {
         event.stopPropagation();
-        this.system.setSelectedAsTargets();
+        // Update the targets and ensure that we swap to the targets tab
+        if (!(await this.update({ 'system.targets': this.system.currentTargets }))) {
+            this.system.updateTargetHTML({ tab: 'targets' });
+        }
     }
 
-    onTargetSelection(event) {
+    /** Handle changing tabs on the target section */
+    #onTargetSelection(event) {
         event.stopPropagation();
         if (!event.target.classList.contains('target-selected')) {
-            this.system.targeting.usingSelect = Boolean(event.target.dataset.selected);
-            this.system.updateTargetHTML();
+            this.system.updateTargetHTML({ tab: event.target.dataset.selected ? 'select' : 'targets'});
         }
     }
 }

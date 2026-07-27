@@ -45,7 +45,7 @@
         <div class="selected-targets-container">
             {{#with selectedTargetsData}}
                 {{#each tokens as |target|}}
-                    <div class="roll-target" data-token="{{target.token.id}}">
+                    <div class="roll-target" data-token="{{target.id}}">
                         <img class="target-img" src="{{target.img}}" />
                     </div>
                 {{/each}}
@@ -55,7 +55,7 @@
                 {{#if (gt totalTokens 0)}}
                 <div class="targets-tools-container">
                     <div>{{localize "DAGGERHEART.UI.Chat.damageRoll.totalTargetedTokens" total=totalTokens}}</div>
-                    <a class="selected-to-targets-button" title="{{localize "DAGGERHEART.UI.Chat.damageRoll.setSelectedAsTargets"}}"><i class="fa-solid fa-bullseye"></i></a>
+                    <a class="selected-to-targets-button" data-tooltip="{{localize "DAGGERHEART.UI.Chat.damageRoll.setSelectedAsTargets"}}"><i class="fa-solid fa-bullseye"></i></a>
                 </div>
                 {{else}}
                     <span class="empty-text">{{localize "DAGGERHEART.UI.Chat.damageRoll.noTokensSelected"}}</span>

@@ -53,6 +53,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             damage: new fields.EmbeddedDataField(ChatDamageData),
             damageOptions: new fields.ObjectField(),
             costs: new fields.ArrayField(new fields.ObjectField()),
+            uses: new fields.ObjectField(),
             successConsumed: new fields.BooleanField({ initial: false })
         };
     }
@@ -144,7 +145,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             actorId: token.document.actor?.uuid,
             _actorId: token.document.actor?.id,
             name: token.document.prototype?.name ?? token.document.name,
-            img: token.document.texture.src,
+            img: token.document.actor?.img ?? token.document.texture.src,
             difficulty: token.document.actor?.system.difficulty,
             evasion: token.document.actor?.system.evasion
         })).map(getCommonData);
@@ -173,7 +174,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     }
 
     get hasUnfinishedSaves() {
-        return this.hasSaves && this.currentHitTargets.some(x => !x.saveResult);
+        return this.hasSave && this.currentHitTargets.some(x => !x.saveResult);
     }
 
     syncSelectedTokens = foundry.utils.debounce(async () => {
@@ -183,8 +184,11 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     /**
      * Updates the target section of the chat message through direct HTML manipulation.
      * Listeners are reattached.
+     * @param {object} options
+     * @param {"targets" | "select" | null} [options.tab] If set, switches to this tab before updates
      */
-    async updateTargetHTML() {
+    async updateTargetHTML({ tab = null } = {}) {
+        if (tab) this.targeting.usingSelect = tab === 'select';
         const targetTokensHTML = await foundry.applications.handlebars.renderTemplate(
             'systems/daggerheart/templates/ui/chat/parts/target-tokens-part.hbs',
             {
@@ -202,10 +206,6 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         const element = chatMessageHTML.querySelector('.chat-roll .target-section .roll-part-content .wrapper');
         element.outerHTML = targetTokensHTML;
         this.parent.addTargetSectionListeners(chatMessageHTML);
-    }
-    
-    setSelectedAsTargets() {
-        this.parent.update({ 'system.targets': this.currentTargets });
     }
 
     async getRerolledDamage() {
