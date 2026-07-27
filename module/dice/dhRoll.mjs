@@ -169,6 +169,7 @@ export default class DHRoll extends BaseRoll {
         } else return msgData;
     }
 
+    // TODO - Possibly remove this completly if actorRoll.renderHTML implementation can take over getting the chatData prepared.
     /** @inheritDoc */
     async render({ flavor, template = this.constructor.CHAT_TEMPLATE, isPrivate = false, ...options } = {}) {
         if (!this._evaluated) return;
@@ -179,6 +180,10 @@ export default class DHRoll extends BaseRoll {
         return foundry.applications.handlebars.renderTemplate(template, {
             roll: this,
             ...chatData,
+            targetData: chatData.hasTarget ? {
+                currentTargets: chatData._getCurrentTargets(),
+                selectedTargetsData: chatData._getSelectedTargetsData()
+            } : null,
             action: chatData.action,
             parent: chatData.parent,
             targetMode: chatData.targetMode,

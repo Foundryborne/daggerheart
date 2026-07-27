@@ -1,6 +1,4 @@
-<div class="roll-part target-section dice-roll expanded" data-action="expandRoll">
-    <div class="roll-part-header"><div><span>{{pluralize currentTargets.length "DAGGERHEART.GENERAL.Target"}}</span></div></div>
-
+<div class="roll-part target-section">
     {{#if (or isGM (not metagamingSettings.hideObserverPermissionInChat))}}
         <div class="roll-part-extra on-reduced">
             <div class="wrapper">
@@ -14,7 +12,7 @@
     {{/if}}
     <div class="roll-part-content dice-result">
         <div class="dice-tooltip">
-            {{> "systems/daggerheart/templates/ui/chat/parts/target-tokens-part.hbs" targeting=parent.system.targeting currentTargets=parent.system.currentTargets selectedTargetsData=parent.system.selectedTargetsData }}
+            {{> "systems/daggerheart/templates/ui/chat/parts/target-tokens-part.hbs" targeting=parent.system.targeting currentTargets=targetData.currentTargets selectedTargetsData=targetData.selectedTargetsData }}
         </div>
     </div>
 </div>
