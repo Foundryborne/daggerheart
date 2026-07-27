@@ -92,46 +92,27 @@
  * Some foundry variables are heavily scoped and we need to redefine them (https://github.com/foundryvtt/foundryvtt/issues/12893)
  * Convention for the redefined ones is --dh-{element}-color-{thing}
  */
-@scope (.theme-light) to (.themed) {
+@scope (.theme-light, .theme-dark) to (.themed) {
     .dh-style :scope,
     :scope.dh-style,
     .dh-style,
     .duality {
-        --color-border: @dark-blue;
-        --color-fieldset-border: @dark-blue;
-        --color-text-emphatic: @dark-blue;
-        --color-text-subtle: #555;
+        --color-border: light-dark(@dark-blue, @golden);
+        --color-fieldset-border: light-dark(@dark-blue, @golden);
+        --color-text-emphatic: light-dark(@dark-blue, @golden);;
+        --color-text-subtle: light-dark(#555, #a29086);
 
-        --dh-color-text-shadow-contrast: #ffffffa0;
-        --dh-input-color-border: @dark;
-        --dh-input-color-text: @dark;
-        --dh-trait-color-bg: #b1afb6;
-        --dh-trait-color-border: #8e8d96;
-        --dh-window-button-color-bg: #e8e6e3;
-        --dh-window-button-color-text: @dark-blue;
-        --dh-resistance-color-border: #ffa500;
-        --dh-resistance-color-bg: #ffa50010;  
-    }
-}
-@scope (.theme-dark) to (.themed) {  
-    .dh-style :scope,
-    :scope.dh-style,
-    .dh-style,
-    .duality {
-        --color-border: @golden;
-        --color-fieldset-border: @golden;
-        --color-text-emphatic: @golden;
-        --color-text-subtle: #a29086;
-
-        --dh-color-text-shadow-contrast: @dark-80;
-        --dh-input-color-border: @beige;
-        --dh-input-color-text: @beige;
-        --dh-trait-color-bg: #50433F;
-        --dh-trait-color-border: #927952;
-        --dh-window-button-color-bg: @deep-black;
-        --dh-window-button-color-text: @beige;
+        --dh-color-text-shadow-contrast: light-dark(#ffffffa0, @dark-80);
+        --dh-input-color-border: light-dark(@dark, @beige);
+        --dh-input-color-text: light-dark(@dark, @beige);
+        --dh-trait-color-bg: light-dark(#b1afb6, #50433F);
+        --dh-trait-color-border: light-dark(#8e8d96, #927952);
+        --dh-window-button-color-bg: light-dark(#e8e6e3, @deep-black);
+        --dh-window-button-color-text: light-dark(@dark-blue, @beige);
         --dh-resistance-color-border: #ffa500;
         --dh-resistance-color-bg: #ffa50010;
+        --dh-immunity-color-border: @chat-purple;
+        --dh-immunity-color-bg: @chat-purple-10;
     }
 }
 
@@ -253,5 +234,7 @@
 @input-color-text: var(--dh-input-color-text);
 @trait-color-bg: var(--dh-trait-color-bg);
 @trait-color-border: var(--dh-trait-color-border);
-@resistance-border: var(--dh-resistance-color-border);
-@resistance-bg: var(--dh-resistance-color-bg)
+@resistance-color-border: var(--dh-resistance-color-border);
+@resistance-color-bg: var(--dh-resistance-color-bg);
+@immunity-color-border: var(--dh-immunity-color-border);
+@immunity-color-bg: var(--dh-immunity-color-bg);
