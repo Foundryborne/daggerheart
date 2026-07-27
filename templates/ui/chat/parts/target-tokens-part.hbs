@@ -49,7 +49,7 @@
                 {{#if (gt totalTokens 0)}}
                 <div class="targets-tools-container">
                     <div>{{localize "DAGGERHEART.UI.Chat.damageRoll.totalTargetedTokens" total=totalTokens}}</div>
-                    <a class="selected-to-targets-button" title="{{localize "DAGGERHEART.UI.Chat.damageRoll.setSelectedAsTargets"}}"><i class="fa-solid fa-bullseye"></i></a>
+                    <a class="selected-to-targets-button" data-tooltip="{{localize "DAGGERHEART.UI.Chat.damageRoll.setSelectedAsTargets"}}"><i class="fa-solid fa-bullseye"></i></a>
                 </div>
                 {{else}}
                     <span class="empty-text">{{localize "DAGGERHEART.UI.Chat.damageRoll.noTokensSelected"}}</span>
