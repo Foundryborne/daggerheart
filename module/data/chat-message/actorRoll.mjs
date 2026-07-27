@@ -53,6 +53,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             damage: new fields.EmbeddedDataField(ChatDamageData),
             damageOptions: new fields.ObjectField(),
             costs: new fields.ArrayField(new fields.ObjectField()),
+            uses: new fields.ObjectField(),
             successConsumed: new fields.BooleanField({ initial: false })
         };
     }

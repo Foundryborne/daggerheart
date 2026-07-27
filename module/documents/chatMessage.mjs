@@ -211,6 +211,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             if (!confirm) return;
         }
 
+        this.consumeOnSuccess();
         if (this.system.action) this.system.action.workflow.get('applyDamage')?.execute(config, targets, true);
         else {
             for (const target of targets) {
@@ -286,6 +287,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             if (!confirm) return;
         }
         
+        this.consumeOnSuccess();
         this.system.action?.workflow.get('effects')?.execute(config, targets, true);
     }
 
@@ -362,6 +364,13 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
             CONFIG.ux.ContextMenu.triggerContextMenu(event, '.action-areas');
         }
+    }
+
+    /**
+     * If an action with consumeOnSuccess hasn't consumed resources initially, this function will do so if there were no initial targets.
+     */
+    consumeOnSuccess() {
+        if (!this.system.successConsumed && !this.system.targets.length) this.system.action?.consume(this.system, true);
     }
 
     hoverTarget(event) {
