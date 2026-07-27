@@ -397,7 +397,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     /** Handle the user clicking the button to convert selected to targets and update the chat message */
     async #onSelectedToTargets(event) {
         event.stopPropagation();
-        // Update the targets. Regardless of what happens, swap to the targets tab
+        // Update the targets and ensure that we swap to the targets tab
         if (!(await this.update({ 'system.targets': this.system.currentTargets }))) {
             this.system.updateTargetHTML({ tab: 'targets' });
         }
