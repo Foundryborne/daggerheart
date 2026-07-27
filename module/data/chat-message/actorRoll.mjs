@@ -134,7 +134,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             actorId: token.document.actor?.uuid,
             _actorId: token.document.actor?.id,
             name: token.document.prototype?.name ?? token.document.name,
-            img: token.document.texture.src,
+            img: token.document.actor?.img ?? token.document.texture.src,
             difficulty: token.document.actor?.system.difficulty,
             evasion: token.document.actor?.system.evasion
         })).map(getCommonData);
