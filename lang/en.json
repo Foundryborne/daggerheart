@@ -2458,6 +2458,7 @@
             "icon": "Icon",
             "identify": "Identity",
             "imagePath": "Image Path",
+            "immune": "Immune",
             "inactiveEffects": "Inactive Effects",
             "initial": "Initial",
             "inventory": "Inventory",
@@ -2501,6 +2502,7 @@
             "reroll": "Reroll",
             "rerolled": "Rerolled",
             "rerollThing": "Reroll {thing}",
+            "resistant": "Resistant",
             "result": {
                 "single": "Result",
                 "plural": "Results"

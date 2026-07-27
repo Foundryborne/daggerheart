@@ -28,7 +28,7 @@
     .token-target-container {
         display: flex;
         flex-direction: column;
-        gap: 2px;
+        gap: 5px;
         transition: all 0.3s ease;
         border-radius: 6px;
 
@@ -43,10 +43,8 @@
         header {
             display: flex;
             align-items: center;
-            gap: 5px;
             pointer-events: none;
             position: relative;
-            margin-bottom: 10px;
 
             img {
                 width: 40px;
@@ -55,37 +53,59 @@
                 border-radius: 50%;
             }
 
-            .actor-name {
-                margin: 0;
-                color: @beige;
-                font-size: var(--font-size-20);
-                padding: 8px;
-            }
+            .token-header-data {
+                padding: 4px 8px 4px;
+                display: flex;
+                flex-direction: column;
 
-            &::after {
-                content: '';
-                position: absolute;
-                bottom: -10px;
-                background: @golden;
-                mask-image: linear-gradient(270deg, transparent 0%, black 50%, transparent 100%);
-                height: 2px;
-                width: 100%;
+                .actor-name {
+                    margin: 0;
+                    color: @beige;
+                    font-size: var(--font-size-20);
+                }
+
+                .token-resistance-container {
+                    width: fit-content;
+                    border: 1px solid currentColor;
+                    border-radius: 4px;
+                    padding: 3px 5px;
+                    text-transform: uppercase;
+                    font-weight: 600;
+
+                    &.resistant {
+                        color: @resistance-border;
+                        background-color: @resistance-bg;
+                    }
+
+                    &.immune {
+                        color: @chat-purple;
+                        background-color: @chat-purple-10;
+                    }
+                }
             }
         }
 
         .damage-container {
+            margin: 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
             gap: 5px;
             pointer-events: none;
-            margin-top: 5px;
             list-style: disc;
 
             .damage-row {
                 padding: 0 2px;
                 gap: 4px;
             }
+        }
+
+        &::after {
+            content: '';
+            background: @golden;
+            mask-image: linear-gradient(270deg, transparent 0%, black 50%, transparent 100%);
+            height: 2px;
+            width: 100%;
         }
     }
 }

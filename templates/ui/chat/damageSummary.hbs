@@ -2,8 +2,14 @@
     {{#each targets}}
         <li class="token-target-container {{#if this.token.id}}clickable{{/if}}" data-token="{{this.token.id}}">
             <header>
-                <img src="{{this.token.texture.src}}" />
-                <h2 class="actor-name">{{this.token.name}}</h2>
+                <img src="{{this.token.img}}" />
+                <div class="token-header-data">
+                    <h2 class="actor-name">{{this.token.name}}</h2>
+                    {{#unless (and (not ../isGM) ../hideObserverPermissionInChat)}}
+                        {{#if this.token.resistant}}<div class="token-resistance-container resistant">{{localize "DAGGERHEART.GENERAL.resistant"}}</div>{{/if}}
+                        {{#if this.token.immune}}<div class="token-resistance-container immune">{{localize "DAGGERHEART.GENERAL.immune"}}</div>{{/if}}
+                    {{/unless}}
+                </div>
             </header>
             <ul class="damage-container">
                 {{#each this.updates}}

@@ -165,6 +165,28 @@ export default class DhpActor extends Actor {
         }
     }
 
+    /**
+     * Get the bools for if the actor is resistant or immune to damage carrying certain damageTypes.
+     * An actor has to be resistant or immune to -all- related damageTypes for it to count.
+     * @param {string[]} damageTypes 
+     * @returns { resistant: bool, immune: bool }
+     */
+    getResistanceStatus(damageTypes) {
+        let resistant = null;
+        let immune = null;
+        
+        for (const type of damageTypes) {
+            if (resistant !== false && this.system.resistance?.[type]) {
+                resistant = this.system.resistance[type].resistance;
+            }
+            if (immune !== false && this.system.resistance?.[type]) {
+                immune = this.system.resistance[type].immunity;
+            }
+        }
+
+        return { resistant: Boolean(resistant), immune: Boolean(immune) }
+    }
+
     async updateLevel(newLevel) {
         if (!['character', 'companion'].includes(this.type) || newLevel === this.system.levelData.level.changed) return;
 
@@ -679,7 +701,7 @@ export default class DhpActor extends Actor {
                 damageTypes: new Set(args.main.damageTypes), 
                 key: CONFIG.DH.GENERAL.healingTypes.hitPoints.id
             };
-            if (this.type === 'character' && !isDirect && this.#canReduceDamage(hpDamage.value, hpDamage.damageTypes)) {
+            if (this.type === 'character' && !isDirect && hpDamage.value > 0 && this.#canReduceDamage(hpDamage.value, hpDamage.damageTypes)) {
                 const armorSlotResult = await this.owner.query(
                     'armorSlot',
                     {
@@ -778,18 +800,14 @@ export default class DhpActor extends Actor {
     }
 
     calculateDamage(baseDamage, type) {
-        if (this.canResist(type, 'immunity')) return 0;
-        if (this.canResist(type, 'resistance')) baseDamage = Math.ceil(baseDamage / 2);
+        const { resistant, immune } = this.getResistanceStatus(type);
+        if (immune) baseDamage = 0;
+        else if (resistant) baseDamage = Math.ceil(baseDamage / 2);
 
         const flatReduction = this.getDamageTypeReduction(type);
         const damage = Math.max(baseDamage - (flatReduction ?? 0), 0);
 
         return damage;
-    }
-
-    canResist(type, resistance) {
-        if (!type?.length) return false;
-        return type.every(t => this.system.resistance[t]?.[resistance] === true);
     }
 
     getDamageTypeReduction(type) {
@@ -881,6 +899,8 @@ export default class DhpActor extends Actor {
     }
 
     convertDamageToThreshold(damage) {
+        if (damage <= 0) return 0;
+
         const massiveDamageEnabled = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules)
             .massiveDamage.enabled;
         if (massiveDamageEnabled && damage >= this.system.damageThresholds.severe * 2) {

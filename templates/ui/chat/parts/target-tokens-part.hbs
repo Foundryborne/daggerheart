@@ -16,15 +16,21 @@
                 <img class="target-img" src="{{img}}">
                 <div class="target-data">
                     <div class="target-name"><span>{{name}}</span></div>
-                    {{#if (and ../hasRoll hitResult)}}
-                        <div class="target-hit-status {{#if hitResult.success}}is-hit{{else}}is-miss{{/if}}" data-perm-id="{{actorId}}" data-perm-hidden="true">
-                            {{#if hitResult.success}}
-                                {{localize "DAGGERHEART.GENERAL.hit.single"}}
-                            {{else}}
-                                {{localize "DAGGERHEART.GENERAL.miss.single"}}
-                            {{/if}}
-                        </div>
-                    {{/if}}
+                    <div class="target-roll-status" data-perm-id="{{actorId}}" data-perm-hidden="true">
+                        {{#if (and ../hasRoll hitResult)}}
+                            <div class="target-hit-status {{#if hitResult.success}}is-hit{{else}}is-miss{{/if}}">
+                                {{#if hitResult.success}}
+                                    {{localize "DAGGERHEART.GENERAL.hit.single"}}
+                                {{else}}
+                                    {{localize "DAGGERHEART.GENERAL.miss.single"}}
+                                {{/if}}
+                            </div>
+                        {{/if}}
+                        {{#if (and ../hasDamage ../damage.active)}}
+                            {{#if resistant}}<div class="target-resistance-container resistant">{{localize "DAGGERHEART.GENERAL.resistant"}}</div>{{/if}}
+                            {{#if immune}}<div class="target-resistance-container immune">{{localize "DAGGERHEART.GENERAL.immune"}}</div>{{/if}}
+                        {{/if}}
+                    </div>
                 </div>
                 {{#if ../hasSave }}
                     <div class="target-save{{#if saveResult}} is-rolled{{/if}}" data-perm-id="{{actorId}}">

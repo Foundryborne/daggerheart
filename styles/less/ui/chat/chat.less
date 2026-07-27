@@ -166,10 +166,18 @@
             border-color: transparent;
         }
         [data-view-perm='false'] {
-            &[data-perm-hidden='true'],
+            &[data-perm-hidden='true'] {
+                display: none;
+
+                &::after {
+                    display: none;
+                }
+            }
+
             > * {
                 display: none;
             }
+
             &::after {
                 content: '??';
             }
@@ -497,6 +505,30 @@
                 .target-name {
                     text-align: left;
                 }
+
+                .target-roll-status {
+                    margin-top: 2px;
+                    display: flex;
+                    gap: 4px;
+
+                    .target-resistance-container {
+                        border: 1px solid currentColor;
+                        border-radius: 4px;
+                        padding: 3px 5px;
+                        text-transform: uppercase;
+                        font-weight: 600;
+
+                        &.resistant {
+                            color: @resistance-border;
+                            background-color: @resistance-bg;
+                        }
+
+                        &.immune {
+                            color: @chat-purple;
+                            background-color: @chat-purple-10;
+                        }
+                    }
+                }
             }
 
             .target-save {
@@ -544,11 +576,6 @@
                 color: @medium-red;
                 background-color: @medium-red-10;
             }
-        }
-
-        .target-hit-status {
-            width: fit-content;
-            margin-top: 2px;
         }
 
         div[data-action='expandRoll'] {
