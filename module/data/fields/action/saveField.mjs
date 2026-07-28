@@ -157,7 +157,7 @@ export default class SaveField extends fields.SchemaField {
         return new Promise(async (resolve, reject) => {
             const actor = await fromUuid(actorId),
                 action = await fromUuid(actionId);
-            if (!actor || !actor?.isOwner) reject();
+            if (!actor || !actor?.isOwner) return reject();
             SaveField.rollSave.call(action, actor, event, message).then(result => resolve(result));
         });
     }

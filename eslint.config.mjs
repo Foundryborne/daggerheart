@@ -44,6 +44,7 @@ export default defineConfig([
     },
     {
         files: ['**/*.{js,mjs,cjs}'],
+        extends: [js.configs.recommended],
         plugins: {
             '@stylistic': stylistic
         },
@@ -99,6 +100,12 @@ export default defineConfig([
                     ignoreRestSiblings: true
                 }
             ],
+            'getter-return': 'off',
+            'no-case-declarations': 'off',
+            'no-prototype-builtins': 'off',
+            'no-async-promise-executor': 'warn',
+            'no-empty': ['error', { allowEmptyCatch: true }],
+            'no-useless-assignment': 'warn',
             ...stylisticRules
         }
     },

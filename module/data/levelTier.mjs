@@ -196,7 +196,6 @@ export const defaultLevelTiers = {
                     checkboxSelections: 2,
                     minCost: 1,
                     type: LevelOptionType.hitPoint.id,
-                    value: 1,
                     value: 1
                 },
                 stress: {

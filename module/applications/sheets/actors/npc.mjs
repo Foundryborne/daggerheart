@@ -5,7 +5,6 @@ export default class NPCSheet extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
         classes: ['npc'],
         position: { width: 660, height: 600 },
-        window: { resizable: true },
         actions: {},
         window: {
             resizable: true,

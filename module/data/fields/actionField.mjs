@@ -9,7 +9,6 @@ import { itemAbleRollParse } from '../../helpers/utils.mjs';
 export class ActionCollection extends Collection {
     constructor(model, entries) {
         super();
-        this.#model = model;
         for (const [key, value] of entries) {
             if (!(value instanceof game.system.api.models.actions.actionsTypes.base)) continue;
             this.set(key, value);
@@ -18,14 +17,6 @@ export class ActionCollection extends Collection {
 
     /* -------------------------------------------- */
     /*  Properties                                  */
-    /* -------------------------------------------- */
-
-    /**
-     * The parent DataModel to which this ActionCollection belongs.
-     * @type {DataModel}
-     */
-    #model;
-
     /* -------------------------------------------- */
 
     /* -------------------------------------------- */

@@ -61,7 +61,7 @@ export function getTierAdjustedAdversary(source, tier) {
     }
 
     // Update damage of each item action, making sure to also update the description if possible
-    const damageRegex = /@Damage\[([^\[\]]*)\]({[^}]*})?/g;
+    const damageRegex = /@Damage\[([^[\]]*)\]({[^}]*})?/g;
     for (const item of source.items) {
         // Replace damage inlines with new formulas. Keep a record for a specific check later
         const descriptionFormulas = [];

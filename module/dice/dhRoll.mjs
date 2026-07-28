@@ -35,9 +35,9 @@ export default class DHRoll extends BaseRoll {
         if (config.skips?.createMessage) config.messageRoll = roll;
 
         if (config.evaluate !== false) {
-            await this.buildEvaluate(roll, config, (message = {}));
+            await this.buildEvaluate(roll, config, message);
         }
-        await this.buildPost(roll, config, (message = {}));
+        await this.buildPost(roll, config, message);
         return config;
     }
 

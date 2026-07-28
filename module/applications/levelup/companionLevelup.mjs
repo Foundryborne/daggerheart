@@ -71,7 +71,7 @@ export default class DhCompanionLevelUp extends BaseLevelUp {
                 const actorRange = this.actor.system.attack.range;
 
                 let achievementExperiences = [];
-                for (var levelKey of levelKeys) {
+                for (const levelKey of levelKeys) {
                     const level = this.levelup.levels[levelKey];
                     if (Number(levelKey) < this.levelup.startLevel) continue;
 
@@ -92,13 +92,13 @@ export default class DhCompanionLevelUp extends BaseLevelUp {
                 context.achievements = context.achievements.experiences.shown ? context.achievements : undefined;
 
                 const advancement = {};
-                for (var levelKey of levelKeys) {
+                for (const levelKey of levelKeys) {
                     const level = this.levelup.levels[levelKey];
                     if (Number(levelKey) < this.levelup.startLevel) continue;
 
-                    for (var choiceKey of Object.keys(level.choices)) {
+                    for (const choiceKey of Object.keys(level.choices)) {
                         const choice = level.choices[choiceKey];
-                        for (var checkbox of Object.values(choice)) {
+                        for (const checkbox of Object.values(choice)) {
                             switch (choiceKey) {
                                 case 'stress':
                                 case 'evasion':
@@ -127,6 +127,7 @@ export default class DhCompanionLevelUp extends BaseLevelUp {
                                         : actorKey;
                                     advancement[choiceKey][checkbox.data[0]] =
                                         options[keys[Math.min(currentIndex + 1, keys.length - 1)]];
+                                    break;
                                 default:
                                     if (!advancement.simple) advancement.simple = {};
                                     advancement.simple[choiceKey] = game.i18n.localize(
