@@ -4,21 +4,145 @@
     data-group='{{tabs.class.group}}'
 >
     <div class="main-selections-container">
-        <fieldset class="section-container">
-            <legend>{{localize "TYPES.Item.class"}}</legend>
-            <div class="selections-outer-container">
-                <div class="selections-container class-card">
-                    {{#> "systems/daggerheart/templates/components/card-preview.hbs" class }}
-                        {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.selectClass"}}
-                    {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
-                </div>
+        <div class="step-sidebar">
+            <h1 class="title-section">1. Choose a Class</h1>
+            <div class="compedium-class-list">
+                {{#each subclassGroups}}
+                <div class="{{label}} compedium-class-item">
+                    <h1 class="subtitle-section">
+                        {{label}}
+                        <side-line-div></side-line-div>
+                    </h1>
+                    <ul>
+                        {{> "systems/daggerheart/templates/characterCreation/partials/sidebar-item.hbs"
+                            items=items
+                            action="selectSubclass"}}
+                    </ul>
 
-                <div class="selections-container subclass-card">
-                    {{#> "systems/daggerheart/templates/components/card-preview.hbs" subclass disabled=(not class.img) }}
-                        {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.selectSubclass"}}
-                    {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        <line-div></line-div>
+        {{#if class.name}}
+        <div class="class-info">
+            <h1 class="title-section">{{class.name}}</h1>
+            <div class="description">
+                {{{class.system.description}}}
+            </div>
+            <div class="domains m-top-20">
+                <h2 class="subtitle-section">
+                    {{localize 'DAGGERHEART.GENERAL.Domain.plural'}}
+                    <side-line-div></side-line-div>
+                </h2>
+                <ul class="domains-list m-top-10">
+                    {{#each class.system.domains as |domain|}}
+                        <li class="domain-item">
+                            <img src="{{concat 'systems/daggerheart/assets/icons/domains/' domain '.svg'}}" alt="{{domain}}">
+                            {{localize (concat 'DAGGERHEART.GENERAL.Domain.' domain '.label')}}
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+            <div class="starting-stats m-top-20">
+                <h2 class="subtitle-section">
+                    {{localize 'DAGGERHEART.ITEMS.Class.startingEvasionScore'}}
+                    &
+                    {{localize 'DAGGERHEART.GENERAL.HitPoints.plural'}}
+                    <side-line-div></side-line-div>
+                </h2>
+                <ul class="tags m-top-10">
+                    <li class="tag">{{localize 'DAGGERHEART.GENERAL.HitPoints.plural'}}: {{class.system.hitPoints}}</li>
+                    <li class="tag">{{localize 'DAGGERHEART.GENERAL.evasion'}}: {{class.system.evasion}}</li>
+                </ul>
+            </div>
+            <div class="class-items m-top-20">
+                <h2 class="subtitle-section">
+                    {{localize 'DAGGERHEART.ITEMS.Class.classItems'}}
+                    <side-line-div></side-line-div>
+                </h2>
+                <div class="d-flex m-top-10">
+                    <span class="choice-side-label">
+                        {{localize 'DAGGERHEART.GENERAL.or'}}
+                    </span>
+                    <ul class="class-item-list">
+                        {{#each class.system.inventory.choiceB as |item|}}
+                            <span class="class-item">
+                                <img src="{{item.img}}" alt="{{item.name}}">
+                                <span>{{item.name}}</span>
+                            </span>
+                        {{/each}}
+                    </ul>
                 </div>
             </div>
-        </fieldset>
+            <div class="hope-feature m-top-20">
+                <h2 class="subtitle-section">
+                    {{localize 'DAGGERHEART.ITEMS.Class.hopeFeatureLabel' class=class.name}}
+                    <side-line-div></side-line-div>
+                </h2>
+                {{#each class.system.features as |feature|}}
+                    {{#if (eq feature.type 'hope')}}
+                    <div class="m-top-10">
+                        {{{feature.item.system.description}}}
+                    </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+            <div class="class-feature m-top-20">
+                <h2 class="subtitle-section">
+                    {{localize 'DAGGERHEART.ITEMS.Class.classFeatures'}}
+                    <side-line-div></side-line-div>
+                </h2>
+                {{#each class.system.features as |feature|}}
+                    {{#if (eq feature.type 'class')}}
+                        <div class="m-top-10">
+                            <b>{{{feature.item.name}}}</b><br>
+                            {{{feature.item.system.description}}}
+                        </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+        </div>
+        {{/if}}
+        {{#if subclass.name}}
+        <div class="subclass-info">
+            <h1 class="title-section">{{subclass.name}}</h1>
+            <img class="sublcass-img" src="{{subclass.img}}" alt="{{subclass.name}}">
+            <div class="description m-top-20">
+                {{{subclass.system.description}}}
+            </div>
+
+            {{#if subclass.system.spellcastingTrait}}
+            <div class="subclass-trait m-top-20">
+                <h2 class="subtitle-section">
+                    {{localize 'DAGGERHEART.ITEMS.Subclass.spellcastTrait'}}
+                    <side-line-div></side-line-div>
+                </h2>
+                <div class="m-top-10">{{localize (concat 'DAGGERHEART.CONFIG.Traits.' subclass.system.spellcastingTrait '.name')}}</div>
+            </div>
+            {{/if}}
+
+            {{> subclassFeatures subtitle='DAGGERHEART.ITEMS.Subclass.foundationFeatures' type='foundation' list=subclass.system.features}}
+            {{> subclassFeatures subtitle='DAGGERHEART.ITEMS.Subclass.specializationFeature' type='specialization' list=subclass.system.features}}
+            {{> subclassFeatures subtitle='DAGGERHEART.ITEMS.Subclass.masteryFeature' type='mastery' list=subclass.system.features}}
+        </div>
+        {{/if}}
     </div>
 </section>
+
+{{#*inline "subclassFeatures"}}
+    <div class="{{type}}-feature m-top-20">
+        <h2 class="subtitle-section">
+            {{localize subtitle}}
+            <side-line-div></side-line-div>
+        </h2>
+        {{#each list as |feature|}}
+            {{#if (eq feature.type ../type)}}
+                <div class="m-top-10">
+                    <i><b>{{{feature.item.name}}}:</b></i>
+                    {{{feature.item.system.description}}}
+                </div>
+            {{/if}}
+        {{/each}}
+    </div>
+{{/inline}}

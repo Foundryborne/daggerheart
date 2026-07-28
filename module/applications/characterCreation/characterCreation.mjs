@@ -1,5 +1,7 @@
 import { abilities } from '../../config/actorConfig.mjs';
 import { burden } from '../../config/generalConfig.mjs';
+import { RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+import { ItemBrowser } from '../ui/itemBrowser.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -46,7 +48,18 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             }
         };
 
+        this.subclassGroups = [];
+
         this._dragDrop = this._createDragDropHandlers();
+
+        this.setupHooks = Hooks.on(socketEvent.Refresh, ({ refreshType }) => {
+            if (refreshType === RefreshType.CompendiumBrowser) {
+                if (this.rendered) {
+                    this.render();
+                    this.loadItems();
+                }
+            }
+        });
     }
 
     get title() {
@@ -56,14 +69,21 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
     static DEFAULT_OPTIONS = {
         tag: 'form',
         classes: ['daggerheart', 'dialog', 'dh-style', 'character-creation'],
-        position: { width: 700, height: 'auto' },
+        position: { width: 'auto', height: 'auto' },
+        window: {
+            icon: 'fa-solid fa-wand-magic-sparkles',
+            positioned: false,
+            resizable: false,
+            minimizable: false
+        },
         actions: {
             viewCompendium: this.viewCompendium,
             viewItem: this.viewItem,
             useSuggestedTraits: this.useSuggestedTraits,
             equipmentChoice: this.equipmentChoice,
             setupGoNext: this.setupGoNext,
-            finish: this.finish
+            finish: this.finish,
+            selectSubclass: this.selectSubclass
         },
         form: {
             handler: this.updateForm,
@@ -258,6 +278,8 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         }, {});
 
         context.visibility = this.setup.visibility;
+
+        context.subclassGroups = this.subclassGroups
 
         return context;
     }
@@ -690,6 +712,113 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         }
 
         this.setup.visibility = this.getUpdateVisibility();
+        this.render();
+    }
+
+    loadItems() {
+        const browserSettings = game.settings.get(
+            CONFIG.DH.id,
+            CONFIG.DH.SETTINGS.gameSettings.CompendiumBrowserSettings
+        );
+        const promises = [];
+
+        game.packs.forEach(pack => {
+            promises.push(
+                new Promise(async resolve => {
+                    const items = await pack.getDocuments({ type__in: this.selectedMenu?.data?.type });
+                    resolve(items);
+                })
+            );
+        });
+
+        Promise.all(promises).then(async result => {
+            this.items = ItemBrowser.sortBy(
+                result.flatMap(r => r).filter(r => !browserSettings.isEntryExcluded.bind(browserSettings)(r)),
+                'name'
+            );
+
+            /* If any noticeable slowdown occurs, consider replacing with enriching description on clicking to expand descriptions */
+            for (const item of this.items) {
+                if (['weapon', 'armor'].includes(item.type)) {
+                    item.system.enrichedTags = await foundry.applications.handlebars.renderTemplate(
+                        'systems/daggerheart/templates/ui/itemBrowser/item-tags.hbs',
+                        { item: item.system }
+                    );
+                }
+            }
+
+            if (this.presets?.filter) {
+                Object.entries(this.presets.filter).forEach(([k, v]) => {
+                    const filter = this.fieldFilter.find(c => c.name === k);
+                    if (filter) filter.value = v.value;
+                });
+            }
+
+            const subclassGroups = [];
+
+            for (const item of this.items.filter(item => item.system?.linkedClass)) {
+                const linkedClass = await foundry.utils.fromUuid(item.system.linkedClass);
+
+                if (
+                    subclassGroups.some(classItem => classItem.uuid === item.system.linkedClass)
+                ) {} else {
+                    if (linkedClass) {
+                        subclassGroups.push({
+                            label: linkedClass.name.toLowerCase(),
+                            uuid: linkedClass.uuid,
+                            items: this.items.filter(item => item.system?.linkedClass === linkedClass.uuid)
+                        })
+                    }
+                }
+            }
+            
+            subclassGroups.sort((a, b) => a.label.localeCompare(b.label))
+
+            if (this.subclassGroups.length) return;
+
+            for (const classItem of subclassGroups) {
+                const element = document.createElement('div');
+                element.classList.add(classItem.label.toLowerCase(), 'compedium-class-item')
+                const subclassElement = document.createElement('ul');
+
+                let header = document.createElement('h1');
+                header.classList.add('subtitle-section')
+                header.innerHTML = classItem.label + '<side-line-div></side-line-div>'
+
+                element.appendChild(header)
+
+                const subclassList = await foundry.applications.handlebars.renderTemplate(
+                    'systems/daggerheart/templates/characterCreation/partials/sidebar-item.hbs',
+                    {
+                        items: classItem?.items,
+                        action: 'selectSubclass'
+                    }
+                );
+
+                subclassElement.innerHTML = subclassList
+                element.appendChild(subclassElement)
+
+                this.element.querySelector('.compedium-class-list').appendChild(element);
+            }
+
+            this.subclassGroups = subclassGroups;
+        });
+    }
+
+    async _preRender(context, options) {
+        await super._preRender(context, options);
+
+        this.loadItems();
+    }
+
+    static async selectSubclass(_, target) {
+        const subclass = await foundry.utils.fromUuid(target.dataset.uuid);
+        const classItem = await foundry.utils.fromUuid(subclass.system?.linkedClass);
+
+        this.setup.class = classItem;
+        this.setup.subclass = subclass;
+        this.setup.visibility = this.getUpdateVisibility();
+
         this.render();
     }
 }
