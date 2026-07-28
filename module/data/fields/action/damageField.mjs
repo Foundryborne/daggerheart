@@ -35,7 +35,7 @@ export default class DamageField extends fields.SchemaField {
             return;
         }
 
-        const damageFormula = this.damage.main ? 
+        const damageFormula = this.damage.main ?
             DamageField.formatFormulas.call(this, [this.damage.main], config)[0] : null;
         const resourceFormulas = DamageField.formatFormulas.call(this, this.damage.resources, config);
 
@@ -54,6 +54,8 @@ export default class DamageField extends fields.SchemaField {
         delete damageConfig.evaluate;
 
         if (DamageField.getAutomation() === CONFIG.DH.SETTINGS.actionAutomationChoices.always.id)
+            damageConfig.dialog.configure = false;
+        if (!damageFormula && resourceFormulas.length && resourceFormulas.every(f => f.fullRestore))
             damageConfig.dialog.configure = false;
         if (config.hasSave) config.onSave = damageConfig.onSave = this.save.damageMod;
 
@@ -112,7 +114,22 @@ export default class DamageField extends fields.SchemaField {
                 damagePromises.push(
                     actor
                         .takeDamage(configDamage, config.isDirect)
-                        .then(updates => targetDamage.push({ token, updates }))
+                        .then(updates => { 
+                            const resistanceData = 
+                                token.actor?.getResistanceStatus(configDamage.main?.options.damageTypes);
+                            const tokenData = {
+                                id: token.id, 
+                                name: token.prototype?.name ?? token.name, 
+                                img: token.texture.src,
+                                resistant: resistanceData?.resistant,
+                                immune: resistanceData?.immune
+                            };
+                            
+                            targetDamage.push({
+                                token: tokenData,
+                                updates 
+                            })
+                        })
                 );
             }
         }
@@ -123,6 +140,11 @@ export default class DamageField extends fields.SchemaField {
                 CONFIG.DH.SETTINGS.gameSettings.Automation
             ).summaryMessages;
             if (!summaryMessageSettings.damage) return;
+
+            const { hideObserverPermissionInChat } = game.settings.get(
+                CONFIG.DH.id,
+                CONFIG.DH.SETTINGS.gameSettings.Metagaming
+            );
 
             const cls = getDocumentClass('ChatMessage');
             const msg = {
@@ -135,7 +157,8 @@ export default class DamageField extends fields.SchemaField {
                 content: await foundry.applications.handlebars.renderTemplate(
                     'systems/daggerheart/templates/ui/chat/damageSummary.hbs',
                     {
-                        targets: targetDamage
+                        targets: targetDamage,
+                        hideObserverPermissionInChat
                     }
                 )
             };
@@ -175,9 +198,10 @@ export default class DamageField extends fields.SchemaField {
      */
     static formatFormulas(damageData, data) {
         const formulas = damageData.map(x => ({
-            formula: DamageField.getFormulaValue.call(this, x, data).getFormula(this.actor),
+            formula: x.fullRestore ? '0' : DamageField.getFormulaValue.call(this, x, data).getFormula(this.actor),
             damageTypes: x.type ?? new Set(),
-            applyTo: x.applyTo
+            applyTo: x.applyTo,
+            fullRestore: !!x.fullRestore
         }));
 
         const formattedFormulas = [];
@@ -187,8 +211,10 @@ export default class DamageField extends fields.SchemaField {
             const same = formattedFormulas.find(
                 f => setsEqual(f.damageTypes, formula.damageTypes) && f.applyTo === formula.applyTo
             );
-            if (same) same.formula += ` + ${formula.formula}`;
-            else formattedFormulas.push(formula);
+            if (same) {
+                same.formula += ` + ${formula.formula}`;
+                same.fullRestore ||= formula.fullRestore;
+            } else formattedFormulas.push(formula);
         }
 
         return formattedFormulas;
@@ -298,6 +324,10 @@ export class DHResourceBaseData extends foundry.abstract.DataModel {
             resultBased: new fields.BooleanField({
                 initial: false,
                 label: 'DAGGERHEART.ACTIONS.Settings.resultBased.label'
+            }),
+            fullRestore: new fields.BooleanField({
+                initial: false,
+                label: 'DAGGERHEART.ACTIONS.Settings.fullRestore.label'
             })
         };
     }

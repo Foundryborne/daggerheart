@@ -155,6 +155,10 @@
                 "resultBased": {
                     "label": "Formula based on Hope/Fear result."
                 },
+                "fullRestore": {
+                    "label": "Fully restore the resource.",
+                    "inChatRoll": "Full"
+                },
                 "applyTo": {
                     "label": "Targeted Resource"
                 },
@@ -1288,6 +1292,11 @@
                     "name": "Fear",
                     "abbreviation": "FR",
                     "inChatRoll": "Fear"
+                },
+                "weaponResource": {
+                    "name": "Weapon Resource",
+                    "abbreviation": "WR",
+                    "inChatRoll": "Reload"
                 }
             },
             "ItemResourceProgression": {
@@ -2465,6 +2474,7 @@
             "icon": "Icon",
             "identify": "Identity",
             "imagePath": "Image Path",
+            "immune": "Immune",
             "inactiveEffects": "Inactive Effects",
             "initial": "Initial",
             "inventory": "Inventory",
@@ -2508,6 +2518,7 @@
             "reroll": "Reroll",
             "rerolled": "Rerolled",
             "rerollThing": "Reroll {thing}",
+            "resistant": "Resistant",
             "result": {
                 "single": "Result",
                 "plural": "Results"
@@ -2682,6 +2693,7 @@
             },
             "Weapon": {
                 "weaponType": "Weapon Type",
+                "configureAttack": "Configure Attack",
                 "primaryWeapon": {
                     "full": "Primary Weapon",
                     "short": "Primary"
@@ -3096,8 +3108,11 @@
                     "dealDamage": "Deal Damage",
                     "rollDamage": "Roll Damage",
                     "hitTarget": "Hit",
-                    "selectedTarget": "Selected",
-                    "currentTarget": "Current"
+                    "targetingInitial": "Targets",
+                    "targetingSelected": "Selected",
+                    "totalTargetedTokens": "{total} selected",
+                    "noTokensSelected": "No Tokens Selected",
+                    "setSelectedAsTargets": "Set Selected As Targets"
                 },
                 "deathMove": {
                     "title": "Death Move",
@@ -3131,6 +3146,8 @@
                     "applyHealing": "Apply Healing"
                 },
                 "markResource": "Mark {quantity} {resource}",
+                "reloadWeapon": "Reload {weapon}",
+                "restoreWeaponResource": "Restore {quantity} on {weapon}",
                 "refreshMessage": {
                     "title": "Feature Refresh",
                     "header": "Refreshed"
@@ -3220,7 +3237,7 @@
                 "beastformInapplicable": "A beastform can only be applied to a Character.",
                 "beastformAlreadyApplied": "The character already has a beastform applied!",
                 "noTargetsSelected": "No targets are selected.",
-                "noTargetsSelectedOrPerm": "No targets are selected or with the update permission.",
+                "noTargetsHit": "No targets are hit",
                 "attackTargetDoesNotExist": "The target token no longer exists",
                 "insufficentAdvancements": "You don't have enough advancements left.",
                 "noAssignedPlayerCharacter": "You have no assigned character.",

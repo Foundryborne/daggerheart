@@ -33,7 +33,11 @@ export default class DamageRoll extends DHRoll {
         
         const evaluateRoll = async roll => {
             await roll.roll.evaluate();
-            roll.roll.options = { ...roll.roll.options, damageTypes: roll.damageTypes ? [...roll.damageTypes] : [] };
+            roll.roll.options = {
+                ...roll.roll.options,
+                damageTypes: roll.damageTypes ? [...roll.damageTypes] : [],
+                fullRestore: !!roll.fullRestore
+            };
             return roll.roll;
         }
 

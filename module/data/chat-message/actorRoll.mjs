@@ -3,23 +3,6 @@ import { ChatDamageData } from './chatDamageData.mjs';
 
 const fields = foundry.data.fields;
 
-const targetsField = () =>
-    new fields.ArrayField(
-        new fields.SchemaField({
-            id: new fields.StringField({}),
-            actorId: new fields.StringField({}),
-            name: new fields.StringField({}),
-            img: new fields.StringField({}),
-            difficulty: new fields.NumberField({ integer: true, nullable: true }),
-            evasion: new fields.NumberField({ integer: true }),
-            hit: new fields.BooleanField({ initial: false }),
-            saved: new fields.SchemaField({
-                result: new fields.NumberField(),
-                success: new fields.BooleanField({ nullable: true, initial: null })
-            })
-        })
-    );
-
 export const originItemField = () =>
     new fields.SchemaField({
         type: new fields.StringField({
@@ -31,11 +14,16 @@ export const originItemField = () =>
     });
 
 export default class DHActorRoll extends foundry.abstract.TypeDataModel {
+    constructor(data, options) {
+        super(data, options);
+
+        this.targeting = { usingSelect: !this.targets.length };
+    }
+
     static defineSchema() {
         return {
             title: new fields.StringField(),
             actionDescription: new fields.HTMLField(),
-            targets: targetsField(),
             hasRoll: new fields.BooleanField({ initial: false }),
             hasDamage: new fields.BooleanField({ initial: false }),
             hasHealing: new fields.BooleanField({ initial: false }),
@@ -45,6 +33,17 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             reloadCheckValue: new fields.NumberField({ integer: true, nullable: true, initial: null }),
             isDirect: new fields.BooleanField({ initial: false }),
             onSave: new fields.StringField(),
+            targets: new fields.ArrayField(
+                new fields.SchemaField({
+                    id: new fields.StringField({}),
+                    actorId: new fields.StringField({}),
+                    name: new fields.StringField({}),
+                    img: new fields.StringField({}),
+                    difficulty: new fields.NumberField({ integer: true, nullable: true }),
+                    evasion: new fields.NumberField({ integer: true })
+                })
+            ),
+            targetSaves: new fields.TypedObjectField(new fields.NumberField({ integer: true })),
             source: new fields.SchemaField({
                 actor: new fields.StringField(),
                 item: new fields.StringField(),
@@ -54,6 +53,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             damage: new fields.EmbeddedDataField(ChatDamageData),
             damageOptions: new fields.ObjectField(),
             costs: new fields.ArrayField(new fields.ObjectField()),
+            uses: new fields.ObjectField(),
             successConsumed: new fields.BooleanField({ initial: false })
         };
     }
@@ -111,38 +111,107 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         return null;
     }
 
-    get targetMode() {
-        return this.parent.targetSelection;
+    get currentHitTargets() {
+        const currentTargets = this._getCurrentTargets();
+        if (!this.hasRoll || this.targeting.usingSelect) return currentTargets;
+
+        return currentTargets.filter(x => x.hitResult.success)
     }
 
-    set targetMode(mode) {
-        if (!this.parent.isAuthor) return;
-        this.parent.targetSelection = mode;
-        this.registerTargetHook();
-        this.updateTargets();
+    get hasUnfinishedSaves() {
+        return this.hasSave && this.currentHitTargets.some(x => !x.saveResult);
     }
 
-    get hitTargets() {
-        return this.currentTargets.filter(t => t.hit || !this.hasRoll || !this.targetMode);
-    }
+    /**
+     * Get the target data for the current targets of the roll. 
+     * This will either be the initial targets, or the currently selected tokens depending on which tab the GM has open.
+     * @returns {TargetData[]}
+     */
+    _getCurrentTargets() {
+        const getCommonData = data => {
+            const actor = data.actorId ? foundry.utils.fromUuidSync(data.actorId) : null;
+            const toHitNumber = data.difficulty || data.evasion;
+            const hitSuccessfull = (toHitNumber === null || !this.roll) ? false : this.roll.total >= toHitNumber;
 
-    async updateTargets() {
-        if (!ui.chat.collection.get(this.parent.id)) return;
-        let targets;
-        if (this.targetMode) targets = this.targets;
-        else
-            targets = Array.from(game.user.targets).map(t =>
-                game.system.api.fields.ActionFields.TargetField.formatTarget(t)
-            );
+            const saveValue = this.targetSaves[data.id];
+            const saveSuccessfull = saveValue === undefined ? false : 
+                saveValue >= (this.action.save.difficulty ?? this.action.actor?.baseSaveDifficulty);
+            const hasResistData = this.hasDamage && this.damage.active && actor;
+            const resistData = hasResistData ? actor.getResistanceStatus(this.damage.main.options.damageTypes) : null;
 
-        await this.parent.update({
-            flags: {
-                [game.system.id]: {
-                    targets: targets,
-                    targetMode: this.targetMode
-                }
+            return {
+                ...data,
+                hitResult: this.hasRoll ? { success: hitSuccessfull } : null,
+                saveResult: saveValue ? { success: saveSuccessfull } : null,
+                resistant: Boolean(resistData?.resistant),
+                immune: Boolean(resistData?.immune)
             }
-        });
+        };
+
+        if (!this.targeting.usingSelect) return this.targets.map(getCommonData);
+
+        return (canvas.tokens?.controlled ?? []).map(token => ({
+            id: token.id,
+            actorId: token.document.actor?.uuid,
+            _actorId: token.document.actor?.id,
+            name: token.document.prototype?.name ?? token.document.name,
+            img: token.document.actor?.img ?? token.document.texture.src,
+            difficulty: token.document.actor?.system.difficulty,
+            evasion: token.document.actor?.system.evasion
+        })).map(getCommonData);
+    }
+
+    /**
+     * Returns the needed render data for the Selected tab of the targeting section.
+     * @returns {{ totalTokens: number, uniqueTokens: number, tokens: TokenData[] }}
+     */
+    _getSelectedTargetsData() {
+        if (!this.targeting.usingSelect) return [];
+
+        const currentTargets = this._getCurrentTargets();
+        const uniqueTokens = currentTargets.reduce((acc, target) => {
+            if (acc.find(x => x._actorId === target._actorId)) return acc;
+            acc.push(target);
+            return acc;
+        }, []);
+
+        return {
+            totalTokens: currentTargets.length,
+            uniqueTokens: uniqueTokens.length,
+            tokens: uniqueTokens.slice(0, 3)
+        }
+    }
+
+
+    syncSelectedTokens = foundry.utils.debounce(async () => {
+        if (this.targeting.usingSelect) this.updateTargetHTML();
+    }, 50);
+
+    /**
+     * Updates the target section of the chat message through direct HTML manipulation.
+     * Listeners are reattached.
+     * @param {object} options
+     * @param {"targets" | "select" | null} [options.tab] If set, switches to this tab before updates
+     */
+    async updateTargetHTML({ tab = null } = {}) {
+        if (tab) this.targeting.usingSelect = tab === 'select';
+        const targetTokensHTML = await foundry.applications.handlebars.renderTemplate(
+            'systems/daggerheart/templates/ui/chat/parts/target-tokens-part.hbs',
+            {
+                targeting: this.targeting,
+                currentTargets: this._getCurrentTargets(),
+                selectedTargetsData: this._getSelectedTargetsData(),
+                hasSave: this.hasSave,
+                hasRoll: this.hasRoll,
+                hasDamage: this.hasDamage,
+                damage: this.damage,
+                isGM: game.user.isGM
+            }
+        );
+        const chatMessageHTML = ui.chat.element.querySelector(`.chat-message[data-message-id="${this.parent.id}"]`);
+        const element = chatMessageHTML.querySelector('.chat-roll .target-section .roll-part-content .wrapper');
+        element.outerHTML = targetTokensHTML;
+        this.parent.addTargetSectionListeners(chatMessageHTML);
     }
 
     async getRerolledDamage() {
@@ -167,38 +236,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         return update;
     }
 
-    registerTargetHook() {
-        if (!this.parent.isAuthor || !this.hasTarget) return;
-        if (this.targetMode && this.parent.targetHook !== null) {
-            Hooks.off('targetToken', this.parent.targetHook);
-            return (this.parent.targetHook = null);
-        } else if (!this.targetMode && this.parent.targetHook === null) {
-            return (this.parent.targetHook = Hooks.on(
-                'targetToken',
-                foundry.utils.debounce(this.updateTargets.bind(this), 50)
-            ));
-        }
-    }
-
     prepareDerivedData() {
-        if (this.hasTarget) {
-            this.hasHitTarget = this.targets.filter(t => t.hit === true).length > 0;
-            this.currentTargets = this.getTargetList();
-            // this.registerTargetHook();
-
-            if (this.hasRoll) {
-                this.targetShort = this.targets.reduce(
-                    (a, c) => {
-                        if (c.hit) a.hit += 1;
-                        else a.miss += 1;
-                        return a;
-                    },
-                    { hit: 0, miss: 0 }
-                );
-            }
-            if (this.hasSave) this.setPendingSaves();
-        }
-
         this.canViewSecret = this.parent.speakerActor?.testUserPermission(game.user, 'OBSERVER');
         this.canButtonApply = game.user.isGM; //temp
         this.isGM = game.user.isGM; //temp
@@ -238,29 +276,5 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         }
         
         return source;
-    }
-
-
-    getTargetList() {
-        const targets =
-                this.targetMode && this.parent.isAuthor
-                    ? this.targets
-                    : (this.parent.getFlag(game.system.id, 'targets') ?? this.targets),
-            reactionRolls = this.parent.getFlag(game.system.id, 'reactionRolls');
-
-        if (reactionRolls) {
-            Object.entries(reactionRolls).forEach(([k, r]) => {
-                const target = targets.find(t => t.id === k);
-                if (target) target.saved = r;
-            });
-        }
-
-        return targets;
-    }
-
-    setPendingSaves() {
-        this.pendingSaves = this.targetMode
-            ? this.targets.filter(target => target.hit && target.saved.success === null).length > 0
-            : this.currentTargets.filter(target => target.saved.success === null).length > 0;
     }
 }

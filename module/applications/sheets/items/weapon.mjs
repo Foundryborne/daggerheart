@@ -5,6 +5,9 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
     /** @inheritdoc */
     static DEFAULT_OPTIONS = {
         classes: ['weapon'],
+        actions: {
+            configureAttack: WeaponSheet.#configureAttack
+        },
         tagifyConfigs: [
             {
                 selector: '.features-input',
@@ -46,6 +49,13 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
                 break;
         }
         return context;
+    }
+
+    /**
+     * Open the action configuration sheet for the weapon's base attack.
+     */
+    static #configureAttack() {
+        this.document.system.attack.sheet.render({ force: true });
     }
 
     /**

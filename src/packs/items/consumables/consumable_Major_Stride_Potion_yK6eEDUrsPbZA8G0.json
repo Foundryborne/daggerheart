@@ -36,7 +36,7 @@
           }
         ],
         "target": {
-          "type": "self",
+          "type": "",
           "amount": null
         },
         "name": "Drink",

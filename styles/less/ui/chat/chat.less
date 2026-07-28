@@ -166,10 +166,18 @@
             border-color: transparent;
         }
         [data-view-perm='false'] {
-            &[data-perm-hidden='true'],
+            &[data-perm-hidden='true'] {
+                display: none;
+
+                &::after {
+                    display: none;
+                }
+            }
+
             > * {
                 display: none;
             }
+
             &::after {
                 content: '??';
             }
@@ -439,6 +447,39 @@
             text-align: center;
         }
 
+        .selected-targets-container {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 18px;
+
+            .roll-target {
+                width: fit-content;
+
+                &:not(:first-child) {
+                    margin-left: -22px;
+                }
+            }
+
+            .ellipsis-marker {
+                margin-left: -20px;
+            }
+
+            .targets-tools-container {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 4px;
+            }
+
+            .empty-text {
+                flex: 1;
+                text-align: center;
+            }
+        }
+
         .roll-target {
             display: flex;
             width: 100%;
@@ -455,6 +496,7 @@
                 width: 40px;
                 height: 40px;
                 object-fit: cover;
+                object-position: top center;
             }
 
             .target-data {
@@ -462,6 +504,30 @@
 
                 .target-name {
                     text-align: left;
+                }
+
+                .target-roll-status {
+                    margin-top: 2px;
+                    display: flex;
+                    gap: 4px;
+
+                    .target-resistance-container {
+                        border: 1px solid currentColor;
+                        border-radius: 4px;
+                        padding: 3px 5px;
+                        text-transform: uppercase;
+                        font-weight: 600;
+
+                        &.resistant {
+                            color: @resistance-color-border;
+                            background-color: @resistance-color-bg;
+                        }
+
+                        &.immune {
+                            color: @immunity-color-border;
+                            background-color: @immunity-color-bg;
+                        }
+                    }
                 }
             }
 
@@ -510,11 +576,6 @@
                 color: @medium-red;
                 background-color: @medium-red-10;
             }
-        }
-
-        .target-hit-status {
-            width: fit-content;
-            margin-top: 2px;
         }
 
         div[data-action='expandRoll'] {

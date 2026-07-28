@@ -244,18 +244,11 @@
                     font-size: 1.2rem;
                     width: 80px;
                     height: 30px;
-                    justify-content: center;
-                    color: light-dark(@dark-blue, @beige);
 
                     input[type='number'] {
                         font-size: 1.2rem;
                         width: 30px;
                         height: 20px;
-                        color: light-dark(@dark-blue, @beige);
-
-                        &.bar-input {
-                            color: light-dark(@dark-blue, @beige);
-                        }
                     }
 
                     .bar-label {
@@ -263,9 +256,12 @@
                     }
                 }
                 .progress-bar {
-                    background: light-dark(transparent, @dark-blue);
                     border-bottom: none;
                     border-radius: 6px 6px 0 0;
+                    &::-webkit-progress-bar,
+                    &::-webkit-progress-value {
+                        border-radius: 6px 6px 0 0;
+                    }
                 }
             }
 

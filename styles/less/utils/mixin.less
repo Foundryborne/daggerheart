@@ -5,19 +5,21 @@
  */
 .appTheme(@darkRules, @lightRules) {
     // Dark theme selectors
-    .themed.theme-dark .application.daggerheart.dh-style,
-    .themed.theme-dark.application.daggerheart.dh-style,
-    body.theme-dark .application.daggerheart,
-    body.theme-dark.application.daggerheart {
-        @darkRules();
+    @scope (.theme-dark) to (.themed) {
+        .application.daggerheart :scope,
+        :scope.application.daggerheart,
+        .application.daggerheart {
+            @darkRules();
+        }
     }
 
     // Light theme selectors
-    .themed.theme-light .application.daggerheart.dh-style,
-    .themed.theme-light.application.daggerheart.dh-style,
-    body.theme-light .application.daggerheart,
-    body.theme-light.application.daggerheart {
-        @lightRules();
+    @scope (.theme-light) to (.themed) {
+        .application.daggerheart :scope,
+        :scope.application.daggerheart,
+        .application.daggerheart {    
+            @lightRules();
+        }
     }
 }
 

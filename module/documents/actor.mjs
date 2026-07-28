@@ -165,6 +165,28 @@ export default class DhpActor extends Actor {
         }
     }
 
+    /**
+     * Get the bools for if the actor is resistant or immune to damage carrying certain damageTypes.
+     * An actor has to be resistant or immune to -all- related damageTypes for it to count.
+     * @param {string[]} damageTypes 
+     * @returns { resistant: bool, immune: bool }
+     */
+    getResistanceStatus(damageTypes) {
+        let resistant = null;
+        let immune = null;
+        
+        for (const type of damageTypes) {
+            if (resistant !== false && this.system.resistance?.[type]) {
+                resistant = this.system.resistance[type].resistance;
+            }
+            if (immune !== false && this.system.resistance?.[type]) {
+                immune = this.system.resistance[type].immunity;
+            }
+        }
+
+        return { resistant: Boolean(resistant), immune: Boolean(immune) }
+    }
+
     async updateLevel(newLevel) {
         if (!['character', 'companion'].includes(this.type) || newLevel === this.system.levelData.level.changed) return;
 
@@ -679,7 +701,7 @@ export default class DhpActor extends Actor {
                 damageTypes: new Set(args.main.damageTypes), 
                 key: CONFIG.DH.GENERAL.healingTypes.hitPoints.id
             };
-            if (this.type === 'character' && !isDirect && this.#canReduceDamage(hpDamage.value, hpDamage.damageTypes)) {
+            if (this.type === 'character' && !isDirect && hpDamage.value > 0 && this.#canReduceDamage(hpDamage.value, hpDamage.damageTypes)) {
                 const armorSlotResult = await this.owner.query(
                     'armorSlot',
                     {
@@ -753,9 +775,13 @@ export default class DhpActor extends Actor {
 
         const updates = args.resourceUpdates;
         for (const u of updates) {
+            if (u.key === CONFIG.DH.GENERAL.healingTypes.weaponResource.id) continue;
             const shouldFlip = !(u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false);
             u.value = shouldFlip ? u.value * -1 : u.value;
         }
+
+        this.convertResourceHealingToReload(updates);
+
         await this.modifyResource(updates);
 
         if (Hooks.call(`${CONFIG.DH.id}.postTakeHealing`, this, updates) === false) return null;
@@ -769,27 +795,24 @@ export default class DhpActor extends Actor {
         const damageValue = typeof damageRoll === 'number' ? damageRoll : damageRoll?.total;
         const damageTypes = Array.from(damageRoll?.options?.damageTypes ?? damageRoll?.damageTypes ?? []);
         const main = typeof damageValue === 'number' ? { key: 'damage', value: damageValue, damageTypes } : null;
-        const resourceUpdates = Object.entries(args.resources ?? {}).map(([key, damage]) => ({ 
-            key, 
-            value: typeof damage === 'number' ? damage : damage?.total ?? 0 
+        const resourceUpdates = Object.entries(args.resources ?? {}).map(([key, damage]) => ({
+            key,
+            value: typeof damage === 'number' ? damage : damage?.total ?? 0,
+            clear: typeof damage === 'number' ? false : !!damage?.options?.fullRestore
         }));
 
         return { main, resourceUpdates };
     }
 
     calculateDamage(baseDamage, type) {
-        if (this.canResist(type, 'immunity')) return 0;
-        if (this.canResist(type, 'resistance')) baseDamage = Math.ceil(baseDamage / 2);
+        const { resistant, immune } = this.getResistanceStatus(type);
+        if (immune) baseDamage = 0;
+        else if (resistant) baseDamage = Math.ceil(baseDamage / 2);
 
         const flatReduction = this.getDamageTypeReduction(type);
         const damage = Math.max(baseDamage - (flatReduction ?? 0), 0);
 
         return damage;
-    }
-
-    canResist(type, resistance) {
-        if (!type?.length) return false;
-        return type.every(t => this.system.resistance[t]?.[resistance] === true);
     }
 
     getDamageTypeReduction(type) {
@@ -818,7 +841,7 @@ export default class DhpActor extends Actor {
         resources.forEach(r => {
             if (r.itemId) {
                 const { path, value } = game.system.api.fields.ActionFields.CostField.getItemIdCostUpdate(r);
-                updates.items[r.key] = {
+                updates.items[`${r.itemId}-${r.key}`] = {
                     target: r.target,
                     resources: { [path]: value }
                 };
@@ -881,12 +904,30 @@ export default class DhpActor extends Actor {
     }
 
     convertDamageToThreshold(damage) {
+        if (damage <= 0) return 0;
+
         const massiveDamageEnabled = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules)
             .massiveDamage.enabled;
         if (massiveDamageEnabled && damage >= this.system.damageThresholds.severe * 2) {
             return 4;
         }
         return damage >= this.system.damageThresholds.severe ? 3 : damage >= this.system.damageThresholds.major ? 2 : 1;
+    }
+
+    convertResourceHealingToReload(updates) {
+        const resourceIndex = updates.findIndex(u => u.key === CONFIG.DH.GENERAL.healingTypes.weaponResource.id);
+        if (resourceIndex === -1) return;
+        const [reload] = updates.splice(resourceIndex, 1);
+        const weapons = this.items.filter(i => i.type === 'weapon' && i.system.equipped && i.system.resource);
+        for (const weapon of weapons) {
+            updates.push({
+                key: CONFIG.DH.GENERAL.itemAbilityCosts.resource.id,
+                value: reload.value,
+                clear: reload.clear,
+                itemId: weapon.id,
+                target: weapon
+            });
+        }
     }
 
     convertStressDamageToHP(resources) {

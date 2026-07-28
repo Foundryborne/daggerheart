@@ -44,7 +44,7 @@ export default class SaveField extends fields.SchemaField {
             message = config.message = await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
         }
         if (SaveField.getAutomation() !== CONFIG.DH.SETTINGS.actionAutomationChoices.never.id || force) {
-            targets ??= config.targets.filter(t => !config.hasRoll || t.hit);
+            targets ??= config.targets.filter(t => !config.hasRoll || t.hitResult?.success);
             await SaveField.rollAllSave.call(this, targets, config.event, message);
         } else return;
     }
@@ -125,20 +125,10 @@ export default class SaveField extends fields.SchemaField {
     static async updateSaveMessage(result, message, targetId) {
         if (!result) return;
 
-        const chatMessage = ui.chat.collection.get(message._id),
-            changes = {
-                flags: {
-                    [game.system.id]: {
-                        reactionRolls: {
-                            [targetId]: {
-                                result: result.roll.total,
-                                success: result.roll.success
-                            }
-                        }
-                    }
-                }
-            };
-        await chatMessage.update(changes);
+        const chatMessage = ui.chat.collection.get(message._id);
+        await chatMessage.update({
+            [`system.targetSaves.${targetId}`]: result.roll.total
+        });
     }
 
     /**

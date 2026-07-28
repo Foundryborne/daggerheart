@@ -1,0 +1,66 @@
+<div class="wrapper">
+    {{#if isGM}}
+        <div class="target-selector">
+            <div class="roll-part-header"><div></div></div>
+            <div class="target-choice">
+                <div class="button-target-selection{{#unless targeting.usingSelect}} target-selected{{/unless}}">{{localize "DAGGERHEART.UI.Chat.damageRoll.targetingInitial"}}</div>
+                <div class="button-target-selection{{#if targeting.usingSelect}} target-selected{{/if}}" data-selected="true">{{localize "DAGGERHEART.UI.Chat.damageRoll.targetingSelected"}}</div>
+            </div>
+            <div class="roll-part-header"><div></div></div>
+        </div>
+    {{/if}}
+    {{#if (and hasSave currentTargets.length)}}<div class="roll-part-extra roll-all-save-button">{{localize "DAGGERHEART.UI.Chat.saveRoll.reactionRollAllTargets"}}<i class="fa-solid fa-shield fa-lg"></i></div>{{/if}}
+    {{#unless targeting.usingSelect}}
+        {{#each currentTargets}}
+            <div class="roll-target" data-token="{{id}}">
+                <img class="target-img" src="{{img}}">
+                <div class="target-data">
+                    <div class="target-name"><span>{{name}}</span></div>
+                    <div class="target-roll-status" data-perm-id="{{actorId}}" data-perm-hidden="true">
+                        {{#if (and ../hasRoll hitResult)}}
+                            <div class="target-hit-status {{#if hitResult.success}}is-hit{{else}}is-miss{{/if}}">
+                                {{#if hitResult.success}}
+                                    {{localize "DAGGERHEART.GENERAL.hit.single"}}
+                                {{else}}
+                                    {{localize "DAGGERHEART.GENERAL.miss.single"}}
+                                {{/if}}
+                            </div>
+                        {{/if}}
+                        {{#if (and ../hasDamage ../damage.active)}}
+                            {{#if resistant}}<div class="target-resistance-container resistant">{{localize "DAGGERHEART.GENERAL.resistant"}}</div>{{/if}}
+                            {{#if immune}}<div class="target-resistance-container immune">{{localize "DAGGERHEART.GENERAL.immune"}}</div>{{/if}}
+                        {{/if}}
+                    </div>
+                </div>
+                {{#if ../hasSave }}
+                    <div class="target-save{{#if saveResult}} is-rolled{{/if}}" data-perm-id="{{actorId}}">
+                        <i class="fa-solid {{#if saveResult}}{{#if saveResult.success}}fa-check{{else}}fa-xmark{{/if}}{{else}}fa-shield{{/if}} fa-lg"></i>
+                    </div>
+                {{/if}}
+            </div>
+        {{else}}
+            <i>{{localize "DAGGERHEART.GENERAL.noTarget"}}</i>
+        {{/each}}
+    {{else}}
+        <div class="selected-targets-container">
+            {{#with selectedTargetsData}}
+                {{#each tokens as |target|}}
+                    <div class="roll-target" data-token="{{target.id}}">
+                        <img class="target-img" src="{{target.img}}" />
+                    </div>
+                {{/each}}
+                {{#if (gt uniqueTokens 3)}}
+                    <i class="fa-solid fa-ellipsis ellipsis-marker"></i>
+                {{/if}}
+                {{#if (gt totalTokens 0)}}
+                <div class="targets-tools-container">
+                    <div>{{localize "DAGGERHEART.UI.Chat.damageRoll.totalTargetedTokens" total=totalTokens}}</div>
+                    <a class="selected-to-targets-button" data-tooltip="{{localize "DAGGERHEART.UI.Chat.damageRoll.setSelectedAsTargets"}}"><i class="fa-solid fa-bullseye"></i></a>
+                </div>
+                {{else}}
+                    <span class="empty-text">{{localize "DAGGERHEART.UI.Chat.damageRoll.noTokensSelected"}}</span>
+                {{/if}}
+            {{/with}}
+        </div>
+    {{/unless}}
+</div>

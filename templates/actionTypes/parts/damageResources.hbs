@@ -30,7 +30,12 @@
                             <a data-action="removeDamageResource" data-key="{{key}}"><i class="fas fa-trash"></i></a>
                         {{/unless}}
                     </legend>
-                    {{> "systems/daggerheart/templates/actionTypes/parts/damageData.hbs" damage=dmg fields=../fields.resources.element.fields basePath=(concat ../path "damage.resources." dmg.applyTo)}}
+                    {{#if (eq dmg.applyTo 'weaponResource')}}
+                        {{formField ../fields.resources.element.fields.fullRestore value=dmg.fullRestore name=(concat ../path "damage.resources." dmg.applyTo ".fullRestore") localize=true classes="checkbox"}}
+                    {{/if}}
+                    {{#unless dmg.fullRestore}}
+                        {{> "systems/daggerheart/templates/actionTypes/parts/damageData.hbs" damage=dmg fields=../fields.resources.element.fields basePath=(concat ../path "damage.resources." dmg.applyTo)}}
+                    {{/unless}}
                 </fieldset>
             </div>
         {{/each}}

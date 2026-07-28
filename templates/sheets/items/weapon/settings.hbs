@@ -4,7 +4,10 @@
     data-group='{{tabs.settings.group}}'
 >
     <fieldset class="two-columns">
-        <legend>{{localize tabs.settings.label}}</legend>
+        <legend>
+            {{localize tabs.settings.label}}
+            <a data-action="configureAttack" data-tooltip="{{localize 'DAGGERHEART.ITEMS.Weapon.configureAttack'}}"><i class="fa-solid fa-wrench icon-button"></i></a>
+        </legend>
         <span>{{localize "DAGGERHEART.GENERAL.Tiers.singular"}}</span>
         {{formInput systemFields.tier value=source.system.tier}}
         <span>{{localize "DAGGERHEART.ITEMS.Weapon.secondaryWeapon.full"}}</span>

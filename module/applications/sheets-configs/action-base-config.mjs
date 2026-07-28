@@ -142,6 +142,56 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         }, {});
     }
 
+    /* Needs to consider effect altOutcomes aswell */
+    static selectOutcome(action, callback) {
+        const choices = Object.entries(CONFIG.DH.ACTIONS.outcomeTypes).reduce((acc, [key, value]) => {
+            if (action.altOutcomes[key] === null) acc.push({ id: key, label: game.i18n.localize(value.label) });
+
+            return acc;
+        }, []);
+        const content = new foundry.data.fields.StringField({
+            label: game.i18n.localize('Outcome'),
+            choices,
+            required: true
+        }).toFormGroup(
+            {},
+            {
+                name: 'outcome',
+                localize: true,
+                nameAttr: 'value',
+                labelAttr: 'label'
+            }
+        ).outerHTML;
+
+        const callbackWrapper = (_, button) => {
+            const choiceIndex = button.form.elements.outcome.value;
+            callback(choices[choiceIndex]?.id);
+        };
+
+        const typeDialog = new foundry.applications.api.DialogV2({
+            buttons: [
+                foundry.utils.mergeObject(
+                    {
+                        action: 'ok',
+                        label: 'Confirm',
+                        icon: 'fas fa-check',
+                        default: true
+                    },
+                    { callback: callbackWrapper }
+                )
+            ],
+            content: content,
+            rejectClose: false,
+            modal: false,
+            window: {
+                title: game.i18n.localize('Add Outcome')
+            },
+            position: { width: 300 }
+        });
+
+        typeDialog.render(true);
+    }
+
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
 
@@ -185,7 +235,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             const allKeys = Object.keys(CONFIG.DH.GENERAL.healingTypes);
             context.allDamageTypesUsed = allKeys.every(k => k in this.action._source.damage.resources);
             if (this.action.damage?.main?.hasOwnProperty('includeBase') && this.action.type === 'attack')
-                context.hasBaseDamage = !!this.action.parent.attack;
+                context.hasBaseDamage = !!this.action.parent.attack && !this.action.baseAction;
         }
 
         context.costOptions = this.getCostOptions();

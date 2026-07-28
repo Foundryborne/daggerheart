@@ -38,14 +38,14 @@
 </div>
 
 {{#*inline "formula"}}
-    <div class="roll-formula">{{label}}: {{roll.total}}</div>
+    <div class="roll-formula">{{label}}: {{#if roll.options.fullRestore}}{{localize "DAGGERHEART.ACTIONS.Settings.fullRestore.inChatRoll"}}{{else}}{{roll.total}}{{/if}}</div>
 {{/inline}}
 
 {{#*inline "damage"}}
     <fieldset>
         <legend>
             {{label}}
-            <div class="roll-formula">{{localize "DAGGERHEART.GENERAL.total"}}: {{roll.total}}</div>{{#if isDirect}} <div class="roll-formula">{{localize "DAGGERHEART.CONFIG.DamageType.direct.short"}}</div>{{/if}}
+            <div class="roll-formula">{{localize "DAGGERHEART.GENERAL.total"}}: {{#if roll.options.fullRestore}}{{localize "DAGGERHEART.ACTIONS.Settings.fullRestore.inChatRoll"}}{{else}}{{roll.total}}{{/if}}</div>{{#if isDirect}} <div class="roll-formula">{{localize "DAGGERHEART.CONFIG.DamageType.direct.short"}}</div>{{/if}}
         </legend>
         {{#if (and (not @root.hasHealing) roll.options.damageTypes.length)}}
             <label class="roll-part-header"><span>
@@ -55,6 +55,7 @@
                 {{/each}}
             <div class="roll-formula">{{roll.total}}</div></span></label>
         {{/if}}
+        {{#unless roll.options.fullRestore}}
         <div class="roll-dice">
             {{#if roll.dice.length}}
                 {{#each roll.dice as |dice diceKey|}}
@@ -84,5 +85,6 @@
                 </div>
             {{/if}}
         </div>
+        {{/unless}}
     </fieldset>
 {{/inline}}

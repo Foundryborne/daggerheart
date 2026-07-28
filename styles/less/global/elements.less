@@ -99,9 +99,10 @@
     }
 
     button:where(:not(.plain, color-picker *, file-picker *)) {
-        background: light-dark(transparent, @golden);
-        border: 1px solid light-dark(@dark-blue, @dark-blue);
-        color: light-dark(@dark-blue, @dark-blue);
+        background: @button-color-bg;
+        border: 1px solid @button-color-border;
+        border-radius: 4px;
+        color: @button-color-text;
         outline: none;
         box-shadow: none;
 
@@ -116,13 +117,13 @@
 
         &:disabled {
             background: light-dark(transparent, @golden);
-            color: light-dark(@dark-blue, @dark-blue);
+            color: @button-color-text;
             opacity: 0.6;
             cursor: not-allowed;
 
             &:hover {
                 background: light-dark(transparent, @golden);
-                color: light-dark(@dark-blue, @dark-blue);
+                color: @button-color-text;
             }
         }
 
@@ -132,7 +133,7 @@
             border: 1px solid light-dark(@dark, transparent);
             &:hover {
                 background: light-dark(transparent, @golden);
-                color: light-dark(@dark-blue, @dark-blue);
+                color: @button-color-text;
             }
             img {
                 border-radius: 3px;
@@ -556,8 +557,10 @@
     /* A multi-button element used to attach resources to other buttons */
     .item-button {
         display: flex;
+        border: 1px solid @button-color-border;
+        border-radius: 4px;
         button {
-            color: light-dark(@dark-blue, @dark-blue);
+            color: @button-color-text;
             white-space: nowrap;
             border: none;
 

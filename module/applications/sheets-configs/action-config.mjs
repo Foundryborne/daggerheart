@@ -1,3 +1,4 @@
+import { AltOutcome } from '../../data/action/subDatas/altOutcome.mjs';
 import DHActionBaseConfig from './action-base-config.mjs';
 
 export default class DHActionConfig extends DHActionBaseConfig {
@@ -5,6 +6,8 @@ export default class DHActionConfig extends DHActionBaseConfig {
         ...DHActionBaseConfig.DEFAULT_OPTIONS,
         actions: {
             ...DHActionBaseConfig.DEFAULT_OPTIONS.actions,
+            addOutcome: this.onAddOutcome,
+            removeOutcome: this.onRemoveOutcome,
             addEffect: this.addEffect,
             removeEffect: this.removeEffect,
             editEffect: this.editEffect
@@ -17,6 +20,23 @@ export default class DHActionConfig extends DHActionBaseConfig {
         context.getEffectDetails = this.getEffectDetails.bind(this);
 
         return context;
+    }
+
+    static onAddOutcome() {
+        const data = this.action.toObject();
+
+        DHActionBaseConfig.selectOutcome(this.action, key => {
+            if (!key) return;
+            data.altOutcomes[key] = new AltOutcome();
+            this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+        });
+    }
+
+    static onRemoveOutcome(_event, button) {
+        const { outcome } = button.dataset;
+        const data = this.action.toObject();
+        data.altOutcomes[outcome] = null;
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
     static async addEffect(event) {
