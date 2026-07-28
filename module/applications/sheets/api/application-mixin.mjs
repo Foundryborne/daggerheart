@@ -509,9 +509,10 @@ export default function DHApplicationMixin(Base) {
                     icon: 'fa-solid fa-explosion',
                     visible: target => {
                         const doc = getDocFromElementSync(target);
-                        const hasDamage =
-                            !foundry.utils.isEmpty(doc?.system?.attack?.damage.parts) ||
-                            !foundry.utils.isEmpty(doc?.damage?.parts);
+                        const hasDamage = doc?.system?.attack?.damage && (
+                            doc.system.attack.damage.main || 
+                            Object.keys(doc.system.attack.damage.resources ?? {}).length
+                        );
                         return doc?.isOwner && hasDamage;
                     },
                     onClick: async (event, target) => {
