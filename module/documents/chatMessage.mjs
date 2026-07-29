@@ -411,6 +411,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         }
     }
 
+    // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
     static migrateData(source) {
         for (let i = 0; i < source.rolls.length; i++) {
             const roll = Roll.fromJSON(source.rolls[i]);
