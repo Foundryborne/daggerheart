@@ -1,16 +1,4 @@
 {{#unless (eq path 'system.attack.')}}
-    <nav class='inner-tabs tabs' data-group='outcomes'>
-        {{#each outcomeTabs as |tab|}}
-            <div class="inner-tab">
-                <a class='{{tab.id}} {{tab.cssClass}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}'>
-                    {{localize tab.label}}
-                </a>
-                {{#unless (eq tab.id 'default')}}<a data-outcome="{{tab.id}}" data-action="removeOutcome"><i class="fa-solid fa-trash"></i></a>{{/unless}}
-            </div>
-        {{/each}}
-        <a data-action="addOutcome" {{#if allOutcomesAssigned}}disabled{{/if}}><i class="fa-solid fa-plus"></i></a>
-    </nav>
-
     {{! In the future, consider allowing this even on NPCs}}
     <fieldset class="one-column">
         <legend class="with-icon">

@@ -1,5 +1,5 @@
 import DHBaseAction from './baseAction.mjs';
-import { AltOutcome } from './subDatas/altOutcome.mjs';
+import { DamageAltOutcome } from './subDatas/altOutcome.mjs';
 
 const fields = foundry.data.fields;
 
@@ -10,10 +10,10 @@ export default class DHDamageAction extends DHBaseAction {
         return {
             ...super.defineSchema(),
             altOutcomes: new fields.SchemaField({
-                successHope: new AltOutcome(),
-                successFear: new AltOutcome(),
-                failureHope: new AltOutcome(),
-                failureFear: new AltOutcome()
+                successHope: new DamageAltOutcome(),
+                successFear: new DamageAltOutcome(),
+                failureHope: new DamageAltOutcome(),
+                failureFear: new DamageAltOutcome()
             })
         };
     }

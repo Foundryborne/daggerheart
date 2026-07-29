@@ -1,4 +1,4 @@
-    <section 
+<section 
     class="tab {{this.tabs.effect.cssClass}}"
     data-group="primary"
     data-tab="effect"
@@ -7,7 +7,36 @@
     {{#if fields.save}}{{> 'systems/daggerheart/templates/actionTypes/save.hbs' fields=fields.save.fields source=source.save}}{{/if}}
     {{#if fields.damage}}
         {{> 'systems/daggerheart/templates/actionTypes/damage.hbs' fields=fields.damage.fields source=source.damage baseFields=fields.damage.fields }}
-        {{> "systems/daggerheart/templates/actionTypes/parts/damageResources.hbs" fields=fields.damage.fields source=source.damage }}
+
+        <nav class='inner-tabs tabs' data-group='outcomes'>
+            {{#each outcomeTabs as |tab|}}
+                <div class="inner-tab">
+                    <a class='{{tab.id}} {{tab.cssClass}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}'>
+                        {{localize tab.label}}
+                    </a>
+                    {{#unless (eq tab.id 'default')}}<a data-outcome="{{tab.id}}" data-action="removeOutcome"><i class="fa-solid fa-trash"></i></a>{{/unless}}
+                </div>
+            {{/each}}
+            <a data-action="addOutcome" {{#if allOutcomesAssigned}}disabled{{/if}}><i class="fa-solid fa-plus"></i></a>
+        </nav>
+{{!-- 
+        <section 
+            class="tab {{this.outcomeTabs.default.cssClass}}"
+            data-group="outcomes"
+            data-tab="default"
+        >
+            {{> "systems/daggerheart/templates/actionTypes/parts/damageResources.hbs" fields=fields.damage.fields source=source.damage }}
+        </section> --}}
+        {{#each this.outcomeTabs as |tab key|}}
+            <section 
+                class="tab {{tab.cssClass}}"
+                data-group="outcomes"
+                data-tab="{{key}}"
+            >
+                {{key}}
+                {{!-- {{> "systems/daggerheart/templates/actionTypes/parts/damageResources.hbs" fields=fields.damage.fields source=source.damage }} --}}
+            </section>
+        {{/each}}
     {{/if}}
     {{#if fields.macro}}{{> 'systems/daggerheart/templates/actionTypes/macro.hbs' fields=fields.macro source=source.macro}}{{/if}}
     {{#if fields.effects}}{{> 'systems/daggerheart/templates/actionTypes/effect.hbs' fields=fields.effects.element.fields source=source.effects}}{{/if}}

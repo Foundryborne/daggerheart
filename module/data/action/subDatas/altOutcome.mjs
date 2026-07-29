@@ -2,7 +2,7 @@ import { DHResourceBaseData } from '../../fields/action/damageField.mjs';
 import FormulaField from '../../fields/formulaField.mjs';
 import IterableTypedObjectField from '../../fields/iterableTypedObjectField.mjs';
 
-export class AltOutcome extends IterableTypedObjectField {
+export class DamageAltOutcome extends IterableTypedObjectField {
     constructor(type = DHSimpleResourceData, options = {}, context = {}) {
         super(
             type, 
