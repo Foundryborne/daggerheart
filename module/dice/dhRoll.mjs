@@ -345,7 +345,8 @@ export default class DHRoll extends BaseRoll {
         const changeKeys = this.getActionChangeKeys();
         return (
             this.options.effects?.reduce((acc, effect) => {
-                if (effect.system.changes.some(x => changeKeys.some(key => x.key?.includes(key)))) {
+                // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
+                if ((effect.system.changes ?? []).some(x => changeKeys.some(key => x.key?.includes(key)))) {
                     acc[effect.id] = {
                         id: effect.id,
                         name: effect.name,
