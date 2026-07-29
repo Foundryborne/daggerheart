@@ -8,4 +8,8 @@ export default class BaseRoll extends Roll {
     get modifierTotal() {
         return this.total - this.dice.reduce((acc, dice) => acc + dice.total, 0);
     }
+
+    static migrateData(source) {
+        return source;
+    }
 }

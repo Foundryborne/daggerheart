@@ -410,4 +410,18 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             this.system.updateTargetHTML({ tab: event.target.dataset.selected ? 'select' : 'targets'});
         }
     }
+
+    static migrateData(source) {
+        for (let i = 0; i < source.rolls.length; i++) {
+            const roll = Roll.fromJSON(source.rolls[i]);
+            for (const effect of roll.options.effects) {
+                if (!effect.system.changes) {
+                    effect.system.changes = effect.changes ?? [];
+                    if (effect.changes) delete effect.changes;
+                    source.rolls.splice(i, 1, JSON.stringify(roll.toJSON()));
+                }
+            }
+        }
+        return source;
+    }
 }

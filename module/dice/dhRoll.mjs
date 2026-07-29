@@ -345,7 +345,7 @@ export default class DHRoll extends BaseRoll {
         const changeKeys = this.getActionChangeKeys();
         return (
             this.options.effects?.reduce((acc, effect) => {
-                if (effect.system.changes.some(x => changeKeys.some(key => x.key?.includes(key)))) {
+                if ((effect.system.changes ?? []).some(x => changeKeys.some(key => x.key?.includes(key)))) {
                     acc[effect.id] = {
                         id: effect.id,
                         name: effect.name,
