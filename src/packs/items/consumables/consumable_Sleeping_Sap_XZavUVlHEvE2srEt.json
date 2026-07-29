@@ -60,7 +60,7 @@
           "includeBase": false
         },
         "target": {
-          "type": "self",
+          "type": "",
           "amount": null
         },
         "effects": [],

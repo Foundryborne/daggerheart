@@ -197,11 +197,29 @@ export default class CostField extends fields.ArrayField {
 
     static getItemIdCostUpdate(r) {
         switch (r.key) {
-            case CONFIG.DH.GENERAL.itemAbilityCosts.resource.id:
+            case CONFIG.DH.GENERAL.itemAbilityCosts.resource.id: {
+                const resource = r.target.system.resource;
+                let max = Number(resource.max);
+                if (!Number.isFinite(max) && resource.max) {
+                    try {
+                        max = Roll.safeEval(Roll.replaceFormulaData(resource.max, r.target.getRollData()));
+                    } catch {
+                        max = null;
+                    }
+                }
+                const hasMax = Number.isFinite(max) && max > 0;
+                if (r.clear) {
+                    return {
+                        path: 'system.resource.value',
+                        value: hasMax ? max : resource.value
+                    };
+                }
+                const newValue = resource.value + r.value;
                 return {
                     path: 'system.resource.value',
-                    value: r.target.system.resource.value + r.value
+                    value: Math.max(hasMax ? Math.min(newValue, max) : newValue, 0)
                 };
+            }
             case CONFIG.DH.GENERAL.itemAbilityCosts.quantity.id:
                 return {
                     path: 'system.quantity',

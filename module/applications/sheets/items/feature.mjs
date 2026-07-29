@@ -7,23 +7,29 @@ export default class FeatureSheet extends DHBaseItemSheet {
         actions: {}
     };
 
-    /**@override */
+    /** @inheritdoc */
     static PARTS = {
         header: { template: 'systems/daggerheart/templates/sheets/items/feature/header.hbs' },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
-        description: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-description.hbs' },
-        settings: { template: 'systems/daggerheart/templates/sheets/items/feature/settings.hbs' },
+        description: { 
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-description.hbs',
+            scrollable: ['.description-section']
+        },
+        settings: { 
+            template: 'systems/daggerheart/templates/sheets/items/feature/settings.hbs',
+            scrollable: ['']
+        },
         actions: {
             template: 'systems/daggerheart/templates/sheets/global/tabs/tab-actions.hbs',
-            scrollable: ['.actions']
+            scrollable: ['']
         },
         effects: {
             template: 'systems/daggerheart/templates/sheets/global/tabs/tab-effects.hbs',
-            scrollable: ['.effects']
+            scrollable: ['']
         }
     };
 
-    /**@override */
+    /** @inheritdoc */
     static TABS = {
         primary: {
             tabs: [{ id: 'description' }, { id: 'settings' }, { id: 'actions' }, { id: 'effects' }],

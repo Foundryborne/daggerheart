@@ -153,7 +153,6 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
             action: socketEvent.Refresh,
             data: { refreshType: RefreshType.Countdown }
         });
-        Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
     }
 
     static #addCountdown() {

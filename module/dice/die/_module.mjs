@@ -3,6 +3,7 @@ import HopeDie from './hopeDie.mjs';
 import FearDie from './fearDie.mjs';
 import AdvantageDie from './advantageDie.mjs';
 import DisadvantageDie from './disadvantageDie.mjs';
+export { default as BaseDie } from './baseDie.mjs';
 
 export const diceTypes = {
     DualityDie,

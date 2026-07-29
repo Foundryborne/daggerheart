@@ -1,3 +1,5 @@
+import { ChatDamageData } from './chat-message/chatDamageData.mjs';
+
 export default class TagTeamData extends foundry.abstract.DataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
@@ -37,6 +39,7 @@ export class MemberData extends foundry.abstract.DataModel {
             }),
             rollChoice: new fields.StringField({ nullable: true, initial: null }),
             rollData: new fields.JSONField({ nullable: true, initial: null }),
+            damageRollData: new fields.EmbeddedDataField(ChatDamageData),
             selected: new fields.BooleanField({ initial: false })
         };
     }

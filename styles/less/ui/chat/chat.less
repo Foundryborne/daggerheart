@@ -166,10 +166,18 @@
             border-color: transparent;
         }
         [data-view-perm='false'] {
-            &[data-perm-hidden='true'],
+            &[data-perm-hidden='true'] {
+                display: none;
+
+                &::after {
+                    display: none;
+                }
+            }
+
             > * {
                 display: none;
             }
+
             &::after {
                 content: '??';
             }
@@ -226,7 +234,10 @@
 
         .chat-roll {
             font-size: var(--font-size-12);
-            padding: 0 20px;
+
+            .roll-container {
+                padding: 0 20px;
+            }
 
             .roll-part-title {
                 text-align: center;
@@ -439,6 +450,39 @@
             text-align: center;
         }
 
+        .selected-targets-container {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 18px;
+
+            .roll-target {
+                width: fit-content;
+
+                &:not(:first-child) {
+                    margin-left: -22px;
+                }
+            }
+
+            .ellipsis-marker {
+                margin-left: -20px;
+            }
+
+            .targets-tools-container {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 4px;
+            }
+
+            .empty-text {
+                flex: 1;
+                text-align: center;
+            }
+        }
+
         .roll-target {
             display: flex;
             width: 100%;
@@ -455,6 +499,7 @@
                 width: 40px;
                 height: 40px;
                 object-fit: cover;
+                object-position: top center;
             }
 
             .target-data {
@@ -462,6 +507,30 @@
 
                 .target-name {
                     text-align: left;
+                }
+
+                .target-roll-status {
+                    margin-top: 2px;
+                    display: flex;
+                    gap: 4px;
+
+                    .target-resistance-container {
+                        border: 1px solid currentColor;
+                        border-radius: 4px;
+                        padding: 3px 5px;
+                        text-transform: uppercase;
+                        font-weight: 600;
+
+                        &.resistant {
+                            color: @resistance-color-border;
+                            background-color: @resistance-color-bg;
+                        }
+
+                        &.immune {
+                            color: @immunity-color-border;
+                            background-color: @immunity-color-bg;
+                        }
+                    }
                 }
             }
 
@@ -510,11 +579,6 @@
                 color: @medium-red;
                 background-color: @medium-red-10;
             }
-        }
-
-        .target-hit-status {
-            width: fit-content;
-            margin-top: 2px;
         }
 
         div[data-action='expandRoll'] {
@@ -576,6 +640,21 @@
         .target-section {
             .roll-part-content {
                 gap: 10px;
+
+                .dice-tooltip {
+                    .wrapper {
+                        gap: 0;
+
+                        div.empty-text {
+                            font-size: 18px;
+                            height: 40px;
+                            margin-bottom: 5px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                    }
+                }
             }
 
             .roll-part-extra {
@@ -621,16 +700,74 @@
         }
 
         .roll-buttons {
-            display: flex;
-            gap: 5px;
             margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
 
             button {
                 height: 32px;
-                flex: 1;
+            }
 
-                &.end-button {
-                    flex: 0;
+            .main-buttons {
+                display: flex;
+                gap: 5px;
+            
+                button {
+                    flex: 1;
+
+                    &.end-button {
+                        flex: 0;
+                    }
+                }
+            }
+
+            .extra-button-row {
+                width: 100%;
+                display: flex;
+                gap: 5px;
+
+                .image-container {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    
+                    img {
+                        height: 24px;
+                        filter: @dark-filter;
+                    }
+                    
+                    .dice-result {
+                        position: absolute;
+                        font-size: 18px;
+                        color: @beige;
+                        filter: drop-shadow(0 0 1px @light-white);
+                    }
+                }
+
+                .reload-data {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 5px;
+                    gap: 5px;
+                    cursor: pointer;
+                    padding: 5px;
+                    transition: all 0.3s ease;
+                    color: @golden;
+                    background: @golden-40;
+
+                    &.failed-check {
+                        background: @red-40;
+                        color: @red;
+                    }
+
+                    &.passed-check {
+                        background: @green-40;
+                        color: @green;
+                    }   
                 }
             }
         }

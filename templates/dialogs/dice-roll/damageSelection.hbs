@@ -15,34 +15,7 @@
             {{/each}}
         </fieldset>
     {{/if}}
-
-    {{#each @root.formula}}
-        <div class="damage-formula">
-            <span class="damage-resource"><b>{{localize "DAGGERHEART.GENERAL.formula"}}:</b> {{roll.formula}}</span>
-            <span class="damage-details">
-                {{#with (lookup @root.config.GENERAL.healingTypes applyTo)}}
-                    {{localize label}}
-                {{/with}}
-                {{#unless @root.hasHealing}}
-                    {{#if damageTypes}}
-                        {{#each damageTypes as | type | }}
-                            {{#with (lookup @root.config.GENERAL.damageTypes type)}}
-                                <i class="fa-solid {{icon}}"></i>
-                            {{/with}}
-                        {{/each}}
-                    {{/if}}
-                {{/unless}}
-            </span>
-        </div>
-        <div class="bonuses form-group flexrow">
-            <input type="text" value="{{extraFormula}}" name="roll.{{ @index }}.extraFormula" placeholder="{{localize "DAGGERHEART.GENERAL.situationalBonus"}}">
-            <button class="critical-chip" data-action="toggleCritical">
-                <span><i class="{{#if @root.isCritical}}fa-solid{{else}}fa-regular{{/if}} fa-circle"></i></span>
-                <span class="label">{{localize "DAGGERHEART.GENERAL.criticalShort"}}</span>
-            </button>
-        </div>
-    {{/each}}
-
+    
     {{#if damageOptions.groupAttack}}
         <fieldset class="group-attack-container">
             <legend>{{localize "DAGGERHEART.ACTIONS.Settings.groupAttack.label"}}</legend>
@@ -59,6 +32,45 @@
             </div>
         </fieldset>
     {{/if}}
+    
+    {{#if @root.damageFormula}}
+        {{#with @root.damageFormula}}
+            <div class="damage-formula">
+                <span class="damage-resource"><b>{{localize "DAGGERHEART.GENERAL.formula"}}:</b> {{roll.formula}}</span>
+                <span class="damage-details">
+                    {{localize "DAGGERHEART.GENERAL.damage"}}
+                    {{#if damageTypes}}
+                        {{#each damageTypes as | type | }}
+                            {{#with (lookup @root.config.GENERAL.damageTypes type)}}
+                                <i class="fa-solid {{icon}}"></i>
+                            {{/with}}
+                        {{/each}}
+                    {{/if}}
+                </span>
+            </div>
+            <div class="bonuses form-group flexrow">
+                <input type="text" value="{{extraFormula}}" name="damageFormula.extraFormula" placeholder="{{localize "DAGGERHEART.GENERAL.situationalBonus"}}">
+                <button class="critical-chip" data-action="toggleCritical">
+                    <span><i class="{{#if @root.isCritical}}fa-solid{{else}}fa-regular{{/if}} fa-circle"></i></span>
+                    <span class="label">{{localize "DAGGERHEART.GENERAL.criticalShort"}}</span>
+                </button>
+            </div>
+        {{/with}}
+    {{/if}}
+
+    {{#each @root.resourceFormulas}}
+        <div class="damage-formula">
+            <span class="damage-resource"><b>{{localize "DAGGERHEART.GENERAL.formula"}}:</b> {{roll.formula}}</span>
+            <span class="damage-details">
+                {{#with (lookup @root.config.GENERAL.healingTypes applyTo)}}
+                    {{localize label}}
+                {{/with}}
+            </span>
+        </div>
+        <div class="bonuses form-group flexrow">
+            <input type="text" value="{{extraFormula}}" name={{concat "resourceFormulas." @key ".extraFormula"}} placeholder="{{localize "DAGGERHEART.GENERAL.situationalBonus"}}">
+        </div>
+    {{/each}}
 
     {{#unless (empty @root.modifiers)}}
         <fieldset class="modifier-container two-columns">
@@ -76,6 +88,7 @@
             {{/each}}
         </fieldset>
     {{/unless}}
+
     <div class="damage-section-controls">
         {{#if directDamage}}
             <select class="roll-mode-select" name="selectedMessageMode">

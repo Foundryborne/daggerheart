@@ -30,7 +30,8 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             addFeature: DHBaseItemSheet.#addFeature,
             deleteFeature: DHBaseItemSheet.#deleteFeature,
             addResource: DHBaseItemSheet.#addResource,
-            removeResource: DHBaseItemSheet.#removeResource
+            removeResource: DHBaseItemSheet.#removeResource,
+            editGMNote: DHBaseItemSheet.#onEditGMNote
         },
         dragDrop: [
             { dragSelector: null, dropSelector: '.drop-section' },
@@ -76,10 +77,16 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     /**@inheritdoc */
     async _preparePartContext(partId, context, options) {
         await super._preparePartContext(partId, context, options);
+        const TextEditor = foundry.applications.ux.TextEditor.implementation;
 
         switch (partId) {
             case 'description':
-                context.enrichedDescription = await this.document.system.getEnrichedDescription();
+                context.enrichedDescription = await this.document.system.getEnrichedDescription({ gmNotes: false });
+                context.enrichedGMNotes = await TextEditor.implementation.enrichHTML(this.item.system.gmNotes, {
+                    relativeTo: this.item,
+                    rollData: this.item.getRollData(),
+                    secrets: this.item.isOwner
+                })
                 break;
             case 'effects':
                 await this._prepareEffectsContext(context, options);
@@ -329,6 +336,47 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
                     { parent: this.document.parent?.type === 'character' ? this.document.parent : undefined }
                 );
             }
+        }
+    }
+
+    /** 
+     * Handles the Add GM Note button being pressed. This is only used when an item has no GM notes.
+     * Later edits to a GM note instead go through the normal editor toggle workflow.
+     * @this DHBaseItemSheet
+     */
+    static #onEditGMNote() {
+        // Open the editor, which might be hidden. We remove the css class to hide temporarily
+        // so that menu auto resizing functions properly.
+        const editor = this.element.querySelector('prose-mirror[name="system.gmNotes"]');
+        const wasHidden = editor.classList.contains('hide-if-inactive');
+        editor.classList.remove('hide-if-inactive');
+        editor.open = true;
+        window.setTimeout(() => {
+            if (wasHidden) editor.classList.add('hide-if-inactive');
+        }, 0);
+    }
+
+    /** @inheritdoc */
+    async _onRender(context, options) {
+        await super._onRender(context, options);
+
+        // Render an add gmnotes button if there are no set GM notes.
+        // We need to re-render on close since its possible to prosemirror to close *without* triggering a full re-render
+        if (game.user.isGM && !this.item.system.gmNotes) {
+            const description = this.element.querySelector('[name="system.description"]');
+            const addButton = () => {
+                if (description.querySelector('[data-action=editGMNote]')) return;
+
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.classList.add('icon', 'toggle', 'fa-regular', 'fa-note-medical');
+                button.dataset.action = 'editGMNote';
+                button.dataset.tooltip = 'DAGGERHEART.ITEMS.Base.addGMNote';
+                description.appendChild(button);
+            }
+            
+            addButton();
+            description.addEventListener('close', () => addButton());
         }
     }
 }

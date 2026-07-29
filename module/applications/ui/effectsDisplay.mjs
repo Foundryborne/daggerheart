@@ -130,5 +130,7 @@ export default class DhEffectsDisplay extends HandlebarsApplicationMixin(Applica
         if (options?.force) {
             document.getElementById('ui-right-column-1')?.appendChild(this.element);
         }
+
+        ui.resources.handleOffset();
     }
 }

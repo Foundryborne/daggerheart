@@ -10,18 +10,25 @@
     "level": 10,
     "type": "ability",
     "actions": {
-      "lekCIrTCQ2FhwGd1": {
-        "type": "effect",
-        "_id": "lekCIrTCQ2FhwGd1",
+      "Zztzsl3sPdss7xDe": {
+        "type": "damage",
+        "_id": "Zztzsl3sPdss7xDe",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">When you make a successful attack against an adversary, you can <strong>mark 4 Stress</strong> to force the target to mark a number of Hit Points equal to the number of Hit Points you currently have marked instead of rolling for damage.</p>",
+        "baseAction": false,
+        "description": "",
         "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
         "actionType": "action",
+        "triggers": [],
+        "areas": [],
         "cost": [
           {
             "scalable": false,
             "key": "stress",
             "value": 4,
+            "itemId": null,
             "step": null,
             "consumeOnSuccess": false
           }
@@ -32,14 +39,44 @@
           "recovery": null,
           "consumeOnSuccess": false
         },
-        "effects": [],
+        "damage": {
+          "main": null,
+          "resources": {
+            "hitPoints": {
+              "base": false,
+              "applyTo": "hitPoints",
+              "resultBased": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": true,
+                  "formula": "@system.resources.hitPoints.value"
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
+        },
         "target": {
           "type": "any",
           "amount": null
         },
-        "name": "Mark 4 Stress",
-        "img": "icons/magic/control/silhouette-aura-energy.webp",
-        "range": ""
+        "effects": [],
+        "name": "Mark Stress",
+        "range": "",
+        "img": "icons/skills/melee/strike-axe-red.webp"
       }
     },
     "attribution": {

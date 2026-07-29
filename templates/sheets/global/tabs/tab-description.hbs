@@ -3,8 +3,22 @@
     data-tab='{{tabs.description.id}}'
     data-group='{{tabs.description.group}}'
 >
-    {{formInput systemFields.description value=document.system.description enriched=enrichedDescription toggled=true}}
-    
+    <div class="description-section">
+        {{formInput systemFields.description value=document.system.description enriched=enrichedDescription toggled=true}}
+        {{#if (and systemFields.gmNotes @root.user.isGM)}}
+            <section class="gm-notes-section">
+                {{#if enrichedGMNotes}}
+                    <header class="gm-notes">{{localize "DAGGERHEART.ITEMS.FIELDS.gmNotes.label"}}</header>
+                {{/if}}
+                <prose-mirror
+                    name="system.gmNotes"
+                    {{#unless enrichedGMNotes}}class="hide-if-inactive"{{/unless}}
+                    toggled="true"
+                    value="{{document.system.gmNotes}}"
+                >{{{enrichedGMNotes}}}</prose-mirror>
+            </section>
+        {{/if}}
+    </div>
     {{#if (and showAttribution document.system.attribution.artist)}}
         <label class="artist-attribution">{{localize "DAGGERHEART.GENERAL.artistAttribution" artist=document.system.attribution.artist}}</label>
     {{/if}}

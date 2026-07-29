@@ -41,6 +41,11 @@ export default class DhAppearance extends foundry.abstract.DataModel {
                 choices: CONFIG.DH.GENERAL.fearDisplay,
                 initial: CONFIG.DH.GENERAL.fearDisplay.token.value
             }),
+            fearPosition: new StringField({
+                required: true,
+                choices: CONFIG.DH.GENERAL.fearPosition,
+                initial: CONFIG.DH.GENERAL.fearPosition.topCenter.value
+            }),
             displayCountdownUI: new BooleanField({ initial: true }),
             diceSoNice: new SchemaField({
                 hope: diceStyle({ fg: '#ffffff', bg: '#ffe760', outline: '#000000', edge: '#ffffff' }),
@@ -58,8 +63,7 @@ export default class DhAppearance extends foundry.abstract.DataModel {
             expandRollMessage: new SchemaField({
                 desc: new BooleanField({ initial: true }),
                 roll: new BooleanField(),
-                damage: new BooleanField(),
-                target: new BooleanField()
+                damage: new BooleanField()
             }),
             showTokenDistance: new StringField({
                 required: true,
@@ -118,10 +122,11 @@ export default class DhAppearance extends foundry.abstract.DataModel {
 
     /** Invoked by the setting when data changes */
     handleChange() {
-        if (this.displayFear) {
-            if (ui.resources) {
-                if (this.displayFear === 'hide') ui.resources.close({ allowed: true });
-                else ui.resources.render({ force: true });
+        if (ui.resources) {
+            if (this.displayFear === 'hide') {
+                ui.resources.close({ allowed: true });
+            } else {
+                ui.resources.render({ force: true }).then(() => ui.resources.handleOffset());
             }
         }
 

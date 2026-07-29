@@ -14,7 +14,7 @@
         "type": "damage",
         "_id": "MxaqNvY9IfWnFe5P",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">When you successfully make an attack with your weapon, you never deal damage beneath a target’s Major damage threshold (the target always marks a minimum of 2 Hit Points).</p><p class=\"Body-Foundation\">Additionally, when a creature within your weapon’s range deals damage to an ally with an attack that doesn’t include you, you can <strong>mark a Stress</strong> to force them to make a Reaction Roll (15). On a failure, the target must mark a Hit Point.</p>",
+        "description": "<p>When a creature within your weapon’s range deals damage to an ally with an attack that doesn’t include you, you can <strong>mark a Stress</strong> to force them to make a Reaction Roll (15). On a failure, the target must mark a Hit Point.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -34,7 +34,34 @@
         },
         "damage": {
           "parts": {},
-          "includeBase": false
+          "includeBase": false,
+          "resources": {
+            "hitPoints": {
+              "base": false,
+              "applyTo": "hitPoints",
+              "resultBased": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 0,
+                "dice": "d6",
+                "bonus": 1,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
         },
         "target": {
           "type": "any",

@@ -1,4 +1,9 @@
 export default class DhpCombat extends Combat {
+    /** @inheritDoc */
+    get nextCombatant() {
+        return null;
+    }
+
     async startCombat() {
         this._playCombatSound('startEncounter');
         const updateData = { round: 1, turn: null };

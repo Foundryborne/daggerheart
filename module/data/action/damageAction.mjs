@@ -8,11 +8,8 @@ export default class DHDamageAction extends DHBaseAction {
      * @returns Formula string
      */
     getDamageFormula() {
-        const strings = [];
-        for (const { value } of this.damage.parts) {
-            strings.push(Roll.replaceFormulaData(value.getFormula(), this.actor?.getRollData() ?? {}));
-        }
+        if (!this.damage.main) return '';
 
-        return strings.join(' + ');
+        return Roll.replaceFormulaData(this.damage.main.value.getFormula(), this.actor?.getRollData() ?? {});
     }
 }

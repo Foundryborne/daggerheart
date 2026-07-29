@@ -238,6 +238,7 @@ export function ActionMixin(Base) {
                 result = this.parent;
             } else {
                 result = await this.item.update({ [path]: updates }, options);
+                if (!result) return result;
             }
 
             return this.inCollection

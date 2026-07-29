@@ -6,27 +6,24 @@ export default class IterableTypedObjectField extends foundry.data.fields.TypedO
 
     #elementClass;
 
-    /** Initializes an object with an iterator. This modifies the prototype instead of */
+    /** Initializes an object with an iterator, where foundry.utils.getType() returns "Object" */
     initialize(values) {
-        const object = Object.create(IterableObjectPrototype);
+        const object = {};
         for (const [key, value] of Object.entries(values)) {
             object[key] = new this.#elementClass(value);
         }
+        object[Symbol.iterator] = function* () {
+            for (const value of Object.values(this)) {
+                yield value;
+            }
+        }
+        Object.defineProperties(object, {
+            map: {
+                value: function (func) {
+                    return Array.from(this, func);
+                }
+            }
+        });
         return object;
     }
 }
-
-/**
- * The prototype of an iterable object.
- * This allows the functionality of a class but also allows foundry.utils.getType() to return "Object" instead of "Unknown".
- */
-const IterableObjectPrototype = {
-    [Symbol.iterator]: function* () {
-        for (const value of Object.values(this)) {
-            yield value;
-        }
-    },
-    map: function (func) {
-        return Array.from(this, func);
-    }
-};

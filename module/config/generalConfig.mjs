@@ -191,6 +191,11 @@ export const healingTypes = {
         id: 'fear',
         label: 'DAGGERHEART.CONFIG.HealingType.fear.name',
         abbreviation: 'DAGGERHEART.CONFIG.HealingType.fear.abbreviation'
+    },
+    weaponResource: {
+        id: 'weaponResource',
+        label: 'DAGGERHEART.CONFIG.HealingType.weaponResource.name',
+        abbreviation: 'DAGGERHEART.CONFIG.HealingType.weaponResource.abbreviation'
     }
 };
 
@@ -825,7 +830,7 @@ export const refreshTypes = {
 export const itemAbilityCosts = {
     resource: {
         id: 'resource',
-        label: 'DAGGERHEART.GENERAL.resource',
+        label: 'DAGGERHEART.GENERAL.Resource.single',
         group: 'Global'
     },
     quantity: {
@@ -922,6 +927,14 @@ export const fearDisplay = {
     token: { value: 'token', label: 'DAGGERHEART.SETTINGS.Appearance.fearDisplay.token' },
     bar: { value: 'bar', label: 'DAGGERHEART.SETTINGS.Appearance.fearDisplay.bar' },
     hide: { value: 'hide', label: 'DAGGERHEART.SETTINGS.Appearance.fearDisplay.hide' }
+};
+
+export const fearPosition = {
+    free: { value: 'free', label: 'DAGGERHEART.SETTINGS.Appearance.fearPosition.free' },
+    topCenter: { value: 'topCenter', label: 'DAGGERHEART.SETTINGS.Appearance.fearPosition.topCenter' },
+    bottomCenter: { value: 'bottomCenter', label: 'DAGGERHEART.SETTINGS.Appearance.fearPosition.bottomCenter' },
+    rightTop: { value: 'rightTop', label: 'DAGGERHEART.SETTINGS.Appearance.fearPosition.rightTop' },
+    leftBottom: { value: 'leftBottom', label: 'DAGGERHEART.SETTINGS.Appearance.fearPosition.leftBottom' }
 };
 
 export const basicOwnershiplevels = {

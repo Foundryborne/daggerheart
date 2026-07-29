@@ -1,4 +1,6 @@
-export default class AdvantageDie extends foundry.dice.terms.Die {
+import BaseDie from './baseDie.mjs';
+
+export default class AdvantageDie extends BaseDie {
     constructor(options) {
         super(options);
 

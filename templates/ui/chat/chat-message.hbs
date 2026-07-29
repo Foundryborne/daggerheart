@@ -1,23 +1,18 @@
 <li class="chat-message message flexcol {{cssClass}}" data-message-id="{{message._id}}"
     {{#if borderColor}}style="border-color:{{borderColor}}"{{/if}}>
     <header class="message-header flexrow">
-        <div class="message-header-main">
+        <div class="portrait">
             <img class="actor-img" src="{{actor.img}}" />
-            <div class="message-sub-header-container">
-                {{#if message.title}}
-                    <h4>{{message.title}}</h4>
-                    <div>{{alias}} {{#if author.isGM}}(GM){{/if}}</div>
-                {{else}}
-                    {{#unless actor.name}}
-                        <h4>{{author.name}}</h4>
-                    {{else}}
-                        <h4>{{alias}}</h4>
-                        <div>{{author.name}}</div>
-                    {{/unless}}
-                {{/if}}
-            </div>
         </div>
-        <div class="message-header-metadata">
+        <div class="message-header-main">
+            {{#if message.title}}
+                <h4>{{message.title}}</h4>
+            {{else if (not actor.name)}}
+                <h4>{{author.name}}</h4>
+            {{else}}
+                <h4>{{alias}}</h4>
+            {{/if}}
+
             <span class="message-metadata">
                 <time class="message-timestamp">{{timeSince message.timestamp}}</time>
                 {{#if canDelete}}
@@ -32,9 +27,19 @@
                 {{/if}}
             </span>
 
-            {{#if isWhisper}}
-            <span class="whisper-to">{{localize 'CHAT.To'}}: {{whisperTo}}</span>
-            {{/if}}
+            <div class="subtitle">
+                <div class="name">
+                    {{#if message.title}}
+                        {{alias}} {{#if author.isGM}}(GM){{/if}}
+                    {{else if (not actor.name)}}
+                        {{author.name}}
+                    {{/if}}
+                </div>
+
+                {{#if isWhisper}}
+                    <span class="whisper-to">{{localize 'CHAT.To'}}: {{whisperTo}}</span>
+                {{/if}}
+            </div>
         </div>
     </header>
     <div class="message-content">

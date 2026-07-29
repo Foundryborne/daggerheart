@@ -13,18 +13,19 @@ export default class DHAttackAction extends DHDamageAction {
             if (this.damage.includeBase) {
                 const baseDamage = this.getParentHitPointDamage();
                 if (baseDamage) {
-                    if (!this.damage.parts.hitPoints) {
-                        this.damage.parts.hitPoints = baseDamage;
+                    if (!this.damage.main) {
+                        this.damage.main = baseDamage;
                     } else {
-                        for (const type of baseDamage.type) this.damage.parts.hitPoints.type.add(type);
+                        for (const type of baseDamage.type) this.damage.main.type.add(type);
 
-                        this.damage.parts.hitPoints.value.custom = {
+                        this.damage.main.value.custom = {
                             enabled: true,
-                            formula: `${baseDamage.value.getFormula()} + ${this.damage.parts.hitPoints.value.getFormula()}`
+                            formula: `${baseDamage.value.getFormula()} + ${this.damage.main.value.getFormula()}`
                         };
                     }
                 }
             }
+            
             if (this.roll.useDefault) {
                 this.roll.trait = this.item.system.attack.roll.trait;
                 this.roll.type = 'attack';
@@ -33,24 +34,28 @@ export default class DHAttackAction extends DHDamageAction {
     }
 
     getParentHitPointDamage() {
-        return this.item?.system?.attack.damage.parts.hitPoints;
+        return this.item?.system?.attack.damage.main;
     }
 
     get damageFormula() {
-        const hitPointsPart = this.damage.parts.hitPoints;
+        const hitPointsPart = this.damage.main;
         if (!hitPointsPart) return '0';
 
         return hitPointsPart.value.getFormula();
     }
 
     get altDamageFormula() {
-        const hitPointsPart = this.damage.parts.hitPoints;
+        const hitPointsPart = this.damage.main;
         if (!hitPointsPart) return '0';
 
         return hitPointsPart.valueAlt.getFormula();
     }
 
     async use(event, options) {
+        if (this.item?.system.needsReload) {
+            return ui.notifications.error(_loc('DAGGERHEART.UI.Notifications.reloadRequired', { weapon: this.item.name }));
+        }
+
         const result = await super.use(event, options);
 
         if (result?.message?.system.action?.roll?.type === 'attack') {
@@ -59,6 +64,23 @@ export default class DHAttackAction extends DHDamageAction {
         }
 
         return result;
+    }
+
+    async handleReload(options = { awaitRoll: false }) {
+        const roll = await new Roll('1d6').evaluate();
+        if (game.modules.get('dice-so-nice')?.active) {
+            if (options.awaitRoll)
+                await game.dice3d.showForRoll(roll, game.user, true);
+            else
+                game.dice3d.showForRoll(roll, game.user, true);    
+        }
+        
+        const needsReload = roll.total === 1;
+        if (needsReload) {
+            this.item.update({ 'system.resource.value': 0 });
+        }
+
+        return { needsReload, rollValue: roll.total };
     }
 
     /**
@@ -73,7 +95,7 @@ export default class DHAttackAction extends DHDamageAction {
         if (range) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.short`));
 
         const useAltDamage = this.actor?.effects?.find(x => x.type === 'horde')?.active;
-        for (const { value, valueAlt, type } of damage.parts) {
+        for (const { value, valueAlt, type } of [damage.main, ...damage.resources].filter(d => !!d)) {
             const usedValue = useAltDamage ? valueAlt : value;
             const damageString = Roll.replaceFormulaData(usedValue.getFormula(), this.actor?.getRollData() ?? {});
             const str = damageString
@@ -82,7 +104,7 @@ export default class DHAttackAction extends DHDamageAction {
                     x: game.i18n.localize('DAGGERHEART.GENERAL.damage')
                 });
 
-            const icons = Array.from(type)
+            const icons = Array.from(type ?? [])
                 .map(t => CONFIG.DH.GENERAL.damageTypes[t]?.icon)
                 .filter(Boolean);
 

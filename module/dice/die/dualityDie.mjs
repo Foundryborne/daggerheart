@@ -1,10 +1,15 @@
 import { updateResourcesForDualityReroll } from '../helpers.mjs';
+import BaseDie from './baseDie.mjs';
 
-export default class DualityDie extends foundry.dice.terms.Die {
+export default class DualityDie extends BaseDie {
     constructor(options) {
         super(options);
 
         this.modifiers = [];
+    }
+
+    get isRerolled() {
+        return this.results.some(x => x.rerolled);
     }
 
     #getDualityState(roll) {

@@ -495,9 +495,8 @@ export function expireActiveEffects(actor, allowedTypes = null) {
     actor.deleteEmbeddedDocuments('ActiveEffect', effectsToExpire);
 }
 
-export async function getCritDamageBonus(formula) {
-    const critRoll = new Roll(formula);
-    await critRoll.evaluate();
+export function getCritDamageBonus(terms) {
+    const critRoll = Roll.fromTerms(terms);
     return critRoll.dice.reduce((acc, dice) => acc + dice.faces * dice.results.filter(r => r.active).length, 0);
 }
 
@@ -698,19 +697,6 @@ export async function RefreshFeatures(
     }
 
     return refreshedActors;
-}
-
-export function getUnusedDamageTypes(parts) {
-    const usedKeys = Object.keys(parts);
-    return Object.keys(CONFIG.DH.GENERAL.healingTypes).reduce((acc, key) => {
-        if (!usedKeys.includes(key))
-            acc.push({
-                value: key,
-                label: game.i18n.localize(CONFIG.DH.GENERAL.healingTypes[key].label)
-            });
-
-        return acc;
-    }, []);
 }
 
 /** Returns resolved armor sources ordered by application order */

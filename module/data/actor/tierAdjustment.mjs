@@ -40,17 +40,17 @@ export function getTierAdjustedAdversary(source, tier) {
 
     // Store initial attack damage for abilities that have you deal a "standard attack"
     const initialAttack = {
-        type: source.system.attack.damage?.parts.hitPoints?.type?.toSorted(),
-        value: getFormula(source.system.attack.damage?.parts.hitPoints?.value)
+        type: source.system.attack.damage?.main?.type?.toSorted(),
+        value: getFormula(source.system.attack.damage?.main?.value)
     };
 
     // Update damage of base attack.
     try {
         const damage = source.system.attack.damage;
-        if (!damage?.parts.hitPoints) throw new Error('Unexpected missing attack in adversary');
+        if (!damage?.main) throw new Error('Unexpected missing damage in adversary');
 
         for (const property of ['value', 'valueAlt']) {
-            const data = damage.parts.hitPoints[property];
+            const data = damage.main[property];
             const previousFormula = getFormula(data);
             const value = calculateAdjustedDamage(previousFormula, 'attack', damageMeta);
             applyAdjustedDamage(data, value);
@@ -82,12 +82,12 @@ export function getTierAdjustedAdversary(source, tier) {
 
         // Update damage in item actions and convert all formula matches in the descriptions to the new damage
         for (const action of Object.values(item.system.actions)) {
-            if (!action.damage?.parts.hitPoints) continue;
+            if (!action.damage?.main) continue;
             try {
                 // Apply conversions and save a record. If it matches attack damage *and* Its not in the description, use attack conversion instead
                 const result = [];
                 for (const property of ['value', 'valueAlt']) {
-                    const { [property]: data, type: damageType } = action.damage.parts.hitPoints;
+                    const { [property]: data, type: damageType } = action.damage.main;
                     const previousFormula = getFormula(data);
                     const isActuallyAttack =
                         previousFormula === initialAttack.value &&
@@ -199,7 +199,7 @@ function calculateAdjustedDamage(formula, type, { currentDamageRange, newDamageR
 }
 
 /** 
- * Get formula from either damage parts *or* a simple formula object.
+ * Get formula from either damage data *or* a simple formula object.
  * @returns {string} the new formula data
  */
 function getFormula(data) {

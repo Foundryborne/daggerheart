@@ -3,7 +3,7 @@ import DhDeathMove from '../../dialogs/deathMove.mjs';
 import { CharacterLevelup, LevelupViewMode } from '../../levelup/_module.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
-import { getArmorSources, getDocFromElement, getDocFromElementSync, sortBy } from '../../../helpers/utils.mjs';
+import { getArmorSources, getDocFromElement, getDocFromElementSync, itemAbleRollParse, sortBy } from '../../../helpers/utils.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
@@ -29,6 +29,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             toggleResourceDice: CharacterSheet.#toggleResourceDice,
             handleResourceDice: CharacterSheet.#handleResourceDice,
             advanceResourceDie: CharacterSheet.#advanceResourceDie,
+            toggleItemReload: CharacterSheet.#onToggleItemReload,
             cancelBeastform: CharacterSheet.#cancelBeastform,
             toggleResourceManagement: CharacterSheet.#toggleResourceManagement,
             useDowntime: this.useDowntime,
@@ -954,9 +955,19 @@ export default class CharacterSheet extends DHBaseActorSheet {
         });
     }
 
-    /** */
     static #advanceResourceDie(_, target) {
         this.updateResourceDie(target, true);
+    }
+
+    static async #onToggleItemReload(_, target) {
+        const item = await getDocFromElement(target);
+        if (!item || !item.system.resource?.max) 
+            return;
+
+        await item.update({ 
+            'system.resource.value': item.system.needsReload ? 
+                itemAbleRollParse(item.system.resource.max, this.document, item) : 0
+        })
     }
 
     lowerResourceDie(event) {

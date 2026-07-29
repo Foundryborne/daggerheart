@@ -47,14 +47,14 @@
                                 <div class="roll-die">
                                     <label>{{localize "DAGGERHEART.GENERAL.hope"}}</label>
                                     <div class="dice {{roll.dHope.denomination}} color-hope reroll-button" data-die-index="0" data-type="hope" data-tooltip="{{localize "DAGGERHEART.GENERAL.rerollThing" thing=(localize "DAGGERHEART.GENERAL.hope")}}">
-                                        {{#if roll.dHopehope.rerolled.any}}<i class="fa-solid fa-dice dice-rerolled" data-tooltip="{{localize "DAGGERHEART.UI.Tooltip.diceIsRerolled" times=roll.dHope.rerolled.rerolls.length}}"></i>{{/if}}
+                                        {{#if roll.dHope.isRerolled}}<i class="fa-solid fa-dice dice-rerolled" data-tooltip="{{localize "DAGGERHEART.GENERAL.rerolled"}}"></i>{{/if}}
                                         {{roll.dHope.total}}
                                     </div>
                                 </div>
                                 <div class="roll-die has-plus">
                                     <label>{{localize "DAGGERHEART.GENERAL.fear"}}</label>
                                     <div class="dice {{roll.dFear.denomination}} color-fear reroll-button" data-die-index="1" data-type="fear" style="--svg-folder: 'fear';" data-tooltip="{{localize "DAGGERHEART.GENERAL.rerollThing" thing=(localize "DAGGERHEART.GENERAL.fear")}}">
-                                        {{#if roll.dFear.rerolled.any}}<i class="fa-solid fa-dice dice-rerolled" data-tooltip="{{localize "DAGGERHEART.UI.Tooltip.diceIsRerolled" times=roll.dFear.rerolled.rerolls.length}}"></i>{{/if}}
+                                        {{#if roll.dFear.isRerolled}}<i class="fa-solid fa-dice dice-rerolled" data-tooltip="{{localize "DAGGERHEART.GENERAL.rerolled"}}"></i>{{/if}}
                                         {{roll.dFear.total}}
                                     </div>
                                 </div>
@@ -82,10 +82,14 @@
                                     </div>
                                 {{/each}}
                             {{else}}
-                                {{#each roll.dice}}
-                                    {{#each results}}
+                                {{#each roll.dice as |dice|}}
+                                    {{#each results as |dieResult|}}
                                         <div class="roll-die {{#unless (or @../first discarded)}} has-plus{{/unless}}">
-                                            <div class="dice {{../denomination}}{{#if discarded}} discarded{{else}}{{#if (and @../first ../../roll.advantage.type)}}{{#if (eq ../../roll.advantage.type 1)}} color-adv{{else}} color-dis{{/if}}{{/if}}{{#if success}} color-adv{{/if}}{{/if}}">
+                                            <div class="
+                                                dice 
+                                                {{coalesce dieResult.denomination dice.denomination}}
+                                                {{#if discarded}} discarded{{else}}{{#if (and @../first ../../roll.advantage.type)}}{{#if (eq ../../roll.advantage.type 1)}} color-adv{{else}} color-dis{{/if}}{{/if}}{{#if success}} color-adv{{/if}}{{/if}}
+                                            ">
                                                 {{result}}
                                             </div>
                                         </div>

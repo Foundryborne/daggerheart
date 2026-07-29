@@ -1,3 +1,4 @@
+import { RefreshType, socketEvent } from '../systemRegistration/socket.mjs';
 import FormulaField from './fields/formulaField.mjs';
 
 export default class DhCountdowns extends foundry.abstract.DataModel {
@@ -14,19 +15,36 @@ export default class DhCountdowns extends foundry.abstract.DataModel {
         };
     }
 
-    handleChange() {
+    /** @inheritdoc */
+    _initialize(options) {
+        super._initialize(options);
+        for (const [id, countdown] of Object.entries(this.countdowns)) {
+            countdown.id = id;
+        }
+    }
+
+    async handleChange() {
         const previousCountdowns = foundry.ui.countdowns.previousCountdownData;
         const changedCountdowns = Object.entries(this.countdowns).reduce((acc, [key, countdown]) => {
-            const previousCountdown = previousCountdowns[key];
-            if (!previousCountdown || (previousCountdown.progress.current !== countdown.progress.current)) {
+            const previous = previousCountdowns[key];
+            const currentChanged = !previous || (previous.progress.current !== countdown.progress.current);
+            if (currentChanged && previous?.progress.start === countdown.progress.start) {
                 acc.push(key);
             }
-
             return acc;
         }, []);
 
-        for (const countdownKey of changedCountdowns)
-            foundry.ui.countdowns.changedCountdownsForAnimation.add(countdownKey);
+        // Re-render countdowns applications. When the change is due to an actual update, resync the editor
+        if (!foundry.utils.equals(previousCountdowns, this.countdowns)) {
+            await foundry.ui.countdowns.render({ animate: changedCountdowns });
+            for (const instance of game.system.api.applications.ui.CountdownEdit.instances()) {
+                instance.data = this;
+                await instance.render();
+            }
+        }
+
+        // Inform modules of updates
+        Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
     }
 
     static migrateData(source) {
@@ -160,6 +178,14 @@ export class DhCountdown extends foundry.abstract.DataModel {
         }, {});
     }
 
+    /**
+     * A boolean indicator for whether the current game User has ownership rights for this countdown
+     * @returns {boolean}
+     */
+    get isOwner() {
+        return this.getUserLevel(game.user) === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
+    }
+
     /** @inheritDoc */
     static migrateData(source) {
         if (source.progress.max) {
@@ -169,5 +195,30 @@ export class DhCountdown extends foundry.abstract.DataModel {
         }
 
         return super.migrateData(source);
+    }
+
+    /**
+     * Get the explicit permission level that a User has over this Document, a value in CONST.DOCUMENT_OWNERSHIP_LEVELS.
+     * Compendium content ignores the ownership field in favor of User role-based ownership. Otherwise, Documents use
+     * granular per-User ownership definitions and Embedded Documents defer to their parent ownership.
+     *
+     * @param {BaseUser} [user=game.user] The User being tested
+     * @returns {DocumentOwnershipNumber} A numeric permission level from {@link CONST.DOCUMENT_OWNERSHIP_LEVELS}
+     */
+    getUserLevel(user) {
+        if (user.isGM) return CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
+
+        const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
+        const playerOwnership = this.ownership[user.id];
+        return playerOwnership === undefined || playerOwnership === CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT
+            ? setting.defaultOwnership
+            : playerOwnership;
+    }
+
+    async delete() {
+        const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
+        const data = foundry.utils.deepClone(setting._source);
+        delete data.countdowns[this.id];
+        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, data);
     }
 }

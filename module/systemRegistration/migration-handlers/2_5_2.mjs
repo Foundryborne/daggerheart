@@ -7,7 +7,8 @@ export class Migration_2_5_2 extends MigrationHandlerBase {
     async updateActiveEffectSource(effectSource, item) {
         let shouldUpdate = false;
         const newChanges = [];
-        const srdItem = item?._stats.compendiumSource ? 
+
+        const srdItem = item?._stats?.compendiumSource ? 
             await foundry.utils.fromUuid(item?._stats.compendiumSource) : 
             null;
         for (let i = 0; i < effectSource.system.changes.length; i++) {

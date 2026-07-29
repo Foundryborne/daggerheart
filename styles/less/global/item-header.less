@@ -12,12 +12,14 @@
 });
 
 .application.sheet.daggerheart.dh-style {
+    --portrait-size: 150px;
+
     .item-sheet-header {
         display: flex;
 
         .profile {
-            height: 150px;
-            width: 150px;
+            height: var(--portrait-size);
+            width: var(--portrait-size);
             object-fit: cover;
             border-right: 1px solid light-dark(@dark-blue, @golden);
             border-bottom: 1px solid light-dark(@dark-blue, @golden);
@@ -34,19 +36,24 @@
             text-align: center;
             width: 80%;
 
-            .item-name input[type='text'] {
-                font-size: var(--font-size-32);
-                height: 42px;
-                text-align: center;
-                width: 90%;
-                transition: all 0.3s ease;
-                outline: 2px solid transparent;
-                border: 1px solid transparent;
+            .item-name {
+                display: flex;
+                flex-direction: column;
+                margin: 10px 10px 0 10px;
+                input[type='text'] {
+                    font-size: var(--font-size-30);
+                    text-align: center;
+                    width: 100%;
+                    transition: all 0.3s ease;
+                    outline: 2px solid transparent;
+                    border: 1px solid transparent;
+                    text-overflow: ellipsis;
 
-                &:hover[type='text'],
-                &:focus[type='text'] {
-                    box-shadow: none;
-                    outline: 2px solid light-dark(@dark-blue, @golden);
+                    &:hover[type='text'],
+                    &:focus[type='text'] {
+                        box-shadow: none;
+                        outline: 2px solid light-dark(@dark-blue, @golden);
+                    }
                 }
             }
 

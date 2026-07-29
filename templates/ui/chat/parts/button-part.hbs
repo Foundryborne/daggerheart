@@ -1,18 +1,40 @@
 <div class="roll-buttons">
-    {{#if areas.length}}<button class="action-areas end-button"><i class="fa-solid fa-crosshairs"></i></button>{{/if}}
-    {{#if hasDamage}}
-        {{#unless (empty damage)}}
-            <button class="duality-action damage-button">{{localize "DAGGERHEART.UI.Chat.damageRoll.dealDamage"}}</button>
-        {{else}}
-            <button class="duality-action duality-action-damage">{{localize "DAGGERHEART.UI.Chat.attackRoll.rollDamage"}}</button>
-        {{/unless}}
+    <div class="main-buttons">
+        {{#if areas.length}}<button class="action-areas end-button"><i class="fa-solid fa-crosshairs"></i></button>{{/if}}
+        {{#if hasDamage}}
+            {{#if damage.active}}
+                <button class="duality-action damage-button">{{localize "DAGGERHEART.UI.Chat.damageRoll.dealDamage"}}</button>
+            {{else}}
+                <button class="duality-action duality-action-damage">{{localize "DAGGERHEART.UI.Chat.attackRoll.rollDamage"}}</button>
+            {{/if}}
+        {{/if}}
+        {{#if hasHealing}}
+            {{#if damage.active}}
+                <button class="duality-action damage-button">{{localize "DAGGERHEART.UI.Chat.healingRoll.applyHealing"}}</button>
+            {{else}}
+                <button class="duality-action duality-action-damage">{{localize "DAGGERHEART.UI.Chat.attackRoll.rollHealing"}}</button>
+            {{/if}}
+        {{/if}}
+        {{#if (and hasEffect)}}<button class="duality-action-effect">{{localize "DAGGERHEART.UI.Chat.attackRoll.applyEffect"}}</button>{{/if}}
+    </div>
+
+    {{#if parent.system.hasReload}}
+        <div class="extra-button-row">
+            <button class="roll-reload-check">
+                <div class="image-container">
+                    <img class="dice-icon normal" src="{{concat 'systems/daggerheart/assets/icons/dice/default/d20.svg'}}" alt="">
+                    {{#if reloadCheckValue}}<div class="dice-result">{{reloadCheckValue}}</div>{{/if}}
+                </div>
+
+                {{localize "DAGGERHEART.ACTIONS.Reload.checkReload"}}
+            </button>
+            <div class="reload-data {{#if reloadCheckValue}}{{ifThen parent.system.reloadCheckFailed 'failed-check' 'passed-check'}}{{/if}}">
+                {{#unless reloadCheckValue}}
+                    {{localize "DAGGERHEART.ACTIONS.Reload.notRolled"}}
+                {{else}}
+                    {{ifThen parent.system.reloadCheckFailed (localize "DAGGERHEART.ACTIONS.Reload.checkFailed") (localize "DAGGERHEART.ACTIONS.Reload.checkPassed")}}
+                {{/unless}}
+            </div>
+        </div>
     {{/if}}
-    {{#if hasHealing}}
-        {{#unless (empty damage)}}
-            <button class="duality-action damage-button">{{localize "DAGGERHEART.UI.Chat.healingRoll.applyHealing"}}</button>
-        {{else}}
-            <button class="duality-action duality-action-damage">{{localize "DAGGERHEART.UI.Chat.attackRoll.rollHealing"}}</button>
-        {{/unless}}
-    {{/if}}
-    {{#if (and hasEffect)}}<button class="duality-action-effect">{{localize "DAGGERHEART.UI.Chat.attackRoll.applyEffect"}}</button>{{/if}}
 </div>

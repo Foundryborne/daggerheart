@@ -1,7 +1,8 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 import { triggerChatRollFx } from '../helpers/utils.mjs';
+import BaseRoll from './baseRoll.mjs';
 
-export default class DHRoll extends Roll {
+export default class DHRoll extends BaseRoll {
     baseTerms = [];
     constructor(formula, data = {}, options = {}) {
         super(formula, data, foundry.utils.mergeObject(options, { roll: [] }, { overwrite: false }));
@@ -40,6 +41,10 @@ export default class DHRoll extends Roll {
         return config;
     }
 
+    static createRollInstance(config) {
+        return new this(config.roll.formula, config.data, config);
+    }
+
     /** 
      * @param {Partial<RollConfig>} config 
      * @returns {Promise<RollConfig>}
@@ -57,7 +62,7 @@ export default class DHRoll extends Roll {
 
         this.temporaryModifierBuilder(config);
 
-        let roll = new this(config.roll.formula, config.data, config);
+        let roll = this.createRollInstance(config);
         if (config.dialog.configure !== false) {
             // Open Roll Dialog
             const DialogClass = config.dialog?.class ?? this.DefaultDialog;
@@ -112,7 +117,11 @@ export default class DHRoll extends Roll {
 
     static async toMessage(roll, config) {
         const item = config.data.parent?.items?.get?.(config.source.item) ?? null;
-        const action = item ? item.system.actions.get(config.source.action) : null;
+        const actions = item ? [
+            ...item.system.actions,
+            ...(item.system.attack?.id === config.source.action ? [item.system.attack] : [])
+        ] : [];
+        const action = actions.find(x => x.id === config.source.action);
         let actionDescription = null;
         if (action?.chatDisplay) {
             actionDescription = action
@@ -124,6 +133,14 @@ export default class DHRoll extends Roll {
             config.actionChatMessageHandled = true;
         }
 
+        const reloadSetting = 
+            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).reload;
+        const useReload = 
+            item?.system.hasReload && 
+            action?.type === 'attack' && 
+            reloadSetting === CONFIG.DH.SETTINGS.reloadChoices.auto.id;
+        const reloadResult = useReload ? await action?.handleReload?.() : {};
+        
         const cls = getDocumentClass('ChatMessage'),
             msgData = {
                 type: this.messageType,
@@ -131,7 +148,11 @@ export default class DHRoll extends Roll {
                 title: roll.title,
                 speaker: cls.getSpeaker({ actor: roll.data?.parent }),
                 sound: config.mute ? null : CONFIG.sounds.dice,
-                system: { ...config, actionDescription },
+                system: { 
+                    ...config, 
+                    actionDescription,
+                    reloadCheckValue: reloadResult.rollValue 
+                },
                 rolls: [roll]
             };
 
@@ -148,19 +169,27 @@ export default class DHRoll extends Roll {
         } else return msgData;
     }
 
+    // TODO - Possibly remove this completly if actorRoll.renderHTML implementation can take over getting the chatData prepared.
     /** @inheritDoc */
     async render({ flavor, template = this.constructor.CHAT_TEMPLATE, isPrivate = false, ...options } = {}) {
         if (!this._evaluated) return;
 
         const metagamingSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Metagaming);
+        const automationSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
         const chatData = await this._prepareChatRenderContext({ flavor, isPrivate, ...options });
         return foundry.applications.handlebars.renderTemplate(template, {
             roll: this,
             ...chatData,
+            targetData: chatData.hasTarget ? {
+                currentTargets: chatData._getCurrentTargets(),
+                selectedTargetsData: chatData._getSelectedTargetsData()
+            } : null,
+            action: chatData.action,
             parent: chatData.parent,
             targetMode: chatData.targetMode,
             areas: chatData.action?.areas,
-            metagamingSettings
+            metagamingSettings,
+            automationSettings
         });
     }
 
@@ -224,6 +253,35 @@ export default class DHRoll extends Roll {
         });
     }
 
+    /**
+     * Sums the values of all instances of ActiveEffect.change values from the toggleable bonusEffects of the roll 
+     * that match a given change.key partial path. Only for use on ActiveEffects.change with strictly numerical values.
+     * @param {string} path The full or partial effect.change key 
+     * @returns {number}
+     */
+    getTotalBonus(path) {
+        return Object.values(this.options.bonusEffects).reduce((acc, effect) => {
+            if (!effect.selected) return acc;
+            return acc + effect.changes.reduce((acc, change) => {
+                if (!change.key.includes(path)) return acc;
+                const changeValue = game.system.api.documents.DhActiveEffect.getChangeValue(
+                    this.data,
+                    change,
+                    effect.origEffect
+                );
+                
+                return Number.isNumeric(changeValue) ? acc + changeValue : acc; 
+            }, 0);
+        }, 0);
+    }
+
+    /**
+     * Grabs all instances of ActiveEffect.change values from the toggleable bonusEffects of the roll 
+     * that match a given change.key partial path.
+     * @param {string} path The full or partial effect.change key 
+     * @param {string} label The label to give the modifiers
+     * @returns {[{ label: string, value: any} ]}
+     */
     getBonus(path, label) {
         const modifiers = [];
         for (const effect of Object.values(this.options.bonusEffects)) {

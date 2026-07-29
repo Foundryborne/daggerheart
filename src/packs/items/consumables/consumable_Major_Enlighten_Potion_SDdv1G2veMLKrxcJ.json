@@ -36,7 +36,7 @@
           }
         ],
         "target": {
-          "type": "self",
+          "type": "",
           "amount": null
         },
         "name": "Drink",
@@ -59,24 +59,22 @@
       "transfer": false,
       "_id": "Ul5brgnx88npVGNj",
       "type": "base",
-      "system": {},
-      "changes": [
-        {
-          "key": "system.traits.knowledge.value",
-          "type": "add",
-          "value": "1",
-          "priority": null
-        }
-      ],
+      "system": {
+        "changes": [
+          {
+            "key": "system.traits.knowledge.value",
+            "type": "add",
+            "value": 1,
+            "priority": null
+          }
+        ]
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "tint": "#ffffff",
@@ -86,6 +84,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!SDdv1G2veMLKrxcJ.Ul5brgnx88npVGNj"
     }
   ],

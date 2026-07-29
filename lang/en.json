@@ -104,8 +104,10 @@
                     "startCountdown": "Start Countdown"
                 },
                 "damage": {
+                    "addResource": "Add Resource",
                     "multiplier": "Multiplier",
-                    "flatMultiplier": "Flat Multiplier"
+                    "flatMultiplier": "Flat Multiplier",
+                    "markResources": "Mark Resources"
                 },
                 "general": {
                     "customFormula": "Custom Formula",
@@ -123,6 +125,15 @@
                 "advantageState": "Advantage State",
                 "damageOnSave": "Damage on Save",
                 "useDefaultItemValues": "Use default Item values"
+            },
+            "Reload": {
+                "checkReload": "Check Reload",
+                "reloadRequired": "Reload Required!",
+                "notRolled": "Not Rolled",
+                "checkFailed": "Check Failed",
+                "checkPassed": "Check Passed",
+                "rerollConfirmationTitle": "Reroll Reload Check",
+                "rerollConfirmationText": "Are you sure you want to reroll the reload check?"
             },
             "RollField": {
                 "diceRolling": {
@@ -143,6 +154,10 @@
                 "saveHint": "Set a default Trait to enable Reaction Roll. It can be changed later in Reaction Roll Dialog.",
                 "resultBased": {
                     "label": "Formula based on Hope/Fear result."
+                },
+                "fullRestore": {
+                    "label": "Fully restore the resource.",
+                    "inChatRoll": "Full"
                 },
                 "applyTo": {
                     "label": "Targeted Resource"
@@ -1277,6 +1292,11 @@
                     "name": "Fear",
                     "abbreviation": "FR",
                     "inChatRoll": "Fear"
+                },
+                "weaponResource": {
+                    "name": "Weapon Resource",
+                    "abbreviation": "WR",
+                    "inChatRoll": "Reload"
                 }
             },
             "ItemResourceProgression": {
@@ -1319,6 +1339,11 @@
                     "description": "means a distance where you can see the shape of a person or object, but probably not make outany details-- across a large battlefield or down a long street, generally about 100-300 feet away. While under danger, a PC likely has to make an Agility roll to get here safely. Anything on a battle map that is beyond far distance, but still within sight of the characters can usually be considered very far.",
                     "short": "V. Far"
                 }
+            },
+            "ReloadChoices": {
+                "off": { "label": "Don't Use" },
+                "manual": { "label": "Manual" },
+                "auto": { "label": "Automatic" }
             },
             "RollTypes": {
                 "trait": {
@@ -2219,7 +2244,9 @@
             },
             "Resource": {
                 "single": "Resource",
-                "plural": "Resources"
+                "plural": "Resources",
+                "unloaded": "The weapon is not loaded",
+                "loaded": "The weapon is loaded"
             },
             "Roll": {
                 "attack": "Attack Roll",
@@ -2440,6 +2467,7 @@
             "icon": "Icon",
             "identify": "Identity",
             "imagePath": "Image Path",
+            "immune": "Immune",
             "inactiveEffects": "Inactive Effects",
             "initial": "Initial",
             "inventory": "Inventory",
@@ -2465,7 +2493,7 @@
             "newThing": "New {thing}",
             "next": "Next",
             "none": "None",
-            "noTarget": "No current target",
+            "noTarget": "No Current Targets",
             "optionalThing": "Optional {thing}",
             "partner": "Partner",
             "player": {
@@ -2483,7 +2511,7 @@
             "reroll": "Reroll",
             "rerolled": "Rerolled",
             "rerollThing": "Reroll {thing}",
-            "resource": "Resource",
+            "resistant": "Resistant",
             "result": {
                 "single": "Result",
                 "plural": "Results"
@@ -2550,6 +2578,9 @@
                 },
                 "identifier": {
                     "label": "Identifier"
+                },
+                "gmNotes": {
+                    "label": "GM Notes"
                 }
             },
             "Ancestry": {
@@ -2564,6 +2595,9 @@
                     "major": "Major Threshold",
                     "severe": "Severe Threshold"
                 }
+            },
+            "Base": {
+                "addGMNote": "Add GM Note"
             },
             "Beastform": {
                 "FIELDS": {
@@ -2652,6 +2686,7 @@
             },
             "Weapon": {
                 "weaponType": "Weapon Type",
+                "configureAttack": "Configure Attack",
                 "primaryWeapon": {
                     "full": "Primary Weapon",
                     "short": "Primary"
@@ -2680,6 +2715,9 @@
                 "FIELDS": {
                     "displayFear": {
                         "label": "Display Fear"
+                    },
+                    "fearPosition": {
+                        "label": "Fear Position"
                     },
                     "displayCountdownUI": {
                         "label": "Display Countdown UI"
@@ -2732,6 +2770,13 @@
                     "token": "Tokens",
                     "bar": "Bar",
                     "hide": "Hide"
+                },
+                "fearPosition": {
+                    "free": "Free",
+                    "topCenter": "Top + Center",
+                    "bottomCenter": "Bottom + Center",
+                    "rightTop": "Right + Top",
+                    "leftBottom": "Left + Bottom"
                 }
             },
             "Automation": {
@@ -2789,6 +2834,10 @@
                             "label": "Effect Range Dependent",
                             "hint": "Effects with defined range dependency will automatically turn on/off depending on range"
                         }
+                    },
+                    "reload": {
+                        "label": "Reload Checking",
+                        "hint": "If the system should automatically roll reload checks or wait for the manual press of a button in chat"
                     },
                     "resourceScrollTexts": {
                         "label": "Show Resource Change Scrolltexts",
@@ -3052,8 +3101,11 @@
                     "dealDamage": "Deal Damage",
                     "rollDamage": "Roll Damage",
                     "hitTarget": "Hit",
-                    "selectedTarget": "Selected",
-                    "currentTarget": "Current"
+                    "targetingInitial": "Targets",
+                    "targetingSelected": "Selected",
+                    "totalTargetedTokens": "{total} Selected",
+                    "noTokensSelected": "No Tokens Selected",
+                    "setSelectedAsTargets": "Set Selected As Targets"
                 },
                 "deathMove": {
                     "title": "Death Move",
@@ -3087,6 +3139,8 @@
                     "applyHealing": "Apply Healing"
                 },
                 "markResource": "Mark {quantity} {resource}",
+                "reloadWeapon": "Reload {weapon}",
+                "restoreWeaponResource": "Restore {quantity} on {weapon}",
                 "refreshMessage": {
                     "title": "Feature Refresh",
                     "header": "Refreshed"
@@ -3176,7 +3230,7 @@
                 "beastformInapplicable": "A beastform can only be applied to a Character.",
                 "beastformAlreadyApplied": "The character already has a beastform applied!",
                 "noTargetsSelected": "No targets are selected.",
-                "noTargetsSelectedOrPerm": "No targets are selected or with the update permission.",
+                "noTargetsHit": "No targets are hit",
                 "attackTargetDoesNotExist": "The target token no longer exists",
                 "insufficentAdvancements": "You don't have enough advancements left.",
                 "noAssignedPlayerCharacter": "You have no assigned character.",
@@ -3251,7 +3305,9 @@
                 "knowTheTide": "Know The Tide gained a token",
                 "lackingItemTransferPermission": "User {user} lacks owner permission needed to transfer items to {target}",
                 "noTokenTargeted": "No token is targeted",
-                "behaviorRegionRequiresGM": "Creating a Region with an attached Behavior requires an online GM"
+                "behaviorRegionRequiresGM": "Creating a Region with an attached Behavior requires an online GM",
+                "comboDiceOnlyTwoDiceError": "Combo dice functionality only works on a single pair of two dice",
+                "reloadRequired": "The {weapon} must be reloaded to be used!"
             },
             "Progress": {
                 "migrationLabel": "Performing system migration. Please wait and do not close Foundry."
@@ -3292,7 +3348,6 @@
                 "rangeAndTarget": "Range & Target",
                 "dragApplyEffect": "Drag effect to apply it to an actor",
                 "appliedEvenIfSuccessful": "Applied even if save succeeded",
-                "diceIsRerolled": "The dice has been rerolled (x{times})",
                 "pendingSaves": "Pending Reaction Rolls",
                 "openSheetSettings": "Open Settings",
                 "compendiumBrowser": "Compendium Browser",
