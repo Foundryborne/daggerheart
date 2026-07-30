@@ -56,7 +56,7 @@ export default class DHActionConfig extends DHActionBaseConfig {
         if (!this.action.effects) return;
 
         const { areaIndex, index } = button.dataset;
-        let effectId = null;
+        let effectId;
         if (areaIndex !== undefined) {
             effectId = this.action.areas[areaIndex].effects[index];
             const data = this.action.toObject();
