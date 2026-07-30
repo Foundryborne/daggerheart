@@ -875,28 +875,26 @@ export default class DhpActor extends Actor {
             }
         });
 
-        Object.keys(updates).forEach(async key => {
+        for (const key of Object.keys(updates)) {
             const u = updates[key];
             if (key === 'items') {
-                Object.values(u).forEach(async item => {
+                for (const item of Object.values(u)) {
                     await emitGMUpdate(
                         GMUpdateEvent.UpdateDocument,
                         item.target.update.bind(item.target),
                         item.resources,
                         item.target.uuid
                     );
-                });
-            } else {
-                if (Object.keys(u.resources).length > 0) {
-                    await emitGMUpdate(
-                        GMUpdateEvent.UpdateDocument,
-                        u.target.update.bind(u.target),
-                        u.resources,
-                        u.target.uuid
-                    );
                 }
+            } else if (Object.keys(u.resources).length > 0) {
+                await emitGMUpdate(
+                    GMUpdateEvent.UpdateDocument,
+                    u.target.update.bind(u.target),
+                    u.resources,
+                    u.target.uuid
+                );
             }
-        });
+        }
     }
 
     convertDamageToThreshold(damage) {
