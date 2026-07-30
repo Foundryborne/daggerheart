@@ -136,7 +136,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             const saveValue = this.targetSaves[data.id];
             const saveSuccessfull = saveValue === undefined ? false : 
                 saveValue >= (this.action.save.difficulty ?? this.action.actor?.baseSaveDifficulty);
-            const hasResistData = this.hasDamage && this.damage.active && actor;
+            const hasResistData = this.hasDamage && this.damage?.main && actor;
             const resistData = hasResistData ? actor.getResistanceStatus(this.damage.main.options.damageTypes) : null;
 
             return {

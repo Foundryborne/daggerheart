@@ -120,9 +120,9 @@ export async function runMigrations() {
             );
         }
 
-        const worldItems = game.items.filter(x => x.system.metadata.hasActions);
+        const worldItems = game.items.filter(x => x.system?.metadata?.hasActions);
         const worldActorItems = Array.from(game.actors).flatMap(actor =>
-            actor.items.filter(x => x.system.metadata.hasActions)
+            actor.items.filter(x => x.system?.metadata?.hasActions)
         );
 
         const validCostKeys = Object.keys(CONFIG.DH.GENERAL.abilityCosts);
