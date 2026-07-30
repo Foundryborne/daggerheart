@@ -108,7 +108,7 @@ export default class DamageField extends fields.SchemaField {
                 configDamage.main &&= configDamage.main.toJSON();
                 if (configDamage.main) {
                     const takenMultiplier = actor.system.rules?.attack?.damage?.hpDamageTakenMultiplier;
-                    configDamage.main.total = Math.ceil(configDamage.main.total * takenMultiplier);
+                    configDamage.main.total = Math.ceil(config.damage.main.total * takenMultiplier);
                 }
 
                 damagePromises.push(
