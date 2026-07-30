@@ -48,7 +48,7 @@ export default class BaseDie extends foundry.dice.terms.Die {
         return this.rollComboDice();
     }
 
-    async rollComboDice(options) {
+    async rollComboDice(options = {}) {
         const { rerollStartIndex } = options;
         const initialResultsLength = this.results.filter(x => x.active).length;
         const result = await this.continueCombo();
