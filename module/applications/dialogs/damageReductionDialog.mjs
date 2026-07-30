@@ -270,7 +270,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     }
 
     updateStressArmor(armorMarkId, select) {
-        let stressMarkKey = null;
+        let stressMarkKey;
         if (select) {
             stressMarkKey = Object.keys(this.marks.stress).find(
                 key => this.marks.stress[key].selected && !this.marks.stress[key].armorMarkId

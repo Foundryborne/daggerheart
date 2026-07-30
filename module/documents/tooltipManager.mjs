@@ -64,7 +64,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
 
     async #activateEffectDisplay(element, options) {
         this.#bordered = true;
-        let effect = {};
+        let effect;
         if (element.dataset.uuid) {
             const effectItem = await foundry.utils.fromUuid(element.dataset.uuid);
             const effectData = effectItem.toObject();

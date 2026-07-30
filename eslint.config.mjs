@@ -105,7 +105,16 @@ export default defineConfig([
             'no-prototype-builtins': 'off',
             'no-async-promise-executor': 'warn',
             'no-empty': ['error', { allowEmptyCatch: true }],
-            'no-useless-assignment': 'warn',
+            'no-useless-assignment': 'error',
+            // Correctness rules not covered by js.configs.recommended
+            'array-callback-return': 'error',
+            'no-constant-binary-expression': 'error',
+            'no-dupe-else-if': 'error',
+            'no-return-assign': 'error',
+            'no-self-compare': 'error',
+            'no-template-curly-in-string': 'error',
+            'no-unmodified-loop-condition': 'error',
+            'no-unreachable-loop': 'error',
             ...stylisticRules
         }
     },

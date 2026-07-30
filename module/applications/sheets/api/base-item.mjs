@@ -270,7 +270,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
                 return;
             }
 
-            let dragData = {};
+            let dragData;
             if (dragItemData.dataset.type === 'effect')
                 dragData = {
                     type: 'ActiveEffect',

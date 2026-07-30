@@ -223,7 +223,7 @@ export function ActionMixin(Base) {
             const isSetting = !this.parent.parent;
             const basePath = isSetting ? this.systemPath : `system.${this.systemPath}`;
             const path = this.inCollection ? `${basePath}.${this.id}` : basePath;
-            let result = null;
+            let result;
             if (isSetting) {
                 await this.parent.updateSource({ [path]: updates }, options);
                 result = this.parent;

@@ -1088,7 +1088,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const document = await foundry.utils.fromUuid(uuid);
 
         let inputValue = Number.parseInt(value);
-        let decreasing = false;
+        let decreasing;
         let newCurrent = 0;
 
         if (document.type === 'armor') {
