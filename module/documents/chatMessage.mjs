@@ -15,7 +15,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
     setupHooks() {
         if (this.system.hasTarget) {
-            Hooks.on('controlToken', this.onSelectToken.bind(this));
+            this.controlTokenHook = Hooks.on('controlToken', this.onSelectToken.bind(this));
         }
     }
 
@@ -62,7 +62,9 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     _onDelete(options, userId) {
         super._onDelete(options, userId);
 
-        Hooks.off('controlToken', this.onSelectToken);
+        if (this.controlTokenHook) {
+            Hooks.off('controlToken', this.controlTokenHook);
+        }
     }
 
     enrichChatMessage(html) {
