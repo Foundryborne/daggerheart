@@ -569,6 +569,10 @@ export default class DhpActor extends Actor {
         const abilityLabel = game.i18n.localize(abilities[trait].label);
         const config = {
             event: null,
+            title: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
+                ability: abilityLabel
+            }),
+            headerTitle: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.name}`,
             effects: await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(this),
             roll: {
                 trait: trait,
@@ -576,10 +580,6 @@ export default class DhpActor extends Actor {
             },
             hasRoll: true,
             actionType: 'action',
-            headerTitle: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.name}`,
-            title: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
-                ability: abilityLabel
-            }),
             ...options
         };
         return await this.diceRoll(config);
