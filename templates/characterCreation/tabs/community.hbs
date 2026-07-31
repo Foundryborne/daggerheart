@@ -4,7 +4,7 @@
     data-group='{{tabs.community.group}}'
 >
     <div class="main-selections-container">
-        <fieldset class="section-container">
+        {{!-- <fieldset class="section-container">
             <legend>{{localize "TYPES.Item.community"}}</legend>
             <div class="selections-outer-container">
                 <div class="selections-container community-card">
@@ -13,6 +13,37 @@
                     {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
                 </div>
             </div>
-        </fieldset>
+        </fieldset> --}}
+
+        <div class="step-sidebar">
+            <h1 class="title-section">3. Choose a Community</h1>
+
+            <div class="community compedium-list">
+                {{#each communityGroups}}
+                <div class="{{label}} compedium-item">
+                    <h1 class="subtitle-section">
+                        {{label}}
+                        <side-line-div></side-line-div>
+                    </h1>
+                    <ul>
+                        {{> "systems/daggerheart/templates/characterCreation/partials/sidebar-item.hbs"
+                            items=items
+                            action="selectItem"}}
+                    </ul>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        {{#if community.name}}
+            <div class="community-info">
+                <h1 class="title-section">{{community.name}}</h1>
+                <div class="d-flex container">
+                    <img src="{{community.img}}" alt="">
+                    <div class="description">
+                        {{{community.system.description}}}
+                    </div>
+                </div>
+            </div>
+        {{/if}}
     </div>
 </section>

@@ -21,6 +21,10 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 secondary: ''
             },
             mixedAncestry: false,
+            mixedFeatures: {
+                primaryFeature: {},
+                secondaryFeature: {}
+            },
             primaryAncestry: this.character.system.ancestry ?? {},
             secondaryAncestry: {},
             community: this.character.system.community ?? {},
@@ -49,6 +53,8 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         };
 
         this.subclassGroups = [];
+        this.ancestryGroups = [];
+        this.communityGroups = [];
 
         this._dragDrop = this._createDragDropHandlers();
 
@@ -83,7 +89,10 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             equipmentChoice: this.equipmentChoice,
             setupGoNext: this.setupGoNext,
             finish: this.finish,
-            selectSubclass: this.selectSubclass
+            selectSubclass: this.selectSubclass,
+            selectItem: this.selectItem,
+            mixedAncestryToggle: this.mixedAncestryToggle,
+            selectAncestryFeature: this.selectAncestryFeature
         },
         form: {
             handler: this.updateForm,
@@ -106,6 +115,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
     static PARTS = {
         tabs: { template: 'systems/daggerheart/templates/characterCreation/tabs.hbs' },
         class: { template: 'systems/daggerheart/templates/characterCreation/tabs/class.hbs' },
+        // heritage: { template: 'systems/daggerheart/templates/characterCreation/tabs/heritage.hbs' },
         ancestry: { template: 'systems/daggerheart/templates/characterCreation/tabs/ancestry.hbs' },
         community: { template: 'systems/daggerheart/templates/characterCreation/tabs/community.hbs' },
         traits: { template: 'systems/daggerheart/templates/characterCreation/tabs/traits.hbs' },
@@ -125,7 +135,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.tabs.class'
         },
         ancestry: {
-            active: true,
+            active: false,
             cssClass: '',
             group: 'setup',
             id: 'ancestry',
@@ -207,10 +217,10 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
         this._dragDrop.forEach(d => d.bind(htmlElement));
 
-        htmlElement.querySelectorAll('.mixed-ancestry-slider').forEach(element => {
-            element.addEventListener('input', this.mixedAncestryToggle.bind(this));
-            element.addEventListener('click', this.mixedAncestryToggle.bind(this));
-        });
+        // htmlElement.querySelectorAll('.mixed-ancestry-slider').forEach(element => {
+        //     element.addEventListener('input', this.mixedAncestryToggle.bind(this));
+        //     element.addEventListener('click', this.mixedAncestryToggle.bind(this));
+        // });
     }
 
     async _prepareContext(_options) {
@@ -258,7 +268,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             nrSelected: Object.values(this.setup.experiences).reduce((acc, exp) => acc + (exp.name ? 1 : 0), 0)
         };
 
-        context.mixedAncestry = Number(this.setup.mixedAncestry);
+        context.mixedAncestry = this.setup.mixedAncestry;
 
         const { primary, secondary, overwrite } = this.setup.ancestryName;
         context.ancestryName = overwrite ?? (primary && secondary ? `${primary}/${secondary}` : primary);
@@ -279,7 +289,11 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
         context.visibility = this.setup.visibility;
 
-        context.subclassGroups = this.subclassGroups
+        context.subclassGroups = this.subclassGroups;
+        context.ancestryGroups = this.ancestryGroups;
+        context.communityGroups = this.communityGroups;
+
+        context.mixedFeatures = this.setup.mixedFeatures;
 
         return context;
     }
@@ -367,12 +381,35 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         this.render();
     }
 
-    mixedAncestryToggle(event) {
+    static async mixedAncestryToggle(event) {
         event.preventDefault();
         event.stopPropagation();
         this.setup.mixedAncestry = !this.setup.mixedAncestry;
         if (!this.setup.mixedAncestry) this.setup.secondaryAncestry = {};
 
+        this.render();
+    }
+
+    static async selectAncestryFeature(event, target) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const uuid = target.dataset.uuid;
+        const featureType = target.dataset.featureType;
+        const ancestryType = target.dataset.ancestryType;
+        const feature = await foundry.utils.fromUuid(uuid);
+
+        if (featureType === 'primary') {
+            this.setup.mixedFeatures.primaryFeature = feature;
+            this.setup.mixedFeatures.secondaryFeature = ancestryType === 'primary' ? this.setup.secondaryAncestry.system.secondaryFeature : this.setup.primaryAncestry.system.secondaryFeature;
+        } else {
+            this.setup.mixedFeatures.primaryFeature = ancestryType === 'primary' ? this.setup.secondaryAncestry.system.primaryFeature : this.setup.primaryAncestry.system.primaryFeature;
+            this.setup.mixedFeatures.secondaryFeature = feature;
+        }
+
+        console.log(this.setup.mixedFeatures)
+
+        this.setup.visibility = this.getUpdateVisibility();
         this.render();
     }
 
@@ -771,6 +808,22 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                     }
                 }
             }
+
+            const ancestryGroups = [{
+                label: game.i18n.localize('DAGGERHEART.APPLICATIONS.CharacterCreation.tabs.ancestry'),
+                items: []
+            }];
+            for (const item of this.items.filter(item => item.type == 'ancestry')) {
+                ancestryGroups[0].items.push(item)
+            }
+
+            const communityGroups = [{
+                label: game.i18n.localize('DAGGERHEART.APPLICATIONS.CharacterCreation.tabs.community'),
+                items: []
+            }];
+            for (const item of this.items.filter(item => item.type == 'community')) {
+                communityGroups[0].items.push(item)
+            }
             
             subclassGroups.sort((a, b) => a.label.localeCompare(b.label))
 
@@ -778,7 +831,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
             for (const classItem of subclassGroups) {
                 const element = document.createElement('div');
-                element.classList.add(classItem.label.toLowerCase(), 'compedium-class-item')
+                element.classList.add(classItem.label.toLowerCase(), 'compedium-item')
                 const subclassElement = document.createElement('ul');
 
                 let header = document.createElement('h1');
@@ -798,10 +851,12 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 subclassElement.innerHTML = subclassList
                 element.appendChild(subclassElement)
 
-                this.element.querySelector('.compedium-class-list').appendChild(element);
+                this.element.querySelector('.compedium-list').appendChild(element);
             }
 
             this.subclassGroups = subclassGroups;
+            this.ancestryGroups = ancestryGroups;
+            this.communityGroups = communityGroups;
         });
     }
 
@@ -820,5 +875,50 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         this.setup.visibility = this.getUpdateVisibility();
 
         this.render();
+    }
+
+    static async selectItem(_, target) {
+        const type = target.dataset.type
+        
+        switch (type) {
+            case 'subclass':
+                const subclass = await foundry.utils.fromUuid(target.dataset.uuid);
+                const classItem = await foundry.utils.fromUuid(subclass.system?.linkedClass);
+
+                this.setup.class = classItem;
+                this.setup.subclass = subclass;
+                this.setup.visibility = this.getUpdateVisibility();
+                this.render();
+                break;
+        
+            case 'ancestry':
+                const ancestry = await foundry.utils.fromUuid(target.dataset.uuid);
+                if (!this.setup.primaryAncestry.uuid) {
+                    this.setup.primaryAncestry = ancestry;
+                } else if (
+                    this.setup.primaryAncestry.uuid &&
+                    this.setup.mixedAncestry &&
+                    (ancestry.uuid !== this.setup.primaryAncestry.uuid)
+                ) {
+                    this.setup.secondaryAncestry = ancestry;
+                } else {
+                    this.setup.primaryAncestry = ancestry;
+                }
+                this.setup.visibility = this.getUpdateVisibility();
+                this.render();
+                break;
+
+            case 'community':
+                const community = await foundry.utils.fromUuid(target.dataset.uuid);
+                this.setup.community = community;
+                this.setup.visibility = this.getUpdateVisibility();
+                this.render();
+                break;
+        }
+
+        this.setup.visibility = this.getUpdateVisibility();
+        this.render();
+        console.log(type);
+        console.log('chegou aqui');
     }
 }
