@@ -103,7 +103,7 @@ export default defineConfig([
             'getter-return': 'off',
             'no-case-declarations': 'off',
             'no-prototype-builtins': 'off',
-            'no-async-promise-executor': 'warn',
+            'no-async-promise-executor': 'error',
             'no-empty': ['error', { allowEmptyCatch: true }],
             'no-useless-assignment': 'error',
             // Correctness rules not covered by js.configs.recommended

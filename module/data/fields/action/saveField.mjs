@@ -58,31 +58,25 @@ export default class SaveField extends fields.SchemaField {
      */
     static async rollAllSave(targets, event, message) {
         if (!targets) return;
-        return new Promise(resolve => {
-            const aPromise = [];
-            targets.forEach(target => {
-                aPromise.push(
-                    new Promise(async subResolve => {
-                        const actor = fromUuidSync(target.actorId);
-                        if (actor) {
-                            const rollSave =
-                                game.user === actor.owner
-                                    ? SaveField.rollSave.call(this, actor, event)
-                                    : actor.owner.query('reactionRoll', {
-                                        actionId: this.uuid,
-                                        actorId: actor.uuid,
-                                        event,
-                                        message
-                                    });
-                            const result = await rollSave;
-                            await SaveField.updateSaveMessage.call(this, result, message, target.id);
-                            subResolve();
-                        } else subResolve();
-                    })
-                );
-            });
-            Promise.all(aPromise).then(result => resolve());
-        });
+
+        await Promise.all(
+            targets.map(async target => {
+                const actor = fromUuidSync(target.actorId);
+                if (!actor) return;
+
+                const rollSave =
+                    game.user === actor.owner
+                        ? SaveField.rollSave.call(this, actor, event)
+                        : actor.owner.query('reactionRoll', {
+                            actionId: this.uuid,
+                            actorId: actor.uuid,
+                            event,
+                            message
+                        });
+                const result = await rollSave;
+                await SaveField.updateSaveMessage.call(this, result, message, target.id);
+            })
+        );
     }
 
     /**
@@ -153,12 +147,11 @@ export default class SaveField extends fields.SchemaField {
      * @param {ChatMessage} param0.message     Chat Message to update
      * @returns
      */
-    static rollSaveQuery({ actionId, actorId, event, message }) {
-        return new Promise(async (resolve, reject) => {
-            const actor = await fromUuid(actorId),
-                action = await fromUuid(actionId);
-            if (!actor || !actor?.isOwner) return reject();
-            SaveField.rollSave.call(action, actor, event, message).then(result => resolve(result));
-        });
+    static async rollSaveQuery({ actionId, actorId, event, message }) {
+        const actor = await fromUuid(actorId),
+            action = await fromUuid(actionId);
+        if (!actor?.isOwner) throw new Error(`Actor [${actorId}] is not owned by the queried user.`);
+
+        return SaveField.rollSave.call(action, actor, event, message);
     }
 }
