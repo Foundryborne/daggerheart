@@ -26,7 +26,7 @@ class DHSimpleResourceData extends DHResourceBaseData {
 class DHActionValueData extends foundry.abstract.DataModel {
     static defineSchema() {
         return {
-            bonus: new fields.NumberField({ nullable: true, initial: null, label: 'DAGGERHEART.GENERAL.bonus' })
+            bonus: new fields.NumberField({ nullable: true, initial: null, label: 'DAGGERHEART.GENERAL.value' })
         }
     }
 

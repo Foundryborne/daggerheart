@@ -32,7 +32,7 @@
                 {{#if (eq source.multiplier 'flat')}}{{formField fields.flatMultiplier value=source.flatMultiplier name=(concat basePath ".flatMultiplier") localize=true }}{{/if}}
                 {{formField fields.dice value=source.dice name=(concat basePath ".dice") localize=true}}
             {{/unless}}
-            {{formField fields.bonus value=source.bonus name=(concat basePath ".bonus") label=(localize (ifThen isSimple "Value" "Bonus")) localize=true}}
+            {{formField fields.bonus value=source.bonus name=(concat basePath ".bonus") localize=true}}
         </div>
     {{/if}}
     {{#if @root.isNPC}}
