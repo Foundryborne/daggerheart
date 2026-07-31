@@ -246,8 +246,6 @@ export default class DHItem extends foundry.documents.Item {
 
     /** @inheritDoc */
     static migrateData(source) {
-        if (source.system?.attack && !source.system.attack.type) source.system.attack.type = 'attack';
-
         const documentClass = game.system.api.data.items[`DH${source.type?.capitalize()}`];
         if (documentClass?.migrateDocumentData) {
             documentClass.migrateDocumentData(source);
