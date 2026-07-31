@@ -33,8 +33,11 @@
                 data-group="outcomes"
                 data-tab="{{key}}"
             >
-                {{key}}
-                {{!-- {{> "systems/daggerheart/templates/actionTypes/parts/damageResources.hbs" fields=fields.damage.fields source=source.damage }} --}}
+                {{#if (eq key 'default')}}
+                    {{> "systems/daggerheart/templates/actionTypes/parts/damageResources.hbs" @root outcomeKey="damage" fields=../fields.damage.fields source=../source.damage }}
+                {{else}}
+                    {{> "systems/daggerheart/templates/actionTypes/parts/damageResources.hbs" @root outcomeKey=(concat 'altOutcomes' '.' key) fields=(lookup (lookup ../fields.altOutcomes.fields key) 'fields') source=(lookup ../source.altOutcomes key) isSimple="true" }}
+                {{/if}}
             </section>
         {{/each}}
     {{/if}}

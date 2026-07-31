@@ -396,11 +396,14 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     }
 
     /** @this DHActionBaseConfig */
-    static #onAddDamageResource(_event) {
-        if (!this.action.damage) return;
+    static #onAddDamageResource(_event, target) {
+        const outcomeKey = target.dataset.outcomeKey;
+        const outcomeData = foundry.utils.getProperty(this.action, outcomeKey);
+        if (!outcomeData) return;
 
         const allKeys = Object.keys(CONFIG.DH.GENERAL.healingTypes);
-        const unused = allKeys.filter(k => !(k in this.action._source.damage.resources));
+        const sourceData = foundry.utils.getProperty(this.action._source, `${outcomeKey}.resources`);
+        const unused = allKeys.filter(k => !(k in (sourceData?.resources ?? {})));
         const choices = unused.map(k => ({ value: k, label: _loc(CONFIG.DH.GENERAL.healingTypes[k].label) }));
         const content = new foundry.data.fields.StringField({
             label: _loc('DAGGERHEART.GENERAL.Resource.single'),
@@ -416,10 +419,12 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         const callback = (_, button) => {
             const data = this.action.toObject();
             const type = choices[button.form.elements.type.value].value;
-            data.damage.resources[type] = {
-                ...this.action.schema.fields.damage.fields.resources.element.getInitialValue(),
-                applyTo: type
-            };
+            foundry.utils.setProperty(data, `${outcomeKey}.resources`, { 
+                [type]: { 
+                    ...this.action.schema.fields.damage.fields.resources.element.getInitialValue(),
+                    applyTo: type 
+                } 
+            });
             this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
         };
 
@@ -446,11 +451,14 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     }
 
     /** @this DHActionBaseConfig */
-    static #onRemoveDamageResource(_event, button) {
-        if (!this.action.damage?.resources) return;
+    static #onRemoveDamageResource(_event, target) {
+        const { outcomeKey, key } = target.dataset;
+
         const data = this.action.toObject();
-        const key = button.dataset.key;
-        data.damage.resources[key] = _del;
+        const outcomeData = foundry.utils.getProperty(data, outcomeKey);
+        if (!outcomeData?.resources) return;
+
+        outcomeData.resources[key] = _del;
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 

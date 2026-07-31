@@ -17,7 +17,8 @@ export default class RegisterHandlebarsHelpers {
             positive: this.positive,
             rollParsed: this.rollParsed,
             setVar: this.setVar,
-            times: this.times
+            times: this.times,
+            debug: this.debug
         });
     }
     static add(a, b) {
@@ -95,5 +96,9 @@ export default class RegisterHandlebarsHelpers {
 
     static isNullish(a) {
         return a === null || a === undefined;
+    }
+
+    static debug(a) {
+        return a;
     }
 }

@@ -1,12 +1,11 @@
 import { DHResourceBaseData } from '../../fields/action/damageField.mjs';
-import FormulaField from '../../fields/formulaField.mjs';
 import IterableTypedObjectField from '../../fields/iterableTypedObjectField.mjs';
 
-export class DamageAltOutcome extends IterableTypedObjectField {
-    constructor(type = DHSimpleResourceData, options = {}, context = {}) {
+export class DamageAltOutcome extends foundry.data.fields.SchemaField {
+    constructor(options = {}, context = {}) {
         super(
-            type, 
-            { ...options, collectionClass: foundry.utils.Collection, nullable: true, initial: null },
+            { resources: new IterableTypedObjectField(DHSimpleResourceData) },
+            { ...options, nullable: true, initial: null },
             context
         );
     }
@@ -27,11 +26,7 @@ class DHSimpleResourceData extends DHResourceBaseData {
 class DHActionValueData extends foundry.abstract.DataModel {
     static defineSchema() {
         return {
-            bonus: new fields.NumberField({ nullable: true, initial: null, label: 'DAGGERHEART.GENERAL.bonus' }),
-            custom: new fields.SchemaField({
-                enabled: new fields.BooleanField({ label: 'DAGGERHEART.ACTIONS.Config.general.customFormula' }),
-                formula: new FormulaField({ label: 'DAGGERHEART.ACTIONS.Config.general.formula', initial: '' })
-            })
+            bonus: new fields.NumberField({ nullable: true, initial: null, label: 'DAGGERHEART.GENERAL.bonus' })
         }
     }
 
