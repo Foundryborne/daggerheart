@@ -4,60 +4,228 @@
     data-group='{{tabs.ancestry.group}}'
 >
     <div class="main-selections-container">
-        <fieldset class="section-container">
-            <legend>{{localize "TYPES.Item.ancestry"}}</legend>
+        <div class="step-sidebar">
+            <h1 class="title-section">2. Choose a Ancestry</h1>
+            <input type="checkbox" data-action="mixedAncestryToggle" {{checked mixedAncestry}}/>
+            <span>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.mixedAncestry"}}</span>
 
-            <div class="ancestry-name">
-                <input type="text" name="ancestryName.overwrite" value="{{ancestryName}}" placeholder="{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.ancestryNamePlaceholder"}}" {{disabled (not primaryAncestry.uuid)}} />
-            </div>
+            <div class="ancestry compedium-list">
+                {{#each ancestryGroups}}
+                <div class="{{label}} compedium-item">
+                    <h1 class="subtitle-section">
+                        {{label}}
+                        <side-line-div></side-line-div>
+                    </h1>
+                    <ul>
+                        {{> "systems/daggerheart/templates/characterCreation/partials/sidebar-item.hbs"
+                            items=items
+                            action="selectItem"}}
+                    </ul>
 
-            <div class="ancestry-mixed-controller {{#if mixedAncestry}}active{{/if}}">
-                <label class="mixed-ancestry-slider">
-                    {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.mixedAncestry"}}
-                    <i class="fa-solid {{#if mixedAncestry}}fa-circle-check{{else}}fa-circle{{/if}}"></i>
-                </label>
-                <input type="range" id="volume" class="mixed-ancestry-slider" value="{{mixedAncestry}}" min="0" max="1" />
-            </div>
-
-            <div class="selections-outer-container enlarged">
-                <div class="selections-container primary-ancestry-card">
-                    {{#> "systems/daggerheart/templates/components/card-preview.hbs" primaryAncestry altPartialBlock=true secondaryDisabled=secondaryAncestry.system mixedAncestry=mixedAncestry }}
-                        {{#if system}} 
-                            <div class="ancestry-preview-info-container">
-                                <div class="ancestry-preview-label">{{name}}</div>
-                                <div class="ancestry-preview-features">
-                                    <div class="ancestry-preview-feature" data-tooltip="{{concat "#item#" system.primaryFeature.uuid}}">{{system.primaryFeature.name}}</div>
-                                    <div class="ancestry-preview-feature {{#if secondaryDisabled}}inactive{{/if}}" data-tooltip="{{concat "#item#" system.secondaryFeature.uuid}}">{{system.secondaryFeature.name}}</div>
-                                </div>
-                            </div>
-                        {{else}}
-                            {{#if mixedAncestry}}
-                                {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.selectPrimaryAncestry"}}
-                            {{else}}
-                                {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.selectAncestry"}}
-                            {{/if}}
-                        {{/if}}
-                    {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
                 </div>
-
-                {{#if mixedAncestry}}
-                    <div class="selections-container secondary-ancestry-card">
-                            {{#> "systems/daggerheart/templates/components/card-preview.hbs" secondaryAncestry altPartialBlock=true }}
-                                {{#if system}}
-                                    <div class="ancestry-preview-info-container">
-                                        <div class="ancestry-preview-label">{{name}}</div>
-                                        <div class="ancestry-preview-features">
-                                            <div class="ancestry-preview-feature inactive" data-tooltip="{{concat "#item#" system.primaryFeature.uuid}}">{{system.primaryFeature.name}}</div>
-                                            <div class="ancestry-preview-feature" data-tooltip="{{concat "#item#" system.secondaryFeature.uuid}}">{{system.secondaryFeature.name}}</div>
-                                        </div>
-                                    </div>
-                                {{else}}
-                                    {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.selectSecondaryAncestry"}}
-                                {{/if}}
-                            {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
-                    </div>
-                {{/if}}
+                {{/each}}
             </div>
-        </fieldset>
+        </div>
+        {{#if primaryAncestry.name}}
+        <div class="ancestry-info">
+            <h1 class="title-section">{{primaryAncestry.name}}</h1>
+            <div class="d-flex container">
+                <img src="{{primaryAncestry.img}}" alt="">
+                <div class="description">
+                    {{{primaryAncestry.system.description}}}
+                </div>
+            </div>
+            <div class="ancestry-feature m-top-20">
+                <h2 class="subtitle-section">
+                    {{localize 'DAGGERHEART.ITEMS.Ancestry.featuresLabel'}}
+                    <side-line-div></side-line-div>
+                </h2>
+                {{!-- <div class="m-top-10 d-flex">
+                    <input
+                        type="radio"
+                        name="primary-ancestry"
+                        id="primary-feature"
+                        data-action="selectAncestryFeature"
+                        data-uuid="{{primaryAncestry.system.primaryFeature.uuid}}"
+                        data-ancestry-type="primary"
+                        data-feature-type="primary"
+                        {{checked (eq mixedFeatures.primaryFeature.uuid primaryAncestry.system.primaryFeature.uuid)}}
+                    >
+                    <div for="primary-feature">
+                        <i><b>{{{primaryAncestry.system.primaryFeature.name}}}:</b></i>
+                        {{{primaryAncestry.system.primaryFeature.system.description}}}
+                    </div>
+                </div>
+                <div class="m-top-10 d-flex">
+                    <input
+                        type="radio"
+                        name="primary-ancestry"
+                        id="secondary-feature"
+                        data-action="selectAncestryFeature"
+                        data-uuid="{{primaryAncestry.system.secondaryFeature.uuid}}"
+                        data-ancestry-type="primary"
+                        data-feature-type="secondary"
+                        {{checked (eq mixedFeatures.secondaryFeature.uuid primaryAncestry.system.secondaryFeature.uuid)}}
+                    >
+                    <div for="primary-feature">
+                        <i><b>{{{primaryAncestry.system.secondaryFeature.name}}}:</b></i>
+                        {{{primaryAncestry.system.secondaryFeature.system.description}}}
+                    </div>
+                </div> --}}
+
+                {{> ancestryFeature
+                    name='primary-ancestry'
+                    elementId='primary-feature'
+                    ancestry=primaryAncestry
+                    uuid=primaryAncestry.system.primaryFeature.uuid
+                    mixedUuid=mixedFeatures.primaryFeature.uuid 
+                    ancestryType='primary'
+                    featureType='primary'
+                }}
+                {{> ancestryFeature
+                    name='primary-ancestry'
+                    elementId='secondary-feature'
+                    ancestry=primaryAncestry
+                    uuid=primaryAncestry.system.secondaryFeature.uuid
+                    mixedUuid=mixedFeatures.secondaryFeature.uuid 
+                    ancestryType='primary'
+                    featureType='secondary'
+                }}
+            </div>
+        </div>
+        {{/if}}
+        {{#if secondaryAncestry.name}}
+        <div class="secondary ancestry-info">
+            <h1 class="title-section">{{secondaryAncestry.name}}</h1>
+            <div class="d-flex container">
+                <img src="{{secondaryAncestry.img}}" alt="">
+                <div class="description">
+                    {{{secondaryAncestry.system.description}}}
+
+                </div>
+            </div>
+            <div class="ancestry-feature m-top-20">
+                <h2 class="subtitle-section">
+                    {{localize 'DAGGERHEART.ITEMS.Ancestry.featuresLabel'}}
+                    <side-line-div></side-line-div>
+                </h2>
+                {{!-- <div class="m-top-10 d-flex">
+                    <input
+                        type="radio"
+                        name="secondary-ancestry"
+                        id="primary-feature"
+                        data-action="selectAncestryFeature"
+                        data-uuid="{{secondaryAncestry.system.primaryFeature.uuid}}"
+                        data-ancestry-type="secondary"
+                        data-feature-type="primary"
+                        {{checked (eq mixedFeatures.primaryFeature.uuid secondaryAncestry.system.primaryFeature.uuid)}}
+                    >
+                    <div for="primary-feature">
+                        <i><b>{{{secondaryAncestry.system.primaryFeature.name}}}:</b></i>
+                        {{{secondaryAncestry.system.primaryFeature.system.description}}}
+                    </div>
+                </div>
+                <div class="m-top-10 d-flex">
+                    <input
+                        type="radio"
+                        name="secondary-ancestry"
+                        id="secondary-feature"
+                        data-action="selectAncestryFeature"
+                        data-uuid="{{secondaryAncestry.system.secondaryFeature.uuid}}"
+                        data-ancestry-type="secondary"
+                        data-feature-type="secondary"
+                        {{checked (eq mixedFeatures.secondaryFeature.uuid secondaryAncestry.system.secondaryFeature.uuid)}}
+                    >
+                    <div for="primary-feature">
+                        <i><b>{{{secondaryAncestry.system.secondaryFeature.name}}}:</b></i>
+                        {{{secondaryAncestry.system.secondaryFeature.system.description}}}
+                    </div>
+                </div> --}}
+
+                {{> ancestryFeature
+                    name='secondary-ancestry'
+                    elementId='primary-feature'
+                    ancestry=secondaryAncestry
+                    uuid=secondaryAncestry.system.primaryFeature.uuid
+                    mixedUuid=mixedFeatures.primaryFeature.uuid 
+                    ancestryType='secondary'
+                    featureType='primary'
+                }}
+                {{> ancestryFeature
+                    name='secondary-ancestry'
+                    elementId='secondary-feature'
+                    ancestry=secondaryAncestry
+                    uuid=secondaryAncestry.system.secondaryFeature.uuid
+                    mixedUuid=mixedFeatures.secondaryFeature.uuid 
+                    ancestryType='secondary'
+                    featureType='secondary'
+                }}
+            </div>
+        </div>
+        {{/if}}
+
+        {{!-- {{#if mixedAncestry}}
+        <div class="mixed-options">
+            <h2 class="subtitle-section">
+                {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.mixedAncestry"}}
+                <side-line-div></side-line-div>
+            </h2>
+
+            {{#if primaryAncestry.name}}
+                <div class="ancestry-feature m-top-20">
+                    <h2 class="subtitle-section">
+                        {{localize 'DAGGERHEART.ITEMS.Ancestry.primaryFeature'}}
+                        <side-line-div></side-line-div>
+                    </h2>
+                    {{#each primaryAncestry.system.features as |feature|}}
+                        <div class="m-top-10">
+                            <i><b>{{{feature.item.name}}}:</b></i>
+                            {{{feature.item.system.description}}}
+                        </div>
+                    {{/each}}
+                </div>
+            {{/if}}
+            {{#if secondaryAncestry.name}}
+                <div class="ancestry-feature m-top-20">
+                    <h2 class="subtitle-section">
+                        {{localize 'DAGGERHEART.ITEMS.Ancestry.secondaryFeature'}}
+                        <side-line-div></side-line-div>
+                    </h2>
+                    {{#each secondaryAncestry.system.features as |feature|}}
+                        <div class="m-top-10">
+                            <i><b>{{{feature.item.name}}}:</b></i>
+                            {{{feature.item.system.description}}}
+                        </div>
+                    {{/each}}
+                </div>
+            {{/if}}
+        </div>
+        {{/if}} --}}
     </div>
 </section>
+
+{{#*inline "ancestryFeature"}}
+    <div class="m-top-10 d-flex">
+        {{#if mixedAncestry}}
+            <input
+                type="radio"
+                name="{{name}}"
+                id="{{elementId}}"
+                data-action="selectAncestryFeature"
+                data-uuid="{{uuid}}"
+                data-ancestry-type="{{ancestryType}}"
+                data-feature-type="{{featureType}}"
+                {{checked (eq mixedUuid uuid)}}
+            >
+        {{/if}}
+        <div for="{{elementId}}">
+            {{#if (eq featureType 'primary')}}
+                <i><b>{{{ancestry.system.primaryFeature.name}}}:</b></i>
+                {{{ancestry.system.primaryFeature.system.description}}}
+            {{else}}
+                <i><b>{{{ancestry.system.secondaryFeature.name}}}:</b></i>
+                {{{ancestry.system.secondaryFeature.system.description}}}
+            {{/if}}
+        </div>
+    </div>
+{{/inline}}

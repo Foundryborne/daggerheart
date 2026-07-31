@@ -6,9 +6,9 @@
     <div class="main-selections-container">
         <div class="step-sidebar">
             <h1 class="title-section">1. Choose a Class</h1>
-            <div class="compedium-class-list">
+            <div class="subclass compedium-list">
                 {{#each subclassGroups}}
-                <div class="{{label}} compedium-class-item">
+                <div class="{{label}} compedium-item">
                     <h1 class="subtitle-section">
                         {{label}}
                         <side-line-div></side-line-div>
@@ -16,7 +16,7 @@
                     <ul>
                         {{> "systems/daggerheart/templates/characterCreation/partials/sidebar-item.hbs"
                             items=items
-                            action="selectSubclass"}}
+                            action="selectItem"}}
                     </ul>
 
                 </div>
