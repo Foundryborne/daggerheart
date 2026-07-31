@@ -167,7 +167,7 @@
             width: 300px;
             min-width: 300px;
 
-            .compedium-class-list{
+            .compedium-list{
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
@@ -176,7 +176,7 @@
                 padding-bottom: 32px;
 
 
-                .compedium-class-item {
+                .compedium-item {
                     
                     ul .sidebar-item-container {
                         display: flex;
@@ -209,17 +209,28 @@
             max-width: 700px;
             overflow-y: auto;
 
-            .m-top-20 {
-                margin-top: 20px;
-            }
+        }
 
-            .m-top-10 {
-                margin-top: 10px;
-            }
+        .ancestry-info,
+        .mixed-options {
+            min-width: 350px;
+            max-width: 700px;
+            overflow-y: auto;
+        }
+
+        .m-top-20 {
+            margin-top: 20px;
+        }
+
+        .m-top-10 {
+            margin-top: 10px;
+        }
+
+        .d-flex {
+            display: flex;
         }
 
         .class-info {
-
             .domains {
                 .domains-list {
                     display: flex;
@@ -247,10 +258,6 @@
             }
 
             .class-items {
-                .d-flex {
-                    display: flex;
-                }
-
                 .class-item-list {
                     display: flex;
                     flex-direction: column;
@@ -291,6 +298,37 @@
                 padding: 10px 5px;
                 border-radius: 3px;
                 border: 1px solid light-dark(@dark-blue-40, @golden-40);
+            }
+        }
+
+        .ancestry-info {
+
+            .container {
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+
+                img {
+                    width: 100%;
+                    min-height: 120px;
+                    max-height: 400px;
+                    border-radius: 3px;
+                    object-fit: cover;
+                }
+    
+                .description {
+                    
+                }
+            }
+        }
+
+        .community-info {
+            img {
+                height: 100%;
+                min-width: 350px;
+                max-width: 500px;
+                border-radius: 3px;
+                object-fit: cover;
             }
         }
 
