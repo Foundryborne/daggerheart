@@ -28,7 +28,8 @@
         }
     },
     "CONTROLS": {
-        "inFront": "In Front"
+        "inFront": "In Front",
+        "toggleVisibility":"Toggle Visibility"
     },
     "SCENE": {
         "TABS": {
@@ -3171,7 +3172,8 @@
             "Countdowns": {
                 "title": "Countdowns",
                 "toggleIconMode": "Toggle Icon Only",
-                "noPlayerAccess": "This countdown isn't visible to any players",
+                "noPlayerAccess": "No player has access to this countdown",
+                "hidden": "This countdown isn't visible to any players",
                 "loop": "Looping",
                 "decreasingLoop": "Decreasing Looping",
                 "increasingLoop": "Increasing Looping"
