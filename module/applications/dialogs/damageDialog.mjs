@@ -12,6 +12,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
          */  
         this.originalIsCritical = config.isCritical;
         this.selectedEffects = this.config.bonusEffects;
+        this.selectedEphemerals = this.config.ephemerals;
     }
 
     static DEFAULT_OPTIONS = {
@@ -27,6 +28,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         },
         actions: {
             toggleSelectedEffect: this.toggleSelectedEffect,
+            toggleSelectedEphemeral: this.toggleSelectedEphemeral,
             updateGroupAttack: this.updateGroupAttack,
             toggleCritical: this.toggleCritical,
             submitRoll: this.submitRoll
@@ -73,6 +75,8 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         context.modifiers = this.config.modifiers;
         context.hasSelectedEffects = Boolean(Object.keys(this.selectedEffects).length);
         context.selectedEffects = this.selectedEffects;
+
+        context.selectedEphemerals = this.selectedEphemerals;
 
         context.damageOptions = this.config.damageOptions;
         context.rangeOptions = CONFIG.DH.GENERAL.groupAttackRange;
@@ -122,6 +126,26 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
 
     static toggleSelectedEffect(_event, button) {
         this.selectedEffects[button.dataset.key].selected = !this.selectedEffects[button.dataset.key].selected;
+        this.render();
+    }
+
+    static toggleSelectedEphemeral(_event, button) {
+        const ephemeral = this.selectedEphemerals[button.dataset.index];
+        ephemeral.selected = !ephemeral.selected;
+
+        this.config.costs =
+            this.config.costs.some(c => c.ephKey === ephemeral.id)
+                ? this.config.costs.filter(x => x.ephKey !== ephemeral.id)
+                : [
+                    ...this.config.costs,
+                    ...ephemeral.costs.map(c => ({
+                        ephKey: ephemeral.id,
+                        key: c.type,
+                        value: c.value,
+                        name: ephemeral.name
+                    }))
+                ];
+
         this.render();
     }
 

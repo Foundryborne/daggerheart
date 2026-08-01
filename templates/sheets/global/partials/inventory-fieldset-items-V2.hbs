@@ -30,7 +30,15 @@ Parameters:
   <legend>
     {{localize title}}
     {{#if canCreate}}
-    <a data-action="{{ifThen (or (eq type 'effect') (and (eq type 'feature') (not (eq actorType 'character'))) (eq type 'action')) 'createDoc' 'addNewItem' }}" data-document-class="{{ifThen (eq type 'effect') 'ActiveEffect' 'Item' }}"
+    <a 
+      {{#if (or (eq type 'effect') (and (eq type 'feature') (not (eq actorType 'character'))) (eq type 'action'))}}
+        data-action="createDoc"
+      {{else if (eq type 'ephemeral')}}
+        data-action="addEphemeral"
+      {{else}}
+        data-action="addNewItem"
+      {{/if}}
+      data-document-class="{{ifThen (eq type 'effect') 'ActiveEffect' 'Item' }}"
       data-type="{{ifThen (eq type 'effect') 'base' type}}"
       {{#if inVault}}data-in-vault="{{inVault}}"{{/if}}
       {{#if disabled}} data-disabled="{{disabled}}"{{/if}}
@@ -41,37 +49,36 @@ Parameters:
     {{/if }}
   </legend>
   {{#if (and cardView (eq type 'domainCard'))}}
-  <ul class="card-list">
-    {{#each collection as |item|}}
+    <ul class="card-list">
+      {{#each collection as |item|}}
 
-    {{> 'systems/daggerheart/templates/sheets/global/partials/domain-card-item.hbs'
-    item=item
-    type='domainCard'
-    }}
+      {{> 'systems/daggerheart/templates/sheets/global/partials/domain-card-item.hbs'
+      item=item
+      type='domainCard'
+      }}
 
-    {{/each}}
-  </ul>
+      {{/each}}
+    </ul>
   {{else}}
-  <ul class="items-list">
-    {{#each collection as |item|}}
-    {{> 'daggerheart.inventory-item'
-    item=item
-    type=../type
-    disabledEffect=../disabledEffect
-    actorType=(ifThen ../actorType ../actorType @root.document.type)
-    hideControls=../hideControls
-    hideContextMenu=../hideContextMenu
-    hideModifyControls=../hideModifyControls
-    isActor=../isActor
-    categoryAdversary=../categoryAdversary
-    hideTooltip=../hideTooltip
-    showLabels=../showLabels
-    isAction=../isAction
-    hideResources=../hideResources
-    isQuantifiable=../isQuantifiable
-    showActions=../showActions
-    }}
-
+    <ul class="items-list">
+      {{#each collection as |item|}}
+        {{> 'daggerheart.inventory-item'
+          item=item
+          type=../type
+          disabledEffect=../disabledEffect
+          actorType=(ifThen ../actorType ../actorType @root.document.type)
+          hideControls=../hideControls
+          hideContextMenu=../hideContextMenu
+          hideModifyControls=../hideModifyControls
+          isActor=../isActor
+          categoryAdversary=../categoryAdversary
+          hideTooltip=../hideTooltip
+          showLabels=../showLabels
+          isAction=../isAction
+          hideResources=../hideResources
+          isQuantifiable=../isQuantifiable
+          showActions=../showActions
+        }}
     {{/each}}
   </ul>
   {{/if}}

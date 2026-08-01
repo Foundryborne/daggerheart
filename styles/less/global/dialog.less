@@ -90,6 +90,22 @@
                 line-height: 17px;
             }
 
+            .ephemeral-container {
+                position: relative;
+                display: flex;
+                justify-content: flex-start;
+            
+                .header-text {
+                    position: absolute;
+                    top: -11px;
+                    height: 12px;
+                    width: fit-content;
+                    font-size: 10px;
+                    color: @chip-header-text-color;
+                    font-weight: bold;
+                }
+            }
+
             &.selected {
                 background: light-dark(@dark-blue-40, @golden-40);
             }

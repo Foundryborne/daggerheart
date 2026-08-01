@@ -130,6 +130,11 @@
                     {{/each}}
                 </div>
             {{/if}}
+            {{#if (eq type 'ephemeral')}}
+                <div>
+                    {{item.name}}
+                </div>
+            {{/if}}
             {{#if  (eq type 'action')}}
                 <div class="item-tags">
                     <div class="tag">

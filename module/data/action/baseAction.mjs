@@ -240,6 +240,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         config.effects = 
             await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(this.actor, this.item);
 
+        config.ephemerals = await game.system.api.data.actions.actionsTypes.base.getActionRelevantEphemerals(
+            this.actor, 
+            this
+        );
+
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
         // Display configuration window if necessary
@@ -383,6 +388,30 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         return results;
     }
+
+    // TODO: Verify that it has to be static. Otherwise remove static.
+    /**
+     * Get the all potentially applicable ephemeral effects on the actor for the action's RollDialog
+     * @param {DHActor} actor The actor performing the action
+     * @returns {DhEphemeralEffect[]}
+     */
+    static async getActionRelevantEphemerals(actor, action) {
+        const applicableEphemerals = actor.allApplicableEphemerals();
+        const ephemerals = [...applicableEphemerals].filter(x => {
+            switch (x.type) {
+                case 'roll':
+                    return action.hasRoll;
+                case 'damage':
+                    return action.hasDamage;
+                default:
+                    return x.type === action.type;
+            }
+        });
+
+        for (const ephemeral of ephemerals) ephemeral.selected = false;
+
+        return ephemerals;
+    }  
 
     /**
      * Method used to know if a configuration dialog must be shown or not when there is no roll.

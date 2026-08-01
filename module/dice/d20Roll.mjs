@@ -113,12 +113,20 @@ export default class D20Roll extends DHRoll {
                 value: actorExperiences[m].value
             });
         }
-
+        
         this.addModifiers();
         if (this.options.extraFormula) {
             this.terms.push(
                 new foundry.dice.terms.OperatorTerm({ operator: '+' }),
                 ...this.constructor.parse(this.options.extraFormula, this.options.data)
+            );
+        }
+
+        const selectedEphemerals = this.options.ephemerals.filter(x => x.selected);
+        for (const ephemeral of selectedEphemerals) {
+            this.terms.push(
+                new foundry.dice.terms.OperatorTerm({ operator: '+' }),
+                ...this.constructor.parse(ephemeral.bonusValue, this.options.data)
             );
         }
     }

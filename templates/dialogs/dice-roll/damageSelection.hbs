@@ -15,6 +15,24 @@
             {{/each}}
         </fieldset>
     {{/if}}
+
+    {{#if selectedEphemerals.length}}
+        <fieldset class="dialog-selection-container">
+            <legend>{{localize "DAGGERHEART.EPHEMERAL.Name.plural"}}</legend>
+
+            {{#each selectedEphemerals as |ephemeral index|}}
+                <div class="selection-chip {{#if ephemeral.selected}}selected{{/if}}" data-action="toggleSelectedEphemeral" data-index="{{index}}" data-tooltip="{{this.description}}">
+                    <span><i class="{{ifThen ephemeral.selected "fa-solid" "fa-regular"}} fa-circle"></i></span>
+                    <div class="ephemeral-container">
+                        <span class="label">{{ephemeral.name}}</span>
+                        {{#with ephemeral.costLabelData}}
+                            <span class="header-text" {{#if tooltip}}data-tooltip="{{tooltip}}"{{/if}}>{{label}}</span>
+                        {{/with}}
+                    </div>
+                </div>
+            {{/each}}
+        </fieldset>
+    {{/if}}
     
     {{#if damageOptions.groupAttack}}
         <fieldset class="group-attack-container">

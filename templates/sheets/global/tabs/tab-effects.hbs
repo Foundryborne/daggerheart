@@ -19,4 +19,14 @@
         canCreate=@root.editable
         hideResources=true
     }}
+
+    {{#if document.system.ephemeralEffects.length includeZero=true }}
+        {{> 'daggerheart.inventory-items'
+            title='DAGGERHEART.EPHEMERAL.collectionName'
+            type='ephemeral'
+            isGlassy=true
+            collection=ephemeralEffects
+            canCreate=@root.editable
+        }}
+    {{/if}}
 </section>

@@ -179,6 +179,14 @@ export default class DamageRoll extends DHRoll {
             );
         }
 
+        const selectedEphemerals = this.options.ephemerals.filter(x => x.selected);
+        for (const ephemeral of selectedEphemerals) {
+            formulaData.roll.terms.push(
+                new foundry.dice.terms.OperatorTerm({ operator: '+' }),
+                ...this.constructor.parse(ephemeral.bonusValue, this.options.data)
+            );
+        }
+
         if (isDamage && formulaData.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
             formulaData.modifiers = this.applyBaseBonus(formulaData);
             this.addModifiers(formulaData);

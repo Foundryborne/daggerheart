@@ -20,7 +20,7 @@
                     <label for="action-costs-{{index}}">
                         {{label}}
                         {{#if cost.consumeOnSuccess}}<span class="hint">{{localize "DAGGERHEART.ACTIONS.Settings.consumeOnSuccess.short"}}</span>{{/if}}
-                        {{#if cost.extKey}}<span class="hint">{{name}}</span>{{/if}}
+                        {{#if (or cost.extKey cost.ephKey)}}<span class="hint">{{name}}</span>{{/if}}
                     </label>
                 </div>
             </div>

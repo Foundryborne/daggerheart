@@ -6,6 +6,7 @@ import * as RESOURCE from './resourceConfig.mjs';
 import * as ITEM from './itemConfig.mjs';
 import * as SETTINGS from './settingsConfig.mjs';
 import * as EFFECTS from './effectConfig.mjs';
+import * as EPHEMERAL from './ephemeralConfig.mjs';
 import * as ACTIONS from './actionConfig.mjs';
 import * as FLAGS from './flagsConfig.mjs';
 import * as HOOKS from './hooksConfig.mjs';
@@ -25,6 +26,7 @@ export const SYSTEM = {
     ITEM,
     SETTINGS,
     EFFECTS,
+    EPHEMERAL,
     ACTIONS,
     FLAGS,
     HOOKS,

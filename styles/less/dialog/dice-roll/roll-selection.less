@@ -121,8 +121,10 @@
             flex-wrap: wrap;
 
             .experience-chip {
+                position: relative;
                 display: flex;
                 align-items: center;
+                justify-content: center;
                 border-radius: 5px;
                 width: fit-content;
                 gap: 5px;
@@ -131,6 +133,10 @@
                 background: light-dark(@dark-blue-10, @golden-10);
                 color: @color-text-emphatic;
 
+                &.selected {
+                    background: light-dark(@dark-blue-40, @golden-40);
+                }
+
                 .label {
                     font-style: normal;
                     font-weight: 400;
@@ -138,8 +144,20 @@
                     line-height: 17px;
                 }
 
-                &.selected {
-                    background: light-dark(@dark-blue-40, @golden-40);
+                .ephemeral-container {
+                    position: relative;
+                    display: flex;
+                    justify-content: flex-start;
+                
+                    .header-text {
+                        position: absolute;
+                        top: -11px;
+                        height: 12px;
+                        width: fit-content;
+                        font-size: 10px;
+                        color: @chip-header-text-color;
+                        font-weight: bold;
+                    }
                 }
             }
         }

@@ -1,0 +1,15 @@
+<div class="ephemeral-details-container">
+    {{formField fields.type name=(concat updatePath "type" ) value=ephemeral.type localize=true }}
+    {{formField fields.bonusValue name=(concat updatePath "bonusValue") value=ephemeral.bonusValue localize=true }}
+
+    <fieldset>
+        <legend>
+            {{localize "DAGGERHEART.GENERAL.Cost.plural"}}
+            <a data-action="addCost"><i class="fa-solid fa-plus"></i></a>
+        </legend>
+
+        {{#each ephemeral.costs as | cost index |}}
+            <a data-action="removeCost" data-index="{{index}}"><i class="fa-solid fa-trash"></i></a>
+        {{/each}}
+    </fieldset>
+</div>

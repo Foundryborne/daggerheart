@@ -1112,4 +1112,15 @@ export default class DhpActor extends Actor {
     applyActiveEffects(phase) {
         super.applyActiveEffects(phase);
     }
+
+    /**
+     * 
+     */
+    *allApplicableEphemerals() {
+        for (const item of this.items) {
+            for (const ephemeral of item.system.ephemeralEffects) {
+                yield ephemeral;
+            }
+        }
+    }
 }

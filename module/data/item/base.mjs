@@ -15,6 +15,7 @@ import {
 } from '../../helpers/utils.mjs';
 import { ActionsField } from '../fields/actionField.mjs';
 import FormulaField from '../fields/formulaField.mjs';
+import EphemeralEffect from './embedded/ephemeralEffect.mjs';
 
 const fields = foundry.data.fields;
 
@@ -46,7 +47,8 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
                 source: new fields.StringField(),
                 page: new fields.NumberField(),
                 artist: new fields.StringField()
-            })
+            }),
+            ephemeralEffects: new fields.ArrayField(new fields.EmbeddedDataField(EphemeralEffect))
         };
 
         if (this.metadata.hasDescription) {

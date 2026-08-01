@@ -209,13 +209,20 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                 label: 'DAGGERHEART.GENERAL.damage',
                 icon: 'fa-solid fa-explosion',
                 onClick: async (event, target) => {
-                    const doc = await getDocFromElement(target),
-                        action = doc?.system?.attack ?? doc;
+                    const doc = await getDocFromElement(target);
+                    const action = doc?.system?.attack ?? doc;
                     const config = action.prepareConfig(event);
-                    config.effects = await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
-                        this.document,
-                        doc
-                    );
+                    config.effects = 
+                        await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
+                            this.document,
+                            doc
+                        );
+                    config.ephemerals = 
+                        await game.system.api.data.actions.actionsTypes.base.getActionRelevantEphemerals(
+                            this.document,
+                            action
+                        );
+
                     config.hasRoll = false;
                     return action && action.workflow.get('damage').execute(config, null, true);
                 }

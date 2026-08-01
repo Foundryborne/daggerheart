@@ -11,6 +11,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         this.config.experiences = [];
         this.reactionOverride = config.actionType === 'reaction';
         this.selectedEffects = this.config.bonusEffects;
+        this.selectedEphemerals = this.config.ephemerals;
 
         if (config.source?.action) {
             this.item = config.data.parent.items.get(config.source.item) ?? config.data.parent;
@@ -36,6 +37,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             selectExperience: this.selectExperience,
             toggleReaction: this.toggleReaction,
             toggleSelectedEffect: this.toggleSelectedEffect,
+            toggleSelectedEphemeral: this.toggleSelectedEphemeral,
             submitRoll: this.submitRoll
         },
         form: {
@@ -79,6 +81,8 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
 
         context.hasSelectedEffects = Boolean(this.selectedEffects && Object.keys(this.selectedEffects).length);
         context.selectedEffects = this.selectedEffects;
+
+        context.selectedEphemerals = this.selectedEphemerals;
 
         this.config.costs ??= [];
         if (this.config.costs?.length) {
@@ -221,6 +225,26 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
 
     static toggleSelectedEffect(_event, button) {
         this.selectedEffects[button.dataset.key].selected = !this.selectedEffects[button.dataset.key].selected;
+        this.render();
+    }
+
+    static toggleSelectedEphemeral(_event, button) {
+        const ephemeral = this.selectedEphemerals[button.dataset.index];
+        ephemeral.selected = !ephemeral.selected;
+
+        this.config.costs =
+            this.config.costs.some(c => c.ephKey === ephemeral.id)
+                ? this.config.costs.filter(x => x.ephKey !== ephemeral.id)
+                : [
+                    ...this.config.costs,
+                    ...ephemeral.costs.map(c => ({
+                        ephKey: ephemeral.id,
+                        key: c.type,
+                        value: c.value,
+                        name: ephemeral.name
+                    }))
+                ];
+
         this.render();
     }
 

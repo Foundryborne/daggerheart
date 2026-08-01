@@ -112,6 +112,14 @@ export default function DHApplicationMixin(Base) {
                     }
                 },
                 {
+                    handler: DHSheetV2.#getEphemeralContextOptions,
+                    selector: '[data-item-uuid][data-type="ephemeral"]',
+                    options: {
+                        parentClassHooks: false,
+                        fixed: true
+                    }
+                },
+                {
                     handler: DHSheetV2.#getActionContextOptions,
                     selector: '[data-item-uuid][data-type="action"]',
                     options: {
@@ -464,6 +472,50 @@ export default function DHApplicationMixin(Base) {
         }
 
         /**
+         * Get the set of ContextMenu options for Ephemeral Effects.
+         * @returns {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} - The Array of context options passed to the ContextMenu instance
+         * @this {DHSheetV2}
+         * @protected
+         */
+        static #getEphemeralContextOptions() {
+            /**@type {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} */
+            const options = [
+                {
+                    label: 'CONTROLS.CommonEdit',
+                    icon: 'fa-solid fa-pen-to-square',
+                    visible: target => {
+                        return true; // Any condition?
+                    },
+                    onClick: async (_, target) => {
+                        const element = target.closest('[data-item-id]');
+                        const config = 
+                            new game.system.api.applications.sheetConfigs.EphemeralConfig(
+                                this.document, 
+                                element.dataset.itemId
+                            );
+                        config.render({ force: true });
+                    }
+                },
+                {
+                    label: 'CONTROLS.CommonDelete',
+                    icon: '<i class="fa-solid fa-trash"></i>',
+                    visible: element => {
+                        return true; // Any condition?
+                    },
+                    onClick: async (event, target) => {
+                        const element = target.closest('[data-item-id]');
+                        // const ephemeral = this.document.system.ephemeralEffects.find(x => x.id === element.dataset.itemId);
+                        this.document.update({ 'system.ephemeralEffects': 
+                            this.document.system.ephemeralEffects.filter(x => x.id !== element.dataset.itemId)
+                        });
+                    }
+                }
+            ];
+
+            return options;
+        }
+
+        /**
          * Get the set of ContextMenu options for Actions.
          * @returns {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} - The Array of context options passed to the ContextMenu instance
          * @this {DHSheetV2}
@@ -516,13 +568,20 @@ export default function DHApplicationMixin(Base) {
                         return doc?.isOwner && hasDamage;
                     },
                     onClick: async (event, target) => {
-                        const doc = await getDocFromElement(target),
-                            action = doc?.system?.attack ?? doc;
+                        const doc = await getDocFromElement(target);
+                        const action = doc?.system?.attack ?? doc;
                         const config = action.prepareConfig(event);
-                        config.effects = await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
-                            this.document,
-                            doc
-                        );
+                        config.effects = 
+                            await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
+                                this.document,
+                                doc
+                            );
+                        config.ephemerals = 
+                            await game.system.api.data.actions.actionsTypes.base.getActionRelevantEphemerals(
+                                this.document,
+                                action
+                            );
+
                         config.hasRoll = false;
                         return action && action.workflow.get('damage').execute(config, null, true);
                     }

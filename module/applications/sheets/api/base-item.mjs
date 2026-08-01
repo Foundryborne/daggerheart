@@ -31,6 +31,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             deleteFeature: DHBaseItemSheet.#deleteFeature,
             addResource: DHBaseItemSheet.#addResource,
             removeResource: DHBaseItemSheet.#removeResource,
+            addEphemeral: DHBaseItemSheet.#onAddEphemeral,
             editGMNote: DHBaseItemSheet.#onEditGMNote
         },
         dragDrop: [
@@ -116,6 +117,8 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             const list = effect.active ? context.effects.actives : context.effects.inactives;
             list.push(effect);
         }
+
+        context.ephemeralEffects = this.item.system.ephemeralEffects;
     }
 
     /* -------------------------------------------- */
@@ -245,6 +248,19 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     static async #removeResource() {
         await this.document.update({
             'system.resource': null
+        });
+    }
+
+    /**
+     * 
+     */
+    static async #onAddEphemeral() {
+        await this.document.update({
+            'system.ephemeralEffects': [...this.document.system.ephemeralEffects, {
+                ...this.document.system.schema.fields.ephemeralEffects.element.getInitialValue(),
+                id: foundry.utils.randomID(),
+                name: _loc('DAGGERHEART.EPHEMERAL.defaultName')
+            }]
         });
     }
 

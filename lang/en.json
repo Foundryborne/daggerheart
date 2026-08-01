@@ -11,7 +11,8 @@
             "loot": "Loot",
             "weapon": "Weapon",
             "armor": "Armor",
-            "beastform": "Beastform"
+            "beastform": "Beastform",
+            "ephemeralEffect": "Ephemeral Effect"
         },
         "ActiveEffect": {
             "base": "Standard",
@@ -2041,6 +2042,25 @@
                 "transferHint": "If checked, this effect will be applied to any actor that owns this Effect's parent Item. The effect is always applied if this Item is attached to another one."
             },
             "OriginTag": "Origin: {name}"
+        },
+        "EPHEMERAL": {
+            "FIELDS": {
+                "bonusValue": { "label": "Bonus Value" },
+                "effects": { "label": "Effects" }
+            },
+            "Name": {
+                "single": "Ephemeral",
+                "plural": "Ephemerals"
+            },
+            "defaultName": "Ephemeral Effect",
+            "collectionName": "Ephemeral Effects",
+            "configTitle": "Ephemeral Effect Config",
+            "Types": {
+                "roll": "Roll",
+                "damage": "Damage"
+            },
+            "multipleCostsLabel": "Multiple",
+            "addNewCostTitle": "New Cost"
         },
         "GENERAL": {
             "Ability": {
