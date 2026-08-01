@@ -909,3 +909,32 @@ export async function getWorldActor(baseActor) {
 
     return baseActor;
 }
+
+
+/**
+ * Get target data augmented with hitResult, saveResult, resistance and immunity
+ * @param {BaseTargetData} target
+ * @param {object} data - Config or ChatMessage.system data
+ * @returns {TargetData}
+ */
+export function getTargetData(target, data) {
+    const actor = target.actorId ? foundry.utils.fromUuidSync(target.actorId) : null;
+
+    const toHitNumber = target.difficulty || target.evasion;
+    const hitSuccessfull = (toHitNumber === null || !data.roll) ? false : 
+        (data.roll.isCritical || data.roll.total >= toHitNumber);
+
+    const saveValue = data.targetSaves[target.id];
+    const saveSuccessfull = saveValue === undefined ? false : 
+        saveValue >= (data.action.save.difficulty ?? actor?.baseSaveDifficulty);
+    const hasResistData = data.hasDamage && data.damage?.main && actor;
+    const resistData = hasResistData ? actor.getResistanceStatus(data.damage.main.options.damageTypes) : null;
+
+    return {
+        ...target,
+        hitResult: data.hasRoll ? { success: hitSuccessfull } : null,
+        saveResult: saveValue ? { success: saveSuccessfull } : null,
+        resistant: Boolean(resistData?.resistant),
+        immune: Boolean(resistData?.immune)
+    }
+}

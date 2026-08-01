@@ -1,4 +1,4 @@
-import { triggerChatRollFx } from '../../helpers/utils.mjs';
+import { getTargetData, triggerChatRollFx } from '../../helpers/utils.mjs';
 import { ChatDamageData } from './chatDamageData.mjs';
 
 const fields = foundry.data.fields;
@@ -128,28 +128,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
      * @returns {TargetData[]}
      */
     _getCurrentTargets() {
-        const getCommonData = data => {
-            const actor = data.actorId ? foundry.utils.fromUuidSync(data.actorId) : null;
-            const toHitNumber = data.difficulty || data.evasion;
-            const hitSuccessfull = (toHitNumber === null || !this.roll) ? false : 
-                (this.roll.isCritical || this.roll.total >= toHitNumber);
-
-            const saveValue = this.targetSaves[data.id];
-            const saveSuccessfull = saveValue === undefined ? false : 
-                saveValue >= (this.action.save.difficulty ?? this.action.actor?.baseSaveDifficulty);
-            const hasResistData = this.hasDamage && this.damage?.main && actor;
-            const resistData = hasResistData ? actor.getResistanceStatus(this.damage.main.options.damageTypes) : null;
-
-            return {
-                ...data,
-                hitResult: this.hasRoll ? { success: hitSuccessfull } : null,
-                saveResult: saveValue ? { success: saveSuccessfull } : null,
-                resistant: Boolean(resistData?.resistant),
-                immune: Boolean(resistData?.immune)
-            }
-        };
-
-        if (!this.targeting.usingSelect) return this.targets.map(getCommonData);
+        if (!this.targeting.usingSelect) return this.targets.map(t => getTargetData(t, this.parent));
 
         return (canvas.tokens?.controlled ?? []).map(token => ({
             id: token.id,
@@ -159,7 +138,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             img: token.document.actor?.img ?? token.document.texture.src,
             difficulty: token.document.actor?.system.difficulty,
             evasion: token.document.actor?.system.evasion
-        })).map(getCommonData);
+        })).map(t => getTargetData(t, this.parent));
     }
 
     /**

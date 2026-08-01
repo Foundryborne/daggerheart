@@ -66,7 +66,7 @@ export default class SaveField extends fields.SchemaField {
                         const actor = fromUuidSync(target.actorId);
                         if (actor) {
                             const rollSave =
-                                game.user === actor.owner
+                                game.user.id === actor.owner.id
                                     ? SaveField.rollSave.call(this, actor, event)
                                     : actor.owner.query('reactionRoll', {
                                         actionId: this.uuid,
