@@ -376,9 +376,21 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
 
         return [
             {
-                label: 'CONTROLS.toggleVisibility',
+                label: 'DAGGERHEART.UI.Countdowns.reveal',
+                icon: 'fa-solid fa-eye',
+                visible: element => {
+                    return getCountdownFromElement(element).hidden && game.user.isGM
+                },
+                onClick: (_, target) => {
+                    getCountdownFromElement(target)?.toggleVisibility();
+                }
+            },
+            {
+                label: 'DAGGERHEART.UI.Countdowns.hide',
                 icon: 'fa-solid fa-eye-slash',
-                visible: game.user.isGM,
+                visible: element => {
+                    return !getCountdownFromElement(element).hidden && game.user.isGM
+                },
                 onClick: (_, target) => {
                     getCountdownFromElement(target)?.toggleVisibility();
                 }

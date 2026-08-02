@@ -180,7 +180,7 @@ export class DhCountdown extends foundry.abstract.DataModel {
 
     /** @inheritDoc */
     static migrateData(source) {
-        if (source.progress.max) {
+        if (source.progress?.max) {
             source.progress.start = Number(source.progress.max);
             source.progress.max = null;
             source.progress.startFormula = null;
@@ -216,8 +216,7 @@ export class DhCountdown extends foundry.abstract.DataModel {
 
     async toggleVisibility() {
         const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-        const data = foundry.utils.deepClone(setting._source);
-        data.countdowns[this.id].hidden = !data.countdowns[this.id].hidden;
-        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, data);
+        await setting.updateSource({[`countdowns.${this.id}.hidden`]: !setting.countdowns[this.id].hidden})
+        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, setting);
     }
 }
