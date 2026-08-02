@@ -43,7 +43,10 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
                     evasion: new fields.NumberField({ integer: true })
                 })
             ),
-            targetSaves: new fields.TypedObjectField(new fields.NumberField({ integer: true })),
+            targetSaves: new fields.TypedObjectField(new fields.SchemaField({
+                value: new fields.NumberField({ required: true, nullable: false, integer: true }),
+                isCritical: new fields.BooleanField({ required: true, nullable: false })
+            })),
             source: new fields.SchemaField({
                 actor: new fields.StringField(),
                 item: new fields.StringField(),
@@ -134,16 +137,17 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
                 ((toHitNumber === null || !this.roll) ? false : 
                     (this.roll.isCritical || this.roll.total >= toHitNumber));
 
-            const saveValue = this.targetSaves[data.id];
-            const saveSuccessfull = (saveValue === undefined || this.targeting.usingSelect) ? false : 
-                saveValue >= (this.action.save.difficulty ?? this.action.actor?.baseSaveDifficulty);
+            const saveData = this.targetSaves[data.id];
+            const saveSuccessfull = (saveData === undefined || this.targeting.usingSelect) ? false : 
+                saveData.isCritical || 
+                (saveData.value >= (this.action.save.difficulty ?? this.action.actor?.baseSaveDifficulty));
             const hasResistData = this.hasDamage && this.damage?.main && actor;
             const resistData = hasResistData ? actor.getResistanceStatus(this.damage.main.options.damageTypes) : null;
 
             return {
                 ...data,
                 hitResult: this.hasRoll ? { success: hitSuccessfull } : null,
-                saveResult: saveValue ? { success: saveSuccessfull } : null,
+                saveResult: saveData ? { success: saveSuccessfull } : null,
                 resistant: Boolean(resistData?.resistant),
                 immune: Boolean(resistData?.immune)
             }
@@ -270,6 +274,13 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
                 else {
                     source.damage.resources[key] = getRoll(key);
                 }
+            }
+        }
+
+        for (const key of Object.keys(source.targetSaves)) {
+            const saveData = source.targetSaves[key];
+            if (typeof saveData === 'number') {
+                source.targetSaves[key] = { value: saveData, isCritical: false };
             }
         }
 

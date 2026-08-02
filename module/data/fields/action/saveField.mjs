@@ -49,9 +49,9 @@ export default class SaveField extends fields.SchemaField {
             
             /* Update config with the saveRoll results, could probably be done in a neater way */
             for (const target of config.targets) {
-                const saveValue = message.system.targetSaves[target.id];
-                const saveSuccessfull = saveValue === undefined ? false : 
-                    saveValue >= (this.save.difficulty ?? this.actor?.system.difficulty);
+                const saveData = message.system.targetSaves[target.id];
+                const saveSuccessfull = saveData === undefined ? false : 
+                    saveData.isCritical || (saveData.value >= (this.save.difficulty ?? this.actor?.system.difficulty));
                 target.saveResult = { success: saveSuccessfull };
             }
         } else return;
@@ -135,7 +135,7 @@ export default class SaveField extends fields.SchemaField {
 
         const chatMessage = ui.chat.collection.get(message._id);
         await chatMessage.update({
-            [`system.targetSaves.${targetId}`]: result.roll.total
+            [`system.targetSaves.${targetId}`]: { value: result.roll.total, isCritical: result.roll.isCritical }
         });
     }
 
