@@ -187,7 +187,8 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             config.effects = await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(actor, item);
             config.ephemerals = await game.system.api.data.actions.actionsTypes.base.getActionRelevantEphemerals(
                 actor, 
-                this.system.action
+                this.system.action,
+                { isDamage: true }
             );
             await this.system.action.workflow.get('damage')?.execute(config, this._id, true);
         }

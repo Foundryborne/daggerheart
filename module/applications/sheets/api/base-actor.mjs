@@ -220,7 +220,8 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                     config.ephemerals = 
                         await game.system.api.data.actions.actionsTypes.base.getActionRelevantEphemerals(
                             this.document,
-                            action
+                            action,
+                            { isDamage: true }
                         );
 
                     config.hasRoll = false;

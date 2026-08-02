@@ -240,9 +240,12 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         config.effects = 
             await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(this.actor, this.item);
 
+        const isDamageAction = this instanceof game.system.api.data.actions.actionsTypes.damage;
+        const isAttackAction = this instanceof game.system.api.data.actions.actionsTypes.attack;
         config.ephemerals = await game.system.api.data.actions.actionsTypes.base.getActionRelevantEphemerals(
             this.actor, 
-            this
+            this,
+            { isDamage: isDamageAction && !isAttackAction }
         );
 
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
@@ -389,20 +392,21 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return results;
     }
 
-    // TODO: Verify that it has to be static. Otherwise remove static.
     /**
      * Get the all potentially applicable ephemeral effects on the actor for the action's RollDialog
      * @param {DHActor} actor The actor performing the action
+     * @param {Action} action The action being run
+     * @param {{ isDamage: boolean }} typeDataOverride Type data needed to differentiate which ephemerals should apply.
      * @returns {DhEphemeralEffect[]}
      */
-    static async getActionRelevantEphemerals(actor, action) {
+    static async getActionRelevantEphemerals(actor, action, typeData = {}) {
         const applicableEphemerals = actor.allApplicableEphemerals();
         const ephemerals = [...applicableEphemerals].filter(x => {
             switch (x.type) {
                 case 'roll':
-                    return action.hasRoll;
+                    return action.hasRoll && !typeData.isDamage;
                 case 'damage':
-                    return action.hasDamage;
+                    return typeData.isDamage;
                 default:
                     return x.type === action.type;
             }
