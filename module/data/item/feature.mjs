@@ -36,7 +36,11 @@ export default class DHFeature extends BaseDataItem {
                 initial: 'passive',
                 choices: CONFIG.DH.ITEM.featureForm,
                 label: 'DAGGERHEART.CONFIG.FeatureForm.label'
-            })
+            }),
+            evolutionRequirement: new fields.SchemaField({
+                requirement: new fields.NumberField({ integer: true, min: 0, initial: 1 })
+                // comparator: new fields.StringField({ choices: ... })  gte, gt, lt, lte, eq
+            }, { nullable: true, initial: null })
         };
     }
 }

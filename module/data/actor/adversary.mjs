@@ -111,6 +111,12 @@ export default class DhpAdversary extends DhCreature {
                     physical: bonusField('DAGGERHEART.GENERAL.Damage.physicalDamage'),
                     magical: bonusField('DAGGERHEART.GENERAL.Damage.magicalDamage')
                 })
+            }),
+            evolution: new fields.NumberField({ 
+                required: true, 
+                integer: true, 
+                nullable: false, 
+                initial: 0 
             })
         };
     }

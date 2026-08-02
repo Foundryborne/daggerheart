@@ -104,13 +104,6 @@ export default class AdversarySheet extends DHBaseActorSheet {
         context.resources.stress.emptyPips =
             context.resources.stress.max < maxResource ? maxResource - context.resources.stress.max : 0;
 
-        const featureForms = Object.keys(CONFIG.DH.ITEM.featureForm);
-        context.features = this.document.system.features.sort((a, b) =>
-            a.system.featureForm !== b.system.featureForm
-                ? featureForms.indexOf(a.system.featureForm) - featureForms.indexOf(b.system.featureForm)
-                : a.sort - b.sort
-        );
-
         return context;
     }
 
@@ -124,6 +117,9 @@ export default class AdversarySheet extends DHBaseActorSheet {
 
                 const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
                 context.adversaryType = game.i18n.localize(adversaryTypes[this.document.system.type].label);
+                break;
+            case 'features': 
+                await this._prepareFeaturesContext(context, options);
                 break;
             case 'notes':
                 await this._prepareNotesContext(context, options);
@@ -194,6 +190,41 @@ export default class AdversarySheet extends DHBaseActorSheet {
             secrets: this.document.isOwner,
             relativeTo: this.document
         });
+    }
+
+    /**
+     * Prepare render context for the Features part.
+     * @param {ApplicationRenderContext} context
+     * @param {ApplicationRenderOptions} options
+     * @returns {Promise<void>}
+     * @protected
+     */
+    async _prepareFeaturesContext(context, _options) {
+        const featureForms = Object.keys(CONFIG.DH.ITEM.featureForm);
+        const features = this.document.system.features.sort((a, b) =>
+            a.system.featureForm !== b.system.featureForm
+                ? featureForms.indexOf(a.system.featureForm) - featureForms.indexOf(b.system.featureForm)
+                : a.sort - b.sort
+        );
+
+        context.features = [];
+        context.evolutionFeatures = [];
+        for (const feature of features) {
+            const data = { ...feature };
+
+            /* The below cases should consider comparator when added */
+            if (data.system.evolutionRequirement && 
+                data.system.evolutionRequirement.requirement !== this.document.evolution) {
+                data.evolutionLocked = true;
+            }
+
+            if (!data.system.evolutionRequirement?.requirement) {
+                context.features.push(data);
+            } else {
+                context.evolutionFeatures.push(data);
+            }
+
+        }
     }
 
     /* -------------------------------------------- */

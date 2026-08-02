@@ -1258,7 +1258,8 @@
                 "label": "Feature Form",
                 "passive": "Passive",
                 "action": "Action",
-                "reaction": "Reaction"
+                "reaction": "Reaction",
+                "evolution": "Evolution"
             },
             "Gold": {
                 "title": "Gold",

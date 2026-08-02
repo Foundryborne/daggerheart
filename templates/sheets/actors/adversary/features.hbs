@@ -12,4 +12,19 @@
             }}
         {{/each}}
     </div>
+    {{#if @root.evolutionFeatures}}
+        <hr />
+        <div class="feature-section items-list">
+            {{#each @root.evolutionFeatures as |item|}}
+                {{> "daggerheart.inventory-item"
+                    item=item
+                    type="feature"
+                    actorType=@root.document.type
+                    hideContextMenu=true
+                    hideModifyControls=true
+                    showActions=@root.editable
+                }}
+            {{/each}}
+        </div>
+    {{/if}}
 </section>
