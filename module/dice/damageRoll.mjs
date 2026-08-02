@@ -1,4 +1,5 @@
 import DamageDialog from '../applications/dialogs/damageDialog.mjs';
+import { ChatDamageData } from '../data/chat-message/chatDamageData.mjs';
 import { getCritDamageBonus, parseRallyDice, triggerChatRollFx } from '../helpers/utils.mjs';
 import DHRoll from './dhRoll.mjs';
 
@@ -41,7 +42,8 @@ export default class DamageRoll extends DHRoll {
             return roll.roll;
         }
 
-        if (!config.damage) config.damage = { main: null, resources: {} };
+        const noExistingDamageConfig = !config.damage;
+        if (noExistingDamageConfig) config.damage = { main: null, resources: {} };
 
         if (config.damageFormula) {
             config.damage.main = await evaluateRoll(config.damageFormula);
@@ -54,6 +56,10 @@ export default class DamageRoll extends DHRoll {
         
         for (const roll of config.resourceFormulas) {
             config.damage.resources[roll.applyTo] = await evaluateRoll(roll);
+        }
+
+        if (noExistingDamageConfig) {
+            config.damage = new ChatDamageData(config.damage);
         }
 
         roll._evaluated = true;

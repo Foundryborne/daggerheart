@@ -99,14 +99,12 @@ export default class DhCompanion extends DhCreature {
                         bonus: 0
                     },
                     damage: {
-                        parts: {
-                            hitPoints: {
-                                type: ['physical'],
-                                applyTo: 'hitPoints',
-                                value: {
-                                    dice: 'd6',
-                                    multiplier: 'prof'
-                                }
+                        main: {
+                            type: ['physical'],
+                            applyTo: 'hitPoints',
+                            value: {
+                                dice: 'd6',
+                                multiplier: 'prof'
                             }
                         }
                     }
@@ -147,8 +145,8 @@ export default class DhCompanion extends DhCreature {
                 switch (selection.type) {
                     case 'vicious':
                         if (selection.data[0] === 'damage') {
-                            this.attack.damage.parts.hitPoints.value.dice = adjustDice(
-                                this.attack.damage.parts.hitPoints.value.dice
+                            this.attack.damage.main.value.dice = adjustDice(
+                                this.attack.damage.main.value.dice
                             );
                         } else {
                             this.attack.range = adjustRange(this.attack.range).id;

@@ -43,7 +43,10 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
                     evasion: new fields.NumberField({ integer: true })
                 })
             ),
-            targetSaves: new fields.TypedObjectField(new fields.NumberField({ integer: true })),
+            targetSaves: new fields.TypedObjectField(new fields.SchemaField({
+                value: new fields.NumberField({ required: true, nullable: false, integer: true }),
+                isCritical: new fields.BooleanField({ required: true, nullable: false })
+            })),
             source: new fields.SchemaField({
                 actor: new fields.StringField(),
                 item: new fields.StringField(),
@@ -112,14 +115,13 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     }
 
     get currentHitTargets() {
-        const currentTargets = this._getCurrentTargets();
-        if (!this.hasRoll || this.targeting.usingSelect) return currentTargets;
+        if (!this.hasRoll || this.targeting.usingSelect) return this._getCurrentTargets();
 
-        return currentTargets.filter(x => x.hitResult.success)
+        return this._getCurrentTargets().filter(x => x.hitResult.success)
     }
 
     get hasUnfinishedSaves() {
-        return this.hasSave && this.currentHitTargets.some(x => !x.saveResult);
+        return this.hasSave && !this.targeting.usingSelect && this.currentHitTargets.some(x => !x.saveResult);
     }
 
     /**
@@ -131,23 +133,25 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         const getCommonData = data => {
             const actor = data.actorId ? foundry.utils.fromUuidSync(data.actorId) : null;
             const toHitNumber = data.difficulty || data.evasion;
-            const hitSuccessfull = (toHitNumber === null || !this.roll) ? false : 
-                (this.roll.isCritical || this.roll.total >= toHitNumber);
+            const hitSuccessfull = this.targeting.usingSelect ? true :
+                ((toHitNumber === null || !this.roll) ? false : 
+                    (this.roll.isCritical || this.roll.total >= toHitNumber));
 
-            const saveValue = this.targetSaves[data.id];
-            const saveSuccessfull = saveValue === undefined ? false : 
-                saveValue >= (this.action.save.difficulty ?? this.action.actor?.baseSaveDifficulty);
+            const saveData = this.targetSaves[data.id];
+            const saveSuccessfull = (saveData === undefined || this.targeting.usingSelect) ? false : 
+                saveData.isCritical || 
+                (saveData.value >= (this.action.save.difficulty ?? this.action.actor?.baseSaveDifficulty));
             const hasResistData = this.hasDamage && this.damage?.main && actor;
             const resistData = hasResistData ? actor.getResistanceStatus(this.damage.main.options.damageTypes) : null;
 
             return {
                 ...data,
                 hitResult: this.hasRoll ? { success: hitSuccessfull } : null,
-                saveResult: saveValue ? { success: saveSuccessfull } : null,
+                saveResult: saveData ? { success: saveSuccessfull } : null,
                 resistant: Boolean(resistData?.resistant),
                 immune: Boolean(resistData?.immune)
             }
-        };
+        }
 
         if (!this.targeting.usingSelect) return this.targets.map(getCommonData);
 
@@ -185,7 +189,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
 
 
     syncSelectedTokens = foundry.utils.debounce(async () => {
-        if (this.targeting.usingSelect) this.updateTargetHTML();
+        if (this.targeting.usingSelect && this.parent.id) this.updateTargetHTML();
     }, 50);
 
     /**
@@ -270,6 +274,13 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
                 else {
                     source.damage.resources[key] = getRoll(key);
                 }
+            }
+        }
+
+        for (const key of Object.keys(source.targetSaves)) {
+            const saveData = source.targetSaves[key];
+            if (typeof saveData === 'number') {
+                source.targetSaves[key] = { value: saveData, isCritical: false };
             }
         }
 
