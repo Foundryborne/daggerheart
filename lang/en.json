@@ -2045,8 +2045,11 @@
         },
         "EPHEMERAL": {
             "FIELDS": {
+                "type": { "label": "Ephemeral Applies On" },
                 "bonusValue": { "label": "Bonus Value" },
-                "effects": { "label": "Effects" }
+                "effectData": {
+                    "applyOnSuccessfullSave": { "label": "Apply Effects On Successfull Save" }
+                }
             },
             "Name": {
                 "single": "Ephemeral",
@@ -2058,6 +2061,9 @@
             "Types": {
                 "roll": "Roll",
                 "damage": "Damage"
+            },
+            "Timing": {
+                "duringRoll": "During Roll"
             },
             "multipleCostsLabel": "Multiple",
             "addNewCostTitle": "New Cost"

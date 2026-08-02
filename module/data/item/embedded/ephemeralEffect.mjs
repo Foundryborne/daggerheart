@@ -32,10 +32,30 @@ export default class EphemeralEffect extends foundry.abstract.DataModel {
                     required: true, 
                     integer: true, min: 1, 
                     initial: 1 
+                }),
+                scalable: new fields.BooleanField({
+                    label: 'DAGGERHEART.GENERAL.scalable',
+                    required: true,
+                    nullable: false,
+                    initial: false
+                }),
+                step: new fields.NumberField({
+                    label: 'DAGGERHEART.GENERAL.step',
+                    nullable: true,
+                    integer: true,
+                    initial: null,
+                    step: 1
                 })
             })),
+            timing: new fields.StringField({
+                label: 'DAGGERHEART.EPHEMERAl.FIELDS.timing.label',
+                required: true,
+                nullable: false,
+                choices: CONFIG.DH.EPHEMERAL.EphemeralTiming,
+                initial: CONFIG.DH.EPHEMERAL.EphemeralTiming.duringRoll.id
+            }),
             type: new fields.StringField({ 
-                label: 'DAGGERHEART.GENERAL.type',
+                label: 'DAGGERHEART.EPHEMERAL.FIELDS.type.label',
                 required: true, 
                 nullable: false, 
                 choices: CONFIG.DH.EPHEMERAL.EphemeralType, 
@@ -45,7 +65,18 @@ export default class EphemeralEffect extends foundry.abstract.DataModel {
                 label: 'DAGGERHEART.EPHEMERAL.FIELDS.bonusValue.label',
                 deterministic: false
             }),
-            effects: new fields.ArrayField(new fields.StringField({ required: true, nullable: false }))
+            effectData: new fields.SchemaField({
+                applyOnSuccessfullSave: new fields.BooleanField({ 
+                    label: 'DAGGERHEART.EPHEMERAL.FIELDS.effectData.applyOnSuccessfullSave.label',
+                    required: true, 
+                    nullable: false, 
+                    initial: false 
+                }), 
+                effects: new fields.ArrayField(new fields.SchemaField({
+                    id: new fields.StringField({ required: true, nullable: false }),
+                    uuid: new fields.StringField({ required: true, nullable: false })
+                }))
+            })
         }
     }
 

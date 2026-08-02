@@ -9,7 +9,29 @@
         </legend>
 
         {{#each ephemeral.costs as | cost index |}}
-            <a data-action="removeCost" data-index="{{index}}"><i class="fa-solid fa-trash"></i></a>
+            <div class="cost-container">
+                <div class="cost-inner-container">
+                    {{formField ../fields.costs.element.fields.value value=cost.value name=(concat ../updatePath "costs." index ".value") localize=true}}
+                    {{formField ../fields.costs.element.fields.scalable value=cost.scalable name=(concat ../updatePath "costs." index ".scalable") localize=true classes="small" }}
+                    {{formField ../fields.costs.element.fields.step value=cost.step name=(concat ../updatePath "costs." index ".step") disabled=(not cost.scalable) localize=true }}
+                </div>
+                <a data-action="removeCost" data-index="{{index}}"><i class="fa-solid fa-trash"></i></a>
+            </div>
+        {{/each}}
+    </fieldset>
+
+    <fieldset>
+        <legend>
+            {{localize "DAGGERHEART.GENERAL.Effect.single"}}
+            <a data-action="addEffect"><i class="fa-solid fa-plus"></i></a>
+        </legend>
+
+        {{formField ../fields.effectData.fields.applyOnSuccessfullSave value=ephemeral.effectData.applyOnSuccessfullSave name=(concat ../updatePath "effectData.applyOnSuccessfullSave") localize=true}}
+        {{#each effects}}
+            <div class="effect-container" data-action="editEffect" data-effect-id="{{id}}">
+                {{name}}
+                <a data-action="removeEffect"><i class="fa-solid fa-trash"></i></a>
+            </div>
         {{/each}}
     </fieldset>
 </div>

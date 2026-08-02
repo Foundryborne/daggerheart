@@ -21,7 +21,10 @@ export default class DHEphemeralSettings extends HandlebarsApplicationMixin(Appl
         actions: {
             editImage: DHEphemeralSettings.#onEditImage,
             addCost: DHEphemeralSettings.#onAddCost,
-            removeCost: DHEphemeralSettings.#onRemoveCost
+            removeCost: DHEphemeralSettings.#onRemoveCost,
+            addEffect: DHEphemeralSettings.#onAddEffect,
+            removeEffect: DHEphemeralSettings.#onRemoveEffect,
+            editEffect: DHEphemeralSettings.#onEditEffect
         },
         form: {
             handler: this.updateForm,
@@ -47,6 +50,10 @@ export default class DHEphemeralSettings extends HandlebarsApplicationMixin(Appl
         context.fields = this.item.system.schema.fields.ephemeralEffects.element.fields;
         context.ephemeral = this.ephemeral;
         context.updatePath = `system.ephemeralEffects.${this.ephemeralIndex}.`;
+        
+        context.availableEffects = this.item.effects.filter(x => 
+            !this.ephemeral.effectData.effects.some(data => data.id === x.id));
+        context.effects = this.ephemeral.effectData.effects.map(x => this.item.effects.get(x.id));
 
         return context;
     }
@@ -66,7 +73,13 @@ export default class DHEphemeralSettings extends HandlebarsApplicationMixin(Appl
         const updateData = foundry.utils.mergeObject({ 
             system: {
                 ephemeralEffects: this.item.toObject().system.ephemeralEffects.reduce((acc, curr, index) => {
-                    acc[index] = curr;
+                    acc[index] = {
+                        ...curr,
+                        costs: curr.costs.reduce((acc, cost, index) => {
+                            acc[index] = cost;
+                            return acc;
+                        }, {})
+                    };
                     return acc;
                 }, {})
             }  
@@ -162,5 +175,30 @@ export default class DHEphemeralSettings extends HandlebarsApplicationMixin(Appl
         this.updateItem({ [updatePath]:
             this.ephemeral.costs.filter((_, index) => index !== Number(button.dataset.index))
         });
+    }
+
+    static async #onAddEffect() {
+        const created = await this.item.createEmbeddedDocuments('ActiveEffect', [
+            game.system.api.data.activeEffects.BaseEffect.getDefaultObject({ transfer: false })
+        ]);
+
+        const updatePath = `system.ephemeralEffects.${this.ephemeralIndex}.effectData.effects`;
+        this.updateItem({ [updatePath]: [
+            ...this.ephemeral.effectData.effects, 
+            { id: created[0].id, uuid: created[0].uuid }
+        ]});
+    }
+
+    static #onRemoveEffect(_, button) {
+        const effectId = button.closest('[data-effect-id]').dataset.effectId;
+        const updatePath = `system.ephemeralEffects.${this.ephemeralIndex}.effectData.effects`;
+
+        this.updateItem({ [updatePath]: this.ephemeral.effectData.effects.filter(x => x.id !== effectId) });
+        this.item.deleteEmbeddedDocuments('ActiveEffect', [effectId]);
+    }
+
+    static #onEditEffect(_, button) {
+        const effectId = button.closest('[data-effect-id]').dataset.effectId;
+        this.item.effects.get(effectId).sheet.render(true);
     }
 }

@@ -57,7 +57,8 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             damageOptions: new fields.ObjectField(),
             costs: new fields.ArrayField(new fields.ObjectField()),
             uses: new fields.ObjectField(),
-            successConsumed: new fields.BooleanField({ initial: false })
+            successConsumed: new fields.BooleanField({ initial: false }),
+            appliedEphemerals: new fields.ArrayField(new fields.StringField())
         };
     }
 

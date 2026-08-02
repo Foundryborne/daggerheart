@@ -169,6 +169,13 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
                     ability: game.i18n.localize(abilities[this.config.roll.trait]?.label)
                 });
         }
+
+        const selectedEphemerals = this.config.ephemerals.filter(x => x.selected);
+        if (selectedEphemerals.length) {
+            this.config.appliedEphemerals = selectedEphemerals.map(x => x.id);
+            this.config.hasEffect = true;
+        }
+
         this.config.extraFormula = rest.extraFormula;
         this.render();
     }

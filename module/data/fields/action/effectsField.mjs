@@ -33,7 +33,11 @@ export default class EffectsField extends fields.ArrayField {
         if (EffectsField.getAutomation() || force) {
             targets ??= 
                 (config.targets ?? message.system?.targets).filter(t => !config.hasRoll || t.hitResult?.success);
-            EffectsField.applyEffects.call(this, targets);
+            const ephemeralEffects = config.appliedEphemerals?.map(e => e.effectData.effects.map(x => ({
+                uuid: x.uuid,
+                onSave: config.appliedEphemerals.effectData.applyOnSuccessfullSave
+            }))) ?? [];
+            EffectsField.applyEffects.call(this, targets, ephemeralEffects);
         }
     }
 
@@ -42,11 +46,11 @@ export default class EffectsField extends fields.ArrayField {
      * Must be called within Action context or similar.
      * @param {object[]} targets Array of formatted targets
      */
-    static async applyEffects(targets) {
-        if (!this.effects?.length || !targets?.length) return;
+    static async applyEffects(targets, ephemeralEffects) {
+        let effects = [...(this.effects ?? []), ...ephemeralEffects.map(x => ({ ...x, ephemeral: true }))];
+        if (!effects.length || !targets?.length) return;
 
         const conditions = CONFIG.DH.GENERAL.conditions();
-        let effects = this.effects;
         const messageTargets = [];
         for (const baseToken of targets) {
             if (this.hasSave && baseToken.saveResult?.success === true) 
@@ -73,7 +77,8 @@ export default class EffectsField extends fields.ArrayField {
             });
 
             for (const e of effects) {
-                const effect = (this.item.applyEffects ?? this.item.effects).get(e._id);
+                const effect = e.ephemeral ? 
+                    await foundry.utils.fromUuid(e.uuid) : (this.item.applyEffects ?? this.item.effects).get(e._id);
                 if (token.actor && effect) {
                     await EffectsField.applyEffect(effect, token.actor);
                 }
