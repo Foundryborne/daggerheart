@@ -1,3 +1,4 @@
+import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
 import { emitGMUpdate, emitGMCreate, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 
 export default class DhpChatMessage extends foundry.documents.ChatMessage {
@@ -184,6 +185,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         if (this.system.action) {
             const actor = await foundry.utils.fromUuid(config.source.actor);
             const item = actor?.items.get(config.source.item) ?? null;
+            config.resourceUpdates = new ResourceUpdateMap(actor);
             config.effects = await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(actor, item);
             config.ephemerals = await game.system.api.data.actions.actionsTypes.base.getActionRelevantEphemerals(
                 actor, 
@@ -191,6 +193,8 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                 { isDamage: true }
             );
             await this.system.action.workflow.get('damage')?.execute(config, this._id, true);
+            await this.system.action.workflow.get('cost')?.execute(config);
+            config.resourceUpdates.updateResources();
         }
     }
 

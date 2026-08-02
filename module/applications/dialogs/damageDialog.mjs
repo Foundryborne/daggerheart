@@ -40,6 +40,10 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         }
     };
 
+    get actor() {
+        return this.config?.data?.parent;
+    }
+
     /** @override */
     static PARTS = {
         damageSelection: {
@@ -80,6 +84,24 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
 
         context.damageOptions = this.config.damageOptions;
         context.rangeOptions = CONFIG.DH.GENERAL.groupAttackRange;
+
+        if (this.config.costs?.length) {
+            const updatedCosts = game.system.api.fields.ActionFields.CostField.calcCosts.call(
+                this.action ?? { actor: this.actor },
+                this.config.costs
+            );
+            context.costs = updatedCosts.map(x => ({
+                ...x,
+                label: x.itemId
+                    ? this.action.parent.parent.name
+                    : game.i18n.localize(CONFIG.DH.GENERAL.abilityCosts[x.key].label)
+            }));
+            context.canRoll = game.system.api.fields.ActionFields.CostField.hasCost.call(
+                this.action ?? { actor: this.actor },
+                updatedCosts
+            );
+            this.config.data.scale = this.config.costs[0].total;
+        }
 
         return context;
     }

@@ -225,7 +225,11 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                         );
 
                     config.hasRoll = false;
-                    return action && action.workflow.get('damage').execute(config, null, true);
+                    if (action) {
+                        await action.workflow.get('damage').execute(config, null, true);
+                        await action.workflow.get('cost').execute(config);
+                        config.resourceUpdates.updateResources();
+                    }
                 }
             },
             {

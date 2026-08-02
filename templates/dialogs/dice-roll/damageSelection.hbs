@@ -107,6 +107,10 @@
         </fieldset>
     {{/unless}}
 
+    {{#if costs}}
+        {{> 'systems/daggerheart/templates/dialogs/dice-roll/costSelection.hbs'}}
+    {{/if}}
+
     <div class="damage-section-controls">
         {{#if directDamage}}
             <select class="roll-mode-select" name="selectedMessageMode">
