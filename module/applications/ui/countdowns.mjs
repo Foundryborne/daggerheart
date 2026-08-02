@@ -140,9 +140,10 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         const values = Object.entries(setting.countdowns).map(([key, countdown]) => ({
             key,
             countdown,
-            ownership: countdown.getUserLevel(game.user)
+            ownership: countdown.getUserLevel(game.user),
+            hidden: countdown.hidden && !game.user.isGM
         }));
-        return values.filter(v => v.ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE);
+        return values.filter(v => v.ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE && v.hidden == false);
     }
 
     _getCountdownData() {
@@ -173,6 +174,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                 ...countdown,
                 editable: countdownEditable,
                 noPlayerAccess: nonGmPlayers.length && playersWithAccess.length === 0,
+                hidden: countdown.hidden,
                 shouldLoop: isLooping && countdown.progress.current === 0 && countdown.progress.start > 0,
                 loopDisabled: isLooping ? loopDisabled : null,
                 loopTooltip: isLooping && game.i18n.localize(loopTooltip)
@@ -373,6 +375,26 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         }
 
         return [
+            {
+                label: 'DAGGERHEART.UI.Countdowns.reveal',
+                icon: 'fa-solid fa-eye',
+                visible: element => {
+                    return getCountdownFromElement(element).hidden && game.user.isGM
+                },
+                onClick: (_, target) => {
+                    getCountdownFromElement(target)?.toggleVisibility();
+                }
+            },
+            {
+                label: 'DAGGERHEART.UI.Countdowns.hide',
+                icon: 'fa-solid fa-eye-slash',
+                visible: element => {
+                    return !getCountdownFromElement(element).hidden && game.user.isGM
+                },
+                onClick: (_, target) => {
+                    getCountdownFromElement(target)?.toggleVisibility();
+                }
+            },
             {
                 label: 'CONTROLS.CommonDelete',
                 icon: 'fa-solid fa-trash',
