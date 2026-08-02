@@ -128,7 +128,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
      * @returns {TargetData[]}
      */
     _getCurrentTargets() {
-        if (!this.targeting.usingSelect) return this.targets.map(t => getTargetData(t, this.parent));
+        if (!this.targeting.usingSelect) return this.targets.map(t => getTargetData(t, this));
 
         return (canvas.tokens?.controlled ?? []).map(token => ({
             id: token.id,
