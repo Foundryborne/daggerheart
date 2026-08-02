@@ -149,7 +149,7 @@ export default class DHRoll extends BaseRoll {
                 speaker: cls.getSpeaker({ actor: roll.data?.parent }),
                 sound: config.mute ? null : CONFIG.sounds.dice,
                 system: { 
-                    ...config, 
+                    ...foundry.utils.deepClone(config), 
                     actionDescription,
                     reloadCheckValue: reloadResult.rollValue 
                 },

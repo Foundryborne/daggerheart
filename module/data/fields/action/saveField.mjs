@@ -46,6 +46,14 @@ export default class SaveField extends fields.SchemaField {
         if (SaveField.getAutomation() !== CONFIG.DH.SETTINGS.actionAutomationChoices.never.id || force) {
             targets ??= config.targets.filter(t => !config.hasRoll || t.hitResult?.success);
             await SaveField.rollAllSave.call(this, targets, config.event, message);
+            
+            /* Update config with the saveRoll results, could probably be done in a neater way */
+            for (const target of config.targets) {
+                const saveData = message.system.targetSaves[target.id];
+                const saveSuccessfull = saveData === undefined ? false : 
+                    saveData.isCritical || (saveData.value >= (this.save.difficulty ?? this.actor?.system.difficulty));
+                target.saveResult = { success: saveSuccessfull };
+            }
         } else return;
     }
 
@@ -66,7 +74,7 @@ export default class SaveField extends fields.SchemaField {
                         const actor = fromUuidSync(target.actorId);
                         if (actor) {
                             const rollSave =
-                                game.user === actor.owner
+                                game.user.id === actor.owner.id
                                     ? SaveField.rollSave.call(this, actor, event)
                                     : actor.owner.query('reactionRoll', {
                                         actionId: this.uuid,
@@ -127,7 +135,7 @@ export default class SaveField extends fields.SchemaField {
 
         const chatMessage = ui.chat.collection.get(message._id);
         await chatMessage.update({
-            [`system.targetSaves.${targetId}`]: result.roll.total
+            [`system.targetSaves.${targetId}`]: { value: result.roll.total, isCritical: result.roll.isCritical }
         });
     }
 
