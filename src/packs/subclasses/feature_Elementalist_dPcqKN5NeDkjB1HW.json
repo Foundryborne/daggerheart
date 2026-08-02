@@ -7,170 +7,58 @@
   "system": {
     "description": "<p>Choose one of the following elements at character creation: air, earth, fire, lightning, water.</p><p>You can shape this element into harmless effects. Additionally, <strong>spend a Hope</strong> and describe how your control over this element helps an action roll you’re about to make, then either gain a +2 bonus to the roll or a +3 bonus to the roll’s damage.</p>",
     "resource": null,
-    "actions": {
-      "rxuFLfHP1FILDpds": {
-        "type": "effect",
-        "_id": "rxuFLfHP1FILDpds",
-        "systemPath": "actions",
-        "description": "<p>S<strong>pend a Hope</strong> and describe how your control over this element helps an action roll you’re about to make, gain a +2 bonus to the roll.</p>",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [
-          {
-            "key": "hope",
-            "value": 1,
-            "scalable": false,
-            "step": null,
-            "consumeOnSuccess": false
-          }
-        ],
-        "uses": {
-          "value": null,
-          "max": "",
-          "recovery": null,
-          "consumeOnSuccess": false
-        },
-        "effects": [
-          {
-            "_id": "EY87mY6ULfIt3XC8",
-            "onSave": false
-          }
-        ],
-        "target": {
-          "type": "self",
-          "amount": null
-        },
-        "name": "Bonus to Roll",
-        "img": "icons/sundries/gaming/dice-runed-tan.webp",
-        "range": "self"
-      },
-      "S7HvFD3qIR3ifJRL": {
-        "type": "effect",
-        "_id": "S7HvFD3qIR3ifJRL",
-        "systemPath": "actions",
-        "description": "<p>S<strong>pend a Hope</strong> and describe how your control over this element helps an action roll you’re about to make, gain a +3 bonus to the roll’s damage.</p>",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [
-          {
-            "key": "hope",
-            "value": 1,
-            "scalable": false,
-            "step": null,
-            "consumeOnSuccess": false
-          }
-        ],
-        "uses": {
-          "value": null,
-          "max": "",
-          "recovery": null,
-          "consumeOnSuccess": false
-        },
-        "effects": [
-          {
-            "_id": "WwibpgaO6Kkks7aZ",
-            "onSave": false
-          }
-        ],
-        "target": {
-          "type": "self",
-          "amount": null
-        },
-        "name": "Bonus to Damage",
-        "img": "icons/sundries/gaming/dice-runed-tan.webp",
-        "range": "self"
-      }
-    },
+    "actions": {},
     "originItemType": null,
     "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 22,
       "artist": ""
-    }
-  },
-  "effects": [
-    {
-      "name": "Bonus to Roll",
-      "img": "icons/magic/fire/flame-burning-hand-white.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.dPcqKN5NeDkjB1HW",
-      "transfer": false,
-      "_id": "EY87mY6ULfIt3XC8",
-      "type": "base",
-      "system": {
-        "changes": [
-          {
-            "key": "system.bonuses.roll.action.bonus",
-            "type": "add",
-            "value": "+2",
-            "priority": null
-          }
-        ]
-      },
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "description": "<p>+2 to an action roll</p>",
-      "tint": "#ffffff",
-      "statuses": [],
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "_key": "!items.effects!dPcqKN5NeDkjB1HW.EY87mY6ULfIt3XC8"
     },
-    {
-      "name": "Bonus to Damage",
-      "img": "icons/magic/fire/flame-burning-hand-white.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.dPcqKN5NeDkjB1HW",
-      "transfer": false,
-      "_id": "WwibpgaO6Kkks7aZ",
-      "type": "base",
-      "system": {
-        "changes": [
+    "ephemeralEffects": [
+      {
+        "id": "CgWBDlmKVWsI7iis",
+        "name": "Elementalist",
+        "img": "icons/magic/fire/flame-burning-hand-white.webp",
+        "costs": [
           {
-            "key": "system.bonuses.damage.magical.bonus",
-            "type": "add",
-            "value": "+3",
-            "priority": null
-          },
-          {
-            "key": "system.bonuses.damage.physical.bonus",
-            "type": "add",
-            "value": "+3",
-            "priority": null
+            "type": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null
           }
-        ]
+        ],
+        "timing": "duringRoll",
+        "type": "roll",
+        "effectData": {
+          "applyOnSuccessfullSave": false,
+          "effects": []
+        },
+        "bonusValue": "2"
       },
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "description": "<p>+3 to damage</p>",
-      "tint": "#ffffff",
-      "statuses": [],
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "_key": "!items.effects!dPcqKN5NeDkjB1HW.WwibpgaO6Kkks7aZ"
-    }
-  ],
+      {
+        "id": "NrvCAqzHhMi92auo",
+        "name": "Elementalist",
+        "img": "icons/magic/fire/flame-burning-hand-white.webp",
+        "costs": [
+          {
+            "type": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "timing": "duringRoll",
+        "type": "damage",
+        "effectData": {
+          "applyOnSuccessfullSave": false,
+          "effects": []
+        },
+        "bonusValue": "3"
+      }
+    ]
+  },
+  "effects": [],
   "sort": 0,
   "ownership": {
     "default": 0,

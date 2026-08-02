@@ -7,70 +7,7 @@
   "system": {
     "description": "<p>When you succeed on an attack against a target within Melee range, you can <strong>mark a Stress</strong> to kick yourself off them, dealing an extra <strong>2d6</strong> damage and knocking back either yourself or the target to Very Close range.</p>",
     "resource": null,
-    "actions": {
-      "bXbQ57CB1Hfj5XrS": {
-        "type": "damage",
-        "_id": "bXbQ57CB1Hfj5XrS",
-        "systemPath": "actions",
-        "description": "<p>When you succeed on an attack against a target within Melee range, you can <strong>mark a Stress</strong> to kick yourself off them, dealing an extra <strong>2d6</strong> damage and knocking back either yourself or the target to Very Close range.</p>",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [
-          {
-            "scalable": false,
-            "key": "stress",
-            "value": 1,
-            "keyIsID": false,
-            "step": null,
-            "consumeOnSuccess": false
-          }
-        ],
-        "uses": {
-          "value": null,
-          "max": "",
-          "recovery": null
-        },
-        "damage": {
-          "parts": {
-            "hitPoints": {
-              "value": {
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                },
-                "multiplier": "flat",
-                "flatMultiplier": 2,
-                "dice": "d6",
-                "bonus": null
-              },
-              "applyTo": "hitPoints",
-              "type": [],
-              "base": false,
-              "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              }
-            }
-          },
-          "includeBase": false
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        },
-        "effects": [],
-        "name": "Deal Damage",
-        "img": "icons/skills/melee/shield-damaged-broken-gold.webp",
-        "range": "melee"
-      }
-    },
+    "actions": {},
     "originItemType": null,
     "subType": null,
     "originId": null,
@@ -78,7 +15,29 @@
       "source": "Daggerheart SRD",
       "page": 28,
       "artist": ""
-    }
+    },
+    "ephemeralEffects": [
+      {
+        "id": "gWPZiQg55Hm9M8IB",
+        "name": "Kick",
+        "img": "icons/skills/melee/shield-damaged-broken-gold.webp",
+        "costs": [
+          {
+            "type": "stress",
+            "value": 1,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "timing": "duringRoll",
+        "type": "damage",
+        "effectData": {
+          "applyOnSuccessfullSave": false,
+          "effects": []
+        },
+        "bonusValue": "2d6"
+      }
+    ]
   },
   "effects": [],
   "sort": 0,

@@ -13,7 +13,22 @@
       "source": "Daggerheart SRD",
       "page": 12,
       "artist": ""
-    }
+    },
+    "ephemeralEffects": [
+      {
+        "id": "lc8nZd24WFrPzMzv",
+        "name": "Pack Hunting",
+        "img": "icons/creatures/abilities/wolf-howl-moon-purple.webp",
+        "costs": [],
+        "timing": "duringRoll",
+        "type": "roll",
+        "effectData": {
+          "applyOnSuccessfullSave": false,
+          "effects": []
+        },
+        "bonusValue": "1d8"
+      }
+    ]
   },
   "effects": [],
   "folder": "uU8bIoZvXge0rLaU",

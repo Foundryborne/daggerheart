@@ -9,43 +9,35 @@
     "recallCost": 0,
     "level": 10,
     "type": "ability",
-    "actions": {
-      "Cb39VXOUPVWl3ea4": {
-        "type": "effect",
-        "_id": "Cb39VXOUPVWl3ea4",
-        "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">When you leverage your notoriety to get what you want, you can <strong>mark a Stress</strong> before you roll to gain a +10 bonus to the result. </p><p class=\"Body-Foundation\">This card doesn’t count against your loadout’s domain card maximum of 5 and can’t be placed in your vault.</p>",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [
-          {
-            "scalable": false,
-            "key": "stress",
-            "value": 1,
-            "step": null
-          }
-        ],
-        "uses": {
-          "value": null,
-          "max": "",
-          "recovery": null
-        },
-        "effects": [],
-        "target": {
-          "type": "any",
-          "amount": null
-        },
-        "name": "Gain Bonus",
-        "img": "icons/magic/light/explosion-star-glow-silhouette.webp",
-        "range": ""
-      }
-    },
+    "actions": {},
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 127,
       "artist": ""
     },
-    "loadoutIgnore": true
+    "loadoutIgnore": true,
+    "ephemeralEffects": [
+      {
+        "id": "eZtx8VvJExbEMyZQ",
+        "name": "Notorious",
+        "img": "icons/magic/control/mouth-smile-deception-purple.webp",
+        "costs": [
+          {
+            "type": "stress",
+            "value": 1,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "timing": "duringRoll",
+        "type": "roll",
+        "effectData": {
+          "applyOnSuccessfullSave": false,
+          "effects": []
+        },
+        "bonusValue": "10"
+      }
+    ]
   },
   "flags": {},
   "_id": "IqxzvvjZiYbgx21A",

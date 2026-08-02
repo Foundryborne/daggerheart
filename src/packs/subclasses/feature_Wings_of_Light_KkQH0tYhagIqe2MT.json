@@ -39,42 +39,6 @@
         "name": "Mark Stress",
         "img": "icons/magic/light/projectile-beam-yellow.webp",
         "range": ""
-      },
-      "1qjnoz5I7NqrWMkp": {
-        "type": "effect",
-        "_id": "1qjnoz5I7NqrWMkp",
-        "systemPath": "actions",
-        "description": "<p>Spend a Hope to deal an extra 1d8 damage on a successful attack.</p>",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [
-          {
-            "key": "hope",
-            "value": 1,
-            "scalable": false,
-            "step": null,
-            "consumeOnSuccess": false
-          }
-        ],
-        "uses": {
-          "value": null,
-          "max": "",
-          "recovery": null,
-          "consumeOnSuccess": false
-        },
-        "effects": [
-          {
-            "_id": "PfCwuVbKLxhnrm9X",
-            "onSave": false
-          }
-        ],
-        "target": {
-          "type": "self",
-          "amount": null
-        },
-        "name": "Spend Hope",
-        "img": "icons/magic/light/projectile-beam-yellow.webp",
-        "range": "self"
       }
     },
     "originItemType": null,
@@ -83,53 +47,31 @@
       "source": "Daggerheart SRD",
       "page": 21,
       "artist": ""
-    }
-  },
-  "effects": [
-    {
-      "name": "Wings of Light",
-      "img": "icons/magic/light/projectile-beam-yellow.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.KkQH0tYhagIqe2MT",
-      "transfer": false,
-      "_id": "PfCwuVbKLxhnrm9X",
-      "type": "base",
-      "system": {
-        "changes": [
+    },
+    "ephemeralEffects": [
+      {
+        "id": "diMxRjxJhDa1cCUG",
+        "name": "Wings Of Light",
+        "img": "icons/magic/light/projectile-beam-yellow.webp",
+        "costs": [
           {
-            "key": "system.bonuses.damage.physical.dice",
-            "type": "add",
-            "value": "+1d8",
-            "priority": null
-          },
-          {
-            "key": "system.bonuses.damage.magical.dice",
-            "type": "add",
-            "value": "+1d8",
-            "priority": null
+            "type": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null
           }
-        ]
-      },
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "description": "<p>Deal an extra 1d8 damage on a successful attack.</p>",
-      "tint": "#ffffff",
-      "statuses": [],
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "_key": "!items.effects!KkQH0tYhagIqe2MT.PfCwuVbKLxhnrm9X"
-    }
-  ],
+        ],
+        "timing": "duringRoll",
+        "type": "damage",
+        "effectData": {
+          "applyOnSuccessfullSave": false,
+          "effects": []
+        },
+        "bonusValue": "1d8"
+      }
+    ]
+  },
+  "effects": [],
   "sort": 0,
   "ownership": {
     "default": 0,
