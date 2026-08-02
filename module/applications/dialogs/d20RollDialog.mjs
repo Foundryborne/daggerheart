@@ -179,8 +179,8 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
 
         const defaultFaces =
             this.config.roll.advantage === 1
-                ? this.config.data.rules.roll.defaultAdvantageDice
-                : this.config.data.rules.roll.defaultDisadvantageDice;
+                ? this.config.data.rules.roll?.defaultAdvantageDice
+                : this.config.data.rules.roll?.defaultDisadvantageDice;
         const faces = Number.parseInt(defaultFaces);
         this.roll.advantageFaces = Number.isNaN(faces) ? this.roll.advantageFaces : faces;
 

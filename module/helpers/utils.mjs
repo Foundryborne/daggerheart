@@ -918,7 +918,7 @@ export async function getWorldActor(baseActor) {
  * @returns {TargetData}
  */
 export function getTargetData(target, data) {
-    const actor = target.actorId ? foundry.utils.fromUuidSync(target.actorId) : null;
+    const actor = data.actionActor;
 
     const toHitNumber = target.difficulty || target.evasion;
     const hitSuccessfull = (toHitNumber === null || !data.roll) ? false : 

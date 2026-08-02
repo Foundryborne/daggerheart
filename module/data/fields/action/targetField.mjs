@@ -106,10 +106,7 @@ export default class TargetField extends fields.SchemaField {
             img: token.actor.img,
             difficulty: token.actor.system.difficulty,
             evasion: token.actor.system.evasion,
-            saved: {
-                value: null,
-                success: null
-            }
+            saveResult: { success: false }
         };
     }
 }

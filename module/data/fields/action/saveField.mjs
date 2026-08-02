@@ -46,6 +46,14 @@ export default class SaveField extends fields.SchemaField {
         if (SaveField.getAutomation() !== CONFIG.DH.SETTINGS.actionAutomationChoices.never.id || force) {
             targets ??= config.targets.filter(t => !config.hasRoll || t.hitResult?.success);
             await SaveField.rollAllSave.call(this, targets, config.event, message);
+            
+            /* Update config with the saveRoll results, could probably be done in a neater way */
+            for (const target of config.targets) {
+                const saveValue = message.system.targetSaves[target.id];
+                const saveSuccessfull = saveValue === undefined ? false : 
+                    saveValue >= (this.save.difficulty ?? this.actor?.system.difficulty);
+                target.saveResult = { success: saveSuccessfull };
+            }
         } else return;
     }
 
