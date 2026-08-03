@@ -20,36 +20,21 @@
         }
 
         .header-tools {
-            display: grid;
-            grid-template-columns: 2fr 1fr 144px;
-            gap: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
             .hide-tools {
                 white-space: nowrap;
                 flex-wrap: nowrap;
                 display: flex;
                 align-items: center;
-
-                input {
-                    position: relative;
-                    top: 2px;
-                }
+                gap: 4px;
             }
 
             .header-main-button {
                 height: 32px;
-                flex: 1;
-            }
-
-            .default-ownership-tools {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-
-                select {
-                    flex: 1;
-                    background: light-dark(@beige, @dark-blue);
-                }
+                width: 250px;
             }
         }
 

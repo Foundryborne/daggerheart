@@ -17,11 +17,11 @@ export default class CountdownField extends fields.ArrayField {
                 initial: game.i18n.localize('DAGGERHEART.APPLICATIONS.Countdown.newCountdown'),
                 label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.name.label'
             }),
-            defaultOwnership: new fields.NumberField({
+            hidden: new fields.BooleanField({
                 required: true,
-                choices: CONFIG.DH.GENERAL.simpleOwnershiplevels,
-                initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT,
-                label: 'DAGGERHEART.ACTIONS.Config.countdown.defaultOwnership'
+                nullable: false,
+                initial: false,
+                label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.hidden.label'
             })
         });
         super(element, options, context);
@@ -57,10 +57,6 @@ export default class CountdownField extends fields.ArrayField {
 
             data.countdowns[foundry.utils.randomID()] = {
                 ...countdown,
-                ownership: game.users.reduce((acc, curr) => {
-                    if (!curr.isGM) acc[curr.id] = countdown.defaultOwnership;
-                    return acc;
-                }, {}),
                 progress: {
                     ...countdown.progress,
                     current: countdownStart,

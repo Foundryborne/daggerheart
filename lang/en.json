@@ -462,6 +462,7 @@
                     "countdowns": {
                         "element": {
                             "name": { "label": "Name" },
+                            "hidden": { "label": "Hidden" },
                             "progress": {
                                 "current": { "label": "Current" },
                                 "looping": { "label": "Looping" },
@@ -502,7 +503,6 @@
                 "progressionType": "Progression",
                 "decreasing": "Decreasing",
                 "looping": "Looping",
-                "defaultOwnershipTooltip": "The default player ownership of countdowns",
                 "hideNewCountdowns": "Hide New Countdowns"
             },
             "CreateItemDialog": {
@@ -3171,8 +3171,7 @@
             "Countdowns": {
                 "title": "Countdowns",
                 "toggleIconMode": "Toggle Icon Only",
-                "noPlayerAccess": "No player has access to this countdown",
-                "hidden": "This countdown is hidden",
+                "hidden": "This countdown is hidden to other users",
                 "reveal":"Reveal Countdown",
                 "hide":"Hide Countdown",
                 "loop": "Looping",

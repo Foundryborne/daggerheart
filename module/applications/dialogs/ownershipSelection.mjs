@@ -1,12 +1,29 @@
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
+/**
+ * @typedef OwnershipOptions
+ * @property {number[]} ownershipOptions the options that will be shown as possible choices for each user
+ * @property {number} default The default ownership option the players will default to
+ * @property {number[]} defaultOwnershipOptions 
+ */
+
+/** A dialog for ownership selection */
 export default class OwnershipSelection extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(name, ownership, defaultOwnership) {
+    /**
+     * @param {string} name
+     * @param {Record<string, number>} options.ownership
+     * @param {OwnershipOptions} [options]
+     */
+    constructor(name, ownership, options = {}) {
         super({});
 
         this.name = name;
-        this.ownership = foundry.utils.deepClone(ownership);
-        this.defaultOwnership = defaultOwnership;
+        this.ownership = ownership;
+        this.ownershipOptions = options.ownershipOptions ?? [-1, 0, 2, 3]; // 1 isn't in our dictionary
+        this.default = options.default;
+        this.defaultOwnershipOptions = typeof options.default === 'number' || options.defaultOwnershipOptions 
+            ? options.defaultOwnershipOptions ?? this.ownershipOptions
+            : null;
     }
 
     static DEFAULT_OPTIONS = {
@@ -16,7 +33,7 @@ export default class OwnershipSelection extends HandlebarsApplicationMixin(Appli
             icon: 'fa-solid fa-users'
         },
         position: {
-            width: 600,
+            width: 450,
             height: 'auto'
         },
         form: { handler: this.updateData }
@@ -38,8 +55,17 @@ export default class OwnershipSelection extends HandlebarsApplicationMixin(Appli
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
-        context.ownershipOptions = CONFIG.DH.GENERAL.simpleOwnershiplevels;
-        context.defaultOwnership = this.defaultOwnership;
+        
+        // Get ownership options. becuase of the use of numbers, the base collection is not correctly ordered.
+        // So we have to redefine it ourselves in the correct order.
+        context.ownershipOptions = this.ownershipOptions.map(value => ({
+            value, 
+            label: CONFIG.DH.GENERAL.simpleOwnershiplevels[value].label
+        }));
+        context.defaultOwnershipOptions = this.defaultOwnershipOptions?.map(value => ({
+            value, 
+            label: CONFIG.DH.GENERAL.simpleOwnershiplevels[value].label
+        }));
         context.ownership = game.users.reduce((acc, user) => {
             if (!user.isGM) {
                 acc[user.id] = {
@@ -51,6 +77,7 @@ export default class OwnershipSelection extends HandlebarsApplicationMixin(Appli
 
             return acc;
         }, {});
+        context.default = this.default;
         context.showOwnership = Boolean(Object.keys(context.ownership).length);
 
         return context;
@@ -69,9 +96,16 @@ export default class OwnershipSelection extends HandlebarsApplicationMixin(Appli
         await super.close();
     }
 
-    static async configure(name, ownership, defaultOwnership) {
+    /**
+     * Creates a ownership selection dialog returns the result when resolved
+     * @param {string} name 
+     * @param {Record<string, number>} ownership
+     * @param {OwnershipOptions} options
+     * @returns {Promise<{ ownership: number; default?: number }>}
+     */
+    static async configure(name, ownership, options) {
         return new Promise(resolve => {
-            const app = new this(name, ownership, defaultOwnership);
+            const app = new this(name, ownership, options);
             app.addEventListener('close', () => resolve(app.saveData), { once: true });
             app.render({ force: true });
         });
