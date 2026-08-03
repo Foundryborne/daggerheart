@@ -23,12 +23,12 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
             icon: 'fa-solid fa-clock-rotate-left'
         },
         actions: {
-            addCountdown: CountdownEdit.#addCountdown,
-            toggleCountdownEdit: CountdownEdit.#toggleCountdownEdit,
-            editCountdownImage: CountdownEdit.#editCountdownImage,
-            editCountdownOwnership: CountdownEdit.#editCountdownOwnership,
-            randomiseCountdownStart: CountdownEdit.#randomiseCountdownStart,
-            removeCountdown: CountdownEdit.#removeCountdown
+            addCountdown: CountdownEdit.#onAddCountdown,
+            toggleCountdownEdit: CountdownEdit.#onToggleCountdownEdit,
+            editCountdownImage: CountdownEdit.#onEditCountdownImage,
+            editCountdownOwnership: CountdownEdit.#onEditCountdownOwnership,
+            randomiseCountdownStart: CountdownEdit.#onRandomiseCountdownStart,
+            removeCountdown: CountdownEdit.#onRemoveCountdown
         },
         form: { handler: this.updateData, submitOnChange: true }
     };
@@ -155,7 +155,11 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         });
     }
 
-    static #addCountdown() {
+    /** 
+     * @this CountdownEdit
+     * @type {import('@client/applications/_types.mjs').ApplicationClickAction}
+     */
+    static #onAddCountdown() {
         const id = foundry.utils.randomID();
         this.editingCountdowns.add(id);
         this.currentEditCountdown = id;
@@ -164,7 +168,11 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         });
     }
 
-    static #editCountdownImage(_, target) {
+    /** 
+     * @this CountdownEdit
+     * @type {import('@client/applications/_types.mjs').ApplicationClickAction}
+     */
+    static #onEditCountdownImage(_, target) {
         const countdown = this.data.countdowns[target.id];
         const fp = new foundry.applications.apps.FilePicker.implementation({
             current: countdown.img,
@@ -176,7 +184,11 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         return fp.browse();
     }
 
-    static #toggleCountdownEdit(_, button) {
+    /** 
+     * @this CountdownEdit
+     * @type {import('@client/applications/_types.mjs').ApplicationClickAction}
+     */
+    static #onToggleCountdownEdit(_, button) {
         const { countdownId } = button.dataset;
 
         const isEditing = this.editingCountdowns.has(countdownId);
@@ -189,7 +201,11 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         this.render();
     }
 
-    static async #editCountdownOwnership(_, button) {
+    /** 
+     * @this CountdownEdit
+     * @type {import('@client/applications/_types.mjs').ApplicationClickAction}
+     */
+    static async #onEditCountdownOwnership(_, button) {
         const countdown = this.data.countdowns[button.dataset.countdownId];
         const data = await game.system.api.applications.dialogs.OwnershipSelection.configure(
             countdown.name,
@@ -201,7 +217,11 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         this.updateSetting({ [`countdowns.${button.dataset.countdownId}`]: data });
     }
 
-    static async #randomiseCountdownStart(_, button) {
+    /** 
+     * @this CountdownEdit
+     * @type {import('@client/applications/_types.mjs').ApplicationClickAction}
+     */
+    static async #onRandomiseCountdownStart(_, button) {
         const countdown = this.data.countdowns[button.dataset.countdownId];
         const roll = await new Roll(countdown.progress.startFormula).roll();
         const message = await roll.toMessage({ title: 'Countdown' });
@@ -216,7 +236,11 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         this.render();
     }
 
-    static async #removeCountdown(event, button) {
+    /** 
+     * @this CountdownEdit
+     * @type {import('@client/applications/_types.mjs').ApplicationClickAction}
+     */
+    static async #onRemoveCountdown(event, button) {
         const { countdownId } = button.dataset;
 
         if (!event.shiftKey) {
