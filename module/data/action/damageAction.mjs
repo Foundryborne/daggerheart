@@ -19,6 +19,27 @@ export default class DHDamageAction extends DHBaseAction {
     }
 
     /**
+     * @param {boolean} successfull 
+     * @param {boolean} withHope
+     * @returns {{ main: DHDamageData, resources: { key: string, value: DHResourceData } }}
+     */
+    getDamageOutcome(successfull, withHope) {
+        const outcome = { main: this.damage.main, resources: this.damage.resources };
+
+        if (successfull && withHope && this.altOutcomes.successHope) {
+            outcome.resources = this.altOutcomes.successHope.resources;
+        } else if (successfull && !withHope && this.altOutcomes.successFear) {
+            outcome.resources = this.altOutcomes.successFear.resources;
+        } else if (!successfull && withHope && this.altOutcomes.failureHope) {
+            outcome.resources = this.altOutcomes.failureHope.resources;
+        } else if (!successfull && !withHope && this.altOutcomes.failureFear){
+            outcome.resources = this.altOutcomes.failureFear.resources;
+        }
+
+        return outcome;
+    }
+
+    /**
      * Return a display ready damage formula string
      * @returns Formula string
      */
