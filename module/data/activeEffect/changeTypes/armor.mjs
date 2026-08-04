@@ -135,16 +135,6 @@ export default class ArmorChange extends foundry.abstract.DataModel {
         };
     }
 
-    static getDefaultArmorEffect() {
-        return {
-            name: game.i18n.localize('DAGGERHEART.EFFECTS.ChangeTypes.armor.newArmorEffect'),
-            img: 'icons/equipment/chest/breastplate-helmet-metal.webp',
-            system: {
-                changes: [ArmorChange.getInitialValue()]
-            }
-        };
-    }
-
     /* Helpers */
 
     getArmorData() {

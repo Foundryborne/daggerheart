@@ -1,5 +1,6 @@
 import autocomplete from 'autocompleter';
 
+const { FormDataExtended } = foundry.applications.ux;
 export default class DhActiveEffectConfig extends foundry.applications.sheets.ActiveEffectConfig {
     constructor(options) {
         super(options);
@@ -151,20 +152,16 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             });
         });
 
-        htmlElement
-            .querySelector('.stacking-change-checkbox')
+        htmlElement.querySelector('.stacking-change-checkbox')
             ?.addEventListener('change', this.stackingChangeToggle.bind(this));
 
-        htmlElement
-            .querySelector('.range-dependence-change-checkbox')
+        htmlElement.querySelector('.range-dependence-change-checkbox')
             ?.addEventListener('change', this.rangeDependenceChangeToggle.bind(this));
 
-        htmlElement
-            .querySelector('.armor-change-checkbox')
-            ?.addEventListener('change', this.armorChangeToggle.bind(this));
+        for (const element of htmlElement.querySelectorAll('.typed-change-checkbox'))
+            element.addEventListener('change', this.typedChangeToggle.bind(this));
 
-        htmlElement
-            .querySelector('.armor-damage-thresholds-checkbox')
+        htmlElement.querySelector('.armor-damage-thresholds-checkbox')
             ?.addEventListener('change', this.armorDamageThresholdToggle.bind(this));
     }
 
@@ -203,7 +200,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                 }));
                 break;
             case 'changes':
-                const singleTypes = ['armor'];
+                const singleTypes = ['armor', 'standardAttack'];
                 const typedChanges = context.source.changes.reduce((acc, change, index) => {
                     if (singleTypes.includes(change.type)) {
                         acc[change.type] = { ...change, index };
@@ -242,19 +239,20 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         return this.submit({ updateData: { system: systemData } });
     }
 
-    armorChangeToggle(event) {
+    typedChangeToggle(event) {
+        const { type, index } = event.target.dataset;
         if (event.target.checked) {
-            this.addArmorChange();
+            this.addTypedChange(game.system.api.data.activeEffects.changeTypes[type]);
         } else {
-            this.removeTypedChange(event.target.dataset.index);
+            this.removeTypedChange(index);
         }
     }
 
     /* Could be generalised if needed later */
-    addArmorChange() {
+    addTypedChange(changeType) {
         const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
         const changes = Object.values(submitData.system?.changes ?? {});
-        changes.push(game.system.api.data.activeEffects.changeTypes.armor.getInitialValue());
+        changes.push(changeType.getInitialValue());
         return this.submit({ updateData: { system: { changes } } });
     }
 

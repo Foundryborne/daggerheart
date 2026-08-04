@@ -2009,12 +2009,22 @@
             },
             "ChangeTypes": {
                 "armor": {
-                    "newArmorEffect": "Armor Effect",
                     "FIELDS": {
                         "interaction": {
                             "label": "Armor Interaction",
                             "hint": "Does the character wearing armor suppress this effect?"
                         }
+                    }
+                },
+                "standardAttack": {
+                    "name": "Standard Attack",
+                    "FIELDS": {
+                        "damageFormula": "Damage Formula",
+                        "damageTypes": "Damage Types",
+                        "attackRange": "Attack Range",
+                        "img": "Attack Image",
+                        "name": "Attack Name",
+                        "trait": "Attack Trait"
                     }
                 }
             },
@@ -2487,6 +2497,7 @@
             "missingX": "Missing {x}",
             "maxWithThing": "Max {thing}",
             "missingDragDropThing": "Drop {thing} here",
+            "mode": "Mode",
             "multiclass": "Multiclass",
             "name": "Name",
             "newCategory": "New Category",

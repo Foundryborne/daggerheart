@@ -86,5 +86,32 @@
                 }
             }
         }
+
+        .typed-change-container {
+            display: flex;
+            flex-direction: column;
+
+            .two-columns {
+                width: 100%;
+            }
+
+            .form-group {
+                display: block;
+            }
+
+            label {
+                line-height: normal;
+                color: inherit;
+            }
+
+            file-picker {
+                input {
+                    &:hover {
+                        outline: none;
+                        background: inherit;
+                    }
+                }
+            }
+        }
     }
 }

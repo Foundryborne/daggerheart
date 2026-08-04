@@ -1059,6 +1059,9 @@ export const activeEffectModes = {
         priority: 20,
         label: 'TYPES.ActiveEffect.armor'
     },
+    standardAttack: {
+        id: 'standardAttack'
+    },
     ...baseActiveEffectModes
 };
 
