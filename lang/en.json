@@ -3171,7 +3171,8 @@
             "Countdowns": {
                 "title": "Countdowns",
                 "toggleIconMode": "Toggle Icon Only",
-                "hidden": "This countdown is set to Hidden. {nr} players can see it.",
+                "hidden": "This countdown is hidden to all players.",
+                "hiddenPartial": "This countdown is hidden to players except {players}.",
                 "reveal":"Reveal Countdown",
                 "hide":"Hide Countdown",
                 "loop": "Looping",
