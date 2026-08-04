@@ -52,9 +52,11 @@
     "motivesAndTactics": "Follow orders, gang up, survive",
     "resources": {
       "hitPoints": {
+        "value": 0,
         "max": 1
       },
       "stress": {
+        "value": 0,
         "max": 1
       }
     },
@@ -64,48 +66,118 @@
       "range": "veryClose",
       "roll": {
         "bonus": 0,
-        "type": "attack"
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
       },
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "custom": {
-                "enabled": true,
-                "formula": "6"
-              },
-              "multiplier": "flat",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null
+        "main": {
+          "value": {
+            "custom": {
+              "enabled": true,
+              "formula": "6"
             },
-            "applyTo": "hitPoints",
-            "type": [
-              "physical"
-            ],
-            "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "base": false
-          }
-        }
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null
+          },
+          "applyTo": "hitPoints",
+          "type": [
+            "physical"
+          ],
+          "resultBased": false,
+          "valueAlt": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
+        },
+        "resources": {}
       },
       "type": "attack",
-      "chatDisplay": false
+      "chatDisplay": false,
+      "_id": "2cGK3ocL0YaJROB5",
+      "systemPath": "actions",
+      "baseAction": false,
+      "description": "",
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "actionType": "action",
+      "triggers": [],
+      "areas": [],
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null,
+        "consumeOnSuccess": false
+      },
+      "target": {
+        "type": "any",
+        "amount": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 85,
       "artist": ""
     },
-    "size": "medium"
+    "size": "medium",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "criticalThreshold": 20,
+    "damageThresholds": {
+      "major": 0,
+      "severe": 0
+    },
+    "rules": {
+      "conditionImmunities": {
+        "hidden": false,
+        "restrained": false,
+        "vulnerable": false
+      },
+      "damageReduction": {
+        "thresholdImmunities": {
+          "minor": false
+        },
+        "reduceSeverity": {
+          "magical": 0,
+          "physical": 0
+        }
+      },
+      "attack": {
+        "damage": {
+          "hpDamageMultiplier": 1,
+          "hpDamageTakenMultiplier": 1
+        }
+      }
+    }
   },
   "flags": {},
   "_id": "99TqczuQipBmaB8i",
@@ -216,7 +288,11 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false,
+        "featureForm": "passive"
       },
       "_id": "DgzY4TV3FrxDvhhY",
       "img": "icons/magic/symbols/runes-carved-stone-yellow.webp",
@@ -301,7 +377,40 @@
               },
               "includeBase": false,
               "direct": false,
-              "groupAttack": "close"
+              "groupAttack": "close",
+              "main": {
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": true,
+                    "formula": "6"
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "base": false,
+                "type": [
+                  "physical"
+                ],
+                "includeBase": false,
+                "direct": false,
+                "groupAttack": "close",
+                "fullRestore": false
+              },
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -329,12 +438,16 @@
               "damageMod": "none"
             },
             "name": "Spend Fear",
-            "range": ""
+            "range": "",
+            "areas": []
           }
         },
         "originItemType": null,
         "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "MWfKUGzT1YBmLvpn",
       "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",

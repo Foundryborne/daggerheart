@@ -42,6 +42,10 @@ export default class DhCountdownAction extends DHBaseAction {
                 countdown.progress.start = 1;
                 countdown.progress.max = null;
             }
+            if (countdown.defaultOwnership) {
+                countdown.hidden = countdown.defaultOwnership === CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE;
+                delete countdown.defaultOwnership;
+            }
         }
 
         return super.migrateData(source);
