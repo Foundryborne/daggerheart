@@ -41,6 +41,12 @@ export const actionTypes = {
         icon: 'fa-dragon',
         tooltip: 'DAGGERHEART.ACTIONS.TYPES.transform.tooltip'
     },
+    evolution: {
+        id: 'evolution',
+        name: 'DAGGERHEART.ACTIONS.TYPES.evolution.name',
+        icon: 'fa-vial',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.evolution.tooltip'
+    },
     effect: {
         id: 'effect',
         name: 'DAGGERHEART.ACTIONS.TYPES.effect.name',
@@ -126,3 +132,14 @@ export const areaTypes = {
         label: 'DAGGERHEART.CONFIG.AreaTypes.attached.label'
     }
 };
+
+export const evolutionStates = {
+    unevolved: {
+        id: 'unevolved', 
+        label: 'DAGGERHEART.CONFIG.EvolutionState.unevolved'
+    },
+    evolved: {
+        id: 'evolved',
+        label: 'DAGGERHEART.CONFIG.EvolutionState.evolved'
+    }
+}

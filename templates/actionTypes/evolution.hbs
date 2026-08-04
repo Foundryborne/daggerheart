@@ -1,0 +1,41 @@
+<fieldset class="one-column" id="evolution-drop-zone" data-is-drop-zone="true" data-key="evolution">
+    <legend>
+        {{localize "DAGGERHEART.ACTIONS.TYPES.evolution.name"}}
+    </legend>
+
+    <div class="evolution-resources">
+        <div class="evolution-resource">
+            <input type="checkbox" data-resource="hitPoints" {{checked source.resourceRefresh.hitPoints}}/>
+            <span class="resource-title">{{localize "DAGGERHEART.ACTIONS.Settings.evolution.clearHitPoints"}}</span>
+        </div>
+        <div class="evolution-resource">
+            <input type="checkbox" data-resource="stress" {{checked source.resourceRefresh.stress}}/>
+            <span class="resource-title">{{localize "DAGGERHEART.ACTIONS.Settings.evolution.clearStress"}}</span>
+        </div>
+    </div>
+
+    <div class="evolution-container">
+        <div class="evolution-features">
+            <table>
+                <thead>
+                    <tr>
+                        <th>{{localize "DAGGERHEART.ACTIONS.Settings.evolution.featureName"}}</th>
+                        <th>{{localize "DAGGERHEART.ACTIONS.Settings.evolution.evolutionState"}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each evolutionFeatures as | feature |}}
+                        <tr>
+                            <td>{{feature.name}}</td>
+                            <td>
+                                <select class="evolution-state-select" data-id="{{feature.id}}">
+                                    {{selectOptions @root.evolutionStates selected=feature.state localize=true}}
+                                </select>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>

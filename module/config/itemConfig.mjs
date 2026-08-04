@@ -1486,7 +1486,8 @@ export const orderedWeaponFeatures = () => {
 export const featureForm = {
     passive: 'DAGGERHEART.CONFIG.FeatureForm.passive',
     action: 'DAGGERHEART.CONFIG.FeatureForm.action',
-    reaction: 'DAGGERHEART.CONFIG.FeatureForm.reaction'
+    reaction: 'DAGGERHEART.CONFIG.FeatureForm.reaction',
+    evolution: 'DAGGERHEART.CONFIG.FeatureForm.evolution'
 };
 
 export const featureTypes = {
@@ -1590,4 +1591,10 @@ export const beastformTypes = {
 export const originItemType = {
     itemCollection: 'itemCollection',
     restMove: 'restMove'
+};
+
+export const evolutionRelationships = {
+    active: { id: 'active', label: 'DAGGERHEART.CONFIG.evolutionRelationship.active' },
+    
+    inactive: { id: 'inactive', label: 'DAGGERHEART.CONFIG.evolutionRelationship.inactive' }
 };

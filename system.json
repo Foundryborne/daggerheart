@@ -311,6 +311,7 @@
         "hotReload": {
             "extensions": ["css", "hbs", "json"],
             "paths": ["styles/daggerheart.css", "templates", "lang"]
-        }
+        },
+        "devMode": true
     }
 }

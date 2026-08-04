@@ -130,6 +130,14 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         htmlElement.querySelectorAll('.transform-resource input').forEach(element => {
             element.addEventListener('change', this.updateTransformResource.bind(this));
         });
+
+        htmlElement.querySelectorAll('.evolution-state-select').forEach(element => {
+            element.addEventListener('change', this.updateEvolutionStateSelect.bind(this));
+        });
+
+        htmlElement.querySelectorAll('.evolution-resource input').forEach(element => {
+            element.addEventListener('change', this.updateEvolutionResource.bind(this));
+        });
     }
 
     async _prepareContext(_options) {
@@ -152,6 +160,19 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
                     (context.source.transform.actorUUID && !actor
                         ? { error: game.i18n.localize('DAGGERHEART.ACTIONS.Settings.transform.actorIsMissing') }
                         : null)
+            };
+        }
+
+        if (context.source.evolution) {
+            const actorFeatures = (this.action.actor?.items ?? []).filter(x => x.type === 'feature' && x.id !== this.action.item?.id);
+            context.evolutionFeatures = actorFeatures.map(item => ({
+                id: item.id,
+                name: item.name,
+                state: context.source.evolution.evolutionFeatures[item.id] ?? ''
+            }));
+            context.evolutionStates = {
+                ['']: { id: '', label: _loc('None') },
+                ...CONFIG.DH.ACTIONS.evolutionStates
             };
         }
 
@@ -467,6 +488,23 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
+    updateEvolutionResource(event) {
+        event.stopPropagation();
+
+        const data = this.action.toObject();
+        data.evolution.resourceRefresh[event.target.dataset.resource] = event.target.checked;
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
+    updateEvolutionStateSelect(event) {
+        event.stopPropagation();
+
+        const value = event.target.value ? event.target.value : _del();
+        const data = this.action.toObject();
+        data.evolution.evolutionFeatures[event.target.dataset.id] = value;
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
     /** Specific implementation in extending classes **/
     static async addEffect(_event) {}
     static removeEffect(_event, _button) {}
@@ -480,23 +518,24 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     async _onDrop(event) {
         const data = foundry.applications.ux.TextEditor.getDragEventData(event);
         const item = await foundry.utils.fromUuid(data.uuid);
-        if (!(item instanceof game.system.api.documents.DhpActor)) {
-            ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.summon.invalidDrop'));
-            return;
-        }
 
         const dropZone = event.target.closest('[data-is-drop-zone]');
         if (!dropZone) return;
 
         switch (dropZone.id) {
             case 'summon-drop-zone':
-                return this.onSummonDrop(data);
+                return this.onSummonDrop(data, item);
             case 'transform-drop-zone':
-                return this.onTransformDrop(data);
+                return this.onTransformDrop(data, item);
         }
     }
 
-    async onSummonDrop(data) {
+    async onSummonDrop(data, item) {
+        if (!(item instanceof game.system.api.documents.DhpActor)) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.summon.invalidDrop'));
+            return;
+        }
+
         const actionData = this.action.toObject();
         let countvalue = 1;
         for (const entry of actionData.summon) {
@@ -514,7 +553,12 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         await this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(actionData) });
     }
 
-    async onTransformDrop(data) {
+    async onTransformDrop(data, item) {
+        if (!(item instanceof game.system.api.documents.DhpActor)) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.transform.invalidDrop'));
+            return;
+        }
+
         const actionData = this.action.toObject();
         actionData.transform.actorUUID = data.uuid;
         await this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(actionData) });

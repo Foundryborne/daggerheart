@@ -104,13 +104,6 @@ export default class AdversarySheet extends DHBaseActorSheet {
         context.resources.stress.emptyPips =
             context.resources.stress.max < maxResource ? maxResource - context.resources.stress.max : 0;
 
-        const featureForms = Object.keys(CONFIG.DH.ITEM.featureForm);
-        context.features = this.document.system.features.sort((a, b) =>
-            a.system.featureForm !== b.system.featureForm
-                ? featureForms.indexOf(a.system.featureForm) - featureForms.indexOf(b.system.featureForm)
-                : a.sort - b.sort
-        );
-
         return context;
     }
 
@@ -124,6 +117,9 @@ export default class AdversarySheet extends DHBaseActorSheet {
 
                 const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
                 context.adversaryType = game.i18n.localize(adversaryTypes[this.document.system.type].label);
+                break;
+            case 'features': 
+                await this._prepareFeaturesContext(context, options);
                 break;
             case 'notes':
                 await this._prepareNotesContext(context, options);
@@ -194,6 +190,59 @@ export default class AdversarySheet extends DHBaseActorSheet {
             secrets: this.document.isOwner,
             relativeTo: this.document
         });
+    }
+
+    /**
+     * Prepare render context for the Features part.
+     * @param {ApplicationRenderContext} context
+     * @param {ApplicationRenderOptions} options
+     * @returns {Promise<void>}
+     * @protected
+     */
+    async _prepareFeaturesContext(context, _options) {
+        const featureForms = Object.keys(CONFIG.DH.ITEM.featureForm);
+        const featureData = this.document.system.features.sort((a, b) =>
+            a.system.featureForm !== b.system.featureForm
+                ? featureForms.indexOf(a.system.featureForm) - featureForms.indexOf(b.system.featureForm)
+                : a.sort - b.sort
+        ).map(x => ({ data: { inactive: false, feature: x }, childFeatures: [] }));
+
+        const { evolved, unevolved } = CONFIG.DH.ACTIONS.evolutionStates;
+        for (const { data, childFeatures } of featureData) {
+            if (data.feature.system.featureForm === 'evolution') {
+                const evolutionActions = 
+                    data.feature.system.actions.filter(x => x.type === CONFIG.DH.ACTIONS.actionTypes.evolution.id);
+                for (const action of evolutionActions) {
+                    for (const [id, featureState] of Object.entries(action.evolution.evolutionFeatures)) {
+                        const evolutionLocked = 
+                            !action.evolution.active && featureState === evolved.id || 
+                            action.evolution.active && featureState === unevolved.id;
+
+                        const evolutionFeature = featureData.find(x => x.data.feature.id === id);
+                        evolutionFeature.data.inactive = evolutionLocked;
+
+                        if (featureState === evolved.id) {
+                            childFeatures.push(evolutionFeature);
+                            featureData.splice(featureData.indexOf(evolutionFeature), 1);
+                        }
+                    }
+                }
+            }
+        }
+
+        context.features = [];
+        context.evolutionFeatures = [];
+        for (const { data, childFeatures } of featureData) {
+            if (childFeatures.length) {
+                context.evolutionFeatures.push(data);
+            } else {
+                context.features.push(data);
+            }
+
+            for (const feature of childFeatures) {
+                context.evolutionFeatures.push(feature.data);
+            }
+        }
     }
 
     /* -------------------------------------------- */
