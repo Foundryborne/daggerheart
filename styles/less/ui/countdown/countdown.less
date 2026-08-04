@@ -157,6 +157,7 @@
                         display: flex;
                         align-items: center;
                         justify-content: space-between;
+                        gap: 4px;
 
                         .countdown-tool-controls {
                             display: flex;
@@ -172,9 +173,31 @@
                         }
 
                         .countdown-tool-icons {
+                            height: 100%;
                             display: flex;
                             align-items: center;
+                            justify-content: flex-end;
                             gap: 8px;
+                            flex: 1;
+
+                            .markers-container {
+                                height: 20px;
+                                display: flex;
+                                flex-direction: column;
+                                gap: 2px;
+
+                                .markers-inner-container {
+                                    display: flex;
+                                    justify-content: flex-end;
+                                    gap: 2px;
+                                    
+                                    .marker-container {
+                                        border-radius: 50%;
+                                        height: 9px;
+                                        width: 9px;
+                                    }
+                                }
+                            }
 
                             .looping-container {
                                 position: relative;

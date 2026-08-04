@@ -161,13 +161,23 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                 !countdownEditable ||
                 (isLooping && (countdown.progress.current > 0 || countdown.progress.start === '0'));
 
-            const playersCountdownIsVisibleTo = game.users.filter(x => 
+            const usersCountdownIsVisibleTo = game.users.filter(x => 
                 !x.isGM && (!countdown.hidden || countdown.ownership[x.id] > CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE));
+            const visibleToUsers = {
+                total: usersCountdownIsVisibleTo.length,
+                groupings: usersCountdownIsVisibleTo.reduce((acc, curr, index) => {
+                    const groupingIndex = Math.floor(index / 4); 
+                    if (!acc[groupingIndex]) acc[groupingIndex] = [];
+                    acc[groupingIndex].push(curr);
+
+                    return acc;
+                }, {})
+            };
 
             acc[countdown.type][key] = {
                 ...countdown,
                 editable: countdownEditable,
-                playersCountdownIsVisibleTo,
+                visibleToUsers,
                 shouldLoop: isLooping && countdown.progress.current === 0 && countdown.progress.start > 0,
                 loopDisabled: isLooping ? loopDisabled : null,
                 loopTooltip: isLooping && game.i18n.localize(loopTooltip)
