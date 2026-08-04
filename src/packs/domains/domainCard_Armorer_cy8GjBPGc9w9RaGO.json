@@ -21,10 +21,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "armor": {
               "value": {
                 "custom": {
@@ -45,13 +47,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "friendly",
@@ -75,14 +77,26 @@
         },
         "name": "Repair Armor",
         "img": "icons/tools/hand/hammer-and-nail.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 134,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "cy8GjBPGc9w9RaGO",
@@ -99,10 +113,18 @@
             "priority": 20,
             "value": {
               "max": "1",
-              "interaction": "active"
+              "interaction": "active",
+              "current": 0,
+              "damageThresholds": null
             }
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "tJw2JIPcT9hEMRXg",
       "img": "icons/tools/hand/hammer-and-nail.webp",

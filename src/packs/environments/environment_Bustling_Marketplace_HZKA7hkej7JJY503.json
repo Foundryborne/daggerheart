@@ -141,7 +141,11 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false,
+        "featureForm": "passive"
       },
       "_id": "w8YmhoWPGc66Wrx3",
       "img": "icons/commodities/currency/coins-assorted-mix-copper-silver-gold.webp",
@@ -167,7 +171,10 @@
         "actions": {},
         "originItemType": null,
         "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "60uDqt9omFifZ7xd",
       "img": "icons/commodities/treasure/brooch-jeweled-pink.webp",
@@ -202,11 +209,14 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
               "parts": {},
-              "includeBase": false
+              "includeBase": false,
+              "main": null,
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -235,7 +245,13 @@
             },
             "name": "Roll Save",
             "img": "icons/skills/social/theft-pickpocket-bribery-brown.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           },
           "L2TFexCvxvuCOCXe": {
             "type": "countdown",
@@ -267,7 +283,8 @@
                   "startFormula": "6",
                   "current": 1
                 },
-                "ownership": {}
+                "ownership": {},
+                "hidden": false
               },
               {
                 "name": "Escape To Hideout",
@@ -281,17 +298,24 @@
                   "startFormula": "4",
                   "current": 1
                 },
-                "ownership": {}
+                "ownership": {},
+                "hidden": false
               }
             ],
             "name": "Start Countdowns",
             "img": "icons/skills/social/theft-pickpocket-bribery-brown.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "triggers": [],
+            "areas": []
           }
         },
         "originItemType": null,
         "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "56qjiKMoN6S9riI6",
       "img": "icons/skills/social/theft-pickpocket-bribery-brown.webp",
@@ -317,7 +341,10 @@
         "actions": {},
         "originItemType": null,
         "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "l2FzZpR2reVmlkdp",
       "img": "icons/skills/movement/arrow-upward-blue.webp",

@@ -458,7 +458,7 @@ export const armorFeatures = {
                         {
                             key: 'system.resistance.magical.reduction',
                             type: 'add',
-                            value: '@system.armorScore',
+                            value: '@system.armorScore.max',
                             priority: 21
                         }
                     ]
@@ -746,7 +746,7 @@ export const weaponFeatures = {
                                 {
                                     key: 'system.evasion',
                                     type: 'add',
-                                    value: '@system.armorScore',
+                                    value: '@system.armorScore.max',
                                     priority: 21
                                 }
                             ]

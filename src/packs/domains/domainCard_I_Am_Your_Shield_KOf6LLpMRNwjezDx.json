@@ -22,13 +22,16 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -37,7 +40,13 @@
         },
         "name": "Mark Stress",
         "img": "icons/skills/melee/shield-block-fire-orange.webp",
-        "range": "veryClose"
+        "range": "veryClose",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "resource": null,
@@ -46,7 +55,11 @@
       "source": "Daggerheart SRD",
       "page": 134,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "effects": [],

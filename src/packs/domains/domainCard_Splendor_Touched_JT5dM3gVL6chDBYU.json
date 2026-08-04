@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "Z6oglw8LIOrtBcN6",
   "system": {
-    "description": "<p><p class=\"Body-Foundation-No-BOLDITALIC\">When 4 or more of the domain cards in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">loadout</tooltip> are from the Splendor domain, gain the following benefits:</p><ul class=\"\"><li class=\"vertical-card-list\">+3 bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"severe-damage\" nexus=\"daggerheart\">Severe</tooltip> damage threshold</li><li class=\"vertical-card-list\">Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, when incoming damage would require you to mark a number of <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip>, you can choose to mark that much <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip> or spend that much <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip> instead.</li></ul></p>",
+    "description": "<p></p><p class=\"Body-Foundation-No-BOLDITALIC\">When 4 or more of the domain cards in your loadout are from the Splendor domain, gain the following benefits:</p><ul><li class=\"vertical-card-list\">+3 bonus to your Severe damage threshold</li><li class=\"vertical-card-list\">Once per long rest, when incoming damage would require you to mark a number of Hit Points, you can choose to mark that much Stress or spend that much Hope instead.</li></ul><p></p>",
     "domain": "splendor",
     "recallCost": 2,
     "level": 7,
@@ -14,7 +14,13 @@
       "page": 133,
       "artist": ""
     },
-    "domainTouched": 4
+    "domainTouched": 4,
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false
   },
   "flags": {},
   "_id": "JT5dM3gVL6chDBYU",
@@ -29,21 +35,25 @@
             "key": "system.damageThresholds.severe",
             "type": "add",
             "value": "+3",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "u13fiOMD8B36PkiZ",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/splendor.png",
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<ul><li class=\"vertical-card-list\"><p>+3 bonus to your Severe damage threshold</p></li><li class=\"vertical-card-list\"><p>Once per long rest, when incoming damage would require you to mark a number of Hit Points, you can choose to mark that much Stress or spend that much Hope instead.</p></li></ul>",
       "origin": null,
@@ -55,6 +65,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!JT5dM3gVL6chDBYU.u13fiOMD8B36PkiZ"
     }
   ],

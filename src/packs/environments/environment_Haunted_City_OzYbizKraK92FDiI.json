@@ -135,7 +135,11 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false,
+        "featureForm": "passive"
       },
       "_id": "h8Dv8pToiCVklPhv",
       "img": "icons/sundries/documents/document-writing-pink.webp",
@@ -170,7 +174,8 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "effects": [
               {
@@ -184,11 +189,21 @@
             },
             "name": "Ghostly Form",
             "img": "icons/magic/death/undead-ghost-scream-teal.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false,
+        "featureForm": "passive"
       },
       "_id": "gRpkBU3CLJvDnB7I",
       "img": "icons/magic/death/undead-ghost-scream-teal.webp",
@@ -205,20 +220,24 @@
               {
                 "key": "system.resistance.physical.resistance",
                 "type": "override",
-                "value": "1",
-                "priority": null
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
               }
-            ]
+            ],
+            "duration": {
+              "description": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
           },
           "disabled": false,
           "duration": {
-            "startTime": null,
-            "combat": null,
-            "seconds": null,
-            "rounds": null,
-            "turns": null,
-            "startRound": null,
-            "startTurn": null
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
           },
           "description": "<p>Adversaries who appear here are of a ghostly form. They have resistance to physical damage and can <strong>mark a Stress</strong> to move up to Close range through solid objects.</p><section class=\"secret\" id=\"secret-o5a4SMwemuVEfDMq\"><p><em>What injuries to their physical form speak to their cause of death? What unfulfi lled purpose holds them in the Mortal Plane?</em></p></section>",
           "tint": "#ffffff",
@@ -228,6 +247,9 @@
           "_stats": {
             "compendiumSource": null
           },
+          "start": null,
+          "showIcon": 1,
+          "folder": null,
           "_key": "!actors.items.effects!OzYbizKraK92FDiI.gRpkBU3CLJvDnB7I.S9gl4jqdrziC1F0h"
         }
       ],
@@ -252,7 +274,10 @@
         "actions": {},
         "originItemType": null,
         "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "ZA2RzxH5FlnrcYLN",
       "img": "icons/magic/death/undead-ghosts-trio-blue.webp",
@@ -315,17 +340,24 @@
                   "startFormula": "5",
                   "current": 1
                 },
-                "ownership": {}
+                "ownership": {},
+                "hidden": false
               }
             ],
             "name": "Start Countdown",
             "img": "icons/magic/death/skull-weapon-staff-glow-pink.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "triggers": [],
+            "areas": []
           }
         },
         "originItemType": null,
         "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "i0FV2Djaq0vB57cq",
       "img": "icons/magic/death/skull-weapon-staff-glow-pink.webp",

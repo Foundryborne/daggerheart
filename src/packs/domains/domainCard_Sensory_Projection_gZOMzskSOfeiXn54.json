@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "fucNnucgoUjbzvcA",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Once per rest, make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (15)</strong>. On a success, drop into a vision that lets you clearly see and hear any place you have been before as though you are standing there in this moment. You can move freely in this vision and are not constrained by the physics or impediments of a physical body. This spell cannot be detected by mundane or magical means. You drop out of this vision upon taking damage or casting another spell.</p></p>",
+    "description": "<p></p><p class=\"Body-Foundation\">Once per rest, make a <strong>Spellcast Roll</strong><strong> (15)</strong>. On a success, drop into a vision that lets you clearly see and hear any place you have been before as though you are standing there in this moment. You can move freely in this vision and are not constrained by the physics or impediments of a physical body. This spell cannot be detected by mundane or magical means. You drop out of this vision upon taking damage or casting another spell.</p><p></p>",
     "domain": "arcana",
     "recallCost": 0,
     "level": 9,
@@ -25,8 +25,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -55,14 +55,26 @@
         },
         "name": "Cast",
         "img": "icons/magic/control/debuff-energy-hold-pink.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 120,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "gZOMzskSOfeiXn54",

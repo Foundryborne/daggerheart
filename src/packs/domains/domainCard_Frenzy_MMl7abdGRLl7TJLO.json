@@ -36,14 +36,26 @@
         },
         "name": "Frenzy",
         "img": "icons/magic/fire/projectile-wave-yellow.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 122,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "MMl7abdGRLl7TJLO",
@@ -62,31 +74,38 @@
             "key": "system.bonuses.damage.physical.bonus",
             "value": 10,
             "priority": null,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           },
           {
             "key": "system.bonuses.damage.magical.bonus",
             "value": 10,
             "priority": null,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           },
           {
             "key": "system.damageThresholds.severe",
             "value": 8,
             "priority": null,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           },
           {
             "key": "system.rules.damageReduction.disabledArmor",
             "value": 1,
             "priority": null,
-            "type": "override"
+            "type": "override",
+            "phase": "initial"
           }
         ],
         "duration": {
           "type": "temporary",
           "description": "<p>Until there are no more adversaries within sight.</p>"
-        }
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
