@@ -30,7 +30,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -44,7 +45,13 @@
         },
         "name": "Double Agility",
         "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "zdu8GkVWby3nz8Pa": {
         "type": "effect",
@@ -66,7 +73,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -80,7 +88,13 @@
         },
         "name": "Double Instinct",
         "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "resource": {
@@ -88,14 +102,21 @@
       "value": 1,
       "max": "1",
       "icon": "",
-      "recovery": "shortRest"
+      "recovery": "shortRest",
+      "progression": "increasing",
+      "diceStates": {},
+      "dieFaces": "d4"
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 131,
       "artist": ""
     },
-    "domainTouched": 4
+    "domainTouched": 4,
+    "gmNotes": "",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false
   },
   "flags": {},
   "_id": "VOSFaQHZbmhMyXwi",
@@ -110,23 +131,27 @@
             "key": "system.bonuses.roll.spellcast.bonus",
             "type": "add",
             "value": "+2",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "7zMpgedPII5GIYUl",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "<p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">While you’re in a natural environment, you gain a +2 bonus to your Spellcast Rolls.</p>",
+      "description": "<p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">While you’re in a natural environment, you gain a +2 bonus to your Spellcast Rolls.</span></p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -136,6 +161,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!VOSFaQHZbmhMyXwi.7zMpgedPII5GIYUl"
     },
     {
@@ -150,20 +178,24 @@
           {
             "key": "system.traits.agility.value",
             "type": "multiply",
-            "value": "2",
-            "priority": null
+            "value": 2,
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "tint": "#ffffff",
@@ -173,6 +205,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!VOSFaQHZbmhMyXwi.Mmax64mlLPYxJPB7"
     },
     {
@@ -187,22 +222,26 @@
           {
             "key": "system.traits.instinct.value",
             "type": "multiply",
-            "value": "2",
-            "priority": null
+            "value": 2,
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "<p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">Once per rest, you can double your Agility or Instinct when making a roll that uses that trait. You must choose to do this before you roll.</p>",
+      "description": "<p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">Once per rest, you can double your Agility or Instinct when making a roll that uses that trait. You must choose to do this before you roll.</span></p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -210,6 +249,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!VOSFaQHZbmhMyXwi.p03IjcyigL4b2WD1"
     }
   ],

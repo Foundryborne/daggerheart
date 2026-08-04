@@ -21,11 +21,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -54,7 +55,13 @@
         },
         "name": "Memory Delve",
         "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
-        "range": "far"
+        "range": "far",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "djZ0hQamdwzvYeKc": {
         "type": "effect",
@@ -68,13 +75,16 @@
             "key": "hope",
             "value": 1,
             "scalable": false,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "1",
-          "recovery": "longRest"
+          "recovery": "longRest",
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -88,14 +98,26 @@
         },
         "name": "Shared Clarity",
         "img": "icons/magic/control/energy-stream-link-large-teal.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 125,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "VOIgm2j2Ijszwc5m",
@@ -109,17 +131,20 @@
       "_id": "6PPapwuwgKy23oHg",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p class=\"Card-Feature\">Once per long rest, <strong>spend a Hope</strong> to choose two willing creatures. When one of them would mark Stress, they can choose between the two of them who marks it. This spell lasts until their next rest.</p>",
       "tint": "#ffffff",
@@ -129,6 +154,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!VOIgm2j2Ijszwc5m.6PPapwuwgKy23oHg"
     }
   ],

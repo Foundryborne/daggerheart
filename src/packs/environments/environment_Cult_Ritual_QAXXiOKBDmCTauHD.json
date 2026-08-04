@@ -164,11 +164,17 @@
               "amount": null
             },
             "name": "Influence",
-            "range": ""
+            "range": "",
+            "triggers": [],
+            "areas": []
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false,
+        "featureForm": "passive"
       },
       "_id": "iiHjguQG2aBn9g8i",
       "img": "icons/magic/unholy/orb-contained-pink.webp",
@@ -186,19 +192,23 @@
                 "key": "system.rules.dualityRoll.defaultHopeDice",
                 "type": "override",
                 "value": "d10",
-                "priority": null
+                "priority": null,
+                "phase": "initial"
               }
-            ]
+            ],
+            "duration": {
+              "description": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
           },
           "disabled": false,
           "duration": {
-            "startTime": null,
-            "combat": null,
-            "seconds": null,
-            "rounds": null,
-            "turns": null,
-            "startRound": null,
-            "startTurn": null
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
           },
           "description": "<p>Your Hope Die is reduced to a d10 while in the Desecrated Grounds.</p>",
           "tint": "#ffffff",
@@ -208,6 +218,9 @@
           "_stats": {
             "compendiumSource": null
           },
+          "start": null,
+          "showIcon": 1,
+          "folder": null,
           "_key": "!actors.items.effects!QAXXiOKBDmCTauHD.iiHjguQG2aBn9g8i.8yNIw8Y7rfMdOqWC"
         }
       ],
@@ -241,7 +254,8 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "effects": [
               {
@@ -259,12 +273,21 @@
             },
             "name": "Imbue",
             "img": "icons/magic/unholy/orb-swirling-teal.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
         "originItemType": null,
         "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "0Rgqw1kUPeJ11ldd",
       "img": "icons/magic/unholy/orb-swirling-teal.webp",
@@ -277,7 +300,13 @@
           "_id": "dYQBQq1xIysM0qLo",
           "type": "base",
           "system": {
-            "changes": []
+            "changes": [],
+            "duration": {
+              "description": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
           },
           "disabled": false,
           "duration": {
@@ -312,15 +341,23 @@
                 "key": "system.bonuses.damage.physical.dice",
                 "type": "add",
                 "value": "1d10",
-                "priority": null
+                "priority": null,
+                "phase": "initial"
               },
               {
                 "key": "system.bonuses.damage.magical.dice",
                 "type": "add",
                 "value": "1d10",
-                "priority": null
+                "priority": null,
+                "phase": "initial"
               }
-            ]
+            ],
+            "duration": {
+              "description": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
           },
           "disabled": true,
           "duration": {
@@ -392,12 +429,16 @@
                   "startFormula": "6",
                   "current": 1
                 },
-                "ownership": {}
+                "ownership": {},
+                "hidden": false
               }
             ],
             "name": "Start Countdown",
             "img": "icons/magic/unholy/barrier-fire-pink.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "triggers": [],
+            "areas": []
           },
           "HG7tbEdlYl3yLQnR": {
             "type": "summon",
@@ -424,12 +465,17 @@
               }
             ],
             "name": "Summon Demon",
-            "range": ""
+            "range": "",
+            "triggers": [],
+            "areas": []
           }
         },
         "originItemType": null,
         "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "oFfu3hUhp4ta4qwT",
       "img": "icons/magic/unholy/barrier-fire-pink.webp",
@@ -455,7 +501,10 @@
         "actions": {},
         "originItemType": null,
         "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "WltEUhtYwfnX8WCc",
       "img": "icons/skills/wounds/blood-drip-droplet-red.webp",

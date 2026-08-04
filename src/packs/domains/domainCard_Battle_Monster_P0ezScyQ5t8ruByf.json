@@ -65,7 +65,8 @@
                   "enabled": false,
                   "formula": ""
                 }
-              }
+              },
+              "fullRestore": false
             }
           }
         },
@@ -83,7 +84,13 @@
       "source": "Daggerheart SRD",
       "page": 122,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "P0ezScyQ5t8ruByf",

@@ -21,11 +21,12 @@
         "uses": {
           "value": null,
           "max": "1",
-          "recovery": "longRest"
+          "recovery": "longRest",
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -54,14 +55,26 @@
         },
         "name": "Spellcast Roll",
         "img": "icons/magic/movement/pinwheel-turning-blue.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 125,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "HnPwVrWblYa9hwSt",

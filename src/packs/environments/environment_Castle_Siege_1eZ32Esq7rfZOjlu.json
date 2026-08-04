@@ -145,7 +145,11 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false,
+        "featureForm": "passive"
       },
       "_id": "2qUw5c3e22eywSwg",
       "img": "icons/environment/settlement/castle.webp",
@@ -180,7 +184,8 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
               "parts": {
@@ -210,7 +215,36 @@
                   "type": []
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "main": null,
+              "resources": {
+                "fear": {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "2"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "fear",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "fullRestore": false
+                }
+              }
             },
             "target": {
               "type": "self",
@@ -234,7 +268,13 @@
             },
             "name": "Gain Fear",
             "img": "icons/weapons/artillery/catapult-simple.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           },
           "udKS3ME8VKuayEyO": {
             "type": "countdown",
@@ -266,17 +306,24 @@
                   "startFormula": "6",
                   "current": 1
                 },
-                "ownership": {}
+                "ownership": {},
+                "hidden": false
               }
             ],
             "name": "Start Countdown",
             "img": "icons/weapons/artillery/catapult-simple.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "triggers": [],
+            "areas": []
           }
         },
         "originItemType": null,
         "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "eSTq8Y0v4Dwd13XU",
       "img": "icons/weapons/artillery/catapult-simple.webp",
@@ -302,7 +349,10 @@
         "actions": {},
         "originItemType": null,
         "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "U59K0WKVjwbgzMZU",
       "img": "icons/environment/people/charge.webp",
@@ -337,7 +387,8 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
               "parts": {
@@ -369,7 +420,40 @@
                 }
               },
               "includeBase": false,
-              "groupAttack": ""
+              "groupAttack": "",
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  },
+                  "flatMultiplier": 3,
+                  "dice": "d8",
+                  "bonus": 3,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [
+                  "physical"
+                ],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "groupAttack": "",
+                "fullRestore": false
+              },
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -405,14 +489,23 @@
                 "type": "placed",
                 "shape": "circle",
                 "size": "veryClose",
-                "effects": []
+                "effects": [],
+                "hasHole": false
               }
-            ]
+            ],
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": []
           }
         },
         "originItemType": null,
         "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "bemKmwjBtbEFVWXM",
       "img": "icons/magic/earth/projectile-stone-boulder-brown.webp",

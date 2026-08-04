@@ -25,8 +25,8 @@
           "consumeOnSuccess": true
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -55,7 +55,13 @@
         },
         "name": "Create First Layer",
         "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "oB5tyd2a7bmcJJmm": {
         "type": "attack",
@@ -70,7 +76,8 @@
             "key": "stress",
             "value": 1,
             "step": 1,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -80,8 +87,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -110,18 +117,34 @@
         },
         "name": "Create Extra Layers",
         "img": "icons/skills/wounds/anatomy-organ-brain-pink-red.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "resource": {
       "type": "simple",
-      "value": 0
+      "value": 0,
+      "max": null,
+      "recovery": null,
+      "progression": "increasing",
+      "diceStates": {},
+      "dieFaces": "d4"
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 120,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "R8NDiJXJWmC48WSr",

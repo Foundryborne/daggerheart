@@ -22,13 +22,16 @@
             "scalable": false,
             "key": "armor",
             "value": 1,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -37,7 +40,13 @@
         },
         "name": "Mark Armor Slot",
         "img": "icons/equipment/shield/kite-wooden-sigil-purple.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "YzrQmUhNZoDYawo0": {
         "type": "damage",
@@ -50,10 +59,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "stress": {
               "value": {
                 "custom": {
@@ -66,7 +77,6 @@
                 "bonus": null
               },
               "applyTo": "stress",
-              "type": [],
               "base": false,
               "resultBased": false,
               "valueAlt": {
@@ -75,12 +85,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
-              }
+              },
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -89,7 +100,13 @@
         "effects": [],
         "name": "Mark 1 Stress",
         "img": "icons/commodities/gems/gem-faceted-navette-red.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
@@ -97,7 +114,12 @@
       "page": 127,
       "artist": ""
     },
-    "domainTouched": 4
+    "domainTouched": 4,
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false
   },
   "flags": {},
   "_id": "KAuNb51AwhD8KEXk",
@@ -107,19 +129,22 @@
       "name": "Grace-Touched",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "KK5m2slpFuXDxFaL",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/grace.png",
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>When 4 or more of the domain cards in your loadout are from the Grace domain, gain the following benefits:</p><ul><li class=\"vertical-card-list-found\"><p>You can <strong>mark an Armor Slot</strong> instead of marking a Stress.</p></li><li class=\"vertical-card-list-found\"><p>When you would force a target to mark a number of Hit Points, you can choose instead to force them to mark that number of Stress.</p></li></ul>",
       "origin": null,
@@ -131,6 +156,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!KAuNb51AwhD8KEXk.KK5m2slpFuXDxFaL"
     }
   ],

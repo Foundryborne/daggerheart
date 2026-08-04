@@ -23,7 +23,8 @@
             "key": "stress",
             "value": 1,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -44,14 +45,26 @@
         },
         "name": "Mark Stress",
         "img": "icons/skills/wounds/bone-broken-knee-beam.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 123,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "8UANBgSdhMZ0sqfO",
@@ -65,17 +78,20 @@
       "_id": "ETIeXRAib3DFBHpX",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p class=\"Body-Foundation\">The next successful attack against this target deals an extra <strong>2d12</strong> damage.</p>",
       "tint": "#ffffff",
@@ -85,6 +101,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!8UANBgSdhMZ0sqfO.ETIeXRAib3DFBHpX"
     }
   ],

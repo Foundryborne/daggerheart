@@ -23,17 +23,19 @@
             "scalable": false,
             "key": "hope",
             "value": 1,
-            "step": null
+            "step": null,
+            "itemId": null
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -67,14 +69,26 @@
         },
         "name": "Cast",
         "img": "icons/magic/unholy/orb-glowing-purple.webp",
-        "range": "close"
+        "range": "close",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 128,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "gwmYasmfgXZ7tFS6",
@@ -92,7 +106,10 @@
         "duration": {
           "type": "temporary",
           "description": "<p>Until the GM spends a Fear on their turn to clear this condition, you cast Hush again, or you take Major damage.</p>"
-        }
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
