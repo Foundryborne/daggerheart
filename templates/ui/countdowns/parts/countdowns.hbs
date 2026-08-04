@@ -19,7 +19,7 @@
                             <div class="countdown-tool-icons">
                                 {{#if (not @root.iconOnly)}}
                                     {{#if countdown.hidden}}
-                                        <i class="fa-solid fa-eye-slash" data-tooltip="{{localize 'DAGGERHEART.UI.Countdowns.hidden'}}"></i>
+                                        <i class="fa-solid fa-eye-slash" data-tooltip="{{localize 'DAGGERHEART.UI.Countdowns.hidden' nr=playersCountdownIsVisibleTo.length}}"></i>
                                     {{/if}}
                                     {{#unless (eq countdown.progress.looping "noLooping")}}
                                         <span data-tooltip="{{countdown.loopTooltip}}">
