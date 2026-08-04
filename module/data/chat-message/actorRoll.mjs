@@ -277,7 +277,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             }
         }
 
-        for (const key of Object.keys(source.targetSaves)) {
+        for (const key of Object.keys(source.targetSaves ?? {})) {
             const saveData = source.targetSaves[key];
             if (typeof saveData === 'number') {
                 source.targetSaves[key] = { value: saveData, isCritical: false };
