@@ -7,20 +7,19 @@ export default class StandardAttackChange extends foundry.abstract.DataModel {
         return {
             type: new fields.StringField({ required: true, choices: ['standardAttack'], initial: 'standardAttack' }),
             priority: new fields.NumberField({ 
-                label: 'EFFECT.FIELDS.changes.element.phase.label',
+                label: 'EFFECT.FIELDS.changes.element.priority.label',
                 required: true, 
                 integer: true, 
-                initial: 20 
+                initial: 0
             }),
             phase: new fields.StringField({ required: true, blank: false, initial: 'initial' }),
             value: new fields.SchemaField({
                 damageFormula: new FormulaField({
                     label: 'DAGGERHEART.EFFECTS.ChangeTypes.standardAttack.FIELDS.damageFormula'
                 }),
-                damageTypes: new fields.ArrayField(new fields.StringField({
-                    label: 'DAGGERHEART.EFFECTS.ChangeTypes.standardAttack.FIELDS.damageTypes',
+                damageTypes: new fields.SetField(new fields.StringField({
                     choices: CONFIG.DH.GENERAL.damageTypes
-                })),
+                }), { label: 'DAGGERHEART.EFFECTS.ChangeTypes.standardAttack.FIELDS.damageTypes' }),
                 attackRange: new fields.StringField({
                     label: 'DAGGERHEART.EFFECTS.ChangeTypes.standardAttack.FIELDS.attackRange',
                     nullable: true,
@@ -112,7 +111,7 @@ export default class StandardAttackChange extends foundry.abstract.DataModel {
                         ...change,
                         key: 'system.attack.range',
                         type: CONFIG.DH.GENERAL.activeEffectModes.override.id,
-                        value: change.value.trait
+                        value: change.value.attackRange
                     },
                     replacementData
                 );
@@ -136,7 +135,7 @@ export default class StandardAttackChange extends foundry.abstract.DataModel {
                         ...change,
                         key: 'system.attack.damage.main.value.custom.formula',
                         type: CONFIG.DH.GENERAL.activeEffectModes.override.id,
-                        value: change.value.formula
+                        value: change.value.damageFormula
                     },
                     replacementData
                 );
