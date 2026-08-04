@@ -3178,7 +3178,10 @@
             "Countdowns": {
                 "title": "Countdowns",
                 "toggleIconMode": "Toggle Icon Only",
-                "noPlayerAccess": "This countdown isn't visible to any players",
+                "noPlayerAccess": "No player has access to this countdown",
+                "hidden": "This countdown is hidden",
+                "reveal":"Reveal Countdown",
+                "hide":"Hide Countdown",
                 "loop": "Looping",
                 "decreasingLoop": "Decreasing Looping",
                 "increasingLoop": "Increasing Looping"

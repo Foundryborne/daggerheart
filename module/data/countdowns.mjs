@@ -107,6 +107,7 @@ export class DhCountdown extends foundry.abstract.DataModel {
                     initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT
                 })
             ),
+            hidden: new fields.BooleanField({ initial: false }),
             progress: new fields.SchemaField({
                 current: new fields.NumberField({
                     required: true,
@@ -141,21 +142,12 @@ export class DhCountdown extends foundry.abstract.DataModel {
         };
     }
 
-    static defaultCountdown(type, playerHidden) {
-        const ownership = playerHidden
-            ? game.users.reduce((acc, user) => {
-                if (!user.isGM) {
-                    acc[user.id] = CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE;
-                }
-                return acc;
-            }, {})
-            : undefined;
-
+    static defaultCountdown(type, playerHidden) {        
         return {
             type: type ?? CONFIG.DH.GENERAL.countdownTypes.encounter.id,
             name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Countdown.newCountdown'),
-            img: 'icons/magic/time/hourglass-yellow-green.webp',
-            ownership: ownership,
+            img: 'icons/magic/time/hourglass-yellow-green.webp',            
+            hidden: playerHidden,
             progress: {
                 current: 1,
                 start: 1
@@ -188,7 +180,7 @@ export class DhCountdown extends foundry.abstract.DataModel {
 
     /** @inheritDoc */
     static migrateData(source) {
-        if (source.progress.max) {
+        if (source.progress?.max) {
             source.progress.start = Number(source.progress.max);
             source.progress.max = null;
             source.progress.startFormula = null;
@@ -220,5 +212,11 @@ export class DhCountdown extends foundry.abstract.DataModel {
         const data = foundry.utils.deepClone(setting._source);
         delete data.countdowns[this.id];
         await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, data);
+    }
+
+    async toggleVisibility() {
+        const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
+        await setting.updateSource({[`countdowns.${this.id}.hidden`]: !setting.countdowns[this.id].hidden})
+        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, setting);
     }
 }

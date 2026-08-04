@@ -31,7 +31,8 @@ export default class EffectsField extends fields.ArrayField {
             message = config.message = await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
         }
         if (EffectsField.getAutomation() || force) {
-            targets ??= (message.system?.targets ?? config.targets).filter(t => !config.hasRoll || t.hit);
+            targets ??= 
+                (config.targets ?? message.system?.targets).filter(t => !config.hasRoll || t.hitResult?.success);
             EffectsField.applyEffects.call(this, targets);
         }
     }
