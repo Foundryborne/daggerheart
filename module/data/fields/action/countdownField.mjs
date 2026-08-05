@@ -22,7 +22,7 @@ export default class CountdownField extends fields.ArrayField {
             hidden: new NullableBooleanField({
                 required: true,
                 nullable: true,
-                initial: false,
+                initial: null,
                 label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.hidden.label'
             }, { nullLabel: 'DAGGERHEART.APPLICATIONS.Countdown.hiddenNullLabel' })
         });
