@@ -1,12 +1,15 @@
 <div>
     <header class="countdowns-header">
         <i class="fa-solid fa-clock-rotate-left" inert></i>
-        {{#unless iconOnly}}
+        {{!-- {{#unless iconOnly}}
             <span class="window-title">{{localize "DAGGERHEART.UI.Countdowns.title"}}</span>
-        {{/unless}}
+        {{/unless}} --}}
         <div class="header-type-toggles">
             {{#each typeToggles as |type|}}
-                <a class="header-type {{#unless type.active}}inactive{{/unless}}" data-action="toggleCountdownTypes" data-type="{{type.type}}">{{localize type.label}}</a>
+                <a class="header-type {{#unless type.active}}inactive{{/unless}}" data-action="toggleCountdownTypes" data-type="{{type.type}}">
+                    <i class="{{type.icon}}"></i>
+                    {{!-- {{localize type.label}} --}}
+                </a>
             {{/each}}
         </div>
         {{#if isGM}}

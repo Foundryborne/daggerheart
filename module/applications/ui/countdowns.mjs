@@ -193,12 +193,16 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
 
         context.userCountdownTypes = this.visibleCountdownTypes;
 
-        context.typeToggles = 
-            Object.values(CONFIG.DH.GENERAL.countdownTypes).map(type => ({
-                type: type.id,
-                label: game.i18n.localize(type.shortLabel),
-                active: context.userCountdownTypes.includes(type.id)
-            }));
+        const toggleTypes = [
+            ...Object.values(CONFIG.DH.GENERAL.countdownTypes),
+            { id: 'personal', shortLabel: 'Personal', icon: 'fa-solid fa-user' }
+        ];
+        context.typeToggles = toggleTypes.map(type => ({
+            type: type.id,
+            label: game.i18n.localize(type.shortLabel),
+            icon: type.icon,
+            active: context.userCountdownTypes.includes(type.id)
+        }));
 
         context.countdowns = this.#prepareCountdownData();
         context.countdownTypesWithVisibleEntries = this.#getCountdowns().reduce((acc, data) => {
