@@ -234,7 +234,10 @@
 
         .chat-roll {
             font-size: var(--font-size-12);
-            padding: 0 20px;
+
+            .roll-container {
+                padding: 0 20px;
+            }
 
             .roll-part-title {
                 text-align: center;
@@ -637,6 +640,21 @@
         .target-section {
             .roll-part-content {
                 gap: 10px;
+
+                .dice-tooltip {
+                    .wrapper {
+                        gap: 0;
+
+                        div.empty-text {
+                            font-size: 18px;
+                            height: 40px;
+                            margin-bottom: 5px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                    }
+                }
             }
 
             .roll-part-extra {

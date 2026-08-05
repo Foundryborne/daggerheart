@@ -46,7 +46,7 @@
         {
           "key": "system.resistance.magical.reduction",
           "type": "add",
-          "value": "@system.armorScore",
+          "value": "@system.armorScore.max",
           "priority": 21
         }
       ],

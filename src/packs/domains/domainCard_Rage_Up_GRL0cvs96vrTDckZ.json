@@ -23,7 +23,8 @@
             "key": "stress",
             "value": 1,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -44,14 +45,26 @@
         },
         "name": "Mark Stress",
         "img": "icons/skills/wounds/injury-face-impact-orange.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 121,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "GRL0cvs96vrTDckZ",
@@ -82,11 +95,15 @@
           }
         ],
         "stacking": {
-          "max": 2
+          "max": 2,
+          "value": 1
         },
         "duration": {
-          "type": ""
-        }
+          "type": "",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -128,15 +145,23 @@
             "key": "system.bonuses.damage.magical.bonus",
             "value": "4*@system.traits.strength.value",
             "priority": 21,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           },
           {
             "key": "system.bonuses.damage.physical.bonus",
             "value": "4*@system.traits.strength.value",
             "priority": 21,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {

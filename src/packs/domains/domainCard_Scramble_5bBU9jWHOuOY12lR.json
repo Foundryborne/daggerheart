@@ -31,14 +31,26 @@
         },
         "name": "Avoid",
         "img": "icons/skills/movement/feet-winged-boots-brown.webp",
-        "range": "melee"
+        "range": "melee",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 121,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "5bBU9jWHOuOY12lR",

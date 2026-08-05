@@ -41,14 +41,25 @@
         "name": "Spend Hope",
         "img": "icons/skills/melee/maneuver-sword-katana-yellow.webp",
         "range": "",
-        "triggers": []
+        "triggers": [],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 122,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "jSQsSP61CX4MhSN7",

@@ -15,7 +15,9 @@
       "recovery": "longRest",
       "max": "@cast",
       "icon": "",
-      "progression": "decreasing"
+      "progression": "decreasing",
+      "diceStates": {},
+      "dieFaces": "d4"
     },
     "actions": {
       "udmHKUtCDClxeB4h": {
@@ -42,7 +44,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "hitPoints": {
               "value": {
                 "custom": {
@@ -63,13 +66,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -93,7 +96,13 @@
         },
         "name": "Heal Hitpoints",
         "img": "icons/commodities/gems/gem-faceted-diamond-green.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "TvF88tS5x3Yof8Q1": {
         "type": "healing",
@@ -119,7 +128,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "stress": {
               "value": {
                 "custom": {
@@ -140,13 +150,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -170,7 +180,13 @@
         },
         "name": "Reduce Stress",
         "img": "icons/commodities/gems/gem-faceted-navette-red.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "LFDgLQ2CjnBEoTH9": {
         "type": "effect",
@@ -202,14 +218,25 @@
         },
         "name": "Remove Condition",
         "img": "icons/magic/light/beam-rays-yellow.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 133,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "wUQFsRtww18naYaq",

@@ -15,7 +15,9 @@
       "max": "max(@system.traits.knowledge.value, 1)",
       "icon": "fa-solid fa-bullseye",
       "recovery": "longRest",
-      "progression": "decreasing"
+      "progression": "decreasing",
+      "diceStates": {},
+      "dieFaces": "d4"
     },
     "actions": {
       "jTC0GbsBpGmaQLi7": {
@@ -48,14 +50,25 @@
         },
         "name": "Spend Token",
         "img": "icons/skills/targeting/crosshair-arrowhead-blue.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 122,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "5b1awkgTmMp3FVrm",

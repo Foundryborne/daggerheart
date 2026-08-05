@@ -171,7 +171,7 @@ export default class DhpActor extends Actor {
      * @param {string[]} damageTypes 
      * @returns { resistant: bool, immune: bool }
      */
-    getResistanceStatus(damageTypes) {
+    getResistanceStatus(damageTypes = []) {
         let resistant = null;
         let immune = null;
         

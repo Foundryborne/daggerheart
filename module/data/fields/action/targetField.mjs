@@ -1,6 +1,11 @@
 const fields = foundry.data.fields;
 
 export default class TargetField extends fields.SchemaField {
+    /**
+     * Action Workflow order
+     */
+    static order = 20;
+
     /** @inheritDoc */
     constructor(options = {}, context = {}) {
         const targetFields = {
@@ -37,11 +42,26 @@ export default class TargetField extends fields.SchemaField {
                 if (this.target.amount && targets.length > this.target.amount) targets = [];
             }
         }
-        config.targets = targets.map(t => TargetField.formatTarget.call(this, t));
+        config.targets = targets.map(t => TargetField.formatTarget.call(this, t, config.roll));
         const hasTargets = TargetField.checkTargets.call(this, this.target.amount, config.targets);
         if (config.dialog.configure === false && !hasTargets) {
             ui.notifications.warn('Too many targets selected for that actions.');
             return hasTargets;
+        }
+    }
+
+    /**
+     * Update Action Workflow config object target data based on finished rolls.
+     * Must be called within Action context.
+     * @param {object} config    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
+     */
+    static async execute(config) {
+        for (const target of config.targets) {
+            const toHitNumber = target.difficulty || target.evasion;
+            const hitSuccessfull = (!config.roll || !toHitNumber) ? false : 
+                (config.roll.isCritical || config.roll.total >= toHitNumber);
+            
+            target.hitResult = { success: hitSuccessfull };
         }
     }
 
@@ -86,10 +106,7 @@ export default class TargetField extends fields.SchemaField {
             img: token.actor.img,
             difficulty: token.actor.system.difficulty,
             evasion: token.actor.system.evasion,
-            saved: {
-                value: null,
-                success: null
-            }
+            saveResult: { success: false }
         };
     }
 }

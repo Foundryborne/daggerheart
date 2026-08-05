@@ -14,7 +14,13 @@
       "source": "Daggerheart SRD",
       "page": 121,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "BFWN2cObMdlk9uVz",
@@ -28,22 +34,26 @@
           {
             "key": "system.rules.damageReduction.stressDamageReduction.severe.cost",
             "type": "override",
-            "value": "1",
-            "priority": null
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "aV3KUHtXXR86PRMh",
       "img": "icons/magic/control/silhouette-aura-energy.webp",
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p class=\"Body-Foundation\">When you take Severe damage, you can <strong>mark a Stress</strong> to reduce the severity by one threshold.</p>",
       "origin": null,
@@ -55,6 +65,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!BFWN2cObMdlk9uVz.aV3KUHtXXR86PRMh"
     }
   ],

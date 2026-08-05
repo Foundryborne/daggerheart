@@ -2493,7 +2493,7 @@
             "newThing": "New {thing}",
             "next": "Next",
             "none": "None",
-            "noTarget": "No current target",
+            "noTarget": "No Current Targets",
             "optionalThing": "Optional {thing}",
             "partner": "Partner",
             "player": {
@@ -3103,7 +3103,7 @@
                     "hitTarget": "Hit",
                     "targetingInitial": "Targets",
                     "targetingSelected": "Selected",
-                    "totalTargetedTokens": "{total} selected",
+                    "totalTargetedTokens": "{total} Selected",
                     "noTokensSelected": "No Tokens Selected",
                     "setSelectedAsTargets": "Set Selected As Targets"
                 },
@@ -3171,7 +3171,10 @@
             "Countdowns": {
                 "title": "Countdowns",
                 "toggleIconMode": "Toggle Icon Only",
-                "noPlayerAccess": "This countdown isn't visible to any players",
+                "noPlayerAccess": "No player has access to this countdown",
+                "hidden": "This countdown is hidden",
+                "reveal":"Reveal Countdown",
+                "hide":"Hide Countdown",
                 "loop": "Looping",
                 "decreasingLoop": "Decreasing Looping",
                 "increasingLoop": "Increasing Looping"

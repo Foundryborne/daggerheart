@@ -18,8 +18,11 @@
                             </div>
                             <div class="countdown-tool-icons">
                                 {{#if (not @root.iconOnly)}}
-                                    {{#if (and countdown.noPlayerAccess @root.isGM)}}
-                                        <i class="fa-solid fa-eye-slash" data-tooltip="{{localize "DAGGERHEART.UI.Countdowns.noPlayerAccess"}}"></i>
+                                    {{#if (and (or countdown.hidden countdown.noPlayerAccess) @root.isGM)}}
+                                    <i class="fa-solid fa-eye-slash" data-tooltip="
+                                        {{#if countdown.noPlayerAccess }}{{localize 'DAGGERHEART.UI.Countdowns.noPlayerAccess'}}{{/if}}
+                                        {{#if countdown.hidden }}{{#if countdown.noPlayerAccess }}</br>{{/if}}{{localize 'DAGGERHEART.UI.Countdowns.hidden'}}{{/if}}
+                                    "></i>
                                     {{/if}}
                                     {{#unless (eq countdown.progress.looping "noLooping")}}
                                         <span data-tooltip="{{countdown.loopTooltip}}">

@@ -77,7 +77,7 @@ export default class DamageField extends fields.SchemaField {
      * @param {boolean} force   If the method should be executed outside of Action workflow, for ChatMessage button for example.
      */
     static async applyDamage(config, targets = null, force = false) {
-        targets ??= config.targets.filter(target => target.hit);
+        targets ??= config.targets.filter(target => target.hitResult?.success);
         if (!config.damage || !targets?.length || (!DamageField.getApplyAutomation() && !force)) return;
 
         const targetDamage = [];
@@ -108,7 +108,7 @@ export default class DamageField extends fields.SchemaField {
                 configDamage.main &&= configDamage.main.toJSON();
                 if (configDamage.main) {
                     const takenMultiplier = actor.system.rules?.attack?.damage?.hpDamageTakenMultiplier;
-                    configDamage.main.total = Math.ceil(configDamage.main.total * takenMultiplier);
+                    configDamage.main.total = Math.ceil(config.damage.main.total * takenMultiplier);
                 }
 
                 damagePromises.push(
@@ -116,7 +116,7 @@ export default class DamageField extends fields.SchemaField {
                         .takeDamage(configDamage, config.isDirect)
                         .then(updates => { 
                             const resistanceData = 
-                                token.actor?.getResistanceStatus(configDamage.main?.options.damageTypes);
+                                token.actor?.getResistanceStatus(configDamage.main?.options.damageTypes ?? []);
                             const tokenData = {
                                 id: token.id, 
                                 name: token.prototype?.name ?? token.name, 

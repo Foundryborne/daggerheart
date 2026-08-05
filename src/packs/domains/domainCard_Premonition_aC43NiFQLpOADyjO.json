@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "l387HKojhqcDAV0b",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">You can channel arcane energy to have visions of the future. Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, immediately after the GM conveys the consequences of a roll you made, you can rescind the move and consequences like they never happened and make another move instead.</p></p>",
+    "description": "<p></p><p class=\"Body-Foundation\">You can channel arcane energy to have visions of the future. Once per long rest, immediately after the GM conveys the consequences of a roll you made, you can rescind the move and consequences like they never happened and make another move instead.</p><p></p>",
     "domain": "arcana",
     "recallCost": 2,
     "level": 5,
@@ -40,7 +40,13 @@
         },
         "name": "Rescind Move",
         "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "resource": {
@@ -48,13 +54,21 @@
       "value": 1,
       "recovery": "longRest",
       "max": "1",
-      "icon": ""
+      "icon": "",
+      "progression": "increasing",
+      "diceStates": {},
+      "dieFaces": "d4"
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 120,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "aC43NiFQLpOADyjO",

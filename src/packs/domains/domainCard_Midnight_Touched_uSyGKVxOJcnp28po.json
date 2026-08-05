@@ -21,10 +21,12 @@
         "uses": {
           "value": null,
           "max": "1",
-          "recovery": "shortRest"
+          "recovery": "shortRest",
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "hope": {
               "value": {
                 "custom": {
@@ -45,13 +47,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -75,7 +77,13 @@
         },
         "name": "Gain Hope",
         "img": "icons/commodities/gems/gem-faceted-octagon-yellow.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "Ky5wcwBqgm5bJCK1": {
         "type": "effect",
@@ -89,13 +97,16 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -104,7 +115,13 @@
         },
         "name": "Mark Stress",
         "img": "icons/skills/wounds/anatomy-organ-brain-pink-red.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
@@ -112,7 +129,12 @@
       "page": 129,
       "artist": ""
     },
-    "domainTouched": 4
+    "domainTouched": 4,
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false
   },
   "flags": {},
   "_id": "uSyGKVxOJcnp28po",
@@ -122,19 +144,22 @@
       "name": "Midnight-Touched",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "sNBuI2xIZAI4RgZy",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p class=\"Body-Foundation\">When 4 or more of the domain cards in your loadout are from the Midnight domain, gain the following benefits:</p><ul><li class=\"vertical-card-list-found\"><p>Once per rest, when you have 0 Hope and the GM would gain a Fear, you can gain a Hope instead.</p></li><li class=\"vertical-card-list-found\"><p>When you make a successful attack, you can <strong>mark a Stress</strong> to add the result of your Fear Die to your damage roll.</p></li></ul>",
       "origin": null,
@@ -146,6 +171,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!uSyGKVxOJcnp28po.sNBuI2xIZAI4RgZy"
     }
   ],

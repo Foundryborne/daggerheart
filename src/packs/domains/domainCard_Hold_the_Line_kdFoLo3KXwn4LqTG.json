@@ -22,13 +22,16 @@
             "key": "hope",
             "value": 1,
             "scalable": false,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -42,7 +45,13 @@
         },
         "name": "Spend Hope",
         "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "SKG6Gu0uJZxtYTnz": {
         "type": "effect",
@@ -70,14 +79,26 @@
         },
         "name": "Restrain",
         "img": "icons/magic/defensive/shield-barrier-blue.webp",
-        "range": "veryClose"
+        "range": "veryClose",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 135,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "kdFoLo3KXwn4LqTG",
@@ -91,17 +112,20 @@
       "_id": "y82y3nUStyL8DIJL",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p class=\"Body-Foundation\">If an adversary moves within Very Close range, they’re pulled into Melee range and <em>Restrained.</em></p><p class=\"Body-Foundation\">This condition lasts until you move or fail a roll with Fear, or the GM spends 2 Fear on their turn to clear it.</p>",
       "tint": "#ffffff",
@@ -111,6 +135,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!kdFoLo3KXwn4LqTG.y82y3nUStyL8DIJL"
     },
     {
@@ -123,8 +150,12 @@
       "system": {
         "changes": [],
         "duration": {
-          "type": "temporary"
-        }
+          "type": "temporary",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {

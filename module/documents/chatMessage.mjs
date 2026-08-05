@@ -15,7 +15,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
     setupHooks() {
         if (this.system.hasTarget) {
-            Hooks.on('controlToken', this.onSelectToken.bind(this));
+            this.controlTokenHook = Hooks.on('controlToken', this.onSelectToken.bind(this));
         }
     }
 
@@ -62,7 +62,9 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     _onDelete(options, userId) {
         super._onDelete(options, userId);
 
-        Hooks.off('controlToken', this.onSelectToken);
+        if (this.controlTokenHook) {
+            Hooks.off('controlToken', this.controlTokenHook);
+        }
     }
 
     enrichChatMessage(html) {
@@ -409,5 +411,21 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         if (!event.target.classList.contains('target-selected')) {
             this.system.updateTargetHTML({ tab: event.target.dataset.selected ? 'select' : 'targets'});
         }
+    }
+
+    // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
+    static migrateData(source) {
+        for (let i = 0; i < (source.rolls ?? []).length; i++) {
+            const rollData = source.rolls[i];
+            const roll = typeof rollData === 'string' ? Roll.fromJSON(rollData) : rollData;
+            for (const effect of (roll.options.effects ?? [])) {
+                if (!effect.system.changes) {
+                    effect.system.changes = effect.changes ?? [];
+                    if (effect.changes) delete effect.changes;
+                    source.rolls.splice(i, 1, JSON.stringify(roll.toJSON()));
+                }
+            }
+        }
+        return source;
     }
 }

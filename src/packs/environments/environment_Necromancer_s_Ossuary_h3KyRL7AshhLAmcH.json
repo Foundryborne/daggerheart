@@ -144,7 +144,8 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
               "parts": {
@@ -174,7 +175,36 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "main": null,
+              "resources": {
+                "hope": {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "hope",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "fullRestore": false
+                }
+              }
             },
             "target": {
               "type": "any",
@@ -183,11 +213,21 @@
             "effects": [],
             "name": "Lose Hope",
             "img": "icons/magic/unholy/orb-swirling-teal.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false,
+        "featureForm": "passive"
       },
       "_id": "SJo1Pw0fE4vKnisr",
       "img": "icons/magic/unholy/orb-swirling-teal.webp",
@@ -212,7 +252,11 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false,
+        "featureForm": "passive"
       },
       "_id": "Egi337jsYlldHzEH",
       "img": "icons/sundries/documents/document-symbol-skull-tan.webp",
@@ -247,7 +291,8 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
               "parts": {
@@ -277,7 +322,38 @@
                 }
               },
               "includeBase": false,
-              "groupAttack": ""
+              "groupAttack": "",
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  },
+                  "flatMultiplier": 4,
+                  "dice": "d8",
+                  "bonus": 8,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "groupAttack": "",
+                "fullRestore": false
+              },
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -313,14 +389,23 @@
                 "type": "placed",
                 "shape": "circle",
                 "size": "close",
-                "effects": []
+                "effects": [],
+                "hasHole": false
               }
-            ]
+            ],
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": []
           }
         },
         "originItemType": null,
         "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "asSGMUdf4gG4PO8F",
       "img": "icons/magic/death/bones-crossed-gray.webp",
@@ -355,11 +440,14 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
               "parts": {},
-              "includeBase": false
+              "includeBase": false,
+              "main": null,
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -388,12 +476,21 @@
             },
             "name": "Roll d4",
             "img": "icons/magic/death/skull-weapon-staff-glow-pink.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
         "originItemType": null,
         "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "mnpqMpYCjdlwtvBp",
       "img": "icons/magic/death/skull-weapon-staff-glow-pink.webp",
@@ -429,13 +526,16 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "effects": [],
             "target": {
@@ -444,12 +544,21 @@
             },
             "name": "Spend Fear",
             "img": "icons/magic/death/undead-zombie-grave-green.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
         "originItemType": null,
         "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "chJRXNg5zyTGbcG5",
       "img": "icons/magic/death/undead-zombie-grave-green.webp",
