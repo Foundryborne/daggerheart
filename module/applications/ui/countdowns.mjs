@@ -59,9 +59,9 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
      * @returns {string[]}
      */
     get visibleCountdownTypes() {
-        const { encounter, narrative } = CONFIG.DH.GENERAL.countdownTypes;
+        const { encounter, narrative, misc } = CONFIG.DH.GENERAL.countdownTypes;
         return game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) 
-            ?? [encounter.id, narrative.id];
+            ?? [encounter.id, narrative.id, misc];
     }
 
     async _renderFrame(options) {
@@ -193,13 +193,10 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
 
         context.userCountdownTypes = this.visibleCountdownTypes;
 
-        const toggleTypes = [
-            ...Object.values(CONFIG.DH.GENERAL.countdownTypes),
-            { id: 'personal', shortLabel: 'Personal', icon: 'fa-solid fa-user' }
-        ];
-        context.typeToggles = toggleTypes.map(type => ({
+        context.typeToggles = Object.values(CONFIG.DH.GENERAL.countdownTypes).map(type => ({
             type: type.id,
-            label: game.i18n.localize(type.shortLabel),
+            label: _loc(type.label),
+            shortLabel: _loc(type.shortLabel),
             icon: type.icon,
             active: context.userCountdownTypes.includes(type.id)
         }));
