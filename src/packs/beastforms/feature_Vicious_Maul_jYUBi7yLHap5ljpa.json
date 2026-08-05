@@ -5,72 +5,7 @@
   "system": {
     "description": "<p>When you succeed on an attack against a target, you can <strong>spend a Hope</strong> to make them temporarily Vulnerable and gain a +1 bonus to your Proficiency for this attack.</p>",
     "resource": null,
-    "actions": {
-      "Cc53vyYz5ggKdIbx": {
-        "type": "damage",
-        "_id": "Cc53vyYz5ggKdIbx",
-        "systemPath": "actions",
-        "description": "",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [
-          {
-            "key": "hope",
-            "value": 1,
-            "scalable": false,
-            "step": null
-          }
-        ],
-        "uses": {
-          "value": null,
-          "max": "",
-          "recovery": null
-        },
-        "damage": {
-          "parts": {
-            "hitPoints": {
-              "value": {
-                "custom": {
-                  "enabled": true,
-                  "formula": "(@prof+1)@basicAttackDamageDice  + @system.rules.attack.damage.bonus"
-                },
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null
-              },
-              "applyTo": "hitPoints",
-              "type": [],
-              "base": false,
-              "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
-              }
-            }
-          },
-          "includeBase": false
-        },
-        "target": {
-          "type": "any",
-          "amount": 1
-        },
-        "effects": [
-          {
-            "_id": "MIAh9XNwDXGDktCm",
-            "onSave": false
-          }
-        ],
-        "name": "Spend Hope",
-        "img": "icons/creatures/abilities/mouth-teeth-long-red.webp",
-        "range": "melee"
-      }
-    },
+    "actions": {},
     "originItemType": null,
     "subType": null,
     "originId": null,

@@ -5,88 +5,7 @@
   "system": {
     "description": "<p><strong>Mark a Stress</strong> to move into Melee range of a target and make an attack roll against them. On a success, you gain a +2 bonus to your Proficiency for this attack and the target must mark a Stress.</p>",
     "resource": null,
-    "actions": {
-      "DKorr1QzvtBz7d9y": {
-        "type": "attack",
-        "_id": "DKorr1QzvtBz7d9y",
-        "systemPath": "actions",
-        "description": "<p><strong>Mark a Stress</strong> to move into Melee range of a target and make an attack roll against them. On a success, you gain a +2 bonus to your Proficiency for this attack and the target must mark a Stress.</p>",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [
-          {
-            "scalable": false,
-            "key": "stress",
-            "value": 1,
-            "step": null
-          }
-        ],
-        "uses": {
-          "value": null,
-          "max": "",
-          "recovery": null
-        },
-        "damage": {
-          "parts": {
-            "hitPoints": {
-              "resultBased": false,
-              "value": {
-                "custom": {
-                  "enabled": true,
-                  "formula": "(@prof+2)@basicAttackDamageDice + 6"
-                },
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null
-              },
-              "applyTo": "hitPoints",
-              "type": [],
-              "base": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              }
-            }
-          },
-          "includeBase": false
-        },
-        "target": {
-          "type": "hostile",
-          "amount": 1
-        },
-        "effects": [],
-        "roll": {
-          "type": "attack",
-          "trait": "instinct",
-          "difficulty": null,
-          "bonus": null,
-          "advState": "neutral",
-          "diceRolling": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "compare": null,
-            "treshold": null
-          },
-          "useDefault": false
-        },
-        "save": {
-          "trait": null,
-          "difficulty": 10,
-          "damageMod": "none"
-        },
-        "name": "Attack",
-        "img": "icons/creatures/abilities/paw-print-orange.webp",
-        "range": "melee"
-      }
-    },
+    "actions": {},
     "originItemType": null,
     "subType": null,
     "originId": null,
@@ -104,24 +23,22 @@
       "transfer": true,
       "_id": "hE6ciIusvKEtUQ8U",
       "type": "base",
-      "system": {},
-      "changes": [
-        {
-          "key": "system.proficiency",
-          "type": "add",
-          "value": "2",
-          "priority": null
-        }
-      ],
+      "system": {
+        "changes": [
+          {
+            "key": "system.proficiency",
+            "type": "add",
+            "value": 2,
+            "priority": null
+          }
+        ]
+      },
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>You gain a +2 bonus to your Proficiency for this attack and the target must mark a Stress.</p>",
       "tint": "#ffffff",
@@ -131,6 +48,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!0ey4kM9ssj2otHvb.hE6ciIusvKEtUQ8U"
     }
   ],

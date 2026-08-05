@@ -149,7 +149,7 @@ export default class StandardAttackChange extends foundry.abstract.DataModel {
     static getInitialValue() {
         return {
             type: CONFIG.DH.GENERAL.activeEffectModes.standardAttack.id,
-            priority: 20,
+            priority: 0,
             phase: 'initial',
             value: {
                 name: null,
