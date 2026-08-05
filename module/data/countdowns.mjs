@@ -123,7 +123,7 @@ export class DhCountdown extends foundry.abstract.DataModel {
             ownership: new fields.TypedObjectField(
                 new fields.NumberField({
                     required: true,
-                    choices: omit(CONFIG.DH.GENERAL.simpleOwnershiplevels, [
+                    choices: omit(CONFIG.DH.GENERAL.simpleOwnershipLevels, [
                         CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE
                     ]),
                     initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT

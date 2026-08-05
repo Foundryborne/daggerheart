@@ -937,12 +937,17 @@ export const fearPosition = {
     leftBottom: { value: 'leftBottom', label: 'DAGGERHEART.SETTINGS.Appearance.fearPosition.leftBottom' }
 };
 
-export const simpleOwnershiplevels = {
+export const simpleOwnershipLevels = {
     [-1]: { value: -1, label: 'DAGGERHEART.UI.Countdowns.inherit' },
     0: { value: 0, label: 'OWNERSHIP.NONE' },
     2: { value: 2, label: 'OWNERSHIP.OBSERVER' },
     3: { value: 3, label: 'OWNERSHIP.OWNER' }
 };
+
+export const defaultOwnershipLevels = {
+    0: { value: 0, label: 'DAGGERHEART.CONFIG.DefaultOwnershipLevels.none' },    
+    2: { value: 2, label: 'DAGGERHEART.CONFIG.DefaultOwnershipLevels.observer' }
+}
 
 export const countdownLoopingTypes = {
     noLooping: {

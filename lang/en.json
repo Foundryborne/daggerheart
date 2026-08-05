@@ -721,7 +721,8 @@
             "OwnershipSelection": {
                 "title": "Ownership Selection - {name}",
                 "noPlayers": "No players to assign ownership to",
-                "default": "Default Ownership"
+                "default": "Default Ownership",
+                "defaultPermission": "Countdown Status"
             },
             "PendingReactionsDialog": {
                 "title": "Pending Reaction Rolls Found",
@@ -1224,6 +1225,10 @@
                     "name": "Blaze Of Glory",
                     "description": "Your character embraces death and goes out in a blaze of glory. Take one final action. It automatically critically succeeds (with GM approval), and then you cross through the veil of death. NOTE: A Blaze of Glory effect has been added to your character. Any Duality Roll will automatically be a critical."
                 }
+            },
+            "DefaultOwnershipLevels": {
+                "none": "Hidden",
+                "observer": "Revealed"
             },
             "DomainCardTypes": {
                 "ability": "Ability",
@@ -3178,7 +3183,7 @@
                 "loop": "Looping",
                 "decreasingLoop": "Decreasing Looping",
                 "increasingLoop": "Increasing Looping",
-                "inherit": "Use Default"
+                "inherit": "Follow Status"
             },
             "EffectsDisplay": {
                 "removeThing": "[Right Click] Remove {thing}",

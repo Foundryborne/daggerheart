@@ -3,7 +3,8 @@
         <ul class="ownership-list">
             {{#if defaultOwnershipOptions}}
                 <li class="ownership-container default">
-                    <span>Default Permission</span>
+                    <img src="{{defaultIcon}}" />
+                    <span>{{localize "DAGGERHEART.APPLICATIONS.OwnershipSelection.defaultPermission"}}</span>
                     <select name="default" value="{{default}}" data-dtype="Number">
                         {{selectOptions @root.defaultOwnershipOptions selected=default labelAttr="label" valueAttr="value" localize=true }}
                     </select>

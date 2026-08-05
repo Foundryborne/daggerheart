@@ -207,6 +207,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         const levels = CONST.DOCUMENT_OWNERSHIP_LEVELS;
         const data = await game.system.api.applications.dialogs.OwnershipSelection.configure(
             countdown.name,
+            countdown.img,
             countdown.ownership,
             { 
                 ownershipOptions: [levels.INHERIT, levels.OBSERVER, levels.OWNER],

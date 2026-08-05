@@ -14,10 +14,11 @@ export default class OwnershipSelection extends HandlebarsApplicationMixin(Appli
      * @param {Record<string, number>} options.ownership
      * @param {OwnershipOptions} [options]
      */
-    constructor(name, ownership, options = {}) {
+    constructor(name, defaultIcon, ownership, options = {}) {
         super({});
 
         this.name = name;
+        this.defaultIcon = defaultIcon;
         this.ownership = ownership;
         this.ownershipOptions = options.ownershipOptions ?? [-1, 0, 2, 3]; // 1 isn't in our dictionary
         this.default = options.default;
@@ -60,11 +61,11 @@ export default class OwnershipSelection extends HandlebarsApplicationMixin(Appli
         // So we have to redefine it ourselves in the correct order.
         context.ownershipOptions = this.ownershipOptions.map(value => ({
             value, 
-            label: CONFIG.DH.GENERAL.simpleOwnershiplevels[value].label
+            label: CONFIG.DH.GENERAL.simpleOwnershipLevels[value].label
         }));
         context.defaultOwnershipOptions = this.defaultOwnershipOptions?.map(value => ({
             value, 
-            label: CONFIG.DH.GENERAL.simpleOwnershiplevels[value].label
+            label: CONFIG.DH.GENERAL.defaultOwnershipLevels[value].label
         }));
         context.ownership = game.users.reduce((acc, user) => {
             if (!user.isGM) {
@@ -79,6 +80,7 @@ export default class OwnershipSelection extends HandlebarsApplicationMixin(Appli
         }, {});
         context.default = this.default;
         context.showOwnership = Boolean(Object.keys(context.ownership).length);
+        context.defaultIcon = this.defaultIcon;
 
         return context;
     }
@@ -103,9 +105,9 @@ export default class OwnershipSelection extends HandlebarsApplicationMixin(Appli
      * @param {OwnershipOptions} options
      * @returns {Promise<{ ownership: number; default?: number }>}
      */
-    static async configure(name, ownership, options) {
+    static async configure(name, defaultIcon, ownership, options) {
         return new Promise(resolve => {
-            const app = new this(name, ownership, options);
+            const app = new this(name, defaultIcon, ownership, options);
             app.addEventListener('close', () => resolve(app.saveData), { once: true });
             app.render({ force: true });
         });
