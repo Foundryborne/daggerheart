@@ -362,7 +362,11 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
 
         // Render an add gmnotes button if there are no set GM notes.
         // We need to re-render on close since its possible to prosemirror to close *without* triggering a full re-render
-        if (game.user.isGM && !this.item.system.gmNotes) {
+        if (
+            game.user.isGM && 
+            this.item.system.metadata.hasDescription && 
+            !this.item.system.gmNotes
+        ) {
             const description = this.element.querySelector('[name="system.description"]');
             const addButton = () => {
                 if (description.querySelector('[data-action=editGMNote]')) return;

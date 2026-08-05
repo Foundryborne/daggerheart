@@ -486,7 +486,8 @@
                 "types": {
                     "narrative": "Narrative",
                     "encounter": "Encounter"
-                }
+                },
+                "hiddenNullLabel": "Set To Countdown UI Default"
             },
             "CountdownEdit": {
                 "title": "Countdown Edit",
@@ -1191,7 +1192,8 @@
             },
             "CountdownType": {
                 "encounter": { "label": "Short Term", "shortLabel": "Short" },
-                "narrative": { "label": "Long Term", "shortLabel": "Long" }
+                "narrative": { "label": "Long Term", "shortLabel": "Long" },
+                "misc": { "label": "Miscellaneous", "shortLabel": "Misc" }
             },
             "DaggerheartDiceAnimationEvents": {
                 "critical": { "name": "Critical" },
