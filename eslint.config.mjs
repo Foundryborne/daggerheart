@@ -44,7 +44,6 @@ export default defineConfig([
     },
     {
         files: ['**/*.{js,mjs,cjs}'],
-        extends: [js.configs.recommended],
         plugins: {
             '@stylistic': stylistic
         },
@@ -100,21 +99,19 @@ export default defineConfig([
                     ignoreRestSiblings: true
                 }
             ],
-            'getter-return': 'off',
-            'no-case-declarations': 'off',
-            'no-prototype-builtins': 'off',
-            'no-async-promise-executor': 'error',
-            'no-empty': ['error', { allowEmptyCatch: true }],
-            'no-useless-assignment': 'error',
-            // Correctness rules not covered by js.configs.recommended
             'array-callback-return': 'error',
-            'no-constant-binary-expression': 'error',
-            'no-dupe-else-if': 'error',
-            'no-return-assign': 'error',
-            'no-self-compare': 'error',
-            'no-template-curly-in-string': 'error',
-            'no-unmodified-loop-condition': 'error',
-            'no-unreachable-loop': 'error',
+            'no-async-promise-executor': 'error',
+            'no-const-assign': 'error',
+            'no-dupe-class-members': 'error',
+            'no-dupe-keys': 'error',
+            'no-extra-boolean-cast': 'error',
+            'no-fallthrough': 'error',
+            'no-global-assign': 'error',
+            'no-redeclare': 'error',
+            'no-unsafe-optional-chaining': 'error',
+            'no-unused-private-class-members': 'error',
+            'no-useless-assignment': 'error',
+            'no-useless-escape': 'error',
             ...stylisticRules
         }
     },

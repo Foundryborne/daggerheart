@@ -58,25 +58,34 @@ export default class SaveField extends fields.SchemaField {
      */
     static async rollAllSave(targets, event, message) {
         if (!targets) return;
-
-        await Promise.all(
-            targets.map(async target => {
-                const actor = fromUuidSync(target.actorId);
-                if (!actor) return;
-
-                const rollSave =
-                    game.user === actor.owner
-                        ? SaveField.rollSave.call(this, actor, event)
-                        : actor.owner.query('reactionRoll', {
-                            actionId: this.uuid,
-                            actorId: actor.uuid,
-                            event,
-                            message
-                        });
-                const result = await rollSave;
-                await SaveField.updateSaveMessage.call(this, result, message, target.id);
-            })
-        );
+        return new Promise(resolve => {
+            const aPromise = [];
+            targets.forEach(target => {
+                aPromise.push(
+                    // Preserved deliberately: rejections are swallowed here so that one failing
+                    // target cannot abort the saves still in flight for the other targets.
+                    // eslint-disable-next-line no-async-promise-executor
+                    new Promise(async subResolve => {
+                        const actor = fromUuidSync(target.actorId);
+                        if (actor) {
+                            const rollSave =
+                                game.user === actor.owner
+                                    ? SaveField.rollSave.call(this, actor, event)
+                                    : actor.owner.query('reactionRoll', {
+                                        actionId: this.uuid,
+                                        actorId: actor.uuid,
+                                        event,
+                                        message
+                                    });
+                            const result = await rollSave;
+                            await SaveField.updateSaveMessage.call(this, result, message, target.id);
+                            subResolve();
+                        } else subResolve();
+                    })
+                );
+            });
+            Promise.all(aPromise).then(result => resolve());
+        });
     }
 
     /**
