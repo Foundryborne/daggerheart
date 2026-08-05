@@ -9,7 +9,6 @@ import { itemAbleRollParse } from '../../helpers/utils.mjs';
 export class ActionCollection extends Collection {
     constructor(model, entries) {
         super();
-        this.#model = model;
         for (const [key, value] of entries) {
             if (!(value instanceof game.system.api.models.actions.actionsTypes.base)) continue;
             this.set(key, value);
@@ -18,14 +17,6 @@ export class ActionCollection extends Collection {
 
     /* -------------------------------------------- */
     /*  Properties                                  */
-    /* -------------------------------------------- */
-
-    /**
-     * The parent DataModel to which this ActionCollection belongs.
-     * @type {DataModel}
-     */
-    #model;
-
     /* -------------------------------------------- */
 
     /* -------------------------------------------- */
@@ -232,7 +223,7 @@ export function ActionMixin(Base) {
             const isSetting = !this.parent.parent;
             const basePath = isSetting ? this.systemPath : `system.${this.systemPath}`;
             const path = this.inCollection ? `${basePath}.${this.id}` : basePath;
-            let result = null;
+            let result;
             if (isSetting) {
                 await this.parent.updateSource({ [path]: updates }, options);
                 result = this.parent;

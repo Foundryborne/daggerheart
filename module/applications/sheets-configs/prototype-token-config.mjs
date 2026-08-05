@@ -1,5 +1,4 @@
-import DHTokenConfigMixin from './token-config-mixin.mjs';
-import { getActorSizeFromForm } from './token-config-mixin.mjs';
+import DHTokenConfigMixin, { getActorSizeFromForm } from './token-config-mixin.mjs';
 
 export default class DhPrototypeTokenConfig extends DHTokenConfigMixin(
     foundry.applications.sheets.PrototypeTokenConfig

@@ -111,6 +111,7 @@ export default class PartySheet extends DHBaseActorSheet {
                 break;
             case 'partyMembers':
                 await this._prepareMembersContext(context, options);
+                break;
             case 'notes':
                 await this._prepareNotesContext(context, options);
                 break;
