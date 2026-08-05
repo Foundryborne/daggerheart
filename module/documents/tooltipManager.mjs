@@ -78,7 +78,8 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
                 const beastformData = {
                     features: [],
                     advantageOn: effectData.system.advantageOn,
-                    beastformAttackData: game.system.api.data.items.DHBeastform.getBeastformAttackData(effectItem)
+                    beastformAttackData: game.system.api.data.items.DHBeastform.getBeastformAttackData(
+                        effectItem, effectItem.parent.getRollData())
                 };
 
                 const features = effectItem.parent.items.filter(x => effectItem.system.featureIds.includes(x.id));
@@ -96,7 +97,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
                 );
             } else {
                 effect.description = game.i18n.localize(
-                    effectData.description ?? effectData.parent.system.description
+                    effectData.description ?? effectItem.parent.system.description
                 );
             }
         } else {

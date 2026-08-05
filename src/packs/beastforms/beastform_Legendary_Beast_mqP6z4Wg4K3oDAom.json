@@ -16,7 +16,9 @@
     "features": [],
     "evolved": {
       "mainTraitBonus": 1,
-      "maximumTier": 1
+      "maximumTier": 1,
+      "damageBonus": 6,
+      "evasionBonus": 2
     },
     "hybrid": {
       "beastformOptions": 2,
@@ -44,33 +46,20 @@
         },
         "advantageOn": [],
         "featureIds": [],
-        "effectIds": []
-      },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.physical.bonus",
-          "type": "add",
-          "value": "6",
-          "priority": null
-        },
-        {
-          "key": "system.evasion",
-          "type": "add",
-          "value": "2",
-          "priority": null
+        "effectIds": [],
+        "changes": [],
+        "duration": {
+          "type": ""
         }
-      ],
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "<p>Pick a Tier 1 Beastform option and become a larger, more powerful version of that creature. While you’re in this form, you retain all traits and features from the original form and gain the following bonuses:</p><ul><li>A +6 bonus to the damage rolls</li><li>A +1 bonus to the trait used by this form</li><li>A +2 bonus to evasion</li></ul>",
+      "description": "<p>Pick a Tier 1 Beastform option and become a larger, more powerful version of that creature. While you’re in this form, you retain all traits and features from the original form and gain the following bonuses:</p><ul><li><p>A +6 bonus to the damage rolls</p></li><li><p>A +1 bonus to the trait used by this form</p></li><li><p>A +2 bonus to evasion</p></li></ul>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -80,6 +69,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!mqP6z4Wg4K3oDAom.cL4kH57pf2nGIxaK"
     }
   ],

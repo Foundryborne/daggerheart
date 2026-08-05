@@ -2630,7 +2630,10 @@
                     },
                     "evolved": {
                         "maximumTier": { "label": "Maximum Tier" },
-                        "mainTraitBonus": { "label": "Main Trait Bonus" }
+                        "mainTraitBonus": { "label": "Main Trait Bonus" },
+                        "damageBonus": { "label": "Damage Bonus" },
+                        "evasionBonus": { "label": "Evasion Bonus" },
+                        "increaseDamageDice": { "label": "Damage Dice Size Increases" }
                     },
                     "hybrid": {
                         "beastformOptions": { "label": "Nr Beastforms" },
