@@ -98,7 +98,7 @@ export default class StandardAttackChange extends foundry.abstract.DataModel {
                         ...change,
                         key: 'system.attack.damage.main.type',
                         type: CONFIG.DH.GENERAL.activeEffectModes.override.id,
-                        value: change.value.damageTypes
+                        value: Array.from(change.value.damageTypes)
                     },
                     replacementData
                 );
