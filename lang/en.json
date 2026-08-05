@@ -3177,7 +3177,8 @@
                 "hide":"Hide Countdown",
                 "loop": "Looping",
                 "decreasingLoop": "Decreasing Looping",
-                "increasingLoop": "Increasing Looping"
+                "increasingLoop": "Increasing Looping",
+                "inherit": "Use Default"
             },
             "EffectsDisplay": {
                 "removeThing": "[Right Click] Remove {thing}",
