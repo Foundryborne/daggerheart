@@ -294,4 +294,78 @@ export default class DHBeastform extends BaseDataItem {
             return;
         }
     }
+
+    static migrateDocumentData(source) {
+        const beastformEffect = source.effects?.find(x => x.type === 'beastform');
+        if (!beastformEffect) return source;
+
+        const hasStandardAttack = beastformEffect.system.changes.some(x => x.type === 'standardAttack');
+        const { evolved } = CONFIG.DH.ITEM.beastformTypes;
+        if (source.system.beastformType === evolved.id) {
+            if (
+                source.system.evolved.damageBonus === undefined && 
+                source.system.evolved.evasionBonus === undefined &&
+                source.system.evolved.increaseDamageDice === undefined
+            ) {
+                const evasionChange = 
+                    beastformEffect.system.changes.find(x => x.key === 'system.evasion');
+                const physicalDamageBonusChange = 
+                    beastformEffect.system.changes.find(x => x.key === 'system.bonuses.damage.physical.bonus');
+                const damageDieIncreaseChange = 
+                    beastformEffect.system.changes.find(x => x.key === 'system.rules.attack.damage.diceIndex');
+
+                if (physicalDamageBonusChange?.value) {
+                    source.system.evolved.damageBonus = physicalDamageBonusChange.value;
+                }
+                if (evasionChange?.value) {
+                    source.system.evolved.evasionBonus = evasionChange.value;
+                }
+                if (damageDieIncreaseChange?.value) {
+                    source.system.evolved.increaseDamageDice = damageDieIncreaseChange.value;
+                }
+
+                const changesToRemove = [
+                    'system.rules.attack.damage.diceIndex',
+                    'system.bonuses.damage.physical.bonus',
+                    'system.evasion'
+                ];
+
+                beastformEffect.system.changes = 
+                    beastformEffect.system.changes.filter(x => !changesToRemove.includes(x.key));
+            }
+        } else if (!hasStandardAttack) {
+            const damageDieChange = beastformEffect.system.changes.find(x => x.key === 'system.rules.attack.damage.diceIndex');
+            const damageBonusChange = beastformEffect.system.changes.find(x => x.key === 'system.rules.attack.damage.bonus');
+            
+            const damageDice = damageDieChange?.value !== undefined ? 
+                CONFIG.DH.GENERAL.dieFaces[damageDieChange.value] : null;
+            const damageFormula = damageDice ? `@profd${damageDice}${damageBonusChange?.value ? ` + ${damageBonusChange.value}` : ''}` : null;
+            beastformEffect.system.changes.push({
+                type: 'standardAttack',
+                phase: 'initial',
+                priority: 0,
+                value: {
+                    name: 'DAGGERHEART.ITEMS.Beastform.attackName',
+                    damageTypes: ['physical'],
+                    attackRange: 'melee',
+                    trait: source.system.mainTrait,
+                    damageFormula: damageFormula ?? '',
+                    img: 'icons/creatures/claws/claw-straight-brown.webp'
+                }
+            })
+            
+
+            const changesToRemove = [
+                'system.rules.attack.damage.diceIndex',
+                'system.rules.attack.damage.bonus',
+                'system.bonuses.damage.physical.bonus',
+                'system.rules.attack.roll.trait'
+            ];
+
+            beastformEffect.system.changes = 
+                beastformEffect.system.changes.filter(x => !changesToRemove.includes(x.key));
+        }
+
+        return source;
+    }
 }

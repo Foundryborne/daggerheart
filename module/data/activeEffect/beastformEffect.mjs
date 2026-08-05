@@ -33,9 +33,12 @@ export default class BeastformEffect extends BaseEffect {
 
     /** @inheritDoc */
     static migrateData(source) {
-        if (!source.characterTokenData.tokenSize.height) source.characterTokenData.tokenSize.height = 1;
-        if (!source.characterTokenData.tokenSize.width) source.characterTokenData.tokenSize.width = 1;
-        if (!source.characterTokenData.tokenSize.depth) source.characterTokenData.tokenSize.depth = 1;
+        if (source.characterTokenData && !source.characterTokenData.tokenSize.height) 
+            source.characterTokenData.tokenSize.height = 1;
+        if (source.characterTokenData && !source.characterTokenData.tokenSize.width) 
+            source.characterTokenData.tokenSize.width = 1;
+        if (source.characterTokenData && !source.characterTokenData.tokenSize.depth) 
+            source.characterTokenData.tokenSize.depth = 1;
 
         return super.migrateData(source);
     }

@@ -7,10 +7,10 @@ export class Migration_2_7_0 extends MigrationHandlerBase {
     async updateItemSource(item) {
         if (item.type !== 'beastform') return;
 
-        const beastformEffect = item.system.effects.find(x => x.type === 'beastform');
+        const beastformEffect = item.effects.find(x => x.type === 'beastform');
         if (!beastformEffect) return;
         
-        const { evolved } = CONFIG.DH.ITEM.beastformTypes.types;
+        const { evolved } = CONFIG.DH.ITEM.beastformTypes;
         if (item.system.beastformType !== evolved.id) return;
 
         const update = { 
@@ -37,42 +37,47 @@ export class Migration_2_7_0 extends MigrationHandlerBase {
     
 
     async updateActiveEffectSource(effect, item) {
-        // const isItem = item instanceof CONFIG.Item.documentClass;
-        // if (item !== 'Item' || item.type !== 'beastform') return;
+        const isItem = item instanceof CONFIG.Item.documentClass;
+        if (!isItem || item.type !== 'beastform') return;
 
-        // const damageDieChange = effect.system.changes.find(x => x.key === 'system.rules.attack.damage.diceIndex');
-        // const damageBonusChange = effect.system.changes.find(x => x.key === 'system.rules.attack.damage.bonus');
-        // const traitRollChange =  effect.system.changes.find(x => x.key === 'system.rules.attack.roll.trait');
+        const damageDieChange = effect.system.changes.find(x => x.key === 'system.rules.attack.damage.diceIndex');
+        const damageBonusChange = effect.system.changes.find(x => x.key === 'system.rules.attack.damage.bonus');
 
-        // const { evolved } = CONFIG.DH.ITEM.beastformTypes.types;
-        // if (effect.system.beastformType !== evolved.id) {
-        //     effect.system.changes.push({
-        //         type: 'standardAttack',
-        //         phase: 'initial',
-        //         priority: 0,
-        //         value: {
-        //             name: 'DAGGERHEART.ITEMS.Beastform.attackName',
-        //             damageTypes: ['physical'],
-        //             attackRange: 'melee',
-        //             trait: effect.system.mainTrait,
-        //             damageFormula: `@prof${}${damageBonusChange?.value ? ` + ${damageBonusChange.value}` : ''}`,
-        //             img: 'icons/creatures/claws/claw-straight-brown.webp'
-        //         }
-        //     })
-        // }
+        const { evolved } = CONFIG.DH.ITEM.beastformTypes;
+        if (effect.system.beastformType !== evolved.id) {
+            const damageDice = damageDieChange?.value !== undefined ? 
+                CONFIG.DH.GENERAL.dieFaces[damageDieChange.value] : null;
+            const damageFormula = damageDice ? `@profd${damageDice}${damageBonusChange?.value ? ` + ${damageBonusChange.value}` : ''}` : null;
+            effect.system.changes.push({
+                type: 'standardAttack',
+                phase: 'initial',
+                priority: 0,
+                value: {
+                    name: 'DAGGERHEART.ITEMS.Beastform.attackName',
+                    damageTypes: ['physical'],
+                    attackRange: 'melee',
+                    trait: item.system.mainTrait,
+                    damageFormula: damageFormula ?? '',
+                    img: 'icons/creatures/claws/claw-straight-brown.webp'
+                }
+            })
+        }
 
-        // const cleanedChanges = item.sytem.changes.filter(x => ![
-        //     'system.rules.attack.damage.diceIndex',
-        //     'system.rules.attack.damage.bonus',
-        //     'system.bonuses.damage.physical.bonus',
-        //     'system.rules.attack.roll.trait',
-        // ].includes(x.key));
+        const changesToRemove = [
+            'system.rules.attack.damage.diceIndex',
+            'system.rules.attack.damage.bonus',
+            'system.bonuses.damage.physical.bonus',
+            'system.rules.attack.roll.trait'
+        ];
+        if (effect.system.beastformType === evolved.id) changesToRemove.push('system.evasion');
 
-        // return {
-        //     _id: effect._id,
-        //     system: {
-        //         changes: cleanedChanges 
-        //     }
-        // };
+        const cleanedChanges = effect.system.changes.filter(x => !changesToRemove.includes(x.key));
+
+        return {
+            _id: effect._id,
+            system: {
+                changes: cleanedChanges 
+            }
+        };
     }
 }
