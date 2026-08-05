@@ -1,4 +1,4 @@
-import { omit } from '../helpers/utils.mjs';
+import { mapValues, omit } from '../helpers/utils.mjs';
 import { RefreshType, socketEvent } from '../systemRegistration/socket.mjs';
 import FormulaField from './fields/formulaField.mjs';
 
@@ -53,7 +53,8 @@ export default class DhCountdowns extends foundry.abstract.DataModel {
 
     static migrateData(source) {
         const migrateOldCountdowns = (data, type) => {
-            for (const key of Object.keys(data.countdowns)) {
+            if (!data) return;
+            for (const key of Object.keys(data.countdowns ?? {})) {
                 const countdown = data.countdowns[key];
                 source.countdowns[key] = {
                     ...countdown,
@@ -72,13 +73,22 @@ export default class DhCountdowns extends foundry.abstract.DataModel {
 
             source[type] = null;
         };
+        migrateOldCountdowns(source.narrative, 'narrative');
+        migrateOldCountdowns(source.encounter, 'encounter');
 
-        if (source.narrative) {
-            migrateOldCountdowns(source.narrative, 'narrative');
-        }
-
-        if (source.encounter) {
-            migrateOldCountdowns(source.encounter, 'encounter');
+        // Hidden was added to countdowns after 2.6.5, and Observer allows visibility despite that status
+        // Before, countdowns used to be hidden by setting specific player ownerships to NONE.
+        // The old behavior of INHERIT used to be based off the global setting and cannot be replicated
+        const levels = CONST.DOCUMENT_OWNERSHIP_LEVELS;
+        for (const countdown of Object.values(source.countdowns ?? {})) {
+            const wasHidden = Object.values(countdown.ownership ?? {}).some(v => v === levels.NONE);
+            if (wasHidden) {
+                countdown.hidden = true;
+                countdown.ownership = mapValues(
+                    countdown.ownership, 
+                    v => v === levels.NONE ? levels.INHERIT : Math.max(levels.OBSERVER, v)
+                );
+            }
         }
 
         return super.migrateData(source);

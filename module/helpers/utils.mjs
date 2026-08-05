@@ -24,6 +24,22 @@ export function omit(obj, keys) {
     }, {});
 }
 
+/** 
+ * Given an object, returns a new object with each value altered by a transform function
+ * @template {string} K
+ * @template V
+ * @template R
+ * @param {Record<K, V>} obj object to transform
+ * @param {(value: V, index: number) => R} transform mapping function
+ * @returns {Record<K, R>} new object with mapped values
+ */
+export function mapValues(obj, transform) {
+    return Object.entries(obj).reduce((r, [k, v], index) => {
+        r[k] = transform(v, index);
+        return r;
+    }, {});
+}
+
 export function rollCommandToJSON(text) {
     if (!text) return {};
 
