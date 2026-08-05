@@ -133,16 +133,10 @@ export default class BeastformField extends fields.SchemaField {
             if (standardAttack) {
                 const damageTerms = new Roll(standardAttack.value.damageFormula).terms;
                 if (evolved.damageBonus) {
-                    const bonusTerm = 
-                        damageTerms.find(x => x instanceof foundry.dice.terms.NumericTerm);
-                    if (bonusTerm) {
-                        bonusTerm.number += evolved.damageBonus;
-                    } else {
-                        damageTerms.push(...[
-                            new foundry.dice.terms.OperatorTerm({ operator: '+' }),
-                            new foundry.dice.terms.NumericTerm({ number: evolved.damageBonus })
-                        ]);
-                    }
+                    damageTerms.push(...[
+                        new foundry.dice.terms.OperatorTerm({ operator: '+' }),
+                        new foundry.dice.terms.NumericTerm({ number: evolved.damageBonus })
+                    ]);
                 }
                 
                 if (evolved.increaseDamageDice) {
