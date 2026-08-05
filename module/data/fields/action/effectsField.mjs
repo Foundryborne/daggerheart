@@ -32,7 +32,7 @@ export default class EffectsField extends fields.ArrayField {
         }
         if (EffectsField.getAutomation() || force) {
             targets ??= 
-                (config.targets ?? message.system?.targets).filter(t => !config.hasRoll || t.hitResult?.success);
+                (config.targets ?? message.system?.targets ?? []).filter(t => !config.hasRoll || t.hitResult?.success);
             EffectsField.applyEffects.call(this, targets);
         }
     }

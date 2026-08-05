@@ -937,15 +937,11 @@ export const fearPosition = {
     leftBottom: { value: 'leftBottom', label: 'DAGGERHEART.SETTINGS.Appearance.fearPosition.leftBottom' }
 };
 
-export const basicOwnershiplevels = {
+export const simpleOwnershiplevels = {
+    [-1]: { value: -1, label: 'OWNERSHIP.INHERIT' },
     0: { value: 0, label: 'OWNERSHIP.NONE' },
     2: { value: 2, label: 'OWNERSHIP.OBSERVER' },
     3: { value: 3, label: 'OWNERSHIP.OWNER' }
-};
-
-export const simpleOwnershiplevels = {
-    [-1]: { value: -1, label: 'OWNERSHIP.INHERIT' },
-    ...basicOwnershiplevels
 };
 
 export const countdownLoopingTypes = {
@@ -976,12 +972,20 @@ export const countdownTypes = {
     encounter: {
         id: 'encounter', 
         label: 'DAGGERHEART.CONFIG.CountdownType.encounter.label',
-        shortLabel: 'DAGGERHEART.CONFIG.CountdownType.encounter.shortLabel'
+        shortLabel: 'DAGGERHEART.CONFIG.CountdownType.encounter.shortLabel',
+        icon: 'fa-solid fa-hourglass-half'
     },
     narrative: {
         id: 'narrative',
         label: 'DAGGERHEART.CONFIG.CountdownType.narrative.label',
-        shortLabel: 'DAGGERHEART.CONFIG.CountdownType.narrative.shortLabel'  
+        shortLabel: 'DAGGERHEART.CONFIG.CountdownType.narrative.shortLabel',
+        icon: 'fa-solid fa-hourglass-start'
+    },
+    misc: {
+        id: 'misc',
+        label: 'DAGGERHEART.CONFIG.CountdownType.misc.label',
+        shortLabel: 'DAGGERHEART.CONFIG.CountdownType.misc.shortLabel',
+        icon: 'fa-solid fa-hammer'
     }
 };
 

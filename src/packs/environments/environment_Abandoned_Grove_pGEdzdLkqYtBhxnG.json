@@ -143,7 +143,11 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false,
+        "featureForm": "passive"
       },
       "_id": "MX4q2xxuWts9gBfT",
       "img": "icons/environment/wilderness/cave-entrance.webp",
@@ -178,7 +182,8 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
               "parts": {
@@ -210,7 +215,40 @@
                 }
               },
               "includeBase": false,
-              "groupAttack": ""
+              "groupAttack": "",
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  },
+                  "flatMultiplier": 1,
+                  "dice": "d8",
+                  "bonus": 3,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [
+                  "physical"
+                ],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "groupAttack": "",
+                "fullRestore": false
+              },
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -251,14 +289,23 @@
                 "type": "placed",
                 "shape": "circle",
                 "size": "veryClose",
-                "effects": []
+                "effects": [],
+                "hasHole": false
               }
-            ]
+            ],
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": []
           }
         },
         "originItemType": null,
         "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "maK5OyfrOxcjCoPt",
       "img": "icons/magic/nature/root-vine-spiral-thorns-teal.webp",
@@ -275,7 +322,10 @@
             "duration": {
               "type": "temporary",
               "description": "<p>Until you’re freed with a successful Finesse or Strength roll or by dealing at least 6 damage to the vines.</p>"
-            }
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
           },
           "disabled": false,
           "duration": {
@@ -358,12 +408,16 @@
                 "actorUUID": "Compendium.daggerheart.adversaries.Actor.G62k4oSkhkoXEs2D",
                 "count": "@partySize"
               }
-            ]
+            ],
+            "areas": []
           }
         },
         "originItemType": null,
         "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "uG5A2XQuUcPsXzgP",
       "img": "icons/magic/nature/hand-weapon-wood-bark-brown.webp",
@@ -398,7 +452,8 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "effects": [],
             "target": {
@@ -407,12 +462,21 @@
             },
             "name": "Spend Fear",
             "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
         "originItemType": null,
         "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "3kkkbnWEvXk5TPK8",
       "img": "icons/magic/unholy/strike-hand-glow-pink.webp",

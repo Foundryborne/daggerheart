@@ -25,8 +25,8 @@
           "consumeOnSuccess": true
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -55,7 +55,13 @@
         },
         "name": "Pass Through",
         "img": "icons/magic/symbols/cross-circle-blue.webp",
-        "range": "close"
+        "range": "close",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "RTUxVXUyRM6mNwUX": {
         "type": "attack",
@@ -72,8 +78,8 @@
           "consumeOnSuccess": true
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -102,7 +108,13 @@
         },
         "name": "Plane Gate",
         "img": "icons/magic/movement/portal-vortex-orange.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "resource": null,
@@ -110,7 +122,12 @@
       "source": "Daggerheart SRD",
       "page": 125,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "gFMx08ogQ8hS2Obi",

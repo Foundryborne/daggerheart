@@ -80,7 +80,7 @@ export default class DhCompanion extends DhCreature {
                         label: 'DAGGERHEART.ACTORS.Character.defaultDisadvantageDice'
                     })
                 })
-            }),
+            }, { persisted: false }),
             attack: new ActionField({
                 initial: {
                     name: 'Attack',
@@ -116,7 +116,7 @@ export default class DhCompanion extends DhCreature {
                     physical: bonusField('DAGGERHEART.GENERAL.Damage.physicalDamage'),
                     magical: bonusField('DAGGERHEART.GENERAL.Damage.magicalDamage')
                 })
-            })
+            }, { persisted: false })
         };
     }
 

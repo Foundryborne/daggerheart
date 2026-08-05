@@ -24,7 +24,8 @@ import TokenManager from './module/documents/tokenManager.mjs';
 CONFIG.DH = SYSTEM;
 CONFIG.TextEditor.enrichers.push(...enricherConfig);
 
-CONFIG.Dice.rolls = [Roll = BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll, FateRoll];
+globalThis.Roll = BaseRoll;
+CONFIG.Dice.rolls = [BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll, FateRoll];
 CONFIG.Dice.daggerheart = {
     DHRoll: DHRoll,
     DualityRoll: DualityRoll,

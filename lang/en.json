@@ -462,6 +462,7 @@
                     "countdowns": {
                         "element": {
                             "name": { "label": "Name" },
+                            "hidden": { "label": "Hidden" },
                             "progress": {
                                 "current": { "label": "Current" },
                                 "looping": { "label": "Looping" },
@@ -502,7 +503,6 @@
                 "progressionType": "Progression",
                 "decreasing": "Decreasing",
                 "looping": "Looping",
-                "defaultOwnershipTooltip": "The default player ownership of countdowns",
                 "hideNewCountdowns": "Hide New Countdowns"
             },
             "CreateItemDialog": {
@@ -1190,7 +1190,8 @@
             },
             "CountdownType": {
                 "encounter": { "label": "Short Term", "shortLabel": "Short" },
-                "narrative": { "label": "Long Term", "shortLabel": "Long" }
+                "narrative": { "label": "Long Term", "shortLabel": "Long" },
+                "misc": { "label": "Miscellaneous", "shortLabel": "Misc" }
             },
             "DaggerheartDiceAnimationEvents": {
                 "critical": { "name": "Critical" },
@@ -3182,8 +3183,8 @@
             "Countdowns": {
                 "title": "Countdowns",
                 "toggleIconMode": "Toggle Icon Only",
-                "noPlayerAccess": "No player has access to this countdown",
-                "hidden": "This countdown is hidden",
+                "hidden": "This countdown is hidden to all players.",
+                "hiddenPartial": "This countdown is hidden to players except {players}.",
                 "reveal":"Reveal Countdown",
                 "hide":"Hide Countdown",
                 "loop": "Looping",

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "BQ1L4EiwOs84Xysp",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Name and describe your signature combat move. Once per rest, when you perform this signature move as part of an action you’re taking, you can roll a<strong> d20</strong> as your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip> Die. On a success, clear a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip>.</p></p>",
+    "description": "<p></p><p class=\"Body-Foundation\">Name and describe your signature combat move. Once per rest, when you perform this signature move as part of an action you’re taking, you can roll a<strong> d20</strong> as your Hope Die. On a success, clear a Stress.</p><p></p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 5,
@@ -13,7 +13,14 @@
       "source": "Daggerheart SRD",
       "page": 123,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "LWRkhNY968Cu2Zl5",

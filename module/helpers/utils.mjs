@@ -5,9 +5,40 @@ import Tagify from '@yaireo/tagify';
  * @import DhpActor from '../documents/actor.mjs';
  */
 
-export const capitalize = string => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-};
+/** Given an object, returns a new object with the keys listed in keys */
+export function pick(obj, keys) {
+    return keys.reduce((r, k) => {
+        r[k] = obj[k];
+        return r;
+    }, {});
+}
+
+/** Given an object, returns a new object with the keys not listed in keys */
+export function omit(obj, keys) {
+    const keysAsString = keys.map(k => String(k));
+    return Object.keys(obj).reduce((r, k) => {
+        if (!keysAsString.includes(k)) {
+            r[k] = obj[k];
+        }
+        return r;
+    }, {});
+}
+
+/** 
+ * Given an object, returns a new object with each value altered by a transform function
+ * @template {string} K
+ * @template V
+ * @template R
+ * @param {Record<K, V>} obj object to transform
+ * @param {(value: V, index: number) => R} transform mapping function
+ * @returns {Record<K, R>} new object with mapped values
+ */
+export function mapValues(obj, transform) {
+    return Object.entries(obj).reduce((r, [k, v], index) => {
+        r[k] = transform(v, index);
+        return r;
+    }, {});
+}
 
 export function rollCommandToJSON(text) {
     if (!text) return {};
@@ -16,7 +47,7 @@ export function rollCommandToJSON(text) {
     const flavor = flavorMatch ? flavorMatch[1] : null;
 
     // Match key="quoted string"  OR  key=unquotedValue
-    const PAIR_RE = /(\w+)\s*=\s*("(?:[^"\\]|\\.)*"|[^\]\}\s]+)/g; //updated regex to allow escaped quotes in quoted strings and avoid matching closing brackets/braces
+    const PAIR_RE = /(\w+)\s*=\s*("(?:[^"\\]|\\.)*"|[^\]}\s]+)/g; //updated regex to allow escaped quotes in quoted strings and avoid matching closing brackets/braces
     const result = {};
     for (const [, key, raw] of text.matchAll(PAIR_RE)) {
         let value;
@@ -754,7 +785,7 @@ export function resetAndRerenderActors() {
     );
     for (const actor of actors) {
         for (const app of Object.values(actor.apps)) {
-            for (const element of app.element?.querySelectorAll('prose-mirror.active')) {
+            for (const element of app.element?.querySelectorAll('prose-mirror.active') ?? []) {
                 element.open = false; // This triggers a save
             }
         }

@@ -25,7 +25,8 @@
           "consumeOnSuccess": true
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "stress": {
               "resultBased": false,
               "value": {
@@ -46,13 +47,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -81,14 +82,26 @@
         },
         "name": "Provoke",
         "img": "icons/magic/control/fear-fright-monster-purple-blue.webp",
-        "range": "far"
+        "range": "far",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 126,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "JrdZedm1BFKeV7Yb",

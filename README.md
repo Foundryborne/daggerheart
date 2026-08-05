@@ -78,14 +78,12 @@ Looking to contribute to the project? Look no further, check out our [contributi
 
 The Foundryborne Daggerheart system does not make use of AI (generative or otherwise) for any area of its implementation. We expect all contributors to follow this same policy when contributing with a pull request; contributions made using AI will be rejected outright.
 
-## Disclaimer
+## Licenses
 
-**Daggerheart System**
-Daggerheart is a trademark of Darrington Press LLC. All original content, mechanics, and intellectual property related to the Daggerheart roleplaying game are © Darrington Press LLC.
+Game system content available in the Daggerheart System Reference Document as well as the domain icons are licensed under the [Darrington Press Community Gaming License](https://darringtonpress.com/wp-content/uploads/2025/07/DPCGL-July-30th-2025.pdf). All other Daggerheart specific content including logos and other images are packaged with and provided for use in the daggerheart system and may not be redistributed or used outside of Foundry Virtual Tabletop except as permitted by a separate license agreement between the original copyright owner.
 
-This project is intended for personal or non-commercial use. All rights to Daggerheart’s original materials remain with their respective owners.
+All HTML, CSS, and Javascript in this project is distributed under the [MIT License](LICENSE). 
 
-**Free Icons**
-Some Icons used in this project are provided by https://game-icons.net and are licensed under the Creative Commons Attribution 3.0 Unported (CC BY 3.0).
+Some icons used in this project are provided by https://game-icons.net and are licensed under the Creative Commons Attribution 3.0 Unported (CC BY 3.0).
 
-This project is an unofficial fan creation and is not affiliated with or endorsed by Darrington Press or Critical Role.
+Darrington Press™, Daggerheart™, and their respective logos are trademarks of Critical Role, LLC and used with permission.

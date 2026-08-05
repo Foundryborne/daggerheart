@@ -22,13 +22,16 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -37,7 +40,13 @@
         },
         "name": "Gain Bonus",
         "img": "icons/magic/light/explosion-star-glow-silhouette.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
@@ -45,7 +54,12 @@
       "page": 127,
       "artist": ""
     },
-    "loadoutIgnore": true
+    "loadoutIgnore": true,
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "IqxzvvjZiYbgx21A",

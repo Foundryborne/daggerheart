@@ -1,4 +1,5 @@
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../../systemRegistration/socket.mjs';
+import { NullableBooleanField } from '../nullableBooleanField.mjs';
 
 const fields = foundry.data.fields;
 
@@ -17,11 +18,12 @@ export default class CountdownField extends fields.ArrayField {
                 initial: game.i18n.localize('DAGGERHEART.APPLICATIONS.Countdown.newCountdown'),
                 label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.name.label'
             }),
-            defaultOwnership: new fields.NumberField({
+            // Hidden is nullable to allow defaulting to the global setting
+            hidden: new NullableBooleanField({
                 required: true,
-                choices: CONFIG.DH.GENERAL.simpleOwnershiplevels,
-                initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT,
-                label: 'DAGGERHEART.ACTIONS.Config.countdown.defaultOwnership'
+                nullable: true,
+                initial: false,
+                label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.hidden.label'
             })
         });
         super(element, options, context);
@@ -55,12 +57,10 @@ export default class CountdownField extends fields.ArrayField {
                 }
             }
 
+            const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
             data.countdowns[foundry.utils.randomID()] = {
                 ...countdown,
-                ownership: game.users.reduce((acc, curr) => {
-                    if (!curr.isGM) acc[curr.id] = countdown.defaultOwnership;
-                    return acc;
-                }, {}),
+                hidden: countdown.hidden ?? setting.hideNewCountdowns,
                 progress: {
                     ...countdown.progress,
                     current: countdownStart,

@@ -21,10 +21,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "stress": {
               "resultBased": false,
               "value": {
@@ -38,7 +40,6 @@
                 "bonus": null
               },
               "applyTo": "stress",
-              "type": [],
               "base": false,
               "valueAlt": {
                 "multiplier": "prof",
@@ -46,12 +47,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
-              }
+              },
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -85,7 +87,13 @@
         },
         "name": "Mystic Tether",
         "img": "icons/magic/control/energy-stream-link-white.webp",
-        "range": "far"
+        "range": "far",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "GI2VkIcGDOjFRxpT": {
         "type": "attack",
@@ -98,11 +106,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -131,7 +140,13 @@
         },
         "name": "Fireball - Cast",
         "img": "icons/magic/fire/explosion-fireball-large-red-orange.webp",
-        "range": "veryFar"
+        "range": "veryFar",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "HJ749c2a8WTjkSHY": {
         "type": "attack",
@@ -151,7 +166,8 @@
             "type": "placed",
             "shape": "emanation",
             "size": "veryClose",
-            "effects": []
+            "effects": [],
+            "hasHole": false
           }
         ],
         "cost": [],
@@ -162,38 +178,38 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
-            "hitPoints": {
-              "applyTo": "hitPoints",
-              "resultBased": false,
-              "value": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d20",
-                "bonus": 5,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "valueAlt": {
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "base": false,
-              "type": [
-                "magical"
-              ]
-            }
+          "main": {
+            "applyTo": "hitPoints",
+            "resultBased": false,
+            "value": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d20",
+              "bonus": 5,
+              "custom": {
+                "enabled": false,
+                "formula": ""
+              }
+            },
+            "valueAlt": {
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false,
+                "formula": ""
+              }
+            },
+            "base": false,
+            "type": [
+              "magical"
+            ],
+            "includeBase": false,
+            "direct": false,
+            "fullRestore": false
           },
-          "includeBase": false,
-          "direct": false
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -229,7 +245,13 @@
       "source": "Daggerheart SRD",
       "page": 124,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "WtwSWXTRZa7QVvmo",
@@ -245,8 +267,12 @@
       "system": {
         "changes": [],
         "duration": {
-          "type": "temporary"
-        }
+          "type": "temporary",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {

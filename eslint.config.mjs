@@ -99,6 +99,19 @@ export default defineConfig([
                     ignoreRestSiblings: true
                 }
             ],
+            'array-callback-return': 'error',
+            'no-async-promise-executor': 'error',
+            'no-const-assign': 'error',
+            'no-dupe-class-members': 'error',
+            'no-dupe-keys': 'error',
+            'no-extra-boolean-cast': 'error',
+            'no-fallthrough': 'error',
+            'no-global-assign': 'error',
+            'no-redeclare': 'error',
+            'no-unsafe-optional-chaining': 'error',
+            'no-unused-private-class-members': 'error',
+            'no-useless-assignment': 'error',
+            'no-useless-escape': 'error',
             ...stylisticRules
         }
     },

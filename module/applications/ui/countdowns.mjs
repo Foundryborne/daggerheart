@@ -9,7 +9,6 @@ const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
  * @extends ApplicationV2
  * @mixes HandlebarsApplication
  */
-
 export default class DhCountdowns extends HandlebarsApplicationMixin(ApplicationV2) {
     previousCountdownData = null;
 
@@ -60,9 +59,9 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
      * @returns {string[]}
      */
     get visibleCountdownTypes() {
-        const { encounter, narrative } = CONFIG.DH.GENERAL.countdownTypes;
+        const { encounter, narrative, misc } = CONFIG.DH.GENERAL.countdownTypes;
         return game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) 
-            ?? [encounter.id, narrative.id];
+            ?? [encounter.id, narrative.id, misc];
     }
 
     async _renderFrame(options) {
@@ -141,22 +140,14 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             key,
             countdown,
             ownership: countdown.getUserLevel(game.user),
-            hidden: countdown.hidden && !game.user.isGM
+            hidden: countdown.hidden,
+            visible: countdown.visible
         }));
-        return values.filter(v => v.ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE && v.hidden == false);
+        return values.filter(v => v.visible);
     }
 
-    _getCountdownData() {
+    #prepareCountdownData() {
         return this.#getCountdowns().reduce((acc, { key, countdown, ownership }) => {
-            const playersWithAccess = game.users.reduce((acc, user) => {
-                const ownership = countdown.getUserLevel(user);
-                if (!user.isGM && ownership && ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE) {
-                    acc.push(user);
-                }
-                return acc;
-            }, []);
-            const nonGmPlayers = game.users.filter(x => !x.isGM);
-
             const countdownEditable = game.user.isGM || ownership === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
             const isLooping = countdown.progress.looping !== CONFIG.DH.GENERAL.countdownLoopingTypes.noLooping;
             const loopTooltip = isLooping
@@ -170,11 +161,16 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                 !countdownEditable ||
                 (isLooping && (countdown.progress.current > 0 || countdown.progress.start === '0'));
 
+            const playersCountdownIsVisibleTo = game.users.filter(x => 
+                !x.isGM && (!countdown.hidden || countdown.ownership[x.id] > CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE));
+            const visiblePlayersText = playersCountdownIsVisibleTo.length
+                ? game.i18n.getListFormatter({ style: 'narrow' }).format(playersCountdownIsVisibleTo.map(u => u.name))
+                : null;
+
             acc[countdown.type][key] = {
                 ...countdown,
                 editable: countdownEditable,
-                noPlayerAccess: nonGmPlayers.length && playersWithAccess.length === 0,
-                hidden: countdown.hidden,
+                visiblePlayersText,
                 shouldLoop: isLooping && countdown.progress.current === 0 && countdown.progress.start > 0,
                 loopDisabled: isLooping ? loopDisabled : null,
                 loopTooltip: isLooping && game.i18n.localize(loopTooltip)
@@ -197,14 +193,15 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
 
         context.userCountdownTypes = this.visibleCountdownTypes;
 
-        context.typeToggles = 
-            Object.values(CONFIG.DH.GENERAL.countdownTypes).map(type => ({
-                type: type.id,
-                label: game.i18n.localize(type.shortLabel),
-                active: context.userCountdownTypes.includes(type.id)
-            }));
+        context.typeToggles = Object.values(CONFIG.DH.GENERAL.countdownTypes).map(type => ({
+            type: type.id,
+            label: _loc(type.label),
+            shortLabel: _loc(type.shortLabel),
+            icon: type.icon,
+            active: context.userCountdownTypes.includes(type.id)
+        }));
 
-        context.countdowns = this._getCountdownData();
+        context.countdowns = this.#prepareCountdownData();
         context.countdownTypesWithVisibleEntries = this.#getCountdowns().reduce((acc, data) => {
             if (context.userCountdownTypes.includes(data.countdown.type) && !acc.includes(data.countdown.type)) 
                 acc.push(data.countdown.type);
@@ -379,7 +376,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                 label: 'DAGGERHEART.UI.Countdowns.reveal',
                 icon: 'fa-solid fa-eye',
                 visible: element => {
-                    return getCountdownFromElement(element).hidden && game.user.isGM
+                    return game.user.isGM && getCountdownFromElement(element).hidden
                 },
                 onClick: (_, target) => {
                     getCountdownFromElement(target)?.toggleVisibility();
@@ -389,7 +386,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
                 label: 'DAGGERHEART.UI.Countdowns.hide',
                 icon: 'fa-solid fa-eye-slash',
                 visible: element => {
-                    return !getCountdownFromElement(element).hidden && game.user.isGM
+                    return game.user.isGM && !getCountdownFromElement(element).hidden
                 },
                 onClick: (_, target) => {
                     getCountdownFromElement(target)?.toggleVisibility();

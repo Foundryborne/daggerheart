@@ -15,10 +15,15 @@
 
         .ownership-container {
             display: flex;
-            border-radius: 6px;
             padding: 0 4px 0 0;
             align-items: center;
             gap: 8px;
+
+            &.default {
+                padding-left: 48px; // img + gap
+                padding-bottom: 4px;
+                border-bottom: 1px solid @color-border;
+            }
 
             img {
                 height: 40px;
