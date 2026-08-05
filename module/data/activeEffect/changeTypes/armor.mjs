@@ -6,15 +6,25 @@ export default class ArmorChange extends foundry.abstract.DataModel {
     static defineSchema() {
         return {
             type: new fields.StringField({ required: true, choices: ['armor'], initial: 'armor' }),
-            priority: new fields.NumberField(),
+            priority: new fields.NumberField({
+                label: 'EFFECT.FIELDS.changes.element.priority.label',
+                required: true, 
+                integer: true, 
+                initial: 20
+            }),
             phase: new fields.StringField({ required: true, blank: false, initial: 'initial' }),
             value: new fields.SchemaField({
-                current: new fields.NumberField({ integer: true, min: 0, initial: 0 }),
+                current: new fields.NumberField({ 
+                    label: 'DAGGERHEART.EFFECTS.ChangeTypes.armor.FIELDS.value.current.label',
+                    integer: true, 
+                    min: 0, 
+                    initial: 0 
+                }),
                 max: new fields.StringField({
+                    label: 'DAGGERHEART.EFFECTS.ChangeTypes.armor.FIELDS.value.max.label',
                     required: true,
                     nullable: false,
-                    initial: '1',
-                    label: 'DAGGERHEART.GENERAL.max'
+                    initial: '1'
                 }),
                 damageThresholds: new fields.SchemaField(
                     {
@@ -30,11 +40,10 @@ export default class ArmorChange extends foundry.abstract.DataModel {
                     { nullable: true, initial: null }
                 ),
                 interaction: new fields.StringField({
+                    label: 'DAGGERHEART.EFFECTS.ChangeTypes.armor.FIELDS.interaction.label',
                     required: true,
                     choices: CONFIG.DH.GENERAL.activeEffectArmorInteraction,
-                    initial: CONFIG.DH.GENERAL.activeEffectArmorInteraction.none.id,
-                    label: 'DAGGERHEART.EFFECTS.ChangeTypes.armor.FIELDS.interaction.label',
-                    hint: 'DAGGERHEART.EFFECTS.ChangeTypes.armor.FIELDS.interaction.hint'
+                    initial: CONFIG.DH.GENERAL.activeEffectArmorInteraction.none.id
                 })
             })
         };

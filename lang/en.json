@@ -2010,10 +2010,11 @@
             "ChangeTypes": {
                 "armor": {
                     "FIELDS": {
-                        "interaction": {
-                            "label": "Armor Interaction",
-                            "hint": "Does the character wearing armor suppress this effect?"
-                        }
+                        "value": {
+                            "current": { "label": "Marked Armor Slots" },
+                            "max": { "label": "Armor Score" }
+                        },
+                        "interaction": { "label": "Armor Interaction" }
                     }
                 },
                 "standardAttack": {
