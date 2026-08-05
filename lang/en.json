@@ -486,7 +486,8 @@
                 "types": {
                     "narrative": "Narrative",
                     "encounter": "Encounter"
-                }
+                },
+                "hiddenNullLabel": "Set To Countdown UI Default"
             },
             "CountdownEdit": {
                 "title": "Countdown Edit",

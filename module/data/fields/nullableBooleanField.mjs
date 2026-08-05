@@ -3,6 +3,12 @@
  */
 export class NullableBooleanField extends foundry.data.fields.BooleanField {
     /** @inheritdoc */
+    constructor(options = {}, {nullLabel, ...context} = {}) {
+        super(options, context);
+
+        this.nullLabel = nullLabel;
+    }
+    /** @inheritdoc */
     _cast(value) {
         if (value === 'true') return true;
         if (value === 'false') return false;
@@ -18,7 +24,7 @@ export class NullableBooleanField extends foundry.data.fields.BooleanField {
         const options = [
             { value: 'true', label: _loc('COMMON.Yes'), selected: value === 'true' },
             { value: 'false', label: _loc('COMMON.No'), selected: value === 'false' },
-            { value: 'null', label: '', selected: value === 'null' }
+            { value: 'null', label: this.nullLabel ?? '', selected: value === 'null' }
         ];
         const data = foundry.utils.mergeObject(config, { value, options, dataset: { data: 'JSON' } });
         return foundry.applications.fields.createSelectInput(data);
