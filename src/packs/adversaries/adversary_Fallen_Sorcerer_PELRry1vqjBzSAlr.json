@@ -672,7 +672,6 @@
               {
                 "name": "Shackles of Guilt",
                 "type": "encounter",
-                "defaultOwnership": -1,
                 "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
                 "progress": {
                   "looping": "looping",
@@ -682,7 +681,7 @@
                   "current": 1
                 },
                 "ownership": {},
-                "hidden": false
+                "hidden": null
               }
             ],
             "name": "Start Countdown",

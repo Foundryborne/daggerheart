@@ -1,4 +1,5 @@
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../../systemRegistration/socket.mjs';
+import { NullableBooleanField } from '../nullableBooleanField.mjs';
 
 const fields = foundry.data.fields;
 
@@ -17,9 +18,10 @@ export default class CountdownField extends fields.ArrayField {
                 initial: game.i18n.localize('DAGGERHEART.APPLICATIONS.Countdown.newCountdown'),
                 label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.name.label'
             }),
-            hidden: new fields.BooleanField({
+            // Hidden is nullable to allow defaulting to the global setting
+            hidden: new NullableBooleanField({
                 required: true,
-                nullable: false,
+                nullable: true,
                 initial: false,
                 label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.hidden.label'
             })
@@ -55,8 +57,10 @@ export default class CountdownField extends fields.ArrayField {
                 }
             }
 
+            const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
             data.countdowns[foundry.utils.randomID()] = {
                 ...countdown,
+                hidden: countdown.hidden ?? setting.hideNewCountdowns,
                 progress: {
                     ...countdown.progress,
                     current: countdownStart,

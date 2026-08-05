@@ -1016,7 +1016,6 @@
               {
                 "name": "Apocalyptic Thrasing",
                 "type": "encounter",
-                "defaultOwnership": -1,
                 "img": "icons/creatures/abilities/mouth-teeth-fire-orange.webp",
                 "progress": {
                   "looping": "noLooping",
@@ -1026,7 +1025,7 @@
                   "current": 1
                 },
                 "ownership": {},
-                "hidden": false
+                "hidden": null
               }
             ],
             "name": "Start Countdown",

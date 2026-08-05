@@ -683,7 +683,6 @@
               {
                 "name": "Circle of Defilement",
                 "type": "encounter",
-                "defaultOwnership": -1,
                 "img": "icons/magic/unholy/barrier-fire-pink.webp",
                 "progress": {
                   "looping": "noLooping",
@@ -693,7 +692,7 @@
                   "current": 1
                 },
                 "ownership": {},
-                "hidden": false
+                "hidden": null
               }
             ],
             "name": "Start Countdown",

@@ -879,7 +879,6 @@
               {
                 "name": "Hallucinatory Breath",
                 "type": "encounter",
-                "defaultOwnership": -1,
                 "img": "icons/magic/air/fog-gas-smoke-purple.webp",
                 "progress": {
                   "looping": "looping",
@@ -889,7 +888,7 @@
                   "current": 1
                 },
                 "ownership": {},
-                "hidden": false
+                "hidden": null
               }
             ],
             "name": "Start Countdown",

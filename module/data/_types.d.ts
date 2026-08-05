@@ -3,6 +3,7 @@ export {}; // top level import/export required for merges to happen
 declare module './countdowns.mjs' {
     export default interface DhCountdowns {
         countdowns: Record<string, DhCountdown>;
+        hideNewCountdowns: boolean;
     }
 
     export interface DhCountdown {

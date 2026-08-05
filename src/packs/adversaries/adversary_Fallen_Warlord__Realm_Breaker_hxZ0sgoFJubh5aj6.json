@@ -707,7 +707,6 @@
               {
                 "name": "All-Consuming Rage",
                 "type": "encounter",
-                "defaultOwnership": -1,
                 "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
                 "progress": {
                   "looping": "decreasing",
@@ -717,7 +716,7 @@
                   "current": 1
                 },
                 "ownership": {},
-                "hidden": false
+                "hidden": null
               }
             ],
             "name": "Start Countdown",

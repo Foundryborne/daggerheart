@@ -610,7 +610,6 @@
               {
                 "name": "Choking Ash",
                 "type": "encounter",
-                "defaultOwnership": -1,
                 "img": "icons/magic/air/fog-gas-smoke-brown.webp",
                 "progress": {
                   "looping": "looping",
@@ -620,7 +619,7 @@
                   "current": 1
                 },
                 "ownership": {},
-                "hidden": false
+                "hidden": null
               }
             ],
             "name": "Start Countdown",

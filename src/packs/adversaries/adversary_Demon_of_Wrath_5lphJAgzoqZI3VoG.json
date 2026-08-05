@@ -592,7 +592,6 @@
               {
                 "name": "Blood and Souls",
                 "type": "encounter",
-                "defaultOwnership": -1,
                 "img": "icons/creatures/unholy/demon-fire-horned-clawed.webp",
                 "progress": {
                   "looping": "looping",
@@ -602,7 +601,7 @@
                   "current": 1
                 },
                 "ownership": {},
-                "hidden": false
+                "hidden": null
               }
             ],
             "name": "Countdown",

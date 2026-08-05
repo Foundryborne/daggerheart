@@ -274,7 +274,6 @@
               {
                 "name": "Chase Thief",
                 "type": "encounter",
-                "defaultOwnership": -1,
                 "img": "icons/skills/movement/feet-winged-boots-brown.webp",
                 "progress": {
                   "looping": "noLooping",
@@ -284,12 +283,11 @@
                   "current": 1
                 },
                 "ownership": {},
-                "hidden": false
+                "hidden": null
               },
               {
                 "name": "Escape To Hideout",
                 "type": "encounter",
-                "defaultOwnership": -1,
                 "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
                 "progress": {
                   "looping": "noLooping",
@@ -299,7 +297,7 @@
                   "current": 1
                 },
                 "ownership": {},
-                "hidden": false
+                "hidden": null
               }
             ],
             "name": "Start Countdowns",

@@ -377,7 +377,6 @@
               {
                 "name": "Casus Belli",
                 "type": "narrative",
-                "defaultOwnership": -1,
                 "img": "icons/sundries/scrolls/scroll-bound-sealed-red-tan.webp",
                 "progress": {
                   "looping": "noLooping",
@@ -387,7 +386,7 @@
                   "current": 1
                 },
                 "ownership": {},
-                "hidden": false
+                "hidden": null
               }
             ],
             "name": "Start Countdown",

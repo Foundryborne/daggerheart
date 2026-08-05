@@ -927,7 +927,6 @@
               {
                 "name": "Your Life Is Mine",
                 "type": "encounter",
-                "defaultOwnership": -1,
                 "img": "icons/magic/unholy/hand-claw-fire-green.webp",
                 "progress": {
                   "looping": "looping",
@@ -937,7 +936,7 @@
                   "current": 1
                 },
                 "ownership": {},
-                "hidden": false
+                "hidden": null
               }
             ],
             "name": "Start Countdown",

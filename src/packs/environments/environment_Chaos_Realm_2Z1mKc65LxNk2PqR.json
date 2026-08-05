@@ -243,7 +243,6 @@
               {
                 "name": "Impossible Architecture",
                 "type": "encounter",
-                "defaultOwnership": -1,
                 "img": "icons/magic/symbols/squares-3d-green.webp",
                 "progress": {
                   "looping": "noLooping",
@@ -253,7 +252,7 @@
                   "current": 1
                 },
                 "ownership": {},
-                "hidden": false
+                "hidden": null
               }
             ],
             "name": "Start Countdown",
@@ -369,7 +368,6 @@
               {
                 "name": "Everything You Are This Place Will Take from You",
                 "type": "encounter",
-                "defaultOwnership": -1,
                 "img": "icons/magic/control/sihouette-hold-beam-green.webp",
                 "progress": {
                   "looping": "looping",
@@ -378,7 +376,7 @@
                   "start": 1
                 },
                 "ownership": {},
-                "hidden": false
+                "hidden": null
               }
             ],
             "name": "Start Countdown",

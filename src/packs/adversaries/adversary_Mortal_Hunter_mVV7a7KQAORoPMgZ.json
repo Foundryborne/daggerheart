@@ -844,7 +844,6 @@
               {
                 "name": "Rampage",
                 "type": "encounter",
-                "defaultOwnership": -1,
                 "img": "icons/magic/movement/trail-streak-zigzag-yellow.webp",
                 "progress": {
                   "looping": "looping",
@@ -854,7 +853,7 @@
                   "current": 1
                 },
                 "ownership": {},
-                "hidden": false
+                "hidden": null
               }
             ],
             "name": "Start Countdown",

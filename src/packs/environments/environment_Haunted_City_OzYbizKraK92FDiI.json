@@ -331,7 +331,6 @@
               {
                 "name": "Apocalypse Then",
                 "type": "encounter",
-                "defaultOwnership": -1,
                 "img": "icons/magic/death/skull-weapon-staff-glow-pink.webp",
                 "progress": {
                   "looping": "noLooping",
@@ -341,7 +340,7 @@
                   "current": 1
                 },
                 "ownership": {},
-                "hidden": false
+                "hidden": null
               }
             ],
             "name": "Start Countdown",
