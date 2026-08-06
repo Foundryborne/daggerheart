@@ -719,10 +719,9 @@
                 "explanation": "You are adding {class} as your multiclass",
                 "selectDomainPrompt": "Select your new domain"
             },
-            "OwnershipSelection": {
-                "title": "Ownership Selection - {name}",
+            "CountdownPermissions": {
+                "title": "Countdown Permissions - {name}",
                 "noPlayers": "No players to assign ownership to",
-                "default": "Default Ownership",
                 "defaultPermission": "Countdown Status"
             },
             "PendingReactionsDialog": {

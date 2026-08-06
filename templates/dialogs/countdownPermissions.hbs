@@ -4,7 +4,7 @@
             {{#if defaultOwnershipOptions}}
                 <li class="ownership-container default">
                     <img src="{{defaultIcon}}" />
-                    <span>{{localize "DAGGERHEART.APPLICATIONS.OwnershipSelection.defaultPermission"}}</span>
+                    <span>{{localize "DAGGERHEART.APPLICATIONS.CountdownPermissions.defaultPermission"}}</span>
                     <select name="default" value="{{default}}" data-dtype="Number">
                         {{selectOptions @root.defaultOwnershipOptions selected=default labelAttr="label" valueAttr="value" localize=true }}
                     </select>
@@ -21,7 +21,7 @@
             {{/each}}
         </ul>
     {{else}}
-        <span class="hint">{{localize "DAGGERHEART.APPLICATIONS.OwnershipSelection.noPlayers"}}</span>
+        <span class="hint">{{localize "DAGGERHEART.APPLICATIONS.CountdownPermissions.noPlayers"}}</span>
     {{/if}}
     <footer class="flexrow">
         <button type="submit">{{localize "Save"}}</button>

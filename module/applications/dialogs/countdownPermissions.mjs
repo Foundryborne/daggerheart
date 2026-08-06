@@ -1,30 +1,18 @@
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 /**
- * @typedef OwnershipOptions
- * @property {number[]} ownershipOptions the options that will be shown as possible choices for each user
- * @property {number} default The default ownership option the players will default to
- * @property {number[]} defaultOwnershipOptions 
+ * @import { DhCountdown } from "../../data/countdowns.mjs";
  */
 
 /** A dialog for ownership selection */
-export default class OwnershipSelection extends HandlebarsApplicationMixin(ApplicationV2) {
+export class CountdownPermissionsDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     /**
-     * @param {string} name
-     * @param {Record<string, number>} options.ownership
-     * @param {OwnershipOptions} [options]
+     * Creates a new dialog for ownership selection
+     * @param {DhCountdown} countdown
      */
-    constructor(name, defaultIcon, ownership, options = {}) {
+    constructor(countdown) {
         super({});
-
-        this.name = name;
-        this.defaultIcon = defaultIcon;
-        this.ownership = ownership;
-        this.ownershipOptions = options.ownershipOptions ?? [-1, 0, 2, 3]; // 1 isn't in our dictionary
-        this.default = options.default;
-        this.defaultOwnershipOptions = typeof options.default === 'number' || options.defaultOwnershipOptions 
-            ? options.defaultOwnershipOptions ?? this.ownershipOptions
-            : null;
+        this.countdown = countdown;
     }
 
     static DEFAULT_OPTIONS = {
@@ -42,16 +30,16 @@ export default class OwnershipSelection extends HandlebarsApplicationMixin(Appli
 
     static PARTS = {
         selection: {
-            template: 'systems/daggerheart/templates/dialogs/ownershipSelection.hbs'
+            template: 'systems/daggerheart/templates/dialogs/countdownPermissions.hbs'
         }
     };
 
     get title() {
-        return game.i18n.format('DAGGERHEART.APPLICATIONS.OwnershipSelection.title', { name: this.name });
+        return game.i18n.format('DAGGERHEART.APPLICATIONS.CountdownPermissions.title', { name: this.countdown.name });
     }
 
     getOwnershipData(id) {
-        return this.ownership[id] ?? CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT;
+        return this.countdown.ownership[id] ?? CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT;
     }
 
     async _prepareContext(_options) {
@@ -59,11 +47,12 @@ export default class OwnershipSelection extends HandlebarsApplicationMixin(Appli
         
         // Get ownership options. becuase of the use of numbers, the base collection is not correctly ordered.
         // So we have to redefine it ourselves in the correct order.
-        context.ownershipOptions = this.ownershipOptions.map(value => ({
+        const levels = CONST.DOCUMENT_OWNERSHIP_LEVELS;
+        context.ownershipOptions = [levels.INHERIT, levels.OBSERVER, levels.OWNER].map(value => ({
             value, 
             label: CONFIG.DH.GENERAL.simpleOwnershipLevels[value].label
         }));
-        context.defaultOwnershipOptions = this.defaultOwnershipOptions?.map(value => ({
+        context.defaultOwnershipOptions = [levels.NONE, levels.OBSERVER].map(value => ({
             value, 
             label: CONFIG.DH.GENERAL.defaultOwnershipLevels[value].label
         }));
@@ -78,9 +67,9 @@ export default class OwnershipSelection extends HandlebarsApplicationMixin(Appli
 
             return acc;
         }, {});
-        context.default = this.default;
+        context.default = this.countdown.hidden ? levels.NONE : levels.OBSERVER;
         context.showOwnership = Boolean(Object.keys(context.ownership).length);
-        context.defaultIcon = this.defaultIcon;
+        context.defaultIcon = this.countdown.img;
 
         return context;
     }
@@ -100,14 +89,12 @@ export default class OwnershipSelection extends HandlebarsApplicationMixin(Appli
 
     /**
      * Creates a ownership selection dialog returns the result when resolved
-     * @param {string} name 
-     * @param {Record<string, number>} ownership
-     * @param {OwnershipOptions} options
+     * @param {DhCountdown} countdown 
      * @returns {Promise<{ ownership: number; default?: number }>}
      */
-    static async configure(name, defaultIcon, ownership, options) {
+    static async configure(countdown) {
         return new Promise(resolve => {
-            const app = new this(name, defaultIcon, ownership, options);
+            const app = new this(countdown);
             app.addEventListener('close', () => resolve(app.saveData), { once: true });
             app.render({ force: true });
         });
