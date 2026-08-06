@@ -14,7 +14,10 @@
       "value": 1,
       "recovery": "shortRest",
       "max": "1",
-      "icon": ""
+      "icon": "",
+      "progression": "increasing",
+      "diceStates": {},
+      "dieFaces": "d4"
     },
     "actions": {
       "hBh4Lt0Bdd9CtJY7": {
@@ -47,7 +50,13 @@
         },
         "name": "Switch Duality Results",
         "img": "icons/commodities/gems/gem-faceted-octagon-yellow.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
@@ -55,7 +64,11 @@
       "page": 120,
       "artist": ""
     },
-    "domainTouched": 4
+    "domainTouched": 4,
+    "gmNotes": "",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false
   },
   "flags": {},
   "_id": "5PvMQKCjrgSxzstn",
@@ -70,21 +83,25 @@
             "key": "system.bonuses.roll.spellcast.bonus",
             "type": "add",
             "value": "+1",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "vTW98Xha0HP8ITrs",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/arcana.png",
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>When 4 or more of the domain cards in your loadout are from the Arcana domain, gain the following benefits:</p><ul><li class=\"vertical-card-list-found\"><p>+1 bonus to your Spellcast Rolls</p></li><li class=\"vertical-card-list-found\"><p>Once per rest, you can switch the results of your Hope and Fear Dice.</p></li></ul>",
       "origin": null,
@@ -96,6 +113,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!5PvMQKCjrgSxzstn.vTW98Xha0HP8ITrs"
     }
   ],

@@ -4,7 +4,7 @@
             <header>
                 <img src="{{this.token.img}}" />
                 <div class="token-header-data">
-                    <h2 class="actor-name">{{this.token.name}}</h2>
+                    <span class="actor-name">{{this.token.name}}</span>
                     {{#unless (and (not ../isGM) ../hideObserverPermissionInChat)}}
                         {{#if this.token.resistant}}<div class="token-resistance-container resistant">{{localize "DAGGERHEART.GENERAL.resistant"}}</div>{{/if}}
                         {{#if this.token.immune}}<div class="token-resistance-container immune">{{localize "DAGGERHEART.GENERAL.immune"}}</div>{{/if}}

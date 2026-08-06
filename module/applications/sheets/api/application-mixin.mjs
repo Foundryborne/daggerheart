@@ -198,7 +198,7 @@ export default function DHApplicationMixin(Base) {
 
                 // Force valid characters while inputting
                 deltaInput.addEventListener('input', () => {
-                    deltaInput.value = /[+=\-]?\d*/.exec(deltaInput.value)?.at(0) ?? deltaInput.value;
+                    deltaInput.value = /[+=-]?\d*/.exec(deltaInput.value)?.at(0) ?? deltaInput.value;
                 });
 
                 // Recreate Keyup/Keydown support
@@ -261,7 +261,7 @@ export default function DHApplicationMixin(Base) {
 
             docs.filter(doc => doc).forEach(doc => (doc.apps[this.id] = this));
 
-            if (!!this.options.contextMenus.length) this._createContextMenus();
+            if (this.options.contextMenus.length) this._createContextMenus();
 
             this._autoExpandDescriptions(context);
         }

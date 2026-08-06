@@ -462,6 +462,7 @@
                     "countdowns": {
                         "element": {
                             "name": { "label": "Name" },
+                            "hidden": { "label": "Hidden" },
                             "progress": {
                                 "current": { "label": "Current" },
                                 "looping": { "label": "Looping" },
@@ -485,7 +486,8 @@
                 "types": {
                     "narrative": "Narrative",
                     "encounter": "Encounter"
-                }
+                },
+                "hiddenNullLabel": "Set To Countdown UI Default"
             },
             "CountdownEdit": {
                 "title": "Countdown Edit",
@@ -502,7 +504,6 @@
                 "progressionType": "Progression",
                 "decreasing": "Decreasing",
                 "looping": "Looping",
-                "defaultOwnershipTooltip": "The default player ownership of countdowns",
                 "hideNewCountdowns": "Hide New Countdowns"
             },
             "CreateItemDialog": {
@@ -718,10 +719,15 @@
                 "explanation": "You are adding {class} as your multiclass",
                 "selectDomainPrompt": "Select your new domain"
             },
-            "OwnershipSelection": {
-                "title": "Ownership Selection - {name}",
+            "CountdownPermissions": {
+                "HiddenOptions": {
+                    "true": "Hidden",
+                    "false": "Revealed"
+                },
+                "title": "Countdown Permissions - {name}",
                 "noPlayers": "No players to assign ownership to",
-                "default": "Default Ownership"
+                "defaultPermission": "Base Visibility",
+                "inheritLabeled": "Base ({base})"
             },
             "PendingReactionsDialog": {
                 "title": "Pending Reaction Rolls Found",
@@ -1190,7 +1196,8 @@
             },
             "CountdownType": {
                 "encounter": { "label": "Short Term", "shortLabel": "Short" },
-                "narrative": { "label": "Long Term", "shortLabel": "Long" }
+                "narrative": { "label": "Long Term", "shortLabel": "Long" },
+                "misc": { "label": "Miscellaneous", "shortLabel": "Misc" }
             },
             "DaggerheartDiceAnimationEvents": {
                 "critical": { "name": "Critical" },
@@ -3171,10 +3178,14 @@
             "Countdowns": {
                 "title": "Countdowns",
                 "toggleIconMode": "Toggle Icon Only",
-                "noPlayerAccess": "This countdown isn't visible to any players",
+                "hidden": "This countdown is hidden to all players.",
+                "hiddenPartial": "This countdown is hidden to players except {players}.",
+                "reveal":"Reveal Countdown",
+                "hide":"Hide Countdown",
                 "loop": "Looping",
                 "decreasingLoop": "Decreasing Looping",
-                "increasingLoop": "Increasing Looping"
+                "increasingLoop": "Increasing Looping",
+                "inherit": "Base"
             },
             "EffectsDisplay": {
                 "removeThing": "[Right Click] Remove {thing}",

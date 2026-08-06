@@ -9,6 +9,6 @@
         {{/if}}
         {{#if (or hasDamage hasHealing)}}{{> 'systems/daggerheart/templates/ui/chat/parts/damage-part.hbs'}}{{/if}}
     </div>
-    {{#if hasTarget}}{{> 'systems/daggerheart/templates/ui/chat/parts/target-part.hbs'}}{{/if}}
+    {{#if (and hasTarget (or isGM (not parent.system.targeting.usingSelect)))}}{{> 'systems/daggerheart/templates/ui/chat/parts/target-part.hbs'}}{{/if}}
 </div>
 {{#if (or parent.isAuthor canButtonApply)}}{{> 'systems/daggerheart/templates/ui/chat/parts/button-part.hbs'}}{{/if}}

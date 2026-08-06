@@ -498,19 +498,15 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
 
     async onSummonDrop(data) {
         const actionData = this.action.toObject();
-        let countvalue = 1;
-        for (const entry of actionData.summon) {
-            if (entry.actorUUID === data.uuid) {
-                entry.count += 1;
-                countvalue = entry.count;
-                await this.constructor.updateForm.bind(this)(null, null, {
-                    object: foundry.utils.flattenObject(actionData)
-                });
-                return;
-            }
+        const existingSummon = actionData.summon.find(x => x.actorUUID === data.uuid);
+        if (existingSummon) {
+            existingSummon.count++;
+            return await this.constructor.updateForm.bind(this)(null, null, {
+                object: foundry.utils.flattenObject(actionData)
+            });
         }
 
-        actionData.summon.push({ actorUUID: data.uuid, count: countvalue });
+        actionData.summon.push({ actorUUID: data.uuid, count: 1 });
         await this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(actionData) });
     }
 

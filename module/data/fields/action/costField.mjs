@@ -71,8 +71,9 @@ export default class CostField extends fields.ArrayField {
                         target: resource.target,
                         itemId: resource.itemId
                     });
-                    return a;
                 }
+
+                return a;
             }, []);
 
         config.resourceUpdates.addResources(resources);

@@ -66,7 +66,7 @@ export default class DhpAdversary extends DhCreature {
             }),
             rules: new fields.SchemaField({
                 ...commonActorRules()
-            }),
+            }, { persisted: false }),
             attack: new ActionField({
                 initial: {
                     name: 'Attack',
@@ -111,7 +111,7 @@ export default class DhpAdversary extends DhCreature {
                     physical: bonusField('DAGGERHEART.GENERAL.Damage.physicalDamage'),
                     magical: bonusField('DAGGERHEART.GENERAL.Damage.magicalDamage')
                 })
-            })
+            }, { persisted: false })
         };
     }
 

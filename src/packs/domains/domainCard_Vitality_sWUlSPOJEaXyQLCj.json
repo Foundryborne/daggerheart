@@ -44,7 +44,13 @@
         },
         "name": "Apply Effect",
         "img": "systems/daggerheart/assets/icons/domains/domain-card/blade.png",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
@@ -52,7 +58,12 @@
       "page": 121,
       "artist": ""
     },
-    "vaultActive": true
+    "vaultActive": true,
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "sWUlSPOJEaXyQLCj",
@@ -70,20 +81,24 @@
           {
             "key": "system.resources.hitPoints.max",
             "type": "add",
-            "value": "1",
-            "priority": null
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>Permanenlty add one Hit Point slot</p>",
       "tint": "#ffffff",
@@ -93,6 +108,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!sWUlSPOJEaXyQLCj.1jtgIyFvDpTb0asZ"
     },
     {
@@ -107,20 +125,24 @@
           {
             "key": "system.resources.stress.max",
             "type": "add",
-            "value": "1",
-            "priority": null
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>Permanently add one Stress slot</p>",
       "tint": "#ffffff",
@@ -130,6 +152,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!sWUlSPOJEaXyQLCj.vj9rm1tLqqsSFOXF"
     },
     {
@@ -144,26 +169,31 @@
           {
             "key": "system.damageThresholds.major",
             "type": "add",
-            "value": "2",
-            "priority": null
+            "value": 2,
+            "priority": null,
+            "phase": "initial"
           },
           {
             "key": "system.damageThresholds.severe",
             "type": "add",
-            "value": "2",
-            "priority": null
+            "value": 2,
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>Permanently add a +2 bonus to your damage thresholds</p>",
       "tint": "#ffffff",
@@ -173,6 +203,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!sWUlSPOJEaXyQLCj.BcqCG9yF6l1LRYqm"
     }
   ],

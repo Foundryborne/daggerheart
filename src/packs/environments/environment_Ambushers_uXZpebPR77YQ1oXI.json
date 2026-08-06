@@ -126,7 +126,11 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false,
+        "featureForm": "passive"
       },
       "_id": "hAGzlRjI3lpadVs7",
       "img": "icons/environment/people/charge.webp",
@@ -162,13 +166,16 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 2,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "effects": [],
             "target": {
@@ -177,12 +184,21 @@
             },
             "name": "Lose Fear",
             "img": "icons/skills/wounds/injury-face-impact-orange.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
         "originItemType": null,
         "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "b6Qviz1ANG8OrAYq",
       "img": "icons/skills/wounds/injury-face-impact-orange.webp",

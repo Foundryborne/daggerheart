@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "o7kvw9NRGvDZSce2",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">You have a deeply personal trinket that can be infused with protective magic and held as a ward by you or an ally. Describe what it is and why it’s important to you. The ward’s holder can spend a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip> to reduce incoming damage by <strong>1d8</strong>. </p><p class=\"Body-Foundation\">If the Ward Die result is 8, the ward’s power ends after it reduces damage this turn. It can be recharged for free on your next rest.</p></p>",
+    "description": "<p></p><p class=\"Body-Foundation\">You have a deeply personal trinket that can be infused with protective magic and held as a ward by you or an ally. Describe what it is and why it’s important to you. The ward’s holder can spend a Hope to reduce incoming damage by <strong>1d8</strong>. </p><p class=\"Body-Foundation\">If the Ward Die result is 8, the ward’s power ends after it reduces damage this turn. It can be recharged for free on your next rest.</p><p></p>",
     "domain": "arcana",
     "recallCost": 0,
     "level": 1,
@@ -22,17 +22,20 @@
             "key": "hope",
             "value": 1,
             "scalable": false,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -61,14 +64,26 @@
         },
         "name": "Reduce Damage",
         "img": "icons/commodities/gems/gem-faceted-diamond-pink-gold.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 119,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "GEhBUmv9Bj7oJfHk",

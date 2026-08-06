@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "1e5Sn8OXxEQ57GSD",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (12)</strong>. On a success, <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to teleport to another point you can see within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range. If any willing creatures are within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range, <strong>spend an additional Hope</strong> for each creature to bring them with you.        </p></p>",
+    "description": "<p></p><p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong><strong> (12)</strong>. On a success, <strong>spend a </strong><strong>Hope</strong> to teleport to another point you can see within Far range. If any willing creatures are within Very Close range, <strong>spend an additional Hope</strong> for each creature to bring them with you.        </p><p></p>",
     "domain": "arcana",
     "recallCost": 1,
     "level": 4,
@@ -23,7 +23,8 @@
             "scalable": true,
             "key": "hope",
             "value": 1,
-            "step": null
+            "step": null,
+            "itemId": null
           }
         ],
         "uses": {
@@ -33,8 +34,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -63,14 +64,26 @@
         },
         "name": "Teleport",
         "img": "icons/magic/symbols/runes-star-orange-purple.webp",
-        "range": "veryClose"
+        "range": "veryClose",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 119,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "Qu0iA4s3Xov10Erd",

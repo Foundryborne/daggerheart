@@ -194,7 +194,7 @@ export default class DhCharacter extends DhCreature {
                     initial: 0,
                     label: 'DAGGERHEART.GENERAL.Bonuses.maxLoadout.label'
                 })
-            }),
+            }, { persisted: false }),
             companion: new ForeignDocumentUUIDField({ type: 'Actor', nullable: true, initial: null }),
             rules: new fields.SchemaField({
                 ...commonActorRules({
@@ -314,7 +314,7 @@ export default class DhCharacter extends DhCreature {
                         label: 'DAGGERHEART.ACTORS.Character.defaultDisadvantageDice'
                     })
                 })
-            }),
+            }, { persisted: false }),
             /** Accumulated armor score from all sources */
             armorScore: new fields.SchemaField({
                 value: new fields.NumberField(),

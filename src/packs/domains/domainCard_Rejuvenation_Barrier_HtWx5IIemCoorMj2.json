@@ -25,12 +25,14 @@
           "consumeOnSuccess": true
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "hitPoints": {
               "resultBased": false,
               "value": {
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 },
                 "multiplier": "flat",
                 "flatMultiplier": 1,
@@ -45,13 +47,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -87,16 +89,28 @@
             "type": "placed",
             "shape": "emanation",
             "size": "veryClose",
-            "effects": []
+            "effects": [],
+            "hasHole": false
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 131,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "HtWx5IIemCoorMj2",
@@ -115,9 +129,16 @@
             "key": "system.resistance.physical.resistance",
             "value": true,
             "priority": null,
-            "type": "override"
+            "type": "override",
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -126,7 +147,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span class=\"Body-Foundation\" style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif;color:rgb(239, 230, 216);font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">While the barrier is up, the caster and all allies within have resistance to physical damage from outside the barrier. When the caster moves, the barrier follows them.</p>",
+      "description": "<p><span class=\"Body-Foundation\" style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif;color:rgb(239, 230, 216);font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">While the barrier is up, the caster and all allies within have resistance to physical damage from outside the barrier. When the caster moves, the barrier follows them.</span></p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

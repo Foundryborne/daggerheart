@@ -14,7 +14,7 @@ import * as fields from './module/data/fields/_module.mjs';
 import { gameSettings } from './module/config/settingsConfig.mjs';
 import DhAutomation from './module/data/settings/Automation.mjs';
 import FearTracker from './module/applications/ui/fearTracker.mjs';
-import DhCountdowns from './module/applications/ui/countdowns.mjs';
+import DhCountdowns from './module/data/countdowns.mjs';
 import DhEffectsDisplay from './module/applications/ui/effectsDisplay.mjs';
 
 

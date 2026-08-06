@@ -243,12 +243,12 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
             this.nrChoices.shortRest.taken >= this.nrChoices.shortRest.max &&
             this.nrChoices.longRest.taken >= this.nrChoices.longRest.max
         ) {
-            for (var data of this.refreshables.actionItems) {
+            for (const data of this.refreshables.actionItems) {
                 const action = await foundry.utils.fromUuid(data.uuid);
                 await action.parent.parent.update({ [`system.actions.${action.id}.uses.value`]: 0 });
             }
 
-            for (var data of this.refreshables.resourceItems) {
+            for (const data of this.refreshables.resourceItems) {
                 const feature = await foundry.utils.fromUuid(data.uuid);
                 const increasing =
                     feature.system.resource.progression === CONFIG.DH.ITEM.itemResourceProgression.increasing.id;

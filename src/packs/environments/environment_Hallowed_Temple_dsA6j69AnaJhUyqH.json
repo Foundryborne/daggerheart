@@ -145,7 +145,8 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
               "parts": {
@@ -175,7 +176,36 @@
                   "type": []
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "main": null,
+              "resources": {
+                "hitPoints": {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "@system.resources.hitPoints.max"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "hitPoints",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "fullRestore": false
+                }
+              }
             },
             "target": {
               "type": "any",
@@ -199,11 +229,21 @@
             },
             "name": "Healing",
             "img": "icons/magic/holy/prayer-hands-glowing-yellow-white.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false,
+        "featureForm": "passive"
       },
       "_id": "hgHpS2k1sVxHKiG1",
       "img": "icons/magic/holy/prayer-hands-glowing-yellow-white.webp",
@@ -228,7 +268,11 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false,
+        "featureForm": "passive"
       },
       "_id": "uqV1mTkJmXJwMYue",
       "img": "icons/magic/holy/chalice-glowing-yellow-blue.webp",
@@ -263,7 +307,8 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
               "parts": {
@@ -293,7 +338,36 @@
                   "type": []
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "main": null,
+              "resources": {
+                "stress": {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "fullRestore": false
+                }
+              }
             },
             "target": {
               "type": "any",
@@ -302,12 +376,21 @@
             "effects": [],
             "name": "Mark Stress",
             "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
         "originItemType": null,
         "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "vICfHK2urDQ2Jm8s",
       "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
@@ -343,13 +426,16 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "effects": [],
             "target": {
@@ -358,12 +444,21 @@
             },
             "name": "Generic",
             "img": "icons/magic/holy/projectiles-blades-salvo-yellow.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
         "originItemType": null,
         "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "8tGAuFRyM4onvQ2o",
       "img": "icons/magic/holy/projectiles-blades-salvo-yellow.webp",

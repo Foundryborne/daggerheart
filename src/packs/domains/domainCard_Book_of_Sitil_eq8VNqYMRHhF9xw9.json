@@ -21,7 +21,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -35,7 +36,13 @@
         },
         "name": "Adjust Appearance",
         "img": "icons/magic/defensive/shield-barrier-blades-teal.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "wBQkw3P4Esj6kOx2": {
         "type": "effect",
@@ -49,13 +56,16 @@
             "scalable": false,
             "key": "hope",
             "value": 2,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -69,7 +79,13 @@
         },
         "name": "Parallela",
         "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
-        "range": "close"
+        "range": "close",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "rsyxORrTH5oU2DkV": {
         "type": "attack",
@@ -82,11 +98,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -115,14 +132,26 @@
         },
         "name": "Illusion",
         "img": "icons/magic/control/silhouette-hold-change-green.webp",
-        "range": "close"
+        "range": "close",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 124,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "eq8VNqYMRHhF9xw9",
@@ -136,17 +165,20 @@
       "_id": "klUaU5KeQCu7KCBI",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>The next time you make an attack, you can hit an additional target within range that your attack roll would succeed against.</p>",
       "tint": "#ffffff",
@@ -156,6 +188,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!eq8VNqYMRHhF9xw9.klUaU5KeQCu7KCBI"
     },
     {
@@ -166,17 +201,20 @@
       "_id": "wnrHSvvB6pydTVcC",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>You magically shift your appearance and clothing to avoid recognition.</p>",
       "tint": "#ffffff",
@@ -186,6 +224,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!eq8VNqYMRHhF9xw9.wnrHSvvB6pydTVcC"
     }
   ],
