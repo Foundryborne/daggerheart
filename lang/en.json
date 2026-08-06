@@ -720,9 +720,14 @@
                 "selectDomainPrompt": "Select your new domain"
             },
             "CountdownPermissions": {
+                "HiddenOptions": {
+                    "true": "Hidden",
+                    "false": "Revealed"
+                },
                 "title": "Countdown Permissions - {name}",
                 "noPlayers": "No players to assign ownership to",
-                "defaultPermission": "Countdown Status"
+                "defaultPermission": "Base Visibility",
+                "inheritLabeled": "Base ({base})"
             },
             "PendingReactionsDialog": {
                 "title": "Pending Reaction Rolls Found",
@@ -1226,10 +1231,6 @@
                     "name": "Blaze Of Glory",
                     "description": "Your character embraces death and goes out in a blaze of glory. Take one final action. It automatically critically succeeds (with GM approval), and then you cross through the veil of death. NOTE: A Blaze of Glory effect has been added to your character. Any Duality Roll will automatically be a critical."
                 }
-            },
-            "DefaultOwnershipLevels": {
-                "none": "Hidden",
-                "observer": "Revealed"
             },
             "DomainCardTypes": {
                 "ability": "Ability",
@@ -3184,7 +3185,7 @@
                 "loop": "Looping",
                 "decreasingLoop": "Decreasing Looping",
                 "increasingLoop": "Increasing Looping",
-                "inherit": "Follow Status"
+                "inherit": "Base"
             },
             "EffectsDisplay": {
                 "removeThing": "[Right Click] Remove {thing}",

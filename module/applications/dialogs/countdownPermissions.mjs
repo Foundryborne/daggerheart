@@ -44,18 +44,20 @@ export class CountdownPermissionsDialog extends HandlebarsApplicationMixin(Appli
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
+        context.countdown = this.countdown;
         
         // Get ownership options. becuase of the use of numbers, the base collection is not correctly ordered.
         // So we have to redefine it ourselves in the correct order.
         const levels = CONST.DOCUMENT_OWNERSHIP_LEVELS;
-        context.ownershipOptions = [levels.INHERIT, levels.OBSERVER, levels.OWNER].map(value => ({
+        context.ownershipLevels = [levels.INHERIT, levels.OBSERVER, levels.OWNER].map(value => ({
             value, 
-            label: CONFIG.DH.GENERAL.simpleOwnershipLevels[value].label
+            label: CONFIG.DH.GENERAL.countdownOwnershipLevels[value].label
         }));
-        context.defaultOwnershipOptions = [levels.NONE, levels.OBSERVER].map(value => ({
-            value, 
-            label: CONFIG.DH.GENERAL.defaultOwnershipLevels[value].label
-        }));
+        context.ownershipLevels[0].label = this.#getBaseLabel();
+        context.defaultOwnershipLevels = [
+            { value: true, label: 'DAGGERHEART.APPLICATIONS.CountdownPermissions.HiddenOptions.true' },    
+            { value: false, label: 'DAGGERHEART.APPLICATIONS.CountdownPermissions.HiddenOptions.false' }
+        ];
         context.ownership = game.users.reduce((acc, user) => {
             if (!user.isGM) {
                 acc[user.id] = {
@@ -67,11 +69,19 @@ export class CountdownPermissionsDialog extends HandlebarsApplicationMixin(Appli
 
             return acc;
         }, {});
-        context.default = this.countdown.hidden ? levels.NONE : levels.OBSERVER;
-        context.showOwnership = Boolean(Object.keys(context.ownership).length);
-        context.defaultIcon = this.countdown.img;
 
         return context;
+    }
+
+    /** @inheritdoc */
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+        const hiddenEl = htmlElement?.querySelector('[name=hidden]');
+        hiddenEl?.addEventListener('change', () => {
+            for (const option of htmlElement.querySelectorAll('option[value="-1"]')) {
+                option.textContent = this.#getBaseLabel(hiddenEl.value !== 'false');
+            }
+        })
     }
 
     static async updateData(event, _, formData) {
@@ -90,7 +100,7 @@ export class CountdownPermissionsDialog extends HandlebarsApplicationMixin(Appli
     /**
      * Creates a ownership selection dialog returns the result when resolved
      * @param {DhCountdown} countdown 
-     * @returns {Promise<{ ownership: number; default?: number }>}
+     * @returns {Promise<{ ownership: Record<string, number>; hidden: boolean }>}
      */
     static async configure(countdown) {
         return new Promise(resolve => {
@@ -98,5 +108,11 @@ export class CountdownPermissionsDialog extends HandlebarsApplicationMixin(Appli
             app.addEventListener('close', () => resolve(app.saveData), { once: true });
             app.render({ force: true });
         });
+    }
+
+    /** Returns the complete base label for an ownership option */
+    #getBaseLabel(hidden = this.countdown.hidden) {
+        const base = _loc(`DAGGERHEART.APPLICATIONS.CountdownPermissions.HiddenOptions.${String(Boolean(hidden))}`);
+        return _loc('DAGGERHEART.APPLICATIONS.CountdownPermissions.inheritLabeled', { base });
     }
 }
