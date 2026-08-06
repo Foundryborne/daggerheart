@@ -32,12 +32,17 @@
     "globals": "^17.5.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
-    "postcss": "^8.4.32",
+    "postcss": "^8.5.18",
     "rollup-plugin-postcss": "^4.0.2",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.60.1"
   },
   "lint-staged": {
     "**/*": "eslint --fix"
+  },
+  "overrides": {
+    "@gulp-sourcemaps/identity-map": {
+      "postcss": "8.5.18"
+    }
   }
 }
