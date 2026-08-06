@@ -101,7 +101,14 @@ export default class DamageField extends fields.SchemaField {
                 : actor.prototypeToken;
             if (config.hasHealing)
                 damagePromises.push(
-                    actor.takeHealing(config.damage).then(updates => targetDamage.push({ token, updates }))
+                    actor.takeHealing(config.damage).then(updates => targetDamage.push({ 
+                        token: { 
+                            id: token.id,
+                            name: token.prototypeToken?.name ?? token.name,
+                            img: token.texture.src  
+                        }, 
+                        updates 
+                    }))
                 );
             else {
                 const configDamage = config.damage.clone();
