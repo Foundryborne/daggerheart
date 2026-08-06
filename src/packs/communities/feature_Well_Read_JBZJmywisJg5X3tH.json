@@ -31,19 +31,19 @@
             "value": "History, culture, or politics of a prominent person or place",
             "priority": null
           }
-        ]
+        ],
+        "duration": {
+          "type": ""
+        }
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "",
+      "description": "<p>You have advantage on rolls that involve the history, culture, or politics of a prominent person or place.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -53,6 +53,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!JBZJmywisJg5X3tH.RwhxYOAAKKlYZiz0"
     }
   ],

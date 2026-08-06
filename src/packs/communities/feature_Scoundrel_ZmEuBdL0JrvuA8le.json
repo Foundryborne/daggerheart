@@ -43,19 +43,19 @@
             "value": "Find a safe place to hide",
             "priority": null
           }
-        ]
+        ],
+        "duration": {
+          "type": ""
+        }
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "",
+      "description": "<p>You have advantage on rolls to negotiate with criminals, detect lies, or find a safe place to hide.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -65,6 +65,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!ZmEuBdL0JrvuA8le.snkYmZ22Q8HHLY9M"
     }
   ],
