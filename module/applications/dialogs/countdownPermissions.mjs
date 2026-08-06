@@ -17,7 +17,7 @@ export class CountdownPermissionsDialog extends HandlebarsApplicationMixin(Appli
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        classes: ['daggerheart', 'views', 'dialog', 'dh-style', 'ownership-selection'],
+        classes: ['daggerheart', 'views', 'dialog', 'dh-style', 'countdown-permissions'],
         window: {
             icon: 'fa-solid fa-users'
         },
