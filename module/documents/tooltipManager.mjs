@@ -78,8 +78,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
                 const beastformData = {
                     features: [],
                     advantageOn: effectData.system.advantageOn,
-                    beastformAttackData: game.system.api.data.items.DHBeastform.getBeastformAttackData(
-                        effectItem, effectItem.parent.getRollData())
+                    beastformAttackData: effectItem.system.getBeastformAttackData()
                 };
 
                 const features = effectItem.parent.items.filter(x => effectItem.system.featureIds.includes(x.id));

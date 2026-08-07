@@ -118,25 +118,7 @@ export default class DHBeastform extends BaseDataItem {
 
     get beastformAttackData() {
         const effect = this.parent?.effects.find(x => x.type === 'beastform');
-        
-        return DHBeastform.getBeastformAttackData(effect, this.parent);
-    }
-
-    static getBeastformAttackData(effect, actor) {
-        if (!effect) return null;
-
-        const standardAttack = effect.system.changes.find(x => x.type === 'standardAttack');
-        const mainTrait = standardAttack?.value.trait;
-        const traitBonus = effect.system.changes.find(x => x.key === `system.traits.${mainTrait}.value`)?.value ?? 0;
-        const evasionBonus = effect.system.changes.find(x => x.key === 'system.evasion')?.value ?? 0;
-        const damageFormula = standardAttack?.value.damageFormula;
-        const damage = damageFormula && actor ? Roll.replaceFormulaData(damageFormula, actor.getRollData()) : '';
-        return {
-            trait: game.i18n.localize(CONFIG.DH.ACTOR.abilities[mainTrait]?.label),
-            traitBonus: traitBonus ? Number(traitBonus).signedString() : '',
-            evasionBonus: evasionBonus ? Number(evasionBonus).signedString() : '',
-            damage
-        };
+        return effect?.system?.getBeastformAttackData();
     }
 
     static async getWildcardImage(actor, beastform) {
