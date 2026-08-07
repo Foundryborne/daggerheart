@@ -200,11 +200,9 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                 }));
                 break;
             case 'changes':
-                const singleTypes = ['armor', 'standardAttack'];
-                const typedChanges = context.source.changes.reduce((acc, change, index) => {
-                    if (singleTypes.includes(change.type)) {
-                        acc[change.type] = { ...change, index };
-                    }
+                const typedChanges = this.document.changes.reduce((acc, change, index) => {
+                    if (change.single) acc[change.type] = { ...change, index };
+                    
                     return acc;
                 }, {});
                 partContext.changes = partContext.changes.filter(c => !!c);
@@ -242,21 +240,27 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
     typedChangeToggle(event) {
         const { type, index } = event.target.dataset;
         if (event.target.checked) {
-            this.addTypedChange(game.system.api.data.activeEffects.changeTypes[type]);
+            this.addCustomChange(type);
         } else {
-            this.removeTypedChange(index);
+            this.removeCustomChange(index);
         }
     }
 
-    /* Could be generalised if needed later */
-    addTypedChange(changeType) {
+    /**
+     * Add a customChangeType to the changes list
+     * @param {string} type a key from game.system.api.data.activeEffects.changeTypes
+     */
+    addCustomChange(type) {
+        const changeType = game.system.api.data.activeEffects.changeTypes[type];
+        if (!changeType) return;
+
         const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
         const changes = Object.values(submitData.system?.changes ?? {});
         changes.push(changeType.getInitialValue());
         return this.submit({ updateData: { system: { changes } } });
     }
 
-    removeTypedChange(indexString) {
+    removeCustomChange(indexString) {
         const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
         const changes = Object.values(submitData.system.changes);
         const index = Number(indexString);
@@ -280,7 +284,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
     /** @inheritdoc */
     _renderChange(context) {
         const { change, index, defaultPriority } = context;
-        if (!(change.type in CONFIG.DH.GENERAL.baseActiveEffectModes)) return null;
+        if (!(change.type in CONST.ACTIVE_EFFECT_CHANGE_TYPES)) return null;
 
         const changeTypesSchema = this.document.system.schema.fields.changes.element.types;
         const fields = context.fields ?? (changeTypesSchema[change.type] ?? changeTypesSchema.add).fields;
@@ -305,8 +309,8 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                     index,
                     defaultPriority,
                     fields,
-                    types: Object.keys(CONFIG.DH.GENERAL.baseActiveEffectModes).reduce((r, key) => {
-                        r[key] = CONFIG.DH.GENERAL.baseActiveEffectModes[key].label;
+                    types: Object.keys(CONST.ACTIVE_EFFECT_CHANGE_TYPES).reduce((r, key) => {
+                        r[key] = foundry.documents.ActiveEffect.CHANGE_TYPES[key].label;
                         return r;
                     }, {})
                 }

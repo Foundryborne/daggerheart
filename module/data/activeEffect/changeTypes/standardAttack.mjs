@@ -59,7 +59,7 @@ export default class StandardAttackChange extends BaseCustomChange {
                     {
                         ...change,
                         key: 'system.attack.name',
-                        type: CONFIG.DH.GENERAL.activeEffectModes.override.id,
+                        type: 'override',
                         value: change.value.name
                     },
                     replacementData
@@ -72,7 +72,7 @@ export default class StandardAttackChange extends BaseCustomChange {
                     {
                         ...change,
                         key: 'system.attack.img',
-                        type: CONFIG.DH.GENERAL.activeEffectModes.override.id,
+                        type: 'override',
                         value: change.value.img
                     },
                     replacementData
@@ -85,7 +85,7 @@ export default class StandardAttackChange extends BaseCustomChange {
                     {
                         ...change,
                         key: 'system.attack.roll.trait',
-                        type: CONFIG.DH.GENERAL.activeEffectModes.override.id,
+                        type: 'override',
                         value: change.value.trait
                     },
                     replacementData
@@ -98,7 +98,7 @@ export default class StandardAttackChange extends BaseCustomChange {
                     {
                         ...change,
                         key: 'system.attack.damage.main.type',
-                        type: CONFIG.DH.GENERAL.activeEffectModes.override.id,
+                        type: 'override',
                         value: Array.from(change.value.damageTypes)
                     },
                     replacementData
@@ -111,7 +111,7 @@ export default class StandardAttackChange extends BaseCustomChange {
                     {
                         ...change,
                         key: 'system.attack.range',
-                        type: CONFIG.DH.GENERAL.activeEffectModes.override.id,
+                        type: 'override',
                         value: change.value.attackRange
                     },
                     replacementData
@@ -124,7 +124,7 @@ export default class StandardAttackChange extends BaseCustomChange {
                     {
                         ...change,
                         key: 'system.attack.damage.main.value.custom.enabled',
-                        type: CONFIG.DH.GENERAL.activeEffectModes.override.id,
+                        type: 'override',
                         value: true
                     },
                     replacementData
@@ -135,7 +135,7 @@ export default class StandardAttackChange extends BaseCustomChange {
                     {
                         ...change,
                         key: 'system.attack.damage.main.value.custom.formula',
-                        type: CONFIG.DH.GENERAL.activeEffectModes.override.id,
+                        type: 'override',
                         value: change.value.damageFormula
                     },
                     replacementData
@@ -149,7 +149,7 @@ export default class StandardAttackChange extends BaseCustomChange {
 
     static getInitialValue() {
         return {
-            type: CONFIG.DH.GENERAL.activeEffectModes.standardAttack.id,
+            type: CONFIG.DH.EFFECTS.customChangeTypes.standardAttack.id,
             priority: 0,
             phase: 'initial',
             value: {

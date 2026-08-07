@@ -499,7 +499,7 @@ export function refreshIsAllowed(allowedTypes, typeToCheck) {
 }
 
 function expireActiveEffectIsAllowed(allowedTypes, typeToCheck) {
-    if (typeToCheck === CONFIG.DH.GENERAL.activeEffectDurations.act.id) return true;
+    if (typeToCheck === CONFIG.DH.EFFECTS.activeEffectDurations.act.id) return true;
 
     return refreshIsAllowed(allowedTypes, typeToCheck);
 }
@@ -516,7 +516,7 @@ export function expireActiveEffects(actor, allowedTypes = null) {
         .filter(effect => {
             if (!effect.system?.duration.type) return false;
 
-            const { temporary, custom } = CONFIG.DH.GENERAL.activeEffectDurations;
+            const { temporary, custom } = CONFIG.DH.EFFECTS.activeEffectDurations;
             if ([temporary.id, custom.id].includes(effect.system.duration.type)) return false;
 
             return expireActiveEffectIsAllowed(allowedTypes, effect.system.duration.type);

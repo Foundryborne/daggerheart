@@ -43,8 +43,8 @@ export default class ArmorChange extends BaseCustomChange {
                 interaction: new fields.StringField({
                     label: 'DAGGERHEART.EFFECTS.ChangeTypes.armor.FIELDS.interaction.label',
                     required: true,
-                    choices: CONFIG.DH.GENERAL.activeEffectArmorInteraction,
-                    initial: CONFIG.DH.GENERAL.activeEffectArmorInteraction.none.id
+                    choices: CONFIG.DH.EFFECTS.activeEffectArmorInteraction,
+                    initial: CONFIG.DH.EFFECTS.activeEffectArmorInteraction.none.id
                 })
             })
         };
@@ -61,7 +61,7 @@ export default class ArmorChange extends BaseCustomChange {
                 {
                     ...change,
                     key: 'system.armorScore.value',
-                    type: CONFIG.DH.GENERAL.activeEffectModes.add.id,
+                    type: 'add',
                     value: change.value.current
                 },
                 replacementData
@@ -71,7 +71,7 @@ export default class ArmorChange extends BaseCustomChange {
                 {
                     ...change,
                     key: 'system.armorScore.max',
-                    type: CONFIG.DH.GENERAL.activeEffectModes.add.id,
+                    type: 'add',
                     value: parsedMax
                 },
                 replacementData
@@ -92,7 +92,7 @@ export default class ArmorChange extends BaseCustomChange {
                         {
                             ...change,
                             key: 'system.damageThresholds.major',
-                            type: CONFIG.DH.GENERAL.activeEffectModes.add.id,
+                            type: 'add',
                             priority: 50,
                             value: major
                         },
@@ -106,7 +106,7 @@ export default class ArmorChange extends BaseCustomChange {
                         {
                             ...change,
                             key: 'system.damageThresholds.severe',
-                            type: CONFIG.DH.GENERAL.activeEffectModes.add.id,
+                            type: 'add',
                             priority: 50,
                             value: severe
                         },
@@ -124,9 +124,9 @@ export default class ArmorChange extends BaseCustomChange {
         if (!this.parent.parent?.actor) return false;
 
         switch (this.value.interaction) {
-            case CONFIG.DH.GENERAL.activeEffectArmorInteraction.active.id:
+            case CONFIG.DH.EFFECTS.activeEffectArmorInteraction.active.id:
                 return !this.parent.parent?.actor.system.armor;
-            case CONFIG.DH.GENERAL.activeEffectArmorInteraction.inactive.id:
+            case CONFIG.DH.EFFECTS.activeEffectArmorInteraction.inactive.id:
                 return Boolean(this.parent.parent?.actor.system.armor);
             default:
                 return false;
@@ -135,7 +135,7 @@ export default class ArmorChange extends BaseCustomChange {
 
     static getInitialValue() {
         return {
-            type: CONFIG.DH.GENERAL.activeEffectModes.armor.id,
+            type: CONFIG.DH.EFFECTS.customChangeTypes.armor.id,
             value: {
                 current: 0,
                 max: 0
