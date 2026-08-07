@@ -117,6 +117,23 @@ export default class DualityRoll extends D20Roll {
         return game.i18n.localize(label);
     }
 
+    /** @inheritdoc */
+    static get resolverImplementation() {
+        const config = game.settings.get('core', Roll.DICE_CONFIGURATION_SETTING);
+        const methods = new Set(Object.values(config).filter(method => {
+            if (!method || (method === 'manual')) return false;
+            return CONFIG.Dice.fulfillment.methods[method]?.interactive;
+        }));
+
+        // If there is more than one interactive method configured, use the default resolver which has a combined, method-
+        // agnostic interface.
+        if (methods.size !== 1) return game.system.api.dice.RollResolver;
+
+        // Otherwise use the specific resolver configured for that method, if any.
+        const method = CONFIG.Dice.fulfillment.methods[methods.first()];
+        return method.resolver ?? game.system.api.dice.RollResolver;
+    }
+
     static getHooks(hooks) {
         return [...(hooks ?? []), 'Duality'];
     }
