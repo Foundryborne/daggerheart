@@ -15,9 +15,7 @@ export default class DhFolder extends foundry.documents.Folder {
      * @returns {DhFolder|null}
      */
     static getFolder(id, collectionName, pack) {
-        const collection = 
-            pack ? game.packs.get('world.hm')?.folders : game[collectionName]?.folders;
-            
+        const collection = pack ? game.packs.get(pack)?.folders : game[collectionName]?.folders;
         return collection?.get(id) ?? null;
     }
 }

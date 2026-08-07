@@ -88,7 +88,7 @@ export default class DHItem extends foundry.documents.Item {
     }
 
     /** @inheritdoc */
-    static async createDialog(data = {}, createOptions = {}, options = {}) {
+    static async createDialog(data = {}, createOptions = {}, options = {}, renderOptions) {
         const { folders, types, template, context = {}, ...dialogOptions } = options;
         dialogOptions.classes = [options.classes ?? [], 'item-create'].flat(); // handled in hook
 
@@ -120,7 +120,7 @@ export default class DHItem extends foundry.documents.Item {
         const sortedTypes = documentTypes.sort((a, b) => a.label.localeCompare(b.label, game.i18n.lang));
 
         const folder = game.system.api.documents.DhFolder.getFolder(data.folder, 'items', createOptions?.pack);
-        options.defaultEntity = folder?.getDefaultEntity(); // used in hook
+        dialogOptions.defaultEntity = folder?.getDefaultEntity(); // used in hook
 
         return await super.createDialog(data, createOptions, {
             folders,
@@ -128,7 +128,7 @@ export default class DHItem extends foundry.documents.Item {
             template,
             context: { types: sortedTypes, ...context },
             ...dialogOptions
-        });
+        }, renderOptions);
     }
 
     /* -------------------------------------------- */

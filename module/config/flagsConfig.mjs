@@ -20,8 +20,6 @@ export const compendiumBrowserLite = {
     position: 'compendium-browser-lite-position'
 };
 
-export const itemAttachmentSource = 'attachmentSource';
-
 export const userFlags = {
     welcomeMessage: 'welcome-message',
     countdownMode: 'countdown-mode',
@@ -31,5 +29,5 @@ export const userFlags = {
 export const combatToggle = 'combat-toggle-origin';
 
 export const folderFlags = {
-    defaultEntity: 'folder-default-entity'
+    defaultEntity: 'defaultEntity'
 }
