@@ -1,4 +1,5 @@
 import ActionSelectionDialog from '../applications/dialogs/actionSelectionDialog.mjs';
+import { getFolder } from '../helpers/utils.mjs';
 
 /**
  * Override and extend the basic Item implementation.
@@ -119,7 +120,7 @@ export default class DHItem extends foundry.documents.Item {
 
         const sortedTypes = documentTypes.sort((a, b) => a.label.localeCompare(b.label, game.i18n.lang));
 
-        const folder = game.system.api.documents.DhFolder.getFolder(data.folder, 'items', createOptions?.pack);
+        const folder = getFolder(data.folder, 'items', createOptions?.pack);
         dialogOptions.defaultEntity = folder?.getDefaultEntity(); // used in hook
 
         return await super.createDialog(data, createOptions, {

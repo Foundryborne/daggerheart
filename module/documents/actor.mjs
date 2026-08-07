@@ -1,7 +1,7 @@
 import { emitGMUpdate, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
-import { createScrollText, damageKeyToNumber, getDamageKey, createShallowProxy } from '../helpers/utils.mjs';
+import { createScrollText, damageKeyToNumber, getDamageKey, createShallowProxy, getFolder } from '../helpers/utils.mjs';
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
 import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
 import { abilities } from '../config/actorConfig.mjs';
@@ -68,7 +68,7 @@ export default class DhpActor extends Actor {
     }
 
     static createDialog(data, createOptions, options, renderOptions) {
-        const folder = game.system.api.documents.DhFolder.getFolder(data.folder, 'actors', createOptions?.pack);
+        const folder = getFolder(data.folder, 'actors', createOptions?.pack);
         options.defaultEntity = folder?.getDefaultEntity(); // used in hook
         options.classes = [options.classes ?? [], 'actor-create'].flat(); // handled in hook
         return super.createDialog(data, createOptions, options, renderOptions);
