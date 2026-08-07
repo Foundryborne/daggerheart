@@ -29,3 +29,7 @@ export const userFlags = {
 };
 
 export const combatToggle = 'combat-toggle-origin';
+
+export const folderFlags = {
+    defaultEntity: 'folder-default-entity'
+}

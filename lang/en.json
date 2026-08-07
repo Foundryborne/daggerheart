@@ -593,6 +593,9 @@
                 },
                 "takeDowntime": "Take Downtime"
             },
+            "FolderConfig": {
+                "defaultEntity": "Default {entity}"
+            },
             "HUD": {
                 "tokenHUD": {
                     "genericEffects": "Foundry Effects",

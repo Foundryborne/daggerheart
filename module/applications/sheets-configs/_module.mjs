@@ -9,3 +9,4 @@ export { default as EnvironmentSettings } from './environment-settings.mjs';
 export { default as ActiveEffectConfig } from './activeEffectConfig.mjs';
 export { default as DhTokenConfig } from './token-config.mjs';
 export { default as DhPrototypeTokenConfig } from './prototype-token-config.mjs';
+export { default as DhFolderConfig } from './folder-config.mjs';

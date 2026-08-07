@@ -1,6 +1,6 @@
-import AttachableItem from './attachableItem.mjs';
+import BaseDataItem from './base.mjs';
 
-export default class DHArmor extends AttachableItem {
+export default class DHArmor extends BaseDataItem {
     /** @inheritDoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {

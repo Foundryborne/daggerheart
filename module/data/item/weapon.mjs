@@ -1,7 +1,7 @@
-import AttachableItem from './attachableItem.mjs';
 import { ActionField } from '../fields/actionField.mjs';
+import BaseDataItem from './base.mjs';
 
-export default class DHWeapon extends AttachableItem {
+export default class DHWeapon extends BaseDataItem {
     /** @inheritDoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
