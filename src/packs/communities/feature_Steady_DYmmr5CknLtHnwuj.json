@@ -43,19 +43,19 @@
             "value": "Use your survival knowledge",
             "priority": null
           }
-        ]
+        ],
+        "duration": {
+          "type": ""
+        }
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "",
+      "description": "<p>You have advantage on rolls to traverse dangerous cliffs and ledges, navigate harsh environments, and use your survival knowledge.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -65,6 +65,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!DYmmr5CknLtHnwuj.QDf9LD8Mhd0Cw0CB"
     }
   ],

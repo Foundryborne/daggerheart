@@ -1,4 +1,4 @@
-import { mapValues, omit } from '../helpers/utils.mjs';
+import { mapValues } from '../helpers/utils.mjs';
 import { RefreshType, socketEvent } from '../systemRegistration/socket.mjs';
 import FormulaField from './fields/formulaField.mjs';
 
@@ -123,9 +123,7 @@ export class DhCountdown extends foundry.abstract.DataModel {
             ownership: new fields.TypedObjectField(
                 new fields.NumberField({
                     required: true,
-                    choices: omit(CONFIG.DH.GENERAL.simpleOwnershiplevels, [
-                        CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE
-                    ]),
+                    choices: CONFIG.DH.GENERAL.countdownOwnershipLevels,
                     initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT
                 })
             ),

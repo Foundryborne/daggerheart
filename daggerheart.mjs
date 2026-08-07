@@ -43,6 +43,8 @@ Object.assign(CONFIG.Dice.termTypes, dice.diceTypes);
 CONFIG.Dice.terms.d = die.BaseDie;
 CONFIG.Dice.types = [die.BaseDie, CONFIG.Dice.terms.f];
 
+CONFIG.Folder.documentClass = documents.DhFolder;
+
 CONFIG.Actor.documentClass = documents.DhpActor;
 CONFIG.Actor.dataModels = models.actors.config;
 CONFIG.Actor.collection = collections.DhActorCollection;
@@ -130,6 +132,9 @@ Hooks.once('init', () => {
     DocumentSheetConfig.registerSheet(TokenDocument, SYSTEM.id, applications.sheetConfigs.DhTokenConfig, {
         makeDefault: true
     });
+
+    DocumentSheetConfig.unregisterSheet(foundry.documents.Folder, 'core', foundry.applications.sheets.FolderConfig);
+    DocumentSheetConfig.registerSheet(foundry.documents.Folder, SYSTEM.id, applications.sheetConfigs.DhFolderConfig);
 
     const sheetLabel = typePath => () =>
         game.i18n.format('DAGGERHEART.GENERAL.typeSheet', {
@@ -471,7 +476,7 @@ Hooks.on('canvasReady', canas => {
 });
 
 /** Make the user to select a document type, instead of having a default doc type for them to accidentally keep */
-Hooks.on('renderDialogV2', (_dialog, html) => {
+Hooks.on('renderDialogV2', (dialog, html) => {
     if (!html.classList.contains('dialog')) return;
     const cls = html.classList.contains('item-create')
         ? documents.DHItem.implementation
@@ -486,16 +491,21 @@ Hooks.on('renderDialogV2', (_dialog, html) => {
     const nameInput = html.querySelector('input[name=name]');
     if (!form || !select || !submit || !nameInput) return;
 
-    nameInput.placeholder = cls.defaultName({});
-    const emptyOption = document.createElement('option');
-    emptyOption.value = '';
-    emptyOption.selected = true;
-    select.required = true;
-    select.prepend(emptyOption);
-    submit.addEventListener('click', event => {
-        if (!form.reportValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-    });
+    const defaultEntity = dialog.options.defaultEntity;
+    if (!defaultEntity) {
+        nameInput.placeholder = cls.defaultName({});
+        const emptyOption = document.createElement('option');
+        emptyOption.value = defaultEntity;
+        emptyOption.selected = true;
+        select.required = true;
+        select.prepend(emptyOption);
+        submit.addEventListener('click', event => {
+            if (!form.reportValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        });
+    } else {
+        select.querySelector(`option[value=${defaultEntity}]`).selected = true;
+    }
 });

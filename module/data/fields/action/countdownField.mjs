@@ -24,7 +24,7 @@ export default class CountdownField extends fields.ArrayField {
                 nullable: true,
                 initial: false,
                 label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.hidden.label'
-            })
+            }, { nullLabel: 'DAGGERHEART.APPLICATIONS.Countdown.hiddenNullLabel' })
         });
         super(element, options, context);
     }

@@ -101,7 +101,14 @@ export default class DamageField extends fields.SchemaField {
                 : actor.prototypeToken;
             if (config.hasHealing)
                 damagePromises.push(
-                    actor.takeHealing(config.damage).then(updates => targetDamage.push({ token, updates }))
+                    actor.takeHealing(config.damage).then(updates => targetDamage.push({ 
+                        token: { 
+                            id: token.id,
+                            name: token.prototypeToken?.name ?? token.name,
+                            img: token.texture.src  
+                        }, 
+                        updates 
+                    }))
                 );
             else {
                 const configDamage = config.damage.clone();
@@ -134,6 +141,7 @@ export default class DamageField extends fields.SchemaField {
             }
         }
 
+        const speakerActor = this.actor;
         Promise.all(damagePromises).then(async _ => {
             const summaryMessageSettings = game.settings.get(
                 CONFIG.DH.id,
@@ -150,7 +158,7 @@ export default class DamageField extends fields.SchemaField {
             const msg = {
                 type: 'systemMessage',
                 user: game.user.id,
-                speaker: cls.getSpeaker(),
+                speaker: cls.getSpeaker({ actor: speakerActor }),
                 title: game.i18n.localize(
                     `DAGGERHEART.UI.Chat.damageSummary.${config.hasHealing ? 'healingTitle' : 'title'}`
                 ),

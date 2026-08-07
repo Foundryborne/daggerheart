@@ -204,20 +204,8 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
      */
     static async #onEditCountdownOwnership(_, button) {
         const countdown = this.data.countdowns[button.dataset.countdownId];
-        const levels = CONST.DOCUMENT_OWNERSHIP_LEVELS;
-        const data = await game.system.api.applications.dialogs.OwnershipSelection.configure(
-            countdown.name,
-            countdown.ownership,
-            { 
-                ownershipOptions: [levels.INHERIT, levels.OBSERVER, levels.OWNER],
-                default: countdown.hidden ? levels.NONE : levels.OBSERVER,
-                defaultOwnershipOptions: [levels.NONE, levels.OBSERVER]
-            }
-        );
-        if (!data) return;
-
-        const updateData = { ownership: data.ownership, hidden: data.default === 0 };
-        this.updateSetting({ [`countdowns.${button.dataset.countdownId}`]: updateData });
+        const updateData = await game.system.api.applications.dialogs.CountdownPermissionsDialog.configure(countdown);
+        if (updateData) this.updateSetting({ [`countdowns.${button.dataset.countdownId}`]: updateData });
     }
 
     /** 

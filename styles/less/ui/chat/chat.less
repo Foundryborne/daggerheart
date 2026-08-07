@@ -236,7 +236,7 @@
             font-size: var(--font-size-12);
 
             .roll-container {
-                padding: 0 20px;
+                padding: 0 20px 5px;
             }
 
             .roll-part-title {
@@ -307,10 +307,6 @@
                         > :first-child:not(.target-selector) {
                             margin-top: 5px;
                             text-align: center;
-                        }
-
-                        > :last-child {
-                            margin-bottom: 5px;
                         }
 
                         .roll-die {
@@ -481,6 +477,12 @@
                 flex: 1;
                 text-align: center;
             }
+        }
+
+        .roll-targets {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
 
         .roll-target {

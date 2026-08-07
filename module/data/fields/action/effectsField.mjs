@@ -92,7 +92,7 @@ export default class EffectsField extends fields.ArrayField {
         const msg = {
             type: 'systemMessage',
             user: game.user.id,
-            speaker: cls.getSpeaker(),
+            speaker: cls.getSpeaker({ actor: this.actor }),
             title: game.i18n.localize('DAGGERHEART.UI.Chat.effectSummary.title'),
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/chat/effectSummary.hbs',

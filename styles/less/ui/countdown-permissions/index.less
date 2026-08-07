@@ -1,6 +1,6 @@
 @import '../../utils/colors.less';
 
-.daggerheart.views.ownership-selection {
+.daggerheart.views.countdown-permissions {
     .ownership-outer-container {
         display: flex;
         flex-direction: column;
@@ -20,7 +20,6 @@
             gap: 8px;
 
             &.default {
-                padding-left: 48px; // img + gap
                 padding-bottom: 4px;
                 border-bottom: 1px solid @color-border;
             }
@@ -32,11 +31,12 @@
             }
 
             span {
-                flex: 3;
+                flex: 2;
             }
 
             select {
-                flex: 1;
+                min-width: 150px;
+                width: auto;
                 margin: 4px 0;
             }
         }
