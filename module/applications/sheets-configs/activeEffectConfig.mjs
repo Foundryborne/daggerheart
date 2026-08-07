@@ -153,16 +153,16 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         });
 
         htmlElement.querySelector('.stacking-change-checkbox')
-            ?.addEventListener('change', this.stackingChangeToggle.bind(this));
+            ?.addEventListener('change', this.onStackingChangeToggle.bind(this));
 
         htmlElement.querySelector('.range-dependence-change-checkbox')
-            ?.addEventListener('change', this.rangeDependenceChangeToggle.bind(this));
+            ?.addEventListener('change', this.onRangeDependenceChangeToggle.bind(this));
 
         for (const element of htmlElement.querySelectorAll('.typed-change-checkbox'))
-            element.addEventListener('change', this.typedChangeToggle.bind(this));
+            element.addEventListener('change', this.onTypedChangeToggle.bind(this));
 
         htmlElement.querySelector('.armor-damage-thresholds-checkbox')
-            ?.addEventListener('change', this.armorDamageThresholdToggle.bind(this));
+            ?.addEventListener('change', this.onArmorDamageThresholdToggle.bind(this));
     }
 
     async _prepareContext(options) {
@@ -213,7 +213,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         return partContext;
     }
 
-    stackingChangeToggle(event) {
+    onStackingChangeToggle(event) {
         const stackingFields = this.document.system.schema.fields.stacking.fields;
         const systemData = {
             stacking: event.target.checked
@@ -223,7 +223,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         return this.submit({ updateData: { system: systemData } });
     }
 
-    rangeDependenceChangeToggle(event) {
+    onRangeDependenceChangeToggle(event) {
         const rangeFields = this.document.system.schema.fields.rangeDependence.fields;
         const systemData = {
             rangeDependence: event.target.checked
@@ -237,7 +237,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         return this.submit({ updateData: { system: systemData } });
     }
 
-    typedChangeToggle(event) {
+    onTypedChangeToggle(event) {
         const { type, index } = event.target.dataset;
         if (event.target.checked) {
             this.addCustomChange(type);
@@ -268,7 +268,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         return this.submit({ updateData: { system: { changes } } });
     }
 
-    armorDamageThresholdToggle(event) {
+    onArmorDamageThresholdToggle(event) {
         const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
         const changes = Object.values(submitData.system?.changes ?? {});
         const index = Number(event.target.dataset.index);
