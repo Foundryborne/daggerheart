@@ -255,7 +255,9 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                     ...trait,
                     key: traitKey,
                     name: game.i18n.localize(abilities[traitKey].label),
-                    options: options
+                    verbs: [...abilities[traitKey].verbs],
+                    options: options,
+                    description: game.i18n.localize(abilities[traitKey].description)
                 };
             })
         };
@@ -912,6 +914,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 const community = await foundry.utils.fromUuid(target.dataset.uuid);
                 this.setup.community = community;
                 this.setup.visibility = this.getUpdateVisibility();
+                console.log(community);
                 this.render();
                 break;
         }
