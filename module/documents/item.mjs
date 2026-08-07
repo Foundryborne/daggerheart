@@ -119,6 +119,9 @@ export default class DHItem extends foundry.documents.Item {
 
         const sortedTypes = documentTypes.sort((a, b) => a.label.localeCompare(b.label, game.i18n.lang));
 
+        const folder = game.system.api.documents.DhFolder.getFolder(data.folder, 'items', createOptions?.pack);
+        options.defaultEntity = folder?.getDefaultEntity(); // used in hook
+
         return await super.createDialog(data, createOptions, {
             folders,
             types,

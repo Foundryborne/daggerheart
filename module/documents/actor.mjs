@@ -68,8 +68,8 @@ export default class DhpActor extends Actor {
     }
 
     static createDialog(data, createOptions, options, renderOptions) {
-        const folder = game.actors.folders.get(data.folder);
-        options.defaultEntity = folder?.getDefaultEntity();
+        const folder = game.system.api.documents.DhFolder.getFolder(data.folder, 'actors', createOptions?.pack);
+        options.defaultEntity = folder?.getDefaultEntity(); // used in hook
         options.classes = [options.classes ?? [], 'actor-create'].flat(); // handled in hook
         return super.createDialog(data, createOptions, options, renderOptions);
     }
