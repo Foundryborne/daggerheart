@@ -97,6 +97,15 @@
             margin-bottom: 5px;
         }
 
+        .subtitle-trait {
+            font-family: @font-subtitle;
+            font-weight: bold;
+            font-size: 12px;
+            color: light-dark(@dark, @beige);
+            width: fit-content;
+            margin: 0;
+        }
+
         .tags {
             display: flex;
             gap: 8px;
@@ -175,6 +184,20 @@
                 height: -webkit-fill-available;
                 padding-bottom: 32px;
 
+                &.traits {
+                    ul {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
+                        padding-left: 1rem;
+                        list-style: disc;
+
+                        li {
+                            display: list-item;
+                            font-size: 1rem;
+                        }
+                    }
+                }
 
                 .compedium-item {
                     
@@ -216,6 +239,12 @@
             min-width: 350px;
             max-width: 700px;
             overflow-y: auto;
+        }
+
+        .traits-info,
+        .experience-info {
+            min-width: 450px;
+            max-width: 900px;
         }
 
         .m-top-20 {
@@ -323,6 +352,8 @@
         }
 
         .community-info {
+            max-width: 800px;
+
             img {
                 height: 100%;
                 min-width: 350px;
@@ -330,7 +361,113 @@
                 border-radius: 3px;
                 object-fit: cover;
             }
+
+            .container {
+                display: flex;
+                gap: 10px;
+            }
         }
+
+        .traits-info {
+            .trait-list {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+
+                .trait-container {
+                    .trait-header {
+                        display: flex;
+                        gap: 10px;
+                        align-items: center;
+    
+                        .trait-label {
+                            .title-section {margin: 0;}
+            
+                            .suggestion-list {
+                                display: flex;
+                                gap: 3px;
+                            }
+                        }
+    
+                        .trait-select-container {
+                            width: 48px;
+                            height: 48px;
+                            transform: rotate(45deg);
+                            overflow: hidden;
+                            border: 1px solid light-dark(@dark-40, @beige-50);
+    
+                            select {
+                                transform: rotate(-45deg);
+                                font-size: 28px;
+                                font-weight: bold;
+                                font-family: @font-subtitle;
+                                color: light-dark(@dark, @beige);
+                                margin-bottom: 10px;
+                                width: 100%;
+                                height: 100%;
+                                background: transparent;
+                                border: none;
+                                margin: 0;
+                                padding: 0;
+                                -webkit-appearance: none;
+                                -moz-appearance: none;
+                                appearance: none;
+    
+                                &:focus,
+                                &:hover {
+                                    outline: none;
+                                    box-shadow: none;
+                                }
+
+                                & option,
+                                & optgroup {
+                                    color: @beige;
+                                    background-color: @dark-blue;
+                                    border-radius: 6px;
+                                    text-align: center;
+                                    font-weight: bold;
+                                }
+    
+                                &::-ms-expand {
+                                    display: none;
+                                }
+                            }
+                        }
+    
+                    }
+                    .trait-description {
+                        margin: 0;
+                        width: calc(100% - 50px);
+                    }
+                }
+            }
+        }
+
+        .experience-info {
+            .experience-list {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                .experience-container {
+                    input  {
+                        width: 80%;
+                    }
+
+                    textarea {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        .experience-example-list {
+            margin-left: auto;
+            max-width: 350px;
+            font-style: normal;
+            
+            p {font-family: @font-body;}
+        }
+
 
         .ancestry-mixed-controller {
             position: relative;

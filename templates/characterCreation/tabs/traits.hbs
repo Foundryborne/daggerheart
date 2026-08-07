@@ -4,29 +4,58 @@
     data-group='{{tabs.traits.group}}'
 >
    <div class="main-selections-container">
-        <fieldset class="section-container">
-            <legend>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.traitIncreases"}} {{traits.nrSelected}}/{{traits.nrTotal}}</legend>
-            <div class="traits-container">
-                <fieldset class="section-inner-container">
-                    <legend>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.suggestedTraits"}}</legend>
-                    <div class="suggested-traits-container">
-                        {{#each suggestedTraits}}
-                            <div class="suggested-trait-container">{{this}}</div>
-                        {{/each}}
-                    </div>
-                    <button class="action-button" data-action="useSuggestedTraits">{{localize "DAGGERHEART.GENERAL.use"}}</button>
-                </fieldset>
-                <div class="traits-inner-container">
-                    {{#each traits.values}}
-                        <div class="trait-container">
-                            <span>{{this.name}}</span>
-                            <select name="{{concat "traits." this.key ".value"}}" data-dtype="Number">
-                                {{selectOptions this.options selected=this.value valueAttr="key" labelAttr="value" blank=""}}
-                            </select>
-                        </div>
+        <div class="step-sidebar">
+            <h1 class="title-section">4. Assign Traits</h1>
+
+            <div class="compedium-list traits">
+                <h1 class="subtitle-section">
+                    {{localize 'DAGGERHEART.APPLICATIONS.CharacterCreation.suggestedTraits'}}
+                    <side-line-div></side-line-div>
+                </h1>
+                <ul>
+                    {{#each suggestedTraits}}
+                        <li class="suggested-trait-container subtitle-section">{{this}}</li>
                     {{/each}}
-                </div>
+                </ul>
+                <button data-action="useSuggestedTraits">
+                    Apply Suggested Traits
+                </button>
             </div>
-        </fieldset>
+        </div>
+        <div class="traits-info">
+            <h1 class="subtitle-section">
+                Distribute Trait Modifiers
+                <side-line-div></side-line-div>
+            </h1>
+            <div class="m-top-10">
+                <p>Trait <b>modifiers</b> are the values associated with each trait. When you make an action roll using one of these traits, that trait’s modifier is added to the roll to determine the final result (or subtracted from the roll for a negative modifier).</p>
+                <p>Distribute the following starting modifiers across your character’s traits in any order you wish: +2, +1, +1, 0, 0, −1.</p>
+            </div>
+            <div class="trait-list m-top-20">
+                {{#each traits.values as |trait|}}
+                    <div class="trait-container">
+                        <div class="trait-header">
+                            <div class="trait-label">
+                                <h1 class="title-section">{{trait.name}}</h1>
+                                <div class="suggestion-list">
+                                    {{#each verbs as |verb index|}}
+                                        <p class="subtitle-trait">{{localize verb}}{{#unless (eq ../verbs.length (add index 1))}}, {{/unless}}</p>
+                                    {{/each}}
+                                </div>
+                            </div>
+                            <side-line-div></side-line-div>
+                            <div class="trait-select-container">
+                                <select name="{{concat "traits." trait.key ".value"}}" data-dtype="Number">
+                                    {{selectOptions trait.options selected=trait.value valueAttr="key" labelAttr="value" blank=""}}
+                                </select>
+                            </div>
+                        </div>
+                        <p class="trait-description m-top-10">
+                            {{trait.description}}
+                        </p>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
    </div>
 </section>
