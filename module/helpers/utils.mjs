@@ -940,14 +940,3 @@ export async function getWorldActor(baseActor) {
 
     return baseActor;
 }
-
-/** Convenience method to grab a folder via ID from the world collection or a specific pack
- * @param {string} id - The folder ID
- * @param {string} collectionName
- * @param {string} pack - Optional pack id.
- * @returns {DhFolder|null}
- */
-export function getFolder(id, collectionName, pack) {
-    const collection = pack ? game.packs.get(pack)?.folders : game[collectionName]?.folders;
-    return collection?.get(id) ?? null;
-}
