@@ -4,17 +4,6 @@
     data-group='{{tabs.community.group}}'
 >
     <div class="main-selections-container">
-        {{!-- <fieldset class="section-container">
-            <legend>{{localize "TYPES.Item.community"}}</legend>
-            <div class="selections-outer-container">
-                <div class="selections-container community-card">
-                    {{#> "systems/daggerheart/templates/components/card-preview.hbs" community }}
-                        {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.selectCommunity"}}
-                    {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
-                </div>
-            </div>
-        </fieldset> --}}
-
         <div class="step-sidebar">
             <h1 class="title-section">3. Choose a Community</h1>
 
@@ -41,9 +30,25 @@
                     <img src="{{community.img}}" alt="">
                     <div class="description">
                         {{{community.system.description}}}
+                        {{> communityFeatures subtitle='DAGGERHEART.ITEMS.Community.featuresLabel' type='community' list=community.system.features}}
                     </div>
                 </div>
             </div>
         {{/if}}
     </div>
 </section>
+
+{{#*inline "communityFeatures"}}
+    <div class="{{type}}-feature m-top-20">
+        <h2 class="subtitle-section">
+            {{localize subtitle}}
+            <side-line-div></side-line-div>
+        </h2>
+        {{#each list as |feature|}}
+            <div class="m-top-10">
+                <i><b>{{{feature.name}}}:</b></i>
+                {{{feature.system.description}}}
+            </div>
+        {{/each}}
+    </div>
+{{/inline}}
