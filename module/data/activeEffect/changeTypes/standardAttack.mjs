@@ -1,9 +1,9 @@
 import FormulaField from '../../fields/formulaField.mjs';
-import BaseCustomChange from './baseCustomChangeType.mjs';
 
 const fields = foundry.data.fields;
+export default class StandardAttackChange extends foundry.abstract.DataModel {
+    #single = true;
 
-export default class StandardAttackChange extends BaseCustomChange {
     static defineSchema() {
         return {
             type: new fields.StringField({ required: true, choices: ['standardAttack'], initial: 'standardAttack' }),
@@ -47,6 +47,10 @@ export default class StandardAttackChange extends BaseCustomChange {
                 })
             })
         };
+    }
+
+    get single() {
+        return this.#single;
     }
 
     static changeEffect = {

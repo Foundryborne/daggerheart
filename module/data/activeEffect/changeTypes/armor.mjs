@@ -1,9 +1,9 @@
 import { itemAbleRollParse } from '../../../helpers/utils.mjs';
-import BaseCustomChange from './baseCustomChangeType.mjs';
 
 const fields = foundry.data.fields;
+export default class ArmorChange extends foundry.abstract.DataModel {
+    #single = true;
 
-export default class ArmorChange extends BaseCustomChange {
     static defineSchema() {
         return {
             type: new fields.StringField({ required: true, choices: ['armor'], initial: 'armor' }),
@@ -48,6 +48,10 @@ export default class ArmorChange extends BaseCustomChange {
                 })
             })
         };
+    }
+
+    get single() {
+        return this.#single;
     }
 
     static changeEffect = {
