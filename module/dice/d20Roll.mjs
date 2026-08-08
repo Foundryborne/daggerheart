@@ -53,7 +53,7 @@ export default class D20Roll extends DHRoll {
 
     static applyKeybindings(config) {
         let keys = {
-            normal: true,
+            normal: false,
             advantage: false,
             disadvantage: false
         };
