@@ -211,10 +211,10 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         const rollOptions = [];
         const damageRollOptions = [];
 
-        if (actor?.system.usedUnarmed) {
+        if (actor?.system.usesUnarmed) {
             damageRollOptions.push({
                 value: actor.system.attack.uuid,
-                label: actor.system.usedUnarmed.name,
+                label: actor.system.attack.name,
                 group: actor.name,
                 baseAction: actor.system.attack
             });
@@ -451,7 +451,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         let result = null;
         switch (this.party.system.tagTeam.members[member].rollType) {
             case CONFIG.DH.GENERAL.tagTeamRollTypes.trait.id:
-                result = await this.makeTraitRoll(member);
+                result = await this.makeTraitRoll(event, member);
                 break;
             case CONFIG.DH.GENERAL.tagTeamRollTypes.ability.id:
             case CONFIG.DH.GENERAL.tagTeamRollTypes.damageAbility.id:
@@ -471,12 +471,13 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         );
     }
 
-    async makeTraitRoll(memberKey) {
+    async makeTraitRoll(event, memberKey) {
         const actor = game.actors.find(x => x.id === memberKey);
         if (!actor) return;
 
         const memberData = this.party.system.tagTeam.members[memberKey];
         return await actor.rollTrait(memberData.rollChoice, {
+            event,
             skips: {
                 createMessage: true,
                 resources: true,

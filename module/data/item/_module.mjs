@@ -1,6 +1,5 @@
 import DHAncestry from './ancestry.mjs';
 import DHArmor from './armor.mjs';
-import DHAttachableItem from './attachableItem.mjs';
 import DHClass from './class.mjs';
 import DHCommunity from './community.mjs';
 import DHConsumable from './consumable.mjs';
@@ -14,7 +13,6 @@ import DHBeastform from './beastform.mjs';
 export {
     DHAncestry,
     DHArmor,
-    DHAttachableItem,
     DHClass,
     DHCommunity,
     DHConsumable,
@@ -29,7 +27,6 @@ export {
 export const config = {
     ancestry: DHAncestry,
     armor: DHArmor,
-    attachableItem: DHAttachableItem,
     class: DHClass,
     community: DHCommunity,
     consumable: DHConsumable,

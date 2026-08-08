@@ -214,7 +214,7 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
                 update.system.actionTokens = Math.max(combatant.system.actionTokens - 1, 0);
             }
 
-            if (combatant.actor) expireActiveEffects(combatant.actor, [CONFIG.DH.GENERAL.activeEffectDurations.act.id]);
+            if (combatant.actor) expireActiveEffects(combatant.actor, [CONFIG.DH.EFFECTS.activeEffectDurations.act.id]);
         }
 
         await this.viewed.update({

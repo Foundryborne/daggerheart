@@ -103,7 +103,7 @@
       "name": "Bold Presence",
       "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
       "origin": "Compendium.daggerheart.domains.Item.tdsL00yTSLNgZWs6",
-      "transfer": true,
+      "transfer": false,
       "_id": "2XEYhuAcRGTtqvED",
       "type": "base",
       "system": {
@@ -117,7 +117,8 @@
           }
         ],
         "duration": {
-          "description": ""
+          "description": "",
+          "type": ""
         },
         "rangeDependence": null,
         "stacking": null,
@@ -138,7 +139,14 @@
       "_stats": {
         "compendiumSource": null
       },
-      "start": null,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
       "showIcon": 1,
       "folder": null,
       "_key": "!items.effects!tdsL00yTSLNgZWs6.2XEYhuAcRGTtqvED"

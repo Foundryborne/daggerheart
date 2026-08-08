@@ -1,20 +1,31 @@
 import { itemAbleRollParse } from '../../../helpers/utils.mjs';
 
 const fields = foundry.data.fields;
-
 export default class ArmorChange extends foundry.abstract.DataModel {
+    #single = true;
+
     static defineSchema() {
         return {
             type: new fields.StringField({ required: true, choices: ['armor'], initial: 'armor' }),
-            priority: new fields.NumberField(),
+            priority: new fields.NumberField({
+                label: 'EFFECT.FIELDS.changes.element.priority.label',
+                required: true, 
+                integer: true, 
+                initial: 20
+            }),
             phase: new fields.StringField({ required: true, blank: false, initial: 'initial' }),
             value: new fields.SchemaField({
-                current: new fields.NumberField({ integer: true, min: 0, initial: 0 }),
+                current: new fields.NumberField({ 
+                    label: 'DAGGERHEART.EFFECTS.ChangeTypes.armor.FIELDS.value.current.label',
+                    integer: true, 
+                    min: 0, 
+                    initial: 0 
+                }),
                 max: new fields.StringField({
+                    label: 'DAGGERHEART.EFFECTS.ChangeTypes.armor.FIELDS.value.max.label',
                     required: true,
                     nullable: false,
-                    initial: '1',
-                    label: 'DAGGERHEART.GENERAL.max'
+                    initial: '1'
                 }),
                 damageThresholds: new fields.SchemaField(
                     {
@@ -30,14 +41,17 @@ export default class ArmorChange extends foundry.abstract.DataModel {
                     { nullable: true, initial: null }
                 ),
                 interaction: new fields.StringField({
-                    required: true,
-                    choices: CONFIG.DH.GENERAL.activeEffectArmorInteraction,
-                    initial: CONFIG.DH.GENERAL.activeEffectArmorInteraction.none.id,
                     label: 'DAGGERHEART.EFFECTS.ChangeTypes.armor.FIELDS.interaction.label',
-                    hint: 'DAGGERHEART.EFFECTS.ChangeTypes.armor.FIELDS.interaction.hint'
+                    required: true,
+                    choices: CONFIG.DH.EFFECTS.activeEffectArmorInteraction,
+                    initial: CONFIG.DH.EFFECTS.activeEffectArmorInteraction.none.id
                 })
             })
         };
+    }
+
+    get single() {
+        return this.#single;
     }
 
     static changeEffect = {
@@ -51,7 +65,7 @@ export default class ArmorChange extends foundry.abstract.DataModel {
                 {
                     ...change,
                     key: 'system.armorScore.value',
-                    type: CONFIG.DH.GENERAL.activeEffectModes.add.id,
+                    type: 'add',
                     value: change.value.current
                 },
                 replacementData
@@ -61,7 +75,7 @@ export default class ArmorChange extends foundry.abstract.DataModel {
                 {
                     ...change,
                     key: 'system.armorScore.max',
-                    type: CONFIG.DH.GENERAL.activeEffectModes.add.id,
+                    type: 'add',
                     value: parsedMax
                 },
                 replacementData
@@ -82,7 +96,7 @@ export default class ArmorChange extends foundry.abstract.DataModel {
                         {
                             ...change,
                             key: 'system.damageThresholds.major',
-                            type: CONFIG.DH.GENERAL.activeEffectModes.add.id,
+                            type: 'add',
                             priority: 50,
                             value: major
                         },
@@ -96,7 +110,7 @@ export default class ArmorChange extends foundry.abstract.DataModel {
                         {
                             ...change,
                             key: 'system.damageThresholds.severe',
-                            type: CONFIG.DH.GENERAL.activeEffectModes.add.id,
+                            type: 'add',
                             priority: 50,
                             value: severe
                         },
@@ -114,9 +128,9 @@ export default class ArmorChange extends foundry.abstract.DataModel {
         if (!this.parent.parent?.actor) return false;
 
         switch (this.value.interaction) {
-            case CONFIG.DH.GENERAL.activeEffectArmorInteraction.active.id:
+            case CONFIG.DH.EFFECTS.activeEffectArmorInteraction.active.id:
                 return !this.parent.parent?.actor.system.armor;
-            case CONFIG.DH.GENERAL.activeEffectArmorInteraction.inactive.id:
+            case CONFIG.DH.EFFECTS.activeEffectArmorInteraction.inactive.id:
                 return Boolean(this.parent.parent?.actor.system.armor);
             default:
                 return false;
@@ -125,23 +139,13 @@ export default class ArmorChange extends foundry.abstract.DataModel {
 
     static getInitialValue() {
         return {
-            type: CONFIG.DH.GENERAL.activeEffectModes.armor.id,
+            type: CONFIG.DH.EFFECTS.customChangeTypes.armor.id,
             value: {
                 current: 0,
                 max: 0
             },
             phase: 'initial',
             priority: 20
-        };
-    }
-
-    static getDefaultArmorEffect() {
-        return {
-            name: game.i18n.localize('DAGGERHEART.EFFECTS.ChangeTypes.armor.newArmorEffect'),
-            img: 'icons/equipment/chest/breastplate-helmet-metal.webp',
-            system: {
-                changes: [ArmorChange.getInitialValue()]
-            }
         };
     }
 

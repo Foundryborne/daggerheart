@@ -449,15 +449,8 @@ export default class DhCharacter extends DhCreature {
      *
      * @returns {DHAttackAction|null}
      */
-    get usedUnarmed() {
-        if (this.primaryWeapon?.system?.equipped || this.secondaryWeapon?.system?.equipped) return null;
-
-        const attack = foundry.utils.deepClone(this.attack);
-        if (this.activeBeastform) {
-            attack.name = 'DAGGERHEART.ITEMS.Beastform.attackName';
-            attack.img = 'icons/creatures/claws/claw-straight-brown.webp';
-        }
-        return attack;
+    get usesUnarmed() {
+        return !(this.primaryWeapon?.system?.equipped || this.secondaryWeapon?.system?.equipped);
     }
 
     /* All items are valid on characters */
@@ -700,12 +693,6 @@ export default class DhCharacter extends DhCreature {
         };
     }
 
-    get basicAttackDamageDice() {
-        const diceTypes = Object.keys(CONFIG.DH.GENERAL.diceTypes);
-        const attackDiceIndex = Math.max(Math.min(this.rules.attack.damage.diceIndex, 5), 0);
-        return diceTypes[attackDiceIndex];
-    }
-
     static async unequipBeforeEquip(itemToEquip) {
         const primary = this.primaryWeapon,
             secondary = this.secondaryWeapon;
@@ -828,15 +815,11 @@ export default class DhCharacter extends DhCreature {
             }
         }
 
-        this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
-
         this.resources.armor = {
             ...this.armorScore,
             label: 'DAGGERHEART.GENERAL.armor',
             isReversed: true
         };
-
-        this.attack.damage.main.value.custom.formula = `@prof${this.basicAttackDamageDice}${this.rules.attack.damage.bonus ? ` + ${this.rules.attack.damage.bonus}` : ''}`;
 
         // Clamp resources (must be done last to ensure all updates occur)
         this.resources.clamp();
@@ -847,7 +830,6 @@ export default class DhCharacter extends DhCreature {
 
         return {
             ...data,
-            basicAttackDamageDice: this.basicAttackDamageDice,
             tier: this.tier,
             level: this.levelData.level.current
         };

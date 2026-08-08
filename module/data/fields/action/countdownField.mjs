@@ -70,7 +70,7 @@ export default class CountdownField extends fields.ArrayField {
             };
         }
 
-        if (game.modules.get('dice-so-nice')?.active) {
+        if (game.dice3d) {
             await Promise.all(
                 countdownMessages.map(message => {
                     return game.dice3d.waitFor3DAnimationByMessageID(message.id);

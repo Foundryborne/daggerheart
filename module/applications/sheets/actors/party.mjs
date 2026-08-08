@@ -144,8 +144,8 @@ export default class PartySheet extends DHBaseActorSheet {
         for (const actor of this.document.system.partyMembers) {
             const weapons = [];
             if (actor.type === 'character') {
-                if (actor.system.usedUnarmed) {
-                    weapons.push(actor.system.usedUnarmed);
+                if (actor.system.usesUnarmed) {
+                    weapons.push(actor.system.attack);
                 }
                 const equipped = actor.items.filter(i => i.system.equipped && i.type === 'weapon');
                 weapons.push(...sortBy(equipped, i => (i.system.secondary ? 1 : 0)));

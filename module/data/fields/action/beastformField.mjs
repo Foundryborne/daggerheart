@@ -91,16 +91,73 @@ export default class BeastformField extends fields.SchemaField {
         }
 
         if (evolvedData?.form) {
+            const { tokenSize, evolved } = selectedForm.system;
             const evolvedForm = selectedForm.effects.find(x => x.type === 'beastform');
             if (!evolvedForm) {
                 ui.notifications.error('DAGGERHEART.UI.Notifications.beastformMissingEffect');
                 return false;
             }
 
+            if (evolved.mainTraitBonus) {
+                const traitChange = 
+                    beastformEffect.changes.find(x => x.key === `system.traits.${formData.system.mainTrait}.value`);
+                if (traitChange) {
+                    traitChange.value += evolved.mainTraitBonus;
+                } else {
+                    beastformEffect.changes.push({ 
+                        key: `system.traits.${formData.system.mainTrait}.value`, 
+                        value: evolved.mainTraitBonus,
+                        type: 'add',
+                        priority: 20,
+                        phase: 'initial' 
+                    });
+                }
+            }
+
+            if (evolved.evasionBonus) {
+                const evasionChange = beastformEffect.changes.find(x => x.key === `system.evasion`);
+                if (evasionChange) {
+                    evasionChange.value += evolved.evasionBonus;
+                } else {
+                    beastformEffect.changes.push({ 
+                        key: 'system.evasion', 
+                        value: evolved.evasionBonus,
+                        type: 'add',
+                        priority: 20,
+                        phase: 'initial' 
+                    });
+                }
+            }
+
+            const standardAttack = beastformEffect.changes.find(x => x.type === 'standardAttack');
+            if (standardAttack) {
+                const damageTerms = new Roll(standardAttack.value.damageFormula).terms;
+                if (evolved.damageBonus) {
+                    damageTerms.push(...[
+                        new foundry.dice.terms.OperatorTerm({ operator: '+' }),
+                        new foundry.dice.terms.NumericTerm({ number: evolved.damageBonus })
+                    ]);
+                }
+                
+                if (evolved.increaseDamageDice) {
+                    const diceTerm = 
+                        damageTerms.find(x => x instanceof foundry.dice.terms.DiceTerm);
+                    if (diceTerm) {
+                        const index = CONFIG.DH.GENERAL.dieFaces.indexOf(diceTerm.faces);
+                        const faces = 
+                            CONFIG.DH.GENERAL.dieFaces[Math.min(index + evolved.increaseDamageDice, 20)];
+                        diceTerm.faces = faces;
+                    }
+                }
+                
+                
+                standardAttack.value.damageFormula = Roll.fromTerms(damageTerms).formula;
+            }
+
             beastformEffect.changes = [...beastformEffect.changes, ...evolvedForm.changes];
             formData.system.features = [...formData.system.features, ...selectedForm.system.features.map(x => x.uuid)];
 
-            const baseSize = evolvedData.form.system.tokenSize.size;
+            const baseSize = tokenSize.size;
             const evolvedSize =
                 baseSize === 'custom'
                     ? 'custom'
@@ -108,7 +165,7 @@ export default class BeastformField extends fields.SchemaField {
                         x => CONFIG.DH.ACTOR.tokenSize[x].value === CONFIG.DH.ACTOR.tokenSize[baseSize].value + 1
                     ) ?? baseSize);
             formData.system.tokenSize = {
-                ...evolvedData.form.system.tokenSize,
+                ...tokenSize,
                 size: evolvedSize
             };
         }

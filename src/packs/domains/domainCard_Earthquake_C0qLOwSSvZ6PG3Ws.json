@@ -17,16 +17,7 @@
         "description": "<p>Make a <strong>Spellcast Roll (16)</strong>. Once per rest on a success, all targets within Very Far range who aren’t flying must make a Reaction Roll (18). Targets who fail take <strong>3d10+8</strong> physical damage and are temporarily <em>Vulnerable</em>. Targets who succeed take half damage.</p><p>Additionally, when you succeed on the Spellcast Roll, all terrain within Very Far range becomes difficult to move through and structures within this range might sustain damage or crumble.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [
-          {
-            "key": "resource",
-            "itemId": "C0qLOwSSvZ6PG3Ws",
-            "value": 1,
-            "scalable": false,
-            "step": null,
-            "consumeOnSuccess": true
-          }
-        ],
+        "cost": [],
         "uses": {
           "value": null,
           "max": "1",

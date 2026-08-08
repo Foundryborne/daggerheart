@@ -31,19 +31,19 @@
             "value": "Move without being heard.",
             "priority": null
           }
-        ]
+        ],
+        "duration": {
+          "type": ""
+        }
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "",
+      "description": "<p>Your movement is naturally silent. You have advantage on rolls to move without being heard.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -53,6 +53,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!TQ1AIQjndC4mYmmU.4my9X5XC3uwDSx7B"
     }
   ],

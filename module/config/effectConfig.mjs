@@ -1,64 +1,47 @@
-import { range } from '../config/generalConfig.mjs';
-
-export const valueTypes = {
-    numberString: {
-        id: 'numberString'
+export const customChangeTypes = {
+    armor: {
+        id: 'armor',
+        priority: 20,
+        label: 'TYPES.ActiveEffect.armor'
     },
-    select: {
-        id: 'select'
+    standardAttack: {
+        id: 'standardAttack'
     }
 };
 
-export const parseTypes = {
-    string: {
-        id: 'string'
-    },
-    number: {
-        id: 'number'
-    }
+export const activeEffectArmorInteraction = {
+    none: { id: 'none', label: 'DAGGERHEART.CONFIG.ArmorInteraction.none.label' },
+    active: { id: 'active', label: 'DAGGERHEART.CONFIG.ArmorInteraction.active.label' },
+    inactive: { id: 'inactive', label: 'DAGGERHEART.CONFIG.ArmorInteraction.inactive.label' }
 };
 
-export const applyLocations = {
-    attackRoll: {
-        id: 'attackRoll',
-        name: 'DAGGERHEART.EFFECTS.ApplyLocations.attackRoll.name'
+export const activeEffectDurations = {
+    temporary: {
+        id: 'temporary',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.temporary'
     },
-    damageRoll: {
-        id: 'damageRoll',
-        name: 'DAGGERHEART.EFFECTS.ApplyLocations.damageRoll.name'
-    }
-};
-
-export const effectTypes = {
-    health: {
-        id: 'health',
-        name: 'DAGGERHEART.EFFECTS.Types.HitPoints.name',
-        values: [],
-        valueType: valueTypes.numberString.id,
-        parseType: parseTypes.number.id
+    act: {
+        id: 'act',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.act'
     },
-    stress: {
-        id: 'stress',
-        name: 'DAGGERHEART.EFFECTS.Types.Stress.name',
-        valueType: valueTypes.numberString.id,
-        parseType: parseTypes.number.id
+    scene: {
+        id: 'scene',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.scene'
     },
-    reach: {
-        id: 'reach',
-        name: 'DAGGERHEART.EFFECTS.Types.Reach.name',
-        valueType: valueTypes.select.id,
-        parseType: parseTypes.string.id,
-        options: Object.keys(range).map(x => ({ name: range[x].name, value: x }))
+    shortRest: {
+        id: 'shortRest',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.shortRest'
     },
-    damage: {
-        id: 'damage',
-        name: 'DAGGERHEART.EFFECTS.Types.Damage.name',
-        valueType: valueTypes.numberString.id,
-        parseType: parseTypes.string.id,
-        appliesOn: applyLocations.damageRoll.id,
-        applyLocationChoices: {
-            [applyLocations.damageRoll.id]: applyLocations.damageRoll.name,
-            [applyLocations.attackRoll.id]: applyLocations.attackRoll.name
-        }
+    longRest: {
+        id: 'longRest',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.longRest'
+    },
+    session: {
+        id: 'session',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.session'
+    },
+    custom: {
+        id: 'custom',
+        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.custom'
     }
 };
