@@ -94,7 +94,7 @@ export const getCommandTarget = (options = {}) => {
 };
 
 export const setDiceSoNiceForDualityRoll = async (rollResult, advantageState, hopeFaces, fearFaces, advantageFaces) => {
-    if (!game.modules.get('dice-so-nice')?.active) return;
+    if (!game.dice3d) return;
     const diceSoNicePresets = await getDiceSoNicePresets(
         rollResult,
         hopeFaces,
@@ -111,14 +111,14 @@ export const setDiceSoNiceForDualityRoll = async (rollResult, advantageState, ho
 };
 
 export const setDiceSoNiceForHopeFateRoll = async (rollResult, hopeFaces) => {
-    if (!game.modules.get('dice-so-nice')?.active) return;
+    if (!game.dice3d) return;
     const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
     const diceSoNicePresets = await getDiceSoNicePreset(diceSoNice.hope, hopeFaces);
     rollResult.dice[0].options = diceSoNicePresets;
 };
 
 export const setDiceSoNiceForFearFateRoll = async (rollResult, fearFaces) => {
-    if (!game.modules.get('dice-so-nice')?.active) return;
+    if (!game.dice3d) return;
     const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
     const diceSoNicePresets = await getDiceSoNicePreset(diceSoNice.fear, fearFaces);
     rollResult.dice[0].options = diceSoNicePresets;
@@ -474,7 +474,7 @@ export function itemIsIdentical(a, b) {
 }
 
 export async function waitForDiceSoNice(message) {
-    if (message && game.modules.get('dice-so-nice')?.active) {
+    if (message && game.dice3d) {
         await game.dice3d.waitFor3DAnimationByMessageID(message.id);
     }
 }
@@ -899,7 +899,7 @@ export async function fromUuids(uuids) {
  */
 export async function triggerChatRollFx(rolls, options = { whisper: false, blind: false }) {
     const { whisper, blind } = options;
-    if (game.modules.get('dice-so-nice')?.active) {
+    if (game.dice3d) {
         const rerollPromises = rolls.map(roll => game.dice3d.showForRoll(roll, game.user, true, whisper, blind));
         await Promise.allSettled(rerollPromises);
     } else {

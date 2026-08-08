@@ -384,7 +384,7 @@ export default class DualityRoll extends D20Roll {
         const rerolled = DualityRoll.fromData((await super.reroll(options)).toJSON());
 
         if (options?.liveRoll) {
-            if (game.modules.get('dice-so-nice')?.active) {
+            if (game.dice3d) {
                 const diceAppearance = await getDiceSoNicePresets(
                     rerolled,
                     rerolled.dHope.denomination,

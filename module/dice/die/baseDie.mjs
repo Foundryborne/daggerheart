@@ -57,7 +57,7 @@ export default class BaseDie extends foundry.dice.terms.Die {
            We solve this by marking the results as hidden so they're not picked up by the auto roll of DiceSoNice.
            The actual rolls are done here in place so every dice gets the correct denomination.
         */
-        if (game.modules.get('dice-so-nice')?.active) {
+        if (game.dice3d) {
             const resultsToRoll = this.results.filter((x, index) => 
                 x.active && (!rerollStartIndex || index === rerollStartIndex || index > initialResultsLength - 1));
             const rolls = [];
