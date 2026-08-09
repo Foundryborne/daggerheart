@@ -143,3 +143,31 @@ export const evolutionStates = {
         label: 'DAGGERHEART.CONFIG.EvolutionState.evolved'
     }
 }
+
+export const dynamicEffects = {
+    RING_PULSE: {
+        id: 'RING_PULSE',
+        label: 'TOKEN.RING.EFFECTS.RING_PULSE',
+        value: 0x2
+    },
+    RING_GRADIENT: {
+        id: 'RING_GRADIENT',
+        label: 'TOKEN.RING.EFFECTS.RING_GRADIENT',
+        value: 0x4
+    },
+    BKG_WAVE: {
+        id: 'BKG_WAVE',
+        label: 'TOKEN.RING.EFFECTS.BKG_WAVE',
+        value: 0x8
+    },
+    INVISIBILITY: {
+        id: 'INVISIBILITY',
+        label: 'TOKEN.RING.EFFECTS.INVISIBILITY',
+        value: 0x10
+    },
+    COLOR_OVER_SUBJECT: {
+        id: 'COLOR_OVER_SUBJECT',
+        label: 'TOKEN.RING.EFFECTS.COLOR_OVER_SUBJECT',
+        value: 0x20
+    }
+}

@@ -90,7 +90,13 @@
                 },
                 "evolution": {
                     "name": "Evolution",
-                    "tooltip": "Evolve an actor, gaining new capabilities"
+                    "tooltip": "Evolve an actor, gaining new capabilities",
+                    "tokenImage": "Token Image",
+                    "dynamicTokenImage": "Dynamic Token Image",
+                    "dynamicTokenRing": "Dynamic Token Ring Color",
+                    "dynamicTokenBackground": "Dynamic Token Background",
+                    "dynamicEffects": "Dynamic Effects",
+                    "tokenError": "You can only use a evolution action from a Token"
                 }
             },
             "Config": {

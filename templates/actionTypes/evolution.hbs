@@ -1,4 +1,4 @@
-<fieldset class="one-column" id="evolution-drop-zone" data-is-drop-zone="true" data-key="evolution">
+<fieldset class="one-column evolution-section" id="evolution-drop-zone" data-is-drop-zone="true" data-key="evolution">
     <legend>
         {{localize "DAGGERHEART.ACTIONS.TYPES.evolution.name"}}
     </legend>
@@ -38,4 +38,21 @@
             </table>
         </div>
     </div>
+
+    <fieldset class="one-column optional">
+        <legend>
+            {{localize "Alternative Token"}}
+            <input type="checkbox" data-action="toggleEvolutionTokenData" {{checked source.tokenOverride}} />
+        </legend>
+
+        {{#if source.tokenOverride}}
+            {{formField fields.tokenOverride.fields.tokenImage value=source.tokenOverride.tokenImage name="evolution.tokenOverride.tokenImage" localize=true }}
+            {{formField fields.tokenOverride.fields.dynamicTokenImage value=source.tokenOverride.dynamicTokenImage name="evolution.tokenOverride.dynamicTokenImage" localize=true }}
+            <div class="two-columns even full-width-section">
+                {{formField fields.tokenOverride.fields.dynamicTokenRing value=source.tokenOverride.dynamicTokenRing name="evolution.tokenOverride.dynamicTokenRing" localize=true }}
+                {{formField fields.tokenOverride.fields.dynamicTokenBackground value=source.tokenOverride.dynamicTokenBackground name="evolution.tokenOverride.dynamicTokenBackground" localize=true }}               
+            </div>
+            {{formField fields.tokenOverride.fields.dynamicTokenEffects value=source.tokenOverride.dynamicTokenEffects name="evolution.tokenOverride.dynamicTokenEffects" label="DAGGERHEART.ACTIONS.TYPES.evolution.dynamicEffects" localize=true }}
+        {{/if}}
+    </fieldset>
 </fieldset>
