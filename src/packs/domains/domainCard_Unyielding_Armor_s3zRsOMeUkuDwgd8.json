@@ -13,7 +13,14 @@
       "source": "Daggerheart SRD",
       "page": 135,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "s3zRsOMeUkuDwgd8",

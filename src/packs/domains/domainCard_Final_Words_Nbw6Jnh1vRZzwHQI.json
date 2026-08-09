@@ -25,8 +25,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -55,14 +55,26 @@
         },
         "name": "Infuse Corpse",
         "img": "icons/magic/death/undead-skeleton-fire-green.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 132,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "Nbw6Jnh1vRZzwHQI",

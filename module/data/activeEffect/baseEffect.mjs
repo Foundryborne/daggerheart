@@ -19,7 +19,7 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
 
-        const baseChanges = Object.keys(CONFIG.DH.GENERAL.baseActiveEffectModes).reduce((r, type) => {
+        const baseChanges = Object.keys(CONST.ACTIVE_EFFECT_CHANGE_TYPES).reduce((r, type) => {
             r[type] = new fields.SchemaField({
                 key: new fields.StringField({ required: true }),
                 type: new fields.StringField({
@@ -50,7 +50,7 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
             ),
             duration: new fields.SchemaField({
                 type: new fields.StringField({
-                    choices: CONFIG.DH.GENERAL.activeEffectDurations,
+                    choices: CONFIG.DH.EFFECTS.activeEffectDurations,
                     blank: true,
                     label: 'DAGGERHEART.GENERAL.type'
                 }),
@@ -122,7 +122,7 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
     }
 
     get armorChange() {
-        return this.changes.find(x => x.type === CONFIG.DH.GENERAL.activeEffectModes.armor.id);
+        return this.changes.find(x => x.type === CONFIG.DH.EFFECTS.customChangeTypes.armor.id);
     }
 
     get armorData() {

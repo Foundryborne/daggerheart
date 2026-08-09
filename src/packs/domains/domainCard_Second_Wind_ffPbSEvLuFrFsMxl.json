@@ -34,7 +34,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "stress": {
               "value": {
                 "custom": {
@@ -55,13 +56,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -85,7 +86,13 @@
         },
         "name": "Clear Three Stress",
         "img": "icons/commodities/gems/gem-faceted-navette-red.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "OIrSjtVdt4b2yJ2t": {
         "type": "healing",
@@ -111,7 +118,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "hitPoints": {
               "value": {
                 "custom": {
@@ -132,13 +140,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -162,7 +170,13 @@
         },
         "name": "Clear Hit Point",
         "img": "icons/commodities/gems/gem-faceted-diamond-green.webp",
-        "range": "close"
+        "range": "close",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "resource": {
@@ -171,13 +185,20 @@
       "recovery": "shortRest",
       "max": "1",
       "icon": "",
-      "progression": "decreasing"
+      "progression": "decreasing",
+      "diceStates": {},
+      "dieFaces": "d4"
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 132,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "ffPbSEvLuFrFsMxl",

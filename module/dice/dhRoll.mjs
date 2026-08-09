@@ -35,9 +35,9 @@ export default class DHRoll extends BaseRoll {
         if (config.skips?.createMessage) config.messageRoll = roll;
 
         if (config.evaluate !== false) {
-            await this.buildEvaluate(roll, config, (message = {}));
+            await this.buildEvaluate(roll, config, message);
         }
-        await this.buildPost(roll, config, (message = {}));
+        await this.buildPost(roll, config, message);
         return config;
     }
 
@@ -161,7 +161,7 @@ export default class DHRoll extends BaseRoll {
         if (roll._evaluated) {
             const message = await cls.create(msgData, { messageMode: config.selectedMessageMode });
 
-            if (roll.formula !== '' && game.modules.get('dice-so-nice')?.active) {
+            if (roll.formula !== '' && game.dice3d) {
                 await game.dice3d.waitFor3DAnimationByMessageID(message.id);
             }
 

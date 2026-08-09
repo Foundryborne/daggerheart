@@ -23,7 +23,8 @@
             "value": 1,
             "scalable": false,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -46,16 +47,28 @@
             "type": "placed",
             "shape": "emanation",
             "size": "veryClose",
-            "effects": []
+            "effects": [],
+            "hasHole": false
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 121,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "anO0arioUy7I5zBg",

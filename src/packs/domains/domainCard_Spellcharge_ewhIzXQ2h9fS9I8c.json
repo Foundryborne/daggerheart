@@ -13,7 +13,11 @@
       "type": "simple",
       "value": 0,
       "max": "@cast",
-      "icon": ""
+      "icon": "",
+      "recovery": null,
+      "progression": "increasing",
+      "diceStates": {},
+      "dieFaces": "d4"
     },
     "actions": {
       "jCgZ0yCoIhSAVEw3": {
@@ -36,7 +40,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -45,14 +50,25 @@
         },
         "name": "Spend Tokens",
         "img": "icons/commodities/gems/gem-faceted-diamond-blue.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 129,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "ewhIzXQ2h9fS9I8c",

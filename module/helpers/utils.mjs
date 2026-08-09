@@ -5,9 +5,40 @@ import Tagify from '@yaireo/tagify';
  * @import DhpActor from '../documents/actor.mjs';
  */
 
-export const capitalize = string => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-};
+/** Given an object, returns a new object with the keys listed in keys */
+export function pick(obj, keys) {
+    return keys.reduce((r, k) => {
+        r[k] = obj[k];
+        return r;
+    }, {});
+}
+
+/** Given an object, returns a new object with the keys not listed in keys */
+export function omit(obj, keys) {
+    const keysAsString = keys.map(k => String(k));
+    return Object.keys(obj).reduce((r, k) => {
+        if (!keysAsString.includes(k)) {
+            r[k] = obj[k];
+        }
+        return r;
+    }, {});
+}
+
+/** 
+ * Given an object, returns a new object with each value altered by a transform function
+ * @template {string} K
+ * @template V
+ * @template R
+ * @param {Record<K, V>} obj object to transform
+ * @param {(value: V, index: number) => R} transform mapping function
+ * @returns {Record<K, R>} new object with mapped values
+ */
+export function mapValues(obj, transform) {
+    return Object.entries(obj).reduce((r, [k, v], index) => {
+        r[k] = transform(v, index);
+        return r;
+    }, {});
+}
 
 export function rollCommandToJSON(text) {
     if (!text) return {};
@@ -16,7 +47,7 @@ export function rollCommandToJSON(text) {
     const flavor = flavorMatch ? flavorMatch[1] : null;
 
     // Match key="quoted string"  OR  key=unquotedValue
-    const PAIR_RE = /(\w+)\s*=\s*("(?:[^"\\]|\\.)*"|[^\]\}\s]+)/g; //updated regex to allow escaped quotes in quoted strings and avoid matching closing brackets/braces
+    const PAIR_RE = /(\w+)\s*=\s*("(?:[^"\\]|\\.)*"|[^\]}\s]+)/g; //updated regex to allow escaped quotes in quoted strings and avoid matching closing brackets/braces
     const result = {};
     for (const [, key, raw] of text.matchAll(PAIR_RE)) {
         let value;
@@ -63,7 +94,7 @@ export const getCommandTarget = (options = {}) => {
 };
 
 export const setDiceSoNiceForDualityRoll = async (rollResult, advantageState, hopeFaces, fearFaces, advantageFaces) => {
-    if (!game.modules.get('dice-so-nice')?.active) return;
+    if (!game.dice3d) return;
     const diceSoNicePresets = await getDiceSoNicePresets(
         rollResult,
         hopeFaces,
@@ -80,14 +111,14 @@ export const setDiceSoNiceForDualityRoll = async (rollResult, advantageState, ho
 };
 
 export const setDiceSoNiceForHopeFateRoll = async (rollResult, hopeFaces) => {
-    if (!game.modules.get('dice-so-nice')?.active) return;
+    if (!game.dice3d) return;
     const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
     const diceSoNicePresets = await getDiceSoNicePreset(diceSoNice.hope, hopeFaces);
     rollResult.dice[0].options = diceSoNicePresets;
 };
 
 export const setDiceSoNiceForFearFateRoll = async (rollResult, fearFaces) => {
-    if (!game.modules.get('dice-so-nice')?.active) return;
+    if (!game.dice3d) return;
     const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
     const diceSoNicePresets = await getDiceSoNicePreset(diceSoNice.fear, fearFaces);
     rollResult.dice[0].options = diceSoNicePresets;
@@ -443,7 +474,7 @@ export function itemIsIdentical(a, b) {
 }
 
 export async function waitForDiceSoNice(message) {
-    if (message && game.modules.get('dice-so-nice')?.active) {
+    if (message && game.dice3d) {
         await game.dice3d.waitFor3DAnimationByMessageID(message.id);
     }
 }
@@ -468,7 +499,7 @@ export function refreshIsAllowed(allowedTypes, typeToCheck) {
 }
 
 function expireActiveEffectIsAllowed(allowedTypes, typeToCheck) {
-    if (typeToCheck === CONFIG.DH.GENERAL.activeEffectDurations.act.id) return true;
+    if (typeToCheck === CONFIG.DH.EFFECTS.activeEffectDurations.act.id) return true;
 
     return refreshIsAllowed(allowedTypes, typeToCheck);
 }
@@ -485,7 +516,7 @@ export function expireActiveEffects(actor, allowedTypes = null) {
         .filter(effect => {
             if (!effect.system?.duration.type) return false;
 
-            const { temporary, custom } = CONFIG.DH.GENERAL.activeEffectDurations;
+            const { temporary, custom } = CONFIG.DH.EFFECTS.activeEffectDurations;
             if ([temporary.id, custom.id].includes(effect.system.duration.type)) return false;
 
             return expireActiveEffectIsAllowed(allowedTypes, effect.system.duration.type);
@@ -754,7 +785,7 @@ export function resetAndRerenderActors() {
     );
     for (const actor of actors) {
         for (const app of Object.values(actor.apps)) {
-            for (const element of app.element?.querySelectorAll('prose-mirror.active')) {
+            for (const element of app.element?.querySelectorAll('prose-mirror.active') ?? []) {
                 element.open = false; // This triggers a save
             }
         }
@@ -868,7 +899,7 @@ export async function fromUuids(uuids) {
  */
 export async function triggerChatRollFx(rolls, options = { whisper: false, blind: false }) {
     const { whisper, blind } = options;
-    if (game.modules.get('dice-so-nice')?.active) {
+    if (game.dice3d) {
         const rerollPromises = rolls.map(roll => game.dice3d.showForRoll(roll, game.user, true, whisper, blind));
         await Promise.allSettled(rerollPromises);
     } else {

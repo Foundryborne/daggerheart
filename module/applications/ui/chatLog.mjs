@@ -300,7 +300,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             if (!confirmed) return;
         }
 
-        const { rollValue } = await message.system.action.handleReload?.({ awaitRoll: true });
+        const { rollValue } = (await message.system.action.handleReload?.({ awaitRoll: true })) ?? {};
         await message.update({ 'system.reloadCheckValue': rollValue });
     }
 }

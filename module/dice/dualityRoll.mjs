@@ -374,7 +374,8 @@ export default class DualityRoll extends D20Roll {
 
         if (looseSpotlight && game.combat?.active) {
             const currentCombatant = game.combat.combatants.get(game.combat.current?.combatantId);
-            if (currentCombatant?.actorId == config.data.id) ui.combat.setCombatantSpotlight(currentCombatant.id);
+            if (currentCombatant && currentCombatant.actorId == config.data.id)
+                ui.combat.setCombatantSpotlight(currentCombatant.id);
         }
     }
 
@@ -383,7 +384,7 @@ export default class DualityRoll extends D20Roll {
         const rerolled = DualityRoll.fromData((await super.reroll(options)).toJSON());
 
         if (options?.liveRoll) {
-            if (game.modules.get('dice-so-nice')?.active) {
+            if (game.dice3d) {
                 const diceAppearance = await getDiceSoNicePresets(
                     rerolled,
                     rerolled.dHope.denomination,

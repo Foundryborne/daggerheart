@@ -54,12 +54,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -110,7 +107,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -136,7 +133,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -147,7 +145,11 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false,
+        "featureForm": "passive"
       },
       "_id": "whN2Ztn2wMqD7uW3",
       "img": "icons/magic/control/mouth-smile-deception-purple.webp",
@@ -172,7 +174,11 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false,
+        "featureForm": "passive"
       },
       "_id": "nhf2TK7HSkuAgIi8",
       "img": "icons/environment/settlement/city-entrance.webp",
@@ -197,7 +203,11 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false,
+        "featureForm": "passive"
       },
       "_id": "cPozA1iT4NLwsWqB",
       "img": "icons/environment/people/spearfighter.webp",
@@ -223,7 +233,10 @@
         "actions": {},
         "originItemType": null,
         "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "uxu8YrvYVxP3Qc2y",
       "img": "icons/skills/melee/unarmed-punch-fist-yellow-red.webp",
@@ -259,13 +272,16 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "effects": [],
             "target": {
@@ -274,12 +290,21 @@
             },
             "name": "Spend Fear",
             "img": "icons/environment/settlement/watchtower-moonlit-blue.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
         "originItemType": null,
         "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "21tdueq5Wgvj3vG4",
       "img": "icons/environment/settlement/watchtower-moonlit-blue.webp",

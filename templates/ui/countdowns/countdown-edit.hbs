@@ -6,17 +6,11 @@
 
         <div class="header-tools">
             <button class="header-main-button" data-action="addCountdown"><i class="fa-solid fa-plus"></i> {{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.newCountdown"}}</button>
-            <div class="hide-tools">
-                <label>{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.hideNewCountdowns"}}</label>
-                <input type="checkbox" name="hideNewCountdowns" {{checked hideNewCountdowns}} />
-            </div>
             {{#if isGM}}
-                <div class="default-ownership-tools">
-                    <i class="fa-solid fa-eye" data-tooltip="{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.defaultOwnershipTooltip"}}"></i>
-                    <select name="defaultOwnership">
-                        {{selectOptions ownershipDefaultOptions selected=defaultOwnership labelAttr="label" valueAttr="value" localize=true}}
-                    </select>
-                </div>
+                <label class="hide-tools">
+                    <span>{{localize "DAGGERHEART.APPLICATIONS.CountdownEdit.hideNewCountdowns"}}</span>
+                    <input id="hide-new-countdowns" type="checkbox" name="hideNewCountdowns" {{checked hideNewCountdowns}} />
+                </label>
             {{/if}}
         </div>
 

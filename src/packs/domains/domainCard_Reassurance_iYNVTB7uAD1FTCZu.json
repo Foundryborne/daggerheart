@@ -31,14 +31,26 @@
         },
         "name": "Reassure",
         "img": "icons/sundries/gaming/dice-pair-white-green.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 132,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "iYNVTB7uAD1FTCZu",

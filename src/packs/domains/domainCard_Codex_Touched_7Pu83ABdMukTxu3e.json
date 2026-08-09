@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "hh2vkggcAQ0QUE6C",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When 4 or more of the domain cards in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">loadout</tooltip> are from the Codex domain, gain the following benefits:</p><ul class=\"\"><li class=\"vertical-card-list\">You can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to add your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip> to a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\">Spellcast Roll</tooltip>.            </li><li class=\"vertical-card-list\">Once per rest, replace this card with any card from your vault without paying its Recall Cost.</li></ul></p>",
+    "description": "<p></p><p class=\"Body-Foundation\">When 4 or more of the domain cards in your loadout are from the Codex domain, gain the following benefits:</p><ul><li class=\"vertical-card-list\">You can <strong>mark a </strong><strong>Stress</strong> to add your Proficiency to a Spellcast Roll.            </li><li class=\"vertical-card-list\">Once per rest, replace this card with any card from your vault without paying its Recall Cost.</li></ul><p></p>",
     "domain": "codex",
     "recallCost": 2,
     "level": 7,
@@ -22,13 +22,16 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -42,7 +45,13 @@
         },
         "name": "Mark Stress",
         "img": "icons/magic/light/hand-sparks-glow-yellow.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "TGOGkEzH3HluH6YK": {
         "type": "effect",
@@ -55,7 +64,8 @@
         "uses": {
           "value": null,
           "max": "1",
-          "recovery": "shortRest"
+          "recovery": "shortRest",
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -64,7 +74,13 @@
         },
         "name": "Replace Card",
         "img": "icons/magic/symbols/star-inverted-yellow.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
@@ -72,7 +88,12 @@
       "page": 125,
       "artist": ""
     },
-    "domainTouched": 4
+    "domainTouched": 4,
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false
   },
   "flags": {},
   "_id": "7Pu83ABdMukTxu3e",
@@ -91,19 +112,23 @@
             "key": "system.bonuses.roll.spellcast.bonus",
             "type": "add",
             "value": "@system.proficiency",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>Add your Proficiency to a Spellcast Roll.</p>",
       "tint": "#ffffff",
@@ -113,6 +138,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!7Pu83ABdMukTxu3e.oWs00mBY3onxGjF9"
     }
   ],

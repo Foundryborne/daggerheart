@@ -33,6 +33,16 @@ export class MigrationHandlerBase {
         return null;
     }
 
+    /**
+     * Update a world item
+     * @param {DhActor} actor 
+     * @returns {Promise<object>}
+     * @protected
+     */
+    async updateItemSource(item) {
+        return null;
+    }
+
     async migrate() {
         // todo: handle more than just migrating effects. Right now this can only migrate effects
         // NOTE: the preload is hardcoded, we should not hardcode it
@@ -56,16 +66,25 @@ export class MigrationHandlerBase {
         const batch = [];
 
         const updateItem = async item => {
-            const itemUpdates = [];
+            const itemUpdate = await this.updateItemSource(item);
+            if (itemUpdate) {
+                batch.push({
+                    action: 'update',
+                    documentName: 'Item',
+                    updates: [itemUpdate]
+                });
+            }
+
+            const effectUpdates = [];
             for (const effect of item.effects) {
                 const changes = await this.updateActiveEffectSource(effect.toObject(), item);
-                if (changes) itemUpdates.push(changes);
+                if (changes) effectUpdates.push(changes);
             }
-            if (itemUpdates.length) {
+            if (effectUpdates.length) {
                 batch.push({
                     action: 'update',
                     documentName: 'ActiveEffect',
-                    updates: itemUpdates,
+                    updates: effectUpdates,
                     parent: item
                 });
             }

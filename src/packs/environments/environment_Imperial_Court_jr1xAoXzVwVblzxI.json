@@ -137,7 +137,11 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false,
+        "featureForm": "passive"
       },
       "_id": "OXUbWRt1Dj0vk7mW",
       "img": "icons/environment/settlement/watchtower-city.webp",
@@ -162,7 +166,11 @@
         "resource": null,
         "actions": {},
         "originItemType": null,
-        "originId": null
+        "originId": null,
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false,
+        "featureForm": "passive"
       },
       "_id": "LURReixasmMbiP2C",
       "img": "icons/commodities/treasure/bust-carved-stone.webp",
@@ -198,13 +206,16 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
               "parts": {
@@ -233,7 +244,36 @@
                   }
                 }
               },
-              "includeBase": false
+              "includeBase": false,
+              "main": null,
+              "resources": {
+                "stress": {
+                  "value": {
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d4",
+                    "bonus": null,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "stress",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "fullRestore": false
+                }
+              }
             },
             "target": {
               "type": "any",
@@ -262,12 +302,21 @@
             },
             "name": "Roll Save",
             "img": "icons/magic/death/skull-energy-light-white.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
         "originItemType": null,
         "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "tm9FL5gJF7Oheu21",
       "img": "icons/magic/death/skull-energy-light-white.webp",
@@ -302,11 +351,14 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
               "parts": {},
-              "includeBase": false
+              "includeBase": false,
+              "main": null,
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -335,12 +387,21 @@
             },
             "name": "Roll d4",
             "img": "icons/sundries/documents/document-sealed-red-white.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
         "originItemType": null,
         "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "HwSKX5r40ux0OfJN",
       "img": "icons/sundries/documents/document-sealed-red-white.webp",
@@ -376,17 +437,22 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
               "parts": {},
-              "includeBase": false
+              "includeBase": false,
+              "main": null,
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -415,12 +481,21 @@
             },
             "name": "Roll Save",
             "img": "icons/magic/perception/orb-eye-scrying.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
         "originItemType": null,
         "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "multiclassOrigin": false
       },
       "_id": "YPMgWUagVq1Hicqo",
       "img": "icons/magic/perception/orb-eye-scrying.webp",

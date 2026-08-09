@@ -23,7 +23,8 @@
             "key": "hope",
             "value": 5,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -39,14 +40,26 @@
         },
         "name": "Spend Hope",
         "img": "icons/magic/fire/flame-burning-hand-purple.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 120,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "Zp2S2EnLS5Iv3XuT",

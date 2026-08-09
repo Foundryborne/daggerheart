@@ -1,12 +1,15 @@
 <div>
     <header class="countdowns-header">
         <i class="fa-solid fa-clock-rotate-left" inert></i>
-        {{#unless iconOnly}}
-            <span class="window-title">{{localize "DAGGERHEART.UI.Countdowns.title"}}</span>
-        {{/unless}}
         <div class="header-type-toggles">
             {{#each typeToggles as |type|}}
-                <a class="header-type {{#unless type.active}}inactive{{/unless}}" data-action="toggleCountdownTypes" data-type="{{type.type}}">{{localize type.label}}</a>
+                <a class="header-type {{#unless type.active}}inactive{{/unless}}" data-action="toggleCountdownTypes" data-type="{{type.type}}">
+                    {{#if @root.iconOnly}}
+                        <i class="{{type.icon}}" data-tooltip="{{type.label}}"></i>
+                    {{else}}
+                        {{localize type.shortLabel}}
+                    {{/if}}
+                </a>
             {{/each}}
         </div>
         {{#if isGM}}
@@ -18,7 +21,9 @@
             <i class="fa-solid fa-down-left-and-up-right-to-center" inert></i>
         </a>
     </header>
-    <div class="countdowns-container">
-        {{> "systems/daggerheart/templates/ui/countdowns/parts/countdowns.hbs" }}
-    </div>
+    {{#if countdownTypesWithVisibleEntries.length}}
+        <div class="countdowns-container">
+            {{> "systems/daggerheart/templates/ui/countdowns/parts/countdowns.hbs" }}
+        </div>
+    {{/if}}
 </div>

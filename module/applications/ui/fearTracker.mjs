@@ -26,7 +26,6 @@ export default class FearTracker extends HandlebarsApplicationMixin(ApplicationV
     /** @inheritDoc */
     static DEFAULT_OPTIONS = {
         id: 'resources',
-        classes: [],
         tag: 'div',
         window: {
             frame: false,

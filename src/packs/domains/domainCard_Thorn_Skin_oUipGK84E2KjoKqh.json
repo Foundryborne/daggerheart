@@ -22,13 +22,16 @@
             "key": "hope",
             "value": 1,
             "scalable": false,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -37,7 +40,13 @@
         },
         "name": "Spend Hope",
         "img": "icons/magic/nature/thorns-hand-glow-green.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "IVAyyVf8gqFWB7bP": {
         "type": "effect",
@@ -59,7 +68,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -68,7 +78,13 @@
         },
         "name": "Use Tokens",
         "img": "icons/commodities/gems/gem-faceted-diamond-blue.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "resource": {
@@ -77,13 +93,20 @@
       "recovery": "shortRest",
       "max": "@cast",
       "icon": "",
-      "dieFaces": "d6"
+      "dieFaces": "d6",
+      "progression": "increasing",
+      "diceStates": {}
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 130,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "oUipGK84E2KjoKqh",
@@ -97,17 +120,20 @@
       "_id": "KPA1okccsR7AQH0x",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "tint": "#ffffff",
@@ -117,6 +143,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!oUipGK84E2KjoKqh.KPA1okccsR7AQH0x"
     }
   ],

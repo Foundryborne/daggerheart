@@ -25,7 +25,8 @@
           "consumeOnSuccess": true
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "stress": {
               "resultBased": false,
               "value": {
@@ -39,7 +40,6 @@
                 "bonus": null
               },
               "applyTo": "stress",
-              "type": [],
               "base": false,
               "valueAlt": {
                 "multiplier": "prof",
@@ -47,12 +47,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
-              }
+              },
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -93,16 +94,28 @@
             "type": "placed",
             "shape": "inFront",
             "size": "close",
-            "effects": []
+            "effects": [],
+            "hasHole": false
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 126,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "2ZeuCGVatQdPOVC6",
@@ -118,8 +131,12 @@
       "system": {
         "changes": [],
         "duration": {
-          "type": "temporary"
-        }
+          "type": "temporary",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {

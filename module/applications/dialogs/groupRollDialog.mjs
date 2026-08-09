@@ -342,13 +342,14 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
     //#endregion
 
     /** @this GroupRollDialog */
-    static async #makeRoll(_event, button) {
+    static async #makeRoll(event, button) {
         const member = button.closest('[data-member-key]').dataset.memberKey;
         const { data, basePath } = this.#getCharacterDataById(member);
         const actor = game.actors.find(x => x.id === data.id);
         if (!actor) return;
 
         const result = await actor.rollTrait(data.rollChoice, {
+            event,
             skips: {
                 createMessage: true,
                 resources: true,

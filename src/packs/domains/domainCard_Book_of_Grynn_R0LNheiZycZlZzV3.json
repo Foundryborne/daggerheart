@@ -23,13 +23,15 @@
             "value": 1,
             "scalable": false,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
           "value": null,
           "max": "1",
-          "recovery": "longRest"
+          "recovery": "longRest",
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -38,7 +40,13 @@
         },
         "name": "Arcane Deflection",
         "img": "icons/magic/defensive/barrier-shield-dome-blue-purple.webp",
-        "range": "veryClose"
+        "range": "veryClose",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "0vUkyQiGHTFS3Api": {
         "type": "effect",
@@ -51,7 +59,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -60,7 +69,13 @@
         },
         "name": "Time Lock",
         "img": "icons/magic/time/hourglass-yellow-green.webp",
-        "range": "far"
+        "range": "far",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "K26kfjmTEH9zPMMO": {
         "type": "attack",
@@ -73,38 +88,42 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
-            "hitPoints": {
-              "resultBased": false,
-              "value": {
-                "custom": {
-                  "enabled": false
-                },
-                "multiplier": "flat",
-                "flatMultiplier": 4,
-                "dice": "d10",
-                "bonus": 3
+          "main": {
+            "resultBased": false,
+            "value": {
+              "custom": {
+                "enabled": false,
+                "formula": ""
               },
-              "applyTo": "hitPoints",
-              "type": [
-                "magical"
-              ],
-              "base": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
+              "multiplier": "flat",
+              "flatMultiplier": 4,
+              "dice": "d10",
+              "bonus": 3
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "magical"
+            ],
+            "base": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false,
+                "formula": ""
               }
-            }
+            },
+            "includeBase": false,
+            "direct": false,
+            "fullRestore": false
           },
-          "includeBase": false
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -140,16 +159,28 @@
             "type": "placed",
             "shape": "line",
             "size": "far",
-            "effects": []
+            "effects": [],
+            "hasHole": false
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 125,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "R0LNheiZycZlZzV3",

@@ -155,7 +155,7 @@
         {
           "key": "system.evasion",
           "type": "add",
-          "value": "@system.armorScore",
+          "value": "@system.armorScore.max",
           "priority": 21
         }
       ],

@@ -30,10 +30,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "hitPoints": {
               "value": {
                 "custom": {
@@ -54,13 +56,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -91,9 +93,15 @@
             "type": "placed",
             "shape": "emanation",
             "size": "close",
-            "effects": []
+            "effects": [],
+            "hasHole": false
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       },
       "EqamWsxO86ZjY8WV": {
         "type": "healing",
@@ -123,10 +131,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "hitPoints": {
               "value": {
                 "custom": {
@@ -147,13 +157,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -184,9 +194,15 @@
             "type": "placed",
             "shape": "emanation",
             "size": "close",
-            "effects": []
+            "effects": [],
+            "hasHole": false
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       }
     },
     "resource": {
@@ -195,13 +211,20 @@
       "recovery": "longRest",
       "max": "1",
       "icon": "",
-      "progression": "decreasing"
+      "progression": "decreasing",
+      "diceStates": {},
+      "dieFaces": "d4"
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 130,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "GlRm1Dxlc0Z1b04o",

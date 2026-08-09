@@ -23,7 +23,8 @@
             "key": "stress",
             "value": 1,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -44,14 +45,26 @@
         },
         "name": "Mark Stress",
         "img": "icons/skills/movement/arrow-upward-yellow.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 122,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "dc4rAXlv95srZUct",
@@ -69,20 +82,24 @@
           {
             "key": "system.bonuses.roll.attack.bonus",
             "type": "add",
-            "value": "1",
-            "priority": null
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>If you end this movement within Melee range of an adversary and immediately make an attack against them, gain a +1 bonus to the attack roll.</p>",
       "tint": "#ffffff",
@@ -92,6 +109,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!dc4rAXlv95srZUct.gEDGcbsgWY2D2nOo"
     }
   ],

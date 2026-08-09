@@ -8,14 +8,6 @@ export default class AdversarySheet extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
         classes: ['adversary'],
         position: { width: 645, height: 750 },
-        window: { resizable: true },
-        actions: {
-            toggleHitPoints: AdversarySheet.#toggleHitPoints,
-            toggleStress: AdversarySheet.#toggleStress,
-            reactionRoll: AdversarySheet.#reactionRoll,
-            toggleResourceDice: AdversarySheet.#toggleResourceDice,
-            handleResourceDice: AdversarySheet.#handleResourceDice
-        },
         window: {
             resizable: true,
             controls: [
@@ -25,6 +17,13 @@ export default class AdversarySheet extends DHBaseActorSheet {
                     action: 'editAttribution'
                 }
             ]
+        },
+        actions: {
+            toggleHitPoints: AdversarySheet.#toggleHitPoints,
+            toggleStress: AdversarySheet.#toggleStress,
+            reactionRoll: AdversarySheet.#reactionRoll,
+            toggleResourceDice: AdversarySheet.#toggleResourceDice,
+            handleResourceDice: AdversarySheet.#handleResourceDice
         },
         dragDrop: [
             {

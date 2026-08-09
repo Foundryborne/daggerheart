@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "nZr2hsu6Q6TlFXQn",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (20)</strong>. On a success, restore one creature who has been dead no longer than 100 years to full strength. Then roll a <strong>d6</strong>. On a result of 5 or lower, place this card in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">vault</tooltip> permanently.</p><p class=\"Body-Foundation\">On a failure, you can’t cast Resurrection again for a week.</p></p>",
+    "description": "<p></p><p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong><strong> (20)</strong>. On a success, restore one creature who has been dead no longer than 100 years to full strength. Then roll a <strong>d6</strong>. On a result of 5 or lower, place this card in your vault permanently.</p><p class=\"Body-Foundation\">On a failure, you can’t cast Resurrection again for a week.</p><p></p>",
     "domain": "splendor",
     "recallCost": 2,
     "level": 10,
@@ -25,8 +25,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -55,7 +55,13 @@
         },
         "name": "Cast",
         "img": "icons/magic/light/explosion-beam-impact-silhouette.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "NurXUfoPDSVptejR": {
         "type": "attack",
@@ -72,8 +78,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -102,14 +108,26 @@
         },
         "name": "Keep Card",
         "img": "icons/sundries/gaming/dice-runed-brown.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 133,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "z30ciOwQI7g3tHla",

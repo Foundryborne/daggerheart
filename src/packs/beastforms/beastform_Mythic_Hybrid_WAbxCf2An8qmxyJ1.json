@@ -44,49 +44,48 @@
         },
         "advantageOn": [],
         "featureIds": [],
-        "effectIds": []
-      },
-      "changes": [
-        {
-          "key": "system.traits.strength.value",
-          "type": "add",
-          "value": "3",
-          "priority": null
-        },
-        {
-          "key": "system.evasion",
-          "type": "add",
-          "value": "2",
-          "priority": null
-        },
-        {
-          "key": "system.rules.attack.damage.diceIndex",
-          "type": "override",
-          "value": "4",
-          "priority": null
-        },
-        {
-          "key": "system.rules.attack.damage.bonus",
-          "type": "override",
-          "value": "10",
-          "priority": null
-        },
-        {
-          "key": "system.rules.attack.roll.trait",
-          "type": "override",
-          "value": "strength",
-          "priority": null
+        "effectIds": [],
+        "changes": [
+          {
+            "key": "system.traits.strength.value",
+            "type": "add",
+            "value": 3,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.evasion",
+            "type": "add",
+            "value": 2,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "type": "standardAttack",
+            "phase": "initial",
+            "value": {
+              "name": "DAGGERHEART.ITEMS.Beastform.attackName",
+              "damageTypes": [
+                "physical"
+              ],
+              "attackRange": "melee",
+              "trait": "strength",
+              "damageFormula": "@profd12 + 10",
+              "img": "icons/creatures/claws/claw-hooked-barbed.webp"
+            },
+            "priority": 0
+          }
+        ],
+        "duration": {
+          "type": ""
         }
-      ],
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>To transform into this creature, <strong>mark 2 additional Stress</strong>. Choose any three Beastform options from Tiers 1–3. Choose a total of five advantages and three features from those options.</p>",
       "origin": null,
@@ -98,6 +97,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!WAbxCf2An8qmxyJ1.HutJQ9HGtr1Eoibp"
     }
   ],

@@ -16,7 +16,11 @@
       "source": "Daggerheart SRD",
       "page": 134,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "effects": [
@@ -41,8 +45,12 @@
           }
         ],
         "duration": {
-          "type": ""
-        }
+          "type": "",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "FCsgz7Tdsw6QUzBs",
       "img": "icons/magic/control/buff-strength-muscle-damage-orange.webp",

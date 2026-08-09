@@ -14,13 +14,22 @@
       "value": 0,
       "recovery": "longRest",
       "max": "",
-      "icon": ""
+      "icon": "",
+      "progression": "increasing",
+      "diceStates": {},
+      "dieFaces": "d4"
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 131,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "actions": {},
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "F2m9wvZ3v5c3yCtv",

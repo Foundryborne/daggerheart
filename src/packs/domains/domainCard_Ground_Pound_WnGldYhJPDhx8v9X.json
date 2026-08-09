@@ -22,44 +22,50 @@
             "scalable": false,
             "key": "hope",
             "value": 2,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
-            "hitPoints": {
-              "value": {
-                "custom": {
-                  "enabled": false
-                },
-                "multiplier": "flat",
-                "flatMultiplier": 4,
-                "dice": "d10",
-                "bonus": 8
+          "main": {
+            "value": {
+              "custom": {
+                "enabled": false,
+                "formula": ""
               },
-              "applyTo": "hitPoints",
-              "type": [
-                "physical"
-              ],
-              "base": false,
-              "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
+              "multiplier": "flat",
+              "flatMultiplier": 4,
+              "dice": "d10",
+              "bonus": 8
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "base": false,
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false,
+                "formula": ""
               }
-            }
+            },
+            "includeBase": false,
+            "direct": false,
+            "fullRestore": false
           },
-          "includeBase": false
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -95,16 +101,28 @@
             "type": "placed",
             "shape": "emanation",
             "size": "veryClose",
-            "effects": []
+            "effects": [],
+            "hasHole": false
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 135,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "WnGldYhJPDhx8v9X",

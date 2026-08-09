@@ -22,13 +22,16 @@
             "scalable": true,
             "key": "hope",
             "value": 1,
-            "step": 1
+            "step": 1,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -42,14 +45,26 @@
         },
         "name": "Conjure",
         "img": "icons/creatures/mammals/deer-movement-leap-green.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 131,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "Jkp6cMDiHHaBZQRS",
@@ -67,34 +82,40 @@
           {
             "key": "system.bonuses.roll.attack.bonus",
             "type": "add",
-            "value": "-2",
-            "priority": null
+            "value": -2,
+            "priority": null,
+            "phase": "initial"
           },
           {
             "key": "system.bonuses.damage.magical.dice",
             "type": "add",
             "value": "+2",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           },
           {
             "key": "system.bonuses.damage.physical.bonus",
             "type": "add",
             "value": "+2",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Creatures riding a steed gain a −2 penalty to </span><span class=\"tooltip-convert\" style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">attack</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> rolls and a +2 bonus to damage rolls.</p>",
+      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Creatures riding a steed gain a −2 penalty to </span><span class=\"tooltip-convert\" style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">attack</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> rolls and a +2 bonus to damage rolls.</span></p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -102,6 +123,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!Jkp6cMDiHHaBZQRS.cNSlGBGPKKBNnlH8"
     }
   ],

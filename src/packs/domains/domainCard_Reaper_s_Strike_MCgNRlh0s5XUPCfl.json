@@ -23,7 +23,8 @@
             "value": 1,
             "scalable": false,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -33,8 +34,6 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false,
           "resources": {
             "hitPoints": {
               "base": false,
@@ -59,9 +58,11 @@
                   "enabled": false,
                   "formula": ""
                 }
-              }
+              },
+              "fullRestore": false
             }
-          }
+          },
+          "main": null
         },
         "target": {
           "type": "any",
@@ -90,14 +91,26 @@
         },
         "name": "Spend a Hope",
         "img": "icons/skills/melee/strike-axe-red.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 122,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "MCgNRlh0s5XUPCfl",

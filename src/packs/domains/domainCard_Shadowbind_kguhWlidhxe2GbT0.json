@@ -21,11 +21,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -66,16 +67,28 @@
             "type": "placed",
             "shape": "emanation",
             "size": "veryClose",
-            "effects": []
+            "effects": [],
+            "hasHole": false
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 128,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "kguhWlidhxe2GbT0",
@@ -91,8 +104,12 @@
       "system": {
         "changes": [],
         "duration": {
-          "type": "temporary"
-        }
+          "type": "temporary",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {

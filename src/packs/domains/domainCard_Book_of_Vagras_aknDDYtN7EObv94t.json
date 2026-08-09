@@ -25,8 +25,8 @@
           "consumeOnSuccess": true
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -55,7 +55,13 @@
         },
         "name": "Runic Lock",
         "img": "icons/magic/symbols/runes-star-blue.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "Da3zkKkOljZfu5Xb": {
         "type": "attack",
@@ -70,17 +76,19 @@
             "scalable": false,
             "key": "hope",
             "value": 1,
-            "step": null
+            "step": null,
+            "itemId": null
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -109,7 +117,13 @@
         },
         "name": "Arcane Door",
         "img": "icons/magic/symbols/rune-sigil-horned-blue.webp",
-        "range": "far"
+        "range": "far",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "VOOND5icbz1WxUUD": {
         "type": "attack",
@@ -122,11 +136,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -155,14 +170,26 @@
         },
         "name": "Reveal",
         "img": "icons/magic/perception/orb-crystal-ball-scrying-blue.webp",
-        "range": "close"
+        "range": "close",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 124,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "aknDDYtN7EObv94t",

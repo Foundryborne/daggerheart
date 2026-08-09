@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "hoDIPBzwYPxiSXGU",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (13)</strong>. On a success, you can create a temporary curtain of darkness between two points within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range. Only you can see through this darkness. You’re considered <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hidden\" nexus=\"daggerheart\"><em>Hidden</em></tooltip> to adversaries on the other side of the veil, and you have <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"advantage-and-disadvantage\" nexus=\"daggerheart\">advantage</tooltip> on attacks you make through the darkness. The veil remains until you cast another spell.</p></p>",
+    "description": "<p></p><p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong><strong> (13)</strong>. On a success, you can create a temporary curtain of darkness between two points within Far range. Only you can see through this darkness. You’re considered <em>Hidden</em> to adversaries on the other side of the veil, and you have advantage on attacks you make through the darkness. The veil remains until you cast another spell.</p><p></p>",
     "domain": "midnight",
     "recallCost": 1,
     "level": 3,
@@ -21,11 +21,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "self",
@@ -66,16 +67,28 @@
             "type": "placed",
             "shape": "line",
             "size": "far",
-            "effects": []
+            "effects": [],
+            "hasHole": false
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 128,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "gV4L5ZZmfPrEbIDh",
@@ -94,9 +107,16 @@
             "key": "system.advantageSources",
             "value": "Attack rolls you make through the darkness",
             "priority": null,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {

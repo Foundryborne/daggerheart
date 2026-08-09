@@ -298,7 +298,7 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
             app.addEventListener(
                 'close',
                 async () => {
-                    const selected = app.selected.toObject();
+                    let selected = app.selected.toObject();
                     const evolved = app.evolved.form ? app.evolved.form.toObject() : null;
                     const data = await game.system.api.data.items.DHBeastform.getWildcardImage(
                         app.configData.data.parent,

@@ -13,7 +13,7 @@ export default class DHActionConfig extends DHActionBaseConfig {
 
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
-        if (!!this.action.effects) context.effects = this.action.effects.map(e => this.action.item.effects.get(e._id));
+        if (this.action.effects) context.effects = this.action.effects.map(e => this.action.item.effects.get(e._id));
         context.getEffectDetails = this.getEffectDetails.bind(this);
 
         return context;
@@ -56,7 +56,7 @@ export default class DHActionConfig extends DHActionBaseConfig {
         if (!this.action.effects) return;
 
         const { areaIndex, index } = button.dataset;
-        let effectId = null;
+        let effectId;
         if (areaIndex !== undefined) {
             effectId = this.action.areas[areaIndex].effects[index];
             const data = this.action.toObject();

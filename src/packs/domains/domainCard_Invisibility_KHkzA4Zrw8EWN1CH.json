@@ -23,17 +23,19 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "step": null
+            "step": null,
+            "itemId": null
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -67,20 +69,35 @@
         },
         "name": "Cast",
         "img": "icons/magic/unholy/hand-fire-skeleton-pink.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "resource": {
       "type": "simple",
       "value": 0,
       "max": "@cast",
-      "icon": ""
+      "icon": "",
+      "recovery": null,
+      "progression": "increasing",
+      "diceStates": {},
+      "dieFaces": "d4"
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 126,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "KHkzA4Zrw8EWN1CH",
@@ -94,19 +111,22 @@
       "_id": "bRJy0MoIPQEQOMzZ",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">An </span><span style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">Invisible</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> creature can’t be seen except through magical means and </span><span class=\"tooltip-convert\" style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">attack rolls</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> against them are made with </span><span class=\"tooltip-convert\" style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">disadvantage</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">. Place a number of tokens on this card equal to your Spellcast trait. When the </span><span style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">Invisible</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> creature takes an action, spend a token from this card. After the action that spends the last token is resolved, the effect ends.</p>",
+      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">An </span><span style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">Invisible</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> creature can’t be seen except through magical means and </span><span class=\"tooltip-convert\" style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">attack rolls</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> against them are made with </span><span class=\"tooltip-convert\" style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">disadvantage</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">. Place a number of tokens on this card equal to your Spellcast trait. When the </span><span style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">Invisible</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> creature takes an action, spend a token from this card. After the action that spends the last token is resolved, the effect ends.</span></p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -114,6 +134,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!KHkzA4Zrw8EWN1CH.bRJy0MoIPQEQOMzZ"
     }
   ],
