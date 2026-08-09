@@ -96,7 +96,10 @@
                     "dynamicTokenRing": "Dynamic Token Ring Color",
                     "dynamicTokenBackground": "Dynamic Token Background",
                     "dynamicEffects": "Dynamic Effects",
-                    "tokenError": "You can only use a evolution action from a Token"
+                    "tokenError": "You can only use a evolution action from a Token",
+                    "actorError": "Actor missing for token. Can't restore to unevolved state.",
+                    "deevolveConfirmationTitle": "Remove Evolution",
+                    "deevolveConfirmationText": "Are you sure you want to remove the evolution?"
                 }
             },
             "Config": {

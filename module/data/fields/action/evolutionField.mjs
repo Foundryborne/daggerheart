@@ -59,6 +59,39 @@ export default class DHEvolutionField extends fields.SchemaField {
             return false;
         }
 
+        if (this.evolution.active) {
+            if (!token.actor) {
+                ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.evolution.actorError'));
+                return false;
+            }
+
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.evolution.deevolveConfirmationTitle')
+                },
+                content: game.i18n.format('DAGGERHEART.ACTIONS.TYPES.evolution.deevolveConfirmationText')
+            });
+
+            if (!confirmed) return false; 
+
+            const protoData = token.actor.prototypeToken;
+            const update = {
+                texture: { src: protoData.texture.src },
+                ring: {  
+                    subject: { texture: protoData.ring.subject.texture },
+                    colors: { 
+                        ring: protoData.ring.colors.ring, 
+                        background: protoData.ring.colors.background
+                    },
+                    effects: protoData.ring.effects
+                }
+            };
+
+            this.update({ 'evolution.active': false });
+            token.update(update, { diff: false, noHook: true });
+            return;
+        }
+
         this.update({ 'evolution.active': true });
 
         const resourceUpdate = { resources: {} };
