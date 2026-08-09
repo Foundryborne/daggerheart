@@ -1486,7 +1486,8 @@ export const orderedWeaponFeatures = () => {
 export const featureForm = {
     passive: 'DAGGERHEART.CONFIG.FeatureForm.passive',
     action: 'DAGGERHEART.CONFIG.FeatureForm.action',
-    reaction: 'DAGGERHEART.CONFIG.FeatureForm.reaction'
+    reaction: 'DAGGERHEART.CONFIG.FeatureForm.reaction',
+    evolution: 'DAGGERHEART.CONFIG.FeatureForm.evolution'
 };
 
 export const featureTypes = {
