@@ -28,6 +28,12 @@ export const domains = {
         description: 'DAGGERHEART.GENERAL.Domain.codex.description',
         color: '#24395d'
     },
+    dread: {
+        id: 'dread',
+        label: 'DAGGERHEART.GENERAL.Domain.dread.label',
+        src: 'systems/daggerheart/assets/icons/domains/dread.svg',
+        description: 'DAGGERHEART.GENERAL.Domain.dread.description'
+    },
     grace: {
         id: 'grace',
         label: 'DAGGERHEART.GENERAL.Domain.grace.label',
