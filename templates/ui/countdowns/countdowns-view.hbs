@@ -21,7 +21,9 @@
             <i class="fa-solid fa-down-left-and-up-right-to-center" inert></i>
         </a>
     </header>
-    <div class="countdowns-container">
-        {{> "systems/daggerheart/templates/ui/countdowns/parts/countdowns.hbs" }}
-    </div>
+    {{#if countdownTypesWithVisibleEntries.length}}
+        <div class="countdowns-container">
+            {{> "systems/daggerheart/templates/ui/countdowns/parts/countdowns.hbs" }}
+        </div>
+    {{/if}}
 </div>

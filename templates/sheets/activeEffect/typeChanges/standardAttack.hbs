@@ -1,0 +1,15 @@
+<input type="hidden" name="{{concat "system.changes." index ".type"}}" value="{{type}}" />
+<input type="hidden" name="{{concat "system.changes." index ".phase"}}" value="{{phase}}" />
+<div class="two-columns even">
+    {{formField fields.value.fields.name name=(concat "system.changes." index ".value.name") value=value.name localize=true}}
+    {{formField fields.priority name=(concat "system.changes." index ".priority") value=priority localize=true}}
+</div>
+<div class="two-columns even">
+    {{formField fields.value.fields.damageTypes name=(concat "system.changes." index ".value.damageTypes") value=value.damageTypes localize=true}}
+    {{formField fields.value.fields.attackRange name=(concat "system.changes." index ".value.attackRange") value=value.attackRange localize=true}}
+</div>
+<div class="two-columns even">
+    {{formField fields.value.fields.trait name=(concat "system.changes." index ".value.trait") value=value.trait localize=true}}
+    {{formField fields.value.fields.damageFormula name=(concat "system.changes." index ".value.damageFormula") value=value.damageFormula localize=true}}
+</div>
+{{formField fields.value.fields.img name=(concat "system.changes." index ".value.img") value=value.img localize=true}}

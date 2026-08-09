@@ -98,9 +98,10 @@
         display: flex;
         flex-direction: column;
         gap: 8px;
-        padding: 4px var(--spacer-16) var(--spacer-16) var(--spacer-16);
+        padding: 4px calc(var(--spacer-16) - var(--scrollbar-width)) var(--spacer-16) var(--spacer-16);
         overflow: auto;
         max-height: 312px;
+        scrollbar-gutter: stable;
 
         .countdown-category-container {
             display: flex;

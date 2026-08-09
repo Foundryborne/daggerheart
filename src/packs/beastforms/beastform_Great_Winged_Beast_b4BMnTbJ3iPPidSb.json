@@ -57,49 +57,48 @@
         },
         "advantageOn": [],
         "featureIds": [],
-        "effectIds": []
-      },
-      "changes": [
-        {
-          "key": "system.traits.finesse.value",
-          "type": "add",
-          "value": "2",
-          "priority": null
-        },
-        {
-          "key": "system.evasion",
-          "type": "add",
-          "value": "3",
-          "priority": null
-        },
-        {
-          "key": "system.rules.attack.damage.diceIndex",
-          "type": "override",
-          "value": "2",
-          "priority": null
-        },
-        {
-          "key": "system.rules.attack.damage.bonus",
-          "type": "override",
-          "value": "6",
-          "priority": null
-        },
-        {
-          "key": "system.rules.attack.roll.trait",
-          "type": "override",
-          "value": "finesse",
-          "priority": null
+        "effectIds": [],
+        "changes": [
+          {
+            "key": "system.traits.finesse.value",
+            "type": "add",
+            "value": 2,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.evasion",
+            "type": "add",
+            "value": 3,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "type": "standardAttack",
+            "phase": "initial",
+            "value": {
+              "name": "DAGGERHEART.ITEMS.Beastform.attackName",
+              "damageTypes": [
+                "physical"
+              ],
+              "attackRange": "melee",
+              "trait": "finesse",
+              "damageFormula": "@profd8 + 6",
+              "img": "icons/creatures/claws/claw-talons-glowing-orange.webp"
+            },
+            "priority": 0
+          }
+        ],
+        "duration": {
+          "type": ""
         }
-      ],
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "origin": null,
@@ -111,6 +110,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!b4BMnTbJ3iPPidSb.qGSm1QpICpxRZxLn"
     }
   ],

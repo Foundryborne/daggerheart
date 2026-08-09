@@ -23,7 +23,7 @@ export default class DualityDie extends BaseDie {
 
         if (options?.liveRoll) {
             /* Can't currently test since DiceSoNice is not v14. Might need to set the appearance earlier if a roll is triggered by super.reroll */
-            if (game.modules.get('dice-so-nice')?.active) {
+            if (game.dice3d) {
                 const diceSoNiceRoll = {
                     _evaluated: true,
                     dice: [this],

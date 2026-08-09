@@ -1,4 +1,5 @@
 import { createShallowProxy, getScrollTextData } from '../../helpers/utils.mjs';
+import FormulaField from '../fields/formulaField.mjs';
 
 const fields = foundry.data.fields;
 
@@ -73,6 +74,7 @@ export const commonActorRules = (extendedData = { damageReduction: {}, attack: {
     attack: new fields.SchemaField({
         ...extendedData.attack,
         damage: new fields.SchemaField({
+            standardAttack: new fields.ArrayField(new FormulaField(), { nullable: false, initial: [] }),
             hpDamageMultiplier: new fields.NumberField({
                 required: true,
                 nullable: false,

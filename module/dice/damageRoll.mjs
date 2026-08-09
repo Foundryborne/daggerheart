@@ -71,7 +71,7 @@ export default class DamageRoll extends DHRoll {
             : getDocumentClass('ChatMessage').applyMode({}, config.rollMode ?? 'public');
 
         const diceRolls = [];
-        if (game.modules.get('dice-so-nice')?.active) {
+        if (game.dice3d) {
             config.mute = true;
             const pool = foundry.dice.terms.PoolTerm.fromRolls([
                 ...(config.damage.main ? [config.damage.main] : []),

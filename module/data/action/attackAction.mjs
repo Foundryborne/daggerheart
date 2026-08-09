@@ -68,7 +68,7 @@ export default class DHAttackAction extends DHDamageAction {
 
     async handleReload(options = { awaitRoll: false }) {
         const roll = await new Roll('1d6').evaluate();
-        if (game.modules.get('dice-so-nice')?.active) {
+        if (game.dice3d) {
             if (options.awaitRoll)
                 await game.dice3d.showForRoll(roll, game.user, true);
             else

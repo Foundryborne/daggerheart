@@ -14,14 +14,25 @@
         {{/each}}
     </ol>
 
-    <fieldset class="armor-change-container optional {{#if typeChanges.armor}}active{{/if}}">
+    <fieldset class="typed-change-container armor-change-container optional {{#if typeChanges.armor}}active{{/if}}">
         <legend>
             {{localize "DAGGERHEART.GENERAL.armor"}} 
-            <input type="checkbox" class="armor-change-checkbox" data-index="{{typedChanges.armor.index}}" {{checked typedChanges.armor}} />
+            <input type="checkbox" class="typed-change-checkbox" data-index="{{typedChanges.armor.index}}" data-type="armor" {{checked typedChanges.armor}} />
         </legend>
 
         {{#if typedChanges.armor}}
             {{> "systems/daggerheart/templates/sheets/activeEffect/typeChanges/armorChange.hbs" typedChanges.armor fields=@root.systemFields.changes.element.types.armor.fields}}
+        {{/if}}
+    </fieldset>
+
+    <fieldset class="typed-change-container optional {{#if typeChanges.standardAttack}}active{{/if}}">
+        <legend>
+            {{localize "DAGGERHEART.EFFECTS.ChangeTypes.standardAttack.name"}} 
+            <input type="checkbox" class="typed-change-checkbox" data-index="{{typedChanges.standardAttack.index}}" data-type="standardAttack" {{checked typedChanges.standardAttack}} />
+        </legend>
+
+        {{#if typedChanges.standardAttack}}
+            {{> "systems/daggerheart/templates/sheets/activeEffect/typeChanges/standardAttack.hbs" typedChanges.standardAttack fields=@root.systemFields.changes.element.types.standardAttack.fields}}
         {{/if}}
     </fieldset>
 </section>

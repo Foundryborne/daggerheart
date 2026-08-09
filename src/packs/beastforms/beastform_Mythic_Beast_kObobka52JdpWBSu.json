@@ -16,7 +16,10 @@
     "features": [],
     "evolved": {
       "mainTraitBonus": 2,
-      "maximumTier": 2
+      "maximumTier": 2,
+      "damageBonus": 9,
+      "evasionBonus": 3,
+      "increaseDamageDice": 1
     },
     "hybrid": {
       "beastformOptions": 2,
@@ -44,39 +47,20 @@
         },
         "advantageOn": [],
         "featureIds": [],
-        "effectIds": []
-      },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.physical.bonus",
-          "type": "add",
-          "value": "9",
-          "priority": null
-        },
-        {
-          "key": "system.evasion",
-          "type": "add",
-          "value": "3",
-          "priority": null
-        },
-        {
-          "key": "system.rules.attack.damage.diceIndex",
-          "type": "add",
-          "value": "1",
-          "priority": 60
+        "effectIds": [],
+        "changes": [],
+        "duration": {
+          "type": ""
         }
-      ],
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "<p>Pick a Tier 1 or Tier 2 Beastform option and become a larger, more powerful version of that creature. While you’re in this form, you retain all traits and features from the original form and gain the the following bonuses:</p><ul><li>A +9 bonus to damage rolls</li><li>A +2 bonus to the trait used by this form</li><li>A +3 bonus to Evasion</li><li>Your damage die increases by one size (d6 becomes d8, d8 becomes d10 etc.)</li></ul>",
+      "description": "<p>Pick a Tier 1 or Tier 2 Beastform option and become a larger, more powerful version of that creature. While you’re in this form, you retain all traits and features from the original form and gain the the following bonuses:</p><ul><li><p>A +9 bonus to damage rolls</p></li><li><p>A +2 bonus to the trait used by this form</p></li><li><p>A +3 bonus to Evasion</p></li><li><p>Your damage die increases by one size (d6 becomes d8, d8 becomes d10 etc.)</p></li></ul>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -86,6 +70,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!kObobka52JdpWBSu.vhwbPQ2YT64qD1t1"
     }
   ],

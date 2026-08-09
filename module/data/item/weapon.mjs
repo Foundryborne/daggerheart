@@ -142,10 +142,6 @@ export default class DHWeapon extends BaseDataItem {
         return { prefix, value: baseDescription, suffix: null };
     }
 
-    prepareDerivedData() {
-        this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
-    }
-
     async _preUpdate(changes, options, user) {
         const allowed = await super._preUpdate(changes, options, user);
         if (allowed === false) return false;

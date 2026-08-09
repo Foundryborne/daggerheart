@@ -2019,12 +2019,23 @@
             },
             "ChangeTypes": {
                 "armor": {
-                    "newArmorEffect": "Armor Effect",
                     "FIELDS": {
-                        "interaction": {
-                            "label": "Armor Interaction",
-                            "hint": "Does the character wearing armor suppress this effect?"
-                        }
+                        "value": {
+                            "current": { "label": "Marked Armor Slots" },
+                            "max": { "label": "Armor Score" }
+                        },
+                        "interaction": { "label": "Armor Interaction" }
+                    }
+                },
+                "standardAttack": {
+                    "name": "Standard Attack",
+                    "FIELDS": {
+                        "damageFormula": "Damage Formula",
+                        "damageTypes": "Damage Types",
+                        "attackRange": "Attack Range",
+                        "img": "Attack Image",
+                        "name": "Attack Name",
+                        "trait": "Attack Trait"
                     }
                 }
             },
@@ -2628,7 +2639,10 @@
                     },
                     "evolved": {
                         "maximumTier": { "label": "Maximum Tier" },
-                        "mainTraitBonus": { "label": "Main Trait Bonus" }
+                        "mainTraitBonus": { "label": "Main Trait Bonus" },
+                        "damageBonus": { "label": "Damage Bonus" },
+                        "evasionBonus": { "label": "Evasion Bonus" },
+                        "increaseDamageDice": { "label": "Damage Dice Size Increases" }
                     },
                     "hybrid": {
                         "beastformOptions": { "label": "Nr Beastforms" },
