@@ -1,27 +1,24 @@
-<header class='item-card-header'>
+<header class='item-card-header dh-card-header'>
     <img class='profile' src='{{source.img}}' data-action='editImage' data-edit='img' />
-    <div class="item-icons-list">
-        <span class="item-icon">
-            <span class="recall-label">{{localize "DAGGERHEART.ITEMS.DomainCard.recallCost"}}</span>
-            <span class="recall-value">{{source.system.recallCost}}</span>
-            <i class="fa-solid fa-bolt"></i>
-        </span>
-        <span class="item-icon">
-            <span class="recall-label">{{localize @root.domain.label}}</span>
-            <img src="{{@root.domain.src}}" alt="">
-        </span>
+    {{#> "systems/daggerheart/templates/components/card-banner.hbs" domain=@root.domain}}
+        <span class="level">{{source.system.level}}</span>
+        <img class="domain-icon" src="{{domain.src}}" data-tooltip="{{domain.label}}">
+    {{/ "systems/daggerheart/templates/components/card-banner.hbs"}}
+
+    <div class="recall-cost" data-tooltip="DAGGERHEART.ITEMS.DomainCard.recallCost">
+        <span class="recall-value">{{source.system.recallCost}}</span>
+        <i class="fa-solid fa-bolt"></i>
     </div>
+
     <div class='item-info'>
         <h1 class='item-name'><input type='text' name='name' value='{{source.name}}' /></h1>
         <div class='item-description'>
-            <h3>{{localize 'TYPES.Item.domainCard'}}</h3>
             <h3>
+                {{localize "TYPES.Item.domainCard"}}
+                <span>-</span>
                 {{localize (concat 'DAGGERHEART.CONFIG.DomainCardTypes.' source.system.type)}}
                 <span>-</span>
                 {{localize @root.domain.label}}
-                <span>-</span>
-                {{localize "DAGGERHEART.GENERAL.level"}}:
-                {{source.system.level}}
             </h3>
         </div>
         {{#if (and showAttribution source.system.attributionLabel)}} <div class="attribution-header-label">{{source.system.attributionLabel}}</div>{{/if}}

@@ -1,0 +1,12 @@
+{{!-- Even without content, this serves to add a bit of bottom padding as well --}}
+<footer class="attribution">
+    {{#if item.system.attribution.artist}}
+        <div class="artist">
+            <i class="fa-solid fa-paintbrush"></i>
+            <span>{{item.system.attribution.artist}}</span>
+        </div>
+    {{/if}}
+    {{#if item.system.attributionLabel}}
+        <div class="source">{{item.system.attributionLabel}}</div>
+    {{/if}}
+</footer>

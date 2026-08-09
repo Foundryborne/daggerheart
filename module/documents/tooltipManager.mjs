@@ -31,13 +31,14 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             case 'attack':
                 html = await this.#activateAttack(element, options);
                 break;
-            case 'shortRest':
-            case 'longRest':
-                html = await this.#activateRest(element, options);
-                break;
             case 'advantage':
             case 'disadvantage':
                 html = await this.#activateAdvantageDisadvantage(element, options);
+                break;
+            // Move Choices
+            case 'shortRest':
+            case 'longRest':
+                html = await this.#activateRest(element, options);
                 break;
             case 'deathMove':
                 html = await this.#activateDeathMove(element, options);
@@ -46,6 +47,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
 
         this.noOffset = options.noOffset;
         super.activate(element, { ...options, html });
+        if (html) this.tooltip.innerHTML = html; // foundry likes to strip certain stuff like svgs, put it back
     }
 
     async #activateBattlepoints(element, options) {
@@ -118,7 +120,6 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             }
         );
 
-        this.tooltip.innerHTML = html;
         options.direction = this._determineItemTooltipDirection(element);
 
         return html;
@@ -127,28 +128,51 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
     async #activateItem(element, options) {
         const itemUuid = element.dataset.tooltip.slice(6);
         const item = await foundry.utils.fromUuid(itemUuid);
-        if (item) {
-            const isAction = item instanceof game.system.api.models.actions.actionsTypes.base;
-            const isEffect = item instanceof ActiveEffect;
-            await this.enrichText(item);
+        if (!item) return null;
 
-            const type = isAction ? 'action' : isEffect ? 'effect' : item.type;
-            const html = await foundry.applications.handlebars.renderTemplate(
-                `systems/daggerheart/templates/ui/tooltip/${type}.hbs`,
-                {
-                    item: item,
-                    description: item.system?.enrichedDescription ?? item.enrichedDescription,
-                    config: CONFIG.DH,
-                    allDomains: CONFIG.DH.DOMAIN.allDomains()
-                }
-            );
-
-            this.tooltip.innerHTML = html;
+        // If there is support for embeds, use that instead.
+        const embed = item instanceof Item ? await item.system.toEmbed() : null;
+        if (item instanceof Item && embed) {
+            if (embed instanceof HTMLCollection) {
+                this.tooltip.replaceChildren(...embed);
+            } else {
+                this.tooltip.replaceChildren(embed);
+            }
             options.direction ??= this._determineItemTooltipDirection(element);
-            return html;
+            return this.tooltip.innerHTML;
         }
 
-        return null;
+        const isAction = item instanceof game.system.api.models.actions.actionsTypes.base;
+        const isEffect = item instanceof ActiveEffect;
+        await this.enrichText(item);
+
+        const type = isAction ? 'action' : isEffect ? 'effect' : 'item';
+
+        const tags = item._getTags() ?? [];
+        if (['feature'].includes(item.type)) {
+            tags.unshift(_loc(`TYPES.Item.${item.type}`));
+        } else if (item.system.secondary) {
+            tags.unshift(_loc('DAGGERHEART.ITEMS.Weapon.secondaryWeapon.full'))
+        } else if (item.type === 'weapon') {
+            tags.unshift(_loc('DAGGERHEART.ITEMS.Weapon.primaryWeapon.full'))
+        }
+        if (item instanceof Item && item.system.metadata.isQuantifiable) {
+            tags.unshift(`${_loc('DAGGERHEART.GENERAL.quantity')} ${item.system.quantity}`)
+        }
+
+        const html = await foundry.applications.handlebars.renderTemplate(
+            `systems/daggerheart/templates/ui/tooltip/${type}.hbs`,
+            {
+                item: item,
+                description: item.system?.enrichedDescription ?? item.enrichedDescription,
+                config: CONFIG.DH,
+                tags
+            }
+        );
+
+        this.tooltip.innerHTML = html;
+        options.direction ??= this._determineItemTooltipDirection(element);
+        return html;
     }
 
     async #activateAttack(element, options) {
@@ -167,7 +191,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             }
         );
 
-        this.tooltip.innerHTML = html;
+        options.direction ??= this._determineItemTooltipDirection(element);
         return html;
     }
 
@@ -177,15 +201,12 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         const actor = await foundry.utils.fromUuid(actorUuid);
 
         if (actor) {
-            const html = await foundry.applications.handlebars.renderTemplate(
+            return await foundry.applications.handlebars.renderTemplate(
                 `systems/daggerheart/templates/ui/tooltip/advantage.hbs`,
                 {
                     sources: isAdvantage ? actor.system.advantageSources : actor.system.disadvantageSources
                 }
             );
-
-            this.tooltip.innerHTML = html;
-            return html;
         }
         return null;
     }
@@ -196,7 +217,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         const description = element.dataset.deathDescription;
 
         const html = await foundry.applications.handlebars.renderTemplate(
-            `systems/daggerheart/templates/ui/tooltip/death-move.hbs`,
+            `systems/daggerheart/templates/ui/tooltip/move.hbs`,
             {
                 move: { name: name, img: img, description: description }
             }
@@ -219,7 +240,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         const move = moves[key];
         const description = await foundry.applications.ux.TextEditor.enrichHTML(move.description);
         const html = await foundry.applications.handlebars.renderTemplate(
-            `systems/daggerheart/templates/ui/tooltip/downtime.hbs`,
+            `systems/daggerheart/templates/ui/tooltip/move.hbs`,
             {
                 move: move,
                 description: description
@@ -306,6 +327,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         }
     }
 
+    /** @todo don't update the item itself witht he description, return the result instead */
     async enrichText(item) {
         const { TextEditor } = foundry.applications.ux;
 

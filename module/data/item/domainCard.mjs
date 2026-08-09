@@ -1,6 +1,8 @@
 import BaseDataItem from './base.mjs';
 
 export default class DHDomainCard extends BaseDataItem {
+    static embedTemplate = 'systems/daggerheart/templates/components/card/domain.hbs';
+
     /** @inheritDoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
@@ -133,5 +135,25 @@ export default class DHDomainCard extends BaseDataItem {
             });
         }
         return labels;
+    }
+
+    /** @inheritdoc */
+    async toEmbed(config = {}, options = {}) {
+        // Card styling has certain defaults designed for embedding
+        config.caption ??= false;
+        config.cite ??= false;
+        config.inline ??= true;
+
+        const description = await this.getEnrichedDescription({ ...options, gmNotes: false, type: 'tooltip' });
+        const domains = CONFIG.DH.DOMAIN.allDomains();
+        const content = await foundry.applications.handlebars.renderTemplate(this.constructor.embedTemplate, {
+            item: this.parent,
+            description,
+            domain: foundry.utils.mergeObject({ color: 'black' }, domains[this.domain] ?? {}),
+            cardType: CONFIG.DH.DOMAIN.cardTypes[this.type]
+        })
+        const container = document.createElement('div');
+        container.innerHTML = content;
+        return container.children;
     }
 }

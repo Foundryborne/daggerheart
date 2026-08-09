@@ -3,6 +3,8 @@ import ItemLinkFields from '../fields/itemLinkFields.mjs';
 import BaseDataItem from './base.mjs';
 
 export default class DHSubclass extends BaseDataItem {
+    static embedTemplate = 'systems/daggerheart/templates/components/card/subclass.hbs';
+
     /** @inheritDoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
@@ -82,31 +84,59 @@ export default class DHSubclass extends BaseDataItem {
     }
 
     /**@inheritdoc */
-    async getDescriptionData() {
+    async getDescriptionData(config = {}) {
         const baseDescription = this.description;
-
         const spellcastTrait = this.spellcastingTrait
             ? game.i18n.localize(CONFIG.DH.ACTOR.abilities[this.spellcastingTrait].label)
             : null;
+        
+        if (config.type === 'tooltip') {
+            // for now, tooltips do not show any specific version. Eventually we may want rank specific embeds via dataset params or something
+            return { value: baseDescription };
+        } else {
+            // Preload all subclass features for acquisition from the cache
+            // todo: make feature acquisition async and replace feature helpers for methods
+            await fromUuids(this._source.features.map(f => f.item));
 
-        // Preload all subclass features for acquisition from the cache
-        // todo: make feature acquisition async and replace feature helpers for methods
-        await fromUuids(this._source.features.map(f => f.item));
+            const foundationFeatures = await getFeaturesHTMLData(this.foundationFeatures);
+            const specializationFeatures = await getFeaturesHTMLData(this.specializationFeatures);
+            const masteryFeatures = await getFeaturesHTMLData(this.masteryFeatures);
 
-        const foundationFeatures = await getFeaturesHTMLData(this.foundationFeatures);
-        const specializationFeatures = await getFeaturesHTMLData(this.specializationFeatures);
-        const masteryFeatures = await getFeaturesHTMLData(this.masteryFeatures);
+            const suffix = await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/sheets/items/subclass/description.hbs',
+                {
+                    spellcastTrait,
+                    foundationFeatures,
+                    specializationFeatures,
+                    masteryFeatures
+                }
+            );
 
-        const suffix = await foundry.applications.handlebars.renderTemplate(
-            'systems/daggerheart/templates/sheets/items/subclass/description.hbs',
-            {
-                spellcastTrait,
-                foundationFeatures,
-                specializationFeatures,
-                masteryFeatures
-            }
-        );
+            return { prefix: null, value: baseDescription, suffix };
+        }
+    }
 
-        return { prefix: null, value: baseDescription, suffix };
+    /** @inheritdoc */
+    async toEmbed(config = {}, options = {}) {
+        // Card styling has certain defaults designed for embedding
+        config.caption ??= false;
+        config.cite ??= false;
+        config.inline ??= true;
+
+        const classItem = await fromUuid(this.linkedClass);
+        const domains = CONFIG.DH.DOMAIN.allDomains();
+        const classDomains = classItem?.system.domains?.slice(0, 2) ?? []; // 2 max for displays
+
+        const description = await this.getEnrichedDescription({ ...options, gmNotes: false, type: 'tooltip' });
+        const content = await foundry.applications.handlebars.renderTemplate(this.constructor.embedTemplate, {
+            item: this.parent,
+            description,
+            classItem,
+            domain1: foundry.utils.mergeObject({ color: 'black' }, domains[classDomains[0]] ?? {}),
+            domain2: foundry.utils.mergeObject({ color: 'black' }, domains[classDomains[1]] ?? domains[classDomains[0]] ?? {})
+        })
+        const container = document.createElement('div');
+        container.innerHTML = content;
+        return container.children;
     }
 }
