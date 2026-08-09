@@ -89,6 +89,17 @@ export default class DHEvolutionField extends fields.SchemaField {
 
             this.update({ 'evolution.active': false });
             token.update(update, { diff: false, noHook: true });
+
+            if (this.effects?.length) {
+                const effectsToRemove = this.actor.effects.filter(x => {
+                    const dhFlags = x.flags[CONFIG.DH.id];
+                    return dhFlags?.[CONFIG.DH.FLAGS.activeEffectFlags.evolutionMarker]
+                });
+
+                if (effectsToRemove.length)
+                    this.actor.deleteEmbeddedDocuments('ActiveEffect', effectsToRemove.map(x => x.id));
+            }
+
             return;
         }
 
@@ -138,6 +149,21 @@ export default class DHEvolutionField extends fields.SchemaField {
             if (Object.keys(update).length) {
                 token.update(update, { diff: false, noHook: true });
             }
+        }
+
+        if (this.effects?.length) {
+            const effectsToApply = this.effects.map(x => {
+                const effect = this.item.effects.get(x._id);
+                return {
+                    ...effect.toObject(),
+                    flags: {
+                        [CONFIG.DH.id]: {
+                            [CONFIG.DH.FLAGS.activeEffectFlags.evolutionMarker]: this.id
+                        }
+                    }
+                }
+            });
+            this.actor.createEmbeddedDocuments('ActiveEffect', effectsToApply);
         }
     }
 }

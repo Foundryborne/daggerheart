@@ -31,3 +31,7 @@ export const combatToggle = 'combat-toggle-origin';
 export const folderFlags = {
     defaultEntity: 'defaultEntity'
 }
+
+export const activeEffectFlags = {
+    evolutionMarker: 'evolutionMarker'
+};
