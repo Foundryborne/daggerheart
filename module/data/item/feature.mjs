@@ -39,4 +39,22 @@ export default class DHFeature extends BaseDataItem {
             })
         };
     }
+
+    get featureFormLockedState() {
+        const evolutionLocked = this.actions.some(x => x.type === 'evolution');
+        if (evolutionLocked) 
+            return { locked: true, tooltip: _loc('DAGGERHEART.ITEMS.Feature.evolutionLocked') } 
+        
+        return {};
+    }
+
+    async _preUpdate(changes, options, user) {
+        const allowed = await super._preUpdate(changes, options, user);
+        if (allowed === false) return false;
+
+        const actionChanges = changes.system?.actions ?? {};
+        if (Object.values(actionChanges).some(x => x.type === 'evolution')) {
+            changes.system.featureForm = 'evolution';
+        }
+    }
 }

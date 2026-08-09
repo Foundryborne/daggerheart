@@ -218,8 +218,9 @@ export default class AdversarySheet extends DHBaseActorSheet {
                             action.evolution.active && featureState === unevolved.id;
 
                         const evolutionFeature = featureData.find(x => x.data.feature.id === id);
-                        evolutionFeature.data.inactive = evolutionLocked;
+                        if (!evolutionFeature) continue;
 
+                        evolutionFeature.data.inactive = evolutionLocked;
                         if (featureState === evolved.id) {
                             childFeatures.push(evolutionFeature);
                             featureData.splice(featureData.indexOf(evolutionFeature), 1);

@@ -2719,7 +2719,8 @@
             },
             "Feature": {
                 "activeWhenEvolved": "Active When Evolved",
-                "evolutionFeature": "Evolution Feature"
+                "evolutionFeature": "Evolution Feature",
+                "evolutionLocked": "Features with an evolution action must be of evolution type"
             },
             "Subclass": {
                 "spellcastingTrait": "Spellcasting Trait",
