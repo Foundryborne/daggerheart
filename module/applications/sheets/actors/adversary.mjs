@@ -199,48 +199,53 @@ export default class AdversarySheet extends DHBaseActorSheet {
      * @protected
      */
     async _prepareFeaturesContext(context, _options) {
-        const featureForms = Object.keys(CONFIG.DH.ITEM.featureForm);
-        const featureData = this.document.system.features.sort((a, b) =>
-            a.system.featureForm !== b.system.featureForm
-                ? featureForms.indexOf(a.system.featureForm) - featureForms.indexOf(b.system.featureForm)
-                : a.sort - b.sort
-        ).map(x => ({ data: { inactive: false, feature: x }, childFeatures: [] }));
+        // DEVMODE
+        if (!context.devMode) {
+            context.features = this.document.system.features.map(feature => ({ inactive: false, feature }));
+        } else {
+            const featureForms = Object.keys(CONFIG.DH.ITEM.featureForm);
+            const featureData = this.document.system.features.sort((a, b) =>
+                a.system.featureForm !== b.system.featureForm
+                    ? featureForms.indexOf(a.system.featureForm) - featureForms.indexOf(b.system.featureForm)
+                    : a.sort - b.sort
+            ).map(x => ({ data: { inactive: false, feature: x }, childFeatures: [] }));
 
-        const { evolved, unevolved } = CONFIG.DH.ACTIONS.evolutionStates;
-        for (const { data, childFeatures } of featureData) {
-            if (data.feature.system.featureForm === 'evolution') {
-                const evolutionActions = 
-                    data.feature.system.actions.filter(x => x.type === CONFIG.DH.ACTIONS.actionTypes.evolution.id);
-                for (const action of evolutionActions) {
-                    for (const [id, featureState] of Object.entries(action.evolution.evolutionFeatures)) {
-                        const evolutionLocked = 
-                            !action.evolution.active && featureState === evolved.id || 
-                            action.evolution.active && featureState === unevolved.id;
+            const { evolved, unevolved } = CONFIG.DH.ACTIONS.evolutionStates;
+            for (const { data, childFeatures } of featureData) {
+                if (data.feature.system.featureForm === 'evolution') {
+                    const evolutionActions = 
+                        data.feature.system.actions.filter(x => x.type === CONFIG.DH.ACTIONS.actionTypes.evolution.id);
+                    for (const action of evolutionActions) {
+                        for (const [id, featureState] of Object.entries(action.evolution.evolutionFeatures)) {
+                            const evolutionLocked = 
+                                !action.evolution.active && featureState === evolved.id || 
+                                action.evolution.active && featureState === unevolved.id;
 
-                        const evolutionFeature = featureData.find(x => x.data.feature.id === id);
-                        if (!evolutionFeature) continue;
+                            const evolutionFeature = featureData.find(x => x.data.feature.id === id);
+                            if (!evolutionFeature) continue;
 
-                        evolutionFeature.data.inactive = evolutionLocked;
-                        if (featureState === evolved.id) {
-                            childFeatures.push(evolutionFeature);
-                            featureData.splice(featureData.indexOf(evolutionFeature), 1);
+                            evolutionFeature.data.inactive = evolutionLocked;
+                            if (featureState === evolved.id) {
+                                childFeatures.push(evolutionFeature);
+                                featureData.splice(featureData.indexOf(evolutionFeature), 1);
+                            }
                         }
                     }
                 }
             }
-        }
 
-        context.features = [];
-        context.evolutionFeatures = [];
-        for (const { data, childFeatures } of featureData) {
-            if (childFeatures.length) {
-                context.evolutionFeatures.push(data);
-            } else {
-                context.features.push(data);
-            }
+            context.features = [];
+            context.evolutionFeatures = [];
+            for (const { data, childFeatures } of featureData) {
+                if (childFeatures.length) {
+                    context.evolutionFeatures.push(data);
+                } else {
+                    context.features.push(data);
+                }
 
-            for (const feature of childFeatures) {
-                context.evolutionFeatures.push(feature.data);
+                for (const feature of childFeatures) {
+                    context.evolutionFeatures.push(feature.data);
+                }
             }
         }
     }
