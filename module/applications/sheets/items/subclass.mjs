@@ -53,12 +53,8 @@ export default class SubclassSheet extends DHBaseItemSheet {
         return context;
     }
 
-    async _onDrop(event) {
-        event.stopPropagation();
-        const data = TextEditor.getDragEventData(event);
-        const item = await fromUuid(data.uuid);
-        const itemType = data.type === 'ActiveEffect' ? data.type : item.type;
-        if (itemType === 'class') {
+    async _onDropItem(event, item) {
+        if (item.type === 'class') {
             const uuid = item.sourceUuid;
             if (this.document.system.linkedClass !== uuid) {
                 await this.document.update({ 'system.linkedClass': uuid });
@@ -70,6 +66,6 @@ export default class SubclassSheet extends DHBaseItemSheet {
             return;
         }
 
-        return super._onDrop(event);
+        return super._onDropItem(event, item);
     }
 }

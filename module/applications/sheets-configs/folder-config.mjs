@@ -13,7 +13,7 @@ export default class DhFolderConfig extends foundry.applications.sheets.FolderCo
         const context = await super._prepareContext(options);
         context.usesDefaultEntity = ['Actor', 'Item'].includes(context.document.type);
         context.defaultEntity = this.document.getDefaultEntity({ withInheritance: false });
-        context.defaultEntityOptions = Object.keys(CONFIG[context.document.type].dataModels ?? {}).map(model => ({
+        context.defaultEntityOptions = Object.keys(CONFIG[context.document.type]?.dataModels ?? {}).map(model => ({
             value: model,
             label: _loc(`TYPES.${context.document.type}.${model}`)
         }));

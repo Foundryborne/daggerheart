@@ -41,6 +41,8 @@
         <div class="feature-list">
             {{#each source.system.foundationFeatures as | feature | }}
                 {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type='foundation' feature=feature}}
+            {{else}}
+                <div class="drag-area">{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "TYPES.Item.feature")}}</div>
             {{/each}}
         </div>
     </fieldset>
@@ -54,6 +56,8 @@
         <div class="feature-list">
             {{#each source.system.specializationFeatures as | feature |}}
                 {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type='specialization' feature=feature}}
+            {{else}}
+                <div class="drag-area">{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "TYPES.Item.feature")}}</div>
             {{/each}}
         </div>
     </fieldset>
@@ -67,6 +71,8 @@
         <div class="feature-list">
             {{#each source.system.masteryFeatures as | feature |}}
                 {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type='mastery' feature=feature}}
+            {{else}}
+                <div class="drag-area">{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "TYPES.Item.feature")}}</div>
             {{/each}}
         </div>
     </fieldset>

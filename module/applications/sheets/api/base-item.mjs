@@ -3,7 +3,10 @@ import DHApplicationMixin from './application-mixin.mjs';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
 
-/**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
+/**
+ * @typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction *
+ * @import DHItem from '../../../documents/item.mjs';
+ /
 
 /**
  * A base item sheet extending {@link ItemSheetV2} via {@link DHApplicationMixin}
@@ -289,13 +292,25 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
      * @param {DragEvent} event - The drag event
      */
     async _onDrop(event) {
+        event.stopPropagation();
         super._onDrop(event);
 
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
         if (data.fromInternal === this.document.id) return;
+        
+        const documentClass = foundry.utils.getDocumentClass(data.type);
+        if (documentClass) {
+            const document = await documentClass.fromDropData(data);
+            await this._onDropDocument(event, document);
+        }
+    }
 
+    /**
+     * @param {DragEvent} event 
+     * @param {DHItem} item 
+     */
+    async _onDropItem(event, item) {
         const target = event.target.closest('fieldset.drop-section');
-        let item = await fromUuid(data.uuid);
         if (item?.type === 'feature') {
             const cls = foundry.documents.Item.implementation;
 
@@ -316,7 +331,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
                 );
             }
 
-            if (target.dataset.type) {
+            if (target?.dataset.type) {
                 await this.document.update(
                     {
                         'system.features': [...this.document.system.features, { type: target.dataset.type, item }].map(
@@ -336,6 +351,30 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
                     { parent: this.document.parent?.type === 'character' ? this.document.parent : undefined }
                 );
             }
+        }
+    }
+
+    /**
+     * Handle a dropped document on this item sheet. This is a re-implementation of what's in the ActorSheet
+     * @template {Document} TDocument
+     * @param {DragEvent} event         The initiating drop event
+     * @param {TDocument} document       The resolved Document class
+     * @returns {Promise<TDocument|null>} A Document of the same type as the dropped one in case of a successful result,
+     *                                    or null in case of failure or no action being taken
+     * @protected
+     */
+    async _onDropDocument(event, document) {
+        switch (document.documentName) {
+            case 'ActiveEffect':
+                return (await this._onDropActiveEffect?.(event, document)) ?? null;
+            case 'Actor':
+                return (await this._onDropActor?.(event, document)) ?? null;
+            case 'Item':
+                return (await this._onDropItem?.(event, document)) ?? null;
+            case 'Folder':
+                return (await this._onDropFolder?.(event, document)) ?? null;
+            default:
+                return null;
         }
     }
 
