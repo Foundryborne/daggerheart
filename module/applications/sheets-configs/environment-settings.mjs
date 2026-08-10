@@ -130,6 +130,11 @@ export default class DHEnvironmentSettings extends DHBaseActorSettings {
         event.stopPropagation();
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
         const doc = await fromUuid(data.uuid);
+       
+        if (data.type === 'Item') {
+            return super._onDropItem(event, doc);
+        }
+
         if (doc?.type === 'adversary' && event.target.closest('.category-container')) {
             const target = event.target.closest('.category-container');
             const path = `system.potentialAdversaries.${target.dataset.potentialAdversary}.adversaries`;
@@ -138,8 +143,6 @@ export default class DHEnvironmentSettings extends DHBaseActorSettings {
                 await this.actor.update({ [path]: [...current, doc.uuid] });
             }
             return;
-        }
-        
-        return super._onDrop(event);
+        } 
     }
 }
