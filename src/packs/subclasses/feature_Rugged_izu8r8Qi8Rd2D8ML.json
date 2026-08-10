@@ -1,0 +1,27 @@
+{
+  "type": "feature",
+  "name": "Rugged",
+  "folder": "RXqga54T8e59bXN3",
+  "_id": "izu8r8Qi8Rd2D8ML",
+  "img": "icons/skills/melee/shield-block-gray-orange.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Gain a permanent +3 bonus to your Severe damage threshold.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "zIB9FQFPvGmS6L2O": 3
+  },
+  "flags": {},
+  "_key": "!items!izu8r8Qi8Rd2D8ML"
+}

@@ -1,0 +1,27 @@
+{
+  "type": "feature",
+  "name": "Poison Compendium",
+  "folder": "NysUQtRlcjGiqDHm",
+  "_id": "RrYxuotaN5JAjHdT",
+  "img": "icons/skills/toxins/poison-skull-herbs-bottle-pink.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>You also know these poisons:</p><ul><li><p><strong>Midnight Vine:</strong> The target has disadvantage on attack rolls until it marks a Stress to clear this condition.</p></li><li><p><strong>Gorgon Root:</strong> The target becomes temporarily <em>Restrained</em>.</p><p></p></li></ul>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "zIB9FQFPvGmS6L2O": 3
+  },
+  "flags": {},
+  "_key": "!items!RrYxuotaN5JAjHdT"
+}

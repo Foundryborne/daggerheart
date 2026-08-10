@@ -1,0 +1,27 @@
+{
+  "type": "feature",
+  "name": "Vexing Malison",
+  "folder": "y4bIi7tPBdhHfvAj",
+  "_id": "h29DyM9jwY8E7AdM",
+  "img": "icons/magic/unholy/hand-marked-pink.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>You have advantage on attacks against Hexed creatures.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "zIB9FQFPvGmS6L2O": 3
+  },
+  "flags": {},
+  "_key": "!items!h29DyM9jwY8E7AdM"
+}

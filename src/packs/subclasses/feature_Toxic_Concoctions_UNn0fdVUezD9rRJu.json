@@ -1,0 +1,27 @@
+{
+  "type": "feature",
+  "name": "Toxic Concoctions",
+  "folder": "R7L0dQGkdfNSu2kj",
+  "_id": "UNn0fdVUezD9rRJu",
+  "img": "icons/skills/toxins/poison-bottle-corked-fire-green.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p><strong>Mark a Stress</strong> to place <strong>1d4+1</strong> tokens on this card. When you make a successful weapon attack, you can spend a token to afflict the target with a poison. You know these poisons:</p><ul><li><p><strong>Ghost Petal:</strong> The target becomes temporarily <em>Vulnerable</em>.</p></li><li><p><strong>Grave Spore:</strong> The target must also mark a Stress.</p></li><li><p><strong>Leech Weed:</strong> You deal an extra <strong>1d6</strong> damage on this attack.</p></li></ul><p>When you take a long rest, clear all unspent tokens.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "zIB9FQFPvGmS6L2O": 3
+  },
+  "flags": {},
+  "_key": "!items!UNn0fdVUezD9rRJu"
+}

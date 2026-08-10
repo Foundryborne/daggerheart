@@ -1,0 +1,27 @@
+{
+  "type": "feature",
+  "name": "Patron's Boon",
+  "folder": "6ckQvoxhWONRq9XJ",
+  "_id": "QmFMbJzPV7DPLvjk",
+  "img": "icons/magic/symbols/runes-triangle-orange.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>When you fail a roll, you can <strong>spend 3 Hope</strong> to reroll with advantage.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "zIB9FQFPvGmS6L2O": 3
+  },
+  "flags": {},
+  "_key": "!items!QmFMbJzPV7DPLvjk"
+}

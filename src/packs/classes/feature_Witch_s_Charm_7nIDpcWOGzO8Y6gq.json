@@ -1,0 +1,27 @@
+{
+  "type": "feature",
+  "name": "Witch's Charm",
+  "folder": "u2NVDrSZHWjIweE8",
+  "_id": "7nIDpcWOGzO8Y6gq",
+  "img": "icons/magic/control/debuff-energy-hold-pink.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>When you or an ally within Far range fails an action roll, you can <strong>spend 3 Hope</strong> to change it into a success with Fear instead.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "zIB9FQFPvGmS6L2O": 3
+  },
+  "flags": {},
+  "_key": "!items!7nIDpcWOGzO8Y6gq"
+}

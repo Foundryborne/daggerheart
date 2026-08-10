@@ -1,0 +1,27 @@
+{
+  "type": "feature",
+  "name": "Square Up",
+  "folder": "Rd0lGlKoru8CE1WB",
+  "_id": "pPP9dHHa00lekbuu",
+  "img": "icons/magic/control/silhouette-hold-change-blue.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p><strong>Spend 3 Hope</strong> to intimidate a target within Close range, making them temporarily <em>Vulnerable</em>.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "zIB9FQFPvGmS6L2O": 3
+  },
+  "flags": {},
+  "_key": "!items!pPP9dHHa00lekbuu"
+}

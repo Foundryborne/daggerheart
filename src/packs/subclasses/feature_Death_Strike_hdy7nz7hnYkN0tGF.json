@@ -1,0 +1,27 @@
+{
+  "type": "feature",
+  "name": "Death Strike",
+  "folder": "NysUQtRlcjGiqDHm",
+  "_id": "hdy7nz7hnYkN0tGF",
+  "img": "icons/weapons/swords/greatsword-evil-green.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>When you deal Severe damage to a creature, you can <strong>mark a Stress</strong> to force them to mark an additional Hit Point.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "zIB9FQFPvGmS6L2O": 3
+  },
+  "flags": {},
+  "_key": "!items!hdy7nz7hnYkN0tGF"
+}

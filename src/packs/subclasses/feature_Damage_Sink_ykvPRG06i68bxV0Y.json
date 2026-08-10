@@ -1,0 +1,27 @@
+{
+  "type": "feature",
+  "name": "Damage Sink",
+  "folder": "hpGSiLKGH2r4vuLG",
+  "_id": "ykvPRG06i68bxV0Y",
+  "img": "icons/magic/unholy/orb-swirling-teal.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Once per rest, you can <strong>spend a Favor</strong> to halve incoming damage.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "zIB9FQFPvGmS6L2O": 3
+  },
+  "flags": {},
+  "_key": "!items!ykvPRG06i68bxV0Y"
+}

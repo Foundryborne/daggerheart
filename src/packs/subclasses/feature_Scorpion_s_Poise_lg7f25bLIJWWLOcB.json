@@ -1,0 +1,27 @@
+{
+  "type": "feature",
+  "name": "Scorpion's Poise",
+  "folder": "NysUQtRlcjGiqDHm",
+  "_id": "lg7f25bLIJWWLOcB",
+  "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>You gain a +2 bonus to your Evasion against attacks made by a creature you've <em>Marked for Death</em>.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "zIB9FQFPvGmS6L2O": 3
+  },
+  "flags": {},
+  "_key": "!items!lg7f25bLIJWWLOcB"
+}

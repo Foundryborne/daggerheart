@@ -1,0 +1,27 @@
+{
+  "type": "feature",
+  "name": "Eye for an Eye",
+  "folder": "IiOnM2uWCNuRaQqs",
+  "_id": "mHuqYsV0a2MYnLej",
+  "img": "icons/skills/melee/shield-block-bash-yellow.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Once per rest when an adversary within Melee range forces you to mark any number of Hit Points, you can <strong>mark a Stress</strong> to force them to mark the same number of Hit Points.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "zIB9FQFPvGmS6L2O": 3
+  },
+  "flags": {},
+  "_key": "!items!mHuqYsV0a2MYnLej"
+}

@@ -1,0 +1,27 @@
+{
+  "type": "feature",
+  "name": "Deadly Determination",
+  "folder": "SivG5XFjrC0Rnh91",
+  "_id": "lO3Xyd21qYimrWBs",
+  "img": "icons/magic/perception/eye-ringed-glow-angry-red.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p><strong>Spend 3 Hope</strong> to clear 2 Stress.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "zIB9FQFPvGmS6L2O": 3
+  },
+  "flags": {},
+  "_key": "!items!lO3Xyd21qYimrWBs"
+}

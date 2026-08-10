@@ -1,0 +1,27 @@
+{
+  "type": "feature",
+  "name": "Overwhelm",
+  "folder": "RXqga54T8e59bXN3",
+  "_id": "36POMgbO969M38Ky",
+  "img": "icons/magic/movement/trail-streak-impact-blue.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>When you succeed on an attack against a target, you can <strong>spend a Hope</strong> to throw the target within Close range or to force them to mark a Stress.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "zIB9FQFPvGmS6L2O": 3
+  },
+  "flags": {},
+  "_key": "!items!36POMgbO969M38Ky"
+}

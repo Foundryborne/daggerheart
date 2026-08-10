@@ -1,0 +1,27 @@
+{
+  "type": "feature",
+  "name": "Enchanted Talisman",
+  "folder": "CsC3T8aq5ueUHWqs",
+  "_id": "4jnGL4ENGs2AR1p1",
+  "img": "icons/commodities/treasure/brooch-gold-eye-green.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Once per rest, you can imbue a small item with your protective essence. <strong>Spend any number of Hope</strong> to place an equal number of tokens on this card. When the person holding the talisman takes damage, spend a token to reduce the number of Hit Points they mark by one. Clear all tokens from this card when you take a rest.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "zIB9FQFPvGmS6L2O": 3
+  },
+  "flags": {},
+  "_key": "!items!4jnGL4ENGs2AR1p1"
+}

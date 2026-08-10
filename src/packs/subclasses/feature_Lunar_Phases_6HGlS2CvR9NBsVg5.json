@@ -1,0 +1,27 @@
+{
+  "type": "feature",
+  "name": "Lunar Phases",
+  "folder": "5X2hXr3NYBA0xR4U",
+  "_id": "6HGlS2CvR9NBsVg5",
+  "img": "icons/magic/nature/moon-crescent.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>At the beginning of each session, roll a <strong>d6</strong> and place it on this card. You gain the matching effect until the end of session.</p><table><thead><tr><td><p>Roll</p></td><td><p>Phase</p></td><td><p>Effect</p></td></tr></thead><tbody><tr><td><p><strong>1</strong></p></td><td><p>New</p></td><td><p>Spend a Hope to negate Minor damage.</p></td></tr><tr><td><p><strong>2–3</strong></p></td><td><p>Waxing</p></td><td><p>+2 to damage rolls</p></td></tr><tr><td><p><strong>4</strong></p></td><td><p>Full</p></td><td><p>+3 to damage thresholds</p></td></tr><tr><td><p><strong>5–6</strong></p></td><td><p>Waning</p></td><td><p>+1 to Evasion</p></td></tr></tbody></table><p>Once per rest, you can <strong>spend a Hope</strong> to increase the value of this die by one. If you increase the value of a 6, it becomes a 1.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "zIB9FQFPvGmS6L2O": 3
+  },
+  "flags": {},
+  "_key": "!items!6HGlS2CvR9NBsVg5"
+}

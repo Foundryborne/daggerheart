@@ -1,0 +1,27 @@
+{
+  "type": "feature",
+  "name": "Moonbeam",
+  "folder": "y4bIi7tPBdhHfvAj",
+  "_id": "KtkCySTmYjN2uXF4",
+  "img": "icons/magic/light/projectile-halo-teal.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Once per session, you can conjure a column of moonlight that illuminates the area within Close range until the end of the scene. While bathed in this moonlight, you and your allies gain a +1 bonus to <strong>Spellcast Roll</strong>s and can see through illusions.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "zIB9FQFPvGmS6L2O": 3
+  },
+  "flags": {},
+  "_key": "!items!KtkCySTmYjN2uXF4"
+}

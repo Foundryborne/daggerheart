@@ -1,0 +1,27 @@
+{
+  "type": "feature",
+  "name": "Marked for Death",
+  "folder": "SivG5XFjrC0Rnh91",
+  "_id": "XxS0Li1P6SqIho7T",
+  "img": "icons/magic/death/skull-trio-badge-purple.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>On a successful weapon attack, you can <strong>mark a Stress</strong> to make the target <em>Marked for Death</em>. When you deal damage to a target you've <em>Marked for Death</em>, add a number of <strong>d4s</strong> equal to your tier to the damage roll. </p><p>You can have only one adversary <em>Marked for Death</em> at a time. This condition lasts until you take a rest, the current adversary <em>Marked for Death</em> is defeated, or the GM spends a number of Fear equal to your tier to clear it.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "zIB9FQFPvGmS6L2O": 3
+  },
+  "flags": {},
+  "_key": "!items!XxS0Li1P6SqIho7T"
+}

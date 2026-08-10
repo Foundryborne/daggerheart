@@ -1,0 +1,27 @@
+{
+  "type": "feature",
+  "name": "Venomancer",
+  "folder": "EsyV5lospiAwVQeq",
+  "_id": "WAkxLnKbtic1O6pC",
+  "img": "icons/magic/death/skull-poison-green.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>You also know these poisons:</p><ul><li><p><strong>Blight Seed:</strong> The target gains a -3 penalty to their damage thresholds until the end of the scene. This effect can't stack.</p></li><li><p><strong>Fear Leaf:</strong> You deal extra damage equal to the result of your Fear Die on this attack.</p></li><li><p><strong>Corpse Thorn:</strong> The target gains disadvantage on reaction rolls until the end of the scene.</p></li></ul>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "zIB9FQFPvGmS6L2O": 3
+  },
+  "flags": {},
+  "_key": "!items!WAkxLnKbtic1O6pC"
+}

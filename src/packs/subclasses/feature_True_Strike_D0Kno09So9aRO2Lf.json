@@ -1,0 +1,27 @@
+{
+  "type": "feature",
+  "name": "True Strike",
+  "folder": "EsyV5lospiAwVQeq",
+  "_id": "D0Kno09So9aRO2Lf",
+  "img": "icons/magic/death/weapon-sword-skull-purple.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Once per long rest when you fail an attack, you can <strong>spend a Hope</strong> to make it a success instead.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "zIB9FQFPvGmS6L2O": 3
+  },
+  "flags": {},
+  "_key": "!items!D0Kno09So9aRO2Lf"
+}

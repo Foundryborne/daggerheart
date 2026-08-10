@@ -1,0 +1,27 @@
+{
+  "type": "feature",
+  "name": "Hex",
+  "folder": "u2NVDrSZHWjIweE8",
+  "_id": "EFgQVcDiADsKxG3T",
+  "img": "icons/magic/control/voodoo-doll-pain-damage-purple.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p><strong>Mark a Stress</strong> to temporarily <em>Hex</em> a target within Far range. While <em>Hexed</em>, the target gains a penalty to their damage rolls and Difficulty equal to your tier. The maximum number of creatures you can <em>Hex</em> at one time is equal to your Spellcast trait.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "zIB9FQFPvGmS6L2O": 3
+  },
+  "flags": {},
+  "_key": "!items!EFgQVcDiADsKxG3T"
+}

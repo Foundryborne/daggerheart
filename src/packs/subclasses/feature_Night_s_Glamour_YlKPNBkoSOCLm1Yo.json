@@ -1,0 +1,27 @@
+{
+  "type": "feature",
+  "name": "Night's Glamour",
+  "folder": "CsC3T8aq5ueUHWqs",
+  "_id": "YlKPNBkoSOCLm1Yo",
+  "img": "icons/magic/light/explosion-glow-spiral-yellow.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Make a <strong>Spellcast Roll (13)</strong> to <em>Glamour</em> yourself in a bewitching facade. While <em>Glamoured</em>, you have advantage on rolls that leverage your illusory appearance. Additionally, adversaries within Close range must mark a Stress to attack you.</p><p>Unless you <strong>mark a Stress</strong> to maintain your <em>Glamour</em>, it drops when you mark a Hit Point or deal damage.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "zIB9FQFPvGmS6L2O": 3
+  },
+  "flags": {},
+  "_key": "!items!YlKPNBkoSOCLm1Yo"
+}

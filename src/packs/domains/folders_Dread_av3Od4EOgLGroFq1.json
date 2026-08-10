@@ -1,0 +1,16 @@
+{
+  "name": "Dread",
+  "type": "Item",
+  "_id": "av3Od4EOgLGroFq1",
+  "description": "",
+  "folder": null,
+  "sorting": "m",
+  "sort": 1000000,
+  "color": null,
+  "flags": {
+    "daggerheart": {
+      "defaultEntity": ""
+    }
+  },
+  "_key": "!folders!av3Od4EOgLGroFq1"
+}
