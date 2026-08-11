@@ -1,0 +1,354 @@
+{
+  "type": "adversary",
+  "name": "Yufo",
+  "folder": "sxvlEwi25uAoB2C5",
+  "system": {
+    "type": "social",
+    "description": "<p>A large, interdimensional jellyfishlike creature that floats in and out of the timestream.</p>",
+    "tier": 1,
+    "motivesAndTactics": "Exchange information about possible timelines, feed on heightened emotions, watch from the shadows",
+    "difficulty": 14,
+    "damageThresholds": {
+      "major": 6,
+      "severe": 10
+    },
+    "resources": {
+      "hitPoints": {
+        "value": 0,
+        "max": 3
+      },
+      "stress": {
+        "value": 0,
+        "max": 5
+      }
+    },
+    "attack": {
+      "name": "Tentacle Lash",
+      "img": "icons/creatures/tentacles/tentacles-suctioncups-pink.webp",
+      "_id": "qHEFFbkvLvbm9VmI",
+      "systemPath": "attack",
+      "chatDisplay": false,
+      "type": "attack",
+      "range": "veryClose",
+      "target": {
+        "type": "any",
+        "amount": 1
+      },
+      "roll": {
+        "bonus": -3,
+        "type": null,
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
+      },
+      "damage": {
+        "main": {
+          "value": {
+            "dice": "d6",
+            "bonus": 3,
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "type": [
+            "physical"
+          ],
+          "base": false,
+          "applyTo": "hitPoints",
+          "resultBased": false,
+          "fullRestore": false,
+          "valueAlt": {
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "includeBase": false,
+          "direct": false
+        },
+        "resources": {}
+      },
+      "baseAction": false,
+      "description": "",
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "actionType": "action",
+      "triggers": [],
+      "areas": [],
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null,
+        "consumeOnSuccess": false
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
+    },
+    "experiences": {
+      "vXsawnonXynlicqS": {
+        "name": "Secrets",
+        "value": 3,
+        "description": ""
+      },
+      "T1QgkA46744aIIwF": {
+        "name": "Floating Oddity",
+        "value": 3,
+        "description": ""
+      }
+    },
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "resistance": {
+      "physical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      },
+      "magical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      }
+    },
+    "size": "large",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "notes": "",
+    "hordeHp": 1,
+    "criticalThreshold": 20
+  },
+  "items": [
+    {
+      "name": "Telepathic",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>The @Lookup[@name] can mentally communicate with creatures within Very Far range.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "multiclassOrigin": false
+      },
+      "_id": "YBQ9BpaOeef4iBms",
+      "img": "icons/magic/perception/third-eye-blue-red.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!RIrQcvhlSmXTqFxr.YBQ9BpaOeef4iBms"
+    },
+    {
+      "name": "Psychic Strongbox",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>The @Lookup[@name] is immune to abilities and features that would affect or alter its thoughts or emotions.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "multiclassOrigin": false
+      },
+      "_id": "q10WSdhUvw2GY2cy",
+      "img": "icons/magic/symbols/triangle-glow-purple.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!RIrQcvhlSmXTqFxr.q10WSdhUvw2GY2cy"
+    },
+    {
+      "name": "Glitch Wave",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Spend a Fear</strong> and choose up to three targets within Close range. Each target must succeed on a Instinct Reaction Roll or become desynced from reality and have disadvantage on Instinct Rolls until they use a downtime move to ground their psyches in the now.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "multiclassOrigin": false
+      },
+      "_id": "9nSzgCYB4d3gbvIj",
+      "img": "icons/magic/lightning/projectile-tendrils-red.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!RIrQcvhlSmXTqFxr.9nSzgCYB4d3gbvIj"
+    },
+    {
+      "name": "Temporal Corrosion",
+      "type": "feature",
+      "system": {
+        "featureForm": "reaction",
+        "description": "<p>When the @Lookup[@name] succeeds on a standard attack, you can <strong>mark a Stress</strong> to have the @Lookup[@name] excrete an entropic acid through its skin, giving the target a -2 penalty to their damage thresholds until they use a downtime move to repair their armor.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "multiclassOrigin": false
+      },
+      "_id": "k4M4bnm9yPPLqOfn",
+      "img": "icons/magic/acid/dissolve-arm-flesh.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!RIrQcvhlSmXTqFxr.k4M4bnm9yPPLqOfn"
+    }
+  ],
+  "_id": "RIrQcvhlSmXTqFxr",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
+  "prototypeToken": {
+    "name": "Yufo",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "zIB9FQFPvGmS6L2O": 3
+  },
+  "flags": {},
+  "_key": "!actors!RIrQcvhlSmXTqFxr"
+}
