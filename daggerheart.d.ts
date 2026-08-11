@@ -22,6 +22,11 @@ import DhEffectsDisplay from './module/applications/ui/effectsDisplay.mjs';
 // This declare global hopefully fixes that
 // Note: eslint is not aware of these, whatever is added here should go in the eslint's globals list
 declare global {
+    // These are convenience types for common imported things. This allows them to be used in JSDoc directly
+    // For actual use such as instanceof, an import is still required
+    type DHItem<T extends BaseDataItem = BaseDataItem> = InstanceType<typeof documents.DHItem<T>>;
+    type DhpActor<T extends BaseDataItem = BaseDataItem> = InstanceType<typeof documents.DhpActor<T>>;
+
     /**
      * A simple event framework used throughout Foundry Virtual Tabletop.
      * When key actions or events occur, a "hook" is defined where user-defined callback functions can execute.
