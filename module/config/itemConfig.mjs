@@ -1592,3 +1592,9 @@ export const originItemType = {
     itemCollection: 'itemCollection',
     restMove: 'restMove'
 };
+
+export const evolutionRelationships = {
+    active: { id: 'active', label: 'DAGGERHEART.CONFIG.evolutionRelationship.active' },
+    
+    inactive: { id: 'inactive', label: 'DAGGERHEART.CONFIG.evolutionRelationship.inactive' }
+};

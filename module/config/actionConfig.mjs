@@ -41,6 +41,12 @@ export const actionTypes = {
         icon: 'fa-dragon',
         tooltip: 'DAGGERHEART.ACTIONS.TYPES.transform.tooltip'
     },
+    evolution: {
+        id: 'evolution',
+        name: 'DAGGERHEART.ACTIONS.TYPES.evolution.name',
+        icon: 'fa-vial',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.evolution.tooltip'
+    },
     effect: {
         id: 'effect',
         name: 'DAGGERHEART.ACTIONS.TYPES.effect.name',
@@ -126,3 +132,42 @@ export const areaTypes = {
         label: 'DAGGERHEART.CONFIG.AreaTypes.attached.label'
     }
 };
+
+export const evolutionStates = {
+    unevolved: {
+        id: 'unevolved', 
+        label: 'DAGGERHEART.CONFIG.EvolutionState.unevolved'
+    },
+    evolved: {
+        id: 'evolved',
+        label: 'DAGGERHEART.CONFIG.EvolutionState.evolved'
+    }
+}
+
+export const dynamicEffects = {
+    RING_PULSE: {
+        id: 'RING_PULSE',
+        label: 'TOKEN.RING.EFFECTS.RING_PULSE',
+        value: 0x2
+    },
+    RING_GRADIENT: {
+        id: 'RING_GRADIENT',
+        label: 'TOKEN.RING.EFFECTS.RING_GRADIENT',
+        value: 0x4
+    },
+    BKG_WAVE: {
+        id: 'BKG_WAVE',
+        label: 'TOKEN.RING.EFFECTS.BKG_WAVE',
+        value: 0x8
+    },
+    INVISIBILITY: {
+        id: 'INVISIBILITY',
+        label: 'TOKEN.RING.EFFECTS.INVISIBILITY',
+        value: 0x10
+    },
+    COLOR_OVER_SUBJECT: {
+        id: 'COLOR_OVER_SUBJECT',
+        label: 'TOKEN.RING.EFFECTS.COLOR_OVER_SUBJECT',
+        value: 0x20
+    }
+}

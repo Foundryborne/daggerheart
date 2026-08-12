@@ -188,6 +188,21 @@ export default class DhpAdversary extends DhCreature {
         super.prepareDerivedData();
         this.attack.roll.isStandardAttack = true;
 
+        // Evolution features may set other features as inactive
+        for (const feature of this.features.filter(x => x.system.featureForm === 'evolution')) {
+            const evolutionActions = feature.system.actions.filter(x => x.type === 'evolution');
+            for (const action of evolutionActions) {
+                const evolutionActive = action.evolution.active;
+                for (const [id, state] of Object.entries(action.evolution.evolutionFeatures)) {
+                    const isEvolvedFeature = state === CONFIG.DH.ACTIONS.evolutionStates.evolved.id;
+                    const isUnevolvedFeature = state === CONFIG.DH.ACTIONS.evolutionStates.unevolved.id;
+                    const feature = this.parent.items.get(id);
+                    feature.system.inactive = 
+                        (isEvolvedFeature && !evolutionActive) || (isUnevolvedFeature && evolutionActive);
+                }
+            }
+        }
+
         // Clamp resources (must be done last to ensure all updates occur)
         this.resources.clamp();
     }

@@ -311,13 +311,116 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "wslydtWU8ADqeXWo": {
+            "type": "evolution",
+            "_id": "wslydtWU8ADqeXWo",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "evolution": {
+              "active": false,
+              "evolutionFeatures": {
+                "tg8gvbNWQu9jvbIV": "evolved",
+                "EP1UikpG7sEXdcv1": "evolved"
+              },
+              "resourceRefresh": {
+                "hitPoints": false,
+                "stress": false
+              },
+              "tokenOverride": null
+            },
+            "effects": [
+              {
+                "_id": "KZrki0gvST9mPV82",
+                "onSave": false
+              }
+            ],
+            "name": "Evolve",
+            "range": ""
+          }
+        },
         "originItemType": null,
         "multiclassOrigin": false
       },
       "_id": "UoKJYOQmLttCqn1v",
       "img": "icons/magic/unholy/hand-claw-glow-orange.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Hellwing",
+          "disabled": false,
+          "img": "icons/magic/unholy/hand-claw-glow-orange.webp",
+          "description": "<p>Gains the \"On Crimson Wings\" and \"Blood Bath\" features and replace their standard attack with the following standard attack: Claws: Close | <strong>3d12+6</strong> phy</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [
+              {
+                "type": "standardAttack",
+                "phase": "initial",
+                "value": {
+                  "name": "Claws",
+                  "damageTypes": [
+                    "physical"
+                  ],
+                  "attackRange": "close",
+                  "trait": null,
+                  "damageFormula": "3d12 + 6",
+                  "img": "icons/magic/unholy/hand-claw-glow-orange.webp"
+                },
+                "priority": 0
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "KZrki0gvST9mPV82",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "origin": null,
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!TVnr955huZCjXrHM.UoKJYOQmLttCqn1v.KZrki0gvST9mPV82"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "ownership": {

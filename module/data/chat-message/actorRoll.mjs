@@ -124,6 +124,10 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         return this.hasSave && !this.targeting.usingSelect && this.currentHitTargets.some(x => !x.saveResult);
     }
 
+    get usesEffects() {
+        return this.hasEffect && !this.action.evolution;
+    }
+
     /**
      * Get the target data for the current targets of the roll. 
      * This will either be the initial targets, or the currently selected tokens depending on which tab the GM has open.

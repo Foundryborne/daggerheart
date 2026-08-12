@@ -181,6 +181,8 @@ export function ActionMixin(Base) {
             const { parent, renderSheet } = operation;
             let { type } = data;
             if (!type || !game.system.api.models.actions.actionsTypes[type]) {
+                const types = CONFIG.DH.ACTIONS.actionTypes;
+
                 ({ type } =
                     (await foundry.applications.api.DialogV2.input({
                         window: { title: game.i18n.localize('DAGGERHEART.CONFIG.SelectAction.selectType') },
@@ -189,7 +191,7 @@ export function ActionMixin(Base) {
                         content: await foundry.applications.handlebars.renderTemplate(
                             'systems/daggerheart/templates/actionTypes/actionType.hbs',
                             {
-                                types: CONFIG.DH.ACTIONS.actionTypes,
+                                types: types,
                                 itemName: parent.parent?.name
                             }
                         ),

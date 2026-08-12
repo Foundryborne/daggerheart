@@ -19,9 +19,9 @@ Parameters:
 - showActions {boolean} : If true show feature's actions.
 --}}
 
-<li class="inventory-item" data-item-id="{{item.id}}"
+<li class="inventory-item {{#if inactive}}inactive{{/if}}" data-item-id="{{item.id}}"
     {{#if (or (eq type 'action' ) (eq type 'attack' ))}}data-action-id="{{item.id}}" {{/if}} 
-    {{#if disabledEffect}}data-disabled="true"{{/if}}
+    {{#if (or inactive disabledEffect)}}data-disabled="true"{{/if}}
     data-type="{{type}}" data-item-type="{{item.type}}"
     data-item-uuid="{{item.uuid}}" data-no-compendium-edit="{{noCompendiumEdit}}"
 >
@@ -29,10 +29,12 @@ Parameters:
         <div class="inventory-item-header{{#if hideContextMenu}} padded{{/if}}" {{#unless (or noExtensible (not item.hasDescription))}}data-action="toggleExtended" {{/unless}}>
             {{!-- Image --}}
             <div class="img-portait" draggable="true"
-                {{#unless (eq showActions false)}}data-action='{{ifThen item.usable "useItem" (ifThen (hasProperty item "toChat" ) "toChat" "editDoc" ) }}'{{/unless}}
-                {{#unless hideTooltip}} {{#if (eq type 'attack' )}} data-tooltip="#attack#{{item.actor.uuid}}" {{else}} data-tooltip="#item#{{item.uuid}}" {{/if}} {{/unless}}>
-                <img src="{{item.img}}" class="item-img {{#if isActor}}actor-img{{/if}}" />
-                {{#if (and item.usable (ne showActions false))}}
+                {{#unless (eq showActions false)}}data-action='{{ifThen (and (not inactive) item.usable) "useItem" (ifThen (hasProperty item "toChat" ) "toChat" "editDoc" ) }}'{{/unless}}
+                {{#unless hideTooltip}} {{#if (eq type 'attack' )}} data-tooltip="#attack#{{item.actor.uuid}}" {{else}} data-tooltip="#item#{{item.uuid}}" {{/if}} {{/unless}}
+            >
+                    <img src="{{item.img}}" class="item-img {{#if isActor}}actor-img{{/if}}" 
+            />
+                {{#if (and (not inactive) item.usable (ne showActions false))}}
                     {{#if @root.isNPC}}
                         <img class="roll-img d20" src="systems/daggerheart/assets/icons/dice/default/d20.svg" alt="d20">
                     {{else}}
@@ -147,18 +149,18 @@ Parameters:
         {{#each item.system.actions as | action |}}
         <div class="item-button">
             {{#if (and (eq action.type 'beastform') @root.beastformActive)}}
-            <button type="button" data-action="cancelBeastform" data-item-uuid="{{action.uuid}}">
+            <button type="button" data-action="cancelBeastform" data-item-uuid="{{action.uuid}}" {{#if ../inactive}}disabled{{/if}}>
                 <i class="fa-solid {{action.typeIcon}} action-icon"></i>
                 {{localize "DAGGERHEART.ACTORS.Character.cancelBeastform"}}
             </button>
             {{else}}
-            <button type="button" data-action="useItem" data-item-uuid="{{action.uuid}}">
+            <button type="button" data-action="useItem" data-item-uuid="{{action.uuid}}" {{#if ../inactive}}disabled{{/if}}>
                 <i class="fa-solid {{action.typeIcon}} action-icon"></i>
                 {{action.name}}
             </button>
             {{/if}}
             {{#if action.uses.max}}
-                <button type="button" class="action-uses-button" data-action="increaseActionUses" data-item-uuid="{{action.uuid}}">
+                <button type="button" class="action-uses-button" data-action="increaseActionUses" data-item-uuid="{{action.uuid}}" {{#if ../inactive}}disabled{{/if}}>
                 {{action.remainingUses}}/{{action.uses.max}}
                 </button>
             {{/if}}

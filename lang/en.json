@@ -79,12 +79,28 @@
                 "transform": {
                     "name": "Transform",
                     "tooltip": "Transform one actor into another",
+                    "invalidDrop": "You can only drop an Actor to transform into.",
                     "noTransformActor": "There is no assigned actor to transform into",
                     "transformActorMissing": "The assigned actor to transform into does not exist. It was probably deleted or moved in/out of a compendium",
                     "canvasError": "There is no active scene.",
                     "prototypeError": "You can only use a transform action from a Token",
                     "linkedSelectedError": "To transform a linked actor there either needs to be only a single token of it on the canvas, or you need to left-click select only one of them.",
                     "actorLinkError": "You cannot transform a token with Actor Link set to true"
+                },
+                "evolution": {
+                    "name": "Evolution",
+                    "tooltip": "Evolve an actor, gaining new capabilities",
+                    "tokenImage": "Token Image",
+                    "tokenScale": "Scale",
+                    "dynamicToken": "Dynamic Token",
+                    "dynamicTokenImage": "Dynamic Token Image",
+                    "dynamicTokenRing": "Dynamic Token Ring Color",
+                    "dynamicTokenBackground": "Dynamic Token Background",
+                    "dynamicEffects": "Dynamic Effects",
+                    "tokenError": "You can only use a evolution action from a Token",
+                    "actorError": "Actor missing for token. Can't restore to unevolved state.",
+                    "deevolveConfirmationTitle": "Remove Evolution",
+                    "deevolveConfirmationText": "Are you sure you want to remove the evolution?"
                 }
             },
             "Config": {
@@ -184,6 +200,12 @@
                 "transform": {
                     "dropTransformHere": "Drop Transform Here",
                     "actorIsMissing": "The linked actor is missing. You should delete this link.",
+                    "clearHitPoints": "Clear Hitpoints",
+                    "clearStress": "Clear Stress"
+                },
+                "evolution": {
+                    "featureName": "Feature Name",
+                    "evolutionState": "Evolution State",
                     "clearHitPoints": "Clear Hitpoints",
                     "clearStress": "Clear Stress"
                 }
@@ -1369,6 +1391,10 @@
                     "label": "Event",
                     "description": ""
                 }
+            },
+            "EvolutionState": {
+                "unevolved": "Unevolved",
+                "evolved": "Evolved"
             },
             "fallAndCollision": {
                 "veryClose": {
@@ -2913,6 +2939,11 @@
                 "foundationTitle": "Foundation",
                 "specializationTitle": "Specialization",
                 "masteryTitle": "Mastery"
+            },
+            "Feature": {
+                "activeWhenEvolved": "Active When Evolved",
+                "evolutionFeature": "Evolution Feature",
+                "evolutionLocked": "Features with an evolution action must be of evolution type"
             },
             "Subclass": {
                 "spellcastingTrait": "Spellcasting Trait",

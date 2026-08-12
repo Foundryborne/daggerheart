@@ -7,7 +7,8 @@ export default class DHActionConfig extends DHActionBaseConfig {
             ...DHActionBaseConfig.DEFAULT_OPTIONS.actions,
             addEffect: this.addEffect,
             removeEffect: this.removeEffect,
-            editEffect: this.editEffect
+            editEffect: this.editEffect,
+            toggleEvolutionTokenData: this.#onToggleEvolutionTokenData
         }
     };
 
@@ -63,5 +64,16 @@ export default class DHActionConfig extends DHActionBaseConfig {
     static editEffect(event) {
         const id = event.target.closest('[data-effect-id]')?.dataset?.effectId;
         this.item.effects.get(id).sheet.render(true);
+    }
+
+    static #onToggleEvolutionTokenData(_event, target) {
+        const data = this.action.toObject();
+        if (target.checked) {
+            data.evolution.tokenOverride = {};
+        } else {
+            data.evolution.tokenOverride = null;
+        }
+
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 }

@@ -101,6 +101,8 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
     }
 
     async selectActionType() {
+        const types = CONFIG.DH.ACTIONS.actionTypes;
+
         return (
             (await foundry.applications.api.DialogV2.input({
                 window: { title: game.i18n.localize('DAGGERHEART.CONFIG.SelectAction.selectType') },
@@ -108,7 +110,7 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
                 classes: ['daggerheart', 'dh-style'],
                 content: await foundry.applications.handlebars.renderTemplate(
                     'systems/daggerheart/templates/actionTypes/actionType.hbs',
-                    { types: CONFIG.DH.ACTIONS.actionTypes }
+                    { types: types }
                 ),
                 ok: {
                     label: game.i18n.format('DOCUMENT.Create', {
