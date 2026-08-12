@@ -134,11 +134,6 @@
   "flags": {},
   "_id": "1fkLQXVtmILqfJ44",
   "sort": 200000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Tiny Red Ooze",
     "displayName": 0,
@@ -345,10 +340,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

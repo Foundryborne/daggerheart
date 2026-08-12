@@ -23,7 +23,10 @@ for (const pack of packs) {
     await extractPack(`${MODULE_ID}/${pack}`, `${MODULE_ID}/src/${pack}`, {
         yaml,
         transformName,
-        transformEntry
+        transformEntry: entry => {
+            delete entry._stats; // top level stats are deleted, all others are pruned
+            transformDocument(entry);
+        }
     });
 }
 /**
@@ -38,11 +41,6 @@ function transformName(doc) {
     return `${doc.name ? `${prefix}_${safeFileName}_${doc._id}` : doc._id}.${yaml ? 'yml' : 'json'}`;
 }
 
-function transformEntry(entry) {
-    delete entry._stats; // top level stats are deleted, all others are pruned
-    transformDocument(entry);
-}
-
 function transformDocument(entry) {
     // Remove certain characters like rsquo and fancy subtract. Keeps emdash
     function removeSpecialCharacters(description) {
@@ -52,6 +50,7 @@ function transformDocument(entry) {
 
     const stats = entry._stats;
     entry._stats = stats ? { compendiumSource: stats.compendiumSource } : stats;
+    delete entry.ownership;
     if (entry?.system) {
         entry.system.description = removeSpecialCharacters(entry.system.description);
         for (const action of Object.values(entry.system.actions ?? {})) {
