@@ -387,6 +387,33 @@ export default function DHApplicationMixin(Base) {
             return super._onDrop?.(event);
         }
 
+        /**
+         * Handle a dropped document on this sheet. 
+         * This allows all descendant sheets to create events for all document types.
+         * This is an optional chaining version of what exists in the actor sheet.
+         * @template {Document} TDocument
+         * @param {DragEvent} event         The initiating drop event
+         * @param {TDocument} document       The resolved Document class
+         * @returns {Promise<TDocument|null>} A Document of the same type as the dropped one in case of a successful result,
+         *                                    or null in case of failure or no action being taken
+         * @protected
+         * @override
+         */
+        async _onDropDocument(event, document) {
+            switch (document.documentName) {
+                case 'ActiveEffect':
+                    return (await this._onDropActiveEffect?.(event, document)) ?? null;
+                case 'Actor':
+                    return (await this._onDropActor?.(event, document)) ?? null;
+                case 'Item':
+                    return (await this._onDropItem?.(event, document)) ?? null;
+                case 'Folder':
+                    return (await this._onDropFolder?.(event, document)) ?? null;
+                default:
+                    return null;
+            }
+        }
+
         /** @inheritdoc */
         _onSortItem(event, item) {
             // If we are dragging a feature past its allowed feature form, put it in the front or in the back

@@ -347,31 +347,6 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         }
     }
 
-    /**
-     * Handle a dropped document on this item sheet. This extends the existing functionality to support more than AEs
-     * @template {Document} TDocument
-     * @param {DragEvent} event         The initiating drop event
-     * @param {TDocument} document       The resolved Document class
-     * @returns {Promise<TDocument|null>} A Document of the same type as the dropped one in case of a successful result,
-     *                                    or null in case of failure or no action being taken
-     * @protected
-     * @override
-     */
-    async _onDropDocument(event, document) {
-        switch (document.documentName) {
-            case 'ActiveEffect':
-                return (await this._onDropActiveEffect?.(event, document)) ?? null;
-            case 'Actor':
-                return (await this._onDropActor?.(event, document)) ?? null;
-            case 'Item':
-                return (await this._onDropItem?.(event, document)) ?? null;
-            case 'Folder':
-                return (await this._onDropFolder?.(event, document)) ?? null;
-            default:
-                return null;
-        }
-    }
-
     /** 
      * Handles the Add GM Note button being pressed. This is only used when an item has no GM notes.
      * Later edits to a GM note instead go through the normal editor toggle workflow.
