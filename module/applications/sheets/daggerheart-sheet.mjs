@@ -1,7 +1,7 @@
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 
-// Just used by action config
-// @todo consider using the regular application mixin instead
+//Just used by action config
+
 export default function DhpApplicationMixin(Base) {
     return class DhpSheetV2 extends HandlebarsApplicationMixin(Base) {
         constructor(options = {}) {
@@ -80,26 +80,6 @@ export default function DhpApplicationMixin(Base) {
             }
 
             return tabs;
-        }
-
-        /**
-         * Handle a dropped document on this sheet. 
-         * @todo replace this entire class with application-mixin, or at least make it extend it.
-         * @protected
-         */
-        async _onDropDocument(event, document) {
-            switch (document.documentName) {
-                case 'ActiveEffect':
-                    return (await this._onDropActiveEffect?.(event, document)) ?? null;
-                case 'Actor':
-                    return (await this._onDropActor?.(event, document)) ?? null;
-                case 'Item':
-                    return (await this._onDropItem?.(event, document)) ?? null;
-                case 'Folder':
-                    return (await this._onDropFolder?.(event, document)) ?? null;
-                default:
-                    return null;
-            }
         }
     };
 }

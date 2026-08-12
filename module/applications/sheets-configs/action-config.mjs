@@ -1,21 +1,16 @@
 import DHActionBaseConfig from './action-base-config.mjs';
 
-/**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
-
-/** Config class to edit item actions */
 export default class DHActionConfig extends DHActionBaseConfig {
     static DEFAULT_OPTIONS = {
         ...DHActionBaseConfig.DEFAULT_OPTIONS,
         actions: {
             ...DHActionBaseConfig.DEFAULT_OPTIONS.actions,
-            addEffect: this.#onAddEffect,
-            removeEffect: this.#onRemoveEffect,
-            editEffect: this.#onEditEffect
-        },
-        dragDrop: [{ dropSelector: 'fieldset[data-key=effects]'}]
+            addEffect: this.addEffect,
+            removeEffect: this.removeEffect,
+            editEffect: this.editEffect
+        }
     };
 
-    /** @inheritdoc */
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
         if (this.action.effects) context.effects = this.action.effects.map(e => this.action.item.effects.get(e._id));
@@ -24,12 +19,7 @@ export default class DHActionConfig extends DHActionBaseConfig {
         return context;
     }
 
-    /**
-     * Adds an effect to this action
-     * @this DHActionConfig
-     * @type {ApplicationClickAction}
-     */
-    static async #onAddEffect(event) {
+    static async addEffect(event) {
         const { areaIndex } = event.target.dataset;
         if (!this.action.effects) return;
         const data = this.action.toObject();
@@ -44,11 +34,25 @@ export default class DHActionConfig extends DHActionBaseConfig {
         this.action.item.effects.get(created[0]._id).sheet.render(true);
     }
 
+    /**
+     * The data for a newly created applied effect.
+     * @returns {object}
+     * @protected
+     */
+    _addEffectData() {
+        return {
+            name: this.action.item.name,
+            img: this.action.item.img,
+            origin: this.action.item.uuid,
+            transfer: false
+        };
+    }
+
     getEffectDetails(id) {
         return this.action.item.effects.get(id);
     }
 
-    static #onRemoveEffect(event, button) {
+    static removeEffect(event, button) {
         if (!this.action.effects) return;
 
         const { areaIndex, index } = button.dataset;
@@ -66,20 +70,8 @@ export default class DHActionConfig extends DHActionBaseConfig {
         this.action.item.deleteEmbeddedDocuments('ActiveEffect', [effectId]);
     }
 
-    static #onEditEffect(event) {
+    static editEffect(event) {
         const id = event.target.closest('[data-effect-id]')?.dataset?.effectId;
         this.action.item.effects.get(id).sheet.render(true);
-    }
-
-    /** 
-     * @param {DragEvent} _event
-     * @param {DhActiveEffect} effect
-     */
-    async _onDropActiveEffect(_event, effect) {
-        const data = this.action.toObject();
-        const source = effect.toObject(true);
-        const created = await this.action.item.createEmbeddedDocuments('ActiveEffect', [source]);
-        data.effects.push({ _id: created[0]._id });
-        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 }

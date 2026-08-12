@@ -477,49 +477,28 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         await super.close(options);
     }
 
-    /** @inheritdoc */
     async _onDrop(event) {
         const data = foundry.applications.ux.TextEditor.getDragEventData(event);
-        const documentClass = foundry.utils.getDocumentClass(data.type);
-        const document = await documentClass?.fromDropData(data);
-
-        // perform validation for actor in right place
-        // todo: avoid hardcoding, considering perhaps a drop validation step
-        const dropZone = event.target.closest('[data-is-drop-zone]');
-        const isSummon = ['summon-drop-zone', 'transform-drop-zone'].includes(dropZone?.id);
-        if (isSummon && !(document instanceof game.system.api.documents.DhpActor)) {
+        const item = await foundry.utils.fromUuid(data.uuid);
+        if (!(item instanceof game.system.api.documents.DhpActor)) {
             ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.summon.invalidDrop'));
             return;
         }
 
-        if (document) await this._onDropDocument(event, document);
-    }
-
-    /**
-     * Handle dropping an actor to the base config
-     * @param {DragEvent} event 
-     * @param {DhpActor} actor 
-     * @returns 
-     */
-    async _onDropActor(event, actor) {
         const dropZone = event.target.closest('[data-is-drop-zone]');
         if (!dropZone) return;
 
         switch (dropZone.id) {
             case 'summon-drop-zone':
-                return this.onSummonDrop(actor);
+                return this.onSummonDrop(data);
             case 'transform-drop-zone':
-                return this.onTransformDrop(actor);
+                return this.onTransformDrop(data);
         }
     }
 
-    /**
-     * Handles the logic of dropped actors on summon actions
-     * @param {DhpActor} actor 
-     */
-    async onSummonDrop(actor) {
+    async onSummonDrop(data) {
         const actionData = this.action.toObject();
-        const existingSummon = actionData.summon.find(x => x.actorUUID === actor.uuid);
+        const existingSummon = actionData.summon.find(x => x.actorUUID === data.uuid);
         if (existingSummon) {
             existingSummon.count++;
             return await this.constructor.updateForm.bind(this)(null, null, {
@@ -527,17 +506,13 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             });
         }
 
-        actionData.summon.push({ actorUUID: actor.uuid, count: 1 });
+        actionData.summon.push({ actorUUID: data.uuid, count: 1 });
         await this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(actionData) });
     }
 
-    /**
-     * Handles the logic of dropped actors on transform actions
-     * @param {DhpActor} actor 
-     */
-    async onTransformDrop(actor) {
+    async onTransformDrop(data) {
         const actionData = this.action.toObject();
-        actionData.transform.actorUUID = actor.uuid;
+        actionData.transform.actorUUID = data.uuid;
         await this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(actionData) });
     }
 }
