@@ -387,7 +387,7 @@
       "_id": "ILIogeKbYioPutRw",
       "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
       "system": {
-        "description": "<p>Become <em>Hidden</em> until after the @Lookup[@name]’s next attack. Attacks made while Hidden from this feature have advantage.</p>",
+        "description": "<p>Become <em>Hidden</em> until after the @Lookup[@name]'s next attack. Attacks made while Hidden from this feature have advantage.</p>",
         "resource": null,
         "actions": {
           "s0X44RPg5hA8lVax": {

@@ -236,7 +236,7 @@
       "name": "Levitation",
       "type": "feature",
       "system": {
-        "description": "<p>The @Lookup[@name] levitates several feet off the ground and can’t be <em>Restrained</em>.</p>",
+        "description": "<p>The @Lookup[@name] levitates several feet off the ground and can't be <em>Restrained</em>.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,

@@ -423,7 +423,7 @@
       "_id": "KBMf7oBfFSHoafKN",
       "img": "icons/magic/nature/root-vines-knot-brown.webp",
       "system": {
-        "description": "<p>When an attack from the @Lookup[@name] causes a target to mark HP and there are three or more @Lookup[@name] Minions within Close range, you can combine the Minions into a @UUID[Compendium.daggerheart.adversaries.Actor.PKSXFuaIHUCoH63A]{Tangle Bramble Swarm Horde}. The Horde’s HP is equal to the number of Minions combined.</p>",
+        "description": "<p>When an attack from the @Lookup[@name] causes a target to mark HP and there are three or more @Lookup[@name] Minions within Close range, you can combine the Minions into a @UUID[Compendium.daggerheart.adversaries.Actor.PKSXFuaIHUCoH63A]{Tangle Bramble Swarm Horde}. The Horde's HP is equal to the number of Minions combined.</p>",
         "resource": null,
         "actions": {
           "g1OQ5xlMHFWsoktd": {

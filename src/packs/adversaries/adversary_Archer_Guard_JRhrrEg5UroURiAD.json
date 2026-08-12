@@ -42,7 +42,7 @@
       }
     },
     "tier": 1,
-    "description": "<p>A tall guard bearing a longbow and quiver with arrows fletched in the settlement’s colors.</p>",
+    "description": "<p>A tall guard bearing a longbow and quiver with arrows fletched in the settlement's colors.</p>",
     "motivesAndTactics": "Arrest, close gates, make it through the day, pin down",
     "attack": {
       "name": "Longbow",

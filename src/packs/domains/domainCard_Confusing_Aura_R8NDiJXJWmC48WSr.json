@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "KmaX6wNBLzkFevaG",
   "system": {
-    "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Make a <strong>Spellcast Roll (14)</strong>. Once per long rest on a success, you create a layer of illusion over your body that makes it hard to tell exactly where you are. <strong>Mark any number of Stress</strong> to make that many additional layers. When an adversary makes an attack against you, roll a number of <strong>d6s</strong> equal to the number of layers currently active. If any roll a 5 or higher, one layer of the aura is destroyed and the attack fails. If all the results are 4 or lower, you take the damage and this spell ends.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll (14)</strong>. Once per long rest on a success, you create a layer of illusion over your body that makes it hard to tell exactly where you are. <strong>Mark any number of Stress</strong> to make that many additional layers. When an adversary makes an attack against you, roll a number of <strong>d6s</strong> equal to the number of layers currently active. If any roll a 5 or higher, one layer of the aura is destroyed and the attack fails. If all the results are 4 or lower, you take the damage and this spell ends.</p>",
     "domain": "arcana",
     "recallCost": 2,
     "level": 8,

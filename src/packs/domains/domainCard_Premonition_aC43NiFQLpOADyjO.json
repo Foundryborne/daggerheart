@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "l387HKojhqcDAV0b",
   "system": {
-    "description": "<p></p><p class=\"Body-Foundation\">You can channel arcane energy to have visions of the future. Once per long rest, immediately after the GM conveys the consequences of a roll you made, you can rescind the move and consequences like they never happened and make another move instead.</p><p></p>",
+    "description": "<p>You can channel arcane energy to have visions of the future. Once per long rest, immediately after the GM conveys the consequences of a roll you made, you can rescind the move and consequences like they never happened and make another move instead.</p>",
     "domain": "arcana",
     "recallCost": 2,
     "level": 5,

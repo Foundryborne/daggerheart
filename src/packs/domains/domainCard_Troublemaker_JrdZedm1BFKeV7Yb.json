@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "pu3xD4rEkdfdAvGc",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you taunt or provoke a target within Far range, make a <strong>Presence Roll</strong> against them. Once per rest on a success, roll a number of <strong>d4s</strong> equal to your Proficiency. The target must mark Stress equal to the highest result rolled.</p>",
+    "description": "<p>When you taunt or provoke a target within Far range, make a <strong>Presence Roll</strong> against them. Once per rest on a success, roll a number of <strong>d4s</strong> equal to your Proficiency. The target must mark Stress equal to the highest result rolled.</p>",
     "domain": "grace",
     "recallCost": 2,
     "level": 2,

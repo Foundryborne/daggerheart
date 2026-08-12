@@ -364,7 +364,7 @@
       "name": "Blade of the Forest",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to make an attack against all targets within Very Close range. Targets the @Lookup[@name] succeeds against take physical damage equal to <strong>[[/r 3d4]]</strong> + the target’s Major threshold.</p>",
+        "description": "<p><strong>Spend a Fear</strong> to make an attack against all targets within Very Close range. Targets the @Lookup[@name] succeeds against take physical damage equal to <strong>[[/r 3d4]]</strong> + the target's Major threshold.</p>",
         "resource": null,
         "actions": {
           "xPSVwVVOC5gc2KTi": {

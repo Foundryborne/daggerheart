@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "qY4Zqc1Ch6p317uK",
   "system": {
-    "description": "<p class=\"Body\">Make a <strong>Spellcast Roll (13)</strong>. On a success, <strong>spend any number of Hope</strong> to create an equal number of small forest sprites who appear at points you choose within Far range, providing the following benefits:</p><ul><li class=\"vertical-card-list\"><p>Your allies gain a +3 bonus to attack rolls against adversaries within Melee range of a sprite.</p></li><li class=\"vertical-card-list\"><p>An ally who marks an Armor Slot while within Melee range of a sprite can mark an additional Armor Slot.</p></li></ul><p class=\"Body\">A sprite vanishes after granting a benefit or taking any damage.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll (13)</strong>. On a success, <strong>spend any number of Hope</strong> to create an equal number of small forest sprites who appear at points you choose within Far range, providing the following benefits:</p><ul><li class=\"vertical-card-list\"><p>Your allies gain a +3 bonus to attack rolls against adversaries within Melee range of a sprite.</p></li><li class=\"vertical-card-list\"><p>An ally who marks an Armor Slot while within Melee range of a sprite can mark an additional Armor Slot.</p></li></ul><p>A sprite vanishes after granting a benefit or taking any damage.</p>",
     "domain": "sage",
     "recallCost": 2,
     "level": 8,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "TVepLgRNQLhZWDu6",
         "systemPath": "actions",
-        "description": "<p class=\"Body\">Make a <strong>Spellcast Roll (13)</strong>. On a success, <strong>spend any number of Hope</strong> to create an equal number of small forest sprites who appear at points you choose within Far range, providing the following benefits:</p><ul class=\"\"><li class=\"vertical-card-list\"><p>Your allies gain a +3 bonus to attack rolls against adversaries within Melee range of a sprite.</p></li><li class=\"vertical-card-list\"><p>An ally who marks an Armor Slot while within Melee range of a sprite can mark an additional Armor Slot.</p></li></ul><p class=\"Body\">A sprite vanishes after granting a benefit or taking any damage.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll (13)</strong>. On a success, <strong>spend any number of Hope</strong> to create an equal number of small forest sprites who appear at points you choose within Far range, providing the following benefits:</p><ul class=\"\"><li class=\"vertical-card-list\"><p>Your allies gain a +3 bonus to attack rolls against adversaries within Melee range of a sprite.</p></li><li class=\"vertical-card-list\"><p>An ally who marks an Armor Slot while within Melee range of a sprite can mark an additional Armor Slot.</p></li></ul><p>A sprite vanishes after granting a benefit or taking any damage.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

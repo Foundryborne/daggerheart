@@ -639,7 +639,7 @@
       "name": "Summon Tormentors",
       "type": "feature",
       "system": {
-        "description": "<p>Once per day, <strong>spend 2 Fear</strong> to summon <strong>2d4</strong> Tier 2 or below Minions relevant to one of the PC’s personal nightmares. They appear at Close range relative to that PC.</p>",
+        "description": "<p>Once per day, <strong>spend 2 Fear</strong> to summon <strong>2d4</strong> Tier 2 or below Minions relevant to one of the PC's personal nightmares. They appear at Close range relative to that PC.</p>",
         "resource": null,
         "actions": {
           "71UnFo3CBBPtbao3": {

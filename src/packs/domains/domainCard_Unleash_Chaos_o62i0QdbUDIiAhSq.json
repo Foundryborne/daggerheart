@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "o7kvw9NRGvDZSce2",
   "system": {
-    "description": "<p class=\"Body-Foundation\">At the beginning of a session, place a number of tokens equal to your Spellcast trait on this card.</p><p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against a target within Far range and spend any number of tokens to channel raw energy from within yourself to unleash against them. On a success, roll a number of<strong> d10s</strong> equal to the tokens you spent and deal that much magic damage to the target. <strong>Mark a Stress</strong> to replenish this card with tokens (up to your Spellcast trait).</p><p class=\"Body-Foundation\">At the end of each session, clear all unspent tokens.</p>",
+    "description": "<p>At the beginning of a session, place a number of tokens equal to your Spellcast trait on this card.</p><p>Make a <strong>Spellcast Roll</strong> against a target within Far range and spend any number of tokens to channel raw energy from within yourself to unleash against them. On a success, roll a number of<strong> d10s</strong> equal to the tokens you spent and deal that much magic damage to the target. <strong>Mark a Stress</strong> to replenish this card with tokens (up to your Spellcast trait).</p><p>At the end of each session, clear all unspent tokens.</p>",
     "domain": "arcana",
     "recallCost": 1,
     "level": 1,

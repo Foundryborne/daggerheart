@@ -43,7 +43,7 @@
       }
     },
     "tier": 1,
-    "description": "<p>An armored guard bearing a sword and shield painted in the settlement’s colors.</p>",
+    "description": "<p>An armored guard bearing a sword and shield painted in the settlement's colors.</p>",
     "attack": {
       "roll": {
         "bonus": 1,

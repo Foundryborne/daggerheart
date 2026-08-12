@@ -349,7 +349,7 @@
       "_id": "BTlMLjG65KQs0Jk2",
       "img": "icons/skills/wounds/blood-drip-droplet-red.webp",
       "system": {
-        "description": "<p>When the @Lookup[@name]’s attack causes a target to mark HP, you can <strong>mark a Stress</strong> to force the target to mark an additional HP.</p>",
+        "description": "<p>When the @Lookup[@name]'s attack causes a target to mark HP, you can <strong>mark a Stress</strong> to force the target to mark an additional HP.</p>",
         "resource": null,
         "actions": {
           "7ee6IhkKYDehjLmg": {

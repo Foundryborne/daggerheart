@@ -304,7 +304,7 @@
       "name": "Never Misses",
       "type": "feature",
       "system": {
-        "description": "<p>When the @Lookup[@name] makes an attack, the target’s Evasion is halved against the attack.</p>",
+        "description": "<p>When the @Lookup[@name] makes an attack, the target's Evasion is halved against the attack.</p>",
         "resource": null,
         "actions": {
           "VRGPnDhDpReXUZZF": {
@@ -576,7 +576,7 @@
       "name": "Mind Dance",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to create a magically dazzling display that grapples the minds of nearby foes. All targets within Close range must make an Instinct Reaction Roll. For each target who failed, you gain a Fear and the @Lookup[@name] learns one of the target’s fears.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to create a magically dazzling display that grapples the minds of nearby foes. All targets within Close range must make an Instinct Reaction Roll. For each target who failed, you gain a Fear and the @Lookup[@name] learns one of the target's fears.</p>",
         "resource": null,
         "actions": {
           "GNwsDlCabx3fiG4g": {

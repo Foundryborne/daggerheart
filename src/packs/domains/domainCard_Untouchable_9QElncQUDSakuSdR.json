@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "PeeIjbkBv41613yZ",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Gain a bonus to your Evasion equal to half your Agility.</p>",
+    "description": "<p>Gain a bonus to your Evasion equal to half your Agility.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 1,
@@ -55,7 +55,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p class=\"Body-Foundation\">Gain a bonus to your Evasion equal to half your Agility.</p>",
+      "description": "<p>Gain a bonus to your Evasion equal to half your Agility.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

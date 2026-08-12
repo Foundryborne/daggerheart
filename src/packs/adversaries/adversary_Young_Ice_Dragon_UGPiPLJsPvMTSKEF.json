@@ -310,7 +310,7 @@
       "name": "Rend and Crush",
       "type": "feature",
       "system": {
-        "description": "<p>If a target damaged by the @Lookup[@name] doesn’t mark an Armor Slot to reduce the damage, they must mark a Stress.</p>",
+        "description": "<p>If a target damaged by the @Lookup[@name] doesn't mark an Armor Slot to reduce the damage, they must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "dHoMdLfAl6UKjXRP": {

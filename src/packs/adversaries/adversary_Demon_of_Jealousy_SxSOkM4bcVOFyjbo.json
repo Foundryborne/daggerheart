@@ -242,7 +242,7 @@
       "name": "Unprotected Mind",
       "type": "feature",
       "system": {
-        "description": "<p>The @Lookup[@name]’s standard attack deals direct damage.</p>",
+        "description": "<p>The @Lookup[@name]'s standard attack deals direct damage.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -377,7 +377,7 @@
       "name": "What's Yours Is Mine",
       "type": "feature",
       "system": {
-        "description": "<p>When a PC takes Severe damage within Very Close range of the @Lookup[@name], you can <strong>spend a Fear</strong> to cause the target to make a Finesse Reaction Roll. On a failure, the @Lookup[@name] seizes one item or consumable of their choice from the target’s inventory.</p>",
+        "description": "<p>When a PC takes Severe damage within Very Close range of the @Lookup[@name], you can <strong>spend a Fear</strong> to cause the target to make a Finesse Reaction Roll. On a failure, the @Lookup[@name] seizes one item or consumable of their choice from the target's inventory.</p>",
         "resource": null,
         "actions": {
           "3cGZ2CofM9HUlELH": {

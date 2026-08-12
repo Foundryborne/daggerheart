@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "sCiN7DoysdKceIMd",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you have a few minutes to prepare, you can <strong>mark a Stress</strong> to don the facade of any humanoid you can picture clearly in your mind. While disguised, you have advantage on Presence Rolls to avoid scrutiny.</p><p class=\"Body-Foundation\">Place a number of tokens equal to your Spellcast trait on this card. When you take an action while disguised, spend a token from this card. After the action that spends the last token is resolved, the disguise drops.</p>",
+    "description": "<p>When you have a few minutes to prepare, you can <strong>mark a Stress</strong> to don the facade of any humanoid you can picture clearly in your mind. While disguised, you have advantage on Presence Rolls to avoid scrutiny.</p><p>Place a number of tokens equal to your Spellcast trait on this card. When you take an action while disguised, spend a token from this card. After the action that spends the last token is resolved, the disguise drops.</p>",
     "domain": "midnight",
     "recallCost": 0,
     "level": 1,

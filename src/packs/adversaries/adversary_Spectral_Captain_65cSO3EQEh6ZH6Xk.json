@@ -423,7 +423,7 @@
       "name": "Hold Fast",
       "type": "feature",
       "system": {
-        "description": "<p>When the @Lookup[@name]’s Spectral allies are forced to make a reaction roll, you can <strong>mark a Stress</strong> to give those allies a +2 bonus to the roll.</p>",
+        "description": "<p>When the @Lookup[@name]'s Spectral allies are forced to make a reaction roll, you can <strong>mark a Stress</strong> to give those allies a +2 bonus to the roll.</p>",
         "resource": null,
         "actions": {
           "aRg1bcPGUn69GPyB": {

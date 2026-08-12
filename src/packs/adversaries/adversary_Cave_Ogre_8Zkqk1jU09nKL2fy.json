@@ -313,7 +313,7 @@
       "_id": "szu5YYQ6klkDbqAT",
       "img": "icons/skills/wounds/bone-broken-marrow-red.webp",
       "system": {
-        "description": "<p>The @Lookup[@name]’s attacks deal direct damage.</p>",
+        "description": "<p>The @Lookup[@name]'s attacks deal direct damage.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,

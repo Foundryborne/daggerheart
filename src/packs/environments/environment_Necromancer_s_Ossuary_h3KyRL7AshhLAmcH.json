@@ -248,7 +248,7 @@
       "name": "Centuries of Knowledge",
       "type": "feature",
       "system": {
-        "description": "<p>A PC can investigate the library and laboratory and make a Knowledge Roll to learn information related to arcana, local history, and the Necromancer’s plans. </p><section id=\"secret-HAWRKErLm6NSqzHc\" class=\"secret\"><p><em>What are the names of the tomes? What project is the necromancer working on and what does it communicate about their plans?</em></p></section>",
+        "description": "<p>A PC can investigate the library and laboratory and make a Knowledge Roll to learn information related to arcana, local history, and the Necromancer's plans. </p><section id=\"secret-HAWRKErLm6NSqzHc\" class=\"secret\"><p><em>What are the names of the tomes? What project is the necromancer working on and what does it communicate about their plans?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -511,7 +511,7 @@
       "name": "They Just Keep Coming!",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to summon [[/r 1d6]] @UUID[Compendium.daggerheart.adversaries.Actor.gP3fWTLzSFnpA8EJ]{Rotted Zombie}, two @UUID[Compendium.daggerheart.adversaries.Actor.CP6iRfHdyFWniTHY]{Perfected Zombie}, or a @UUID[Compendium.daggerheart.adversaries.Actor.YhJrP7rTBiRdX5Fp]{Zombie Legion}, who appear at Close range of a chosen PC.</p><section class=\"secret\" id=\"secret-O5DKa2eIgNp51OVK\"><p><em>Who were these people before they became the necromancer’s pawns? What vestiges of those lives remain for the heroes to see?</em></p></section>",
+        "description": "<p><strong>Spend a Fear</strong> to summon [[/r 1d6]] @UUID[Compendium.daggerheart.adversaries.Actor.gP3fWTLzSFnpA8EJ]{Rotted Zombie}, two @UUID[Compendium.daggerheart.adversaries.Actor.CP6iRfHdyFWniTHY]{Perfected Zombie}, or a @UUID[Compendium.daggerheart.adversaries.Actor.YhJrP7rTBiRdX5Fp]{Zombie Legion}, who appear at Close range of a chosen PC.</p><section class=\"secret\" id=\"secret-O5DKa2eIgNp51OVK\"><p><em>Who were these people before they became the necromancer's pawns? What vestiges of those lives remain for the heroes to see?</em></p></section>",
         "resource": null,
         "actions": {
           "hFeTdiHWeCYkb8Hg": {

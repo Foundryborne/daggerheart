@@ -469,7 +469,7 @@
       "_id": "UpFsnlbZkyvM2Ftv",
       "img": "icons/magic/acid/projectile-smoke-glowing.webp",
       "system": {
-        "description": "<p>Make an attack against all targets in front of the @Lookup[@name] within Close range. Targets the @Lookup[@name] succeeds against take <strong>2d6</strong> physical damage and must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP and you gain a Fear.</p><p>@Template[type:inFront|range:c]</p>",
+        "description": "<p>Make an attack against all targets in front of the @Lookup[@name] within Close range. Targets the @Lookup[@name] succeeds against take <strong>2d6</strong> physical damage and must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can't mark an Armor Slot, they must mark an additional HP and you gain a Fear.</p><p>@Template[type:inFront|range:c]</p>",
         "resource": null,
         "actions": {
           "yd10HwK6Wa3OEvv2": {

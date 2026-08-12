@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "cOZgzLQRGNnBzsHT",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Describe how you taunt a target within Close range, then make a <strong>Presence Roll</strong> against them. On a success, the target must mark a Stress, and the next time the GM spotlights them, they must target you with an attack, which they make with disadvantage.</p>",
+    "description": "<p>Describe how you taunt a target within Close range, then make a <strong>Presence Roll</strong> against them. On a success, the target must mark a Stress, and the next time the GM spotlights them, they must target you with an attack, which they make with disadvantage.</p>",
     "domain": "valor",
     "recallCost": 1,
     "level": 4,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "kiKrK30UMopx3izN",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Describe how you taunt a target within Close range, then make a <strong>Presence Roll</strong> against them. On a success, the target must mark a Stress, and the next time the GM spotlights them, they must target you with an attack, which they make with disadvantage.</p>",
+        "description": "<p>Describe how you taunt a target within Close range, then make a <strong>Presence Roll</strong> against them. On a success, the target must mark a Stress, and the next time the GM spotlights them, they must target you with an attack, which they make with disadvantage.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],

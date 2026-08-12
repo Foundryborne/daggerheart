@@ -249,7 +249,7 @@
       "_id": "2fXzhh2qil8dw3vw",
       "img": "icons/skills/melee/strike-slashes-orange.webp",
       "system": {
-        "description": "<p>Targets who mark HP from the @Lookup[@name]’s standard attack are knocked back to Very Close range.</p>",
+        "description": "<p>Targets who mark HP from the @Lookup[@name]'s standard attack are knocked back to Very Close range.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,

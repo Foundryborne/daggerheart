@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "eg2vM8j9xhya9Rwa",
   "system": {
-    "description": "<p class=\"Body\">When you have 2 or fewer Hit Points unmarked, you don’t take Minor damage.</p>",
+    "description": "<p>When you have 2 or fewer Hit Points unmarked, you don't take Minor damage.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 9,
@@ -55,7 +55,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p class=\"Body\">When you have 2 or fewer Hit Points unmarked, you don’t take Minor damage.</p>",
+      "description": "<p>When you have 2 or fewer Hit Points unmarked, you don’t take Minor damage.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

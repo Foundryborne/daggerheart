@@ -43,7 +43,7 @@
       }
     },
     "tier": 3,
-    "description": "<p>An intelligent undead with blood-stained lips and a predator’s smile.</p>",
+    "description": "<p>An intelligent undead with blood-stained lips and a predator's smile.</p>",
     "attack": {
       "name": "Rapier",
       "img": "icons/weapons/swords/sword-jeweled-red.webp",

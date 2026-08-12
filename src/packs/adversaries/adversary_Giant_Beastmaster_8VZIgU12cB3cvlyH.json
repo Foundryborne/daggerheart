@@ -461,7 +461,7 @@
       "name": "Deadly Companion",
       "type": "feature",
       "system": {
-        "description": "<p>Twice per scene, summon a Bear, Dire Wolf, or similar Tier 1 animal adversary under the @Lookup[@name]’s control. The adversary appears at Close range and is immediately spotlighted.</p>",
+        "description": "<p>Twice per scene, summon a Bear, Dire Wolf, or similar Tier 1 animal adversary under the @Lookup[@name]'s control. The adversary appears at Close range and is immediately spotlighted.</p>",
         "resource": null,
         "actions": {
           "eSRUMqpQDPRG9leg": {

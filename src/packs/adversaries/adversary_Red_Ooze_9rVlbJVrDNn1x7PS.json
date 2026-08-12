@@ -274,7 +274,7 @@
       "_id": "JU9uVwZSM0ItnZRq",
       "img": "icons/magic/fire/blast-jet-stream-splash.webp",
       "system": {
-        "description": "<p>Make an attack against a target within Very Close range. On a success, the target takes <strong>1d8</strong> magic damage and is Ignited until they’re extinguished with a successful Finesse Roll (14). While Ignited, the target takes <strong>1d4</strong> magic damage when they make an action roll.</p>",
+        "description": "<p>Make an attack against a target within Very Close range. On a success, the target takes <strong>1d8</strong> magic damage and is Ignited until they're extinguished with a successful Finesse Roll (14). While Ignited, the target takes <strong>1d4</strong> magic damage when they make an action roll.</p>",
         "resource": null,
         "actions": {
           "b4g8XUIKLhxDlUPy": {

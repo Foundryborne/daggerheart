@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "WTdOLLkQyPdg0KWU",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against a target within Very Close range. On a success, <strong>spend a Hope</strong> to conjure a dark glyph upon their body that exposes their weak points, temporarily reducing the target’s Difficulty by a value equal to your Knowledge (minimum 1).</p>",
+    "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Very Close range. On a success, <strong>spend a Hope</strong> to conjure a dark glyph upon their body that exposes their weak points, temporarily reducing the target's Difficulty by a value equal to your Knowledge (minimum 1).</p>",
     "domain": "midnight",
     "recallCost": 1,
     "level": 4,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "9jzYsHQc8vlPOL3o",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against a target within Very Close range. On a success, <strong>spend a Hope</strong> to conjure a dark glyph upon their body that exposes their weak points, temporarily reducing the target’s Difficulty by a value equal to your Knowledge (minimum 1).</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Very Close range. On a success, <strong>spend a Hope</strong> to conjure a dark glyph upon their body that exposes their weak points, temporarily reducing the target’s Difficulty by a value equal to your Knowledge (minimum 1).</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

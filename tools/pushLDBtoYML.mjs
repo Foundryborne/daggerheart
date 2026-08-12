@@ -39,19 +39,28 @@ function transformName(doc) {
 }
 
 function transformEntry(entry) {
-    function prune(stats) {
-        return stats ? { compendiumSource: stats.compendiumSource } : stats;
+    delete entry._stats; // top level stats are deleted, all others are pruned
+    transformDocument(entry);
+}
+
+function transformDocument(entry) {
+    // Remove certain characters like rsquo and fancy subtract. Keeps emdash
+    function removeSpecialCharacters(description) {
+        if (typeof description !== 'string') return description;
+        return description.replaceAll('’', '\'').replaceAll('“', '"').replaceAll('”', '"').replaceAll('−', '-');
     }
 
-    delete entry._stats;
+    const stats = entry._stats;
+    entry._stats = stats ? { compendiumSource: stats.compendiumSource } : stats;
+    if (entry?.system) {
+        entry.system.description = removeSpecialCharacters(entry.system.description);
+    }
+    
     for (const effect of entry.effects ?? []) {
-        effect._stats = prune(effect._stats);
+        transformDocument(effect);
     }
     for (const item of entry.items ?? []) {
-        item._stats = prune(item._stats);
-        for (const effect of item.effects ?? []) {
-            effect._stats = prune(effect._stats);
-        }
+        transformDocument(item);
     }
 }
 

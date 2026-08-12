@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "8ZfL09F8MiOEUzzw",
   "system": {
-    "description": "<p class=\"Body-Foundation\">You speak with an unmatched power and authority. You have advantage on action rolls to de-escalate violent situations or convince someone to follow your lead.</p><p class=\"Body-Foundation\">Additionally, you’re emboldened in moments of duress. When all of your Stress slots are marked, you gain a +1 bonus to your Proficiency for damage rolls.</p>",
+    "description": "<p>You speak with an unmatched power and authority. You have advantage on action rolls to de-escalate violent situations or convince someone to follow your lead.</p><p>Additionally, you're emboldened in moments of duress. When all of your Stress slots are marked, you gain a +1 bonus to your Proficiency for damage rolls.</p>",
     "domain": "splendor",
     "recallCost": 1,
     "level": 3,

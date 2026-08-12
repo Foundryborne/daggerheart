@@ -483,7 +483,7 @@
       "name": "Eruption",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to erupt lava from beneath the @Lookup[@name]’s scales, filling the area within Very Close range with molten lava. All targets in that area must succeed on an Agility Reaction Roll or take <strong>4d6+6</strong> physical damage and be knocked back to Close range. This area remains lava. When a creature other than the @Lookup[@name] enters that area or acts while inside of it, they must mark 6 HP.</p>",
+        "description": "<p><strong>Spend a Fear</strong> to erupt lava from beneath the @Lookup[@name]'s scales, filling the area within Very Close range with molten lava. All targets in that area must succeed on an Agility Reaction Roll or take <strong>4d6+6</strong> physical damage and be knocked back to Close range. This area remains lava. When a creature other than the @Lookup[@name] enters that area or acts while inside of it, they must mark 6 HP.</p>",
         "resource": null,
         "actions": {
           "OpwKa8tQQoaEIZiS": {

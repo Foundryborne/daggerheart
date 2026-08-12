@@ -385,7 +385,7 @@
       "name": "The Best Muscle Money Can Buy",
       "type": "feature",
       "system": {
-        "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon 1d4+1 Tier 1 adversaries, who appear at Far range, to enforce the @Lookup[@name]’s will.</p>",
+        "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon 1d4+1 Tier 1 adversaries, who appear at Far range, to enforce the @Lookup[@name]'s will.</p>",
         "resource": null,
         "actions": {
           "9NA6vgfsv0y2tX9v": {

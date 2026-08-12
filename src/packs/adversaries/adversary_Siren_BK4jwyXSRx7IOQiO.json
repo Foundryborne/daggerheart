@@ -384,7 +384,7 @@
       "name": "Enchanting Song",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to sing a song that affects all targets within Close range. Targets must succeed on an Instinct Reaction Roll or become Entranced until they mark 2 Stress. Other @Lookup[@name]s within Close range of the target can <strong>mark a Stress</strong> to each add a +1 bonus to the Difficulty of the reaction roll. While Entranced, a target can’t act and is <em>Vulnerable</em>.</p>",
+        "description": "<p><strong>Spend a Fear</strong> to sing a song that affects all targets within Close range. Targets must succeed on an Instinct Reaction Roll or become Entranced until they mark 2 Stress. Other @Lookup[@name]s within Close range of the target can <strong>mark a Stress</strong> to each add a +1 bonus to the Difficulty of the reaction roll. While Entranced, a target can't act and is <em>Vulnerable</em>.</p>",
         "resource": null,
         "actions": {
           "FY8K8Nsg0TKAWok8": {

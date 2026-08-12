@@ -539,7 +539,7 @@
       "_id": "1dmKoSnV82sLc8xZ",
       "img": "icons/magic/nature/root-vine-leaves-green.webp",
       "system": {
-        "description": "<p>When the @Lookup[@name] makes a successful attack, you can <strong>mark a Stress</strong> to become Hidden until the @Lookup[@name]’s next attack or a PC succeeds on an Instinct Roll (14) to find them.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack, you can <strong>mark a Stress</strong> to become Hidden until the @Lookup[@name]'s next attack or a PC succeeds on an Instinct Roll (14) to find them.</p>",
         "resource": null,
         "actions": {
           "l32BjO9J0jFvD0Zy": {

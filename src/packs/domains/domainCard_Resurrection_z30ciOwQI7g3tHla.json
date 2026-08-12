@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "nZr2hsu6Q6TlFXQn",
   "system": {
-    "description": "<p></p><p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong><strong> (20)</strong>. On a success, restore one creature who has been dead no longer than 100 years to full strength. Then roll a <strong>d6</strong>. On a result of 5 or lower, place this card in your vault permanently.</p><p class=\"Body-Foundation\">On a failure, you can’t cast Resurrection again for a week.</p><p></p>",
+    "description": "<p>Make a <strong>Spellcast Roll</strong><strong> (20)</strong>. On a success, restore one creature who has been dead no longer than 100 years to full strength. Then roll a <strong>d6</strong>. On a result of 5 or lower, place this card in your vault permanently.</p><p>On a failure, you can't cast Resurrection again for a week.</p>",
     "domain": "splendor",
     "recallCost": 2,
     "level": 10,

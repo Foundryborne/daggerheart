@@ -276,7 +276,7 @@
       "name": "Crownsguard",
       "type": "feature",
       "system": {
-        "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon six Tier 3 Minions, who appear at Close range to enforce the @Lookup[@name]’s will.</p>",
+        "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon six Tier 3 Minions, who appear at Close range to enforce the @Lookup[@name]'s will.</p>",
         "resource": null,
         "actions": {
           "OJyqqCi0npye34y2": {
@@ -344,7 +344,7 @@
       "name": "Casus Belli",
       "type": "feature",
       "system": {
-        "description": "<p><em>Long-Term Countdown (8)</em>. <strong>Spend a Fear</strong> to activate after the @Lookup[@name]’s desire for war is first revealed. When it triggers, the @Lookup[@name] has a reason to rally the nation to war and the support to act on that reason. You gain [[/r 1d4]]<strong> </strong>Fear.</p>",
+        "description": "<p><em>Long-Term Countdown (8)</em>. <strong>Spend a Fear</strong> to activate after the @Lookup[@name]'s desire for war is first revealed. When it triggers, the @Lookup[@name] has a reason to rally the nation to war and the support to act on that reason. You gain [[/r 1d4]]<strong> </strong>Fear.</p>",
         "resource": null,
         "actions": {
           "CNEOOdPI4xVJ2JeP": {

@@ -245,7 +245,7 @@
       "_id": "BwuoAv3EWT0m1apk",
       "img": "icons/weapons/swords/sword-runed-glowing.webp",
       "system": {
-        "description": "<p>Damage dealt by the @Lookup[@name]’s standard attack is considered both physical and magic.</p>",
+        "description": "<p>Damage dealt by the @Lookup[@name]'s standard attack is considered both physical and magic.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,

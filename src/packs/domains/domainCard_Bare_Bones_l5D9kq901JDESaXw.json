@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "QpOL7jPbMBzH96qR",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you choose not to equip armor, you have a base Armor Score of 3 + your Strength and use the following as your base damage thresholds:</p><ul><li class=\"vertical-card-list-found\"><p><em><strong>Tier 1:</strong></em> 9/19</p></li><li class=\"vertical-card-list-found\"><p><em><strong>Tier 2:</strong></em> 11/24</p></li><li class=\"vertical-card-list-found\"><p><em><strong>Tier 3:</strong></em> 13/31</p></li><li class=\"vertical-card-list-found\"><p><em><strong>Tier 4:</strong></em> 15/38</p></li></ul>",
+    "description": "<p>When you choose not to equip armor, you have a base Armor Score of 3 + your Strength and use the following as your base damage thresholds:</p><ul><li class=\"vertical-card-list-found\"><p><em><strong>Tier 1:</strong></em> 9/19</p></li><li class=\"vertical-card-list-found\"><p><em><strong>Tier 2:</strong></em> 11/24</p></li><li class=\"vertical-card-list-found\"><p><em><strong>Tier 3:</strong></em> 13/31</p></li><li class=\"vertical-card-list-found\"><p><em><strong>Tier 4:</strong></em> 15/38</p></li></ul>",
     "domain": "valor",
     "recallCost": 0,
     "level": 1,

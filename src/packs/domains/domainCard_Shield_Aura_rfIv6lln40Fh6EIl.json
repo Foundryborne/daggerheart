@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "A00z8Q8B3aKApKzI",
   "system": {
-    "description": "<p></p><p class=\"Body-Foundation\"><strong>Mark a </strong><strong>Stress</strong> to cast a protective aura on a target within Very Close range. When the target marks an Armor Slot, they reduce the severity of the attack by an additional threshold. If this spell causes a creature who would be damaged to instead mark no Hit Points, the effect ends.        </p><p class=\"Body-Foundation\">You can only hold Shield Aura on one creature at a time.</p><p></p>",
+    "description": "<p><strong>Mark a </strong><strong>Stress</strong> to cast a protective aura on a target within Very Close range. When the target marks an Armor Slot, they reduce the severity of the attack by an additional threshold. If this spell causes a creature who would be damaged to instead mark no Hit Points, the effect ends.        </p><p>You can only hold Shield Aura on one creature at a time.</p>",
     "domain": "splendor",
     "recallCost": 2,
     "level": 8,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "vox5fIIFsOnraXgK",
         "systemPath": "actions",
-        "description": "<p><strong>Mark a Stress</strong> to cast a protective aura on a target within Very Close range. When the target marks an Armor Slot, they reduce the severity of the attack by an additional threshold. If this spell causes a creature who would be damaged to instead mark no Hit Points, the effect ends.</p><p class=\"Body-Foundation\">You can only hold Shield Aura on one creature at a time.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to cast a protective aura on a target within Very Close range. When the target marks an Armor Slot, they reduce the severity of the attack by an additional threshold. If this spell causes a creature who would be damaged to instead mark no Hit Points, the effect ends.</p><p>You can only hold Shield Aura on one creature at a time.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

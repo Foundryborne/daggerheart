@@ -5,7 +5,7 @@
   "_id": "Yij5sNyP1Ii7BAbc",
   "img": "icons/magic/holy/projectiles-blades-salvo-yellow.webp",
   "system": {
-    "description": "<p>While flying, you deal an extra 1d12 damage instead of 1d8 from your “Wings of Light” feature.</p>",
+    "description": "<p>While flying, you deal an extra 1d12 damage instead of 1d8 from your \"Wings of Light\" feature.</p>",
     "resource": null,
     "actions": {},
     "originItemType": null,

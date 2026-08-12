@@ -497,7 +497,7 @@
       "name": "Unparalleled Skill",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to deal the @Lookup[@name]’s standard attack damage to a target within Close range.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to deal the @Lookup[@name]'s standard attack damage to a target within Close range.</p>",
         "resource": null,
         "actions": {
           "MYOD2VAfdVC6hMCs": {

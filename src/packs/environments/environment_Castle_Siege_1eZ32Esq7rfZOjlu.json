@@ -170,7 +170,7 @@
       "name": "Siege Weapons (Environment Change)",
       "type": "feature",
       "system": {
-        "description": "<p><em>Consequence Countdown (6)</em>. The attacking force deploys siege weapons to try to raze the defenders’ fortifi cations. Activate the countdown when the siege begins (for a protracted siege, make this a long-term countdown instead). When it triggers, the defenders’ fortifications have been breached and the attackers fl ood inside. You gain 2 Fear, then shift to the Pitched Battle environment and spotlight it.</p><section class=\"secret\" id=\"secret-P5oJplxVBVJGtggb\"><p><em>What siege weapons are being deployed? Are they magical mundane or a mixture of both? What defenses must the characters overcome to storm the castle?</em></p></section>",
+        "description": "<p><em>Consequence Countdown (6)</em>. The attacking force deploys siege weapons to try to raze the defenders' fortifi cations. Activate the countdown when the siege begins (for a protracted siege, make this a long-term countdown instead). When it triggers, the defenders' fortifications have been breached and the attackers fl ood inside. You gain 2 Fear, then shift to the Pitched Battle environment and spotlight it.</p><section class=\"secret\" id=\"secret-P5oJplxVBVJGtggb\"><p><em>What siege weapons are being deployed? Are they magical mundane or a mixture of both? What defenses must the characters overcome to storm the castle?</em></p></section>",
         "resource": null,
         "actions": {
           "TGWI1Kvw4ZEP3QEo": {
@@ -372,7 +372,7 @@
       "name": "Collateral Damage",
       "type": "feature",
       "system": {
-        "description": "<p>When an adversary is defeated, you can <strong>spend a Fear</strong> to have a stray attack from a siege weapon hit a point on the battlefield. All targets within Very Close range of that point must make an Agility Reaction Roll.</p><ul><li><p>Targets who fail take <strong>3d8+3</strong> physical or magic damage and must mark a Stress.</p></li><li><p>Targets who succeed must mark a Stress.</p></li></ul><section id=\"secret-JdhetLsgL626ouo7\" class=\"secret\"><p><em>What debris is scattered by the attack? What is broken by the strike that can’t be easily mended?</em></p></section>",
+        "description": "<p>When an adversary is defeated, you can <strong>spend a Fear</strong> to have a stray attack from a siege weapon hit a point on the battlefield. All targets within Very Close range of that point must make an Agility Reaction Roll.</p><ul><li><p>Targets who fail take <strong>3d8+3</strong> physical or magic damage and must mark a Stress.</p></li><li><p>Targets who succeed must mark a Stress.</p></li></ul><section id=\"secret-JdhetLsgL626ouo7\" class=\"secret\"><p><em>What debris is scattered by the attack? What is broken by the strike that can't be easily mended?</em></p></section>",
         "resource": null,
         "actions": {
           "r5JN5oFYL5DC6Qqw": {

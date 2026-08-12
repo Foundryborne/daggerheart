@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "6gA7SmNIblkMaYgr",
   "system": {
-    "description": "<p class=\"Body-Foundation\">You can peek into the minds of others. <strong>Spend a Hope</strong> to read the vague surface thoughts of a target within Far range. Make a<strong> Spellcast Roll </strong>against the target to delve for deeper, more hidden thoughts.</p><p class=\"Body-Foundation\">On a roll with Fear, the target might, at the GM’s discretion, become aware that you’re reading their thoughts.</p>",
+    "description": "<p>You can peek into the minds of others. <strong>Spend a Hope</strong> to read the vague surface thoughts of a target within Far range. Make a<strong> Spellcast Roll </strong>against the target to delve for deeper, more hidden thoughts.</p><p>On a roll with Fear, the target might, at the GM's discretion, become aware that you're reading their thoughts.</p>",
     "domain": "grace",
     "recallCost": 2,
     "level": 5,

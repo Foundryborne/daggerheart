@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "hoDIPBzwYPxiSXGU",
   "system": {
-    "description": "<p></p><p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong><strong> (13)</strong>. On a success, you can create a temporary curtain of darkness between two points within Far range. Only you can see through this darkness. You’re considered <em>Hidden</em> to adversaries on the other side of the veil, and you have advantage on attacks you make through the darkness. The veil remains until you cast another spell.</p><p></p>",
+    "description": "<p>Make a <strong>Spellcast Roll</strong><strong> (13)</strong>. On a success, you can create a temporary curtain of darkness between two points within Far range. Only you can see through this darkness. You're considered <em>Hidden</em> to adversaries on the other side of the veil, and you have advantage on attacks you make through the darkness. The veil remains until you cast another spell.</p>",
     "domain": "midnight",
     "recallCost": 1,
     "level": 3,

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "sGCKwmomutMTv0Xs",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (15)</strong> to magically empower your aura. On a success, <strong>spend 2 Hope</strong> to make your Presence equal to your Spellcast trait until your next long rest.</p><p class=\"Body-Foundation\">While this spell is active, an adversary must mark a Stress when they target you with an attack.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll (15)</strong> to magically empower your aura. On a success, <strong>spend 2 Hope</strong> to make your Presence equal to your Spellcast trait until your next long rest.</p><p>While this spell is active, an adversary must mark a Stress when they target you with an attack.</p>",
     "domain": "splendor",
     "recallCost": 2,
     "level": 9,

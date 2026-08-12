@@ -242,7 +242,7 @@
       "name": "Grindletooth Venom",
       "type": "feature",
       "system": {
-        "description": "<p>Targets who mark HP from the @Lookup[@name]’s attacks are Vulnerable until they clear a HP.</p>",
+        "description": "<p>Targets who mark HP from the @Lookup[@name]'s attacks are Vulnerable until they clear a HP.</p>",
         "resource": null,
         "actions": {
           "L83tU1TgmqoH9SSn": {

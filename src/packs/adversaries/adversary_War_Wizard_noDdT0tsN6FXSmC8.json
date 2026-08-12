@@ -315,7 +315,7 @@
       "name": "Refresh Warding Sphere",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to refresh the @Lookup[@name]’s “Warding Sphere” reaction.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to refresh the @Lookup[@name]'s \"Warding Sphere\" reaction.</p>",
         "resource": null,
         "actions": {
           "FCuksmAGRC4061zm": {
@@ -383,7 +383,7 @@
       "name": "Eruption",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> and choose a point within Far range. A Very Close area around that point erupts into impassable terrain. All targets within that area must make an Agility Reaction Roll (14). Targets who fail take <strong>2d10</strong> physical damage and are thrown out of the area. Targets who succeed take half damage and aren’t moved.</p>",
+        "description": "<p><strong>Spend a Fear</strong> and choose a point within Far range. A Very Close area around that point erupts into impassable terrain. All targets within that area must make an Agility Reaction Roll (14). Targets who fail take <strong>2d10</strong> physical damage and are thrown out of the area. Targets who succeed take half damage and aren't moved.</p>",
         "resource": null,
         "actions": {
           "vnMq4NuQO6GYxWhM": {
@@ -694,7 +694,7 @@
       "name": "Warding Sphere",
       "type": "feature",
       "system": {
-        "description": "<p>When the @Lookup[@name] takes damage from an attack within Close range, deal <strong>2d6</strong> magic damage to the attacker. This reaction can’t be used again until the @Lookup[@name] refreshes it with their “Refresh Warding Sphere” action.</p>",
+        "description": "<p>When the @Lookup[@name] takes damage from an attack within Close range, deal <strong>2d6</strong> magic damage to the attacker. This reaction can't be used again until the @Lookup[@name] refreshes it with their \"Refresh Warding Sphere\" action.</p>",
         "resource": null,
         "actions": {
           "2fHrpaZW9toi6nin": {

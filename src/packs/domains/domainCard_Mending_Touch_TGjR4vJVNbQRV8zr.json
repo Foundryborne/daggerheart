@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "LlWJaBZOKh0Ot2kD",
   "system": {
-    "description": "<p class=\"Body-Foundation\">You lay your hands upon a creature and channel healing magic to close their wounds. When you can take a few minutes to focus on the target you’re helping, you can <strong>spend 2 Hope</strong> to clear a Hit Point or a Stress on them.</p><p class=\"Body-Foundation\">Once per long rest, when you spend this healing time learning something new about them or revealing something about yourself, you can clear 2 Hit Points or 2 Stress on them instead.</p>",
+    "description": "<p>You lay your hands upon a creature and channel healing magic to close their wounds. When you can take a few minutes to focus on the target you're helping, you can <strong>spend 2 Hope</strong> to clear a Hit Point or a Stress on them.</p><p>Once per long rest, when you spend this healing time learning something new about them or revealing something about yourself, you can clear 2 Hit Points or 2 Stress on them instead.</p>",
     "domain": "splendor",
     "recallCost": 1,
     "level": 1,
@@ -182,7 +182,7 @@
         "type": "healing",
         "_id": "FsbOSV8eR2PEb1aS",
         "systemPath": "actions",
-        "description": "<p>When you can take a few minutes to focus on the target you’re helping, you can <strong>spend 2 Hope</strong> to clear a Hit Point or a Stress on them.</p><p class=\"Body-Foundation\">Once per long rest, when you spend this healing time learning something new about them or revealing something about yourself, you can clear 2 Hit Points or 2 Stress on them instead.</p>",
+        "description": "<p>When you can take a few minutes to focus on the target you’re helping, you can <strong>spend 2 Hope</strong> to clear a Hit Point or a Stress on them.</p><p>Once per long rest, when you spend this healing time learning something new about them or revealing something about yourself, you can clear 2 Hit Points or 2 Stress on them instead.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -274,7 +274,7 @@
         "type": "healing",
         "_id": "mqDV9s6oMRQjJF4U",
         "systemPath": "actions",
-        "description": "<p>When you can take a few minutes to focus on the target you’re helping, you can <strong>spend 2 Hope</strong> to clear a Hit Point or a Stress on them.</p><p class=\"Body-Foundation\">Once per long rest, when you spend this healing time learning something new about them or revealing something about yourself, you can clear 2 Hit Points or 2 Stress on them instead.</p>",
+        "description": "<p>When you can take a few minutes to focus on the target you’re helping, you can <strong>spend 2 Hope</strong> to clear a Hit Point or a Stress on them.</p><p>Once per long rest, when you spend this healing time learning something new about them or revealing something about yourself, you can clear 2 Hit Points or 2 Stress on them instead.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

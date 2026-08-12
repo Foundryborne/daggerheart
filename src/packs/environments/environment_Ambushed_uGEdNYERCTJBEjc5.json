@@ -122,7 +122,7 @@
       "name": "Relative Strength",
       "type": "feature",
       "system": {
-        "description": "<p>The Difficulty of this environment equals that of the adversary with the highest Difficulty.</p><section class=\"secret\" id=\"secret-FZokhR7CFr2tXkGn\"><p><em>Who cues the ambush? What makes it clear they’re in charge?</em></p></section>",
+        "description": "<p>The Difficulty of this environment equals that of the adversary with the highest Difficulty.</p><section class=\"secret\" id=\"secret-FZokhR7CFr2tXkGn\"><p><em>Who cues the ambush? What makes it clear they're in charge?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,

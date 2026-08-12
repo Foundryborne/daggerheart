@@ -5,7 +5,7 @@
   "_id": "hxZ0sgoFJubh5aj6",
   "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
   "system": {
-    "description": "<p><em>A Fallen God, wreathed in rage and resentment, bearing millennia of experience in breaking heroes’ spirits.</em></p>",
+    "description": "<p><em>A Fallen God, wreathed in rage and resentment, bearing millennia of experience in breaking heroes' spirits.</em></p>",
     "resistance": {
       "physical": {
         "resistance": false,

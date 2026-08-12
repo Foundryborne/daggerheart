@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "LlWJaBZOKh0Ot2kD",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, <strong>spend a Hope</strong> to send a bolt of shimmering light toward them, dealing <strong>d8+2</strong> magic damage using your Proficiency. The target becomes temporarily <em>Vulnerable</em> and glows brightly until this condition is cleared.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, <strong>spend a Hope</strong> to send a bolt of shimmering light toward them, dealing <strong>d8+2</strong> magic damage using your Proficiency. The target becomes temporarily <em>Vulnerable</em> and glows brightly until this condition is cleared.</p>",
     "domain": "splendor",
     "recallCost": 1,
     "level": 1,

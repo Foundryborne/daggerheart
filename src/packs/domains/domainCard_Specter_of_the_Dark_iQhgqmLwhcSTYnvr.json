@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "8qr1Y2tW3vLwNZOg",
   "system": {
-    "description": "<p class=\"Body-Foundation\"><strong>Mark a Stress</strong> to become <em>Spectral </em>until you make an action roll targeting another creature. While <em>Spectral</em>, you’re immune to physical damage and can float and pass through solid objects. Other creatures can still see you while you’re in this form.</p>",
+    "description": "<p><strong>Mark a Stress</strong> to become <em>Spectral </em>until you make an action roll targeting another creature. While <em>Spectral</em>, you're immune to physical damage and can float and pass through solid objects. Other creatures can still see you while you're in this form.</p>",
     "domain": "midnight",
     "recallCost": 1,
     "level": 10,

@@ -195,7 +195,7 @@
       "name": "Sticky Fingers",
       "type": "feature",
       "system": {
-        "description": "<p>A thief tries to steal something from a PC. The PC must succeed on an Instinct Roll to notice the thief or lose an item of the GM’s choice as the thief escapes to a Close distance. To retrieve the stolen item, the PCs must complete a <em>Progress Countdown (6)</em> to chase down the thief before the thief completes a <em>Consequence Countdown (4)</em> and escapes to their hideout.</p><section class=\"secret\" id=\"secret-UHBqg2AqmIAxgB15\"><p><em>What drove this person to pickpocketing? Where is the thief’s hideout and how has it avoided notice?</em></p></section>",
+        "description": "<p>A thief tries to steal something from a PC. The PC must succeed on an Instinct Roll to notice the thief or lose an item of the GM's choice as the thief escapes to a Close distance. To retrieve the stolen item, the PCs must complete a <em>Progress Countdown (6)</em> to chase down the thief before the thief completes a <em>Consequence Countdown (4)</em> and escapes to their hideout.</p><section class=\"secret\" id=\"secret-UHBqg2AqmIAxgB15\"><p><em>What drove this person to pickpocketing? Where is the thief's hideout and how has it avoided notice?</em></p></section>",
         "resource": null,
         "actions": {
           "GMy6OcMQnNJDDmtV": {
@@ -334,7 +334,7 @@
       "name": "Crowd Closes In",
       "type": "feature",
       "system": {
-        "description": "<p> When one of the PCs splits from the group, the crowds shift and cut them off  from the party. </p><section id=\"secret-JECVv19GdEo8ngkq\" class=\"secret\"><p><em>Where does the crowd’s movement carry them? How do they feel about being alone but surrounded?</em></p></section>",
+        "description": "<p> When one of the PCs splits from the group, the crowds shift and cut them off  from the party. </p><section id=\"secret-JECVv19GdEo8ngkq\" class=\"secret\"><p><em>Where does the crowd's movement carry them? How do they feel about being alone but surrounded?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,

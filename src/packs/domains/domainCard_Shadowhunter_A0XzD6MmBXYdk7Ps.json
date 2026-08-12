@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "taM81THa8h6Bv2Xa",
   "system": {
-    "description": "<p class=\"Body\">Your prowess is enhanced under the cover of shadow. While you’re shrouded in low light or darkness, you gain a +1 bonus to your Evasion and make attack rolls with advantage.</p>",
+    "description": "<p>Your prowess is enhanced under the cover of shadow. While you're shrouded in low light or darkness, you gain a +1 bonus to your Evasion and make attack rolls with advantage.</p>",
     "domain": "midnight",
     "recallCost": 2,
     "level": 8,

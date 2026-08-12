@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "uXGugK72AffddFdH",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, deal <strong>d6+4</strong> magic damage using your Proficiency. Additionally, <strong>mark 2 or more Stress</strong> to make them permanently <em>Corroded</em>. While a target is <em>Corroded</em>, they gain a −1 penalty to their Difficulty for every 2 Stress you spent. This condition can stack.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, deal <strong>d6+4</strong> magic damage using your Proficiency. Additionally, <strong>mark 2 or more Stress</strong> to make them permanently <em>Corroded</em>. While a target is <em>Corroded</em>, they gain a -1 penalty to their Difficulty for every 2 Stress you spent. This condition can stack.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 3,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "WqHLiHxP2enmJaHx",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, deal <strong>d6+4</strong> magic damage using your Proficiency.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, deal <strong>d6+4</strong> magic damage using your Proficiency.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],

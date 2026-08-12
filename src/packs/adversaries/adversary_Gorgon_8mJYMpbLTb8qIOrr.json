@@ -310,7 +310,7 @@
       "name": "Sunsear Arrows",
       "type": "feature",
       "system": {
-        "description": "<p>When the @Lookup[@name] makes a successful standard attack, the target Glows until the end of the scene and can’t become <em>Hidden</em>. Attack rolls made against a Glowing target have advantage.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful standard attack, the target Glows until the end of the scene and can't become <em>Hidden</em>. Attack rolls made against a Glowing target have advantage.</p>",
         "resource": null,
         "actions": {
           "fnTd5BjBAK46vRRk": {
@@ -427,7 +427,7 @@
       "name": "Crown of Serpents",
       "type": "feature",
       "system": {
-        "description": "<p>Make an attack roll against a target within Melee range using the @Lookup[@name]’s protective snakes. On a success, mark a Stress to deal <strong>2d10+4</strong> physical damage and the target must mark a Stress.</p>",
+        "description": "<p>Make an attack roll against a target within Melee range using the @Lookup[@name]'s protective snakes. On a success, mark a Stress to deal <strong>2d10+4</strong> physical damage and the target must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "ryfj8eiYYNGJPtBg": {

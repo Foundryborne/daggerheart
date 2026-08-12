@@ -364,7 +364,7 @@
       "name": "Fearsome Presence",
       "type": "feature",
       "system": {
-        "description": "<p>PCs can’t spend Hope to use features against the @Lookup[@name].</p>",
+        "description": "<p>PCs can't spend Hope to use features against the @Lookup[@name].</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -607,7 +607,7 @@
       "name": "Skilled Opportunist",
       "type": "feature",
       "system": {
-        "description": "<p>When another adversary deals damage to a target within Very Close range of the @Lookup[@name], you can <strong>spend a Fear</strong> to add the @Lookup[@name]’s standard attack damage to the damage roll.</p>",
+        "description": "<p>When another adversary deals damage to a target within Very Close range of the @Lookup[@name], you can <strong>spend a Fear</strong> to add the @Lookup[@name]'s standard attack damage to the damage roll.</p>",
         "resource": null,
         "actions": {
           "To2z7XQItxcMxKBp": {

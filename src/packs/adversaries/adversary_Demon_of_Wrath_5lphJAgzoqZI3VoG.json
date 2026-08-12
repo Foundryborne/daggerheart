@@ -242,7 +242,7 @@
       "name": "Anger Unrelenting",
       "type": "feature",
       "system": {
-        "description": "<p>The @Lookup[@name]’s attacks deal direct damage.</p>",
+        "description": "<p>The @Lookup[@name]'s attacks deal direct damage.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,

@@ -497,7 +497,7 @@
       "name": "We Are All One",
       "type": "feature",
       "system": {
-        "description": "<p>When an ally dies within Close range, you can spend a Fear to clear 2 HP and 2 Stress as the fallen ally’s life force is returned to the forest.</p>",
+        "description": "<p>When an ally dies within Close range, you can spend a Fear to clear 2 HP and 2 Stress as the fallen ally's life force is returned to the forest.</p>",
         "resource": null,
         "actions": {
           "SrhuW3mfOuqg1ys6": {

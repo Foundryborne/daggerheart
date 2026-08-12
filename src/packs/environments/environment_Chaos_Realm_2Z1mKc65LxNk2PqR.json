@@ -131,7 +131,7 @@
       "name": "Impossible Architecture",
       "type": "feature",
       "system": {
-        "description": "<p>Up is down, down is right, right is starward. Gravity and directionality themselves are in flux, and any attempt to move through this realm is an odyssey unto itself, requiring a <em>Progress Countdown (8)</em>. On a failure, a PC must mark a Stress in addition to the roll’s other consequences.</p><section class=\"secret\" id=\"secret-j76pJfYX7Cbt61Pq\"><p><em>What does it feel like to move in a space so alien to the Mortal Realm? What landmark or point do you fixate on to maintain your balance? What bizarre landmarks do you traverse on your journey?</em></p></section>",
+        "description": "<p>Up is down, down is right, right is starward. Gravity and directionality themselves are in flux, and any attempt to move through this realm is an odyssey unto itself, requiring a <em>Progress Countdown (8)</em>. On a failure, a PC must mark a Stress in addition to the roll's other consequences.</p><section class=\"secret\" id=\"secret-j76pJfYX7Cbt61Pq\"><p><em>What does it feel like to move in a space so alien to the Mortal Realm? What landmark or point do you fixate on to maintain your balance? What bizarre landmarks do you traverse on your journey?</em></p></section>",
         "resource": null,
         "actions": {
           "hli84bleKqYoU7YL": {
@@ -564,7 +564,7 @@
       "name": "Outer Realms Predators",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to summon an @UUID[Compendium.daggerheart.adversaries.Actor.A0SeeDzwjvqOsyof]{Outer Realms Abomination}, an@UUID[Compendium.daggerheart.adversaries.Actor.ms6nuOl3NFkhPj1k]{Outer Realms Corrupter}, and [[/r 2d6]] @UUID[Compendium.daggerheart.adversaries.Actor.moJhHgKqTKPS2WYS]{Outer Realms Thrall}, who appear at Close range of a chosen PC in defiance of logic and causality. Immediately spotlight one of these adversaries, and you can spend an additional Fear to automatically succeed on that adversary’s standard attack.</p><section class=\"secret\" id=\"secret-psXRRXLoibTKFpaW\"><p><em>What halfconsumed remnants of the shattered world do these monstrosities cast aside in pursuit of living flesh? What jagged refl ections of former personhood do you catch between moments of unquestioning malice?</em></p></section>",
+        "description": "<p><strong>Spend a Fear</strong> to summon an @UUID[Compendium.daggerheart.adversaries.Actor.A0SeeDzwjvqOsyof]{Outer Realms Abomination}, an@UUID[Compendium.daggerheart.adversaries.Actor.ms6nuOl3NFkhPj1k]{Outer Realms Corrupter}, and [[/r 2d6]] @UUID[Compendium.daggerheart.adversaries.Actor.moJhHgKqTKPS2WYS]{Outer Realms Thrall}, who appear at Close range of a chosen PC in defiance of logic and causality. Immediately spotlight one of these adversaries, and you can spend an additional Fear to automatically succeed on that adversary's standard attack.</p><section class=\"secret\" id=\"secret-psXRRXLoibTKFpaW\"><p><em>What halfconsumed remnants of the shattered world do these monstrosities cast aside in pursuit of living flesh? What jagged refl ections of former personhood do you catch between moments of unquestioning malice?</em></p></section>",
         "resource": null,
         "actions": {
           "KCzdCu2KhAx9KyhT": {
@@ -640,7 +640,7 @@
       "name": "Disorientating Reality",
       "type": "feature",
       "system": {
-        "description": "<p>On a result with Fear, you can ask the PC to describe which of their fears the Chaos Realm evokes as a vision of reality unmakes and reconstitutes itself to the PC. The PC loses a Hope. If it is their last Hope, you gain a Fear. </p><section id=\"secret-0TIAabOXzWKwGdZ4\" class=\"secret\"><p><em>What moment do they see? If it’s a memory how is it warped by this place? How hard will it be to hold on to the real memory?</em></p></section>",
+        "description": "<p>On a result with Fear, you can ask the PC to describe which of their fears the Chaos Realm evokes as a vision of reality unmakes and reconstitutes itself to the PC. The PC loses a Hope. If it is their last Hope, you gain a Fear. </p><section id=\"secret-0TIAabOXzWKwGdZ4\" class=\"secret\"><p><em>What moment do they see? If it's a memory how is it warped by this place? How hard will it be to hold on to the real memory?</em></p></section>",
         "resource": null,
         "actions": {
           "YIOvMuMMML7WeMWs": {

@@ -268,7 +268,7 @@
       "_id": "iiOjamlZIuhpDC8W",
       "img": "icons/magic/death/skull-energy-light-purple.webp",
       "system": {
-        "description": "<p>Targets who mark HP from the @Lookup[@name]’s attacks must also mark a Stress.</p>",
+        "description": "<p>Targets who mark HP from the @Lookup[@name]'s attacks must also mark a Stress.</p>",
         "resource": null,
         "actions": {
           "JUw16Jag9uTfBmKZ": {

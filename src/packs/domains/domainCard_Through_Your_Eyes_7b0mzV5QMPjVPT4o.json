@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "thP6nUk0nkrNcpXY",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Choose a target within Very Far range. You can see through their eyes and hear through their ears. You can transition between using your own senses or the target’s freely until you cast another spell or until your next rest.</p>",
+    "description": "<p>Choose a target within Very Far range. You can see through their eyes and hear through their ears. You can transition between using your own senses or the target's freely until you cast another spell or until your next rest.</p>",
     "domain": "grace",
     "recallCost": 1,
     "level": 4,

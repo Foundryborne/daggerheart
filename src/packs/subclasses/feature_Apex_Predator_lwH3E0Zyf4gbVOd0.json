@@ -5,7 +5,7 @@
   "_id": "lwH3E0Zyf4gbVOd0",
   "img": "icons/creatures/mammals/bat-giant-tattered-purple.webp",
   "system": {
-    "description": "<p>Before you make an attack roll against your Focus, you can spend a Hope. On a successful attack, you remove a Fear from the GM’s Fear pool.</p>",
+    "description": "<p>Before you make an attack roll against your Focus, you can spend a Hope. On a successful attack, you remove a Fear from the GM's Fear pool.</p>",
     "resource": null,
     "actions": {
       "LHDsuveQznbcFUhV": {

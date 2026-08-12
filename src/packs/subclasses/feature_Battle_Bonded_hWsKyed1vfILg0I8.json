@@ -5,7 +5,7 @@
   "_id": "hWsKyed1vfILg0I8",
   "img": "icons/creatures/mammals/humanoid-wolf-dog-blue.webp",
   "system": {
-    "description": "<p>When an adversary attacks you while they’re within your companion’s Melee range, you gain a +2 bonus to your Evasion against the attack.</p>",
+    "description": "<p>When an adversary attacks you while they're within your companion's Melee range, you gain a +2 bonus to your Evasion against the attack.</p>",
     "resource": null,
     "actions": {},
     "originItemType": null,

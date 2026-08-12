@@ -236,7 +236,7 @@
       "name": "Water Jet",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to attack a target within Very Close range. On a success, deal <strong>2d4+7</strong> physical damage and the target’s next action has disadvantage. On a failure, the target must mark a Stress.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to attack a target within Very Close range. On a success, deal <strong>2d4+7</strong> physical damage and the target's next action has disadvantage. On a failure, the target must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "Gk5tcqshtwP4JsKS": {

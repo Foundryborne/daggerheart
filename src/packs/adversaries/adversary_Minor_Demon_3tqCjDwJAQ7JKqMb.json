@@ -599,7 +599,7 @@
       "_id": "bpLBGTW1DmXPgIcx",
       "img": "icons/magic/death/skull-energy-light-white.webp",
       "system": {
-        "description": "<p>Before rolling damage for the @Lookup[@name]’s attack, you can <strong>mark a Stress</strong> to gain a bonus to the damage roll equal to the @Lookup[@name]’s current number of marked HP.</p>",
+        "description": "<p>Before rolling damage for the @Lookup[@name]'s attack, you can <strong>mark a Stress</strong> to gain a bonus to the damage roll equal to the @Lookup[@name]'s current number of marked HP.</p>",
         "resource": null,
         "actions": {
           "vZq3iaJrMzLYbqQN": {

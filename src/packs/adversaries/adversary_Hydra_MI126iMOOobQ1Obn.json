@@ -274,7 +274,7 @@
       "name": "Relentless (X)",
       "type": "feature",
       "system": {
-        "description": "<p>The @Lookup[@name] can be spotlighted X times per GM turn, where X is the @Lookup[@name]’s number of heads. Spend Fear as usual to spotlight them.</p><section class=\"secret\" id=\"secret-AOW6OiOMzL5FUfWv\"><p><br>Note: Automation is not added so manually spend fear as per text.</p></section>",
+        "description": "<p>The @Lookup[@name] can be spotlighted X times per GM turn, where X is the @Lookup[@name]'s number of heads. Spend Fear as usual to spotlight them.</p><section class=\"secret\" id=\"secret-AOW6OiOMzL5FUfWv\"><p><br>Note: Automation is not added so manually spend fear as per text.</p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -573,7 +573,7 @@
       "name": "Magical Weakness",
       "type": "feature",
       "system": {
-        "description": "<p>When the @Lookup[@name] takes magic damage, they become Dazed until the next roll with Fear. While Dazed, they can’t use their Regeneration action but are immune to magic damage.</p>",
+        "description": "<p>When the @Lookup[@name] takes magic damage, they become Dazed until the next roll with Fear. While Dazed, they can't use their Regeneration action but are immune to magic damage.</p>",
         "resource": null,
         "actions": {
           "heAkvOuQG1EJmVbb": {

@@ -236,7 +236,7 @@
       "name": "Slow Firing",
       "type": "feature",
       "system": {
-        "description": "<p>When you spotlight the @Lookup[@name] and they don’t have a token on their stat block, they can’t make a standard attack. Place a token on their stat block and describe what they’re preparing to do. When you spotlight the @Lookup[@name] and they have a token on their stat block, clear the token and they can attack.</p>",
+        "description": "<p>When you spotlight the @Lookup[@name] and they don't have a token on their stat block, they can't make a standard attack. Place a token on their stat block and describe what they're preparing to do. When you spotlight the @Lookup[@name] and they have a token on their stat block, clear the token and they can attack.</p>",
         "resource": {
           "type": "simple",
           "value": 0,
@@ -392,7 +392,7 @@
       "name": "Concentrate Fire",
       "type": "feature",
       "system": {
-        "description": "<p>When another adversary deals damage to a target within Far range of the @Lookup[@name], you can <strong>mark a Stress</strong> to add the @Lookup[@name]’s standard attack damage to the damage roll.</p>",
+        "description": "<p>When another adversary deals damage to a target within Far range of the @Lookup[@name], you can <strong>mark a Stress</strong> to add the @Lookup[@name]'s standard attack damage to the damage roll.</p>",
         "resource": null,
         "actions": {
           "3cqPKBRtwxtLwDpN": {

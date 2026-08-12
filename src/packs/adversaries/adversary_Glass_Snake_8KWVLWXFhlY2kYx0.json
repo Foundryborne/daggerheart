@@ -238,7 +238,7 @@
       "_id": "Efa6t9Ow8b1DRyZV",
       "img": "icons/skills/melee/shield-damaged-broken-gold.webp",
       "system": {
-        "description": "<p>On a successful attack within Melee range against the @Lookup[@name], the attacker must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
+        "description": "<p>On a successful attack within Melee range against the @Lookup[@name], the attacker must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can't mark an Armor Slot, they must mark an additional HP.</p>",
         "resource": null,
         "actions": {
           "H1nUSOudbtha1lnC": {

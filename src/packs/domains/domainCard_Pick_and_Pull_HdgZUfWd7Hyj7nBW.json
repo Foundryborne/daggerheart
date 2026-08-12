@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "sCiN7DoysdKceIMd",
   "system": {
-    "description": "<p class=\"Body-Foundation\">You have advantage on action rolls to pick nonmagical locks, disarm nonmagical traps, or steal items from a target (either through stealth or by force).</p>",
+    "description": "<p>You have advantage on action rolls to pick nonmagical locks, disarm nonmagical traps, or steal items from a target (either through stealth or by force).</p>",
     "domain": "midnight",
     "recallCost": 0,
     "level": 1,

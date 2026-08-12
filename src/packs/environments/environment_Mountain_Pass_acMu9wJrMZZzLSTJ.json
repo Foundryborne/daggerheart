@@ -286,7 +286,7 @@
       "name": "Raptor Nest",
       "type": "feature",
       "system": {
-        "description": "<p>When the PCs enter the raptors’ hunting grounds, two @UUID[Compendium.daggerheart.adversaries.Actor.OMQ0v6PE8s1mSU0K]{Giant Eagles} appear at Very Far range of a chosen PC, identifying the PCs as likely prey. </p><section id=\"secret-aU19zKlmhVBdS2oF\" class=\"secret\"><p><em>How long has it been since the eagles last found prey? Do they have eggs in their nest or unfl edged young?</em></p></section>",
+        "description": "<p>When the PCs enter the raptors' hunting grounds, two @UUID[Compendium.daggerheart.adversaries.Actor.OMQ0v6PE8s1mSU0K]{Giant Eagles} appear at Very Far range of a chosen PC, identifying the PCs as likely prey. </p><section id=\"secret-aU19zKlmhVBdS2oF\" class=\"secret\"><p><em>How long has it been since the eagles last found prey? Do they have eggs in their nest or unfl edged young?</em></p></section>",
         "resource": null,
         "actions": {
           "88MyOC3IRcct6VLk": {
@@ -345,7 +345,7 @@
       "name": "Icy Winds",
       "type": "feature",
       "system": {
-        "description": "<p><em>Countdown (Loop 4)</em>. When the PCs enter the mountain pass, activate the countdown. When it triggers, all characters traveling through the pass must succeed on a Strength Reaction Roll or mark a Stress. A PC wearing clothes appropriate for extreme cold gains advantage on these rolls.</p><section class=\"secret\" id=\"secret-FsJMzj3ZZuf134s2\"><p><em>What parts of the PC’s bodies go numb fi rst? How do they try to keep warm as they press forward?</em></p></section>",
+        "description": "<p><em>Countdown (Loop 4)</em>. When the PCs enter the mountain pass, activate the countdown. When it triggers, all characters traveling through the pass must succeed on a Strength Reaction Roll or mark a Stress. A PC wearing clothes appropriate for extreme cold gains advantage on these rolls.</p><section class=\"secret\" id=\"secret-FsJMzj3ZZuf134s2\"><p><em>What parts of the PC's bodies go numb fi rst? How do they try to keep warm as they press forward?</em></p></section>",
         "resource": null,
         "actions": {
           "kDV2h9DhO6fEDcjl": {

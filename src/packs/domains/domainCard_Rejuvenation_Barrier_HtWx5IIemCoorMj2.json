@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "qY4Zqc1Ch6p317uK",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (15)</strong>. Once per rest on a success, create a temporary barrier of protective energy around you at Very Close range. You and all allies within the barrier when this spell is cast clear <strong>1d4</strong> Hit Points. While the barrier is up, you and all allies within have resistance to physical damage from outside the barrier.</p><p class=\"Body-Foundation\">When you move, the barrier follows you.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll (15)</strong>. Once per rest on a success, create a temporary barrier of protective energy around you at Very Close range. You and all allies within the barrier when this spell is cast clear <strong>1d4</strong> Hit Points. While the barrier is up, you and all allies within have resistance to physical damage from outside the barrier.</p><p>When you move, the barrier follows you.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 8,

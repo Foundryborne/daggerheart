@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "Abn46nCQst6kpGeA",
   "system": {
-    "description": "<p class=\"Body-Foundation\"><strong>Spend a Hope</strong> to summon a humanoid-sized spirit that can move or carry things for you until your next rest.</p><p class=\"Body-Foundation\">You can also send it to attack an adversary. When you do, make a <strong>Spellcast Roll</strong> against a target within Very Far range. On a success, the spirit moves into Melee range with that target. Roll a number of <strong>d6s</strong> equal to your Spellcast trait and deal that much magic damage to the target. The spirit then dissipates. You can only have one spirit at a time.</p>",
+    "description": "<p><strong>Spend a Hope</strong> to summon a humanoid-sized spirit that can move or carry things for you until your next rest.</p><p>You can also send it to attack an adversary. When you do, make a <strong>Spellcast Roll</strong> against a target within Very Far range. On a success, the spirit moves into Melee range with that target. Roll a number of <strong>d6s</strong> equal to your Spellcast trait and deal that much magic damage to the target. The spirit then dissipates. You can only have one spirit at a time.</p>",
     "domain": "midnight",
     "recallCost": 1,
     "level": 2,

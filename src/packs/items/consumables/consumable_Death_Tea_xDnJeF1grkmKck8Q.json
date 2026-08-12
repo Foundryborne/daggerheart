@@ -4,7 +4,7 @@
   "_id": "xDnJeF1grkmKck8Q",
   "img": "icons/consumables/drinks/wine-amphora-clay-gray.webp",
   "system": {
-    "description": "<p>After you drink this tea, you instantly kill your target when you critically succeed on an attack. If you don’t critically succeed on an attack before your next long rest, you die.</p>",
+    "description": "<p>After you drink this tea, you instantly kill your target when you critically succeed on an attack. If you don't critically succeed on an attack before your next long rest, you die.</p>",
     "quantity": 1,
     "actions": {
       "U7da5R4pgVkEQJVj": {

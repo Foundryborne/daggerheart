@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "eR7sP5jQwfCLORUe",
   "system": {
-    "description": "<p></p><p class=\"Body-Foundation\">When you Help an Ally, they can spend a Hope to add one of your Experiences to their roll alongside your advantage die. </p><p class=\"Body-Foundation\">When making a Tag Team Roll, you can roll a <strong>d20</strong> as your Hope Die.</p><p></p>",
+    "description": "<p>When you Help an Ally, they can spend a Hope to add one of your Experiences to their roll alongside your advantage die. </p><p>When making a Tag Team Roll, you can roll a <strong>d20</strong> as your Hope Die.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 3,

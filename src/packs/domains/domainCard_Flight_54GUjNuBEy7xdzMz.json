@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "mOv6BGhJAeGrzA84",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (15)</strong>. On a success, place a number of tokens equal to your Agility on this card (minimum 1). When you make an action roll while flying, spend a token from this card. After the action that spends the last token is resolved, you descend to the ground directly below you.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll (15)</strong>. On a success, place a number of tokens equal to your Agility on this card (minimum 1). When you make an action roll while flying, spend a token from this card. After the action that spends the last token is resolved, you descend to the ground directly below you.</p>",
     "domain": "arcana",
     "recallCost": 1,
     "level": 3,

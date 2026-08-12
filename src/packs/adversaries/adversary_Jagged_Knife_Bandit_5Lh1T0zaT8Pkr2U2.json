@@ -42,7 +42,7 @@
       }
     },
     "tier": 1,
-    "description": "<p>A cunning criminal in a cloak bearing one of the gang’s iconic knives.</p>",
+    "description": "<p>A cunning criminal in a cloak bearing one of the gang's iconic knives.</p>",
     "motivesAndTactics": "Escape, profi t, steal, throw smoke",
     "attack": {
       "name": "Daggers",

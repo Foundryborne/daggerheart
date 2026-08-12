@@ -1352,7 +1352,7 @@
       "name": "Overcharge",
       "type": "feature",
       "system": {
-        "description": "<p>Before rolling damage for the @Lookup[@name]’s attack, you can <strong>mark a Stress</strong> to add a <strong>d6</strong> to the damage roll. Additionally, you gain a Fear.</p>",
+        "description": "<p>Before rolling damage for the @Lookup[@name]'s attack, you can <strong>mark a Stress</strong> to add a <strong>d6</strong> to the damage roll. Additionally, you gain a Fear.</p>",
         "resource": null,
         "actions": {
           "3XOvKoYz4CqMNrU9": {

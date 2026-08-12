@@ -365,7 +365,7 @@
       "name": "Bend Ears",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to influence an NPC within Melee range with whispered words. That target’s opinion on one matter shifts toward the @Lookup[@name]’s preference unless it is in direct opposition to the target’s motives.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to influence an NPC within Melee range with whispered words. That target's opinion on one matter shifts toward the @Lookup[@name]'s preference unless it is in direct opposition to the target's motives.</p>",
         "resource": null,
         "actions": {
           "JNFTnARlTAKermLx": {

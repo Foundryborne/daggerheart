@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "u5Lq2kfC8LlDAGDC",
   "system": {
-    "description": "<p class=\"Body-Foundation\"><strong>Spend any number of Hope</strong> to conjure that many magical steeds (such as horses, camels, or elephants) that you and your allies can ride until your next long rest or the steeds take any damage. The steeds double your land speed while traveling and, when in danger, allow you to move within Far range without having to roll. Creatures riding a steed gain a −2 penalty to attack rolls and a +2 bonus to damage rolls.</p>",
+    "description": "<p><strong>Spend any number of Hope</strong> to conjure that many magical steeds (such as horses, camels, or elephants) that you and your allies can ride until your next long rest or the steeds take any damage. The steeds double your land speed while traveling and, when in danger, allow you to move within Far range without having to roll. Creatures riding a steed gain a -2 penalty to attack rolls and a +2 bonus to damage rolls.</p>",
     "domain": "sage",
     "recallCost": 0,
     "level": 6,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "xMIMyRto9jgYLN3S",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\"><strong>Spend any number of Hope</strong> to conjure that many magical steeds (such as horses, camels, or elephants) that you and your allies can ride until your next long rest or the steeds take any damage. The steeds double your land speed while traveling and, when in danger, allow you to move within Far range without having to roll. Creatures riding a steed gain a −2 penalty to attack rolls and a +2 bonus to damage rolls.</p>",
+        "description": "<p><strong>Spend any number of Hope</strong> to conjure that many magical steeds (such as horses, camels, or elephants) that you and your allies can ride until your next long rest or the steeds take any damage. The steeds double your land speed while traveling and, when in danger, allow you to move within Far range without having to roll. Creatures riding a steed gain a −2 penalty to attack rolls and a +2 bonus to damage rolls.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

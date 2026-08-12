@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "ML2JusN36oJoR8QA",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When an attack made against you that would deal physical damage fails, you can <strong>spend a Hope</strong> to envelop yourself in shadow, becoming <em>Hidden</em> and teleporting to a point within Close range of the attacker. You remain <em>Hidden</em> until the next time you make an action roll.</p>",
+    "description": "<p>When an attack made against you that would deal physical damage fails, you can <strong>spend a Hope</strong> to envelop yourself in shadow, becoming <em>Hidden</em> and teleporting to a point within Close range of the attacker. You remain <em>Hidden</em> until the next time you make an action roll.</p>",
     "domain": "midnight",
     "recallCost": 1,
     "level": 7,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "sKF4yJISBeOX8gGH",
         "systemPath": "actions",
-        "description": "<p>When an attack made against you that would deal physical damage fails, you can <strong>spend a Hope</strong> to envelop yourself in shadow, becoming <em>Hidden</em> and teleporting to a point within Close range of the attacker. You remain <em>Hidden</em> until the next time you make an action roll.</p><p></p>",
+        "description": "<p>When an attack made against you that would deal physical damage fails, you can <strong>spend a Hope</strong> to envelop yourself in shadow, becoming <em>Hidden</em> and teleporting to a point within Close range of the attacker. You remain <em>Hidden</em> until the next time you make an action roll.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
