@@ -124,7 +124,11 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         return this.hasSave && !this.targeting.usingSelect && this.currentHitTargets.some(x => !x.saveResult);
     }
 
-    get usesEffects() {
+    /** 
+     * Returns if the roll would apply any effects
+     * @returns {boolean}
+     */
+    get appliesEffects() {
         return this.hasEffect && !this.action.evolution;
     }
 
