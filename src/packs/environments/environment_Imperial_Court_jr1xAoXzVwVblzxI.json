@@ -128,7 +128,7 @@
       "name": "All Roads Lead Here",
       "type": "feature",
       "system": {
-        "description": "<p>While in the Imperial Court, a PC has disadvantage on Presence Rolls made to take actions that don't fit the imperial way of life or support the empire's dominance. </p><section id=\"secret-P8G0DAghe8QgaSZV\" class=\"secret\"><p><em>How does the way language is used make even discussing alternative ways of living difficult? What obvious benefits for loyalty create friction when you try to discuss alternatives?</em></p></section>",
+        "description": "<p>While in the Imperial Court, a PC has disadvantage on Presence Rolls made to take actions that don't fit the imperial way of life or support the empire's dominance.</p><section id=\"secret-P8G0DAghe8QgaSZV\" class=\"secret\"><p><em>How does the way language is used make even discussing alternative ways of living difficult? What obvious benefits for loyalty create friction when you try to discuss alternatives?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -153,7 +153,7 @@
       "name": "Rival Vassals",
       "type": "feature",
       "system": {
-        "description": "<p>The PCs can find imperial subjects, vassals, and supplicants in the court, each vying for favor, seeking proximity to power, exchanging favors for loyalty, and elevating their status above others'. Some might be desperate to undermine their rivals, while others might even be open to discussions that verge on sedition. </p><section id=\"secret-pDDW0dor0MhTdx4c\" class=\"secret\"><p><em>How do they benefit from vassalage and what has it cost them? What exploitation drives them to consider opposing the unstoppable?</em></p></section>",
+        "description": "<p>The PCs can find imperial subjects, vassals, and supplicants in the court, each vying for favor, seeking proximity to power, exchanging favors for loyalty, and elevating their status above others'. Some might be desperate to undermine their rivals, while others might even be open to discussions that verge on sedition.</p><section id=\"secret-pDDW0dor0MhTdx4c\" class=\"secret\"><p><em>How do they benefit from vassalage and what has it cost them? What exploitation drives them to consider opposing the unstoppable?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -408,7 +408,7 @@
             "type": "attack",
             "_id": "czEbFu3uIlW5Spju",
             "systemPath": "actions",
-            "description": "<p>On a result with Fear, you can <strong>spend a Fear</strong> to have someone loyal to the empire overhear seditious talk within the court. A PC must succeed on an Instinct Reaction Roll to notice that the group has been overheard so they can try to intercept the witness before the PCs are exposed. </p><section class=\"secret\" id=\"secret-lCrNuPGNEGSBiTSY\"><p><em>How has the empire compromised this witness? Why is their first impulse to protect the empire even if doesn't treat them well?</em></p></section>",
+            "description": "<p>On a result with Fear, you can <strong>spend a Fear</strong> to have someone loyal to the empire overhear seditious talk within the court. A PC must succeed on an Instinct Reaction Roll to notice that the group has been overheard so they can try to intercept the witness before the PCs are exposed.</p><section class=\"secret\" id=\"secret-lCrNuPGNEGSBiTSY\"><p><em>How has the empire compromised this witness? Why is their first impulse to protect the empire even if doesn't treat them well?</em></p></section>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

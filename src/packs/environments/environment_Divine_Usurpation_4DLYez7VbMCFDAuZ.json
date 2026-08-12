@@ -223,7 +223,7 @@
       "name": "Divine Blessing",
       "type": "feature",
       "system": {
-        "description": "<p>When a PC critically succeeds, they can spend 2 Hope to refresh an ability normally limited by uses (such as once per rest, once per session). </p><section id=\"secret-IRlwaXlRxPqtJ6eg\" class=\"secret\"><p><em>What god favors you as you fi ght against this usurpation? How does your renewed power reflect their influence?</em></p></section>",
+        "description": "<p>When a PC critically succeeds, they can spend 2 Hope to refresh an ability normally limited by uses (such as once per rest, once per session).</p><section id=\"secret-IRlwaXlRxPqtJ6eg\" class=\"secret\"><p><em>What god favors you as you fi ght against this usurpation? How does your renewed power reflect their influence?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -303,14 +303,14 @@
       "name": "Godslayer",
       "type": "feature",
       "system": {
-        "description": "<p>If the Divine Siege Countdown (see \"Beginning of the End\") has triggered, you can <strong>spend 3 Fear</strong> to describe the Usurper slaying one of the gods of the Hallows Above, feasting upon their power and growing stronger. The Usurper clears 2 HP. Increase their Difficulty, damage, attack modifier, or give them a new feature from the slain god. </p><section id=\"secret-OIyf1RZFfLopuMlg\" class=\"secret\"><p><em>Which god meets their end? What are their last words? How does the Usurper's new stolen power manifest?</em></p></section>",
+        "description": "<p>If the Divine Siege Countdown (see \"Beginning of the End\") has triggered, you can <strong>spend 3 Fear</strong> to describe the Usurper slaying one of the gods of the Hallows Above, feasting upon their power and growing stronger. The Usurper clears 2 HP. Increase their Difficulty, damage, attack modifier, or give them a new feature from the slain god.</p><section id=\"secret-OIyf1RZFfLopuMlg\" class=\"secret\"><p><em>Which god meets their end? What are their last words? How does the Usurper's new stolen power manifest?</em></p></section>",
         "resource": null,
         "actions": {
           "hwQsng6Kt8pQBD3Z": {
             "type": "healing",
             "_id": "hwQsng6Kt8pQBD3Z",
             "systemPath": "actions",
-            "description": "<p>If the Divine Siege Countdown (see \"Beginning of the End\") has triggered, you can <strong>spend 3 Fear</strong> to describe the Usurper slaying one of the gods of the Hallows Above, feasting upon their power and growing stronger. The Usurper clears 2 HP. Increase their Difficulty, damage, attack modifier, or give them a new feature from the slain god. </p><section class=\"secret\" id=\"secret-SDqxukOa9Sz8zbGZ\"><p><em>Which god meets their end? What are their last words? How does the Usurper's new stolen power manifest?</em></p></section>",
+            "description": "<p>If the Divine Siege Countdown (see \"Beginning of the End\") has triggered, you can <strong>spend 3 Fear</strong> to describe the Usurper slaying one of the gods of the Hallows Above, feasting upon their power and growing stronger. The Usurper clears 2 HP. Increase their Difficulty, damage, attack modifier, or give them a new feature from the slain god.</p><section class=\"secret\" id=\"secret-SDqxukOa9Sz8zbGZ\"><p><em>Which god meets their end? What are their last words? How does the Usurper's new stolen power manifest?</em></p></section>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -642,14 +642,14 @@
       "name": "Ritual Nexus",
       "type": "feature",
       "system": {
-        "description": "<p>On any failure with Fear against the Usurper, the PC must mark <strong>1d4</strong> Stress from the backlash of magical power. </p><section id=\"secret-FROwYRDYLwvnn2lH\" class=\"secret\"><p><em>What visions of failures past torment you as your efforts fall short? How are these memories twisted by the Usurper?</em></p></section>",
+        "description": "<p>On any failure with Fear against the Usurper, the PC must mark <strong>1d4</strong> Stress from the backlash of magical power.</p><section id=\"secret-FROwYRDYLwvnn2lH\" class=\"secret\"><p><em>What visions of failures past torment you as your efforts fall short? How are these memories twisted by the Usurper?</em></p></section>",
         "resource": null,
         "actions": {
           "9qXDsVnWI436IWEk": {
             "type": "damage",
             "_id": "9qXDsVnWI436IWEk",
             "systemPath": "actions",
-            "description": "<p>On any failure with Fear against the Usurper, the PC must mark <strong>1d4</strong> Stress from the backlash of magical power. </p><section class=\"secret\" id=\"secret-ysZhGlH7LtJS0qua\"><p><em>What visions of failures past torment you as your efforts fall short? How are these memories twisted by the Usurper?</em></p></section>",
+            "description": "<p>On any failure with Fear against the Usurper, the PC must mark <strong>1d4</strong> Stress from the backlash of magical power.</p><section class=\"secret\" id=\"secret-ysZhGlH7LtJS0qua\"><p><em>What visions of failures past torment you as your efforts fall short? How are these memories twisted by the Usurper?</em></p></section>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

@@ -400,14 +400,14 @@
       "name": "Unmaking",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to force a PC to make a Strength Reaction Roll. On a failure, they take <strong>4d10</strong> direct magic damage. On a success, they must mark a Stress. </p><section id=\"secret-HGAS3UaO0JcUPdlT\" class=\"secret\"><p><em>What glimpse of other worlds do you catch while this place tries to unmake you? What core facet of your personality does the unmaking try to erase?</em></p></section>",
+        "description": "<p><strong>Spend a Fear</strong> to force a PC to make a Strength Reaction Roll. On a failure, they take <strong>4d10</strong> direct magic damage. On a success, they must mark a Stress.</p><section id=\"secret-HGAS3UaO0JcUPdlT\" class=\"secret\"><p><em>What glimpse of other worlds do you catch while this place tries to unmake you? What core facet of your personality does the unmaking try to erase?</em></p></section>",
         "resource": null,
         "actions": {
           "6AT7qvUE6I6eVHU8": {
             "type": "attack",
             "_id": "6AT7qvUE6I6eVHU8",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to force a PC to make a Strength Reaction Roll. On a failure, they take <strong>4d10</strong> direct magic damage. On a success, they must mark a Stress. </p><section class=\"secret\" id=\"secret-ycMBQOJJjDI4wEwK\"><p><em>What glimpse of other worlds do you catch while this place tries to unmake you? What core facet of your personality does the unmaking try to erase?</em></p></section>",
+            "description": "<p><strong>Spend a Fear</strong> to force a PC to make a Strength Reaction Roll. On a failure, they take <strong>4d10</strong> direct magic damage. On a success, they must mark a Stress.</p><section class=\"secret\" id=\"secret-ycMBQOJJjDI4wEwK\"><p><em>What glimpse of other worlds do you catch while this place tries to unmake you? What core facet of your personality does the unmaking try to erase?</em></p></section>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -619,14 +619,14 @@
       "name": "Disorientating Reality",
       "type": "feature",
       "system": {
-        "description": "<p>On a result with Fear, you can ask the PC to describe which of their fears the Chaos Realm evokes as a vision of reality unmakes and reconstitutes itself to the PC. The PC loses a Hope. If it is their last Hope, you gain a Fear. </p><section id=\"secret-0TIAabOXzWKwGdZ4\" class=\"secret\"><p><em>What moment do they see? If it's a memory how is it warped by this place? How hard will it be to hold on to the real memory?</em></p></section>",
+        "description": "<p>On a result with Fear, you can ask the PC to describe which of their fears the Chaos Realm evokes as a vision of reality unmakes and reconstitutes itself to the PC. The PC loses a Hope. If it is their last Hope, you gain a Fear.</p><section id=\"secret-0TIAabOXzWKwGdZ4\" class=\"secret\"><p><em>What moment do they see? If it's a memory how is it warped by this place? How hard will it be to hold on to the real memory?</em></p></section>",
         "resource": null,
         "actions": {
           "YIOvMuMMML7WeMWs": {
             "type": "damage",
             "_id": "YIOvMuMMML7WeMWs",
             "systemPath": "actions",
-            "description": "<p>On a result with Fear, you can ask the PC to describe which of their fears the Chaos Realm evokes as a vision of reality unmakes and reconstitutes itself to the PC. The PC loses a Hope. If it is their last Hope, you gain a Fear. </p><section class=\"secret\" id=\"secret-2PNCQTvkwRTu3IYz\"><p><em>What moment do they see? If it's a memory how is it warped by this place? How hard will it be to hold on to the real memory?</em></p></section>",
+            "description": "<p>On a result with Fear, you can ask the PC to describe which of their fears the Chaos Realm evokes as a vision of reality unmakes and reconstitutes itself to the PC. The PC loses a Hope. If it is their last Hope, you gain a Fear.</p><section class=\"secret\" id=\"secret-2PNCQTvkwRTu3IYz\"><p><em>What moment do they see? If it's a memory how is it warped by this place? How hard will it be to hold on to the real memory?</em></p></section>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

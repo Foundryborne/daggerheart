@@ -136,7 +136,7 @@
       "name": "Secret Entrance",
       "type": "feature",
       "system": {
-        "description": "<p>A PC can find or recall a secret way into the castle with a successful Instinct or Knowledge Roll. </p><section id=\"secret-6U0wYxm3kM3G7mAX\" class=\"secret\"><p><em>How do they get in without revealing the pathway to the attackers? Are any of the defenders monitoring this path?</em></p></section>",
+        "description": "<p>A PC can find or recall a secret way into the castle with a successful Instinct or Knowledge Roll.</p><section id=\"secret-6U0wYxm3kM3G7mAX\" class=\"secret\"><p><em>How do they get in without revealing the pathway to the attackers? Are any of the defenders monitoring this path?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -271,7 +271,7 @@
             "type": "countdown",
             "_id": "udKS3ME8VKuayEyO",
             "systemPath": "actions",
-            "description": "<p><em>Consequence Countdown (6)</em>. The attacking force deploys siege weapons to try to raze the defenders' fortifications. Activate the countdown when the siege begins (for a protracted siege, make this a long-term countdown instead). </p>",
+            "description": "<p><em>Consequence Countdown (6)</em>. The attacking force deploys siege weapons to try to raze the defenders' fortifications. Activate the countdown when the siege begins (for a protracted siege, make this a long-term countdown instead).</p>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"
@@ -330,7 +330,7 @@
       "name": "Reinforcements!",
       "type": "feature",
       "system": {
-        "description": "<p>Summon a @UUID[Compendium.daggerheart.adversaries.Actor.7ai2opemrclQe3VF]{Knight of the Realm}, a number of Tier 3 Minions equal to the number of PCs, and two adversaries of your choice within Far range of a chosen PC as reinforcements. The Knight of the Realm immediately takes the spotlight. </p><section id=\"secret-qYx1WuL81hHF5XW8\" class=\"secret\"><p><em>Who are they targeting first? What formation do they take?</em></p></section>",
+        "description": "<p>Summon a @UUID[Compendium.daggerheart.adversaries.Actor.7ai2opemrclQe3VF]{Knight of the Realm}, a number of Tier 3 Minions equal to the number of PCs, and two adversaries of your choice within Far range of a chosen PC as reinforcements. The Knight of the Realm immediately takes the spotlight.</p><section id=\"secret-qYx1WuL81hHF5XW8\" class=\"secret\"><p><em>Who are they targeting first? What formation do they take?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,

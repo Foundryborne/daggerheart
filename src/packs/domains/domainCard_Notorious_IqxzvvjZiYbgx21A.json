@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "Cb39VXOUPVWl3ea4",
         "systemPath": "actions",
-        "description": "<p>When you leverage your notoriety to get what you want, you can <strong>mark a Stress</strong> before you roll to gain a +10 bonus to the result. </p><p>This card doesn't count against your loadout's domain card maximum of 5 and can't be placed in your vault.</p>",
+        "description": "<p>When you leverage your notoriety to get what you want, you can <strong>mark a Stress</strong> before you roll to gain a +10 bonus to the result.</p><p>This card doesn't count against your loadout's domain card maximum of 5 and can't be placed in your vault.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

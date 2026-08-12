@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "2jjOspoj5HGgUBmE",
         "systemPath": "actions",
-        "description": "<p><strong>Mark 2 Stress</strong> to make a <strong>Spellcast Roll</strong>, unleashing lightning on all targets within Close range. Targets you succeed against must make a reaction roll with a Difficulty equal to the result of your Spellcast Roll. Targets who fail take <strong>2d8+4</strong> magic damage. </p>",
+        "description": "<p><strong>Mark 2 Stress</strong> to make a <strong>Spellcast Roll</strong>, unleashing lightning on all targets within Close range. Targets you succeed against must make a reaction roll with a Difficulty equal to the result of your Spellcast Roll. Targets who fail take <strong>2d8+4</strong> magic damage.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

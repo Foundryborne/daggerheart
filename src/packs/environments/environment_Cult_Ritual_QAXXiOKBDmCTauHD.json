@@ -478,7 +478,7 @@
       "name": "Complete the Ritual",
       "type": "feature",
       "system": {
-        "description": "<p>If the ritual's leader is targeted by an attack or spell, an ally within Very Close range of them can <strong>mark a Stress</strong> to be targeted by that attack or spell instead. </p><section id=\"secret-4QYQNJKFywfwkGGp\" class=\"secret\"><p><em>What does it feel like to see such devotion turned to the pursuit of fear and domination?</em></p></section>",
+        "description": "<p>If the ritual's leader is targeted by an attack or spell, an ally within Very Close range of them can <strong>mark a Stress</strong> to be targeted by that attack or spell instead.</p><section id=\"secret-4QYQNJKFywfwkGGp\" class=\"secret\"><p><em>What does it feel like to see such devotion turned to the pursuit of fear and domination?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,

@@ -280,7 +280,7 @@
       "name": "Relentless Hope",
       "type": "feature",
       "system": {
-        "description": "<p>Once per scene, each PC can mark a Stress to turn a result with Fear into a result with Hope. </p><section id=\"secret-z2wMjfAVnSoTHSlR\" class=\"secret\"><p><em>What emotions or memories do you connect with when fear presses in?</em></p></section>",
+        "description": "<p>Once per scene, each PC can mark a Stress to turn a result with Fear into a result with Hope.</p><section id=\"secret-z2wMjfAVnSoTHSlR\" class=\"secret\"><p><em>What emotions or memories do you connect with when fear presses in?</em></p></section>",
         "resource": null,
         "actions": {
           "VlBjJ32dXlboSANv": {

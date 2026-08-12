@@ -142,7 +142,7 @@
       "name": "Surprise",
       "type": "feature",
       "system": {
-        "description": "<p>The ambushers reveal themselves to the party, you gain 2 Fear, and the spotlight immediately shifts to one of the ambushing adversaries.</p><section id=\"secret-LcyhfZXPS4MD9dMC\" class=\"secret\"><p><em>What do the ambushers want from the party? How do their tactics in the ambush refl ect that?</em> </p></section>",
+        "description": "<p>The ambushers reveal themselves to the party, you gain 2 Fear, and the spotlight immediately shifts to one of the ambushing adversaries.</p><section id=\"secret-LcyhfZXPS4MD9dMC\" class=\"secret\"><p><em>What do the ambushers want from the party? How do their tactics in the ambush refl ect that?</em></p></section>",
         "resource": null,
         "actions": {
           "TRSiqdwc1mYTHv4d": {

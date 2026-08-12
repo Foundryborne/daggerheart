@@ -330,7 +330,7 @@
       "_id": "i8NoUGUTNY2C5NhC",
       "img": "icons/magic/nature/root-vine-barrier-wall-brown.webp",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to form a cage around a target within Very Close range and Restrain them until they're freed with a successful Strength Roll. When a creature makes an action roll against the cage, they must mark a Stress. </p>",
+        "description": "<p><strong>Spend a Fear</strong> to form a cage around a target within Very Close range and Restrain them until they're freed with a successful Strength Roll. When a creature makes an action roll against the cage, they must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "cXOjhfMgKh2yD1mc": {

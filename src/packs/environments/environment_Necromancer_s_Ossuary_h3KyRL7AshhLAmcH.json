@@ -239,7 +239,7 @@
       "name": "Centuries of Knowledge",
       "type": "feature",
       "system": {
-        "description": "<p>A PC can investigate the library and laboratory and make a Knowledge Roll to learn information related to arcana, local history, and the Necromancer's plans. </p><section id=\"secret-HAWRKErLm6NSqzHc\" class=\"secret\"><p><em>What are the names of the tomes? What project is the necromancer working on and what does it communicate about their plans?</em></p></section>",
+        "description": "<p>A PC can investigate the library and laboratory and make a Knowledge Roll to learn information related to arcana, local history, and the Necromancer's plans.</p><section id=\"secret-HAWRKErLm6NSqzHc\" class=\"secret\"><p><em>What are the names of the tomes? What project is the necromancer working on and what does it communicate about their plans?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -409,14 +409,14 @@
       "name": "Aura of Death",
       "type": "feature",
       "system": {
-        "description": "<p>Once per scene, roll a <strong>d4</strong>. Each undead within Far range of the Necromancer can clear HP and Stress equal to the result rolled. The undead can choose how that number is divided between HP and Stress. </p><section id=\"secret-LzevSyHyOxNxLwwh\" class=\"secret\"><p><em>How does their renewed vigor manifest? Do they look more lifelike or paradoxically are they more decayed but vigorous?</em></p></section>",
+        "description": "<p>Once per scene, roll a <strong>d4</strong>. Each undead within Far range of the Necromancer can clear HP and Stress equal to the result rolled. The undead can choose how that number is divided between HP and Stress.</p><section id=\"secret-LzevSyHyOxNxLwwh\" class=\"secret\"><p><em>How does their renewed vigor manifest? Do they look more lifelike or paradoxically are they more decayed but vigorous?</em></p></section>",
         "resource": null,
         "actions": {
           "UWCibXbQZG22PJ3l": {
             "type": "attack",
             "_id": "UWCibXbQZG22PJ3l",
             "systemPath": "actions",
-            "description": "<p>Once per scene, roll a <strong>d4</strong>. Each undead within Far range of the Necromancer can clear HP and Stress equal to the result rolled. The undead can choose how that number is divided between HP and Stress. </p><section class=\"secret\" id=\"secret-frj3OBrXCjpKtWSg\"><p><em>How does their renewed vigor manifest? Do they look more lifelike or paradoxically are they more decayed but vigorous?</em></p></section>",
+            "description": "<p>Once per scene, roll a <strong>d4</strong>. Each undead within Far range of the Necromancer can clear HP and Stress equal to the result rolled. The undead can choose how that number is divided between HP and Stress.</p><section class=\"secret\" id=\"secret-frj3OBrXCjpKtWSg\"><p><em>How does their renewed vigor manifest? Do they look more lifelike or paradoxically are they more decayed but vigorous?</em></p></section>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

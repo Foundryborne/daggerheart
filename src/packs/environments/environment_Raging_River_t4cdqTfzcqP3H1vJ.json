@@ -202,7 +202,7 @@
       "name": "Undertow",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to catch a PC in the undertow. They must make an Agility Reaction Roll. On a failure, they take <strong>1d6+1</strong> physical damage and are moved a Close distance down the river, becoming Vulnerable until they get out of the river. On a success, they must mark a Stress. </p><section id=\"secret-H6i1kuyHdtq9Eqgw\" class=\"secret\"><p><em>What trinkets and baubles lie along the bottom of the riverbed? Do predators swim these rivers?</em></p></section>",
+        "description": "<p><strong>Spend a Fear</strong> to catch a PC in the undertow. They must make an Agility Reaction Roll. On a failure, they take <strong>1d6+1</strong> physical damage and are moved a Close distance down the river, becoming Vulnerable until they get out of the river. On a success, they must mark a Stress.</p><section id=\"secret-H6i1kuyHdtq9Eqgw\" class=\"secret\"><p><em>What trinkets and baubles lie along the bottom of the riverbed? Do predators swim these rivers?</em></p></section>",
         "resource": null,
         "actions": {
           "f2e3gbhzD7z8BdCc": {

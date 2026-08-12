@@ -120,7 +120,7 @@
         "type": "damage",
         "_id": "AI8sGbUXLw4gG8mW",
         "systemPath": "actions",
-        "description": "<p>Targets who succeed take <strong>3d20+3</strong> magic damage. </p>",
+        "description": "<p>Targets who succeed take <strong>3d20+3</strong> magic damage.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
