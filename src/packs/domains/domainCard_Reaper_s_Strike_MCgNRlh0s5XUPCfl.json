@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "bFW8Qgv6fUswbA6s",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, <strong>spend a Hope</strong> to make an attack roll. The GM tells you which targets within range it would succeed against. Choose one of these targets and force them to mark 5 Hit Points.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

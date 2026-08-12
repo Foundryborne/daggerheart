@@ -352,7 +352,7 @@
             "type": "attack",
             "_id": "kDV2h9DhO6fEDcjl",
             "systemPath": "actions",
-            "description": "<p>All characters traveling through the pass must succeed on a Strength Reaction Roll or mark a Stress. A PC wearing clothes appropriate for extreme cold gains advantage on these rolls.</p><section class=\"secret\" id=\"secret-nEZRdWaqMAIUoQG0\"><p><em>What parts of the PC’s bodies go numb fi rst? How do they try to keep warm as they press forward?</em></p></section>",
+            "description": "<p>All characters traveling through the pass must succeed on a Strength Reaction Roll or mark a Stress. A PC wearing clothes appropriate for extreme cold gains advantage on these rolls.</p><section class=\"secret\" id=\"secret-nEZRdWaqMAIUoQG0\"><p><em>What parts of the PC's bodies go numb fi rst? How do they try to keep warm as they press forward?</em></p></section>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

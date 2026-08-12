@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "BuzdaD4vLsbBS2gy",
         "systemPath": "actions",
-        "description": "<p>You can apply this venom to a weapon that deals physical damage to add a d6 to your next damage roll with that weapon.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

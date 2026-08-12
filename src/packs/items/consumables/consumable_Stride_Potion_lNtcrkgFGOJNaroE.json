@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "GwQgdB3E1HogFKvD",
         "systemPath": "actions",
-        "description": "<p>You gain a +1 bonus to your next Agility Roll.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

@@ -10,7 +10,7 @@
         "type": "attack",
         "_id": "igRoXxgaTT9tBQS7",
         "systemPath": "actions",
-        "description": "<p>Make an attack against any number of targets within Very Close range. On a success, a target is temporarily Poisoned. A Poisoned creature takes <strong>1d10</strong> physical direct damage each time they act.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],

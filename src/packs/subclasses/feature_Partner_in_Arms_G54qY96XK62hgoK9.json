@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "D6ClOGDgu6cLanjE",
         "systemPath": "actions",
-        "description": "<p>When an ally within Very Close range takes damage, you can mark an Armor Slot to reduce the severity by one threshold.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

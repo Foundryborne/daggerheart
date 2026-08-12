@@ -24,7 +24,7 @@
         "type": "effect",
         "_id": "Nhp93LBwnBg5DyY9",
         "systemPath": "actions",
-        "description": "<p>Mark an adversary within Close range with a sigil of retribution. The GM gains a Fear. When the marked adversary deals damage to you or your allies, place a <strong>d8</strong> on this card. You can hold a number of <strong>d8s</strong> equal to your level. When you successfully attack the marked adversary, roll the dice on this card and add the total to your damage roll, then clear the dice. This effect ends when the marked adversary is defeated or you cast Sigil of Retribution again.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],

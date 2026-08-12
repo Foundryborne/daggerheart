@@ -67,7 +67,7 @@
         "type": "attack",
         "_id": "rgDZzUg8ivTTctsM",
         "systemPath": "actions",
-        "description": "<p>You can throw the lifted target as an attack by making an additional Spellcast Roll against the second target you’re trying to attack. On a success, deal<strong> d12+4</strong> physical damage to the second target using your Proficiency. This spell then ends.</p>",
+        "description": "<p>You can throw the lifted target as an attack by making an additional Spellcast Roll against the second target you're trying to attack. On a success, deal<strong> d12+4</strong> physical damage to the second target using your Proficiency. This spell then ends.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],

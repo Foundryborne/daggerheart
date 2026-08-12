@@ -555,7 +555,7 @@
             "type": "attack",
             "_id": "3yqz7Gj34KBWMjwt",
             "systemPath": "actions",
-            "description": "<p>Make an attack against a target within Very Close range, moving the Minotaur into Melee range of them. On a success, deal <strong>2d8</strong> direct physical damage.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "aL83OMkU7hSQRlOA",
         "systemPath": "actions",
-        "description": "<p>When you make a successful attack, you can <strong>mark a Stress</strong> to make the next successful attack against that same target deal an extra <strong>2d12</strong> damage.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

@@ -95,7 +95,7 @@
         "type": "effect",
         "_id": "maf0whws7wgRnFsH",
         "systemPath": "actions",
-        "description": "<p>Additionally, <strong>mark 2 or more Stress</strong> to make them permanently <em>Corroded</em>. While a target is <em>Corroded</em>, they gain a −1 penalty to their Difficulty for every 2 Stress you spent. This condition can stack.</p>",
+        "description": "<p>Additionally, <strong>mark 2 or more Stress</strong> to make them permanently <em>Corroded</em>. While a target is <em>Corroded</em>, they gain a -1 penalty to their Difficulty for every 2 Stress you spent. This condition can stack.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

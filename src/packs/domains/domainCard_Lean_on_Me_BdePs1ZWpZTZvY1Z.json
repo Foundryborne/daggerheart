@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "ByT4FdZX9YSLmKcL",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, when you console or inspire an ally who failed an action roll, you can both clear 2 Stress.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],

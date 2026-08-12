@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "hxupFx3czFHz3xfG",
         "systemPath": "actions",
-        "description": "<p>Describe the defensive stance you take and <strong>spend a Hope</strong>. If an adversary moves within Very Close range, they’re pulled into Melee range and <em>Restrained.</em></p><p>This condition lasts until you move or fail a roll with Fear, or the GM spends 2 Fear on their turn to clear it.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -57,7 +57,7 @@
         "type": "effect",
         "_id": "SKG6Gu0uJZxtYTnz",
         "systemPath": "actions",
-        "description": "<p>If an adversary moves within Very Close range, they’re pulled into Melee range and <em>Restrained.</em></p>",
+        "description": "<p>If an adversary moves within Very Close range, they're pulled into Melee range and <em>Restrained.</em></p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],

@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "iqFrWFRVPnR1fYf4",
         "systemPath": "actions",
-        "description": "<p><strong>Spend a Hope</strong> to allow a creature you can touch to climb on walls and ceilings as easily as walking on the ground. This lasts until the end of the scene or you cast Wall Walk again.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

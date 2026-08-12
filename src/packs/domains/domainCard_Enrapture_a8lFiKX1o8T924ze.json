@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "G6RBFMbCuHlM45t0",
         "systemPath": "actions",
-        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Close range. On a success, they become temporarily <em>Enraptured</em>. While <em>Enraptured</em>, a target’s attention is fixed on you, narrowing their field of view and drowning out any sound but your voice.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Close range. On a success, they become temporarily <em>Enraptured</em>. While <em>Enraptured</em>, a target's attention is fixed on you, narrowing their field of view and drowning out any sound but your voice.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],

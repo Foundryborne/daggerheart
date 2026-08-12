@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "dpKxkDSjXsP8kHMI",
         "systemPath": "actions",
-        "description": "<p>You can fly. While flying, you can <strong>mark a Stress</strong> after an adversary makes an attack against you to gain a +2 bonus to your Evasion against that attack.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

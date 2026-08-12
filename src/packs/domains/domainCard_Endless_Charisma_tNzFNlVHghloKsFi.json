@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "EPhd2d8lHEnBd1pO",
         "systemPath": "actions",
-        "description": "<p>After you make an action roll to persuade, lie, or garner favor, you can <strong>spend a Hope</strong> to reroll the Hope or Fear Die.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

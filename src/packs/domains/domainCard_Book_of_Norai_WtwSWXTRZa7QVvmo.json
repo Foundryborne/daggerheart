@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "ywBVT5mbDKr485Jg",
         "systemPath": "actions",
-        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, they’re temporarily <em>Restrained</em> and must mark a Stress. If you target a flying creature, this spell grounds and temporarily <em>Restrains</em> them.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, they're temporarily <em>Restrained</em> and must mark a Stress. If you target a flying creature, this spell grounds and temporarily <em>Restrains</em> them.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],

@@ -54,6 +54,12 @@ function transformDocument(entry) {
     entry._stats = stats ? { compendiumSource: stats.compendiumSource } : stats;
     if (entry?.system) {
         entry.system.description = removeSpecialCharacters(entry.system.description);
+        for (const action of Object.values(entry.system.actions ?? {})) {
+            action.description = removeSpecialCharacters(action.description);
+            if (action.description && action.description === entry.system.description) {
+                action.description = '';
+            }
+        }
     }
     
     for (const effect of entry.effects ?? []) {

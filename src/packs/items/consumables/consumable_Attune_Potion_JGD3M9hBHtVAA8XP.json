@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "aiyNOQZbVpTDagXy",
         "systemPath": "actions",
-        "description": "<p>You gain a +1 bonus to your next Instinct Roll.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

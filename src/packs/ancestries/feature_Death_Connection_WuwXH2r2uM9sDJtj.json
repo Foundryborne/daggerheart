@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "0RdKeWfbPRTHcAMf",
         "systemPath": "actions",
-        "description": "<p>While touching a corpse that died recently, you can <strong>mark a Stress</strong> to extract one memory from the corpse related to a specific emotion or sensation of your choice.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

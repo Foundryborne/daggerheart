@@ -10,7 +10,7 @@
         "type": "effect",
         "_id": "p8DESOMGA6dLwEMz",
         "systemPath": "actions",
-        "description": "<p>When you succeed on an attack against a target within Melee range, you can <strong>mark a Stress</strong> to make the target temporarily <em>Vulnerable</em>.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

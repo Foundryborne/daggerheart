@@ -76,7 +76,7 @@
         "type": "effect",
         "_id": "ADRUe0WJktpHFz1o",
         "systemPath": "actions",
-        "description": "<p>On a success, you can <strong>mark a Stress</strong> to remove a Fear from the GM’s Fear Pool.</p>",
+        "description": "<p>On a success, you can <strong>mark a Stress</strong> to remove a Fear from the GM's Fear Pool.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

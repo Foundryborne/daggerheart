@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "FhpWZpXoyXxB13BM",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, <strong>spend 5 Hope</strong> to cast this spell on two or more willing creatures. Until your next rest, when a creature connected by this union would mark Stress or Hit Points, the connected creatures can choose who marks it.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

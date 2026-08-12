@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "8ACwa5tqAGyNZ0sR",
         "systemPath": "actions",
-        "description": "<p>Choose a target within Very Far range. You can see through their eyes and hear through their ears. You can transition between using your own senses or the target’s freely until you cast another spell or until your next rest.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],

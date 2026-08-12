@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "SeOcGdKAc7egwg9H",
         "systemPath": "actions",
-        "description": "<p>You can interrupt a magical effect taking place by making a reaction roll using your Spellcast trait. On a success, the effect stops and any consequences are avoided, and this card is placed in your vault.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],

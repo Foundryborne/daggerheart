@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "GYEbUY5m30Uw8yf5",
         "systemPath": "actions",
-        "description": "<p>Once per rest, <strong>spend 3 Hope</strong> to charge your powerful smite. When you next successfully attack with a weapon, double the result of your damage roll. This attack deals magic damage regardless of the weapon’s damage type.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

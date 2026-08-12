@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "iucXKML1P8Q7nmcp",
         "systemPath": "actions",
-        "description": "<p>Once per long rest when you would make a Death Move, you can <strong>spend a Hope</strong> to clear a Hit Point instead.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],

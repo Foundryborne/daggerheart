@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "8upofDpPl8wqSl77",
         "systemPath": "actions",
-        "description": "<p><strong>Spend a Hope</strong> to gain advantage on a roll to deceive or trick someone into believing a lie you tell them</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

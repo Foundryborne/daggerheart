@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "3Aiqds9jVXdlWmfm",
         "systemPath": "actions",
-        "description": "<p>After you or a willing ally make any roll, you can <strong>spend 5 Hope</strong> to change the numerical result of that roll to a result of your choice instead. The result must be plausible within the range of the dice.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

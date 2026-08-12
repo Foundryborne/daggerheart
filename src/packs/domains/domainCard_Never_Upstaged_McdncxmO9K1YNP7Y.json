@@ -24,7 +24,7 @@
         "type": "effect",
         "_id": "R5wGBhMUcnhCsfH2",
         "systemPath": "actions",
-        "description": "<p>When you mark 1 or more Hit Points from an attack, you can <strong>mark a Stress</strong> to place a number of tokens equal to the number of Hit Points you marked on this card. On your next successful attack, gain a +5 bonus to your damage roll for each token on this card, then clear all tokens.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -75,7 +75,7 @@
         "type": "effect",
         "_id": "Mne0mqkibrTGwPYR",
         "systemPath": "actions",
-        "description": "<p>When you mark 1 or more Hit Points from an attack, you can <strong>mark a Stress</strong> to place a number of tokens equal to the number of Hit Points you marked on this card. On your next successful attack, gain a +5 bonus to your damage roll for each token on this card, then clear all tokens.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -126,7 +126,7 @@
         "type": "effect",
         "_id": "En7AF3g51P9ud9qj",
         "systemPath": "actions",
-        "description": "<p>When you mark 1 or more Hit Points from an attack, you can <strong>mark a Stress</strong> to place a number of tokens equal to the number of Hit Points you marked on this card. On your next successful attack, gain a +5 bonus to your damage roll for each token on this card, then clear all tokens.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -177,7 +177,7 @@
         "type": "effect",
         "_id": "WuPJlQ0wSRlGGIkh",
         "systemPath": "actions",
-        "description": "<p>When you mark 1 or more Hit Points from an attack, you can <strong>mark a Stress</strong> to place a number of tokens equal to the number of Hit Points you marked on this card. On your next successful attack, gain a +5 bonus to your damage roll for each token on this card, then clear all tokens.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

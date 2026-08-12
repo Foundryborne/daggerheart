@@ -202,7 +202,7 @@
             "type": "attack",
             "_id": "GMy6OcMQnNJDDmtV",
             "systemPath": "actions",
-            "description": "<p>A thief tries to steal something from a PC. The PC must succeed on an Instinct Roll to notice the thief or lose an item of the GM’s choice as the thief escapes to a Close distance.</p>",
+            "description": "<p>A thief tries to steal something from a PC. The PC must succeed on an Instinct Roll to notice the thief or lose an item of the GM's choice as the thief escapes to a Close distance.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],

@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "j5gIVHXvcGu7PEZZ",
         "systemPath": "actions",
-        "description": "<p>By touching this piece of parchment to another, you can perfectly copy the second parchment’s contents. Once used, this parchment becomes mundane paper.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

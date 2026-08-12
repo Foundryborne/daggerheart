@@ -198,7 +198,7 @@
             "type": "attack",
             "_id": "Pr8CpaOehr1cE1b8",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to present a PC with a golden opportunity or off er to satisfy a major goal in exchange for obeying or supporting the empire. The target must make a Presence Reaction Roll. On a failure, they must mark all their Stress or accept the offer. If they have already marked all their Stress, they must accept the off er or exile themselves from the empire. On a success, they must mark <strong>1d4</strong> Stress as they’re taxed by temptation.</p><section class=\"secret\" id=\"secret-jB2klJ9141Yiot3c\"><p><em>What do the PCs want so desperately they might consider throwing in with this ruthless power? How did imperial agents learn the PC’s greatest desires?</em></p></section>",
+            "description": "<p><strong>Spend a Fear</strong> to present a PC with a golden opportunity or off er to satisfy a major goal in exchange for obeying or supporting the empire. The target must make a Presence Reaction Roll. On a failure, they must mark all their Stress or accept the offer. If they have already marked all their Stress, they must accept the off er or exile themselves from the empire. On a success, they must mark <strong>1d4</strong> Stress as they're taxed by temptation.</p><section class=\"secret\" id=\"secret-jB2klJ9141Yiot3c\"><p><em>What do the PCs want so desperately they might consider throwing in with this ruthless power? How did imperial agents learn the PC's greatest desires?</em></p></section>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -429,7 +429,7 @@
             "type": "attack",
             "_id": "czEbFu3uIlW5Spju",
             "systemPath": "actions",
-            "description": "<p>On a result with Fear, you can <strong>spend a Fear</strong> to have someone loyal to the empire overhear seditious talk within the court. A PC must succeed on an Instinct Reaction Roll to notice that the group has been overheard so they can try to intercept the witness before the PCs are exposed. </p><section class=\"secret\" id=\"secret-lCrNuPGNEGSBiTSY\"><p><em>How has the empire compromised this witness? Why is their first impulse to protect the empire even if doesn’t treat them well?</em></p></section>",
+            "description": "<p>On a result with Fear, you can <strong>spend a Fear</strong> to have someone loyal to the empire overhear seditious talk within the court. A PC must succeed on an Instinct Reaction Roll to notice that the group has been overheard so they can try to intercept the witness before the PCs are exposed. </p><section class=\"secret\" id=\"secret-lCrNuPGNEGSBiTSY\"><p><em>How has the empire compromised this witness? Why is their first impulse to protect the empire even if doesn't treat them well?</em></p></section>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [

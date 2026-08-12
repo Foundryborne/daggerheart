@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "RIbyJjEkCgqoDmyn",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, you can transform into a physical manifestation of your element. When you do, describe your transformation and choose two of the following benefits to gain until your next rest:</p><ul><li><p>+4 bonus to your Severe threshold</p></li><li><p>+1 bonus to a character trait of your choice</p></li><li><p>+1 bonus to your Proficiency</p></li><li><p>+2 bonus to your Evasion</p></li></ul>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

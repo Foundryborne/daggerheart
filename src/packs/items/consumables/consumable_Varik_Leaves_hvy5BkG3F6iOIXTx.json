@@ -11,7 +11,7 @@
         "type": "healing",
         "_id": "9e4l2Yiy8uV26SQF",
         "systemPath": "actions",
-        "description": "<p>You can eat these paired leaves to immediately gain 2 Hope.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

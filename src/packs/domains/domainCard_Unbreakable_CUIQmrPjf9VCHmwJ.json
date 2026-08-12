@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "NXWbijHKKgqgcAMB",
         "systemPath": "actions",
-        "description": "<p>When you mark your last Hit Point, instead of making a death move, you can roll a <strong>d6</strong> and clear a number of Hit Points equal to the result. Then place this card in your vault.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],

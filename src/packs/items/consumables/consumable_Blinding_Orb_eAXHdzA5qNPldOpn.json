@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "vk4dE0C8bjNdTwAF",
         "systemPath": "actions",
-        "description": "<p>You can activate this orb to create a flash of bright light. All targets within Close range become Vulnerable until they mark HP.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

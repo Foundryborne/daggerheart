@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "oQ4nCYdwCXqd7NWt",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, you can conjure a field of healing plants around you. Everywhere within Close range of you bursts to life with vibrant nature, allowing you and all allies in the area to clear a Hit Point.</p><p><strong>Spend 2 Hope</strong> to allow you and all allies to clear 2 Hit Points instead.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -107,7 +107,7 @@
         "type": "healing",
         "_id": "EqamWsxO86ZjY8WV",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, you can conjure a field of healing plants around you. Everywhere within Close range of you bursts to life with vibrant nature, allowing you and all allies in the area to clear a Hit Point.</p><p><strong>Spend 2 Hope</strong> to allow you and all allies to clear 2 Hit Points instead.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

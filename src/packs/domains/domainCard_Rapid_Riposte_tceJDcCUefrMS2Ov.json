@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "4mdm2rcPDfm8tEIA",
         "systemPath": "actions",
-        "description": "<p>When an attack made against you from within Melee range fails, you can <strong>mark a Stress</strong> and seize the opportunity to deal the weapon damage of one of your active weapons to the attacker.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

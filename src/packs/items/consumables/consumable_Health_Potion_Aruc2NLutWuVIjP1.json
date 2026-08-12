@@ -11,7 +11,7 @@
         "type": "healing",
         "_id": "O5MYyHpkiEz9uf6A",
         "systemPath": "actions",
-        "description": "<p>Clear 1d4+1 HP.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

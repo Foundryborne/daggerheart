@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "6Ny75zR1b8I8Ycsb",
         "systemPath": "actions",
-        "description": "<p>When you drink the contents of this vial, you can see in total darkness until your next rest.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

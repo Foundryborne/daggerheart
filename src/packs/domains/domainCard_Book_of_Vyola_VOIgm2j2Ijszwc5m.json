@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "gV6i6Nn6Qolc6PuF",
         "systemPath": "actions",
-        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, peer into the target’s mind and ask the GM a question. The GM describes any memories the target has pertaining to the answer.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, peer into the target's mind and ask the GM a question. The GM describes any memories the target has pertaining to the answer.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],

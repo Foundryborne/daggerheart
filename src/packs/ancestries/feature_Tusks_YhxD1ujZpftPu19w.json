@@ -12,7 +12,7 @@
         "type": "damage",
         "_id": "ytSFDCONRi5L4THz",
         "systemPath": "actions",
-        "description": "<p>When you succeed on an attack against a target within Melee range, you can <strong>spend a Hope</strong> to gore the target with your tusks, dealing an extra <strong>1d6</strong> damage.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

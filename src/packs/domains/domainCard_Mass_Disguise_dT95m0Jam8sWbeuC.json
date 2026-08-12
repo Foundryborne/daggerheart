@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "Gl41dsOBTG2p8qwo",
         "systemPath": "actions",
-        "description": "<p>When you have a few minutes of silence to focus, you can <strong>mark a Stress</strong> to change the appearance of all willing creatures within Close range. Their new forms must share a general body structure and size, and can be somebody or something you’ve seen before or entirely fabricated. A disguised creature has advantage on Presence Rolls to avoid scrutiny.</p><p>Activate a Countdown (8). It ticks down as a consequence the GM chooses. When it triggers, the disguise drops.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],

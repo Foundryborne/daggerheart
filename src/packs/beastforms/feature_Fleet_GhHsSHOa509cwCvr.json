@@ -10,7 +10,7 @@
         "type": "effect",
         "_id": "pn5p2ocVvVPzDyAX",
         "systemPath": "actions",
-        "description": "<p><strong>Spend a Hope</strong> to move up to Far range without rolling.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

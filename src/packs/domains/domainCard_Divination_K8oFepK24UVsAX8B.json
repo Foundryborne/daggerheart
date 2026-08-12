@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "wKwNncd5XKH312Lz",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, <strong>spend 3 Hope</strong> to reach out to the forces beyond and ask one “yes or no” question about an event, person, place, or situation in the near future. For a moment, the present falls away and you see the answer before you.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

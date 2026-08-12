@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "rxuFLfHP1FILDpds",
         "systemPath": "actions",
-        "description": "<p>S<strong>pend a Hope</strong> and describe how your control over this element helps an action roll you’re about to make, gain a +2 bonus to the roll.</p>",
+        "description": "<p>S<strong>pend a Hope</strong> and describe how your control over this element helps an action roll you're about to make, gain a +2 bonus to the roll.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -48,7 +48,7 @@
         "type": "effect",
         "_id": "S7HvFD3qIR3ifJRL",
         "systemPath": "actions",
-        "description": "<p>S<strong>pend a Hope</strong> and describe how your control over this element helps an action roll you’re about to make, gain a +3 bonus to the roll’s damage.</p>",
+        "description": "<p>S<strong>pend a Hope</strong> and describe how your control over this element helps an action roll you're about to make, gain a +3 bonus to the roll's damage.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

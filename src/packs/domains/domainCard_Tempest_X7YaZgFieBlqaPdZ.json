@@ -111,7 +111,7 @@
         "type": "attack",
         "_id": "FEPhujGa5lvu5fXr",
         "systemPath": "actions",
-        "description": "<p>Choose the following tempest and make a <strong>Spellcast Roll</strong> against all targets within Far range. Targets you succeed against experience its effects until the GM spends a Fear on their turn to end this spell.</p><ul class=\"\"><li class=\"vertical-card-list\"><em><strong>Hurricane: </strong></em>Deal <strong>3d10+10</strong> magic damage and choose a direction the wind is blowing. Targets can’t move against the wind.</li></ul>",
+        "description": "<p>Choose the following tempest and make a <strong>Spellcast Roll</strong> against all targets within Far range. Targets you succeed against experience its effects until the GM spends a Fear on their turn to end this spell.</p><ul class=\"\"><li class=\"vertical-card-list\"><em><strong>Hurricane: </strong></em>Deal <strong>3d10+10</strong> magic damage and choose a direction the wind is blowing. Targets can't move against the wind.</li></ul>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],

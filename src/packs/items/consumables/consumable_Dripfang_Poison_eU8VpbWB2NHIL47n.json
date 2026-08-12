@@ -11,7 +11,7 @@
         "type": "damage",
         "_id": "F8CUhhCuZMnXVCrw",
         "systemPath": "actions",
-        "description": "<p>A creature who consumes this poison takes 8d10 direct magic damage.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

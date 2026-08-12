@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "7yUMXSJVnDBB25jP",
         "systemPath": "actions",
-        "description": "<p>Make a <strong>Spellcast Roll (18)</strong>. Once per long rest on a success, you reshape the natural world, changing the surrounding plant life anywhere within Far range of you. For example, you can grow trees instantly, clear a path through dense vines, or create a wall of roots.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],

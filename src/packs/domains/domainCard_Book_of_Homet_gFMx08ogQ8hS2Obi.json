@@ -67,7 +67,7 @@
         "type": "attack",
         "_id": "RTUxVXUyRM6mNwUX",
         "systemPath": "actions",
-        "description": "<p>Make a <strong>Spellcast Roll (14)</strong>. Once per long rest on a success, open a gateway to a location in another dimension or plane of existence you’ve been to before. This gateway lasts until your next rest.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll (14)</strong>. Once per long rest on a success, open a gateway to a location in another dimension or plane of existence you've been to before. This gateway lasts until your next rest.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],

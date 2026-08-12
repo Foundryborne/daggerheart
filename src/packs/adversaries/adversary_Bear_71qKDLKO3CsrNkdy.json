@@ -490,7 +490,7 @@
             "type": "healing",
             "_id": "ZQHGR0IweeWBLokB",
             "systemPath": "actions",
-            "description": "<p>When the Bear makes a successful attack against a PC, you gain a Fear.</p>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "reaction",
             "cost": [],

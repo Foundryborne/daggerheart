@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "cZL1A3hNXHbjfwi3",
         "systemPath": "actions",
-        "description": "<p>You gain a +1 bonus to your Knowledge until your next rest.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

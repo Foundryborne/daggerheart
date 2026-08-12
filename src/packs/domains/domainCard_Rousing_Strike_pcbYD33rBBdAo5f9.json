@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "rnt24R8xyeyBrJS0",
         "systemPath": "actions",
-        "description": "<p>Once per rest, when you critically succeed on an attack, you and all allies who can see or hear you can clear a Hit Point or <strong>1d4</strong> Stress.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],

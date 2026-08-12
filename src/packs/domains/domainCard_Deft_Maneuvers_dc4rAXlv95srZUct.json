@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "AKexQGjS5HwPTo19",
         "systemPath": "actions",
-        "description": "<p>Once per rest,<strong> mark a Stress</strong> to sprint anywhere within Far range without making an Agility Roll to get there.</p><p>If you end this movement within Melee range of an adversary and immediately make an attack against them, gain a +1 bonus to the attack roll.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

@@ -10,7 +10,7 @@
         "type": "effect",
         "_id": "eow90DYK6cUWOk7g",
         "systemPath": "actions",
-        "description": "<p>When you succeed on an attack against a target within Melee range, the target becomes temporarily Poisoned. A Poisoned creature takes <strong>1d10</strong> direct physical damage each time they act.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],

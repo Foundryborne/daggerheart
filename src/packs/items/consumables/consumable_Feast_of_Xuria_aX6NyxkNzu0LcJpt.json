@@ -11,7 +11,7 @@
         "type": "healing",
         "_id": "TL1fJitAJmDzrnHT",
         "systemPath": "actions",
-        "description": "<p>You can eat this meal to clear all HP and Stress and gain 1d4 Hope.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

@@ -177,7 +177,7 @@
             "type": "healing",
             "_id": "TGWI1Kvw4ZEP3QEo",
             "systemPath": "actions",
-            "description": "<p>The defenders’ fortifications have been breached and the attackers flood inside. You gain 2 Fear, then shift to the Pitched Battle environment and spotlight it.</p>",
+            "description": "<p>The defenders' fortifications have been breached and the attackers flood inside. You gain 2 Fear, then shift to the Pitched Battle environment and spotlight it.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -280,7 +280,7 @@
             "type": "countdown",
             "_id": "udKS3ME8VKuayEyO",
             "systemPath": "actions",
-            "description": "<p><em>Consequence Countdown (6)</em>. The attacking force deploys siege weapons to try to raze the defenders’ fortifications. Activate the countdown when the siege begins (for a protracted siege, make this a long-term countdown instead). </p>",
+            "description": "<p><em>Consequence Countdown (6)</em>. The attacking force deploys siege weapons to try to raze the defenders' fortifications. Activate the countdown when the siege begins (for a protracted siege, make this a long-term countdown instead). </p>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"

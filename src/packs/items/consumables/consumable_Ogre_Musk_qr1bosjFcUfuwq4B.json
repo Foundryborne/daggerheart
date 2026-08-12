@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "t0vgSnAuIcj7IevQ",
         "systemPath": "actions",
-        "description": "<p>You can use this musk to prevent anyone from tracking you by mundane or magical means until your next rest.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

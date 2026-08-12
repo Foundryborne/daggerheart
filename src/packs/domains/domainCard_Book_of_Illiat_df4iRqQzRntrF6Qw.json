@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "gd4zjBV1UvXhgAid",
         "systemPath": "actions",
-        "description": "<p><em><strong>Slumber:</strong></em> Make a <strong>Spellcast Roll</strong> against a target within Very Close range. On a success, they’re <em>Asleep</em> until they take damage or the GM spends a <strong>Fear</strong> on their turn to clear this condition.</p>",
+        "description": "<p><em><strong>Slumber:</strong></em> Make a <strong>Spellcast Roll</strong> against a target within Very Close range. On a success, they're <em>Asleep</em> until they take damage or the GM spends a <strong>Fear</strong> on their turn to clear this condition.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],

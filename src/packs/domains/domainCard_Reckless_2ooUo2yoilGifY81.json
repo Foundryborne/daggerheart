@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "1vOYZjiUbRBmLcVr",
         "systemPath": "actions",
-        "description": "<p><strong>Mark a Stress</strong> to gain advantage on an attack.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

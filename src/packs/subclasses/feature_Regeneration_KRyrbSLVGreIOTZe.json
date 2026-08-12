@@ -12,7 +12,7 @@
         "type": "healing",
         "_id": "kD2kWWj0oR7ZxyVs",
         "systemPath": "actions",
-        "description": "<p>Touch a creature and spend 3 Hope. That creature clears 1d4 Hit Points.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "ECYp5SeXDAQzRTgC",
         "systemPath": "actions",
-        "description": "<p>When you deal damage to an adversary, you can <strong>spend 2 Hope</strong> to clear a Hit Point on an ally within Close range.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "h5j4TcmhwtAhPScT",
         "systemPath": "actions",
-        "description": "<p>When you deal damage to an adversary, you can <strong>mark a Stress</strong> and describe how you encourage your allies. The next PC to make an attack against that adversary can clear a Stress or gain a Hope.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

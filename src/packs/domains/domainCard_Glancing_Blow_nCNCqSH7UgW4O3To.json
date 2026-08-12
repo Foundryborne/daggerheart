@@ -14,7 +14,7 @@
         "type": "damage",
         "_id": "DUojhK0OtvsotiE6",
         "systemPath": "actions",
-        "description": "<p>When you fail an attack, you can <strong>mark a Stress</strong> to deal weapon damage using half your Proficiency.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

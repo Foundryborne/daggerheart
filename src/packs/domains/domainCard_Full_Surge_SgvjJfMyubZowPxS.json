@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "GB1MKw1nnkSgDhBd",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, <strong>mark 3 Stress</strong> to push your body to its limits. Gain a +2 bonus to all of your character traits until your next rest.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
