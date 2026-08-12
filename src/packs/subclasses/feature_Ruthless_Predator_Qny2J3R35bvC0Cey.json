@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "0YRLL1HC4XS3tX00",
         "systemPath": "actions",
-        "description": "<p>When you make a damage roll, you can mark a Stress to gain a +1 bonus to your Proficiency. Additionally, when you deal Severe damage to an adversary, they must mark a Stress.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -91,10 +91,6 @@
     }
   ],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!Qny2J3R35bvC0Cey"
 }

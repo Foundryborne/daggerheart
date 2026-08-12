@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "fk272mE2zHIHq8qR",
         "systemPath": "actions",
-        "description": "<p>You gain a +1 bonus to your Finesse until your next rest.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -92,10 +92,6 @@
   ],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!80s1FLmTLtohZ5GH"
 }

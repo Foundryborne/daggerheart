@@ -12,7 +12,7 @@
         "type": "attack",
         "_id": "ZYfigAyUdDUteczO",
         "systemPath": "actions",
-        "description": "<p>Make an <strong>Instinct Roll (12)</strong> to use your mycelial array to speak with others of your ancestry. On a success, you can communicate across any distance.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -66,10 +66,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!9tmeXm623hl4Qnws"
 }

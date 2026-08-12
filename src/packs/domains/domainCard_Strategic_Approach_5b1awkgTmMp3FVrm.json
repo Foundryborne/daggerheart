@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "Q9rmrfeKqcqBNnWc",
   "system": {
-    "description": "<p class=\"Body-Foundation\">After a long rest, place a number of tokens equal to your Knowledge on this card (minimum 1). The first time you move within Close range of an adversary and make an attack against them, you can spend one token to choose one of the following options:</p><ul><li class=\"vertical-card-list-found\"><p>You make the attack with advantage.</p></li><li class=\"vertical-card-list-found\"><p>You clear a Stress on an ally within Melee range of the adversary.</p></li><li class=\"vertical-card-list-found\"><p>You add a <strong>d8</strong> to your damage roll.</p></li></ul><p class=\"Body-Foundation\">When you take a long rest, clear all unspent tokens.</p>",
+    "description": "<p>After a long rest, place a number of tokens equal to your Knowledge on this card (minimum 1). The first time you move within Close range of an adversary and make an attack against them, you can spend one token to choose one of the following options:</p><ul><li class=\"vertical-card-list-found\"><p>You make the attack with advantage.</p></li><li class=\"vertical-card-list-found\"><p>You clear a Stress on an ally within Melee range of the adversary.</p></li><li class=\"vertical-card-list-found\"><p>You add a <strong>d8</strong> to your damage roll.</p></li></ul><p>When you take a long rest, clear all unspent tokens.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 2,
@@ -24,7 +24,7 @@
         "type": "effect",
         "_id": "jTC0GbsBpGmaQLi7",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">The first time you move within Close range of an adversary and make an attack against them, you can spend one token to choose one of the following options:</p><ul class=\"\"><li class=\"vertical-card-list-found\"><p>You make the attack with advantage.</p></li><li class=\"vertical-card-list-found\"><p>You clear a Stress on an ally within Melee range of the adversary.</p></li><li class=\"vertical-card-list-found\"><p>You add a <strong>d8</strong> to your damage roll.</p></li></ul>",
+        "description": "<p>The first time you move within Close range of an adversary and make an attack against them, you can spend one token to choose one of the following options:</p><ul class=\"\"><li class=\"vertical-card-list-found\"><p>You make the attack with advantage.</p></li><li class=\"vertical-card-list-found\"><p>You clear a Stress on an ally within Melee range of the adversary.</p></li><li class=\"vertical-card-list-found\"><p>You add a <strong>d8</strong> to your damage roll.</p></li></ul>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -74,8 +74,5 @@
   "_id": "5b1awkgTmMp3FVrm",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!5b1awkgTmMp3FVrm"
 }

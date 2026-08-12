@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "7XeaYZPMB0SopAfo",
   "system": {
-    "description": "<p class=\"Card-Feature\"><em><strong>Levitation:</strong></em> Make a <strong>Spellcast Roll</strong> to temporarily lift a target you can see up into the air and move them within Close range of their original position.</p><p class=\"Card-Feature\"><em><strong>Recant:</strong></em> <strong>Spend a Hope</strong> to force a target within Melee range to make a Reaction Roll (15). On a failure, they forget the last minute of your conversation.</p><p class=\"Card-Feature\"><em><strong>Rune Circle:</strong></em> <strong>Mark a Stress</strong> to create a temporary magical circle on the ground where you stand. All adversaries within Melee range, or who enter Melee range, take <strong>2d12+4</strong> magic damage and are knocked back to Very Close range.</p>",
+    "description": "<p><em><strong>Levitation:</strong></em> Make a <strong>Spellcast Roll</strong> to temporarily lift a target you can see up into the air and move them within Close range of their original position.</p><p><em><strong>Recant:</strong></em> <strong>Spend a Hope</strong> to force a target within Melee range to make a Reaction Roll (15). On a failure, they forget the last minute of your conversation.</p><p><em><strong>Rune Circle:</strong></em> <strong>Mark a Stress</strong> to create a temporary magical circle on the ground where you stand. All adversaries within Melee range, or who enter Melee range, take <strong>2d12+4</strong> magic damage and are knocked back to Very Close range.</p>",
     "domain": "codex",
     "recallCost": 2,
     "level": 3,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "fgBLkAtuv9okxUd4",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll</strong> to temporarily lift a target you can see up into the air and move them within Close range of their original position.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> to temporarily lift a target you can see up into the air and move them within Close range of their original position.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -67,7 +67,7 @@
         "type": "attack",
         "_id": "m4y7KXhjVNT30wUT",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\"><strong>Spend a Hope</strong> to force a target within Melee range to make a Reaction Roll (15). On a failure, they forget the last minute of your conversation.</p>",
+        "description": "<p><strong>Spend a Hope</strong> to force a target within Melee range to make a Reaction Roll (15). On a failure, they forget the last minute of your conversation.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -129,7 +129,7 @@
         "type": "damage",
         "_id": "fb2HYD9J759nHKhV",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\"><strong>Mark a Stress</strong> to create a temporary magical circle on the ground where you stand. All adversaries within Melee range, or who enter Melee range, take <strong>2d12+4</strong> magic damage and are knocked back to Very Close range.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to create a temporary magical circle on the ground where you stand. All adversaries within Melee range, or who enter Melee range, take <strong>2d12+4</strong> magic damage and are knocked back to Very Close range.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -223,8 +223,5 @@
   "_id": "cWRFHJdxEZ0M1dAg",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!cWRFHJdxEZ0M1dAg"
 }

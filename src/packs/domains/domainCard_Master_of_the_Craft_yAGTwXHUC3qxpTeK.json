@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "yFcD1LOM3xKbkNYl",
   "system": {
-    "description": "<p></p><p class=\"Body-Foundation\">Gain a permanent +2 bonus to two of your Experiences or a permanent +3 bonus to one of your Experiences. Then place this card in your vault permanently.</p><p></p>",
+    "description": "<p>Gain a permanent +2 bonus to two of your Experiences or a permanent +3 bonus to one of your Experiences. Then place this card in your vault permanently.</p>",
     "domain": "grace",
     "recallCost": 0,
     "level": 9,
@@ -26,8 +26,5 @@
   "_id": "yAGTwXHUC3qxpTeK",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!yAGTwXHUC3qxpTeK"
 }

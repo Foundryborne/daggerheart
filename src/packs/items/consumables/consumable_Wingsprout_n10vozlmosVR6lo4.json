@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "HopgGHn12CHiDNuk",
         "systemPath": "actions",
-        "description": "<p>You gain magic wings that allow you to fly for a number of minutes equal to your level.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -69,7 +69,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">You gain magic wings that allow you to fly for a number of minutes equal to your level.</p>",
+      "description": "<p>You gain magic wings that allow you to fly for a number of minutes equal to your level.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -85,10 +85,6 @@
   ],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!n10vozlmosVR6lo4"
 }

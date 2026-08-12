@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "sGCKwmomutMTv0Xs",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (16)</strong>. On a success, <strong>mark any number of Stress</strong> to target a line of allies within Far range. You can clear Hit Points on the targets equal to the number of Stress marked, divided among them however you’d like.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll (16)</strong>. On a success, <strong>mark any number of Stress</strong> to target a line of allies within Far range. You can clear Hit Points on the targets equal to the number of Stress marked, divided among them however you'd like.</p>",
     "domain": "splendor",
     "recallCost": 2,
     "level": 9,
@@ -120,8 +120,5 @@
   "_id": "4uAFGp3LxiC07woC",
   "sort": 3500000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!4uAFGp3LxiC07woC"
 }

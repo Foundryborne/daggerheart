@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "Abn46nCQst6kpGeA",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against all adversaries within Very Close range. Targets you succeed against are temporarily <em>Restrained</em> as their shadow binds them in place.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll</strong> against all adversaries within Very Close range. Targets you succeed against are temporarily <em>Restrained</em> as their shadow binds them in place.</p>",
     "domain": "midnight",
     "recallCost": 0,
     "level": 2,
@@ -141,8 +141,5 @@
       "_key": "!items.effects!kguhWlidhxe2GbT0.RFB4V0V4bDJ6vCL2"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!kguhWlidhxe2GbT0"
 }

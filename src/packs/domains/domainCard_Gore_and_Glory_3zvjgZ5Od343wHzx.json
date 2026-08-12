@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "QYdeGsmVYIF34kZR",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you critically succeed on a weapon attack, gain an additional Hope or clear an additional Stress.</p><p class=\"Body-Foundation\">Additionally, when you deal enough damage to defeat an enemy, gain a Hope or clear a Stress.</p>",
+    "description": "<p>When you critically succeed on a weapon attack, gain an additional Hope or clear an additional Stress.</p><p>Additionally, when you deal enough damage to defeat an enemy, gain a Hope or clear a Stress.</p>",
     "domain": "blade",
     "recallCost": 2,
     "level": 9,
@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "crvDbD8V8linpzeg",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">When you critically succeed on a weapon attack, gain an additional Hope or clear an additional Stress.</p><p class=\"Body-Foundation\">Additionally, when you deal enough damage to defeat an enemy, gain a Hope or clear a Stress.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -89,7 +89,7 @@
         "type": "healing",
         "_id": "r7MFU8khXqsEpx16",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">When you critically succeed on a weapon attack, gain an additional Hope or clear an additional Stress.</p><p class=\"Body-Foundation\">Additionally, when you deal enough damage to defeat an enemy, gain a Hope or clear a Stress.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -177,8 +177,5 @@
   "_id": "3zvjgZ5Od343wHzx",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!3zvjgZ5Od343wHzx"
 }

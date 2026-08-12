@@ -42,11 +42,6 @@
   "flags": {},
   "_id": "oY69NN4rYxoRE4hl",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Burning Heart of the Woods",
     "displayName": 0,
@@ -144,7 +139,7 @@
       "name": "Chaos Magic Locus",
       "type": "feature",
       "system": {
-        "description": "<p>When a PC makes a Spellcast Roll, they must roll two Fear Dice and take the higher result. </p><section id=\"secret-oR4iWlNQoOg4IXMr\" class=\"secret\"><p><em>What does it feel like to work magic in this chaostouched place? What do you fear will happen if you lose control of the spell?</em></p></section>",
+        "description": "<p>When a PC makes a Spellcast Roll, they must roll two Fear Dice and take the higher result.</p><section id=\"secret-oR4iWlNQoOg4IXMr\" class=\"secret\"><p><em>What does it feel like to work magic in this chaostouched place? What do you fear will happen if you lose control of the spell?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -159,10 +154,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -173,7 +164,7 @@
       "name": "The Indigo Flame",
       "type": "feature",
       "system": {
-        "description": "<p>PCs who approach the central tree can make a Knowledge Roll to try to identify the magic that consumed this environment. </p><ul><li><p><strong>On a success:</strong> They learn three of the below details. On a success with Fear, they learn two. </p></li><li><p><strong>On a failure:</strong> They can mark a Stress to learn one and gain advantage on the next action roll to investigate this environment. </p></li><li><p><strong>Details:</strong> This is a result of Fallen magic. The corruption is spread through the ashen moss. It can be cleansed only by a ritual of nature magic with a Progress Countdown (8).</p></li></ul><section id=\"secret-SkDRzA8454MaIFU3\" class=\"secret\"><p><em>What Fallen cult corrupted these woods? What have they already done with the cursed wood and sap from this tree?</em></p></section>",
+        "description": "<p>PCs who approach the central tree can make a Knowledge Roll to try to identify the magic that consumed this environment.</p><ul><li><p><strong>On a success:</strong> They learn three of the below details. On a success with Fear, they learn two.</p></li><li><p><strong>On a failure:</strong> They can mark a Stress to learn one and gain advantage on the next action roll to investigate this environment.</p></li><li><p><strong>Details:</strong> This is a result of Fallen magic. The corruption is spread through the ashen moss. It can be cleansed only by a ritual of nature magic with a Progress Countdown (8).</p></li></ul><section id=\"secret-SkDRzA8454MaIFU3\" class=\"secret\"><p><em>What Fallen cult corrupted these woods? What have they already done with the cursed wood and sap from this tree?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -188,10 +179,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -202,7 +189,7 @@
       "name": "Grasping Vines",
       "type": "feature",
       "system": {
-        "description": "<p>Animate vines bristling with thorns whip out from the underbrush to ensnare the PCs. A target must succeed on an Agility Reaction Roll or become Restrained and Vulnerable until they break free, clearing both conditions, with a successful Finesse or Strength Roll or by dealing 10 damage to the vines. When the target makes a roll to escape, they take <strong>1d8+4</strong> physical damage and lose a Hope. </p><section id=\"secret-ysaK5Lw0DGsZsgxO\" class=\"secret\"><p><em>What painful memories do the vines bring to the surface as they pierce flesh?</em></p></section>",
+        "description": "<p>Animate vines bristling with thorns whip out from the underbrush to ensnare the PCs. A target must succeed on an Agility Reaction Roll or become Restrained and Vulnerable until they break free, clearing both conditions, with a successful Finesse or Strength Roll or by dealing 10 damage to the vines. When the target makes a roll to escape, they take <strong>1d8+4</strong> physical damage and lose a Hope.</p><section id=\"secret-ysaK5Lw0DGsZsgxO\" class=\"secret\"><p><em>What painful memories do the vines bring to the surface as they pierce flesh?</em></p></section>",
         "resource": null,
         "actions": {
           "SfUlV5CL2kWJvXQX": {
@@ -287,7 +274,7 @@
             "changes": [],
             "duration": {
               "type": "temporary",
-              "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">Until you break free with a successful Finesse or Strength Roll or by dealing 10 damage to the vines.</span></p>"
+              "description": "<p>Until you break free with a successful Finesse or Strength Roll or by dealing 10 damage to the vines.</p>"
             },
             "rangeDependence": null,
             "stacking": null,
@@ -326,10 +313,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -479,10 +462,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -642,10 +621,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

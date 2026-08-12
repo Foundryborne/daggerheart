@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "MC0EA6TDZpEHMz11",
         "systemPath": "actions",
-        "description": "<p>You can use this bone to control your falling speed for a number of minutes equal to your level.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -85,10 +85,6 @@
   ],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!DpxEMpwfasEBpORU"
 }

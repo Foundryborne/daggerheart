@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "i5iDLXMZLc0ckWI5",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you make a successful attack with a weapon, gain a bonus to your damage roll equal to either your Finesse or Agility.</p>",
+    "description": "<p>When you make a successful attack with a weapon, gain a bonus to your damage roll equal to either your Finesse or Agility.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 7,
@@ -62,7 +62,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p class=\"Body-Foundation\">When you make a successful attack with a weapon, gain a bonus to your damage roll equal to either your Finesse or Agility.</p>",
+      "description": "<p>When you make a successful attack with a weapon, gain a bonus to your damage roll equal to either your Finesse or Agility.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -113,7 +113,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p class=\"Body-Foundation\">When you make a successful attack with a weapon, gain a bonus to your damage roll equal to either your Finesse or Agility.</p>",
+      "description": "<p>When you make a successful attack with a weapon, gain a bonus to your damage roll equal to either your Finesse or Agility.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -129,8 +129,5 @@
       "_key": "!items.effects!bap1eCWryPNowbyo.Ha7c4XgmN5zGMSHG"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!bap1eCWryPNowbyo"
 }

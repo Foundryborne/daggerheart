@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "bCjkysrofWPiZqNh",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you make a successful <strong>Spellcast Roll</strong> to cast a different spell, you can <strong>spend a Hope</strong> to become <em>Cloaked</em>. While <em>Cloaked</em>, you remain unseen if you are stationary when an adversary moves to where they would normally see you. When you move into or within an adversary’s line of sight or make an attack, you are no longer <em>Cloaked</em>.</p>",
+    "description": "<p>When you make a successful <strong>Spellcast Roll</strong> to cast a different spell, you can <strong>spend a Hope</strong> to become <em>Cloaked</em>. While <em>Cloaked</em>, you remain unseen if you are stationary when an adversary moves to where they would normally see you. When you move into or within an adversary's line of sight or make an attack, you are no longer <em>Cloaked</em>.</p>",
     "domain": "arcana",
     "recallCost": 2,
     "level": 7,
@@ -115,8 +115,5 @@
       "_key": "!items.effects!Zhw7PtK8nMPlsOqD.twCBqXytmRkMz0kV"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!Zhw7PtK8nMPlsOqD"
 }

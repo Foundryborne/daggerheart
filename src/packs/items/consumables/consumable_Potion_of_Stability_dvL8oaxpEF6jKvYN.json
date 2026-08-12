@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "ifj42z5FhfMVyyd1",
         "systemPath": "actions",
-        "description": "<p>You can drink this potion to choose one additional downtime move.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -98,10 +98,6 @@
   ],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!dvL8oaxpEF6jKvYN"
 }

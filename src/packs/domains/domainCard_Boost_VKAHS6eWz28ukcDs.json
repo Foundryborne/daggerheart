@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "3e8kCsLzLxiACJDb",
   "system": {
-    "description": "<p class=\"Body-Foundation\"><strong>Mark a Stress</strong> to boost off a willing ally within Close range, fling yourself into the air, and perform an aerial attack against a target within Far range. You have advantage on the attack, add a<strong> d10</strong> to the damage roll, and end your move within Melee range of the target.</p>",
+    "description": "<p><strong>Mark a Stress</strong> to boost off a willing ally within Close range, fling yourself into the air, and perform an aerial attack against a target within Far range. You have advantage on the attack, add a<strong> d10</strong> to the damage roll, and end your move within Melee range of the target.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 4,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "EA3lGjFhJAX1xoT4",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\"><strong>Mark a Stress</strong> to boost off a willing ally within Close range, fling yourself into the air, and perform an aerial attack against a target within Far range. You have advantage on the attack, add a<strong> d10</strong> to the damage roll, and end your move within Melee range of the target.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -65,8 +65,5 @@
   "_id": "VKAHS6eWz28ukcDs",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!VKAHS6eWz28ukcDs"
 }

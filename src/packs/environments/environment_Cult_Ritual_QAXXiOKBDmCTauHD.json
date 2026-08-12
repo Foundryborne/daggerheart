@@ -30,11 +30,6 @@
   "flags": {},
   "_id": "QAXXiOKBDmCTauHD",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Cult Ritual",
     "displayName": 0,
@@ -132,7 +127,7 @@
       "name": "Desecrated Ground",
       "type": "feature",
       "system": {
-        "description": "<p>Cultists dedicated this place to the Fallen Gods, and their foul influence seeps into it. Reduce the PCs’ Hope Die to a d10 while in this environment. The desecration can be removed with a Progress Countdown (6).</p><section class=\"secret\" id=\"secret-iPgKjrXJYw4cy0EX\"><p><em>How do the PCs fist notice that something is wrong about this place? What fears resurface while hope is kept at bay?</em></p></section>",
+        "description": "<p>Cultists dedicated this place to the Fallen Gods, and their foul influence seeps into it. Reduce the PCs' Hope Die to a d10 while in this environment. The desecration can be removed with a Progress Countdown (6).</p><section class=\"secret\" id=\"secret-iPgKjrXJYw4cy0EX\"><p><em>How do the PCs fist notice that something is wrong about this place? What fears resurface while hope is kept at bay?</em></p></section>",
         "resource": null,
         "actions": {
           "7W3sWRLzjG3dKcgq": {
@@ -226,10 +221,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -240,7 +231,7 @@
       "name": "Blashemous Might",
       "type": "feature",
       "system": {
-        "description": "<p>A portion of the ritual’s power is diverted into a cult member to fight off interlopers. Choose one adversary to become Imbued with terrible magic until the scene ends or they’re defeated. An Imbued adversary immediately takes the spotlight and gains one of the following benefits, or all three if you <strong>spend a Fear</strong>:</p><ul><li><p>They gain advantage on all attacks.</p></li><li><p>They deal an extra <strong>1d10</strong> damage on a successful attack.</p></li><li><p>They gain the following feature: <strong>Relentless (2) - Passive</strong>. This adversary can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p></li></ul><section class=\"secret\" id=\"secret-600LhfEy1uNSxWdJ\"><p><em>How does the enemy change in appearance? What fears do their blows bring to the surface?</em></p></section>",
+        "description": "<p>A portion of the ritual's power is diverted into a cult member to fight off interlopers. Choose one adversary to become Imbued with terrible magic until the scene ends or they're defeated. An Imbued adversary immediately takes the spotlight and gains one of the following benefits, or all three if you <strong>spend a Fear</strong>:</p><ul><li><p>They gain advantage on all attacks.</p></li><li><p>They deal an extra <strong>1d10</strong> damage on a successful attack.</p></li><li><p>They gain the following feature: <strong>Relentless (2) - Passive</strong>. This adversary can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p></li></ul><section class=\"secret\" id=\"secret-600LhfEy1uNSxWdJ\"><p><em>How does the enemy change in appearance? What fears do their blows bring to the surface?</em></p></section>",
         "resource": null,
         "actions": {
           "EATw4ZkcuGeDfgLZ": {
@@ -382,10 +373,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -396,7 +383,7 @@
       "name": "The Summoning",
       "type": "feature",
       "system": {
-        "description": "<p><em>Countdown (6)</em>. When the PCs enter the scene or the cult begins the ritual to summon a demon, activate the countdown. Designate one adversary to lead the ritual. The countdown ticks down when a PC rolls with Fear. When it triggers, summon a @UUID[Compendium.daggerheart.adversaries.Actor.3tqCjDwJAQ7JKqMb]{Minor Demon} within Very Close range of the ritual’s leader. If the leader is defeated, the countdown ends with no effect as the ritual fails.</p><section class=\"secret\" id=\"secret-OXdRqIZ0R8wGn3Gm\"><p><em>What will the cult do with this leashed demon if they succeed? What will they try to summon next?</em></p></section>",
+        "description": "<p><em>Countdown (6)</em>. When the PCs enter the scene or the cult begins the ritual to summon a demon, activate the countdown. Designate one adversary to lead the ritual. The countdown ticks down when a PC rolls with Fear. When it triggers, summon a @UUID[Compendium.daggerheart.adversaries.Actor.3tqCjDwJAQ7JKqMb]{Minor Demon} within Very Close range of the ritual's leader. If the leader is defeated, the countdown ends with no effect as the ritual fails.</p><section class=\"secret\" id=\"secret-OXdRqIZ0R8wGn3Gm\"><p><em>What will the cult do with this leashed demon if they succeed? What will they try to summon next?</em></p></section>",
         "resource": null,
         "actions": {
           "bUIfzuWd1VfiV8sc": {
@@ -481,10 +468,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -495,7 +478,7 @@
       "name": "Complete the Ritual",
       "type": "feature",
       "system": {
-        "description": "<p>If the ritual’s leader is targeted by an attack or spell, an ally within Very Close range of them can <strong>mark a Stress</strong> to be targeted by that attack or spell instead. </p><section id=\"secret-4QYQNJKFywfwkGGp\" class=\"secret\"><p><em>What does it feel like to see such devotion turned to the pursuit of fear and domination?</em></p></section>",
+        "description": "<p>If the ritual's leader is targeted by an attack or spell, an ally within Very Close range of them can <strong>mark a Stress</strong> to be targeted by that attack or spell instead.</p><section id=\"secret-4QYQNJKFywfwkGGp\" class=\"secret\"><p><em>What does it feel like to see such devotion turned to the pursuit of fear and domination?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -510,10 +493,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

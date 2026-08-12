@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "DW5AqEM0F8XaUqpn",
         "systemPath": "actions",
-        "description": "<p>Three times per rest when you succeed on an attack with one of these arrows, you can add your Proficiency to the damage roll.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -68,7 +68,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Add your Proficiency to the damage roll of this attack.</p>",
+      "description": "<p>Add your Proficiency to the damage roll of this attack.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -83,10 +83,6 @@
   ],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!I63LTFD6GXHgyGpR"
 }

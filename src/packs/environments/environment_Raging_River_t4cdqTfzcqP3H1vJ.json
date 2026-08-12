@@ -39,11 +39,6 @@
   "flags": {},
   "_id": "t4cdqTfzcqP3H1vJ",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Raging River",
     "displayName": 0,
@@ -141,14 +136,14 @@
       "name": "Dangerous Crossing",
       "type": "feature",
       "system": {
-        "description": "<p>Crossing the river requires the party to complete a <em>Progress Countdown (4)</em>.</p><section class=\"secret\" id=\"secret-l7tHfgFFOGdvlnll\"><p>A PC who rolls a failure with Fear is immediately targeted by the “Undertow” action without requiring a Fear to be spent on the feature.</p></section><p></p><section class=\"secret\" id=\"secret-VF0r7nXxQlmuwMpj\"><p><em>Have any of the PCs forded rivers like this before? Are any of them afraid of drowning?</em></p></section>",
+        "description": "<p>Crossing the river requires the party to complete a <em>Progress Countdown (4)</em>.</p><section class=\"secret\" id=\"secret-l7tHfgFFOGdvlnll\"><p>A PC who rolls a failure with Fear is immediately targeted by the \"Undertow\" action without requiring a Fear to be spent on the feature.</p></section><p></p><section class=\"secret\" id=\"secret-VF0r7nXxQlmuwMpj\"><p><em>Have any of the PCs forded rivers like this before? Are any of them afraid of drowning?</em></p></section>",
         "resource": null,
         "actions": {
           "91HPIEEcVKPQ5qqn": {
             "type": "countdown",
             "_id": "91HPIEEcVKPQ5qqn",
             "systemPath": "actions",
-            "description": "<p>Crossing the river requires the party to complete a <em>Progress Countdown (4)</em>.</p><section class=\"secret\" id=\"secret-aKJuTbAZaPUFxoiE\"><p>A PC who rolls a failure with Fear is immediately targeted by the “Undertow” action without requiring a Fear to be spent on the feature.</p></section><p></p><section class=\"secret\" id=\"secret-GSYTFIq8J3k2a4Ww\"><p><em>Have any of the PCs forded rivers like this before? Are any of them afraid of drowning?</em></p></section>",
+            "description": "<p>Crossing the river requires the party to complete a <em>Progress Countdown (4)</em>.</p><section class=\"secret\" id=\"secret-aKJuTbAZaPUFxoiE\"><p>A PC who rolls a failure with Fear is immediately targeted by the \"Undertow\" action without requiring a Fear to be spent on the feature.</p></section><p></p><section class=\"secret\" id=\"secret-GSYTFIq8J3k2a4Ww\"><p><em>Have any of the PCs forded rivers like this before? Are any of them afraid of drowning?</em></p></section>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"
@@ -197,10 +192,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -211,7 +202,7 @@
       "name": "Undertow",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to catch a PC in the undertow. They must make an Agility Reaction Roll. On a failure, they take <strong>1d6+1</strong> physical damage and are moved a Close distance down the river, becoming Vulnerable until they get out of the river. On a success, they must mark a Stress. </p><section id=\"secret-H6i1kuyHdtq9Eqgw\" class=\"secret\"><p><em>What trinkets and baubles lie along the bottom of the riverbed? Do predators swim these rivers?</em></p></section>",
+        "description": "<p><strong>Spend a Fear</strong> to catch a PC in the undertow. They must make an Agility Reaction Roll. On a failure, they take <strong>1d6+1</strong> physical damage and are moved a Close distance down the river, becoming Vulnerable until they get out of the river. On a success, they must mark a Stress.</p><section id=\"secret-H6i1kuyHdtq9Eqgw\" class=\"secret\"><p><em>What trinkets and baubles lie along the bottom of the riverbed? Do predators swim these rivers?</em></p></section>",
         "resource": null,
         "actions": {
           "f2e3gbhzD7z8BdCc": {
@@ -362,7 +353,7 @@
             "changes": [],
             "duration": {
               "type": "temporary",
-              "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">Until you get out of the river.</span></p>"
+              "description": "<p>Until you get out of the river.</p>"
             },
             "rangeDependence": null,
             "stacking": null,
@@ -400,10 +391,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -414,7 +401,7 @@
       "name": "Patient Hunter",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to summon a @UUID[Compendium.daggerheart.adversaries.Actor.8KWVLWXFhlY2kYx0]{Glass Snake} within Close range of a chosen PC. The Snake appears in or near the river and immediately takes the spotlight to use their “Spinning Serpent” action.</p><section class=\"secret\" id=\"secret-F8zsJQg3xWOPpH5v\"><p><em>What treasures does the beast have in their burrow? What travelers have already fallen victim to this predator?</em></p></section>",
+        "description": "<p><strong>Spend a Fear</strong> to summon a @UUID[Compendium.daggerheart.adversaries.Actor.8KWVLWXFhlY2kYx0]{Glass Snake} within Close range of a chosen PC. The Snake appears in or near the river and immediately takes the spotlight to use their \"Spinning Serpent\" action.</p><section class=\"secret\" id=\"secret-F8zsJQg3xWOPpH5v\"><p><em>What treasures does the beast have in their burrow? What travelers have already fallen victim to this predator?</em></p></section>",
         "resource": null,
         "actions": {
           "uY9HMKE4Q5g7bRKg": {
@@ -468,10 +455,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

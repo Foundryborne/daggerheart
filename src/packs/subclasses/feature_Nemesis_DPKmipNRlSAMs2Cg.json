@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "Rgc7kBmU3kjHKvfx",
         "systemPath": "actions",
-        "description": "<p><strong>Spend 2 Hope</strong> to Prioritize an adversary until your next rest. When you make an attack against your Prioritized adversary, you can swap the results of your Hope and Fear Dice. You can only Prioritize one adversary at a time.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -84,10 +84,6 @@
     }
   ],
   "sort": 400000,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!DPKmipNRlSAMs2Cg"
 }

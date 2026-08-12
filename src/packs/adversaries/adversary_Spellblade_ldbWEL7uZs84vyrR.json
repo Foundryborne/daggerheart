@@ -141,11 +141,6 @@
   "flags": {},
   "_id": "ldbWEL7uZs84vyrR",
   "sort": 4500000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Spellblade",
     "displayName": 0,
@@ -245,7 +240,7 @@
       "_id": "BwuoAv3EWT0m1apk",
       "img": "icons/weapons/swords/sword-runed-glowing.webp",
       "system": {
-        "description": "<p>Damage dealt by the @Lookup[@name]’s standard attack is considered both physical and magic.</p>",
+        "description": "<p>Damage dealt by the @Lookup[@name]'s standard attack is considered both physical and magic.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -259,10 +254,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -422,10 +413,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -500,10 +487,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -635,10 +618,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "thP6nUk0nkrNcpXY",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Choose a target within Very Far range. You can see through their eyes and hear through their ears. You can transition between using your own senses or the target’s freely until you cast another spell or until your next rest.</p>",
+    "description": "<p>Choose a target within Very Far range. You can see through their eyes and hear through their ears. You can transition between using your own senses or the target's freely until you cast another spell or until your next rest.</p>",
     "domain": "grace",
     "recallCost": 1,
     "level": 4,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "8ACwa5tqAGyNZ0sR",
         "systemPath": "actions",
-        "description": "<p>Choose a target within Very Far range. You can see through their eyes and hear through their ears. You can transition between using your own senses or the target’s freely until you cast another spell or until your next rest.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -85,7 +85,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Can see through their eyes and hear through their ears.</span></p>",
+      "description": "<p>Can see through their eyes and hear through their ears.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -106,8 +106,5 @@
       "_key": "!items.effects!7b0mzV5QMPjVPT4o.TCOHV7tWpunCZDxn"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!7b0mzV5QMPjVPT4o"
 }

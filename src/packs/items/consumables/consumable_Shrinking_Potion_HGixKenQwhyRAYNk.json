@@ -4,14 +4,14 @@
   "_id": "HGixKenQwhyRAYNk",
   "img": "icons/consumables/potions/flask-decorated-label-pink.webp",
   "system": {
-    "description": "<p>You can drink this potion to halve your size until you choose to drop this form or your next rest. While in this form, you have a +2 bonus to Agility and a −1 penalty to your Proficiency.</p>",
+    "description": "<p>You can drink this potion to halve your size until you choose to drop this form or your next rest. While in this form, you have a +2 bonus to Agility and a -1 penalty to your Proficiency.</p>",
     "quantity": 1,
     "actions": {
       "F9vKFVwtJfR4Q8Kh": {
         "type": "effect",
         "_id": "F9vKFVwtJfR4Q8Kh",
         "systemPath": "actions",
-        "description": "<p>You can drink this potion to halve your size until you choose to drop this form or your next rest. While in this form, you have a +2 bonus to Agility and a −1 penalty to your Proficiency.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -108,10 +108,6 @@
   ],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!HGixKenQwhyRAYNk"
 }

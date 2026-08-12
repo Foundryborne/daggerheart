@@ -5,7 +5,7 @@
   "_id": "5QqpEwmwkPfZHpMW",
   "img": "icons/skills/melee/strike-dagger-skull-white.webp",
   "system": {
-    "description": "<p>When you succeed on an attack while Cloaked or while an ally is within Melee range of your target, add a number of d6s equal to your tier to your damage roll. </p><ul><li><p>Level 1 -&gt; Tier 1</p></li><li><p>Levels 2–4 -&gt; Tier 2 </p></li><li><p>Levels 5–7 -&gt; Tier 3 </p></li><li><p>Levels 8–10 -&gt; Tier 4</p></li></ul>",
+    "description": "<p>When you succeed on an attack while Cloaked or while an ally is within Melee range of your target, add a number of d6s equal to your tier to your damage roll.</p><ul><li><p>Level 1 -&gt; Tier 1</p></li><li><p>Levels 2–4 -&gt; Tier 2</p></li><li><p>Levels 5–7 -&gt; Tier 3</p></li><li><p>Levels 8–10 -&gt; Tier 4</p></li></ul>",
     "resource": null,
     "actions": {},
     "originItemType": null,
@@ -62,10 +62,6 @@
     }
   ],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!5QqpEwmwkPfZHpMW"
 }

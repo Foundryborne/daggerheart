@@ -23,7 +23,10 @@ for (const pack of packs) {
     await extractPack(`${MODULE_ID}/${pack}`, `${MODULE_ID}/src/${pack}`, {
         yaml,
         transformName,
-        transformEntry
+        transformEntry: entry => {
+            delete entry._stats; // top level stats are deleted, all others are pruned
+            transformDocument(entry);
+        }
     });
 }
 /**
@@ -38,20 +41,31 @@ function transformName(doc) {
     return `${doc.name ? `${prefix}_${safeFileName}_${doc._id}` : doc._id}.${yaml ? 'yml' : 'json'}`;
 }
 
-function transformEntry(entry) {
-    function prune(stats) {
-        return stats ? { compendiumSource: stats.compendiumSource } : stats;
+function transformDocument(entry) {
+    // Remove certain characters like rsquo and fancy subtract. Keeps emdash
+    function removeSpecialCharacters(description) {
+        if (typeof description !== 'string') return description;
+        return description.replaceAll('’', '\'').replaceAll('“', '"').replaceAll('”', '"').replaceAll('−', '-');
     }
 
-    delete entry._stats;
+    const stats = entry._stats;
+    entry._stats = stats ? { compendiumSource: stats.compendiumSource } : stats;
+    delete entry.ownership;
+    if (entry?.system) {
+        entry.system.description = removeSpecialCharacters(entry.system.description);
+        for (const action of Object.values(entry.system.actions ?? {})) {
+            action.description = removeSpecialCharacters(action.description);
+            if (action.description && action.description === entry.system.description) {
+                action.description = '';
+            }
+        }
+    }
+    
     for (const effect of entry.effects ?? []) {
-        effect._stats = prune(effect._stats);
+        transformDocument(effect);
     }
     for (const item of entry.items ?? []) {
-        item._stats = prune(item._stats);
-        for (const effect of item.effects ?? []) {
-            effect._stats = prune(effect._stats);
-        }
+        transformDocument(item);
     }
 }
 

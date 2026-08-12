@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "2yh8wuYprOyswf0r",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (13)</strong> and target a creature other than yourself within Melee range. On a success, <strong>mark a Stress</strong> to clear 2 Hit Points or 2 Stress on the target. On a failure, <strong>mark a Stress</strong> to clear a Hit Point or a Stress on the target. You can’t heal the same target again until your next long rest.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll (13)</strong> and target a creature other than yourself within Melee range. On a success, <strong>mark a Stress</strong> to clear 2 Hit Points or 2 Stress on the target. On a failure, <strong>mark a Stress</strong> to clear a Hit Point or a Stress on the target. You can't heal the same target again until your next long rest.</p>",
     "domain": "splendor",
     "recallCost": 1,
     "level": 2,
@@ -72,7 +72,7 @@
         "type": "healing",
         "_id": "vmWku5XYmakLdwX2",
         "systemPath": "actions",
-        "description": "<p>On a failure, </span><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\">mark a Stress</span> to clear a Hit Point or a Stress on the target. You can’t heal the same target again until your next long rest.</p>",
+        "description": "<p>On a failure, mark a Stress to clear a Hit Point or a Stress on the target. You can't heal the same target again until your next long rest.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -156,7 +156,7 @@
         "type": "healing",
         "_id": "FYHLuVtFCR9A6Nvt",
         "systemPath": "actions",
-        "description": "<p>On a success, </span><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\">mark a Stress</span> to clear 2 Hit Points or 2 Stress on the target. You can’t heal the same target again until your next long rest.</p>",
+        "description": "<p>On a success, mark a Stress to clear 2 Hit Points or 2 Stress on the target. You can't heal the same target again until your next long rest.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -240,7 +240,7 @@
         "type": "healing",
         "_id": "8ElTYMjIM7YI6Kb8",
         "systemPath": "actions",
-        "description": "<p>On a failure, </span><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\">mark a Stress</span> to clear a Hit Point or a Stress on the target. You can’t heal the same target again until your next long rest.</p>",
+        "description": "<p>On a failure, mark a Stress to clear a Hit Point or a Stress on the target. You can't heal the same target again until your next long rest.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -324,7 +324,7 @@
         "type": "healing",
         "_id": "lQMhidLodJn9Nj7e",
         "systemPath": "actions",
-        "description": "<p>On a success, </span><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\">mark a Stress</span> to clear 2 Hit Points or 2 Stress on the target.  You can’t heal the same target again until your next long rest.</p>",
+        "description": "<p>On a success, mark a Stress to clear 2 Hit Points or 2 Stress on the target.  You can't heal the same target again until your next long rest.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -444,7 +444,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Can’t be healed again with Healing Hands by the caster of the Healing Hands until a long rest.</span></p>",
+      "description": "<p>Can’t be healed again with Healing Hands by the caster of the Healing Hands until a long rest.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -458,8 +458,5 @@
       "_key": "!items.effects!WTlhnQMajc1r8i50.sd5liP4ZcVeTMAoW"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!WTlhnQMajc1r8i50"
 }

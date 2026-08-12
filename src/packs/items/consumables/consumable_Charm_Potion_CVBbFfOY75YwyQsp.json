@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "2trd3JYIb527LIrn",
         "systemPath": "actions",
-        "description": "<p>You gain a +1 bonus to your next Presence Roll.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -92,10 +92,6 @@
   ],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!CVBbFfOY75YwyQsp"
 }

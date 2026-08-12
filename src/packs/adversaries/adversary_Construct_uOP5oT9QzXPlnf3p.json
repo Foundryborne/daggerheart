@@ -134,11 +134,6 @@
   "flags": {},
   "_id": "uOP5oT9QzXPlnf3p",
   "sort": 4900000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Construct",
     "displayName": 0,
@@ -291,10 +286,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -321,10 +312,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -337,7 +324,7 @@
       "_id": "93m085bEaKFzvEWT",
       "img": "icons/skills/movement/arrow-upward-blue.webp",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets in the @Lookup[@name]’s path when they move. Targets the @Lookup[@name] succeeds against take <strong>1d8</strong> physical damage.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets in the @Lookup[@name]'s path when they move. Targets the @Lookup[@name] succeeds against take <strong>1d8</strong> physical damage.</p>",
         "resource": null,
         "actions": {
           "OswphW4Z1B5oa4ts": {
@@ -473,10 +460,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -489,7 +472,7 @@
       "_id": "EF6YIDjQ0liFubGA",
       "img": "icons/creatures/magical/construct-golem-stone-blue.webp",
       "system": {
-        "description": "<p>Before rolling damage for the @Lookup[@name]’s attack, you can <strong>mark a Stress</strong> to gain a +10 bonus to the damage roll. The @Lookup[@name] can then take the spotlight again.</p>",
+        "description": "<p>Before rolling damage for the @Lookup[@name]'s attack, you can <strong>mark a Stress</strong> to gain a +10 bonus to the damage roll. The @Lookup[@name] can then take the spotlight again.</p>",
         "resource": null,
         "actions": {
           "xYACTiZzApmCXXmf": {
@@ -587,10 +570,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -741,10 +720,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

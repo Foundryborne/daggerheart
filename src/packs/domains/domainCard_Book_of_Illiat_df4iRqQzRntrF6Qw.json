@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "tqhasjtHBX0F20lN",
   "system": {
-    "description": "<p class=\"Card-Feature\"><em><strong>Slumber:</strong></em> Make a <strong>Spellcast Roll</strong> against a target within Very Close range. On a success, they’re <em>Asleep</em> until they take damage or the GM spends a <strong>Fear</strong> on their turn to clear this condition.</p><p class=\"Card-Feature\"><em><strong>Arcane Barrage:</strong></em> Once per rest, <strong>spend any number of Hope</strong> and shoot magical projectiles that strike a target of your choice within Close range. Roll a number of <strong>d6s</strong> equal to the Hope spent and deal that much magic damage to the target.</p><p class=\"Card-Feature\"><em><strong>Telepathy:</strong></em> <strong>Spend a Hope</strong> to open a line of mental communication with one target you can see. This connection lasts until your next rest or you cast Telepathy again.</p>",
+    "description": "<p><em><strong>Slumber:</strong></em> Make a <strong>Spellcast Roll</strong> against a target within Very Close range. On a success, they're <em>Asleep</em> until they take damage or the GM spends a <strong>Fear</strong> on their turn to clear this condition.</p><p><em><strong>Arcane Barrage:</strong></em> Once per rest, <strong>spend any number of Hope</strong> and shoot magical projectiles that strike a target of your choice within Close range. Roll a number of <strong>d6s</strong> equal to the Hope spent and deal that much magic damage to the target.</p><p><em><strong>Telepathy:</strong></em> <strong>Spend a Hope</strong> to open a line of mental communication with one target you can see. This connection lasts until your next rest or you cast Telepathy again.</p>",
     "domain": "codex",
     "recallCost": 2,
     "level": 1,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "gd4zjBV1UvXhgAid",
         "systemPath": "actions",
-        "description": "<p></p><p class=\"Card-Feature\"><em><strong>Slumber:</strong></em> Make a <strong>Spellcast Roll</strong> against a target within Very Close range. On a success, they’re <em>Asleep</em> until they take damage or the GM spends a <strong>Fear</strong> on their turn to clear this condition.</p>",
+        "description": "<p><em><strong>Slumber:</strong></em> Make a <strong>Spellcast Roll</strong> against a target within Very Close range. On a success, they're <em>Asleep</em> until they take damage or the GM spends a <strong>Fear</strong> on their turn to clear this condition.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -72,7 +72,7 @@
         "type": "damage",
         "_id": "tOHoeUFjdPw2TGrw",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Once per rest, <strong>spend any number of Hope</strong> and shoot magical projectiles that strike a target of your choice within Close range. Roll a number of <strong>d6s</strong> equal to the Hope spent and deal that much magic damage to the target.</p>",
+        "description": "<p>Once per rest, <strong>spend any number of Hope</strong> and shoot magical projectiles that strike a target of your choice within Close range. Roll a number of <strong>d6s</strong> equal to the Hope spent and deal that much magic damage to the target.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -142,7 +142,7 @@
         "type": "effect",
         "_id": "Ya1vttriJRLbuyhk",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\"><strong>Spend a Hope</strong> to open a line of mental communication with one target you can see. This connection lasts until your next rest or you cast Telepathy again.</p>",
+        "description": "<p><strong>Spend a Hope</strong> to open a line of mental communication with one target you can see. This connection lasts until your next rest or you cast Telepathy again.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -287,8 +287,5 @@
       "_key": "!items.effects!df4iRqQzRntrF6Qw.gfZTHSgwYSDKsePW"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!df4iRqQzRntrF6Qw"
 }

@@ -140,11 +140,6 @@
   "flags": {},
   "_id": "pnyjIGxxvurcWmTv",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Demon of Avarice",
     "displayName": 0,
@@ -242,7 +237,7 @@
       "name": "Money Talks",
       "type": "feature",
       "system": {
-        "description": "<p>Attacks against the @Lookup[@name] are made with disadvantage unless the attacker spends a handful of gold. This @Lookup[@name] starts with a number of handfuls equal to the number of PCs. When a target marks HP from the @Lookup[@name]’s standard attack, they can spend a handful of gold instead of marking HP (1 handful per HP). Add a handful of gold to the @Lookup[@name] for each handful of gold spent by PCs on this feature.</p>",
+        "description": "<p>Attacks against the @Lookup[@name] are made with disadvantage unless the attacker spends a handful of gold. This @Lookup[@name] starts with a number of handfuls equal to the number of PCs. When a target marks HP from the @Lookup[@name]'s standard attack, they can spend a handful of gold instead of marking HP (1 handful per HP). Add a handful of gold to the @Lookup[@name] for each handful of gold spent by PCs on this feature.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -257,10 +252,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -271,7 +262,7 @@
       "name": "Number Must Go Up",
       "type": "feature",
       "system": {
-        "description": "<p>Add a bonus to the @Lookup[@name]’s attack rolls equal to the number of handfuls of gold they have.</p>",
+        "description": "<p>Add a bonus to the @Lookup[@name]'s attack rolls equal to the number of handfuls of gold they have.</p>",
         "resource": {
           "type": "simple",
           "value": 0,
@@ -340,10 +331,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -369,10 +356,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

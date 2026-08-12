@@ -5,14 +5,14 @@
   "_id": "cXbRm744mW6UXGam",
   "img": "icons/skills/social/theft-pickpocket-bribery-brown.webp",
   "system": {
-    "description": "<p>Once per session, you can briefly call on a shady contact. Choose one of the following benefits and describe what brought them here to help you in this moment: </p><ul><li><p>They provide 1 handful of gold, a unique tool, or a mundane object that the situation requires.</p></li><li><p>On your next action roll, their help provides a +3 bonus to the result of your Hope or Fear Die. </p></li><li><p>The next time you deal damage, they snipe from the shadows, adding 2d8 to your damage roll.</p></li></ul>",
+    "description": "<p>Once per session, you can briefly call on a shady contact. Choose one of the following benefits and describe what brought them here to help you in this moment:</p><ul><li><p>They provide 1 handful of gold, a unique tool, or a mundane object that the situation requires.</p></li><li><p>On your next action roll, their help provides a +3 bonus to the result of your Hope or Fear Die.</p></li><li><p>The next time you deal damage, they snipe from the shadows, adding 2d8 to your damage roll.</p></li></ul>",
     "resource": null,
     "actions": {
       "GZDYjtPh0lCJ5VNq": {
         "type": "effect",
         "_id": "GZDYjtPh0lCJ5VNq",
         "systemPath": "actions",
-        "description": "<p>Once per session, you can briefly call on a shady contact. Choose one of the following benefits and describe what brought them here to help you in this moment:</p><ul><li><p>They provide 1 handful of gold, a unique tool, or a mundane object that the situation requires.</p></li><li><p>On your next action roll, their help provides a +3 bonus to the result of your Hope or Fear Die.</p></li><li><p>The next time you deal damage, they snipe from the shadows, adding 2d8 to your damage roll.</p></li></ul>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -49,10 +49,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!cXbRm744mW6UXGam"
 }

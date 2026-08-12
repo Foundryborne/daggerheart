@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "8bWpGblWODdf8mDR",
   "system": {
-    "description": "<p class=\"Card-Feature\"><em><strong>Memory Delve:</strong></em> Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, peer into the target’s mind and ask the GM a question. The GM describes any memories the target has pertaining to the answer.</p><p class=\"Card-Feature\"><em><strong>Shared Clarity:</strong> </em>Once per long rest, <strong>spend a Hope</strong> to choose two willing creatures. When one of them would mark Stress, they can choose between the two of them who marks it. This spell lasts until their next rest.</p>",
+    "description": "<p><em><strong>Memory Delve:</strong></em> Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, peer into the target's mind and ask the GM a question. The GM describes any memories the target has pertaining to the answer.</p><p><em><strong>Shared Clarity:</strong> </em>Once per long rest, <strong>spend a Hope</strong> to choose two willing creatures. When one of them would mark Stress, they can choose between the two of them who marks it. This spell lasts until their next rest.</p>",
     "domain": "codex",
     "recallCost": 2,
     "level": 8,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "gV6i6Nn6Qolc6PuF",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, peer into the target’s mind and ask the GM a question. The GM describes any memories the target has pertaining to the answer.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, peer into the target's mind and ask the GM a question. The GM describes any memories the target has pertaining to the answer.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -67,7 +67,7 @@
         "type": "effect",
         "_id": "djZ0hQamdwzvYeKc",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Once per long rest, <strong>spend a Hope</strong> to choose two willing creatures. When one of them would mark Stress, they can choose between the two of them who marks it. This spell lasts until their next rest.</p>",
+        "description": "<p>Once per long rest, <strong>spend a Hope</strong> to choose two willing creatures. When one of them would mark Stress, they can choose between the two of them who marks it. This spell lasts until their next rest.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -146,7 +146,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p class=\"Card-Feature\">Once per long rest, <strong>spend a Hope</strong> to choose two willing creatures. When one of them would mark Stress, they can choose between the two of them who marks it. This spell lasts until their next rest.</p>",
+      "description": "<p>Once per long rest, <strong>spend a Hope</strong> to choose two willing creatures. When one of them would mark Stress, they can choose between the two of them who marks it. This spell lasts until their next rest.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -160,8 +160,5 @@
       "_key": "!items.effects!VOIgm2j2Ijszwc5m.6PPapwuwgKy23oHg"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!VOIgm2j2Ijszwc5m"
 }

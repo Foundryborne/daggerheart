@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "wdhWWqWlPiBxtsvr",
   "system": {
-    "description": "<p></p><p class=\"Body-Foundation\">When an ally within Close range deals damage to an adversary, you can make a <strong>Spellcast Roll</strong> against that same target. On a success, you deal the same damage to the target that your ally dealt. If your Spellcast Roll succeeds with Fear, place this card in your vault.</p><p></p>",
+    "description": "<p>When an ally within Close range deals damage to an adversary, you can make a <strong>Spellcast Roll</strong> against that same target. On a success, you deal the same damage to the target that your ally dealt. If your Spellcast Roll succeeds with Fear, place this card in your vault.</p>",
     "domain": "grace",
     "recallCost": 1,
     "level": 10,
@@ -80,8 +80,5 @@
   "_id": "klahWDFwihqqEhXP",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!klahWDFwihqqEhXP"
 }

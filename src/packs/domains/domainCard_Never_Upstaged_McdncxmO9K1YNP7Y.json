@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "VgADdqYn9nS9G1Us",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you mark 1 or more Hit Points from an attack, you can <strong>mark a Stress</strong> to place a number of tokens equal to the number of Hit Points you marked on this card. On your next successful attack, gain a +5 bonus to your damage roll for each token on this card, then clear all tokens.</p>",
+    "description": "<p>When you mark 1 or more Hit Points from an attack, you can <strong>mark a Stress</strong> to place a number of tokens equal to the number of Hit Points you marked on this card. On your next successful attack, gain a +5 bonus to your damage roll for each token on this card, then clear all tokens.</p>",
     "domain": "grace",
     "recallCost": 2,
     "level": 6,
@@ -24,7 +24,7 @@
         "type": "effect",
         "_id": "R5wGBhMUcnhCsfH2",
         "systemPath": "actions",
-        "description": "<p>When you mark 1 or more Hit Points from an attack, you can <strong>mark a Stress</strong> to place a number of tokens equal to the number of Hit Points you marked on this card. On your next successful attack, gain a +5 bonus to your damage roll for each token on this card, then clear all tokens.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -75,7 +75,7 @@
         "type": "effect",
         "_id": "Mne0mqkibrTGwPYR",
         "systemPath": "actions",
-        "description": "<p>When you mark 1 or more Hit Points from an attack, you can <strong>mark a Stress</strong> to place a number of tokens equal to the number of Hit Points you marked on this card. On your next successful attack, gain a +5 bonus to your damage roll for each token on this card, then clear all tokens.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -126,7 +126,7 @@
         "type": "effect",
         "_id": "En7AF3g51P9ud9qj",
         "systemPath": "actions",
-        "description": "<p>When you mark 1 or more Hit Points from an attack, you can <strong>mark a Stress</strong> to place a number of tokens equal to the number of Hit Points you marked on this card. On your next successful attack, gain a +5 bonus to your damage roll for each token on this card, then clear all tokens.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -177,7 +177,7 @@
         "type": "effect",
         "_id": "WuPJlQ0wSRlGGIkh",
         "systemPath": "actions",
-        "description": "<p>When you mark 1 or more Hit Points from an attack, you can <strong>mark a Stress</strong> to place a number of tokens equal to the number of Hit Points you marked on this card. On your next successful attack, gain a +5 bonus to your damage roll for each token on this card, then clear all tokens.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -278,7 +278,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Gain a +5 bonus to your damage roll</span></p>",
+      "description": "<p>Gain a +5 bonus to your damage roll</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -329,7 +329,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Gain a +10 bonus to your damage roll</span></p>",
+      "description": "<p>Gain a +10 bonus to your damage roll</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -380,7 +380,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Gain a +15 bonus to your damage roll</span></p>",
+      "description": "<p>Gain a +15 bonus to your damage roll</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -431,7 +431,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Gain a +20 bonus to your damage roll</span></p>",
+      "description": "<p>Gain a +20 bonus to your damage roll</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -445,8 +445,5 @@
       "_key": "!items.effects!McdncxmO9K1YNP7Y.3eTaSgHlmNDcymnW"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!McdncxmO9K1YNP7Y"
 }

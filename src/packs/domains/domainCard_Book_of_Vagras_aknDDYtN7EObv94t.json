@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "j9i2Q6Z7Z82udHn1",
   "system": {
-    "description": "<p class=\"Card-Feature\"><em><strong>Runic Lock:</strong></em> Make a <strong>Spellcast Roll (15)</strong> on an object you’re touching that can close (such as a lock, chest, or box). Once per rest on a success, you can lock the object so it can only be opened by creatures of your choice. Someone with access to magic and an hour of time to study the spell can break it.</p><p class=\"Card-Feature\"><em><strong>Arcane Door:</strong></em> When you have no adversaries within Melee range, make a <strong>Spellcast Roll (13)</strong>. On a success, <strong>spend a Hope</strong> to create a portal from where you are to a point within Far range you can see. It closes once a creature has passed through it.</p><p class=\"Card-Feature\"><em><strong>Reveal:</strong></em> Make a <strong>Spellcast Roll</strong>. If there is anything magically hidden within Close range the roll would succeed against, it is revealed.</p>",
+    "description": "<p><em><strong>Runic Lock:</strong></em> Make a <strong>Spellcast Roll (15)</strong> on an object you're touching that can close (such as a lock, chest, or box). Once per rest on a success, you can lock the object so it can only be opened by creatures of your choice. Someone with access to magic and an hour of time to study the spell can break it.</p><p><em><strong>Arcane Door:</strong></em> When you have no adversaries within Melee range, make a <strong>Spellcast Roll (13)</strong>. On a success, <strong>spend a Hope</strong> to create a portal from where you are to a point within Far range you can see. It closes once a creature has passed through it.</p><p><em><strong>Reveal:</strong></em> Make a <strong>Spellcast Roll</strong>. If there is anything magically hidden within Close range the roll would succeed against, it is revealed.</p>",
     "domain": "codex",
     "recallCost": 2,
     "level": 2,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "kfJZdT3F4SH1h1dc",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll (15)</strong> on an object you’re touching that can close (such as a lock, chest, or box). Once per rest on a success, you can lock the object so it can only be opened by creatures of your choice. Someone with access to magic and an hour of time to study the spell can break it.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll (15)</strong> on an object you're touching that can close (such as a lock, chest, or box). Once per rest on a success, you can lock the object so it can only be opened by creatures of your choice. Someone with access to magic and an hour of time to study the spell can break it.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -67,7 +67,7 @@
         "type": "attack",
         "_id": "Da3zkKkOljZfu5Xb",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">When you have no adversaries within Melee range, make a <strong>Spellcast Roll (13)</strong>. On a success, <strong>spend a Hope</strong> to create a portal from where you are to a point within Far range you can see. It closes once a creature has passed through it.</p>",
+        "description": "<p>When you have no adversaries within Melee range, make a <strong>Spellcast Roll (13)</strong>. On a success, <strong>spend a Hope</strong> to create a portal from where you are to a point within Far range you can see. It closes once a creature has passed through it.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -129,7 +129,7 @@
         "type": "attack",
         "_id": "VOOND5icbz1WxUUD",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll</strong>. If there is anything magically hidden within Close range the roll would succeed against, it is revealed.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong>. If there is anything magically hidden within Close range the roll would succeed against, it is revealed.</p><p>@Template[type:emanation|range:c]</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -195,8 +195,5 @@
   "_id": "aknDDYtN7EObv94t",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!aknDDYtN7EObv94t"
 }

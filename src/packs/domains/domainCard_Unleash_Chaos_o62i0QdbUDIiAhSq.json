@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "o7kvw9NRGvDZSce2",
   "system": {
-    "description": "<p class=\"Body-Foundation\">At the beginning of a session, place a number of tokens equal to your Spellcast trait on this card.</p><p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against a target within Far range and spend any number of tokens to channel raw energy from within yourself to unleash against them. On a success, roll a number of<strong> d10s</strong> equal to the tokens you spent and deal that much magic damage to the target. <strong>Mark a Stress</strong> to replenish this card with tokens (up to your Spellcast trait).</p><p class=\"Body-Foundation\">At the end of each session, clear all unspent tokens.</p>",
+    "description": "<p>At the beginning of a session, place a number of tokens equal to your Spellcast trait on this card.</p><p>Make a <strong>Spellcast Roll</strong> against a target within Far range and spend any number of tokens to channel raw energy from within yourself to unleash against them. On a success, roll a number of<strong> d10s</strong> equal to the tokens you spent and deal that much magic damage to the target. <strong>Mark a Stress</strong> to replenish this card with tokens (up to your Spellcast trait).</p><p>At the end of each session, clear all unspent tokens.</p>",
     "domain": "arcana",
     "recallCost": 1,
     "level": 1,
@@ -24,7 +24,7 @@
         "type": "attack",
         "_id": "MWvrKuwejWcQm7N1",
         "systemPath": "actions",
-        "description": "<p>Make a </span><span class=\"tooltip-convert\" style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\"><strong style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0);\">Spellcast Roll</strong></span> against a target within </span><span class=\"tooltip-convert\" style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\">Far</span> range and spend any number of tokens to channel raw energy from within yourself to unleash against them. On a success, roll a number of</span><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\"> d10s</span> equal to the tokens you spent and deal that much magic damage to the target.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Far range and spend any number of tokens to channel raw energy from within yourself to unleash against them. On a success, roll a number of d10s equal to the tokens you spent and deal that much magic damage to the target.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -203,8 +203,5 @@
       "_key": "!items.effects!o62i0QdbUDIiAhSq.F2yHIwHeZmLlrkkS"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!o62i0QdbUDIiAhSq"
 }

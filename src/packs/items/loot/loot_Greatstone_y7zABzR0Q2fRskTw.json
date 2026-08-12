@@ -4,7 +4,7 @@
   "_id": "y7zABzR0Q2fRskTw",
   "img": "icons/commodities/treasure/token-etched-h-brown.webp",
   "system": {
-    "description": "<p>You can attach this stone to a weapon that doesn’t already have a feature. The weapon gains the following feature.</p><p><strong>Powerful</strong>: On a successful attack, roll an additional damage die and discard the lowest result.</p>",
+    "description": "<p>You can attach this stone to a weapon that doesn't already have a feature. The weapon gains the following feature.</p><p><strong>Powerful</strong>: On a successful attack, roll an additional damage die and discard the lowest result.</p>",
     "quantity": 1,
     "actions": {},
     "attribution": {
@@ -16,10 +16,6 @@
   "effects": [],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!y7zABzR0Q2fRskTw"
 }

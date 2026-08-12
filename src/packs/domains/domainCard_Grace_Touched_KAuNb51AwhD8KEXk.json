@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "W81LnTWzwmoaycTl",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When 4 or more of the domain cards in your loadout are from the Grace domain, gain the following benefits:</p><ul><li class=\"vertical-card-list-found\"><p>You can <strong>mark an Armor Slot</strong> instead of marking a Stress.</p></li><li class=\"vertical-card-list-found\"><p>When you would force a target to mark a number of Hit Points, you can choose instead to force them to mark that number of Stress.</p></li></ul>",
+    "description": "<p>When 4 or more of the domain cards in your loadout are from the Grace domain, gain the following benefits:</p><ul><li class=\"vertical-card-list-found\"><p>You can <strong>mark an Armor Slot</strong> instead of marking a Stress.</p></li><li class=\"vertical-card-list-found\"><p>When you would force a target to mark a number of Hit Points, you can choose instead to force them to mark that number of Stress.</p></li></ul>",
     "domain": "grace",
     "recallCost": 2,
     "level": 7,
@@ -162,8 +162,5 @@
       "_key": "!items.effects!KAuNb51AwhD8KEXk.KK5m2slpFuXDxFaL"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!KAuNb51AwhD8KEXk"
 }

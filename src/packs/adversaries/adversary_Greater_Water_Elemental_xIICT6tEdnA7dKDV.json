@@ -134,11 +134,6 @@
   "flags": {},
   "_id": "xIICT6tEdnA7dKDV",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Greater Water Elemental",
     "displayName": 0,
@@ -236,7 +231,7 @@
       "name": "Water Jet",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to attack a target within Very Close range. On a success, deal <strong>2d4+7</strong> physical damage and the target’s next action has disadvantage. On a failure, the target must mark a Stress.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to attack a target within Very Close range. On a success, deal <strong>2d4+7</strong> physical damage and the target's next action has disadvantage. On a failure, the target must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "Gk5tcqshtwP4JsKS": {
@@ -423,10 +418,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -541,7 +532,7 @@
             "changes": [],
             "duration": {
               "type": "temporary",
-              "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">You can break free with a successful Strength or Instinct Roll.</span></p>"
+              "description": "<p>You can break free with a successful Strength or Instinct Roll.</p>"
             },
             "rangeDependence": null,
             "stacking": null,
@@ -580,10 +571,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -648,10 +635,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

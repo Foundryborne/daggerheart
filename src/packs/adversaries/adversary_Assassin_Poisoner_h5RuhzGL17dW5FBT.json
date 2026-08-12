@@ -140,11 +140,6 @@
   "flags": {},
   "_id": "h5RuhzGL17dW5FBT",
   "sort": 2700000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Assassin Poisoner",
     "displayName": 0,
@@ -242,7 +237,7 @@
       "name": "Grindletooth Venom",
       "type": "feature",
       "system": {
-        "description": "<p>Targets who mark HP from the @Lookup[@name]’s attacks are Vulnerable until they clear a HP.</p>",
+        "description": "<p>Targets who mark HP from the @Lookup[@name]'s attacks are Vulnerable until they clear a HP.</p>",
         "resource": null,
         "actions": {
           "L83tU1TgmqoH9SSn": {
@@ -339,10 +334,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -413,10 +404,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -523,10 +510,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

@@ -5,7 +5,7 @@
   "_id": "6YsfFjmCGuFYVhT4",
   "img": "icons/magic/symbols/rune-sigil-black-pink.webp",
   "system": {
-    "description": "<p>Choose a number between 1 and 12. When you roll that number on a Duality Die, gain a Hope or clear a Stress.</p><p></p><p>You can change this number when you take a long rest.</p>",
+    "description": "<p>Choose a number between 1 and 12. When you roll that number on a Duality Die, gain a Hope or clear a Stress.</p><p>You can change this number when you take a long rest.</p>",
     "resource": {
       "type": "diceValue",
       "value": 1,
@@ -18,7 +18,7 @@
         "type": "healing",
         "_id": "RkqPzF1bdWzPPMml",
         "systemPath": "actions",
-        "description": "<p>Choose a number between 1 and 12. When you roll that number on a Duality Die, gain a Hope or clear a Stress.</p><p></p><p>You can change this number when you take a long rest.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -100,10 +100,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!6YsfFjmCGuFYVhT4"
 }

@@ -5,7 +5,7 @@
   "_id": "Y9eGMewnFZgPvX0M",
   "img": "icons/equipment/chest/collar-steel.webp",
   "system": {
-    "description": "<p>You’ve focused your studies on becoming an unconquerable force on the battlefield. Gain an additional Hit Point slot.</p>",
+    "description": "<p>You've focused your studies on becoming an unconquerable force on the battlefield. Gain an additional Hit Point slot.</p>",
     "resource": null,
     "actions": {},
     "originItemType": null,
@@ -56,10 +56,6 @@
     }
   ],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!Y9eGMewnFZgPvX0M"
 }

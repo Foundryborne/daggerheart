@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "UIVnvI726LJnlK86",
         "systemPath": "actions",
-        "description": "<p>You gain a +1 bonus to your Agility until your next rest.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -102,10 +102,6 @@
   ],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!yK6eEDUrsPbZA8G0"
 }

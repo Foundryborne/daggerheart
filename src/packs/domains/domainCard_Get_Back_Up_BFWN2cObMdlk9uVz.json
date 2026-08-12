@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "9Xc6KzNyjDtTGZkp",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you take Severe damage, you can <strong>mark a Stress</strong> to reduce the severity by one threshold.</p>",
+    "description": "<p>When you take Severe damage, you can <strong>mark a Stress</strong> to reduce the severity by one threshold.</p>",
     "domain": "blade",
     "recallCost": 1,
     "level": 1,
@@ -55,7 +55,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p class=\"Body-Foundation\">When you take Severe damage, you can <strong>mark a Stress</strong> to reduce the severity by one threshold.</p>",
+      "description": "<p>When you take Severe damage, you can <strong>mark a Stress</strong> to reduce the severity by one threshold.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -71,8 +71,5 @@
       "_key": "!items.effects!BFWN2cObMdlk9uVz.aV3KUHtXXR86PRMh"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!BFWN2cObMdlk9uVz"
 }

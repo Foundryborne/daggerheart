@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "thP6nUk0nkrNcpXY",
   "system": {
-    "description": "<p class=\"Body-Foundation\">During a short rest, when you take the time to comfort another character while using the Tend to Wounds downtime move on them, clear an additional Hit Point on that character. When you do, you also clear 2 Hit Points.</p>",
+    "description": "<p>During a short rest, when you take the time to comfort another character while using the Tend to Wounds downtime move on them, clear an additional Hit Point on that character. When you do, you also clear 2 Hit Points.</p>",
     "domain": "grace",
     "recallCost": 1,
     "level": 4,
@@ -177,8 +177,5 @@
   "_id": "QED2PDYePOSTbLtC",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!QED2PDYePOSTbLtC"
 }

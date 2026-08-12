@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "IIVaYseNJbA2ta1B",
   "system": {
-    "description": "<p></p><p class=\"Card-Feature\"><em><strong>Timejammer:</strong></em> Make a <strong>Spellcast Roll</strong><strong> (18)</strong>. On a success, time temporarily slows to a halt for everyone within Far range except for you. It resumes the next time you make an action roll that targets another creature.</p><p class=\"Card-Feature\"><em><strong>Magic Immunity:</strong></em> <strong>Spend 5 </strong><strong>Hope</strong> to become immune to magic damage until your next rest.        </p><p></p>",
+    "description": "<p><em><strong>Timejammer:</strong></em> Make a <strong>Spellcast Roll</strong><strong> (18)</strong>. On a success, time temporarily slows to a halt for everyone within Far range except for you. It resumes the next time you make an action roll that targets another creature.</p><p><em><strong>Magic Immunity:</strong></em> <strong>Spend 5 </strong><strong>Hope</strong> to become immune to magic damage until your next rest.</p>",
     "domain": "codex",
     "recallCost": 2,
     "level": 10,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "IxoglRervMx9YdVn",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll (18)</strong>. On a success, time temporarily slows to a halt for everyone within Far range except for you. It resumes the next time you make an action roll that targets another creature.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll (18)</strong>. On a success, time temporarily slows to a halt for everyone within Far range except for you. It resumes the next time you make an action roll that targets another creature.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -76,7 +76,7 @@
         "type": "effect",
         "_id": "ZcQfbtGet0KQWjWS",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\"><strong>Spend 5 Hope</strong> to become immune to magic damage until your next rest.</p>",
+        "description": "<p><strong>Spend 5 Hope</strong> to become immune to magic damage until your next rest.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -164,7 +164,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p class=\"Card-Feature\"><strong>I</strong>mmune to magic damage until your next rest.</p>",
+      "description": "<p><strong>I</strong>mmune to magic damage until your next rest.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -185,8 +185,5 @@
       "_key": "!items.effects!J1ovx2FpNDvPq1o6.HWJYhSegVLeAa3dE"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!J1ovx2FpNDvPq1o6"
 }

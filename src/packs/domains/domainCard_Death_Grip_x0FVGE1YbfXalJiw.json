@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "BJIiOIWAQUz5zuqo",
   "system": {
-    "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Make a <strong>Spellcast Roll</strong> against a target within Close range and choose one of the following options:</p><ul><li class=\"vertical-card-list\"><p>You pull the target into Melee range or pull yourself into Melee range of them.</p></li><li class=\"vertical-card-list\"><p>You constrict the target and force them to mark 2 Stress.</p></li><li class=\"vertical-card-list\"><p>All adversaries between you and the target must succeed on a Reaction Roll (13) or be hit by vines, taking <strong>3d6+2</strong> physical damage.</p></li></ul><p class=\"Body-Foundation-No-BOLDITALIC\">On a success, vines reach out from your hands, causing the chosen effect and temporarily <em>Restraining</em> the target.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Close range and choose one of the following options:</p><ul><li class=\"vertical-card-list\"><p>You pull the target into Melee range or pull yourself into Melee range of them.</p></li><li class=\"vertical-card-list\"><p>You constrict the target and force them to mark 2 Stress.</p></li><li class=\"vertical-card-list\"><p>All adversaries between you and the target must succeed on a Reaction Roll (13) or be hit by vines, taking <strong>3d6+2</strong> physical damage.</p></li></ul><p>On a success, vines reach out from your hands, causing the chosen effect and temporarily <em>Restraining</em> the target.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 4,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "wsXZCKqGKfOUHE1M",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Make a <strong>Spellcast Roll</strong> against a target within Close range, and choose the following option:</p><ul><li class=\"vertical-card-list\"><p>You pull the target into Melee range or pull yourself into Melee range of them.</p></li></ul><p class=\"Body-Foundation-No-BOLDITALIC\">On a success, vines reach out from your hands, causing the chosen effect and temporarily <em>Restraining</em> the target.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Close range, and choose the following option:</p><ul><li class=\"vertical-card-list\"><p>You pull the target into Melee range or pull yourself into Melee range of them.</p></li></ul><p>On a success, vines reach out from your hands, causing the chosen effect and temporarily <em>Restraining</em> the target.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -72,7 +72,7 @@
         "type": "attack",
         "_id": "x62SXSpT9bjIEP5e",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Make a <strong>Spellcast Roll</strong> against a target within Close range and choose the following option:</p><ul><li class=\"vertical-card-list\"><p>You constrict the target and force them to mark 2 Stress.</p></li></ul><p class=\"Body-Foundation-No-BOLDITALIC\">On a success, vines reach out from your hands, causing the chosen effect and temporarily <em>Restraining</em> the target.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Close range and choose the following option:</p><ul><li class=\"vertical-card-list\"><p>You constrict the target and force them to mark 2 Stress.</p></li></ul><p>On a success, vines reach out from your hands, causing the chosen effect and temporarily <em>Restraining</em> the target.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -157,7 +157,7 @@
         "type": "attack",
         "_id": "9416a3EogNFLRdUX",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Make a <strong>Spellcast Roll</strong> against a target within Close range and choose the following option:</p><ul><li class=\"vertical-card-list\"><p>All adversaries between you and the target must succeed on a Reaction Roll (13) or be hit by vines, taking <strong>3d6+2</strong> physical damage.</p></li></ul><p class=\"Body-Foundation-No-BOLDITALIC\">On a success, vines reach out from your hands, causing the chosen effect and temporarily <em>Restraining</em> the target.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Close range and choose the following option:</p><ul><li class=\"vertical-card-list\"><p>All adversaries between you and the target must succeed on a Reaction Roll (13) or be hit by vines, taking <strong>3d6+2</strong> physical damage.</p></li></ul><p>On a success, vines reach out from your hands, causing the chosen effect and temporarily <em>Restraining</em> the target.</p>",
         "chatDisplay": true,
         "actionType": "reaction",
         "cost": [],
@@ -382,8 +382,5 @@
       "_key": "!items.effects!x0FVGE1YbfXalJiw.Oe95zWWY41nH8y5l"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!x0FVGE1YbfXalJiw"
 }

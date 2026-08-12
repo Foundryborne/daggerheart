@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "W81LnTWzwmoaycTl",
   "system": {
-    "description": "<p class=\"Body-Foundation\">After you make an action roll to persuade, lie, or garner favor, you can <strong>spend a Hope</strong> to reroll the Hope or Fear Die.</p>",
+    "description": "<p>After you make an action roll to persuade, lie, or garner favor, you can <strong>spend a Hope</strong> to reroll the Hope or Fear Die.</p>",
     "domain": "grace",
     "recallCost": 1,
     "level": 7,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "EPhd2d8lHEnBd1pO",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">After you make an action roll to persuade, lie, or garner favor, you can <strong>spend a Hope</strong> to reroll the Hope or Fear Die.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -65,8 +65,5 @@
   "_id": "tNzFNlVHghloKsFi",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!tNzFNlVHghloKsFi"
 }

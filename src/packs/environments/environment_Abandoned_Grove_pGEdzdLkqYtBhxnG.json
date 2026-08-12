@@ -37,11 +37,6 @@
   "flags": {},
   "_id": "pGEdzdLkqYtBhxnG",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Abandoned Grove",
     "displayName": 0,
@@ -154,10 +149,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -168,7 +159,7 @@
       "name": "Barbed Vines",
       "type": "feature",
       "system": {
-        "description": "<p>Pick a point within the grove. All targets within Very Close range of that point must succeed on an Agility Reaction Roll or take <strong>1d8+3</strong> physical damage and become Restrained by barbed vines. Restrained lasts until they’re freed with a successful Finesse or Strength roll or by dealing at least 6 damage to the vines.</p><section id=\"secret-WVGl1YkqOicSEwlf\" class=\"secret\"><p><em>How many vines are there? Where do they grab you? Do they pull you down or lift you off the ground?</em></p></section>",
+        "description": "<p>Pick a point within the grove. All targets within Very Close range of that point must succeed on an Agility Reaction Roll or take <strong>1d8+3</strong> physical damage and become Restrained by barbed vines. Restrained lasts until they're freed with a successful Finesse or Strength roll or by dealing at least 6 damage to the vines.</p><section id=\"secret-WVGl1YkqOicSEwlf\" class=\"secret\"><p><em>How many vines are there? Where do they grab you? Do they pull you down or lift you off the ground?</em></p></section>",
         "resource": null,
         "actions": {
           "47fcdhe1FDdm9rQU": {
@@ -359,10 +350,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -424,10 +411,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -483,10 +466,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

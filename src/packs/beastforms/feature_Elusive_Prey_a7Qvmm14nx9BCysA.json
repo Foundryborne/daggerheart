@@ -10,7 +10,7 @@
         "type": "attack",
         "_id": "9lvrqQKTEB3NRwvM",
         "systemPath": "actions",
-        "description": "<p>When an attack roll against you would succeed, you can <strong>mark a Stress</strong> and roll a <strong>d4</strong>. Add the result to your Evasion against this attack.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -71,10 +71,6 @@
   },
   "effects": [],
   "folder": "uU8bIoZvXge0rLaU",
-  "ownership": {
-    "default": 0,
-    "FecEtPuoQh6MpjQ0": 3
-  },
   "flags": {},
   "_id": "a7Qvmm14nx9BCysA",
   "sort": 2300000,

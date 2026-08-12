@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "n7pgTBYSItMzCX0s",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make an Agility Roll against all targets within Close range.<strong> Spend a Hope</strong> to move targets you succeed against, and any willing allies within Close range, to another point within Close range.</p>",
+    "description": "<p>Make an Agility Roll against all targets within Close range.<strong> Spend a Hope</strong> to move targets you succeed against, and any willing allies within Close range, to another point within Close range.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 8,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "XKY0LJYmvuILmNNU",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Make an Agility Roll against all targets within Close range.<strong> Spend a Hope</strong> to move targets you succeed against, and any willing allies within Close range, to another point within Close range.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "<p>Make an Agility Roll against all targets within Close range.<strong> Spend a Hope</strong> to move targets you succeed against, and any willing allies within Close range, to another point within Close range.</p><p>@Template[type:emanation|range:c]</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -89,8 +89,5 @@
   "_id": "9DwSxHoUwl8Kxj3n",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!9DwSxHoUwl8Kxj3n"
 }

@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "yalzg4VRmZvakshJ",
         "systemPath": "actions",
-        "description": "<p>When an adversary damages an ally within Melee range, you gain a +1 bonus to your Proficiency for the next successful attack you make against that adversary.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -57,7 +57,7 @@
         "changes": [],
         "duration": {
           "type": "temporary",
-          "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">Until the next successful attack you make against that adversary.</span></p>"
+          "description": "<p>Until the next successful attack you make against that adversary.</p>"
         }
       },
       "disabled": false,
@@ -89,10 +89,6 @@
     }
   ],
   "sort": 400000,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!k7vvMJtEcxMWUUrW"
 }

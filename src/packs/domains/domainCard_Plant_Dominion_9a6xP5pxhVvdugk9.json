@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "R5afi5bhq9ccnYY2",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (18)</strong>. Once per long rest on a success, you reshape the natural world, changing the surrounding plant life anywhere within Far range of you. For example, you can grow trees instantly, clear a path through dense vines, or create a wall of roots.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll (18)</strong>. Once per long rest on a success, you reshape the natural world, changing the surrounding plant life anywhere within Far range of you. For example, you can grow trees instantly, clear a path through dense vines, or create a wall of roots.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 9,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "7yUMXSJVnDBB25jP",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (18)</strong>. Once per long rest on a success, you reshape the natural world, changing the surrounding plant life anywhere within Far range of you. For example, you can grow trees instantly, clear a path through dense vines, or create a wall of roots.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -80,8 +80,5 @@
   "_id": "9a6xP5pxhVvdugk9",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!9a6xP5pxhVvdugk9"
 }

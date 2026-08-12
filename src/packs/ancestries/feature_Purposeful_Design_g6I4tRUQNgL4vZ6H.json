@@ -5,7 +5,7 @@
   "_id": "g6I4tRUQNgL4vZ6H",
   "img": "icons/tools/scribal/lens-blue.webp",
   "system": {
-    "description": "<p><strong>Note: Automation not implemented for permanent bonus. Manually increase the experience in the respective editing field.</strong> </p><p><br />Decide who made you and for what purpose. At character creation, choose one of your Experiences that best aligns with this purpose and gain a permanent +1 bonus to it.</p>",
+    "description": "<p><strong>Note: Automation not implemented for permanent bonus. Manually increase the experience in the respective editing field.</strong></p><p><br />Decide who made you and for what purpose. At character creation, choose one of your Experiences that best aligns with this purpose and gain a permanent +1 bonus to it.</p>",
     "resource": null,
     "actions": {},
     "originItemType": null,
@@ -19,10 +19,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!g6I4tRUQNgL4vZ6H"
 }

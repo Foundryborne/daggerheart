@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "xuGz0QPNlkTOV0rV",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you have a few minutes of silence to focus, you can <strong>mark a Stress</strong> to change the appearance of all willing creatures within Close range. Their new forms must share a general body structure and size, and can be somebody or something you’ve seen before or entirely fabricated. A disguised creature has advantage on Presence Rolls to avoid scrutiny.</p><p class=\"Body-Foundation\">Activate a Countdown (8). It ticks down as a consequence the GM chooses. When it triggers, the disguise drops.</p>",
+    "description": "<p>When you have a few minutes of silence to focus, you can <strong>mark a Stress</strong> to change the appearance of all willing creatures within Close range. Their new forms must share a general body structure and size, and can be somebody or something you've seen before or entirely fabricated. A disguised creature has advantage on Presence Rolls to avoid scrutiny.</p><p>Activate a Countdown (8). It ticks down as a consequence the GM chooses. When it triggers, the disguise drops.</p>",
     "domain": "midnight",
     "recallCost": 0,
     "level": 6,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "Gl41dsOBTG2p8qwo",
         "systemPath": "actions",
-        "description": "<p>When you have a few minutes of silence to focus, you can <strong>mark a Stress</strong> to change the appearance of all willing creatures within Close range. Their new forms must share a general body structure and size, and can be somebody or something you’ve seen before or entirely fabricated. A disguised creature has advantage on Presence Rolls to avoid scrutiny.</p><p class=\"Body-Foundation\">Activate a Countdown (8). It ticks down as a consequence the GM chooses. When it triggers, the disguise drops.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -132,7 +132,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">A disguised creature has advantage on </span><span class=\"tooltip-convert\" style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">Presence</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> Rolls to avoid scrutiny.</span></p>",
+      "description": "<p>A disguised creature has advantage on Presence Rolls to avoid scrutiny.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -146,8 +146,5 @@
       "_key": "!items.effects!dT95m0Jam8sWbeuC.HgF4n0idPcdz8Bi7"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!dT95m0Jam8sWbeuC"
 }

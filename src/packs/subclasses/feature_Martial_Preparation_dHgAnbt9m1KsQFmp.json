@@ -5,7 +5,7 @@
   "_id": "dHgAnbt9m1KsQFmp",
   "img": "icons/skills/melee/sword-winged-holy-orange.webp",
   "system": {
-    "description": "<p>You’re an inspirational warrior to all who travel with you. Your party gains access to the Martial Preparation downtime move. To use this move during a rest, describe how you instruct and train with your party. You and each ally who chooses this downtime move gain a <strong>d6</strong> Slayer Die. A PC with a Slayer Die can spend it to roll the die and add the result to an attack or damage roll of their choice.</p>",
+    "description": "<p>You're an inspirational warrior to all who travel with you. Your party gains access to the Martial Preparation downtime move. To use this move during a rest, describe how you instruct and train with your party. You and each ally who chooses this downtime move gain a <strong>d6</strong> Slayer Die. A PC with a Slayer Die can spend it to roll the die and add the result to an attack or damage roll of their choice.</p>",
     "resource": null,
     "actions": {},
     "originItemType": null,
@@ -18,10 +18,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!dHgAnbt9m1KsQFmp"
 }

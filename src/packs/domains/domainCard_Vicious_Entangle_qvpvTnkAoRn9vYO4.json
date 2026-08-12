@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "EJoXzO85rG5EiZsh",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, roots and vines reach out from the ground, dealing <strong>1d8+1</strong> physical damage and temporarily <em>Restraining</em> the target.</p><p class=\"Body-Foundation\">Additionally on a success, you can <strong>spend a Hope</strong> to temporarily <em>Restrain</em> another adversary within Very Close range of your target.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, roots and vines reach out from the ground, dealing <strong>1d8+1</strong> physical damage and temporarily <em>Restraining</em> the target.</p><p>Additionally on a success, you can <strong>spend a Hope</strong> to temporarily <em>Restrain</em> another adversary within Very Close range of your target.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 1,
@@ -102,7 +102,7 @@
         "type": "effect",
         "_id": "vh1IKRvsU4w57lBt",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Additionally on a success, you can <strong>spend a Hope</strong> to temporarily <em>Restrain</em> another adversary within Very Close range of your target.</p>",
+        "description": "<p>Additionally on a success, you can <strong>spend a Hope</strong> to temporarily <em>Restrain</em> another adversary within Very Close range of your target.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -251,8 +251,5 @@
       "_key": "!items.effects!qvpvTnkAoRn9vYO4.2xzOqTaPJQzGqFJv"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!qvpvTnkAoRn9vYO4"
 }

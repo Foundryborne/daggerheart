@@ -3,14 +3,14 @@
   "type": "feature",
   "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
   "system": {
-    "description": "<p>Your hardened exterior gives you resistance to physical damage. Additionally, <strong>mark an Armor Slot</strong> to retract into your shell. While in your shell, physical damage is reduced by a number equal to your Armor Score (after applying resistance), but you can’t perform other actions without leaving this form.</p>",
+    "description": "<p>Your hardened exterior gives you resistance to physical damage. Additionally, <strong>mark an Armor Slot</strong> to retract into your shell. While in your shell, physical damage is reduced by a number equal to your Armor Score (after applying resistance), but you can't perform other actions without leaving this form.</p>",
     "resource": null,
     "actions": {
       "15XSCpCAZ2JLspmN": {
         "type": "effect",
         "_id": "15XSCpCAZ2JLspmN",
         "systemPath": "actions",
-        "description": "<p><strong>Mark an Armor Slot</strong> to retract into your shell. While in your shell, physical damage is reduced by a number equal to your Armor Score (after applying resistance), but you can’t perform other actions without leaving this form.</p>",
+        "description": "<p><strong>Mark an Armor Slot</strong> to retract into your shell. While in your shell, physical damage is reduced by a number equal to your Armor Score (after applying resistance), but you can't perform other actions without leaving this form.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -125,10 +125,6 @@
     }
   ],
   "folder": "uU8bIoZvXge0rLaU",
-  "ownership": {
-    "default": 0,
-    "FecEtPuoQh6MpjQ0": 3
-  },
   "flags": {},
   "_id": "nDQZdIF2epKlhauX",
   "sort": 2200000,

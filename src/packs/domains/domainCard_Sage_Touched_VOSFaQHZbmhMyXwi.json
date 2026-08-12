@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "gEVGjjPrjqxxZkb5",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When 4 or more of the domain cards in your loadout are from the Sage domain, gain the following benefits:</p><ul><li class=\"vertical-card-list\"><p>While you’re in a natural environment, you gain a +2 bonus to your Spellcast Rolls.</p></li><li class=\"vertical-card-list\"><p>Once per rest, you can double your Agility or Instinct when making a roll that uses that trait. You must choose to do this before you roll.</p><p></p></li></ul>",
+    "description": "<p>When 4 or more of the domain cards in your loadout are from the Sage domain, gain the following benefits:</p><ul><li class=\"vertical-card-list\"><p>While you're in a natural environment, you gain a +2 bonus to your Spellcast Rolls.</p></li><li class=\"vertical-card-list\"><p>Once per rest, you can double your Agility or Instinct when making a roll that uses that trait. You must choose to do this before you roll.</p></li></ul>",
     "domain": "sage",
     "recallCost": 2,
     "level": 7,
@@ -151,7 +151,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">While you’re in a natural environment, you gain a +2 bonus to your Spellcast Rolls.</span></p>",
+      "description": "<p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">While you’re in a natural environment, you gain a +2 bonus to your Spellcast Rolls.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -241,7 +241,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">Once per rest, you can double your Agility or Instinct when making a roll that uses that trait. You must choose to do this before you roll.</span></p>",
+      "description": "<p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">Once per rest, you can double your Agility or Instinct when making a roll that uses that trait. You must choose to do this before you roll.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -255,8 +255,5 @@
       "_key": "!items.effects!VOSFaQHZbmhMyXwi.p03IjcyigL4b2WD1"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!VOSFaQHZbmhMyXwi"
 }

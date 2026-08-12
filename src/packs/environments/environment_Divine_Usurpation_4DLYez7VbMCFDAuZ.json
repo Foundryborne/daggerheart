@@ -31,11 +31,6 @@
   "flags": {},
   "_id": "4DLYez7VbMCFDAuZ",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Divine Usurpation",
     "displayName": 0,
@@ -133,14 +128,14 @@
       "name": "Final Preparations",
       "type": "feature",
       "system": {
-        "description": "<p>When the environment first takes the spotlight, designate one adversary as the Usurper seeking to overthrow the gods. Activate a Long-Term <em>Countdown (8)</em> as the Usurper assembles what they need to conduct the ritual. When it triggers, spotlight this environment to use the “Beginning of the End” feature. While this environment remains in play, you can hold up to 15 Fear.</p><section class=\"secret\" id=\"secret-5ezbFLP3BnyqQPov\"><p><em>What does the Usurper still require: The heart of a High Seraph? The lodestone of an ancient waygate? The loyalty of two archenemies? The heartbroken tears of a pure soul?</em></p></section>",
+        "description": "<p>When the environment first takes the spotlight, designate one adversary as the Usurper seeking to overthrow the gods. Activate a Long-Term <em>Countdown (8)</em> as the Usurper assembles what they need to conduct the ritual. When it triggers, spotlight this environment to use the \"Beginning of the End\" feature. While this environment remains in play, you can hold up to 15 Fear.</p><section class=\"secret\" id=\"secret-5ezbFLP3BnyqQPov\"><p><em>What does the Usurper still require: The heart of a High Seraph? The lodestone of an ancient waygate? The loyalty of two archenemies? The heartbroken tears of a pure soul?</em></p></section>",
         "resource": null,
         "actions": {
           "UMGyEHdQhYXyGEss": {
             "type": "effect",
             "_id": "UMGyEHdQhYXyGEss",
             "systemPath": "actions",
-            "description": "<p>Spotlight this environment to use the “Beginning of the End” feature.</p>",
+            "description": "<p>Spotlight this environment to use the \"Beginning of the End\" feature.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -218,10 +213,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -232,7 +223,7 @@
       "name": "Divine Blessing",
       "type": "feature",
       "system": {
-        "description": "<p>When a PC critically succeeds, they can spend 2 Hope to refresh an ability normally limited by uses (such as once per rest, once per session). </p><section id=\"secret-IRlwaXlRxPqtJ6eg\" class=\"secret\"><p><em>What god favors you as you fi ght against this usurpation? How does your renewed power reflect their influence?</em></p></section>",
+        "description": "<p>When a PC critically succeeds, they can spend 2 Hope to refresh an ability normally limited by uses (such as once per rest, once per session).</p><section id=\"secret-IRlwaXlRxPqtJ6eg\" class=\"secret\"><p><em>What god favors you as you fi ght against this usurpation? How does your renewed power reflect their influence?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -247,10 +238,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -261,7 +248,7 @@
       "name": "Difilers Abound",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend 2 Fear</strong> to summon [[/r 1d4+2]] @UUID[Compendium.daggerheart.adversaries.Actor.OsLG2BjaEdTZUJU9]{Fallen Shock Troop} that appear within Close range of the Usurper to assist their divine siege. Immediately spotlight the Shock Troops to use a “Group Attack” action.</p><section class=\"secret\" id=\"secret-QJHdwGNSuTgS59gn\"><p><em>Which High Fallen do these troops serve? Which god’s fl esh do they wish to feast upon?</em></p></section>",
+        "description": "<p><strong>Spend 2 Fear</strong> to summon [[/r 1d4+2]] @UUID[Compendium.daggerheart.adversaries.Actor.OsLG2BjaEdTZUJU9]{Fallen Shock Troop} that appear within Close range of the Usurper to assist their divine siege. Immediately spotlight the Shock Troops to use a \"Group Attack\" action.</p><section class=\"secret\" id=\"secret-QJHdwGNSuTgS59gn\"><p><em>Which High Fallen do these troops serve? Which god's fl esh do they wish to feast upon?</em></p></section>",
         "resource": null,
         "actions": {
           "okcqGrI4rdghugUi": {
@@ -306,10 +293,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -320,14 +303,14 @@
       "name": "Godslayer",
       "type": "feature",
       "system": {
-        "description": "<p>If the Divine Siege Countdown (see “Beginning of the End”) has triggered, you can <strong>spend 3 Fear</strong> to describe the Usurper slaying one of the gods of the Hallows Above, feasting upon their power and growing stronger. The Usurper clears 2 HP. Increase their Difficulty, damage, attack modifier, or give them a new feature from the slain god. </p><section id=\"secret-OIyf1RZFfLopuMlg\" class=\"secret\"><p><em>Which god meets their end? What are their last words? How does the Usurper’s new stolen power manifest?</em></p></section>",
+        "description": "<p>If the Divine Siege Countdown (see \"Beginning of the End\") has triggered, you can <strong>spend 3 Fear</strong> to describe the Usurper slaying one of the gods of the Hallows Above, feasting upon their power and growing stronger. The Usurper clears 2 HP. Increase their Difficulty, damage, attack modifier, or give them a new feature from the slain god.</p><section id=\"secret-OIyf1RZFfLopuMlg\" class=\"secret\"><p><em>Which god meets their end? What are their last words? How does the Usurper's new stolen power manifest?</em></p></section>",
         "resource": null,
         "actions": {
           "hwQsng6Kt8pQBD3Z": {
             "type": "healing",
             "_id": "hwQsng6Kt8pQBD3Z",
             "systemPath": "actions",
-            "description": "<p>If the Divine Siege Countdown (see “Beginning of the End”) has triggered, you can <strong>spend 3 Fear</strong> to describe the Usurper slaying one of the gods of the Hallows Above, feasting upon their power and growing stronger. The Usurper clears 2 HP. Increase their Difficulty, damage, attack modifier, or give them a new feature from the slain god. </p><section class=\"secret\" id=\"secret-SDqxukOa9Sz8zbGZ\"><p><em>Which god meets their end? What are their last words? How does the Usurper’s new stolen power manifest?</em></p></section>",
+            "description": "<p>If the Divine Siege Countdown (see \"Beginning of the End\") has triggered, you can <strong>spend 3 Fear</strong> to describe the Usurper slaying one of the gods of the Hallows Above, feasting upon their power and growing stronger. The Usurper clears 2 HP. Increase their Difficulty, damage, attack modifier, or give them a new feature from the slain god.</p><section class=\"secret\" id=\"secret-SDqxukOa9Sz8zbGZ\"><p><em>Which god meets their end? What are their last words? How does the Usurper's new stolen power manifest?</em></p></section>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -555,10 +538,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -569,14 +548,14 @@
       "name": "Beginning of the End",
       "type": "feature",
       "system": {
-        "description": "<p>When the “Final Preparations” long-term countdown triggers, the Usurper begins hammering on the gates of the Hallows themselves. Activate a Divine Siege <em>Countdown (10)</em>. Spotlight the Usurper to describe the Usurper’s assault and tick down this countdown by 1. If the Usurper takes Major or greater damage, tick up the countdown by 1. When it triggers, the Usurper shatters the barrier between the Mortal Realm and the Hallows Above to slay the gods and take their place. You gain a Fear for each unmarked HP the Usurper has. You can immediately use the “Godslayer” feature without spending Fear to make an additional GM move.</p><section class=\"secret\" id=\"secret-eVeMBBA7aAZgn9FO\"><p><em>How does the Mortal Realm writhe as the natural order is violated? What mortals witness this blasphemy from afar?</em></p></section>",
+        "description": "<p>When the \"Final Preparations\" long-term countdown triggers, the Usurper begins hammering on the gates of the Hallows themselves. Activate a Divine Siege <em>Countdown (10)</em>. Spotlight the Usurper to describe the Usurper's assault and tick down this countdown by 1. If the Usurper takes Major or greater damage, tick up the countdown by 1. When it triggers, the Usurper shatters the barrier between the Mortal Realm and the Hallows Above to slay the gods and take their place. You gain a Fear for each unmarked HP the Usurper has. You can immediately use the \"Godslayer\" feature without spending Fear to make an additional GM move.</p><section class=\"secret\" id=\"secret-eVeMBBA7aAZgn9FO\"><p><em>How does the Mortal Realm writhe as the natural order is violated? What mortals witness this blasphemy from afar?</em></p></section>",
         "resource": null,
         "actions": {
           "N83u4SKOlCfLvdYI": {
             "type": "effect",
             "_id": "N83u4SKOlCfLvdYI",
             "systemPath": "actions",
-            "description": "<p>The Usurper shatters the barrier between the Mortal Realm and the Hallows Above to slay the gods and take their place. You gain a Fear for each unmarked HP the Usurper has. You can immediately use the “Godslayer” feature without spending Fear to make an additional GM move.</p>",
+            "description": "<p>The Usurper shatters the barrier between the Mortal Realm and the Hallows Above to slay the gods and take their place. You gain a Fear for each unmarked HP the Usurper has. You can immediately use the \"Godslayer\" feature without spending Fear to make an additional GM move.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -605,7 +584,7 @@
             "type": "countdown",
             "_id": "KNWpWnJboRIaZ3Yu",
             "systemPath": "actions",
-            "description": "<p>When the “Final Preparations” long-term countdown triggers, the Usurper begins hammering on the gates of the Hallows themselves. Activate a Divine Siege <em>Countdown (10)</em>. Spotlight the Usurper to describe the Usurper’s assault and tick down this countdown by 1. If the Usurper takes Major or greater damage, tick up the countdown by 1.</p><section class=\"secret\" id=\"secret-u7mt9OivMXWU5s3S\"><p><em>How does the Mortal Realm writhe as the natural order is violated? What mortals witness this blasphemy from afar?</em></p></section>",
+            "description": "<p>When the \"Final Preparations\" long-term countdown triggers, the Usurper begins hammering on the gates of the Hallows themselves. Activate a Divine Siege <em>Countdown (10)</em>. Spotlight the Usurper to describe the Usurper's assault and tick down this countdown by 1. If the Usurper takes Major or greater damage, tick up the countdown by 1.</p><section class=\"secret\" id=\"secret-u7mt9OivMXWU5s3S\"><p><em>How does the Mortal Realm writhe as the natural order is violated? What mortals witness this blasphemy from afar?</em></p></section>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"
@@ -653,10 +632,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -667,14 +642,14 @@
       "name": "Ritual Nexus",
       "type": "feature",
       "system": {
-        "description": "<p>On any failure with Fear against the Usurper, the PC must mark <strong>1d4</strong> Stress from the backlash of magical power. </p><section id=\"secret-FROwYRDYLwvnn2lH\" class=\"secret\"><p><em>What visions of failures past torment you as your efforts fall short? How are these memories twisted by the Usurper?</em></p></section>",
+        "description": "<p>On any failure with Fear against the Usurper, the PC must mark <strong>1d4</strong> Stress from the backlash of magical power.</p><section id=\"secret-FROwYRDYLwvnn2lH\" class=\"secret\"><p><em>What visions of failures past torment you as your efforts fall short? How are these memories twisted by the Usurper?</em></p></section>",
         "resource": null,
         "actions": {
           "9qXDsVnWI436IWEk": {
             "type": "damage",
             "_id": "9qXDsVnWI436IWEk",
             "systemPath": "actions",
-            "description": "<p>On any failure with Fear against the Usurper, the PC must mark <strong>1d4</strong> Stress from the backlash of magical power. </p><section class=\"secret\" id=\"secret-ysZhGlH7LtJS0qua\"><p><em>What visions of failures past torment you as your efforts fall short? How are these memories twisted by the Usurper?</em></p></section>",
+            "description": "<p>On any failure with Fear against the Usurper, the PC must mark <strong>1d4</strong> Stress from the backlash of magical power.</p><section class=\"secret\" id=\"secret-ysZhGlH7LtJS0qua\"><p><em>What visions of failures past torment you as your efforts fall short? How are these memories twisted by the Usurper?</em></p></section>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -770,10 +745,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

@@ -12,7 +12,7 @@
         "type": "healing",
         "_id": "az7YUpxy1ysn12tO",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, you can create a space of natural serenity within Close range. When you spend a few minutes resting within the space, clear Stress equal to your Instinct, distributed as you choose between you and your allies.</p>",
+        "description": "",
         "chatDisplay": false,
         "actionType": "action",
         "cost": [],
@@ -86,10 +86,6 @@
   },
   "effects": [],
   "sort": 200000,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!etaQ01yGJhBLDUqZ"
 }

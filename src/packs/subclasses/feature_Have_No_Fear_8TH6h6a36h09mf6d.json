@@ -5,7 +5,7 @@
   "_id": "8TH6h6a36h09mf6d",
   "img": "icons/magic/unholy/silhouette-light-fire-blue.webp",
   "system": {
-    "description": "<p>The extra magic damage from your “Face Your Fear” feature increases to <strong>3d10</strong>.</p>",
+    "description": "<p>The extra magic damage from your \"Face Your Fear\" feature increases to <strong>3d10</strong>.</p>",
     "resource": null,
     "actions": {},
     "originItemType": null,
@@ -18,10 +18,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!8TH6h6a36h09mf6d"
 }

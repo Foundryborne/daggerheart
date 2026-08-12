@@ -85,17 +85,7 @@ export default class DamageField extends fields.SchemaField {
         for (const target of targets) {
             const actor = foundry.utils.fromUuidSync(target.actorId);
             if (!actor) continue;
-            if (!config.hasHealing && config.onSave && target.saved?.success === true) {
-                const mod = CONFIG.DH.ACTIONS.damageOnSave[config.onSave]?.mod ?? 1;
-                Object.entries(config.damage).forEach(([k, v]) => {
-                    v.total = 0;
-                    v.parts.forEach(part => {
-                        part.total = Math.ceil(part.total * mod);
-                        v.total += part.total;
-                    });
-                });
-            }
-
+            
             const token = target.id
                 ? game.scenes.find(x => x.active).tokens.find(x => x.id === target.id)
                 : actor.prototypeToken;
@@ -116,6 +106,11 @@ export default class DamageField extends fields.SchemaField {
                 if (configDamage.main) {
                     const takenMultiplier = actor.system.rules?.attack?.damage?.hpDamageTakenMultiplier;
                     configDamage.main.total = Math.ceil(config.damage.main.total * takenMultiplier);
+
+                    if (config.onSave && target.saveResult?.success === true) {
+                        const mod = CONFIG.DH.ACTIONS.damageOnSave[config.onSave]?.mod ?? 1;
+                        configDamage.main.total *= mod;
+                    }
                 }
 
                 damagePromises.push(

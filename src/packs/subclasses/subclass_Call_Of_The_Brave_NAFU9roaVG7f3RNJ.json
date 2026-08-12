@@ -5,7 +5,7 @@
   "_id": "NAFU9roaVG7f3RNJ",
   "img": "icons/magic/life/heart-cross-strong-flame-purple-orange.webp",
   "system": {
-    "description": "<p>Play the Call of the Brave if you want to use the might of your enemies to fuel your own power. </p>",
+    "description": "<p>Play the Call of the Brave if you want to use the might of your enemies to fuel your own power.</p>",
     "spellcastingTrait": null,
     "features": [
       {
@@ -36,10 +36,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!NAFU9roaVG7f3RNJ"
 }

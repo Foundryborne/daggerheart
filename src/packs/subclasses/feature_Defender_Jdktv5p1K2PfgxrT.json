@@ -5,14 +5,14 @@
   "_id": "Jdktv5p1K2PfgxrT",
   "img": "icons/magic/defensive/shield-barrier-flaming-diamond-acid.webp",
   "system": {
-    "description": "<p>Your animal transformation embodies a healing guardian spirit. When you’re in Beastform and an ally within Close range marks 2 or more Hit Points, you can mark a Stress to reduce the number of Hit Points they mark by 1.</p>",
+    "description": "<p>Your animal transformation embodies a healing guardian spirit. When you're in Beastform and an ally within Close range marks 2 or more Hit Points, you can mark a Stress to reduce the number of Hit Points they mark by 1.</p>",
     "resource": null,
     "actions": {
       "9WxcZ3BuXUKfqUMz": {
         "type": "effect",
         "_id": "9WxcZ3BuXUKfqUMz",
         "systemPath": "actions",
-        "description": "<p>When you’re in Beastform and an ally within Close range marks 2 or more Hit Points, you can mark a Stress to reduce the number of Hit Points they mark by 1.</p>",
+        "description": "<p>When you're in Beastform and an ally within Close range marks 2 or more Hit Points, you can mark a Stress to reduce the number of Hit Points they mark by 1.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -48,10 +48,6 @@
   },
   "effects": [],
   "sort": 400000,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!Jdktv5p1K2PfgxrT"
 }

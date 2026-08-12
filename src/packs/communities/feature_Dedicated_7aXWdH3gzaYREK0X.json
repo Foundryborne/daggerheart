@@ -5,14 +5,14 @@
   "_id": "7aXWdH3gzaYREK0X",
   "img": "icons/environment/people/cleric-orange.webp",
   "system": {
-    "description": "<p>Record three sayings or values your upbringing instilled in you. Once per rest, when you describe how you’re embodying one of these principles through your current action, you can roll a d20 as your Hope Die</p>",
+    "description": "<p>Record three sayings or values your upbringing instilled in you. Once per rest, when you describe how you're embodying one of these principles through your current action, you can roll a d20 as your Hope Die</p>",
     "resource": null,
     "actions": {
       "ZBVqSlsDUKf8uGrI": {
         "type": "effect",
         "_id": "ZBVqSlsDUKf8uGrI",
         "systemPath": "actions",
-        "description": "<p>Record three sayings or values your upbringing instilled in you. Once per rest, when you describe how you’re embodying one of these principles through your current action, you can roll a d20 as your Hope Die</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -43,9 +43,5 @@
   "effects": [],
   "flags": {},
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "Q9NoTaEarn3VMS6Z": 3
-  },
   "_key": "!items!7aXWdH3gzaYREK0X"
 }

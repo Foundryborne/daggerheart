@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "gqnmAgerh7HhNo7t",
   "system": {
-    "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Make a <strong>Spellcast Roll (15)</strong>. On a success, you place an arcane marking on the ground where you currently stand. The next time you successfully cast Rift Walker, a rift in space opens up, providing safe passage back to the exact spot where the marking was placed. This rift stays open until you choose to close it or you cast another spell.</p><p class=\"Body-Foundation-No-BOLDITALIC\">You can drop the spell at any time to cast Rift Walker again and place the marking somewhere new.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll (15)</strong>. On a success, you place an arcane marking on the ground where you currently stand. The next time you successfully cast Rift Walker, a rift in space opens up, providing safe passage back to the exact spot where the marking was placed. This rift stays open until you choose to close it or you cast another spell.</p><p>You can drop the spell at any time to cast Rift Walker again and place the marking somewhere new.</p>",
     "domain": "arcana",
     "recallCost": 2,
     "level": 6,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "KV6Vt4prS15q2UV9",
         "systemPath": "actions",
-        "description": "<p>Make a <strong>Spellcast Roll (15)</strong>. On a success, you place an arcane marking on the ground where you currently stand. The next time you successfully cast Rift Walker, a rift in space opens up, providing safe passage back to the exact spot where the marking was placed. This rift stays open until you choose to close it or you cast another spell.</p><p>You can drop the spell at any time to cast Rift Walker again and place the marking somewhere new.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -80,8 +80,5 @@
   "_id": "vd5STqX29RpYbGxa",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!vd5STqX29RpYbGxa"
 }

@@ -43,7 +43,7 @@
       }
     },
     "tier": 1,
-    "description": "<p>An armored guard bearing a sword and shield painted in the settlement’s colors.</p>",
+    "description": "<p>An armored guard bearing a sword and shield painted in the settlement's colors.</p>",
     "attack": {
       "roll": {
         "bonus": 1,
@@ -140,11 +140,6 @@
   "flags": {},
   "_id": "B4LZcGuBAHzyVdzy",
   "sort": 2000000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Bladed Guard",
     "displayName": 0,
@@ -314,10 +309,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -414,7 +405,7 @@
             "changes": [],
             "duration": {
               "type": "temporary",
-              "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">Until you break free with a successful attack, Finesse Roll, or Strength Roll.</span></p>"
+              "description": "<p>Until you break free with a successful attack, Finesse Roll, or Strength Roll.</p>"
             },
             "rangeDependence": null,
             "stacking": null,
@@ -452,10 +443,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

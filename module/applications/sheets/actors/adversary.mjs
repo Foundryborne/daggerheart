@@ -144,10 +144,10 @@ export default class AdversarySheet extends DHBaseActorSheet {
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
 
-        htmlElement.querySelectorAll('.inventory-item-resource').forEach(element => {
+        for (const element of htmlElement.querySelectorAll('.inventory-item-resource')) {
             element.addEventListener('change', this.updateItemResource.bind(this));
             element.addEventListener('click', e => e.stopPropagation());
-        });
+        }
     }
 
     /**

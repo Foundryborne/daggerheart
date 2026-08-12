@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "BjAECQULugmbVqXU",
         "systemPath": "actions",
-        "description": "<p><strong>Mark a Stress</strong> to become Cloaked at any time. When Cloaked from this feature, you automatically clear the Restrained condition if you have it. You remain Cloaked in this way until you roll with Fear or until your next rest.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -84,10 +84,6 @@
     }
   ],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!iyIg1VLwO8C6jvFZ"
 }

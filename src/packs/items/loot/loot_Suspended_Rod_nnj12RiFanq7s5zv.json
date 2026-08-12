@@ -4,7 +4,7 @@
   "_id": "nnj12RiFanq7s5zv",
   "img": "icons/commodities/tech/pipe-metal.webp",
   "system": {
-    "description": "<p>This flat rod is inscribed with runes. When you activate the rod, it is immediately suspended in place. Until the rod is deactivated, it can’t move, doesn’t abide by the rules of gravity, and remains in place.</p>",
+    "description": "<p>This flat rod is inscribed with runes. When you activate the rod, it is immediately suspended in place. Until the rod is deactivated, it can't move, doesn't abide by the rules of gravity, and remains in place.</p>",
     "quantity": 1,
     "actions": {},
     "attribution": {
@@ -16,10 +16,6 @@
   "effects": [],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!nnj12RiFanq7s5zv"
 }

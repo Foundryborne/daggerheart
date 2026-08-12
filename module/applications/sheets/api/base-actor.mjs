@@ -38,7 +38,9 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         ],
         dragDrop: [
             { dragSelector: '.inventory-item[data-type="attack"]', dropSelector: null },
-            { dragSelector: '.currency[data-currency] .drag-handle', dropSelector: null }
+            { dragSelector: '.currency[data-currency] .drag-handle', dropSelector: null },
+            // This exists in order to cancel a drag drop from happening. Implementation in _onDragStart()
+            { dragSelector: '[draggable="true"] input[type=text], [draggable="true"] input[type=number]', dropSelector: null }
         ]
     };
 
@@ -424,6 +426,14 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
      * @param {DragEvent} event - The drag event
      */
     async _onDragStart(event) {
+        // If the target is an input element, stop the dragdrop. This may be a resource inside a draggable
+        // This relies on a dragdrop selector being registered for inputs specifically
+        if (event.target.tagName === 'INPUT' && ['number', 'text'].includes(event.target.type)) {
+            event.preventDefault();
+            event.stopPropagation();
+            return;
+        }
+
         // Handle drag/dropping currencies
         const currencyEl = event.currentTarget.closest('.currency[data-currency]');
         if (currencyEl) {

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "8ZfL09F8MiOEUzzw",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Once per rest, when you succeed on an attack against an adversary, you can clear 3 Stress or a Hit Point. On a success with Hope, you also clear 3 Stress or a Hit Point on an ally within Close range of you.</p>",
+    "description": "<p>Once per rest, when you succeed on an attack against an adversary, you can clear 3 Stress or a Hit Point. On a success with Hope, you also clear 3 Stress or a Hit Point on an ally within Close range of you.</p>",
     "domain": "splendor",
     "recallCost": 2,
     "level": 3,
@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "1w6rcNGdI6H9wVIz",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Once per rest, when you succeed on an attack against an adversary, you can clear 3 Stress or a Hit Point. On a success with Hope, you also clear 3 Stress or a Hit Point on an ally within Close range of you.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -98,7 +98,7 @@
         "type": "healing",
         "_id": "OIrSjtVdt4b2yJ2t",
         "systemPath": "actions",
-        "description": "<p>Once per rest, when you succeed on an attack against an adversary, you can clear 3 Stress or a Hit Point. On a success with Hope, you also clear 3 Stress or a Hit Point on an ally within Close range of you.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -204,8 +204,5 @@
   "_id": "ffPbSEvLuFrFsMxl",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!ffPbSEvLuFrFsMxl"
 }

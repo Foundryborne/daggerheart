@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "j9i2Q6Z7Z82udHn1",
   "system": {
-    "description": "<p class=\"Card-Feature\"><em><strong>Adjust Appearance:</strong></em> You magically shift your appearance and clothing to avoid recognition.</p><p class=\"Card-Feature\"><em><strong>Parallela:</strong></em><strong> Spend 2 Hope</strong> to cast this spell on yourself or an ally within Close range. The next time the target makes an attack, they can hit an additional target within range that their attack roll would succeed against. You can only hold this spell on one creature at a time.</p><p class=\"Card-Feature\"><em><strong>Illusion:</strong></em> Make a <strong>Spellcast Roll (14)</strong>. On a success, create a temporary visual illusion no larger than you within Close range that lasts for as long as you look at it. It holds up to scrutiny until an observer is within Melee range.</p>",
+    "description": "<p><em><strong>Adjust Appearance:</strong></em> You magically shift your appearance and clothing to avoid recognition.</p><p><em><strong>Parallela:</strong></em><strong> Spend 2 Hope</strong> to cast this spell on yourself or an ally within Close range. The next time the target makes an attack, they can hit an additional target within range that their attack roll would succeed against. You can only hold this spell on one creature at a time.</p><p><em><strong>Illusion:</strong></em> Make a <strong>Spellcast Roll (14)</strong>. On a success, create a temporary visual illusion no larger than you within Close range that lasts for as long as you look at it. It holds up to scrutiny until an observer is within Melee range.</p>",
     "domain": "codex",
     "recallCost": 2,
     "level": 2,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "cc1ahwawL16OEu2r",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">You magically shift your appearance and clothing to avoid recognition.</p>",
+        "description": "<p>You magically shift your appearance and clothing to avoid recognition.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -48,7 +48,7 @@
         "type": "effect",
         "_id": "wBQkw3P4Esj6kOx2",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\"><strong>Spend 2 Hope</strong> to cast this spell on yourself or an ally within Close range. The next time the target makes an attack, they can hit an additional target within range that their attack roll would succeed against. You can only hold this spell on one creature at a time.</p>",
+        "description": "<p><strong>Spend 2 Hope</strong> to cast this spell on yourself or an ally within Close range. The next time the target makes an attack, they can hit an additional target within range that their attack roll would succeed against. You can only hold this spell on one creature at a time.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -91,7 +91,7 @@
         "type": "attack",
         "_id": "rsyxORrTH5oU2DkV",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll (14)</strong>. On a success, create a temporary visual illusion no larger than you within Close range that lasts for as long as you look at it. It holds up to scrutiny until an observer is within Melee range.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll (14)</strong>. On a success, create a temporary visual illusion no larger than you within Close range that lasts for as long as you look at it. It holds up to scrutiny until an observer is within Melee range.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -230,8 +230,5 @@
       "_key": "!items.effects!eq8VNqYMRHhF9xw9.wnrHSvvB6pydTVcC"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!eq8VNqYMRHhF9xw9"
 }

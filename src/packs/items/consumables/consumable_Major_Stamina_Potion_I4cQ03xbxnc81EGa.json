@@ -11,7 +11,7 @@
         "type": "healing",
         "_id": "3duuNVqCeQaUUKTo",
         "systemPath": "actions",
-        "description": "<p>Clear 1d4+2 Stress.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -93,10 +93,6 @@
   "effects": [],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!I4cQ03xbxnc81EGa"
 }

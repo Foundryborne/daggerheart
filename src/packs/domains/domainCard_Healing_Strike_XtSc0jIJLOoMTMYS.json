@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "Z6oglw8LIOrtBcN6",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you deal damage to an adversary, you can <strong>spend 2 Hope</strong> to clear a Hit Point on an ally within Close range.</p>",
+    "description": "<p>When you deal damage to an adversary, you can <strong>spend 2 Hope</strong> to clear a Hit Point on an ally within Close range.</p>",
     "domain": "splendor",
     "recallCost": 1,
     "level": 7,
@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "ECYp5SeXDAQzRTgC",
         "systemPath": "actions",
-        "description": "<p>When you deal damage to an adversary, you can <strong>spend 2 Hope</strong> to clear a Hit Point on an ally within Close range.</p><p></p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -111,8 +111,5 @@
   "_id": "XtSc0jIJLOoMTMYS",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!XtSc0jIJLOoMTMYS"
 }

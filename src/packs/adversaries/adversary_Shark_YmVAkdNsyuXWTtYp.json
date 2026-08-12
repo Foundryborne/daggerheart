@@ -134,11 +134,6 @@
   "flags": {},
   "_id": "YmVAkdNsyuXWTtYp",
   "sort": 2200000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Shark",
     "displayName": 0,
@@ -350,10 +345,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -364,7 +355,7 @@
       "name": "Rending Bite",
       "type": "feature",
       "system": {
-        "description": "<p>When the @Lookup[@name] makes a successful attack, the target must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack, the target must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can't mark an Armor Slot, they must mark an additional HP.</p>",
         "resource": null,
         "actions": {
           "a0gC7uWycUB2NgKS": {
@@ -544,10 +535,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -558,7 +545,7 @@
       "name": "Blood in the Water",
       "type": "feature",
       "system": {
-        "description": "<p>When a creature within Close range of the @Lookup[@name] marks HP from another creature’s attack, you can <strong>mark a Stress</strong> to immediately spotlight the @Lookup[@name], moving them into Melee range of the target and making a standard attack.</p>",
+        "description": "<p>When a creature within Close range of the @Lookup[@name] marks HP from another creature's attack, you can <strong>mark a Stress</strong> to immediately spotlight the @Lookup[@name], moving them into Melee range of the target and making a standard attack.</p>",
         "resource": null,
         "actions": {
           "sE9KRd9siZeYHPhb": {
@@ -612,10 +599,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

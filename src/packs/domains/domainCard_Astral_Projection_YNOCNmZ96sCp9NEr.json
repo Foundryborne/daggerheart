@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "7O1tTswJMNdPgLsx",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Once per long rest, <strong>mark a Stress</strong> to create a projected copy of yourself that can appear anywhere you’ve been before.</p><p class=\"Body-Foundation\">You can see and hear through the projection as though it were you and affect the world as though you were there. A creature investigating the projection can tell it’s of magical origin. This effect lasts until your next rest or your projection takes any damage.</p>",
+    "description": "<p>Once per long rest, <strong>mark a Stress</strong> to create a projected copy of yourself that can appear anywhere you've been before.</p><p>You can see and hear through the projection as though it were you and affect the world as though you were there. A creature investigating the projection can tell it's of magical origin. This effect lasts until your next rest or your projection takes any damage.</p>",
     "domain": "grace",
     "recallCost": 0,
     "level": 8,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "jhEOXtmSiwm4AX1R",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Once per long rest, <strong>mark a Stress</strong> to create a projected copy of yourself that can appear anywhere you’ve been before.</p><p class=\"Body-Foundation\">You can see and hear through the projection as though it were you and affect the world as though you were there. A creature investigating the projection can tell it’s of magical origin. This effect lasts until your next rest or your projection takes any damage.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -65,8 +65,5 @@
   "_id": "YNOCNmZ96sCp9NEr",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!YNOCNmZ96sCp9NEr"
 }

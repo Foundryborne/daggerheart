@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "yalAnCU3SndrYImF",
   "system": {
-    "description": "<p class=\"Body\">While you are wearing armor, gain a +2 bonus to your damage thresholds.</p>",
+    "description": "<p>While you are wearing armor, gain a +2 bonus to your damage thresholds.</p>",
     "domain": "blade",
     "recallCost": 0,
     "level": 4,
@@ -78,8 +78,5 @@
       "_key": "!items.effects!oVa49lI107eZILZr.jx8KWAdyoPV2hV0s"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!oVa49lI107eZILZr"
 }

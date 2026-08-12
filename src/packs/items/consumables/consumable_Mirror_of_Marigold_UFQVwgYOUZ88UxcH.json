@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "EPN43cQmNC97cCw9",
         "systemPath": "actions",
-        "description": "<p>When you take damage, you can spend a Hope to negate that damage, after which the mirror shatters.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -49,10 +49,6 @@
   "effects": [],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!UFQVwgYOUZ88UxcH"
 }

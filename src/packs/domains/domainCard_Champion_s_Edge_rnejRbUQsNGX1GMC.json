@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "Emnx4o1DWGTVKoAg",
   "system": {
-    "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">When you critically succeed on an attack, you can <strong>spend up to 3 Hope</strong> and choose one of the following options for each Hope spent:</p><ul><li class=\"vertical-card-list\"><p>You clear a Hit Point.</p></li><li class=\"vertical-card-list\"><p>You clear an Armor Slot.</p></li><li class=\"vertical-card-list\">The target must mark an additional Hit Point.</li></ul><p class=\"Card-Feature\">You can’t choose the same option more than once.</p>",
+    "description": "<p>When you critically succeed on an attack, you can <strong>spend up to 3 Hope</strong> and choose one of the following options for each Hope spent:</p><ul><li class=\"vertical-card-list\"><p>You clear a Hit Point.</p></li><li class=\"vertical-card-list\"><p>You clear an Armor Slot.</p></li><li class=\"vertical-card-list\">The target must mark an additional Hit Point.</li></ul><p>You can't choose the same option more than once.</p>",
     "domain": "blade",
     "recallCost": 1,
     "level": 5,
@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "CbKKgf1TboGPZitf",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">When you critically succeed on an attack, you can <strong>spend up to 3 Hope</strong> and choose one of the following options for each Hope spent:</p><ul class=\"\"><li class=\"vertical-card-list\"><p>You clear a Hit Point.</p></li><li class=\"vertical-card-list\"><p>You clear an Armor Slot.</p></li><li class=\"vertical-card-list\">The target must mark an additional Hit Point.</li></ul><p class=\"Card-Feature\">You can’t choose the same option more than once.</p>",
+        "description": "<p>When you critically succeed on an attack, you can <strong>spend up to 3 Hope</strong> and choose one of the following options for each Hope spent:</p><ul class=\"\"><li class=\"vertical-card-list\"><p>You clear a Hit Point.</p></li><li class=\"vertical-card-list\"><p>You clear an Armor Slot.</p></li><li class=\"vertical-card-list\">The target must mark an additional Hit Point.</li></ul><p>You can't choose the same option more than once.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -264,8 +264,5 @@
   "_id": "rnejRbUQsNGX1GMC",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!rnejRbUQsNGX1GMC"
 }

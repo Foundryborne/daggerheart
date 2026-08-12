@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "Z6oglw8LIOrtBcN6",
   "system": {
-    "description": "<p></p><p class=\"Body-Foundation-No-BOLDITALIC\">When 4 or more of the domain cards in your loadout are from the Splendor domain, gain the following benefits:</p><ul><li class=\"vertical-card-list\">+3 bonus to your Severe damage threshold</li><li class=\"vertical-card-list\">Once per long rest, when incoming damage would require you to mark a number of Hit Points, you can choose to mark that much Stress or spend that much Hope instead.</li></ul><p></p>",
+    "description": "<p>When 4 or more of the domain cards in your loadout are from the Splendor domain, gain the following benefits:</p><ul><li class=\"vertical-card-list\">+3 bonus to your Severe damage threshold</li><li class=\"vertical-card-list\">Once per long rest, when incoming damage would require you to mark a number of Hit Points, you can choose to mark that much Stress or spend that much Hope instead.</li></ul>",
     "domain": "splendor",
     "recallCost": 2,
     "level": 7,
@@ -71,8 +71,5 @@
       "_key": "!items.effects!JT5dM3gVL6chDBYU.u13fiOMD8B36PkiZ"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!JT5dM3gVL6chDBYU"
 }

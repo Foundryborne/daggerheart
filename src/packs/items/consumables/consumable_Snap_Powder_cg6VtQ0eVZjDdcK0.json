@@ -11,7 +11,7 @@
         "type": "healing",
         "_id": "FVn1NAbzHHyX2lsM",
         "systemPath": "actions",
-        "description": "<p>Mark a Stress and clear a HP.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -102,10 +102,6 @@
   "effects": [],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!cg6VtQ0eVZjDdcK0"
 }

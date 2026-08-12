@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "Kwav1cV1xvVO13sR",
         "systemPath": "actions",
-        "description": "<p><strong>Spend 3 Hope</strong> to gain a +1 bonus to your attack rolls until your next rest.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -107,10 +107,6 @@
     }
   ],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!njj2C3tMDeCHHOoh"
 }

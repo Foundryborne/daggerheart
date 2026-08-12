@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "yFcD1LOM3xKbkNYl",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Once per long rest, this card can mimic the features of another domain card of level 8 or lower in another player’s loadout. <strong>Spend Hope equal to half the card’s level</strong> to gain access to the feature. It lasts until your next rest or they place the card in their vault.</p>",
+    "description": "<p>Once per long rest, this card can mimic the features of another domain card of level 8 or lower in another player's loadout. <strong>Spend Hope equal to half the card's level</strong> to gain access to the feature. It lasts until your next rest or they place the card in their vault.</p>",
     "domain": "grace",
     "recallCost": 3,
     "level": 9,
@@ -15,7 +15,7 @@
         "type": "effect",
         "_id": "RKEceNKiQirYwN45",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Once per long rest, this card can mimic the features of another domain card of level 8 or lower in another player’s loadout. <strong>Spend Hope equal to half the card’s level</strong> to gain access to the feature. It lasts until your next rest or they place the card in their vault.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -56,8 +56,5 @@
   "_id": "3A7LZ1xmDEMGa165",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!3A7LZ1xmDEMGa165"
 }

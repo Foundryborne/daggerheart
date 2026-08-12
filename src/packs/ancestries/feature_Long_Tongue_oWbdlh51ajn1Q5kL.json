@@ -12,7 +12,7 @@
         "type": "attack",
         "_id": "MhAWv7tuvkfOf7wQ",
         "systemPath": "actions",
-        "description": "<p>You can use your long tongue to grab onto things within Close range. <strong>Mark a Stress</strong> to use your tongue as a Finesse Close weapon that deals <strong>d12</strong> physical damage using your Proficiency.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -98,10 +98,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!oWbdlh51ajn1Q5kL"
 }

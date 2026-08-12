@@ -10,7 +10,7 @@
         "type": "effect",
         "_id": "D9YmUP1aeiCzNxcC",
         "systemPath": "actions",
-        "description": "<p><strong>Mark a Stress</strong> to force any number of targets within Melee range to move back to Very Close range.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -47,10 +47,6 @@
   },
   "effects": [],
   "folder": "uU8bIoZvXge0rLaU",
-  "ownership": {
-    "default": 0,
-    "FecEtPuoQh6MpjQ0": 3
-  },
   "flags": {},
   "_id": "cTlqpQZPy5TvdDAT",
   "sort": 1200000,

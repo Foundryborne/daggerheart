@@ -4,7 +4,7 @@
   "_id": "MeEg57T6MKpw3sme",
   "img": "icons/sundries/lights/torch-brown-lit.webp",
   "system": {
-    "description": "<p>You can light this magic torch at will. The flame’s light fills a much larger space than it should, enough to illuminate a cave bright as day.</p>",
+    "description": "<p>You can light this magic torch at will. The flame's light fills a much larger space than it should, enough to illuminate a cave bright as day.</p>",
     "quantity": 1,
     "actions": {},
     "attribution": {
@@ -16,10 +16,6 @@
   "effects": [],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!MeEg57T6MKpw3sme"
 }

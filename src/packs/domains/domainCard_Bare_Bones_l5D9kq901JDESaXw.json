@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "QpOL7jPbMBzH96qR",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you choose not to equip armor, you have a base Armor Score of 3 + your Strength and use the following as your base damage thresholds:</p><ul><li class=\"vertical-card-list-found\"><p><em><strong>Tier 1:</strong></em> 9/19</p></li><li class=\"vertical-card-list-found\"><p><em><strong>Tier 2:</strong></em> 11/24</p></li><li class=\"vertical-card-list-found\"><p><em><strong>Tier 3:</strong></em> 13/31</p></li><li class=\"vertical-card-list-found\"><p><em><strong>Tier 4:</strong></em> 15/38</p></li></ul>",
+    "description": "<p>When you choose not to equip armor, you have a base Armor Score of 3 + your Strength and use the following as your base damage thresholds:</p><ul><li class=\"vertical-card-list-found\"><p><em><strong>Tier 1:</strong></em> 9/19</p></li><li class=\"vertical-card-list-found\"><p><em><strong>Tier 2:</strong></em> 11/24</p></li><li class=\"vertical-card-list-found\"><p><em><strong>Tier 3:</strong></em> 13/31</p></li><li class=\"vertical-card-list-found\"><p><em><strong>Tier 4:</strong></em> 15/38</p></li></ul>",
     "domain": "valor",
     "recallCost": 0,
     "level": 1,
@@ -69,7 +69,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.565);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">You have a base Armor Score of 3 + your Strength.</span></p>",
+      "description": "<p>You have a base Armor Score of 3 + your Strength.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -84,10 +84,6 @@
       "_key": "!items.effects!l5D9kq901JDESaXw.FCsgz7Tdsw6QUzBs"
     }
   ],
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "_id": "l5D9kq901JDESaXw",
   "sort": 0,
   "_key": "!items!l5D9kq901JDESaXw"

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "bCjkysrofWPiZqNh",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When 4 or more of the domain cards in your loadout are from the Arcana domain, gain the following benefits:</p><ul><li class=\"vertical-card-list-found\"><p>+1 bonus to your Spellcast Rolls</p></li><li class=\"vertical-card-list-found\"><p>Once per rest, you can switch the results of your Hope and Fear Dice.</p></li></ul>",
+    "description": "<p>When 4 or more of the domain cards in your loadout are from the Arcana domain, gain the following benefits:</p><ul><li class=\"vertical-card-list-found\"><p>+1 bonus to your Spellcast Rolls</p></li><li class=\"vertical-card-list-found\"><p>Once per rest, you can switch the results of your Hope and Fear Dice.</p></li></ul>",
     "domain": "arcana",
     "recallCost": 2,
     "level": 7,
@@ -119,8 +119,5 @@
       "_key": "!items.effects!5PvMQKCjrgSxzstn.vTW98Xha0HP8ITrs"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!5PvMQKCjrgSxzstn"
 }

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "nZr2hsu6Q6TlFXQn",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you or an ally within Close range has used a feature that has an exhaustion limit (such as once per rest or once per session), you can <strong>spend any number of Hope</strong> and roll that many <strong>d6s</strong>. If any roll a 6, the feature can be used again.</p>",
+    "description": "<p>When you or an ally within Close range has used a feature that has an exhaustion limit (such as once per rest or once per session), you can <strong>spend any number of Hope</strong> and roll that many <strong>d6s</strong>. If any roll a 6, the feature can be used again.</p>",
     "domain": "splendor",
     "recallCost": 3,
     "level": 10,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "bbWofyWTChZVuW60",
         "systemPath": "actions",
-        "description": "<p>When you or an ally within Close range has used a feature that has an exhaustion limit (such as once per rest or once per session), you can <strong>spend any number of Hope</strong> and roll that many <strong>d6s</strong>. If any roll a 6, the feature can be used again.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -89,8 +89,5 @@
   "_id": "X8OfkEoI5gLTRf1B",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!X8OfkEoI5gLTRf1B"
 }

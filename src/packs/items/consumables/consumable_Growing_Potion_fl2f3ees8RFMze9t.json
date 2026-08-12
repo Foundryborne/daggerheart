@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "A8wHvMnKnewQ2J3m",
         "systemPath": "actions",
-        "description": "<p>You can drink this potion to double your size until you choose to drop this form or your next rest. While in this form, you have a +2 bonus to Strength and a +1 bonus to your Proficiency.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -108,10 +108,6 @@
   ],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!fl2f3ees8RFMze9t"
 }

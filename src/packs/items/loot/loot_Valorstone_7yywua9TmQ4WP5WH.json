@@ -4,7 +4,7 @@
   "_id": "7yywua9TmQ4WP5WH",
   "img": "icons/commodities/treasure/token-engraved-spiral-grey-white.webp",
   "system": {
-    "description": "<p>You can attach this stone to armor that doesn’t already have a feature. The armor gains the following feature.</p><p><strong>Resilient</strong>: Before you mark your last Armor Slot, roll a d6. On a result of 6, reduce the severity by one threshold without marking an Armor Slot.</p>",
+    "description": "<p>You can attach this stone to armor that doesn't already have a feature. The armor gains the following feature.</p><p><strong>Resilient</strong>: Before you mark your last Armor Slot, roll a d6. On a result of 6, reduce the severity by one threshold without marking an Armor Slot.</p>",
     "quantity": 1,
     "actions": {},
     "attribution": {
@@ -16,10 +16,6 @@
   "effects": [],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!7yywua9TmQ4WP5WH"
 }

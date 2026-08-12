@@ -140,11 +140,6 @@
   "flags": {},
   "_id": "wycLpvebWdUqRhpP",
   "sort": 5200000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Petty Noble",
     "displayName": 0,
@@ -258,10 +253,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -274,7 +265,7 @@
       "_id": "ebdAPBso5ROmdFNO",
       "img": "icons/environment/people/infantry-armored.webp",
       "system": {
-        "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon <strong>1d4</strong> @UUID[Compendium.daggerheart.adversaries.Actor.B4LZcGuBAHzyVdzy]{Bladed Guards}, who appear at Far range to enforce the @Lookup[@name]’s will.</p>",
+        "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon <strong>1d4</strong> @UUID[Compendium.daggerheart.adversaries.Actor.B4LZcGuBAHzyVdzy]{Bladed Guards}, who appear at Far range to enforce the @Lookup[@name]'s will.</p>",
         "resource": null,
         "actions": {
           "tioTtYfIGFIXRITN": {
@@ -327,10 +318,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -343,7 +330,7 @@
       "_id": "xN09fSsg33nURqpk",
       "img": "icons/commodities/currency/coin-embossed-skull-gold.webp",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> and target a PC. The @Lookup[@name] proclaims that the target and their allies are exiled from the @Lookup[@name]’s territory. While exiled, the target and their allies have disadvantage during social situations within the @Lookup[@name]’s domain.</p>",
+        "description": "<p><strong>Spend a Fear</strong> and target a PC. The @Lookup[@name] proclaims that the target and their allies are exiled from the @Lookup[@name]'s territory. While exiled, the target and their allies have disadvantage during social situations within the @Lookup[@name]'s domain.</p>",
         "resource": null,
         "actions": {
           "dAHzRxf0iztyc1mI": {
@@ -396,10 +383,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

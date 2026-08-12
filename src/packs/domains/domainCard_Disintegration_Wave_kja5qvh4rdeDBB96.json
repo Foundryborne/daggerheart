@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "KwZYrsSUYnHiNtPl",
   "system": {
-    "description": "<p class=\"Body\">Make a <strong>Spellcast Roll (18)</strong>. Once per long rest on a success, the GM tells you which adversaries within Far range have a Difficulty of 18 or lower. <strong>Mark a Stress</strong> for each one you wish to hit with this spell. They are killed and can’t come back to life by any means.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll (18)</strong>. Once per long rest on a success, the GM tells you which adversaries within Far range have a Difficulty of 18 or lower. <strong>Mark a Stress</strong> for each one you wish to hit with this spell. They are killed and can't come back to life by any means.</p>",
     "domain": "codex",
     "recallCost": 4,
     "level": 9,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "38A4Q7WVvGCFlRpc",
         "systemPath": "actions",
-        "description": "<p class=\"Body\">Make a <strong>Spellcast Roll (18)</strong>. Once per long rest on a success, the GM tells you which adversaries within Far range have a Difficulty of 18 or lower. <strong>Mark a Stress</strong> for each one you wish to hit with this spell. They are killed and can’t come back to life by any means.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -80,8 +80,5 @@
   "_id": "kja5qvh4rdeDBB96",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!kja5qvh4rdeDBB96"
 }

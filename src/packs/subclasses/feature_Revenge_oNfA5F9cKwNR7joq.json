@@ -12,7 +12,7 @@
         "type": "damage",
         "_id": "e00FXbyXZ8bHRY2t",
         "systemPath": "actions",
-        "description": "<p>When an adversary within Melee range succeeds on an attack against you, you can mark 2 Stress to force the attacker to mark a Hit Point.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -78,10 +78,6 @@
   },
   "effects": [],
   "sort": 500000,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!oNfA5F9cKwNR7joq"
 }

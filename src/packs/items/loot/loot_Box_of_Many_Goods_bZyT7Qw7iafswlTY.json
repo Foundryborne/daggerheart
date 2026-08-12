@@ -4,7 +4,7 @@
   "_id": "bZyT7Qw7iafswlTY",
   "img": "icons/containers/boxes/crate-heavy-yellow.webp",
   "system": {
-    "description": "<p>Once per long rest, you can open this small box and roll a [[/r d12]]. On a result of 1–6, it’s empty. On a result of 7–10, it contains one random common consumable. On a result of 11–12, it contains two random common consumables.</p>",
+    "description": "<p>Once per long rest, you can open this small box and roll a [[/r d12]]. On a result of 1–6, it's empty. On a result of 7–10, it contains one random common consumable. On a result of 11–12, it contains two random common consumables.</p>",
     "quantity": 1,
     "actions": {
       "lt1iEma1OVUNZ77o": {
@@ -63,10 +63,6 @@
   "effects": [],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!bZyT7Qw7iafswlTY"
 }

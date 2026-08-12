@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "dk7fhkfA4m5lqNWB",
         "systemPath": "actions",
-        "description": "<p>Thick vines grow from your location to a point of your choice within Far range, allowing you to climb up or across them. The vines dissipate on your next short rest.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -49,10 +49,6 @@
   "effects": [],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!RrIasiMCt6mqVTps"
 }

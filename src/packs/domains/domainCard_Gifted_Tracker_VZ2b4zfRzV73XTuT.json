@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "EJoXzO85rG5EiZsh",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you’re tracking a specific creature or group of creatures based on signs of their passage, you <strong>can spend any number of Hope</strong> and ask the GM that many questions from the following list.</p><ul><li class=\"vertical-card-list\">What direction did they go?</li><li class=\"vertical-card-list\">How long ago did they pass through?</li><li class=\"vertical-card-list\">What were they doing in this location?</li><li class=\"vertical-card-list\">How many of them were here?</li></ul><p class=\"Body-Foundation\">When you encounter creatures you’ve tracked in this way, gain a +1 bonus to your Evasion against them.</p>",
+    "description": "<p>When you're tracking a specific creature or group of creatures based on signs of their passage, you <strong>can spend any number of Hope</strong> and ask the GM that many questions from the following list.</p><ul><li class=\"vertical-card-list\">What direction did they go?</li><li class=\"vertical-card-list\">How long ago did they pass through?</li><li class=\"vertical-card-list\">What were they doing in this location?</li><li class=\"vertical-card-list\">How many of them were here?</li></ul><p>When you encounter creatures you've tracked in this way, gain a +1 bonus to your Evasion against them.</p>",
     "domain": "sage",
     "recallCost": 0,
     "level": 1,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "7rHfF3ck1FuixcIC",
         "systemPath": "actions",
-        "description": "<p>When you’re tracking a specific creature or group of creatures based on signs of their passage, you <strong>can spend any number of Hope</strong> and ask the GM that many questions from the following list.</p><ul><li class=\"vertical-card-list\">What direction did they go?</li><li class=\"vertical-card-list\">How long ago did they pass through?</li><li class=\"vertical-card-list\">What were they doing in this location?</li><li class=\"vertical-card-list\">How many of them were here?</li></ul><p class=\"Body-Foundation\">When you encounter creatures you’ve tracked in this way, gain a +1 bonus to your Evasion against them.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -101,7 +101,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">When you encounter creatures you’ve tracked in this way, gain a +1 bonus to your </span><span class=\"tooltip-convert\" style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">Evasion</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> against them.</span></p>",
+      "description": "<p>When you encounter creatures you’ve tracked in this way, gain a +1 bonus to your Evasion against them.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -115,8 +115,5 @@
       "_key": "!items.effects!VZ2b4zfRzV73XTuT.47Oh2weCdmuvKHM9"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!VZ2b4zfRzV73XTuT"
 }

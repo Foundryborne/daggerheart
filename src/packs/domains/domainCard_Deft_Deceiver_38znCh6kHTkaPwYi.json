@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "nVCKcZkcoEivYJaF",
   "system": {
-    "description": "<p class=\"Body-Foundation\"><strong>Spend a Hope</strong> to gain advantage on a roll to deceive or trick someone into believing a lie you tell them</p><p></p>",
+    "description": "<p><strong>Spend a Hope</strong> to gain advantage on a roll to deceive or trick someone into believing a lie you tell them</p>",
     "domain": "grace",
     "recallCost": 0,
     "level": 1,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "8upofDpPl8wqSl77",
         "systemPath": "actions",
-        "description": "<p><strong>Spend a Hope</strong> to gain advantage on a roll to deceive or trick someone into believing a lie you tell them</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -101,7 +101,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Gain </span><span class=\"tooltip-convert\" style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">advantage</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> on a roll to deceive or trick someone into believing a lie you tell them.</span></p>",
+      "description": "<p>Gain advantage on a roll to deceive or trick someone into believing a lie you tell them.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -115,8 +115,5 @@
       "_key": "!items.effects!38znCh6kHTkaPwYi.qtHDKXJ1pH8Cu7by"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!38znCh6kHTkaPwYi"
 }

@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "hTF2K4uWcrUypLbs",
         "systemPath": "actions",
-        "description": "<p>When you use this flare, allies within Close range roll a d6 when they spend a Hope. On a result of 6, they gain the effect of that Hope without spending it. The flare lasts until the end of the scene.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -49,10 +49,6 @@
   "effects": [],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!EhaQCPJ8oiqpRIwB"
 }

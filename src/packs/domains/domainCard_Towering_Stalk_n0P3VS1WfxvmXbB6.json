@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "uXGugK72AffddFdH",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Once per rest, you can conjure a thick, twisting stalk within Close range that can be easily climbed. Its height can grow up to Far range.</p><p class=\"Body-Foundation\"><strong>Mark a Stress</strong> to use this spell as an attack. Make a <strong>Spellcast Roll</strong> against an adversary or group of adversaries within Close range. The erupting stalk lifts targets you succeed against into the air and drops them, dealing <strong>d8</strong> physical damage using your Proficiency.</p>",
+    "description": "<p>Once per rest, you can conjure a thick, twisting stalk within Close range that can be easily climbed. Its height can grow up to Far range.</p><p><strong>Mark a Stress</strong> to use this spell as an attack. Make a <strong>Spellcast Roll</strong> against an adversary or group of adversaries within Close range. The erupting stalk lifts targets you succeed against into the air and drops them, dealing <strong>d8</strong> physical damage using your Proficiency.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 3,
@@ -123,7 +123,7 @@
         "type": "effect",
         "_id": "I6eSBTpuYDU1nEgr",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Once per rest, you can conjure a thick, twisting stalk within Close range that can be easily climbed. Its height can grow up to Far range.</p>",
+        "description": "<p>Once per rest, you can conjure a thick, twisting stalk within Close range that can be easily climbed. Its height can grow up to Far range.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -183,8 +183,5 @@
   "_id": "n0P3VS1WfxvmXbB6",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!n0P3VS1WfxvmXbB6"
 }

@@ -42,7 +42,7 @@
       }
     },
     "tier": 4,
-    "description": "<p>A divine champion, head of a hallowed host of warriors who enforce their god’s will.</p>",
+    "description": "<p>A divine champion, head of a hallowed host of warriors who enforce their god's will.</p>",
     "motivesAndTactics": "Enforce dogma, fl y, pronounce judgment, smite",
     "attack": {
       "name": "Holy Sword",
@@ -140,11 +140,6 @@
   "flags": {},
   "_id": "r1mbfSSwKWdcFdAU",
   "sort": 1800000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "High Seraph",
     "displayName": 0,
@@ -296,10 +291,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -364,10 +355,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -378,7 +365,7 @@
       "name": "Judgement",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to make a target Guilty in the eyes of the Seraph’s god until the @Lookup[@name] is defeated. While Guilty, the target doesn’t gain Hope on a result with Hope. When the @Lookup[@name] succeeds on a standard attack against a Guilty target, they deal Severe damage instead of their standard damage. The @Lookup[@name] can only mark one target at a time.</p>",
+        "description": "<p><strong>Spend a Fear</strong> to make a target Guilty in the eyes of the Seraph's god until the @Lookup[@name] is defeated. While Guilty, the target doesn't gain Hope on a result with Hope. When the @Lookup[@name] succeeds on a standard attack against a Guilty target, they deal Severe damage instead of their standard damage. The @Lookup[@name] can only mark one target at a time.</p>",
         "resource": null,
         "actions": {
           "ErGJWtFIXFPgKtek": {
@@ -437,7 +424,7 @@
             "changes": [],
             "duration": {
               "type": "temporary",
-              "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">Until the </span><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif; color: rgb(239, 230, 216); font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">High Seraph</span><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\"> is defeated. </span>The High Seraph can only mark one target at a time.</p>"
+              "description": "<p>Until the High Seraph is defeated. The High Seraph can only mark one target at a time.</p>"
             },
             "rangeDependence": null,
             "stacking": null,
@@ -473,10 +460,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -624,10 +607,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -692,10 +671,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

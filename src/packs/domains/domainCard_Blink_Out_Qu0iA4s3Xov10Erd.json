@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "1e5Sn8OXxEQ57GSD",
   "system": {
-    "description": "<p></p><p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong><strong> (12)</strong>. On a success, <strong>spend a </strong><strong>Hope</strong> to teleport to another point you can see within Far range. If any willing creatures are within Very Close range, <strong>spend an additional Hope</strong> for each creature to bring them with you.        </p><p></p>",
+    "description": "<p>Make a <strong>Spellcast Roll</strong><strong> (12)</strong>. On a success, <strong>spend a </strong><strong>Hope</strong> to teleport to another point you can see within Far range. If any willing creatures are within Very Close range, <strong>spend an additional Hope</strong> for each creature to bring them with you.</p>",
     "domain": "arcana",
     "recallCost": 1,
     "level": 4,
@@ -89,8 +89,5 @@
   "_id": "Qu0iA4s3Xov10Erd",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!Qu0iA4s3Xov10Erd"
 }

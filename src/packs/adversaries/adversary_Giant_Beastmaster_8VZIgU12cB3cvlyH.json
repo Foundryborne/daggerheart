@@ -140,11 +140,6 @@
   "flags": {},
   "_id": "8VZIgU12cB3cvlyH",
   "sort": 800000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Giant Beastmaster",
     "displayName": 0,
@@ -257,10 +252,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -409,7 +400,7 @@
             "changes": [],
             "duration": {
               "type": "temporary",
-              "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">Until you break free with a successful Finesse or Strength Roll.</span></p>"
+              "description": "<p>Until you break free with a successful Finesse or Strength Roll.</p>"
             },
             "rangeDependence": null,
             "stacking": null,
@@ -447,10 +438,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -461,7 +448,7 @@
       "name": "Deadly Companion",
       "type": "feature",
       "system": {
-        "description": "<p>Twice per scene, summon a Bear, Dire Wolf, or similar Tier 1 animal adversary under the @Lookup[@name]’s control. The adversary appears at Close range and is immediately spotlighted.</p>",
+        "description": "<p>Twice per scene, summon a Bear, Dire Wolf, or similar Tier 1 animal adversary under the @Lookup[@name]'s control. The adversary appears at Close range and is immediately spotlighted.</p>",
         "resource": null,
         "actions": {
           "eSRUMqpQDPRG9leg": {
@@ -506,10 +493,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

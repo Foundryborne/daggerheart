@@ -332,7 +332,7 @@
       "name": "Elemental Aura: Air",
       "disabled": false,
       "img": "icons/magic/air/air-burst-spiral-blue-gray.webp",
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">When you or an ally takes damage from an attack beyond Melee range, reduce the damage by 1d8.</span></p>",
+      "description": "<p>When you or an ally takes damage from an attack beyond Melee range, reduce the damage by 1d8.</p>",
       "transfer": false,
       "statuses": [],
       "system": {
@@ -381,10 +381,6 @@
     }
   ],
   "sort": 100000,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!2JH9NaOh69yN80Gw"
 }

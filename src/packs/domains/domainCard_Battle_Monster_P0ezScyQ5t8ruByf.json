@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "7pKKYgRQAKlQAksV",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you make a successful attack against an adversary, you can <strong>mark 4 Stress</strong> to force the target to mark a number of Hit Points equal to the number of Hit Points you currently have marked instead of rolling for damage.</p>",
+    "description": "<p>When you make a successful attack against an adversary, you can <strong>mark 4 Stress</strong> to force the target to mark a number of Hit Points equal to the number of Hit Points you currently have marked instead of rolling for damage.</p>",
     "domain": "blade",
     "recallCost": 0,
     "level": 10,
@@ -96,8 +96,5 @@
   "_id": "P0ezScyQ5t8ruByf",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!P0ezScyQ5t8ruByf"
 }

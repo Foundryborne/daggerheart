@@ -4,14 +4,14 @@
   "_id": "yJkwz4AP6yhGo8Vj",
   "img": "icons/sundries/scrolls/scroll-worn-beige.webp",
   "system": {
-    "description": "<p>By touching this piece of parchment to another, you can perfectly copy the second parchment’s contents. Once used, this parchment becomes mundane paper.</p>",
+    "description": "<p>By touching this piece of parchment to another, you can perfectly copy the second parchment's contents. Once used, this parchment becomes mundane paper.</p>",
     "quantity": 1,
     "actions": {
       "j5gIVHXvcGu7PEZZ": {
         "type": "effect",
         "_id": "j5gIVHXvcGu7PEZZ",
         "systemPath": "actions",
-        "description": "<p>By touching this piece of parchment to another, you can perfectly copy the second parchment’s contents. Once used, this parchment becomes mundane paper.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -49,10 +49,6 @@
   "effects": [],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!yJkwz4AP6yhGo8Vj"
 }

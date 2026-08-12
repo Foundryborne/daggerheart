@@ -134,11 +134,6 @@
   "flags": {},
   "_id": "FVgYb28fhxlVcGwA",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Vault Guardian Sentinel",
     "displayName": 0,
@@ -236,7 +231,7 @@
       "name": "Kinetic Slam",
       "type": "feature",
       "system": {
-        "description": "<p>Targets who take damage from the @Lookup[@name]’s standard attack are knocked back to Very Close range.</p>",
+        "description": "<p>Targets who take damage from the @Lookup[@name]'s standard attack are knocked back to Very Close range.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -251,10 +246,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -265,7 +256,7 @@
       "name": "Box In",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to choose a target within Very Close range to focus on. That target has disadvantage on attack rolls when they’re within Very Close range of the @Lookup[@name]. The @Lookup[@name] can only focus on one target at a time.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to choose a target within Very Close range to focus on. That target has disadvantage on attack rolls when they're within Very Close range of the @Lookup[@name]. The @Lookup[@name] can only focus on one target at a time.</p>",
         "resource": null,
         "actions": {
           "4RQnBu4kcUs3PcPH": {
@@ -369,10 +360,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -383,7 +370,7 @@
       "name": "Mana Bolt",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to lob explosive magic at a point within Far range. All targets within Very Close range of that point must make an Agility Reaction Roll. Targets who fail take <strong>2d8+20</strong> magic damage and are knocked back to Close range. Targets who succeed take half damage and aren’t knocked back.</p>",
+        "description": "<p><strong>Spend a Fear</strong> to lob explosive magic at a point within Far range. All targets within Very Close range of that point must make an Agility Reaction Roll. Targets who fail take <strong>2d8+20</strong> magic damage and are knocked back to Close range. Targets who succeed take half damage and aren't knocked back.</p>",
         "resource": null,
         "actions": {
           "mI9i9iwrM48NjzeE": {
@@ -529,10 +516,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -663,10 +646,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

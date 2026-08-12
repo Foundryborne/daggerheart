@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "RIbyJjEkCgqoDmyn",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, you can transform into a physical manifestation of your element. When you do, describe your transformation and choose two of the following benefits to gain until your next rest:</p><ul><li><p>+4 bonus to your Severe threshold</p></li><li><p>+1 bonus to a character trait of your choice</p></li><li><p>+1 bonus to your Proficiency</p></li><li><p>+2 bonus to your Evasion</p></li></ul>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -114,7 +114,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">+1 bonus to a character trait of your choice</p>",
+      "description": "<p>+1 bonus to a character trait of your choice</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -151,7 +151,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">+1 bonus to your Proficiency</p>",
+      "description": "<p>+1 bonus to your Proficiency</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -181,7 +181,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">+2 bonus to your Evasion</p>",
+      "description": "<p>+2 bonus to your Evasion</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -195,10 +195,6 @@
     }
   ],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "Q9NoTaEarn3VMS6Z": 3
-  },
   "flags": {},
   "_key": "!items!th6HZwEFnVBjUtqm"
 }

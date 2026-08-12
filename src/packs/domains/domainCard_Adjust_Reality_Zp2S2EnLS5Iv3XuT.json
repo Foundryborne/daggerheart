@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "7Cs44YADBTmmtCw6",
   "system": {
-    "description": "<p class=\"Body-Foundation\">After you or a willing ally make any roll, you can <strong>spend 5 Hope</strong> to change the numerical result of that roll to a result of your choice instead. The result must be plausible within the range of the dice.</p>",
+    "description": "<p>After you or a willing ally make any roll, you can <strong>spend 5 Hope</strong> to change the numerical result of that roll to a result of your choice instead. The result must be plausible within the range of the dice.</p>",
     "domain": "arcana",
     "recallCost": 1,
     "level": 10,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "3Aiqds9jVXdlWmfm",
         "systemPath": "actions",
-        "description": "<p>After you or a willing ally make any roll, you can <strong>spend 5 Hope</strong> to change the numerical result of that roll to a result of your choice instead. The result must be plausible within the range of the dice.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -65,8 +65,5 @@
   "_id": "Zp2S2EnLS5Iv3XuT",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!Zp2S2EnLS5Iv3XuT"
 }

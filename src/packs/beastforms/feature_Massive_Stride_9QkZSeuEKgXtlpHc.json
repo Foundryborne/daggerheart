@@ -3,7 +3,7 @@
   "type": "feature",
   "img": "icons/skills/movement/arrow-upward-blue.webp",
   "system": {
-    "description": "<p>You can move up to Far range without rolling. You ignore rough terrain (at the GM’s discretion) due to your size.</p>",
+    "description": "<p>You can move up to Far range without rolling. You ignore rough terrain (at the GM's discretion) due to your size.</p>",
     "resource": null,
     "actions": {},
     "originItemType": null,
@@ -17,10 +17,6 @@
   },
   "effects": [],
   "folder": "uU8bIoZvXge0rLaU",
-  "ownership": {
-    "default": 0,
-    "FecEtPuoQh6MpjQ0": 3
-  },
   "flags": {},
   "_id": "9QkZSeuEKgXtlpHc",
   "sort": 0,

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "KmaX6wNBLzkFevaG",
   "system": {
-    "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Make a <strong>Spellcast Roll (14)</strong>. Once per long rest on a success, you create a layer of illusion over your body that makes it hard to tell exactly where you are. <strong>Mark any number of Stress</strong> to make that many additional layers. When an adversary makes an attack against you, roll a number of <strong>d6s</strong> equal to the number of layers currently active. If any roll a 5 or higher, one layer of the aura is destroyed and the attack fails. If all the results are 4 or lower, you take the damage and this spell ends.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll (14)</strong>. Once per long rest on a success, you create a layer of illusion over your body that makes it hard to tell exactly where you are. <strong>Mark any number of Stress</strong> to make that many additional layers. When an adversary makes an attack against you, roll a number of <strong>d6s</strong> equal to the number of layers currently active. If any roll a 5 or higher, one layer of the aura is destroyed and the attack fails. If all the results are 4 or lower, you take the damage and this spell ends.</p>",
     "domain": "arcana",
     "recallCost": 2,
     "level": 8,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "L2hCs7xXO6sD4tUa",
         "systemPath": "actions",
-        "description": "<p>Make a <strong>Spellcast Roll (14)</strong>. Once per long rest on a success, you create a layer of illusion over your body that makes it hard to tell exactly where you are. </p>",
+        "description": "<p>Make a <strong>Spellcast Roll (14)</strong>. Once per long rest on a success, you create a layer of illusion over your body that makes it hard to tell exactly where you are.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -67,7 +67,7 @@
         "type": "attack",
         "_id": "oB5tyd2a7bmcJJmm",
         "systemPath": "actions",
-        "description": "<p><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\">Mark any number of Stress</span> to make that many additional layers. </p>",
+        "description": "<p>Mark any number of Stress to make that many additional layers.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -150,8 +150,5 @@
   "_id": "R8NDiJXJWmC48WSr",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!R8NDiJXJWmC48WSr"
 }

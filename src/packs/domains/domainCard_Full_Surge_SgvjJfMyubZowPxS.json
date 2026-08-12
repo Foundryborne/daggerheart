@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "FUzQxkv4gFc46SIs",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Once per long rest, <strong>mark 3 Stress</strong> to push your body to its limits. Gain a +2 bonus to all of your character traits until your next rest.</p>",
+    "description": "<p>Once per long rest, <strong>mark 3 Stress</strong> to push your body to its limits. Gain a +2 bonus to all of your character traits until your next rest.</p>",
     "domain": "valor",
     "recallCost": 1,
     "level": 8,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "GB1MKw1nnkSgDhBd",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Once per long rest, <strong>mark 3 Stress</strong> to push your body to its limits. Gain a +2 bonus to all of your character traits until your next rest.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -158,8 +158,5 @@
       "_key": "!items.effects!SgvjJfMyubZowPxS.H5q5iYImr69TfZcp"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!SgvjJfMyubZowPxS"
 }

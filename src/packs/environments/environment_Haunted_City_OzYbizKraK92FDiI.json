@@ -14,7 +14,7 @@
         ]
       }
     },
-    "notes": "<p>Potential Adversaries also includes:</p><p><em><strong>Ghostly versions of other adversaries (see “Ghostly Form”)</strong></em> </p>",
+    "notes": "<p>Potential Adversaries also includes:</p><p><em><strong>Ghostly versions of other adversaries (see “Ghostly Form”)</strong></em></p>",
     "difficulty": 14,
     "tier": 2,
     "description": "<p>An abandoned city populated by the restless spirits of eras past.</p>",
@@ -29,11 +29,6 @@
   "flags": {},
   "_id": "OzYbizKraK92FDiI",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Haunted City",
     "displayName": 0,
@@ -131,7 +126,7 @@
       "name": "Buried Knowledge",
       "type": "feature",
       "system": {
-        "description": "<p>The city has countless mysteries to unfold. A PC who seeks knowledge about the fallen city can make an Instinct or Knowledge Roll to learn about this place and discover (potentially haunted) loot. </p><ul><li><p><strong>Critical Success</strong>: Gain valuable information and a related useful item. </p></li><li><p><strong>Success with Hope:</strong> Gain valuable information.</p></li><li><p><strong>Success with Fear:</strong> Uncover vague or incomplete information.</p></li><li><p><strong>Any Failure:</strong> Mark a Stress to find a lead after an exhaustive search.</p></li></ul><section id=\"secret-b7Tkr2KzblSvwAPj\" class=\"secret\"><p><em>What greater secrets does the city contain? Why have so many ghosts lingered here? What doomed adventurers have met a bad fate here already?</em></p></section>",
+        "description": "<p>The city has countless mysteries to unfold. A PC who seeks knowledge about the fallen city can make an Instinct or Knowledge Roll to learn about this place and discover (potentially haunted) loot.</p><ul><li><p><strong>Critical Success</strong>: Gain valuable information and a related useful item.</p></li><li><p><strong>Success with Hope:</strong> Gain valuable information.</p></li><li><p><strong>Success with Fear:</strong> Uncover vague or incomplete information.</p></li><li><p><strong>Any Failure:</strong> Mark a Stress to find a lead after an exhaustive search.</p></li></ul><section id=\"secret-b7Tkr2KzblSvwAPj\" class=\"secret\"><p><em>What greater secrets does the city contain? Why have so many ghosts lingered here? What doomed adventurers have met a bad fate here already?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -146,10 +141,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -160,7 +151,7 @@
       "name": "Ghostly Form",
       "type": "feature",
       "system": {
-        "description": "<p>Adversaries who appear here are of a ghostly form. They have resistance to physical damage and can <strong>mark a Stress</strong> to move up to Close range through solid objects. </p><section id=\"secret-P15mCN36Cns7QUHw\" class=\"secret\"><p><em>What injuries to their physical form speak to their cause of death? What unfulfi lled purpose holds them in the Mortal Plane?</em> </p></section>",
+        "description": "<p>Adversaries who appear here are of a ghostly form. They have resistance to physical damage and can <strong>mark a Stress</strong> to move up to Close range through solid objects.</p><section id=\"secret-P15mCN36Cns7QUHw\" class=\"secret\"><p><em>What injuries to their physical form speak to their cause of death? What unfulfi lled purpose holds them in the Mortal Plane?</em></p></section>",
         "resource": null,
         "actions": {
           "VCWX0P9kq2oGTpUo": {
@@ -255,10 +246,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -284,10 +271,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -363,10 +346,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

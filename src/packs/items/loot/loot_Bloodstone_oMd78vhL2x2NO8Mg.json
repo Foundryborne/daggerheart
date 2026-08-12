@@ -4,7 +4,7 @@
   "_id": "oMd78vhL2x2NO8Mg",
   "img": "icons/commodities/treasure/token-engraved-eye-red.webp",
   "system": {
-    "description": "<p>You can attach this stone to a weapon that doesn’t already have a feature. The weapon gains the following feature.</p><p><strong>Brutal</strong>: When you roll the maximum value on a damage die, roll an additional damage die.</p>",
+    "description": "<p>You can attach this stone to a weapon that doesn't already have a feature. The weapon gains the following feature.</p><p><strong>Brutal</strong>: When you roll the maximum value on a damage die, roll an additional damage die.</p>",
     "quantity": 1,
     "actions": {},
     "attribution": {
@@ -16,10 +16,6 @@
   "effects": [],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!oMd78vhL2x2NO8Mg"
 }

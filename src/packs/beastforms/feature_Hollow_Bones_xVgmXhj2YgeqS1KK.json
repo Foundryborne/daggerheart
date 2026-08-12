@@ -3,7 +3,7 @@
   "type": "feature",
   "img": "icons/skills/wounds/anatomy-bone-joint.webp",
   "system": {
-    "description": "<p>You gain a −2 penalty to your damage thresholds.</p>",
+    "description": "<p>You gain a -2 penalty to your damage thresholds.</p>",
     "resource": null,
     "actions": {},
     "originItemType": null,
@@ -60,10 +60,6 @@
     }
   ],
   "folder": "uU8bIoZvXge0rLaU",
-  "ownership": {
-    "default": 0,
-    "FecEtPuoQh6MpjQ0": 3
-  },
   "flags": {},
   "_id": "xVgmXhj2YgeqS1KK",
   "sort": 1500000,

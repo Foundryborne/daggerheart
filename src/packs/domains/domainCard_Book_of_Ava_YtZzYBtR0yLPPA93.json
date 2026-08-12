@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "tqhasjtHBX0F20lN",
   "system": {
-    "description": "<p class=\"Card-Feature\"><em><strong>Power Push:</strong></em> Make a <strong>Spellcast Roll</strong> against a target within Melee range. On a success, they’re knocked back to Far range and take <strong>d10+2</strong> magic damage using your Proficiency.</p><p class=\"Card-Feature\"><em><strong>Tava’s Armor:</strong></em> <strong>Spend a Hope</strong> to give a target you can touch a +1 bonus to their Armor Score until their next rest or you cast Tava’s Armor again.</p><p class=\"Card-Feature\"><em><strong>Ice Spike:</strong></em> Make a <strong>Spellcast Roll (12)</strong> to summon a large ice spike within Far range. If you use it as a weapon, make the Spellcast Roll against the target’s Difficulty instead. On a success, deal <strong>d6</strong> physical damage using your Proficiency.</p>",
+    "description": "<p><em><strong>Power Push:</strong></em> Make a <strong>Spellcast Roll</strong> against a target within Melee range. On a success, they're knocked back to Far range and take <strong>d10+2</strong> magic damage using your Proficiency.</p><p><em><strong>Tava's Armor:</strong></em> <strong>Spend a Hope</strong> to give a target you can touch a +1 bonus to their Armor Score until their next rest or you cast Tava's Armor again.</p><p><em><strong>Ice Spike:</strong></em> Make a <strong>Spellcast Roll (12)</strong> to summon a large ice spike within Far range. If you use it as a weapon, make the Spellcast Roll against the target's Difficulty instead. On a success, deal <strong>d6</strong> physical damage using your Proficiency.</p>",
     "domain": "codex",
     "recallCost": 2,
     "level": 1,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "jX4wg2HR2xkdtbIU",
         "systemPath": "actions",
-        "description": "<p></p><p class=\"Card-Feature\">Make a <strong>Spellcast Roll</strong> against a target within Melee range. On a success, they’re knocked back to Far range and take <strong>d10+2</strong> magic damage using your Proficiency.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Melee range. On a success, they're knocked back to Far range and take <strong>d10+2</strong> magic damage using your Proficiency.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -97,7 +97,7 @@
         "type": "effect",
         "_id": "4N7ViDYt9Na3zwzi",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\"><strong>Spend a Hope</strong> to give a target you can touch a +1 bonus to their Armor Score until their next rest or you cast Tava’s Armor again.</p>",
+        "description": "<p><strong>Spend a Hope</strong> to give a target you can touch a +1 bonus to their Armor Score until their next rest or you cast Tava's Armor again.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -140,7 +140,7 @@
         "type": "attack",
         "_id": "XU1joyIDFZrQiToF",
         "systemPath": "actions",
-        "description": "<p>Make a <strong>Spellcast Roll (12)</strong> to summon a large ice spike within Far range. If you use it as a weapon, make the Spellcast Roll against the target’s Difficulty instead. On a success, deal <strong>d6</strong> physical damage using your Proficiency.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll (12)</strong> to summon a large ice spike within Far range. If you use it as a weapon, make the Spellcast Roll against the target's Difficulty instead. On a success, deal <strong>d6</strong> physical damage using your Proficiency.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -193,7 +193,7 @@
         "type": "attack",
         "_id": "enit3ZkPp0nY5lN1",
         "systemPath": "actions",
-        "description": "<p>Make a <strong>Spellcast Roll (12)</strong> to summon a large ice spike within Far range. If you use it as a weapon, make the Spellcast Roll against the target’s Difficulty instead. On a success, deal <strong>d6</strong> physical damage using your Proficiency.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll (12)</strong> to summon a large ice spike within Far range. If you use it as a weapon, make the Spellcast Roll against the target's Difficulty instead. On a success, deal <strong>d6</strong> physical damage using your Proficiency.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -346,8 +346,5 @@
       "_key": "!items.effects!YtZzYBtR0yLPPA93.ptYT10JZ2WJHvFMd"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!YtZzYBtR0yLPPA93"
 }

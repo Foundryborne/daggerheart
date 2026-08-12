@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "hh2vkggcAQ0QUE6C",
   "system": {
-    "description": "<p></p><p class=\"Body-Foundation\">When 4 or more of the domain cards in your loadout are from the Codex domain, gain the following benefits:</p><ul><li class=\"vertical-card-list\">You can <strong>mark a </strong><strong>Stress</strong> to add your Proficiency to a Spellcast Roll.            </li><li class=\"vertical-card-list\">Once per rest, replace this card with any card from your vault without paying its Recall Cost.</li></ul><p></p>",
+    "description": "<p>When 4 or more of the domain cards in your loadout are from the Codex domain, gain the following benefits:</p><ul><li class=\"vertical-card-list\">You can <strong>mark a </strong><strong>Stress</strong> to add your Proficiency to a Spellcast Roll.            </li><li class=\"vertical-card-list\">Once per rest, replace this card with any card from your vault without paying its Recall Cost.</li></ul>",
     "domain": "codex",
     "recallCost": 2,
     "level": 7,
@@ -144,8 +144,5 @@
       "_key": "!items.effects!7Pu83ABdMukTxu3e.oWs00mBY3onxGjF9"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!7Pu83ABdMukTxu3e"
 }

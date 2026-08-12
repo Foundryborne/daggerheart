@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "g1VIG6VjYKkm11qJ",
         "systemPath": "actions",
-        "description": "<p>You can move from shadow to shadow. When you move into an area of darkness or a shadow cast by another creature or object, you can mark a Stress to disappear from where you are and reappear inside another shadow within Far range. When you reappear, you are Cloaked.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -84,10 +84,6 @@
     }
   ],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!hAwTXjhyphiE3aeW"
 }

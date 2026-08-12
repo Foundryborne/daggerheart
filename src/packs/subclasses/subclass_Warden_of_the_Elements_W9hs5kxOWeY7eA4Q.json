@@ -4,7 +4,7 @@
   "_id": "W9hs5kxOWeY7eA4Q",
   "img": "icons/magic/nature/root-vines-face-glow-green.webp",
   "system": {
-    "description": "<p>You wish to embody the natural elements of the wild.</p>",
+    "description": "<p>Play the Warden of the Elements if you want to embody the natural elements of the wild.</p>",
     "spellcastingTrait": "instinct",
     "features": [
       {
@@ -32,10 +32,6 @@
   "effects": [],
   "folder": "AZWrSJzGXltzQhAJ",
   "sort": 100000,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!W9hs5kxOWeY7eA4Q"
 }

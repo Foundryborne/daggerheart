@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "4swwe8SZeh2KyPtl",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, you can activate this ring after a successful attack against you to halve the damage.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -88,10 +88,6 @@
   ],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!aUqRifqR5JXXa1dN"
 }

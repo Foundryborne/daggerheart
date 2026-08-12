@@ -12,7 +12,7 @@
         "type": "healing",
         "_id": "UdZx74Vcz6ip4Plh",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, before you attempt something incredibly dangerous or face off against a foe who clearly outmatches you, describe what ritual you perform or preparations you make. When you do, clear 2 Stress and gain 2 Hope.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -112,10 +112,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!qqb5acyUSl1sCpWW"
 }

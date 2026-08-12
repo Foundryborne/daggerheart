@@ -5,7 +5,7 @@
   "_id": "UFR67BUOhNGLFyg9",
   "img": "icons/magic/defensive/shield-barrier-flaming-diamond-teal.webp",
   "system": {
-    "description": "<p><strong>Mark a Stress</strong> to retract into your shell. While in your shell, you have resistance to physical damage, you have disadvantage on action rolls, and you can’t move.<br /><br />(When marked, manually enable the Retract effect to Active in effects tab and mark disadvantage when doing any action rolls. Manually disable the Retract effect to Inactive in the effects tab when no longer retracted into your shell.)</p>",
+    "description": "<p><strong>Mark a Stress</strong> to retract into your shell. While in your shell, you have resistance to physical damage, you have disadvantage on action rolls, and you can't move.<br /><br />(When marked, manually enable the Retract effect to Active in effects tab and mark disadvantage when doing any action rolls. Manually disable the Retract effect to Inactive in the effects tab when no longer retracted into your shell.)</p>",
     "resource": null,
     "actions": {
       "HfiAg14hrYt7Yvnj": {
@@ -112,10 +112,6 @@
     }
   ],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!UFR67BUOhNGLFyg9"
 }

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "xZrCYAd05ayNu1yW",
   "system": {
-    "description": "<p class=\"Body-Foundation\"><strong>Spend a Hope</strong> to summon a small nature spirit or forest critter to your side until your next rest, you cast Natural Familiar again, or the familiar is targeted by an attack. If you <strong>spend an additional Hope</strong>, you can summon a familiar that flies. You can communicate with them, make a <strong>Spellcast Roll</strong> to command them to perform simple tasks, and <strong>mark a Stress</strong> to see through their eyes.</p><p class=\"Body-Foundation\">When you deal damage to an adversary within Melee range of your familiar, you add a <strong>d6</strong> to your damage roll.</p>",
+    "description": "<p><strong>Spend a Hope</strong> to summon a small nature spirit or forest critter to your side until your next rest, you cast Natural Familiar again, or the familiar is targeted by an attack. If you <strong>spend an additional Hope</strong>, you can summon a familiar that flies. You can communicate with them, make a <strong>Spellcast Roll</strong> to command them to perform simple tasks, and <strong>mark a Stress</strong> to see through their eyes.</p><p>When you deal damage to an adversary within Melee range of your familiar, you add a <strong>d6</strong> to your damage roll.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 2,
@@ -110,7 +110,7 @@
         "type": "effect",
         "_id": "8Y03LcPgXF30DfzZ",
         "systemPath": "actions",
-        "description": "<p><strong>Mark a Stress</strong> to see through their eyes.</p><p class=\"Body-Foundation\"></p>",
+        "description": "<p><strong>Mark a Stress</strong> to see through their eyes.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -213,8 +213,5 @@
       "_key": "!items.effects!Tag303LoRNC5zGgl.0BumAWKw2aK4A5al"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!Tag303LoRNC5zGgl"
 }

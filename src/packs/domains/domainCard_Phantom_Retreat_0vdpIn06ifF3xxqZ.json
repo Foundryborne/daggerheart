@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "8erksbTp7ic6in4I",
   "system": {
-    "description": "<p class=\"Body-Foundation\"><strong>Spend a Hope</strong> to activate Phantom Retreat where you’re currently standing. <strong>Spend another Hope</strong> at any time before your next rest to disappear from where you are and reappear where you were standing when you activated Phantom Retreat. This spell ends after you reappear.</p>",
+    "description": "<p><strong>Spend a Hope</strong> to activate Phantom Retreat where you're currently standing. <strong>Spend another Hope</strong> at any time before your next rest to disappear from where you are and reappear where you were standing when you activated Phantom Retreat. This spell ends after you reappear.</p>",
     "domain": "midnight",
     "recallCost": 2,
     "level": 5,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "SE2C9Andtlw3OQLL",
         "systemPath": "actions",
-        "description": "<p><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\">Spend a </span><span class=\"tooltip-convert\" style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\"><strong style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0);\">Hope</strong></span> to activate Phantom Retreat where you’re currently standing.</p>",
+        "description": "<p>Spend a <strong>Hope</strong> to activate Phantom Retreat where you're currently standing.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -52,7 +52,7 @@
         "type": "effect",
         "_id": "1AJRAbFtDx8Pm26q",
         "systemPath": "actions",
-        "description": "<p><strong>Spend another Hope</strong> at any time before your next rest to disappear from where you are and reappear where you were standing when you activated Phantom Retreat. This spell ends after you reappear.</p><p></p>",
+        "description": "<p><strong>Spend another Hope</strong> at any time before your next rest to disappear from where you are and reappear where you were standing when you activated Phantom Retreat. This spell ends after you reappear.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -103,8 +103,5 @@
   "_id": "0vdpIn06ifF3xxqZ",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!0vdpIn06ifF3xxqZ"
 }

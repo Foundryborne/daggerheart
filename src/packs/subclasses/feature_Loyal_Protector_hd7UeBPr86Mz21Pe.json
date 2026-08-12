@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "Dxnu3gPSTSysJnb8",
         "systemPath": "actions",
-        "description": "<p>When an ally within Close range has 2 or fewer Hit Points and would take damage, you can <strong>mark a Stress</strong> to sprint to their side and take the damage instead.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -48,10 +48,6 @@
   },
   "effects": [],
   "sort": 300000,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!hd7UeBPr86Mz21Pe"
 }

@@ -10,7 +10,7 @@
         "type": "attack",
         "_id": "hiGZCQpdTVqE5W4B",
         "systemPath": "actions",
-        "description": "<p>When you would mark an Armor Slot, roll a <strong>d6</strong>. On a result of 5 or higher, reduce the severity by one threshold without marking an Armor Slot.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -64,10 +64,6 @@
   },
   "effects": [],
   "folder": "uU8bIoZvXge0rLaU",
-  "ownership": {
-    "default": 0,
-    "FecEtPuoQh6MpjQ0": 3
-  },
   "flags": {},
   "_id": "vEAQ4cfsoPmOv2Gg",
   "sort": 0,

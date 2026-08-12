@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "X4KtBG5Uve09hRoj",
         "systemPath": "actions",
-        "description": "<p>You can use this stone to take a spell or grimoire from your vault, use it once, and return it to your vault.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -49,10 +49,6 @@
   "effects": [],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!IKMVQ6VwtapwoUim"
 }

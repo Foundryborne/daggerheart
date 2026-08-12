@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "mOv6BGhJAeGrzA84",
   "system": {
-    "description": "<p></p><p class=\"Body-Foundation\">You can interrupt a magical effect taking place by making a reaction roll using your Spellcast trait. On a success, the effect stops and any consequences are avoided, and this card is placed in your vault.</p>",
+    "description": "<p>You can interrupt a magical effect taking place by making a reaction roll using your Spellcast trait. On a success, the effect stops and any consequences are avoided, and this card is placed in your vault.</p>",
     "domain": "arcana",
     "recallCost": 2,
     "level": 3,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "SeOcGdKAc7egwg9H",
         "systemPath": "actions",
-        "description": "<p>You can interrupt a magical effect taking place by making a reaction roll using your Spellcast trait. On a success, the effect stops and any consequences are avoided, and this card is placed in your vault.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -80,8 +80,5 @@
   "_id": "6dhqo1kzGxejCjHa",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!6dhqo1kzGxejCjHa"
 }

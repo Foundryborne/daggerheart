@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "eR7sP5jQwfCLORUe",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you mark an Armor Slot to reduce incoming damage, you can <strong>mark a Stress</strong> to mark an additional Armor Slot.</p>",
+    "description": "<p>When you mark an Armor Slot to reduce incoming damage, you can <strong>mark a Stress</strong> to mark an additional Armor Slot.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 3,
@@ -55,7 +55,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p class=\"Body-Foundation\">When you mark an Armor Slot to reduce incoming damage, you can <strong>mark a Stress</strong> to mark an additional Armor Slot.</p>",
+      "description": "<p>When you mark an Armor Slot to reduce incoming damage, you can <strong>mark a Stress</strong> to mark an additional Armor Slot.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -71,8 +71,5 @@
       "_key": "!items.effects!QXs4vssSqNGQu5b8.xSjqLOHfi5lImDHS"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!QXs4vssSqNGQu5b8"
 }

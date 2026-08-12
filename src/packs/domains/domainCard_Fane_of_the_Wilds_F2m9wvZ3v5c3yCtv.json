@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "R5afi5bhq9ccnYY2",
   "system": {
-    "description": "<p class=\"Body-Foundation\">After a long rest, place a number of tokens equal to the number of Sage domain cards in your loadout and vault on this card.</p><p class=\"Body-Foundation\">When you would make a Spellcast Roll, you can spend any number of tokens after the roll to gain a +1 bonus for each token spent.</p><p class=\"Body-Foundation\">When you critically succeed on a Spellcast Roll for a Sage domain spell, gain a token.</p><p class=\"Body-Foundation\">When you take a long rest, clear all unspent tokens.</p>",
+    "description": "<p>After a long rest, place a number of tokens equal to the number of Sage domain cards in your loadout and vault on this card.</p><p>When you would make a Spellcast Roll, you can spend any number of tokens after the roll to gain a +1 bonus for each token spent.</p><p>When you critically succeed on a Spellcast Roll for a Sage domain spell, gain a token.</p><p>When you take a long rest, clear all unspent tokens.</p>",
     "domain": "sage",
     "recallCost": 2,
     "level": 9,
@@ -35,8 +35,5 @@
   "_id": "F2m9wvZ3v5c3yCtv",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!F2m9wvZ3v5c3yCtv"
 }

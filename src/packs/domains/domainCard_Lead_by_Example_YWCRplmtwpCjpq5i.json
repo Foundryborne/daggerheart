@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "8DOVMjTtZFKtwX4p",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you deal damage to an adversary, you can <strong>mark a Stress</strong> and describe how you encourage your allies. The next PC to make an attack against that adversary can clear a Stress or gain a Hope.</p>",
+    "description": "<p>When you deal damage to an adversary, you can <strong>mark a Stress</strong> and describe how you encourage your allies. The next PC to make an attack against that adversary can clear a Stress or gain a Hope.</p>",
     "domain": "valor",
     "recallCost": 3,
     "level": 9,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "h5j4TcmhwtAhPScT",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">When you deal damage to an adversary, you can <strong>mark a Stress</strong> and describe how you encourage your allies. The next PC to make an attack against that adversary can clear a Stress or gain a Hope.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -93,7 +93,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p class=\"Body-Foundation\">The next PC to make an attack against that adversary can clear a Stress or gain a Hope.</p>",
+      "description": "<p>The next PC to make an attack against that adversary can clear a Stress or gain a Hope.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -107,8 +107,5 @@
       "_key": "!items.effects!YWCRplmtwpCjpq5i.BbBs2XYXMsLwkHKh"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!YWCRplmtwpCjpq5i"
 }

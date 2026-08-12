@@ -31,11 +31,6 @@
   "flags": {},
   "_id": "jr1xAoXzVwVblzxI",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Imperial Court",
     "displayName": 0,
@@ -133,7 +128,7 @@
       "name": "All Roads Lead Here",
       "type": "feature",
       "system": {
-        "description": "<p>While in the Imperial Court, a PC has disadvantage on Presence Rolls made to take actions that don’t fit the imperial way of life or support the empire’s dominance. </p><section id=\"secret-P8G0DAghe8QgaSZV\" class=\"secret\"><p><em>How does the way language is used make even discussing alternative ways of living difficult? What obvious benefits for loyalty create friction when you try to discuss alternatives?</em></p></section>",
+        "description": "<p>While in the Imperial Court, a PC has disadvantage on Presence Rolls made to take actions that don't fit the imperial way of life or support the empire's dominance.</p><section id=\"secret-P8G0DAghe8QgaSZV\" class=\"secret\"><p><em>How does the way language is used make even discussing alternative ways of living difficult? What obvious benefits for loyalty create friction when you try to discuss alternatives?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -148,10 +143,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -162,7 +153,7 @@
       "name": "Rival Vassals",
       "type": "feature",
       "system": {
-        "description": "<p>The PCs can find imperial subjects, vassals, and supplicants in the court, each vying for favor, seeking proximity to power, exchanging favors for loyalty, and elevating their status above others’. Some might be desperate to undermine their rivals, while others might even be open to discussions that verge on sedition. </p><section id=\"secret-pDDW0dor0MhTdx4c\" class=\"secret\"><p><em>How do they benefit from vassalage and what has it cost them? What exploitation drives them to consider opposing the unstoppable?</em></p></section>",
+        "description": "<p>The PCs can find imperial subjects, vassals, and supplicants in the court, each vying for favor, seeking proximity to power, exchanging favors for loyalty, and elevating their status above others'. Some might be desperate to undermine their rivals, while others might even be open to discussions that verge on sedition.</p><section id=\"secret-pDDW0dor0MhTdx4c\" class=\"secret\"><p><em>How do they benefit from vassalage and what has it cost them? What exploitation drives them to consider opposing the unstoppable?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -177,10 +168,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -191,14 +178,14 @@
       "name": "The Gravity of Empire",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to present a PC with a golden opportunity or offer to satisfy a major goal in exchange for obeying or supporting the empire. The target must make a Presence Reaction Roll. On a failure, they must mark all their Stress or accept the off er. If they have already marked all their Stress, they must accept the off er or exile themselves from the empire. On a success, they must mark <strong>1d4</strong> Stress as they’re taxed by temptation.</p><section class=\"secret\" id=\"secret-4carYxEQygk6m4cQ\"><p><em>What do the PCs want so desperately they might consider throwing in with this ruthless power? How did imperial agents learn the PC’s greatest desires?</em></p></section>",
+        "description": "<p><strong>Spend a Fear</strong> to present a PC with a golden opportunity or offer to satisfy a major goal in exchange for obeying or supporting the empire. The target must make a Presence Reaction Roll. On a failure, they must mark all their Stress or accept the off er. If they have already marked all their Stress, they must accept the off er or exile themselves from the empire. On a success, they must mark <strong>1d4</strong> Stress as they're taxed by temptation.</p><section class=\"secret\" id=\"secret-4carYxEQygk6m4cQ\"><p><em>What do the PCs want so desperately they might consider throwing in with this ruthless power? How did imperial agents learn the PC's greatest desires?</em></p></section>",
         "resource": null,
         "actions": {
           "Pr8CpaOehr1cE1b8": {
             "type": "attack",
             "_id": "Pr8CpaOehr1cE1b8",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> to present a PC with a golden opportunity or off er to satisfy a major goal in exchange for obeying or supporting the empire. The target must make a Presence Reaction Roll. On a failure, they must mark all their Stress or accept the offer. If they have already marked all their Stress, they must accept the off er or exile themselves from the empire. On a success, they must mark <strong>1d4</strong> Stress as they’re taxed by temptation.</p><section class=\"secret\" id=\"secret-jB2klJ9141Yiot3c\"><p><em>What do the PCs want so desperately they might consider throwing in with this ruthless power? How did imperial agents learn the PC’s greatest desires?</em></p></section>",
+            "description": "<p><strong>Spend a Fear</strong> to present a PC with a golden opportunity or off er to satisfy a major goal in exchange for obeying or supporting the empire. The target must make a Presence Reaction Roll. On a failure, they must mark all their Stress or accept the offer. If they have already marked all their Stress, they must accept the off er or exile themselves from the empire. On a success, they must mark <strong>1d4</strong> Stress as they're taxed by temptation.</p><section class=\"secret\" id=\"secret-jB2klJ9141Yiot3c\"><p><em>What do the PCs want so desperately they might consider throwing in with this ruthless power? How did imperial agents learn the PC's greatest desires?</em></p></section>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -323,10 +310,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -337,7 +320,7 @@
       "name": "Imperial Decree",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to tick down a long-term countdown related to the empire’s agenda by [[/r 1d4]]. If this triggers the countdown, a proclamation related to the agenda is announced at court as the plan is executed.</p><section class=\"secret\" id=\"secret-kuZLu5mJvqvQ1NvT\"><p><em>What display of power or transfer of wealth was needed to expedite this plan? Whose lives were disrupted or upended to make this happen?</em></p></section>",
+        "description": "<p><strong>Spend a Fear</strong> to tick down a long-term countdown related to the empire's agenda by [[/r 1d4]]. If this triggers the countdown, a proclamation related to the agenda is announced at court as the plan is executed.</p><section class=\"secret\" id=\"secret-kuZLu5mJvqvQ1NvT\"><p><em>What display of power or transfer of wealth was needed to expedite this plan? Whose lives were disrupted or upended to make this happen?</em></p></section>",
         "resource": null,
         "actions": {
           "9ipckCFMz9DVw8ab": {
@@ -408,10 +391,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -422,14 +401,14 @@
       "name": "Eyes Everywhere",
       "type": "feature",
       "system": {
-        "description": "<p>On a result with Fear, you can <strong>spend a Fear</strong> to have someone loyal to the empire overhear seditious talk within the court. A PC must succeed on an Instinct Reaction Roll to notice that the group has been overheard so they can try to intercept the witness before the PCs are exposed.</p><section class=\"secret\" id=\"secret-kN4J3annyev9WWUs\"><p><em>How has the empire compromised this witness? Why is their first impulse to protect the empire even if doesn’t treat them well?</em></p></section>",
+        "description": "<p>On a result with Fear, you can <strong>spend a Fear</strong> to have someone loyal to the empire overhear seditious talk within the court. A PC must succeed on an Instinct Reaction Roll to notice that the group has been overheard so they can try to intercept the witness before the PCs are exposed.</p><section class=\"secret\" id=\"secret-kN4J3annyev9WWUs\"><p><em>How has the empire compromised this witness? Why is their first impulse to protect the empire even if doesn't treat them well?</em></p></section>",
         "resource": null,
         "actions": {
           "czEbFu3uIlW5Spju": {
             "type": "attack",
             "_id": "czEbFu3uIlW5Spju",
             "systemPath": "actions",
-            "description": "<p>On a result with Fear, you can <strong>spend a Fear</strong> to have someone loyal to the empire overhear seditious talk within the court. A PC must succeed on an Instinct Reaction Roll to notice that the group has been overheard so they can try to intercept the witness before the PCs are exposed. </p><section class=\"secret\" id=\"secret-lCrNuPGNEGSBiTSY\"><p><em>How has the empire compromised this witness? Why is their first impulse to protect the empire even if doesn’t treat them well?</em></p></section>",
+            "description": "<p>On a result with Fear, you can <strong>spend a Fear</strong> to have someone loyal to the empire overhear seditious talk within the court. A PC must succeed on an Instinct Reaction Roll to notice that the group has been overheard so they can try to intercept the witness before the PCs are exposed.</p><section class=\"secret\" id=\"secret-lCrNuPGNEGSBiTSY\"><p><em>How has the empire compromised this witness? Why is their first impulse to protect the empire even if doesn't treat them well?</em></p></section>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -502,10 +481,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

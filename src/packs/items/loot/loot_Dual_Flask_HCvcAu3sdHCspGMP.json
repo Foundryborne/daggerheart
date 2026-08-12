@@ -4,7 +4,7 @@
   "_id": "HCvcAu3sdHCspGMP",
   "img": "icons/consumables/potions/round-decorated-snake-green.webp",
   "system": {
-    "description": "<p>This flask can hold two different liquids. You can swap between them by flipping a small switch on the flask’s side.</p>",
+    "description": "<p>This flask can hold two different liquids. You can swap between them by flipping a small switch on the flask's side.</p>",
     "quantity": 1,
     "actions": {},
     "attribution": {
@@ -16,10 +16,6 @@
   "effects": [],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!HCvcAu3sdHCspGMP"
 }

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "kj3gwg5bmCqwFYze",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you would take damage, you can <strong>mark a Stress</strong> to reduce the severity of the damage by one threshold. When you do, roll a <strong>d6</strong>. On a result of 3 or lower, place this card in your vault.</p>",
+    "description": "<p>When you would take damage, you can <strong>mark a Stress</strong> to reduce the severity of the damage by one threshold. When you do, roll a <strong>d6</strong>. On a result of 3 or lower, place this card in your vault.</p>",
     "domain": "valor",
     "recallCost": 1,
     "level": 7,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "h9odg7Tk94O0M5l1",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">When you would take damage, you can <strong>mark a Stress</strong> to reduce the severity of the damage by one threshold. When you do, roll a <strong>d6</strong>. On a result of 3 or lower, place this card in your vault.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -118,7 +118,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p class=\"Body-Foundation\">When you would take damage, you can <strong>mark a Stress</strong> to reduce the severity of the damage by one threshold. When you do, roll a <strong>d6</strong>. On a result of 3 or lower, place this card in your vault.</p>",
+      "description": "<p>When you would take damage, you can <strong>mark a Stress</strong> to reduce the severity of the damage by one threshold. When you do, roll a <strong>d6</strong>. On a result of 3 or lower, place this card in your vault.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -134,8 +134,5 @@
       "_key": "!items.effects!JwfhtgmmuRxg4zhI.5DTQDVU8Jy5Nnp5V"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!JwfhtgmmuRxg4zhI"
 }

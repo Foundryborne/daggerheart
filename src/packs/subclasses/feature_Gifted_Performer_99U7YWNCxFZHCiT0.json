@@ -4,7 +4,7 @@
   "type": "feature",
   "img": "icons/tools/instruments/harp-yellow-teal.webp",
   "system": {
-    "description": "<p>You can play three different types of songs, once each per long rest; describe how you perform for others to gain the listed benefit: </p><ul><li><p><strong>Relaxing Song:</strong> You and all allies within Close range clear a Hit Point.</p></li><li><p><strong>Epic Song:</strong> Make a target within Close range temporarily Vulnerable. </p></li><li><p><strong>Heartbreaking Song:</strong> You and all allies within Close range gain a Hope.</p></li></ul>",
+    "description": "<p>You can play three different types of songs, once each per long rest; describe how you perform for others to gain the listed benefit:</p><ul><li><p><strong>Relaxing Song:</strong> You and all allies within Close range clear a Hit Point.</p></li><li><p><strong>Epic Song:</strong> Make a target within Close range temporarily Vulnerable.</p></li><li><p><strong>Heartbreaking Song:</strong> You and all allies within Close range gain a Hope.</p></li></ul>",
     "resource": null,
     "actions": {
       "xvs7ZKm93AlnZD3F": {
@@ -222,10 +222,6 @@
     }
   ],
   "flags": {},
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "_id": "99U7YWNCxFZHCiT0",
   "sort": 100000,
   "_key": "!items!99U7YWNCxFZHCiT0"

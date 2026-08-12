@@ -140,11 +140,6 @@
   "flags": {},
   "_id": "XF4tYTq9nPJAy2ox",
   "sort": 3700000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Jagged Knife Shadow",
     "displayName": 0,
@@ -371,10 +366,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -387,7 +378,7 @@
       "_id": "ILIogeKbYioPutRw",
       "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
       "system": {
-        "description": "<p>Become <em>Hidden</em> until after the @Lookup[@name]’s next attack. Attacks made while Hidden from this feature have advantage.</p>",
+        "description": "<p>Become <em>Hidden</em> until after the @Lookup[@name]'s next attack. Attacks made while Hidden from this feature have advantage.</p>",
         "resource": null,
         "actions": {
           "s0X44RPg5hA8lVax": {
@@ -483,10 +474,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

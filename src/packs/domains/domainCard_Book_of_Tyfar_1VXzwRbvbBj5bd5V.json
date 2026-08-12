@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "tqhasjtHBX0F20lN",
   "system": {
-    "description": "<p class=\"Card-Feature\"><em><strong>Wild Flame:</strong></em> Make a <strong>Spellcast Roll</strong> against up to three adversaries within Melee range. Targets you succeed against take <strong>2d6</strong> magic damage and must mark a Stress as flames erupt from your hand.</p><p class=\"Card-Feature\"><em><strong>Magic Hand:</strong></em> You conjure a magical hand with the same size and strength as your own within Far range.</p><p class=\"Card-Feature\"><em><strong>Mysterious Mist:</strong></em> Make a <strong>Spellcast Roll (13)</strong> to cast a temporary thick fog that gathers in a stationary area within Very Close range. The fog heavily obscures this area and everything in it.</p><p></p>",
+    "description": "<p><em><strong>Wild Flame:</strong></em> Make a <strong>Spellcast Roll</strong> against up to three adversaries within Melee range. Targets you succeed against take <strong>2d6</strong> magic damage and must mark a Stress as flames erupt from your hand.</p><p><em><strong>Magic Hand:</strong></em> You conjure a magical hand with the same size and strength as your own within Far range.</p><p><em><strong>Mysterious Mist:</strong></em> Make a <strong>Spellcast Roll (13)</strong> to cast a temporary thick fog that gathers in a stationary area within Very Close range. The fog heavily obscures this area and everything in it.</p>",
     "domain": "codex",
     "recallCost": 2,
     "level": 1,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "E3AnyfI7LDL0z9tT",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll</strong> against up to three adversaries within Melee range. Targets you succeed against take <strong>2d6</strong> magic damage and must mark a Stress as flames erupt from your hand.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against up to three adversaries within Melee range. Targets you succeed against take <strong>2d6</strong> magic damage and must mark a Stress as flames erupt from your hand.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -124,7 +124,7 @@
         "type": "effect",
         "_id": "MYZWoU0clYEcsYDb",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">You conjure a magical hand with the same size and strength as your own within Far range.</p>",
+        "description": "<p>You conjure a magical hand with the same size and strength as your own within Far range.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -153,7 +153,7 @@
         "type": "attack",
         "_id": "WQ9XzpbtXl4SmVet",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll (13)</strong> to cast a temporary thick fog that gathers in a stationary area within Very Close range. The fog heavily obscures this area and everything in it.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p>Make a <strong>Spellcast Roll (13)</strong> to cast a temporary thick fog that gathers in a stationary area within Very Close range. The fog heavily obscures this area and everything in it.</p><p>@Template[type:emanation|range:vc]</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -219,8 +219,5 @@
   "_id": "1VXzwRbvbBj5bd5V",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!1VXzwRbvbBj5bd5V"
 }

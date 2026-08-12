@@ -134,11 +134,6 @@
   "flags": {},
   "_id": "CP6iRfHdyFWniTHY",
   "sort": 800000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Perfected Zombie",
     "displayName": 0,
@@ -350,10 +345,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -364,7 +355,7 @@
       "name": "Fearsome Presence",
       "type": "feature",
       "system": {
-        "description": "<p>PCs can’t spend Hope to use features against the @Lookup[@name].</p>",
+        "description": "<p>PCs can't spend Hope to use features against the @Lookup[@name].</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -379,10 +370,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -593,10 +580,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -607,7 +590,7 @@
       "name": "Skilled Opportunist",
       "type": "feature",
       "system": {
-        "description": "<p>When another adversary deals damage to a target within Very Close range of the @Lookup[@name], you can <strong>spend a Fear</strong> to add the @Lookup[@name]’s standard attack damage to the damage roll.</p>",
+        "description": "<p>When another adversary deals damage to a target within Very Close range of the @Lookup[@name], you can <strong>spend a Fear</strong> to add the @Lookup[@name]'s standard attack damage to the damage roll.</p>",
         "resource": null,
         "actions": {
           "To2z7XQItxcMxKBp": {
@@ -652,10 +635,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

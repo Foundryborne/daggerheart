@@ -134,11 +134,6 @@
   "flags": {},
   "_id": "3tqCjDwJAQ7JKqMb",
   "sort": 700000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Minor Demon",
     "displayName": 0,
@@ -291,10 +286,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -420,10 +411,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -583,10 +570,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -599,7 +582,7 @@
       "_id": "bpLBGTW1DmXPgIcx",
       "img": "icons/magic/death/skull-energy-light-white.webp",
       "system": {
-        "description": "<p>Before rolling damage for the @Lookup[@name]’s attack, you can <strong>mark a Stress</strong> to gain a bonus to the damage roll equal to the @Lookup[@name]’s current number of marked HP.</p>",
+        "description": "<p>Before rolling damage for the @Lookup[@name]'s attack, you can <strong>mark a Stress</strong> to gain a bonus to the damage roll equal to the @Lookup[@name]'s current number of marked HP.</p>",
         "resource": null,
         "actions": {
           "vZq3iaJrMzLYbqQN": {
@@ -652,10 +635,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -787,10 +766,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

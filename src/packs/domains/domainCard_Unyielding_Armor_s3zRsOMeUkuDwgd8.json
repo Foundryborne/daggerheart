@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "D1MFCYakdFIKDmcD",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you would mark an Armor Slot, roll a number of <strong>d6s</strong> equal to your Proficiency. If any roll a 6, reduce the severity by one threshold without marking an Armor Slot.</p>",
+    "description": "<p>When you would mark an Armor Slot, roll a number of <strong>d6s</strong> equal to your Proficiency. If any roll a 6, reduce the severity by one threshold without marking an Armor Slot.</p>",
     "domain": "valor",
     "recallCost": 1,
     "level": 10,
@@ -26,8 +26,5 @@
   "_id": "s3zRsOMeUkuDwgd8",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!s3zRsOMeUkuDwgd8"
 }

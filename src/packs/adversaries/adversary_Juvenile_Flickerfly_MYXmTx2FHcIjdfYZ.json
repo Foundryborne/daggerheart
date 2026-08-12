@@ -134,11 +134,6 @@
   "flags": {},
   "_id": "MYXmTx2FHcIjdfYZ",
   "sort": 1700000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Juvenile Flickerfly",
     "displayName": 0,
@@ -290,10 +285,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -304,7 +295,7 @@
       "name": "Peerless Accuracy",
       "type": "feature",
       "system": {
-        "description": "<p>Before the @Lookup[@name] makes an attack, roll a d6. On a result of 4 or higher, the target’s Evasion is halved against this attack.</p>",
+        "description": "<p>Before the @Lookup[@name] makes an attack, roll a d6. On a result of 4 or higher, the target's Evasion is halved against this attack.</p>",
         "resource": null,
         "actions": {
           "RrKQktP8MI4YQR5k": {
@@ -425,10 +416,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -439,7 +426,7 @@
       "name": "Mind Dance",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to create a magically dazzling display that grapples the minds of nearby foes. All targets within Close range must make an Instinct Reaction Roll. For each target who failed, you gain a Fear and the @Lookup[@name] learns one of the target’s fears.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to create a magically dazzling display that grapples the minds of nearby foes. All targets within Close range must make an Instinct Reaction Roll. For each target who failed, you gain a Fear and the @Lookup[@name] learns one of the target's fears.</p>",
         "resource": null,
         "actions": {
           "0wL3ieMrXEb2gcxe": {
@@ -520,10 +507,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -759,10 +742,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

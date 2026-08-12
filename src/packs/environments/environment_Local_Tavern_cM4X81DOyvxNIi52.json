@@ -43,11 +43,6 @@
   "flags": {},
   "_id": "cM4X81DOyvxNIi52",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Local Tavern",
     "displayName": 0,
@@ -145,7 +140,7 @@
       "name": "What's the Talk of the Town?",
       "type": "feature",
       "system": {
-        "description": "<p>A PC can ask the bartender, staff , or patrons about local events, rumors, and potential work with a Presence Roll. On a success, they can pick two of the below details to learn—or three if they critically succeed. On a failure, they can pick one and mark a Stress as the local carries on about something irrelevant. </p><ul><li><p>A fascinating rumor with a connection to a PC’s background</p></li><li><p>A promising job for the party involving a nearby threat or situation </p></li><li><p>Local folklore that relates to something they’ve seen</p></li><li><p>Town gossip that hints at a community problem</p></li></ul><section id=\"secret-x6IPMS6Z4MFBE65u\" class=\"secret\"><p><em>Who has what kind of information? What gossip do the locals start spreading about the PCs?</em></p></section>",
+        "description": "<p>A PC can ask the bartender, staff , or patrons about local events, rumors, and potential work with a Presence Roll. On a success, they can pick two of the below details to learn—or three if they critically succeed. On a failure, they can pick one and mark a Stress as the local carries on about something irrelevant.</p><ul><li><p>A fascinating rumor with a connection to a PC's background</p></li><li><p>A promising job for the party involving a nearby threat or situation</p></li><li><p>Local folklore that relates to something they've seen</p></li><li><p>Town gossip that hints at a community problem</p></li></ul><section id=\"secret-x6IPMS6Z4MFBE65u\" class=\"secret\"><p><em>Who has what kind of information? What gossip do the locals start spreading about the PCs?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -160,10 +155,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -174,7 +165,7 @@
       "name": "Sing For Your Supper",
       "type": "feature",
       "system": {
-        "description": "<p>A PC can perform one time for the guests by making a Presence Roll. On a success, they earn <strong>[[/r 1d4]]</strong> handfuls of gold (<strong>[[/r 2d4]]</strong> if they critically succeed). On a failure, they mark a Stress.</p><section id=\"secret-vrH9YdQGP2sTa3cV\" class=\"secret\"><p><em>What piece do you perform? What does that piece mean to you? When’s the last time you performed it for a crowd?</em></p></section>",
+        "description": "<p>A PC can perform one time for the guests by making a Presence Roll. On a success, they earn <strong>[[/r 1d4]]</strong> handfuls of gold (<strong>[[/r 2d4]]</strong> if they critically succeed). On a failure, they mark a Stress.</p><section id=\"secret-vrH9YdQGP2sTa3cV\" class=\"secret\"><p><em>What piece do you perform? What does that piece mean to you? When's the last time you performed it for a crowd?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -189,10 +180,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -203,7 +190,7 @@
       "name": "Mysterious Stranger",
       "type": "feature",
       "system": {
-        "description": "<p> Reveal a stranger concealing their identity, lurking in a shaded booth.</p><section id=\"secret-tgxS9TgbDCpI1kZC\" class=\"secret\"><p><em>What do they want? What’s their impression of the PCs? What mannerisms or accessories do they have?</em></p></section>",
+        "description": "<p> Reveal a stranger concealing their identity, lurking in a shaded booth.</p><section id=\"secret-tgxS9TgbDCpI1kZC\" class=\"secret\"><p><em>What do they want? What's their impression of the PCs? What mannerisms or accessories do they have?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -218,10 +205,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -232,7 +215,7 @@
       "name": "Someone Comes to Town",
       "type": "feature",
       "system": {
-        "description": "<p>Introduce a significant NPC who wants to hire the party for something or who relates to a PC’s background.</p><section class=\"secret\" id=\"secret-DB6Th0yGCjAsAZp6\"><p><em>Did they know the PCs were here? What do they want in this town?</em></p></section>",
+        "description": "<p>Introduce a significant NPC who wants to hire the party for something or who relates to a PC's background.</p><section class=\"secret\" id=\"secret-DB6Th0yGCjAsAZp6\"><p><em>Did they know the PCs were here? What do they want in this town?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -247,10 +230,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -365,10 +344,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

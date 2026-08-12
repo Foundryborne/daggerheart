@@ -12,7 +12,7 @@
         "type": "damage",
         "_id": "KLg0T6I1w24sfIbH",
         "systemPath": "actions",
-        "description": "<p>When you succeed on an Agility Roll to move from Far or Very Far range into Melee range with one or more targets, you can <strong>mark a Stress</strong> to deal <strong>1d12</strong> physical damage to all targets within Melee range.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -80,10 +80,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!AA2CZlJSWW8GPhrR"
 }

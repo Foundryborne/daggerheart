@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "yalAnCU3SndrYImF",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Once per rest, you can apply all your focus toward a target of your choice. Until you attack another creature, you defeat the target, or the battle ends, gain a +1 bonus to your Proficiency.</p>",
+    "description": "<p>Once per rest, you can apply all your focus toward a target of your choice. Until you attack another creature, you defeat the target, or the battle ends, gain a +1 bonus to your Proficiency.</p>",
     "domain": "blade",
     "recallCost": 2,
     "level": 4,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "xdNbP1ggDxpXZ1HP",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Once per rest, you can apply all your focus toward a target of your choice. Until you attack another creature, you defeat the target, or the battle ends, gain a +1 bonus to your Proficiency.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -92,7 +92,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p class=\"Body-Foundation\">Until you attack another creature, you defeat the target, or the battle ends, gain a +1 bonus to your Proficiency.</p>",
+      "description": "<p>Until you attack another creature, you defeat the target, or the battle ends, gain a +1 bonus to your Proficiency.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -106,8 +106,5 @@
       "_key": "!items.effects!xxZOXC4tiZQ6kg1e.TFWiAUDCfGaax5MU"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!xxZOXC4tiZQ6kg1e"
 }

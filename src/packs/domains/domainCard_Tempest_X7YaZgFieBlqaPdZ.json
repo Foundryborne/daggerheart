@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "pPzU9WOQNv3ckO1w",
   "system": {
-    "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Choose one of the following tempests and make a <strong>Spellcast Roll</strong> against all targets within Far range. Targets you succeed against experience its effects until the GM spends a Fear on their turn to end this spell.</p><ul><li class=\"vertical-card-list\"><p><em><strong>Blizzard:</strong></em> Deal <strong>2d20+8</strong> magic damage and targets are temporarily <em>Vulnerable</em>.</p></li><li class=\"vertical-card-list\"><em><strong>Hurricane: </strong></em>Deal <strong>3d10+10</strong> magic damage and choose a direction the wind is blowing. Targets can’t move against the wind.</li><li class=\"vertical-card-list\"><p><em><strong>Sandstorm:</strong></em> Deal <strong>5d6+9</strong> magic damage. Attacks made from beyond Melee range have disadvantage.</p><p></p></li></ul>",
+    "description": "<p>Choose one of the following tempests and make a <strong>Spellcast Roll</strong> against all targets within Far range. Targets you succeed against experience its effects until the GM spends a Fear on their turn to end this spell.</p><ul><li class=\"vertical-card-list\"><p><em><strong>Blizzard:</strong></em> Deal <strong>2d20+8</strong> magic damage and targets are temporarily <em>Vulnerable</em>.</p></li><li class=\"vertical-card-list\"><em><strong>Hurricane: </strong></em>Deal <strong>3d10+10</strong> magic damage and choose a direction the wind is blowing. Targets can't move against the wind.</li><li class=\"vertical-card-list\"><p><em><strong>Sandstorm:</strong></em> Deal <strong>5d6+9</strong> magic damage. Attacks made from beyond Melee range have disadvantage.</p></li></ul>",
     "domain": "sage",
     "recallCost": 2,
     "level": 10,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "ZqnziDBlh5Re7SKs",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Choose the following tempest and make a <strong>Spellcast Roll</strong> against all targets within Far range. Targets you succeed against experience its effects until the GM spends a Fear on their turn to end this spell.</p><ul class=\"\"><li class=\"vertical-card-list\"><p><em><strong>Blizzard:</strong></em> Deal <strong>2d20+8</strong> magic damage and targets are temporarily <em>Vulnerable</em>.</p><p></p></li></ul>",
+        "description": "<p>Choose the following tempest and make a <strong>Spellcast Roll</strong> against all targets within Far range. Targets you succeed against experience its effects until the GM spends a Fear on their turn to end this spell.</p><ul class=\"\"><li class=\"vertical-card-list\"><p><em><strong>Blizzard:</strong></em> Deal <strong>2d20+8</strong> magic damage and targets are temporarily <em>Vulnerable</em>.</p></li></ul>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -111,7 +111,7 @@
         "type": "attack",
         "_id": "FEPhujGa5lvu5fXr",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Choose the following tempest and make a <strong>Spellcast Roll</strong> against all targets within Far range. Targets you succeed against experience its effects until the GM spends a Fear on their turn to end this spell.</p><ul class=\"\"><li class=\"vertical-card-list\"><em><strong>Hurricane: </strong></em>Deal <strong>3d10+10</strong> magic damage and choose a direction the wind is blowing. Targets can’t move against the wind.</li></ul>",
+        "description": "<p>Choose the following tempest and make a <strong>Spellcast Roll</strong> against all targets within Far range. Targets you succeed against experience its effects until the GM spends a Fear on their turn to end this spell.</p><ul class=\"\"><li class=\"vertical-card-list\"><em><strong>Hurricane: </strong></em>Deal <strong>3d10+10</strong> magic damage and choose a direction the wind is blowing. Targets can't move against the wind.</li></ul>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -208,7 +208,7 @@
         "type": "attack",
         "_id": "CzMlqo91kuTgg1As",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Choose the following tempest and make a <strong>Spellcast Roll</strong> against all targets within Far range. Targets you succeed against experience its effects until the GM spends a Fear on their turn to end this spell.</p><ul class=\"\"><li class=\"vertical-card-list\"><p><em><strong>Sandstorm:</strong></em> Deal <strong>5d6+9</strong> magic damage. Attacks made from beyond Melee range have disadvantage.</p><p></p></li></ul>",
+        "description": "<p>Choose the following tempest and make a <strong>Spellcast Roll</strong> against all targets within Far range. Targets you succeed against experience its effects until the GM spends a Fear on their turn to end this spell.</p><ul class=\"\"><li class=\"vertical-card-list\"><p><em><strong>Sandstorm:</strong></em> Deal <strong>5d6+9</strong> magic damage. Attacks made from beyond Melee range have disadvantage.</p></li></ul>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -387,7 +387,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:left;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Targets can’t move against the wind.</span></p>",
+      "description": "<p>Targets can’t move against the wind.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -423,7 +423,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:left;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Attacks made from beyond </span><span class=\"tooltip-convert\" style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:left;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">Melee</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:left;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> range have </span><span class=\"tooltip-convert\" style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:left;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">disadvantage</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:left;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">.</span></p>",
+      "description": "<p>Attacks made from beyond Melee range have disadvantage.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -437,8 +437,5 @@
       "_key": "!items.effects!X7YaZgFieBlqaPdZ.S4Vpgf3FMmq8MGrb"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!X7YaZgFieBlqaPdZ"
 }

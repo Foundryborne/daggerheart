@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "ovR11FWCpXaFMPVx",
         "systemPath": "actions",
-        "description": "<p>Mark a Stress to create a void that extends up to Far range. No magic can be cast inside the void, and creatures within the void are immune to magic damage.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -49,10 +49,6 @@
   "effects": [],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!elsyP6VhHw1JjGSl"
 }

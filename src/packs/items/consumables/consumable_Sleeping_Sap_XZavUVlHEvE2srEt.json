@@ -4,14 +4,14 @@
   "_id": "XZavUVlHEvE2srEt",
   "img": "icons/consumables/potions/bottle-bulb-corked-labeled-blue.webp",
   "system": {
-    "description": "<p>You can drink this potion to fall asleep for a full night’s rest. You clear all Stress upon waking.</p>",
+    "description": "<p>You can drink this potion to fall asleep for a full night's rest. You clear all Stress upon waking.</p>",
     "quantity": 1,
     "actions": {
       "0cqzI66ChzO6x8WF": {
         "type": "healing",
         "_id": "0cqzI66ChzO6x8WF",
         "systemPath": "actions",
-        "description": "<p>You can drink this potion to fall asleep for a full night’s rest. You clear all Stress upon waking.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -94,10 +94,6 @@
   "effects": [],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!XZavUVlHEvE2srEt"
 }

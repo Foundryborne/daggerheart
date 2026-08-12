@@ -11,7 +11,7 @@
         "type": "healing",
         "_id": "Xm2ldAlmUQY4jlLb",
         "systemPath": "actions",
-        "description": "<p>Clear 1d4+2 HP.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -93,10 +93,6 @@
   "effects": [],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!cM7pHe8bBAxSZ2xR"
 }

@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "vk4dE0C8bjNdTwAF",
         "systemPath": "actions",
-        "description": "<p>You can activate this orb to create a flash of bright light. All targets within Close range become Vulnerable until they mark HP.</p><p>@Template[type:emanation|range:c]</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -63,7 +63,7 @@
         "changes": [],
         "duration": {
           "type": "temporary",
-          "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">Until they mark HP.</span></p>"
+          "description": "<p>Until they mark HP.</p>"
         }
       },
       "disabled": false,
@@ -73,7 +73,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">You are Vulnerable until you mark a Hit Point.</span></p>",
+      "description": "<p>You are Vulnerable until you mark a Hit Point.</p>",
       "tint": "#ffffff",
       "statuses": [
         "vulnerable"
@@ -98,10 +98,6 @@
   ],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!eAXHdzA5qNPldOpn"
 }

@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "YFmqnbMx540su2Ni",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, you can place a domain card from your loadout into your vault and choose to either:</p><ul><li><p>Gain Hope equal to the level of the card.</p></li><li><p>Enhance a spell that deals damage, gaining a bonus to your damage roll equal to twice the level of the card.</p></li></ul>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -42,10 +42,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "Q9NoTaEarn3VMS6Z": 3
-  },
   "flags": {},
   "_key": "!items!P02cbN50LIoD662z"
 }

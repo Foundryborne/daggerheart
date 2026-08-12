@@ -42,7 +42,7 @@
       }
     },
     "tier": 1,
-    "description": "<p>An imperious tree-person leading their forest’s defenses.</p>",
+    "description": "<p>An imperious tree-person leading their forest's defenses.</p>",
     "motivesAndTactics": "Command, nurture, prune the unwelcome",
     "attack": {
       "name": "Scythe",
@@ -140,11 +140,6 @@
   "flags": {},
   "_id": "8yUj2Mzvnifhxegm",
   "sort": 1600000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Young Dryad",
     "displayName": 0,
@@ -323,10 +318,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -339,7 +330,7 @@
       "_id": "i8NoUGUTNY2C5NhC",
       "img": "icons/magic/nature/root-vine-barrier-wall-brown.webp",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to form a cage around a target within Very Close range and Restrain them until they’re freed with a successful Strength Roll. When a creature makes an action roll against the cage, they must mark a Stress. </p>",
+        "description": "<p><strong>Spend a Fear</strong> to form a cage around a target within Very Close range and Restrain them until they're freed with a successful Strength Roll. When a creature makes an action roll against the cage, they must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "cXOjhfMgKh2yD1mc": {
@@ -406,7 +397,7 @@
             "changes": [],
             "duration": {
               "type": "temporary",
-              "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">Until they’re freed with a successful Strength Roll.</span></p>"
+              "description": "<p>Until they’re freed with a successful Strength Roll.</p>"
             },
             "rangeDependence": null,
             "stacking": null,
@@ -444,10 +435,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -579,10 +566,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

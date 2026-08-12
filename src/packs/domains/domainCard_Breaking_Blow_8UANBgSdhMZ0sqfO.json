@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "n7pgTBYSItMzCX0s",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you make a successful attack, you can <strong>mark a Stress</strong> to make the next successful attack against that same target deal an extra <strong>2d12</strong> damage.</p>",
+    "description": "<p>When you make a successful attack, you can <strong>mark a Stress</strong> to make the next successful attack against that same target deal an extra <strong>2d12</strong> damage.</p>",
     "domain": "bone",
     "recallCost": 3,
     "level": 8,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "aL83OMkU7hSQRlOA",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">When you make a successful attack, you can <strong>mark a Stress</strong> to make the next successful attack against that same target deal an extra <strong>2d12</strong> damage.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -93,7 +93,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p class=\"Body-Foundation\">The next successful attack against this target deals an extra <strong>2d12</strong> damage.</p>",
+      "description": "<p>The next successful attack against this target deals an extra <strong>2d12</strong> damage.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -107,8 +107,5 @@
       "_key": "!items.effects!8UANBgSdhMZ0sqfO.ETIeXRAib3DFBHpX"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!8UANBgSdhMZ0sqfO"
 }

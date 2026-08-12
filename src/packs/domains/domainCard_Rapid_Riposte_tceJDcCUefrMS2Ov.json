@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "pYEavNqteiQepvvD",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When an attack made against you from within Melee range fails, you can <strong>mark a Stress</strong> and seize the opportunity to deal the weapon damage of one of your active weapons to the attacker.</p>",
+    "description": "<p>When an attack made against you from within Melee range fails, you can <strong>mark a Stress</strong> and seize the opportunity to deal the weapon damage of one of your active weapons to the attacker.</p>",
     "domain": "bone",
     "recallCost": 0,
     "level": 6,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "4mdm2rcPDfm8tEIA",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">When an attack made against you from within Melee range fails, you can <strong>mark a Stress</strong> and seize the opportunity to deal the weapon damage of one of your active weapons to the attacker.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -65,8 +65,5 @@
   "_id": "tceJDcCUefrMS2Ov",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!tceJDcCUefrMS2Ov"
 }

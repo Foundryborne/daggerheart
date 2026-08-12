@@ -5,14 +5,14 @@
   "_id": "dPcqKN5NeDkjB1HW",
   "img": "icons/magic/fire/flame-burning-hand-white.webp",
   "system": {
-    "description": "<p>Choose one of the following elements at character creation: air, earth, fire, lightning, water.</p><p>You can shape this element into harmless effects. Additionally, <strong>spend a Hope</strong> and describe how your control over this element helps an action roll you’re about to make, then either gain a +2 bonus to the roll or a +3 bonus to the roll’s damage.</p>",
+    "description": "<p>Choose one of the following elements at character creation: air, earth, fire, lightning, water.</p><p>You can shape this element into harmless effects. Additionally, <strong>spend a Hope</strong> and describe how your control over this element helps an action roll you're about to make, then either gain a +2 bonus to the roll or a +3 bonus to the roll's damage.</p>",
     "resource": null,
     "actions": {
       "rxuFLfHP1FILDpds": {
         "type": "effect",
         "_id": "rxuFLfHP1FILDpds",
         "systemPath": "actions",
-        "description": "<p>S<strong>pend a Hope</strong> and describe how your control over this element helps an action roll you’re about to make, gain a +2 bonus to the roll.</p>",
+        "description": "<p>S<strong>pend a Hope</strong> and describe how your control over this element helps an action roll you're about to make, gain a +2 bonus to the roll.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -48,7 +48,7 @@
         "type": "effect",
         "_id": "S7HvFD3qIR3ifJRL",
         "systemPath": "actions",
-        "description": "<p>S<strong>pend a Hope</strong> and describe how your control over this element helps an action roll you’re about to make, gain a +3 bonus to the roll’s damage.</p>",
+        "description": "<p>S<strong>pend a Hope</strong> and describe how your control over this element helps an action roll you're about to make, gain a +3 bonus to the roll's damage.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -172,10 +172,6 @@
     }
   ],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "Q9NoTaEarn3VMS6Z": 3
-  },
   "flags": {},
   "_key": "!items!dPcqKN5NeDkjB1HW"
 }

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "pYEavNqteiQepvvD",
   "system": {
-    "description": "<p class=\"Body-Foundation\">During a short rest, you can choose a long rest downtime move instead. You can <strong>spend a Hope</strong> to let an ally do the same.</p>",
+    "description": "<p>During a short rest, you can choose a long rest downtime move instead. You can <strong>spend a Hope</strong> to let an ally do the same.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 6,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "ASZpyf3WqjgbjBl6",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">During a short rest, you can choose a long rest downtime move instead. You can <strong>spend a Hope</strong> to let an ally do the same.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -99,7 +99,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p class=\"Body-Foundation\">During this short rest, you can choose a long rest downtime move instead.</p>",
+      "description": "<p>During this short rest, you can choose a long rest downtime move instead.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -148,7 +148,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p class=\"Body-Foundation\">During a short rest, you can choose a long rest downtime move instead.</p>",
+      "description": "<p>During a short rest, you can choose a long rest downtime move instead.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -164,8 +164,5 @@
       "_key": "!items.effects!gsiQFT6q3WOgqerJ.7GsHTQCtNB8PEVgr"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!gsiQFT6q3WOgqerJ"
 }

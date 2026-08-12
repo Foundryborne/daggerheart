@@ -19,7 +19,7 @@
         "type": "healing",
         "_id": "aanLNQkeO2ZTIqBl",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, touch a creature and clear 2 Hit Points or 2 Stress from them.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -96,7 +96,7 @@
         "type": "healing",
         "_id": "cWdzCQJv8RFfi2NR",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, touch a creature and clear 2 Hit Points or 2 Stress from them.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -180,10 +180,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "Q9NoTaEarn3VMS6Z": 3
-  },
   "flags": {},
   "_key": "!items!GfOSgVJW8bS1OjNq"
 }

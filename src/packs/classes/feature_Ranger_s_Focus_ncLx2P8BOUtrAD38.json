@@ -5,14 +5,14 @@
   "_id": "ncLx2P8BOUtrAD38",
   "img": "icons/magic/perception/eye-ringed-green.webp",
   "system": {
-    "description": "<p>Spend a Hope and make an attack against a target. On a success, deal your attack’s normal damage and temporarily make the attack’s target your Focus. Until this feature ends or you make a different creature your Focus, you gain the following benefits against your Focus: </p><ul><li><p>You know precisely what direction they are in. </p></li><li><p>When you deal damage to them, they must mark a Stress. </p></li><li><p>When you fail an attack against them, you can end your Ranger’s Focus feature to reroll your Duality Dice.</p></li></ul>",
+    "description": "<p>Spend a Hope and make an attack against a target. On a success, deal your attack's normal damage and temporarily make the attack's target your Focus. Until this feature ends or you make a different creature your Focus, you gain the following benefits against your Focus:</p><ul><li><p>You know precisely what direction they are in.</p></li><li><p>When you deal damage to them, they must mark a Stress.</p></li><li><p>When you fail an attack against them, you can end your Ranger's Focus feature to reroll your Duality Dice.</p></li></ul>",
     "resource": null,
     "actions": {
       "dTkLqUxZpW4xOEKW": {
         "type": "effect",
         "_id": "dTkLqUxZpW4xOEKW",
         "systemPath": "actions",
-        "description": "<p>Spend a Hope and make an attack against a target. On a success, deal your attack’s normal damage and temporarily make the attack’s target your Focus. Until this feature ends or you make a different creature your Focus, you gain the following benefits against your Focus:</p><ul><li><p>You know precisely what direction they are in.</p></li><li><p>When you deal damage to them, they must mark a Stress.</p></li><li><p>When you fail an attack against them, you can end your Ranger’s Focus feature to reroll your Duality Dice.</p></li></ul>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -84,10 +84,6 @@
     }
   ],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!ncLx2P8BOUtrAD38"
 }

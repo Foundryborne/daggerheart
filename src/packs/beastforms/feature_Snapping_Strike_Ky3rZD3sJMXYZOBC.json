@@ -10,7 +10,7 @@
         "type": "effect",
         "_id": "ib94yYJ1HA0dm0VC",
         "systemPath": "actions",
-        "description": "<p>When you succeed on an attack against a target within Melee range, you can <strong>spend a Hope</strong> to clamp that opponent in your jaws, making them temporarily <em>Restrained</em> and <em>Vulnerable</em>.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -96,10 +96,6 @@
     }
   ],
   "folder": "uU8bIoZvXge0rLaU",
-  "ownership": {
-    "default": 0,
-    "FecEtPuoQh6MpjQ0": 3
-  },
   "flags": {},
   "_id": "Ky3rZD3sJMXYZOBC",
   "sort": 300000,

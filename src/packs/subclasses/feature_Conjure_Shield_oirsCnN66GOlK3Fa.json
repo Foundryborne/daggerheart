@@ -5,7 +5,7 @@
   "_id": "oirsCnN66GOlK3Fa",
   "img": "icons/magic/defensive/barrier-shield-dome-blue-purple.webp",
   "system": {
-    "description": "<p>You can maintain a protective barrier of magic. While you have at least 2 Hope, you add your Proficiency to your Evasion. </p>",
+    "description": "<p>You can maintain a protective barrier of magic. While you have at least 2 Hope, you add your Proficiency to your Evasion.</p>",
     "resource": null,
     "actions": {},
     "originItemType": null,
@@ -56,10 +56,6 @@
     }
   ],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!oirsCnN66GOlK3Fa"
 }

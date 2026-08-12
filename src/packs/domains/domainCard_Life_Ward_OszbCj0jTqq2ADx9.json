@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "vAZKNDtAafd7HDWV",
   "system": {
-    "description": "<p></p><p class=\"Body-Foundation\"><strong>Spend 3 </strong><strong>Hope</strong> and choose an ally within Close range. They are marked with a glowing sigil of protection. When this ally would make a death move, they clear a Hit Point instead.        </p><p class=\"Body-Foundation\">This effect ends when it saves the target from a death move, you cast Life Ward on another target, or you take a long rest.</p><p></p>",
+    "description": "<p><strong>Spend 3 </strong><strong>Hope</strong> and choose an ally within Close range. They are marked with a glowing sigil of protection. When this ally would make a death move, they clear a Hit Point instead.</p><p>This effect ends when it saves the target from a death move, you cast Life Ward on another target, or you take a long rest.</p>",
     "domain": "splendor",
     "recallCost": 1,
     "level": 4,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "i99aNWZqVC8PHAIx",
         "systemPath": "actions",
-        "description": "<p><strong>Spend 3 Hope</strong> and choose an ally within Close range. They are marked with a glowing sigil of protection. When this ally would make a death move, they clear a Hit Point instead.</p><p class=\"Body-Foundation\">This effect ends when it saves the target from a death move, you cast Life Ward on another target, or you take a long rest.</p>",
+        "description": "<p><strong>Spend 3 Hope</strong> and choose an ally within Close range. They are marked with a glowing sigil of protection. When this ally would make a death move, they clear a Hit Point instead.</p><p>This effect ends when it saves the target from a death move, you cast Life Ward on another target, or you take a long rest.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -94,7 +94,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>Marked with a glowing sigil of protection. When this ally would make a death move, they clear a Hit Point instead.</p><p class=\"Body-Foundation\">This effect ends when it saves the target from a death move, you cast Life Ward on another target, or you take a long rest.</p>",
+      "description": "<p>Marked with a glowing sigil of protection. When this ally would make a death move, they clear a Hit Point instead.</p><p>This effect ends when it saves the target from a death move, you cast Life Ward on another target, or you take a long rest.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -115,8 +115,5 @@
       "_key": "!items.effects!OszbCj0jTqq2ADx9.E7Ou4OMEy3TeK1Gf"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!OszbCj0jTqq2ADx9"
 }

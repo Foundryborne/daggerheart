@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "V2K3pMWOCVwBUnjq",
         "systemPath": "actions",
-        "description": "<p>Once per rest, <strong>mark a Stress</strong> to force an adversary to reroll an attack against you or an ally within Very Close range.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -49,10 +49,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!AXqcoxnRoWBbbKpK"
 }

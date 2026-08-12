@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "rFZj0ZsnJCc0PS3h",
         "systemPath": "actions",
-        "description": "<p>Once per rest, when you recall a domain card in your vault, you can reduce its Recall Cost by 1.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -42,10 +42,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!HzPa5U0EQhDfFTqW"
 }

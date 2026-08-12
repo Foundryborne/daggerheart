@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "TT4jzve7o2ykPcQO",
         "systemPath": "actions",
-        "description": "<p>Eat this root to leap up to Far range once without needing to roll.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -49,10 +49,6 @@
   "effects": [],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!c2putn9apuurJhWX"
 }

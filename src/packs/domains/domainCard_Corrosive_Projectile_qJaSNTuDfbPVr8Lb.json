@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "uXGugK72AffddFdH",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, deal <strong>d6+4</strong> magic damage using your Proficiency. Additionally, <strong>mark 2 or more Stress</strong> to make them permanently <em>Corroded</em>. While a target is <em>Corroded</em>, they gain a −1 penalty to their Difficulty for every 2 Stress you spent. This condition can stack.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, deal <strong>d6+4</strong> magic damage using your Proficiency. Additionally, <strong>mark 2 or more Stress</strong> to make them permanently <em>Corroded</em>. While a target is <em>Corroded</em>, they gain a -1 penalty to their Difficulty for every 2 Stress you spent. This condition can stack.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 3,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "WqHLiHxP2enmJaHx",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, deal <strong>d6+4</strong> magic damage using your Proficiency.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, deal <strong>d6+4</strong> magic damage using your Proficiency.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -95,7 +95,7 @@
         "type": "effect",
         "_id": "maf0whws7wgRnFsH",
         "systemPath": "actions",
-        "description": "<p>Additionally, <strong>mark 2 or more Stress</strong> to make them permanently <em>Corroded</em>. While a target is <em>Corroded</em>, they gain a −1 penalty to their Difficulty for every 2 Stress you spent. This condition can stack.</p>",
+        "description": "<p>Additionally, <strong>mark 2 or more Stress</strong> to make them permanently <em>Corroded</em>. While a target is <em>Corroded</em>, they gain a -1 penalty to their Difficulty for every 2 Stress you spent. This condition can stack.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -186,7 +186,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">While a target is </span><span style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">Corroded</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">, they gain a −1 penalty to their </span><span style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\" class=\"tooltip-convert\">Difficulty</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> for every 2 Stress you spent. This </span><span style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\" class=\"tooltip-convert\">condition</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> can stack.</span></p>",
+      "description": "<p>While a target is Corroded, they gain a −1 penalty to their <span style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\" class=\"tooltip-convert\">Difficulty for every 2 Stress you spent. This <span style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\" class=\"tooltip-convert\">condition can stack.</p>",
       "tint": "#ffffff",
       "statuses": [
         "corrode"
@@ -209,8 +209,5 @@
       "_key": "!items.effects!qJaSNTuDfbPVr8Lb.zB95bjSSdVlApQnR"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!qJaSNTuDfbPVr8Lb"
 }

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "xZrCYAd05ayNu1yW",
   "system": {
-    "description": "<p class=\"Card-Feature\"><em><strong>Tekaira Armored Beetles:</strong></em> <strong>Mark a Stress</strong> to conjure armored beetles that encircle you. When you next take damage, reduce the severity by one threshold. You can <strong>spend a Hope</strong> to keep the beetles conjured after taking damage.</p><p class=\"Card-Feature\"><em><strong>Fire Flies:</strong></em> Make a <strong>Spellcast Roll</strong> against all adversaries within Close range. <strong>Spend a Hope</strong> to deal <strong>2d8+3</strong> magic damage to targets you succeeded against.</p>",
+    "description": "<p><em><strong>Tekaira Armored Beetles:</strong></em> <strong>Mark a Stress</strong> to conjure armored beetles that encircle you. When you next take damage, reduce the severity by one threshold. You can <strong>spend a Hope</strong> to keep the beetles conjured after taking damage.</p><p><em><strong>Fire Flies:</strong></em> Make a <strong>Spellcast Roll</strong> against all adversaries within Close range. <strong>Spend a Hope</strong> to deal <strong>2d8+3</strong> magic damage to targets you succeeded against.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 2,
@@ -285,8 +285,5 @@
       "_key": "!items.effects!rZPH0BY8Sznc9sFG.dImnF8ZT2rVybiIP"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!rZPH0BY8Sznc9sFG"
 }

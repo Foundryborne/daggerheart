@@ -145,11 +145,6 @@
   "flags": {},
   "_id": "dNta0cUzr96xcFhf",
   "sort": 2500000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Master Assassin",
     "displayName": 0,
@@ -247,7 +242,7 @@
       "name": "Won't See it Coming",
       "type": "feature",
       "system": {
-        "description": "<p>The @Lookup[@name] deals direct damage while they’re <em>Hidden</em>.</p>",
+        "description": "<p>The @Lookup[@name] deals direct damage while they're <em>Hidden</em>.</p>",
         "resource": null,
         "actions": {
           "xFBE0jLf96fbCY7K": {
@@ -378,10 +373,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -392,7 +383,7 @@
       "name": "Strike as One",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to spotlight a number of other Assassins equal to the @Lookup[@name]’s unmarked Stress.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to spotlight a number of other Assassins equal to the @Lookup[@name]'s unmarked Stress.</p>",
         "resource": null,
         "actions": {
           "vKRDbD07bqR317Zv": {
@@ -446,10 +437,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -514,10 +501,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -648,10 +631,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

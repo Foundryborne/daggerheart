@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "HAGbPLHwm0UozDeG",
   "system": {
-    "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">When 4 or more of the domain cards in your loadout are from the Blade domain, gain the following benefits:</p><ul><li class=\"vertical-card-list-found\"><p>+2 bonus to your attack rolls</p></li><li class=\"vertical-card-list-found\"><p>+4 bonus to your Severe damage threshold</p></li></ul>",
+    "description": "<p>When 4 or more of the domain cards in your loadout are from the Blade domain, gain the following benefits:</p><ul><li class=\"vertical-card-list-found\"><p>+2 bonus to your attack rolls</p></li><li class=\"vertical-card-list-found\"><p>+4 bonus to your Severe damage threshold</p></li></ul>",
     "domain": "blade",
     "recallCost": 1,
     "level": 7,
@@ -78,8 +78,5 @@
       "_key": "!items.effects!Gb5bqpFSBiuBxUix.fBpLkCWGsB8MbymR"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!Gb5bqpFSBiuBxUix"
 }

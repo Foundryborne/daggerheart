@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "8qr1Y2tW3vLwNZOg",
   "system": {
-    "description": "<p class=\"Body-Foundation\"><strong>Mark a Stress</strong> to become <em>Spectral </em>until you make an action roll targeting another creature. While <em>Spectral</em>, you’re immune to physical damage and can float and pass through solid objects. Other creatures can still see you while you’re in this form.</p>",
+    "description": "<p><strong>Mark a Stress</strong> to become <em>Spectral </em>until you make an action roll targeting another creature. While <em>Spectral</em>, you're immune to physical damage and can float and pass through solid objects. Other creatures can still see you while you're in this form.</p>",
     "domain": "midnight",
     "recallCost": 1,
     "level": 10,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "K91pB8O1ak8fikUj",
         "systemPath": "actions",
-        "description": "<p><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\">Mark a </span><span class=\"tooltip-convert\" style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\"><strong style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0);\">Stress</strong></span> to become </span><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\">Spectral </span>until you make an action roll targeting another creature. While </span><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\">Spectral</span>, you’re immune to </span><span class=\"tooltip-convert\" style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\">physical</span> damage and can float and pass through solid objects. Other creatures can still see you while you’re in this form.</p>",
+        "description": "<p>Mark a <strong>Stress</strong> to become Spectral until you make an action roll targeting another creature. While Spectral, you're immune to physical damage and can float and pass through solid objects. Other creatures can still see you while you're in this form.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -115,8 +115,5 @@
       "_key": "!items.effects!iQhgqmLwhcSTYnvr.d9bZJl0yZnvOe2f3"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!iQhgqmLwhcSTYnvr"
 }

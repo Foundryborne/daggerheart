@@ -5,7 +5,7 @@
   "_id": "DxOAkDBfIMpXxAUD",
   "img": "icons/magic/sonic/explosion-impact-shock-wave.webp",
   "system": {
-    "description": "<p>When you roll damage for your “Spirit Weapon” feature, if any of the die results match, double the value of each matching die. For example, if you roll two 5s, they count as two 10s.</p>",
+    "description": "<p>When you roll damage for your \"Spirit Weapon\" feature, if any of the die results match, double the value of each matching die. For example, if you roll two 5s, they count as two 10s.</p>",
     "resource": null,
     "actions": {},
     "originItemType": null,
@@ -18,10 +18,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "Q9NoTaEarn3VMS6Z": 3
-  },
   "flags": {},
   "_key": "!items!DxOAkDBfIMpXxAUD"
 }

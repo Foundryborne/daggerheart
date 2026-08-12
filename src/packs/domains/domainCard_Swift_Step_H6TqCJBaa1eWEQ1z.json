@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "Hs6POmXKThDXQJBn",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When an attack made against you fails, clear a Stress. If you can’t clear a Stress, gain a Hope.</p>",
+    "description": "<p>When an attack made against you fails, clear a Stress. If you can't clear a Stress, gain a Hope.</p>",
     "domain": "bone",
     "recallCost": 2,
     "level": 10,
@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "Yqyfl459M3q3TACB",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">When an attack made against you fails, clear a Stress. If you can’t clear a Stress, gain a Hope.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -89,7 +89,7 @@
         "type": "healing",
         "_id": "Py9Mx4nMfCRr4tpk",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">When an attack made against you fails, clear a Stress. If you can’t clear a Stress, gain a Hope.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -177,8 +177,5 @@
   "_id": "H6TqCJBaa1eWEQ1z",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!H6TqCJBaa1eWEQ1z"
 }

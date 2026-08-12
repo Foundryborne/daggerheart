@@ -12,7 +12,7 @@
         "type": "attack",
         "_id": "zCTrqPtGARSZ06CU",
         "systemPath": "actions",
-        "description": "<p>When you use an Experience, roll a <strong>d6</strong>. On a result of 5 or higher, you can use it without spending Hope.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -66,10 +66,6 @@
   },
   "effects": [],
   "sort": 200000,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!w1BwNKxbQOSizLmZ"
 }

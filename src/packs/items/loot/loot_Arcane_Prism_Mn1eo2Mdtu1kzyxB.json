@@ -4,7 +4,7 @@
   "_id": "Mn1eo2Mdtu1kzyxB",
   "img": "icons/commodities/gems/gem-faceted-trillion-blue.webp",
   "system": {
-    "description": "<p>Position this prism in a location of your choosing and activate it. All allies within Close range of it gain a +1 bonus to their Spellcast Rolls. While activated, the prism can’t be moved. Once the prism is deactivated, it can’t be activated again until your next long rest.</p>",
+    "description": "<p>Position this prism in a location of your choosing and activate it. All allies within Close range of it gain a +1 bonus to their Spellcast Rolls. While activated, the prism can't be moved. Once the prism is deactivated, it can't be activated again until your next long rest.</p>",
     "quantity": 1,
     "actions": {
       "QgBDJh0laEvOB94w": {
@@ -81,10 +81,6 @@
   ],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!Mn1eo2Mdtu1kzyxB"
 }

@@ -29,11 +29,6 @@
   "flags": {},
   "_id": "dsA6j69AnaJhUyqH",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Hallowed Temple",
     "displayName": 0,
@@ -250,10 +245,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -264,7 +255,7 @@
       "name": "Divine Guidance",
       "type": "feature",
       "system": {
-        "description": "<p>A PC who prays to a deity while in the Hallowed Temple can make an Instinct Roll to receive answers. If the god they beseech isn’t welcome in this temple, the roll is made with disadvantage.</p><ul><li><p><strong>Critical Success:</strong> The PC gains clear information. Additionally, they gain [[/r 1d4]] Hope, which can be distributed between the party if they share the vision and guidance they received.</p></li><li><p><strong>Success with Hope:</strong> The PC receives clear information.</p></li><li><p><strong>Success with Fear:</strong> The PC receives brief flashes of insight and an emotional impression conveying an answer.</p></li><li><p><strong>Any Failure:</strong> The PC receives only vague flashes. They can mark a Stress to receive one clear image without context.</p></li></ul><section class=\"secret\" id=\"secret-EYCrn403Zbz0NQKo\"><p><em>What does it feel like as you are touched by this vision? What feeling lingers after the images have passed?</em></p></section>",
+        "description": "<p>A PC who prays to a deity while in the Hallowed Temple can make an Instinct Roll to receive answers. If the god they beseech isn't welcome in this temple, the roll is made with disadvantage.</p><ul><li><p><strong>Critical Success:</strong> The PC gains clear information. Additionally, they gain [[/r 1d4]] Hope, which can be distributed between the party if they share the vision and guidance they received.</p></li><li><p><strong>Success with Hope:</strong> The PC receives clear information.</p></li><li><p><strong>Success with Fear:</strong> The PC receives brief flashes of insight and an emotional impression conveying an answer.</p></li><li><p><strong>Any Failure:</strong> The PC receives only vague flashes. They can mark a Stress to receive one clear image without context.</p></li></ul><section class=\"secret\" id=\"secret-EYCrn403Zbz0NQKo\"><p><em>What does it feel like as you are touched by this vision? What feeling lingers after the images have passed?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -279,10 +270,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -293,7 +280,7 @@
       "name": "Relentless Hope",
       "type": "feature",
       "system": {
-        "description": "<p>Once per scene, each PC can mark a Stress to turn a result with Fear into a result with Hope. </p><section id=\"secret-z2wMjfAVnSoTHSlR\" class=\"secret\"><p><em>What emotions or memories do you connect with when fear presses in?</em></p></section>",
+        "description": "<p>Once per scene, each PC can mark a Stress to turn a result with Fear into a result with Hope.</p><section id=\"secret-z2wMjfAVnSoTHSlR\" class=\"secret\"><p><em>What emotions or memories do you connect with when fear presses in?</em></p></section>",
         "resource": null,
         "actions": {
           "VlBjJ32dXlboSANv": {
@@ -397,10 +384,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -465,10 +448,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

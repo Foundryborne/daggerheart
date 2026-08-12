@@ -140,11 +140,6 @@
   "flags": {},
   "_id": "niBpVU7yeo5ccskE",
   "sort": 3000000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Masked Thief",
     "displayName": 0,
@@ -242,7 +237,7 @@
       "name": "Quick Hands",
       "type": "feature",
       "system": {
-        "description": "<p>Make an attack against a target within Melee range. On a success, deal <strong>1d8+2</strong> physical damage and the @Lookup[@name] steals one item or consumable from the target’s inventory.</p>",
+        "description": "<p>Make an attack against a target within Melee range. On a success, deal <strong>1d8+2</strong> physical damage and the @Lookup[@name] steals one item or consumable from the target's inventory.</p>",
         "resource": null,
         "actions": {
           "33xlM2ph77SSUfBs": {
@@ -366,10 +361,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -513,10 +504,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

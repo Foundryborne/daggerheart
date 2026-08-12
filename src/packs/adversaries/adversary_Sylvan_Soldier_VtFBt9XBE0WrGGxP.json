@@ -140,11 +140,6 @@
   "flags": {},
   "_id": "VtFBt9XBE0WrGGxP",
   "sort": 3600000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Sylvan Soldier",
     "displayName": 0,
@@ -371,10 +366,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -523,10 +514,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -539,7 +526,7 @@
       "_id": "1dmKoSnV82sLc8xZ",
       "img": "icons/magic/nature/root-vine-leaves-green.webp",
       "system": {
-        "description": "<p>When the @Lookup[@name] makes a successful attack, you can <strong>mark a Stress</strong> to become Hidden until the @Lookup[@name]’s next attack or a PC succeeds on an Instinct Roll (14) to find them.</p>",
+        "description": "<p>When the @Lookup[@name] makes a successful attack, you can <strong>mark a Stress</strong> to become Hidden until the @Lookup[@name]'s next attack or a PC succeeds on an Instinct Roll (14) to find them.</p>",
         "resource": null,
         "actions": {
           "l32BjO9J0jFvD0Zy": {
@@ -636,10 +623,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

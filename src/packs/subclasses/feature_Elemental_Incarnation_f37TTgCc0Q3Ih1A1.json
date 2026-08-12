@@ -5,7 +5,7 @@
   "_id": "f37TTgCc0Q3Ih1A1",
   "img": "icons/magic/nature/thorns-hand-glow-green.webp",
   "system": {
-    "description": "<p>Mark a Stress to Channel one of the following elements until you take Severe damage or until your next rest:</p><ul><li><p><strong>Fire</strong>: When an adversary within Melee range deals damage to you, they take 1d10 magic damage.</p></li><li><p><strong>Earth</strong>: Gain a bonus to your damage thresholds equal to your Proficiency.</p></li><li><p><strong>Wate</strong>r: When you deal damage to an adversary within Melee range, all other adversaries within Very Close range must mark a Stress. </p></li><li><p><strong>Air</strong>: You can hover, gaining advantage on Agility Rolls.</p></li></ul>",
+    "description": "<p>Mark a Stress to Channel one of the following elements until you take Severe damage or until your next rest:</p><ul><li><p><strong>Fire</strong>: When an adversary within Melee range deals damage to you, they take 1d10 magic damage.</p></li><li><p><strong>Earth</strong>: Gain a bonus to your damage thresholds equal to your Proficiency.</p></li><li><p><strong>Wate</strong>r: When you deal damage to an adversary within Melee range, all other adversaries within Very Close range must mark a Stress.</p></li><li><p><strong>Air</strong>: You can hover, gaining advantage on Agility Rolls.</p></li></ul>",
     "resource": null,
     "actions": {
       "wVGSzAnJGs5eXKqI": {
@@ -377,10 +377,6 @@
     }
   ],
   "sort": 100000,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!f37TTgCc0Q3Ih1A1"
 }

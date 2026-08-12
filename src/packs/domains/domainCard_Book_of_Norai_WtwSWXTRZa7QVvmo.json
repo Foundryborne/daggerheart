@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "7XeaYZPMB0SopAfo",
   "system": {
-    "description": "<p class=\"Card-Feature\"><em><strong>Mystic Tether:</strong></em> Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, they’re temporarily <em>Restrained</em> and must mark a Stress. If you target a flying creature, this spell grounds and temporarily <em>Restrains</em> them.</p><p class=\"Card-Feature\"><em><strong>Fireball:</strong></em> Make a <strong>Spellcast Roll</strong> against a target within Very Far range. On a success, hurl a sphere of fire toward them that explodes on impact. The target and all creatures within Very Close range of them must make a Reaction Roll (13). Targets who fail take<strong> d20+5</strong> magic damage using your Proficiency. Targets who succeed take half damage.</p>",
+    "description": "<p><em><strong>Mystic Tether:</strong></em> Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, they're temporarily <em>Restrained</em> and must mark a Stress. If you target a flying creature, this spell grounds and temporarily <em>Restrains</em> them.</p><p><em><strong>Fireball:</strong></em> Make a <strong>Spellcast Roll</strong> against a target within Very Far range. On a success, hurl a sphere of fire toward them that explodes on impact. The target and all creatures within Very Close range of them must make a Reaction Roll (13). Targets who fail take<strong> d20+5</strong> magic damage using your Proficiency. Targets who succeed take half damage.</p>",
     "domain": "codex",
     "recallCost": 2,
     "level": 3,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "ywBVT5mbDKr485Jg",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, they’re temporarily <em>Restrained</em> and must mark a Stress. If you target a flying creature, this spell grounds and temporarily <em>Restrains</em> them.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, they're temporarily <em>Restrained</em> and must mark a Stress. If you target a flying creature, this spell grounds and temporarily <em>Restrains</em> them.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -99,7 +99,7 @@
         "type": "attack",
         "_id": "GI2VkIcGDOjFRxpT",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll</strong> against a target within Very Far range. On a success, hurl a sphere of fire toward them that explodes on impact.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Very Far range. On a success, hurl a sphere of fire toward them that explodes on impact.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -304,8 +304,5 @@
       "_key": "!items.effects!WtwSWXTRZa7QVvmo.iPnT02apql16Zhjf"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!WtwSWXTRZa7QVvmo"
 }

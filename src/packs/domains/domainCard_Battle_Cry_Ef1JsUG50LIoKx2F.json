@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "me7ywrVh38j6T8Sm",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Once per long rest, while you’re charging into danger, you can muster a rousing call that inspires your allies. All allies who can hear you each clear a Stress and gain a Hope. Additionally, your allies gain advantage on attack rolls until you or an ally rolls a failure with Fear.</p>",
+    "description": "<p>Once per long rest, while you're charging into danger, you can muster a rousing call that inspires your allies. All allies who can hear you each clear a Stress and gain a Hope. Additionally, your allies gain advantage on attack rolls until you or an ally rolls a failure with Fear.</p>",
     "domain": "blade",
     "recallCost": 2,
     "level": 8,
@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "jakoB9n8KSgvYVZv",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Once per long rest, while you’re charging into danger, you can muster a rousing call that inspires your allies. All allies who can hear you each clear a Stress and gain a Hope. Additionally, your allies gain advantage on attack rolls until you or an ally rolls a failure with Fear.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -186,8 +186,5 @@
       "_key": "!items.effects!Ef1JsUG50LIoKx2F.s7ma4TNgAvt0ZgEW"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!Ef1JsUG50LIoKx2F"
 }

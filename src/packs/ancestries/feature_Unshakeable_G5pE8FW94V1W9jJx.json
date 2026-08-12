@@ -5,7 +5,7 @@
   "_id": "G5pE8FW94V1W9jJx",
   "img": "icons/magic/control/buff-flight-wings-runes-blue-white.webp",
   "system": {
-    "description": "<p>When you would mark a Stress, roll a <strong>d6</strong>. On a result of 6, don’t mark it.</p>",
+    "description": "<p>When you would mark a Stress, roll a <strong>d6</strong>. On a result of 6, don't mark it.</p>",
     "resource": null,
     "actions": {
       "x8xbjyCrJ0okOpIU": {
@@ -66,10 +66,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!G5pE8FW94V1W9jJx"
 }

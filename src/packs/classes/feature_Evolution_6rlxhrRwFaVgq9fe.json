@@ -12,7 +12,7 @@
         "type": "beastform",
         "_id": "bj4m9E8ObFT0xDQ4",
         "systemPath": "actions",
-        "description": "<p>Spend 3 Hope to transform into a Beastform without marking a Stress. When you do, choose one trait to raise by +1 until you drop out of that Beastform. </p>",
+        "description": "<p>Spend 3 Hope to transform into a Beastform without marking a Stress. When you do, choose one trait to raise by +1 until you drop out of that Beastform.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -55,10 +55,6 @@
   },
   "effects": [],
   "sort": 100000,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!6rlxhrRwFaVgq9fe"
 }

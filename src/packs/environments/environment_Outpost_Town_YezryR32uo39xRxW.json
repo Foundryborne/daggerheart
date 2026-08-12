@@ -39,11 +39,6 @@
   "flags": {},
   "_id": "YezryR32uo39xRxW",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Outpost Town",
     "displayName": 0,
@@ -141,7 +136,7 @@
       "name": "Rumors Abound",
       "type": "feature",
       "system": {
-        "description": "<p>Gossip is the fastest-traveling currency in the realm. A PC can inquire about major events by making a Presence Roll. What they learn depends on the outcome of their roll, based on the following criteria: </p><ul><li><p><strong>Critical Success:</strong> Learn about two major events. The PC can ask one follow-up question about one of the rumors and get a truthful (if not always complete) answer. </p></li><li><p><strong>Success with Hope:</strong> Learn about two events, at least one of which is relevant to the character’s background. </p></li><li><p><strong>Success with Fear:</strong> Learn an alarming rumor related to the character’s background. </p></li><li><p><strong>Any Failure:</strong> The locals respond poorly to their inquiries. The PC must mark a Stress to learn one relevant rumor.</p></li></ul><section id=\"secret-IRa0gzmTR2psynpd\" class=\"secret\"><p><em>What news do the PCs have that they could pass along to curious travelers? What do the locals think about these events?</em></p></section>",
+        "description": "<p>Gossip is the fastest-traveling currency in the realm. A PC can inquire about major events by making a Presence Roll. What they learn depends on the outcome of their roll, based on the following criteria:</p><ul><li><p><strong>Critical Success:</strong> Learn about two major events. The PC can ask one follow-up question about one of the rumors and get a truthful (if not always complete) answer.</p></li><li><p><strong>Success with Hope:</strong> Learn about two events, at least one of which is relevant to the character's background.</p></li><li><p><strong>Success with Fear:</strong> Learn an alarming rumor related to the character's background.</p></li><li><p><strong>Any Failure:</strong> The locals respond poorly to their inquiries. The PC must mark a Stress to learn one relevant rumor.</p></li></ul><section id=\"secret-IRa0gzmTR2psynpd\" class=\"secret\"><p><em>What news do the PCs have that they could pass along to curious travelers? What do the locals think about these events?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -156,10 +151,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -170,7 +161,7 @@
       "name": "Society of the Broken Compass",
       "type": "feature",
       "system": {
-        "description": "<p>An adventuring society maintains a chapterhouse here, where heroes trade boasts and rumors, drink to their imagined successes, and scheme to undermine their rivals. </p><section id=\"secret-dqbYBpMMEMIe3Woh\" class=\"secret\"><p><em>What boasts do the adventurers here make and which do you think are true?</em></p></section>",
+        "description": "<p>An adventuring society maintains a chapterhouse here, where heroes trade boasts and rumors, drink to their imagined successes, and scheme to undermine their rivals.</p><section id=\"secret-dqbYBpMMEMIe3Woh\" class=\"secret\"><p><em>What boasts do the adventurers here make and which do you think are true?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -185,10 +176,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -199,7 +186,7 @@
       "name": "Rival Party",
       "type": "feature",
       "system": {
-        "description": "<p>Another adventuring party is here, seeking the same treasure or leads as the PCs. </p><section id=\"secret-1CvOSOAzIzFqPzXt\" class=\"secret\"><p><em>Which PC has a connection to one of the rival party members? Do they approach the PC fi rst or do they wait for the PC to move?</em></p></section>",
+        "description": "<p>Another adventuring party is here, seeking the same treasure or leads as the PCs.</p><section id=\"secret-1CvOSOAzIzFqPzXt\" class=\"secret\"><p><em>Which PC has a connection to one of the rival party members? Do they approach the PC fi rst or do they wait for the PC to move?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -214,10 +201,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -228,7 +211,7 @@
       "name": "It'd Be a Shame If Something Happened to Your Store",
       "type": "feature",
       "system": {
-        "description": "<p>The PCs witness as agents of a local crime boss shake down a general goods store. </p><section id=\"secret-QbURC6tIeF3hLLT6\" class=\"secret\"><p><em>What trouble does it cause if the PCs intervene?</em></p></section>",
+        "description": "<p>The PCs witness as agents of a local crime boss shake down a general goods store.</p><section id=\"secret-QbURC6tIeF3hLLT6\" class=\"secret\"><p><em>What trouble does it cause if the PCs intervene?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -243,10 +226,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -264,7 +243,7 @@
             "type": "effect",
             "_id": "UBHQzK5D6Dn5QuPc",
             "systemPath": "actions",
-            "description": "<p>At night, or when the party is alone in a back alley, you can <strong>spend a Fear</strong> to introduce a group of thieves who try to rob them. The thieves appear at Close range of a chosen PC and include a @UUID[Compendium.daggerheart.adversaries.Actor.CBKixLH3yhivZZuL]{Jagged Knife Kneebreaker}, as many @UUID[Compendium.daggerheart.adversaries.Actor.C0OMQqV7pN6t7ouR]{Lackeys} as there are PCs, and a @UUID[Compendium.daggerheart.adversaries.Actor.aTljstqteGoLpCBq]{Lieutenant}. </p><section id=\"secret-8U6iwKGNeWQ27x1A\" class=\"secret\"><p>For a larger party, add a @UUID[Compendium.daggerheart.adversaries.Actor.MbBPIOxaxXYNApXz]{Hexer} or @UUID[Compendium.daggerheart.adversaries.Actor.1zuyof1XuIfi3aMG]{Jagged Knife Sniper}.</p><p><em>What details show the party that these people are desperate former adventurers?</em></p></section>",
+            "description": "<p>At night, or when the party is alone in a back alley, you can <strong>spend a Fear</strong> to introduce a group of thieves who try to rob them. The thieves appear at Close range of a chosen PC and include a @UUID[Compendium.daggerheart.adversaries.Actor.CBKixLH3yhivZZuL]{Jagged Knife Kneebreaker}, as many @UUID[Compendium.daggerheart.adversaries.Actor.C0OMQqV7pN6t7ouR]{Lackeys} as there are PCs, and a @UUID[Compendium.daggerheart.adversaries.Actor.aTljstqteGoLpCBq]{Lieutenant}.</p><section id=\"secret-8U6iwKGNeWQ27x1A\" class=\"secret\"><p>For a larger party, add a @UUID[Compendium.daggerheart.adversaries.Actor.MbBPIOxaxXYNApXz]{Hexer} or @UUID[Compendium.daggerheart.adversaries.Actor.1zuyof1XuIfi3aMG]{Jagged Knife Sniper}.</p><p><em>What details show the party that these people are desperate former adventurers?</em></p></section>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -311,10 +290,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

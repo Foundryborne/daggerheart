@@ -12,7 +12,7 @@
         "type": "damage",
         "_id": "bXbQ57CB1Hfj5XrS",
         "systemPath": "actions",
-        "description": "<p>When you succeed on an attack against a target within Melee range, you can <strong>mark a Stress</strong> to kick yourself off them, dealing an extra <strong>2d6</strong> damage and knocking back either yourself or the target to Very Close range.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -82,10 +82,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!gpW19TfJk0WWFh1S"
 }

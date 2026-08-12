@@ -145,11 +145,6 @@
   "flags": {},
   "_id": "Vy02IhGhkJLuezu4",
   "sort": 2100000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Merchant Baron",
     "displayName": 0,
@@ -371,10 +366,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -385,7 +376,7 @@
       "name": "The Best Muscle Money Can Buy",
       "type": "feature",
       "system": {
-        "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon 1d4+1 Tier 1 adversaries, who appear at Far range, to enforce the @Lookup[@name]’s will.</p>",
+        "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon 1d4+1 Tier 1 adversaries, who appear at Far range, to enforce the @Lookup[@name]'s will.</p>",
         "resource": null,
         "actions": {
           "9NA6vgfsv0y2tX9v": {
@@ -439,10 +430,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

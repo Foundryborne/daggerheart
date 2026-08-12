@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "8DOVMjTtZFKtwX4p",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Describe the defensive stance you take and <strong>spend a Hope</strong>. If an adversary moves within Very Close range, they’re pulled into Melee range and <em>Restrained.</em></p><p class=\"Body-Foundation\">This condition lasts until you move or fail a roll with Fear, or the GM spends 2 Fear on their turn to clear it.</p>",
+    "description": "<p>Describe the defensive stance you take and <strong>spend a Hope</strong>. If an adversary moves within Very Close range, they're pulled into Melee range and <em>Restrained.</em></p><p>This condition lasts until you move or fail a roll with Fear, or the GM spends 2 Fear on their turn to clear it.</p>",
     "domain": "valor",
     "recallCost": 1,
     "level": 9,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "hxupFx3czFHz3xfG",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Describe the defensive stance you take and <strong>spend a Hope</strong>. If an adversary moves within Very Close range, they’re pulled into Melee range and <em>Restrained.</em></p><p class=\"Body-Foundation\">This condition lasts until you move or fail a roll with Fear, or the GM spends 2 Fear on their turn to clear it.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -57,7 +57,7 @@
         "type": "effect",
         "_id": "SKG6Gu0uJZxtYTnz",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">If an adversary moves within Very Close range, they’re pulled into Melee range and <em>Restrained.</em></p>",
+        "description": "<p>If an adversary moves within Very Close range, they're pulled into Melee range and <em>Restrained.</em></p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -127,7 +127,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p class=\"Body-Foundation\">If an adversary moves within Very Close range, they’re pulled into Melee range and <em>Restrained.</em></p><p class=\"Body-Foundation\">This condition lasts until you move or fail a roll with Fear, or the GM spends 2 Fear on their turn to clear it.</p>",
+      "description": "<p>If an adversary moves within Very Close range, they’re pulled into Melee range and <em>Restrained.</em></p><p>This condition lasts until you move or fail a roll with Fear, or the GM spends 2 Fear on their turn to clear it.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -164,7 +164,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p class=\"Body-Foundation\">If an adversary moves within Very Close range, they’re pulled into Melee range and <em>Restrained.</em></p>",
+      "description": "<p>If an adversary moves within Very Close range, they’re pulled into Melee range and <em>Restrained.</em></p>",
       "tint": "#ffffff",
       "statuses": [
         "restrained"
@@ -187,8 +187,5 @@
       "_key": "!items.effects!kdFoLo3KXwn4LqTG.WTYg0b8nE1XbnMiA"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!kdFoLo3KXwn4LqTG"
 }

@@ -4,7 +4,7 @@
   "_id": "v758j4FwNVAurhYK",
   "img": "icons/containers/bags/pouch-cloth-tan.webp",
   "system": {
-    "description": "<p>You can convince this small bag of sand to be much heavier or lighter with a successful <code>[[/dr trait=\"presence\" difficulty=\"10\"]]</code>. Additionally, on a successful <code>[[/dr trait=\"finesse\" difficulty=\"10\"]]</code>, you can blow a bit of sand into a target’s face to make them temporarily Vulnerable.</p>",
+    "description": "<p>You can convince this small bag of sand to be much heavier or lighter with a successful <code>[[/dr trait=\"presence\" difficulty=\"10\"]]</code>. Additionally, on a successful <code>[[/dr trait=\"finesse\" difficulty=\"10\"]]</code>, you can blow a bit of sand into a target's face to make them temporarily Vulnerable.</p>",
     "quantity": 1,
     "actions": {
       "vPXp3uifPTpZxcvt": {
@@ -101,10 +101,6 @@
   ],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!v758j4FwNVAurhYK"
 }

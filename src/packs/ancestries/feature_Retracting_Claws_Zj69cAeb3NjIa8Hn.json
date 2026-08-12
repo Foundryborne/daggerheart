@@ -12,7 +12,7 @@
         "type": "attack",
         "_id": "LcFhDb3sJk8sraAc",
         "systemPath": "actions",
-        "description": "<p>Make an <strong>Agility Roll</strong> to scratch a target within Melee range. On a success, they become temporarily Vulnerable.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -114,10 +114,6 @@
     }
   ],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!Zj69cAeb3NjIa8Hn"
 }

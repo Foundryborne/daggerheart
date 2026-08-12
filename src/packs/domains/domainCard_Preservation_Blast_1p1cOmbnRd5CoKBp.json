@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "1e5Sn8OXxEQ57GSD",
   "system": {
-    "description": "<p></p><p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against all targets within Melee range. Targets you succeed against are forced back to Far range and take <strong>d8+3</strong> magic damage using your Spellcast trait. </p><p></p>",
+    "description": "<p>Make a <strong>Spellcast Roll</strong> against all targets within Melee range. Targets you succeed against are forced back to Far range and take <strong>d8+3</strong> magic damage using your Spellcast trait.</p>",
     "domain": "arcana",
     "recallCost": 2,
     "level": 4,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "QiUrqjOnvkzIymzC",
         "systemPath": "actions",
-        "description": "<p>Make a <strong>Spellcast Roll</strong> against all targets within Melee range. Targets you succeed against are forced back to Far range and take <strong>d8+3</strong> magic damage using your Spellcast trait.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -110,8 +110,5 @@
   "_id": "1p1cOmbnRd5CoKBp",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!1p1cOmbnRd5CoKBp"
 }

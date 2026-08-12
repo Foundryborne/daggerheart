@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "u5Lq2kfC8LlDAGDC",
   "system": {
-    "description": "<p class=\"Domain-Ability\">As an additional downtime move you can choose, roll a d6 to see what you forage. Work with the GM to describe it and add it to your inventory as a consumable. Your party can carry up to five foraged consumables at a time.</p><ol><li><p>A unique food (Clear 2 Stress)</p></li><li><p>A beautiful relic (Gain 2 Hope)</p></li><li><p>An arcane rune (+2 to a Spellcast Roll)</p></li><li>A healing vial (Clear 2 Hit Points)</li><li>A luck charm (Reroll any die)</li><li>Choose one of the options above.</li></ol>",
+    "description": "<p>As an additional downtime move you can choose, roll a d6 to see what you forage. Work with the GM to describe it and add it to your inventory as a consumable. Your party can carry up to five foraged consumables at a time.</p><ol><li><p>A unique food (Clear 2 Stress)</p></li><li><p>A beautiful relic (Gain 2 Hope)</p></li><li><p>An arcane rune (+2 to a Spellcast Roll)</p></li><li>A healing vial (Clear 2 Hit Points)</li><li>A luck charm (Reroll any die)</li><li>Choose one of the options above.</li></ol>",
     "domain": "sage",
     "recallCost": 1,
     "level": 6,
@@ -89,7 +89,7 @@
         "type": "healing",
         "_id": "gNjJLRtEvKB9SCS2",
         "systemPath": "actions",
-        "description": "<p></p><ol start=\"2\"><li><p>A beautiful relic (Gain 2 Hope)</p></li></ol>",
+        "description": "<ol start=\"2\"><li><p>A beautiful relic (Gain 2 Hope)</p></li></ol>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -164,7 +164,7 @@
         "type": "effect",
         "_id": "mZGaBlk8JBcXVCrw",
         "systemPath": "actions",
-        "description": "<p></p><ol start=\"3\"><li><p>An arcane rune (+2 to a Spellcast Roll)</p></li></ol>",
+        "description": "<ol start=\"3\"><li><p>An arcane rune (+2 to a Spellcast Roll)</p></li></ol>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -317,7 +317,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:left;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">+2 to a </span><span class=\"tooltip-convert\" style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:left;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">Spellcast Roll</span></p>",
+      "description": "<p>+2 to a Spellcast Roll</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -331,8 +331,5 @@
       "_key": "!items.effects!06UapZuaA5S6fAKl.cTf5gEem5Gt4fLS4"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!06UapZuaA5S6fAKl"
 }

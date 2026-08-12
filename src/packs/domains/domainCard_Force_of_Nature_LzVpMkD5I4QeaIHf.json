@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "pPzU9WOQNv3ckO1w",
   "system": {
-    "description": "<p class=\"Body-Foundation-No-BOLDITALIC\"><strong>Mark a Stress</strong> to transform into a hulking nature spirit, gaining the following benefits:</p><ul><li class=\"vertical-card-list\"><p>When you succeed on an attack or Spellcast Roll, gain a +10 bonus to the damage roll.</p></li><li class=\"vertical-card-list\"><p>When you deal enough damage to defeat a creature within Close range, you absorb them and clear an Armor Slot.</p></li><li class=\"vertical-card-list\"><p>You can’t be <em>Restrained</em>.</p></li></ul><p class=\"Body-Foundation\">Before you make an action roll, you must <strong>spend a Hope</strong>. If you can’t, you revert to your normal form.</p>",
+    "description": "<p><strong>Mark a Stress</strong> to transform into a hulking nature spirit, gaining the following benefits:</p><ul><li class=\"vertical-card-list\"><p>When you succeed on an attack or Spellcast Roll, gain a +10 bonus to the damage roll.</p></li><li class=\"vertical-card-list\"><p>When you deal enough damage to defeat a creature within Close range, you absorb them and clear an Armor Slot.</p></li><li class=\"vertical-card-list\"><p>You can't be <em>Restrained</em>.</p></li></ul><p>Before you make an action roll, you must <strong>spend a Hope</strong>. If you can't, you revert to your normal form.</p>",
     "domain": "sage",
     "recallCost": 2,
     "level": 10,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "Yf4L0fo5vq4dIZFM",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation-No-BOLDITALIC\"><strong>Mark a Stress</strong> to transform into a hulking nature spirit, gaining the following benefits:</p><ul><li class=\"vertical-card-list\"><p>When you succeed on an attack or Spellcast Roll, gain a +10 bonus to the damage roll.</p></li><li class=\"vertical-card-list\"><p>When you deal enough damage to defeat a creature within Close range, you absorb them and clear an Armor Slot.</p></li><li class=\"vertical-card-list\"><p>You can’t be <em>Restrained</em>.</p></li></ul><p class=\"Body-Foundation\">Before you make an action roll, you must <strong>spend a Hope</strong>. If you can’t, you revert to your normal form.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -57,7 +57,7 @@
         "type": "effect",
         "_id": "1rLoYS90AZizJujS",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Before you make an action roll, you must <strong>spend a Hope</strong>. If you can’t, you revert to your normal form.</p>",
+        "description": "<p>Before you make an action roll, you must <strong>spend a Hope</strong>. If you can't, you revert to your normal form.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -153,7 +153,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<ul><li><p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">When you succeed on an attack or Spellcast Roll, gain a +10 bonus to the damage roll.</span></p></li><li><p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">When you deal enough damage to defeat a creature within Close range, you absorb them and clear an Armor Slot.</span></p></li><li><p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">You can’t be <em style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0)\">Restrained</em>.</span></p></li><li><p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Before you make an action roll, you must </span><span style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">spend a Hope</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">. If you can’t, you revert to your normal form.</span></p></li></ul>",
+      "description": "<ul><li><p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">When you succeed on an attack or Spellcast Roll, gain a +10 bonus to the damage roll.</p></li><li><p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">When you deal enough damage to defeat a creature within Close range, you absorb them and clear an Armor Slot.</p></li><li><p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">You can’t be <em>Restrained</em>.</p></li><li><p>Before you make an action roll, you must spend a Hope. If you can’t, you revert to your normal form.</p></li></ul>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -167,8 +167,5 @@
       "_key": "!items.effects!LzVpMkD5I4QeaIHf.ptBC882plZW39Ld9"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!LzVpMkD5I4QeaIHf"
 }

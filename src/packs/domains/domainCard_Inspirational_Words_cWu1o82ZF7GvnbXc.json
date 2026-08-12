@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "nVCKcZkcoEivYJaF",
   "system": {
-    "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Your speech is imbued with power. After a long rest, place a number of tokens on this card equal to your Presence. When you speak with an ally, you can spend a token from this card to give them one benefit from the following options:</p><ul><li class=\"vertical-card-list-found\"><p>Your ally clears a Stress.</p></li><li class=\"vertical-card-list-found\"><p>Your ally clears a Hit Point.</p></li><li class=\"vertical-card-list-found\"><p>Your ally gains a Hope.</p></li></ul><p class=\"Body-Foundation\">When you take a long rest, clear all unspent tokens.</p>",
+    "description": "<p>Your speech is imbued with power. After a long rest, place a number of tokens on this card equal to your Presence. When you speak with an ally, you can spend a token from this card to give them one benefit from the following options:</p><ul><li class=\"vertical-card-list-found\"><p>Your ally clears a Stress.</p></li><li class=\"vertical-card-list-found\"><p>Your ally clears a Hit Point.</p></li><li class=\"vertical-card-list-found\"><p>Your ally gains a Hope.</p></li></ul><p>When you take a long rest, clear all unspent tokens.</p>",
     "domain": "grace",
     "recallCost": 1,
     "level": 1,
@@ -24,7 +24,7 @@
         "type": "healing",
         "_id": "5sGMd6m6Ltahit4h",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Spend a token from this card to give them the following:</p><ul class=\"\"><li class=\"vertical-card-list-found\"><p>Your ally clears a Stress.</p></li></ul>",
+        "description": "<p>Spend a token from this card to give them the following:</p><ul class=\"\"><li class=\"vertical-card-list-found\"><p>Your ally clears a Stress.</p></li></ul>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -108,7 +108,7 @@
         "type": "healing",
         "_id": "QKS3vo3Nf5CK8rkF",
         "systemPath": "actions",
-        "description": "<p>Spend a token from this card to give them the following:</p><ul class=\"\"><li class=\"vertical-card-list-found\"><p><span style=\"box-sizing: border-box; margin: 0px; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif\">Your ally clears a Hit Point.</p></li></ul>",
+        "description": "<p>Spend a token from this card to give them the following:</p><ul class=\"\"><li class=\"vertical-card-list-found\"><p>Your ally clears a Hit Point.</p></li></ul>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -192,7 +192,7 @@
         "type": "healing",
         "_id": "5xn70wYZW7k9aiVl",
         "systemPath": "actions",
-        "description": "<p>Spend a token from this card to give them the following:</p><ul class=\"\"><li class=\"vertical-card-list-found\"><p><span style=\"box-sizing: border-box; margin: 0px; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif\">Your ally gains a Hope.</p></li></ul>",
+        "description": "<p>Spend a token from this card to give them the following:</p><ul class=\"\"><li class=\"vertical-card-list-found\"><p>Your ally gains a Hope.</p></li></ul>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -288,8 +288,5 @@
   "_id": "cWu1o82ZF7GvnbXc",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!cWu1o82ZF7GvnbXc"
 }

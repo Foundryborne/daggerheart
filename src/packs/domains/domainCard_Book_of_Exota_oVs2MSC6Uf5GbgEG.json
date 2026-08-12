@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "rUGDM9JvGfhh9a2Y",
   "system": {
-    "description": "<p class=\"Card-Feature\"><em><strong>Repudiate:</strong></em> You can interrupt a magical effect taking place. Make a reaction roll using your Spellcast trait. Once per rest on a success, the effect stops and any consequences are avoided.</p><p class=\"Card-Feature\"><em><strong>Create Construct:</strong></em> <strong>Spend a Hope</strong> to choose a group of objects around you and create an animated construct from them that obeys basic commands. Make a <strong>Spellcast Roll</strong> to command them to take action. When necessary, they share your Evasion and traits and their attacks deal <strong>2d10+3</strong> physical damage. You can only maintain one construct at a time, and they fall apart when they take any amount of damage.</p>",
+    "description": "<p><em><strong>Repudiate:</strong></em> You can interrupt a magical effect taking place. Make a reaction roll using your Spellcast trait. Once per rest on a success, the effect stops and any consequences are avoided.</p><p><em><strong>Create Construct:</strong></em> <strong>Spend a Hope</strong> to choose a group of objects around you and create an animated construct from them that obeys basic commands. Make a <strong>Spellcast Roll</strong> to command them to take action. When necessary, they share your Evasion and traits and their attacks deal <strong>2d10+3</strong> physical damage. You can only maintain one construct at a time, and they fall apart when they take any amount of damage.</p>",
     "domain": "codex",
     "recallCost": 3,
     "level": 4,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "6eioK8CoAPfObBP2",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">You can interrupt a magical effect taking place. Make a reaction roll using your Spellcast trait. Once per rest on a success, the effect stops and any consequences are avoided.</p>",
+        "description": "<p>You can interrupt a magical effect taking place. Make a reaction roll using your Spellcast trait. Once per rest on a success, the effect stops and any consequences are avoided.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -67,7 +67,7 @@
         "type": "effect",
         "_id": "6JWhxevxbL0sOcbv",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\"><strong>Spend a Hope</strong> to choose a group of objects around you and create an animated construct from them that obeys basic commands.</p>",
+        "description": "<p><strong>Spend a Hope</strong> to choose a group of objects around you and create an animated construct from them that obeys basic commands.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -105,7 +105,7 @@
         "type": "attack",
         "_id": "MGVKJ8wVac1v8eJv",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll</strong> to command the constructs to take action. When necessary, they share your Evasion and traits and their attacks deal <strong>2d10+3</strong> physical damage. You can only maintain one construct at a time, and they fall apart when they take any amount of damage.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> to command the constructs to take action. When necessary, they share your Evasion and traits and their attacks deal <strong>2d10+3</strong> physical damage. You can only maintain one construct at a time, and they fall apart when they take any amount of damage.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -201,8 +201,5 @@
   "_id": "oVs2MSC6Uf5GbgEG",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!oVs2MSC6Uf5GbgEG"
 }

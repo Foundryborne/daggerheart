@@ -5,7 +5,7 @@
   "_id": "QYNGdH37fsGuxS7L",
   "img": "icons/magic/control/energy-stream-link-white.webp",
   "system": {
-    "description": "<p>You can use your “Contacts Everywhere” feature three times per session. The following options are added to the list of benefits you can choose from when you use that feature: </p><ul><li><p>When you mark 1 or more Hit Points, they can rush out to shield you, reducing the Hit Points marked by 1.</p></li><li><p>When you make a Presence Roll in conversation, they back you up. You can roll a d20 as your Hope Die.</p></li></ul>",
+    "description": "<p>You can use your \"Contacts Everywhere\" feature three times per session. The following options are added to the list of benefits you can choose from when you use that feature:</p><ul><li><p>When you mark 1 or more Hit Points, they can rush out to shield you, reducing the Hit Points marked by 1.</p></li><li><p>When you make a Presence Roll in conversation, they back you up. You can roll a d20 as your Hope Die.</p></li></ul>",
     "resource": null,
     "actions": {},
     "originItemType": null,
@@ -18,10 +18,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!QYNGdH37fsGuxS7L"
 }

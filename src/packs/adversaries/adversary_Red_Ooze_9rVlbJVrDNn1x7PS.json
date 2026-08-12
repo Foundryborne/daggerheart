@@ -140,11 +140,6 @@
   "flags": {},
   "_id": "9rVlbJVrDNn1x7PS",
   "sort": 1700000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Red Ooze",
     "displayName": 0,
@@ -258,10 +253,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -274,7 +265,7 @@
       "_id": "JU9uVwZSM0ItnZRq",
       "img": "icons/magic/fire/blast-jet-stream-splash.webp",
       "system": {
-        "description": "<p>Make an attack against a target within Very Close range. On a success, the target takes <strong>1d8</strong> magic damage and is Ignited until they’re extinguished with a successful Finesse Roll (14). While Ignited, the target takes <strong>1d4</strong> magic damage when they make an action roll.</p>",
+        "description": "<p>Make an attack against a target within Very Close range. On a success, the target takes <strong>1d8</strong> magic damage and is Ignited until they're extinguished with a successful Finesse Roll (14). While Ignited, the target takes <strong>1d4</strong> magic damage when they make an action roll.</p>",
         "resource": null,
         "actions": {
           "b4g8XUIKLhxDlUPy": {
@@ -507,7 +498,7 @@
             "changes": [],
             "duration": {
               "type": "temporary",
-              "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">Until they’re extinguished with a successful Finesse Roll (14)</span></p>"
+              "description": "<p>Until they’re extinguished with a successful Finesse Roll (14)</p>"
             },
             "rangeDependence": null,
             "stacking": null,
@@ -543,10 +534,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -612,10 +599,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

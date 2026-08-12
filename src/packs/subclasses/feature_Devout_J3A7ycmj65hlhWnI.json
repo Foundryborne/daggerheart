@@ -5,7 +5,7 @@
   "_id": "J3A7ycmj65hlhWnI",
   "img": "icons/magic/holy/prayer-hands-glowing-yellow-white.webp",
   "system": {
-    "description": "<p>When you roll your Prayer Dice, you can roll an additional die and discard the lowest result. Additionally, you can use your “Sparing Touch” feature twice instead of once per long rest.</p>",
+    "description": "<p>When you roll your Prayer Dice, you can roll an additional die and discard the lowest result. Additionally, you can use your \"Sparing Touch\" feature twice instead of once per long rest.</p>",
     "resource": null,
     "actions": {},
     "originItemType": null,
@@ -18,10 +18,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "Q9NoTaEarn3VMS6Z": 3
-  },
   "flags": {},
   "_key": "!items!J3A7ycmj65hlhWnI"
 }

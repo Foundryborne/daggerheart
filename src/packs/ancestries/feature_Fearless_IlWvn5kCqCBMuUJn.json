@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "G1H7k5RdvS1EJgFu",
         "systemPath": "actions",
-        "description": "<p>When you roll with Fear, you can <strong>mark 2 Stress</strong> to change it into a roll with Hope instead.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -49,10 +49,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!IlWvn5kCqCBMuUJn"
 }

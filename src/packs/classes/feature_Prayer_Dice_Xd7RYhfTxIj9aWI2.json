@@ -5,7 +5,7 @@
   "_id": "Xd7RYhfTxIj9aWI2",
   "img": "icons/sundries/gaming/dice-runed-tan.webp",
   "system": {
-    "description": "<p>At the beginning of each session, roll a number of d4s equal to your subclass’s Spellcast trait and place them on your character sheet in the space provided. These are your Prayer Dice. You can spend any number of Prayer Dice to aid yourself or an ally within Far range. You can use a spent die’s value to reduce incoming damage, add to a roll’s result after the roll is made, or gain Hope equal to the result. At the end of each session, clear all unspent Prayer Dice.</p>",
+    "description": "<p>At the beginning of each session, roll a number of d4s equal to your subclass's Spellcast trait and place them on your character sheet in the space provided. These are your Prayer Dice. You can spend any number of Prayer Dice to aid yourself or an ally within Far range. You can use a spent die's value to reduce incoming damage, add to a roll's result after the roll is made, or gain Hope equal to the result. At the end of each session, clear all unspent Prayer Dice.</p>",
     "resource": {
       "type": "diceValue",
       "value": 0,
@@ -24,10 +24,6 @@
   },
   "effects": [],
   "sort": 100000,
-  "ownership": {
-    "default": 0,
-    "Q9NoTaEarn3VMS6Z": 3
-  },
   "flags": {},
   "_key": "!items!Xd7RYhfTxIj9aWI2"
 }

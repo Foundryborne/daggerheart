@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "IIVaYseNJbA2ta1B",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Once per long rest, <strong>spend 5 Hope</strong> to cast this spell on two or more willing creatures. Until your next rest, when a creature connected by this union would mark Stress or Hit Points, the connected creatures can choose who marks it.</p>",
+    "description": "<p>Once per long rest, <strong>spend 5 Hope</strong> to cast this spell on two or more willing creatures. Until your next rest, when a creature connected by this union would mark Stress or Hit Points, the connected creatures can choose who marks it.</p>",
     "domain": "codex",
     "recallCost": 1,
     "level": 10,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "FhpWZpXoyXxB13BM",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Once per long rest, <strong>spend 5 Hope</strong> to cast this spell on two or more willing creatures. Until your next rest, when a creature connected by this union would mark Stress or Hit Points, the connected creatures can choose who marks it.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -94,7 +94,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p class=\"Body-Foundation\">Until your next rest, when a creature connected by this union would mark Stress or Hit Points, the connected creatures can choose who marks it.</p><p></p>",
+      "description": "<p>Until your next rest, when a creature connected by this union would mark Stress or Hit Points, the connected creatures can choose who marks it.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -115,8 +115,5 @@
       "_key": "!items.effects!kVkoCLBXLAIifqpz.kMcvp2QKmBP4uinB"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!kVkoCLBXLAIifqpz"
 }

@@ -5,7 +5,7 @@
   "_id": "hNqLf3zEfKRzSbvq",
   "img": "icons/magic/symbols/rune-sigil-hook-white-red.webp",
   "system": {
-    "description": "<p>The extra magic damage from your “Face Your Fear” feature increases to <strong>2d10</strong>.</p>",
+    "description": "<p>The extra magic damage from your \"Face Your Fear\" feature increases to <strong>2d10</strong>.</p>",
     "resource": null,
     "actions": {},
     "originItemType": null,
@@ -18,10 +18,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!hNqLf3zEfKRzSbvq"
 }

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "6gA7SmNIblkMaYgr",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Whisper words of discord to an adversary within Melee range and make a <strong>Spellcast Roll (13)</strong>. On a success, the target must mark a Stress and make an attack against another adversary instead of against you or your allies.</p><p class=\"Body-Foundation\">Once this attack is over, the target realizes what happened. The next time you cast Words of Discord on them, gain a −5 penalty to the Spellcast Roll.</p>",
+    "description": "<p>Whisper words of discord to an adversary within Melee range and make a <strong>Spellcast Roll (13)</strong>. On a success, the target must mark a Stress and make an attack against another adversary instead of against you or your allies.</p><p>Once this attack is over, the target realizes what happened. The next time you cast Words of Discord on them, gain a -5 penalty to the Spellcast Roll.</p>",
     "domain": "grace",
     "recallCost": 1,
     "level": 5,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "8BKvS2s0IPMA8wF9",
         "systemPath": "actions",
-        "description": "<p>Whisper words of discord to an adversary within Melee range and make a <strong>Spellcast Roll (13)</strong>. On a success, the target must mark a Stress and make an attack against another adversary instead of against you or your allies.</p><p class=\"Body-Foundation\">Once this attack is over, the target realizes what happened. The next time you cast Words of Discord on them, gain a −5 penalty to the Spellcast Roll.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -135,7 +135,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span class=\"Body-Foundation\" style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif;color:rgb(239, 230, 216);font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">The target must make an attack against another adversary instead of against you or your allies. Once this attack is over, the target realizes what happened. The next time you cast Words of Discord on them, gain a −5 penalty to the Spellcast Roll.</span></p>",
+      "description": "<p><span class=\"Body-Foundation\" style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif;color:rgb(239, 230, 216);font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">The target must make an attack against another adversary instead of against you or your allies. Once this attack is over, the target realizes what happened. The next time you cast Words of Discord on them, gain a −5 penalty to the Spellcast Roll.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -149,8 +149,5 @@
       "_key": "!items.effects!ZjAdi1FSNCDDHI3X.DGp7TSriFWotAvP6"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!ZjAdi1FSNCDDHI3X"
 }

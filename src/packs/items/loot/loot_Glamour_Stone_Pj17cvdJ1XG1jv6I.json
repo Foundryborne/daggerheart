@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "ATQgH12mufTOQLKs",
         "systemPath": "actions",
-        "description": "<p>Activate this pebble-sized stone to memorize the appearance of someone you can see. Spend a Hope to magically recreate this guise on yourself as an illusion.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -82,10 +82,6 @@
   ],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!Pj17cvdJ1XG1jv6I"
 }

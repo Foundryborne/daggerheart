@@ -140,11 +140,6 @@
   "flags": {},
   "_id": "befIqd5IYKg6eUz2",
   "sort": 1400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Oracle of Doom",
     "displayName": 0,
@@ -356,10 +351,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -474,10 +465,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -625,10 +612,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -639,7 +622,7 @@
       "name": "Summon Tormentors",
       "type": "feature",
       "system": {
-        "description": "<p>Once per day, <strong>spend 2 Fear</strong> to summon <strong>2d4</strong> Tier 2 or below Minions relevant to one of the PC’s personal nightmares. They appear at Close range relative to that PC.</p>",
+        "description": "<p>Once per day, <strong>spend 2 Fear</strong> to summon <strong>2d4</strong> Tier 2 or below Minions relevant to one of the PC's personal nightmares. They appear at Close range relative to that PC.</p>",
         "resource": null,
         "actions": {
           "71UnFo3CBBPtbao3": {
@@ -719,10 +702,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -748,10 +727,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -879,10 +854,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "3e8kCsLzLxiACJDb",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When an attack made against you from beyond Melee range fails, roll a number of <strong>d6s</strong> equal to your Proficiency. If any roll a 6, you can <strong>mark a Stress</strong> to redirect the attack to damage an adversary within Very Close range instead.</p>",
+    "description": "<p>When an attack made against you from beyond Melee range fails, roll a number of <strong>d6s</strong> equal to your Proficiency. If any roll a 6, you can <strong>mark a Stress</strong> to redirect the attack to damage an adversary within Very Close range instead.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 4,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "DRluINMGyhCR84ok",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">When an attack made against you from beyond Melee range fails, roll a number of <strong>d6s</strong> equal to your Proficiency. If any roll a 6, you can <strong>mark a Stress</strong> to redirect the attack to damage an adversary within Very Close range instead.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -65,8 +65,5 @@
   "_id": "faU0XkJCbar69PiN",
   "sort": 3500000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!faU0XkJCbar69PiN"
 }

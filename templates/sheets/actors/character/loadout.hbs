@@ -21,23 +21,55 @@
     </div>
 
     <div class="items-section">
-        {{> 'daggerheart.inventory-items'
-        title='DAGGERHEART.GENERAL.Tabs.loadout'
-        type='domainCard'
-        isGlassy=true
-        cardView=cardView
-        collection=document.system.domainCards.loadout
-        canCreate=@root.editable
-        inVault=false
-        }}
-        {{> 'daggerheart.inventory-items'
-        title='DAGGERHEART.GENERAL.Tabs.vault'
-        type='domainCard'
-        isGlassy=true
-        cardView=cardView
-        collection=document.system.domainCards.vault
-        canCreate=@root.editable
-        inVault=true
-        }}
+        {{#if cardView}}
+            {{> cardList
+                title="DAGGERHEART.GENERAL.Tabs.loadout"
+                collection=document.system.domainCards.loadout
+                inVault=false
+            }}
+            {{> cardList
+                title="DAGGERHEART.GENERAL.Tabs.vault"
+                collection=document.system.domainCards.vault
+                inVault=true
+            }}
+        {{else}}
+            {{> 'daggerheart.inventory-items'
+                title='DAGGERHEART.GENERAL.Tabs.loadout'
+                type='domainCard'
+                isGlassy=true
+                collection=document.system.domainCards.loadout
+                canCreate=@root.editable
+                inVault=false
+            }}
+            {{> 'daggerheart.inventory-items'
+                title='DAGGERHEART.GENERAL.Tabs.vault'
+                type='domainCard'
+                isGlassy=true
+                collection=document.system.domainCards.vault
+                canCreate=@root.editable
+                inVault=true
+            }}
+        {{/if}}
     </div>
 </section>
+
+{{#*inline "cardList"}}
+    <fieldset class="glassy drop-section" data-in-vault="{{inVault}}">
+        <legend>
+            {{localize title}}
+            {{#if @root.editable}}
+                <a data-action="addNewItem" data-document-class="Item" data-type="domainCard" data-tooltip="{{localize "DOCUMENT.Create"}}">
+                    <i class="fa-solid fa-plus icon-button"></i>
+                </a>
+            {{/if}}
+        </legend>
+        <ul class="card-list">
+            {{#each collection as |item|}}
+                {{> 'systems/daggerheart/templates/sheets/global/partials/domain-card-item.hbs'
+                    item=item
+                    type='domainCard'
+                }}
+            {{/each}}
+        </ul>
+    </fieldset>
+{{/inline}}

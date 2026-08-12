@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "EiP5dLozOFZKIeWN",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Before you make an attack, you can <strong>mark a Stress</strong> to gain a bonus to your damage roll equal to twice your Strength.</p><p class=\"Body-Foundation\">You can Rage Up twice per attack.</p>",
+    "description": "<p>Before you make an attack, you can <strong>mark a Stress</strong> to gain a bonus to your damage roll equal to twice your Strength.</p><p>You can Rage Up twice per attack.</p>",
     "domain": "blade",
     "recallCost": 1,
     "level": 6,
@@ -184,8 +184,5 @@
       "_key": "!items.effects!GRL0cvs96vrTDckZ.t6SIjQxB6UBUJ98f"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!GRL0cvs96vrTDckZ"
 }

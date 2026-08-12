@@ -12,7 +12,7 @@
         "type": "attack",
         "_id": "a6WROv0OKx0lbYVa",
         "systemPath": "actions",
-        "description": "<p>Choose an element for your breath (such as electricity, fire, or ice). You can use this breath against a target or group of targets within Very Close range, treating it as an Instinct weapon that deals <strong>d8</strong> magic damage using your Proficiency.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -100,10 +100,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!sRaE3CgkgjBF1UpV"
 }

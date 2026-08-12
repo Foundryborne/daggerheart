@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "u8Yz2hUTaF3N2fFT",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against a target within Melee range. On a success, the target instantly bursts into flames, takes <strong>1d20+3</strong> magic damage, and is temporarily lit <em>On Fire</em>.</p><p class=\"Body-Foundation\">When a creature acts while <em>On Fire</em>, they must take an extra <strong>2d6</strong> magic damage if they are still <em>On Fire</em> at the end of their action.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Melee range. On a success, the target instantly bursts into flames, takes <strong>1d20+3</strong> magic damage, and is temporarily lit <em>On Fire</em>.</p><p>When a creature acts while <em>On Fire</em>, they must take an extra <strong>2d6</strong> magic damage if they are still <em>On Fire</em> at the end of their action.</p>",
     "domain": "arcana",
     "recallCost": 1,
     "level": 2,
@@ -225,8 +225,5 @@
       "_key": "!items.effects!5EP2Lgf7ojfrc0Is.HNKkaWi507whJuYN"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!5EP2Lgf7ojfrc0Is"
 }

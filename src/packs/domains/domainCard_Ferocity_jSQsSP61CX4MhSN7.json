@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "Q9rmrfeKqcqBNnWc",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you cause an adversary to mark 1 or more Hit Points, you can <strong>spend 2 Hope</strong> to increase your Evasion by the number of Hit Points they marked. This bonus lasts until after the next attack made against you.</p>",
+    "description": "<p>When you cause an adversary to mark 1 or more Hit Points, you can <strong>spend 2 Hope</strong> to increase your Evasion by the number of Hit Points they marked. This bonus lasts until after the next attack made against you.</p>",
     "domain": "bone",
     "recallCost": 2,
     "level": 2,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "2X4CqDTpEQjfSE8r",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">When you cause an adversary to mark 1 or more Hit Points, you can <strong>spend 2 Hope</strong> to increase your Evasion by the number of Hit Points they marked. This bonus lasts until after the next attack made against you.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -65,8 +65,5 @@
   "_id": "jSQsSP61CX4MhSN7",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!jSQsSP61CX4MhSN7"
 }

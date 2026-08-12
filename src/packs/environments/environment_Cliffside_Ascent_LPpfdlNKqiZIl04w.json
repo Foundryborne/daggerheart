@@ -30,11 +30,6 @@
   "flags": {},
   "_id": "LPpfdlNKqiZIl04w",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Cliffside Ascent",
     "displayName": 0,
@@ -188,10 +183,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -306,10 +297,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -320,7 +307,7 @@
       "name": "Fall",
       "type": "feature",
       "system": {
-        "description": "<p>Spend a Fear to have a PC’s handhold fail, plummeting them toward the ground. If they aren’t saved on the next action, they hit the ground and tick up the countdown by 2. The PC takes <strong>1d12</strong> physical damage if the countdown is between 8 and 12, <strong>2d12</strong> between 4 and 7, and <strong>3d12</strong> at 3 or lower.</p><section class=\"secret\" id=\"secret-M5AEA24dk07O00FA\"><p><em>How can you tell many others have fallen here before? What lives in these walls that might try to scare adventurers into falling for an easy meal?</em></p></section>",
+        "description": "<p>Spend a Fear to have a PC's handhold fail, plummeting them toward the ground. If they aren't saved on the next action, they hit the ground and tick up the countdown by 2. The PC takes <strong>1d12</strong> physical damage if the countdown is between 8 and 12, <strong>2d12</strong> between 4 and 7, and <strong>3d12</strong> at 3 or lower.</p><section class=\"secret\" id=\"secret-M5AEA24dk07O00FA\"><p><em>How can you tell many others have fallen here before? What lives in these walls that might try to scare adventurers into falling for an easy meal?</em></p></section>",
         "resource": null,
         "actions": {
           "LVEPUPIAJJMiCtbV": {
@@ -638,10 +625,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

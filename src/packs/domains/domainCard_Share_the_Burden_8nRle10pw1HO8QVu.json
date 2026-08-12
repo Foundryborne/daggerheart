@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "VgADdqYn9nS9G1Us",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Once per rest, take on the Stress from a willing creature within Melee range. The target describes what intimate knowledge or emotions telepathically leak from their mind in this moment between you. Transfer any number of their marked Stress to you, then gain a Hope for each Stress transferred.</p>",
+    "description": "<p>Once per rest, take on the Stress from a willing creature within Melee range. The target describes what intimate knowledge or emotions telepathically leak from their mind in this moment between you. Transfer any number of their marked Stress to you, then gain a Hope for each Stress transferred.</p>",
     "domain": "grace",
     "recallCost": 0,
     "level": 6,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "MjSx44ovuKBGVKGs",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Once per rest, take on the Stress from a willing creature within Melee range. The target describes what intimate knowledge or emotions telepathically leak from their mind in this moment between you. Transfer any number of their marked Stress to you, then gain a Hope for each Stress transferred.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -56,8 +56,5 @@
   "_id": "8nRle10pw1HO8QVu",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!8nRle10pw1HO8QVu"
 }

@@ -35,11 +35,6 @@
   "flags": {},
   "_id": "HZKA7hkej7JJY503",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Bustling Marketplace",
     "displayName": 0,
@@ -152,10 +147,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -166,7 +157,7 @@
       "name": "Unexpected Find",
       "type": "feature",
       "system": {
-        "description": "<p>Reveal to the PCs that one of the merchants has something they want or need, such as food from their home, a rare book, magical components, a dubious treasure map, or a magical key. </p><section id=\"secret-vuqosTt63aXllb93\" class=\"secret\"><p><em>What cost beyond gold will the merchant ask for in exchange for this rarity?</em></p></section>",
+        "description": "<p>Reveal to the PCs that one of the merchants has something they want or need, such as food from their home, a rare book, magical components, a dubious treasure map, or a magical key.</p><section id=\"secret-vuqosTt63aXllb93\" class=\"secret\"><p><em>What cost beyond gold will the merchant ask for in exchange for this rarity?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -181,10 +172,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -195,14 +182,14 @@
       "name": "Sticky Fingers",
       "type": "feature",
       "system": {
-        "description": "<p>A thief tries to steal something from a PC. The PC must succeed on an Instinct Roll to notice the thief or lose an item of the GM’s choice as the thief escapes to a Close distance. To retrieve the stolen item, the PCs must complete a <em>Progress Countdown (6)</em> to chase down the thief before the thief completes a <em>Consequence Countdown (4)</em> and escapes to their hideout.</p><section class=\"secret\" id=\"secret-UHBqg2AqmIAxgB15\"><p><em>What drove this person to pickpocketing? Where is the thief’s hideout and how has it avoided notice?</em></p></section>",
+        "description": "<p>A thief tries to steal something from a PC. The PC must succeed on an Instinct Roll to notice the thief or lose an item of the GM's choice as the thief escapes to a Close distance. To retrieve the stolen item, the PCs must complete a <em>Progress Countdown (6)</em> to chase down the thief before the thief completes a <em>Consequence Countdown (4)</em> and escapes to their hideout.</p><section class=\"secret\" id=\"secret-UHBqg2AqmIAxgB15\"><p><em>What drove this person to pickpocketing? Where is the thief's hideout and how has it avoided notice?</em></p></section>",
         "resource": null,
         "actions": {
           "GMy6OcMQnNJDDmtV": {
             "type": "attack",
             "_id": "GMy6OcMQnNJDDmtV",
             "systemPath": "actions",
-            "description": "<p>A thief tries to steal something from a PC. The PC must succeed on an Instinct Roll to notice the thief or lose an item of the GM’s choice as the thief escapes to a Close distance.</p>",
+            "description": "<p>A thief tries to steal something from a PC. The PC must succeed on an Instinct Roll to notice the thief or lose an item of the GM's choice as the thief escapes to a Close distance.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -320,10 +307,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -334,7 +317,7 @@
       "name": "Crowd Closes In",
       "type": "feature",
       "system": {
-        "description": "<p> When one of the PCs splits from the group, the crowds shift and cut them off  from the party. </p><section id=\"secret-JECVv19GdEo8ngkq\" class=\"secret\"><p><em>Where does the crowd’s movement carry them? How do they feel about being alone but surrounded?</em></p></section>",
+        "description": "<p> When one of the PCs splits from the group, the crowds shift and cut them off  from the party.</p><section id=\"secret-JECVv19GdEo8ngkq\" class=\"secret\"><p><em>Where does the crowd's movement carry them? How do they feel about being alone but surrounded?</em></p></section>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -349,10 +332,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
