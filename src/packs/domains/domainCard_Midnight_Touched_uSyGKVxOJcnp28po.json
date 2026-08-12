@@ -89,7 +89,7 @@
         "type": "effect",
         "_id": "Ky5wcwBqgm5bJCK1",
         "systemPath": "actions",
-        "description": "<p><span class=\"vertical-card-list-found\" style=\"box-sizing: border-box; margin: 0px 0px 0.25rem; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif\">When you make a successful attack, you can <strong style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0);\">mark a Stress</strong> to add the result of your Fear Die to your damage roll.</p>",
+        "description": "<p><span class=\"vertical-card-list-found\" style=\"box-sizing: border-box; margin: 0px 0px 0.25rem; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif\">When you make a successful attack, you can <strong>mark a Stress</strong> to add the result of your Fear Die to your damage roll.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [

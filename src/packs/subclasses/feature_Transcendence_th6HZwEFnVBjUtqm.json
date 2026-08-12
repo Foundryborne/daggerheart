@@ -114,7 +114,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">+1 bonus to a character trait of your choice</p>",
+      "description": "<p>+1 bonus to a character trait of your choice</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -151,7 +151,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">+1 bonus to your Proficiency</p>",
+      "description": "<p>+1 bonus to your Proficiency</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -181,7 +181,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">+2 bonus to your Evasion</p>",
+      "description": "<p>+2 bonus to your Evasion</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
