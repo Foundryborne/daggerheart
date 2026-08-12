@@ -119,6 +119,7 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
         for (const change of this.changes) {
             if (change.isSuppressed) return true;
         }
+        return false;
     }
 
     get armorChange() {

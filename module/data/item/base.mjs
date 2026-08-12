@@ -128,7 +128,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
     }
 
     get attributionLabel() {
-        if (!this.attribution) return;
+        if (!this.attribution) return null;
 
         const { source, page } = this.attribution;
         return [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');

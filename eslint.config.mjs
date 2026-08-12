@@ -100,6 +100,7 @@ export default defineConfig([
                 }
             ],
             'array-callback-return': 'error',
+            'getter-return': 'error',
             'no-async-promise-executor': 'error',
             'no-const-assign': 'error',
             'no-dupe-class-members': 'error',
