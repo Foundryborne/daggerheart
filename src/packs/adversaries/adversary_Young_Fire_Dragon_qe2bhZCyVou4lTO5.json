@@ -36,7 +36,7 @@
       },
       "roll": {
         "bonus": 7,
-        "type": null,
+        "type": "attack",
         "trait": null,
         "difficulty": null,
         "advState": "neutral",
@@ -153,9 +153,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -180,9 +177,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -207,9 +201,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -234,9 +225,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -261,9 +249,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -288,9 +273,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -394,10 +376,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "zIB9FQFPvGmS6L2O": 3
-  },
   "flags": {},
   "_key": "!actors!qe2bhZCyVou4lTO5"
 }
