@@ -293,16 +293,9 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
      */
     async _onDrop(event) {
         event.stopPropagation();
-        super._onDrop(event);
-
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
         if (data.fromInternal === this.document.id) return;
-        
-        const documentClass = foundry.utils.getDocumentClass(data.type);
-        if (documentClass) {
-            const document = await documentClass.fromDropData(data);
-            await this._onDropDocument(event, document);
-        }
+        super._onDrop(event);
     }
 
     /**
@@ -355,13 +348,14 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     }
 
     /**
-     * Handle a dropped document on this item sheet. This is a re-implementation of what's in the ActorSheet
+     * Handle a dropped document on this item sheet. This extends the existing functionality to support more than AEs
      * @template {Document} TDocument
      * @param {DragEvent} event         The initiating drop event
      * @param {TDocument} document       The resolved Document class
      * @returns {Promise<TDocument|null>} A Document of the same type as the dropped one in case of a successful result,
      *                                    or null in case of failure or no action being taken
      * @protected
+     * @override
      */
     async _onDropDocument(event, document) {
         switch (document.documentName) {
