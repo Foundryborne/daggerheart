@@ -5,7 +5,7 @@
   "_id": "4y9Ph7RsCIAbkwTk",
   "img": "icons/magic/fire/dagger-rune-enchant-flame-strong-blue.webp",
   "system": {
-    "description": "<p><em>Play the School of War if you want to utilize trained magic for violence.</em></p>",
+    "description": "<p>Play the School of War if you want to utilize trained magic for violence.</p>",
     "spellcastingTrait": "knowledge",
     "features": [
       {

@@ -5,7 +5,7 @@
   "_id": "TIUsIlTS1WkK5vr2",
   "img": "icons/creatures/mammals/elk-moose-marked-green.webp",
   "system": {
-    "description": "<p>You wish to form a deep bond with an animal ally.</p>",
+    "description": "<p>Play the Beastbound if you want to form a deep bond with an animal ally.</p>",
     "spellcastingTrait": "agility",
     "features": [
       {

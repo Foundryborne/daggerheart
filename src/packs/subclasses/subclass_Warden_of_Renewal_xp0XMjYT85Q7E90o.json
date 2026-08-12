@@ -4,7 +4,7 @@
   "_id": "xp0XMjYT85Q7E90o",
   "img": "icons/magic/nature/leaf-juggle-humanoid-green.webp",
   "system": {
-    "description": "<p>You wish to use powerful magic to heal your party.</p>",
+    "description": "<p>Play the Warden of Renewal if you want to use powerful magic to heal your party.</p>",
     "spellcastingTrait": "instinct",
     "features": [
       {

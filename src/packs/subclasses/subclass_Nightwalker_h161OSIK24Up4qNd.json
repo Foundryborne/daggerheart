@@ -5,7 +5,7 @@
   "_id": "h161OSIK24Up4qNd",
   "img": "icons/magic/control/buff-flight-wings-blue.webp",
   "system": {
-    "description": "<p>You wish to manipulate shadows to maneuver through the environment.</p>",
+    "description": "<p>Play the Nightwalker if you want to manipulate shadows to maneuver through the environment.</p>",
     "spellcastingTrait": "finesse",
     "features": [
       {

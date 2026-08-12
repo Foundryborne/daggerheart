@@ -5,7 +5,7 @@
   "_id": "zsUglcU4NgZ8tNgZ",
   "img": "icons/environment/wilderness/mine-interior-dungeon-door.webp",
   "system": {
-    "description": "<p>You wish to hunt your prey and strike with deadly force.</p>",
+    "description": "<p>Play the Wayfinder if you want to hunt your prey and strike with deadly force.</p>",
     "spellcastingTrait": "agility",
     "features": [
       {

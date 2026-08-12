@@ -4,7 +4,7 @@
   "type": "subclass",
   "img": "icons/tools/instruments/harp-gold-glowing.webp",
   "system": {
-    "description": "<p>You wish to play music to bolster your allies.</p>",
+    "description": "<p>Play the Troubadour if you want to play music to bolster your allies.</p>",
     "spellcastingTrait": "presence",
     "features": [
       {

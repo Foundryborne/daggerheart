@@ -5,7 +5,7 @@
   "_id": "qqQlgCqhOivUFoQn",
   "img": "icons/sundries/books/book-tooled-blue-yellow.webp",
   "system": {
-    "description": "<p><em>Play the School of Knowledge if you want a keen understanding of the world around you.</em></p>",
+    "description": "<p>Play the School of Knowledge if you want a keen understanding of the world around you.</p>",
     "spellcastingTrait": "knowledge",
     "features": [
       {

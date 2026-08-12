@@ -4,7 +4,7 @@
   "type": "subclass",
   "img": "icons/tools/scribal/ink-quill-red.webp",
   "system": {
-    "description": "<p>You wish to use clever wordplay and captivate crowds.</p>",
+    "description": "<p>Play the Wordsmith if you want to use clever wordplay and captivate crowds.</p>",
     "spellcastingTrait": "presence",
     "features": [
       {
