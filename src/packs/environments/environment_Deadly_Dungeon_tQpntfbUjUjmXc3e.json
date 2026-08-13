@@ -51,9 +51,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -78,9 +75,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -105,9 +99,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -132,9 +123,6 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -238,10 +226,6 @@
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "zIB9FQFPvGmS6L2O": 3
-  },
   "flags": {},
   "_key": "!actors!tQpntfbUjUjmXc3e"
 }
