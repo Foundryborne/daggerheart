@@ -810,7 +810,7 @@ export const getDiceSoNicePresets = async (
 
 export const refreshTypes = {
     scene: {
-        id: 'session',
+        id: 'scene',
         label: 'DAGGERHEART.GENERAL.RefreshType.scene'
     },
     session: {
