@@ -10,7 +10,10 @@ export default class AncestrySheet extends DHHeritageSheet {
     static PARTS = {
         header: { template: 'systems/daggerheart/templates/sheets/items/ancestry/header.hbs' },
         ...super.PARTS,
-        features: { template: 'systems/daggerheart/templates/sheets/items/ancestry/features.hbs' }
+        features: { 
+            template: 'systems/daggerheart/templates/sheets/items/ancestry/features.hbs',
+            scrollable: ['']
+        }
     };
 
     /**@inheritdoc */

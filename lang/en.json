@@ -2602,6 +2602,10 @@
                 },
                 "gmNotes": {
                     "label": "GM Notes"
+                },
+                "loreReference": {
+                    "label": "Lore Reference",
+                    "hint": "Path or id of full description journal page"
                 }
             },
             "Ancestry": {
@@ -2618,7 +2622,8 @@
                 }
             },
             "Base": {
-                "addGMNote": "Add GM Note"
+                "addGMNote": "Add GM Note",
+                "viewReference": "View Full Details"
             },
             "Beastform": {
                 "FIELDS": {

@@ -1,6 +1,7 @@
 import { MigrationHandlerBase } from './base.mjs';
 
 export class Migration_2_5_2 extends MigrationHandlerBase {
+    /** @inheritdoc */
     version = '2.5.2';
 
     /** @inheritdoc */

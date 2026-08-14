@@ -136,24 +136,27 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
     /**
      * Augments the description for the item with type specific info to display. Implemented in applicable item subtypes.
-     * @param {object} [options] - Options that modify the styling of the rendered template. { headerStyle: undefined|'none'|'large' }
+     * @param {ItemDescriptionOptions} [options] - Options that modify the styling of the rendered template.
      * @returns {Promise<{ prefix: string | null; value: string | null; suffix: string | null }>}
      */
-    async getDescriptionData(_options) {
+    async getDescriptionData(options) {
         return { prefix: null, value: this.description, suffix: null };
     }
 
     /**
      * Gets the enriched and augmented description for the item.
-     * @param {object} [options] - Options that modify the styling of the rendered template. { headerStyle: undefined|'none'|'large' }
+     * @param {ItemDescriptionOptions} [options] - Options that modify the styling of the rendered template.
      * @returns {Promise<string>}
      */
-    async getEnrichedDescription({ gmNotes = true } = {}) {
+    async getEnrichedDescription(options = {}) {
         if (!this.metadata.hasDescription) return '';
+        options.gmNotes ??= true;
+        options.type ??= 'sheet';
 
-        const { prefix, value, suffix } = await this.getDescriptionData();
-        let fullDescription = [prefix, value, suffix].filter(p => !!p).join('\n<hr>\n');
-        if (this.gmNotes && gmNotes) {
+        const { prefix, value, suffix } = await this.getDescriptionData(options);
+        const separator = options.type === 'tooltip' ? '\n' : '\n<hr>\n';
+        let fullDescription = [prefix, value, suffix].filter(p => !!p).join(separator);
+        if (this.gmNotes && options.gmNotes) {
             const gmNotesElement = document.createElement('section');
             gmNotesElement.classList.add('gm-notes-section');
             gmNotesElement.dataset.visibility = 'gm';
