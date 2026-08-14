@@ -1,0 +1,27 @@
+{
+  "type": "ancestry",
+  "name": "Earthkin",
+  "folder": null,
+  "system": {
+    "loreReference": "earthkin",
+    "attribution": {},
+    "description": "<p>Earthkin are humanoids whose bodies are made of flesh and earth.</p>",
+    "gmNotes": "",
+    "features": [
+      {
+        "type": "primary",
+        "item": "Compendium.daggerheart.ancestries.Item.THm8khYAtu2vQrdd"
+      },
+      {
+        "type": "secondary",
+        "item": "Compendium.daggerheart.ancestries.Item.CvUVZRfxgxhmRQ9I"
+      }
+    ]
+  },
+  "_id": "UfSkmzJu8trnSbJW",
+  "img": "systems/daggerheart/assets/icons/documents/items/family-tree.svg",
+  "effects": [],
+  "flags": {},
+  "sort": 0,
+  "_key": "!items!UfSkmzJu8trnSbJW"
+}

@@ -1,0 +1,21 @@
+{
+  "type": "feature",
+  "name": "Close-Knit",
+  "folder": "KA1VSGslxkbvVeMp",
+  "_id": "u5OSsvjcD8tvf5Gc",
+  "img": "systems/daggerheart/assets/icons/documents/items/stars-stack.svg",
+  "system": {
+    "attribution": {},
+    "description": "<p>Once per long rest, you can <strong>spend any number of Hope</strong> to grant an ally within Far range an equal number of Hope.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!u5OSsvjcD8tvf5Gc"
+}

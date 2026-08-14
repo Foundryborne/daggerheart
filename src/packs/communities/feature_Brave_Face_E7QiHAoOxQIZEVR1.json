@@ -1,0 +1,21 @@
+{
+  "type": "feature",
+  "name": "Brave Face",
+  "folder": "KA1VSGslxkbvVeMp",
+  "_id": "E7QiHAoOxQIZEVR1",
+  "img": "systems/daggerheart/assets/icons/documents/items/stars-stack.svg",
+  "system": {
+    "attribution": {},
+    "description": "<p>Once per session when you would be forced to mark a Stress, you can <strong>spend a Hope</strong> instead.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!E7QiHAoOxQIZEVR1"
+}

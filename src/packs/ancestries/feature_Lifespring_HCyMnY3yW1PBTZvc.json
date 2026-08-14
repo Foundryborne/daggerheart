@@ -1,0 +1,21 @@
+{
+  "type": "feature",
+  "name": "Lifespring",
+  "folder": "dSAccOl5ccgXPyje",
+  "_id": "HCyMnY3yW1PBTZvc",
+  "img": "systems/daggerheart/assets/icons/documents/items/stars-stack.svg",
+  "system": {
+    "attribution": {},
+    "description": "<p>Once per rest when you have access to a small amount of water, you can <strong>mark a Stress</strong> to clear a Hit Point on yourself or an ally within Very Close range.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!HCyMnY3yW1PBTZvc"
+}

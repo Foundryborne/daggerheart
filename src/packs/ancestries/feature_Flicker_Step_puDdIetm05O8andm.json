@@ -1,0 +1,21 @@
+{
+  "type": "feature",
+  "name": "Flicker Step",
+  "folder": "dSAccOl5ccgXPyje",
+  "_id": "puDdIetm05O8andm",
+  "img": "systems/daggerheart/assets/icons/documents/items/stars-stack.svg",
+  "system": {
+    "attribution": {},
+    "description": "<p>Once per scene, you can teleport to another point you can see within Far range.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!puDdIetm05O8andm"
+}

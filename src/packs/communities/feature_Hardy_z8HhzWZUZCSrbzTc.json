@@ -1,0 +1,21 @@
+{
+  "type": "feature",
+  "name": "Hardy",
+  "folder": "KA1VSGslxkbvVeMp",
+  "_id": "z8HhzWZUZCSrbzTc",
+  "img": "systems/daggerheart/assets/icons/documents/items/stars-stack.svg",
+  "system": {
+    "attribution": {},
+    "description": "<p>When you take a rest, you clear a Hit Point.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!z8HhzWZUZCSrbzTc"
+}

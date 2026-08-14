@@ -1,0 +1,20 @@
+{
+  "type": "community",
+  "name": "Frostborne",
+  "folder": null,
+  "system": {
+    "loreReference": "frostborne",
+    "attribution": {},
+    "description": "<p>Being part of a frostborne community means you come from a place of snow and ice.</p>",
+    "gmNotes": "",
+    "features": [
+      "Compendium.daggerheart.communities.Item.z8HhzWZUZCSrbzTc"
+    ]
+  },
+  "_id": "YHfNavuBRxvyqeNO",
+  "img": "systems/daggerheart/assets/icons/documents/items/village.svg",
+  "effects": [],
+  "flags": {},
+  "sort": 300000,
+  "_key": "!items!YHfNavuBRxvyqeNO"
+}

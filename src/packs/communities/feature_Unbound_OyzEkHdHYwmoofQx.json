@@ -1,0 +1,21 @@
+{
+  "type": "feature",
+  "name": "Unbound",
+  "folder": "KA1VSGslxkbvVeMp",
+  "_id": "OyzEkHdHYwmoofQx",
+  "img": "systems/daggerheart/assets/icons/documents/items/stars-stack.svg",
+  "system": {
+    "attribution": {},
+    "description": "<p>Once per session when you roll with Fear, you can change it into a roll with Hope instead.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!OyzEkHdHYwmoofQx"
+}

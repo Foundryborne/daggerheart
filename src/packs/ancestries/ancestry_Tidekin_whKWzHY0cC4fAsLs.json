@@ -1,0 +1,27 @@
+{
+  "type": "ancestry",
+  "name": "Tidekin",
+  "folder": null,
+  "system": {
+    "loreReference": "tidekin",
+    "attribution": {},
+    "description": "<p>Tidekin are humanoids whose bodies are made of flesh and water.</p>",
+    "gmNotes": "",
+    "features": [
+      {
+        "type": "primary",
+        "item": "Compendium.daggerheart.ancestries.Item.kFuNdXalIInsFRlh"
+      },
+      {
+        "type": "secondary",
+        "item": "Compendium.daggerheart.ancestries.Item.HCyMnY3yW1PBTZvc"
+      }
+    ]
+  },
+  "_id": "whKWzHY0cC4fAsLs",
+  "img": "systems/daggerheart/assets/icons/documents/items/family-tree.svg",
+  "effects": [],
+  "flags": {},
+  "sort": 0,
+  "_key": "!items!whKWzHY0cC4fAsLs"
+}

@@ -1,0 +1,21 @@
+{
+  "type": "feature",
+  "name": "Nimble Fingers",
+  "folder": "dSAccOl5ccgXPyje",
+  "_id": "tsX9rZ2JRkzgF8DR",
+  "img": "systems/daggerheart/assets/icons/documents/items/stars-stack.svg",
+  "system": {
+    "attribution": {},
+    "description": "<p>When you make a Finesse Roll, you can <strong>spend 2 Hope</strong> to reroll your Hope Die.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!tsX9rZ2JRkzgF8DR"
+}

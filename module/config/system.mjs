@@ -41,6 +41,7 @@ export const SYSTEM = {
      */
     lore: {
         ancestry: {
+            // Core
             clank: 'Compendium.daggerheart.journals.JournalEntry.uNs7ne9VCbbu5dcG.JournalEntryPage.vm5MkqSRuy500afb#clank',
             drakona: 'Compendium.daggerheart.journals.JournalEntry.uNs7ne9VCbbu5dcG.JournalEntryPage.vm5MkqSRuy500afb#drakona',
             dwarf: 'Compendium.daggerheart.journals.JournalEntry.uNs7ne9VCbbu5dcG.JournalEntryPage.vm5MkqSRuy500afb#dwarf',
@@ -58,9 +59,18 @@ export const SYSTEM = {
             katari: 'Compendium.daggerheart.journals.JournalEntry.uNs7ne9VCbbu5dcG.JournalEntryPage.vm5MkqSRuy500afb#katari',
             orc: 'Compendium.daggerheart.journals.JournalEntry.uNs7ne9VCbbu5dcG.JournalEntryPage.vm5MkqSRuy500afb#orc',
             ribbet: 'Compendium.daggerheart.journals.JournalEntry.uNs7ne9VCbbu5dcG.JournalEntryPage.vm5MkqSRuy500afb#ribbet',
-            simiah: 'Compendium.daggerheart.journals.JournalEntry.uNs7ne9VCbbu5dcG.JournalEntryPage.vm5MkqSRuy500afb#simiah'
+            simiah: 'Compendium.daggerheart.journals.JournalEntry.uNs7ne9VCbbu5dcG.JournalEntryPage.vm5MkqSRuy500afb#simiah',
+
+            // Hope and Fear
+            aetheris: '',
+            earthkin: '',
+            emberkin: '',
+            skykin: '',
+            tidekin: '',
+            gnome: ''
         },
         community: {
+            // Core
             highborne: 'Compendium.daggerheart.journals.JournalEntry.uNs7ne9VCbbu5dcG.JournalEntryPage.vm5MkqSRuy500afb#highborne',
             loreborne: 'Compendium.daggerheart.journals.JournalEntry.uNs7ne9VCbbu5dcG.JournalEntryPage.vm5MkqSRuy500afb#loreborne',
             orderborne: 'Compendium.daggerheart.journals.JournalEntry.uNs7ne9VCbbu5dcG.JournalEntryPage.vm5MkqSRuy500afb#orderborne',
@@ -69,7 +79,15 @@ export const SYSTEM = {
             slyborne: 'Compendium.daggerheart.journals.JournalEntry.uNs7ne9VCbbu5dcG.JournalEntryPage.vm5MkqSRuy500afb#slyborne',
             underborne: 'Compendium.daggerheart.journals.JournalEntry.uNs7ne9VCbbu5dcG.JournalEntryPage.vm5MkqSRuy500afb#underborne',
             wanderborne: 'Compendium.daggerheart.journals.JournalEntry.uNs7ne9VCbbu5dcG.JournalEntryPage.vm5MkqSRuy500afb#wanderborne',
-            wildborne: 'Compendium.daggerheart.journals.JournalEntry.uNs7ne9VCbbu5dcG.JournalEntryPage.vm5MkqSRuy500afb#wildborne'
+            wildborne: 'Compendium.daggerheart.journals.JournalEntry.uNs7ne9VCbbu5dcG.JournalEntryPage.vm5MkqSRuy500afb#wildborne',
+
+            // Hope and Fear
+            duneborne: '',
+            freeborne: '',
+            frostborne: '',
+            hearthborne: '',
+            reborne: '',
+            warborne: ''
         }
     }
 };
