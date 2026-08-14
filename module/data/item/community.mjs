@@ -38,7 +38,8 @@ export default class DHCommunity extends BaseDataItem {
         const showReferenceInline = options.type === 'sheet';
         const reference = (CONFIG.DH.lore.community[this.loreReference] ?? this.loreReference ?? '').replace(/\[\]/g, '');
         const label = _loc('DAGGERHEART.ITEMS.Base.viewReference');
-        const referenceLink = showReferenceInline && reference ? `<p>@UUID[${reference}]{${label}}</p>` : '';
+        const referenceLink = showReferenceInline && reference?.includes('JournalEntry.') 
+            ? `<p>@UUID[${reference}]{${label}}</p>` : '';
 
         const baseDescription = `${this.description}${referenceLink}`;
         const features = await getFeaturesHTMLData(this.features);
