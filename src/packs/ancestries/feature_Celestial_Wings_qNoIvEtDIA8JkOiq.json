@@ -3,7 +3,7 @@
   "name": "Celestial Wings",
   "folder": "dSAccOl5ccgXPyje",
   "_id": "qNoIvEtDIA8JkOiq",
-  "img": "systems/daggerheart/assets/icons/documents/items/stars-stack.svg",
+  "img": "icons/creatures/abilities/wings-birdlike-blue.webp",
   "system": {
     "attribution": {},
     "description": "<p>You have wings that allow you to fly. Once per scene while flying, you can <strong>spend a Hope</strong> instead of marking an Armor Slot.</p>",
