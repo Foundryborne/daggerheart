@@ -15,6 +15,10 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         return `${game.i18n.localize('DAGGERHEART.GENERAL.Tabs.settings')}: ${this.action.name}`;
     }
 
+    get item() {
+        return this.action?.item;
+    }
+
     static DEFAULT_OPTIONS = {
         tag: 'form',
         classes: ['daggerheart', 'dh-style', 'action-config', 'dialog', 'max-800'],
@@ -24,6 +28,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         },
         position: { width: 600, height: 'auto' },
         actions: {
+            copyUuid: { handler: DHActionBaseConfig.#onCopyUuid, buttons: [0, 2] },
             toggleSection: this.toggleSection,
             addEffect: this.addEffect,
             removeEffect: this.removeEffect,
@@ -189,6 +194,28 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             ...Object.values(settingsTiers).map(x => ({ key: x.tier, label: x.name }))
         ];
         return context;
+    }
+
+    /** @inheritDoc */
+    _getFrameButtons(options) {
+        const buttons = super._getFrameButtons(options);
+        buttons.push({
+            icon: 'fa-solid fa-passport',
+            label: 'APPLICATION.ACTIONS.CopyUuid',
+            action: 'copyUuid'
+        });
+        return buttons;
+    }
+
+    static #onCopyUuid(event, button) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (event.detail > 1) return;
+        const id = event.button === 2 ? this.action.id : this.action.uuid;
+        const type = event.button === 2 ? 'ID' : 'UUID';
+        const label = game.i18n.localize(this.action.metadata.label);
+        game.clipboard.copyPlainText(id);
+        ui.notifications.info(game.i18n.format('DOCUMENT.IdCopiedClipboard', { label, type, id }));
     }
 
     static toggleSection(_, button) {
@@ -468,9 +495,9 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     }
 
     /** Specific implementation in extending classes **/
-    static async addEffect(_event) {}
-    static removeEffect(_event, _button) {}
-    static editEffect(_event) {}
+    static async addEffect(_event) { }
+    static removeEffect(_event, _button) { }
+    static editEffect(_event) { }
 
     async close(options) {
         this.tabGroups.primary = 'base';
