@@ -37,7 +37,6 @@
             }
         }
     },
-
     "DAGGERHEART": {
         "CharacterSheet": "Character Sheet",
         "ACTIONS": {
@@ -90,10 +89,16 @@
             },
             "Config": {
                 "beastform": {
-                    "exact": { "label": "Beastform Max Tier", "hint": "The Character's Tier is used if empty" },
+                    "exact": {
+                        "label": "Beastform Max Tier",
+                        "hint": "The Character's Tier is used if empty"
+                    },
                     "modifications": {
                         "traitBonuses": {
-                            "label": { "single": "Trait Bonus", "plural": "Trait Bonuses" },
+                            "label": {
+                                "single": "Trait Bonus",
+                                "plural": "Trait Bonuses"
+                            },
                             "hint": "Pick bonuses you apply to freely chosen traits at the time of transforming",
                             "bonus": "Bonus Amount"
                         }
@@ -148,8 +153,12 @@
                 "attackModifier": "Attack Modifier",
                 "attackName": "Attack Name",
                 "criticalThreshold": "Critical Threshold",
-                "includeBase": { "label": "Include Item Damage" },
-                "groupAttack": { "label": "Group Attack" },
+                "includeBase": {
+                    "label": "Include Item Damage"
+                },
+                "groupAttack": {
+                    "label": "Group Attack"
+                },
                 "multiplier": "Multiplier",
                 "saveHint": "Set a default Trait to enable Reaction Roll. It can be changed later in Reaction Roll Dialog.",
                 "resultBased": {
@@ -182,8 +191,12 @@
         },
         "ACTIVEEFFECT": {
             "Config": {
-                "rangeDependence": { "title": "Range Dependence" },
-                "stacking": { "title": "Stacking" },
+                "rangeDependence": {
+                    "title": "Range Dependence"
+                },
+                "stacking": {
+                    "title": "Stacking"
+                },
                 "targetDispositions": "Affected Dispositions"
             },
             "RangeDependance": {
@@ -196,39 +209,75 @@
             "Adversary": {
                 "FIELDS": {
                     "attack": {
-                        "name": { "label": "Name" },
-                        "modifier": { "label": "Modifier" },
-                        "range": { "label": "Range" },
+                        "name": {
+                            "label": "Name"
+                        },
+                        "modifier": {
+                            "label": "Modifier"
+                        },
+                        "range": {
+                            "label": "Range"
+                        },
                         "damage": {
-                            "value": { "label": "Damage" },
-                            "type": { "label": "Damage Type" }
+                            "value": {
+                                "label": "Damage"
+                            },
+                            "type": {
+                                "label": "Damage Type"
+                            }
                         }
                     },
                     "damageThresholds": {
-                        "major": { "label": "Major" },
-                        "severe": { "label": "Severe" }
+                        "major": {
+                            "label": "Major"
+                        },
+                        "severe": {
+                            "label": "Severe"
+                        }
                     },
-                    "description": { "label": "Description" },
-                    "difficulty": { "label": "Difficulty" },
+                    "description": {
+                        "label": "Description"
+                    },
+                    "difficulty": {
+                        "label": "Difficulty"
+                    },
                     "experiences": {
                         "element": {
-                            "name": { "label": "Name" },
-                            "value": { "label": "Modifier" }
+                            "name": {
+                                "label": "Name"
+                            },
+                            "value": {
+                                "label": "Modifier"
+                            }
                         }
                     },
-                    "motivesAndTactics": { "label": "Motives & Tactics" },
+                    "motivesAndTactics": {
+                        "label": "Motives & Tactics"
+                    },
                     "resources": {
                         "hitPoints": {
-                            "value": { "label": "Current" },
-                            "max": { "label": "Max" }
+                            "value": {
+                                "label": "Current"
+                            },
+                            "max": {
+                                "label": "Max"
+                            }
                         },
                         "stress": {
-                            "value": { "label": "Current" },
-                            "max": { "label": "Max" }
+                            "value": {
+                                "label": "Current"
+                            },
+                            "max": {
+                                "label": "Max"
+                            }
                         }
                     },
-                    "tier": { "label": "Tier" },
-                    "type": { "label": "Type" }
+                    "tier": {
+                        "label": "Tier"
+                    },
+                    "type": {
+                        "label": "Type"
+                    }
                 },
                 "hordeDamage": "Horde Damage",
                 "horderHp": "Horde/HP",
@@ -247,7 +296,10 @@
                 "age": "Age",
                 "backgroundQuestions": "Backgrounds",
                 "burden": {
-                    "ignore": { "label": "Burden: Ignore", "hint": "Ignore burden rules" }
+                    "ignore": {
+                        "label": "Burden: Ignore",
+                        "hint": "Ignore burden rules"
+                    }
                 },
                 "companionFeatures": "Companion Features",
                 "connections": "Connections",
@@ -313,17 +365,29 @@
             "Companion": {
                 "FIELDS": {
                     "attack": {
-                        "name": { "label": "Attack Name" }
+                        "name": {
+                            "label": "Attack Name"
+                        }
                     },
                     "evasion": {
-                        "value": { "label": "Evasion" }
+                        "value": {
+                            "label": "Evasion"
+                        }
                     },
-                    "partner": { "label": "Partner" },
+                    "partner": {
+                        "label": "Partner"
+                    },
                     "resources": {
                         "stress": {
-                            "value": { "label": "Stress" },
-                            "currentStress": { "label": "Current Stress" },
-                            "maxStress": { "label": "Max Stress" }
+                            "value": {
+                                "label": "Stress"
+                            },
+                            "currentStress": {
+                                "label": "Current Stress"
+                            },
+                            "maxStress": {
+                                "label": "Max Stress"
+                            }
                         }
                     }
                 },
@@ -351,7 +415,9 @@
             },
             "NPC": {
                 "FIELDS": {
-                    "motives": { "label": "Motives" }
+                    "motives": {
+                        "label": "Motives"
+                    }
                 }
             },
             "Party": {
@@ -461,19 +527,38 @@
                 "FIELDS": {
                     "countdowns": {
                         "element": {
-                            "name": { "label": "Name" },
-                            "hidden": { "label": "Hidden" },
+                            "name": {
+                                "label": "Name"
+                            },
+                            "hidden": {
+                                "label": "Hidden"
+                            },
                             "progress": {
-                                "current": { "label": "Current" },
-                                "looping": { "label": "Looping" },
-                                "start": { "label": "Start" },
-                                "startFormula": { "label": "Start Formula" },
+                                "current": {
+                                    "label": "Current"
+                                },
+                                "looping": {
+                                    "label": "Looping"
+                                },
+                                "start": {
+                                    "label": "Start"
+                                },
+                                "startFormula": {
+                                    "label": "Start Formula"
+                                },
                                 "type": {
-                                    "label": { "label": "Label", "hint": "Used for custom" },
-                                    "value": { "label": "Value" }
+                                    "label": {
+                                        "label": "Label",
+                                        "hint": "Used for custom"
+                                    },
+                                    "value": {
+                                        "label": "Value"
+                                    }
                                 }
                             },
-                            "type": { "label": "Progression Type" }
+                            "type": {
+                                "label": "Progression Type"
+                            }
                         }
                     }
                 },
@@ -756,8 +841,12 @@
                 "title": "Tag Team Roll",
                 "FIELDS": {
                     "initiator": {
-                        "memberId": { "label": "Initiating Character" },
-                        "cost": { "label": "Hope Cost" }
+                        "memberId": {
+                            "label": "Initiating Character"
+                        },
+                        "cost": {
+                            "label": "Hope Cost"
+                        }
                     }
                 },
                 "leaderTitle": "Initiating Character",
@@ -895,13 +984,23 @@
                 "solo": "for each Solo adversary."
             },
             "AreaTypes": {
-                "attached": { "label": "Attached To Token" },
-                "placed": { "label": "Placed In Scene" }
+                "attached": {
+                    "label": "Attached To Token"
+                },
+                "placed": {
+                    "label": "Placed In Scene"
+                }
             },
             "ArmorInteraction": {
-                "none": { "label": "Ignores Armor" },
-                "active": { "label": "Active w/ Armor" },
-                "inactive": { "label": "Inactive w/ Armor" }
+                "none": {
+                    "label": "Ignores Armor"
+                },
+                "active": {
+                    "label": "Active w/ Armor"
+                },
+                "inactive": {
+                    "label": "Inactive w/ Armor"
+                }
             },
             "ArmorFeature": {
                 "burning": {
@@ -1198,13 +1297,26 @@
                 "spotlight": "Spotlight"
             },
             "CountdownType": {
-                "encounter": { "label": "Short Term", "shortLabel": "Short" },
-                "narrative": { "label": "Long Term", "shortLabel": "Long" },
-                "misc": { "label": "Miscellaneous", "shortLabel": "Misc" }
+                "encounter": {
+                    "label": "Short Term",
+                    "shortLabel": "Short"
+                },
+                "narrative": {
+                    "label": "Long Term",
+                    "shortLabel": "Long"
+                },
+                "misc": {
+                    "label": "Miscellaneous",
+                    "shortLabel": "Misc"
+                }
             },
             "DaggerheartDiceAnimationEvents": {
-                "critical": { "name": "Critical" },
-                "higher": { "name": "Highest Roll" }
+                "critical": {
+                    "name": "Critical"
+                },
+                "higher": {
+                    "name": "Highest Roll"
+                }
             },
             "DamageType": {
                 "physical": {
@@ -1259,10 +1371,22 @@
                 }
             },
             "fallAndCollision": {
-                "veryClose": { "label": "Very Close", "chatTitle": "Fall Damage: Very Close" },
-                "close": { "label": "Close", "chatTitle": "Fall Damage: Close" },
-                "far": { "label": "Far", "chatTitle": "Fall Damage: Far" },
-                "collision": { "label": "Collision", "chatTitle": "Dangerous Collision" }
+                "veryClose": {
+                    "label": "Very Close",
+                    "chatTitle": "Fall Damage: Very Close"
+                },
+                "close": {
+                    "label": "Close",
+                    "chatTitle": "Fall Damage: Close"
+                },
+                "far": {
+                    "label": "Far",
+                    "chatTitle": "Fall Damage: Far"
+                },
+                "collision": {
+                    "label": "Collision",
+                    "chatTitle": "Dangerous Collision"
+                }
             },
             "FeatureForm": {
                 "label": "Feature Form",
@@ -1351,9 +1475,15 @@
                 }
             },
             "ReloadChoices": {
-                "off": { "label": "Don't Use" },
-                "manual": { "label": "Manual" },
-                "auto": { "label": "Automatic" }
+                "off": {
+                    "label": "Don't Use"
+                },
+                "manual": {
+                    "label": "Manual"
+                },
+                "auto": {
+                    "label": "Automatic"
+                }
             },
             "RollTypes": {
                 "trait": {
@@ -2021,10 +2151,16 @@
                 "armor": {
                     "FIELDS": {
                         "value": {
-                            "current": { "label": "Marked Armor Slots" },
-                            "max": { "label": "Armor Score" }
+                            "current": {
+                                "label": "Marked Armor Slots"
+                            },
+                            "max": {
+                                "label": "Armor Score"
+                            }
                         },
-                        "interaction": { "label": "Armor Interaction" }
+                        "interaction": {
+                            "label": "Armor Interaction"
+                        }
                     }
                 },
                 "standardAttack": {
@@ -2287,7 +2423,9 @@
                     "vulnerable": "Condition Immunity: Vulnerable"
                 },
                 "damageReduction": {
-                    "disabledArmor": { "label": "Disabled Armorslots" },
+                    "disabledArmor": {
+                        "label": "Disabled Armorslots"
+                    },
                     "increasePerArmorMark": {
                         "label": "Damage Reduction per Armor Slot",
                         "hint": "A used armor slot normally reduces damage by one step. This value increases the number of steps damage is reduced by."
@@ -2346,10 +2484,14 @@
                             "label": "Base Attack: Damage Dice Index",
                             "hint": "Index for the damage dice used on the basic attack. 0=d4, 1=d6, 2=d8, 3=d10, 4=d12, 5=d20"
                         },
-                        "bonus": { "label": "Base Attack: Damage Bonus" }
+                        "bonus": {
+                            "label": "Base Attack: Damage Bonus"
+                        }
                     },
                     "roll": {
-                        "trait": { "label": "Base Attack: Trait" }
+                        "trait": {
+                            "label": "Base Attack: Trait"
+                        }
                     }
                 }
             },
@@ -2583,19 +2725,41 @@
         "ITEMS": {
             "FIELDS": {
                 "attribution": {
-                    "source": { "label": "Source" },
-                    "page": { "label": "Page" },
-                    "artist": { "label": "Artist" }
+                    "source": {
+                        "label": "Source"
+                    },
+                    "page": {
+                        "label": "Page"
+                    },
+                    "artist": {
+                        "label": "Artist"
+                    }
                 },
                 "resource": {
-                    "amount": { "label": "Amount" },
-                    "dieFaces": { "label": "Die Faces" },
-                    "icon": { "label": "Icon" },
-                    "max": { "label": "Max" },
-                    "progression": { "label": "Progression" },
-                    "recovery": { "label": "Recovery" },
-                    "type": { "label": "Type" },
-                    "value": { "label": "Value" }
+                    "amount": {
+                        "label": "Amount"
+                    },
+                    "dieFaces": {
+                        "label": "Die Faces"
+                    },
+                    "icon": {
+                        "label": "Icon"
+                    },
+                    "max": {
+                        "label": "Max"
+                    },
+                    "progression": {
+                        "label": "Progression"
+                    },
+                    "recovery": {
+                        "label": "Recovery"
+                    },
+                    "type": {
+                        "label": "Type"
+                    },
+                    "value": {
+                        "label": "Value"
+                    }
                 },
                 "identifier": {
                     "label": "Identifier"
@@ -2622,32 +2786,70 @@
             },
             "Beastform": {
                 "FIELDS": {
-                    "beastformType": { "label": "Beastform Type" },
-                    "tier": { "label": "Tier" },
-                    "mainTrait": { "label": "Main Trait" },
-                    "examples": { "label": "Examples" },
-                    "advantageOn": { "label": "Gain Advantage On" },
-                    "tokenImg": { "label": "Token Image" },
-                    "tokenRingImg": { "label": "Subject Texture" },
+                    "beastformType": {
+                        "label": "Beastform Type"
+                    },
+                    "tier": {
+                        "label": "Tier"
+                    },
+                    "mainTrait": {
+                        "label": "Main Trait"
+                    },
+                    "examples": {
+                        "label": "Examples"
+                    },
+                    "advantageOn": {
+                        "label": "Gain Advantage On"
+                    },
+                    "tokenImg": {
+                        "label": "Token Image"
+                    },
+                    "tokenRingImg": {
+                        "label": "Subject Texture"
+                    },
                     "tokenSize": {
                         "placeholder": "Token Size",
                         "disabledPlaceholder": "Token Size",
-                        "height": { "label": "Height" },
-                        "width": { "label": "Width" },
-                        "depth": { "label": "Depth" },
-                        "scale": { "label": "Token Scale" }
+                        "height": {
+                            "label": "Height"
+                        },
+                        "width": {
+                            "label": "Width"
+                        },
+                        "depth": {
+                            "label": "Depth"
+                        },
+                        "scale": {
+                            "label": "Token Scale"
+                        }
                     },
                     "evolved": {
-                        "maximumTier": { "label": "Maximum Tier" },
-                        "mainTraitBonus": { "label": "Main Trait Bonus" },
-                        "damageBonus": { "label": "Damage Bonus" },
-                        "evasionBonus": { "label": "Evasion Bonus" },
-                        "increaseDamageDice": { "label": "Damage Dice Size Increases" }
+                        "maximumTier": {
+                            "label": "Maximum Tier"
+                        },
+                        "mainTraitBonus": {
+                            "label": "Main Trait Bonus"
+                        },
+                        "damageBonus": {
+                            "label": "Damage Bonus"
+                        },
+                        "evasionBonus": {
+                            "label": "Evasion Bonus"
+                        },
+                        "increaseDamageDice": {
+                            "label": "Damage Dice Size Increases"
+                        }
                     },
                     "hybrid": {
-                        "beastformOptions": { "label": "Nr Beastforms" },
-                        "advantages": { "label": "Nr Advantages" },
-                        "features": { "label": "Nr Features" }
+                        "beastformOptions": {
+                            "label": "Nr Beastforms"
+                        },
+                        "advantages": {
+                            "label": "Nr Advantages"
+                        },
+                        "features": {
+                            "label": "Nr Features"
+                        }
                     }
                 },
                 "attackName": "Beast Attack",
@@ -2730,7 +2932,9 @@
         },
         "ROLLTABLES": {
             "FIELDS": {
-                "formulaName": { "label": "Formula Name" }
+                "formulaName": {
+                    "label": "Formula Name"
+                }
             },
             "formula": "Formula"
         },
@@ -2788,7 +2992,9 @@
                             "label": "Target"
                         }
                     },
-                    "useResourcePips": { "label": "Pip Display For Resources" }
+                    "useResourcePips": {
+                        "label": "Pip Display For Resources"
+                    }
                 },
                 "fearDisplay": {
                     "token": "Tokens",
@@ -2818,20 +3024,42 @@
                         "hint": "Wether using armor and reductions has rules on by default"
                     },
                     "defeated": {
-                        "enabled": { "label": "Enabled" },
-                        "overlay": { "label": "Overlay Effect" },
-                        "characterDefault": { "label": "Character Default Defeated Status" },
-                        "adversaryDefault": { "label": "Adversary Default Defeated Status" },
-                        "companionDefault": { "label": "Companion Default Defeated Status" },
-                        "deathMove": { "label": "Death Move" },
-                        "dead": { "label": "Dead" },
-                        "defeated": { "label": "Defeated" },
-                        "unconscious": { "label": "Unconscious" }
+                        "enabled": {
+                            "label": "Enabled"
+                        },
+                        "overlay": {
+                            "label": "Overlay Effect"
+                        },
+                        "characterDefault": {
+                            "label": "Character Default Defeated Status"
+                        },
+                        "adversaryDefault": {
+                            "label": "Adversary Default Defeated Status"
+                        },
+                        "companionDefault": {
+                            "label": "Companion Default Defeated Status"
+                        },
+                        "deathMove": {
+                            "label": "Death Move"
+                        },
+                        "dead": {
+                            "label": "Dead"
+                        },
+                        "defeated": {
+                            "label": "Defeated"
+                        },
+                        "unconscious": {
+                            "label": "Unconscious"
+                        }
                     },
                     "hopeFear": {
                         "label": "Hope & Fear",
-                        "gm": { "label": "GM" },
-                        "players": { "label": "Players" }
+                        "gm": {
+                            "label": "GM"
+                        },
+                        "players": {
+                            "label": "Players"
+                        }
                     },
                     "vulnerableAutomation": {
                         "label": "Vulnerable Automation",
@@ -2943,21 +3171,39 @@
                 "deleteResourceTitle": "Delete Homebrew Resource",
                 "deleteResourceText": "Are you sure you want to delete the resource?",
                 "FIELDS": {
-                    "maxFear": { "label": "Max Fear" },
-                    "maxHope": { "label": "Max Hope" },
-                    "traitArray": { "label": "Initial Trait Modifiers" },
+                    "maxFear": {
+                        "label": "Max Fear"
+                    },
+                    "maxHope": {
+                        "label": "Max Hope"
+                    },
+                    "traitArray": {
+                        "label": "Initial Trait Modifiers"
+                    },
                     "maxLoadout": {
                         "label": "Max Cards in Loadout",
                         "hint": "Set to blank or 0 for unlimited maximum"
                     },
                     "resources": {
                         "resources": {
-                            "value": { "label": "Icon" },
-                            "isIcon": { "label": "Font Awesome Icon" },
-                            "noColorFilter": { "label": "Disable Color Filter" }
+                            "value": {
+                                "label": "Icon"
+                            },
+                            "isIcon": {
+                                "label": "Font Awesome Icon"
+                            },
+                            "noColorFilter": {
+                                "label": "Disable Color Filter"
+                            }
                         }
                     },
-                    "maxDomains": { "label": "Max Class Domains", "hint": "Max domains you can set on a class" }
+                    "maxDomains": {
+                        "label": "Max Class Domains",
+                        "hint": "Max domains you can set on a class"
+                    },
+                    "tokenSizes": {
+                        "label": "Token Sizes"
+                    }
                 },
                 "currency": {
                     "title": "Currency Overrides",
@@ -3074,12 +3320,18 @@
             "VariantRules": {
                 "FIELDS": {
                     "actionTokens": {
-                        "enabled": { "label": "Enabled" },
-                        "tokens": { "label": "Tokens" }
+                        "enabled": {
+                            "label": "Enabled"
+                        },
+                        "tokens": {
+                            "label": "Tokens"
+                        }
                     },
                     "massiveDamage": {
                         "title": "Massive Damage",
-                        "enabled": { "label": "Enabled" }
+                        "enabled": {
+                            "label": "Enabled"
+                        }
                     }
                 }
             },
@@ -3090,7 +3342,9 @@
             "Scene": {
                 "FIELDS": {
                     "rangeMeasurement": {
-                        "setting": { "label": "Setting" }
+                        "setting": {
+                            "label": "Setting"
+                        }
                     }
                 },
                 "disabledText": "Daggerheart Measurements are disabled in System Settings - Variant Rules",
@@ -3197,8 +3451,8 @@
                 "toggleIconMode": "Toggle Icon Only",
                 "hidden": "This countdown is hidden to all players.",
                 "hiddenPartial": "This countdown is hidden to players except {players}.",
-                "reveal":"Reveal Countdown",
-                "hide":"Hide Countdown",
+                "reveal": "Reveal Countdown",
+                "hide": "Hide Countdown",
                 "loop": "Looping",
                 "decreasingLoop": "Decreasing Looping",
                 "increasingLoop": "Increasing Looping",
