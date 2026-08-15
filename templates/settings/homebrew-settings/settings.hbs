@@ -17,7 +17,7 @@
             {{#each settingFields._source.traitArray as |trait index|}}
             <div class="input trait-item">
                 <span>{{localize "DAGGERHEART.GENERAL.Modifier.single"}} {{add index 1}}</span>
-                <input type="text" data-dtype="Number" name="{{concat " traitArray." index}}" value="{{this}}" />
+                <input type="text" data-dtype="Number" name="{{concat "traitArray." index}}" value="{{this}}" />
             </div>
             {{/each}}
         </fieldset>
