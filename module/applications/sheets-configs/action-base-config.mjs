@@ -15,6 +15,10 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         return `${game.i18n.localize('DAGGERHEART.GENERAL.Tabs.settings')}: ${this.action.name}`;
     }
 
+    get item() {
+        return this.action?.item;
+    }
+
     static DEFAULT_OPTIONS = {
         tag: 'form',
         classes: ['daggerheart', 'dh-style', 'action-config', 'dialog', 'max-800'],
@@ -130,6 +134,17 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         htmlElement.querySelectorAll('.transform-resource input').forEach(element => {
             element.addEventListener('change', this.updateTransformResource.bind(this));
         });
+    }
+
+    /** @inheritDoc */
+    _onFirstRender(context, options) {
+        super._onFirstRender(context, options);
+        this.item.apps[this.id] = this;
+    }
+
+    /** @override */
+    _onClose(_options) {
+        delete this.item.apps[this.id];
     }
 
     async _prepareContext(_options) {
@@ -468,9 +483,9 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     }
 
     /** Specific implementation in extending classes **/
-    static async addEffect(_event) {}
-    static removeEffect(_event, _button) {}
-    static editEffect(_event) {}
+    static async addEffect(_event) { }
+    static removeEffect(_event, _button) { }
+    static editEffect(_event) { }
 
     async close(options) {
         this.tabGroups.primary = 'base';
