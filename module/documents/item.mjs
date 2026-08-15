@@ -12,7 +12,7 @@ export default class DHItem extends foundry.documents.Item {
      */
     get sourceUuid() {
         const isCompendium = this._id && this.pack && !this.isEmbedded;
-        return isCompendium ? this.uuid : this._stats.duplicateSource ?? this._stats.compendiumSource ?? this.uuid;
+        return isCompendium ? this.uuid : this._stats.compendiumSource ?? this._stats.duplicateSource ?? this.uuid;
     }
 
     /** @inheritDoc */
