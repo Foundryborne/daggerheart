@@ -8,49 +8,40 @@
         <span data-tooltip="{{systemFields.loreReference.hint}}">{{systemFields.loreReference.label}}</span>
         {{formInput systemFields.loreReference value=(coalesce source.system.loreReference "")}}
     </fieldset>
-    <fieldset class="one-column drop-section primary-feature" data-type="primary">
-        <legend>
-            {{localize "DAGGERHEART.ITEMS.Ancestry.primaryFeature"}}
-            {{#unless document.system.primaryFeature}}<a><i data-action="addFeature" data-type="primary" class="fa-solid fa-plus icon-button"></i></a>{{/unless}}
-        </legend>
-        <div class="features-list">
-            {{#if document.system.primaryFeature}}
-                <div class="feature-item"
-                    data-action="editDoc"
-                    data-item-uuid="{{document.system.primaryFeature.uuid}}"
-                    data-type="primary"
-                    id="{{document.system.primaryFeature._id}}"
-                >
-                    <img class="image" src="{{document.system.primaryFeature.img}}" />
-                    <span>{{document.system.primaryFeature.name}}</span>
-                    <div class="controls">
-                        <a data-action="deleteFeature"><i class="fa-solid fa-trash"></i></a>
-                    </div>
-                </div> 
-            {{/if}}
-        </div>
-    </fieldset>
-
-    <fieldset class="one-column drop-section secondary-feature" data-type="secondary">
-        <legend>
-            {{localize "DAGGERHEART.ITEMS.Ancestry.secondaryFeature"}} 
-            {{#unless document.system.secondaryFeature}}<a><i data-action="addFeature" data-type="secondary" class="fa-solid fa-plus icon-button"></i></a>{{/unless}}
-        </legend>
-        <div class="features-list">
-            {{#if document.system.secondaryFeature}}
-                <div class="feature-item"
-                    data-action="editDoc"
-                    data-item-uuid="{{document.system.secondaryFeature.uuid}}"
-                    data-type="secondary"
-                    id="{{document.system.secondaryFeature._id}}"
-                >
-                    <img class="image" src="{{document.system.secondaryFeature.img}}" />
-                    <span>{{document.system.secondaryFeature.name}}</span>
-                    <div class="controls">
-                        <a data-action="deleteFeature"><i class="fa-solid fa-trash"></i></a>
-                    </div>
-                </div> 
-            {{/if}}
-        </div>
-    </fieldset>
+    {{> featuresSection label=(localize "DAGGERHEART.ITEMS.Ancestry.primaryFeature") type="primary" features=primaryFeatures}}
+    {{> featuresSection label=(localize "DAGGERHEART.ITEMS.Ancestry.secondaryFeature") type="secondary" features=secondaryFeatures}}
 </section>
+
+{{#*inline "featuresSection"}}
+    <fieldset class="one-column drop-section" data-type="{{type}}">
+        <legend>
+            {{label}} 
+            {{#unless features.length}}<a><i data-action="addFeature" data-type="{{type}}" class="fa-solid fa-plus icon-button"></i></a>{{/unless}}
+        </legend>
+        <div class="feature-list">
+            {{#each features as |feature|}}
+                <div class="feature-line"
+                    data-item-uuid="{{feature.uuid}}"
+                    data-type="{{type}}"
+                    data-item-id="{{feature.item._id}}"
+                >
+                    {{#if feature.item}}
+                        <img class="image" src="{{feature.item.img}}" />
+                        <span>{{feature.item.name}}</span>
+                    {{else}}
+                        <i class="fa-solid fa-link-slash hint image-icon" inert></i>
+                        <span class="hint">{{localize "DAGGERHEART.GENERAL.missingX" x=(localize "TYPES.Item.feature")}}</span>
+                    {{/if}}
+                    <div class="controls">
+                        {{#if feature}}
+                            <a class="effect-control" data-action='editDoc' data-tooltip="DAGGERHEART.UI.Tooltip.openItemWorld">
+                                <i class="fa-solid fa-globe"></i>
+                            </a>
+                        {{/if}}
+                        <a data-action="deleteFeature"><i class="fa-solid fa-trash"></i></a>
+                    </div>
+                </div> 
+            {{/each}}
+        </div>
+    </fieldset>
+{{/inline}}

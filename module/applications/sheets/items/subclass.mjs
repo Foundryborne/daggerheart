@@ -43,6 +43,7 @@ export default class SubclassSheet extends DHBaseItemSheet {
 
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
+        context.features = Object.groupBy(this.item.system.features, f => f.type);
         if (this.document.system.linkedClass) {
             const classData = await fromUuid(this.document.system.linkedClass);
             context.class = classData ?? {

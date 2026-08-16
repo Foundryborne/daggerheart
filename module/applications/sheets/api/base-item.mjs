@@ -226,7 +226,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             await this.document.update({
                 'system.features': this.document.system.features
                     .filter(x => target.dataset.type !== x.type || x.item.uuid !== feature.uuid)
-                    .map(x => ({ ...x, item: x.item.uuid }))
+                    .map(x => ({ ...x, item: x.item?.uuid }))
             });
         }
     }

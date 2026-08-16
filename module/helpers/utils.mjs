@@ -392,14 +392,10 @@ export function addLinkedItemsDiff(changedItems, currentItems, options) {
  * @param {object} sheet                  The application to add or remove from document apps
  */
 export function updateLinkedItemApps(options, sheet) {
-    options.toLink?.forEach(featureUuid => {
+    for (const featureUuid of [...(options.toUnlink ?? []), ...(options.toLink ?? [])]) {
         const doc = foundry.utils.fromUuidSync(featureUuid);
-        doc.apps[sheet.id] = sheet;
-    });
-    options.toUnlink?.forEach(featureUuid => {
-        const doc = foundry.utils.fromUuidSync(featureUuid);
-        delete doc.apps[sheet.id];
-    });
+        if (doc) doc.apps[sheet.id] = sheet;
+    }
 }
 
 export const itemAbleRollParse = (value, actor, item) => {
@@ -551,13 +547,22 @@ export function getIconVisibleActiveEffects(effects) {
 export async function getFeaturesHTMLData(features) {
     const result = [];
     for (const feature of features) {
-        if (feature) {
-            const base = feature.item ?? feature;
-            const item = base.system ? base : await foundry.utils.fromUuid(base.uuid);
-            const itemDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
-                item.system.description
-            );
-            result.push({ label: item.name, description: itemDescription });
+        if (!feature) continue;
+        
+        const base = feature.item ?? feature;
+        const item = base.system ? base : await foundry.utils.fromUuid(base.uuid);
+        if (item) {
+            result.push({ 
+                label: item.name, 
+                description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+                    item.system.description
+                )
+            });
+        } else {
+            result.push({ 
+                label: _loc('DAGGERHEART.GENERAL.missingX', { x: _loc('TYPES.Item.feature')}),
+                description: _loc('DAGGERHEART.GENERAL.missingItemDescription')
+            })
         }
     }
 

@@ -2506,6 +2506,7 @@
                 "plural": "Miss"
             },
             "missingX": "Missing {x}",
+            "missingItemDescription": "The referenced item no longer exists",
             "maxWithThing": "Max {thing}",
             "missingDragDropThing": "Drop {thing} here",
             "multiclass": "Multiclass",
