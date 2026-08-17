@@ -23,7 +23,9 @@ export async function DhEmbedTableEnricher(match) {
     const headerRow = document.createElement('tr');
     head.appendChild(headerRow);
     for (const cell of definition.cells) {
-        headerRow.append(createHtmlElement('th', { text: _loc(cell.label) }));
+        const element = createHtmlElement('th', { text: _loc(cell.label) });
+        if (cell.cssClass) element.classList.add(cell.cssClass);
+        headerRow.append(element);
     }
 
     const runData = definition.init?.();
@@ -31,36 +33,43 @@ export async function DhEmbedTableEnricher(match) {
         const row = body.appendChild(document.createElement('tr'));
         for (const cell of definition.cells) {
             const key = cell.html ? 'html' : 'text';
-            row.append(createHtmlElement('td', { [key]: await cell.value(item, runData) }));
+            const element = createHtmlElement('td', { [key]: await cell.value(item, runData) });
+            if (cell.cssClass) element.classList.add(cell.cssClass);
+            row.append(element);
         }
     }
 
     return element;
 }
 
-/** @type {Record<string, { init?: () => unknown; cells: { label: string; value: (item: DHItem, init) => string | Promise<string>; html?: boolean }[] }>} */
+/** @type {Record<string, { init?: () => unknown; cells: { label: string; cssClass?: string; value: (item: DHItem, init) => string | Promise<string>; html?: boolean }[] }>} */
 const rowsByItemType = {
     weapon: {
         init: () => ({ features: CONFIG.DH.ITEM.allWeaponFeatures() }),
         cells: [
             {
                 label: 'DAGGERHEART.GENERAL.name',
+                cssClass: 'name',
                 value: i => i.name
             },
             {
                 label: 'DAGGERHEART.GENERAL.Trait.single',
+                cssClass: 'trait',
                 value: i => _loc(CONFIG.DH.ACTOR.abilities[i.system.attack.roll.trait]?.label)
             },
             {
                 label: 'DAGGERHEART.GENERAL.range',
+                cssClass: 'range',
                 value: i => _loc(CONFIG.DH.GENERAL.templateRanges[i.system.attack.range]?.label) 
             },
             {
                 label: 'DAGGERHEART.GENERAL.burden',
+                cssClass: 'burden',
                 value: i => _loc(CONFIG.DH.GENERAL.burden[i.system.burden]?.label)
             },
             {
                 label: 'TYPES.Item.feature',
+                cssClass: 'features',
                 value: async (item, { features }) => {
                     const itemFeatures = item.system.weaponFeatures.map(x => features[x.value]).filter(x => x);
                     if (!itemFeatures.length) return '—';
@@ -82,18 +91,22 @@ const rowsByItemType = {
         cells: [
             {
                 label: 'DAGGERHEART.GENERAL.name',
+                cssClass: 'name',
                 value: i => i.name
             },
             {
                 label: 'DAGGERHEART.ITEMS.Armor.baseThresholds.base',
+                cssClass: 'thresholds',
                 value: i => `${i.system.baseThresholds.major} / ${i.system.baseThresholds.severe}`
             },
             {
                 label: 'DAGGERHEART.ITEMS.Armor.baseScore',
+                cssClass: 'armor-score',
                 value: i => i.system.armor.max
             },
             {
                 label: 'TYPES.Item.feature',
+                cssClass: 'features',
                 value: async (i, { features }) => {
                     const itemFeatures = i.system.armorFeatures.map(x => features[x.value]).filter(x => x);
                     if (!itemFeatures.length) return '—';
