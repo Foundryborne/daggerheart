@@ -48,7 +48,6 @@
 
         <div class="feature-list">
             {{#each features as | feature |}}
-                {{log feature}}
                 {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type=type uuid=feature.uuid feature=feature.item}}
             {{else}}
                 <div class="drag-area">{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "TYPES.Item.feature")}}</div>
