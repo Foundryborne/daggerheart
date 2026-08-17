@@ -6,6 +6,9 @@ export const customChangeTypes = {
     },
     standardAttack: {
         id: 'standardAttack'
+    },
+    ephemeral: {
+        id: 'ephemeral'
     }
 };
 
