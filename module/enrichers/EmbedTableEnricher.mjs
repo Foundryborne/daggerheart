@@ -4,14 +4,14 @@ import { parseInlineParams } from './parser.mjs';
 /** 
  * Enricher to generate a book like table of items. Supports common inventory item types.
  * Supports the following formats.
- * - @EnrichTable[uuid1 uuid2 uuid3 ...]
- * - @EnrichTable[path:path.to.something]
- * - @EnrichTable[rollTable:uuid]
+ * - @EmbedTable[uuid1 uuid2 uuid3 ...]
+ * - @EmbedTable[path:path.to.something]
+ * - @EmbedTable[rollTable:uuid]
  * For all of them, type:itemType restricts the item type and handles the empty item case.
  * The rollTable format also the following additional params:
  * - min: and max: params control what range is displayed
  * - digits: adds 0 padding to the roll result. If omitted, it figures it out from the highest number
- * For example: @EnrichTable[rollTable:Compendium.daggerheart.rolltables.RollTable.tF04P02yVN1YDVel|min:1|max:13] shows values 1 to 13 of the consumable table
+ * For example: @EmbedTable[rollTable:Compendium.daggerheart.rolltables.RollTable.tF04P02yVN1YDVel|min:1|max:13] shows values 1 to 13 of the consumable table
  */
 export async function DhEmbedTableEnricher(match) {
     const params = parseInlineParams(match[1], { first: 'uuids' });
@@ -60,7 +60,8 @@ export async function DhEmbedTableEnricher(match) {
             r[i.uuid] = i;
             return r;
         }, {});
-        for (const result of rollTable.results) {
+        const results = rollTable.results.toObject().sort((a, b) => a.range[0] - b.range[0]);
+        for (const result of results) {
             const item = itemsByUuid[result.documentUuid];
             if (!item || result.range[0] > max || result.range[1] < min) continue;
 
