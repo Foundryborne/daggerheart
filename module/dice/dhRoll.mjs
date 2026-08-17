@@ -7,6 +7,7 @@ export default class DHRoll extends BaseRoll {
     constructor(formula, data = {}, options = {}) {
         super(formula, data, foundry.utils.mergeObject(options, { roll: [] }, { overwrite: false }));
         options.bonusEffects = this.bonusEffectBuilder();
+
         if (!this.data || !Object.keys(this.data).length) this.data = options.data;
     }
 
@@ -288,12 +289,19 @@ export default class DHRoll extends BaseRoll {
             if (!effect.selected) continue;
             for (const change of effect.changes) {
                 if (!change.key.includes(path)) continue;
+                
+                // TODO: We should handle override and all other modes. It'll have to be done in a different way
+                // as we cannot just go through each change and sum them up. We'll have to get the total value with
+                // overrides and everything considered.
+                if (!['add', 'subtract'].includes(change.type)) continue;
+
                 const changeValue = game.system.api.documents.DhActiveEffect.getChangeValue(
                     this.data,
                     change,
                     effect.origEffect
                 );
-                modifiers.push({ label: label, value: changeValue });
+                const typedValue = change.type === 'add' ? changeValue : -changeValue;
+                modifiers.push({ label: label, value: typedValue });
             }
         }
 

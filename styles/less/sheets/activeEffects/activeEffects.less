@@ -104,4 +104,22 @@
             }
         }
     }
+
+    .item-info {
+        h3 {
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            &[data-action]:hover::after {
+                content: '\f35d';
+                font-family: var(--fa-family, var(--fa-style-family, "Font Awesome 7 Pro"));
+                position: absolute;
+                left: 100%;
+                margin-left: 0.5rem;
+                color: var(--color-text-emphatic);
+                font-size: var(--font-size-12);
+            }
+        }
+    }
 }

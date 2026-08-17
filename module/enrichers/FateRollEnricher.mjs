@@ -1,6 +1,6 @@
 import { getCommandTarget, rollCommandToJSON } from '../helpers/utils.mjs';
 
-export default function DhFateRollEnricher(match, _options) {
+export function DhFateRollEnricher(match, _options) {
     const roll = rollCommandToJSON(match[0]);
     if (!roll) return match[0];
 

@@ -10,6 +10,7 @@
  * Generally a subclass will override the version and the updateXSource() functions.
  */
 export class MigrationHandlerBase {
+    /** System version that introduces this migration */
     version = null;
 
     /**
@@ -118,7 +119,6 @@ export class MigrationHandlerBase {
                 });
             }
         }
-
 
         for (const actor of game.actors) {
             await updateActor(actor);

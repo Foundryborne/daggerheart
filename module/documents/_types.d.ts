@@ -9,6 +9,8 @@ import Item from '@client/documents/item.mjs';
 
 declare module './actor.mjs' {
     export default interface DhpActor<T extends BaseDataActor = BaseDataActor> extends Actor {
+        name: string;
+        img: string;
         system: T;
         items: EmbeddedCollection<DHItem>;
         effects: EmbeddedCollection<DhActiveEffect>;
@@ -23,6 +25,8 @@ declare module './actor.mjs' {
 
 declare module './item.mjs' {
     export default interface DHItem<T extends BaseDataItem = BaseDataItem> extends Item {
+        name: string;
+        img: string;
         parent: DhpActor;
         actor: DhpActor;
         system: T;

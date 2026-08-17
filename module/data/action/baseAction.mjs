@@ -47,6 +47,10 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return schemaFields;
     }
 
+    get metadata() {
+        return this.constructor.metadata;
+    }
+
     /**
      * The default values to supply to schema fields when they are created in the actionConfig. Defined by implementing classes.
      */
@@ -238,7 +242,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         let config = this.prepareConfig(event, configOptions);
         if (!config) return;
 
-        config.effects = 
+        config.effects =
             await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(this.actor, this.item);
 
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
@@ -257,7 +261,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         if (Hooks.call(`${CONFIG.DH.id}.postUseAction`, this, config) === false) return;
 
-        if (this.chatDisplay && !config.skips.createMessage && !config.actionChatMessageHandled) 
+        if (this.chatDisplay && !config.skips.createMessage && !config.actionChatMessageHandled)
             await this.toChat(null, config);
 
         return config;
@@ -378,7 +382,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                     continue;
                 }
             }
-                
+
             results.push(effect);
         }
 

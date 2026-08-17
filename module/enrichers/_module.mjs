@@ -1,9 +1,11 @@
-import { default as DhDamageEnricher, renderDamageButton } from './DamageEnricher.mjs';
-import { default as DhDualityRollEnricher, renderDualityButton } from './DualityRollEnricher.mjs';
-import { default as DhFateRollEnricher, renderFateButton } from './FateRollEnricher.mjs';
-import { default as DhEffectEnricher } from './EffectEnricher.mjs';
-import { default as DhTemplateEnricher, renderMeasuredTemplate } from './TemplateEnricher.mjs';
-import { default as DhLookupEnricher } from './LookupEnricher.mjs';
+import { DhDamageEnricher, renderDamageButton } from './DamageEnricher.mjs';
+import { DhDualityRollEnricher, renderDualityButton } from './DualityRollEnricher.mjs';
+import { DhFateRollEnricher, renderFateButton } from './FateRollEnricher.mjs';
+import { DhEffectEnricher } from './EffectEnricher.mjs';
+import { DhTemplateEnricher, renderMeasuredTemplate } from './TemplateEnricher.mjs';
+import { DhLookupEnricher } from './LookupEnricher.mjs';
+import { DhResolveEnricher } from './ResolveEnricher.mjs';
+import { DhEmbedTableEnricher } from './EmbedTableEnricher.mjs';
 
 export { DhDamageEnricher, DhDualityRollEnricher, DhEffectEnricher, DhTemplateEnricher, DhFateRollEnricher };
 
@@ -31,6 +33,14 @@ export const enricherConfig = [
     {
         pattern: /@Lookup\[([^[\]]*)\]({[^}]*})?/g,
         enricher: DhLookupEnricher
+    },
+    {
+        pattern: /@Resolve\[([^[\]]*)\]({[^}]*})?/g,
+        enricher: DhResolveEnricher
+    },
+    {
+        pattern: /@EmbedTable\[([^[\]]*)\]/g,
+        enricher: DhEmbedTableEnricher
     }
 ];
 

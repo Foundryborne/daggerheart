@@ -109,7 +109,7 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
         if (!/^custom\.-?\d+$/.test(type) && !type.split('.').every(s => /^[a-z0-9]+$/i.test(s))) {
             throw new Error(
                 'A change type must either be a sequence of dot-delimited, alpha-numeric substrings or of the form' +
-                    ' "custom.{number}"'
+                ' "custom.{number}"'
             );
         }
         return true;
@@ -119,6 +119,7 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
         for (const change of this.changes) {
             if (change.isSuppressed) return true;
         }
+        return false;
     }
 
     get armorChange() {
@@ -132,19 +133,22 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
         return armorChange.getArmorData();
     }
 
-    static getDefaultObject(options = { transfer: true }) {
-        return {
-            name: 'New Effect',
-            id: foundry.utils.randomID(),
-            disabled: false,
-            img: 'icons/magic/life/heart-cross-blue.webp',
-            description: '',
-            transfer: options.transfer,
-            statuses: [],
-            system: {
-                changes: []
-            }
-        };
+    static getDefaultObject(options = {}) {
+        return foundry.utils.mergeObject(
+            {
+                name: 'New Effect',
+                id: foundry.utils.randomID(),
+                disabled: false,
+                img: 'icons/magic/life/heart-cross-blue.webp',
+                description: '',
+                transfer: true,
+                statuses: [],
+                system: {
+                    changes: []
+                }
+            },
+            options
+        );
     }
 
     async _preUpdate(changed, options, userId) {

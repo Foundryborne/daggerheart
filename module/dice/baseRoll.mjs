@@ -1,4 +1,4 @@
-export default class BaseRoll extends Roll {
+export default class BaseRoll extends foundry.dice.Roll {
     /** @inheritdoc */
     static CHAT_TEMPLATE = 'systems/daggerheart/templates/ui/chat/foundryRoll.hbs';
 

@@ -32,48 +32,26 @@
         {{/if}}
     </fieldset>
 
-    <fieldset class="drop-section" data-type="foundation">
-        <legend>
-            {{localize "DAGGERHEART.GENERAL.Tabs.foundation"}} 
-            <a><i data-action="addFeature" data-type="foundation" class="fa-solid fa-plus icon-button"></i></a>
-        </legend>
 
-        <div class="feature-list">
-            {{#each source.system.foundationFeatures as | feature | }}
-                {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type='foundation' feature=feature}}
-            {{else}}
-                <div class="drag-area">{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "TYPES.Item.feature")}}</div>
-            {{/each}}
-        </div>
-    </fieldset>
+    {{> rankFeatures type="foundation" label=(localize "DAGGERHEART.GENERAL.Tabs.foundation") features=features.foundation}}
+    {{> rankFeatures type="specialization" label=(localize "DAGGERHEART.GENERAL.Tabs.specialization") features=features.specialization}}
+    {{> rankFeatures type="mastery" label=(localize "DAGGERHEART.GENERAL.Tabs.mastery") features=features.mastery}}
 
-    <fieldset class="drop-section" data-type="specialization">
-        <legend>
-            {{localize "DAGGERHEART.GENERAL.Tabs.specialization"}} 
-            <a><i data-action="addFeature" data-type="specialization" class="fa-solid fa-plus icon-button"></i></a>
-        </legend>
-
-        <div class="feature-list">
-            {{#each source.system.specializationFeatures as | feature |}}
-                {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type='specialization' feature=feature}}
-            {{else}}
-                <div class="drag-area">{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "TYPES.Item.feature")}}</div>
-            {{/each}}
-        </div>
-    </fieldset>
-
-    <fieldset class="drop-section" data-type="mastery">
-        <legend>
-            {{localize "DAGGERHEART.GENERAL.Tabs.mastery"}} 
-            <a><i data-action="addFeature" data-type="mastery" class="fa-solid fa-plus icon-button"></i></a>
-        </legend>
-
-        <div class="feature-list">
-            {{#each source.system.masteryFeatures as | feature |}}
-                {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type='mastery' feature=feature}}
-            {{else}}
-                <div class="drag-area">{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "TYPES.Item.feature")}}</div>
-            {{/each}}
-        </div>
-    </fieldset>
 </section>
+
+{{#*inline "rankFeatures"}}
+    <fieldset class="drop-section" data-type="{{type}}">
+        <legend>
+            {{label}} 
+            <a><i data-action="addFeature" data-type="{{type}}" class="fa-solid fa-plus icon-button"></i></a>
+        </legend>
+
+        <div class="feature-list">
+            {{#each features as | feature |}}
+                {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type=type uuid=feature.uuid feature=feature.item}}
+            {{else}}
+                <div class="drag-area">{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "TYPES.Item.feature")}}</div>
+            {{/each}}
+        </div>
+    </fieldset>
+{{/inline}}

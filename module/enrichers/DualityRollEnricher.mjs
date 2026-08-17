@@ -1,7 +1,7 @@
 import { abilities } from '../config/actorConfig.mjs';
 import { getCommandTarget, rollCommandToJSON } from '../helpers/utils.mjs';
 
-export default function DhDualityRollEnricher(match, _options) {
+export function DhDualityRollEnricher(match, _options) {
     const roll = rollCommandToJSON(match[0]);
     if (!roll) return match[0];
 

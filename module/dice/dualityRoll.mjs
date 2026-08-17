@@ -91,17 +91,17 @@ export default class DualityRoll extends D20Roll {
 
     get isCritical() {
         if (this.guaranteedCritical) return true;
-        if (!this.dHope._evaluated || !this.dFear._evaluated) return;
+        if (!this.dHope._evaluated || !this.dFear._evaluated) return false;
         return this.dHope.total === this.dFear.total;
     }
 
     get withHope() {
-        if (!this._evaluated || this.guaranteedCritical) return;
+        if (!this._evaluated || this.guaranteedCritical) return false;
         return this.dHope.total > this.dFear.total;
     }
 
     get withFear() {
-        if (!this._evaluated || this.guaranteedCritical) return;
+        if (!this._evaluated || this.guaranteedCritical) return false;
         return this.dHope.total < this.dFear.total;
     }
 

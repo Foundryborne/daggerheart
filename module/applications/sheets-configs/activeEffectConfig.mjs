@@ -9,7 +9,10 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
     }
 
     static DEFAULT_OPTIONS = {
-        classes: ['daggerheart', 'sheet', 'dh-style']
+        classes: ['daggerheart', 'sheet', 'dh-style'],
+        actions: {
+            showItem: DhActiveEffectConfig.#onShowItem
+        }
     };
 
     static PARTS = {
@@ -175,6 +178,11 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
     async _preparePartContext(partId, context) {
         const partContext = await super._preparePartContext(partId, context);
         switch (partId) {
+            case 'header':
+                const originItem = this.document?.item && this.document?.transfer ? this.document.item
+                    : fromUuidSync(this.document.origin);
+                if (originItem) partContext.originItem = originItem.item ?? originItem;
+                break;
             case 'details':
                 partContext.isItemEffect = partContext.isItemEffect || this.options.isSetting;
                 const useGeneric = game.settings.get(
@@ -202,7 +210,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             case 'changes':
                 const typedChanges = this.document.changes.reduce((acc, change, index) => {
                     if (change.single) acc[change.type] = { ...change, index };
-                    
+
                     return acc;
                 }, {});
                 partContext.changes = partContext.changes.filter(c => !!c);
@@ -227,10 +235,10 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         const rangeFields = this.document.system.schema.fields.rangeDependence.fields;
         const systemData = {
             rangeDependence: event.target.checked
-                ? _replace({ 
-                    type: rangeFields.type.initial, 
+                ? _replace({
+                    type: rangeFields.type.initial,
                     target: rangeFields.target.initial,
-                    range: rangeFields.range.initial 
+                    range: rangeFields.range.initial
                 })
                 : null
         };
@@ -368,5 +376,12 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             );
             app.render({ force: true });
         });
+    }
+
+    static #onShowItem(event, button) {
+        const { itemId } = button.dataset;
+        if (!itemId) return;
+        const item = fromUuidSync(itemId);
+        if (item.visible) item.sheet?.render({ force: true });
     }
 }
