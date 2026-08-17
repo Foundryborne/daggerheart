@@ -67,17 +67,23 @@ export async function DhEmbedTableEnricher(match) {
             const row = body.appendChild(document.createElement('tr'));
             const roll = [...new Set(result.range.map(r => String(r).padStart(numDigits, '0')))].join('-');
             row.append(createHtmlElement('td', { text: roll, className: 'roll' }))
-            for (const cell of definition.cells) {
-                const key = cell.html ? 'html' : 'text';
-                row.append(createHtmlElement('td', { [key]: await cell.value(item, runData), className: cell.cssClass }));
+            for (const cellDef of definition.cells) {
+                const element = createHtmlElement('td', { 
+                    [cellDef.html ? 'html' : 'text']: await cellDef.value(item, runData), 
+                    className: cellDef.cssClass
+                });
+                row.append(element);
             }
         }
     } else {
         for (const item of items) {
             const row = body.appendChild(document.createElement('tr'));
-            for (const cell of definition.cells) {
-                const key = cell.html ? 'html' : 'text';
-                row.append(createHtmlElement('td', { [key]: await cell.value(item, runData), className: cell.cssClass }));
+            for (const cellDef of definition.cells) {
+                const element = createHtmlElement('td', { 
+                    [cellDef.html ? 'html' : 'text']: await cellDef.value(item, runData),
+                    className: cellDef.cssClass
+                });
+                row.append(element);
             }
         }
     }
