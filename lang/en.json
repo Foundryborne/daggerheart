@@ -1495,7 +1495,7 @@
             "WeaponFeature": {
                 "barrier": {
                     "name": "Barrier",
-                    "description": "Gain Weapon Tier + 1 to Armor Score; -1 to Evasion",
+                    "description": "@Resolve[@item.tier + 1|sign]{Gain Weapon Tier + 1} to Armor Score; -1 to Evasion",
                     "effects": {
                         "barrier": {
                             "name": "Barrier",
@@ -1813,7 +1813,7 @@
                 },
                 "paired": {
                     "name": "Paired",
-                    "description": "Add this Secondary Weapon's tier + 1 to your primary weapon damage against targets within Melee range",
+                    "description": "@Resolve[@item.tier + 1|sign]{Add this Secondary Weapon's tier + 1} to primary weapon damage to targets within Melee range",
                     "actions": {
                         "paired": {
                             "name": "Paired",
@@ -1875,7 +1875,7 @@
                 },
                 "protective": {
                     "name": "Protective",
-                    "description": "Add the item's Tier to your Armor Score",
+                    "description": "@Resolve[@item.tier|sign]{Add the item's Tier} to Armor Score",
                     "effects": {
                         "protective": {
                             "name": "Protective",

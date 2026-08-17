@@ -1,6 +1,6 @@
 import { parseInlineParams } from './parser.mjs';
 
-export default function DhTemplateEnricher(match, _options) {
+export function DhTemplateEnricher(match, _options) {
     const params = parseInlineParams(match[1]);
     const { type, angle = CONFIG.MeasuredTemplate.defaults.angle, inline = false } = params;
     const direction = Number(params.direction) || 0;

@@ -1,4 +1,4 @@
-export default async function DhEffectEnricher(match, _options) {
+export async function DhEffectEnricher(match, _options) {
     const effect = await foundry.utils.fromUuid(match[1]);
     if (!effect) return match[0];
 

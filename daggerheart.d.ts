@@ -17,7 +17,6 @@ import FearTracker from './module/applications/ui/fearTracker.mjs';
 import DhCountdowns from './module/data/countdowns.mjs';
 import DhEffectsDisplay from './module/applications/ui/effectsDisplay.mjs';
 
-
 // Foundry's use of `Object.assign(globalThis) means many globally available objects are not read as such
 // This declare global hopefully fixes that
 // Note: eslint is not aware of these, whatever is added here should go in the eslint's globals list
@@ -58,7 +57,9 @@ declare global {
 
     const Collection: foundry.utils.Collection;
     const FormDataExtended: foundry.applications.ux.FormDataExtended;
+    /** @deprecated */
     const TextEditor: foundry.applications.ux.TextEditor;
+    const Roll: dice.BaseRoll;
 
     /**
      * Data used to build rolls such as duality rolls. The definition is incomplete and likely incorrect.
