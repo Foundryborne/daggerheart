@@ -82,6 +82,7 @@ export default defineConfig([
                 Macro: 'readonly',
                 Scene: 'readonly',
                 TokenDocument: 'readonly',
+                RollTable: 'readonly',
                 // Other
                 Collection: 'readonly',
                 FormDataExtended: 'readonly',

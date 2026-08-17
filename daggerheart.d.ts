@@ -54,6 +54,7 @@ declare global {
     const Macro: foundry.documents.Macro;
     const Scene: foundry.documents.Scene;
     const TokenDocument: foundry.documents.TokenDocument;
+    const RollTable: foundry.documents.RollTable;
 
     const Collection: foundry.utils.Collection;
     const FormDataExtended: foundry.applications.ux.FormDataExtended;
