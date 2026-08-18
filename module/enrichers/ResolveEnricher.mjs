@@ -4,7 +4,7 @@ import { parseInlineParams } from './parser.mjs';
 export function DhResolveEnricher(match, { rollData }) {
     const results = parseInlineParams(match[1], { first: 'formula' });
     const element = document.createElement('span');
-    const label = match[2]?.slice(1, -1);
+    const label = match[2];
     try {
         const evaluated = Roll.safeEval(Roll.replaceFormulaData(String(results.formula), rollData));
         element.textContent = results.sign && evaluated >= 0 ? `+${evaluated}` : String(evaluated);

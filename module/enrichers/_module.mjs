@@ -9,33 +9,34 @@ import { DhEmbedTableEnricher } from './EmbedTableEnricher.mjs';
 
 export { DhDamageEnricher, DhDualityRollEnricher, DhEffectEnricher, DhTemplateEnricher, DhFateRollEnricher };
 
+// @todo standardize enricher regex and use match labels
 export const enricherConfig = [
     {
-        pattern: /@Damage\[([^[\]]*)\]({[^}]*})?/g,
+        pattern: /@Damage\[([^[\]]*)\](?:{([^}]*)})?/g,
         enricher: DhDamageEnricher
     },
     {
-        pattern: /\[\[\/dr\s?(.*?)\]\]({[^}]*})?/g,
+        pattern: /\[\[\/dr\s?(.*?)\]\](?:{([^}]*)})?/g,
         enricher: DhDualityRollEnricher
     },
     {
-        pattern: /\[\[\/fr\s?(.*?)\]\]({[^}]*})?/g,
+        pattern: /\[\[\/fr\s?(.*?)\]\](?:{([^}]*)})?/g,
         enricher: DhFateRollEnricher
     },
     {
-        pattern: /@Effect\[([^[\]]*)\]({[^}]*})?/g,
+        pattern: /@Effect\[([^[\]]*)\](?:{([^}]*)})?/g,
         enricher: DhEffectEnricher
     },
     {
-        pattern: /@Template\[([^[\]]*)\]({[^}]*})?/g,
+        pattern: /@Template\[([^[\]]*)\](?:{([^}]*)})?/g,
         enricher: DhTemplateEnricher
     },
     {
-        pattern: /@Lookup\[([^[\]]*)\]({[^}]*})?/g,
+        pattern: /@Lookup\[([^[\]]*)\](?:{([^}]*)})?/g,
         enricher: DhLookupEnricher
     },
     {
-        pattern: /@Resolve\[([^[\]]*)\]({[^}]*})?/g,
+        pattern: /@Resolve\[([^[\]]*)\](?:{([^}]*)})?/g,
         enricher: DhResolveEnricher
     },
     {

@@ -11,6 +11,7 @@ import * as FLAGS from './flagsConfig.mjs';
 import * as HOOKS from './hooksConfig.mjs';
 import * as TRIGGER from './triggerConfig.mjs';
 import * as ITEMBROWSER from './itemBrowserConfig.mjs';
+import * as LOOKUP from './lookupConfig.mjs';
 
 /** @type {"daggerheart"} */
 export const SYSTEM_ID = 'daggerheart';
@@ -30,6 +31,7 @@ export const SYSTEM = {
     HOOKS,
     TRIGGER,
     ITEMBROWSER,
+    LOOKUP,
 
     /**
      * Lore entries are used by items to link to the journal entry for the full description
